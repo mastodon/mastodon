@@ -93,7 +93,7 @@ class ActivityPub::Activity
   end
 
   def distribute_to_followers(status)
-    DistributionWorker.perform_async(status.id)
+    ::DistributionWorker.perform_async(status.id)
   end
 
   def delete_arrived_first?(uri)

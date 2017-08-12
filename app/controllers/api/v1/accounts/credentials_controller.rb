@@ -10,8 +10,9 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   end
 
   def update
-    current_account.update!(account_params)
     @account = current_account
+    @account.update!(account_params)
+    ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
     render json: @account, serializer: REST::CredentialAccountSerializer
   end
 
