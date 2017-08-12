@@ -5,14 +5,19 @@ class FetchRemoteAccountService < BaseService
 
   def call(url, prefetched_body = nil)
     if prefetched_body.nil?
-      atom_url, body = FetchAtomService.new.call(url)
+      resource_url, body, protocol = FetchAtomService.new.call(url)
     else
-      atom_url = url
-      body     = prefetched_body
+      resource_url = url
+      body         = prefetched_body
+      protocol     = :ostatus
     end
 
-    return nil if atom_url.nil?
-    process_atom(atom_url, body)
+    case protocol
+    when :ostatus
+      process_atom(resource_url, body)
+    when :activitypub
+      ActivityPub::FetchRemoteAccountService.new.call(resource_url, body)
+    end
   end
 
   private
