@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../../ui/containers/status_list_container';
 import {
-  refreshPublicTimeline,
-  expandPublicTimeline,
+  refreshCommunityTimeline,
+  expandCommunityTimeline,
 } from '../../../actions/timelines';
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  title: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
+  title: { id: 'standalone.community_title', defaultMessage: 'A look inside...' },
 });
 
 @connect()
@@ -34,10 +34,10 @@ export default class PublicTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
-    dispatch(refreshPublicTimeline());
+    dispatch(refreshCommunityTimeline());
 
     this.polling = setInterval(() => {
-      dispatch(refreshPublicTimeline());
+      dispatch(refreshCommunityTimeline());
     }, 3000);
   }
 
@@ -49,7 +49,7 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   handleLoadMore = () => {
-    this.props.dispatch(expandPublicTimeline());
+    this.props.dispatch(expandCommunityTimeline());
   }
 
   render () {
@@ -64,7 +64,7 @@ export default class PublicTimeline extends React.PureComponent {
         />
 
         <StatusListContainer
-          timelineId='public'
+          timelineId='community'
           loadMore={this.handleLoadMore}
           scrollKey='standalone_public_timeline'
           trackScroll={false}
