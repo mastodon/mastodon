@@ -1,17 +1,33 @@
 Warden::Manager.after_set_user except: :fetch do |user, warden|
-  SessionActivation.deactivate warden.raw_session['auth_id']
-  warden.raw_session['auth_id'] = user.activate_session(warden.request)
+  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
+    session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
+  else
+    session_id = user.activate_session(warden.request)
+  end
+
+  warden.cookies.signed['_session_id'] = {
+    value: session_id,
+    expires: 1.year.from_now,
+    httponly: true,
+  }
 end
 
 Warden::Manager.after_fetch do |user, warden|
-  unless user.session_active?(warden.raw_session['auth_id'])
+  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
+    warden.cookies.signed['_session_id'] = {
+      value: warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'],
+      expires: 1.year.from_now,
+      httponly: true,
+    }
+  else
     warden.logout
     throw :warden, message: :unauthenticated
   end
 end
 
 Warden::Manager.before_logout do |_, warden|
-  SessionActivation.deactivate warden.raw_session['auth_id']
+  SessionActivation.deactivate warden.cookies.signed['_session_id']
+  warden.cookies.delete('_session_id')
 end
 
 Devise.setup do |config|

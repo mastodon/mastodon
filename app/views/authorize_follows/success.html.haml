@@ -1,0 +1,16 @@
+- content_for :page_title do
+  = t('authorize_follow.title', acct: @account.acct)
+
+.form-container
+  .follow-prompt
+    - if @account.locked?
+      %h2= t('authorize_follow.follow_request')
+    - else
+      %h2= t('authorize_follow.following')
+
+    = render 'card', account: @account
+
+  .post-follow-actions
+    %div= link_to t('authorize_follow.post_follow.web'), web_url("accounts/#{@account.id}"), class: 'button button--block'
+    %div= link_to t('authorize_follow.post_follow.return'), @account.url, class: 'button button--block'
+    %div= t('authorize_follow.post_follow.close')

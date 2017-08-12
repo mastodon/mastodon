@@ -20,11 +20,16 @@ Sidekiq::Logging.logger = nil
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
 
-  def sign_in(resource, deprecated = nil, scope: nil)
+  def sign_in(resource, _deprecated = nil, scope: nil)
     original_sign_in(resource, scope: scope)
 
-    SessionActivation.deactivate warden.raw_session["auth_id"]
-    warden.raw_session["auth_id"] = resource.activate_session(warden.request)
+    SessionActivation.deactivate warden.cookies.signed['_session_id']
+
+    warden.cookies.signed['_session_id'] = {
+      value: resource.activate_session(warden.request),
+      expires: 1.year.from_now,
+      httponly: true,
+    }
   end
 end
 

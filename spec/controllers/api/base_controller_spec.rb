@@ -32,7 +32,7 @@ describe Api::BaseController do
       ActiveRecord::RecordInvalid => 422,
       Mastodon::ValidationError => 422,
       ActiveRecord::RecordNotFound => 404,
-      Goldfinger::Error => 422,
+      Mastodon::UnexpectedResponseError => 503,
       HTTP::Error => 503,
       OpenSSL::SSL::SSLError => 503,
       Mastodon::NotPermittedError => 403,

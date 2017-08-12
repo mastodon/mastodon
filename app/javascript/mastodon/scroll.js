@@ -1,9 +1,9 @@
 const easingOutQuint = (x, t, b, c, d) => c * ((t = t / d - 1) * t * t * t * t + 1) + b;
 
-const scrollTop = (node) => {
+const scroll = (node, key, target) => {
   const startTime = Date.now();
-  const offset    = node.scrollTop;
-  const targetY   = -offset;
+  const offset    = node[key];
+  const gap       = target - offset;
   const duration  = 1000;
   let interrupt   = false;
 
@@ -15,7 +15,7 @@ const scrollTop = (node) => {
       return;
     }
 
-    node.scrollTop = easingOutQuint(0, elapsed, offset, targetY, duration);
+    node[key] = easingOutQuint(0, elapsed, offset, gap, duration);
     requestAnimationFrame(step);
   };
 
@@ -26,4 +26,5 @@ const scrollTop = (node) => {
   };
 };
 
-export default scrollTop;
+export const scrollRight = (node) => scroll(node, 'scrollLeft', node.scrollWidth);
+export const scrollTop = (node) => scroll(node, 'scrollTop', 0);

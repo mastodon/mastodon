@@ -14,6 +14,6 @@ class UnfollowService < BaseService
   private
 
   def build_xml(follow)
-    AtomSerializer.render(AtomSerializer.new.unfollow_salmon(follow))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.unfollow_salmon(follow))
   end
 end
