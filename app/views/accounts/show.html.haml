@@ -7,6 +7,7 @@
 
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
+  %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 
   %meta{ property: 'og:type', content: 'profile' }/
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
