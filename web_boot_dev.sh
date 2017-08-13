@@ -2,7 +2,7 @@
 
 MODE=$1
 
-bundle install \
+bundle install --without="" \
  && yarn --ignore-optional --pure-lockfile
 
 
@@ -10,7 +10,6 @@ echo "Start with ${MODE} mode..."
 
 case "$MODE" in
   "web")
-    time rails assets:precompile
     bundle exec rails s -p 3000 -b '0.0.0.0'
     ;;
   "sidekiq")

@@ -3,6 +3,8 @@ services:
 
   db:
     image: postgres:alpine
+    ports:
+      - "5432:5432"
     volumes:
     - /var/data/docker-data/catgram-postgres:/var/lib/postgresql/data
 
@@ -13,19 +15,20 @@ services:
 
   web:
     image: us.gcr.io/centi-gitlab/catgram:latest
-    env_file: .env.production
+    env_file: .env.development
     command: /mastodon/web_boot_dev.sh web
     volumes:
     - ".:/mastodon"
     ports:
       - "3000:3000"
+      - "8080:8080"
     depends_on:
       - db
       - redis
 
   streaming:
     image: us.gcr.io/centi-gitlab/catgram:latest
-    env_file: .env.production
+    env_file: .env.development
     command: /mastodon/web_boot_dev.sh streaming
     volumes:
     - ".:/mastodon"
@@ -37,7 +40,7 @@ services:
 
   sidekiq:
     image: us.gcr.io/centi-gitlab/catgram:latest
-    env_file: .env.production
+    env_file: .env.development
     command: /mastodon/web_boot_dev.sh sidekiq
     
     volumes:
