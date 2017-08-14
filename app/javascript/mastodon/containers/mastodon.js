@@ -89,6 +89,11 @@ export default class Mastodon extends React.PureComponent {
       Notification.requestPermission();
     }
 
+    if (typeof navigator.registerProtocolHandler !== 'undefined') {
+      const handlerUrl = window.location.protocol + '//' + window.location.host + '/intent?uri=%s';
+      navigator.registerProtocolHandler('web+mastodon', handlerUrl, 'Mastodon');
+    }
+
     store.dispatch(showOnboardingOnce());
   }
 

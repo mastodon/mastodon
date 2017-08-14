@@ -44,6 +44,21 @@
   }
 }
 
+.compose-standalone {
+  .compose-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px 0;
+    margin-top: 40px;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 400px) {
+      margin-top: 0;
+      padding: 20px;
+    }
+  }
+}
+
 .account-header {
   width: 400px;
   margin: 0 auto;
