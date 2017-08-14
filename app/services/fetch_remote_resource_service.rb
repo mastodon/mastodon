@@ -31,7 +31,7 @@ class FetchRemoteResourceService < BaseService
   end
 
   def body
-    fetched_atom_feed.last
+    fetched_atom_feed.second
   end
 
   def xml_root
