@@ -3,13 +3,12 @@
 class FetchRemoteAccountService < BaseService
   include AuthorExtractor
 
-  def call(url, prefetched_body = nil)
+  def call(url, prefetched_body = nil, protocol = :ostatus)
     if prefetched_body.nil?
       resource_url, body, protocol = FetchAtomService.new.call(url)
     else
       resource_url = url
       body         = prefetched_body
-      protocol     = :ostatus
     end
 
     case protocol
