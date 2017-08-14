@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FetchRemoteResourceService < BaseService
+  include JsonLdHelper
+
   attr_reader :url
 
   def call(url)
@@ -50,7 +52,7 @@ class FetchRemoteResourceService < BaseService
   end
 
   def json_data
-    @_json_data ||= Oj.load(body, mode: :strict)
+    @_json_data ||= body_to_json(body)
   end
 
   def xml_root
