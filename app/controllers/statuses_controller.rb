@@ -20,13 +20,13 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        render json: @status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
+        render json: @status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
       end
     end
   end
 
   def activity
-    render json: @status, serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter
+    render json: @status, serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 
   private

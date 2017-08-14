@@ -17,7 +17,7 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        render json: @account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
+        render json: @account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
       end
     end
   end
