@@ -79,7 +79,8 @@ class ResolveRemoteAccountService < BaseService
 
   def activitypub_ready?
     !@webfinger.link('self').nil? &&
-      ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self').type)
+      ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self').type) &&
+      actor_json['inbox'].present?
   end
 
   def handle_ostatus
@@ -93,11 +94,9 @@ class ResolveRemoteAccountService < BaseService
   end
 
   def handle_activitypub
-    json = fetch_resource(actor_url)
+    return if actor_json.nil?
 
-    return unless supported_context?(json) && json['type'] == 'Person'
-
-    @account = ActivityPub::ProcessAccountService.new.call(@username, @domain, json)
+    @account = ActivityPub::ProcessAccountService.new.call(@username, @domain, actor_json)
   rescue Oj::ParseError
     nil
   end
@@ -184,6 +183,13 @@ class ResolveRemoteAccountService < BaseService
     raise Mastodon::UnexpectedResponseError, response unless response.code == 200
 
     @atom_body = response.to_s
+  end
+
+  def actor_json
+    return @actor_json if defined?(@actor_json)
+
+    json        = fetch_resource(actor_url)
+    @actor_json = supported_context?(json) && json['type'] == 'Person' ? json : nil
   end
 
   def atom
