@@ -16,7 +16,11 @@ module JsonLdHelper
   def fetch_resource(uri)
     response = build_request(uri).perform
     return if response.code != 200
-    Oj.load(response.to_s, mode: :strict)
+    body_to_json(response.to_s)
+  end
+
+  def body_to_json(body)
+    body.nil? ? nil : Oj.load(body, mode: :strict)
   rescue Oj::ParseError
     nil
   end
@@ -25,7 +29,7 @@ module JsonLdHelper
 
   def build_request(uri)
     request = Request.new(:get, uri)
-    request.add_headers('Accept' => 'application/activity+json')
+    request.add_headers('Accept' => 'application/activity+json, application/ld+json')
     request
   end
 end

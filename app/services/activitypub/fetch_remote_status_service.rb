@@ -4,8 +4,8 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   include JsonLdHelper
 
   # Should be called when uri has already been checked for locality
-  def call(uri)
-    @json = fetch_resource(uri)
+  def call(uri, prefetched_json = nil)
+    @json = body_to_json(prefetched_json) || fetch_resource(uri)
 
     return unless supported_context? && expected_type?
 

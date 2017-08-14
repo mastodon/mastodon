@@ -124,8 +124,7 @@ RSpec.describe ProcessFeedService do
 </entry>
 XML
 
-    stub_request(:head, 'https://overwatch.com/users/tracer/updates/1').to_return(status: 200, headers: { 'Content-Type' => 'application/atom+xml' })
-    stub_request(:get, 'https://overwatch.com/users/tracer/updates/1').to_return(status: 200, body: real_body)
+    stub_request(:get, 'https://overwatch.com/users/tracer/updates/1').to_return(status: 200, body: real_body, headers: { 'Content-Type' => 'application/atom+xml' })
 
     bad_actor = Fabricate(:account, username: 'sombra', domain: 'talon.xyz')
 
@@ -168,7 +167,7 @@ XML
   end
 
   it 'ignores reblogs if it failed to retreive reblogged statuses' do
-    stub_request(:head, 'https://overwatch.com/users/tracer/updates/1').to_return(status: 404)
+    stub_request(:get, 'https://overwatch.com/users/tracer/updates/1').to_return(status: 404)
 
     actor = Fabricate(:account, username: 'tracer', domain: 'overwatch.com')
 
