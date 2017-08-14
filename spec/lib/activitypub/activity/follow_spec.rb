@@ -17,12 +17,33 @@ RSpec.describe ActivityPub::Activity::Follow do
   describe '#perform' do
     subject { described_class.new(json, sender) }
 
-    before do
-      subject.perform
+    context 'unlocked account' do
+      before do
+        subject.perform
+      end
+
+      it 'creates a follow from sender to recipient' do
+        expect(sender.following?(recipient)).to be true
+      end
+
+      it 'does not create a follow request' do
+        expect(sender.requested?(recipient)).to be false
+      end
     end
 
-    it 'creates a follow from sender to recipient' do
-      expect(sender.following?(recipient)).to be true
+    context 'locked account' do
+      before do
+        recipient.update(locked: true)
+        subject.perform
+      end
+
+      it 'does not create a follow from sender to recipient' do
+        expect(sender.following?(recipient)).to be false
+      end
+
+      it 'creates a follow request' do
+        expect(sender.requested?(recipient)).to be true
+      end
     end
   end
 end
