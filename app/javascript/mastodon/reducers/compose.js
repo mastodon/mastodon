@@ -206,13 +206,12 @@ export default function compose(state = initialState, action) {
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
-
+      map.set('text', addMentions(map.get('text'), statusToTextMentions(state, action.status)));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.set('focusDate', new Date());
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
 
-      map.set('text', addMentions2(map.get('text'), statusToTextMentions(state, action.status)));
 
       // copy spoiler text, do not remove existing
       if (action.status.get('spoiler_text').length > 0) {
@@ -247,7 +246,7 @@ export default function compose(state = initialState, action) {
       return state
         .set('focusDate', new Date())
         .set('idempotencyKey', uuid())
-        .set('text', addMentions2(state.get('text'), `@${action.account.get('acct')}`));
+        .set('text', addMentions(state.get('text'), `@${action.account.get('acct')}`));
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
