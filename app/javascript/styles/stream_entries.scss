@@ -35,6 +35,14 @@
         }
       }
     }
+
+    @media screen and (max-width: 740px) {
+      &,
+      .detailed-status.light,
+      .status.light {
+        border-radius: 0 !important;
+      }
+    }
   }
 
   &.with-header {

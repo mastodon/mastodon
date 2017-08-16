@@ -1,5 +1,5 @@
 .card {
-  background-color: darken($ui-base-color, 4%);
+  background-color: lighten($ui-base-color, 4%);
   background-size: cover;
   background-position: center;
   border-radius: 4px 4px 0 0;
@@ -204,21 +204,19 @@
   }
 
   @media screen and (max-width: 480px) {
-    .details {
-      display: block;
+    display: block;
+
+    .card__bio {
+      max-width: none;
+    }
+
+    .name, .roles {
+      text-align: center;
+      margin-bottom: 15px;
     }
 
     .bio {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .counter {
-      flex: 1 1 auto;
-    }
-
-    .counter:last-child {
-      border-right: none;
+      margin-bottom: 15px;
     }
   }
 }
