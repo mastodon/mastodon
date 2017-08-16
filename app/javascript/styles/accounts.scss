@@ -210,7 +210,8 @@
       max-width: none;
     }
 
-    .name, .roles {
+    .name,
+    .roles {
       text-align: center;
       margin-bottom: 15px;
     }
@@ -385,12 +386,14 @@
 }
 
 .nothing-here {
+  width: 100%;
+  display: block;
   color: $ui-primary-color;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  padding: 15px 0;
-  padding-bottom: 25px;
+  padding: 60px 0;
+  padding-top: 55px;
   cursor: default;
 }
 
@@ -476,7 +479,7 @@
       color: lighten($ui-highlight-color, 8%);
     }
 
-    &.current {
+    &.active {
       color: $ui-base-color;
       cursor: default;
     }
