@@ -141,21 +141,24 @@ const privacyPreference = (a, b) => {
   }
 };
 
-function addMentions(state, mentionsStr) {
-  return state.withMutations(map => {
-    const mentionPieces = mentionsStr.split(' ');
-
-    let missing = [];
-    for (const m of mentionPieces) {
-      if (map.get('text').indexOf(m) === -1) {
-        missing.push(m);
-      }
+/**
+ * Add missing mentions to a status draft from the compose box
+ *
+ * @param text - the status draft
+ * @param mentionsStr - space-separated user handles to mention
+ * @return updated text
+ */
+function addMentions(text, mentionsStr) {
+  let missing = [];
+  for (const m of mentionsStr.split(' ')) {
+    // regex to make sure we don't match eg. @foo@bar.social or @foobar when looking for @foo
+    const re = new RegExp(`${m.replace('.', '\\.')}([^@\w]|$)`);
+    if (!re.test(text)) {
+      missing.push(m);
     }
+  }
 
-    if (missing.length) {
-      map.set('text', `${missing.join(' ')} ${map.get('text')}`);
-    }
-  });
+  return missing.length ? `${missing.join(' ')} ${text}` : text;
 }
 
 export default function compose(state = initialState, action) {
@@ -201,23 +204,22 @@ export default function compose(state = initialState, action) {
   case COMPOSE_COMPOSING_CHANGE:
     return state.set('is_composing', action.value);
   case COMPOSE_REPLY:
-    return addMentions(
-      state.withMutations(map => {
-        map.set('in_reply_to', action.status.get('id'));
+    return state.withMutations(map => {
+      map.set('in_reply_to', action.status.get('id'));
 
-        map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-        map.set('focusDate', new Date());
-        map.set('preselectDate', new Date());
-        map.set('idempotencyKey', uuid());
+      map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
+      map.set('focusDate', new Date());
+      map.set('preselectDate', new Date());
+      map.set('idempotencyKey', uuid());
 
-        // copy spoiler text, do not remove existing
-        if (action.status.get('spoiler_text').length > 0) {
-          map.set('spoiler', true);
-          map.set('spoiler_text', action.status.get('spoiler_text'));
-        }
-      }),
-      statusToTextMentions(state, action.status)
-    );
+      map.set('text', addMentions2(map.get('text'), statusToTextMentions(state, action.status)));
+
+      // copy spoiler text, do not remove existing
+      if (action.status.get('spoiler_text').length > 0) {
+        map.set('spoiler', true);
+        map.set('spoiler_text', action.status.get('spoiler_text'));
+      }
+    });
   case COMPOSE_REPLY_CANCEL:
     return state.withMutations(map => {
       map.set('in_reply_to', null);
@@ -241,13 +243,11 @@ export default function compose(state = initialState, action) {
     return removeMedia(state, action.media_id);
   case COMPOSE_UPLOAD_PROGRESS:
     return state.set('progress', Math.round((action.loaded / action.total) * 100));
-  case COMPOSE_MENTION:
-    return addMentions(
-      state
+    case COMPOSE_MENTION:
+      return state
         .set('focusDate', new Date())
-        .set('idempotencyKey', uuid()),
-      `@${action.account.get('acct')}`
-    );
+        .set('idempotencyKey', uuid())
+        .set('text', addMentions2(state.get('text'), `@${action.account.get('acct')}`));
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
