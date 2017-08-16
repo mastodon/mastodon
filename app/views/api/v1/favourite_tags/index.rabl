@@ -1,2 +1,0 @@
-collection @tags
-attributes :name
