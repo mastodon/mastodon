@@ -48,6 +48,10 @@ RSpec.describe AccountsController, type: :controller do
       it 'returns http success with Activity Streams 2.0' do
         expect(response).to have_http_status(:success)
       end
+
+      it 'returns application/activity+json' do
+        expect(response.content_type).to eq 'application/activity+json'
+      end
     end
 
     context 'html' do

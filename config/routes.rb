@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
+  get 'intent', to: 'intents#show'
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
@@ -86,12 +87,13 @@ Rails.application.routes.draw do
 
   # Remote follow
   resource :authorize_follow, only: [:show, :create]
+  resource :share, only: [:show, :create]
 
   namespace :admin do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resource :settings, only: [:edit, :update]
-    
+
     resources :instances, only: [:index] do
       collection do
         post :resubscribe

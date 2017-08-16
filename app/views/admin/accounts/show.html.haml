@@ -32,18 +32,30 @@
         %th= t('admin.accounts.profile_url')
         %td= link_to @account.url, @account.url
       %tr
-        %th= t('admin.accounts.feed_url')
-        %td= link_to @account.remote_url, @account.remote_url
-      %tr
-        %th= t('admin.accounts.push_subscription_expires')
-        %td
-          - if @account.subscribed?
-            = l @account.subscription_expires_at
-          - else
-            = t('admin.accounts.not_subscribed')
-      %tr
-        %th= t('admin.accounts.salmon_url')
-        %td= link_to @account.salmon_url, @account.salmon_url
+        %th= t('admin.accounts.protocol')
+        %td= @account.protocol
+
+      - if @account.ostatus?
+        %tr
+          %th= t('admin.accounts.feed_url')
+          %td= link_to @account.remote_url, @account.remote_url
+        %tr
+          %th= t('admin.accounts.push_subscription_expires')
+          %td
+            - if @account.subscribed?
+              = l @account.subscription_expires_at
+            - else
+              = t('admin.accounts.not_subscribed')
+        %tr
+          %th= t('admin.accounts.salmon_url')
+          %td= link_to @account.salmon_url, @account.salmon_url
+      - elsif @account.activitypub?
+        %tr
+          %th= t('admin.accounts.inbox_url')
+          %td= link_to @account.inbox_url, @account.inbox_url
+        %tr
+          %th= t('admin.accounts.outbox_url')
+          %td= link_to @account.outbox_url, @account.outbox_url
 
     %tr
       %th= t('admin.accounts.follows')
@@ -74,9 +86,10 @@
     - if @account.user&.otp_required_for_login?
       = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button'
   - else
-    = link_to @account.subscribed? ? t('admin.accounts.resubscribe') : t('admin.accounts.subscribe'), subscribe_admin_account_path(@account.id), method: :post, class: 'button'
-    - if @account.subscribed?
-      = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative'
+    - if @account.ostatus?
+      = link_to @account.subscribed? ? t('admin.accounts.resubscribe') : t('admin.accounts.subscribe'), subscribe_admin_account_path(@account.id), method: :post, class: 'button'
+      - if @account.subscribed?
+        = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative'
     = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button'
 
 %div{ style: 'float: left' }

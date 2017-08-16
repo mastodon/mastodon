@@ -161,10 +161,20 @@ function addMentions(text, mentionsStr) {
   return missing.length ? `${missing.join(' ')} ${text}` : text;
 }
 
+const hydrate = (state, hydratedState) => {
+  state = clearAll(state.merge(hydratedState));
+
+  if (hydratedState.has('text')) {
+    state = state.set('text', hydratedState.get('text'));
+  }
+
+  return state;
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return clearAll(state.merge(action.state.get('compose')));
+    return hydrate(state, action.state.get('compose'));
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:
