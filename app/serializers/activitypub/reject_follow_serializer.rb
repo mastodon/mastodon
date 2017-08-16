@@ -3,7 +3,7 @@
 class ActivityPub::RejectFollowSerializer < ActiveModel::Serializer
   attributes :id, :type, :actor
 
-  has_one :object, serializer: ActivityPub::FollowSerializer
+  has_one :object, serializer: ActivityPub::InverseFollowSerializer
 
   def id
     [ActivityPub::TagManager.instance.uri_for(object.target_account), '#rejects/follows/', object.id].join
