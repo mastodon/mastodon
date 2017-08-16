@@ -243,9 +243,9 @@ export default function compose(state = initialState, action) {
     return state.set('progress', Math.round((action.loaded / action.total) * 100));
   case COMPOSE_MENTION:
     return state
+      .set('text', addMentions(state.get('text'), `@${action.account.get('acct')}`))
       .set('focusDate', new Date())
-      .set('idempotencyKey', uuid())
-      .set('text', addMentions(state.get('text'), `@${action.account.get('acct')}`));
+      .set('idempotencyKey', uuid());
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
