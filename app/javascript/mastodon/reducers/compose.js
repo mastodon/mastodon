@@ -258,7 +258,8 @@ export default function compose(state = initialState, action) {
   case COMPOSE_EMOJI_INSERT:
     return insertEmoji(state, action.position, action.emoji);
   case COMPOSE_LOCK_TAG:
-    return setDefaultText(state, action.tag);
+    return setDefaultText(state, action.tag)
+      .set('privacy', action.tag !== '' ? 'unlisted' : 'public');
   default:
     return state;
   }
