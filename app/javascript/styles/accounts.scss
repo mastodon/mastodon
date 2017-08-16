@@ -1,21 +1,15 @@
 .card {
-  background: $ui-base-color;
+  background-color: darken($ui-base-color, 4%);
   background-size: cover;
   background-position: center;
-  padding: 60px 0;
-  padding-bottom: 0;
   border-radius: 4px 4px 0 0;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   overflow: hidden;
   position: relative;
-
-  @media screen and (max-width: 740px) {
-    border-radius: 0;
-    box-shadow: none;
-  }
+  display: flex;
 
   &::after {
-    background: linear-gradient(rgba($base-shadow-color, 0.5), rgba($base-shadow-color, 0.8));
+    background: rgba(darken($ui-base-color, 8%), 0.5);
     display: block;
     content: "";
     position: absolute;
@@ -24,6 +18,31 @@
     width: 100%;
     height: 100%;
     z-index: 1;
+  }
+
+  @media screen and (max-width: 740px) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .card__illustration {
+    padding: 60px 0;
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card__bio {
+    max-width: 260px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(darken($ui-base-color, 8%), 0.8);
+    position: relative;
+    z-index: 2;
   }
 
   &.compact {
@@ -44,11 +63,12 @@
     font-size: 20px;
     line-height: 18px * 1.5;
     color: $primary-text-color;
+    padding: 10px 15px;
+    padding-bottom: 0;
     font-weight: 500;
-    text-align: center;
     position: relative;
     z-index: 2;
-    text-shadow: 0 0 2px $base-shadow-color;
+    margin-bottom: 30px;
 
     small {
       display: block;
@@ -61,7 +81,6 @@
   .avatar {
     width: 120px;
     margin: 0 auto;
-    margin-bottom: 15px;
     position: relative;
     z-index: 2;
 
@@ -70,41 +89,66 @@
       height: 120px;
       display: block;
       border-radius: 120px;
+      box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
     }
   }
 
   .controls {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    left: 15px;
     z-index: 2;
+
+    .icon-button {
+      color: rgba($white, 0.8);
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 13px;
+      font-weight: 500;
+
+      .fa {
+        font-weight: 400;
+        margin-right: 5px;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $white;
+      }
+    }
   }
 
-  .details {
-    display: flex;
-    margin-top: 30px;
-    position: relative;
-    z-index: 2;
-    flex-direction: row;
+  .roles {
+    margin-bottom: 30px;
+    padding: 0 15px;
   }
 
   .details-counters {
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
-    order: 0;
+    width: 100%;
   }
 
   .counter {
-    width: 80px;
+    width: 33.3%;
+    box-sizing: border-box;
+    flex: 0 0 auto;
     color: $ui-primary-color;
     padding: 5px 10px 0;
     margin-bottom: 10px;
-    border-right: 1px solid $ui-primary-color;
+    border-right: 1px solid lighten($ui-base-color, 4%);
     cursor: default;
+    text-align: center;
     position: relative;
 
     a {
       display: block;
+    }
+
+    &:last-child {
+      border-right: 0;
     }
 
     &::after {
@@ -116,7 +160,7 @@
       width: 100%;
       border-bottom: 4px solid $ui-primary-color;
       opacity: 0.5;
-      transition: all 0.8s ease;
+      transition: all 400ms ease;
     }
 
     &.active {
@@ -129,7 +173,7 @@
     &:hover {
       &::after {
         opacity: 1;
-        transition-duration: 0.2s;
+        transition-duration: 100ms;
       }
     }
 
@@ -140,26 +184,23 @@
 
     .counter-label {
       font-size: 12px;
-      text-transform: uppercase;
       display: block;
       margin-bottom: 5px;
-      text-shadow: 0 0 2px $base-shadow-color;
     }
 
     .counter-number {
       font-weight: 500;
       font-size: 18px;
       color: $primary-text-color;
+      font-family: 'mastodon-font-display', sans-serif;
     }
   }
 
   .bio {
-    flex: 1;
     font-size: 14px;
     line-height: 18px;
-    padding: 5px 10px;
+    padding: 0 15px;
     color: $ui-secondary-color;
-    order: 1;
   }
 
   @media screen and (max-width: 480px) {
@@ -415,4 +456,44 @@
     font-size: 14px;
     color: $ui-base-color;
   }
+}
+
+.activity-stream-tabs {
+  background: $simple-background-color;
+  border-bottom: 1px solid $ui-secondary-color;
+  position: relative;
+  z-index: 2;
+
+  a {
+    display: inline-block;
+    padding: 15px;
+    text-decoration: none;
+    color: $ui-highlight-color;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: lighten($ui-highlight-color, 8%);
+    }
+
+    &.current {
+      color: $ui-base-color;
+      cursor: default;
+    }
+  }
+}
+
+.account-role {
+  display: inline-block;
+  padding: 4px 6px;
+  cursor: default;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+  color: $success-green;
+  background-color: rgba($success-green, 0.1);
+  border: 1px solid rgba($success-green, 0.5);
 }
