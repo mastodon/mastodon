@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class SharesController < ApplicationController
-  layout 'public'
+  layout 'modal'
 
   before_action :authenticate_user!
+  before_action :set_body_classes
 
   def show
     serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
@@ -21,5 +22,9 @@ class SharesController < ApplicationController
       admin: Account.find_local(Setting.site_contact_username),
       text: params[:text],
     }
+  end
+
+  def set_body_classes
+    @body_classes = 'compose-standalone'
   end
 end
