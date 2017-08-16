@@ -304,13 +304,15 @@
 
 .accounts-grid {
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-  background: $simple-background-color;
+  background: darken($simple-background-color, 8%);
   border-radius: 0 0 4px 4px;
   padding: 20px 10px;
   padding-bottom: 10px;
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
+  z-index: 2;
+  position: relative;
 
   @media screen and (max-width: 740px) {
     border-radius: 0;
@@ -320,10 +322,11 @@
   .account-grid-card {
     box-sizing: border-box;
     width: 335px;
-    border: 1px solid $ui-secondary-color;
+    background: $simple-background-color;
     border-radius: 4px;
     color: $ui-base-color;
     margin-bottom: 10px;
+    position: relative;
 
     &:nth-child(odd) {
       margin-right: 10px;
@@ -331,26 +334,52 @@
 
     .account-grid-card__header {
       overflow: hidden;
-      padding: 10px;
-      border-bottom: 1px solid $ui-secondary-color;
+      height: 100px;
+      border-radius: 4px 4px 0 0;
+      background-color: lighten($ui-base-color, 4%);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+
+      &::after {
+        background: rgba(darken($ui-base-color, 8%), 0.5);
+        display: block;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+    }
+
+    .account-grid-card__avatar {
+      box-sizing: border-box;
+      padding: 15px;
+      position: absolute;
+      z-index: 2;
+      top: 100px-(40px+2px);
+      left: -2px;
     }
 
     .avatar {
-      width: 60px;
-      height: 60px;
-      float: left;
-      margin-right: 15px;
+      width: 80px;
+      height: 80px;
 
       img {
         display: block;
-        width: 60px;
-        height: 60px;
-        border-radius: 60px;
+        width: 80px;
+        height: 80px;
+        border-radius: 80px;
+        border: 2px solid $simple-background-color;
       }
     }
 
     .name {
+      padding: 15px;
       padding-top: 10px;
+      padding-left: 15px+80px+15px;
 
       a {
         display: block;
@@ -358,6 +387,7 @@
         text-decoration: none;
         text-overflow: ellipsis;
         overflow: hidden;
+        font-weight: 500;
 
         &:hover {
           .display_name {
@@ -368,19 +398,23 @@
     }
 
     .display_name {
-      font-size: 14px;
+      font-size: 16px;
       display: block;
     }
 
     .username {
-      color: $ui-highlight-color;
+      color: lighten($ui-base-color, 34%);
+      font-size: 14px;
+      font-weight: 400;
     }
 
     .note {
-      padding: 10px;
+      padding: 10px 15px;
       padding-top: 15px;
-      color: $ui-primary-color;
+      box-sizing: border-box;
+      color: lighten($ui-base-color, 26%);
       word-wrap: break-word;
+      min-height: 80px;
     }
   }
 }
