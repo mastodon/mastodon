@@ -212,7 +212,6 @@ export default function compose(state = initialState, action) {
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
 
-
       // copy spoiler text, do not remove existing
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
@@ -242,11 +241,11 @@ export default function compose(state = initialState, action) {
     return removeMedia(state, action.media_id);
   case COMPOSE_UPLOAD_PROGRESS:
     return state.set('progress', Math.round((action.loaded / action.total) * 100));
-    case COMPOSE_MENTION:
-      return state
-        .set('focusDate', new Date())
-        .set('idempotencyKey', uuid())
-        .set('text', addMentions(state.get('text'), `@${action.account.get('acct')}`));
+  case COMPOSE_MENTION:
+    return state
+      .set('focusDate', new Date())
+      .set('idempotencyKey', uuid())
+      .set('text', addMentions(state.get('text'), `@${action.account.get('acct')}`));
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
