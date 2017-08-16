@@ -18,6 +18,10 @@ class Block < ApplicationRecord
 
   validates :account_id, uniqueness: { scope: :target_account_id }
 
+  validate do
+    errors.add(:target_account, I18n.t('block.isnot_possible_admin')) if target_account&.user&.admin?
+  end
+
   after_create  :remove_blocking_cache
   after_destroy :remove_blocking_cache
 
