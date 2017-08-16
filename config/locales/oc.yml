@@ -57,6 +57,7 @@ oc:
       feed_url: Flux URL
       followers: Seguidors
       follows: Abonaments
+      inbox_url: URL de recepcion
       ip: IP
       location:
         all: Tot
@@ -76,8 +77,10 @@ oc:
         alphabetic: Alfabetic
         most_recent: Mai recent
         title: Ordre
+      outbox_url: URL Outbox
       perform_full_suspension: Botar en tren la suspension complèta
       profile_url: URL del perfil
+      protocol: Protocòl
       public: Public
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar los avatars
@@ -258,11 +261,11 @@ oc:
     - gen
     - feb
     - mar
-    - mai
+    - abr
     - mai
     - jun
     - jul
-    - ag
+    - ago
     - set
     - oct
     - nov
@@ -299,24 +302,43 @@ oc:
     - :year
   datetime:
     distance_in_words:
-      about_x_hours: Fa %{count} oras
-      about_x_months: Fa %{count} meses
+      about_x_hours:
+        one: Fa una ora
+        other: Fa %{count} oras
+      about_x_months:
+        one: Fa un mes
+        other: Fa %{count} meses
       about_x_years:
         one: Fa un an
         other: Fa %{count} ans
       almost_x_years:
-        one: Fa un an
-        other: Fa %{count} ans
+        one: Fa quasi un an
+        other: Fa quasi %{count} ans
       half_a_minute: Ara
-      less_than_x_minutes: Fa %{count} minutas
-      less_than_x_seconds: Ara
+      less_than_x_minutes:
+        one: Fa mens d’una minuta
+        other: Fa mens de %{count} minutas
+      less_than_x_seconds:
+        one: Fa mens d’una segonda
+        other: Fa mens de %{count} segondas
       over_x_years:
+        one: Fa mai d’un an
+        other: Fa mai de %{count} ans
+      x_days:
+        one: Fa un jorn
+        other: Fa %{count} jorns
+      x_minutes:
+        one: Fa una minuta
+        other: Fa %{count} minutas
+      x_months:
+        one: Fa un mes
+        other: Fa %{count} meses
+      x_years:
         one: Fa un an
         other: Fa %{count} ans
-      x_days: Fa %{count} jorns
-      x_minutes: Fa %{count} minutas
-      x_months: Fa %{count} meses
-      x_seconds: Fa %{count} segondas
+      x_seconds:
+        one: Fa una segonda
+        other: Fa %{count} segondas
   deletes:
     bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
@@ -580,4 +602,4 @@ oc:
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
-    signed_in_as: 'Session a'
+    signed_in_as: Session a
