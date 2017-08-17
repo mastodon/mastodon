@@ -8,6 +8,8 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
 
+  attribute :atom_uri, key: '_:atomUri', if: :local?
+
   def id
     ActivityPub::TagManager.instance.uri_for(object)
   end
@@ -50,6 +52,14 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
   def virtual_tags
     object.mentions + object.tags
+  end
+
+  def atom_uri
+    ::TagManager.instance.uri_for(object)
+  end
+
+  def local?
+    object.account.local?
   end
 
   class MediaAttachmentSerializer < ActiveModel::Serializer
