@@ -29,8 +29,17 @@ class OStatus::Activity::Base
   end
 
   def url
-    link = @xml.at_xpath('./xmlns:link[@rel="alternate"]', xmlns: TagManager::XMLNS)
+    link = @xml.xpath('./xmlns:link[@rel="alternate"]', xmlns: TagManager::XMLNS).find { |link_candidate| link_candidate['type'] == 'text/html' }
     link.nil? ? nil : link['href']
+  end
+
+  def activitypub_uri
+    link = @xml.xpath('./xmlns:link[@rel="alternate"]', xmlns: TagManager::XMLNS).find { |link_candidate| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link_candidate['type']) }
+    link.nil? ? nil : link['href']
+  end
+
+  def activitypub_uri?
+    activitypub_uri.present?
   end
 
   private
@@ -38,6 +47,9 @@ class OStatus::Activity::Base
   def find_status(uri)
     if TagManager.instance.local_id?(uri)
       local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Status')
+      return Status.find_by(id: local_id)
+    elsif ActivityPub::TagManager.instance.local_uri?(uri)
+      local_id = ActivityPub::TagManager.instance.uri_to_local_id(uri)
       return Status.find_by(id: local_id)
     end
 

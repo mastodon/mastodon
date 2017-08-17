@@ -8,6 +8,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     end
 
     return [nil, false] if @account.suspended?
+    return perform_via_activitypub if activitypub_uri?
 
     Rails.logger.debug "Creating remote status #{id}"
 
@@ -50,6 +51,10 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     DistributionWorker.perform_async(status.id)
 
     [status, true]
+  end
+
+  def perform_via_activitypub
+    [find_status(activitypub_uri) || ActivityPub::FetchRemoteStatusService.new.call(activitypub_uri), false]
   end
 
   def content
