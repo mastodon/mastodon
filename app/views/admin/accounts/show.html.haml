@@ -33,7 +33,7 @@
         %td= link_to @account.url, @account.url
       %tr
         %th= t('admin.accounts.protocol')
-        %td= @account.protocol
+        %td= protocol_for_display(@account.protocol)
 
       - if @account.ostatus?
         %tr
