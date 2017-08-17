@@ -116,16 +116,9 @@ class BatchedRemoveStatusService < BaseService
     # Quickly remove all originals
     redis.pipelined do
       originals.each do |status|
-        redis.zremrangebyscore(key, status.id, status.id)
+        redis.zrem(key, status.id)
         redis.publish("timeline:#{follower_id}", @json_payloads[status.id])
       end
-    end
-
-    # For reblogs, re-add original status to feed, unless the reblog
-    # was not in the feed in the first place
-    reblogs.each do |status|
-      redis.zadd(key, status.reblog_of_id, status.reblog_of_id) unless redis.zscore(key, status.reblog_of_id).nil?
-      redis.publish("timeline:#{follower_id}", @json_payloads[status.id])
     end
   end
 

@@ -9,7 +9,7 @@ RSpec.describe Feed, type: :model do
       Fabricate(:status, account: account, id: 3)
       Fabricate(:status, account: account, id: 10)
       Redis.current.zadd(FeedManager.instance.key(:home, account.id),
-                        [[4, 'deleted'], [3, 'val3'], [2, 'val2'], [1, 'val1']])
+                        [[4, 4], [3, 3], [2, 2], [1, 1]])
 
       feed = Feed.new(:home, account)
       results = feed.get(3)

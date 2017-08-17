@@ -19,7 +19,7 @@ class Feed
   def from_redis(limit, max_id, since_id)
     max_id     = '+inf' if max_id.blank?
     since_id   = '-inf' if since_id.blank?
-    unhydrated = redis.zrevrangebyscore(key, "(#{max_id}", "(#{since_id}", limit: [0, limit], with_scores: true).map(&:last).map(&:to_i)
+    unhydrated = redis.zrevrangebyscore(key, "(#{max_id}", "(#{since_id}", limit: [0, limit], with_scores: true).map(&:first).map(&:to_i)
     Status.where(id: unhydrated).cache_ids
   end
 

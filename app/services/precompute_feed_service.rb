@@ -22,7 +22,7 @@ class PrecomputeFeedService < BaseService
   end
 
   def process_status(status)
-    [status.id, status.reblog? ? status.reblog_of_id : status.id]
+    [status.id, status.id]
   end
 
   def status_filtered?(status)

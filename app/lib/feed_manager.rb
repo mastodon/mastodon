@@ -28,7 +28,7 @@ class FeedManager
       # If the original status is within 40 statuses from top, do not re-insert it into the feed
       rank = redis.zrevrank(timeline_key, status.reblog_of_id)
       return if !rank.nil? && rank < 40
-      redis.zadd(timeline_key, status.id, status.reblog_of_id)
+      redis.zadd(timeline_key, status.id, status.id)
     else
       redis.zadd(timeline_key, status.id, status.id)
       trim(timeline_type, account.id)
@@ -72,7 +72,6 @@ class FeedManager
       redis.pipelined do
         statuses.each do |status|
           redis.zrem(timeline_key, status.id)
-          redis.zremrangebyscore(timeline_key, status.id, status.id)
         end
       end
     end
