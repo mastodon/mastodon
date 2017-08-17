@@ -6,7 +6,7 @@
       = link_to account.domain, admin_accounts_path(by_domain: account.domain)
   %td.protocol
     - unless account.local?
-      = protocol_for_display(account.protocol)
+      = account.protocol.humanize
   %td.confirmed
     - if account.local?
       - if account.user_confirmed?
