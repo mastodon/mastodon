@@ -90,6 +90,8 @@ class ActivityPub::TagManager
       else
         klass.find_by(id: uri_to_local_id(uri))
       end
+    elsif ::TagManager.instance.local_id?(uri)
+      klass.find_by(id: ::TagManager.instance.unique_tag_to_local_id(uri, klass.to_s))
     else
       klass.find_by(uri: uri)
     end
