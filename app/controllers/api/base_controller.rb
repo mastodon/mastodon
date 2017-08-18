@@ -43,7 +43,7 @@ class Api::BaseController < ApplicationController
     links = []
     links << [next_path, [%w(rel next)]] if next_path
     links << [prev_path, [%w(rel prev)]] if prev_path
-    response.headers['Link'] = LinkHeader.new(links)
+    response.headers['Link'] = LinkHeader.new(links) unless links.empty?
   end
 
   def limit_param(default_limit)
