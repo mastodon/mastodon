@@ -70,7 +70,10 @@ class ActivityPub::TagManager
   end
 
   def local_uri?(uri)
-    host = Addressable::URI.parse(uri).normalized_host
+    uri  = Addressable::URI.parse(uri)
+    host = uri.normalized_host
+    host = "#{host}:#{uri.port}" if uri.port
+
     !host.nil? && (::TagManager.instance.local_domain?(host) || ::TagManager.instance.web_domain?(host))
   end
 
