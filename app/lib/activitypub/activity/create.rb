@@ -32,7 +32,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def status_params
     {
       uri: @object['id'],
-      url: @object['url'],
+      url: @object['url'] || @object['id'],
       account: @account,
       text: text_from_content || '',
       language: language_from_content,
