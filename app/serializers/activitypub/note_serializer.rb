@@ -27,7 +27,13 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def in_reply_to
-    ActivityPub::TagManager.instance.uri_for(object.thread) if object.reply?
+    return unless object.reply?
+
+    if object.thread.uri.nil? || object.thread.uri.start_with?('http')
+      ActivityPub::TagManager.instance.uri_for(object.thread)
+    else
+      object.thread.url
+    end
   end
 
   def published
