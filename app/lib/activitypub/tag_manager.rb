@@ -88,7 +88,7 @@ class ActivityPub::TagManager
         klass.find_by(id: uri_to_local_id(uri))
       end
     else
-      klass.find_by(uri: uri)
+      klass.find_by(uri: uri.split('#').first)
     end
   end
 end

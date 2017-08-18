@@ -58,7 +58,7 @@ class ActivityPub::Activity
   end
 
   def object_uri
-    @object_uri ||= @object.is_a?(String) ? @object : @object['id']
+    @object_uri ||= value_or_id(@object)
   end
 
   def redis

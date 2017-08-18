@@ -64,6 +64,6 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
   end
 
   def target_uri
-    @target_uri ||= @object['object'].is_a?(String) ? @object['object'] : @object['object']['id']
+    @target_uri ||= value_or_id(@object['object'])
   end
 end

@@ -20,6 +20,6 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
   end
 
   def target_uri
-    @target_uri ||= @object['actor']
+    @target_uri ||= value_or_id(@object['actor'])
   end
 end
