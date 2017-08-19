@@ -91,7 +91,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def resolve_thread(status)
     return unless status.reply? && status.thread.nil?
-    ActivityPub::ThreadResolveWorker.perform_async(status.id, @object['inReplyTo'])
+    ThreadResolveWorker.perform_async(status.id, @object['inReplyTo'])
   end
 
   def conversation_from_uri(uri)
