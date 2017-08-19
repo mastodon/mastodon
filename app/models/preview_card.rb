@@ -4,7 +4,6 @@
 # Table name: preview_cards
 #
 #  id                 :integer          not null, primary key
-#  status_id          :integer
 #  url                :string           default(""), not null
 #  title              :string
 #  description        :string
@@ -31,14 +30,14 @@ class PreviewCard < ApplicationRecord
 
   enum type: [:link, :photo, :video, :rich]
 
-  belongs_to :status
+  has_and_belongs_to_many :statuses
 
   has_attached_file :image, styles: { original: '120x120#' }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
   include Remotable
 
-  validates :url, presence: true
+  validates :url, presence: true, uniqueness: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :image, less_than: 1.megabytes
 
