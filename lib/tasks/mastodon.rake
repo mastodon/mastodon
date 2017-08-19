@@ -111,10 +111,7 @@ namespace :mastodon do
   namespace :push do
     desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
     task clear: :environment do
-      Account.remote.without_followers.where.not(subscription_expires_at: nil).find_each do |a|
-        Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
-        UnsubscribeService.new.call(a)
-      end
+      Pubsubhubbub::UnsubscribeWorker.push_bulk(Account.remote.without_followers.where.not(subscription_expires_at: nil).pluck(:id))
     end
 
     desc 'Re-subscribes to soon expiring PuSH subscriptions (deprecated)'
