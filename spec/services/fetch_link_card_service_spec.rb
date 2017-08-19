@@ -31,7 +31,7 @@ RSpec.describe FetchLinkCardService do
 
       it 'works with SJIS' do
         expect(a_request(:get, 'http://example.com/sjis')).to have_been_made.at_least_once
-        expect(status.preview_card.title).to eq("SJISのページ")
+        expect(status.preview_cards.first.title).to eq("SJISのページ")
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe FetchLinkCardService do
 
       it 'works with SJIS even with wrong charset header' do
         expect(a_request(:get, 'http://example.com/sjis_with_wrong_charset')).to have_been_made.at_least_once
-        expect(status.preview_card.title).to eq("SJISのページ")
+        expect(status.preview_cards.first.title).to eq("SJISのページ")
       end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe FetchLinkCardService do
 
       it 'works with koi8-r' do
         expect(a_request(:get, 'http://example.com/koi8-r')).to have_been_made.at_least_once
-        expect(status.preview_card.title).to eq("Московя начинаетъ только въ XVI ст. привлекать внимане иностранцевъ.")
+        expect(status.preview_cards.first.title).to eq("Московя начинаетъ только въ XVI ст. привлекать внимане иностранцевъ.")
       end
     end
   end

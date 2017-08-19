@@ -47,10 +47,11 @@ class Status < ApplicationRecord
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
   has_many :media_attachments, dependent: :destroy
+
   has_and_belongs_to_many :tags
+  has_and_belongs_to_many :preview_cards
 
   has_one :notification, as: :activity, dependent: :destroy
-  has_one :preview_card, dependent: :destroy
   has_one :stream_entry, as: :activity, inverse_of: :status
 
   validates :uri, uniqueness: true, unless: :local?
