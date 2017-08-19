@@ -8,5 +8,6 @@ class Api::V1::FavouriteTagsController < Api::BaseController
 
   def index
     @tags = current_account.favourite_tags.includes(:tag).map(&:tag)
+    render json: @tags
   end
 end
