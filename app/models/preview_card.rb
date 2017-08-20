@@ -32,7 +32,7 @@ class PreviewCard < ApplicationRecord
 
   has_and_belongs_to_many :statuses
 
-  has_attached_file :image, styles: { original: '120x120#' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :image, styles: { original: '280x120>' }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
   include Remotable
@@ -41,10 +41,26 @@ class PreviewCard < ApplicationRecord
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :image, less_than: 1.megabytes
 
+  before_save :extract_dimensions, if: :link?
+
   def save_with_optional_image!
     save!
   rescue ActiveRecord::RecordInvalid
     self.image = nil
     save!
+  end
+
+  private
+
+  def extract_dimensions
+    file = image.queued_for_write[:original]
+
+    return if file.nil?
+
+    geo         = Paperclip::Geometry.from_file(file)
+    self.width  = geo.width.to_i
+    self.height = geo.height.to_i
+  rescue Paperclip::Errors::NotIdentifiedByImageMagickError
+    nil
   end
 end
