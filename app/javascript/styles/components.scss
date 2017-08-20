@@ -2057,6 +2057,18 @@ button.icon-button.active i.fa-retweet {
   background: lighten($ui-base-color, 8%);
 }
 
+.status-card.horizontal {
+  display: block;
+
+  .status-card__image {
+    width: 100%;
+  }
+
+  .status-card__image-image {
+    border-radius: 4px 4px 0 0;
+  }
+}
+
 .status-card__image-image {
   border-radius: 4px 0 0 4px;
   display: block;
