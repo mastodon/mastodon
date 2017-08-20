@@ -14,8 +14,8 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage } from 'react-intl';
 import createStream from '../../stream';
 
-const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'tag', 'unread']) > 0,
+const mapStateToProps = (state, props) => ({
+  hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
   streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
   accessToken: state.getIn(['meta', 'access_token']),
 });
