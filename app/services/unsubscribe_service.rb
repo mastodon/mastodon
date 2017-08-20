@@ -2,7 +2,7 @@
 
 class UnsubscribeService < BaseService
   def call(account)
-    return unless account.ostatus?
+    return if account.hub_url.blank?
 
     @account  = account
     @response = build_request.perform
