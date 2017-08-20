@@ -7,6 +7,10 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
     return if original_status.nil? || delete_arrived_first?(@json['id'])
 
+    status = Status.find_by(account: @account, reblog: original_status)
+
+    return status unless status.nil?
+
     status = Status.create!(account: @account, reblog: original_status, uri: @json['id'])
     distribute(status)
     status

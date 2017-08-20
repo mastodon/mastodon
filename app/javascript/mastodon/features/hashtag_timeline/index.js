@@ -12,8 +12,8 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
 
-const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'tag', 'unread']) > 0,
+const mapStateToProps = (state, props) => ({
+  hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
 });
 
 @connect(mapStateToProps)
