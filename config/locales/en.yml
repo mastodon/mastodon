@@ -37,16 +37,16 @@ en:
     follow: Follow
     followers: Followers
     following: Following
+    media: Media
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
     posts: Toots
     posts_with_replies: Toots with replies
-    media: Media
-    roles:
-      admin: Admin
     remote_follow: Remote follow
     reserved_username: The username is reserved
+    roles:
+      admin: Admin
     unfollow: Unfollow
   admin:
     accounts:
@@ -365,9 +365,6 @@ en:
       title: "%{name} mentioned you"
     reblog:
       title: "%{name} boosted your status"
-    subscribed:
-      body: You can now receive push notifications.
-      title: Subscription registered!
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
