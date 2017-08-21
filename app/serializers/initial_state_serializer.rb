@@ -10,6 +10,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       access_token: object.token,
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
+      github_url: Mastodon::Github.to_s,
+      github_name: Mastodon::Github.link_title,
       admin: object.admin&.id,
       admin_announcement: object.admin_announcement,
     }

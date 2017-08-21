@@ -28,6 +28,8 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
   columns: state.getIn(['settings', 'columns']),
+  github_url: state.getIn(['meta', 'github_url']),
+  github_name: state.getIn(['meta', 'github_name']),
 });
 
 @connect(mapStateToProps)
@@ -39,10 +41,12 @@ export default class GettingStarted extends ImmutablePureComponent {
     me: ImmutablePropTypes.map.isRequired,
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
+    github_url: PropTypes.string.isRequired,
+    github_name: PropTypes.string.isRequired,
   };
 
   render () {
-    const { intl, me, columns, multiColumn } = this.props;
+    const { intl, me, columns, multiColumn, github_url, github_name } = this.props;
 
     let navItems = [];
 
@@ -97,7 +101,7 @@ export default class GettingStarted extends ImmutablePureComponent {
               <FormattedMessage
                 id='getting_started.open_source_notice'
                 defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-                values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
+                values={{ github: <a href={ github_url } rel='noopener' target='_blank'>{ github_name }</a> }}
               />
             </p>
           </div>

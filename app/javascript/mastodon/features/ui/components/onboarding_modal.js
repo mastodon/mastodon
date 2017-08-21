@@ -131,7 +131,7 @@ PageFour.propTypes = {
   intl: PropTypes.object.isRequired,
 };
 
-const PageSix = ({ admin, domain }) => {
+const PageSix = ({ admin, domain, github_url }) => {
   let adminSection = '';
 
   if (admin) {
@@ -148,7 +148,7 @@ const PageSix = ({ admin, domain }) => {
     <div className='onboarding-modal__page onboarding-modal__page-six'>
       <h1><FormattedMessage id='onboarding.page_six.almost_done' defaultMessage='Almost done...' /></h1>
       {adminSection}
-      <p><FormattedMessage id='onboarding.page_six.github' defaultMessage='Mastodon is free open-source software. You can report bugs, request features, or contribute to the code on {github}.' values={{ github: <a href='https://github.com/tootsuite/mastodon' target='_blank' rel='noopener'>GitHub</a> }} /></p>
+      <p><FormattedMessage id='onboarding.page_six.github' defaultMessage='Mastodon is free open-source software. You can report bugs, request features, or contribute to the code on {github}.' values={{ github: <a href={ github_url } target='_blank' rel='noopener'>GitHub</a> }} /></p>
       <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms.' values={{ apps: <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='mobile apps' /></a> }} /></p>
       <p><em><FormattedMessage id='onboarding.page_six.appetoot' defaultMessage='Bon Appetoot!' /></em></p>
     </div>
@@ -158,12 +158,14 @@ const PageSix = ({ admin, domain }) => {
 PageSix.propTypes = {
   admin: ImmutablePropTypes.map,
   domain: PropTypes.string.isRequired,
+  github_url: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
   me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
   admin: state.getIn(['accounts', state.getIn(['meta', 'admin'])]),
   domain: state.getIn(['meta', 'domain']),
+  github_url: state.getIn(['meta', 'github_url']),
 });
 
 @connect(mapStateToProps)
@@ -176,6 +178,7 @@ export default class OnboardingModal extends React.PureComponent {
     me: ImmutablePropTypes.map.isRequired,
     domain: PropTypes.string.isRequired,
     admin: ImmutablePropTypes.map,
+    github_url: PropTypes.string.isRequired,
   };
 
   state = {
@@ -183,13 +186,13 @@ export default class OnboardingModal extends React.PureComponent {
   };
 
   componentWillMount() {
-    const { me, admin, domain, intl } = this.props;
+    const { me, admin, domain, intl, github_url } = this.props;
     this.pages = [
       <PageOne acct={me.get('acct')} domain={domain} />,
       <PageTwo me={me} />,
       <PageThree me={me} />,
       <PageFour domain={domain} intl={intl} />,
-      <PageSix admin={admin} domain={domain} />,
+      <PageSix admin={admin} domain={domain} github_url={github_url} />,
     ];
   };
 
