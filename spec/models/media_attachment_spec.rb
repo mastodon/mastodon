@@ -74,7 +74,7 @@ RSpec.describe MediaAttachment, type: :model do
     end
   end
 
-    describe '透過pngはpngのまま保存する' do
+  describe '透過pngはpngのまま保存する' do
     let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('transparent.png')) }
 
     it 'sets type to image' do
