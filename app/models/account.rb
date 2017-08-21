@@ -91,7 +91,7 @@ class Account < ApplicationRecord
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where(followers_count: 0) }
   scope :with_followers, -> { where('followers_count > 0') }
-  scope :expiring, ->(time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
+  scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
   scope :partitioned, -> { order('row_number() over (partition by domain)') }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
@@ -134,11 +134,11 @@ class Account < ApplicationRecord
   end
 
   def keypair
-    OpenSSL::PKey::RSA.new(private_key || public_key)
+    @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
   def subscription(webhook_url)
-    OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 30.days.seconds, webhook: webhook_url, hub: hub_url)
+    @subscription ||= OStatus2::Subscription.new(remote_url, secret: secret, webhook: webhook_url, hub: hub_url)
   end
 
   def save_with_optional_media!

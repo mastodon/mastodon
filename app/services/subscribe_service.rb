@@ -2,7 +2,7 @@
 
 class SubscribeService < BaseService
   def call(account)
-    return unless account.ostatus?
+    return if account.hub_url.blank?
 
     @account        = account
     @account.secret = SecureRandom.hex
