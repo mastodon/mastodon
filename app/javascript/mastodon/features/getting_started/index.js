@@ -101,7 +101,7 @@ export default class GettingStarted extends ImmutablePureComponent {
               <FormattedMessage
                 id='getting_started.open_source_notice'
                 defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-                values={{ github: <a href={ github_url } rel='noopener' target='_blank'>{ github_name }</a> }}
+                values={{ github: <a href={github_url} rel='noopener' target='_blank'>{github_name}</a> }}
               />
             </p>
           </div>
