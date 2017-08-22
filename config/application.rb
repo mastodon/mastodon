@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 require_relative '../app/lib/exceptions'
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/video_transcoder'
+require_relative '../lib/mastodon/github'
 require_relative '../lib/mastodon/version'
 
 Dotenv::Railtie.load
