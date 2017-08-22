@@ -68,7 +68,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def process_mention(tag, status)
     account = account_from_uri(tag['href'])
-    account = ActivityPub::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
+    account = FetchRemoteAccountService.new.call(tag['href']) if account.nil?
     return if account.nil?
     account.mentions.create(status: status)
   end
