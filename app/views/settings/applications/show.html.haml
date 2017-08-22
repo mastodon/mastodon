@@ -1,27 +1,29 @@
 - content_for :page_title do
   = t('doorkeeper.applications.show.title', name: @application.name)
 
+%p.hint= t('applications.warning')
 
-%p.hint= t('application.warning')
-  
-%div
-  %h3= t('application.uid')
-  %code= @application.uid
+%table.table
+  %tbody
+    %tr  
+      %th= t('doorkeeper.applications.show.application_id')
+      %td
+        %code= @application.uid
+    %tr
+      %th= t('doorkeeper.applications.show.secret')
+      %td
+        %code= @application.secret
+    %tr
+      %th{ rowspan: 2}= t('applications.your_token')
+      %td
+        %code= current_user.token_for_app(@application).token
+    %tr
+      %td= table_link_to 'refresh', t('applications.regenerate_token'), regenerate_settings_application_path(@application), method: :post
 
-%div 
-  %h3= t('application.secret')
-  %code= @application.secret
-
-%div
-  %h3= t('access_token.your_token')
-  %code= current_user.token_for_app(@application).token
-
-= link_to t('access_token.regenerate'), settings_application_regenerate_path(@application), method: :put,  class: 'button'
-
-%hr
+%hr/
 
 = simple_form_for @application, url: settings_application_path(@application), method: :put do |f|
-  = render 'fields', f:f
+  = render 'fields', f: f
     
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

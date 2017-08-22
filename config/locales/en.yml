@@ -33,24 +33,20 @@ en:
     user_count_after: users
     user_count_before: Home to
     what_is_mastodon: What is Mastodon?
-  access_token:
-    your_token: Your Access Token
-    regenerate: Regenerate Access Token
-    regenerated: Access Token Regenerated
   accounts:
     follow: Follow
     followers: Followers
     following: Following
+    media: Media
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
     posts: Toots
     posts_with_replies: Toots with replies
-    media: Media
-    roles:
-      admin: Admin
     remote_follow: Remote follow
     reserved_username: The username is reserved
+    roles:
+      admin: Admin
     unfollow: Unfollow
   admin:
     accounts:
@@ -230,14 +226,14 @@ en:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
-  application:
-    created: Application Created
-    destroyed: Application Destroyed
-    uid: Client ID
-    secret: Client Secret
-    warning: Be very careful with this data. Never share it with anyone other than authorized applications!    
   applications:
+    created: Application successfully created
+    destroyed: Application successfully deleted
     invalid_url: The provided URL is invalid
+    regenerate_token: Regenerate access token
+    token_regenerated: Access token successfully regenerated
+    warning: Be very careful with this data. Never share it with anyone!
+    your_token: Your access token
   auth:
     agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
     change_password: Security
@@ -426,6 +422,7 @@ en:
     authorized_apps: Authorized apps
     back: Back to Mastodon
     delete: Account deletion
+    development: Development
     edit_profile: Edit profile
     export: Data export
     followers: Authorized followers

@@ -4,6 +4,7 @@ class Settings::ApplicationsController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
+  before_action :set_application, only: [:show, :update, :destroy, :regenerate]
 
   def index
     @applications = current_user.applications.page(params[:page])
@@ -16,22 +17,20 @@ class Settings::ApplicationsController < ApplicationController
     )
   end
 
-  def show
-    @application = current_user.applications.find(params[:id])
-  end
+  def show; end
 
   def create
     @application = current_user.applications.build(application_params)
+
     if @application.save
-      redirect_to settings_applications_path, notice: I18n.t('application.created')
+      redirect_to settings_applications_path, notice: I18n.t('applications.created')
     else
       render :new
     end
   end
 
   def update
-    @application = current_user.applications.find(params[:id])
-    if @application.update_attributes(application_params)
+    if @application.update(application_params)
       redirect_to settings_applications_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show
@@ -39,20 +38,22 @@ class Settings::ApplicationsController < ApplicationController
   end
 
   def destroy
-    @application = current_user.applications.find(params[:id])
     @application.destroy
-    redirect_to settings_applications_path, notice: t('application.destroyed')
+    redirect_to settings_applications_path, notice: I18n.t('applications.destroyed')
   end
 
   def regenerate
-    @application = current_user.applications.find(params[:application_id])
     @access_token = current_user.token_for_app(@application)
     @access_token.destroy
 
-    redirect_to settings_application_path(@application), notice: t('access_token.regenerated')
+    redirect_to settings_application_path(@application), notice: I18n.t('applications.token_regenerated')
   end
 
   private
+
+  def set_application
+    @application = current_user.applications.find(params[:id])
+  end
 
   def application_params
     params.require(:doorkeeper_application).permit(
