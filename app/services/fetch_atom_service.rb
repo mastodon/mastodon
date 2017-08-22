@@ -82,7 +82,7 @@ class FetchAtomService < BaseService
 
   def supported_activity?(body)
     json = body_to_json(body)
-    return false if json.nil? || !supported_context?(json)
+    return false unless supported_context?(json)
     json['type'] == 'Person' ? json['inbox'].present? : true
   end
 end

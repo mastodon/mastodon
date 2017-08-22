@@ -14,7 +14,7 @@ module JsonLdHelper
   end
 
   def supported_context?(json)
-    equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
+    !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
   end
 
   def fetch_resource(uri)
