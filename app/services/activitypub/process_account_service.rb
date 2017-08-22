@@ -6,6 +6,8 @@ class ActivityPub::ProcessAccountService < BaseService
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json)
+    return unless json['inbox'].present?
+
     @json     = json
     @uri      = @json['id']
     @username = username

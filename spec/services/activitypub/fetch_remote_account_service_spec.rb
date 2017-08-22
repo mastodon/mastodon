@@ -11,6 +11,7 @@ RSpec.describe ActivityPub::FetchRemoteAccountService do
       preferredUsername: 'alice',
       name: 'Alice',
       summary: 'Foo bar',
+      inbox: 'http://example.com/alice/inbox',
     }
   end
 
@@ -33,6 +34,32 @@ RSpec.describe ActivityPub::FetchRemoteAccountService do
       it 'sets URL' do
         expect(account.url).to eq 'https://example.com/alice'
       end
+    end
+
+    context 'when the account does not have a inbox' do
+      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice' }] } }
+
+      before do
+        actor[:inbox] = nil
+        
+        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor))
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+      end
+
+      it 'fetches resource' do
+        account
+        expect(a_request(:get, 'https://example.com/alice')).to have_been_made.once
+      end
+
+      it 'looks up webfinger' do
+        account
+        expect(a_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com')).to have_been_made.once
+      end
+
+      it 'returns nil' do
+        expect(account).to be_nil
+      end
+
     end
 
     context 'when URI and WebFinger share the same host' do
