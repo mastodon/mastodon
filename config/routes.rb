@@ -79,6 +79,11 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
+
+    resources :applications do
+      put :regenerate
+    end
+
     resource :delete, only: [:show, :destroy]
 
     resources :sessions, only: [:destroy]

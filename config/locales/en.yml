@@ -33,6 +33,10 @@ en:
     user_count_after: users
     user_count_before: Home to
     what_is_mastodon: What is Mastodon?
+  access_token:
+    your_token: Your Access Token
+    regenerate: Regenerate Access Token
+    regenerated: Access Token Regenerated
   accounts:
     follow: Follow
     followers: Followers
@@ -226,6 +230,12 @@ en:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
+  application:
+    created: Application Created
+    destroyed: Application Destroyed
+    uid: Client ID
+    secret: Client Secret
+    warning: Be very careful with this data. Never share it with anyone other than authorized applications!    
   applications:
     invalid_url: The provided URL is invalid
   auth:
@@ -423,6 +433,7 @@ en:
     preferences: Preferences
     settings: Settings
     two_factor_authentication: Two-factor Authentication
+    your_apps: Your applications
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded

@@ -216,8 +216,11 @@ ActiveRecord::Schema.define(version: 20170720000000) do
     t.string "scopes", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean "superapp", default: false, null: false
-    t.string "website"
+    t.boolean  "superapp",     default: false, null: false
+    t.string   "website"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.index ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 

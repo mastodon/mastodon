@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = t('doorkeeper.applications.index.title')
+
+%table.table
+  %thead
+    %tr
+      %th= t('doorkeeper.applications.index.application')
+      %th= t('doorkeeper.applications.index.scopes')
+      %th= t('doorkeeper.applications.index.created_at')
+      %th
+  %tbody
+    - @applications.each do |application|
+      %tr
+        %td= link_to application.name, settings_application_path(application)
+        %th= application.scopes.map { |scope| t(scope, scope: [:doorkeeper, :scopes]) }.join('<br />').html_safe
+        %td= l application.created_at
+        %td= table_link_to 'show', t('doorkeeper.applications.index.show'), settings_application_path(application)
+        %td= table_link_to 'times', t('doorkeeper.applications.index.delete'), settings_application_path(application), method: :delete, data: { confirm: t('doorkeeper.applications.confirmations.destroy') }
+= paginate @applications
+= link_to t('add_new'), new_settings_application_path, class: 'button'
