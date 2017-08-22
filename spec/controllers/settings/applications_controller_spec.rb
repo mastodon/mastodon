@@ -156,7 +156,7 @@ describe Settings::ApplicationsController do
     let(:token) { user.token_for_app(app) }
     before do
       expect(token).to_not be_nil
-      put :regenerate, params: { application_id: app.id }
+      post :regenerate, params: { id: app.id }
     end
 
     it 'should create new token' do

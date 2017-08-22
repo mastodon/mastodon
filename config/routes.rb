@@ -80,8 +80,10 @@ Rails.application.routes.draw do
 
     resource :follower_domains, only: [:show, :update]
 
-    resources :applications do
-      put :regenerate
+    resources :applications, except: [:edit] do
+      member do
+        post :regenerate
+      end
     end
 
     resource :delete, only: [:show, :destroy]

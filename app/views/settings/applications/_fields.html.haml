@@ -1,4 +1,11 @@
-= f.input :name, hint: t('activerecord.attributes.doorkeeper/application.name')
-= f.input :website, hint: t('activerecord.attributes.doorkeeper/application.website')
-= f.input :redirect_uri, hint: t('activerecord.attributes.doorkeeper/application.redirect_uri')
-= f.input :scopes, hint: t('activerecord.attributes.doorkeeper/application.scopes')
+.fields-group
+  = f.input :name, placeholder: t('activerecord.attributes.doorkeeper/application.name')
+  = f.input :website, placeholder: t('activerecord.attributes.doorkeeper/application.website')
+
+.fields-group
+  = f.input :redirect_uri, wrapper: :with_block_label, label: t('activerecord.attributes.doorkeeper/application.redirect_uri'), hint: t('doorkeeper.applications.help.redirect_uri')
+
+  %p.hint= t('doorkeeper.applications.help.native_redirect_uri', native_redirect_uri: Doorkeeper.configuration.native_redirect_uri)
+
+.fields-group
+  = f.input :scopes, wrapper: :with_label, label: t('activerecord.attributes.doorkeeper/application.scopes'), hint: t('doorkeeper.applications.help.scopes')

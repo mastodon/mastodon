@@ -37,16 +37,16 @@ oc:
     follow: Sègre
     followers: Seguidors
     following: Abonaments
+    media: Mèdias
     nothing_here: I a pas res aquí !
     people_followed_by: Lo mond que %{name} sèc
     people_who_follow: Lo mond que sègon %{name}
     posts: Tuts
     posts_with_replies: Tuts amb responsas
-    media: Mèdias
-    roles:
-      admin: Admin
     remote_follow: Sègre a distància
     reserved_username: Aqueste nom d’utilizaire es reservat
+    roles:
+      admin: Admin
     unfollow: Quitar de sègre
   admin:
     accounts:
@@ -221,7 +221,7 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       subject: Novèl senhalament per %{instance} (#%{id})
   application_mailer:
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     signature: Notificacion de Mastodon sus %{instance}
     view: 'Veire :'
@@ -234,13 +234,13 @@ oc:
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
     forgot_password: Senhal oblidat ?
+    invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
     login: Se connectar
     logout: Se desconnectar
     register: Se marcar
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     set_new_password: Picar un nòu senhal
-    invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
   authorize_follow:
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
@@ -337,12 +337,12 @@ oc:
       x_months:
         one: Fa un mes
         other: Fa %{count} meses
-      x_years:
-        one: Fa un an
-        other: Fa %{count} ans
       x_seconds:
         one: Fa una segonda
         other: Fa %{count} segondas
+      x_years:
+        one: Fa un an
+        other: Fa %{count} ans
   deletes:
     bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
