@@ -7,7 +7,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   def call(uri, prefetched_json = nil)
     @json = body_to_json(prefetched_json) || fetch_resource(uri)
 
-    return unless !@json.nil? && supported_context? && expected_type?
+    return unless supported_context? && expected_type?
 
     attributed_to = first_of_value(@json['attributedTo'])
     attributed_to = attributed_to['id'] if attributed_to.is_a?(Hash)
