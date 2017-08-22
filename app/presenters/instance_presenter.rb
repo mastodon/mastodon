@@ -33,6 +33,6 @@ class InstancePresenter
   end
 
   def source_url
-    Mastodon::Source.url
+    Mastodon::Version.source_url
   end
 end
