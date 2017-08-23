@@ -30,6 +30,9 @@
       = render 'nothing_here'
   - else
     .activity-stream.with-header
+      - if params[:page].to_i.zero?
+        = render partial: 'stream_entries/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
+
       = render partial: 'stream_entries/status', collection: @statuses, as: :status
 
   - if @statuses.size == 20
