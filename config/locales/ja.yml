@@ -61,6 +61,7 @@ ja:
       feed_url: フィードURL
       followers: フォロワー数
       follows: フォロー数
+      inbox_url: Inbox URL
       ip: IP
       location:
         all: すべて
@@ -80,10 +81,12 @@ ja:
         alphabetic: アルファベット順
         most_recent: 直近の活動順
         title: 順序
+      outbox_url: Outbox URL
       perform_full_suspension: 完全に活動停止させる
       profile_url: プロフィールURL
+      protocol: プロトコル
       public: パブリック
-      push_subscription_expires: PuSH購読期限切れ
+      push_subscription_expires: PuSH購読期限
       redownload: アバターの更新
       reset: リセット
       reset_password: パスワード再設定
@@ -223,7 +226,13 @@ ja:
     signature: Mastodon %{instance} インスタンスからの通知
     view: 'View:'
   applications:
+    created: アプリが作成されました
+    destroyed: アプリが削除されました
     invalid_url: URLが無効です
+    regenerate_token: アクセストークンの再生成
+    token_regenerated: アクセストークンが再生成されました
+    warning: このデータは気をつけて取り扱ってください。不特定多数の人と共有しないでください！
+    your_token: アクセストークン
   auth:
     agreement_html: 登録すると <a href="%{rules_path}">利用規約</a> と <a href="%{terms_path}">プライバシーポリシー</a> に同意したことになります。
     change_password: セキュリティ
@@ -231,6 +240,7 @@ ja:
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
+    invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
     login: ログイン
     logout: ログアウト
     register: 登録する
@@ -411,6 +421,7 @@ ja:
     authorized_apps: 認証済みアプリ
     back: Mastodon に戻る
     delete: アカウントの削除
+    development: 開発
     edit_profile: プロフィールを編集
     export: データのエクスポート
     followers: 信頼済みのインスタンス
@@ -418,6 +429,7 @@ ja:
     preferences: ユーザー設定
     settings: 設定
     two_factor_authentication: 二段階認証
+    your_apps: アプリ
   statuses:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
