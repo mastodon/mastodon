@@ -26,6 +26,7 @@ export default class Account extends ImmutablePureComponent {
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    hidden: PropTypes.bool,
   };
 
   handleFollow = () => {
@@ -41,10 +42,19 @@ export default class Account extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, me, intl } = this.props;
+    const { account, me, intl, hidden } = this.props;
 
     if (!account) {
       return <div />;
+    }
+
+    if (hidden) {
+      return (
+        <div>
+          {account.get('display_name')}
+          {account.get('username')}
+        </div>
+      );
     }
 
     let buttons;
