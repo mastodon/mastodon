@@ -19,6 +19,7 @@ class ActivityPub::TagManager
     when :person
       short_account_url(target)
     when :note, :comment, :activity
+      return activity_account_status_url(target.account, target) if target.reblog?
       short_account_status_url(target.account, target)
     end
   end
@@ -30,8 +31,15 @@ class ActivityPub::TagManager
     when :person
       account_url(target)
     when :note, :comment, :activity
+      return activity_account_status_url(target.account, target) if target.reblog?
       account_status_url(target.account, target)
     end
+  end
+
+  def activity_uri_for(target)
+    return nil unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    activity_account_status_url(target.account, target)
   end
 
   # Primary audience of a status
