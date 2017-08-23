@@ -62,8 +62,8 @@ class FetchAtomService < BaseService
     json_link = page.xpath('//link[@rel="alternate"]').find { |link| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link['type']) }
     atom_link = page.xpath('//link[@rel="alternate"]').find { |link| link['type'] == 'application/atom+xml' }
 
-    result ||= process(json_link.href, terminal: true) unless json_link.nil? || @unsupported_activity
-    result ||= process(atom_link.href, terminal: true) unless atom_link.nil?
+    result ||= process(json_link['href'], terminal: true) unless json_link.nil? || @unsupported_activity
+    result ||= process(atom_link['href'], terminal: true) unless atom_link.nil?
 
     result
   end
