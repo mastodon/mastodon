@@ -7,5 +7,15 @@
 
   %p.hint= t('doorkeeper.applications.help.native_redirect_uri', native_redirect_uri: Doorkeeper.configuration.native_redirect_uri)
 
-.fields-group
-  = f.input :scopes, wrapper: :with_label, label: t('activerecord.attributes.doorkeeper/application.scopes'), hint: t('doorkeeper.applications.help.scopes')
+.field-group
+  = f.input :scopes,
+    label: t('activerecord.attributes.doorkeeper/application.scopes'),
+    collection: Doorkeeper.configuration.scopes,
+    wrapper: :with_label,
+    include_blank: false,
+    selected: f.object.scopes.all,
+    required: false,
+    as: :check_boxes,
+    collection_wrapper_tag: 'ul',
+    item_wrapper_tag: 'li'
+

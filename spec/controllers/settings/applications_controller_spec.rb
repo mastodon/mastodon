@@ -45,7 +45,7 @@ describe Settings::ApplicationsController do
   end
 
   describe 'POST #create' do
-    context 'success' do
+    context 'success (passed scopes as a String)' do
       def call_create
         post :create, params: {
                doorkeeper_application: {
@@ -61,7 +61,29 @@ describe Settings::ApplicationsController do
       it 'creates an entry in the database' do
         expect { call_create }.to change(Doorkeeper::Application, :count)
       end
-      
+
+      it 'redirects back to applications page' do
+        expect(call_create).to redirect_to(settings_applications_path)
+      end
+    end
+
+    context 'success (passed scopes as an Array)' do
+      def call_create
+        post :create, params: {
+               doorkeeper_application: {
+                 name: 'My New App',
+                 redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+                 website: 'http://google.com',
+                 scopes: [ 'read', 'write', 'follow' ]
+               }
+             }
+        response
+      end
+
+      it 'creates an entry in the database' do
+        expect { call_create }.to change(Doorkeeper::Application, :count)
+      end
+
       it 'redirects back to applications page' do
         expect(call_create).to redirect_to(settings_applications_path)
       end
@@ -74,7 +96,7 @@ describe Settings::ApplicationsController do
                  name: '',
                  redirect_uri: '',
                  website: '',
-                 scopes: ''
+                 scopes: []
                }
              }
       end
@@ -123,7 +145,7 @@ describe Settings::ApplicationsController do
                   name: '',
                   redirect_uri: '',
                   website: '',
-                  scopes: ''
+                  scopes: []
                 }
               }
       end
