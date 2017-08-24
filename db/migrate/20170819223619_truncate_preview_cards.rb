@@ -1,12 +1,15 @@
 class TruncatePreviewCards < ActiveRecord::Migration[5.1]
-  def change
-    reversible do |dir|
-      dir.up do
-        ActiveRecord::Base.connection.execute('TRUNCATE preview_cards')
-      end
+  disable_ddl_transaction!
+
+  def up
+    # Delete all files first
+    PreviewCard.find_each do |card|
+      card.image&.destroy
     end
 
-    remove_column :preview_cards, :status_id, :integer
-    add_index :preview_cards, :url, unique: true
+    # Truncate the table
+    ActiveRecord::Base.connection.execute('TRUNCATE preview_cards')
   end
+
+  def down; end
 end
