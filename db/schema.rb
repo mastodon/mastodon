@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720000000) do
+ActiveRecord::Schema.define(version: 20170823162448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -282,6 +282,14 @@ ActiveRecord::Schema.define(version: 20170720000000) do
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
 
+  create_table "status_pins", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
+    t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
+    t.index ["account_id"], name: "index_status_pins_on_account_id"
+    t.index ["status_id"], name: "index_status_pins_on_status_id"
+  end
+
   create_table "statuses", force: :cascade do |t|
     t.string "uri"
     t.integer "account_id", null: false
@@ -430,6 +438,8 @@ ActiveRecord::Schema.define(version: 20170720000000) do
   add_foreign_key "reports", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "session_activations", "users", on_delete: :cascade
+  add_foreign_key "status_pins", "accounts", on_delete: :cascade
+  add_foreign_key "status_pins", "statuses", on_delete: :cascade
   add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", on_delete: :nullify
   add_foreign_key "statuses", "accounts", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify

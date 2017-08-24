@@ -11,6 +11,8 @@ import {
   favourite,
   unreblog,
   unfavourite,
+  pin,
+  unpin,
 } from '../actions/interactions';
 import {
   blockAccount,
@@ -69,6 +71,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(unfavourite(status));
     } else {
       dispatch(favourite(status));
+    }
+  },
+
+  onPin (status) {
+    if (status.get('pinned')) {
+      dispatch(unpin(status));
+    } else {
+      dispatch(pin(status));
     }
   },
 

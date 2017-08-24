@@ -77,6 +77,10 @@ class Account < ApplicationRecord
   has_many :mentions, inverse_of: :account, dependent: :destroy
   has_many :notifications, inverse_of: :account, dependent: :destroy
 
+  # Pinned statuses
+  has_many :status_pins, inverse_of: :account, dependent: :destroy
+  has_many :pinned_statuses, through: :status_pins, class_name: 'Status', source: :status
+
   # Media
   has_many :media_attachments, dependent: :destroy
 
