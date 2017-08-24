@@ -180,7 +180,7 @@
       display: flex;
       justify-content: space-between;
     }
-  
+
     .links {
       position: relative;
       z-index: 4;
@@ -220,16 +220,16 @@
       ul {
         list-style: none;
         margin: 0;
-  
+
         li {
           display: inline-block;
           vertical-align: bottom;
           margin: 0;
-  
+
           &:first-child a {
             padding-left: 0;
           }
-  
+
           &:last-child a {
             padding-right: 0;
           }
@@ -344,18 +344,18 @@
   .information-board {
     background: darken($ui-base-color, 4%);
     padding: 20px 0;
-  
+
     .container {
       position: relative;
       padding-right: 280px + 15px;
     }
-  
+
     .information-board-sections {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
     }
-  
+
     .section {
       flex: 1 0 0;
       font-family: 'mastodon-font-sans-serif', sans-serif;
@@ -364,25 +364,25 @@
       color: $primary-text-color;
       text-align: right;
       padding: 10px 15px;
-  
+
       span,
       strong {
         display: block;
       }
-  
+
       span {
         &:last-child {
           color: $ui-secondary-color;
         }
       }
-  
+
       strong {
         font-weight: 500;
         font-size: 32px;
         line-height: 48px;
       }
     }
-  
+
     .panel {
       position: absolute;
       width: 280px;
@@ -393,7 +393,7 @@
       border-radius: 4px 4px 0 0;
       right: 0;
       bottom: -40px;
-  
+
       .panel-header {
         font-family: 'mastodon-font-display', sans-serif;
         font-size: 14px;
@@ -406,28 +406,28 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-  
+
         a,
         span {
           font-weight: 400;
           color: darken($ui-primary-color, 10%);
         }
-  
+
         a {
           text-decoration: none;
         }
       }
     }
-  
+
     .owner {
       text-align: center;
-    
+
       .avatar {
         width: 80px;
         height: 80px;
         margin: 0 auto;
         margin-bottom: 15px;
-    
+
         img {
           display: block;
           width: 80px;
@@ -435,22 +435,22 @@
           border-radius: 48px;
         }
       }
-    
+
       .name {
         font-size: 14px;
-    
+
         a {
           display: block;
           color: $primary-text-color;
           text-decoration: none;
-    
+
           &:hover {
             .display_name {
               text-decoration: underline;
             }
           }
         }
-    
+
         .username {
           display: block;
           color: $ui-primary-color;
@@ -465,7 +465,7 @@
     .container {
       display: flex;
     }
-  
+
     #mastodon-timeline {
       display: flex;
       -webkit-overflow-scrolling: touch;
@@ -481,7 +481,7 @@
       background: $ui-base-color;
       overflow: hidden;
       box-shadow: 0 0 6px rgba($black, 0.1);
-  
+
       .column-header {
         color: inherit;
         font-family: inherit;
@@ -491,42 +491,42 @@
         margin: 0;
         padding: 15px;
       }
-  
+
       .column {
         padding: 0;
         border-radius: 4px;
         overflow: hidden;
       }
-  
+
       .scrollable {
         height: 400px;
       }
-  
+
       p {
         font-size: inherit;
         line-height: inherit;
         font-weight: inherit;
         color: $primary-text-color;
         margin-bottom: 20px;
-  
+
         &:last-child {
           margin-bottom: 0;
         }
-  
+
         a {
           color: $ui-secondary-color;
           text-decoration: none;
         }
       }
     }
-  
+
     .about-mastodon {
       max-width: 675px;
-  
+
       p {
         margin-bottom: 20px;
       }
-  
+
       .features-list {
         margin-top: 20px;
 
@@ -534,29 +534,29 @@
           display: flex;
           padding: 10px 0;
           justify-content: space-between;
-        
+
           &:first-child {
             padding-top: 0;
           }
-        
+
           .visual {
             flex: 0 0 auto;
             display: flex;
             align-items: center;
             margin-left: 15px;
-        
+
             .fa {
               display: block;
               color: $ui-primary-color;
               font-size: 48px;
             }
           }
-        
+
           .text {
             font-size: 16px;
             line-height: 30px;
             color: $ui-primary-color;
-        
+
             h6 {
               font-size: inherit;
               line-height: inherit;
@@ -676,7 +676,7 @@
       .hero {
         margin-top: 30px;
         padding: 0;
-  
+
         .floats {
           display: none;
         }
