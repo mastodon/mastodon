@@ -26,6 +26,7 @@ class Subscription < ApplicationRecord
 
   scope :confirmed, -> { where(confirmed: true) }
   scope :future_expiration, -> { where(arel_table[:expires_at].gt(Time.now.utc)) }
+  scope :expired, -> { where(arel_table[:expires_at].lt(Time.now.utc)) }
   scope :active, -> { confirmed.future_expiration }
 
   def lease_seconds=(value)

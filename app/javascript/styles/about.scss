@@ -139,7 +139,7 @@
       font-size: 14px;
       line-height: 24px;
       font-weight: 500;
-      color: $ui-base-lighter-color;
+      color: $ui-primary-color;
       padding-bottom: 5px;
       margin-bottom: 15px;
       border-bottom: 1px solid lighten($ui-base-color, 4%);
@@ -150,7 +150,7 @@
       a,
       span {
         font-weight: 400;
-        color: lighten($ui-base-color, 34%);
+        color: darken($ui-primary-color, 10%);
       }
 
       a {
@@ -262,11 +262,11 @@
   .text {
     font-size: 16px;
     line-height: 30px;
-    color: $ui-base-lighter-color;
+    color: $ui-primary-color;
 
     h6 {
       font-weight: 500;
-      color: $ui-primary-color;
+      color: $ui-secondary-color;
     }
   }
 }
@@ -516,7 +516,7 @@
       font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
       font-weight: 400;
       margin-bottom: 12px;
-      color: $ui-base-lighter-color;
+      color: $ui-primary-color;
 
       a {
         color: $ui-highlight-color;
@@ -531,13 +531,13 @@
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $ui-primary-color;
+    color: $ui-secondary-color;
   }
 
   p {
     font-size: 16px;
     line-height: 30px;
-    color: $ui-base-lighter-color;
+    color: $ui-primary-color;
   }
 
   .features {
@@ -623,7 +623,7 @@
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    color: $ui-primary-color;
+    color: lighten($ui-primary-color, 10%);
   }
 
   h1 {

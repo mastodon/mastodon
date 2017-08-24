@@ -6,13 +6,16 @@ class ActivityPub::ProcessAccountService < BaseService
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json)
+    return unless json['inbox'].present?
+
     @json     = json
     @uri      = @json['id']
     @username = username
     @domain   = domain
     @account  = Account.find_by(uri: @uri)
 
-    create_account if @account.nil?
+    create_account  if @account.nil?
+    upgrade_account if @account.ostatus?
     update_account
 
     @account
@@ -24,6 +27,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def create_account
     @account = Account.new
+    @account.protocol    = :activitypub
     @account.username    = @username
     @account.domain      = @domain
     @account.uri         = @uri
@@ -48,6 +52,10 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.public_key          = public_key || ''
     @account.locked              = @json['_:locked'] || false
     @account.save!
+  end
+
+  def upgrade_account
+    ActivityPub::PostUpgradeWorker.perform_async(@account.domain)
   end
 
   def image_url(key)

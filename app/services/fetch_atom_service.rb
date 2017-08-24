@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class FetchAtomService < BaseService
+  include JsonLdHelper
+
   def call(url)
     return if url.blank?
 
-    @url = url
+    result = process(url)
 
-    perform_request
-    process_response
+    # retry without ActivityPub
+    result ||= process(url) if @unsupported_activity
+
+    result
   rescue OpenSSL::SSL::SSLError => e
     Rails.logger.debug "SSL error: #{e}"
     nil
@@ -18,9 +22,18 @@ class FetchAtomService < BaseService
 
   private
 
+  def process(url, terminal = false)
+    @url = url
+    perform_request
+    process_response(terminal)
+  end
+
   def perform_request
+    accept = 'text/html'
+    accept = 'application/activity+json, application/ld+json, application/atom+xml, ' + accept unless @unsupported_activity
+
     @response = Request.new(:get, @url)
-                       .add_headers('Accept' => 'application/activity+json, application/ld+json, application/atom+xml, text/html')
+                       .add_headers('Accept' => accept)
                        .perform
   end
 
@@ -30,7 +43,12 @@ class FetchAtomService < BaseService
     if @response.mime_type == 'application/atom+xml'
       [@url, @response.to_s, :ostatus]
     elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@response.mime_type)
-      [@url, @response.to_s, :activitypub]
+      if supported_activity?(@response.to_s)
+        [@url, @response.to_s, :activitypub]
+      else
+        @unsupported_activity = true
+        nil
+      end
     elsif @response['Link'] && !terminal
       process_headers
     elsif @response.mime_type == 'text/html' && !terminal
@@ -44,15 +62,10 @@ class FetchAtomService < BaseService
     json_link = page.xpath('//link[@rel="alternate"]').find { |link| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link['type']) }
     atom_link = page.xpath('//link[@rel="alternate"]').find { |link| link['type'] == 'application/atom+xml' }
 
-    if !json_link.nil?
-      @url = json_link['href']
-      perform_request
-      process_response(true)
-    elsif !atom_link.nil?
-      @url = atom_link['href']
-      perform_request
-      process_response(true)
-    end
+    result ||= process(json_link['href'], terminal: true) unless json_link.nil? || @unsupported_activity
+    result ||= process(atom_link['href'], terminal: true) unless atom_link.nil?
+
+    result
   end
 
   def process_headers
@@ -61,14 +74,15 @@ class FetchAtomService < BaseService
     json_link = link_header.find_link(%w(rel alternate), %w(type application/activity+json)) || link_header.find_link(%w(rel alternate), ['type', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'])
     atom_link = link_header.find_link(%w(rel alternate), %w(type application/atom+xml))
 
-    if !json_link.nil?
-      @url = json_link.href
-      perform_request
-      process_response(true)
-    elsif !atom_link.nil?
-      @url = atom_link.href
-      perform_request
-      process_response(true)
-    end
+    result ||= process(json_link.href, terminal: true) unless json_link.nil? || @unsupported_activity
+    result ||= process(atom_link.href, terminal: true) unless atom_link.nil?
+
+    result
+  end
+
+  def supported_activity?(body)
+    json = body_to_json(body)
+    return false unless supported_context?(json)
+    json['type'] == 'Person' ? json['inbox'].present? : true
   end
 end

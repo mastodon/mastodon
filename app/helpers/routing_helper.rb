@@ -12,6 +12,8 @@ module RoutingHelper
   end
 
   def full_asset_url(source, options = {})
-    Rails.configuration.x.use_s3 ? source : URI.join(root_url, ActionController::Base.helpers.asset_url(source, options)).to_s
+    source = ActionController::Base.helpers.asset_url(source, options) unless Rails.configuration.x.use_s3
+
+    URI.join(root_url, source).to_s
   end
 end

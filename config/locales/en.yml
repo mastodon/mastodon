@@ -227,7 +227,13 @@ en:
     signature: Mastodon notifications from %{instance}
     view: 'View:'
   applications:
+    created: Application successfully created
+    destroyed: Application successfully deleted
     invalid_url: The provided URL is invalid
+    regenerate_token: Regenerate access token
+    token_regenerated: Access token successfully regenerated
+    warning: Be very careful with this data. Never share it with anyone!
+    your_token: Your access token
   auth:
     agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
     change_password: Security
@@ -413,6 +419,7 @@ en:
     authorized_apps: Authorized apps
     back: Back to Mastodon
     delete: Account deletion
+    development: Development
     edit_profile: Edit profile
     export: Data export
     followers: Authorized followers
@@ -420,6 +427,7 @@ en:
     preferences: Preferences
     settings: Settings
     two_factor_authentication: Two-factor Authentication
+    your_apps: Your applications
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded

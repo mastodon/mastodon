@@ -9,8 +9,12 @@ module JsonLdHelper
     value.is_a?(Array) ? value.first : value
   end
 
+  def value_or_id(value)
+    value.is_a?(String) ? value : value['id']
+  end
+
   def supported_context?(json)
-    equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
+    !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
   end
 
   def fetch_resource(uri)
@@ -20,7 +24,7 @@ module JsonLdHelper
   end
 
   def body_to_json(body)
-    body.nil? ? nil : Oj.load(body, mode: :strict)
+    body.is_a?(String) ? Oj.load(body, mode: :strict) : body
   rescue Oj::ParseError
     nil
   end
