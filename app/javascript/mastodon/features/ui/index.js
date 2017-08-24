@@ -135,7 +135,7 @@ export default class UI extends React.PureComponent {
     if (data.type === 'navigate') {
       this.context.router.history.push(data.path);
     } else {
-      console.warn('Unknown message type:', data.type); // eslint-disable-line no-console
+      console.warn('Unknown message type:', data.type);
     }
   }
 
