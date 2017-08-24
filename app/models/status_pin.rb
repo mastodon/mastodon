@@ -6,6 +6,8 @@
 #  id         :integer          not null, primary key
 #  account_id :integer          not null
 #  status_id  :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class StatusPin < ApplicationRecord
