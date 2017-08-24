@@ -268,7 +268,7 @@ class Account < ApplicationRecord
   def generate_keys
     return unless local?
 
-    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
+    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 512 : 2048)
     self.private_key = keypair.to_pem
     self.public_key  = keypair.public_key.to_pem
   end
