@@ -58,7 +58,7 @@
                 = @instance_presenter.closed_registrations_message.html_safe
             = link_to t('about.find_another_instance'), 'https://joinmastodon.org/', class: 'button button-alternative button--block'
 
-  .learn-more-cta
+  .about-short
     .container
       %h3= t('about.description_headline', domain: site_hostname)
       %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
@@ -76,5 +76,5 @@
   .footer-links
     .container
       %p
-        = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+        = link_to t('about.source_code'), @instance_presenter.source_url
         = " (#{@instance_presenter.version_number})"

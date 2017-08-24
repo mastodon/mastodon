@@ -3,7 +3,7 @@
 class Pubsubhubbub::SubscribeWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'push', retry: 10, unique: :until_executed
+  sidekiq_options queue: 'push', retry: 10, unique: :until_executed, dead: false
 
   sidekiq_retry_in do |count|
     case count
@@ -16,6 +16,12 @@ class Pubsubhubbub::SubscribeWorker
     else
       24.hours.seconds * (count - 2)
     end
+  end
+
+  sidekiq_retries_exhausted do |msg, _e|
+    account = Account.find(msg['args'].first)
+    logger.error "PuSH subscription attempts for #{account.acct} exhausted. Unsubscribing"
+    ::UnsubscribeService.new.call(account)
   end
 
   def perform(account_id)

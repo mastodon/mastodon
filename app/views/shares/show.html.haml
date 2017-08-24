@@ -1,0 +1,5 @@
+- content_for :header_tags do
+  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
+  = javascript_pack_tag 'share', integrity: true, crossorigin: 'anonymous'
+
+#mastodon-compose{ data: { props: Oj.dump(default_props) } }

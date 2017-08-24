@@ -7,10 +7,9 @@
     "build:production": "cross-env RAILS_ENV=production ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "node ./streaming/index.js",
-    "storybook": "cross-env NODE_ENV=test start-storybook -s ./public -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
-    "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ storybook/ streaming/",
-    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.js",
+    "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ streaming/",
+    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/**/*.test.js",
     "postinstall": "npm rebuild node-sass"
   },
   "repository": {
@@ -57,7 +56,7 @@
     "glob": "^7.1.1",
     "http-link-header": "^0.8.0",
     "immutable": "^3.8.1",
-    "intersection-observer": "^0.3.2",
+    "intersection-observer": "^0.4.0",
     "intl": "^1.2.5",
     "intl-relativeformat": "^2.0.0",
     "is-nan": "^1.2.1",
@@ -113,15 +112,13 @@
     "tiny-queue": "^0.2.1",
     "uuid": "^3.1.0",
     "uws": "^8.14.0",
-    "webpack": "^3.0.0",
-    "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-manifest-plugin": "^1.1.2",
+    "webpack": "^3.4.1",
+    "webpack-bundle-analyzer": "^2.8.3",
+    "webpack-manifest-plugin": "^1.2.1",
     "webpack-merge": "^4.1.0",
     "websocket.js": "^0.1.12"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.1.8",
-    "@storybook/react": "^3.1.8",
     "babel-eslint": "^7.2.3",
     "chai": "^4.1.0",
     "chai-enzyme": "^0.8.0",
@@ -134,7 +131,7 @@
     "react-intl-translations-manager": "^5.0.0",
     "react-test-renderer": "^15.6.1",
     "sinon": "^2.3.7",
-    "webpack-dev-server": "^2.5.1",
+    "webpack-dev-server": "^2.6.1",
     "yargs": "^8.0.2"
   },
   "optionalDependencies": {

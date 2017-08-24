@@ -32,10 +32,10 @@ code {
       line-height: 18px;
       margin-top: 15px;
       margin-bottom: 0;
-      color: $ui-base-lighter-color;
+      color: $ui-primary-color;
 
       a {
-        color: $ui-primary-color;
+        color: $ui-highlight-color;
       }
     }
   }
@@ -317,7 +317,7 @@ code {
 }
 
 .flash-message {
-  background: $ui-base-color;
+  background: lighten($ui-base-color, 8%);
   color: $ui-primary-color;
   border-radius: 4px;
   padding: 15px 10px;

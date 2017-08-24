@@ -7,18 +7,19 @@ class WebPushNotificationWorker
 
   def perform(session_activation_id, notification_id)
     session_activation = SessionActivation.find(session_activation_id)
-    notification = Notification.find(notification_id)
+    notification       = Notification.find(notification_id)
 
-    return if session_activation.nil? || notification.nil?
+    return if session_activation.web_push_subscription.nil? || notification.activity.nil?
 
-    begin
-      session_activation.web_push_subscription.push(notification)
-    rescue Webpush::InvalidSubscription, Webpush::ExpiredSubscription => e
-      # Subscription expiration is not currently implemented in any browser
-      session_activation.web_push_subscription.destroy!
-      session_activation.update!(web_push_subscription: nil)
+    session_activation.web_push_subscription.push(notification)
+  rescue Webpush::InvalidSubscription, Webpush::ExpiredSubscription
+    # Subscription expiration is not currently implemented in any browser
 
-      raise e
-    end
+    session_activation.web_push_subscription.destroy!
+    session_activation.update!(web_push_subscription: nil)
+
+    true
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end

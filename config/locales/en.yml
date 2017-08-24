@@ -37,12 +37,16 @@ en:
     follow: Follow
     followers: Followers
     following: Following
+    media: Media
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
-    posts: Posts
+    posts: Toots
+    posts_with_replies: Toots with replies
     remote_follow: Remote follow
     reserved_username: The username is reserved
+    roles:
+      admin: Admin
     unfollow: Unfollow
   admin:
     accounts:
@@ -57,6 +61,7 @@ en:
       feed_url: Feed URL
       followers: Followers
       follows: Follows
+      inbox_url: Inbox URL
       ip: IP
       location:
         all: All
@@ -76,8 +81,10 @@ en:
         alphabetic: Alphabetic
         most_recent: Most recent
         title: Order
+      outbox_url: Outbox URL
       perform_full_suspension: Perform full suspension
       profile_url: Profile URL
+      protocol: Protocol
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh avatar
@@ -215,11 +222,18 @@ en:
       body: "%{reporter} has reported %{target}"
       subject: New report for %{instance} (#%{id})
   application_mailer:
+    salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
   applications:
+    created: Application successfully created
+    destroyed: Application successfully deleted
     invalid_url: The provided URL is invalid
+    regenerate_token: Regenerate access token
+    token_regenerated: Access token successfully regenerated
+    warning: Be very careful with this data. Never share it with anyone!
+    your_token: Your access token
   auth:
     agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
     change_password: Security
@@ -227,6 +241,7 @@ en:
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
+    invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
     logout: Logout
     register: Sign up
@@ -242,7 +257,6 @@ en:
       close: Or, you can just close this window.
       return: Return to the user's profile
       web: Go to web
-    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
     title: Follow %{acct}
   datetime:
     distance_in_words:
@@ -348,6 +362,8 @@ en:
       title: "%{name} favourited your status"
     follow:
       title: "%{name} is now following you"
+    group:
+      title: "%{count} notifications"
     mention:
       action_boost: Boost
       action_expand: Show more
@@ -406,6 +422,7 @@ en:
     authorized_apps: Authorized apps
     back: Back to Mastodon
     delete: Account deletion
+    development: Development
     edit_profile: Edit profile
     export: Data export
     followers: Authorized followers
@@ -413,6 +430,7 @@ en:
     preferences: Preferences
     settings: Settings
     two_factor_authentication: Two-factor Authentication
+    your_apps: Your applications
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
@@ -520,3 +538,4 @@ en:
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+    signed_in_as: 'Signed in as:'

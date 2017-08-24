@@ -88,7 +88,7 @@ function appendMedia(state, media) {
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
 
-    if (prevSize === 0 && state.get('default_sensitive')) {
+    if (prevSize === 0 && (state.get('default_sensitive') || state.get('spoiler'))) {
       map.set('sensitive', true);
     }
   });
@@ -141,10 +141,20 @@ const privacyPreference = (a, b) => {
   }
 };
 
+const hydrate = (state, hydratedState) => {
+  state = clearAll(state.merge(hydratedState));
+
+  if (hydratedState.has('text')) {
+    state = state.set('text', hydratedState.get('text'));
+  }
+
+  return state;
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return clearAll(state.merge(action.state.get('compose')));
+    return hydrate(state, action.state.get('compose'));
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:
@@ -152,14 +162,22 @@ export default function compose(state = initialState, action) {
       .set('mounted', false)
       .set('is_composing', false);
   case COMPOSE_SENSITIVITY_CHANGE:
-    return state
-      .set('sensitive', !state.get('sensitive'))
-      .set('idempotencyKey', uuid());
+    return state.withMutations(map => {
+      if (!state.get('spoiler')) {
+        map.set('sensitive', !state.get('sensitive'));
+      }
+
+      map.set('idempotencyKey', uuid());
+    });
   case COMPOSE_SPOILERNESS_CHANGE:
     return state.withMutations(map => {
       map.set('spoiler_text', '');
       map.set('spoiler', !state.get('spoiler'));
       map.set('idempotencyKey', uuid());
+
+      if (!state.get('sensitive') && state.get('media_attachments').size >= 1) {
+        map.set('sensitive', true);
+      }
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state

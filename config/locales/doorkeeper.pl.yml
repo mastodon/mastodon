@@ -3,8 +3,10 @@ pl:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nazwa
+        name: Nazwa aplikacji
         redirect_uri: URI przekierowania
+        scopes: Zakres
+        website: Strona aplikacji
     errors:
       models:
         doorkeeper/application:
@@ -31,11 +33,13 @@ pl:
       help:
         native_redirect_uri: Użyj %{native_redirect_uri} do lokalnych testów
         redirect_uri: Jeden adres na linię tekstu
-        scopes: Rozdziel zakresy (scopes) spacjami. Zostaw puste aby użyć domyślnych zakresów.
+        scopes: Rozdziel zakresy (scopes) spacjami. Zostaw puste, aby użyć domyślnych zakresów.
       index:
         callback_url: URL wywołania zwrotnego (callback)
+        delete: Usuń
         name: Nazwa
         new: Nowa aplikacja
+        show: Pokaż
         title: Twoje aplikacje
       new:
         title: Nowa aplikacja

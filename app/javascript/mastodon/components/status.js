@@ -8,8 +8,6 @@ import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
-import emojify from '../emoji';
-import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 import { MediaGallery, VideoPlayer } from '../features/ui/util/async-components';
@@ -36,16 +34,18 @@ export default class Status extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,
+    onHeightChange: PropTypes.func,
     me: PropTypes.number,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
     intersectionObserverWrapper: PropTypes.object,
+    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    listLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   state = {
     isExpanded: false,
-    isIntersecting: true, // assume intersecting until told otherwise
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
   }
 
@@ -59,6 +59,7 @@ export default class Status extends ImmutablePureComponent {
     'boostModal',
     'autoPlayGif',
     'muted',
+    'listLength',
   ]
 
   updateOnStates = ['isExpanded']
@@ -67,8 +68,8 @@ export default class Status extends ImmutablePureComponent {
     if (!nextState.isIntersecting && nextState.isHidden) {
       // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
       // that either "isIntersecting" or "isHidden" matter, and then they're
-      // the only things that matter.
-      return this.state.isIntersecting || !this.state.isHidden;
+      // the only things that matter (and updated ARIA attributes).
+      return this.state.isIntersecting || !this.state.isHidden || nextProps.listLength !== this.props.listLength;
     } else if (nextState.isIntersecting && !this.state.isIntersecting) {
       // If we're going from a non-intersecting state to an intersecting state,
       // (i.e. offscreen to onscreen), then we definitely need to re-render
@@ -105,19 +106,18 @@ export default class Status extends ImmutablePureComponent {
     if (this.node && this.node.children.length !== 0) {
       // save the height of the fully-rendered element
       this.height = getRectFromEntry(entry).height;
+
+      if (this.props.onHeightChange) {
+        this.props.onHeightChange(this.props.status, this.height);
+      }
     }
 
-    // Edge 15 doesn't support isIntersecting, but we can infer it
-    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
-    // https://github.com/WICG/IntersectionObserver/issues/211
-    const isIntersecting = (typeof entry.isIntersecting === 'boolean') ?
-      entry.isIntersecting : entry.intersectionRect.height > 0;
     this.setState((prevState) => {
-      if (prevState.isIntersecting && !isIntersecting) {
+      if (prevState.isIntersecting && !entry.isIntersecting) {
         scheduleIdleTask(this.hideIfNotIntersecting);
       }
       return {
-        isIntersecting: isIntersecting,
+        isIntersecting: entry.isIntersecting,
         isHidden: false,
       };
     });
@@ -174,40 +174,38 @@ export default class Status extends ImmutablePureComponent {
 
     // Exclude intersectionObserverWrapper from `other` variable
     // because intersection is managed in here.
-    const { status, account, intersectionObserverWrapper, ...other } = this.props;
+    const { status, account, intersectionObserverWrapper, index, listLength, wrapped, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {
       return null;
     }
 
-    if (!isIntersecting && isHidden) {
+    const hasIntersectionObserverWrapper = !!this.props.intersectionObserverWrapper;
+    const isHiddenForSure = isIntersecting === false && isHidden;
+    const visibilityUnknownButHeightIsCached = isIntersecting === undefined && status.has('height');
+
+    if (hasIntersectionObserverWrapper && (isHiddenForSure || visibilityUnknownButHeightIsCached)) {
       return (
-        <div ref={this.handleRef} data-id={status.get('id')} style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
+        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0' style={{ height: `${this.height || status.get('height')}px`, opacity: 0, overflow: 'hidden' }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
-        </div>
+        </article>
       );
     }
 
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
-      let displayName = status.getIn(['account', 'display_name']);
-
-      if (displayName.length === 0) {
-        displayName = status.getIn(['account', 'username']);
-      }
-
-      const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+      const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 
       return (
-        <div className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} >
+        <article className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0'>
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
+            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={display_name_html} /></a> }} />
           </div>
 
           <Status {...other} wrapped status={status.get('reblog')} account={status.get('account')} />
-        </div>
+        </article>
       );
     }
 
@@ -230,13 +228,13 @@ export default class Status extends ImmutablePureComponent {
     }
 
     if (account === undefined || account === null) {
-      statusAvatar = <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />;
+      statusAvatar = <Avatar account={status.get('account')} size={48} />;
     }else{
-      statusAvatar = <AvatarOverlay staticSrc={status.getIn(['account', 'avatar_static'])} overlaySrc={account.get('avatar_static')} />;
+      statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
 
     return (
-      <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} ref={this.handleRef}>
+      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} tabIndex={wrapped ? null : '0'}  ref={this.handleRef}>
         <div className='status__info'>
           <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 
@@ -254,7 +252,7 @@ export default class Status extends ImmutablePureComponent {
         {media}
 
         <StatusActionBar {...this.props} />
-      </div>
+      </article>
     );
   }
 

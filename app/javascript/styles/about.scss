@@ -121,7 +121,7 @@
 
 .information-board {
   background: darken($ui-base-color, 4%);
-  padding: 40px 0;
+  padding: 20px 0;
 
   .panel {
     position: absolute;
@@ -139,7 +139,7 @@
       font-size: 14px;
       line-height: 24px;
       font-weight: 500;
-      color: $ui-base-lighter-color;
+      color: $ui-primary-color;
       padding-bottom: 5px;
       margin-bottom: 15px;
       border-bottom: 1px solid lighten($ui-base-color, 4%);
@@ -147,9 +147,14 @@
       white-space: nowrap;
       overflow: hidden;
 
+      a,
       span {
         font-weight: 400;
-        color: lighten($ui-base-color, 34%);
+        color: darken($ui-primary-color, 10%);
+      }
+
+      a {
+        text-decoration: none;
       }
     }
   }
@@ -162,13 +167,14 @@
   .information-board-sections {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .section {
-    flex: 1 0 0;
+    flex: 1 0 auto;
     font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
     text-align: right;
-    padding: 0 15px;
+    padding: 10px 15px;
 
     span,
     strong {
@@ -188,14 +194,6 @@
       font-size: 32px;
       line-height: 48px;
       color: $primary-text-color;
-    }
-  }
-
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-
-    .section {
-      text-align: left;
     }
   }
 }
@@ -264,11 +262,11 @@
   .text {
     font-size: 16px;
     line-height: 30px;
-    color: $ui-base-lighter-color;
+    color: $ui-primary-color;
 
     h6 {
       font-weight: 500;
-      color: $ui-primary-color;
+      color: $ui-secondary-color;
     }
   }
 }
@@ -314,6 +312,10 @@
     font: inherit;
     font-weight: inherit;
     margin-bottom: 0;
+  }
+
+  hr {
+    border-color: rgba($ui-base-lighter-color, .6);
   }
 
   .header {
@@ -482,7 +484,7 @@
     padding: 0;
   }
 
-  .learn-more-cta {
+  .about-short {
     background: darken($ui-base-color, 4%);
     padding: 50px 0;
   }
@@ -514,7 +516,7 @@
       font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
       font-weight: 400;
       margin-bottom: 12px;
-      color: $ui-base-lighter-color;
+      color: $ui-primary-color;
 
       a {
         color: $ui-highlight-color;
@@ -529,13 +531,13 @@
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $ui-primary-color;
+    color: $ui-secondary-color;
   }
 
   p {
     font-size: 16px;
     line-height: 30px;
-    color: $ui-base-lighter-color;
+    color: $ui-primary-color;
   }
 
   .features {
@@ -547,6 +549,7 @@
   }
 
   #mastodon-timeline {
+    display: flex;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     font-family: 'mastodon-font-sans-serif', sans-serif;
@@ -561,11 +564,20 @@
     overflow: hidden;
     box-shadow: 0 0 6px rgba($black, 0.1);
 
+    .column-header {
+      color: inherit;
+      font-family: inherit;
+      font-size: 16px;
+      line-height: inherit;
+      font-weight: inherit;
+      margin: 0;
+      padding: 15px;
+    }
+
     .column {
       padding: 0;
       border-radius: 4px;
       overflow: hidden;
-      height: 100%;
     }
 
     .scrollable {
@@ -611,7 +623,7 @@
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    color: $ui-primary-color;
+    color: lighten($ui-primary-color, 10%);
   }
 
   h1 {
@@ -651,16 +663,12 @@
       padding: 0 20px;
     }
 
-    .information-board {
-      padding-bottom: 20px;
-    }
-
     .information-board .container {
       padding-right: 20px;
 
       .panel {
         position: static;
-        margin-top: 30px;
+        margin-top: 20px;
         width: 100%;
         border-radius: 4px;
 
