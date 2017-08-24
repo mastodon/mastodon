@@ -5,6 +5,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
 
   class DataSerializer < ActiveModel::Serializer
     include RoutingHelper
+    include StreamEntriesHelper
     include ActionView::Helpers::SanitizeHelper
 
     attributes :content, :nsfw, :url, :actions,
@@ -12,6 +13,10 @@ class Web::NotificationSerializer < ActiveModel::Serializer
 
     def content
       decoder.decode(strip_tags(body))
+    end
+
+    def dir
+      rtl?(body) ? 'rtl' : 'ltr'
     end
 
     def nsfw
@@ -128,10 +133,6 @@ class Web::NotificationSerializer < ActiveModel::Serializer
     when :reblog
       I18n.t('push_notifications.reblog.title', name: name)
     end
-  end
-
-  def dir
-    'ltr'
   end
 
   def image
