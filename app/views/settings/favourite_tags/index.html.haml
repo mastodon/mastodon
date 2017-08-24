@@ -5,6 +5,16 @@
   = render 'shared/error_messages', object: @favourite_tag
   = f.simple_fields_for :tag do |ff|
     = ff.input :name, placeholder: t('favourite_tags.name_of_tag')
+  = f.input :visibility,
+    label: t('simple_form.labels.defaults.setting_default_privacy'),
+    collection: Status.visibilities.keys - ['direct'],
+    wrapper: :with_label,
+    include_blank: false,
+    label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), content_tag(:span, I18n.t("statuses.visibilities.#{visibility}_long"), class: 'hint')]) },
+    required: false,
+    as: :radio_buttons,
+    collection_wrapper_tag: 'ul',
+    item_wrapper_tag: 'li'
   = f.button :button, type: 'submit'
 %hr
 
@@ -15,6 +25,8 @@
         %td
           = fa_icon 'tag'
           = fav_tag.tag.name
+        %td
+          = I18n.t("statuses.visibilities.#{fav_tag.visibility}")
         %td
           = form_for fav_tag, url: settings_favourite_tag_url(fav_tag), method: :delete do |f|
             = f.button :button, type: :submit, class: :negative do

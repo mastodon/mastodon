@@ -52,6 +52,7 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   defaultText: '',
+  tag_privacy: '',
 });
 
 function statusToTextMentions(state, status) {
@@ -73,7 +74,7 @@ function clearAll(state) {
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
-    map.set('privacy', state.get('default_privacy'));
+    map.set('privacy', state.get('tag_privacy') === '' ? state.get('default_privacy') : state.get('tag_privacy'));
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
     map.set('idempotencyKey', uuid());
@@ -132,11 +133,13 @@ const insertEmoji = (state, position, emojiData) => {
   });
 };
 
-const setDefaultText = (state, text) => {
+const setDefaultTag = (state, text, visibility) => {
   const replaceRE = new RegExp(` *${state.get('defaultText')}`);
   return state.withMutations(map => {
     map.update('text', oldText => oldText.replace(replaceRE, '') + (text === '' ? '' : ` ${text}`));
     map.set('defaultText', text);
+    map.set('privacy', (visibility === '' ? state.get('default_privacy') : visibility));
+    map.set('tag_privacy', visibility);
   });
 };
 
@@ -258,7 +261,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_EMOJI_INSERT:
     return insertEmoji(state, action.position, action.emoji);
   case COMPOSE_LOCK_TAG:
-    return setDefaultText(state, action.tag);
+    return setDefaultTag(state, action.tag, action.visibility);
   default:
     return state;
   }

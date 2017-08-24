@@ -13,8 +13,8 @@ const mapDispatchToProps = dispatch => ({
   refreshFavouriteTags () {
     dispatch(refreshFavouriteTags());
   },
-  onLockTag (tag) {
-    dispatch(lockTagCompose(tag));
+  onLockTag (tag, visibility) {
+    dispatch(lockTagCompose(tag, visibility));
   },
 });
 

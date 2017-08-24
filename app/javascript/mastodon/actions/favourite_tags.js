@@ -11,10 +11,11 @@ export function refreshFavouriteTags() {
   };
 }
 
-export function lockTagCompose(tag) {
+export function lockTagCompose(tag, visibility) {
   return {
     type: COMPOSE_LOCK_TAG,
     tag,
+    visibility,
   };
 }
 

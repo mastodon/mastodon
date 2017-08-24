@@ -7,7 +7,7 @@ class Api::V1::FavouriteTagsController < Api::BaseController
   respond_to :json
 
   def index
-    @tags = current_account.favourite_tags.includes(:tag).map(&:tag)
-    render json: @tags
+    @favourite_tags = current_account.favourite_tags.includes(:tag).map(&:to_json_for_api)
+    render json: @favourite_tags
   end
 end
