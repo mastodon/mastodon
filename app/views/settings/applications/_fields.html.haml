@@ -13,9 +13,9 @@
     collection: Doorkeeper.configuration.scopes,
     wrapper: :with_label,
     include_blank: false,
+    label_method: lambda { |scope| safe_join([scope, content_tag(:span, t("doorkeeper.scopes.#{scope}"), class: 'hint')]) },
     selected: f.object.scopes.all,
     required: false,
     as: :check_boxes,
     collection_wrapper_tag: 'ul',
     item_wrapper_tag: 'li'
-
