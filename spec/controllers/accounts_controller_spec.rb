@@ -18,7 +18,6 @@ RSpec.describe AccountsController, type: :controller do
     let!(:status_pin2) { StatusPin.create!(account: alice, status: status6, created_at: 2.years.ago) }
     let!(:status_pin3) { StatusPin.create!(account: alice, status: status7, created_at: 10.minutes.ago) }
 
-
     before do
       status3.media_attachments.create!(account: alice, file: fixture_file_upload('files/attachment.jpg', 'image/jpeg'))
     end
