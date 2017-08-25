@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
           return
         end
 
-        @pinned_statuses = cache_collection(@account.pinned_statuses.limit(1), Status) unless media_requested?
+        @pinned_statuses = cache_collection(@account.pinned_statuses, Status) unless media_requested?
         @statuses        = filtered_statuses.paginate_by_max_id(20, params[:max_id], params[:since_id])
         @statuses        = cache_collection(@statuses, Status)
         @next_url        = next_url unless @statuses.empty?
