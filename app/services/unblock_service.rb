@@ -20,11 +20,11 @@ class UnblockService < BaseService
   end
 
   def build_json(unblock)
-    ActiveModelSerializers::SerializableResource.new(
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
       unblock,
       serializer: ActivityPub::UndoBlockSerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json).sign!(unblock.account))
   end
 
   def build_xml(block)
