@@ -4,6 +4,7 @@
 .compact-header
   %h1<
     = link_to site_title, root_path
+    %br
     %small ##{@tag.name}
 
 - if @statuses.empty?

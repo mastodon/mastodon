@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::ReportsController < ApiController
+class Api::V1::ReportsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read }, except: [:create]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create]
   before_action :require_user!
@@ -9,6 +9,7 @@ class Api::V1::ReportsController < ApiController
 
   def index
     @reports = current_account.reports
+    render json: @reports, each_serializer: REST::ReportSerializer
   end
 
   def create
@@ -17,7 +18,10 @@ class Api::V1::ReportsController < ApiController
       status_ids: reported_status_ids,
       comment: report_params[:comment]
     )
-    render :show
+
+    User.admins.includes(:account).each { |u| AdminMailer.new_report(u.account, @report).deliver_later }
+
+    render json: @report, serializer: REST::ReportSerializer
   end
 
   private

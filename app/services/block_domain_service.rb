@@ -11,16 +11,16 @@ class BlockDomainService < BaseService
   private
 
   def process_domain_block
+    clear_media! if domain_block.reject_media?
     if domain_block.silence?
       silence_accounts!
-    else
+    elsif domain_block.suspend?
       suspend_accounts!
     end
   end
 
   def silence_accounts!
     blocked_domain_accounts.in_batches.update_all(silenced: true)
-    clear_media! if domain_block.reject_media?
   end
 
   def clear_media!
@@ -30,7 +30,7 @@ class BlockDomainService < BaseService
 
   def suspend_accounts!
     blocked_domain_accounts.where(suspended: false).find_each do |account|
-      account.subscription(api_subscription_url(account.id)).unsubscribe if account.subscribed?
+      UnsubscribeService.new.call(account) if account.subscribed?
       SuspendAccountService.new.call(account)
     end
   end

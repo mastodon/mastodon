@@ -45,6 +45,7 @@ module Mastodon
       :io,
       :it,
       :ja,
+      :ko,
       :nl,
       :no,
       :oc,
@@ -80,7 +81,7 @@ module Mastodon
     config.middleware.use Rack::Deflater
 
     config.to_prepare do
-      Doorkeeper::AuthorizationsController.layout 'public'
+      Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
     end

@@ -42,7 +42,9 @@ ignore_missing:
   - 'simple_form.{error_notification,required}.:'
   - 'errors.messages.*'
   - 'activerecord.errors.models.doorkeeper/*'
-
+  - 'sessions.{browsers,platforms}.*'
+  - 'terms.body_html'
+  - 'application_mailer.salutation'
 ignore_unused:
   - 'activemodel.errors.*'
   - 'activerecord.attributes.*'

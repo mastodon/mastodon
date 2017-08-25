@@ -5,12 +5,20 @@ module ApplicationHelper
     current_page?(path) ? 'active' : ''
   end
 
+  def active_link_to(label, path, options = {})
+    link_to label, path, options.merge(class: active_nav_class(path))
+  end
+
   def show_landing_strip?
     !user_signed_in? && !single_user_mode?
   end
 
   def open_registrations?
     Setting.open_registrations
+  end
+
+  def open_deletion?
+    Setting.open_deletion
   end
 
   def add_rtl_body_class(other_classes)
@@ -27,7 +35,11 @@ module ApplicationHelper
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 
-  def fa_icon(icon)
-    content_tag(:i, nil, class: 'fa ' + icon.split(' ').map { |cl| "fa-#{cl}" }.join(' '))
+  def fa_icon(icon, attributes = {})
+    class_names = attributes[:class]&.split(' ') || []
+    class_names << 'fa'
+    class_names += icon.split(' ').map { |cl| "fa-#{cl}" }
+
+    content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 end

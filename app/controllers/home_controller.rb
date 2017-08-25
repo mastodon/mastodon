@@ -2,13 +2,10 @@
 
 class HomeController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_initial_state_json
 
   def index
-    @body_classes           = 'app-body'
-    @token                  = find_or_create_access_token.token
-    @web_settings           = Web::Setting.find_by(user: current_user)&.data || {}
-    @admin                  = Account.find_local(Setting.site_contact_username)
-    @streaming_api_base_url = Rails.configuration.x.streaming_api_base_url
+    @body_classes = 'app-body'
   end
 
   private
@@ -17,13 +14,18 @@ class HomeController < ApplicationController
     redirect_to(single_user_mode? ? account_path(Account.first) : about_path) unless user_signed_in?
   end
 
-  def find_or_create_access_token
-    Doorkeeper::AccessToken.find_or_create_for(
-      Doorkeeper::Application.where(superapp: true).first,
-      current_user.id,
-      Doorkeeper::OAuth::Scopes.from_string('read write follow'),
-      Doorkeeper.configuration.access_token_expires_in,
-      Doorkeeper.configuration.refresh_token_enabled?
-    )
+  def set_initial_state_json
+    serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
+    @initial_state_json   = serializable_resource.to_json
+  end
+
+  def initial_state_params
+    {
+      settings: Web::Setting.find_by(user: current_user)&.data || {},
+      push_subscription: current_account.user.web_push_subscription(current_session),
+      current_account: current_account,
+      token: current_session.token,
+      admin: Account.find_local(Setting.site_contact_username),
+    }
   end
 end

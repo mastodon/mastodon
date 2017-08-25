@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-class Api::V1::FollowRequestsController < ApiController
+class Api::V1::FollowRequestsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow }
   before_action :require_user!
   after_action :insert_pagination_headers, only: :index
 
   def index
     @accounts = load_accounts
+    render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
   def authorize

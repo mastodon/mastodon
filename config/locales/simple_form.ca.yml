@@ -4,12 +4,20 @@ ca:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Màxim 2MB. Serà escalat a 120x120px
-        display_name: Màxim 30 caràcters
+        display_name:
+          one: <span class="name-counter">1</span> character left
+          other: <span class="name-counter">%{count}</span> characters left
         header: PNG, GIF o JPG. Màxim 2MB. Serà escalat a 700x335px
         locked: Requereix que aprovis manualment seguidors i les publicacions seran mostrades només als teus seguidors 
-        note: Màxim 160 caràcters
+        note: 
+          one: <span class="note-counter">1</span> character left
+          other: <span class="note-counter">%{count}</span> characters left
       imports:
         data: Arxiu CSV exportat desde una altra instància de Mastodon
+      sessions:
+        otp: Introdueix el codi de dos factors des del teu telèfon o utilitza un dels teus codis de recuperació.
+      user:
+        filtered_languages: Els idiomes seleccionats seran eliminats de les línies de temps públiques.
     labels:
       defaults:
         avatar: Avatar
@@ -29,6 +37,7 @@ ca:
         setting_auto_play_gif: Auto-reproducció de GIFs animats
         setting_boost_modal: Mostrar finestra de confirmació abans d'un Retoot
         setting_default_privacy: Privacitat de publicacions
+        setting_delete_modal: Mostrar finestra de confirmació abans d'esborrar un toot
         severity: Severitat
         type: Importar tipus
         username: Nom d´usuari

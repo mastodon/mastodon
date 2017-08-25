@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::NotificationsController < ApiController
+class Api::V1::NotificationsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read }
   before_action :require_user!
   after_action :insert_pagination_headers, only: :index
@@ -11,11 +11,12 @@ class Api::V1::NotificationsController < ApiController
 
   def index
     @notifications = load_notifications
-    set_maps_for_notification_target_statuses
+    render json: @notifications, each_serializer: REST::NotificationSerializer, relationships: StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
   end
 
   def show
     @notification = current_account.notifications.find(params[:id])
+    render json: @notification, serializer: REST::NotificationSerializer
   end
 
   def clear
@@ -46,12 +47,8 @@ class Api::V1::NotificationsController < ApiController
     current_account.notifications.browserable(exclude_types)
   end
 
-  def set_maps_for_notification_target_statuses
-    set_maps target_statuses_from_notifications
-  end
-
   def target_statuses_from_notifications
-    @notifications.select { |notification| !notification.target_status.nil? }.map(&:target_status)
+    @notifications.reject { |notification| notification.target_status.nil? }.map(&:target_status)
   end
 
   def insert_pagination_headers

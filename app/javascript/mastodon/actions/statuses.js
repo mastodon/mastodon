@@ -23,6 +23,9 @@ export const STATUS_UNMUTE_REQUEST = 'STATUS_UNMUTE_REQUEST';
 export const STATUS_UNMUTE_SUCCESS = 'STATUS_UNMUTE_SUCCESS';
 export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
 
+export const STATUS_SET_HEIGHT = 'STATUS_SET_HEIGHT';
+export const STATUSES_CLEAR_HEIGHT = 'STATUSES_CLEAR_HEIGHT';
+
 export function fetchStatusRequest(id, skipLoading) {
   return {
     type: STATUS_FETCH_REQUEST,
@@ -74,7 +77,7 @@ export function deleteStatus(id) {
   return (dispatch, getState) => {
     dispatch(deleteStatusRequest(id));
 
-    api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
+    api(getState).delete(`/api/v1/statuses/${id}`).then(() => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
     }).catch(error => {
@@ -113,7 +116,7 @@ export function fetchContext(id) {
       dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
 
     }).catch(error => {
-      if (error.response.status === 404) {
+      if (error.response && error.response.status === 404) {
         dispatch(deleteFromTimelines(id));
       }
 
@@ -152,7 +155,7 @@ export function muteStatus(id) {
   return (dispatch, getState) => {
     dispatch(muteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/mute`).then(response => {
+    api(getState).post(`/api/v1/statuses/${id}/mute`).then(() => {
       dispatch(muteStatusSuccess(id));
     }).catch(error => {
       dispatch(muteStatusFail(id, error));
@@ -186,7 +189,7 @@ export function unmuteStatus(id) {
   return (dispatch, getState) => {
     dispatch(unmuteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(response => {
+    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(() => {
       dispatch(unmuteStatusSuccess(id));
     }).catch(error => {
       dispatch(unmuteStatusFail(id, error));
@@ -213,5 +216,19 @@ export function unmuteStatusFail(id, error) {
     type: STATUS_UNMUTE_FAIL,
     id,
     error,
+  };
+};
+
+export function setStatusHeight (id, height) {
+  return {
+    type: STATUS_SET_HEIGHT,
+    id,
+    height,
+  };
+};
+
+export function clearStatusesHeight () {
+  return {
+    type: STATUSES_CLEAR_HEIGHT,
   };
 };

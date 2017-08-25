@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Accounts::StatusesController < ApiController
+class Api::V1::Accounts::StatusesController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read }
   before_action :set_account
   after_action :insert_pagination_headers
@@ -9,6 +9,7 @@ class Api::V1::Accounts::StatusesController < ApiController
 
   def index
     @statuses = load_statuses
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
   end
 
   private
@@ -18,9 +19,7 @@ class Api::V1::Accounts::StatusesController < ApiController
   end
 
   def load_statuses
-    cached_account_statuses.tap do |statuses|
-      set_maps(statuses)
-    end
+    cached_account_statuses
   end
 
   def cached_account_statuses
@@ -30,6 +29,7 @@ class Api::V1::Accounts::StatusesController < ApiController
   def account_statuses
     default_statuses.tap do |statuses|
       statuses.merge!(only_media_scope) if params[:only_media]
+      statuses.merge!(pinned_scope) if params[:pinned]
       statuses.merge!(no_replies_scope) if params[:exclude_replies]
     end
   end
@@ -52,6 +52,10 @@ class Api::V1::Accounts::StatusesController < ApiController
 
   def account_media_status_ids
     @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
+  end
+
+  def pinned_scope
+    @account.pinned_statuses
   end
 
   def no_replies_scope

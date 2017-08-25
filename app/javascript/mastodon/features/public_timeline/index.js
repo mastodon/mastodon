@@ -5,16 +5,13 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import {
-  refreshTimeline,
-  updateTimeline,
-  deleteFromTimelines,
-  connectTimeline,
-  disconnectTimeline,
+  refreshPublicTimeline,
+  expandPublicTimeline,
 } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
-import createStream from '../../stream';
+import ColumnSettingsContainer from './containers/column_settings_container';
+import { connectPublicStream } from '../../actions/streaming';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
@@ -22,19 +19,17 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'public', 'unread']) > 0,
-  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-  accessToken: state.getIn(['meta', 'access_token']),
 });
 
-class PublicTimeline extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class PublicTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     columnId: PropTypes.string,
     multiColumn: PropTypes.bool,
-    streamingAPIBaseURL: PropTypes.string.isRequired,
-    accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
   };
 
@@ -58,51 +53,25 @@ class PublicTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
+    const { dispatch } = this.props;
 
-    dispatch(refreshTimeline('public'));
-
-    if (typeof this._subscription !== 'undefined') {
-      return;
-    }
-
-    this._subscription = createStream(streamingAPIBaseURL, accessToken, 'public', {
-
-      connected () {
-        dispatch(connectTimeline('public'));
-      },
-
-      reconnected () {
-        dispatch(connectTimeline('public'));
-      },
-
-      disconnected () {
-        dispatch(disconnectTimeline('public'));
-      },
-
-      received (data) {
-        switch(data.event) {
-        case 'update':
-          dispatch(updateTimeline('public', JSON.parse(data.payload)));
-          break;
-        case 'delete':
-          dispatch(deleteFromTimelines(data.payload));
-          break;
-        }
-      },
-
-    });
+    dispatch(refreshPublicTimeline());
+    this.disconnect = dispatch(connectPublicStream());
   }
 
   componentWillUnmount () {
-    if (typeof this._subscription !== 'undefined') {
-      this._subscription.close();
-      this._subscription = null;
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
   }
 
   setRef = c => {
     this.column = c;
+  }
+
+  handleLoadMore = () => {
+    this.props.dispatch(expandPublicTimeline());
   }
 
   render () {
@@ -120,11 +89,13 @@ class PublicTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-        />
+        >
+          <ColumnSettingsContainer />
+        </ColumnHeader>
 
         <StatusListContainer
-          {...this.props}
-          type='public'
+          timelineId='public'
+          loadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}
           emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />}
@@ -134,5 +105,3 @@ class PublicTimeline extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(PublicTimeline));

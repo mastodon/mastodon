@@ -9,7 +9,25 @@ describe StatusFilter do
     context 'without an account' do
       subject { described_class.new(status, nil) }
 
-      it { is_expected.not_to be_filtered }
+      context 'when there are no connections' do
+        it { is_expected.not_to be_filtered }
+      end
+
+      context 'when status account is silenced' do
+        before do
+          status.account.update(silenced: true)
+        end
+
+        it { is_expected.to be_filtered }
+      end
+
+      context 'when status policy does not allow show' do
+        before do
+          expect_any_instance_of(StatusPolicy).to receive(:show?).and_return(false)
+        end
+
+        it { is_expected.to be_filtered }
+      end
     end
 
     context 'with real account' do

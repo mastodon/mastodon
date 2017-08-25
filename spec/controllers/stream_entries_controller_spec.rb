@@ -21,7 +21,7 @@ RSpec.describe StreamEntriesController, type: :controller do
 
         get route, params: { account_username: alice.username, id: status.stream_entry.id }
 
-        expect(response.headers['Link'].to_s).to eq "<http://test.host/users/alice/updates/#{status.stream_entry.id}.atom>; rel=\"alternate\"; type=\"application/atom+xml\""
+        expect(response.headers['Link'].to_s).to eq "<http://test.host/users/alice/updates/#{status.stream_entry.id}.atom>; rel=\"alternate\"; type=\"application/atom+xml\", <https://cb6e6126.ngrok.io/users/alice/statuses/#{status.id}>; rel=\"alternate\"; type=\"application/activity+json\""
       end
     end
 
@@ -73,8 +73,8 @@ RSpec.describe StreamEntriesController, type: :controller do
 
       get :show, params: { account_username: status.account.username, id: status.stream_entry.id }
 
-      expect(assigns(:ancestors)).to match_array([ancestor])
-      expect(assigns(:descendants)).to match_array([descendant])
+      expect(assigns(:ancestors)).to eq [ancestor]
+      expect(assigns(:descendants)).to eq [descendant]
       expect(response).to have_http_status(:success)
     end
 

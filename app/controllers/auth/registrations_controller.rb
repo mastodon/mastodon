@@ -5,6 +5,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
+  before_action :set_sessions, only: [:edit, :update]
 
   def destroy
     not_found
@@ -40,5 +41,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def determine_layout
     %w(edit update).include?(action_name) ? 'admin' : 'auth'
+  end
+
+  def set_sessions
+    @sessions = current_user.session_activations
   end
 end

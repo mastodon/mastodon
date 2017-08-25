@@ -11,16 +11,16 @@ import {
   favourite,
   unreblog,
   unfavourite,
+  pin,
+  unpin,
 } from '../actions/interactions';
 import {
   blockAccount,
   muteAccount,
 } from '../actions/accounts';
-import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
+import { muteStatus, unmuteStatus, deleteStatus, setStatusHeight } from '../actions/statuses';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
-import { createSelector } from 'reselect';
-import { isMobile } from '../is_mobile';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 const messages = defineMessages({
@@ -74,6 +74,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
+  onPin (status) {
+    if (status.get('pinned')) {
+      dispatch(unpin(status));
+    } else {
+      dispatch(pin(status));
+    }
+  },
+
   onDelete (status) {
     if (!this.deleteModal) {
       dispatch(deleteStatus(status.get('id')));
@@ -124,6 +132,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else {
       dispatch(muteStatus(status.get('id')));
     }
+  },
+
+  onHeightChange (status, height) {
+    dispatch(setStatusHeight(status.get('id'), height));
   },
 
 });

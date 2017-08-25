@@ -4,7 +4,7 @@ import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 import { FormattedMessage } from 'react-intl';
 
-class UploadArea extends React.PureComponent {
+export default class UploadArea extends React.PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,
@@ -51,5 +51,3 @@ class UploadArea extends React.PureComponent {
   }
 
 }
-
-export default UploadArea;

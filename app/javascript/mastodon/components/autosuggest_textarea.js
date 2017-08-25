@@ -31,7 +31,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
   }
 };
 
-class AutosuggestTextarea extends ImmutablePureComponent {
+export default class AutosuggestTextarea extends ImmutablePureComponent {
 
   static propTypes = {
     value: PropTypes.string,
@@ -124,13 +124,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   onBlur = () => {
-    // If we hide the suggestions immediately, then this will prevent the
-    // onClick for the suggestions themselves from firing.
-    // Setting a short window for that to take place before hiding the
-    // suggestions ensures that can't happen.
-    setTimeout(() => {
-      this.setState({ suggestionsHidden: true });
-    }, 100);
+    this.setState({ suggestionsHidden: true });
   }
 
   onSuggestionClick = (e) => {
@@ -168,20 +162,23 @@ class AutosuggestTextarea extends ImmutablePureComponent {
 
     return (
       <div className='autosuggest-textarea'>
-        <Textarea
-          inputRef={this.setTextarea}
-          className='autosuggest-textarea__textarea'
-          disabled={disabled}
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          value={value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          onKeyUp={onKeyUp}
-          onBlur={this.onBlur}
-          onPaste={this.onPaste}
-          style={style}
-        />
+        <label>
+          <span style={{ display: 'none' }}>{placeholder}</span>
+          <Textarea
+            inputRef={this.setTextarea}
+            className='autosuggest-textarea__textarea'
+            disabled={disabled}
+            placeholder={placeholder}
+            autoFocus={autoFocus}
+            value={value}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            onKeyUp={onKeyUp}
+            onBlur={this.onBlur}
+            onPaste={this.onPaste}
+            style={style}
+          />
+        </label>
 
         <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
           {suggestions.map((suggestion, i) => (
@@ -191,7 +188,8 @@ class AutosuggestTextarea extends ImmutablePureComponent {
               key={suggestion}
               data-index={suggestion}
               className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
-              onClick={this.onSuggestionClick}>
+              onMouseDown={this.onSuggestionClick}
+            >
               <AutosuggestAccountContainer id={suggestion} />
             </div>
           ))}
@@ -201,5 +199,3 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
 }
-
-export default AutosuggestTextarea;

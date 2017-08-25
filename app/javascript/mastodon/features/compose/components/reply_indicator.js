@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Avatar from '../../../components/avatar';
 import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
-import emojify from '../../../emoji';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -12,7 +11,8 @@ const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
 });
 
-class ReplyIndicator extends ImmutablePureComponent {
+@injectIntl
+export default class ReplyIndicator extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -31,7 +31,7 @@ class ReplyIndicator extends ImmutablePureComponent {
   handleAccountClick = (e) => {
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+      this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
     }
   }
 
@@ -42,7 +42,7 @@ class ReplyIndicator extends ImmutablePureComponent {
       return null;
     }
 
-    const content  = { __html: emojify(status.get('content')) };
+    const content  = { __html: status.get('contentHtml') };
 
     return (
       <div className='reply-indicator'>
@@ -50,7 +50,7 @@ class ReplyIndicator extends ImmutablePureComponent {
           <div className='reply-indicator__cancel'><IconButton title={intl.formatMessage(messages.cancel)} icon='times' onClick={this.handleClick} /></div>
 
           <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name'>
-            <div className='reply-indicator__display-avatar'><Avatar size={24} src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} /></div>
+            <div className='reply-indicator__display-avatar'><Avatar account={status.get('account')} size={24} /></div>
             <DisplayName account={status.get('account')} />
           </a>
         </div>
@@ -61,5 +61,3 @@ class ReplyIndicator extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(ReplyIndicator);

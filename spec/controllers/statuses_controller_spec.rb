@@ -30,6 +30,18 @@ describe StatusesController do
       end
     end
 
+    context 'status is a reblog' do
+      it 'redirects to the original status' do
+        original_account = Fabricate(:account, domain: 'example.com')
+        original_status = Fabricate(:status, account: original_account, uri: 'tag:example.com,2017:foo', url: 'https://example.com/123')
+        status = Fabricate(:status, reblog: original_status)
+
+        get :show, params: { account_username: status.account.username, id: status.id }
+
+        expect(response).to redirect_to(original_status.url)
+      end
+    end
+
     context 'account is not suspended and status is permitted' do
       it 'assigns @account' do
         status = Fabricate(:status)
@@ -61,7 +73,7 @@ describe StatusesController do
 
         get :show, params: { account_username: status.account.username, id: status.id }
 
-        expect(assigns(:ancestors)).to match_array([ancestor])
+        expect(assigns(:ancestors)).to eq [ancestor]
       end
 
       it 'assigns @ancestors for [] if it is not a reply' do

@@ -4,7 +4,7 @@ import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 import { FormattedMessage } from 'react-intl';
 
-class UploadProgress extends React.PureComponent {
+export default class UploadProgress extends React.PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,
@@ -40,5 +40,3 @@ class UploadProgress extends React.PureComponent {
   }
 
 }
-
-export default UploadProgress;

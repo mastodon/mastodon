@@ -4,56 +4,90 @@ class RemoveStatusService < BaseService
   include StreamEntryRenderer
 
   def call(status)
-    @payload = Oj.dump(event: :delete, payload: status.id)
+    @payload      = Oj.dump(event: :delete, payload: status.id)
+    @status       = status
+    @account      = status.account
+    @tags         = status.tags.pluck(:name).to_a
+    @mentions     = status.mentions.includes(:account).to_a
+    @reblogs      = status.reblogs.to_a
+    @stream_entry = status.stream_entry
 
-    remove_from_self(status) if status.account.local?
-    remove_from_followers(status)
-    remove_from_mentioned(status)
-    remove_reblogs(status)
-    remove_from_hashtags(status)
-    remove_from_public(status)
+    remove_from_self if status.account.local?
+    remove_from_followers
+    remove_reblogs
+    remove_from_hashtags
+    remove_from_public
 
-    status.destroy!
+    @status.destroy!
 
-    return unless status.account.local?
+    return unless @account.local?
 
-    Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+    @stream_entry = @stream_entry.reload
+
+    remove_from_remote_followers
+    remove_from_remote_affected
   end
 
   private
 
-  def remove_from_self(status)
-    unpush(:home, status.account, status)
+  def remove_from_self
+    unpush(:home, @account, @status)
   end
 
-  def remove_from_followers(status)
-    status.account.followers.where(domain: nil).each do |follower|
-      unpush(:home, follower, status)
+  def remove_from_followers
+    @account.followers.local.find_each do |follower|
+      unpush(:home, follower, @status)
     end
   end
 
-  def remove_from_mentioned(status)
-    return unless status.local?
-    notified_domains = []
+  def remove_from_remote_affected
+    # People who got mentioned in the status, or who
+    # reblogged it from someone else might not follow
+    # the author and wouldn't normally receive the
+    # delete notification - so here, we explicitly
+    # send it to them
 
-    status.mentions.each do |mention|
-      mentioned_account = mention.account
+    target_accounts = (@mentions.map(&:account).reject(&:local?) + @reblogs.map(&:account).reject(&:local?)).uniq(&:id)
 
-      next if mentioned_account.local?
-      next if notified_domains.include?(mentioned_account.domain)
+    # Ostatus
+    NotificationWorker.push_bulk(target_accounts.select(&:ostatus?).uniq(&:domain)) do |target_account|
+      [salmon_xml, @account.id, target_account.id]
+    end
 
-      notified_domains << mentioned_account.domain
-      send_delete_salmon(mentioned_account, status)
+    # ActivityPub
+    ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:inbox_url)) do |inbox_url|
+      [activity_json, @account.id, inbox_url]
     end
   end
 
-  def send_delete_salmon(account, status)
-    return unless status.local?
-    NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, account.id)
+  def remove_from_remote_followers
+    # OStatus
+    Pubsubhubbub::DistributionWorker.perform_async(@stream_entry.id)
+
+    # ActivityPub
+    ActivityPub::DeliveryWorker.push_bulk(@account.followers.inboxes) do |inbox_url|
+      [activity_json, @account.id, inbox_url]
+    end
   end
 
-  def remove_reblogs(status)
-    status.reblogs.each do |reblog|
+  def salmon_xml
+    @salmon_xml ||= stream_entry_to_xml(@stream_entry)
+  end
+
+  def activity_json
+    @activity_json ||= ActiveModelSerializers::SerializableResource.new(
+      @status,
+      serializer: ActivityPub::DeleteSerializer,
+      adapter: ActivityPub::Adapter
+    ).to_json
+  end
+
+  def remove_reblogs
+    # We delete reblogs of the status before the original status,
+    # because once original status is gone, reblogs will disappear
+    # without us being able to do all the fancy stuff
+
+    @reblogs.each do |reblog|
       RemoveStatusService.new.call(reblog)
     end
   end
@@ -68,16 +102,16 @@ class RemoveStatusService < BaseService
     Redis.current.publish("timeline:#{receiver.id}", @payload)
   end
 
-  def remove_from_hashtags(status)
-    status.tags.pluck(:name) do |hashtag|
+  def remove_from_hashtags
+    @tags.each do |hashtag|
       Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
-      Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if status.local?
+      Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
     end
   end
 
-  def remove_from_public(status)
+  def remove_from_public
     Redis.current.publish('timeline:public', @payload)
-    Redis.current.publish('timeline:public:local', @payload) if status.local?
+    Redis.current.publish('timeline:public:local', @payload) if @status.local?
   end
 
   def redis

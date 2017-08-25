@@ -17,21 +17,29 @@ Bundler/OrderedGems:
 Layout/AccessModifierIndentation:
   EnforcedStyle: indent
 
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
 
 Metrics/AbcSize:
   Max: 100
 
+Metrics/BlockLength:
+  Max: 35
+  Exclude:
+    - 'lib/tasks/**/*'
+
 Metrics/BlockNesting:
   Max: 3
 
 Metrics/ClassLength:
   CountComments: false
-  Max: 200
+  Max: 300
 
 Metrics/CyclomaticComplexity:
-  Max: 15
+  Max: 25
 
 Metrics/LineLength:
   AllowURI: true
@@ -46,16 +54,19 @@ Metrics/ModuleLength:
   Max: 200
 
 Metrics/ParameterLists:
-  Max: 4
+  Max: 5
   CountKeywordArgs: true
 
 Metrics/PerceivedComplexity:
-  Max: 10
+  Max: 20
 
 Rails:
   Enabled: true
 
 Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/SkipsModelValidations:
   Enabled: false
 
 Style/ClassAndModuleChildren:
@@ -81,10 +92,18 @@ Style/GuardClause:
 Style/Lambda:
   Enabled: false
 
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': '()'
+    '%w': '()'
+
 Style/PerlBackrefs:
   AutoCorrect: false
 
 Style/RegexpLiteral:
+  Enabled: false
+
+Style/SymbolArray:
   Enabled: false
 
 Style/TrailingCommaInLiteral:

@@ -28,7 +28,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
         sign_in(user, scope: :user)
         delete :destroy
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
         sign_in(user, scope: :user)
         delete :destroy
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
   end
@@ -54,6 +54,20 @@ RSpec.describe Auth::SessionsController, type: :controller do
       context 'using a valid password' do
         before do
           post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'redirects to home' do
+          expect(response).to redirect_to(root_path)
+        end
+
+        it 'logs the user in' do
+          expect(controller.current_user).to eq user
+        end
+      end
+
+      context 'using email with uppercase letters' do
+        before do
+          post :create, params: { user: { email: user.email.upcase, password: user.password } }
         end
 
         it 'redirects to home' do
@@ -127,6 +141,26 @@ RSpec.describe Auth::SessionsController, type: :controller do
         codes = user.generate_otp_backup_codes!
         user.save
         return codes
+      end
+
+      context 'using email and password' do
+        before do
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'renders two factor authentication page' do
+          expect(controller).to render_template("two_factor")
+        end
+      end
+
+      context 'using upcase email and password' do
+        before do
+          post :create, params: { user: { email: user.email.upcase, password: user.password } }
+        end
+
+        it 'renders two factor authentication page' do
+          expect(controller).to render_template("two_factor")
+        end
       end
 
       context 'using a valid OTP' do

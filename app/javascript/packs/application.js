@@ -1,6 +1,7 @@
-import main from '../mastodon/main';
 import loadPolyfills from '../mastodon/load_polyfills';
 
-loadPolyfills().then(main).catch(e => {
-  console.error(e); // eslint-disable-line no-console
+loadPolyfills().then(() => {
+  require('../mastodon/main').default();
+}).catch(e => {
+  console.error(e);
 });

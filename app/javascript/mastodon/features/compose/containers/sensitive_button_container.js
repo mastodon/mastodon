@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import TextIconButton from '../components/text_icon_button';
+import classNames from 'classnames';
+import IconButton from '../../../components/icon_button';
 import { changeComposeSensitivity } from '../../../actions/compose';
 import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
@@ -14,6 +15,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   visible: state.getIn(['compose', 'media_attachments']).size > 0,
   active: state.getIn(['compose', 'sensitive']),
+  disabled: state.getIn(['compose', 'spoiler']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -29,20 +31,37 @@ class SensitiveButton extends React.PureComponent {
   static propTypes = {
     visible: PropTypes.bool,
     active: PropTypes.bool,
+    disabled: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
   render () {
-    const { visible, active, onClick, intl } = this.props;
+    const { visible, active, disabled, onClick, intl } = this.props;
 
     return (
       <Motion defaultStyle={{ scale: 0.87 }} style={{ scale: spring(visible ? 1 : 0.87, { stiffness: 200, damping: 3 }) }}>
-        {({ scale }) =>
-          <div style={{ display: visible ? 'block' : 'none', transform: `translateZ(0) scale(${scale})` }}>
-            <TextIconButton onClick={onClick} label='NSFW' title={intl.formatMessage(messages.title)} active={active} />
-          </div>
-        }
+        {({ scale }) => {
+          const icon = active ? 'eye-slash' : 'eye';
+          const className = classNames('compose-form__sensitive-button', {
+            'compose-form__sensitive-button--visible': visible,
+          });
+          return (
+            <div className={className} style={{ transform: `translateZ(0) scale(${scale})` }}>
+              <IconButton
+                className='compose-form__sensitive-button__icon'
+                title={intl.formatMessage(messages.title)}
+                icon={icon}
+                onClick={onClick}
+                size={18}
+                active={active}
+                disabled={disabled}
+                style={{ lineHeight: null, height: null }}
+                inverted
+              />
+            </div>
+          );
+        }}
       </Motion>
     );
   }

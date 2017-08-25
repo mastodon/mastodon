@@ -17,7 +17,7 @@ module UserTrackingConcern
     current_user.update_tracked_fields!(request)
 
     # Regenerate feed if needed
-    RegenerationWorker.perform_async(current_user.account_id) if user_needs_feed_update?
+    regenerate_feed! if user_needs_feed_update?
   end
 
   def user_needs_sign_in_update?
@@ -26,5 +26,10 @@ module UserTrackingConcern
 
   def user_needs_feed_update?
     current_user.last_sign_in_at < REGENERATE_FEED_DAYS.days.ago
+  end
+
+  def regenerate_feed!
+    Redis.current.setnx("account:#{current_user.account_id}:regeneration", true) == 1 && Redis.current.expire("account:#{current_user.account_id}:regeneration", 3_600 * 24)
+    RegenerationWorker.perform_async(current_user.account_id)
   end
 end

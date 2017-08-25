@@ -15,6 +15,7 @@ class Settings::ProfilesController < ApplicationController
 
   def update
     if @account.update(account_params)
+      ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
       redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show

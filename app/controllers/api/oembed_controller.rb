@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-class Api::OEmbedController < ApiController
+class Api::OEmbedController < Api::BaseController
   respond_to :json
 
   def show
     @stream_entry = find_stream_entry.stream_entry
-    @width = maxwidth_or_default
-    @height = maxheight_or_default
+    render json: @stream_entry, serializer: OEmbedSerializer, width: maxwidth_or_default, height: maxheight_or_default
   end
 
   private

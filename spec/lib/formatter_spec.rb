@@ -204,6 +204,14 @@ RSpec.describe Formatter do
         is_expected.to_not include '<script>alert("Hello")</script>'
       end
     end
+
+    context 'contains malicious classes' do
+      let(:text) { '<span class="status__content__spoiler-link">Show more</span>' }
+
+      it 'strips malicious classes' do
+        is_expected.to_not include 'status__content__spoiler-link'
+      end
+    end
   end
 
   describe '#plaintext' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Accounts::FollowerAccountsController < ApiController
+class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read }
   before_action :set_account
   after_action :insert_pagination_headers
@@ -9,7 +9,7 @@ class Api::V1::Accounts::FollowerAccountsController < ApiController
 
   def index
     @accounts = load_accounts
-    render 'api/v1/accounts/index'
+    render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
   private

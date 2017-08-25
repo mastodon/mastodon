@@ -34,6 +34,12 @@ RSpec.describe User, type: :model do
       expect(user).to model_have_error_on_field(:email)
     end
 
+    it 'is valid with an invalid e-mail that has already been saved' do
+      user = Fabricate.build(:user, email: 'invalid-email')
+      user.save(validate: false)
+      expect(user.valid?).to be true
+    end
+
     it 'cleans out empty string from languages' do
       user = Fabricate.build(:user, filtered_languages: [''])
       user.valid?
@@ -46,7 +52,7 @@ RSpec.describe User, type: :model do
       it 'returns an array of recent users ordered by id' do
         user_1 = Fabricate(:user)
         user_2 = Fabricate(:user)
-        expect(User.recent).to match_array([user_2, user_1])
+        expect(User.recent).to eq [user_2, user_1]
       end
     end
 
@@ -92,7 +98,7 @@ RSpec.describe User, type: :model do
         ]
         Fabricate(:user, current_sign_in_ip: '0.0.0.0', last_sign_in_ip: '0.0.0.0')
 
-        expect(User.with_recent_ip_address('0.0.0.42')).to eq specifieds
+        expect(User.with_recent_ip_address('0.0.0.42')).to match_array(specifieds)
       end
     end
   end
@@ -150,7 +156,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'saves cleared otp_backup_codes' do
-      user = Fabricate.build(:user, otp_backup_codes: %w[dummy dummy])
+      user = Fabricate.build(:user, otp_backup_codes: %w(dummy dummy))
       user.disable_two_factor!
       expect(user.reload.otp_backup_codes.empty?).to be true
     end
@@ -178,6 +184,14 @@ RSpec.describe User, type: :model do
       expect(user.setting_auto_play_gif).to eq false
     end
   end
+  
+  describe '#setting_system_font_ui' do
+    it 'returns system font ui setting' do
+      user = Fabricate(:user)
+      user.settings[:system_font_ui] = false
+      expect(user.setting_system_font_ui).to eq false
+    end
+  end
 
   describe '#setting_boost_modal' do
     it 'returns boost modal setting' do
@@ -202,6 +216,14 @@ RSpec.describe User, type: :model do
     it "returns 'public' if user has not configured default privacy setting and account is not locked" do
       user = Fabricate(:user, account: Fabricate(:account, locked: false))
       expect(user.setting_default_privacy).to eq 'public'
+    end
+  end
+
+  describe '#setting_unfollow_modal' do
+    it 'returns unfollow modal setting' do
+      user = Fabricate(:user)
+      user.settings[:unfollow_modal] = true
+      expect(user.setting_unfollow_modal).to eq true
     end
   end
 
@@ -262,6 +284,26 @@ RSpec.describe User, type: :model do
 
     def fabricate
       Fabricate(:user)
+    end
+  end
+
+  describe 'token_for_app' do
+    let(:user) { Fabricate(:user) }
+    let(:app) { Fabricate(:application, owner: user) }
+
+    it 'returns a token' do
+      expect(user.token_for_app(app)).to be_a(Doorkeeper::AccessToken)
+    end
+
+    it 'persists a token' do
+      t = user.token_for_app(app)
+      expect(user.token_for_app(app)).to eql(t)
+    end
+
+    it 'is nil if user does not own app' do
+      app.update!(owner: nil)
+
+      expect(user.token_for_app(app)).to be_nil
     end
   end
 end

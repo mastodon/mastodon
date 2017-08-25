@@ -4,7 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Permalink from '../../../components/permalink';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
-import emojify from '../../../emoji';
 import IconButton from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -14,7 +13,8 @@ const messages = defineMessages({
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
-class AccountAuthorize extends ImmutablePureComponent {
+@injectIntl
+export default class AccountAuthorize extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
@@ -25,13 +25,13 @@ class AccountAuthorize extends ImmutablePureComponent {
 
   render () {
     const { intl, account, onAuthorize, onReject } = this.props;
-    const content = { __html: emojify(account.get('note')) };
+    const content = { __html: account.get('note_emojified') };
 
     return (
       <div className='account-authorize__wrapper'>
         <div className='account-authorize'>
           <Permalink href={account.get('url')} to={`/accounts/${account.get('id')}`} className='detailed-status__display-name'>
-            <div className='account-authorize__avatar'><Avatar src={account.get('avatar')} staticSrc={account.get('avatar_static')} size={48} /></div>
+            <div className='account-authorize__avatar'><Avatar account={account} size={48} /></div>
             <DisplayName account={account} />
           </Permalink>
 
@@ -47,5 +47,3 @@ class AccountAuthorize extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(AccountAuthorize);

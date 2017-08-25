@@ -4,8 +4,6 @@ import {
   FOLLOWERS_EXPAND_SUCCESS,
   FOLLOWING_FETCH_SUCCESS,
   FOLLOWING_EXPAND_SUCCESS,
-  ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   FOLLOW_REQUESTS_FETCH_SUCCESS,
   FOLLOW_REQUESTS_EXPAND_SUCCESS,
   ACCOUNT_FOLLOW_SUCCESS,
@@ -48,9 +46,9 @@ import {
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, fromJS } from 'immutable';
 
-const normalizeAccount = (state, account) => state.set(account.id, Immutable.fromJS({
+const normalizeAccount = (state, account) => state.set(account.id, fromJS({
   followers_count: account.followers_count,
   following_count: account.following_count,
   statuses_count: account.statuses_count,
@@ -82,12 +80,12 @@ const normalizeAccountsFromStatuses = (state, statuses) => {
   return state;
 };
 
-const initialState = Immutable.Map();
+const initialState = ImmutableMap();
 
 export default function accountsCounters(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.merge(action.state.get('accounts').map(item => Immutable.fromJS({
+    return state.merge(action.state.get('accounts').map(item => fromJS({
       followers_count: item.get('followers_count'),
       following_count: item.get('following_count'),
       statuses_count: item.get('statuses_count'),
@@ -115,8 +113,6 @@ export default function accountsCounters(state = initialState, action) {
     return normalizeAccountsFromStatuses(normalizeAccounts(state, action.accounts), action.statuses);
   case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:
-  case ACCOUNT_TIMELINE_FETCH_SUCCESS:
-  case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
   case CONTEXT_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:

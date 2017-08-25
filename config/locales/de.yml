@@ -1,35 +1,19 @@
 ---
 de:
   about:
-    about_mastodon: Mastodon ist ein <em>freier, quelloffener</em> sozialer Netzwerkserver. Als <em>dezentralisierte</em> Alternative zu kommerziellen Plattformen verhindert es die Risiken, die entstehen, wenn eine einzelne Firma deine Kommunikation monopolisiert. Jeder kann Mastodon verwenden und ganz einfach am <em>sozialen Netzwerk</em> teilnehmen.
+    about_mastodon_html: Mastodon ist ein <em>freier, quelloffener</em> sozialer Netzwerkserver. Als <em>dezentralisierte</em> Alternative zu kommerziellen Plattformen verhindert es die Risiken, die entstehen, wenn eine einzelne Firma deine Kommunikation monopolisiert. Jeder kann Mastodon verwenden und ganz einfach am <em>sozialen Netzwerk</em> teilnehmen.
     about_this: Über diese Instanz
-    apps: Apps
-    business_email: 'Geschäftliche E-Mail:'
     closed_registrations: Die Registrierung ist auf dieser Instanz momentan geschlossen.
     contact: Kontakt
     description_headline: Was ist %{domain}?
     domain_count_after: andere Instanzen
     domain_count_before: Verbunden mit
-    features:
-      api: Offene API für Apps und Dienste
-      blocks: Mächtige Block- und Stummschaltungswerkzeuge
-      characters: 500 Zeichen pro Beitrag
-      chronology: Zeitleisten sind chronologisch
-      ethics: 'Ethisches Design: keine Werbung, kein Tracking'
-      gifv: GIFV-Sets und kurze Videos
-      privacy: Granulare Privatsphäre-Einstellungen für jeden Beitrag
-      public: Öffentliche Zeitleisten
-    features_headline: Was Mastodon einzigartig macht
-    get_started: Erste Schritte
-    links: Links
     other_instances: Andere Instanzen
     source_code: Quellcode
     status_count_after: Beiträge verfassten
     status_count_before: die
-    terms: AGB
     user_count_after: Benutzer
     user_count_before: Heimat für
-    version: Version
   accounts:
     follow: Folgen
     followers: Folgende
@@ -119,13 +103,6 @@ de:
       account_count: Bekannte Konten
       domain_name: Domain
       title: Bekannte Instanzen
-    subscriptions:
-      callback_url: Callback-URL
-      confirmed: Bestätigt
-      expires_in: Verfällt in
-      last_delivery: Letzte Zustellung
-      title: PubSubHubbub
-      topic: Thema
     reports:
       comment:
         label: Kommentar
@@ -133,7 +110,7 @@ de:
       delete: Löschen
       id: ID
       mark_as_resolved: Als gelöst markieren
-      report: '#%{id} melden'
+      report: "#%{id} melden"
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
@@ -147,17 +124,13 @@ de:
     settings:
       contact_information:
         email: Eine öffentliche E-Mail-Adresse angeben
-        label: Kontaktinformationen
         username: Einen Benutzernamen angeben
       registrations:
         closed_message:
           desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist<br>Du kannst HTML-Tags benutzen
           title: Nachricht über geschlossene Registrierung
         open:
-          disabled: Deaktiviert
-          enabled: Aktiviert
           title: Offene Registrierung
-      setting: Einstellung
       site_description:
         desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt.<br>Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Seitenbeschreibung
@@ -166,6 +139,13 @@ de:
         title: Erweiterte Seitenbeschreibung
       site_title: Seitentitel
       title: Seiteneinstellungen
+    subscriptions:
+      callback_url: Callback-URL
+      confirmed: Bestätigt
+      expires_in: Verfällt in
+      last_delivery: Letzte Zustellung
+      title: WebSub
+      topic: Thema
     title: Administration
   application_mailer:
     settings: 'E-Mail-Einstellungen ändern: %{link}'
@@ -186,7 +166,6 @@ de:
   authorize_follow:
     error: Das Profil konnte nicht geladen werden
     follow: Folgen
-    prompt_html: 'Du (<strong>%{self}</strong>) möchtest dieser Person folgen:'
     title: "%{acct} folgen"
   datetime:
     distance_in_words:
@@ -229,7 +208,7 @@ de:
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
-  landing_strip_html: <strong>%{name}</strong> ist ein Benutzer auf %{link_to_root_path}. Du kannst ihm folgen oder mit ihm interagieren, sofern du ein Konto irgendwo in der Fediverse hast.
+  landing_strip_html: "<strong>%{name}</strong> ist ein Benutzer auf %{link_to_root_path}. Du kannst ihm folgen oder mit ihm interagieren, sofern du ein Konto irgendwo in der Fediverse hast."
   landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   media_attachments:
     validations:
@@ -304,7 +283,7 @@ de:
     lost_recovery_codes: Wiederherstellungscodes erlauben dir, wieder den Zugang zu deinem Konto zu erlangen, falls du dein Telefon verlierst. Wenn du deine Wiederherstellungscodes verloren hast, kannst du sie hier regenerieren. Deine alten Wiederherstellungscodes werden damit ungültig gemacht.
     manual_instructions: 'Wenn du den QR-Code nicht einlesen kannst und ihn manuell eingeben musst, ist hier das Klartext-Geheimnis:'
     recovery_codes_regenerated: Wiederherstellungscodes erfolgreich regeneriert
-    recovery_instructions: Wenn du jemals den Zugang zu deinem Telefon verlierst, kannst du einen der Wiederherstellungscodes unten benutzen, um wieder auf dein Konto zugreifen zu können. Bewahre die Wiederherstellungscodes sicher auf, indem du sie beispielsweise ausdruckst und sie zusammen mit anderen wichtigen Dokumenten lagerst.
+    recovery_instructions_html: Wenn du jemals den Zugang zu deinem Telefon verlierst, kannst du einen der Wiederherstellungscodes unten benutzen, um wieder auf dein Konto zugreifen zu können. Bewahre die Wiederherstellungscodes sicher auf, indem du sie beispielsweise ausdruckst und sie zusammen mit anderen wichtigen Dokumenten lagerst.
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Sind die Server- und die Gerätezeit korrekt?
   users:

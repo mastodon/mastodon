@@ -3,6 +3,8 @@
 require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 
+Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
+  get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
+  get 'intent', to: 'intents#show'
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
@@ -25,7 +29,7 @@ Rails.application.routes.draw do
     confirmations:      'auth/confirmations',
   }
 
-  get '/users/:username', to: redirect('/@%{username}'), constraints: { format: :html }
+  get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show] do
@@ -37,13 +41,23 @@ Rails.application.routes.draw do
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
 
+    resources :statuses, only: [:show] do
+      member do
+        get :activity
+      end
+    end
+
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
     resource :follow, only: [:create], controller: :account_follow
     resource :unfollow, only: [:create], controller: :account_unfollow
+    resource :outbox, only: [:show], module: :activitypub
+    resource :inbox, only: [:create], module: :activitypub
   end
 
   get '/@:username', to: 'accounts#show', as: :short_account
+  get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
+  get '/@:username/media', to: 'accounts#show', as: :short_account_media
   get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
 
   namespace :settings do
@@ -65,6 +79,16 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
+
+    resources :applications, except: [:edit] do
+      member do
+        post :regenerate
+      end
+    end
+
+    resource :delete, only: [:show, :destroy]
+
+    resources :sessions, only: [:destroy]
   end
 
   resources :media, only: [:show]
@@ -72,22 +96,35 @@ Rails.application.routes.draw do
 
   # Remote follow
   resource :authorize_follow, only: [:show, :create]
+  resource :share, only: [:show, :create]
 
   namespace :admin do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resource :settings, only: [:edit, :update]
-    resources :instances, only: [:index]
+
+    resources :instances, only: [:index] do
+      collection do
+        post :resubscribe
+      end
+    end
 
     resources :reports, only: [:index, :show, :update] do
-      resources :reported_statuses, only: [:update, :destroy]
+      resources :reported_statuses, only: [:create, :update, :destroy]
     end
 
     resources :accounts, only: [:index, :show] do
+      member do
+        post :subscribe
+        post :unsubscribe
+        post :redownload
+      end
+
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
       resource :confirmation, only: [:create]
+      resources :statuses, only: [:index, :create, :update, :destroy]
     end
 
     resources :users, only: [] do
@@ -111,28 +148,28 @@ Rails.application.routes.draw do
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
 
-    # ActivityPub
-    namespace :activitypub do
-      get '/users/:id/outbox', to: 'outbox#show', as: :outbox
-      get '/statuses/:id', to: 'activities#show_status', as: :status
-      resources :notes, only: [:show]
-    end
-
     # JSON / REST API
     namespace :v1 do
       resources :statuses, only: [:create, :show, :destroy] do
+        scope module: :statuses do
+          resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
+          resources :favourited_by, controller: :favourited_by_accounts, only: :index
+          resource :reblog, only: :create
+          post :unreblog, to: 'reblogs#destroy'
+
+          resource :favourite, only: :create
+          post :unfavourite, to: 'favourites#destroy'
+
+          resource :mute, only: :create
+          post :unmute, to: 'mutes#destroy'
+
+          resource :pin, only: :create
+          post :unpin, to: 'pins#destroy'
+        end
+
         member do
           get :context
           get :card
-          get :reblogged_by
-          get :favourited_by
-
-          post :reblog
-          post :unreblog
-          post :favourite
-          post :unfavourite
-          post :mute
-          post :unmute
         end
       end
 
@@ -141,7 +178,8 @@ Rails.application.routes.draw do
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
       end
-      resources :streaming,  only: [:index]
+
+      resources :streaming, only: [:index]
 
       get '/search', to: 'search#index', as: :search
 
@@ -176,6 +214,7 @@ Rails.application.routes.draw do
         resource :search, only: :show, controller: :search
         resources :relationships, only: :index
       end
+
       resources :accounts, only: [:show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
@@ -194,6 +233,11 @@ Rails.application.routes.draw do
 
     namespace :web do
       resource :settings, only: [:update]
+      resources :push_subscriptions, only: [:create] do
+        member do
+          put :update
+        end
+      end
     end
   end
 
@@ -206,7 +250,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   match '*unmatched_route',
-    via: :all,
-    to: 'application#raise_not_found',
-    format: false
+        via: :all,
+        to: 'application#raise_not_found',
+        format: false
 end

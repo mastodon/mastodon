@@ -12,31 +12,19 @@
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
 
-  HASHTAG_RE = /(?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_][[:word:]_]*)/i
+  HASHTAG_NAME_RE = '[[:word:]_]*[[:alpha:]_][[:word:]_]*'
+  HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, format: { with: /\A#{HASHTAG_NAME_RE}\z/i }
 
   def to_param
     name
   end
 
   class << self
-    def search_for(terms, limit = 5)
-      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
-      textsearch = 'to_tsvector(\'simple\', tags.name)'
-      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
-
-      sql = <<-SQL.squish
-        SELECT
-          tags.*,
-          ts_rank_cd(#{textsearch}, #{query}) AS rank
-        FROM tags
-        WHERE #{query} @@ #{textsearch}
-        ORDER BY rank DESC
-        LIMIT ?
-      SQL
-
-      Tag.find_by_sql([sql, limit])
+    def search_for(term, limit = 5)
+      pattern = sanitize_sql_like(term) + '%'
+      Tag.where('lower(name) like lower(?)', pattern).order(:name).limit(limit)
     end
   end
 end

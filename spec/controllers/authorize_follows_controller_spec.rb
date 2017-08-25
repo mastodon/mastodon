@@ -30,7 +30,7 @@ describe AuthorizeFollowsController do
 
       it 'renders error when account cant be found' do
         service = double
-        allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('missing@hostname').and_return(nil)
 
         get :show, params: { acct: 'acct:missing@hostname' }
@@ -54,7 +54,7 @@ describe AuthorizeFollowsController do
       it 'sets account from acct uri' do
         account = Account.new
         service = double
-        allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('found@hostname').and_return(account)
 
         get :show, params: { acct: 'acct:found@hostname' }
@@ -94,7 +94,7 @@ describe AuthorizeFollowsController do
       end
 
       it 'follows account when found' do
-        target_account = double(id: '123')
+        target_account = Fabricate(:account)
         result_account = double(target_account: target_account)
         service = double
         allow(FollowService).to receive(:new).and_return(service)
@@ -103,7 +103,7 @@ describe AuthorizeFollowsController do
         post :create, params: { acct: 'acct:user@hostname' }
 
         expect(service).to have_received(:call).with(account, 'user@hostname')
-        expect(response).to redirect_to(web_url('accounts/123'))
+        expect(response).to render_template(:success)
       end
     end
   end

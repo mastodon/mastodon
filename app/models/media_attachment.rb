@@ -18,6 +18,8 @@
 #  file_meta         :json
 #
 
+require 'mime/types'
+
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
@@ -88,7 +90,8 @@ class MediaAttachment < ApplicationRecord
                 'vsync'    => 'cfr',
                 'b:v'      => '1300K',
                 'maxrate'  => '500K',
-                'crf'      => 6,
+                'bufsize'  => '1300K',
+                'crf'      => 18,
               },
             },
           },

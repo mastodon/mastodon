@@ -10,10 +10,12 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
 
   it 'has valid open graph tags' do
     instance_presenter = double(:instance_presenter,
-				site_description: 'something',
-				open_registrations: false,
-				closed_registrations_message: 'yes',
-			       )
+                                site_title: 'something',
+                                site_description: 'something',
+                                version_number: '1.0',
+                                source_url: 'https://github.com/tootsuite/mastodon',
+                                open_registrations: false,
+                                closed_registrations_message: 'yes')
     assign(:instance_presenter, instance_presenter)
     render
 

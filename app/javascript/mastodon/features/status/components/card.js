@@ -17,7 +17,7 @@ const getHostname = url => {
   return parser.hostname;
 };
 
-class Card extends React.PureComponent {
+export default class Card extends React.PureComponent {
 
   static propTypes = {
     card: ImmutablePropTypes.map,
@@ -97,5 +97,3 @@ class Card extends React.PureComponent {
   }
 
 }
-
-export default Card;

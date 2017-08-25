@@ -38,7 +38,7 @@ RSpec.describe AccountsController, type: :controller do
 
     context 'activitystreams2' do
       before do
-        get :show, params: { username: alice.username }, format: 'activitystreams2'
+        get :show, params: { username: alice.username }, format: 'json'
       end
 
       it 'assigns @account' do
@@ -47,6 +47,10 @@ RSpec.describe AccountsController, type: :controller do
 
       it 'returns http success with Activity Streams 2.0' do
         expect(response).to have_http_status(:success)
+      end
+
+      it 'returns application/activity+json' do
+        expect(response.content_type).to eq 'application/activity+json'
       end
     end
 

@@ -83,6 +83,6 @@ describe Pubsubhubbub::ConfirmationWorker do
   end
 
   def http_headers
-    { 'Connection' => 'close', 'Host' => 'example.com', 'User-Agent' => 'Mastodon/PubSubHubbub' }
+    { 'Connection' => 'close', 'Host' => 'example.com' }
   end
 end

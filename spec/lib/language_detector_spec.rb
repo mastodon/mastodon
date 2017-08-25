@@ -43,7 +43,7 @@ describe LanguageDetector do
   describe 'to_iso_s' do
     it 'detects english language for basic strings' do
       strings = [
-        "Hello and welcome to mastodon",
+        "Hello and welcome to mastodon how are you today?",
         "I'd rather not!",
         "a lot of people just want to feel righteous all the time and that's all that matters",
       ]
@@ -62,20 +62,20 @@ describe LanguageDetector do
     end
 
     describe 'when language can\'t be detected' do
-      it 'uses default locale when sent an empty document' do
+      it 'uses nil when sent an empty document' do
         result = described_class.new('').to_iso_s
-        expect(result).to eq :en
+        expect(result).to eq nil
       end
 
       describe 'because of a URL' do
-        it 'uses default locale when sent just a URL' do
+        it 'uses nil when sent just a URL' do
           string = 'http://example.com/media/2kFTgOJLXhQf0g2nKB4'
           cld_result = CLD3::NNetLanguageIdentifier.new(0, 2048).find_language(string)
           expect(cld_result).not_to eq :en
 
           result = described_class.new(string).to_iso_s
 
-          expect(result).to eq :en
+          expect(result).to eq nil
         end
       end
 
@@ -87,20 +87,20 @@ describe LanguageDetector do
           expect(result).to eq :fr
         end
 
-        it 'uses default locale when account is present but has no locale' do
+        it 'uses nil when account is present but has no locale' do
           account = double(user_locale: nil)
           result  = described_class.new('', account).to_iso_s
 
-          expect(result).to eq :en
+          expect(result).to eq nil
         end
       end
 
       describe 'with an `en` default locale' do
-        it 'uses the default locale' do
+        it 'uses nil for undetectable string' do
           string = ''
           result = described_class.new(string).to_iso_s
 
-          expect(result).to eq :en
+          expect(result).to eq nil
         end
       end
 
@@ -112,11 +112,11 @@ describe LanguageDetector do
           I18n.default_locale = before
         end
 
-        it 'uses the default locale' do
+        it 'uses nil for undetectable string' do
           string = ''
           result = described_class.new(string).to_iso_s
 
-          expect(result).to eq :ja
+          expect(result).to eq nil
         end
       end
     end

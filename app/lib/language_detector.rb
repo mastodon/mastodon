@@ -10,7 +10,7 @@ class LanguageDetector
   end
 
   def to_iso_s
-    detected_language_code || default_locale.to_sym
+    detected_language_code || default_locale
   end
 
   def prepared_text
@@ -33,9 +33,7 @@ class LanguageDetector
 
   def simplified_text
     text.dup.tap do |new_text|
-      URI.extract(new_text).each do |url|
-        new_text.gsub!(url, '')
-      end
+      new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
       new_text.gsub!(Account::MENTION_RE, '')
       new_text.gsub!(Tag::HASHTAG_RE, '')
       new_text.gsub!(/\s+/, ' ')
@@ -43,6 +41,6 @@ class LanguageDetector
   end
 
   def default_locale
-    account&.user_locale || I18n.default_locale
+    account&.user_locale&.to_sym || nil
   end
 end

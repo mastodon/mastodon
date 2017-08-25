@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { expandHomeTimeline } from '../../actions/timelines';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
@@ -7,7 +8,7 @@ import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import Link from 'react-router/lib/Link';
+import Link from 'react-router-dom/Link';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -18,7 +19,9 @@ const mapStateToProps = state => ({
   hasFollows: state.getIn(['accounts_counters', state.getIn(['meta', 'me']), 'following_count']) > 0,
 });
 
-class HomeTimeline extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class HomeTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -52,6 +55,10 @@ class HomeTimeline extends React.PureComponent {
     this.column = c;
   }
 
+  handleLoadMore = () => {
+    this.props.dispatch(expandHomeTimeline());
+  }
+
   render () {
     const { intl, hasUnread, hasFollows, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
@@ -80,10 +87,10 @@ class HomeTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          {...this.props}
           trackScroll={!pinned}
           scrollKey={`home_timeline-${columnId}`}
-          type='home'
+          loadMore={this.handleLoadMore}
+          timelineId='home'
           emptyMessage={emptyMessage}
         />
       </Column>
@@ -91,5 +98,3 @@ class HomeTimeline extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(HomeTimeline));

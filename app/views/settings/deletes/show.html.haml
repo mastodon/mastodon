@@ -1,0 +1,16 @@
+- content_for :page_title do
+  = t('settings.delete')
+
+= simple_form_for @confirmation, url: settings_delete_path, method: :delete do |f|
+  .warning
+    %strong
+      = fa_icon('warning')
+      = t('deletes.warning_title')
+    = t('deletes.warning_html')
+
+  %p.hint= t('deletes.description_html')
+
+  = f.input :password, placeholder: t('simple_form.labels.defaults.current_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }, hint: t('deletes.confirm_password')
+
+  .actions
+    = f.button :button, t('deletes.proceed'), type: :submit, class: 'negative'

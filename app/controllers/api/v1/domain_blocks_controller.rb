@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::DomainBlocksController < ApiController
+class Api::V1::DomainBlocksController < Api::BaseController
   BLOCK_LIMIT = 100
 
   before_action -> { doorkeeper_authorize! :follow }
