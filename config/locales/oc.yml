@@ -511,6 +511,10 @@ oc:
   statuses:
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
+    pin_errors:
+      ownership: Se pòt pas penjar lo tut de qualqu’un mai
+      private: Se pòt pas penjar los tuts pas publics
+      reblog: Se pòt pas penjar un tut partejat
     show_more: Ne veire mai
     visibilities:
       private: Seguidors solament
@@ -520,7 +524,8 @@ oc:
       unlisted: Pas listat
       unlisted_long: Tot lo mond pòt veire mai serà pas visible sul flux public
   stream_entries:
-    click_to_show: Clicatz per afichar
+    click_to_show: Clicatz per veire
+    pinned: Tut penjat
     reblogged: a partejat
     sensitive_content: Contengut sensible
   terms:
@@ -601,7 +606,8 @@ oc:
     description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.
     disable: Desactivar
     enable: Activar
-    enabled: L’autentificacion en dos temps es activada
+    enabled: Autentificacion en dos temps activada
+    enabled_success: L’autentificacion en dos temps es ben activada
     generate_recovery_codes: Generar los còdis de recuperacion
     instructions_html: "<strong>Escanatz aqueste còdi QR amb Google Authenticator o una aplicacion similària sus vòstre mobil</strong>. A partir d’ara, aquesta aplicacion generarà un geton que vos caldrà picar per vos connectar."
     lost_recovery_codes: Los còdi de recuperacion vos permeton d’accedir a vòstre compte se perdètz vòstre mobil. S’avètz perdut vòstres còdis de recuperacion los podètz tornar generar aquí. Los ancians còdis seràn pas mai valides.
