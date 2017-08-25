@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::ProcessCollectionService do
-  subject { ActivityPub::ProcessCollectionService.new }
+  subject { described_class.new }
 
   describe '#call' do
-    pending
+    context 'when actor is the sender'
+    context 'when actor differs from sender'
   end
 end

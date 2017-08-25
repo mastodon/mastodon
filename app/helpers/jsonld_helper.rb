@@ -17,6 +17,11 @@ module JsonLdHelper
     !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
   end
 
+  def canonicalize(json)
+    graph = RDF::Graph.new << JSON::LD::API.toRdf(json)
+    graph.dump(:normalize)
+  end
+
   def fetch_resource(uri)
     response = build_request(uri).perform
     return if response.code != 200
