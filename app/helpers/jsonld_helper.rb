@@ -34,6 +34,14 @@ module JsonLdHelper
     nil
   end
 
+  def merge_context(context, new_context)
+    if context.is_a?(Array)
+      context << new_context
+    else
+      [context, new_context]
+    end
+  end
+
   private
 
   def build_request(uri)

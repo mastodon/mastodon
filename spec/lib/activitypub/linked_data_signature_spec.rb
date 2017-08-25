@@ -56,8 +56,29 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     end
   end
 
+  describe '#sign!' do
+    subject { described_class.new(raw_json).sign!(sender) }
+
+    it 'returns a hash' do
+      expect(subject).to be_a Hash
+    end
+
+    it 'contains signature context' do
+      expect(subject['@context']).to include('https://www.w3.org/ns/activitystreams', 'https://w3id.org/identity/v1')
+    end
+
+    it 'contains signature' do
+      expect(subject['signature']).to be_a Hash
+      expect(subject['signature']['signatureValue']).to be_present
+    end
+
+    it 'can be verified again' do
+      expect(described_class.new(subject).verify_account!).to eq sender
+    end
+  end
+
   def sign(from_account, options, document)
-    options_hash   = Digest::SHA256.hexdigest(canonicalize(options))
+    options_hash   = Digest::SHA256.hexdigest(canonicalize(options.merge('@context' => ActivityPub::LinkedDataSignature::CONTEXT)))
     document_hash  = Digest::SHA256.hexdigest(canonicalize(document))
     to_be_verified = options_hash + document_hash
     from_account.keypair.sign(OpenSSL::Digest::SHA256.new, to_be_verified)
