@@ -106,6 +106,10 @@ class User < ApplicationRecord
     settings.system_font_ui
   end
 
+  def setting_system_hdr_pin
+    settings.system_hdr_pin
+  end
+
   def setting_noindex
     settings.noindex
   end
