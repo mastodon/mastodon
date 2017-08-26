@@ -17,6 +17,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     resolve_thread(status)
     distribute(status)
+    forward_for_reply if status.public_visibility? || status.unlisted_visibility?
 
     status
   end
@@ -161,5 +162,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def skip_download?
     return @skip_download if defined?(@skip_download)
     @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
+  end
+
+  def reply_to_local?
+    !replied_to_status.nil? && replied_to_status.account.local?
+  end
+
+  def forward_for_reply
+    return unless @json['signature'].present? && reply_to_local?
+    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id)
   end
 end
