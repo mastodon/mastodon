@@ -140,7 +140,7 @@ class BatchedRemoveStatusService < BaseService
 
     @activity_json[status.id] = sign_json(status, ActiveModelSerializers::SerializableResource.new(
       status,
-      serializer: ActivityPub::DeleteSerializer,
+      serializer: status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer,
       adapter: ActivityPub::Adapter
     ).as_json)
   end
