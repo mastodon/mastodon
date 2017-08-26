@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import { connect } from 'react-redux';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -10,6 +11,15 @@ const messages = defineMessages({
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
 });
 
+const makeMapStateToProps = () => {
+  const mapStateToProps = state => ({
+      systemHdrPin: state.getIn(['meta', 'system_hdr_pin']),
+  });
+
+  return mapStateToProps;
+};
+
+@connect(makeMapStateToProps)
 @injectIntl
 export default class ColumnHeader extends React.PureComponent {
 
@@ -30,7 +40,9 @@ export default class ColumnHeader extends React.PureComponent {
     onPin: PropTypes.func,
     onMove: PropTypes.func,
     onClick: PropTypes.func,
+    systemHdrPin: PropTypes.bool.isRequired,
   };
+
 
   static defaultProps = {
     focusable: true,
@@ -68,7 +80,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, onPin, multiColumn, focusable, showBackButton, intl: { formatMessage } } = this.props;
+    const { title, icon, active, children, pinned, onPin, multiColumn, focusable, showBackButton, systemHdrPin, intl : { formatMessage } } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -88,7 +100,7 @@ export default class ColumnHeader extends React.PureComponent {
       'active': !collapsed,
     });
 
-    let extraContent, pinButton, moveButtons, backButton, collapseButton;
+    let extraContent, pinButton, pinButtonHdr, moveButtons, backButton, collapseButton;
 
     if (children) {
       extraContent = (
@@ -101,6 +113,9 @@ export default class ColumnHeader extends React.PureComponent {
     if (multiColumn && pinned) {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
 
+      if(systemHdrPin)
+        pinButtonHdr = <button key='pin-button' className='column-header__button' onClick={onPin}><i className='fa fa fa-times' /></button>;
+
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
           <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='text-btn column-header__setting-btn' onClick={this.handleMoveLeft}><i className='fa fa-chevron-left' /></button>
@@ -109,6 +124,8 @@ export default class ColumnHeader extends React.PureComponent {
       );
     } else if (multiColumn) {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      if(systemHdrPin)
+        pinButtonHdr = <button key='pin-button' className='column-header__button' onClick={onPin}><i className='fa fa fa-thumb-tack' /></button>;
     }
 
     if (!pinned && (multiColumn || showBackButton)) {
@@ -141,6 +158,7 @@ export default class ColumnHeader extends React.PureComponent {
 
           <div className='column-header__buttons'>
             {backButton}
+            {pinButtonHdr}
             {collapseButton}
           </div>
         </h1>
