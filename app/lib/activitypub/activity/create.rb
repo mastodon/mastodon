@@ -91,7 +91,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def resolve_thread(status)
     return unless status.reply? && status.thread.nil?
-    ThreadResolveWorker.perform_async(status.id, @object['inReplyTo'])
+    ThreadResolveWorker.perform_async(status.id, in_reply_to_uri)
   end
 
   def conversation_from_uri(uri)
@@ -118,8 +118,19 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def replied_to_status
-    return if @object['inReplyTo'].blank?
-    @replied_to_status ||= status_from_uri(@object['inReplyTo'])
+    return @replied_to_status if defined?(@replied_to_status)
+
+    if in_reply_to_uri.blank?
+      @replied_to_status = nil
+    else
+      @replied_to_status   = status_from_uri(in_reply_to_uri)
+      @replied_to_status ||= status_from_uri(@object['_:inReplyToAtomUri']) if @object['_:inReplyToAtomUri'].present?
+      @replied_to_status
+    end
+  end
+
+  def in_reply_to_uri
+    value_or_id(@object['inReplyTo'])
   end
 
   def text_from_content

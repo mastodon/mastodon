@@ -10,7 +10,7 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
   end
 
   def type
-    object.reblog? ? 'Announce' : 'Create'
+    announce? ? 'Announce' : 'Create'
   end
 
   def actor
@@ -23,5 +23,9 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
 
   def cc
     ActivityPub::TagManager.instance.cc(object)
+  end
+
+  def announce?
+    object.reblog?
   end
 end

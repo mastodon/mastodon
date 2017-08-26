@@ -10,7 +10,7 @@ module JsonLdHelper
   end
 
   def value_or_id(value)
-    value.is_a?(String) ? value : value['id']
+    value.is_a?(String) || value.nil? ? value : value['id']
   end
 
   def supported_context?(json)
