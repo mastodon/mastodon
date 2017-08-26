@@ -81,7 +81,7 @@ class RemoveStatusService < BaseService
   def activity_json
     @activity_json ||= ActiveModelSerializers::SerializableResource.new(
       @status,
-      serializer: ActivityPub::DeleteSerializer,
+      serializer: @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer,
       adapter: ActivityPub::Adapter
     ).as_json
   end
