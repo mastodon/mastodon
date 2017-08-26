@@ -72,18 +72,18 @@ export default class MediaModal extends ImmutablePureComponent {
     const { media, intl, onClose } = this.props;
 
     const index = this.getIndex();
-    const pagination = [];
+    let pagination = [];
 
     const leftNav  = media.size > 1 && <button tabIndex='0' className='modal-container__nav modal-container__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><i className='fa fa-fw fa-chevron-left' /></button>;
     const rightNav = media.size > 1 && <button tabIndex='0' className='modal-container__nav  modal-container__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><i className='fa fa-fw fa-chevron-right' /></button>;
 
     if (media.size > 1) {
-      media.forEach((item, i) => {
+      pagination = media.map((item, i) => {
         const classes = ['media-modal__button'];
         if (i === index) {
           classes.push('media-modal__button--active');
         }
-        pagination.push(<li className='media-modal__page-dot' key={i}><button tabIndex='0' className={classes.join(' ')} onClick={this.handleChangeIndex} data-index={i}>{i + 1}</button></li>);
+        return (<li className='media-modal__page-dot' key={i}><button tabIndex='0' className={classes.join(' ')} onClick={this.handleChangeIndex} data-index={i}>{i + 1}</button></li>);
       });
     }
 
