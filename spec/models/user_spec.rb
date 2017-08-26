@@ -193,6 +193,14 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#setting_system_hdr_pin' do
+    it 'returns system hdr pinning setting' do
+      user = Fabricate(:user)
+      user.settings[:system_hdr_pin] = false
+      expect(user.setting_system_hdr_pin).to eq false
+    end
+  end
+
   describe '#setting_boost_modal' do
     it 'returns boost modal setting' do
       user = Fabricate(:user)
