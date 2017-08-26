@@ -69,5 +69,15 @@ describe UserSettingsDecorator do
       settings.update(values)
       expect(user.settings['system_font_ui']).to eq false
     end
+    
+    it 'updates the user settings value for showing pnning in header' do
+      values = { 'setting_system_hdr_pin' => '0' }
+
+      settings.update(values)
+      expect(user.settings['system_hdr_pin']).to eq false
+    end
+    
+    
+
   end
 end
