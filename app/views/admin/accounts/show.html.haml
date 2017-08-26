@@ -44,7 +44,7 @@
           %th= t('admin.accounts.push_subscription_expires')
           %td
             - if @account.subscribed?
-              %time.formatted{ datetime: account.subscription_expires_at.iso8601, title: l(account.subscription_expires_at) }
+              %time.formatted{ datetime: @account.subscription_expires_at.iso8601, title: l(@account.subscription_expires_at) }
                 = l @account.subscription_expires_at
             - else
               = t('admin.accounts.not_subscribed')
