@@ -38,6 +38,7 @@ describe Settings::PreferencesController do
           setting_delete_modal: '0',
           notification_emails: { follow: '1' },
           interactions: { must_be_follower: '0' },
+          setting_system_hdr_pin: '1',
         }
       }
 
