@@ -68,6 +68,9 @@ gem 'tzinfo-data', '~> 1.2017'
 gem 'webpacker', '~> 2.0'
 gem 'webpush'
 
+gem 'json-ld-preloaded', '~> 2.2.1'
+gem 'rdf-normalize', '~> 0.3.1'
+
 group :development, :test do
   gem 'fabrication', '~> 2.16'
   gem 'fuubar', '~> 2.2'
