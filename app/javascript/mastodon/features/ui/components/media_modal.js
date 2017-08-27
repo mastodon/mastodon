@@ -29,7 +29,7 @@ export default class MediaModal extends ImmutablePureComponent {
   };
 
   handleSwipe = (index) => {
-    this.setState({ index: (index) % this.props.media.size });
+    this.setState({ index: index % this.props.media.size });
   }
 
   handleNextClick = () => {
@@ -42,7 +42,7 @@ export default class MediaModal extends ImmutablePureComponent {
 
   handleChangeIndex = (e) => {
     const index = Number(e.currentTarget.getAttribute('data-index'));
-    this.setState({ index: (index) % this.props.media.size });
+    this.setState({ index: index % this.props.media.size });
   }
 
   handleKeyUp = (e) => {
