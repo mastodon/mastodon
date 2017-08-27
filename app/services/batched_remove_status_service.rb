@@ -138,10 +138,14 @@ class BatchedRemoveStatusService < BaseService
   def build_json(status)
     return @activity_json[status.id] if @activity_json.key?(status.id)
 
-    @activity_json[status.id] = ActiveModelSerializers::SerializableResource.new(
+    @activity_json[status.id] = sign_json(status, ActiveModelSerializers::SerializableResource.new(
       status,
-      serializer: ActivityPub::DeleteSerializer,
+      serializer: status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json)
+  end
+
+  def sign_json(status, json)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(json).sign!(status.account))
   end
 end

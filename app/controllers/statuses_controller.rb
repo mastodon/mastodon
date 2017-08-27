@@ -9,6 +9,7 @@ class StatusesController < ApplicationController
   before_action :set_status
   before_action :set_link_headers
   before_action :check_account_suspension
+  before_action :redirect_to_original, only: [:show]
 
   def show
     respond_to do |format|
@@ -57,5 +58,9 @@ class StatusesController < ApplicationController
 
   def check_account_suspension
     gone if @account.suspended?
+  end
+
+  def redirect_to_original
+    redirect_to ::TagManager.instance.url_for(@status.reblog) if @status.reblog?
   end
 end

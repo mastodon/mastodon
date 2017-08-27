@@ -21,6 +21,8 @@ const messages = defineMessages({
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
+  pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
+  unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
 });
 
 @injectIntl
@@ -41,6 +43,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onReport: PropTypes.func,
     onMuteConversation: PropTypes.func,
+    onPin: PropTypes.func,
     me: PropTypes.number,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
@@ -75,6 +78,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status);
+  }
+
+  handlePinClick = () => {
+    this.props.onPin(this.props.status);
   }
 
   handleMentionClick = () => {
@@ -121,6 +128,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
     }
 
     if (status.getIn(['account', 'id']) === me) {
+      if (['public', 'unlisted'].indexOf(status.get('visibility')) !== -1) {
+        menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+      }
+
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });

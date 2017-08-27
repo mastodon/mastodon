@@ -7,6 +7,8 @@ import {
   FAVOURITE_SUCCESS,
   FAVOURITE_FAIL,
   UNFAVOURITE_SUCCESS,
+  PIN_SUCCESS,
+  UNPIN_SUCCESS,
 } from '../actions/interactions';
 import {
   STATUS_FETCH_SUCCESS,
@@ -114,6 +116,8 @@ export default function statuses(state = initialState, action) {
   case UNREBLOG_SUCCESS:
   case FAVOURITE_SUCCESS:
   case UNFAVOURITE_SUCCESS:
+  case PIN_SUCCESS:
+  case UNPIN_SUCCESS:
     return normalizeStatus(state, action.response);
   case FAVOURITE_REQUEST:
     return state.setIn([action.status.get('id'), 'favourited'], true);

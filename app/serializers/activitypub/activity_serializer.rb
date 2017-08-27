@@ -6,11 +6,11 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
   has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer
 
   def id
-    [ActivityPub::TagManager.instance.uri_for(object), '/activity'].join
+    [ActivityPub::TagManager.instance.activity_uri_for(object)].join
   end
 
   def type
-    object.reblog? ? 'Announce' : 'Create'
+    announce? ? 'Announce' : 'Create'
   end
 
   def actor
@@ -23,5 +23,9 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
 
   def cc
     ActivityPub::TagManager.instance.cc(object)
+  end
+
+  def announce?
+    object.reblog?
   end
 end

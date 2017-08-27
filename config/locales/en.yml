@@ -434,6 +434,10 @@ en:
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
+    pin_errors:
+      ownership: Someone else's toot cannot be pinned
+      private: Non-public toot cannot be pinned
+      reblog: A boost cannot be pinned
     show_more: Show more
     visibilities:
       private: Followers-only
@@ -444,6 +448,7 @@ en:
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     click_to_show: Click to show
+    pinned: Pinned toot
     reblogged: boosted
     sensitive_content: Sensitive content
   terms:

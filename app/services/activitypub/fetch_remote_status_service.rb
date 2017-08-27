@@ -7,20 +7,32 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   def call(uri, prefetched_json = nil)
     @json = body_to_json(prefetched_json) || fetch_resource(uri)
 
-    return unless supported_context? && expected_type?
+    return unless supported_context?
 
-    attributed_to = first_of_value(@json['attributedTo'])
-    attributed_to = attributed_to['id'] if attributed_to.is_a?(Hash)
+    activity = activity_json
+    actor_id = value_or_id(activity['actor'])
 
-    return unless trustworthy_attribution?(uri, attributed_to)
+    return unless expected_type?(activity) && trustworthy_attribution?(uri, actor_id)
 
-    actor = ActivityPub::TagManager.instance.uri_to_resource(attributed_to, Account)
-    actor = ActivityPub::FetchRemoteAccountService.new.call(attributed_to) if actor.nil?
+    actor = ActivityPub::TagManager.instance.uri_to_resource(actor_id, Account)
+    actor = ActivityPub::FetchRemoteAccountService.new.call(actor_id) if actor.nil?
 
-    ActivityPub::Activity::Create.new({ 'object' => @json }, actor).perform
+    ActivityPub::Activity.factory(activity, actor).perform
   end
 
   private
+
+  def activity_json
+    if %w(Note Article).include? @json['type']
+      {
+        'type' => 'Create',
+        'actor' => first_of_value(@json['attributedTo']),
+        'object' => @json,
+      }
+    else
+      @json
+    end
+  end
 
   def trustworthy_attribution?(uri, attributed_to)
     Addressable::URI.parse(uri).normalized_host.casecmp(Addressable::URI.parse(attributed_to).normalized_host).zero?
@@ -30,7 +42,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     super(@json)
   end
 
-  def expected_type?
-    %w(Note Article).include? @json['type']
+  def expected_type?(json)
+    %w(Create Announce).include? json['type']
   end
 end

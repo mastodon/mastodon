@@ -77,6 +77,10 @@ class Account < ApplicationRecord
   has_many :mentions, inverse_of: :account, dependent: :destroy
   has_many :notifications, inverse_of: :account, dependent: :destroy
 
+  # Pinned statuses
+  has_many :status_pins, inverse_of: :account, dependent: :destroy
+  has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
+
   # Media
   has_many :media_attachments, dependent: :destroy
 
@@ -268,7 +272,7 @@ class Account < ApplicationRecord
   def generate_keys
     return unless local?
 
-    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
+    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 512 : 2048)
     self.private_key = keypair.to_pem
     self.public_key  = keypair.public_key.to_pem
   end

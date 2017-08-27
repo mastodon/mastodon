@@ -56,7 +56,7 @@ class RemoveStatusService < BaseService
 
     # ActivityPub
     ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:inbox_url)) do |inbox_url|
-      [activity_json, @account.id, inbox_url]
+      [signed_activity_json, @account.id, inbox_url]
     end
   end
 
@@ -66,7 +66,7 @@ class RemoveStatusService < BaseService
 
     # ActivityPub
     ActivityPub::DeliveryWorker.push_bulk(@account.followers.inboxes) do |inbox_url|
-      [activity_json, @account.id, inbox_url]
+      [signed_activity_json, @account.id, inbox_url]
     end
   end
 
@@ -74,12 +74,16 @@ class RemoveStatusService < BaseService
     @salmon_xml ||= stream_entry_to_xml(@stream_entry)
   end
 
+  def signed_activity_json
+    @signed_activity_json ||= Oj.dump(ActivityPub::LinkedDataSignature.new(activity_json).sign!(@account))
+  end
+
   def activity_json
     @activity_json ||= ActiveModelSerializers::SerializableResource.new(
       @status,
-      serializer: ActivityPub::DeleteSerializer,
+      serializer: @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json
   end
 
   def remove_reblogs

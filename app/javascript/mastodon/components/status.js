@@ -31,6 +31,7 @@ export default class Status extends ImmutablePureComponent {
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
+    onPin: PropTypes.func,
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,

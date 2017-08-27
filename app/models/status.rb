@@ -164,6 +164,10 @@ class Status < ApplicationRecord
       ConversationMute.select('conversation_id').where(conversation_id: conversation_ids).where(account_id: account_id).map { |m| [m.conversation_id, true] }.to_h
     end
 
+    def pins_map(status_ids, account_id)
+      StatusPin.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |p| [p.status_id, true] }.to_h
+    end
+
     def reload_stale_associations!(cached_items)
       account_ids = []
 

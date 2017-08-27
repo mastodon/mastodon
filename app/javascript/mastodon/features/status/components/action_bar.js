@@ -14,6 +14,8 @@ const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   share: { id: 'status.share', defaultMessage: 'Share' },
+  pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
+  unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
 });
 
 @injectIntl
@@ -31,6 +33,7 @@ export default class ActionBar extends React.PureComponent {
     onDelete: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onReport: PropTypes.func,
+    onPin: PropTypes.func,
     me: PropTypes.number.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -59,6 +62,10 @@ export default class ActionBar extends React.PureComponent {
     this.props.onReport(this.props.status);
   }
 
+  handlePinClick = () => {
+    this.props.onPin(this.props.status);
+  }
+
   handleShare = () => {
     navigator.share({
       text: this.props.status.get('search_index'),
@@ -72,6 +79,10 @@ export default class ActionBar extends React.PureComponent {
     let menu = [];
 
     if (me === status.getIn(['account', 'id'])) {
+      if (['public', 'unlisted'].indexOf(status.get('visibility')) !== -1) {
+        menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+      }
+
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
