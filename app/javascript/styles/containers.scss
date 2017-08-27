@@ -72,7 +72,7 @@
   margin-bottom: -30px;
   margin-top: 40px;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 440px) {
     width: 100%;
     margin: 0;
     margin-bottom: 10px;
@@ -97,10 +97,13 @@
   .name {
     flex: 1 1 auto;
     color: $ui-secondary-color;
+    width: calc(100% - 88px);
 
     .username {
       display: block;
       font-weight: 500;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
 
@@ -108,5 +111,6 @@
     display: block;
     font-size: 32px;
     line-height: 40px;
+    margin-left: 8px;
   }
 }
