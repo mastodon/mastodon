@@ -8,6 +8,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     end
 
     return [nil, false] if @account.suspended?
+    return perform_via_activitypub if activitypub_uri?
 
     Rails.logger.debug "Creating remote status #{id}"
 
@@ -16,24 +17,28 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
 
     return [status, false] unless status.nil?
 
-    status = Status.create!(
-      uri: id,
-      url: url,
-      account: @account,
-      reblog: reblog,
-      text: content,
-      spoiler_text: content_warning,
-      created_at: published,
-      reply: thread?,
-      language: content_language,
-      visibility: visibility_scope,
-      conversation: find_or_create_conversation,
-      thread: thread? ? find_status(thread.first) : nil
-    )
+    cached_reblog = reblog
 
-    save_mentions(status)
-    save_hashtags(status)
-    save_media(status)
+    ApplicationRecord.transaction do
+      status = Status.create!(
+        uri: id,
+        url: url,
+        account: @account,
+        reblog: cached_reblog,
+        text: content,
+        spoiler_text: content_warning,
+        created_at: published,
+        reply: thread?,
+        language: content_language,
+        visibility: visibility_scope,
+        conversation: find_or_create_conversation,
+        thread: thread? ? find_status(thread.first) : nil
+      )
+
+      save_mentions(status)
+      save_hashtags(status)
+      save_media(status)
+    end
 
     if thread? && status.thread.nil?
       Rails.logger.debug "Trying to attach #{status.id} (#{id}) to #{thread.first}"
@@ -46,6 +51,10 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     DistributionWorker.perform_async(status.id)
 
     [status, true]
+  end
+
+  def perform_via_activitypub
+    [find_status(activitypub_uri) || ActivityPub::FetchRemoteStatusService.new.call(activitypub_uri), false]
   end
 
   def content

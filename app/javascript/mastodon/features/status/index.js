@@ -12,6 +12,8 @@ import {
   unfavourite,
   reblog,
   unreblog,
+  pin,
+  unpin,
 } from '../../actions/interactions';
 import {
   replyCompose,
@@ -84,6 +86,14 @@ export default class Status extends ImmutablePureComponent {
       this.props.dispatch(unfavourite(status));
     } else {
       this.props.dispatch(favourite(status));
+    }
+  }
+
+  handlePin = (status) => {
+    if (status.get('pinned')) {
+      this.props.dispatch(unpin(status));
+    } else {
+      this.props.dispatch(pin(status));
     }
   }
 
@@ -187,6 +197,7 @@ export default class Status extends ImmutablePureComponent {
               onDelete={this.handleDeleteClick}
               onMention={this.handleMentionClick}
               onReport={this.handleReport}
+              onPin={this.handlePin}
             />
 
             {descendants}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720000000) do
+ActiveRecord::Schema.define(version: 20170824103029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,6 +218,9 @@ ActiveRecord::Schema.define(version: 20170720000000) do
     t.datetime "updated_at"
     t.boolean "superapp", default: false, null: false
     t.string "website"
+    t.integer "owner_id"
+    t.string "owner_type"
+    t.index ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
@@ -277,6 +280,16 @@ ActiveRecord::Schema.define(version: 20170720000000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
+  end
+
+  create_table "status_pins", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
+    t.index ["account_id"], name: "index_status_pins_on_account_id"
+    t.index ["status_id"], name: "index_status_pins_on_status_id"
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -420,12 +433,15 @@ ActiveRecord::Schema.define(version: 20170720000000) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", on_delete: :cascade
+  add_foreign_key "oauth_applications", "users", column: "owner_id", on_delete: :cascade
   add_foreign_key "preview_cards", "statuses", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "reports", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "session_activations", "users", on_delete: :cascade
+  add_foreign_key "status_pins", "accounts", on_delete: :cascade
+  add_foreign_key "status_pins", "statuses", on_delete: :cascade
   add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", on_delete: :nullify
   add_foreign_key "statuses", "accounts", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify
