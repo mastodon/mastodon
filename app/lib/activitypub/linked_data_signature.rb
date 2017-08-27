@@ -6,7 +6,7 @@ class ActivityPub::LinkedDataSignature
   CONTEXT = 'https://w3id.org/identity/v1'
 
   def initialize(json)
-    @json = json
+    @json = json.with_indifferent_access
   end
 
   def verify_account!
