@@ -352,6 +352,17 @@ ja:
     reblog:
       body: 'あなたのトゥートが %{name} さんにブーストされました:'
       subject: あなたのトゥートが %{name} さんにブーストされました
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: 次
     prev: 前
