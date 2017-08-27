@@ -433,6 +433,10 @@ ja:
   statuses:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
+    pin_errors:
+      ownership: 他人のトゥートを固定することはできません
+      private: 非公開のトゥートを固定することはできません
+      reblog: ブーストされたトゥートを固定することはできません
     show_more: もっと見る
     visibilities:
       private: 非公開
@@ -443,6 +447,7 @@ ja:
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
     click_to_show: クリックして表示
+    pinned: 固定されたトゥート
     reblogged: さんにブーストされました
     sensitive_content: 閲覧注意
   terms:
