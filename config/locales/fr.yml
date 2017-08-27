@@ -438,6 +438,11 @@ fr:
   statuses:
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
+    pin_errors:
+      ownership: Vous ne pouvez pas épingler un status ne vous appartenant pas
+      private: Non-public toot cannot be pinned
+      private: Les status non-publics ne peuvent pas être épinglés
+      reblog: Un partage ne peut être épinglé
     show_more: Afficher plus
     visibilities:
       private: Abonné⋅es uniquement
@@ -448,6 +453,7 @@ fr:
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
   stream_entries:
     click_to_show: Cliquer pour afficher
+    pinned: Statut épinglé
     reblogged: partagé
     sensitive_content: Contenu sensible
   terms:
