@@ -1,5 +1,6 @@
 import { CONTEXT_FETCH_SUCCESS } from '../actions/statuses';
-import { TIMELINE_DELETE } from '../actions/timelines';
+import { TIMELINE_UPDATE, TIMELINE_DELETE } from '../actions/timelines';
+import { NOTIFICATIONS_UPDATE } from '../actions/notifications';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
@@ -31,10 +32,21 @@ const deleteFromContexts = (state, id) => {
   return state;
 };
 
+const appendToContext = (state, status) => {
+  if (!status || !status.in_reply_to_id) {
+    return state;
+  }
+
+  return state.updateIn(['descendants', status.in_reply_to_id], ImmutableList(), list => list.push(status.id));
+};
+
 export default function contexts(state = initialState, action) {
   switch(action.type) {
   case CONTEXT_FETCH_SUCCESS:
     return normalizeContext(state, action.id, fromJS(action.ancestors), fromJS(action.descendants));
+  case TIMELINE_UPDATE:
+  case NOTIFICATIONS_UPDATE:
+    return appendToContext(state, action.status);
   case TIMELINE_DELETE:
     return deleteFromContexts(state, action.id);
   default:
