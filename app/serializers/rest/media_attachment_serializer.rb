@@ -6,6 +6,10 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   attributes :id, :type, :url, :preview_url,
              :remote_url, :text_url, :meta
 
+  def id
+    object.id.to_s
+  end
+
   def url
     full_asset_url(object.file.url(:original))
   end

@@ -18,6 +18,18 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_many :mentions
   has_many :tags
 
+  def id
+    object.id.to_s
+  end
+
+  def in_reply_to_id
+    object.in_reply_to_id.to_s
+  end
+
+  def in_reply_to_account_id
+    object.in_reply_to_account_id.to_s
+  end
+
   def current_user?
     !current_user.nil?
   end
@@ -81,7 +93,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     attributes :id, :username, :url, :acct
 
     def id
-      object.account_id
+      object.account_id.to_s
     end
 
     def username
