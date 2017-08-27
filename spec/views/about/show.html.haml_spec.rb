@@ -13,7 +13,7 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
                                 site_title: 'something',
                                 site_description: 'something',
                                 version_number: '1.0',
-                                source_url: 'https://github.com/tootsuite/mastodon',
+                                source_url: 'https://github.com/lindwurm/mastodon',
                                 open_registrations: false,
                                 thumbnail: nil,
                                 closed_registrations_message: 'yes')
