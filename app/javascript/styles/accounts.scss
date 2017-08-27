@@ -329,7 +329,6 @@
     color: $ui-base-color;
     margin: 0 5px 10px;
     position: relative;
-    word-wrap: break-word;
 
     @media screen and (max-width: 740px) {
       width: calc(100% - 10px);
@@ -416,6 +415,7 @@
       padding-top: 15px;
       box-sizing: border-box;
       color: lighten($ui-base-color, 26%);
+      word-wrap: break-word;
       min-height: 80px;
     }
   }
