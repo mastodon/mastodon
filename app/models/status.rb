@@ -51,6 +51,7 @@ class Status < ApplicationRecord
 
   has_one :notification, as: :activity, dependent: :destroy
   has_one :preview_card, dependent: :destroy
+  has_one :stream_entry, as: :activity, inverse_of: :status
 
   validates :uri, uniqueness: true, unless: :local?
   validates :text, presence: true, unless: :reblog?
@@ -90,7 +91,11 @@ class Status < ApplicationRecord
   end
 
   def verb
-    reblog? ? :share : :post
+    if destroyed?
+      :delete
+    else
+      reblog? ? :share : :post
+    end
   end
 
   def object_type
@@ -110,7 +115,11 @@ class Status < ApplicationRecord
   end
 
   def title
-    reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
+    if destroyed?
+      "#{account.acct} deleted status"
+    else
+      reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
+    end
   end
 
   def hidden?

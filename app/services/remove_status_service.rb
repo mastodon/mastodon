@@ -22,8 +22,6 @@ class RemoveStatusService < BaseService
 
     return unless @account.local?
 
-    @stream_entry = @stream_entry.reload
-
     remove_from_remote_followers
     remove_from_remote_affected
   end
@@ -62,7 +60,7 @@ class RemoveStatusService < BaseService
 
   def remove_from_remote_followers
     # OStatus
-    Pubsubhubbub::DistributionWorker.perform_async(@stream_entry.id)
+    Pubsubhubbub::RawDistributionWorker.perform_async(salmon_xml, @account.id)
 
     # ActivityPub
     ActivityPub::DeliveryWorker.push_bulk(@account.followers.inboxes) do |inbox_url|
