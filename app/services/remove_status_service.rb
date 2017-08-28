@@ -55,8 +55,8 @@ class RemoveStatusService < BaseService
     end
 
     # ActivityPub
-    ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:inbox_url)) do |inbox_url|
-      [signed_activity_json, @account.id, inbox_url]
+    ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:inbox_url)) do |target_account|
+      [signed_activity_json, @account.id, target_account.inbox_url]
     end
   end
 
