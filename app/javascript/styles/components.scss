@@ -78,7 +78,7 @@
 
   &.button--block {
     display: block;
-    width: 100%;
+    width: auto;
   }
 }
 
@@ -411,7 +411,8 @@
 
 .compose-form__publish-button-wrapper {
   overflow: hidden;
-  padding-top: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
 }
 
 .emojione {
