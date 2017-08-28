@@ -1413,6 +1413,11 @@
   .tabs-bar {
     margin: 10px;
     margin-bottom: 0;
+
+    &.bottom {
+      margin: 10px;
+      margin-top: 0;
+    }
   }
 
   .search {
@@ -1524,6 +1529,10 @@
   background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
+
+  &.bottom {
+    order: 1;
+  }
 }
 
 .tabs-bar__link {

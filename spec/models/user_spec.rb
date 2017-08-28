@@ -193,6 +193,14 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#setting_tabs_on_bottom_ui' do
+    it 'returns tabs on bottom ui setting' do
+      user = Fabricate(:user)
+      user.settings[:tabs_on_bottom_ui] = true
+      expect(user.setting_tabs_on_bottom_ui).to eq true
+    end
+  end
+
   describe '#setting_boost_modal' do
     it 'returns boost modal setting' do
       user = Fabricate(:user)

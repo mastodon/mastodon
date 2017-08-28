@@ -44,6 +44,7 @@ import '../../components/status';
 
 const mapStateToProps = state => ({
   systemFontUi: state.getIn(['meta', 'system_font_ui']),
+  tabsOnBottomUi: state.getIn(['meta', 'tabs_on_bottom_ui']),
   isComposing: state.getIn(['compose', 'is_composing']),
 });
 
@@ -58,6 +59,7 @@ export default class UI extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     systemFontUi: PropTypes.bool,
+    tabsOnBottomUi: PropTypes.bool,
     isComposing: PropTypes.bool,
   };
 
@@ -183,7 +185,7 @@ export default class UI extends React.PureComponent {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children } = this.props;
+    const { tabsOnBottomUi, children } = this.props;
 
     const className = classNames('ui', {
       'system-font': this.props.systemFontUi,
@@ -191,7 +193,7 @@ export default class UI extends React.PureComponent {
 
     return (
       <div className={className} ref={this.setRef}>
-        <TabsBar />
+        <TabsBar bottom={tabsOnBottomUi} />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import NavLink from 'react-router-dom/NavLink';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { debounce } from 'lodash';
@@ -33,6 +34,11 @@ export default class TabsBar extends React.Component {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
+    bottom: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    bottom: false,
   }
 
   setRef = ref => {
@@ -73,9 +79,12 @@ export default class TabsBar extends React.Component {
 
   render () {
     const { intl: { formatMessage } } = this.props;
+    const className = classnames('tabs-bar', {
+      bottom: this.props.bottom,
+    });
 
     return (
-      <nav className='tabs-bar' ref={this.setRef}>
+      <nav className={className} ref={this.setRef}>
         {links.map(link => React.cloneElement(link, { key: link.props.to, onClick: this.handleClick, 'aria-label': formatMessage({ id: link.props['data-preview-title-id'] }) }))}
       </nav>
     );
