@@ -1,30 +1,36 @@
 require 'rails_helper'
 
 RSpec.describe FavouriteTag, type: :model do
-  describe 'initialize' do
-    it do
-      expect(FavouriteTag.new).not_to be_valid
-    end
-  end
-
   describe 'validation' do
     let(:account) { Fabricate :account }
-    let(:tag) { Tag.new(name: 'unko unko') }
+    let(:tag) { Fabricate(:tag, name: "valid_tag") }
 
-    it do
-      expect(FavouriteTag.new(account: account, tag: tag, visibility: 0)).not_to be_valid
-      expect(FavouriteTag.new(account: account, tag: tag, visibility: 1)).not_to be_valid
-      expect(FavouriteTag.new(account: account, tag: tag, visibility: 2)).not_to be_valid
-      expect(FavouriteTag.new(account: account, tag: tag, visibility: 3)).not_to be_valid
-      expect { FavouriteTag.new(account: account, tag: tag, visibility: 4) }.to raise_error(ArgumentError)
+    it 'valid visibility' do
+      expect(FavouriteTag.new(account: account, tag: tag, visibility: 0)).to be_valid
+      expect(FavouriteTag.new(account: account, tag: tag, visibility: 1)).to be_valid
+      expect(FavouriteTag.new(account: account, tag: tag, visibility: 2)).to be_valid
+      expect(FavouriteTag.new(account: account, tag: tag, visibility: 3)).to be_valid
+    end
+
+    context 'when visibility is out of ranges' do
+      it 'invalid visibility' do
+        expect { FavouriteTag.new(account: account, tag: tag, visibility: 4) }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when the tag is invalid' do
+      it 'when tag name is invalid' do
+        expect(FavouriteTag.new(account: account, tag: Tag.new(name: 'test tag'), visibility: 0)).not_to be_valid
+      end
     end
   end
 
   describe 'deletion' do
     let!(:favourite_tag) { Fabricate(:favourite_tag) }
 
-    it do
-      expect { favourite_tag.tag.destroy }.to change { FavouriteTag.count }.by(-1)
+    it 'delete favourite_tag' do
+      expect { favourite_tag.destroy }.to change { FavouriteTag.count }.by(-1)
+      expect { favourite_tag.destroy }.not_to change { FavouriteTag.count }
     end
   end
 

@@ -22,43 +22,42 @@ RSpec.describe Settings::FavouriteTagsController, type: :controller do
     end
   end
 
-  describe 'PUT #create' do
-    let!(:tag)     { Fabricate(:tag, name: 'dummy_tag') }
-    let!(:favourite_tag) { Fabricate(:favourite_tag, account: @user.account, tag: tag) }
+  describe 'POST #create' do
+    let(:tag_name) { 'dummy_tag' }
+    let(:params) {
+      {
+        favourite_tag: {
+          tag_attributes: {
+            name: tag_name
+          },
+          visibility: 'public'
+        }
+      }
+    }
+    let!(:tag) { Fabricate(:tag, name: tag_name) }
+
+    subject { post :create, params: params }
 
     it 'create the favourite tag' do
-      params = {
-        favourite_tag: {
-          tag_attributes: {
-            name: 'test_tag'
-          },
-          visibility: 'public'
-        }
-      }
-
-      post :create, params: params
+      expect { subject }.not_to change(Tag, :count)
+      expect(FavouriteTag.count).to eq 1
       expect(response).to redirect_to(settings_favourite_tags_path)
-      expect(FavouriteTag.count).to eq 2
     end
 
-    it 'redirect index for existent favourite tag' do
-      params = {
-        favourite_tag: {
-          tag_attributes: {
-            name: 'dummy_tag'
-          },
-          visibility: 'public'
-        }
-      }
+    context 'when the tag has already been favourite.' do
+      before do
+        Fabricate(:favourite_tag, account: @user.account, tag: tag)
+      end
 
-      post :create, params: params
-      expect(response).to render_template(:index)
-      expect(FavouriteTag.count).to eq 1
+      it 'should not create any tags and should render index template' do
+        expect { subject }.not_to change(FavouriteTag, :count)
+        expect(response).to render_template(:index)
+      end
     end
   end
 
-  describe 'PUT #destroy' do
-    let!(:tag)     { Fabricate(:tag, name: 'dummy_tag') }
+  describe 'DELETE #destroy' do
+    let!(:tag) { Fabricate(:tag, name: 'dummy_tag') }
     let!(:favourite_tag) { Fabricate(:favourite_tag, account: @user.account, tag: tag) }
 
     it 'destroy the favourite tag' do
