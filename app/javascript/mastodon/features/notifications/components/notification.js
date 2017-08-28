@@ -29,7 +29,7 @@ export default class Notification extends ImmutablePureComponent {
   }
 
   renderMention (notification) {
-    return <StatusContainer id={notification.get('status')} withDismiss />;
+    return <StatusContainer id={notification.get('status')} />;
   }
 
   renderFavourite (notification, link) {
@@ -42,7 +42,7 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted />
       </div>
     );
   }
@@ -57,7 +57,7 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted />
       </div>
     );
   }

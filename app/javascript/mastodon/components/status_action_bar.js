@@ -45,7 +45,6 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
     me: PropTypes.number,
-    withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -54,7 +53,6 @@ export default class StatusActionBar extends ImmutablePureComponent {
   updateOnProps = [
     'status',
     'me',
-    'withDismiss',
   ]
 
   handleReplyClick = () => {
@@ -109,7 +107,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, me, intl, withDismiss } = this.props;
+    const { status, me, intl } = this.props;
     const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
     const mutingConversation = status.get('muted');
     const anonymousAccess = !me;
@@ -122,10 +120,8 @@ export default class StatusActionBar extends ImmutablePureComponent {
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
     menu.push(null);
 
-    if (withDismiss) {
-      menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
-      menu.push(null);
-    }
+    menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+    menu.push(null);
 
     if (status.getIn(['account', 'id']) === me) {
       if (['public', 'unlisted'].indexOf(status.get('visibility')) !== -1) {
