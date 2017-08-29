@@ -24,7 +24,7 @@ const componentMap = {
   'FAVOURITES': FavouritedStatuses,
 };
 
-@injectIntl
+@component => injectIntl(component, { withRef: true })
 export default class ColumnsArea extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -51,13 +51,13 @@ export default class ColumnsArea extends ImmutablePureComponent {
     this.setState({ shouldAnimate: true });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
+  }
 
-    if (this.props.children !== prevProps.children && !this.props.singleColumn) {
-      scrollRight(this.node);
-    }
+  handleChildrenContentChange() {
+    scrollRight(this.node);
   }
 
   handleSwipe = (index) => {
