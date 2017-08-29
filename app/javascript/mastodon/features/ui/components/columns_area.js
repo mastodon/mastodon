@@ -12,6 +12,7 @@ import ColumnLoading from './column_loading';
 import BundleColumnError from './bundle_column_error';
 import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, FavouritedStatuses } from '../../ui/util/async-components';
 
+import detectPassiveEvents from 'detect-passive-events';
 import { scrollRight } from '../../../scroll';
 
 const componentMap = {
@@ -47,6 +48,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   componentDidMount() {
+    this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents ? { passive: true } : false);
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
   }
@@ -56,9 +58,13 @@ export default class ColumnsArea extends ImmutablePureComponent {
     this.setState({ shouldAnimate: true });
   }
 
+  componentWillUnmount () {
+    this.node.removeEventListener('wheel', this.handleWheel);
+  }
+
   handleChildrenContentChange() {
     if (!this.props.singleColumn) {
-      scrollRight(this.node);
+      scrollRight(this.node, this.node.scrollWidth - window.innerWidth);
     }
   }
 
@@ -80,6 +86,14 @@ export default class ColumnsArea extends ImmutablePureComponent {
       this.context.router.history.push(getLink(this.pendingIndex));
       this.pendingIndex = null;
     }
+  }
+
+  handleWheel = () => {
+    if (typeof this._interruptScrollAnimation !== 'function') {
+      return;
+    }
+
+    this._interruptScrollAnimation();
   }
 
   setRef = (node) => {
