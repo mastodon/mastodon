@@ -17,6 +17,9 @@ const getHostname = url => {
   return parser.hostname;
 };
 
+const getProviderName =
+  card => card.get('provider_name') || decodeIDNA(getHostname(card.get('url')));
+
 export default class Card extends React.PureComponent {
 
   static propTypes = {
@@ -27,7 +30,6 @@ export default class Card extends React.PureComponent {
     const { card } = this.props;
 
     let image    = '';
-    let provider = card.get('provider_name');
 
     if (card.get('image')) {
       image = (
@@ -37,8 +39,32 @@ export default class Card extends React.PureComponent {
       );
     }
 
-    if (provider.length < 1) {
-      provider = decodeIDNA(getHostname(card.get('url')));
+    return (
+      <a href={card.get('url')} className='status-card' target='_blank' rel='noopener'>
+        {image}
+
+        <div className='status-card__content'>
+          <div className='status-card__header'>
+            <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
+          </div>
+          <p className='status-card__description'>{(card.get('description') || '').substring(0, 50)}</p>
+          <span className='status-card__host'>{getProviderName(card)}</span>
+        </div>
+      </a>
+    );
+  }
+
+  renderPost () {
+    const { card } = this.props;
+
+    let image    = '';
+
+    if (card.get('image')) {
+      image = (
+        <div className='status-card__image'>
+          <img src={card.get('image')} alt={card.get('title')} className='status-card__image-image' />
+        </div>
+      );
     }
 
     return (
@@ -46,9 +72,12 @@ export default class Card extends React.PureComponent {
         {image}
 
         <div className='status-card__content'>
-          <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
-          <p className='status-card__description'>{(card.get('description') || '').substring(0, 50)}</p>
-          <span className='status-card__host'>{provider}</span>
+          <div className='status-card__header'>
+            <strong className='status-card__title'>{card.get('author_name')}</strong>
+            <span className='status-card__author'>{card.get('title')}</span>
+          </div>
+          <p className='status-card__description'>{(card.get('description') || '').substring(0, 200)}</p>
+          <span className='status-card__host'>{getProviderName(card)}</span>
         </div>
       </a>
     );
@@ -90,6 +119,8 @@ export default class Card extends React.PureComponent {
       return this.renderPhoto();
     case 'video':
       return this.renderVideo();
+    case 'post':
+      return this.renderPost();
     case 'rich':
     default:
       return null;

@@ -56,25 +56,49 @@ class FetchLinkCardService < BaseService
     card.width         = 0
     card.height        = 0
 
-    case card.type
-    when 'link'
-      card.image = URI.parse(response.thumbnail_url) if response.respond_to?(:thumbnail_url)
-    when 'photo'
-      card.url    = response.url
-      card.width  = response.width.presence  || 0
-      card.height = response.height.presence || 0
-    when 'video'
-      card.width  = response.width.presence  || 0
-      card.height = response.height.presence || 0
-      card.html   = Formatter.instance.sanitize(response.html, Sanitize::Config::MASTODON_OEMBED)
-    when 'rich'
-      # Most providers rely on <script> tags, which is a no-no
-      return false
+    unless handle_custom_oembed(card, response)
+      case card.type
+      when 'link'
+        card.image       = URI.parse(response.thumbnail_url) if response.respond_to?(:thumbnail_url)
+        card.description = strip_tags(response.html)
+      when 'photo'
+        card.url    = response.url
+        card.width  = response.width.presence  || 0
+        card.height = response.height.presence || 0
+      when 'video'
+        card.width  = response.width.presence  || 0
+        card.height = response.height.presence || 0
+        card.html   = Formatter.instance.sanitize(response.html, Sanitize::Config::MASTODON_OEMBED)
+      when 'rich'
+        # Most providers rely on <script> tags, which is a no-no
+        return false
+      end
     end
 
     card.save_with_optional_image!
   rescue OEmbed::NotFound
     false
+  end
+
+  def handle_custom_oembed(card, response)
+    case card.provider_name
+    when 'Twitter'
+      body, _, username = response.html.rpartition("&mdash; #{card.author_name} (")
+      card.type         = 'post'
+      card.title        = username.split(')', 2).first
+      card.description  = strip_tags(body)
+    when 'Facebook'
+      card.type         = 'post'
+      card.description  = strip_tags(response.html.split('</p><a href=').first)
+    else
+      if card.title.end_with?('(Qvitter)')
+        name, _, username = response.author_name.rpartition('(')
+        card.type         = 'post'
+        card.author_name  = name
+        card.title        = '@' + username.chomp(')')
+        card.description  = strip_tags(response.html)
+      end
+    end
   end
 
   def attempt_opengraph(card, url)
