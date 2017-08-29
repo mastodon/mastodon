@@ -36,7 +36,7 @@ class ReblogService < BaseService
       NotifyService.new.call(reblogged_status.account, reblog)
     elsif reblogged_status.account.ostatus?
       NotificationWorker.perform_async(stream_entry_to_xml(reblog.stream_entry), reblog.account_id, reblogged_status.account_id)
-    elsif reblogged_status.account.activitypub?
+    elsif reblogged_status.account.activitypub? && !reblogged_status.account.following?(reblog.account)
       ActivityPub::DeliveryWorker.perform_async(build_json(reblog), reblog.account_id, reblogged_status.account.inbox_url)
     end
   end
