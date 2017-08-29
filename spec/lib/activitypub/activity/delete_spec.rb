@@ -11,6 +11,7 @@ RSpec.describe ActivityPub::Activity::Delete do
       type: 'Delete',
       actor: ActivityPub::TagManager.instance.uri_for(sender),
       object: ActivityPub::TagManager.instance.uri_for(status),
+      signature: 'foo',
     }.with_indifferent_access
   end
 
