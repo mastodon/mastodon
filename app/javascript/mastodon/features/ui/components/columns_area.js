@@ -57,7 +57,9 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   handleChildrenContentChange() {
-    scrollRight(this.node);
+    if (!this.props.singleColumn) {
+      scrollRight(this.node);
+    }
   }
 
   handleSwipe = (index) => {
