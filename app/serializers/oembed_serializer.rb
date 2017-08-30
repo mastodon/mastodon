@@ -43,7 +43,7 @@ class OEmbedSerializer < ActiveModel::Serializer
       frameborder: '0',
       scrolling: 'no',
       width: width,
-      height: height
+      height: height,
     }
 
     content_tag :iframe, nil, attributes
