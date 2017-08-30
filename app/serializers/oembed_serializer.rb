@@ -37,13 +37,16 @@ class OEmbedSerializer < ActiveModel::Serializer
   end
 
   def html
-    tag :iframe,
-        src: embed_short_account_status_url(object.account, object),
-        style: 'width: 100%; overflow: hidden',
-        frameborder: '0',
-        scrolling: 'no',
-        width: width,
-        height: height
+    attributes = {
+      src: embed_short_account_status_url(object.account, object),
+      style: 'width: 100%; overflow: hidden',
+      frameborder: '0',
+      scrolling: 'no',
+      width: width,
+      height: height,
+    }
+
+    content_tag :iframe, nil, attributes
   end
 
   def width
