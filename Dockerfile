@@ -1,4 +1,4 @@
-FROM ruby:2.4.1-alpine
+FROM ruby:2.4.1-alpine3.6
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="A GNU Social-compatible microblogging server"
@@ -14,9 +14,7 @@ EXPOSE 3000 4000
 
 WORKDIR /mastodon
 
-RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
- && echo "@edge https://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
- && apk -U upgrade \
+RUN apk -U upgrade \
  && apk add -t build-dependencies \
     build-base \
     icu-dev \
@@ -31,15 +29,15 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     file \
     git \
     icu-libs \
-    imagemagick@edge \
+    imagemagick \
     libidn \
     libpq \
-    nodejs-npm@edge \
-    nodejs@edge \
+    nodejs-npm \
+    nodejs \
     protobuf \
     su-exec \
     tini \
-    yarn@edge \
+    yarn \
  && update-ca-certificates \
  && wget -O libiconv.tar.gz "http://ftp.gnu.org/pub/gnu/libiconv/libiconv-$LIBICONV_VERSION.tar.gz" \
  && echo "$LIBICONV_DOWNLOAD_SHA256 *libiconv.tar.gz" | sha256sum -c - \
