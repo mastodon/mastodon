@@ -48,18 +48,31 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   componentDidMount() {
-    this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents ? { passive: true } : false);
+    if (!this.props.singleColumn) {
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents ? { passive: true } : false);
+    }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
   }
 
-  componentDidUpdate() {
+  componentWillUpdate(nextProps) {
+    if (this.props.singleColumn !== nextProps.singleColumn && nextProps.singleColumn) {
+      this.node.removeEventListener('wheel', this.handleWheel);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents ? { passive: true } : false);
+    }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
   }
 
   componentWillUnmount () {
-    this.node.removeEventListener('wheel', this.handleWheel);
+    if (!this.props.singleColumn) {
+      this.node.removeEventListener('wheel', this.handleWheel);
+    }
   }
 
   handleChildrenContentChange() {
