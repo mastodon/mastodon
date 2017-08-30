@@ -12,7 +12,7 @@ class ActivityPub::ReplyDistributionWorker
     return if skip_distribution?
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [signed_payload, @account.id, inbox_url]
+      [signed_payload, @status.account_id, inbox_url]
     end
   rescue ActiveRecord::RecordNotFound
     true
@@ -29,7 +29,7 @@ class ActivityPub::ReplyDistributionWorker
   end
 
   def signed_payload
-    @signed_payload ||= Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account))
+    @signed_payload ||= Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@status.account))
   end
 
   def payload
