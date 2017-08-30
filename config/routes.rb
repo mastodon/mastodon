@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     resources :statuses, only: [:show] do
       member do
         get :activity
+        get :embed
       end
     end
 
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
   get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
   get '/@:username/media', to: 'accounts#show', as: :short_account_media
   get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
+  get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
 
   namespace :settings do
     resource :profile, only: [:show, :update]
