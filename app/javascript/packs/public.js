@@ -38,6 +38,13 @@ function main() {
       content.title = dateTimeFormat.format(datetime);
       content.textContent = relativeFormat.format(datetime);
     });
+
+    [].forEach.call(document.querySelectorAll('.logo-button'), (content) => {
+      content.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open(e.target.href, 'mastodon-intent', 'width=400,height=400,resizable=no,menubar=no,status=no,scrollbars=yes');
+      });
+    });
   });
 
   delegate(document, '.video-player video', 'click', ({ target }) => {

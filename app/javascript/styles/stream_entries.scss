@@ -421,3 +421,33 @@
     }
   }
 }
+
+.button.button-secondary.logo-button {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  font-size: 14px;
+
+  svg {
+    width: 20px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 5px;
+
+    path:first-child {
+      fill: $ui-primary-color;
+    }
+
+    path:last-child {
+      fill: $simple-background-color;
+    }
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    svg path:first-child {
+      fill: lighten($ui-primary-color, 4%);
+    }
+  }
+}

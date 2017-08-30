@@ -1,4 +1,9 @@
 .detailed-status.light
+  - if embedded_view?
+    = link_to "web+mastodon://follow?uri=#{status.account.local_username_and_domain}", class: 'button button-secondary logo-button', target: '_new' do
+      = render file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')
+      = t('accounts.follow')
+
   = link_to TagManager.instance.url_for(status.account), class: 'detailed-status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
     %div
       .avatar
