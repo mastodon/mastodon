@@ -97,14 +97,7 @@ class ActivityPub::Activity
   end
 
   def delete_arrived_first?(uri)
-    key = "delete_upon_arrival:#{@account.id}:#{uri}"
-
-    if redis.exists(key)
-      redis.del(key)
-      true
-    else
-      false
-    end
+    redis.exists("delete_upon_arrival:#{@account.id}:#{uri}")
   end
 
   def delete_later!(uri)
