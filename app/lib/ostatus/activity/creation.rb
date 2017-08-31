@@ -8,7 +8,11 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     end
 
     return [nil, false] if @account.suspended?
-    return perform_via_activitypub if activitypub_uri?
+
+    if activitypub_uri? && [:public, :unlisted].include?(visibility_scope)
+      result = perform_via_activitypub
+      return result if result.first.present?
+    end
 
     Rails.logger.debug "Creating remote status #{id}"
 
