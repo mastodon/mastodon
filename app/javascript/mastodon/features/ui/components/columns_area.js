@@ -49,7 +49,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   componentDidMount() {
     if (!this.props.singleColumn) {
-      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents ? { passive: true } : false);
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
     }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
@@ -63,7 +63,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   componentDidUpdate(prevProps) {
     if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
-      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents ? { passive: true } : false);
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
     }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
