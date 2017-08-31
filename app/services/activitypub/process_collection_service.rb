@@ -43,6 +43,6 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def verify_account!
-    @account  = ActivityPub::LinkedDataSignature.new(@json).verify_account!
+    @account = ActivityPub::LinkedDataSignature.new(@json).verify_account!
   end
 end
