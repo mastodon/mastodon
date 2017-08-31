@@ -45,7 +45,7 @@ class ActivityPub::LinkedDataSignature
 
     signature = Base64.strict_encode64(creator.keypair.sign(OpenSSL::Digest::SHA256.new, to_be_signed))
 
-    @json.merge('@context' => merge_context(@json['@context'], CONTEXT), 'signature' => options.merge('signatureValue' => signature))
+    @json.merge('signature' => options.merge('signatureValue' => signature))
   end
 
   private
