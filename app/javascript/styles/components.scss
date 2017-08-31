@@ -3099,7 +3099,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal,
-.error-modal {
+.error-modal,
+.embed-modal {
   background: $ui-secondary-color;
   color: $ui-base-color;
   border-radius: 8px;
@@ -3950,4 +3951,62 @@ noscript {
       }
     }
   }
+}
+
+.embed-modal__html {
+  color: $ui-secondary-color;
+  outline: 0;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 10px;
+  font-family: 'mastodon-font-monospace', monospace;
+  background: $ui-base-color;
+  color: $ui-primary-color;
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 15px;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
+    outline: 0 !important;
+  }
+
+  &:focus {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
+}
+
+.embed-modal {
+  h4 {
+    padding: 30px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .hint {
+    margin-bottom: 15px;
+  }
+}
+
+.embed-modal__container {
+  padding: 10px;
+}
+
+.embed-modal__iframe {
+  width: 100%;
+  min-width: 400px;
+  overflow: hidden;
+  border: 0;
 }

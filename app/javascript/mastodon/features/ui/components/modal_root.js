@@ -13,6 +13,7 @@ import {
   BoostModal,
   ConfirmationModal,
   ReportModal,
+  EmbedModal,
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -23,6 +24,7 @@ const MODAL_COMPONENTS = {
   'CONFIRM': ConfirmationModal,
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
+  'EMBED': EmbedModal,
 };
 
 export default class ModalRoot extends React.PureComponent {

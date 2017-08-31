@@ -45,6 +45,10 @@ function main() {
         window.open(e.target.href, 'mastodon-intent', 'width=400,height=400,resizable=no,menubar=no,status=no,scrollbars=yes');
       });
     });
+
+    if (window.parent) {
+      window.parent.postMessage(['setHeight', document.getElementsByTagName('html')[0].scrollHeight], '*');
+    }
   });
 
   delegate(document, '.video-player video', 'click', ({ target }) => {
