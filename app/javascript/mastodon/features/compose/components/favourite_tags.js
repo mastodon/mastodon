@@ -1,4 +1,5 @@
 import React from 'react';
+import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
@@ -8,11 +9,11 @@ const messages = defineMessages({
   favourite_tags: { id: 'compose_form.favourite_tags', defaultMessage: 'Favourite tags' },
 });
 
-const icons = {
-  public: 'globe',
-  unlisted: 'unlock-alt',
-  private: 'lock',
-};
+const icons = [
+  { key: 'public', icon: 'globe' },
+  { key: 'unlisted', icon: 'unlock-alt' },
+  { key: 'private', icon: 'lock' },
+];
 
 @injectIntl
 class FavouriteTags extends React.PureComponent {
@@ -20,29 +21,43 @@ class FavouriteTags extends React.PureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     tags: ImmutablePropTypes.list.isRequired,
-    locktag: PropTypes.string.isRequired,
     refreshFavouriteTags: PropTypes.func.isRequired,
     onLockTag: PropTypes.func.isRequired,
+  };
+
+  state = {
+    lockedTag: ImmutableList(),
+    lockedVisibility: ImmutableList(),
   };
 
   componentDidMount () {
     this.props.refreshFavouriteTags();
   }
 
+  componentWillUpdate (nextProps, nextState) {
+    const icon = icons.concat().reverse().find(icon => nextState.lockedVisibility.includes(icon.key));
+    this.props.onLockTag(
+      nextState.lockedTag.join(' '),
+      typeof icon === 'undefined' ? '' : icon.key
+    );
+  }
+
   handleLockTag (tag, visibility) {
     const tagName = `#${tag}`;
     return ((e) => {
       e.preventDefault();
-      if (this.props.locktag === tagName) {
-        this.props.onLockTag('', '');
+      if (this.state.lockedTag.includes(tagName)) {
+        this.setState({ lockedTag: this.state.lockedTag.delete(this.state.lockedTag.indexOf(tagName)) });
+        this.setState({ lockedVisibility: this.state.lockedVisibility.delete(this.state.lockedTag.indexOf(tagName)) });
       } else {
-        this.props.onLockTag(tagName, visibility);
+        this.setState({ lockedTag: this.state.lockedTag.push(tagName) });
+        this.setState({ lockedVisibility: this.state.lockedVisibility.push(visibility) });
       }
     }).bind(this);
   }
 
   visibilityToIcon (val) {
-    return icons[val];
+    return icons.find(icon => icon.key === val).icon;
   }
 
   render () {
@@ -63,7 +78,7 @@ class FavouriteTags extends React.PureComponent {
         </Link>
         <div className='favourite-tags__lock'>
           <a href={`#${tag.get('name')}`} onClick={this.handleLockTag(tag.get('name'), tag.get('visibility'))}>
-            <i className={this.props.locktag === `#${tag.get('name')}` ? 'fa fa-lock' : 'fa fa-pencil-square-o'} />
+            <i className={this.state.lockedTag.includes(`#${tag.get('name')}`) ? 'fa fa-lock' : 'fa fa-pencil-square-o'} />
           </a>
         </div>
       </li>

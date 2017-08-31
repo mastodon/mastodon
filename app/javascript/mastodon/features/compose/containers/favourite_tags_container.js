@@ -5,7 +5,6 @@ import { refreshFavouriteTags, lockTagCompose } from '../../../actions/favourite
 const mapStateToProps = state => {
   return {
     tags: state.getIn(['favourite_tags', 'tags']),
-    locktag: state.getIn(['compose', 'defaultText']),
   };
 };
 
