@@ -42,7 +42,7 @@ class SubscribeService < BaseService
   end
 
   def some_local_account
-    @some_local_account ||= Account.local.first
+    @some_local_account ||= Account.local.where(suspended: false).first
   end
 
   # Any response in the 3xx or 4xx range, except for 429 (rate limit)
