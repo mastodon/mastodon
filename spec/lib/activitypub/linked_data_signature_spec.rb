@@ -63,10 +63,6 @@ RSpec.describe ActivityPub::LinkedDataSignature do
       expect(subject).to be_a Hash
     end
 
-    it 'contains signature context' do
-      expect(subject['@context']).to include('https://www.w3.org/ns/activitystreams', 'https://w3id.org/identity/v1')
-    end
-
     it 'contains signature' do
       expect(subject['signature']).to be_a Hash
       expect(subject['signature']['signatureValue']).to be_present
