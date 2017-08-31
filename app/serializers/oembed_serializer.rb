@@ -39,7 +39,7 @@ class OEmbedSerializer < ActiveModel::Serializer
   def html
     attributes = {
       src: embed_short_account_status_url(object.account, object),
-      style: 'width: 100%; overflow: hidden',
+      class: 'mastodon-embed',
       frameborder: '0',
       scrolling: 'no',
       width: width,

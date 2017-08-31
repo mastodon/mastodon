@@ -23,20 +23,7 @@ export default class EmbedModal extends ImmutablePureComponent {
 
     this.setState({ loading: true });
 
-    axios.get(url, { responseType: 'document' }).then(res => {
-      const link = res.data.querySelector('link[type="application/json+oembed"]');
-
-      if (link) {
-        return axios.get(link.href);
-      }
-
-      return null;
-    }).then(res => {
-      if (!res) {
-        this.setState({ loading: false });
-        return;
-      }
-
+    axios.post('/api/web/embed', { url }).then(res => {
       this.setState({ loading: false, oembed: res.data });
 
       const iframeDocument = this.iframe.contentWindow.document;
@@ -46,7 +33,7 @@ export default class EmbedModal extends ImmutablePureComponent {
       iframeDocument.close();
 
       iframeDocument.body.style.margin = 0;
-      this.iframe.height = iframeDocument.body.scrollHeight;
+      this.iframe.height = iframeDocument.body.scrollHeight + 'px';
     });
   }
 
@@ -74,7 +61,7 @@ export default class EmbedModal extends ImmutablePureComponent {
             type='text'
             className='embed-modal__html'
             readOnly
-            value={oembed && oembed.html}
+            value={oembed && oembed.html || ''}
             onClick={this.handleTextareaClick}
           />
 
@@ -84,7 +71,10 @@ export default class EmbedModal extends ImmutablePureComponent {
 
           <iframe
             className='embed-modal__iframe'
+            scrolling='no'
+            frameBorder='0'
             ref={this.setIframeRef}
+            title='preview'
           />
         </div>
       </div>
