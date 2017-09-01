@@ -47,11 +47,11 @@ class ProcessMentionsService < BaseService
   end
 
   def build_json(status)
-    ActiveModelSerializers::SerializableResource.new(
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
       status,
       serializer: ActivityPub::ActivitySerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json).sign!(status.account))
   end
 
   def follow_remote_account_service

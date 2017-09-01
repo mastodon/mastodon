@@ -9,6 +9,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   has_many :virtual_tags, key: :tag
 
   attribute :atom_uri, key: '_:atomUri', if: :local?
+  attribute :in_reply_to_atom_uri, key: '_:inReplyToAtomUri'
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -62,6 +63,12 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
   def atom_uri
     ::TagManager.instance.uri_for(object)
+  end
+
+  def in_reply_to_atom_uri
+    return unless object.reply?
+
+    ::TagManager.instance.uri_for(object.thread)
   end
 
   def local?

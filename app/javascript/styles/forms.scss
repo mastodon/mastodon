@@ -359,6 +359,10 @@ code {
     color: $ui-secondary-color;
     font-weight: 500;
   }
+
+  @media screen and (max-width: 740px) and (min-width: 441px) {
+    margin-top: 40px;
+  }
 }
 
 .qr-wrapper {

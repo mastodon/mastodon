@@ -296,7 +296,9 @@
     }
 
     .next,
-    .prev {
+    .prev,
+    .next a,
+    .prev a {
       display: inline-block;
     }
   }
@@ -306,7 +308,7 @@
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   background: darken($simple-background-color, 8%);
   border-radius: 0 0 4px 4px;
-  padding: 20px 10px;
+  padding: 20px 5px;
   padding-bottom: 10px;
   overflow: hidden;
   display: flex;
@@ -325,11 +327,11 @@
     background: $simple-background-color;
     border-radius: 4px;
     color: $ui-base-color;
-    margin-bottom: 10px;
+    margin: 0 5px 10px;
     position: relative;
 
-    &:nth-child(odd) {
-      margin-right: 10px;
+    @media screen and (max-width: 740px) {
+      width: calc(100% - 10px);
     }
 
     .account-grid-card__header {
@@ -400,6 +402,8 @@
     .display_name {
       font-size: 16px;
       display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .username {

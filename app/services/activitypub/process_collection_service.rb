@@ -9,6 +9,8 @@ class ActivityPub::ProcessCollectionService < BaseService
 
     return if @account.suspended? || !supported_context?
 
+    return if different_actor? && verify_account!.nil?
+
     case @json['type']
     when 'Collection', 'CollectionPage'
       process_items @json['items']
@@ -23,6 +25,10 @@ class ActivityPub::ProcessCollectionService < BaseService
 
   private
 
+  def different_actor?
+    @json['actor'].present? && value_or_id(@json['actor']) != @account.uri && @json['signature'].present?
+  end
+
   def process_items(items)
     items.reverse_each.map { |item| process_item(item) }.compact
   end
@@ -34,5 +40,9 @@ class ActivityPub::ProcessCollectionService < BaseService
   def process_item(item)
     activity = ActivityPub::Activity.factory(item, @account)
     activity&.perform
+  end
+
+  def verify_account!
+    @account = ActivityPub::LinkedDataSignature.new(@json).verify_account!
   end
 end

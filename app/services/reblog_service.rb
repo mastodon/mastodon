@@ -42,10 +42,10 @@ class ReblogService < BaseService
   end
 
   def build_json(reblog)
-    ActiveModelSerializers::SerializableResource.new(
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
       reblog,
       serializer: ActivityPub::ActivitySerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json).sign!(reblog.account))
   end
 end

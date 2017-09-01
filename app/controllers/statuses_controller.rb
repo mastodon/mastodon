@@ -30,6 +30,11 @@ class StatusesController < ApplicationController
     render json: @status, serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 
+  def embed
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
+    render 'stream_entries/embed', layout: 'embedded'
+  end
+
   private
 
   def set_account

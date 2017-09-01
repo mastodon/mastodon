@@ -225,8 +225,6 @@ pl:
     signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
   applications:
-    invalid_url: Ten URL jest nieprawidłowy
-  applications:
     created: Pomyślnie utworzono aplikację
     destroyed: Pomyślnie usunięto aplikację
     invalid_url: Wprowadzony adres URL jest nieprawidłowy
@@ -375,9 +373,6 @@ pl:
       title: "%{name} wspomniał o Tobie"
     reblog:
       title: "%{name} podbił Twój status"
-    subscribed:
-      body: Otrzymujesz teraz powiadomienia push.
-      title: Zarejestrowano subskrypcję!
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -438,6 +433,10 @@ pl:
   statuses:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
+    pin_errors:
+      ownership: Nie możesz przypiąć cudzego wpisu
+      private: Nie możesz przypiąć niepublicznego wpisu
+      reblog: Nie możesz przypiąć podbicia wpisu
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
@@ -448,6 +447,7 @@ pl:
       unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
+    pinned: Przypięty wpis
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość
   terms:

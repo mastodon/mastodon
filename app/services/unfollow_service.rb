@@ -23,11 +23,11 @@ class UnfollowService < BaseService
   end
 
   def build_json(follow)
-    ActiveModelSerializers::SerializableResource.new(
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
       follow,
       serializer: ActivityPub::UndoFollowSerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json).sign!(follow.account))
   end
 
   def build_xml(follow)

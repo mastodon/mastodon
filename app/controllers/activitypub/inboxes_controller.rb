@@ -18,7 +18,7 @@ class ActivityPub::InboxesController < Api::BaseController
   private
 
   def set_account
-    @account = Account.find_local!(params[:account_username])
+    @account = Account.find_local!(params[:account_username]) if params[:account_username]
   end
 
   def body

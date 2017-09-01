@@ -48,11 +48,10 @@ RSpec.describe BatchedRemoveStatusService do
     expect(Redis.current).to have_received(:publish).with('timeline:public', any_args).at_least(:once)
   end
 
-  it 'sends PuSH update to PuSH subscribers with two payloads united' do
+  it 'sends PuSH update to PuSH subscribers' do
     expect(a_request(:post, 'http://example.com/push').with { |req|
-      matches = req.body.scan(TagManager::VERBS[:delete])
-      matches.size == 2
-    }).to have_been_made
+      matches = req.body.match(TagManager::VERBS[:delete])
+    }).to have_been_made.at_least_once
   end
 
   it 'sends Salmon slap to previously mentioned users' do

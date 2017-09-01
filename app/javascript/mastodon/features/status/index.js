@@ -147,6 +147,10 @@ export default class Status extends ImmutablePureComponent {
     this.props.dispatch(initReport(status.get('account'), status));
   }
 
+  handleEmbed = (status) => {
+    this.props.dispatch(openModal('EMBED', { url: status.get('url') }));
+  }
+
   renderChildren (list) {
     return list.map(id => <StatusContainer key={id} id={id} />);
   }
@@ -198,6 +202,7 @@ export default class Status extends ImmutablePureComponent {
               onMention={this.handleMentionClick}
               onReport={this.handleReport}
               onPin={this.handlePin}
+              onEmbed={this.handleEmbed}
             />
 
             {descendants}

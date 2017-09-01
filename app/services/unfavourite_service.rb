@@ -21,11 +21,11 @@ class UnfavouriteService < BaseService
   end
 
   def build_json(favourite)
-    ActiveModelSerializers::SerializableResource.new(
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
       favourite,
       serializer: ActivityPub::UndoLikeSerializer,
       adapter: ActivityPub::Adapter
-    ).to_json
+    ).as_json).sign!(favourite.account))
   end
 
   def build_xml(favourite)

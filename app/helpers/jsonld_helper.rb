@@ -10,11 +10,16 @@ module JsonLdHelper
   end
 
   def value_or_id(value)
-    value.is_a?(String) ? value : value['id']
+    value.is_a?(String) || value.nil? ? value : value['id']
   end
 
   def supported_context?(json)
     !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
+  end
+
+  def canonicalize(json)
+    graph = RDF::Graph.new << JSON::LD::API.toRdf(json)
+    graph.dump(:normalize)
   end
 
   def fetch_resource(uri)
@@ -27,6 +32,14 @@ module JsonLdHelper
     body.is_a?(String) ? Oj.load(body, mode: :strict) : body
   rescue Oj::ParseError
     nil
+  end
+
+  def merge_context(context, new_context)
+    if context.is_a?(Array)
+      context << new_context
+    else
+      [context, new_context]
+    end
   end
 
   private

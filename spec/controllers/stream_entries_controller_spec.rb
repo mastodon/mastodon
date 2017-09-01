@@ -88,14 +88,12 @@ RSpec.describe StreamEntriesController, type: :controller do
   describe 'GET #embed' do
     include_examples 'before_action', :embed
 
-    it 'returns embedded view of status' do
+    it 'redirects to new embed page' do
       status = Fabricate(:status)
 
       get :embed, params: { account_username: status.account.username, id: status.stream_entry.id }
 
-      expect(response).to have_http_status(:success)
-      expect(response.headers['X-Frame-Options']).to eq 'ALLOWALL'
-      expect(response).to render_template(layout: 'embedded')
+      expect(response).to redirect_to(embed_short_account_status_url(status.account, status))
     end
   end
 end

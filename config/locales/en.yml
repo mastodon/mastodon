@@ -353,6 +353,17 @@ en:
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Next
     prev: Prev
@@ -371,9 +382,6 @@ en:
       title: "%{name} mentioned you"
     reblog:
       title: "%{name} boosted your status"
-    subscribed:
-      body: You can now receive push notifications.
-      title: Subscription registered!
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account

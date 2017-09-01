@@ -24,7 +24,8 @@
         %th= t('admin.accounts.most_recent_activity')
         %td
           - if @account.user_current_sign_in_at
-            = l @account.user_current_sign_in_at
+            %time.formatted{ datetime: @account.user_current_sign_in_at.iso8601, title: l(@account.user_current_sign_in_at) }
+              = l @account.user_current_sign_in_at
           - else
             Never
     - else
@@ -43,7 +44,8 @@
           %th= t('admin.accounts.push_subscription_expires')
           %td
             - if @account.subscribed?
-              = l @account.subscription_expires_at
+              %time.formatted{ datetime: @account.subscription_expires_at.iso8601, title: l(@account.subscription_expires_at) }
+                = l @account.subscription_expires_at
             - else
               = t('admin.accounts.not_subscribed')
         %tr
