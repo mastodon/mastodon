@@ -56,6 +56,16 @@ class OStatus::Activity::Base
     Status.find_by(uri: uri)
   end
 
+  def find_activitypub_status(uri, href)
+    tag_matches = /tag:([^,:]+)[^:]*:objectId=([\d]+)/.match(uri)
+    href_matches = %r{/users/([^/]+)}.match(href)
+
+    unless tag_matches.nil? || href_matches.nil?
+      uri = "https://#{tag_matches[1]}/users/#{href_matches[1]}/statuses/#{tag_matches[2]}"
+      Status.find_by(uri: uri)
+    end
+  end
+
   def redis
     Redis.current
   end

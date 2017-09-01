@@ -36,7 +36,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         language: content_language,
         visibility: visibility_scope,
         conversation: find_or_create_conversation,
-        thread: thread? ? find_status(thread.first) : nil
+        thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil
       )
 
       save_mentions(status)
