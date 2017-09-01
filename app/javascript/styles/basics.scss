@@ -7,7 +7,7 @@ body {
   line-height: 18px;
   font-weight: 400;
   color: $primary-text-color;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   text-rendering: optimizelegibility;
   font-feature-settings: "kern";
   text-size-adjust: none;
@@ -60,10 +60,6 @@ body {
     width: 100%;
     height: 100%;
     padding: 0;
-  }
-
-  @media screen and (max-width: 400px) {
-    padding-bottom: 0;
   }
 }
 
