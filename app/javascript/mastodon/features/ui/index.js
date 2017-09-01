@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
@@ -43,7 +42,6 @@ import {
 import '../../components/status';
 
 const mapStateToProps = state => ({
-  systemFontUi: state.getIn(['meta', 'system_font_ui']),
   isComposing: state.getIn(['compose', 'is_composing']),
 });
 
@@ -58,7 +56,6 @@ export default class UI extends React.PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
-    systemFontUi: PropTypes.bool,
     isComposing: PropTypes.bool,
     location: PropTypes.object,
   };
@@ -197,12 +194,8 @@ export default class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
-    const className = classNames('ui', {
-      'system-font': this.props.systemFontUi,
-    });
-
     return (
-      <div className={className} ref={this.setRef}>
+      <div className='ui' ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width)}>
           <WrappedSwitch>
