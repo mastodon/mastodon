@@ -270,5 +270,28 @@ namespace :mastodon do
       ActiveRecord::Base.connection.execute('UPDATE media_attachments SET account_id = NULL FROM media_attachments ma LEFT JOIN accounts a ON a.id = ma.account_id WHERE media_attachments.id = ma.id AND ma.account_id IS NOT NULL AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('UPDATE reports SET action_taken_by_account_id = NULL FROM reports r LEFT JOIN accounts a ON a.id = r.action_taken_by_account_id WHERE reports.id = r.id AND r.action_taken_by_account_id IS NOT NULL AND a.id IS NULL')
     end
+
+    desc 'Remove deprecated preview cards'
+    task remove_deprecated_preview_cards: :environment do
+      return unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
+
+      class DeprecatedPreviewCard < PreviewCard
+        self.table_name = 'deprecated_preview_cards'
+      end
+
+      puts 'Delete records and associated files from deprecated preview cards? [y/N]: '
+      confirm = STDIN.gets.chomp
+
+      if confirm.casecmp?('y')
+        DeprecatedPreviewCard.in_batches.destroy_all
+
+        puts 'Drop deprecated preview cards table? [y/N]: '
+        confirm = STDIN.gets.chomp
+
+        if confirm.casecmp?('y')
+          ActiveRecord::Migration.drop_table :deprecated_preview_cards
+        end
+      end
+    end
   end
 end
