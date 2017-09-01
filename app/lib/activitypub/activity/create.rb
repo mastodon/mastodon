@@ -25,7 +25,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   private
 
   def find_existing_status
-    status   = Status.find_by(uri: object_uri)
+    status   = status_from_uri(object_uri)
     status ||= Status.find_by(uri: @object['_:atomUri']) if @object['_:atomUri'].present?
     status
   end
