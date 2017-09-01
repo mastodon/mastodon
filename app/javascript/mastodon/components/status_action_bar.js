@@ -23,6 +23,7 @@ const messages = defineMessages({
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
   pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
+  embed: { id: 'status.embed', defaultMessage: 'Embed' },
 });
 
 @injectIntl
@@ -42,6 +43,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onMute: PropTypes.func,
     onBlock: PropTypes.func,
     onReport: PropTypes.func,
+    onEmbed: PropTypes.func,
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
     me: PropTypes.number,
@@ -100,6 +102,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
     this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
   }
 
+  handleEmbed = () => {
+    this.props.onEmbed(this.props.status);
+  }
+
   handleReport = () => {
     this.props.onReport(this.props.status);
   }
@@ -120,6 +126,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     let replyTitle;
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
+    menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     menu.push(null);
 
     if (withDismiss) {

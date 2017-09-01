@@ -32,6 +32,7 @@ export default class Status extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,
+    onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
     me: PropTypes.number,
     boostModal: PropTypes.bool,

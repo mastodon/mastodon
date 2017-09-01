@@ -82,6 +82,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
+  onEmbed (status) {
+    dispatch(openModal('EMBED', { url: status.get('url') }));
+  },
+
   onDelete (status) {
     if (!this.deleteModal) {
       dispatch(deleteStatus(status.get('id')));
