@@ -64,8 +64,6 @@ services:
       - web
       - streaming
     restart: always
-    ports:
-      - "8000:80"
     command: /bin/bash -c "cp -Rp /conf/* /etc/nginx/conf.d/ && nginx -g 'daemon off;'"
 
   https-portal:
@@ -77,5 +75,14 @@ services:
         - nginxserver
       restart: always
       environment:
-        DOMAINS: 'akabe.co -> http://nginxserver'
+        DOMAINS: 'akabe.co -> http://redirector:8080, don.akabe.co -> http://nginxserver'
         STAGE: 'production'
+
+  redirector:
+      restart: always
+      ports:
+          - '8080:8080'
+      image: maxcnunes/docker-url-redirect
+      environment:
+          REDIRECT_URL: https://don.akabe.co/
+          REDIRECT_STATUS: 301
