@@ -2026,14 +2026,22 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.status-card__title {
+.status-card__header {
   display: block;
-  font-weight: 500;
   margin-bottom: 5px;
-  color: $ui-primary-color;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.status-card__title {
+  font-weight: 500;
+  color: $ui-primary-color;
+  margin-right: 5px;
+}
+
+.status-card__author {
+  color: $ui-primary-color;
 }
 
 .status-card__content {
