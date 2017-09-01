@@ -9,7 +9,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
     include ActionView::Helpers::SanitizeHelper
 
     attributes :content, :nsfw, :url, :actions,
-               :access_token, :message
+               :access_token, :message, :dir
 
     def content
       decoder.decode(strip_tags(body))
@@ -117,7 +117,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
     end
   end
 
-  attributes :title, :dir, :image, :badge, :tag,
+  attributes :title, :image, :badge, :tag,
              :timestamp, :icon
 
   has_one :data
