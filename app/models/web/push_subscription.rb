@@ -26,46 +26,48 @@ class Web::PushSubscription < ApplicationRecord
   before_create :send_welcome_notification
 
   def push(notification)
-    name = display_name notification.from_account
-    title = title_str(name, notification)
-    body = body_str notification
-    dir = dir_str body
-    url = url_str notification
-    image = image_str notification
-    actions = actions_arr notification
+    I18n.with_locale(session_activation.user.locale || I18n.default_locale) do
+      name = display_name notification.from_account
+      title = title_str(name, notification)
+      body = body_str notification
+      dir = dir_str body
+      url = url_str notification
+      image = image_str notification
+      actions = actions_arr notification
 
-    access_token = actions.empty? ? nil : find_or_create_access_token(notification).token
-    nsfw = notification.target_status.nil? || notification.target_status.spoiler_text.empty? ? nil : notification.target_status.spoiler_text
+      access_token = actions.empty? ? nil : find_or_create_access_token(notification).token
+      nsfw = notification.target_status.nil? || notification.target_status.spoiler_text.empty? ? nil : notification.target_status.spoiler_text
 
-    # TODO: Make sure that the payload does not exceed 4KB - Webpush::PayloadTooLarge
-    Webpush.payload_send(
-      message: JSON.generate(
-        title: title,
-        dir: dir,
-        image: image,
-        badge: full_asset_url('badge.png', skip_pipeline: true),
-        tag: notification.id,
-        timestamp: notification.created_at,
-        icon: notification.from_account.avatar_static_url,
-        data: {
-          content: decoder.decode(strip_tags(body)),
-          nsfw: nsfw.nil? ? nil : decoder.decode(strip_tags(nsfw)),
-          url: url,
-          actions: actions,
-          access_token: access_token,
-          message: translate('push_notifications.group.title'), # Do not pass count, will be formatted in the ServiceWorker
-        }
-      ),
-      endpoint: endpoint,
-      p256dh: key_p256dh,
-      auth: key_auth,
-      vapid: {
-        subject: "mailto:#{Setting.site_contact_email}",
-        private_key: Rails.configuration.x.vapid_private_key,
-        public_key: Rails.configuration.x.vapid_public_key,
-      },
-      ttl: 40 * 60 * 60 # 48 hours
-    )
+      # TODO: Make sure that the payload does not exceed 4KB - Webpush::PayloadTooLarge
+      Webpush.payload_send(
+        message: JSON.generate(
+          title: title,
+          dir: dir,
+          image: image,
+          badge: full_asset_url('badge.png', skip_pipeline: true),
+          tag: notification.id,
+          timestamp: notification.created_at,
+          icon: notification.from_account.avatar_static_url,
+          data: {
+            content: decoder.decode(strip_tags(body)),
+            nsfw: nsfw.nil? ? nil : decoder.decode(strip_tags(nsfw)),
+            url: url,
+            actions: actions,
+            access_token: access_token,
+            message: translate('push_notifications.group.title'), # Do not pass count, will be formatted in the ServiceWorker
+          }
+        ),
+        endpoint: endpoint,
+        p256dh: key_p256dh,
+        auth: key_auth,
+        vapid: {
+          subject: "mailto:#{Setting.site_contact_email}",
+          private_key: Rails.configuration.x.vapid_private_key,
+          public_key: Rails.configuration.x.vapid_public_key,
+        },
+        ttl: 40 * 60 * 60 # 48 hours
+      )
+    end
   end
 
   def pushable?(notification)
