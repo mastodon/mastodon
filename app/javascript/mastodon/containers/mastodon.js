@@ -28,13 +28,16 @@ export default class Mastodon extends React.PureComponent {
     this.disconnect = store.dispatch(connectUserStream());
 
     // Desktop notifications
+    // Ask after 1 minute
     if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
-      Notification.requestPermission();
+      window.setTimeout(() => Notification.requestPermission(), 60 * 1000);
     }
 
+    // Protocol handler
+    // Ask after 5 minutes
     if (typeof navigator.registerProtocolHandler !== 'undefined') {
       const handlerUrl = window.location.protocol + '//' + window.location.host + '/intent?uri=%s';
-      navigator.registerProtocolHandler('web+mastodon', handlerUrl, 'Mastodon');
+      window.setTimeout(() => navigator.registerProtocolHandler('web+mastodon', handlerUrl, 'Mastodon'), 5 * 60 * 1000);
     }
 
     store.dispatch(showOnboardingOnce());
