@@ -82,12 +82,16 @@ export default class ActionBar extends React.PureComponent {
   render () {
     const { status, me, intl } = this.props;
 
+    const publicStatus = ['public', 'unlisted'].includes(status.get('visibility'));
+
     let menu = [];
 
-    menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+    if (publicStatus) {
+      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+    }
 
     if (me === status.getIn(['account', 'id'])) {
-      if (['public', 'unlisted'].indexOf(status.get('visibility')) !== -1) {
+      if (publicStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
       }
 
