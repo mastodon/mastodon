@@ -50,7 +50,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.avatar_remote_url   = image_url('icon')
     @account.header_remote_url   = image_url('image')
     @account.public_key          = public_key || ''
-    @account.locked              = @json['locked'] || false
+    @account.locked              = @json['manuallyApprovesFollowers'] || false
     @account.save!
   end
 
