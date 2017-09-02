@@ -33,6 +33,8 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
 
     if @account.following?(target_account)
       @account.unfollow!(target_account)
+    elsif @account.requested?(target_account)
+      FollowRequest.find_by(account: @account, target_account: target_account)&.destroy
     else
       delete_later!(object_uri)
     end
