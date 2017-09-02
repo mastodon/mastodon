@@ -3893,6 +3893,15 @@ noscript {
     margin: 30px auto;
     color: $ui-secondary-color;
     max-width: 400px;
+
+    a {
+      color: $ui-highlight-color;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 
