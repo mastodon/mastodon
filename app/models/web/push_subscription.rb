@@ -50,7 +50,7 @@ class Web::PushSubscription < ApplicationRecord
       auth: key_auth,
       ttl: ttl,
       vapid: {
-        subject: "mailto:#{Setting.site_contact_email}",
+        subject: "mailto:#{::Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
       }
