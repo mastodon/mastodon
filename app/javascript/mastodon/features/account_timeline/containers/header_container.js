@@ -38,7 +38,7 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onFollow (account) {
-    if (account.getIn(['relationship', 'following'])) {
+    if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
       if (this.unfollowModal) {
         dispatch(openModal('CONFIRM', {
           message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
