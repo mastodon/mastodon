@@ -11,8 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
-  cancel: { id: 'account.cancel_request', defaultMessage: 'Cancel follow request' },
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
 });
 
 const makeMapStateToProps = () => {
@@ -103,8 +102,7 @@ export default class Header extends ImmutablePureComponent {
       if (account.getIn(['relationship', 'requested'])) {
         actionBtn = (
           <div className='account--action-button'>
-            <IconButton size={26} disabled icon='hourglass' title={intl.formatMessage(messages.requested)} />
-            <IconButton size={26} icon='times' title={intl.formatMessage(messages.cancel)} onClick={this.props.onFollow} />
+            <IconButton size={26} active icon='hourglass' title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />
           </div>
         );
       } else if (!account.getIn(['relationship', 'blocking'])) {
