@@ -13,8 +13,8 @@ class Api::V1::MutesController < Api::BaseController
   end
 
   def details
-    @data = @mutes = paginated_mutes
-    render json: @mutes
+    @data = @mutes = load_mutes
+    render json: @mutes, each_serializer: REST::MuteSerializer
   end 
 
   private
@@ -25,6 +25,10 @@ class Api::V1::MutesController < Api::BaseController
 
   def default_accounts
     Account.includes(:muted_by).references(:muted_by)
+  end
+
+  def load_mutes
+    paginated_mutes.includes(:account, :target_account).to_a
   end
 
   def paginated_mutes
