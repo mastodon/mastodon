@@ -116,9 +116,11 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
   render () {
     const { status, me, intl, withDismiss } = this.props;
-    const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
+
+    const reblogDisabled     = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
     const mutingConversation = status.get('muted');
-    const anonymousAccess = !me;
+    const anonymousAccess    = !me;
+    const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
 
     let menu = [];
     let reblogIcon = 'retweet';
@@ -126,7 +128,11 @@ export default class StatusActionBar extends ImmutablePureComponent {
     let replyTitle;
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
-    menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+
+    if (publicStatus) {
+      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+    }
+
     menu.push(null);
 
     if (withDismiss) {
@@ -135,7 +141,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     }
 
     if (status.getIn(['account', 'id']) === me) {
-      if (['public', 'unlisted'].indexOf(status.get('visibility')) !== -1) {
+      if (publicStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
       }
 
