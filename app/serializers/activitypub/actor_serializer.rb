@@ -6,7 +6,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :shared_inbox,
              :preferred_username, :name, :summary,
-             :url, :locked
+             :url, :manually_approves_followers
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
@@ -89,5 +89,9 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   def header_exists?
     object.header.exists?
+  end
+
+  def manually_approves_followers
+    object.locked
   end
 end

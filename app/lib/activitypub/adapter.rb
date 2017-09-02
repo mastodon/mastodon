@@ -7,14 +7,13 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
       'https://w3id.org/security/v1',
 
       {
-        'locked'    => 'as:locked',
-        'sensitive' => 'as:sensitive',
-        'Hashtag'   => 'as:Hashtag',
-
-        'ostatus'          => 'http://ostatus.org#',
-        'atomUri'          => 'ostatus:atomUri',
-        'inReplyToAtomUri' => 'ostatus:inReplyToAtomUri',
-        'conversation'     => 'ostatus:conversation',
+        'manuallyApprovesFollowers' => 'as:manuallyApprovesFollowers',
+        'sensitive'                 => 'as:sensitive',
+        'Hashtag'                   => 'as:Hashtag',
+        'ostatus'                   => 'http://ostatus.org#',
+        'atomUri'                   => 'ostatus:atomUri',
+        'inReplyToAtomUri'          => 'ostatus:inReplyToAtomUri',
+        'conversation'              => 'ostatus:conversation',
       },
     ],
   }.freeze
