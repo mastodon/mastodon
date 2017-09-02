@@ -25,8 +25,8 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   def activity_json
     if %w(Note Article).include? @json['type']
       {
-        'type' => 'Create',
-        'actor' => first_of_value(@json['attributedTo']),
+        'type'   => 'Create',
+        'actor'  => first_of_value(@json['attributedTo']),
         'object' => @json,
       }
     else

@@ -6,11 +6,9 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :shared_inbox,
              :preferred_username, :name, :summary,
-             :url
+             :url, :locked
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
-
-  attribute :locked, key: '_:locked'
 
   class ImageSerializer < ActiveModel::Serializer
     include RoutingHelper

@@ -26,7 +26,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def find_existing_status
     status   = status_from_uri(object_uri)
-    status ||= Status.find_by(uri: @object['_:atomUri']) if @object['_:atomUri'].present?
+    status ||= Status.find_by(uri: @object['atomUri']) if @object['atomUri'].present?
     status
   end
 
@@ -43,7 +43,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       sensitive: @object['sensitive'] || false,
       visibility: visibility_from_audience,
       thread: replied_to_status,
-      conversation: conversation_from_uri(@object['_:conversation']),
+      conversation: conversation_from_uri(@object['conversation']),
     }
   end
 
@@ -125,7 +125,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       @replied_to_status = nil
     else
       @replied_to_status   = status_from_uri(in_reply_to_uri)
-      @replied_to_status ||= status_from_uri(@object['_:inReplyToAtomUri']) if @object['_:inReplyToAtomUri'].present?
+      @replied_to_status ||= status_from_uri(@object['inReplyToAtomUri']) if @object['inReplyToAtomUri'].present?
       @replied_to_status
     end
   end

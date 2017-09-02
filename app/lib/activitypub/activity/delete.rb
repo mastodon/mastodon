@@ -17,7 +17,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
   def delete_note
     status   = Status.find_by(uri: object_uri, account: @account)
-    status ||= Status.find_by(uri: @object['_:atomUri'], account: @account) if @object.is_a?(Hash) && @object['_:atomUri'].present?
+    status ||= Status.find_by(uri: @object['atomUri'], account: @account) if @object.is_a?(Hash) && @object['atomUri'].present?
 
     delete_later!(object_uri)
 
