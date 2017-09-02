@@ -121,7 +121,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
   attributes :title, :image, :badge, :tag,
              :timestamp, :icon
 
-  has_one :data
+  has_one :data, serializer: DataSerializer
 
   def title
     case object.type
