@@ -191,7 +191,11 @@ Rails.application.routes.draw do
       resources :media,      only: [:create]
       resources :apps,       only: [:create]
       resources :blocks,     only: [:index]
-      resources :mutes,      only: [:index]
+      resources :mutes,      only: [:index] do
+        collection do 
+          get 'details'
+        end
+      end
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
 

@@ -18,4 +18,12 @@ RSpec.describe Api::V1::MutesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET #details' do
+    it 'returns http success' do
+      get :details, params: { limit: 1 }
+
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
