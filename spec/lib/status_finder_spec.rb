@@ -34,6 +34,16 @@ describe StatusFinder do
       end
     end
 
+    context 'with a remote url even if id exists on local' do
+      let(:status) { Fabricate(:status) }
+      let(:url) { "https://example.com/users/test/statuses/#{status.id}" }
+      subject { described_class.new(url) }
+
+      it 'raises an error' do
+        expect { subject.status }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
     context 'with a plausible url' do
       let(:url) { 'https://example.com/users/test/updates/123/embed' }
       subject { described_class.new(url) }
