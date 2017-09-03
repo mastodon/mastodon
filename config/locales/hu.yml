@@ -45,6 +45,17 @@ hu:
     reblog:
       body: 'Az állapotod reblogolta %{name}:'
       subject: "%{name} reblogolta az állapotod"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Következő
     prev: Előző

@@ -285,6 +285,17 @@ ko:
     reblog:
       body: "%{name} 님이 내 Toot을 부스트 했습니다:"
       subject: "%{name} 님이 내 Toot을 부스트 했습니다"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: 다음
     prev: 이전
