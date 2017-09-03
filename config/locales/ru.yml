@@ -262,6 +262,17 @@ ru:
     reblog:
       body: 'Ваш статус был продвинут %{name}:'
       subject: "%{name} продвинул(а) Ваш статус"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: След
     prev: Пред
