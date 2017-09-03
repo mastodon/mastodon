@@ -273,7 +273,7 @@ namespace :mastodon do
 
     desc 'Remove deprecated preview cards'
     task remove_deprecated_preview_cards: :environment do
-      return unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
+      next unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
 
       class DeprecatedPreviewCard < ActiveRecord::Base
         self.inheritance_column = false
