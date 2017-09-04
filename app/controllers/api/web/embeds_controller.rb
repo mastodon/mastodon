@@ -7,7 +7,7 @@ class Api::Web::EmbedsController < Api::BaseController
 
   def create
     status = StatusFinder.new(params[:url]).status
-    render json: status, serializer: OEmbedSerializer, width: 400
+    render json: status, serializer: OEmbedSerializer
   rescue ActiveRecord::RecordNotFound
     oembed = OEmbed::Providers.get(params[:url])
     render json: Oj.dump(oembed.fields)
