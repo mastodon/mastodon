@@ -33,7 +33,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def status_params
     {
       uri: @object['id'],
-      url: @object['url'] || @object['id'],
+      url: object_url || @object['id'],
       account: @account,
       text: text_from_content || '',
       language: language_from_content,
@@ -145,6 +145,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def language_from_content
     return nil unless language_map?
     @object['contentMap'].keys.first
+  end
+
+  def object_url
+    return if @object['url'].blank?
+
+    value = first_of_value(@object['url'])
+
+    return value if value.is_a?(String)
+
+    value['href']
   end
 
   def language_map?

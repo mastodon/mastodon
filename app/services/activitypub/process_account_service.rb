@@ -6,7 +6,7 @@ class ActivityPub::ProcessAccountService < BaseService
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json)
-    return unless json['inbox'].present?
+    return if json['inbox'].blank?
 
     @json     = json
     @uri      = @json['id']
@@ -42,9 +42,9 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.protocol            = :activitypub
     @account.inbox_url           = @json['inbox'] || ''
     @account.outbox_url          = @json['outbox'] || ''
-    @account.shared_inbox_url    = @json['sharedInbox'] || ''
+    @account.shared_inbox_url    = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
     @account.followers_url       = @json['followers'] || ''
-    @account.url                 = @json['url'] || @uri
+    @account.url                 = url || @uri
     @account.display_name        = @json['name'] || ''
     @account.note                = @json['summary'] || ''
     @account.avatar_remote_url   = image_url('icon')
@@ -62,7 +62,7 @@ class ActivityPub::ProcessAccountService < BaseService
     value = first_of_value(@json[key])
 
     return if value.nil?
-    return @json[key]['url'] if @json[key].is_a?(Hash)
+    return value['url'] if value.is_a?(Hash)
 
     image = fetch_resource(value)
     image['url'] if image
@@ -76,6 +76,16 @@ class ActivityPub::ProcessAccountService < BaseService
 
     key = fetch_resource(value)
     key['publicKeyPem'] if key
+  end
+
+  def url
+    return if @json['url'].blank?
+
+    value = first_of_value(@json['url'])
+
+    return value if value.is_a?(String)
+
+    value['href']
   end
 
   def auto_suspend?
