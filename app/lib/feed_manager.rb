@@ -102,7 +102,7 @@ class FeedManager
   def populate_feed(account)
     prepopulate_limit = FeedManager::MAX_ITEMS / 4
     statuses = Status.as_home_timeline(account).order(account_id: :desc).limit(prepopulate_limit)
-    to_add = statuses.reverse_each.lazy.reject {|status| filter_from_home?(status, account)}
+    to_add = statuses.reverse_each.lazy.reject { |status| filter_from_home?(status, account) }
     to_add.each do |status|
       add_to_feed(:home, account, status)
     end
@@ -188,7 +188,6 @@ class FeedManager
   def remove_from_feed(timeline_type, account, status)
     timeline_key = key(timeline_type, account.id)
     reblog_key = "#{timeline_key}:reblogs"
-    removed = false
 
     if status.reblog?
       # 1. If the reblogging status is not in the feed, stop.
@@ -203,12 +202,9 @@ class FeedManager
       # value.
       redis.zadd(timeline_key, status.id, status.reblog_of_id)
 
-      # 4. Remove the reblogging status from the feed.
-      removed = redis.zrem(timeline_key, status.id)
-    else
-      removed = redis.zrem(timeline_key, status.id)
+      # 4. Remove the reblogging status from the feed (as normal)
     end
 
-    return removed
+    redis.zrem(timeline_key, status.id)
   end
 end
