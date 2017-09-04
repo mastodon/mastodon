@@ -73,10 +73,12 @@ services:
         - '443:443'
       depends_on:
         - nginxserver
+        - redirector
       restart: always
       environment:
         DOMAINS: 'akabe.co -> http://redirector:8080, don.akabe.co -> http://nginxserver'
         STAGE: 'production'
+        WEBSOCKET: 'true'
 
   redirector:
       restart: always
