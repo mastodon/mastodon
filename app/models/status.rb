@@ -128,6 +128,8 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  after_create :store_uri, if: :local?
+
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
   before_validation :set_visibility
@@ -250,6 +252,10 @@ class Status < ApplicationRecord
   end
 
   private
+
+  def store_uri
+    self.uri = ActivityPub::TagManager.instance.uri_for(self) if uri.nil?
+  end
 
   def prepare_contents
     text&.strip!

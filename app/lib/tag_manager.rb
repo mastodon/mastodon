@@ -49,12 +49,17 @@ class TagManager
 
   def unique_tag_to_local_id(tag, expected_type)
     return nil unless local_id?(tag)
-    matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
-    return matches[1] unless matches.nil?
+
+    if ActivityPub::TagManager.instance.local_uri?(tag)
+      ActivityPub::TagManager.instance.uri_to_local_id(tag)
+    else
+      matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
+      return matches[1] unless matches.nil?
+    end
   end
 
   def local_id?(id)
-    id.start_with?("tag:#{Rails.configuration.x.local_domain}")
+    id.start_with?("tag:#{Rails.configuration.x.local_domain}") || ActivityPub::TagManager.instance.local_uri?(id)
   end
 
   def web_domain?(domain)
@@ -92,7 +97,7 @@ class TagManager
     when :person
       account_url(target)
     when :note, :comment, :activity
-      unique_tag(target.created_at, target.id, 'Status')
+      target.uri || unique_tag(target.created_at, target.id, 'Status')
     end
   end
 

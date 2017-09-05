@@ -65,7 +65,7 @@ class OStatus::AtomSerializer
 
     add_namespaces(entry) if root
 
-    append_element(entry, 'id', TagManager.instance.unique_tag(stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type))
+    append_element(entry, 'id', TagManager.instance.uri_for(stream_entry.status))
     append_element(entry, 'published', stream_entry.created_at.iso8601)
     append_element(entry, 'updated', stream_entry.updated_at.iso8601)
     append_element(entry, 'title', stream_entry&.status&.title || "#{stream_entry.account.acct} deleted status")
