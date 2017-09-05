@@ -38,9 +38,13 @@ RSpec.describe Settings::FavouriteTagsController, type: :controller do
 
     subject { post :create, params: params }
 
-    it 'create the favourite tag' do
+    it 'after create, tag' do
       expect { subject }.not_to change(Tag, :count)
-      expect(FavouriteTag.count).to eq 1
+      expect(response).to redirect_to(settings_favourite_tags_path)
+    end
+
+    it 'after create, favourite tag' do
+      expect { subject }.to change { FavouriteTag.count }.by(1)
       expect(response).to redirect_to(settings_favourite_tags_path)
     end
 
@@ -57,13 +61,24 @@ RSpec.describe Settings::FavouriteTagsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let!(:tag) { Fabricate(:tag, name: 'dummy_tag') }
+    let(:tag) { Fabricate(:tag, name: 'dummy_tag') }
     let!(:favourite_tag) { Fabricate(:favourite_tag, account: @user.account, tag: tag) }
+    let(:params) {
+      {
+        id: favourite_tag.id
+      } 
+    }
 
-    it 'destroy the favourite tag' do
-      delete :destroy, params: { id: favourite_tag.id }
+    subject { delete :destroy, params: params }
+    
+    it 'after destroy, tag' do
+      expect { subject }.not_to change(Tag, :count)
       expect(response).to redirect_to(settings_favourite_tags_path)
-      expect(FavouriteTag.count).to eq 0
+    end
+
+    it 'after destroy, favourite tag' do
+      expect { subject }.to change { FavouriteTag.count }.by(-1)
+      expect(response).to redirect_to(settings_favourite_tags_path)
     end
   end
 end
