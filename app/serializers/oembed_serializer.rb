@@ -40,8 +40,7 @@ class OEmbedSerializer < ActiveModel::Serializer
     attributes = {
       src: embed_short_account_status_url(object.account, object),
       class: 'mastodon-embed',
-      frameborder: '0',
-      scrolling: 'no',
+      style: 'max-width: 100%; border: none;',
       width: width,
       height: height,
     }
