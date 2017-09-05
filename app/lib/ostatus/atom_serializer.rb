@@ -79,6 +79,9 @@ class OStatus::AtomSerializer
 
     if stream_entry.status.nil?
       append_element(entry, 'content', 'Deleted status')
+    elsif stream_entry.status.destroyed?
+      append_element(entry, 'content', 'Deleted status')
+      append_element(entry, 'link', nil, rel: :alternate, type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(stream_entry.status)) if stream_entry.account.local?
     else
       serialize_status_attributes(entry, stream_entry.status)
     end
@@ -343,6 +346,8 @@ class OStatus::AtomSerializer
   end
 
   def serialize_status_attributes(entry, status)
+    append_element(entry, 'link', nil, rel: :alternate, type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(status)) if status.account.local?
+
     append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
     append_element(entry, 'content', Formatter.instance.format(status).to_str, type: 'html', 'xml:lang': status.language)
 

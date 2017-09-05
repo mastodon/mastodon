@@ -55,7 +55,7 @@
                 = @instance_presenter.closed_registrations_message.html_safe
             = link_to t('about.find_another_instance'), 'https://joinmastodon.org/', class: 'button button-alternative button--block'
 
-  .learn-more-cta
+  .about-short
     .container
       #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
       .about-catgram
@@ -65,5 +65,5 @@
   .footer-links
     .container
       %p
-        = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+        = link_to t('about.source_code'), @instance_presenter.source_url
         = " (#{@instance_presenter.version_number})"

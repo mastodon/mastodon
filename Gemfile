@@ -22,7 +22,7 @@ gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.5'
 gem 'bootsnap'
 gem 'browser'
-gem 'charlock_holmes', '~> 0.7.3'
+gem 'charlock_holmes', '~> 0.7.5'
 gem 'cld3', '~> 3.1'
 gem 'devise', '~> 4.2'
 gem 'devise-two-factor', '~> 3.0'
@@ -67,6 +67,9 @@ gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2017'
 gem 'webpacker', '~> 2.0'
 gem 'webpush'
+
+gem 'json-ld-preloaded', '~> 2.2.1'
+gem 'rdf-normalize', '~> 0.3.1'
 
 group :development, :test do
   gem 'fabrication', '~> 2.16'

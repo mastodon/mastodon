@@ -237,6 +237,8 @@
   line-height: 0;
   display: inline-block;
   width: 0;
+  height: 0;
+  position: absolute;
 }
 
 .ellipsis {
@@ -393,6 +395,11 @@
       border-color: transparent transparent $base-border-color;
       bottom: -1px;
       right: 8px;
+    }
+
+    ::-webkit-scrollbar-track:hover,
+    ::-webkit-scrollbar-track:active {
+      background-color: rgba($base-overlay-background, 0.3);
     }
   }
 }
@@ -1050,6 +1057,8 @@
   strong,
   span {
     display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   strong {
@@ -1572,7 +1581,6 @@
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
-  backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
   @supports(display: grid) { // hack to fix Chrome <57
     contain: strict;
@@ -1866,7 +1874,7 @@
 
 .character-counter__wrapper {
   line-height: 36px;
-  margin-right: 16px;
+  margin: 0 16px 0 8px;
   padding-top: 10px;
 }
 
@@ -2047,6 +2055,18 @@ button.icon-button.active i.fa-retweet {
 .status-card__image {
   flex: 0 0 100px;
   background: lighten($ui-base-color, 8%);
+}
+
+.status-card.horizontal {
+  display: block;
+
+  .status-card__image {
+    width: 100%;
+  }
+
+  .status-card__image-image {
+    border-radius: 4px 4px 0 0;
+  }
 }
 
 .status-card__image-image {
@@ -2316,19 +2336,11 @@ button.icon-button.active i.fa-retweet {
 }
 
 .media-spoiler {
-  align-items: center;
   background: $base-overlay-background;
   color: $primary-text-color;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
   border: 0;
   width: 100%;
   height: 100%;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  z-index: 100;
 }
 
 .media-spoiler__warning {
@@ -3091,7 +3103,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal,
-.error-modal {
+.error-modal,
+.embed-modal {
   background: $ui-secondary-color;
   color: $ui-base-color;
   border-radius: 8px;
@@ -3872,6 +3885,15 @@ noscript {
     margin: 30px auto;
     color: $ui-secondary-color;
     max-width: 400px;
+
+    a {
+      color: $ui-highlight-color;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -3942,4 +3964,62 @@ noscript {
       }
     }
   }
+}
+
+.embed-modal__html {
+  color: $ui-secondary-color;
+  outline: 0;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 10px;
+  font-family: 'mastodon-font-monospace', monospace;
+  background: $ui-base-color;
+  color: $ui-primary-color;
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 15px;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
+    outline: 0 !important;
+  }
+
+  &:focus {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
+}
+
+.embed-modal {
+  h4 {
+    padding: 30px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .hint {
+    margin-bottom: 15px;
+  }
+}
+
+.embed-modal__container {
+  padding: 10px;
+}
+
+.embed-modal__iframe {
+  width: 100%;
+  min-width: 400px;
+  overflow: hidden;
+  border: 0;
 }

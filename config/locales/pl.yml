@@ -18,7 +18,7 @@ pl:
       humane_approach_title: Bardziej ludzkie podejście
       not_a_product_body: Mastodon nie jest komercyjną siecią. Nie doświadczysz tu reklam, zbierania danych, ani centralnego ośrodka, tak jak w przypadku wielu rozwiązań.
       not_a_product_title: Jesteś człowiekiem, nie produktem
-      real_conversation_body: Mając do dyspozycji 500 znaków na post, rozdrobnienie zawartości i ostrzeżenia o multimediach, możesz wyrażać siebie na wszystkie możliwe sposoby.
+      real_conversation_body: Mając do dyspozycji 500 znaków na wpis, rozdrobnienie zawartości i ostrzeżenia o multimediach, możesz wyrażać siebie na wszystkie możliwe sposoby.
       real_conversation_title: Zaprojektowany do prawdziwych rozmów
       within_reach_body: Wiele aplikacji dla Androida, iOS i innych platform dzięki przyjaznemu programistom API sprawia, że możesz utrzymywać kontakt ze znajomymi praktycznie wszędzie.
       within_reach_title: Zawsze w Twoim zasięgu
@@ -37,12 +37,16 @@ pl:
     follow: Śledź
     followers: Śledzących
     following: Śledzi
+    media: Zawartość multimedialna
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
     posts: Wpisy
-    remote_follow: Zdalne śledzenie
+    posts_with_replies: Wpisy z odpowiedziami
+    remote_follow: Śledź zdalnie
     reserved_username: Ta nazwa użytkownika jest zarezerwowana.
+    roles:
+      admin: Administrator
     unfollow: Przestań śledzić
   admin:
     accounts:
@@ -65,12 +69,12 @@ pl:
         title: Położenie
       media_attachments: Załączniki multimedialne
       moderation:
-        all: Wszystko
+        all: Wszystkie
         silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
       most_recent_activity: Najnowsza aktywność
-      most_recent_ip: Najnowsze IP
+      most_recent_ip: Ostatnie IP
       not_subscribed: Nie zasubskrybowano
       order:
         alphabetic: Alfabetycznie
@@ -88,9 +92,9 @@ pl:
       search: Szukaj
       show:
         created_reports: Zgłoszenia tego użytkownika
-        report: zgłoszenie
+        report: zgłoszeń
         targeted_reports: Zgłoszenia dotyczące tego użytkownika
-      silence: Cisza
+      silence: Wycisz
       statuses: Statusy
       subscribe: Subskrybuj
       title: Konta
@@ -122,6 +126,7 @@ pl:
       severity: Priorytet
       show:
         affected_accounts:
+          many: Dotyczy %{count} kont w bazie danych
           one: Dotyczy jednego konta w bazie danych
           other: Dotyczy %{count} kont w bazie danych
         retroactive:
@@ -129,7 +134,7 @@ pl:
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
         title: Odwołaj blokadę dla domeny %{domain}
         undo: Cofnij
-      title: Blokady domen
+      title: Zablokowane domeny
       undo: Cofnij
     instances:
       account_count: Znane konta
@@ -142,7 +147,7 @@ pl:
         label: Komentarz
         none: Brak
       delete: Usuń
-      id: Identyfikator
+      id: ID
       mark_as_resolved: Oznacz jako rozwiązane
       nsfw:
         'false': Nie oznaczaj jako NSFW
@@ -150,8 +155,8 @@ pl:
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
       reported_account: Zgłoszone konto
-      reported_by: Zgłoszone przez
-      resolved: Rozwiązano
+      reported_by: Zgłaszający
+      resolved: Rozwiązane
       silence_account: Wycisz konto
       status: Status
       suspend_account: Zawieś konto
@@ -180,7 +185,7 @@ pl:
         desc_html: Dobre miejsce na zasady użytkowania, wprowadzenie i inne rzeczy, które wyróżniają tę instancję. Możesz korzystać z tagów HTML
         title: Niestandardowy opis strony
       site_terms:
-        desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz używać tagów HTML
+        desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać z tagów HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa instancji
       timeline_preview:
@@ -204,7 +209,7 @@ pl:
       with_media: Z zawartością multimedialną
     subscriptions:
       callback_url: URL zwrotny
-      confirmed: Potwierdzono
+      confirmed: Potwierdzone
       expires_in: Wygasa
       last_delivery: Ostatnio doręczono
       title: WebSub
@@ -220,7 +225,13 @@ pl:
     signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
   applications:
-    invalid_url: Ten URL jest nieprawidłowy
+    created: Pomyślnie utworzono aplikację
+    destroyed: Pomyślnie usunięto aplikację
+    invalid_url: Wprowadzony adres URL jest nieprawidłowy
+    regenerate_token: Wygeneruj nowy token dostępu
+    token_regenerated: Pomyślnie wygenerowano nowy token dostępu
+    warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
+    your_token: Twój token dostępu
   auth:
     agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">naszymi zasadami użytkowania</a> i <a href="%{terms_path}">polityką prywatności</a>.
     change_password: Bezpieczeństwo
@@ -228,6 +239,7 @@ pl:
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
     didnt_get_confirmation: Nie otrzymałeś instrukcji weryfikacji?
     forgot_password: Nie pamiętasz hasła?
+    invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
     login: Zaloguj się
     logout: Wyloguj się
     register: Rejestracja
@@ -274,12 +286,12 @@ pl:
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
     '429': Uduszono
-    noscript: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z natywnej aplikacji obsługującej Twoje urządzenie.
+    noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   exports:
-    blocks: Blokujesz
+    blocks: Zablokowani
     csv: CSV
-    follows: Śledzisz
-    mutes: Wyciszyłeś
+    follows: Śledzeni
+    mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
   followers:
     domain: Domena
@@ -361,9 +373,6 @@ pl:
       title: "%{name} wspomniał o Tobie"
     reblog:
       title: "%{name} podbił Twój status"
-    subscribed:
-      body: Otrzymujesz teraz powiadomienia push.
-      title: Zarejestrowano subskrypcję!
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -412,26 +421,33 @@ pl:
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
     delete: Usuń konto
+    development: Tworzenie aplikacji
     edit_profile: Edytuj profil
-    export: Eksportuj dane
+    export: Eksportowanie danych
     followers: Autoryzowani śledzący
-    import: Importuj dane
+    import: Importowanie danych
     preferences: Preferencje
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe
+    your_apps: Twoje aplikacje
   statuses:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
+    pin_errors:
+      ownership: Nie możesz przypiąć cudzego wpisu
+      private: Nie możesz przypiąć niepublicznego wpisu
+      reblog: Nie możesz przypiąć podbicia wpisu
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
-      private_long: Widoczne tylko dla śledzących
+      private_long: Widoczny tylko dla osób, które Cię śledzą
       public: Publiczny
-      public_long: Widoczne dla wszystkich
+      public_long: Widoczny dla wszystkich użytkowników
       unlisted: Niewypisany
-      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
+      unlisted_long: Widoczny dla wszystkich, ale nie wyświetlany na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
+    pinned: Przypięty wpis
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość
   terms:
@@ -444,7 +460,7 @@ pl:
 
       <p>Podczas rejestracji, możesz otrzymać prośbę o podanie adresu e-mail. Możesz jednak odwiedzać stronę bez rejestracji. Adres zostanie zweryfikowany przez kliknięcie w link wysłany w wiadomości. Dzięki temu wiemy, że jesteś właścicielem tego adresu.</p>
 
-      <p>Podczas rejestracji i tworzenia postów, Twój adres IP jest zapisywany na naszych serwerach. Możemy też przechowywać adres IP użyty przy każdej operacji w serwisie.</p>
+      <p>Podczas rejestracji i tworzenia wpisów, Twój adres IP jest zapisywany na naszych serwerach. Możemy też przechowywać adres IP użyty przy każdej operacji w serwisie.</p>
 
       <h3 id="use">Jak wykorzystujemy zebrane informacje?</h3>
 
@@ -526,3 +542,4 @@ pl:
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    signed_in_as: 'Zalogowany jako:'

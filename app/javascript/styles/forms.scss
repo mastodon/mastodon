@@ -24,7 +24,7 @@ code {
 
   p.hint {
     margin-bottom: 15px;
-    color: lighten($ui-base-color, 32%);
+    color: $ui-primary-color;
 
     &.subtle-hint {
       text-align: center;
@@ -32,10 +32,10 @@ code {
       line-height: 18px;
       margin-top: 15px;
       margin-bottom: 0;
-      color: $ui-base-lighter-color;
+      color: $ui-primary-color;
 
       a {
-        color: $ui-primary-color;
+        color: $ui-highlight-color;
       }
     }
   }
@@ -53,7 +53,6 @@ code {
 
     label {
       flex: 0 0 auto;
-      width: 100px;
     }
 
     input {
@@ -65,12 +64,37 @@ code {
     padding: 15px 0;
     margin-bottom: 0;
 
+    .label_input {
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    &.select .label_input {
+      align-items: initial;
+    }
+
     .label_input > label {
       font-family: inherit;
       font-size: 16px;
       color: $primary-text-color;
       display: block;
       padding-top: 5px;
+      margin-bottom: 5px;
+      flex: 1;
+      min-width: 150px;
+      word-wrap: break-word;
+
+      &.select {
+        flex: 0;
+      }
+
+      & ~ * {
+        margin-left: 10px;
+      }
+    }
+
+    ul {
+      flex: 390px;
     }
 
     &.boolean {
@@ -359,17 +383,23 @@ code {
     color: $ui-secondary-color;
     font-weight: 500;
   }
+
+  @media screen and (max-width: 740px) and (min-width: 441px) {
+    margin-top: 40px;
+  }
 }
 
 .qr-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .qr-code {
   flex: 0 0 auto;
   background: $simple-background-color;
   padding: 4px;
-  margin-bottom: 20px;
+  margin: 0 10px 20px 0;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   display: inline-block;
 
@@ -380,8 +410,9 @@ code {
 }
 
 .qr-alternative {
-  margin-left: 10px;
-  color: $ui-primary-color;
+  margin-bottom: 20px;
+  color: $ui-secondary-color;
+  flex: 150px;
 
   samp {
     display: block;
@@ -391,7 +422,6 @@ code {
 
 .table-form {
   p {
-    max-width: 400px;
     margin-bottom: 15px;
 
     strong {
@@ -403,7 +433,6 @@ code {
 .simple_form,
 .table-form {
   .warning {
-    max-width: 400px;
     box-sizing: border-box;
     background: rgba($error-value-color, 0.5);
     color: $primary-text-color;

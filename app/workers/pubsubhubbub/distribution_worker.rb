@@ -14,7 +14,7 @@ class Pubsubhubbub::DistributionWorker
     @subscriptions = active_subscriptions.to_a
 
     distribute_public!(stream_entries.reject(&:hidden?))
-    distribute_hidden!(stream_entries.select(&:hidden?))
+    distribute_hidden!(stream_entries.select(&:hidden?)) if Rails.configuration.x.use_ostatus_privacy
   end
 
   private

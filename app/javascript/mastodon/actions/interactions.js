@@ -24,6 +24,14 @@ export const FAVOURITES_FETCH_REQUEST = 'FAVOURITES_FETCH_REQUEST';
 export const FAVOURITES_FETCH_SUCCESS = 'FAVOURITES_FETCH_SUCCESS';
 export const FAVOURITES_FETCH_FAIL    = 'FAVOURITES_FETCH_FAIL';
 
+export const PIN_REQUEST = 'PIN_REQUEST';
+export const PIN_SUCCESS = 'PIN_SUCCESS';
+export const PIN_FAIL    = 'PIN_FAIL';
+
+export const UNPIN_REQUEST = 'UNPIN_REQUEST';
+export const UNPIN_SUCCESS = 'UNPIN_SUCCESS';
+export const UNPIN_FAIL    = 'UNPIN_FAIL';
+
 export function reblog(status) {
   return function (dispatch, getState) {
     dispatch(reblogRequest(status));
@@ -230,6 +238,76 @@ export function fetchFavouritesSuccess(id, accounts) {
 export function fetchFavouritesFail(id, error) {
   return {
     type: FAVOURITES_FETCH_FAIL,
+    error,
+  };
+};
+
+export function pin(status) {
+  return (dispatch, getState) => {
+    dispatch(pinRequest(status));
+
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/pin`).then(response => {
+      dispatch(pinSuccess(status, response.data));
+    }).catch(error => {
+      dispatch(pinFail(status, error));
+    });
+  };
+};
+
+export function pinRequest(status) {
+  return {
+    type: PIN_REQUEST,
+    status,
+  };
+};
+
+export function pinSuccess(status, response) {
+  return {
+    type: PIN_SUCCESS,
+    status,
+    response,
+  };
+};
+
+export function pinFail(status, error) {
+  return {
+    type: PIN_FAIL,
+    status,
+    error,
+  };
+};
+
+export function unpin (status) {
+  return (dispatch, getState) => {
+    dispatch(unpinRequest(status));
+
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/unpin`).then(response => {
+      dispatch(unpinSuccess(status, response.data));
+    }).catch(error => {
+      dispatch(unpinFail(status, error));
+    });
+  };
+};
+
+export function unpinRequest(status) {
+  return {
+    type: UNPIN_REQUEST,
+    status,
+  };
+};
+
+export function unpinSuccess(status, response) {
+  return {
+    type: UNPIN_SUCCESS,
+    status,
+    response,
+  };
+};
+
+export function unpinFail(status, error) {
+  return {
+    type: UNPIN_FAIL,
+    status,
     error,
   };
 };

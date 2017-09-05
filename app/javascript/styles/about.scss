@@ -1,52 +1,96 @@
-.about-body {
-  .wrapper {
-    max-width: 600px;
-    margin: 0 auto;
+.landing-page {
+  p,
+  li {
+    font-family: 'mastodon-font-sans-serif', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 12px;
     color: $ui-primary-color;
-    padding-top: 50px;
-    padding-bottom: 50px;
 
-    &.thicc {
-      max-width: 800px;
+    a {
+      color: $ui-highlight-color;
+      text-decoration: underline;
     }
   }
 
-  h1 {
-    font: 46px/52px 'mastodon-font-sans-serif', sans-serif;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: $ui-highlight-color;
-    padding: 20px 0;
+  em {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: lighten($ui-primary-color, 10%);
+  }
 
-    img {
-      margin-bottom: -5px;
-      margin-right: 5px;
-      width: 46px;
-      height: 46px;
+  h1 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $ui-secondary-color;
+
+    small {
+      font-family: 'mastodon-font-sans-serif', sans-serif;
+      display: block;
+      font-size: 18px;
+      font-weight: 400;
+      color: $ui-base-lighter-color;
     }
   }
 
   h2 {
     font-family: 'mastodon-font-display', sans-serif;
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 500;
     margin-bottom: 20px;
-    color: $primary-text-color;
+    color: $ui-secondary-color;
   }
 
   h3 {
     font-family: 'mastodon-font-display', sans-serif;
-    font-size: 20px;
-    line-height: 28px;
-    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $ui-secondary-color;
+  }
+
+  h4 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $ui-secondary-color;
+  }
+
+  h5 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $ui-secondary-color;
+  }
+
+  h6 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 500;
     margin-bottom: 20px;
     color: $ui-secondary-color;
   }
 
   ul,
   ol {
-    list-style: inherit;
     margin-left: 20px;
 
     &[type='a'] {
@@ -58,220 +102,30 @@
     }
   }
 
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
   li > ol,
   li > ul {
-    margin-top: 20px;
+    margin-top: 6px;
   }
 
-  p,
-  li {
-    font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
-    font-weight: 400;
-    margin-bottom: 12px;
-
-    a {
-      color: $ui-highlight-color;
-      text-decoration: underline;
-    }
-  }
-
-  em {
-    display: inline-block;
-    padding: 7px 7px 5px;
-    margin: 0 2px;
-    background: $ui-primary-color;
-    color: $ui-base-color;
-    font: 16px/16px 'mastodon-font-sans-serif', sans-serif;
-    font-weight: 300;
-  }
-
-  .screenshot {
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
-    margin-bottom: 26px;
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-  }
-
-  .actions {
-    overflow: hidden;
-    margin-bottom: 20px;
-
-    .info {
-      float: right;
-      text-align: right;
-      line-height: 36px;
-
-      a {
-        color: $ui-primary-color;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  @media screen and (max-width: 625px) {
-    .wrapper {
-      padding: 20px;
-    }
-  }
-}
-
-.information-board {
-  background: darken($ui-base-color, 4%);
-  padding: 20px 0;
-
-  .panel {
-    position: absolute;
-    width: 280px;
-    box-sizing: border-box;
-    background: darken($ui-base-color, 8%);
-    padding: 20px;
-    padding-top: 10px;
-    border-radius: 4px 4px 0 0;
-    right: 0;
-    bottom: -40px;
-
-    .panel-header {
-      font-family: 'mastodon-font-display', sans-serif;
-      font-size: 14px;
-      line-height: 24px;
-      font-weight: 500;
-      color: $ui-base-lighter-color;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-      border-bottom: 1px solid lighten($ui-base-color, 4%);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-
-      a,
-      span {
-        font-weight: 400;
-        color: lighten($ui-base-color, 34%);
-      }
-
-      a {
-        text-decoration: none;
-      }
-    }
+  hr {
+    border-color: rgba($ui-base-lighter-color, .6);
   }
 
   .container {
-    position: relative;
-    padding-right: 280px + 15px;
-  }
-
-  .information-board-sections {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  .section {
-    flex: 1 0 0;
-    font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
-    text-align: right;
-    padding: 10px 15px;
-
-    span,
-    strong {
-      display: block;
-    }
-
-    span {
-      font-size: 16px;
-
-      &:last-child {
-        color: $ui-secondary-color;
-      }
-    }
-
-    strong {
-      font-weight: 500;
-      font-size: 32px;
-      line-height: 48px;
-      color: $primary-text-color;
-    }
-  }
-}
-
-.owner {
-  text-align: center;
-
-  .avatar {
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 800px;
     margin: 0 auto;
-    margin-bottom: 15px;
-
-    img {
-      display: block;
-      width: 80px;
-      height: 80px;
-      border-radius: 48px;
-    }
   }
 
-  .name {
-    font-size: 14px;
-
-    a {
-      display: block;
-      color: $primary-text-color;
-      text-decoration: none;
-
-      &:hover {
-        .display_name {
-          text-decoration: underline;
-        }
-      }
-    }
-
-    .username {
-      display: block;
-      color: $ui-primary-color;
-    }
-  }
-}
-
-.features-list__row {
-  display: flex;
-  padding: 10px 0;
-  justify-content: space-between;
-
-  &:first-child {
-    padding-top: 0;
-  }
-
-  .visual {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    margin-left: 15px;
-
-    .fa {
-      display: block;
-      color: $ui-primary-color;
-      font-size: 48px;
-    }
-  }
-
-  .text {
-    font-size: 16px;
-    line-height: 30px;
-    color: $ui-base-lighter-color;
-
-    h6 {
-      font-weight: 500;
-      color: $ui-primary-color;
-    }
-  }
-}
-
-.landing-page {
   .header-wrapper {
     padding-top: 15px;
     background: $ui-base-color;
@@ -284,6 +138,17 @@
 
       .hero .heading {
         padding-bottom: 30px;
+        font-family: 'mastodon-font-sans-serif', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 30px;
+        color: $ui-primary-color;
+
+        a {
+          color: $ui-highlight-color;
+          text-decoration: underline;
+        }
       }
     }
 
@@ -307,17 +172,6 @@
     }
   }
 
-  p,
-  li {
-    font: inherit;
-    font-weight: inherit;
-    margin-bottom: 0;
-  }
-
-  hr {
-    border-color: rgba($ui-base-lighter-color, .6);
-  }
-
   .header {
     line-height: 30px;
     overflow: hidden;
@@ -325,6 +179,62 @@
     .container {
       display: flex;
       justify-content: space-between;
+    }
+
+    .links {
+      position: relative;
+      z-index: 4;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $ui-primary-color;
+        text-decoration: none;
+        padding: 12px 16px;
+        line-height: 32px;
+        font-family: 'mastodon-font-display', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+
+        &:hover {
+          color: $ui-secondary-color;
+        }
+      }
+
+      .brand {
+        a {
+          padding-left: 0;
+          padding-right: 0;
+          color: $white;
+        }
+
+        img {
+          height: 32px;
+          position: relative;
+          top: 4px;
+          left: -10px;
+        }
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+
+        li {
+          display: inline-block;
+          vertical-align: bottom;
+          margin: 0;
+
+          &:first-child a {
+            padding-left: 0;
+          }
+
+          &:last-child a {
+            padding-right: 0;
+          }
+        }
+      }
     }
 
     .hero {
@@ -379,6 +289,12 @@
         }
       }
 
+      .heading {
+        position: relative;
+        z-index: 4;
+        padding-bottom: 150px;
+      }
+
       .simple_form,
       .closed-registrations-message {
         background: darken($ui-base-color, 4%);
@@ -400,12 +316,6 @@
         }
       }
 
-      .heading {
-        position: relative;
-        z-index: 4;
-        padding-bottom: 150px;
-      }
-
       .closed-registrations-message {
         min-height: 330px;
         display: flex;
@@ -413,131 +323,140 @@
         justify-content: space-between;
       }
     }
+  }
 
-    ul {
-      list-style: none;
-      margin: 0;
+  .about-short {
+    background: darken($ui-base-color, 4%);
+    padding: 50px 0;
+    font-family: 'mastodon-font-sans-serif', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: $ui-primary-color;
 
-      li {
-        display: inline-block;
-        vertical-align: bottom;
-        margin: 0;
+    a {
+      color: $ui-highlight-color;
+      text-decoration: underline;
+    }
+  }
 
-        &:first-child a {
-          padding-left: 0;
-        }
+  .information-board {
+    background: darken($ui-base-color, 4%);
+    padding: 20px 0;
 
-        &:last-child a {
-          padding-right: 0;
-        }
-      }
+    .container {
+      position: relative;
+      padding-right: 280px + 15px;
     }
 
-    .links {
-      position: relative;
-      z-index: 4;
+    .information-board-sections {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
 
-      a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: $ui-primary-color;
-        text-decoration: none;
-        padding: 12px 16px;
-        line-height: 32px;
-        font-family: 'mastodon-font-display', sans-serif;
-        font-weight: 500;
-        font-size: 14px;
+    .section {
+      flex: 1 0 0;
+      font-family: 'mastodon-font-sans-serif', sans-serif;
+      font-size: 16px;
+      line-height: 28px;
+      color: $primary-text-color;
+      text-align: right;
+      padding: 10px 15px;
 
-        &:hover {
+      span,
+      strong {
+        display: block;
+      }
+
+      span {
+        &:last-child {
           color: $ui-secondary-color;
         }
       }
 
-      .brand {
-        a {
-          padding-left: 0;
-          padding-right: 0;
-          color: $white;
+      strong {
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 48px;
+      }
+    }
+
+    .panel {
+      position: absolute;
+      width: 280px;
+      box-sizing: border-box;
+      background: darken($ui-base-color, 8%);
+      padding: 20px;
+      padding-top: 10px;
+      border-radius: 4px 4px 0 0;
+      right: 0;
+      bottom: -40px;
+
+      .panel-header {
+        font-family: 'mastodon-font-display', sans-serif;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 500;
+        color: $ui-primary-color;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid lighten($ui-base-color, 4%);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        a,
+        span {
+          font-weight: 400;
+          color: darken($ui-primary-color, 10%);
         }
+
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .owner {
+      text-align: center;
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        margin-bottom: 15px;
 
         img {
-          height: 32px;
-          position: relative;
-          top: 4px;
-          left: -10px;
+          display: block;
+          width: 80px;
+          height: 80px;
+          border-radius: 48px;
+        }
+      }
+
+      .name {
+        font-size: 14px;
+
+        a {
+          display: block;
+          color: $primary-text-color;
+          text-decoration: none;
+
+          &:hover {
+            .display_name {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .username {
+          display: block;
+          color: $ui-primary-color;
         }
       }
     }
-  }
-
-  .container {
-    width: 100%;
-    box-sizing: border-box;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  .learn-more-cta {
-    background: darken($ui-base-color, 4%);
-    padding: 50px 0;
-  }
-
-  .extended-description {
-    padding: 50px 0;
-
-    ul,
-    ol {
-      list-style: inherit;
-      margin-left: 20px;
-
-      &[type='a'] {
-        list-style-type: lower-alpha;
-      }
-
-      &[type='i'] {
-        list-style-type: lower-roman;
-      }
-    }
-
-    li > ol,
-    li > ul {
-      margin-top: 20px;
-    }
-
-    p,
-    li {
-      font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
-      font-weight: 400;
-      margin-bottom: 12px;
-      color: $ui-base-lighter-color;
-
-      a {
-        color: $ui-highlight-color;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  h3 {
-    font-family: 'mastodon-font-display', sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: $ui-primary-color;
-  }
-
-  p {
-    font-size: 16px;
-    line-height: 30px;
-    color: $ui-base-lighter-color;
   }
 
   .features {
@@ -546,100 +465,121 @@
     .container {
       display: flex;
     }
-  }
 
-  #mastodon-timeline {
-    display: flex;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    font-family: 'mastodon-font-sans-serif', sans-serif;
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 400;
-    color: $primary-text-color;
-    width: 330px;
-    margin-right: 30px;
-    flex: 0 0 auto;
-    background: $ui-base-color;
-    overflow: hidden;
-    box-shadow: 0 0 6px rgba($black, 0.1);
-
-    .column-header {
-      color: inherit;
-      font-family: inherit;
-      font-size: 16px;
-      line-height: inherit;
-      font-weight: inherit;
-      margin: 0;
-      padding: 15px;
-    }
-
-    .column {
-      padding: 0;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .scrollable {
-      height: 400px;
-    }
-
-    p {
-      font-size: inherit;
-      line-height: inherit;
-      font-weight: inherit;
-      color: $primary-text-color;
-      margin-bottom: 20px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      a {
-        color: $ui-secondary-color;
-        text-decoration: none;
-      }
-    }
-  }
-
-  .about-mastodon {
-    max-width: 675px;
-
-    p {
-      margin-bottom: 20px;
-    }
-
-    .features-list {
-      margin-top: 20px;
-    }
-  }
-
-  em {
-    display: inline;
-    margin: 0;
-    padding: 0;
-    font-weight: 500;
-    background: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    color: $ui-primary-color;
-  }
-
-  h1 {
-    font-family: 'mastodon-font-display', sans-serif;
-    font-size: 26px;
-    line-height: 30px;
-    margin-bottom: 0;
-    font-weight: 500;
-    color: $ui-secondary-color;
-
-    small {
+    #mastodon-timeline {
+      display: flex;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
       font-family: 'mastodon-font-sans-serif', sans-serif;
-      display: block;
-      font-size: 18px;
+      font-size: 13px;
+      line-height: 18px;
       font-weight: 400;
-      color: $ui-base-lighter-color;
+      color: $primary-text-color;
+      width: 330px;
+      margin-right: 30px;
+      flex: 0 0 auto;
+      background: $ui-base-color;
+      overflow: hidden;
+      box-shadow: 0 0 6px rgba($black, 0.1);
+
+      .column-header {
+        color: inherit;
+        font-family: inherit;
+        font-size: 16px;
+        line-height: inherit;
+        font-weight: inherit;
+        margin: 0;
+        padding: 15px;
+      }
+
+      .column {
+        padding: 0;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .scrollable {
+        height: 400px;
+      }
+
+      p {
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: inherit;
+        color: $primary-text-color;
+        margin-bottom: 20px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        a {
+          color: $ui-secondary-color;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .about-mastodon {
+      max-width: 675px;
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      .features-list {
+        margin-top: 20px;
+
+        .features-list__row {
+          display: flex;
+          padding: 10px 0;
+          justify-content: space-between;
+
+          &:first-child {
+            padding-top: 0;
+          }
+
+          .visual {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+
+            .fa {
+              display: block;
+              color: $ui-primary-color;
+              font-size: 48px;
+            }
+          }
+
+          .text {
+            font-size: 16px;
+            line-height: 30px;
+            color: $ui-primary-color;
+
+            h6 {
+              font-size: inherit;
+              line-height: inherit;
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .extended-description {
+    padding: 50px 0;
+    font-family: 'mastodon-font-sans-serif', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: $ui-primary-color;
+
+    a {
+      color: $ui-highlight-color;
+      text-decoration: underline;
     }
   }
 
@@ -663,8 +603,15 @@
       padding: 0 20px;
     }
 
-    .information-board .container {
-      padding-right: 20px;
+    .information-board {
+
+      .container {
+        padding-right: 20px;
+      }
+
+      .section {
+        text-align: center;
+      }
 
       .panel {
         position: static;
@@ -676,10 +623,6 @@
           text-align: center;
         }
       }
-    }
-
-    .information-board .section {
-      text-align: center;
     }
 
     .header-wrapper .mascot {
@@ -699,6 +642,7 @@
 
       &.compact .hero .heading {
         padding-bottom: 20px;
+        text-align: initial;
       }
     }
 
@@ -707,51 +651,41 @@
       display: block;
     }
 
-    .links {
-      padding-top: 15px;
-      background: darken($ui-base-color, 4%);
-    }
-
     .header {
+
+      .links {
+        padding-top: 15px;
+        background: darken($ui-base-color, 4%);
+
+        a {
+          padding: 12px 8px;
+        }
+
+        .nav {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: space-around;
+        }
+
+        .brand img {
+          left: 0;
+          top: 0;
+        }
+      }
 
       .hero {
         margin-top: 30px;
         padding: 0;
 
-        .heading {
-          padding: 0 20px 20px;
+        .floats {
+          display: none;
         }
-      }
 
-      .floats {
-        display: none;
-      }
+        .heading {
+          padding: 30px 20px;
+          text-align: center;
+        }
 
-      .heading,
-      .nav {
-        text-align: center;
-      }
-
-      .nav {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-around;
-      }
-
-      .links a {
-        padding: 12px 8px;
-      }
-
-      .heading h1 {
-        padding: 30px 0;
-      }
-
-      .links .brand img {
-        left: 0;
-        top: 0;
-      }
-
-      .hero {
         .simple_form,
         .closed-registrations-message {
           background: darken($ui-base-color, 8%);
@@ -762,7 +696,7 @@
       }
     }
 
-    #mastodon-timeline {
+    .features #mastodon-timeline {
       height: 70vh;
       width: 100%;
       margin-bottom: 50px;

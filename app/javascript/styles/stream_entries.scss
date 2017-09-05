@@ -8,6 +8,7 @@
     .detailed-status.light,
     .status.light {
       border-bottom: 1px solid $ui-secondary-color;
+      animation: none;
     }
 
     &:last-child {
@@ -34,6 +35,14 @@
         }
       }
     }
+
+    @media screen and (max-width: 740px) {
+      &,
+      .detailed-status.light,
+      .status.light {
+        border-radius: 0 !important;
+      }
+    }
   }
 
   &.with-header {
@@ -43,6 +52,14 @@
         .detailed-status.light,
         .status.light {
           border-radius: 0;
+        }
+
+        &:last-child {
+          &,
+          .detailed-status.light,
+          .status.light {
+            border-radius: 0 0 4px 4px;
+          }
         }
       }
     }
@@ -401,6 +418,36 @@
           border-radius: 4px;
         }
       }
+    }
+  }
+}
+
+.button.button-secondary.logo-button {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  font-size: 14px;
+
+  svg {
+    width: 20px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 5px;
+
+    path:first-child {
+      fill: $ui-primary-color;
+    }
+
+    path:last-child {
+      fill: $simple-background-color;
+    }
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    svg path:first-child {
+      fill: lighten($ui-primary-color, 4%);
     }
   }
 }
