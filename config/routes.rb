@@ -217,6 +217,7 @@ Rails.application.routes.draw do
         patch :update_credentials, to: 'credentials#update'
         resource :search, only: :show, controller: :search
         resources :relationships, only: :index
+        resources :statuses_pins, only: :index
       end
 
       resources :accounts, only: [:show] do
