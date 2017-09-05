@@ -53,6 +53,8 @@ ja:
       are_you_sure: 本当に実行しますか？
       confirm: 確認
       confirmed: 確認済み
+      approve: 承認
+      approved: 承認済み
       disable_two_factor_authentication: 二段階認証を無効にする
       display_name: 表示名
       domain: ドメイン
@@ -216,6 +218,9 @@ ja:
         desc_html: ランディングページに公開タイムラインを表示します
         title: タイムラインプレビュー
       title: サイト設定
+      need_approval:
+        desc_html: アカウント作成時にあなたの許可を求めます
+        title: 登録の制限
     statuses:
       back_to_account: アカウントページに戻る
       batch:
@@ -257,6 +262,7 @@ ja:
     your_token: アクセストークン
   auth:
     agreement_html: 登録すると <a href="%{rules_path}">利用規約</a> と <a href="%{terms_path}">プライバシーポリシー</a> に同意したことになります。
+    need_approval_hint: あなたのアカウントは管理者の承認の後に有効化されます。
     change_password: セキュリティ
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。

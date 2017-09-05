@@ -109,6 +109,7 @@ class Account < ApplicationRecord
            :current_sign_in_ip,
            :current_sign_in_at,
            :confirmed?,
+           :approved?,
            :admin?,
            :locale,
            to: :user,

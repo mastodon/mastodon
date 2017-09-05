@@ -415,6 +415,9 @@ ActiveRecord::Schema.define(version: 20170927215609) do
     t.datetime "last_emailed_at"
     t.string "otp_backup_codes", array: true
     t.string "filtered_languages", default: [], null: false, array: true
+    t.datetime "approval_sent_at"
+    t.datetime "approved_at"
+    t.integer "approved_by"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

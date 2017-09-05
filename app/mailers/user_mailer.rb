@@ -15,6 +15,16 @@ class UserMailer < Devise::Mailer
     end
   end
 
+  def new_user_waiting_for_approval(recipient, user, _opts = {})
+    @me       = recipient
+    @resource = user
+    @instance = Rails.configuration.x.local_domain
+
+    I18n.with_locale(@me.locale || I18n.default_locale) do
+      mail to: @me.email, subject: I18n.t('devise.mailer.new_user_waiting_for_approval.subject', acct: @resource.account.local_username_and_domain)
+    end
+  end
+
   def reset_password_instructions(user, token, _opts = {})
     @resource = user
     @token    = token

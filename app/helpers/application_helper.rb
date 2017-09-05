@@ -21,6 +21,10 @@ module ApplicationHelper
     Setting.open_deletion
   end
 
+  def need_approval?
+    Setting.need_approval
+  end
+
   def add_rtl_body_class(other_classes)
     other_classes = "#{other_classes} rtl" if [:ar, :fa, :he].include?(I18n.locale)
     other_classes

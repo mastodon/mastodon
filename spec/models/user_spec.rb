@@ -72,6 +72,21 @@ RSpec.describe User, type: :model do
       end
     end
 
+    describe 'approved' do
+      around do |example|
+        need_approval = Setting.need_approval
+        example.run
+        Setting.need_approval = need_approval
+      end
+
+      it 'returns an array of users who are approved' do
+        Setting.need_approval = true
+        user_1 = Fabricate(:user, approved_at: nil)
+        user_2 = Fabricate(:user, approved_at: Time.now)
+        expect(User.approved).to match_array([user_2])
+      end
+    end
+
     describe 'inactive' do
       it 'returns a relation of inactive users' do
         specified = Fabricate(:user, current_sign_in_at: 15.days.ago)
@@ -148,6 +163,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#approved?' do
+    it 'returns true when a approved_at is set' do
+      user = Fabricate.build(:user, approved_at: Time.now.utc)
+      expect(user.approved?).to be true
+    end
+
+    it 'returns false if a approved_at is nil' do
+      user = Fabricate.build(:user, approved_at: nil)
+      expect(user.approved?).to be false
+    end
+  end
+
   describe '#disable_two_factor!' do
     it 'saves false for otp_required_for_login' do
       user = Fabricate.build(:user, otp_required_for_login: true)
@@ -177,6 +204,34 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#request_approval' do
+    around do |example|
+      queue_adapter = ActiveJob::Base.queue_adapter
+      need_approval = Setting.need_approval?
+      example.run
+      ActiveJob::Base.queue_adapter = queue_adapter
+      Setting.need_approval = need_approval
+    end
+
+    it 'delivers approval request later when need_approval is true' do
+      Setting.need_approval = true
+      user = Fabricate(:user)
+      ActiveJob::Base.queue_adapter = :test
+
+      expect { user.request_approval }.to have_enqueued_job(ActionMailer::DeliveryJob)
+      expect { user.approved? }.to eq false
+    end
+
+    it 'automatically approve instead of requesting approval when need_approval is false' do
+      Setting.need_approval = false
+      user = Fabricate(:user)
+      ActiveJob::Base.queue_adapter = :test
+
+      expect { user.request_approval }.not_to have_enqueued_job(ActionMailer::DeliveryJob)
+      expect { user.approved? }.to eq true
+    end
+  end
+
   describe '#setting_auto_play_gif' do
     it 'returns auto-play gif setting' do
       user = Fabricate(:user)
@@ -184,7 +239,7 @@ RSpec.describe User, type: :model do
       expect(user.setting_auto_play_gif).to eq false
     end
   end
-  
+
   describe '#setting_system_font_ui' do
     it 'returns system font ui setting' do
       user = Fabricate(:user)

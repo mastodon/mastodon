@@ -1,0 +1,6 @@
+こんにちは、<%= @me.account.username %>さん。
+
+<%= @resource.account.local_username_and_domain %> が <%= @instance %> に
+アカウントを作成しようとしています。登録されたアドレスは <%= @resource.email %> です。
+
+<%= link_to "こちら", admin_account_url(@resource.account.id) %> から操作を完了してください。

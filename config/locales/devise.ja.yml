@@ -15,6 +15,7 @@ ja:
       timeout: セッションの有効期限が切れました。続行するには再度ログインしてください。
       unauthenticated: 続行するにはログインするか、アカウントを作成してください。
       unconfirmed: 続行するにはメールアドレスを確認する必要があります。
+      not_approved: アカウントを使用するには管理者の承認が必要です。
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: メールアドレスの確認'
@@ -24,6 +25,8 @@ ja:
         subject: 'Mastodon: パスワード再発行'
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
+      new_user_waiting_for_approval:
+        subject: 'Mastodon: %{acct}からの承認要求'
     omniauth_callbacks:
       failure: "%{reason}によって%{kind}からのアクセスを認証できませんでした。"
       success: "%{kind}からのアクセスは正常に認証されました。"
@@ -39,6 +42,7 @@ ja:
       signed_up_but_inactive: アカウントの作成が完了しました。しかし、アカウントが有効化されていないためログインできませんでした。
       signed_up_but_locked: アカウントの作成が完了しました。しかし、アカウントがロックされているためログインできませんでした。
       signed_up_but_unconfirmed: メールアドレスの確認用のリンクが入力したメールアドレスに送信されました。メール内のリンクをクリックしてアカウントを有効化してください。
+      signed_up_but_not_approved: アカウントの作成が完了しました。使用のためには管理者の承認を待つ必要があります。
       update_needs_confirmation: アカウント情報の更新に成功しました。しかし、メールアドレスの確認が必要です。送信されたメール内のリンクをクリックしてメールアドレスを確認してください。
       updated: アカウント情報の更新に成功しました。
     sessions:
