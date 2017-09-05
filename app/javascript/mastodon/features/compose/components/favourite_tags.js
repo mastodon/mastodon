@@ -69,7 +69,7 @@ class FavouriteTags extends React.PureComponent {
           <i className={`fa fa-fw fa-${this.visibilityToIcon(tag.get('visibility'))}`} />
         </div>
         <Link
-           to={`/timelines/tag/${tag.get('name')}`}
+           to={`/timelines/tag/${tag.get('name').toLowerCase()}`}
            className='favourite-tags__name'
            key={tag.get('name')}
         >
