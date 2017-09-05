@@ -22,6 +22,7 @@
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
 #  conversation_id        :integer
+#  local                  :boolean          default(FALSE), not null
 #
 
 class Status < ApplicationRecord
@@ -83,10 +84,6 @@ class Status < ApplicationRecord
     !in_reply_to_id.nil? || attributes['reply']
   end
 
-  def local?
-    uri.nil?
-  end
-
   def reblog?
     !reblog_of_id.nil?
   end
@@ -136,6 +133,7 @@ class Status < ApplicationRecord
   before_validation :set_visibility
   before_validation :set_conversation
   before_validation :set_sensitivity
+  before_validation :set_local
 
   class << self
     def not_in_filtered_languages(account)
@@ -291,5 +289,9 @@ class Status < ApplicationRecord
     else
       thread.account_id
     end
+  end
+
+  def set_local
+    self.local = account.local?
   end
 end
