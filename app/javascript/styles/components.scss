@@ -1616,11 +1616,15 @@
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
-  padding-right: 15px;
+  padding: 0 5px 0 0;
   z-index: 3;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  &:last-child {
+    padding: 0 15px 0 0;
   }
 }
 
@@ -2176,7 +2180,7 @@ button.icon-button.active i.fa-retweet {
   color: $ui-primary-color;
   cursor: pointer;
   font-size: 16px;
-  padding-right: 15px;
+  padding: 0 15px;
 
   &:hover {
     color: lighten($ui-primary-color, 7%);
