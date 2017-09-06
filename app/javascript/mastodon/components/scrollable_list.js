@@ -5,6 +5,7 @@ import IntersectionObserverArticle from './intersection_observer_article';
 import LoadMore from './load_more';
 import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 import { throttle } from 'lodash';
+import { List as ImmutableList } from 'immutable';
 
 export default class ScrollableList extends PureComponent {
 
@@ -95,7 +96,12 @@ export default class ScrollableList extends PureComponent {
 
   getFirstChildKey (props) {
     const { children } = props;
-    const firstChild = Array.isArray(children) ? children[0] : children;
+    let firstChild = children;
+    if (children instanceof ImmutableList) {
+      firstChild = children.get(0);
+    } else if (Array.isArray(children)) {
+      firstChild = children[0];
+    }
     return firstChild && firstChild.key;
   }
 
