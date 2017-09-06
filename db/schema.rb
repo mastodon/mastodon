@@ -315,7 +315,7 @@ ActiveRecord::Schema.define(version: 20170905165803) do
     t.integer "reblogs_count", default: 0, null: false
     t.string "language"
     t.bigint "conversation_id"
-    t.boolean "local", default: false
+    t.boolean "local"
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
