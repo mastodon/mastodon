@@ -530,7 +530,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       link = entry.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' && node[:type] == 'text/html' }
       expect(link[:type]).to eq 'text/html'
-      expect(link[:href]).to eq "https://cb6e6126.ngrok.io/users/username/updates/#{status.stream_entry.id}"
+      expect(link[:href]).to eq "https://cb6e6126.ngrok.io/@username/#{status.id}"
     end
 
     it 'appends link element for itself' do
@@ -551,7 +551,7 @@ RSpec.describe OStatus::AtomSerializer do
       entry = OStatus::AtomSerializer.new.entry(reply_status.stream_entry)
 
       in_reply_to = entry.nodes.find { |node| node.name == 'thr:in-reply-to' }
-      expect(in_reply_to[:ref]).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{in_reply_to_status.id}:objectType=Status"
+      expect(in_reply_to[:ref]).to eq "https://cb6e6126.ngrok.io/users/#{in_reply_to_status.account.to_param}/statuses/#{in_reply_to_status.id}"
     end
 
     it 'does not append thr:in-reply-to element if not threaded' do
@@ -1461,7 +1461,8 @@ RSpec.describe OStatus::AtomSerializer do
     end
 
     it 'appends updated element with updated date' do
-      status = Fabricate(:status, updated_at: '2000-01-01T00:00:00Z')
+      status = Fabricate(:status)
+      status.updated_at = '2000-01-01T00:00:00Z'
       object = OStatus::AtomSerializer.new.object(status)
       expect(object.updated.text).to eq '2000-01-01T00:00:00Z'
     end
