@@ -80,6 +80,10 @@ class Status < ApplicationRecord
 
   delegate :domain, to: :account, prefix: true
 
+  def local?
+    attributes['local'] || uri.nil?
+  end
+
   def reply?
     !in_reply_to_id.nil? || attributes['reply']
   end
