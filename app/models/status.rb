@@ -80,12 +80,12 @@ class Status < ApplicationRecord
 
   delegate :domain, to: :account, prefix: true
 
-  def local?
-    attributes['local'] || uri.nil?
-  end
-
   def reply?
     !in_reply_to_id.nil? || attributes['reply']
+  end
+
+  def local?
+    attributes['local'] || uri.nil?
   end
 
   def reblog?
@@ -258,7 +258,7 @@ class Status < ApplicationRecord
   private
 
   def store_uri
-    self.uri = ActivityPub::TagManager.instance.uri_for(self) if uri.nil?
+    update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
   end
 
   def prepare_contents
