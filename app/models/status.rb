@@ -22,7 +22,7 @@
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
 #  conversation_id        :integer
-#  local                  :boolean          default(FALSE), not null
+#  local                  :boolean          default(FALSE)
 #
 
 class Status < ApplicationRecord
