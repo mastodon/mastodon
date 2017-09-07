@@ -2347,22 +2347,6 @@ button.icon-button.active i.fa-retweet {
   height: 100%;
 }
 
-.media-spoiler__video {
-  align-items: center;
-  background: $base-overlay-background;
-  color: $primary-text-color;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  border: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  z-index: 100;
-}
-
 .media-spoiler__warning {
   display: block;
   font-size: 14px;
@@ -3821,6 +3805,8 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   margin-top: 8px;
   position: relative;
+  border: 0;
+  display: block;
 }
 
 .media-spoiler-video-play-icon {
