@@ -325,7 +325,7 @@ ActiveRecord::Schema.define(version: 20170905165803) do
 
   create_table "statuses_tags", id: false, force: :cascade do |t|
     t.bigint "status_id", null: false
-    t.integer "tag_id", null: false
+    t.bigint "tag_id", null: false
     t.index ["status_id"], name: "index_statuses_tags_on_status_id"
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
