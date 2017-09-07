@@ -47,7 +47,7 @@ namespace :mastodon do
     confirm = STDIN.gets.chomp
     puts
 
-    if confirm.casecmp?('y')
+    if confirm.casecmp('y').zero?
       password = SecureRandom.hex
       user = User.new(email: email, password: password, account_attributes: { username: username })
       if user.save
@@ -289,13 +289,13 @@ namespace :mastodon do
       puts 'Delete records and associated files from deprecated preview cards? [y/N]: '
       confirm = STDIN.gets.chomp
 
-      if confirm.casecmp?('y')
+      if confirm.casecmp('y').zero?
         DeprecatedPreviewCard.in_batches.destroy_all
 
         puts 'Drop deprecated preview cards table? [y/N]: '
         confirm = STDIN.gets.chomp
 
-        if confirm.casecmp?('y')
+        if confirm.casecmp('y').zero?
           ActiveRecord::Migration.drop_table :deprecated_preview_cards
         end
       end
