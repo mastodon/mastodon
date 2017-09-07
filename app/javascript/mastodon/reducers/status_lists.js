@@ -4,7 +4,6 @@ import {
 } from '../actions/favourites';
 import {
   PINNED_STATUSES_FETCH_SUCCESS,
-  PINNED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/pin_statuses';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import {
@@ -66,8 +65,6 @@ export default function statusLists(state = initialState, action) {
     return removeOneFromList(state, 'favourites', action.status);
   case PINNED_STATUSES_FETCH_SUCCESS:
     return normalizeList(state, 'pins', action.statuses, action.next);
-  case PINNED_STATUSES_EXPAND_SUCCESS:
-    return appendToList(state, 'pins', action.statuses, action.next);
   case PIN_SUCCESS:
     return prependOneToList(state, 'pins', action.status);
   case UNPIN_SUCCESS:

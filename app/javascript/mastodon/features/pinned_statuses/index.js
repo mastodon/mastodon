@@ -15,6 +15,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   statusIds: state.getIn(['status_lists', 'pins', 'items']),
+  hasMore: !!state.getIn(['status_lists', 'pins', 'next']),
 });
 
 @connect(mapStateToProps)
@@ -25,6 +26,7 @@ export default class PinnedStatuses extends ImmutablePureComponent {
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
     intl: PropTypes.object.isRequired,
+    hasMore: PropTypes.bool.isRequired,
   };
 
   componentWillMount () {
@@ -40,7 +42,7 @@ export default class PinnedStatuses extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, statusIds } = this.props;
+    const { intl, statusIds, hasMore } = this.props;
 
     return (
       <Column icon='thumb-tack' heading={intl.formatMessage(messages.heading)} ref={this.setRef}>
@@ -48,6 +50,7 @@ export default class PinnedStatuses extends ImmutablePureComponent {
         <StatusList
           statusIds={statusIds}
           scrollKey='pinned_statuses'
+          hasMore={hasMore}
         />
       </Column>
     );
