@@ -20,7 +20,7 @@
 
 %table.table
   %tbody
-    - current_account.favourite_tags.each do |fav_tag|
+    - current_account.favourite_tags.order(:id).includes(:tag).each do |fav_tag|
       %tr
         %td
           = fa_icon 'tag'
