@@ -813,6 +813,10 @@
         "id": "navigation_bar.info"
       },
       {
+        "defaultMessage": "Pinned toots",
+        "id": "navigation_bar.pins"
+      },
+      {
         "defaultMessage": "FAQ",
         "id": "getting_started.faq"
       },
@@ -995,6 +999,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Pinned toot",
+        "id": "column.pins"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/pinned_statuses/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Federated timeline",
         "id": "column.public"
       },
@@ -1075,6 +1088,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/status/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Who to follow",
+        "id": "column.suggestions"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/suggestions/index.json"
   },
   {
     "descriptors": [
