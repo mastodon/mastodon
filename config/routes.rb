@@ -213,10 +213,13 @@ Rails.application.routes.draw do
       end
 
       namespace :accounts do
-        get :verify_credentials, to: 'credentials#show'
+        get   :verify_credentials, to: 'credentials#show'
         patch :update_credentials, to: 'credentials#update'
+
         resource :search, only: :show, controller: :search
+
         resources :relationships, only: :index
+        resources :suggestions, only: :index
       end
 
       resources :accounts, only: [:show] do

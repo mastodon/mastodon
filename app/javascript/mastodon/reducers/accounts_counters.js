@@ -8,6 +8,7 @@ import {
   FOLLOW_REQUESTS_EXPAND_SUCCESS,
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS,
+  FOLLOW_SUGGESTIONS_FETCH_SUCCESS,
 } from '../actions/accounts';
 import {
   BLOCKS_FETCH_SUCCESS,
@@ -106,6 +107,7 @@ export default function accountsCounters(state = initialState, action) {
   case BLOCKS_EXPAND_SUCCESS:
   case MUTES_FETCH_SUCCESS:
   case MUTES_EXPAND_SUCCESS:
+  case FOLLOW_SUGGESTIONS_FETCH_SUCCESS:
     return normalizeAccounts(state, action.accounts);
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:

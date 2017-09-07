@@ -117,3 +117,7 @@ export function VideoPlayer () {
 export function EmbedModal () {
   return import(/* webpackChunkName: "modals/embed_modal" */'../components/embed_modal');
 }
+
+export function Suggestions () {
+  return import(/* webpackChunkName: "features/suggestions" */'../../suggestions');
+}
