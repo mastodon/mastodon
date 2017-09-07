@@ -7,12 +7,16 @@ import {
   FAVOURITE_SUCCESS,
   FAVOURITE_FAIL,
   UNFAVOURITE_SUCCESS,
+  PIN_SUCCESS,
+  UNPIN_SUCCESS,
 } from '../actions/interactions';
 import {
   STATUS_FETCH_SUCCESS,
   CONTEXT_FETCH_SUCCESS,
   STATUS_MUTE_SUCCESS,
   STATUS_UNMUTE_SUCCESS,
+  STATUS_SET_HEIGHT,
+  STATUSES_CLEAR_HEIGHT,
 } from '../actions/statuses';
 import {
   TIMELINE_REFRESH_SUCCESS,
@@ -33,7 +37,11 @@ import {
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
+import emojify from '../emoji';
 import { Map as ImmutableMap, fromJS } from 'immutable';
+import escapeTextContentForBrowser from 'escape-html';
+
+const domParser = new DOMParser();
 
 const normalizeStatus = (state, status) => {
   if (!status) {
@@ -49,7 +57,9 @@ const normalizeStatus = (state, status) => {
   }
 
   const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-  normalStatus.search_index = new DOMParser().parseFromString(searchContent, 'text/html').documentElement.textContent;
+  normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+  normalStatus.contentHtml = emojify(normalStatus.content);
+  normalStatus.spoilerHtml = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''));
 
   return state.update(status.id, ImmutableMap(), map => map.mergeDeep(fromJS(normalStatus)));
 };
@@ -82,6 +92,18 @@ const filterStatuses = (state, relationship) => {
   return state;
 };
 
+const setHeight = (state, id, height) => {
+  return state.update(id, ImmutableMap(), map => map.set('height', height));
+};
+
+const clearHeights = (state) => {
+  state.forEach(status => {
+    state = state.deleteIn([status.get('id'), 'height']);
+  });
+
+  return state;
+};
+
 const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
@@ -94,6 +116,8 @@ export default function statuses(state = initialState, action) {
   case UNREBLOG_SUCCESS:
   case FAVOURITE_SUCCESS:
   case UNFAVOURITE_SUCCESS:
+  case PIN_SUCCESS:
+  case UNPIN_SUCCESS:
     return normalizeStatus(state, action.response);
   case FAVOURITE_REQUEST:
     return state.setIn([action.status.get('id'), 'favourited'], true);
@@ -120,6 +144,10 @@ export default function statuses(state = initialState, action) {
     return deleteStatus(state, action.id, action.references);
   case ACCOUNT_BLOCK_SUCCESS:
     return filterStatuses(state, action.relationship);
+  case STATUS_SET_HEIGHT:
+    return setHeight(state, action.id, action.height);
+  case STATUSES_CLEAR_HEIGHT:
+    return clearHeights(state);
   default:
     return state;
   }

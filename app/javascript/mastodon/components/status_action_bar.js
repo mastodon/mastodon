@@ -21,6 +21,9 @@ const messages = defineMessages({
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
+  pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
+  unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
+  embed: { id: 'status.embed', defaultMessage: 'Embed' },
 });
 
 @injectIntl
@@ -40,7 +43,9 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onMute: PropTypes.func,
     onBlock: PropTypes.func,
     onReport: PropTypes.func,
+    onEmbed: PropTypes.func,
     onMuteConversation: PropTypes.func,
+    onPin: PropTypes.func,
     me: PropTypes.number,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
@@ -77,6 +82,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
     this.props.onDelete(this.props.status);
   }
 
+  handlePinClick = () => {
+    this.props.onPin(this.props.status);
+  }
+
   handleMentionClick = () => {
     this.props.onMention(this.props.status.get('account'), this.context.router.history);
   }
@@ -93,6 +102,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
     this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
   }
 
+  handleEmbed = () => {
+    this.props.onEmbed(this.props.status);
+  }
+
   handleReport = () => {
     this.props.onReport(this.props.status);
   }
@@ -103,9 +116,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
   render () {
     const { status, me, intl, withDismiss } = this.props;
-    const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
+
     const mutingConversation = status.get('muted');
-    const anonymousAccess = !me;
+    const anonymousAccess    = !me;
+    const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
 
     let menu = [];
     let reblogIcon = 'retweet';
@@ -113,6 +127,11 @@ export default class StatusActionBar extends ImmutablePureComponent {
     let replyTitle;
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
+
+    if (publicStatus) {
+      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+    }
+
     menu.push(null);
 
     if (withDismiss) {
@@ -121,6 +140,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
     }
 
     if (status.getIn(['account', 'id']) === me) {
+      if (publicStatus) {
+        menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+      }
+
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
@@ -151,7 +174,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     return (
       <div className='status__action-bar'>
         <IconButton className='status__action-bar-button' disabled={anonymousAccess} title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} />
-        <IconButton className='status__action-bar-button' disabled={anonymousAccess || reblogDisabled} active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
+        <IconButton className='status__action-bar-button' disabled={anonymousAccess || !publicStatus} active={status.get('reblogged')} pressed={status.get('reblogged')} title={!publicStatus ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
         <IconButton className='status__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
         {shareButton}
 

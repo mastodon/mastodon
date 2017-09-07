@@ -8,7 +8,7 @@ body.rtl {
   }
 
   .character-counter__wrapper {
-    margin-right: 0;
+    margin-right: 8px;
     margin-left: 16px;
   }
 
@@ -30,6 +30,11 @@ body.rtl {
   .column-header__buttons {
     left: 0;
     right: auto;
+  }
+
+  .column-header__back-button {
+    padding-left: 5px;
+    padding-right: 0;
   }
 
   .column-header__setting-arrows {
@@ -54,14 +59,41 @@ body.rtl {
     right: 10px;
   }
 
-  .status {
+  .status,
+  .activity-stream .status.light {
     padding-left: 10px;
     padding-right: 68px;
   }
 
-  .status__info .status__display-name {
+  .status__info .status__display-name,
+  .activity-stream .status.light .status__display-name {
     padding-left: 25px;
     padding-right: 0;
+  }
+
+  .activity-stream .pre-header {
+    padding-right: 68px;
+    padding-left: 0;
+  }
+
+  .status__prepend {
+    margin-left: 0;
+    margin-right: 68px;
+  }
+
+  .status__prepend-icon-wrapper {
+    left: auto;
+    right: -26px;
+  }
+
+  .activity-stream .pre-header .pre-header__icon {
+    left: auto;
+    right: 42px;
+  }
+
+  .account__avatar-overlay-overlay {
+    right: auto;
+    left: 0;
   }
 
   .column-back-button--slim-button {
@@ -69,8 +101,20 @@ body.rtl {
     left: 0;
   }
 
-  .status__relative-time {
+  .status__relative-time,
+  .activity-stream .status.light .status__header .status__meta {
     float: left;
+  }
+
+  .activity-stream .detailed-status.light .detailed-status__display-name > div {
+    float: right;
+    margin-right: 0;
+    margin-left: 10px;
+  }
+
+  .activity-stream .detailed-status.light .detailed-status__meta span > span {
+    margin-left: 0;
+    margin-right: 6px;
   }
 
   .status__action-bar-button {
@@ -129,6 +173,78 @@ body.rtl {
     right: -2.14285714em;
   }
 
+  .admin-wrapper .sidebar ul a i.fa,
+  a.table-action-link i.fa {
+    margin-right: 0;
+    margin-left: 5px;
+  }
+
+  .simple_form .check_boxes .checkbox label,
+  .simple_form .input.with_label.boolean label.checkbox {
+    padding-left: 0;
+    padding-right: 25px;
+  }
+
+  .simple_form .check_boxes .checkbox input[type="checkbox"],
+  .simple_form .input.boolean input[type="checkbox"] {
+    left: auto;
+    right: 0;
+  }
+
+  .simple_form .input-with-append .input input {
+    padding-left: 127px;
+    padding-right: 0;
+  }
+
+  .simple_form .input-with-append .append {
+    right: auto;
+    left: 0;
+  }
+
+  .table th,
+  .table td {
+    text-align: right;
+  }
+
+  .filters .filter-subset {
+    margin-right: 0;
+    margin-left: 45px;
+  }
+
+  .landing-page .header-wrapper .mascot {
+    right: 60px;
+    left: auto;
+  }
+
+  .landing-page .header .hero .floats .float-1 {
+    left: -120px;
+    right: auto;
+  }
+
+  .landing-page .header .hero .floats .float-2 {
+    left: 210px;
+    right: auto;
+  }
+
+  .landing-page .header .hero .floats .float-3 {
+    left: 110px;
+    right: auto;
+  }
+
+  .landing-page .header .links .brand img {
+    left: 0;
+  }
+
+  .landing-page .fa-external-link {
+    padding-right: 5px;
+    padding-left: 0 !important;
+  }
+
+  .landing-page .features #mastodon-timeline {
+    margin-right: 0;
+    margin-left: 30px;
+  }
+
   @media screen and (min-width: 1025px) {
     .column,
     .drawer {
@@ -138,11 +254,6 @@ body.rtl {
       &:first-child {
         padding-left: 5px;
         padding-right: 10px;
-      }
-
-      &:last-child {
-        padding-right: 0;
-        padding-left: 10px;
       }
     }
 

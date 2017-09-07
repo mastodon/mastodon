@@ -1,6 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import punycode from 'punycode';
+import classnames from 'classnames';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -32,7 +33,7 @@ export default class Card extends React.PureComponent {
     if (card.get('image')) {
       image = (
         <div className='status-card__image'>
-          <img src={card.get('image')} alt={card.get('title')} className='status-card__image-image' />
+          <img src={card.get('image')} alt={card.get('title')} className='status-card__image-image' width={card.get('width')} height={card.get('height')} />
         </div>
       );
     }
@@ -41,8 +42,12 @@ export default class Card extends React.PureComponent {
       provider = decodeIDNA(getHostname(card.get('url')));
     }
 
+    const className = classnames('status-card', {
+      'horizontal': card.get('width') > card.get('height'),
+    });
+
     return (
-      <a href={card.get('url')} className='status-card' target='_blank' rel='noopener'>
+      <a href={card.get('url')} className={className} target='_blank' rel='noopener'>
         {image}
 
         <div className='status-card__content'>

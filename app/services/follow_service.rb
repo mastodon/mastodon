@@ -14,7 +14,7 @@ class FollowService < BaseService
 
     return if source_account.following?(target_account)
 
-    if target_account.locked?
+    if target_account.locked? || target_account.activitypub?
       request_follow(source_account, target_account)
     else
       direct_follow(source_account, target_account)
@@ -28,9 +28,11 @@ class FollowService < BaseService
 
     if target_account.local?
       NotifyService.new.call(target_account, follow_request)
-    else
+    elsif target_account.ostatus?
       NotificationWorker.perform_async(build_follow_request_xml(follow_request), source_account.id, target_account.id)
       AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
+    elsif target_account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), source_account.id, target_account.inbox_url)
     end
 
     follow_request
@@ -62,5 +64,13 @@ class FollowService < BaseService
 
   def build_follow_xml(follow)
     OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_salmon(follow))
+  end
+
+  def build_json(follow_request)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+      follow_request,
+      serializer: ActivityPub::FollowSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json).sign!(follow_request.account))
   end
 end

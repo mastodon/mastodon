@@ -1,8 +1,9 @@
 .account-grid-card
-  .account-grid-card__header
+  .account-grid-card__header{ style: "background-image: url(#{account.header.url(:original)})" }
+  .account-grid-card__avatar
     .avatar= image_tag account.avatar.url(:original)
-    .name
-      = link_to TagManager.instance.url_for(account) do
-        %span.display_name.emojify= display_name(account)
-        %span.username @#{account.acct}
+  .name
+    = link_to TagManager.instance.url_for(account) do
+      %span.display_name.emojify= display_name(account)
+      %span.username @#{account.acct}
   %p.note.emojify= truncate(strip_tags(account.note), length: 150)

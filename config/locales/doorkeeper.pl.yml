@@ -3,8 +3,10 @@ pl:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nazwa
+        name: Nazwa aplikacji
         redirect_uri: URI przekierowania
+        scopes: Zakres
+        website: Strona aplikacji
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@ pl:
         redirect_uri: Jeden adres na linię tekstu
         scopes: Rozdziel zakresy (scopes) spacjami. Zostaw puste, aby użyć domyślnych zakresów.
       index:
+        application: Aplikacja
         callback_url: URL wywołania zwrotnego (callback)
+        delete: Usuń
         name: Nazwa
         new: Nowa aplikacja
+        scopes: Zakres
+        show: Pokaż
         title: Twoje aplikacje
       new:
         title: Nowa aplikacja
@@ -72,7 +78,7 @@ pl:
     errors:
       messages:
         access_denied: Właściciel zasobu lub serwer autoryzujący odrzuciły żądanie.
-        credential_flow_not_configured: Ścieżka "Resource Owner Password Credentials" zakończyła się błędem, ponieważ Doorkeeper.configure.resource_owner_from_credentials nie jest skonfigurowany.
+        credential_flow_not_configured: Ścieżka "Resource Owner Password Credentials" zakończyła się błędem, ponieważ Doorkeeper.configure.resource_owner_from_credentials nie został skonfigurowany.
         invalid_client: Autoryzacja klienta nie powiodła się z powodu nieznanego klienta, braku uwierzytelnienia klienta, lub niewspieranej metody uwierzytelniania.
         invalid_grant: Grant uwierzytelnienia jest niepoprawny, przeterminowany, unieważniony, nie pasuje do URI przekierowwania użytego w żądaniu uwierzytelnienia, lub został wystawiony przez innego klienta.
         invalid_redirect_uri: URI przekierowania jest nieprawidłowy.
@@ -83,8 +89,8 @@ pl:
           expired: Token dostępowy wygasł
           revoked: Token dostępowy został unieważniony
           unknown: Token dostępowy jest błędny
-        resource_owner_authenticator_not_configured: Wyszukiwanie właściciela zasobu nie powiodło się, ponieważ Doorkeeper.configure.resource_owner_authenticator jest nieskonfigurowany.
-        server_error: Serwer uwierzytelniający napotkał niespodziewane warunki, które uniemożliwiły obsłużenie żądania.
+        resource_owner_authenticator_not_configured: Wyszukiwanie właściciela zasobu nie powiodło się, ponieważ Doorkeeper.configure.resource_owner_authenticator nie został skonfigurowany.
+        server_error: Serwer uwierzytelniający napotkał nieoczekiwand warunki, które uniemożliwiły obsłużenie żądania.
         temporarily_unavailable: Serwer uwierzytelniający nie jest obecnie w stanie obsłużyć żądania z powodu tymczasowego przeciążenia lub prac konserwacyjnych.
         unauthorized_client: Klient nie jest uprawniony do wykonania tego żądania przy pomocy tej metody.
         unsupported_grant_type: Ten typ grantu uwierzytelniającego nie jest wspierany przez serwer uwierzytelniający.
@@ -92,14 +98,14 @@ pl:
     flash:
       applications:
         create:
-          notice: Aplikacja utworzona.
+          notice: Utworzono aplikację.
         destroy:
-          notice: Aplikacja usunięta.
+          notice: Usunięto aplikację.
         update:
-          notice: Aplikacja zaktualizowana.
+          notice: Zaktualizowano aplikację.
       authorized_applications:
         destroy:
-          notice: Aplikacja unieważniona.
+          notice: Unieważniono aplikację.
     layouts:
       admin:
         nav:
@@ -110,4 +116,4 @@ pl:
     scopes:
       follow: śledzenie, blokowanie, usuwanie blokady, anulowanie śledzenia kont
       read: dostęp do odczytu danych konta
-      write: publikowanie postów w Twoim imieniu
+      write: publikowanie wpisów w Twoim imieniu

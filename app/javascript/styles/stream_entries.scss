@@ -8,6 +8,7 @@
     .detailed-status.light,
     .status.light {
       border-bottom: 1px solid $ui-secondary-color;
+      animation: none;
     }
 
     &:last-child {
@@ -34,6 +35,14 @@
         }
       }
     }
+
+    @media screen and (max-width: 740px) {
+      &,
+      .detailed-status.light,
+      .status.light {
+        border-radius: 0 !important;
+      }
+    }
   }
 
   &.with-header {
@@ -43,6 +52,14 @@
         .detailed-status.light,
         .status.light {
           border-radius: 0;
+        }
+
+        &:last-child {
+          &,
+          .detailed-status.light,
+          .status.light {
+            border-radius: 0 0 4px 4px;
+          }
         }
       }
     }
@@ -386,19 +403,52 @@
 
 .embed {
   .activity-stream {
-    border-radius: 4px;
     box-shadow: none;
 
     .entry {
-      &:last-child {
-        border-radius: 0 0 4px 4px;
-      }
 
-      &:first-child {
-        border-radius: 4px 4px 0 0;
+      .detailed-status.light {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
 
-        &:last-child {
-          border-radius: 4px;
+        .detailed-status__display-name {
+          flex: 1;
+          margin: 0 5px 15px 0;
+        }
+
+        .button.button-secondary.logo-button {
+          flex: 0 auto;
+          font-size: 14px;
+
+          svg {
+            width: 20px;
+            height: auto;
+            vertical-align: middle;
+            margin-right: 5px;
+
+            path:first-child {
+              fill: $ui-primary-color;
+            }
+
+            path:last-child {
+              fill: $simple-background-color;
+            }
+          }
+
+          &:active,
+          &:focus,
+          &:hover {
+            svg path:first-child {
+              fill: lighten($ui-primary-color, 4%);
+            }
+          }
+        }
+
+        .status__content,
+        .detailed-status__meta {
+          flex: 100%;
         }
       }
     }

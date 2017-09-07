@@ -1,22 +1,44 @@
 require 'rails_helper'
 
 RSpec.describe ProcessMentionsService do
-  let(:account)     { Fabricate(:account, username: 'alice') }
-  let(:remote_user) { Fabricate(:account, username: 'remote_user', domain: 'example.com', salmon_url: 'http://salmon.example.com') }
-  let(:status)      { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct}") }
+  let(:account) { Fabricate(:account, username: 'alice') }
+  let(:status)  { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct}") }
 
-  subject { ProcessMentionsService.new }
+  context 'OStatus' do
+    let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :ostatus, domain: 'example.com', salmon_url: 'http://salmon.example.com') }
 
-  before do
-    stub_request(:post, remote_user.salmon_url)
-    subject.(status)
+    subject { ProcessMentionsService.new }
+
+    before do
+      stub_request(:post, remote_user.salmon_url)
+      subject.call(status)
+    end
+
+    it 'creates a mention' do
+      expect(remote_user.mentions.where(status: status).count).to eq 1
+    end
+
+    it 'posts to remote user\'s Salmon end point' do
+      expect(a_request(:post, remote_user.salmon_url)).to have_been_made.once
+    end
   end
 
-  it 'creates a mention' do
-    expect(remote_user.mentions.where(status: status).count).to eq 1
-  end
+  context 'ActivityPub' do
+    let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
-  it 'posts to remote user\'s Salmon end point' do
-    expect(a_request(:post, remote_user.salmon_url)).to have_been_made
+    subject { ProcessMentionsService.new }
+
+    before do
+      stub_request(:post, remote_user.inbox_url)
+      subject.call(status)
+    end
+
+    it 'creates a mention' do
+      expect(remote_user.mentions.where(status: status).count).to eq 1
+    end
+
+    it 'sends activity to the inbox' do
+      expect(a_request(:post, remote_user.inbox_url)).to have_been_made.once
+    end
   end
 end
