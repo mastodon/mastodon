@@ -8,7 +8,7 @@ export function fetchPinnedStatuses() {
   return (dispatch, getState) => {
     dispatch(fetchPinnedStatusesRequest());
 
-    api(getState).get('/api/v1/accounts/1/statuses?pinned=true').then(response => {
+    api(getState).get('/api/v1/accounts/1/statuses', { params: { pinned: true } }).then(response => {
       dispatch(fetchPinnedStatusesSuccess(response.data, null));
     }).catch(error => {
       dispatch(fetchPinnedStatusesFail(error));
