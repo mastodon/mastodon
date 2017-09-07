@@ -30,7 +30,7 @@ module SettingsHelper
     th: 'ภาษาไทย',
     tr: 'Türkçe',
     uk: 'Українська',
-    zh: '简体中文',
+    zh: '中文',
     'zh-CN': '简体中文',
     'zh-HK': '繁體中文（香港）',
     'zh-TW': '繁體中文（臺灣）',
