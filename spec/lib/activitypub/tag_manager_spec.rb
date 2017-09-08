@@ -91,9 +91,35 @@ RSpec.describe ActivityPub::TagManager do
   end
 
   describe '#uri_to_resource' do
-    it 'returns the local resource' do
+    it 'returns the local account' do
       account = Fabricate(:account)
       expect(subject.uri_to_resource(subject.uri_for(account), Account)).to eq account
+    end
+
+    it 'returns the remote account by matching URI without fragment part' do
+      account = Fabricate(:account, uri: 'https://example.com/123')
+      expect(subject.uri_to_resource('https://example.com/123#456', Account)).to eq account
+    end
+
+    it 'returns the local status for ActivityPub URI' do
+      status = Fabricate(:status)
+      expect(subject.uri_to_resource(subject.uri_for(status), Status)).to eq status
+    end
+
+    it 'returns the local status for OStatus tag: URI' do
+      status = Fabricate(:status)
+      expect(subject.uri_to_resource(::TagManager.instance.uri_for(status), Status)).to eq status
+    end
+
+    it 'returns the local status for OStatus StreamEntry URL' do
+      status = Fabricate(:status)
+      stream_entry_url = account_stream_entry_url(status.account, status.stream_entry)
+      expect(subject.uri_to_resource(stream_entry_url, Status)).to eq status
+    end
+
+    it 'returns the remote status by matching URI without fragment part' do
+      status = Fabricate(:status, uri: 'https://example.com/123')
+      expect(subject.uri_to_resource('https://example.com/123#456', Status)).to eq status
     end
   end
 end
