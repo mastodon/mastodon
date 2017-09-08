@@ -27,9 +27,10 @@ class PostStatusService < BaseService
                                         thread: in_reply_to,
                                         sensitive: options[:sensitive],
                                         spoiler_text: options[:spoiler_text] || '',
-                                        visibility: options[:visibility],
+                                        visibility: options[:visibility] || account.user&.setting_default_privacy,
                                         language: detect_language_for(text, account),
                                         application: options[:application])
+
       attach_media(status, media)
     end
 
