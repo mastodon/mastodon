@@ -8,11 +8,12 @@ class ActivityPub::ProcessAccountService < BaseService
   def call(username, domain, json)
     return if json['inbox'].blank?
 
-    @json     = json
-    @uri      = @json['id']
-    @username = username
-    @domain   = domain
-    @account  = Account.find_by(uri: @uri)
+    @json        = json
+    @uri         = @json['id']
+    @username    = username
+    @domain      = domain
+    @account     = Account.find_by(uri: @uri)
+    @collections = {}
 
     create_account  if @account.nil?
     upgrade_account if @account.ostatus?
@@ -51,6 +52,9 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.header_remote_url   = image_url('image')
     @account.public_key          = public_key || ''
     @account.locked              = @json['manuallyApprovesFollowers'] || false
+    @account.statuses_count      = outbox_total_items    if outbox_total_items.present?
+    @account.following_count     = following_total_items if following_total_items.present?
+    @account.followers_count     = followers_total_items if followers_total_items.present?
     @account.save!
   end
 
@@ -86,6 +90,29 @@ class ActivityPub::ProcessAccountService < BaseService
     return value if value.is_a?(String)
 
     value['href']
+  end
+
+  def outbox_total_items
+    collection_total_items('outbox')
+  end
+
+  def following_total_items
+    collection_total_items('following')
+  end
+
+  def followers_total_items
+    collection_total_items('followers')
+  end
+
+  def collection_total_items(type)
+    return if @json[type].blank?
+    return @collections[type] if @collections.key?(type)
+
+    collection = fetch_resource(@json[type])
+
+    @collections[type] = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
+  rescue HTTP::Error, OpenSSL::SSL::SSLError
+    @collections[type] = nil
   end
 
   def auto_suspend?
