@@ -48,7 +48,7 @@ export default class Account extends ImmutablePureComponent {
   }
 
   handleUnmuteNotifications = () => {
-    this.props.onMuteNotifications(this.props.account, false);    
+    this.props.onMuteNotifications(this.props.account, false);
   }
 
   render () {
@@ -84,11 +84,7 @@ export default class Account extends ImmutablePureComponent {
         if (muting.get('notifications')) {
           hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username')  })} onClick={this.handleUnmuteNotifications} />;
         } else {
-<<<<<<< HEAD
-          hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />
-=======
           hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
->>>>>>> 917b2d5f... fixup swapped icons
         }
         buttons = (
           <div>

@@ -81,9 +81,9 @@ export default class MuteModal extends React.PureComponent {
             />
           </p>
           <p>
-            <label>
+            <label htmlFor='mute-modal__hide-notifications-checkbox'>
               <FormattedMessage id='mute_modal.hide_notifications' defaultMessage='Hide notifications from this user?' />
-              <input type='checkbox' checked={notifications} onChange={this.toggleNotifications} />
+              <input id='mute-modal__hide-notifications-checkbox' type='checkbox' checked={notifications} onChange={this.toggleNotifications} />
             </label>
           </p>
         </div>
