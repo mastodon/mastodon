@@ -63,6 +63,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
+  onMuteNotifications (account, notifications) {
+    dispatch(muteAccount(account.get('id'), notifications));
+  }
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Account));
