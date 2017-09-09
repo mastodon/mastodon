@@ -27,6 +27,10 @@ export default class ScrollableList extends PureComponent {
     trackScroll: true,
   };
 
+  state = {
+    lastMouseMove: null,
+  };
+
   intersectionObserverWrapper = new IntersectionObserverWrapper();
 
   handleScroll = throttle(() => {
@@ -47,6 +51,14 @@ export default class ScrollableList extends PureComponent {
     trailing: true,
   });
 
+  handleMouseMove = throttle(() => {
+    this._lastMouseMove = new Date();
+  }, 300);
+
+  handleMouseLeave = () => {
+    this._lastMouseMove = null;
+  }
+
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
@@ -56,17 +68,20 @@ export default class ScrollableList extends PureComponent {
   }
 
   componentDidUpdate (prevProps) {
+    const someItemInserted = React.Children.count(prevProps.children) > 0 &&
+      React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
+      this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
+
     // Reset the scroll position when a new child comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
-    if (React.Children.count(prevProps.children) < React.Children.count(this.props.children) && this._oldScrollPosition && this.node.scrollTop > 0) {
-      if (this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props)) {
-        const newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
-        if (this.node.scrollTop !== newScrollTop) {
-          this.node.scrollTop = newScrollTop;
-        }
-      } else {
-        this._oldScrollPosition = this.node.scrollHeight - this.node.scrollTop;
+    if (someItemInserted && this._oldScrollPosition && this.node.scrollTop > 0) {
+      const newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
+
+      if (this.node.scrollTop !== newScrollTop) {
+        this.node.scrollTop = newScrollTop;
       }
+    } else {
+      this._oldScrollPosition = this.node.scrollHeight - this.node.scrollTop;
     }
   }
 
@@ -114,6 +129,10 @@ export default class ScrollableList extends PureComponent {
     this.props.onScrollToBottom();
   }
 
+  _recentlyMoved () {
+    return this._lastMouseMove !== null && ((new Date()) - this._lastMouseMove < 600);
+  }
+
   handleKeyDown = (e) => {
     if (['PageDown', 'PageUp'].includes(e.key) || (e.ctrlKey && ['End', 'Home'].includes(e.key))) {
       const article = (() => {
@@ -149,7 +168,7 @@ export default class ScrollableList extends PureComponent {
 
     if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
-        <div className='scrollable' ref={this.setRef}>
+        <div className='scrollable' ref={this.setRef} onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseLeave}>
           <div role='feed' className='item-list' onKeyDown={this.handleKeyDown}>
             {prepend}
 

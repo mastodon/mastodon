@@ -33,7 +33,8 @@ export default class EmbedModal extends ImmutablePureComponent {
       iframeDocument.close();
 
       iframeDocument.body.style.margin = 0;
-      this.iframe.height = iframeDocument.body.scrollHeight + 'px';
+      this.iframe.width  = iframeDocument.body.scrollWidth;
+      this.iframe.height = iframeDocument.body.scrollHeight;
     });
   }
 
@@ -71,7 +72,6 @@ export default class EmbedModal extends ImmutablePureComponent {
 
           <iframe
             className='embed-modal__iframe'
-            scrolling='no'
             frameBorder='0'
             ref={this.setIframeRef}
             title='preview'

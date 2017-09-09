@@ -12,20 +12,21 @@
   %p= t('followers.explanation_html')
   %p= t('followers.true_privacy_html')
 
-  %table.table
-    %thead
-      %tr
-        %th
-        %th= t('followers.domain')
-        %th= t('followers.followers_count')
-    %tbody
-      - @domains.each do |domain|
+  .table-wrapper
+    %table.table
+      %thead
         %tr
-          %td
-            = check_box_tag 'select[]', domain.domain, false, disabled: !@account.locked? unless domain.domain.nil?
-          %td
-            %samp= domain.domain.presence || Rails.configuration.x.local_domain
-          %td= number_with_delimiter domain.accounts_from_domain
+          %th
+          %th= t('followers.domain')
+          %th= t('followers.followers_count')
+      %tbody
+        - @domains.each do |domain|
+          %tr
+            %td
+              = check_box_tag 'select[]', domain.domain, false, disabled: !@account.locked? unless domain.domain.nil?
+            %td
+              %samp= domain.domain.presence || Rails.configuration.x.local_domain
+            %td= number_with_delimiter domain.accounts_from_domain
 
   .action-pagination
     .actions

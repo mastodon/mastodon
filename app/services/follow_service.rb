@@ -12,7 +12,7 @@ class FollowService < BaseService
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
 
-    return if source_account.following?(target_account)
+    return if source_account.following?(target_account) || source_account.requested?(target_account)
 
     if target_account.locked? || target_account.activitypub?
       request_follow(source_account, target_account)

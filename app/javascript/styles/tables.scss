@@ -3,7 +3,6 @@
   max-width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
-  margin-bottom: 20px;
 
   th,
   td {
@@ -43,17 +42,15 @@
     font-weight: 500;
   }
 
-  &.inline-table {
-    td,
-    th {
-      padding: 8px 2px;
-    }
-
-    & > tbody > tr:nth-child(odd) > td,
-    & > tbody > tr:nth-child(odd) > th {
-      background: transparent;
-    }
+  &.inline-table > tbody > tr:nth-child(odd) > td,
+  &.inline-table > tbody > tr:nth-child(odd) > th {
+    background: transparent;
   }
+}
+
+.table-wrapper {
+  overflow: auto;
+  margin-bottom: 20px;
 }
 
 samp {
