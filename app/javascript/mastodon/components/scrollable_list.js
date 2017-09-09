@@ -74,7 +74,7 @@ export default class ScrollableList extends PureComponent {
 
     // Reset the scroll position when a new child comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
-    if (someItemInserted && this._oldScrollPosition && (this.node.scrollTop > 0 || this._recentlyMoved())) {
+    if (someItemInserted && this._oldScrollPosition && this.node.scrollTop > 0) {
       const newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
 
       if (this.node.scrollTop !== newScrollTop) {
