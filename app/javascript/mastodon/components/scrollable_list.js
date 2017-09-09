@@ -52,11 +52,11 @@ export default class ScrollableList extends PureComponent {
   });
 
   handleMouseMove = throttle(() => {
-    this.setState({ lastMouseMove: new Date() });
+    this._lastMouseMove = new Date();
   }, 300);
 
   handleMouseLeave = () => {
-    this.setState({ lastMouseMove: null });
+    this._lastMouseMove = null;
   }
 
   componentDidMount () {
@@ -68,18 +68,20 @@ export default class ScrollableList extends PureComponent {
   }
 
   componentDidUpdate (prevProps) {
+    const someItemInserted = React.Children.count(prevProps.children) > 0 &&
+      React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
+      this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
+
     // Reset the scroll position when a new child comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
-    if (React.Children.count(prevProps.children) < React.Children.count(this.props.children) && this._oldScrollPosition && (this.node.scrollTop > 0 || this._recentlyMoved())) {
-      if (this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props)) {
-        const newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
+    if (someItemInserted && this._oldScrollPosition && (this.node.scrollTop > 0 || this._recentlyMoved())) {
+      const newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
 
-        if (this.node.scrollTop !== newScrollTop) {
-          this.node.scrollTop = newScrollTop;
-        }
-      } else {
-        this._oldScrollPosition = this.node.scrollHeight - this.node.scrollTop;
+      if (this.node.scrollTop !== newScrollTop) {
+        this.node.scrollTop = newScrollTop;
       }
+    } else {
+      this._oldScrollPosition = this.node.scrollHeight - this.node.scrollTop;
     }
   }
 
@@ -128,7 +130,7 @@ export default class ScrollableList extends PureComponent {
   }
 
   _recentlyMoved () {
-    return this.state.lastMouseMove === null || ((new Date()) - this.state.lastMouseMove < 600);
+    return this._lastMouseMove !== null && ((new Date()) - this._lastMouseMove < 600);
   }
 
   handleKeyDown = (e) => {
