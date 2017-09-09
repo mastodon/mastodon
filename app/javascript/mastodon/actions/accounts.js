@@ -64,6 +64,10 @@ export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
+export const FOLLOW_SUGGESTIONS_FETCH_REQUEST = 'FOLLOW_SUGGESTIONS_FETCH_REQUEST';
+export const FOLLOW_SUGGESTIONS_FETCH_SUCCESS = 'FOLLOW_SUGGESTIONS_FETCH_SUCCESS';
+export const FOLLOW_SUGGESTIONS_FETCH_FAIL    = 'FOLLOW_SUGGESTIONS_FETCH_FAIL';
+
 export function fetchAccount(id) {
   return (dispatch, getState) => {
     dispatch(fetchRelationships([id]));
@@ -653,6 +657,38 @@ export function rejectFollowRequestFail(id, error) {
   return {
     type: FOLLOW_REQUEST_REJECT_FAIL,
     id,
+    error,
+  };
+};
+
+export function fetchFollowSuggestions() {
+  return (dispatch, getState) => {
+    dispatch(fetchFollowSuggestionsRequest());
+
+    api(getState).get('/api/v1/accounts/suggestions').then(res => {
+      dispatch(fetchFollowSuggestionsSuccess(res.data));
+    }).catch(err => {
+      dispatch(fetchFollowSuggestionsFail(err));
+    });
+  };
+};
+
+export function fetchFollowSuggestionsRequest() {
+  return {
+    type: FOLLOW_SUGGESTIONS_FETCH_REQUEST,
+  };
+};
+
+export function fetchFollowSuggestionsSuccess(accounts) {
+  return {
+    type: FOLLOW_SUGGESTIONS_FETCH_SUCCESS,
+    accounts,
+  };
+};
+
+export function fetchFollowSuggestionsFail(error) {
+  return {
+    type: FOLLOW_SUGGESTIONS_FETCH_FAIL,
     error,
   };
 };
