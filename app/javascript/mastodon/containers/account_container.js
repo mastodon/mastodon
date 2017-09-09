@@ -12,6 +12,7 @@ import {
   unmuteAccount,
 } from '../actions/accounts';
 import { openModal } from '../actions/modal';
+import { initMuteModal } from '../actions/mutes';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
