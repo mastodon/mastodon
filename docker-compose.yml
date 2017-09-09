@@ -79,6 +79,7 @@ services:
         DOMAINS: 'akabe.co -> http://redirector:8080, don.akabe.co -> http://nginxserver'
         STAGE: 'production'
         WEBSOCKET: 'true'
+        CLIENT_MAX_BODY_SIZE: '512M'
 
   redirector:
       restart: always
