@@ -40,6 +40,21 @@ if ENV['S3_ENABLED'] == 'true'
     Paperclip::Attachment.default_options[:url]           = ':s3_alias_url'
     Paperclip::Attachment.default_options[:s3_host_alias] = ENV['S3_CLOUDFRONT_HOST']
   end
+elsif ENV['SWIFT_ENABLED'] == 'true'
+  Paperclip::Attachment.default_options.merge!(
+    path: ':class/:attachment/:id_partition/:style/:filename',
+    storage: :fog,
+    fog_credentials: {
+      provider: 'OpenStack',
+      openstack_username: ENV.fetch('SWIFT_USERNAME'),
+      openstack_tenant: ENV.fetch('SWIFT_TENANT'),
+      openstack_api_key: ENV.fetch('SWIFT_PASSWORD'),
+      openstack_auth_url: ENV.fetch('SWIFT_AUTH_URL'),
+    },
+    fog_directory: ENV.fetch('SWIFT_CONTAINER'),
+    fog_host: ENV.fetch('SWIFT_OBJECT_URL'),
+    fog_public: true
+  )
 else
   Paperclip::Attachment.default_options[:path] = (ENV['PAPERCLIP_ROOT_PATH'] || ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename'
   Paperclip::Attachment.default_options[:url]  = (ENV['PAPERCLIP_ROOT_URL'] || '/system') + '/:class/:attachment/:id_partition/:style/:filename'

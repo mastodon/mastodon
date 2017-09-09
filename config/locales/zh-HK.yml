@@ -256,6 +256,17 @@ zh-HK:
     reblog:
       body: 你的文章得到 %{name} 的轉推
       subject: "%{name} 轉推了你的文章"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: 下一頁
     prev: 上一頁

@@ -5,6 +5,8 @@ oc:
       doorkeeper/application:
         name: Nom
         redirect_uri: URL de redireccion
+        scopes: Encastres
+        website: Aplicacion web
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@ oc:
         redirect_uri: Utilizatz una linha per URI
         scopes: Separatz los encastres amb d’espacis. Daissatz void per utilizar l’encastre per defaut.
       index:
+        application: Aplicacion
         callback_url: URL de rapèl
+        delete: Suprimir
         name: Nom
         new: Nòva aplicacion
+        scopes: Encastres
+        show: Veire
         title: Vòstras aplicacions
       new:
         title: Nòva aplicacion

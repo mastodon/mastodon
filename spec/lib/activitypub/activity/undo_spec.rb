@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Undo do
-  let(:sender) { Fabricate(:account) }
+  let(:sender) { Fabricate(:account, domain: 'example.com') }
 
   let(:json) do
     {

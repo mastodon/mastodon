@@ -13,8 +13,14 @@ RSpec.describe Status, type: :model do
     end
 
     it 'returns false if a remote URI is set' do
-      subject.uri = 'a'
+      alice.update(domain: 'example.com')
+      subject.save
       expect(subject.local?).to be false
+    end
+
+    it 'returns true if a URI is set and `local` is true' do
+      subject.update(uri: 'example.com', local: true)
+      expect(subject.local?).to be true
     end
   end
 
@@ -495,7 +501,7 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe 'before_create' do
+  describe 'before_validation' do
     it 'sets account being replied to correctly over intermediary nodes' do
       first_status = Fabricate(:status, account: bob)
       intermediary = Fabricate(:status, thread: first_status, account: alice)
@@ -511,6 +517,23 @@ RSpec.describe Status, type: :model do
     it 'keeps conversation of parent node' do
       parent = Fabricate(:status, text: 'First')
       expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
+    end
+
+    it 'sets `local` to true for status by local account' do
+      expect(Status.create(account: alice, text: 'foo').local).to be true
+    end
+
+    it 'sets `local` to false for status by remote account' do
+      alice.update(domain: 'example.com')
+      expect(Status.create(account: alice, text: 'foo').local).to be false
+    end
+  end
+
+  describe 'after_create' do
+    it 'saves ActivityPub uri as uri for local status' do
+      status = Status.create(account: alice, text: 'foo')
+      status.reload
+      expect(status.uri).to start_with('https://')
     end
   end
 end

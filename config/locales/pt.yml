@@ -182,6 +182,17 @@ pt:
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
       subject: "%{name} partilhou o teu post"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Seguinte
     prev: Anterior

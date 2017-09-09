@@ -61,7 +61,29 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
 
-    context 'html' do
+    context 'html without since_id nor max_id' do
+      before do
+        get :show, params: { username: alice.username }
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq alice
+      end
+
+      it 'assigns @pinned_statuses' do
+        pinned_statuses = assigns(:pinned_statuses).to_a
+        expect(pinned_statuses.size).to eq 3
+        expect(pinned_statuses[0]).to eq status7
+        expect(pinned_statuses[1]).to eq status5
+        expect(pinned_statuses[2]).to eq status6
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'html with since_id and max_id' do
       before do
         get :show, params: { username: alice.username, max_id: status4.id, since_id: status1.id }
       end
@@ -77,12 +99,9 @@ RSpec.describe AccountsController, type: :controller do
         expect(statuses[1]).to eq status2
       end
 
-      it 'assigns @pinned_statuses' do
+      it 'assigns an empty array to @pinned_statuses' do
         pinned_statuses = assigns(:pinned_statuses).to_a
-        expect(pinned_statuses.size).to eq 3
-        expect(pinned_statuses[0]).to eq status7
-        expect(pinned_statuses[1]).to eq status5
-        expect(pinned_statuses[2]).to eq status6
+        expect(pinned_statuses.size).to eq 0
       end
 
       it 'returns http success' do

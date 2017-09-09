@@ -4,7 +4,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :id, :type, :following, :followers,
-             :inbox, :outbox, :shared_inbox,
+             :inbox, :outbox,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers
 
@@ -23,6 +23,18 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
       full_asset_url(object.url(:original))
     end
   end
+
+  class EndpointsSerializer < ActiveModel::Serializer
+    include RoutingHelper
+
+    attributes :shared_inbox
+
+    def shared_inbox
+      inbox_url
+    end
+  end
+
+  has_one :endpoints, serializer: EndpointsSerializer
 
   has_one :icon,  serializer: ImageSerializer, if: :avatar_exists?
   has_one :image, serializer: ImageSerializer, if: :header_exists?
@@ -51,8 +63,8 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
     account_outbox_url(object)
   end
 
-  def shared_inbox
-    inbox_url
+  def endpoints
+    object
   end
 
   def preferred_username

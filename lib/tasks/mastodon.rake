@@ -273,10 +273,17 @@ namespace :mastodon do
 
     desc 'Remove deprecated preview cards'
     task remove_deprecated_preview_cards: :environment do
-      return unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
+      next unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
 
-      class DeprecatedPreviewCard < PreviewCard
-        self.table_name = 'deprecated_preview_cards'
+      class DeprecatedPreviewCard < ActiveRecord::Base
+        self.inheritance_column = false
+
+        path = '/preview_cards/:attachment/:id_partition/:style/:filename'
+        if ENV['S3_ENABLED'] != 'true'
+          path = (ENV['PAPERCLIP_ROOT_PATH'] || ':rails_root/public/system') + path
+        end
+
+        has_attached_file :image, styles: { original: '280x120>' }, convert_options: { all: '-quality 80 -strip' }, path: path
       end
 
       puts 'Delete records and associated files from deprecated preview cards? [y/N]: '
