@@ -44,9 +44,11 @@ export default class Account extends ImmutablePureComponent {
   }
 
   handleMuteNotifications = () => {
+    this.props.onMuteNotifications(this.props.account, true);
   }
 
   handleUnmuteNotifications = () => {
+    this.props.onMuteNotifications(this.props.account, false);    
   }
 
   render () {
