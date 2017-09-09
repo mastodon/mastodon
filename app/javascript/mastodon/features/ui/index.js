@@ -15,6 +15,7 @@ import { clearStatusesHeight } from '../../actions/statuses';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
+import classNames from 'classnames';
 import {
   Compose,
   Status,
