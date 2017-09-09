@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (account.getIn(['relationship', 'muting'])) {
       dispatch(unmuteAccount(account.get('id')));
     } else {
-      dispatch(muteAccount(account.get('id')));
+      dispatch(initMuteModal(account));
     }
   },
 
