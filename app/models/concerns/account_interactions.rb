@@ -75,7 +75,11 @@ module AccountInteractions
   end
 
   def mute!(other_account, notifications: true)
-    mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
+    mute = mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
+    if mute.hide_notifications? != notifications
+      mute.hide_notifications = notifications
+      mute.save!
+    end
   end
 
   def mute_conversation!(conversation)
