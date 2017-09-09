@@ -196,7 +196,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       author = OStatus::AtomSerializer.new.author(account)
 
-      link = author.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' }
+      link = author.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' && node[:type] == 'text/html' }
       expect(link[:type]).to eq 'text/html'
       expect(link[:rel]).to eq 'alternate'
       expect(link[:href]).to eq 'https://cb6e6126.ngrok.io/@username'
@@ -407,6 +407,7 @@ RSpec.describe OStatus::AtomSerializer do
         remote_status.stream_entry.update!(created_at: '2000-01-01T00:00:00Z')
 
         entry = OStatus::AtomSerializer.new.entry(remote_status.stream_entry, true)
+        entry.nodes.delete_if { |node| node[:type] == 'application/activity+json' } # Remove ActivityPub link to simplify test
         xml = OStatus::AtomSerializer.render(entry).gsub('cb6e6126.ngrok.io', 'remote')
 
         remote_status.destroy!
@@ -415,7 +416,7 @@ RSpec.describe OStatus::AtomSerializer do
         account = Account.create!(
           domain: 'remote',
           username: 'username',
-          last_webfingered_at: Time.now.utc,
+          last_webfingered_at: Time.now.utc
         )
 
         ProcessFeedService.new.call(xml, account)
@@ -529,7 +530,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
 
-      link = entry.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' }
+      link = entry.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' && node[:type] == 'text/html' }
       expect(link[:type]).to eq 'text/html'
       expect(link[:href]).to eq "https://cb6e6126.ngrok.io/users/username/updates/#{status.stream_entry.id}"
     end
@@ -642,7 +643,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       feed = OStatus::AtomSerializer.new.feed(account, [])
 
-      link = feed.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' }
+      link = feed.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' && node[:type] == 'text/html' }
       expect(link[:type]).to eq 'text/html'
       expect(link[:href]).to eq 'https://cb6e6126.ngrok.io/@username'
     end
@@ -1509,7 +1510,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       entry = OStatus::AtomSerializer.new.object(status)
 
-      link = entry.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' }
+      link = entry.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' && node[:type] == 'text/html' }
       expect(link[:type]).to eq 'text/html'
       expect(link[:href]).to eq "https://cb6e6126.ngrok.io/@username/#{status.id}"
     end

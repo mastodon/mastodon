@@ -5,6 +5,8 @@
   padding: 14px;
   border-radius: 4px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 
   strong,
   a {
@@ -14,5 +16,16 @@
   a {
     color: inherit;
     text-decoration: underline;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    margin-right: 15px;
+  }
+
+  @media screen and (max-width: 740px) {
+    margin-bottom: 0;
   }
 }

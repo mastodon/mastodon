@@ -272,7 +272,7 @@ nl:
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
       title: Veiligheidsverificatie mislukt
     '429': Te veel verbindingsaanvragen.
-    noscript: Schakel JavaScript in om de webapplicatie van Mastodon te gebruiken. Als alternatief kan je een Mastodon-app zoeken voor jouw platform.
+    noscript_html: Schakel JavaScript in om de webapplicatie van Mastodon te gebruiken. Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a> zoeken voor jouw platform.
   exports:
     blocks: Jij blokkeert
     csv: CSV
@@ -353,9 +353,6 @@ nl:
       title: "%{name} vermeldde jou"
     reblog:
       title: "%{name} boostte jouw toot"
-    subscribed:
-      body: Je kan nu pushmeldingen ontvangen.
-      title: Aanmelding bevestigd!
   remote_follow:
     acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden

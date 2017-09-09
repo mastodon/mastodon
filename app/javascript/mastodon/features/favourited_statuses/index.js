@@ -16,6 +16,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   statusIds: state.getIn(['status_lists', 'favourites', 'items']),
+  hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });
 
 @connect(mapStateToProps)
@@ -28,6 +29,7 @@ export default class Favourites extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     columnId: PropTypes.string,
     multiColumn: PropTypes.bool,
+    hasMore: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -62,7 +64,7 @@ export default class Favourites extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, statusIds, columnId, multiColumn } = this.props;
+    const { intl, statusIds, columnId, multiColumn, hasMore } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -81,6 +83,7 @@ export default class Favourites extends ImmutablePureComponent {
           trackScroll={!pinned}
           statusIds={statusIds}
           scrollKey={`favourited_statuses-${columnId}`}
+          hasMore={hasMore}
           onScrollToBottom={this.handleScrollToBottom}
         />
       </Column>

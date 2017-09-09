@@ -111,10 +111,7 @@ namespace :mastodon do
   namespace :push do
     desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
     task clear: :environment do
-      Account.remote.without_followers.where.not(subscription_expires_at: nil).find_each do |a|
-        Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
-        UnsubscribeService.new.call(a)
-      end
+      Pubsubhubbub::UnsubscribeWorker.push_bulk(Account.remote.without_followers.where.not(subscription_expires_at: nil).pluck(:id))
     end
 
     desc 'Re-subscribes to soon expiring PuSH subscriptions (deprecated)'
@@ -272,6 +269,29 @@ namespace :mastodon do
       ActiveRecord::Base.connection.execute('UPDATE media_attachments SET status_id = NULL FROM media_attachments ma LEFT JOIN statuses s ON s.id = ma.status_id WHERE media_attachments.id = ma.id AND ma.status_id IS NOT NULL AND s.id IS NULL')
       ActiveRecord::Base.connection.execute('UPDATE media_attachments SET account_id = NULL FROM media_attachments ma LEFT JOIN accounts a ON a.id = ma.account_id WHERE media_attachments.id = ma.id AND ma.account_id IS NOT NULL AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('UPDATE reports SET action_taken_by_account_id = NULL FROM reports r LEFT JOIN accounts a ON a.id = r.action_taken_by_account_id WHERE reports.id = r.id AND r.action_taken_by_account_id IS NOT NULL AND a.id IS NULL')
+    end
+
+    desc 'Remove deprecated preview cards'
+    task remove_deprecated_preview_cards: :environment do
+      return unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
+
+      class DeprecatedPreviewCard < PreviewCard
+        self.table_name = 'deprecated_preview_cards'
+      end
+
+      puts 'Delete records and associated files from deprecated preview cards? [y/N]: '
+      confirm = STDIN.gets.chomp
+
+      if confirm.casecmp?('y')
+        DeprecatedPreviewCard.in_batches.destroy_all
+
+        puts 'Drop deprecated preview cards table? [y/N]: '
+        confirm = STDIN.gets.chomp
+
+        if confirm.casecmp?('y')
+          ActiveRecord::Migration.drop_table :deprecated_preview_cards
+        end
+      end
     end
   end
 end

@@ -40,4 +40,8 @@ class InstancePresenter
       ''
     end
   end
+
+  def source_url
+    Mastodon::Version.source_url
+  end
 end

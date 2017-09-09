@@ -47,10 +47,12 @@ class Status < ApplicationRecord
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
   has_many :media_attachments, dependent: :destroy
+
   has_and_belongs_to_many :tags
+  has_and_belongs_to_many :preview_cards
 
   has_one :notification, as: :activity, dependent: :destroy
-  has_one :preview_card, dependent: :destroy
+  has_one :stream_entry, as: :activity, inverse_of: :status
 
   validates :uri, uniqueness: true, unless: :local?
   validates :text, presence: true, unless: :reblog?
@@ -90,7 +92,11 @@ class Status < ApplicationRecord
   end
 
   def verb
-    reblog? ? :share : :post
+    if destroyed?
+      :delete
+    else
+      reblog? ? :share : :post
+    end
   end
 
   def object_type
@@ -110,7 +116,11 @@ class Status < ApplicationRecord
   end
 
   def title
-    reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
+    if destroyed?
+      "#{account.acct} deleted status"
+    else
+      reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
+    end
   end
 
   def hidden?
@@ -162,6 +172,10 @@ class Status < ApplicationRecord
 
     def mutes_map(conversation_ids, account_id)
       ConversationMute.select('conversation_id').where(conversation_id: conversation_ids).where(account_id: account_id).map { |m| [m.conversation_id, true] }.to_h
+    end
+
+    def pins_map(status_ids, account_id)
+      StatusPin.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |p| [p.status_id, true] }.to_h
     end
 
     def reload_stale_associations!(cached_items)

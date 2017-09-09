@@ -26,5 +26,5 @@ const scroll = (node, key, target) => {
   };
 };
 
-export const scrollRight = (node) => scroll(node, 'scrollLeft', node.scrollWidth);
+export const scrollRight = (node, position) => scroll(node, 'scrollLeft', position);
 export const scrollTop = (node) => scroll(node, 'scrollTop', 0);

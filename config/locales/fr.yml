@@ -5,9 +5,14 @@ fr:
     about_this: À propos
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
+    contact_missing: Manquant
+    contact_unavailable: Non disponible
     description_headline: Qu’est-ce que %{domain} ?
     domain_count_after: autres instances
     domain_count_before: Connectés à
+    extended_description_html: |
+      <h3>Un bon endroit pour les règles</h3>
+      <p>La description étendue n'a pas été remplie.</p>
     features:
       humane_approach_body: Ayant appris des échecs d’autres réseaux, Mastodon à l’ambition de combattre l’abus des médias sociaux en effectuant des choix de conception éthiques.
       humane_approach_title: Une approche plus humaine
@@ -23,7 +28,7 @@ fr:
     learn_more: En savoir plus
     other_instances: Liste des instances
     source_code: Code source
-    status_count_after: posts
+    status_count_after: statuts
     status_count_before: Ayant publié
     user_count_after: utilisateur⋅ice⋅s
     user_count_before: Abrite
@@ -32,12 +37,16 @@ fr:
     follow: Suivre
     followers: Abonné⋅es
     following: Abonnements
+    media: Médias
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
     posts: Statuts
+    posts_with_replies: Statuts & réponses
     remote_follow: Suivre à distance
     reserved_username: Ce nom d’utilisateur⋅ice est réservé
+    roles:
+      admin: Admin
     unfollow: Ne plus suivre
   admin:
     accounts:
@@ -52,6 +61,7 @@ fr:
       feed_url: URL du flux
       followers: Abonné⋅es
       follows: Abonnements
+      inbox_url: URL d'entrée
       ip: Adresse IP
       location:
         all: Tous
@@ -71,8 +81,10 @@ fr:
         alphabetic: Alphabétique
         most_recent: Plus récent
         title: Tri
+      outbox_url: URL de sortie
       perform_full_suspension: Effectuer une suspension complète
       profile_url: URL du profil
+      protocol: Protocole
       public: Public
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir les avatars
@@ -104,12 +116,14 @@ fr:
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
           desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspend</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
+          noop: Aucune
           silence: Masqué
           suspend: Suspendre
         title: Nouveau blocage de domaine
       reject_media: Fichiers média rejetés
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions.
       severities:
+        noop: Aucune
         silence: Masquer
         suspend: Suspendre
       severity: Séverité
@@ -187,7 +201,7 @@ fr:
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
       execute: Exécuter
-      failed_to_execute: Erreur d'exécution
+      failed_to_execute: Erreur d’exécution
       media:
         hide: Masquer les médias
         show: Montrer les médias
@@ -212,12 +226,18 @@ fr:
     signature: Notifications de Mastodon depuis %{instance}
     view: 'Voir :'
   applications:
+    created: Application créée avec succès
+    destroyed: Application supprimée avec succès
     invalid_url: L’URL fournie est invalide
+    regenerate_token: Regénérer le jeton d'accès
+    token_regenerated: Jeton d'accès regénéré avec succès
+    warning: Soyez prudent⋅e avec ces données. Ne les partagez pas !
+    your_token: Votre jeton d'accès
   auth:
     agreement_html: En vous inscrivant, vous souscrivez à <a href="%{rules_path}">nos conditions d’utilisation</a> ainsi qu’à <a href="%{terms_path}">notre politique de confidentialité</a>.
     change_password: Sécurité
     delete_account: Supprimer le compte
-    delete_account_html: Si vous désirez supprimer votre compte, vous pouvez cliquer ici. Il vous sera demandé de confirmer cette action.
+    delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
     forgot_password: Mot de passe oublié ?
     invalid_reset_password_token: Le lien de réinitialisation du mot de passe est invalide ou a expiré. Merci de réessayer.
@@ -231,11 +251,11 @@ fr:
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
     follow: Suivre
     follow_request: 'Vous avez demandé à suivre:'
-    following: 'Youpi! Vous suivez :'
+    following: 'Youpi ! Vous suivez :'
     post_follow:
       close: Ou bien, vous pouvez fermer cette fenêtre.
-      return: Retour au profil de l'utilisateur⋅trice
-      web: Retour à l'interface web
+      return: Retour au profil de l’utilisateur⋅trice
+      web: Retour à l’interface web
     title: Suivre %{acct}
   datetime:
     distance_in_words:
@@ -273,7 +293,7 @@ fr:
       content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
       title: Vérification de sécurité échouée
     '429': Trop de requêtes émises dans un délai donné.
-    noscript: Pour utiliser Mastodon, veuillez activer JavaScript
+    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript
   exports:
     blocks: Vous bloquez
     csv: CSV
@@ -282,7 +302,7 @@ fr:
     storage: Médias stockés
   followers:
     domain: Domaine
-    explanation_html: Si vous voulez être sûr⋅e que vos status restent privés, vous devez savoir qui vous suit. <strong>Vos status privés seront diffusés à toutes les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
+    explanation_html: Si vous voulez être sûr⋅e que vos statuts restent privés, vous devez savoir qui vous suit. <strong>Vos statuts privés seront diffusés à toutes les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
     followers_count: Nombre d’abonné⋅es
     lock_link: Rendez votre compte privé
     purge: Retirer de la liste d’abonné⋅es
@@ -290,7 +310,7 @@ fr:
       one: Suppression des abonné⋅es venant d’un domaine en cours…
       other: Suppression des abonné⋅es venant de %{count} domaines en cours…
     true_privacy_html: Soyez conscient⋅es <strong>qu’une vraie confidentialité ne peut être atteinte que par un chiffrement de bout-en-bout</strong>.
-    unlocked_warning_html: N’importe qui peut vous suivre et voir vos status privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅es.
+    unlocked_warning_html: N’importe qui peut vous suivre et voir vos statuts privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅es.
     unlocked_warning_title: Votre compte n’est pas privé
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
@@ -311,7 +331,7 @@ fr:
   landing_strip_signup_html: Si ce n’est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
   media_attachments:
     validations:
-      images_and_video: Impossible de joindre une vidéo à un status contenant déjà des images
+      images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
       too_many: Impossible de joindre plus de 4 fichiers
   notification_mailer:
     digest:
@@ -334,30 +354,29 @@ fr:
       subject: 'Abonné⋅es en attente : %{name}'
     mention:
       body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné"
+      subject: "%{name} vous a mentionné·e"
     reblog:
-      body: "%{name} a partagé votre status :"
-      subject: "%{name} a partagé votre status"
+      body: "%{name} a partagé votre statut :"
+      subject: "%{name} a partagé votre statut"
   pagination:
     next: Suivant
     prev: Précédent
   push_notifications:
     favourite:
-      title: "%{name} à mis votre status en favori"
+      title: "%{name} à mis votre statut en favori"
     follow:
       title: "%{name} vous suit"
+    group:
+      title: "%{count} notifications"
     mention:
       action_boost: Partager
       action_expand: Montrer plus
       action_favourite: Ajouter aux favoris
-      title: "%{name} vous a mentionné"
+      title: "%{name} vous a mentionné·e"
     reblog:
-      title: "%{name} a partagé⋅e votre status"
-    subscribed:
-      body: Vous pouvez désormais recevoir des notifications push.
-      title: Abonnements aux notifications push
+      title: "%{name} a partagé⋅e votre statut"
   remote_follow:
-    acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅trice
+    acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅rice
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     proceed: Continuez pour suivre
     prompt: 'Vous allez suivre :'
@@ -404,6 +423,7 @@ fr:
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
     delete: Suppression de compte
+    development: Développement
     edit_profile: Modifier le profil
     export: Export de données
     followers: Abonné⋅es autorisé⋅es
@@ -411,24 +431,30 @@ fr:
     preferences: Préférences
     settings: Réglages
     two_factor_authentication: Identification à deux facteurs
+    your_apps: Vos applications
   statuses:
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
+    pin_errors:
+      ownership: Vous ne pouvez pas épingler un statut ne vous appartenant pas
+      private: Les statuts non-publics ne peuvent pas être épinglés
+      reblog: Un partage ne peut pas être épinglé
     show_more: Afficher plus
     visibilities:
       private: Abonné⋅es uniquement
-      private_long: Seul⋅es vos abonné⋅es verront vos status
+      private_long: Seul⋅es vos abonné⋅es verront vos statuts
       public: Public
-      public_long: Tout le monde peut voir vos status
+      public_long: Tout le monde peut voir vos statuts
       unlisted: Public sans être affiché sur le fil public
-      unlisted_long: Tout le monde peut voir vos status mais ils ne seront pas sur listés sur les fils publics
+      unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
   stream_entries:
     click_to_show: Cliquer pour afficher
+    pinned: Statut épinglé
     reblogged: partagé
     sensitive_content: Contenu sensible
   terms:
-    body_html: "<h2>Politique de confidentialité</h2>\n\n<h3 id=\"collect\">Quelles données collectons-nous?</h3>\n\n<p>Nous collectons des données lorsque vous vous enregistrez sur notre site et les récoltons lorsque vous participez dans le forum en lisant, écrivant, et évaluant le contenu partagé ici.</p>\n\n<p>Lors de l'enregistrement sur notre site, il peut vous être demandé de renseigner votre nom et adresse e-mail. Vous pouvez, cependant, visiter notre site sans inscription. Votre adresse e-mail devra être vérifiée grâce à un e-mail contenant un lien unique. Si ce lien est visité, nous savons que vous contrôlez cette adresse e-mail.</p>\n\n<p>Lors de l'inscription et de la publication de statuts, nous enregistrons l'adresse IP de laquelle le(s) status viennent. Nous pouvons également conserver des historiques serveurs qui contiendront l'adresse IP de chaque requête adressée à notre serveur.</p>\n\n<h3 id=\"use\">Que faisons-nous avec vos données?</h3>\n\n<p>Toute information que nous collectons pourra être utilisée d'une des manières suivantes :</p>\n\n<ul>\n  <li>Pour personnaliser votre expérience &mdash; vos données nous aident à mieux répondre à vos besoins individuels.</li>\n  <li>Pour améliorer notre site &mdash; nous faisons tout notre possible pour améliorer notre site en fonction des données, retours et suggestions que nous recevons.</li>\n  <li>Afin d'améliorer le support client &mdash; vos données nous aident à mieux répondre à vos requêtes et demandes de support.</li>\n  <li>Afin d'envoyer des e-mails à intervalles réguliers &mdash; l'adresse e-mail que vous renseignez peut être utilisée pour vous envoyer des données et notifications concernant des changements ou en réponse à votre nom d'utilisateur⋅trice, en réponse à vos demandes et/ou autres requêtes ou questions</li>\n</ul>\n\n<h3 id=\"protect\">Comment protégeons-nous vos données?</h3>\n  \n<p>Nous appliquons une multitude de mesures afin de maintenir la sécurité de vos données personnelles lorsque vous entrez, soumettez, ou accédez à ces dernières.</p>\n\n<h3 id=\"data-retention\">Quelle est notre politique de conservation des données?</h3>\n\n<p>Nous nous efforçons de:</p>\n\n<ul>\n  <li>Ne pas garder les historiques serveurs contenant l'adresse IP de chaque requête adressée à ce serveur plus de 90 jours.</li>\n  <li>Ne pas conserver les adresses IP associées aux utilisateur⋅trices et leur contenu plus de 5 ans.</li>\n</ul>\n\n<h3 id=\"cookies\">Utilisons nous des \"cookies\"?</h3>\n\n<p>Oui. Les cookies sont de petits fichiers qu'un site ou prestataires de services transfèrent sur le disque dur de votre ordinateur par le biais de votre navigateur Web (si ce dernier le permet). Ces cookies permettent au site de reconnaître votre navigateur et, si vous disposez d'un compte, l'associer à votre compte.</p>\n\n<p>Nous utilisons les cookies pour enregistrer vos préférences pour de futures visites, compiler des données agrégées à propos du trafic et des interactions effectuées sur le site afin de proposer une meilleure expérience dans le futur. Nous pouvons contracter les services d'acteurs tiers afin de nous aider à mieux comprendre les visiteurs de notre site. Ces acteurs ont l'autorisation d'utiliser ces données seulement à des fins d'améliorations.</p>\n\n<h3 id=\"disclose\">Divulguons-nous des données à des acteurs tiers ?</h3>\n\n<p>Nous n'échangeons pas, ne vendons pas ni effectuons de quelconques transferts avec des acteurs tiers d'informations permettant de vous identifier personnellement. Cela n'inclut pas les acteurs de confiance qui nous aident à gérer notre entreprise et à vous servir tant que ces acteurs s'accordent à garder lesdites informations confidentielles. Nous pouvons être amenés à délivrer vos informations lorsque jugé adéquat afin de respecter la loi, d'appliquer la politique de notre site, ou afin de protéger nos droits, ceux des autres, notre propriété ou sécurité. Cependant, aucune information permettant l'identification de nos visiteurs ne sera divulguée à des fins publicitaires, commerciales ou tout autre usage.</p>\n\n<h3 id=\"third-party\">Liens vers des acteurs tiers</h3>\n\n<p>Nous pouvons être amenés à inclure ou offrir les services ou produits d'acteurs tiers sur notre site. Ces acteurs tiers possèdent leur propre politique de confidentialité. Nous ne sommes donc pas responsables du contenu ou activités desdits acteurs. Néanmoins, nous cherchons à protéger l'intégrité de notre site et sommes ouverts à toute remarque concernant ces acteurs.</p>\n\n<h3 id=\"coppa\">Children's Online Privacy Protection Act</h3>\n\n<p>Notre site, nos produits et services sont tous dirigés à l'usage de personnes étant âgés de 13 ans ou plus. Si ce serveur est hébergé aux États-Unis et que vous êtes âgé⋅e de moins de 13 ans, au vu du COPPA (<a href=\"https://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\">Children's Online Privacy Protection Act</a>) n'utilisez pas ce site.</p>\n\n<h3 id=\"consent\">Votre consentement</h3>\n\n<p>En utilisant notre site, vous consentez à la politique de confiedentialité de notre site Web.</p>\n\n<h3 id=\"changes\">Changements de notre politique de confidentialité</h3>\n\n<p>Si nous décidons d'apporter des changements à notre politique de confidentialité, nous les mettrons à disposition sur cette page.</p>\n\n<p>Ce document est distribué sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 31 Mai 2013. Il a été traduit en français en Juillet 2017.</p>\n\n<p>Originellement adapté à partir de la politique de confidentialité de <a href=\"https://github.com/discourse/discourse\">Discourse</a></p>.\n"
-    title: "%{instance} Conditions d'utilisations et Politique de confidentialité"
+    body_html: "<h2>Politique de confidentialité</h2>\n\n<h3 id=\"collect\">Quelles données collectons-nous ?</h3>\n\n<p>Nous collectons des données lorsque vous vous enregistrez sur notre site et les récoltons lorsque vous participez dans le forum en lisant, écrivant, et évaluant le contenu partagé ici.</p>\n\n<p>Lors de l’enregistrement sur notre site, il peut vous être demandé de renseigner votre nom et adresse électronique. Vous pouvez, cependant, visiter notre site sans inscription. Votre adresse électronique devra être vérifiée grâce à un courriel contenant un lien unique. Si ce lien est visité, nous savons que vous contrôlez cette adresse.</p>\n\n<p>Lors de l’inscription et de la publication de statuts, nous enregistrons l’adresse IP de laquelle les statuts proviennent. Nous pouvons également conserver des historiques serveurs qui contiendront l’adresse IP de chaque requête adressée à notre serveur.</p>\n\n<h3 id=\"use\">Que faisons-nous avec vos données ?</h3>\n\n<p>Toute information que nous collectons pourra être utilisée d’une des manières suivantes :</p>\n\n<ul>\n  <li>Pour personnaliser votre expérience &mdash; vos données nous aident à mieux répondre à vos besoins individuels.</li>\n  <li>Pour améliorer notre site &mdash; nous faisons tout notre possible pour améliorer notre site en fonction des données, retours et suggestions que nous recevons.</li>\n  <li>Afin d’améliorer le support client &mdash; vos données nous aident à mieux répondre à vos requêtes et demandes de support.</li>\n  <li>Afin d’envoyer des courriels à intervalles réguliers &mdash; l’adresse électronique que vous renseignez peut être utilisée pour vous envoyer des données et notifications concernant des changements ou en réponse à votre nom d’utilisateur⋅trice, en réponse à vos demandes et/ou autres requêtes ou questions</li>\n</ul>\n\n<h3 id=\"protect\">Comment protégeons-nous vos données ?</h3>\n  \n<p>Nous appliquons une multitude de mesures afin de maintenir la sécurité de vos données personnelles lorsque vous entrez, soumettez, ou accédez à ces dernières.</p>\n\n<h3 id=\"data-retention\">Quelle est notre politique de conservation des données ?</h3>\n\n<p>Nous nous efforçons de :</p>\n\n<ul>\n  <li>ne pas garder les historiques serveurs contenant l’adresse IP de chaque requête adressée à ce serveur plus de 90 jours ;</li>\n  <li>ne pas conserver les adresses IP associées aux utilisateur⋅trices et leur contenu plus de 5 ans.</li>\n</ul>\n\n<h3 id=\"cookies\">Utilisons nous des « cookies » ?</h3>\n\n<p>Oui. Les cookies sont de petits fichiers qu’un site ou prestataires de services transfèrent sur le disque dur de votre ordinateur par le biais de votre navigateur Web (si ce dernier le permet). Ces cookies permettent au site de reconnaître votre navigateur et, si vous disposez d’un compte, de l’associer à celui-ci.</p>\n\n<p>Nous utilisons les cookies pour enregistrer vos préférences pour de futures visites, compiler des données agrégées à propos du trafic et des interactions effectuées sur le site afin de proposer une meilleure expérience dans le futur. Nous pouvons contracter les services d’acteurs tiers afin de nous aider à mieux comprendre les visiteurs de notre site. Ces acteurs ont l’autorisation d’utiliser ces données seulement à des fins d’améliorations.</p>\n\n<h3 id=\"disclose\">Divulguons-nous des données à des acteurs tiers ?</h3>\n\n<p>Nous n’échangeons pas, ne vendons pas ni effectuons de quelconques transferts avec des acteurs tiers d’informations permettant de vous identifier personnellement. Cela n’inclut pas les acteurs de confiance qui nous aident à gérer notre entreprise et à vous servir tant que ces acteurs s’accordent à garder lesdites informations confidentielles. Nous pouvons être amenés à délivrer vos informations lorsque jugé adéquat afin de respecter la loi, d’appliquer la politique de notre site, ou afin de protéger nos droits, ceux des autres, notre propriété ou sécurité. Cependant, aucune information permettant l’identification de nos visiteurs ne sera divulguée à des fins publicitaires, commerciales ou tout autre usage.</p>\n\n<h3 id=\"third-party\">Liens vers des acteurs tiers</h3>\n\n<p>Nous pouvons être amenés à inclure ou offrir les services ou produits d’acteurs tiers sur notre site. Ces acteurs tiers possèdent leur propre politique de confidentialité. Nous ne sommes donc pas responsables du contenu ou activités desdits acteurs. Néanmoins, nous cherchons à protéger l’intégrité de notre site et sommes ouverts à toute remarque concernant ces acteurs.</p>\n\n<h3 id=\"coppa\" lang=\"en\">Children's Online Privacy Protection Act</h3>\n\n<p>Notre site, nos produits et services sont tous destinés à l’usage de personnes âgées de 13 ans ou plus. Si ce serveur est hébergé aux États-Unis et que vous êtes âgé⋅e de moins de 13 ans, au vu du COPPA (<a href=\"https://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"><i lang=\"en\">Children's Online Privacy Protection Act</i></a>) n’utilisez pas ce site.</p>\n\n<h3 id=\"consent\">Votre consentement</h3>\n\n<p>En utilisant notre site, vous consentez à la présente politique de confidentialité.</p>\n\n<h3 id=\"changes\">Changements de notre politique de confidentialité</h3>\n\n<p>Si nous décidons d’apporter des changements à notre politique de confidentialité, nous les publierons sur cette page.</p>\n\n<p>Ce document est distribué sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 31 mai 2013. Il a été traduit en français en juillet 2017.</p>\n\n<p>Originellement adapté à partir de la politique de confidentialité de <a href=\"https://github.com/discourse/discourse\">Discourse</a>.</p>\n"
+    title: "%{instance} Conditions d’utilisations et politique de confidentialité"
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -451,4 +477,4 @@ fr:
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
-    signed_in_as: 'Connecté·e en tant que :'
+    signed_in_as: 'Connecté·e en tant que :'
