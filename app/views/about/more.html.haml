@@ -63,9 +63,9 @@
   .footer-links
     .container
       %p
-        = link_to t('about.source_code'), 'https://github.com/glitch-soc/mastodon'
+        = link_to t('about.source_code'), @instance_presenter.source_url
         - if @instance_presenter.commit_hash == ""
-          %strong= @instance_presenter.version_number
+          %strong= " (#{@instance_presenter.version_number})"
         - else
           %strong= "#{@instance_presenter.version_number}, "
           %strong= "#{@instance_presenter.commit_hash}"

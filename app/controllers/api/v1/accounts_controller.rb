@@ -14,6 +14,16 @@ class Api::V1::AccountsController < Api::BaseController
 
   def follow
     FollowService.new.call(current_user.account, @account.acct)
+
+    unless @account.locked?
+      relationships = AccountRelationshipsPresenter.new(
+        [@account.id],
+        current_user.account_id,
+        following_map: { @account.id => true },
+        requested_map: { @account.id => false }
+      )
+    end
+
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 

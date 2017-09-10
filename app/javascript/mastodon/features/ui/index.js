@@ -1,12 +1,11 @@
 import React from 'react';
-import classNames from 'classnames';
-import Redirect from 'react-router-dom/Redirect';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router-dom';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
@@ -16,6 +15,7 @@ import { clearStatusesHeight } from '../../actions/statuses';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
+import classNames from 'classnames';
 import {
   Compose,
   Status,
@@ -51,6 +51,7 @@ const mapStateToProps = state => ({
 });
 
 @connect(mapStateToProps)
+@withRouter
 export default class UI extends React.PureComponent {
 
   static contextTypes = {
@@ -65,6 +66,7 @@ export default class UI extends React.PureComponent {
     systemFontUi: PropTypes.bool,
     navbarUnder: PropTypes.bool,
     isComposing: PropTypes.bool,
+    location: PropTypes.object,
   };
 
   state = {
@@ -141,7 +143,7 @@ export default class UI extends React.PureComponent {
     if (data.type === 'navigate') {
       this.context.router.history.push(data.path);
     } else {
-      console.warn('Unknown message type:', data.type); // eslint-disable-line no-console
+      console.warn('Unknown message type:', data.type);
     }
   }
 
@@ -175,6 +177,12 @@ export default class UI extends React.PureComponent {
     return true;
   }
 
+  componentDidUpdate (prevProps) {
+    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
+      this.columnsAreaNode.handleChildrenContentChange();
+    }
+  }
+
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);
@@ -186,6 +194,10 @@ export default class UI extends React.PureComponent {
 
   setRef = (c) => {
     this.node = c;
+  }
+
+  setColumnsAreaRef = (c) => {
+    this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
   }
 
   render () {
@@ -212,7 +224,7 @@ export default class UI extends React.PureComponent {
     return (
       <div className={className} ref={this.setRef}>
         {navbarUnder ? null : (<TabsBar />)}
-        <ColumnsAreaContainer singleColumn={isMobile(width, layout)}>
+        <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width, layout)}>
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />

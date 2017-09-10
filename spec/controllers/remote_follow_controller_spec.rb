@@ -87,6 +87,14 @@ describe RemoteFollowController do
         expect(response).to render_template(:new)
         expect(response.body).to include(I18n.t('remote_follow.missing_resource'))
       end
+
+      it 'renders new when occur HTTP::ConnectionError' do
+        allow(Goldfinger).to receive(:finger).with('acct:user@unknown').and_raise(HTTP::ConnectionError)
+        post :create, params: { account_username: @account.to_param, remote_follow: { acct: 'user@unknown' } }
+
+        expect(response).to render_template(:new)
+        expect(response.body).to include(I18n.t('remote_follow.missing_resource'))
+      end
     end
   end
 

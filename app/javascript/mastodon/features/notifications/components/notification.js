@@ -2,6 +2,7 @@
 //  SEE INSTEAD : glitch/components/notification
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
@@ -13,6 +14,7 @@ export default class Notification extends ImmutablePureComponent {
 
   static propTypes = {
     notification: ImmutablePropTypes.map.isRequired,
+    hidden: PropTypes.bool,
   };
 
   renderFollow (account, link) {
@@ -26,13 +28,13 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
         </div>
 
-        <AccountContainer id={account.get('id')} withNote={false} />
+        <AccountContainer id={account.get('id')} withNote={false} hidden={this.props.hidden} />
       </div>
     );
   }
 
   renderMention (notification) {
-    return <StatusContainer id={notification.get('status')} withDismiss />;
+    return <StatusContainer id={notification.get('status')} withDismiss hidden={this.props.hidden} />;
   }
 
   renderFavourite (notification, link) {
@@ -45,7 +47,7 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={!!this.props.hidden} />
       </div>
     );
   }
@@ -60,7 +62,7 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={this.props.hidden} />
       </div>
     );
   }

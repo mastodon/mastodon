@@ -3,7 +3,9 @@
 class ActivityPub::NoteSerializer < ActiveModel::Serializer
   attributes :id, :type, :summary, :content,
              :in_reply_to, :published, :url,
-             :attributed_to, :to, :cc, :sensitive
+             :attributed_to, :to, :cc, :sensitive,
+             :atom_uri, :in_reply_to_atom_uri,
+             :conversation
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -25,7 +27,13 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def in_reply_to
-    ActivityPub::TagManager.instance.uri_for(object.thread) if object.reply?
+    return unless object.reply?
+
+    if object.thread.uri.nil? || object.thread.uri.start_with?('http')
+      ActivityPub::TagManager.instance.uri_for(object.thread)
+    else
+      object.thread.url
+    end
   end
 
   def published
@@ -50,6 +58,30 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
   def virtual_tags
     object.mentions + object.tags
+  end
+
+  def atom_uri
+    return unless object.local?
+
+    ::TagManager.instance.uri_for(object)
+  end
+
+  def in_reply_to_atom_uri
+    return unless object.reply?
+
+    ::TagManager.instance.uri_for(object.thread)
+  end
+
+  def conversation
+    if object.conversation.uri?
+      object.conversation.uri
+    else
+      TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
+    end
+  end
+
+  def local?
+    object.account.local?
   end
 
   class MediaAttachmentSerializer < ActiveModel::Serializer

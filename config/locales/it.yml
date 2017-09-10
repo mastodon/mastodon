@@ -108,6 +108,17 @@ it:
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Avanti
     prev: Indietro

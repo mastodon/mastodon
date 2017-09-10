@@ -32,7 +32,7 @@
 
       a {
         display: block;
-        padding: 15px 25px;
+        padding: 15px;
         color: rgba($primary-text-color, 0.7);
         text-decoration: none;
         transition: all 200ms linear;
@@ -61,6 +61,7 @@
 
         a {
           border: 0;
+          padding: 15px 35px;
 
           &.selected {
             color: $primary-text-color;
@@ -98,7 +99,7 @@
 
     h6 {
       font-size: 16px;
-      color: $ui-primary-color;
+      color: $ui-secondary-color;
       line-height: 28px;
       font-weight: 400;
     }
@@ -123,10 +124,10 @@
     }
 
     .muted-hint {
-      color: lighten($ui-base-color, 27%);
+      color: $ui-primary-color;
 
       a {
-        color: $ui-primary-color;
+        color: $ui-highlight-color;
       }
     }
 
@@ -139,15 +140,23 @@
   .simple_form {
     max-width: 400px;
 
-    .label_input {
-      label.select {
-        width: 50%;
-      }
+    &.edit_user,
+    &.new_form_admin_settings,
+    &.new_form_two_factor_confirmation,
+    &.new_form_delete_confirmation,
+    &.new_import,
+    &.new_domain_block,
+    &.edit_domain_block {
+      max-width: none;
+    }
 
-      select {
-        width: 50%;
-        float: right;
-      }
+    .form_two_factor_confirmation_code,
+    .form_delete_confirmation_password {
+      max-width: 400px;
+    }
+
+    .actions {
+      max-width: 400px;
     }
   }
 
@@ -227,25 +236,23 @@
 
 .report-accounts {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
 .report-accounts__item {
-  flex: 1 1 0;
   display: flex;
+  flex: 250px;
   flex-direction: column;
+  margin: 0 5px;
 
   & > strong {
     display: block;
-    margin-bottom: 10px;
+    margin: 0 0 10px -5px;
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
     color: $ui-secondary-color;
-  }
-
-  &:first-child {
-    margin-right: 10px;
   }
 
   .account-card {
@@ -261,6 +268,11 @@
   .activity-stream {
     flex: 2 0 0;
     margin-right: 20px;
+    max-width: calc(100% - 60px);
+
+    .entry {
+      border-radius: 4px;
+    }
   }
 }
 
@@ -280,11 +292,16 @@
 
 .batch-form-box {
   display: flex;
-  margin-bottom: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
 
   #form_status_batch_action {
-    margin-right: 5px;
+    margin: 0 5px 5px 0;
     font-size: 14px;
+  }
+
+  input.button {
+    margin: 0 5px 5px 0;
   }
 
   .media-spoiler-toggle-buttons {
@@ -292,6 +309,8 @@
 
     .button {
       overflow: visible;
+      margin: 0 0 5px 5px;
+      float: right;
     }
   }
 }
