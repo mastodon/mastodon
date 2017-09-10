@@ -131,7 +131,7 @@ class Formatter
   end
 
   def link_html(url)
-    url    = Addressable::URI.parse(url).display_uri.to_s
+    url    = Addressable::URI.parse(url).to_s
     prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
     text   = url[prefix.length, 30]
     suffix = url[prefix.length + 30..-1]
