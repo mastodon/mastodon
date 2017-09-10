@@ -4,16 +4,19 @@ class UnsubscribeService < BaseService
   def call(account)
     return if account.hub_url.blank?
 
-    @account  = account
-    @response = build_request.perform
+    @account = account
 
-    Rails.logger.debug "PuSH unsubscribe for #{@account.acct} failed: #{@response.status}" unless @response.status.success?
+    begin
+      @response = build_request.perform
+
+      Rails.logger.debug "PuSH unsubscribe for #{@account.acct} failed: #{@response.status}" unless @response.status.success?
+    rescue HTTP::Error, OpenSSL::SSL::SSLError => e
+      Rails.logger.debug "PuSH unsubscribe for #{@account.acct} failed: #{e}"
+    end
 
     @account.secret = ''
     @account.subscription_expires_at = nil
     @account.save!
-  rescue HTTP::Error, OpenSSL::SSL::SSLError
-    Rails.logger.debug "PuSH subscription request for #{@account.acct} could not be made due to HTTP or SSL error"
   end
 
   private

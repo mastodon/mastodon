@@ -82,24 +82,8 @@ export function Mutes () {
   return import(/* webpackChunkName: "features/mutes" */'../../mutes');
 }
 
-export function MediaModal () {
-  return import(/* webpackChunkName: "modals/media_modal" */'../components/media_modal');
-}
-
 export function OnboardingModal () {
   return import(/* webpackChunkName: "modals/onboarding_modal" */'../components/onboarding_modal');
-}
-
-export function VideoModal () {
-  return import(/* webpackChunkName: "modals/video_modal" */'../components/video_modal');
-}
-
-export function BoostModal () {
-  return import(/* webpackChunkName: "modals/boost_modal" */'../components/boost_modal');
-}
-
-export function ConfirmationModal () {
-  return import(/* webpackChunkName: "modals/confirmation_modal" */'../components/confirmation_modal');
 }
 
 export function ReportModal () {
