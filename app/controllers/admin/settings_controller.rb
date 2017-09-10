@@ -13,6 +13,7 @@ module Admin
       closed_registrations_message
       open_deletion
       timeline_preview
+      bootstrap_timeline_accounts
     ).freeze
 
     BOOLEAN_SETTINGS = %w(

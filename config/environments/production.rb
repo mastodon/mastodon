@@ -73,7 +73,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
-  config.action_mailer.default_options = { from: ENV.fetch('SMTP_FROM_ADDRESS') }
+  config.action_mailer.default_options = { from: ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost') }
 
   config.action_mailer.smtp_settings = {
     :port                 => ENV['SMTP_PORT'],
