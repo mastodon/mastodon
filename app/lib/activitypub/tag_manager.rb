@@ -96,12 +96,14 @@ class ActivityPub::TagManager
       when 'Account'
         klass.find_local(uri_to_local_id(uri, :username))
       else
-        klass.find_by(id: uri_to_local_id(uri))
+        StatusFinder.new(uri).status
       end
     elsif ::TagManager.instance.local_id?(uri)
       klass.find_by(id: ::TagManager.instance.unique_tag_to_local_id(uri, klass.to_s))
     else
       klass.find_by(uri: uri.split('#').first)
     end
+  rescue ActiveRecord::RecordNotFound
+    nil
   end
 end

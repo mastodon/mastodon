@@ -34,6 +34,10 @@ export function GettingStarted () {
   return import(/* webpackChunkName: "features/getting_started" */'../../getting_started');
 }
 
+export function PinnedStatuses () {
+  return import(/* webpackChunkName: "features/pinned_statuses" */'../../pinned_statuses');
+}
+
 export function AccountTimeline () {
   return import(/* webpackChunkName: "features/account_timeline" */'../../account_timeline');
 }
