@@ -26,6 +26,7 @@ const messages = defineMessages({
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   show_me_around: { id: 'getting_started.onboarding', defaultMessage: 'Show me around' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
 });
 
 const mapStateToProps = state => ({
@@ -79,15 +80,16 @@ export default class GettingStarted extends ImmutablePureComponent {
 
     navItems = navItems.concat([
       <ColumnLink key='4' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
+      <ColumnLink key='5' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
     ]);
 
     if (me.get('locked')) {
-      navItems.push(<ColumnLink key='5' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
     }
 
     navItems = navItems.concat([
-      <ColumnLink key='6' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
-      <ColumnLink key='7' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
+      <ColumnLink key='7' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
+      <ColumnLink key='8' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
     ]);
 
     return (

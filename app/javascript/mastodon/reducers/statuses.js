@@ -36,6 +36,9 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
+import {
+  PINNED_STATUSES_FETCH_SUCCESS,
+} from '../actions/pin_statuses';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import emojify from '../emoji';
 import { Map as ImmutableMap, fromJS } from 'immutable';
@@ -138,6 +141,7 @@ export default function statuses(state = initialState, action) {
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
+  case PINNED_STATUSES_FETCH_SUCCESS:
   case SEARCH_FETCH_SUCCESS:
     return normalizeStatuses(state, action.statuses);
   case TIMELINE_DELETE:
