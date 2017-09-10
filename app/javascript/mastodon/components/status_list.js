@@ -2,7 +2,6 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import StatusContainer from '../../glitch/components/status/container';
-import LoadMore from './load_more';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ScrollableList from './scrollable_list';
 
