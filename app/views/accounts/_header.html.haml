@@ -1,34 +1,51 @@
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
-  - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
-    .controls
-      - if current_account.following?(account)
-        = link_to t('accounts.unfollow'), account_unfollow_path(account), data: { method: :post }, class: 'button'
-      - else
-        = link_to t('accounts.follow'), account_follow_path(account), data: { method: :post }, class: 'button'
-  - elsif !user_signed_in?
-    .controls
-      .remote-follow
-        = link_to t('accounts.remote_follow'), account_remote_follow_path(account), class: 'button'
-  .avatar= image_tag account.avatar.url(:original), class: 'u-photo'
-  %h1.name
-    %span.p-name.emojify= display_name(account)
-    %small
-      %span @#{account.username}
-      = fa_icon('lock') if account.locked?
-  .details
+  .card__illustration
+    - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
+      .controls
+        - if current_account.following?(account)
+          = link_to account_unfollow_path(account), data: { method: :post }, class: 'icon-button' do
+            = fa_icon 'user-times'
+            = t('accounts.unfollow')
+        - else
+          = link_to account_follow_path(account), data: { method: :post }, class: 'icon-button' do
+            = fa_icon 'user-plus'
+            = t('accounts.follow')
+    - elsif !user_signed_in?
+      .controls
+        .remote-follow
+          = link_to account_remote_follow_path(account), class: 'icon-button' do
+            = fa_icon 'user-plus'
+            = t('accounts.remote_follow')
+
+    .avatar= image_tag account.avatar.url(:original), class: 'u-photo'
+
+  .card__bio
+    %h1.name
+      %span.p-name.emojify= display_name(account)
+      %small
+        %span @#{account.local_username_and_domain}
+        = fa_icon('lock') if account.locked?
+
+    - if account.user_admin?
+      .roles
+        .account-role
+          = t 'accounts.roles.admin'
+
     .bio
       .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }
         = link_to short_account_url(account), class: 'u-url u-uid' do
+          %span.counter-number= number_to_human account.statuses_count
           %span.counter-label= t('accounts.posts')
-          %span.counter-number= number_with_delimiter account.statuses_count
+
       .counter{ class: active_nav_class(account_following_index_url(account)) }
         = link_to account_following_index_url(account) do
+          %span.counter-number= number_to_human account.following_count
           %span.counter-label= t('accounts.following')
-          %span.counter-number= number_with_delimiter account.following_count
+
       .counter{ class: active_nav_class(account_followers_url(account)) }
         = link_to account_followers_url(account) do
+          %span.counter-number= number_to_human account.followers_count
           %span.counter-label= t('accounts.followers')
-          %span.counter-number= number_with_delimiter account.followers_count

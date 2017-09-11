@@ -29,7 +29,7 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def card
-    @card = PreviewCard.find_by(status: @status)
+    @card = @status.preview_cards.first
 
     if @card.nil?
       render_empty

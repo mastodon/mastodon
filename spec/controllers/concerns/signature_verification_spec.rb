@@ -16,7 +16,7 @@ describe ApplicationController, type: :controller do
   end
 
   before do
-    routes.draw { get 'success' => 'anonymous#success' }
+    routes.draw { match via: [:get, :post], 'success' => 'anonymous#success' }
   end
 
   context 'without signature header' do
@@ -40,34 +40,74 @@ describe ApplicationController, type: :controller do
   context 'with signature header' do
     let!(:author) { Fabricate(:account) }
 
-    before do
-      get :success
+    context 'without body' do
+      before do
+        get :success
 
-      fake_request = Request.new(:get, request.url)
-      fake_request.on_behalf_of(author)
+        fake_request = Request.new(:get, request.url)
+        fake_request.on_behalf_of(author)
 
-      request.headers.merge!(fake_request.headers)
-    end
+        request.headers.merge!(fake_request.headers)
+      end
 
-    describe '#signed_request?' do
-      it 'returns true' do
-        expect(controller.signed_request?).to be true
+      describe '#signed_request?' do
+        it 'returns true' do
+          expect(controller.signed_request?).to be true
+        end
+      end
+
+      describe '#signed_request_account' do
+        it 'returns an account' do
+          expect(controller.signed_request_account).to eq author
+        end
+
+        it 'returns nil when path does not match' do
+          request.path = '/alternative-path'
+          expect(controller.signed_request_account).to be_nil
+        end
+
+        it 'returns nil when method does not match' do
+          post :success
+          expect(controller.signed_request_account).to be_nil
+        end
       end
     end
 
-    describe '#signed_request_account' do
-      it 'returns an account' do
-        expect(controller.signed_request_account).to eq author
+    context 'with body' do
+      before do
+        post :success, body: 'Hello world'
+
+        fake_request = Request.new(:post, request.url, body: 'Hello world')
+        fake_request.on_behalf_of(author)
+
+        request.headers.merge!(fake_request.headers)
       end
 
-      it 'returns nil when path does not match' do
-        request.path = '/alternative-path'
-        expect(controller.signed_request_account).to be_nil
+      describe '#signed_request?' do
+        it 'returns true' do
+          expect(controller.signed_request?).to be true
+        end
       end
 
-      it 'returns nil when method does not match' do
-        post :success
-        expect(controller.signed_request_account).to be_nil
+      describe '#signed_request_account' do
+        it 'returns an account' do
+          expect(controller.signed_request_account).to eq author
+        end
+
+        it 'returns nil when path does not match' do
+          request.path = '/alternative-path'
+          expect(controller.signed_request_account).to be_nil
+        end
+
+        it 'returns nil when method does not match' do
+          get :success
+          expect(controller.signed_request_account).to be_nil
+        end
+
+        it 'returns nil when body has been tampered' do
+          request.headers['RAW_POST_DATA'] = 'doo doo doo'
+          expect(controller.signed_request_account).to be_nil
+        end
       end
     end
   end

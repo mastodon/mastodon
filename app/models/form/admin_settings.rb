@@ -26,6 +26,8 @@ class Form::AdminSettings
     :timeline_preview=,
     :admin_announcement,
     :admin_announcement=,
+    :bootstrap_timeline_accounts,
+    :bootstrap_timeline_accounts=,
     to: Setting
   )
 end

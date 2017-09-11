@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818001626) do
+ActiveRecord::Schema.define(version: 20170905165803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20170818001626) do
     t.integer "from_account_id"
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
+    t.index ["id", "account_id", "activity_type"], name: "index_notifications_on_id_and_account_id_and_activity_type", order: { id: :desc }
   end
 
   create_table "oauth_access_grants", id: :serial, force: :cascade do |t|
@@ -227,20 +228,20 @@ ActiveRecord::Schema.define(version: 20170818001626) do
     t.datetime "updated_at"
     t.boolean "superapp", default: false, null: false
     t.string "website"
+    t.integer "owner_id"
+    t.string "owner_type"
+    t.index ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "preview_cards", id: :serial, force: :cascade do |t|
-    t.bigint "status_id"
+  create_table "preview_cards", force: :cascade do |t|
     t.string "url", default: "", null: false
-    t.string "title"
-    t.string "description"
+    t.string "title", default: "", null: false
+    t.string "description", default: "", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "type", default: 0, null: false
     t.text "html", default: "", null: false
     t.string "author_name", default: "", null: false
@@ -249,7 +250,15 @@ ActiveRecord::Schema.define(version: 20170818001626) do
     t.string "provider_url", default: "", null: false
     t.integer "width", default: 0, null: false
     t.integer "height", default: 0, null: false
-    t.index ["status_id"], name: "index_preview_cards_on_status_id", unique: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["url"], name: "index_preview_cards_on_url", unique: true
+  end
+
+  create_table "preview_cards_statuses", id: false, force: :cascade do |t|
+    t.bigint "preview_card_id", null: false
+    t.bigint "status_id", null: false
+    t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
   end
 
   create_table "reports", id: :serial, force: :cascade do |t|
@@ -288,6 +297,14 @@ ActiveRecord::Schema.define(version: 20170818001626) do
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
 
+  create_table "status_pins", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
+  end
+
   create_table "statuses", force: :cascade do |t|
     t.string "uri"
     t.integer "account_id", null: false
@@ -307,6 +324,7 @@ ActiveRecord::Schema.define(version: 20170818001626) do
     t.integer "reblogs_count", default: 0, null: false
     t.string "language"
     t.bigint "conversation_id"
+    t.boolean "local"
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
@@ -431,12 +449,14 @@ ActiveRecord::Schema.define(version: 20170818001626) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", on_delete: :cascade
-  add_foreign_key "preview_cards", "statuses", on_delete: :cascade
+  add_foreign_key "oauth_applications", "users", column: "owner_id", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "reports", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "session_activations", "users", on_delete: :cascade
+  add_foreign_key "status_pins", "accounts", on_delete: :cascade
+  add_foreign_key "status_pins", "statuses", on_delete: :cascade
   add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", on_delete: :nullify
   add_foreign_key "statuses", "accounts", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify

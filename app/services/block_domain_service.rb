@@ -30,7 +30,7 @@ class BlockDomainService < BaseService
 
   def suspend_accounts!
     blocked_domain_accounts.where(suspended: false).find_each do |account|
-      account.subscription(api_subscription_url(account.id)).unsubscribe if account.subscribed?
+      UnsubscribeService.new.call(account) if account.subscribed?
       SuspendAccountService.new.call(account)
     end
   end
