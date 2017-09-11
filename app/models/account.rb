@@ -172,6 +172,10 @@ class Account < ApplicationRecord
   end
 
   class << self
+    def readonly_attributes
+      super - %w(statuses_count following_count followers_count)
+    end
+
     def domains
       reorder(nil).pluck('distinct accounts.domain')
     end
