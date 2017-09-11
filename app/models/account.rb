@@ -54,6 +54,8 @@ class Account < ApplicationRecord
   include Remotable
   include EmojiHelper
 
+  MAX_NOTE_LENGTH = 500
+
   enum protocol: [:ostatus, :activitypub]
 
   # Local users
@@ -288,7 +290,7 @@ class Account < ApplicationRecord
         note_without_metadata = note[(idx + YAML_END.length) .. -1]
       end
     end
-    if note_without_metadata.mb_chars.grapheme_length > 500
+    if note_without_metadata.mb_chars.grapheme_length > MAX_NOTE_LENGTH
       errors.add(:note, "can't be longer than 500 graphemes")
     end
   end
