@@ -124,7 +124,7 @@ function main() {
   delegate(document, '#account_avatar', 'change', ({ target }) => {
     const avatar = document.querySelector('.card.compact .avatar img');
     const [file] = target.files || [];
-    const url = URL.createObjectURL(file);
+    const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
     avatar.src = url;
   });
@@ -132,7 +132,7 @@ function main() {
   delegate(document, '#account_header', 'change', ({ target }) => {
     const header = document.querySelector('.card.compact');
     const [file] = target.files || [];
-    const url = URL.createObjectURL(file);
+    const url = file ? URL.createObjectURL(file) : header.dataset.originalSrc;
 
     header.style.backgroundImage = `url(${url})`;
   });
