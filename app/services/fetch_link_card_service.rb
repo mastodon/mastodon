@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FetchLinkCardService < BaseService
+  include ActionView::Helpers::TagHelper
+
   URL_PATTERN = %r{https?://\S+}
 
   def call(status)
@@ -106,12 +108,25 @@ class FetchLinkCardService < BaseService
     guess = detector.detect(html, response.charset)
     page  = Nokogiri::HTML(html, nil, guess&.fetch(:encoding))
 
-    @card.type             = :link
-    @card.title            = meta_property(page, 'og:title') || page.at_xpath('//title')&.content || ''
-    @card.description      = meta_property(page, 'og:description') || meta_property(page, 'description') || ''
-    @card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
+    if meta_property(page, 'twitter:player')
+      @card.type   = :video
+      @card.width  = meta_property(page, 'twitter:player:width') || 0
+      @card.height = meta_property(page, 'twitter:player:height') || 0
+      @card.html   = content_tag(:iframe, nil, src: meta_property(page, 'twitter:player'),
+                                               width: @card.width,
+                                               height: @card.height,
+                                               allowtransparency: 'true',
+                                               scrolling: 'no',
+                                               frameborder: '0')
+    else
+      @card.type             = :link
+      @card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
+    end
 
-    return if @card.title.blank?
+    @card.title            = meta_property(page, 'og:title').presence || page.at_xpath('//title')&.content || ''
+    @card.description      = meta_property(page, 'og:description').presence || meta_property(page, 'description') || ''
+
+    return if @card.title.blank? && @card.html.blank?
 
     @card.save_with_optional_image!
   end
