@@ -5,4 +5,4 @@ const mapStateToProps = state => ({
   columns: state.getIn(['settings', 'columns']),
 });
 
-export default connect(mapStateToProps)(ColumnsArea);
+export default connect(mapStateToProps, null, null, { withRef: true })(ColumnsArea);

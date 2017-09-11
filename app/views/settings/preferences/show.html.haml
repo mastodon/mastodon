@@ -13,7 +13,7 @@
       selected: I18n.locale
 
     = f.input :filtered_languages,
-      collection: I18n.available_locales,
+      collection: filterable_languages,
       wrapper: :with_block_label,
       include_blank: false,
       label_method: lambda { |locale| human_locale(locale) },
