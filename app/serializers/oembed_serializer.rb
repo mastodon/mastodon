@@ -40,13 +40,12 @@ class OEmbedSerializer < ActiveModel::Serializer
     attributes = {
       src: embed_short_account_status_url(object.account, object),
       class: 'mastodon-embed',
-      frameborder: '0',
-      scrolling: 'no',
+      style: 'max-width: 100%; border: 0',
       width: width,
       height: height,
     }
 
-    content_tag :iframe, nil, attributes
+    content_tag(:iframe, nil, attributes) + content_tag(:script, nil, src: full_asset_url('embed.js'), async: true)
   end
 
   def width

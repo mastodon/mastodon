@@ -190,11 +190,15 @@
 
 .filters {
   display: flex;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
 
   .filter-subset {
     flex: 0 0 auto;
-    margin-right: 40px;
+    margin: 0 40px 10px 0;
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
 
     ul {
       margin-top: 5px;

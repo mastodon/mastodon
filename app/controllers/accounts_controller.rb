@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
           return
         end
 
-        @pinned_statuses = cache_collection(@account.pinned_statuses, Status) unless media_requested?
+        @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
         @statuses        = filtered_statuses.paginate_by_max_id(20, params[:max_id], params[:since_id])
         @statuses        = cache_collection(@statuses, Status)
         @next_url        = next_url unless @statuses.empty?
@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
 
       format.atom do
         @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
-        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.to_a))
+        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? }))
       end
 
       format.json do
@@ -32,6 +32,10 @@ class AccountsController < ApplicationController
   end
 
   private
+
+  def show_pinned_statuses?
+    [replies_requested?, media_requested?, params[:max_id].present?, params[:since_id].present?].none?
+  end
 
   def filtered_statuses
     default_statuses.tap do |statuses|

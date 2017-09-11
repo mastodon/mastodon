@@ -355,6 +355,17 @@ pl:
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Następna
     prev: Poprzednia
@@ -440,11 +451,11 @@ pl:
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
-      private_long: Widoczny tylko dla osób, które Cię śledzą
-      public: Publiczny
-      public_long: Widoczny dla wszystkich użytkowników
-      unlisted: Niewypisany
-      unlisted_long: Widoczny dla wszystkich, ale nie wyświetlany na publicznych osiach czasu
+      private_long: Widoczne tylko dla osób, które Cię śledzą
+      public: Publiczne
+      public_long: Widoczne dla wszystkich użytkowników
+      unlisted: Niewypisane
+      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
     pinned: Przypięty wpis

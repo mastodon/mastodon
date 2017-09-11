@@ -22,6 +22,7 @@
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
 #  conversation_id        :integer
+#  local                  :boolean
 #
 
 class Status < ApplicationRecord
@@ -62,8 +63,8 @@ class Status < ApplicationRecord
   default_scope { recent }
 
   scope :recent, -> { reorder(id: :desc) }
-  scope :remote, -> { where.not(uri: nil) }
-  scope :local, -> { where(uri: nil) }
+  scope :remote, -> { where(local: false).or(where.not(uri: nil)) }
+  scope :local,  -> { where(local: true).or(where(uri: nil)) }
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
@@ -84,7 +85,7 @@ class Status < ApplicationRecord
   end
 
   def local?
-    uri.nil?
+    attributes['local'] || uri.nil?
   end
 
   def reblog?
@@ -131,11 +132,14 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  after_create :store_uri, if: :local?
+
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
   before_validation :set_sensitivity
+  before_validation :set_local
 
   class << self
     def not_in_filtered_languages(account)
@@ -253,6 +257,10 @@ class Status < ApplicationRecord
 
   private
 
+  def store_uri
+    update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
+  end
+
   def prepare_contents
     text&.strip!
     spoiler_text&.strip!
@@ -291,5 +299,9 @@ class Status < ApplicationRecord
     else
       thread.account_id
     end
+  end
+
+  def set_local
+    self.local = account.local?
   end
 end

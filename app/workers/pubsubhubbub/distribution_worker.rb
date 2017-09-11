@@ -6,7 +6,7 @@ class Pubsubhubbub::DistributionWorker
   sidekiq_options queue: 'push'
 
   def perform(stream_entry_ids)
-    stream_entries = StreamEntry.where(id: stream_entry_ids).includes(:status).reject { |e| e.status&.direct_visibility? }
+    stream_entries = StreamEntry.where(id: stream_entry_ids).includes(:status).reject { |e| e.status.nil? || e.status.direct_visibility? }
 
     return if stream_entries.empty?
 

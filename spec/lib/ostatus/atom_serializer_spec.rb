@@ -403,8 +403,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       it 'returns element whose rendered view triggers creation when processed' do
         remote_account = Account.create!(username: 'username')
-        remote_status = Fabricate(:status, account: remote_account)
-        remote_status.stream_entry.update!(created_at: '2000-01-01T00:00:00Z')
+        remote_status = Fabricate(:status, account: remote_account, created_at: '2000-01-01T00:00:00Z')
 
         entry = OStatus::AtomSerializer.new.entry(remote_status.stream_entry, true)
         entry.nodes.delete_if { |node| node[:type] == 'application/activity+json' } # Remove ActivityPub link to simplify test
@@ -421,7 +420,7 @@ RSpec.describe OStatus::AtomSerializer do
 
         ProcessFeedService.new.call(xml, account)
 
-        expect(Status.find_by(uri: "tag:remote,2000-01-01:objectId=#{remote_status.id}:objectType=Status")).to be_instance_of Status
+        expect(Status.find_by(uri: "https://remote/users/#{remote_status.account.to_param}/statuses/#{remote_status.id}")).to be_instance_of Status
       end
     end
 
@@ -465,12 +464,11 @@ RSpec.describe OStatus::AtomSerializer do
     end
 
     it 'appends id element with unique tag' do
-      status = Fabricate(:status, reblog_of_id: nil)
-      status.stream_entry.update!(created_at: '2000-01-01T00:00:00Z')
+      status = Fabricate(:status, reblog_of_id: nil, created_at: '2000-01-01T00:00:00Z')
 
       entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
 
-      expect(entry.id.text).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{status.id}:objectType=Status"
+      expect(entry.id.text).to eq "https://cb6e6126.ngrok.io/users/#{status.account.to_param}/statuses/#{status.id}"
     end
 
     it 'appends published element with created date' do
@@ -515,7 +513,7 @@ RSpec.describe OStatus::AtomSerializer do
       entry = OStatus::AtomSerializer.new.entry(reblog.stream_entry)
 
       object = entry.nodes.find { |node| node.name == 'activity:object' }
-      expect(object.id.text).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{reblogged.id}:objectType=Status"
+      expect(object.id.text).to eq "https://cb6e6126.ngrok.io/users/#{reblogged.account.to_param}/statuses/#{reblogged.id}"
     end
 
     it 'does not append activity:object element if target is not present' do
@@ -532,7 +530,7 @@ RSpec.describe OStatus::AtomSerializer do
 
       link = entry.nodes.find { |node| node.name == 'link' && node[:rel] == 'alternate' && node[:type] == 'text/html' }
       expect(link[:type]).to eq 'text/html'
-      expect(link[:href]).to eq "https://cb6e6126.ngrok.io/users/username/updates/#{status.stream_entry.id}"
+      expect(link[:href]).to eq "https://cb6e6126.ngrok.io/@username/#{status.id}"
     end
 
     it 'appends link element for itself' do
@@ -553,7 +551,7 @@ RSpec.describe OStatus::AtomSerializer do
       entry = OStatus::AtomSerializer.new.entry(reply_status.stream_entry)
 
       in_reply_to = entry.nodes.find { |node| node.name == 'thr:in-reply-to' }
-      expect(in_reply_to[:ref]).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{in_reply_to_status.id}:objectType=Status"
+      expect(in_reply_to[:ref]).to eq "https://cb6e6126.ngrok.io/users/#{in_reply_to_status.account.to_param}/statuses/#{in_reply_to_status.id}"
     end
 
     it 'does not append thr:in-reply-to element if not threaded' do
@@ -934,7 +932,7 @@ RSpec.describe OStatus::AtomSerializer do
       favourite_salmon = OStatus::AtomSerializer.new.favourite_salmon(favourite)
 
       object = favourite_salmon.nodes.find { |node| node.name == 'activity:object' }
-      expect(object.id.text).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{status.id}:objectType=Status"
+      expect(object.id.text).to eq "https://cb6e6126.ngrok.io/users/#{status.account.to_param}/statuses/#{status.id}"
     end
 
     it 'appends thr:in-reply-to element for status' do
@@ -945,7 +943,7 @@ RSpec.describe OStatus::AtomSerializer do
       favourite_salmon = OStatus::AtomSerializer.new.favourite_salmon(favourite)
 
       in_reply_to = favourite_salmon.nodes.find { |node| node.name == 'thr:in-reply-to' }
-      expect(in_reply_to.ref).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{status.id}:objectType=Status"
+      expect(in_reply_to.ref).to eq "https://cb6e6126.ngrok.io/users/#{status.account.to_param}/statuses/#{status.id}"
       expect(in_reply_to.href).to eq "https://cb6e6126.ngrok.io/@username/#{status.id}"
     end
 
@@ -1034,7 +1032,7 @@ RSpec.describe OStatus::AtomSerializer do
       unfavourite_salmon = OStatus::AtomSerializer.new.unfavourite_salmon(favourite)
 
       object = unfavourite_salmon.nodes.find { |node| node.name == 'activity:object' }
-      expect(object.id.text).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{status.id}:objectType=Status"
+      expect(object.id.text).to eq "https://cb6e6126.ngrok.io/users/#{status.account.to_param}/statuses/#{status.id}"
     end
 
     it 'appends thr:in-reply-to element for status' do
@@ -1045,7 +1043,7 @@ RSpec.describe OStatus::AtomSerializer do
       unfavourite_salmon = OStatus::AtomSerializer.new.unfavourite_salmon(favourite)
 
       in_reply_to = unfavourite_salmon.nodes.find { |node| node.name == 'thr:in-reply-to' }
-      expect(in_reply_to.ref).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{status.id}:objectType=Status"
+      expect(in_reply_to.ref).to eq "https://cb6e6126.ngrok.io/users/#{status.account.to_param}/statuses/#{status.id}"
       expect(in_reply_to.href).to eq "https://cb6e6126.ngrok.io/@username/#{status.id}"
     end
 
@@ -1453,7 +1451,7 @@ RSpec.describe OStatus::AtomSerializer do
     it 'appends id element with URL for status' do
       status = Fabricate(:status, created_at: '2000-01-01T00:00:00Z')
       object = OStatus::AtomSerializer.new.object(status)
-      expect(object.id.text).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{status.id}:objectType=Status"
+      expect(object.id.text).to eq "https://cb6e6126.ngrok.io/users/#{status.account.to_param}/statuses/#{status.id}"
     end
 
     it 'appends published element with created date' do
@@ -1463,7 +1461,8 @@ RSpec.describe OStatus::AtomSerializer do
     end
 
     it 'appends updated element with updated date' do
-      status = Fabricate(:status, updated_at: '2000-01-01T00:00:00Z')
+      status = Fabricate(:status)
+      status.updated_at = '2000-01-01T00:00:00Z'
       object = OStatus::AtomSerializer.new.object(status)
       expect(object.updated.text).to eq '2000-01-01T00:00:00Z'
     end
@@ -1523,7 +1522,7 @@ RSpec.describe OStatus::AtomSerializer do
       entry = OStatus::AtomSerializer.new.object(reply)
 
       in_reply_to = entry.nodes.find { |node| node.name == 'thr:in-reply-to' }
-      expect(in_reply_to.ref).to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{thread.id}:objectType=Status"
+      expect(in_reply_to.ref).to eq "https://cb6e6126.ngrok.io/users/#{thread.account.to_param}/statuses/#{thread.id}"
       expect(in_reply_to.href).to eq "https://cb6e6126.ngrok.io/@username/#{thread.id}"
     end
 

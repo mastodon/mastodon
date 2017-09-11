@@ -1622,6 +1622,10 @@
   &:hover {
     text-decoration: underline;
   }
+
+  &:last-child {
+    padding: 0 15px 0 0;
+  }
 }
 
 .column-back-button__icon {
@@ -3801,6 +3805,8 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   margin-top: 8px;
   position: relative;
+  border: 0;
+  display: block;
 }
 
 .media-spoiler-video-play-icon {
@@ -3966,41 +3972,10 @@ noscript {
   }
 }
 
-.embed-modal__html {
-  color: $ui-secondary-color;
-  outline: 0;
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  border: none;
-  padding: 10px;
-  font-family: 'mastodon-font-monospace', monospace;
-  background: $ui-base-color;
-  color: $ui-primary-color;
-  font-size: 14px;
-  margin: 0;
-  margin-bottom: 15px;
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
-  }
-
-  &:focus {
-    background: lighten($ui-base-color, 4%);
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 16px;
-  }
-}
-
 .embed-modal {
+  max-width: 80vw;
+  max-height: 80vh;
+
   h4 {
     padding: 30px;
     font-weight: 500;
@@ -4008,18 +3983,52 @@ noscript {
     text-align: center;
   }
 
-  .hint {
-    margin-bottom: 15px;
+  .embed-modal__container {
+    padding: 10px;
+
+    .hint {
+      margin-bottom: 15px;
+    }
+
+    .embed-modal__html {
+      color: $ui-secondary-color;
+      outline: 0;
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      border: none;
+      padding: 10px;
+      font-family: 'mastodon-font-monospace', monospace;
+      background: $ui-base-color;
+      color: $ui-primary-color;
+      font-size: 14px;
+      margin: 0;
+      margin-bottom: 15px;
+
+      &::-moz-focus-inner {
+        border: 0;
+      }
+
+      &::-moz-focus-inner,
+      &:focus,
+      &:active {
+        outline: 0 !important;
+      }
+
+      &:focus {
+        background: lighten($ui-base-color, 4%);
+      }
+
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
+    }
+
+    .embed-modal__iframe {
+      width: 400px;
+      max-width: 100%;
+      overflow: hidden;
+      border: 0;
+    }
   }
-}
-
-.embed-modal__container {
-  padding: 10px;
-}
-
-.embed-modal__iframe {
-  width: 100%;
-  min-width: 400px;
-  overflow: hidden;
-  border: 0;
 }
