@@ -18,12 +18,6 @@ export default class SettingToggle extends React.PureComponent {
     this.props.onChange(this.props.settingKey, target.checked);
   }
 
-  onKeyDown = e => {
-    if (e.key === ' ') {
-      this.props.onChange(this.props.settingKey, !e.target.checked);
-    }
-  }
-
   render () {
     const { prefix, settings, settingKey, label, meta } = this.props;
     const id = ['setting-toggle', prefix, ...settingKey].filter(Boolean).join('-');

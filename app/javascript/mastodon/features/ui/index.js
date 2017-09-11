@@ -1,17 +1,17 @@
 import React from 'react';
-import classNames from 'classnames';
-import Redirect from 'react-router-dom/Redirect';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router-dom';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
 import { refreshHomeTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
+import { clearStatusesHeight } from '../../actions/statuses';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -35,6 +35,7 @@ import {
   FavouritedStatuses,
   Blocks,
   Mutes,
+  PinnedStatuses,
 } from './util/async-components';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -42,11 +43,11 @@ import {
 import '../../components/status';
 
 const mapStateToProps = state => ({
-  systemFontUi: state.getIn(['meta', 'system_font_ui']),
   isComposing: state.getIn(['compose', 'is_composing']),
 });
 
 @connect(mapStateToProps)
+@withRouter
 export default class UI extends React.PureComponent {
 
   static contextTypes = {
@@ -56,8 +57,8 @@ export default class UI extends React.PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
-    systemFontUi: PropTypes.bool,
     isComposing: PropTypes.bool,
+    location: PropTypes.object,
   };
 
   state = {
@@ -66,6 +67,9 @@ export default class UI extends React.PureComponent {
   };
 
   handleResize = debounce(() => {
+    // The cached heights are no longer accurate, invalidate
+    this.props.dispatch(clearStatusesHeight());
+
     this.setState({ width: window.innerWidth });
   }, 500, {
     trailing: true,
@@ -131,7 +135,7 @@ export default class UI extends React.PureComponent {
     if (data.type === 'navigate') {
       this.context.router.history.push(data.path);
     } else {
-      console.warn('Unknown message type:', data.type); // eslint-disable-line no-console
+      console.warn('Unknown message type:', data.type);
     }
   }
 
@@ -164,6 +168,12 @@ export default class UI extends React.PureComponent {
     return true;
   }
 
+  componentDidUpdate (prevProps) {
+    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
+      this.columnsAreaNode.handleChildrenContentChange();
+    }
+  }
+
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);
@@ -177,18 +187,18 @@ export default class UI extends React.PureComponent {
     this.node = c;
   }
 
+  setColumnsAreaRef = (c) => {
+    this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
+  }
+
   render () {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
-    const className = classNames('ui', {
-      'system-font': this.props.systemFontUi,
-    });
-
     return (
-      <div className={className} ref={this.setRef}>
+      <div className='ui' ref={this.setRef}>
         <TabsBar />
-        <ColumnsAreaContainer singleColumn={isMobile(width)}>
+        <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width)}>
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
@@ -199,6 +209,7 @@ export default class UI extends React.PureComponent {
 
             <WrappedRoute path='/notifications' component={Notifications} content={children} />
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+            <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
             <WrappedRoute path='/statuses/new' component={Compose} content={children} />
             <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />

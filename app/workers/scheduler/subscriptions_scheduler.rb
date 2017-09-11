@@ -7,8 +7,6 @@ class Scheduler::SubscriptionsScheduler
   include Sidekiq::Worker
 
   def perform
-    logger.info 'Queueing PuSH re-subscriptions'
-
     Pubsubhubbub::SubscribeWorker.push_bulk(expiring_accounts.pluck(:id))
   end
 

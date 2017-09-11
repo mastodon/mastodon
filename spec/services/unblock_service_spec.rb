@@ -18,7 +18,7 @@ RSpec.describe UnblockService do
     end
   end
 
-  describe 'remote' do
+  describe 'remote OStatus' do
     let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', domain: 'example.com', salmon_url: 'http://salmon.example.com')).account }
 
     before do
@@ -28,7 +28,7 @@ RSpec.describe UnblockService do
     end
 
     it 'destroys the blocking relation' do
-      expect(sender.following?(bob)).to be false
+      expect(sender.blocking?(bob)).to be false
     end
 
     it 'sends an unblock salmon slap' do
@@ -36,6 +36,24 @@ RSpec.describe UnblockService do
         xml = OStatus2::Salmon.new.unpack(req.body)
         xml.match(TagManager::VERBS[:unblock])
       }).to have_been_made.once
+    end
+  end
+
+  describe 'remote ActivityPub' do
+    let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox')).account }
+
+    before do
+      sender.block!(bob)
+      stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
+      subject.call(sender, bob)
+    end
+
+    it 'destroys the blocking relation' do
+      expect(sender.blocking?(bob)).to be false
+    end
+
+    it 'sends an unblock activity' do
+      expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
     end
   end
 end

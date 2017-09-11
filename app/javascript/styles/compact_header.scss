@@ -3,9 +3,15 @@
     font-size: 24px;
     line-height: 28px;
     color: $ui-primary-color;
-    overflow: hidden;
     font-weight: 500;
     margin-bottom: 20px;
+    padding: 0 10px;
+    overflow-wrap: break-word;
+
+    @media screen and (max-width: 740px) {
+      text-align: center;
+      padding: 20px 10px 0;
+    }
 
     a {
       color: inherit;

@@ -10,6 +10,8 @@ module Remotable
       alt_method_name = "reset_#{attachment_name}!".to_sym
 
       define_method method_name do |url|
+        return if url.blank?
+
         begin
           parsed_url = Addressable::URI.parse(url).normalize
         rescue Addressable::URI::InvalidURIError

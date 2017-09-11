@@ -3,8 +3,10 @@ en:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Name
+        name: Application name
         redirect_uri: Redirect URI
+        scopes: Scopes
+        website: Application website
     errors:
       models:
         doorkeeper/application:
@@ -33,18 +35,22 @@ en:
         redirect_uri: Use one line per URI
         scopes: Separate scopes with spaces. Leave blank to use the default scopes.
       index:
+        application: Application
         callback_url: Callback URL
+        delete: Delete
         name: Name
-        new: New Application
+        new: New application
+        scopes: Scopes
+        show: Show
         title: Your applications
       new:
-        title: New Application
+        title: New application
       show:
         actions: Actions
-        application_id: Application Id
-        callback_urls: Callback urls
+        application_id: Client key
+        callback_urls: Callback URLs
         scopes: Scopes
-        secret: Secret
+        secret: Client secret
         title: 'Application: %{name}'
     authorizations:
       buttons:
