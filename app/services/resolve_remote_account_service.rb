@@ -88,7 +88,7 @@ class ResolveRemoteAccountService < BaseService
     old_public_key = @account.public_key
     update_account
     update_account_profile if update_profile?
-    ResubscribeWorker.perform_async(@account.id) if old_public_key != @account.public_key
+    RefollowWorker.perform_async(@account.id) if old_public_key != @account.public_key
   end
 
   def update_profile?

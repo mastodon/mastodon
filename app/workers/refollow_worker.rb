@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResubscribeWorker
+class RefollowWorker
   include Sidekiq::Worker
 
   sidekiq_options queue: 'pull', retry: false
