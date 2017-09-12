@@ -8,7 +8,7 @@ class RefollowWorker
   def perform(target_account_id)
     target_account = Account.find(target_account_id)
 
-    target_account.followers.where(domain: nil).each do |follower|
+    target_account.followers.where(domain: nil).find_each do |follower|
       # Locally unfollow remote account
       follower.unfollow!(target_account)
 
