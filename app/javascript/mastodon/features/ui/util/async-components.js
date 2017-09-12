@@ -98,6 +98,10 @@ export function VideoPlayer () {
   return import(/* webpackChunkName: "status/video_player" */'../../../components/video_player');
 }
 
+export function Video () {
+  return import(/* webpackChunkName: "features/video" */'../../video');
+}
+
 export function EmbedModal () {
   return import(/* webpackChunkName: "modals/embed_modal" */'../components/embed_modal');
 }
