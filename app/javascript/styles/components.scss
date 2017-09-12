@@ -3868,9 +3868,11 @@ button.icon-button.active i.fa-retweet {
     background: $base-shadow-color;
     color: $ui-primary-color;
     transition: none;
+    pointer-events: none;
 
     &.active {
       display: block;
+      pointer-events: auto;
 
       &:hover,
       &:active,
@@ -3933,7 +3935,7 @@ button.icon-button.active i.fa-retweet {
     &::before {
       content: "";
       width: 100%;
-      background: hsla(0, 0%, 100%, 0.35);
+      background: rgba($white, 0.35);
       display: block;
       position: absolute;
       height: 4px;
@@ -3962,6 +3964,12 @@ button.icon-button.active i.fa-retweet {
       pointer-events: none;
 
       &.active {
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      .video-player__seek__handle {
         opacity: 1;
       }
     }

@@ -266,7 +266,7 @@ export default class Video extends React.PureComponent {
           <div className='video-player__buttons left'>
             <button onClick={this.togglePlay}><i className={classNames('fa fa-fw', { 'fa-play': paused, 'fa-pause': !paused })} /></button>
             <button onClick={this.toggleMute}><i className={classNames('fa fa-fw', { 'fa-volume-off': muted, 'fa-volume-up': !muted })} /></button>
-            {!onCloseVideo && <button onClick={this.toggleReveal}><i className='fa fa-fw fa-eye-slash' /></button>}
+            {!onCloseVideo && <button onClick={this.toggleReveal}><i className='fa fa-fw fa-eye' /></button>}
           </div>
 
           <div className='video-player__buttons right'>

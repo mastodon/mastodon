@@ -25,8 +25,4 @@
       - video = status.media_attachments.first
       %div{ data: { component: 'Video', props: Oj.dump(src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive?, width: 610, height: 343) }}
     - else
-      .status__attachments
-        = render partial: 'stream_entries/content_spoiler', locals: { sensitive: status.sensitive? }
-        .status__attachments__inner
-          - status.media_attachments.each do |media|
-            = render partial: 'stream_entries/media', locals: { media: media }
+      %div{ data: { component: 'MediaGallery', props: Oj.dump(height: 343, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }) }}

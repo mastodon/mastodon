@@ -25,6 +25,7 @@ function main() {
   const { getLocale } = require('../mastodon/locales');
   const { localeData } = getLocale();
   const VideoContainer = require('../mastodon/containers/video_container').default;
+  const MediaGalleryContainer = require('../mastodon/containers/media_gallery_container').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
 
@@ -73,22 +74,11 @@ function main() {
       const props = JSON.parse(content.getAttribute('data-props'));
       ReactDOM.render(<VideoContainer locale={locale} {...props} />, content);
     });
-  });
 
-  delegate(document, '.video-player video', 'click', ({ target }) => {
-    if (target.paused) {
-      target.play();
-    } else {
-      target.pause();
-    }
-  });
-
-  delegate(document, '.activity-stream .media-spoiler-wrapper .media-spoiler', 'click', function() {
-    this.parentNode.classList.add('media-spoiler-wrapper__visible');
-  });
-
-  delegate(document, '.activity-stream .media-spoiler-wrapper .spoiler-button', 'click', function() {
-    this.parentNode.classList.remove('media-spoiler-wrapper__visible');
+    [].forEach.call(document.querySelectorAll('[data-component="MediaGallery"]'), (content) => {
+      const props = JSON.parse(content.getAttribute('data-props'));
+      ReactDOM.render(<MediaGalleryContainer locale={locale} {...props} />, content);
+    });
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
