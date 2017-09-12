@@ -38,7 +38,9 @@ export default class UploadButton extends ImmutablePureComponent {
 
   handleChange = (e) => {
     if (e.target.files.length > 0) {
-      this.props.onSelectFile(e.target.files);
+      if (this.props.acceptContentTypes.indexOf(e.target.files[0].type) >= 0) {
+        this.props.onSelectFile(e.target.files);
+      }
     }
   }
 
