@@ -21,9 +21,8 @@
 
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
-      .video-player
-        = render partial: 'stream_entries/content_spoiler', locals: { sensitive: status.sensitive? }
-        %video.u-video{ src: status.media_attachments.first.file.url(:original), loop: true }
+      - video = status.media_attachments.first
+      %div{ data: { component: 'Video', props: Oj.dump(src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive?, width: 670, height: 380) }}
     - else
       .detailed-status__attachments
         = render partial: 'stream_entries/content_spoiler', locals: { sensitive: status.sensitive? }

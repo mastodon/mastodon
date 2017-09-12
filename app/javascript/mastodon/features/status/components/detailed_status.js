@@ -5,7 +5,6 @@ import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
-import VideoPlayer from '../../../components/video_player';
 import AttachmentList from '../../../components/attachment_list';
 import Link from 'react-router-dom/Link';
 import { FormattedDate, FormattedNumber } from 'react-intl';
@@ -51,14 +50,16 @@ export default class DetailedStatus extends ImmutablePureComponent {
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
 
-        media = <Video
-          preview={video.get('preview_url')}
-          src={video.get('url')}
-          width={300}
-          height={150}
-          onOpenVideo={this.handleOpenVideo}
-          sensitive={status.get('sensitive')}
-        />;
+        media = (
+          <Video
+            preview={video.get('preview_url')}
+            src={video.get('url')}
+            width={300}
+            height={150}
+            onOpenVideo={this.handleOpenVideo}
+            sensitive={status.get('sensitive')}
+          />
+        );
       } else {
         media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
       }

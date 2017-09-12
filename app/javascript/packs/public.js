@@ -24,6 +24,9 @@ function main() {
   const emojify = require('../mastodon/emoji').default;
   const { getLocale } = require('../mastodon/locales');
   const { localeData } = getLocale();
+  const VideoContainer = require('../mastodon/containers/video_container').default;
+  const React = require('react');
+  const ReactDOM = require('react-dom');
 
   localeData.forEach(IntlRelativeFormat.__addLocaleData);
 
@@ -64,6 +67,11 @@ function main() {
         e.preventDefault();
         window.open(e.target.href, 'mastodon-intent', 'width=400,height=400,resizable=no,menubar=no,status=no,scrollbars=yes');
       });
+    });
+
+    [].forEach.call(document.querySelectorAll('[data-component="Video"]'), (content) => {
+      const props = JSON.parse(content.getAttribute('data-props'));
+      ReactDOM.render(<VideoContainer locale={locale} {...props} />, content);
     });
   });
 

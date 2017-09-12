@@ -1,5 +1,4 @@
 import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { throttle } from 'lodash';
@@ -89,7 +88,7 @@ const requestFullscreen = el => {
 
 @injectIntl
 export default class Video extends React.PureComponent {
-  
+
   static propTypes = {
     preview: PropTypes.string,
     src: PropTypes.string.isRequired,
@@ -151,7 +150,7 @@ export default class Video extends React.PureComponent {
     document.removeEventListener('mouseup', this.handleMouseUp, true);
     document.removeEventListener('touchmove', this.handleMouseMove, true);
     document.removeEventListener('touchend', this.handleMouseUp, true);
-    
+
     this.setState({ dragging: false });
     this.video.play();
   }
@@ -230,13 +229,15 @@ export default class Video extends React.PureComponent {
     const { progress, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
 
     return (
-      <div className={classNames('video-player', { inactive: !revealed, inline: width && height })} style={{ width, height }} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className={classNames('video-player', { inactive: !revealed, inline: width && height && !fullscreen })} style={{ width, height }} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <video
           ref={this.setVideoRef}
           src={src}
           poster={preview}
           preload={!!startTime}
-          loop={true}
+          loop
+          role='button'
+          tabIndex='0'
           width={width}
           height={height}
           onClick={this.togglePlay}
