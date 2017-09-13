@@ -1412,9 +1412,6 @@
 .drawer {
   flex: 1 1 100%;
   overflow: hidden;
-  @supports(display: grid) { // hack to fix Chrome <57
-    contain: strict;
-  }
 }
 
 @media screen and (min-width: 360px) {
@@ -1590,9 +1587,6 @@
   overflow-x: hidden;
   flex: 1 1 auto;
   -webkit-overflow-scrolling: touch;
-  @supports(display: grid) { // hack to fix Chrome <57
-    contain: strict;
-  }
 
   &.optionally-scrollable {
     overflow-y: auto;
@@ -3817,11 +3811,6 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   background: $base-shadow-color;
 
-  &:-webkit-full-screen {
-    width: 100%;
-    height: 100%;
-  }
-
   video {
     height: 100%;
     width: 100%;
@@ -3829,6 +3818,10 @@ button.icon-button.active i.fa-retweet {
   }
 
   &.fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0;
+
     video {
       max-width: 100% !important;
       max-height: 100% !important;
