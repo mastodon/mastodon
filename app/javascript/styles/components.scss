@@ -3817,6 +3817,11 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   background: $base-shadow-color;
 
+  &:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+  }
+
   video {
     height: 100%;
     width: 100%;
