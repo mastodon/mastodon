@@ -223,6 +223,24 @@
         display: inline-block;
       }
     }
+
+    .status-card {
+      border-color: lighten($ui-secondary-color, 4%);
+      color: darken($ui-primary-color, 4%);
+
+      &:hover {
+        background: lighten($ui-secondary-color, 4%);
+      }
+    }
+
+    .status-card__title,
+    .status-card__description {
+      color: $ui-base-color;
+    }
+
+    .status-card__image {
+      background: $ui-secondary-color;
+    }
   }
 
   .pre-header {
