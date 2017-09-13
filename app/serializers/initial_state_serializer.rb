@@ -10,8 +10,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       access_token: object.token,
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
-      github_url: Mastodon::Github.to_s,
-      github_name: Mastodon::Github.link_title,
+      github_url: Mastodon::Version.source_base_url,
+      github_name: Mastodon::Version.source_link_title,
       admin: object.admin&.id,
       admin_announcement: object.admin_announcement,
     }
@@ -22,7 +22,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:boost_modal]    = object.current_account.user.setting_boost_modal
       store[:delete_modal]   = object.current_account.user.setting_delete_modal
       store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
-      store[:system_font_ui] = object.current_account.user.setting_system_font_ui
     end
 
     store
@@ -36,6 +35,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_privacy]   = object.current_account.user.setting_default_privacy
       store[:default_sensitive] = object.current_account.user.setting_default_sensitive
     end
+
+    store[:text] = object.text if object.text
 
     store
   end

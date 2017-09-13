@@ -14,6 +14,7 @@ module Admin
       admin_announcement
       open_deletion
       timeline_preview
+      bootstrap_timeline_accounts
     ).freeze
 
     BOOLEAN_SETTINGS = %w(

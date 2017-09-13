@@ -8,7 +8,7 @@ module AccountHeader
   class_methods do
     def header_styles(file)
       styles = { original: '700x335#' }
-      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
+      styles[:static] = { format: 'png', convert_options: '-coalesce' } if file.content_type == 'image/gif'
       styles
     end
 

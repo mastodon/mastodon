@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('auth.change_password')
 
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'auth_edit' }) do |f|
   = render 'shared/error_messages', object: resource
 
   = f.input :email, placeholder: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }

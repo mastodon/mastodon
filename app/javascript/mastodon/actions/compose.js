@@ -1,6 +1,11 @@
 import api from '../api';
 
-import { updateTimeline } from './timelines';
+import {
+  updateTimeline,
+  refreshHomeTimeline,
+  refreshCommunityTimeline,
+  refreshPublicTimeline,
+} from './timelines';
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
@@ -95,16 +100,20 @@ export function submitCompose() {
       dispatch(submitComposeSuccess({ ...response.data }));
 
       // To make the app more responsive, immediately get the status into the columns
-      dispatch(updateTimeline('home', { ...response.data }));
+
+      const insertOrRefresh = (timelineId, refreshAction) => {
+        if (getState().getIn(['timelines', timelineId, 'online'])) {
+          dispatch(updateTimeline(timelineId, { ...response.data }));
+        } else if (getState().getIn(['timelines', timelineId, 'loaded'])) {
+          dispatch(refreshAction());
+        }
+      };
+
+      insertOrRefresh('home', refreshHomeTimeline);
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        if (getState().getIn(['timelines', 'community', 'loaded'])) {
-          dispatch(updateTimeline('community', { ...response.data }));
-        }
-
-        if (getState().getIn(['timelines', 'public', 'loaded'])) {
-          dispatch(updateTimeline('public', { ...response.data }));
-        }
+        insertOrRefresh('community', refreshCommunityTimeline);
+        insertOrRefresh('public', refreshPublicTimeline);
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
