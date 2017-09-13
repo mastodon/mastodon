@@ -1,13 +1,17 @@
 import React, { PureComponent } from 'react';
 import { ScrollContainer } from 'react-router-scroll';
 import PropTypes from 'prop-types';
-import IntersectionObserverArticle from './intersection_observer_article';
+import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import LoadMore from './load_more';
 import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
 
 export default class ScrollableList extends PureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     scrollKey: PropTypes.string.isRequired,
@@ -173,9 +177,16 @@ export default class ScrollableList extends PureComponent {
             {prepend}
 
             {React.Children.map(this.props.children, (child, index) => (
-              <IntersectionObserverArticle key={child.key} id={child.key} index={index} listLength={childrenCount} intersectionObserverWrapper={this.intersectionObserverWrapper}>
+              <IntersectionObserverArticleContainer
+                key={child.key}
+                id={child.key}
+                index={index}
+                listLength={childrenCount}
+                intersectionObserverWrapper={this.intersectionObserverWrapper}
+                saveHeightKey={trackScroll ? `${this.context.router.route.location.key}:${scrollKey}` : null}
+              >
                 {child}
-              </IntersectionObserverArticle>
+              </IntersectionObserverArticleContainer>
             ))}
 
             {loadMore}

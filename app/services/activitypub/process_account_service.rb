@@ -17,7 +17,9 @@ class ActivityPub::ProcessAccountService < BaseService
 
     create_account  if @account.nil?
     upgrade_account if @account.ostatus?
+    old_public_key = @account.public_key
     update_account
+    RefollowWorker.perform_async(@account.id) if old_public_key != @account.public_key
 
     @account
   rescue Oj::ParseError
