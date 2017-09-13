@@ -37,7 +37,6 @@ class InstancePresenter
   end
 
   def thumbnail
-    thumbnail = Rails.cache.fetch('site_uploads/thumbnail') { SiteUpload.find_by(var: 'thumbnail') }
-    thumbnail&.file&.url
+    @thumbnail ||= Rails.cache.fetch('site_uploads/thumbnail') { SiteUpload.find_by(var: 'thumbnail') }
   end
 end
