@@ -16,11 +16,11 @@ class FetchLinkCardService < BaseService
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         @card = PreviewCard.find_by(url: @url)
-        process_url if @card.nil?
+        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago
       end
     end
 
-    attach_card unless @card.nil?
+    attach_card if @card&.persisted?
   rescue HTTP::ConnectionError, OpenSSL::SSL::SSLError
     nil
   end
@@ -28,8 +28,8 @@ class FetchLinkCardService < BaseService
   private
 
   def process_url
-    @card = PreviewCard.new(url: @url)
-    res   = Request.new(:head, @url).perform
+    @card ||= PreviewCard.new(url: @url)
+    res     = Request.new(:head, @url).perform
 
     return if res.code != 200 || res.mime_type != 'text/html'
 
