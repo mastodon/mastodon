@@ -32,6 +32,11 @@
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
+    %script{type: 'text/javascript', src: "https://use.typekit.net/nkp5nwz.js"}
+    %script
+      try{Typekit.load({ async: true });}catch(e){}
+      
+
     = yield :header_tags
 
   - body_classes ||= @body_classes || ''
