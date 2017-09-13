@@ -8,11 +8,17 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     return status unless status.nil?
 
-    ApplicationRecord.transaction do
-      status = Status.create!(status_params)
+    begin
+      ApplicationRecord.transaction do
+        status = Status.create!(status_params)
 
-      process_tags(status)
-      process_attachments(status)
+        process_tags(status)
+        process_attachments(status)
+      end
+    rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid => e
+      status = find_existing_status
+      raise e unless status
+      return status
     end
 
     resolve_thread(status)
