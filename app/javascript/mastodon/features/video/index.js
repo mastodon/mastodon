@@ -209,6 +209,10 @@ export default class Video extends React.PureComponent {
   }
 
   toggleReveal = () => {
+    if (this.state.revealed) {
+      this.video.pause();
+    }
+
     this.setState({ revealed: !this.state.revealed });
   }
 
@@ -222,6 +226,11 @@ export default class Video extends React.PureComponent {
   handleOpenVideo = () => {
     this.video.pause();
     this.props.onOpenVideo(this.video.currentTime);
+  }
+
+  handleCloseVideo = () => {
+    this.video.pause();
+    this.props.onCloseVideo();
   }
 
   render () {
@@ -271,7 +280,7 @@ export default class Video extends React.PureComponent {
 
           <div className='video-player__buttons right'>
             {(!fullscreen && onOpenVideo) && <button onClick={this.handleOpenVideo}><i className='fa fa-fw fa-expand' /></button>}
-            {onCloseVideo && <button onClick={onCloseVideo}><i className='fa fa-fw fa-times' /></button>}
+            {onCloseVideo && <button onClick={this.handleCloseVideo}><i className='fa fa-fw fa-times' /></button>}
             <button onClick={this.toggleFullscreen}><i className={classNames('fa fa-fw', { 'fa-arrows-alt': !fullscreen, 'fa-compress': fullscreen })} /></button>
           </div>
         </div>
