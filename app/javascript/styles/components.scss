@@ -3828,6 +3828,13 @@ button.icon-button.active i.fa-retweet {
     z-index: 1;
   }
 
+  &.fullscreen {
+    video {
+      max-width: 100% !important;
+      max-height: 100% !important;
+    }
+  }
+
   &.inline {
     video {
       object-fit: cover;
