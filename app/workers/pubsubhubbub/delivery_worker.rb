@@ -16,6 +16,8 @@ class Pubsubhubbub::DeliveryWorker
     @subscription = Subscription.find(subscription_id)
     @payload = payload
     process_delivery unless blocked_domain?
+  rescue => e
+    raise e.class, "Delivery failed for #{subscription&.callback_url}: #{e.message}"
   end
 
   private
@@ -23,7 +25,7 @@ class Pubsubhubbub::DeliveryWorker
   def process_delivery
     payload_delivery
 
-    raise "Delivery failed for #{subscription.callback_url}: HTTP #{payload_delivery.code}" unless response_successful?
+    raise Mastodon::UnexpectedResponseError, payload_delivery unless response_successful?
 
     subscription.touch(:last_successful_delivery_at)
   end

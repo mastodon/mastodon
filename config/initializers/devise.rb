@@ -1,8 +1,12 @@
 Warden::Manager.after_set_user except: :fetch do |user, warden|
-  SessionActivation.deactivate warden.cookies.signed['_session_id']
+  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
+    session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
+  else
+    session_id = user.activate_session(warden.request)
+  end
 
   warden.cookies.signed['_session_id'] = {
-    value: user.activate_session(warden.request),
+    value: session_id,
     expires: 1.year.from_now,
     httponly: true,
   }
@@ -150,7 +154,7 @@ Devise.setup do |config|
   # their account can't be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
-  # config.confirm_within = 3.days
+  config.confirm_within = 2.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
@@ -163,7 +167,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 1.year
 
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true
@@ -173,7 +177,7 @@ Devise.setup do |config|
 
   # Options to be passed to the created cookie. For instance, you can set
   # secure: true in order to force SSL only cookies.
-  # config.rememberable_options = {}
+  config.rememberable_options = { secure: true }
 
   # ==> Configuration for :validatable
   # Range for password length.

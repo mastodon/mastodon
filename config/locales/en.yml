@@ -3,12 +3,16 @@ en:
   about:
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
-    business_email: 'Business e-mail:'
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
     contact: Contact
+    contact_missing: Not set
+    contact_unavailable: N/A
     description_headline: What is %{domain}?
     domain_count_after: other instances
     domain_count_before: Connected to
+    extended_description_html: |
+      <h3>A good place for rules</h3>
+      <p>The extended description has not been set up yet.</p>
     features:
       humane_approach_body: Learning from failures of other networks, Mastodon aims to make ethical design choices to combat the misuse of social media.
       humane_approach_title: A more humane approach
@@ -20,29 +24,29 @@ en:
       within_reach_title: Always within reach
     find_another_instance: Find another instance
     generic_description: "%{domain} is one server in the network"
-    get_started: Get started
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
-    links: Links
     other_instances: Instance list
     source_code: Source code
     status_count_after: statuses
     status_count_before: Who authored
-    terms: Terms
     user_count_after: users
     user_count_before: Home to
-    version: Version
     what_is_mastodon: What is Mastodon?
   accounts:
     follow: Follow
     followers: Followers
     following: Following
+    media: Media
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
-    posts: Posts
+    posts: Toots
+    posts_with_replies: Toots with replies
     remote_follow: Remote follow
     reserved_username: The username is reserved
+    roles:
+      admin: Admin
     unfollow: Unfollow
   admin:
     accounts:
@@ -56,7 +60,9 @@ en:
       email: E-mail
       feed_url: Feed URL
       followers: Followers
+      followers_url: Followers URL
       follows: Follows
+      inbox_url: Inbox URL
       ip: IP
       location:
         all: All
@@ -76,8 +82,10 @@ en:
         alphabetic: Alphabetic
         most_recent: Most recent
         title: Order
+      outbox_url: Outbox URL
       perform_full_suspension: Perform full suspension
       profile_url: Profile URL
+      protocol: Protocol
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh avatar
@@ -86,6 +94,7 @@ en:
       resubscribe: Resubscribe
       salmon_url: Salmon URL
       search: Search
+      shared_inbox_url: Shared Inbox URL
       show:
         created_reports: Reports created by this account
         report: report
@@ -108,13 +117,15 @@ en:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
+          noop: None
           silence: Silence
           suspend: Suspend
         title: New domain block
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       severities:
+        noop: None
         silence: Silence
         suspend: Suspend
       severity: Severity
@@ -158,6 +169,9 @@ en:
       unresolved: Unresolved
       view: View
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
+        title: Default follows for new users
       contact_information:
         email: Business e-mail
         username: Contact username
@@ -198,14 +212,14 @@ en:
         show: Show media
         title: Media
       no_media: No media
-      with_media: With media
       title: Account statuses
+      with_media: With media
     subscriptions:
       callback_url: Callback URL
       confirmed: Confirmed
       expires_in: Expires in
       last_delivery: Last delivery
-      title: PubSubHubbub
+      title: WebSub
       topic: Topic
     title: Administration
   admin_mailer:
@@ -213,11 +227,18 @@ en:
       body: "%{reporter} has reported %{target}"
       subject: New report for %{instance} (#%{id})
   application_mailer:
+    salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
   applications:
+    created: Application successfully created
+    destroyed: Application successfully deleted
     invalid_url: The provided URL is invalid
+    regenerate_token: Regenerate access token
+    token_regenerated: Access token successfully regenerated
+    warning: Be very careful with this data. Never share it with anyone!
+    your_token: Your access token
   auth:
     agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
     change_password: Security
@@ -225,6 +246,7 @@ en:
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
+    invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
     logout: Logout
     register: Sign up
@@ -240,7 +262,6 @@ en:
       close: Or, you can just close this window.
       return: Return to the user's profile
       web: Go to web
-    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
     title: Follow %{acct}
   datetime:
     distance_in_words:
@@ -272,7 +293,7 @@ en:
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
     '429': Throttled
-    noscript: To use Mastodon, please enable JavaScript.
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
   exports:
     blocks: You block
     csv: CSV
@@ -337,6 +358,17 @@ en:
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Next
     prev: Prev
@@ -346,16 +378,15 @@ en:
       title: "%{name} favourited your status"
     follow:
       title: "%{name} is now following you"
+    group:
+      title: "%{count} notifications"
     mention:
-      action_boost: 'Boost'
-      action_expand: 'Show more'
-      action_favourite: 'Favourite'
+      action_boost: Boost
+      action_expand: Show more
+      action_favourite: Favourite
       title: "%{name} mentioned you"
     reblog:
       title: "%{name} boosted your status"
-    subscribed:
-      body: "You can now receive push notifications."
-      title: "Subscription registered!"
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
@@ -404,6 +435,7 @@ en:
     authorized_apps: Authorized apps
     back: Back to Mastodon
     delete: Account deletion
+    development: Development
     edit_profile: Edit profile
     export: Data export
     followers: Authorized followers
@@ -411,9 +443,15 @@ en:
     preferences: Preferences
     settings: Settings
     two_factor_authentication: Two-factor Authentication
+    your_apps: Your applications
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
+    pin_errors:
+      limit: Too many toots pinned
+      ownership: Someone else's toot cannot be pinned
+      private: Non-public toot cannot be pinned
+      reblog: A boost cannot be pinned
     show_more: Show more
     visibilities:
       private: Followers-only
@@ -424,6 +462,7 @@ en:
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     click_to_show: Click to show
+    pinned: Pinned toot
     reblogged: boosted
     sensitive_content: Sensitive content
   terms:
@@ -518,3 +557,4 @@ en:
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+    signed_in_as: 'Signed in as:'

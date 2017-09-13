@@ -6,8 +6,8 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   before_action :require_user!
 
   def create
-    params.require(:data).require(:endpoint)
-    params.require(:data).require(:keys).require([:auth, :p256dh])
+    params.require(:subscription).require(:endpoint)
+    params.require(:subscription).require(:keys).require([:auth, :p256dh])
 
     active_session = current_session
 
@@ -16,10 +16,23 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
       active_session.update!(web_push_subscription: nil)
     end
 
+    # Mobile devices do not support regular notifications, so we enable push notifications by default
+    alerts_enabled = active_session.detection.device.mobile? || active_session.detection.device.tablet?
+
+    data = {
+      alerts: {
+        follow: alerts_enabled,
+        favourite: alerts_enabled,
+        reblog: alerts_enabled,
+        mention: alerts_enabled,
+      },
+    }
+
     web_subscription = ::Web::PushSubscription.create!(
-      endpoint: params[:data][:endpoint],
-      key_p256dh: params[:data][:keys][:p256dh],
-      key_auth: params[:data][:keys][:auth]
+      endpoint: params[:subscription][:endpoint],
+      key_p256dh: params[:subscription][:keys][:p256dh],
+      key_auth: params[:subscription][:keys][:auth],
+      data: data
     )
 
     active_session.update!(web_push_subscription: web_subscription)

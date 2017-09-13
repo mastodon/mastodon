@@ -20,7 +20,16 @@ class LanguageDetector
   private
 
   def detected_language_code
-    result.language.to_sym if detected_language_reliable?
+    iso6391(result.language).to_sym if detected_language_reliable?
+  end
+
+  def iso6391(bcp47)
+    iso639 = bcp47.split('-').first
+
+    # CLD3 returns grandfathered language code for Hebrew
+    return 'he' if iso639 == 'iw'
+
+    ISO_639.find(iso639).alpha2
   end
 
   def result
@@ -33,9 +42,7 @@ class LanguageDetector
 
   def simplified_text
     text.dup.tap do |new_text|
-      URI.extract(new_text).each do |url|
-        new_text.gsub!(url, '')
-      end
+      new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
       new_text.gsub!(Account::MENTION_RE, '')
       new_text.gsub!(Tag::HASHTAG_RE, '')
       new_text.gsub!(/\s+/, ' ')

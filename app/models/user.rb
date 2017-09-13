@@ -46,6 +46,8 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user, required: true
   accepts_nested_attributes_for :account
 
+  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
+
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
 
@@ -53,6 +55,7 @@ class User < ApplicationRecord
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
+  scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
 
@@ -107,10 +110,21 @@ class User < ApplicationRecord
     settings.noindex
   end
 
+  def token_for_app(a)
+    return nil if a.nil? || a.owner != self
+    Doorkeeper::AccessToken
+      .find_or_create_by(application_id: a.id, resource_owner_id: id) do |t|
+
+      t.scopes = a.scopes
+      t.expires_in = Doorkeeper.configuration.access_token_expires_in
+      t.use_refresh_token = Doorkeeper.configuration.refresh_token_enabled?
+    end
+  end
+
   def activate_session(request)
     session_activations.activate(session_id: SecureRandom.hex,
                                  user_agent: request.user_agent,
-                                 ip: request.ip).session_id
+                                 ip: request.remote_ip).session_id
   end
 
   def exclusive_session(id)

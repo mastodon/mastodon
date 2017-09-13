@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '../../../components/icon_button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import DropdownMenu from '../../../components/dropdown_menu';
+import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
@@ -13,6 +13,10 @@ const messages = defineMessages({
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
+  share: { id: 'status.share', defaultMessage: 'Share' },
+  pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
+  unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
+  embed: { id: 'status.embed', defaultMessage: 'Embed' },
 });
 
 @injectIntl
@@ -30,6 +34,8 @@ export default class ActionBar extends React.PureComponent {
     onDelete: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onReport: PropTypes.func,
+    onPin: PropTypes.func,
+    onEmbed: PropTypes.func,
     me: PropTypes.number.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -58,18 +64,47 @@ export default class ActionBar extends React.PureComponent {
     this.props.onReport(this.props.status);
   }
 
+  handlePinClick = () => {
+    this.props.onPin(this.props.status);
+  }
+
+  handleShare = () => {
+    navigator.share({
+      text: this.props.status.get('search_index'),
+      url: this.props.status.get('url'),
+    });
+  }
+
+  handleEmbed = () => {
+    this.props.onEmbed(this.props.status);
+  }
+
   render () {
     const { status, me, intl } = this.props;
 
+    const publicStatus = ['public', 'unlisted'].includes(status.get('visibility'));
+
     let menu = [];
 
+    if (publicStatus) {
+      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+    }
+
     if (me === status.getIn(['account', 'id'])) {
+      if (publicStatus) {
+        menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+      }
+
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
+
+    const shareButton = ('share' in navigator) && status.get('visibility') === 'public' && (
+      <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShare} /></div>
+    );
 
     let reblogIcon = 'retweet';
     if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
@@ -82,9 +117,10 @@ export default class ActionBar extends React.PureComponent {
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
         <div className='detailed-status__button'><IconButton animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+        {shareButton}
 
         <div className='detailed-status__action-bar-dropdown'>
-          <DropdownMenu size={18} icon='ellipsis-h' items={menu} direction='left' ariaLabel='More' />
+          <DropdownMenuContainer size={18} icon='ellipsis-h' items={menu} direction='left' ariaLabel='More' />
         </div>
       </div>
     );

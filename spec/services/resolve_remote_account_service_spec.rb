@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ResolveRemoteAccountService do
-  subject { ResolveRemoteAccountService.new }
+  subject { described_class.new }
 
   before do
     stub_request(:get, "https://quitter.no/.well-known/host-meta").to_return(request_fixture('.host-meta.txt'))
@@ -22,34 +22,11 @@ RSpec.describe ResolveRemoteAccountService do
   end
 
   it 'raises error if no such user can be resolved via webfinger' do
-    expect { subject.call('catsrgr8@quitter.no') }.to raise_error Goldfinger::Error
+    expect(subject.call('catsrgr8@quitter.no')).to be_nil
   end
 
   it 'raises error if the domain does not have webfinger' do
-    expect { subject.call('catsrgr8@example.com') }.to raise_error Goldfinger::Error
-  end
-
-  it 'returns an already existing remote account' do
-    old_account      = Fabricate(:account, username: 'gargron', domain: 'quitter.no')
-    returned_account = subject.call('gargron@quitter.no')
-
-    expect(old_account.id).to eq returned_account.id
-  end
-
-  it 'returns a new remote account' do
-    account = subject.call('gargron@quitter.no')
-
-    expect(account.username).to eq 'gargron'
-    expect(account.domain).to eq 'quitter.no'
-    expect(account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
-  end
-
-  it 'follows a legitimate account redirection' do
-    account = subject.call('gargron@redirected.com')
-
-    expect(account.username).to eq 'gargron'
-    expect(account.domain).to eq 'quitter.no'
-    expect(account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
+    expect(subject.call('catsrgr8@example.com')).to be_nil
   end
 
   it 'prevents hijacking existing accounts' do
@@ -58,15 +35,44 @@ RSpec.describe ResolveRemoteAccountService do
   end
 
   it 'prevents hijacking inexisting accounts' do
-    expect { subject.call('hacker2@redirected.com') }.to raise_error Goldfinger::Error
+    expect(subject.call('hacker2@redirected.com')).to be_nil
   end
 
-  it 'returns a new remote account' do
-    account = subject.call('foo@localdomain.com')
+  context 'with an OStatus account' do
+    it 'returns an already existing remote account' do
+      old_account      = Fabricate(:account, username: 'gargron', domain: 'quitter.no')
+      returned_account = subject.call('gargron@quitter.no')
 
-    expect(account.username).to eq 'foo'
-    expect(account.domain).to eq 'localdomain.com'
-    expect(account.remote_url).to eq 'https://webdomain.com/users/foo.atom'
+      expect(old_account.id).to eq returned_account.id
+    end
+
+    it 'returns a new remote account' do
+      account = subject.call('gargron@quitter.no')
+
+      expect(account.username).to eq 'gargron'
+      expect(account.domain).to eq 'quitter.no'
+      expect(account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
+    end
+
+    it 'follows a legitimate account redirection' do
+      account = subject.call('gargron@redirected.com')
+
+      expect(account.username).to eq 'gargron'
+      expect(account.domain).to eq 'quitter.no'
+      expect(account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
+    end
+
+    it 'returns a new remote account' do
+      account = subject.call('foo@localdomain.com')
+
+      expect(account.username).to eq 'foo'
+      expect(account.domain).to eq 'localdomain.com'
+      expect(account.remote_url).to eq 'https://webdomain.com/users/foo.atom'
+    end
+  end
+
+  context 'with an ActivityPub account' do
+    pending
   end
 
   it 'processes one remote account at a time using locks' do
@@ -78,7 +84,7 @@ RSpec.describe ResolveRemoteAccountService do
       Thread.new do
         true while wait_for_start
         begin
-          return_values << subject.call('foo@localdomain.com')
+          return_values << described_class.new.call('foo@localdomain.com')
         rescue ActiveRecord::RecordNotUnique
           fail_occurred = true
         end

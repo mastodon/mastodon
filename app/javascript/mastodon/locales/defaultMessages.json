@@ -54,6 +54,22 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Show settings",
+        "id": "column_header.show_settings"
+      },
+      {
+        "defaultMessage": "Hide settings",
+        "id": "column_header.hide_settings"
+      },
+      {
+        "defaultMessage": "Move column to the left",
+        "id": "column_header.moveLeft_settings"
+      },
+      {
+        "defaultMessage": "Move column to the right",
+        "id": "column_header.moveRight_settings"
+      },
+      {
         "defaultMessage": "Unpin",
         "id": "column_header.unpin"
       },
@@ -139,6 +155,10 @@
         "id": "status.reply"
       },
       {
+        "defaultMessage": "Share",
+        "id": "status.share"
+      },
+      {
         "defaultMessage": "Reply to thread",
         "id": "status.replyAll"
       },
@@ -169,6 +189,18 @@
       {
         "defaultMessage": "Unmute conversation",
         "id": "status.unmute_conversation"
+      },
+      {
+        "defaultMessage": "Pin on profile",
+        "id": "status.pin"
+      },
+      {
+        "defaultMessage": "Unpin from profile",
+        "id": "status.unpin"
+      },
+      {
+        "defaultMessage": "Embed",
+        "id": "status.embed"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -355,12 +387,12 @@
         "id": "account.report"
       },
       {
-        "defaultMessage": "Media",
-        "id": "account.media"
+        "defaultMessage": "Share @{name}'s profile",
+        "id": "account.share"
       },
       {
-        "defaultMessage": "This user is from another instance. This number may be larger.",
-        "id": "account.disclaimer"
+        "defaultMessage": "Media",
+        "id": "account.media"
       },
       {
         "defaultMessage": "Hide everything from {domain}",
@@ -369,6 +401,14 @@
       {
         "defaultMessage": "Unhide {domain}",
         "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "Information below may reflect the user's profile incompletely.",
+        "id": "account.disclaimer_full"
+      },
+      {
+        "defaultMessage": "View full profile",
+        "id": "account.view_full_profile"
       },
       {
         "defaultMessage": "Posts",
@@ -396,7 +436,7 @@
         "id": "account.follow"
       },
       {
-        "defaultMessage": "Awaiting approval",
+        "defaultMessage": "Awaiting approval. Click to cancel follow request",
         "id": "account.requested"
       },
       {
@@ -452,7 +492,7 @@
         "id": "compose_form.placeholder"
       },
       {
-        "defaultMessage": "Content warning",
+        "defaultMessage": "Write your warning here",
         "id": "compose_form.spoiler_placeholder"
       },
       {
@@ -1003,6 +1043,22 @@
       {
         "defaultMessage": "Report @{name}",
         "id": "status.report"
+      },
+      {
+        "defaultMessage": "Share",
+        "id": "status.share"
+      },
+      {
+        "defaultMessage": "Pin on profile",
+        "id": "status.pin"
+      },
+      {
+        "defaultMessage": "Unpin from profile",
+        "id": "status.unpin"
+      },
+      {
+        "defaultMessage": "Embed",
+        "id": "status.embed"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
@@ -1079,8 +1135,33 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Embed",
+        "id": "status.embed"
+      },
+      {
+        "defaultMessage": "Embed this status on your website by copying the code below.",
+        "id": "embed.instructions"
+      },
+      {
+        "defaultMessage": "Here is what it will look like:",
+        "id": "embed.preview"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/embed_modal.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Close",
         "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Previous",
+        "id": "lightbox.previous"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "lightbox.next"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/media_modal.json"

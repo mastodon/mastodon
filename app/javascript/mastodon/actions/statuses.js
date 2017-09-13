@@ -113,7 +113,7 @@ export function fetchContext(id) {
       dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
 
     }).catch(error => {
-      if (error.response.status === 404) {
+      if (error.response && error.response.status === 404) {
         dispatch(deleteFromTimelines(id));
       }
 

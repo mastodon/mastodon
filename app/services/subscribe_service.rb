@@ -2,7 +2,7 @@
 
 class SubscribeService < BaseService
   def call(account)
-    return unless account.ostatus?
+    return if account.hub_url.blank?
 
     @account        = account
     @account.secret = SecureRandom.hex
@@ -18,7 +18,7 @@ class SubscribeService < BaseService
     else
       # The response was either a 429 rate limit, or a 5xx error.
       # We need to retry at a later time. Fail loudly!
-      raise "Subscription attempt failed for #{@account.acct} (#{@account.hub_url}): HTTP #{@response.code}"
+      raise Mastodon::UnexpectedResponseError, @response
     end
   end
 
@@ -42,7 +42,7 @@ class SubscribeService < BaseService
   end
 
   def some_local_account
-    @some_local_account ||= Account.local.first
+    @some_local_account ||= Account.local.where(suspended: false).first
   end
 
   # Any response in the 3xx or 4xx range, except for 429 (rate limit)

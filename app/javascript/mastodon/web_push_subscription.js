@@ -37,7 +37,7 @@ const unsubscribe = ({ registration, subscription }) =>
 
 const sendSubscriptionToBackend = (subscription) =>
   axios.post('/api/web/push_subscriptions', {
-    data: subscription,
+    subscription,
   }).then(response => response.data);
 
 // Last one checks for payload support: https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/#no-payload
@@ -48,7 +48,6 @@ export function register () {
 
   if (supportsPushNotifications) {
     if (!getApplicationServerKey()) {
-      // eslint-disable-next-line no-console
       console.error('The VAPID public key is not set. You will not be able to receive Web Push Notifications.');
       return;
     }
@@ -84,10 +83,8 @@ export function register () {
       })
       .catch(error => {
         if (error.code === 20 && error.name === 'AbortError') {
-          // eslint-disable-next-line no-console
           console.warn('Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.');
         } else if (error.code === 5 && error.name === 'InvalidCharacterError') {
-          // eslint-disable-next-line no-console
           console.error('The VAPID public key seems to be invalid:', getApplicationServerKey());
         }
 
@@ -103,7 +100,6 @@ export function register () {
         }
       });
   } else {
-    // eslint-disable-next-line no-console
     console.warn('Your browser does not support Web Push Notifications.');
   }
 }

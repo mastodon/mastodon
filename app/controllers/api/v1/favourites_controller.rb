@@ -20,9 +20,7 @@ class Api::V1::FavouritesController < Api::BaseController
 
   def cached_favourites
     cache_collection(
-      Status.where(
-        id: results.map(&:status_id)
-      ),
+      Status.reorder(nil).joins(:favourites).merge(results),
       Status
     )
   end

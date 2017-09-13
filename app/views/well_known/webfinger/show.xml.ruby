@@ -3,7 +3,7 @@ Nokogiri::XML::Builder.new do |xml|
     xml.Subject @canonical_account_uri
     xml.Alias short_account_url(@account)
     xml.Alias account_url(@account)
-    xml.Link(rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: TagManager.instance.url_for(@account))
+    xml.Link(rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: short_account_url(@account))
     xml.Link(rel: 'http://schemas.google.com/g/2010#updates-from', type: 'application/atom+xml', href: account_url(@account, format: 'atom'))
     xml.Link(rel: 'self', type: 'application/activity+json', href: account_url(@account))
     xml.Link(rel: 'salmon', href: api_salmon_url(@account.id))

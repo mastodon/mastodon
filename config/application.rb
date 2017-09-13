@@ -10,6 +10,7 @@ require_relative '../app/lib/exceptions'
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/video_transcoder'
 require_relative '../lib/mastodon/version'
+require_relative '../lib/mastodon/unique_retry_job_middleware'
 
 Dotenv::Railtie.load
 
@@ -81,7 +82,7 @@ module Mastodon
     config.middleware.use Rack::Deflater
 
     config.to_prepare do
-      Doorkeeper::AuthorizationsController.layout 'public'
+      Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
     end

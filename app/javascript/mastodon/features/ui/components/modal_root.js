@@ -5,22 +5,26 @@ import spring from 'react-motion/lib/spring';
 import BundleContainer from '../containers/bundle_container';
 import BundleModalError from './bundle_modal_error';
 import ModalLoading from './modal_loading';
+import ActionsModal from './actions_modal';
+import MediaModal from './media_modal';
+import VideoModal from './video_modal';
+import BoostModal from './boost_modal';
+import ConfirmationModal from './confirmation_modal';
 import {
-  MediaModal,
   OnboardingModal,
-  VideoModal,
-  BoostModal,
-  ConfirmationModal,
   ReportModal,
+  EmbedModal,
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
-  'MEDIA': MediaModal,
+  'MEDIA': () => Promise.resolve({ default: MediaModal }),
   'ONBOARDING': OnboardingModal,
-  'VIDEO': VideoModal,
-  'BOOST': BoostModal,
-  'CONFIRM': ConfirmationModal,
+  'VIDEO': () => Promise.resolve({ default: VideoModal }),
+  'BOOST': () => Promise.resolve({ default: BoostModal }),
+  'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'REPORT': ReportModal,
+  'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
+  'EMBED': EmbedModal,
 };
 
 export default class ModalRoot extends React.PureComponent {
@@ -42,8 +46,32 @@ export default class ModalRoot extends React.PureComponent {
     window.addEventListener('keyup', this.handleKeyUp, false);
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!!nextProps.type && !this.props.type) {
+      this.activeElement = document.activeElement;
+
+      this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (!this.props.type && !!prevProps.type) {
+      this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
+      this.activeElement.focus();
+      this.activeElement = null;
+    }
+  }
+
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  getSiblings = () => {
+    return Array(...this.node.parentElement.childNodes).filter(node => node !== this.node);
+  }
+
+  setRef = ref => {
+    this.node = ref;
   }
 
   willEnter () {
@@ -54,8 +82,8 @@ export default class ModalRoot extends React.PureComponent {
     return { opacity: spring(0), scale: spring(0.98) };
   }
 
-  renderLoading = () => {
-    return <ModalLoading />;
+  renderLoading = modalId => () => {
+    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
   }
 
   renderError = (props) => {
@@ -84,12 +112,12 @@ export default class ModalRoot extends React.PureComponent {
         willLeave={this.willLeave}
       >
         {interpolatedStyles =>
-          <div className='modal-root'>
+          <div className='modal-root' ref={this.setRef}>
             {interpolatedStyles.map(({ key, data: { type, props }, style }) => (
               <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
                 <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
-                <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
-                  <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
+                <div role='dialog' className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
+                  <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
                     {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
                   </BundleContainer>
                 </div>

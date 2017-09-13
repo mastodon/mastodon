@@ -24,7 +24,7 @@ export default class SettingToggle extends React.PureComponent {
 
     return (
       <div className='setting-toggle'>
-        <Toggle id={id} checked={settings.getIn(settingKey)} onChange={this.onChange} />
+        <Toggle id={id} checked={settings.getIn(settingKey)} onChange={this.onChange} onKeyDown={this.onKeyDown} />
         <label htmlFor={id} className='setting-toggle__label'>{label}</label>
         {meta && <span className='setting-meta__label'>{meta}</span>}
       </div>
