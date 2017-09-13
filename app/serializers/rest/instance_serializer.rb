@@ -4,6 +4,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   attributes :uri, :title, :description, :email,
              :version, :urls, :stats
 
+  delegate :thumbnail, to: :instance_presenter
+
   def uri
     Rails.configuration.x.local_domain
   end
