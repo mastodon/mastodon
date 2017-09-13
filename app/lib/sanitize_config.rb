@@ -14,6 +14,11 @@ class Sanitize
         return true if e =~ /^(h|p|u|dt|e)-/ # microformats classes
         return true if e =~ /^(mention|hashtag)$/ # semantic classes
         return true if e =~ /^(ellipsis|invisible)$/ # link formatting classes
+        return true if e =~ /^fa$/ # font awesome
+        return true if e =~ /^fa-spin$/ # font awesome
+        return true if e =~ /^pulse-loading$/ # font awesome
+        return true if e =~ /^fa-flip-(horizontal|vertical)$/ # font awesome
+        return true if e =~ /^fa-(2x|3x|4x|5x)$/ # font awesome
       end
 
       node['class'] = class_list.join(' ')

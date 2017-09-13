@@ -35,12 +35,15 @@ export default class StatusContent extends React.PureComponent {
       link.classList.add('status-link');
 
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url'));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
+      } else if (media) {
+        link.innerHTML = '<i class="fa fa-fw fa-photo"></i>';
       } else {
         link.setAttribute('title', link.href);
       }

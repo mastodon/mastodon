@@ -1,30 +1,51 @@
-import { unicodeMapping } from './emojione_light';
-import Trie from 'substring-trie';
+import emojione from 'emojione';
 
-const trie = new Trie(Object.keys(unicodeMapping));
+const toImage = str => shortnameToImage(unicodeToImage(str));
 
-const emojify = str => {
-  let rtn = '';
-  for (;;) {
-    let match, i = 0;
-    while (i < str.length && str[i] !== '<' && !(match = trie.search(str.slice(i)))) {
-      i += str.codePointAt(i) < 65536 ? 1 : 2;
+const unicodeToImage = str => {
+  const mappedUnicode = emojione.mapUnicodeToShort();
+
+  return str.replace(emojione.regUnicode, unicodeChar => {
+    if (typeof unicodeChar === 'undefined' || unicodeChar === '' || !(unicodeChar in emojione.jsEscapeMap)) {
+      return unicodeChar;
     }
-    if (i === str.length)
-      break;
-    else if (str[i] === '<') {
-      let tagend = str.indexOf('>', i + 1) + 1;
-      if (!tagend)
-        break;
-      rtn += str.slice(0, tagend);
-      str = str.slice(tagend);
-    } else {
-      const [filename, shortCode] = unicodeMapping[match];
-      rtn += str.slice(0, i) + `<img draggable="false" class="emojione" alt="${match}" title=":${shortCode}:" src="/emoji/${filename}.svg" />`;
-      str = str.slice(i + match.length);
-    }
-  }
-  return rtn + str;
+
+    const unicode  = emojione.jsEscapeMap[unicodeChar];
+    const short    = mappedUnicode[unicode];
+    const filename = emojione.emojioneList[short].fname;
+    const alt      = emojione.convert(unicode.toUpperCase());
+
+    return `<img draggable="false" class="emojione" alt="${alt}" title="${short}" src="/emoji/${filename}.svg" />`;
+  });
 };
 
-export default emojify;
+const shortnameToImage = str => str.replace(emojione.regShortNames, shortname => {
+  if (typeof shortname === 'undefined' || shortname === '' || !(shortname in emojione.emojioneList)) {
+    return shortname;
+  }
+
+  const unicode = emojione.emojioneList[shortname].unicode[emojione.emojioneList[shortname].unicode.length - 1];
+  const alt     = emojione.convert(unicode.toUpperCase());
+
+  return `<img draggable="false" class="emojione" alt="${alt}" title="${shortname}" src="/emoji/${unicode}.svg" />`;
+});
+
+export default function emojify(text) {
+  text = toImage(text);
+  text = text.replace(/5,?000\s*兆円/g, (m) => {
+    return `<img alt="${m}" src="/emoji/5000tyoen.svg" style="height: 1.8em;"/>`;
+  });
+  text = text.replace(/ニコる/g, (m) => {
+    return `<img alt="${m}" src="/emoji/nicoru.svg" style="height: 1.5em;"/>`;
+  });
+  text = text.replace(/バジリスク\s*タイム/g, (m) => {
+    return `<img alt="${m}" src="/emoji/basilisktime.png" height="40"/>`;
+  });
+    text = text.replace(/熱盛/g, (m) => {
+    return `<img alt="${m}" src="/emoji/atumori.png" height="51"/>`;
+  });
+    text = text.replace(/欲しい！/g, (m) => {
+    return `<img alt="${m}" src="/emoji/hosii.png" height="30"/>`;
+  });
+  return text;
+}
