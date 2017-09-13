@@ -1,8 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
+
+const messages = defineMessages({
+  play: { id: 'video.play', defaultMessage: 'Play' },
+  pause: { id: 'video.pause', defaultMessage: 'Pause' },
+  mute: { id: 'video.mute', defaultMessage: 'Mute sound' },
+  unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
+  hide: { id: 'video.hide', defaultMessage: 'Hide video' },
+  expand: { id: 'video.expand', defaultMessage: 'Expand video' },
+  close: { id: 'video.close', defaultMessage: 'Close video' },
+  fullscreen: { id: 'video.fullscreen', defaultMessage: 'Full screen' },
+  exit_fullscreen: { id: 'video.exit_fullscreen', defaultMessage: 'Exit full screen' },
+});
 
 const findElementPosition = el => {
   let box;
@@ -98,6 +110,7 @@ export default class Video extends React.PureComponent {
     startTime: PropTypes.number,
     onOpenVideo: PropTypes.func,
     onCloseVideo: PropTypes.func,
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
@@ -234,7 +247,7 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo } = this.props;
+    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl } = this.props;
     const { progress, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
 
     return (
@@ -273,15 +286,15 @@ export default class Video extends React.PureComponent {
           </div>
 
           <div className='video-player__buttons left'>
-            <button onClick={this.togglePlay}><i className={classNames('fa fa-fw', { 'fa-play': paused, 'fa-pause': !paused })} /></button>
-            <button onClick={this.toggleMute}><i className={classNames('fa fa-fw', { 'fa-volume-off': muted, 'fa-volume-up': !muted })} /></button>
-            {!onCloseVideo && <button onClick={this.toggleReveal}><i className='fa fa-fw fa-eye' /></button>}
+            <button aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><i className={classNames('fa fa-fw', { 'fa-play': paused, 'fa-pause': !paused })} /></button>
+            <button aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><i className={classNames('fa fa-fw', { 'fa-volume-off': muted, 'fa-volume-up': !muted })} /></button>
+            {!onCloseVideo && <button aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><i className='fa fa-fw fa-eye' /></button>}
           </div>
 
           <div className='video-player__buttons right'>
-            {(!fullscreen && onOpenVideo) && <button onClick={this.handleOpenVideo}><i className='fa fa-fw fa-expand' /></button>}
-            {onCloseVideo && <button onClick={this.handleCloseVideo}><i className='fa fa-fw fa-times' /></button>}
-            <button onClick={this.toggleFullscreen}><i className={classNames('fa fa-fw', { 'fa-arrows-alt': !fullscreen, 'fa-compress': fullscreen })} /></button>
+            {(!fullscreen && onOpenVideo) && <button aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><i className='fa fa-fw fa-expand' /></button>}
+            {onCloseVideo && <button aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><i className='fa fa-fw fa-times' /></button>}
+            <button aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><i className={classNames('fa fa-fw', { 'fa-arrows-alt': !fullscreen, 'fa-compress': fullscreen })} /></button>
           </div>
         </div>
       </div>
