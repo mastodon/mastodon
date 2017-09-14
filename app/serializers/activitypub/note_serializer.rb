@@ -73,6 +73,8 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def conversation
+    return if object.conversation.nil?
+
     if object.conversation.uri?
       object.conversation.uri
     else

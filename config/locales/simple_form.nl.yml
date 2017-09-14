@@ -7,7 +7,10 @@ nl:
         display_name: Maximaal 30 tekens
         header: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 700x335px
         locked: Vereist dat je handmatig volgers moet accepteren en stelt de privacy van toots standaard in op alleen volgers
-        note: Maximaal 160 tekens
+        note:
+          one: <span class="note-counter">1</span> teken over
+          other: <span class="note-counter">%{count}</span> tekens over
+        setting_noindex: Heeft invloed op jouw openbare profiel en toots
       imports:
         data: CSV-bestand dat op een andere Mastodon-server werd geëxporteerd 
       sessions:
@@ -32,8 +35,13 @@ nl:
         otp_attempt: Tweestaps-aanmeldcode
         password: Wachtwoord
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
-        setting_boost_modal: Vraag voor het boosten een bevestiging
-        setting_default_privacy: Tootprivacy
+        setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
+        setting_default_privacy: Zichtbaarheid toots
+        setting_default_sensitive: Media altijd als gevoelig markeren
+        setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
+        setting_noindex: Jouw toots niet door zoekmachines laten indexeren
+        setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
+        setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
         type: Importtype
         username: gebruikersnaam
       interactions:

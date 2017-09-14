@@ -5,8 +5,8 @@ ruby '>= 2.3.0', '< 2.5.0'
 
 gem 'pkg-config', '~> 1.2'
 
-gem 'puma', '~> 3.8'
-gem 'rails', '~> 5.1.0'
+gem 'puma', '~> 3.10'
+gem 'rails', '~> 5.1.4'
 gem 'uglifier', '~> 3.2'
 
 gem 'hamlit-rails', '~> 0.2'

@@ -566,6 +566,10 @@
   opacity: 1;
   animation: fade 150ms linear;
 
+  .video-player {
+    margin-top: 8px;
+  }
+
   &.status-direct {
     background: lighten($ui-base-color, 8%);
 
@@ -733,6 +737,10 @@
       width: 22px;
       height: 22px;
     }
+  }
+
+  .video-player {
+    margin-top: 8px;
   }
 }
 
@@ -1404,9 +1412,6 @@
 .drawer {
   flex: 1 1 100%;
   overflow: hidden;
-  @supports(display: grid) { // hack to fix Chrome <57
-    contain: strict;
-  }
 }
 
 @media screen and (min-width: 360px) {
@@ -1582,9 +1587,6 @@
   overflow-x: hidden;
   flex: 1 1 auto;
   -webkit-overflow-scrolling: touch;
-  @supports(display: grid) { // hack to fix Chrome <57
-    contain: strict;
-  }
 
   &.optionally-scrollable {
     overflow-y: auto;
@@ -2341,10 +2343,16 @@ button.icon-button.active i.fa-retweet {
 
 .media-spoiler {
   background: $base-overlay-background;
-  color: $primary-text-color;
+  color: $ui-primary-color;
   border: 0;
   width: 100%;
   height: 100%;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($ui-primary-color, 8%);
+  }
 }
 
 .media-spoiler__warning {
@@ -3796,6 +3804,182 @@ button.icon-button.active i.fa-retweet {
 .status__video-player-mute {
   top: 4px;
   z-index: 5;
+}
+
+.video-player {
+  overflow: hidden;
+  position: relative;
+  background: $base-shadow-color;
+  max-width: 100%;
+
+  video {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &.fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0;
+
+    video {
+      max-width: 100% !important;
+      max-height: 100% !important;
+    }
+  }
+
+  &.inline {
+    video {
+      object-fit: cover;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 60%, transparent);
+    padding: 0 10px;
+    opacity: 0;
+    transition: opacity .1s ease;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &.inactive {
+    video,
+    .video-player__controls {
+      visibility: hidden;
+    }
+  }
+
+  &__spoiler {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    border: 0;
+    background: $base-shadow-color;
+    color: $ui-primary-color;
+    transition: none;
+    pointer-events: none;
+
+    &.active {
+      display: block;
+      pointer-events: auto;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: lighten($ui-primary-color, 8%);
+      }
+    }
+
+    &__title {
+      display: block;
+      font-size: 14px;
+    }
+
+    &__subtitle {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+    }
+  }
+
+  &__buttons {
+    padding-bottom: 10px;
+    font-size: 16px;
+
+    &.left {
+      float: left;
+
+      button {
+        padding-right: 10px;
+      }
+    }
+
+    &.right {
+      float: right;
+
+      button {
+        padding-left: 10px;
+      }
+    }
+
+    button {
+      background: transparent;
+      padding: 0;
+      border: 0;
+      color: $white;
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $ui-highlight-color;
+      }
+    }
+  }
+
+  &__seek {
+    cursor: pointer;
+    height: 24px;
+    position: relative;
+
+    &::before {
+      content: "";
+      width: 100%;
+      background: rgba($white, 0.35);
+      display: block;
+      position: absolute;
+      height: 4px;
+      top: 10px;
+    }
+
+    &__progress {
+      display: block;
+      position: absolute;
+      height: 4px;
+      top: 10px;
+      background: $ui-highlight-color;
+    }
+
+    &__handle {
+      position: absolute;
+      z-index: 3;
+      opacity: 0;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      top: 6px;
+      margin-left: -6px;
+      transition: opacity .1s ease;
+      background: $ui-highlight-color;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      .video-player__seek__handle {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .media-spoiler-video {
