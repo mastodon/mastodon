@@ -14,8 +14,8 @@ const messages = defineMessages({
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
-  mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
-  unmute_notifications: { id: 'account.unmute_notifications', defaultMessage: 'Unmute notifications from @{name}' },
+  mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'You are not currently muting notifications from @{name}. Click to mute notifications' },
+  unmute_notifications: { id: 'account.unmute_notifications', defaultMessage: 'You are currently muting notifications from @{name}. Click to unmute notifications' },
 });
 
 @injectIntl
