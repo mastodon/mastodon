@@ -32,6 +32,10 @@ class InstancePresenter
     Mastodon::Version
   end
 
+  def github_url
+	Mastodon::Github.to_s
+  end
+  
   def source_url
     Mastodon::Version.source_url
   end
