@@ -24,3 +24,6 @@
   subscriptions_cleanup_scheduler:
     cron: '2 2 * * 0'
     class: Scheduler::SubscriptionsCleanupScheduler
+  ip_cleanup_scheduler:
+    cron: '0 4 * * *'
+    class: Scheduler::IpCleanupScheduler
