@@ -1,0 +1,261 @@
+/*
+* DOZ - Creative 404 Pages
+* Build Date: August 2015
+* Author: Madeon08
+* Copyright (C) 2015 Madeon08
+* This is a premium product available exclusively here : http://themeforest.net/user/Madeon08/portfolio
+*/
+
+/*  TABLE OF CONTENTS
+    ---------------------------
+    *. @Import & Reset
+    1. Generic styles
+    2. Media Queries
+*/
+
+/* ------------------------------------- */
+/* *. @Import & Reset .................. */
+/* ------------------------------------- */
+
+/* http://bourbon.io/ Sass Mixin Library */
+@import "bourbon";
+
+// colors, fonts, sizes etc...
+@import "vars";
+
+// custom mixins
+@import "mixins";
+
+/* custom CSS files */
+@import "font-awesome.min.css";
+@import "ionicons.min.css";
+@import "bootstrap.min.css";
+@import "animate.css";
+@import "vegas.css";
+
+/*
+* http://meyerweb.com/eric/tools/css/reset/ 
+* v2.0 | 20110126
+* License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, main {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ------------------------------------- */
+/* 1. Generic styles ................... */
+/* ------------------------------------- */
+
+body {
+    font-family: $courier-family;
+    @include font-smoothing(on);
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: $ebony-clay;
+}
+
+p, a {
+    text-shadow: 0 0 1ex $harlequin, 0 0 2px rgba($white, 0.8);
+    margin: 0.8em 0;
+    font-size: 18px;
+    color: rgba($mint-green, 0.8);
+}
+
+a {
+    @include bezier-transition(all, $fast-transition, cubic-bezier(0.42, 0, 0.58, 1));
+    cursor: pointer;
+    text-decoration: none;
+    color: rgba($mint-green, 0.6);
+    text-shadow: 0 0 1ex rgba($harlequin, 0.6), 0 0 2px rgba($white, 0.6);
+
+    &:hover {
+        color: rgba($mint-green, 1);
+        text-decoration: none !important;
+        text-shadow: 0 0 1ex $harlequin, 0 0 2px rgba($white, 0.8);
+        outline: none !important;
+    }
+
+    &:active, &:focus {
+        outline: none !important;
+        text-decoration: none !important;
+        text-shadow: 0 0 1ex $harlequin, 0 0 2px rgba($white, 0.8);
+        color: $mint-green;
+    }
+}
+
+#container {
+    background: rgba($ebony-clay, 0.95);
+    border: 30px solid darken($ebony-clay, 1);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+
+    &:before {
+        position: absolute;
+        content: "";
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        background-image: linear-gradient(0deg, transparent 0%, rgba($ebony-clay, 0.2) 2%, rgba($shark, 0.8) 3%, rgba($shark, 0.2) 3%, transparent 100%);
+        background-repeat: no-repeat;
+        @include animation(scan 7s infinite linear);
+    }
+
+    .overlay {
+        position: absolute;
+        background-image: url("../img/lightgrain.gif");
+        background-repeat: repeat;
+        opacity: 0.1;
+        width: 100%;
+        height: 100%;
+    }
+
+    .item-title {
+        position: absolute;
+        z-index: 0;
+        left: 0;
+        padding: 0;
+        top: 50vh;
+        width: 100%;
+        padding: 0 5%;
+        @include bezier-transition(all, $medium-transition, cubic-bezier(0, 0, 0.58, 1));
+        @include transform(translateY(-50%));
+        @include font-smoothing;
+        opacity: 1;
+        visibility: visible;
+
+        #message {
+            max-width: 540px;
+            min-height: 180px;
+            margin: 0 auto;
+        }
+
+        .link-bottom {
+            margin: 0 auto;
+            max-width: 540px;
+
+            .link-icon {
+                margin-right: 10px;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+@include keyframes(scan) {
+    0% {
+        background-position: 0 -100vh;
+    }
+
+    35%,
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+
+/* ------------------------------------- */
+/* 7. Media Queries .................... */
+/* ------------------------------------- */
+
+/* Large Devices, Wide Screens */
+@include desktop {}
+
+
+/* Notebook devices */
+@include notebook {}
+
+
+/* Medium Devices, Desktops */
+@include medium {}
+
+
+/* Small Devices, Tablets */
+@include tablet {}
+
+
+/* Extra Small Devices, Phones */
+@include phone {
+    #container {
+        min-height: 100%;
+        height: auto;
+
+        .overlay {
+            min-height: 100%;
+            height: auto;
+        }
+
+        .item-title {
+            padding: 100px 5%;
+            position: relative;
+            top: 0;
+            @include transform(translateY(0));
+
+            #message {
+            min-height: 240px;
+        }
+        }
+    }
+}
+
+
+/* Only for tablet in landscape mode */
+@include landscape-tablet {}
+
+
+/* Only for phone in landscape mode */
+@include landscape-phone {}
