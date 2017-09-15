@@ -24,6 +24,7 @@ const messages = defineMessages({
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  faq: { id: 'navigation_bar.faq', defaultMessage: 'FAQ(Only available in Japanese)' },
 });
 
 const mapStateToProps = state => ({
@@ -90,6 +91,7 @@ export default class GettingStarted extends ImmutablePureComponent {
           {navItems}
           <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
           <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
+          <ColumnLink icon='question' text={intl.formatMessage(messages.faq)} href='http://faq.imastodon.net/getting-started/' targetWindow='_blank' />
           <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
           <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
         </div>
