@@ -10,7 +10,7 @@ class FollowerAccountsController < ApplicationController
       format.html
 
       format.json do
-        render json: collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
+        render json: collection_presenter, serializer: ActivityPub::FollowerCollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
       end
     end
   end
@@ -18,11 +18,6 @@ class FollowerAccountsController < ApplicationController
   private
 
   def collection_presenter
-    ActivityPub::CollectionPresenter.new(
-      id: account_followers_url(@account),
-      type: :ordered,
-      size: @account.followers_count,
-      items: @follows.map { |f| ActivityPub::TagManager.instance.uri_for(f.account) }
-    )
+    ActivityPub::AccountCollectionPresenter.new account: @account, scope: @follows
   end
 end

@@ -12,19 +12,19 @@ class TagsController < ApplicationController
       format.html
 
       format.json do
-        render json: collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
+        render json: presenter, serializer: ActivityPub::TagTimelineSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
       end
     end
   end
 
   private
 
-  def collection_presenter
-    ActivityPub::CollectionPresenter.new(
-      id: tag_url(@tag),
-      type: :ordered,
-      size: @tag.statuses.count,
-      items: @statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }
+  def presenter
+    ActivityPub::TagTimelinePresenter.new(
+      tag: @tag,
+      account: current_account,
+      local_only: params[:local_only],
+      scope: @statuses
     )
   end
 end
