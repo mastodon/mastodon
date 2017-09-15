@@ -9,6 +9,7 @@ import { links, getIndex, getLink } from './tabs_bar';
 
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
+import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
 import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, FavouritedStatuses } from '../../ui/util/async-components';
 
@@ -129,8 +130,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
     );
   }
 
-  renderLoading = () => {
-    return <ColumnLoading />;
+  renderLoading = columnId => () => {
+    return columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading />;
   }
 
   renderError = (props) => {
@@ -158,7 +159,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
 
           return (
-            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading} error={this.renderError}>
+            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading(column.get('id'))} error={this.renderError}>
               {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn />}
             </BundleContainer>
           );
