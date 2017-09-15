@@ -7,7 +7,7 @@
 # For more information, see docs/Running-Mastodon/Administration-guide.md
 #
 defaults: &defaults
-  site_title: Mastodon
+  site_title: 'Vocalodon'
   site_description: ''
   site_extended_description: ''
   site_terms: ''
@@ -21,7 +21,7 @@ defaults: &defaults
   unfollow_modal: false
   boost_modal: false
   delete_modal: true
-  auto_play_gif: false
+  auto_play_gif: true
   system_font_ui: false
   noindex: false
   notification_emails:
@@ -34,13 +34,6 @@ defaults: &defaults
   interactions:
     must_be_follower: false
     must_be_following: false
-  reserved_usernames:
-    - admin
-    - support
-    - help
-    - root
-    - webmaster
-    - administrator
 
 development:
   <<: *defaults
