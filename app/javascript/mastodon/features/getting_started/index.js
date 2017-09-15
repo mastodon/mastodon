@@ -43,7 +43,7 @@ export default class GettingStarted extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, me, columns, multiColumn, github_url, github_name } = this.props;
+    const { intl, me, columns, multiColumn, github_url } = this.props;
 
     let navItems = [];
 
@@ -99,7 +99,7 @@ export default class GettingStarted extends ImmutablePureComponent {
               <FormattedMessage
                 id='getting_started.open_source_notice'
                 defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-                values={{ github: <a href={ github_url }  rel='noopener' target='_blank'>Gendaidev/mastodon</a> }}
+                values={{ github: <a href='https://github.com/GenkaiDev/mastodon/'  rel='noopener' target='_blank'>Gendaidev/mastodon</a> }}
               />
             </p>
           </div>
