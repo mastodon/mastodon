@@ -26,7 +26,7 @@
         %span @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
 
-    - if account.user_admin?
+    - if false && account.user_admin?
       .roles
         .account-role
           = t 'accounts.roles.admin'
