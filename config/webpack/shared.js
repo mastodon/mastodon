@@ -1,6 +1,5 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const { existsSync } = require('fs');
 const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve, sep } = require('path');
 const { sync } = require('glob');
@@ -16,7 +15,7 @@ const packPaths = sync(join(entryPath, extensionGlob));
 const entryPacks = [...packPaths, ...localePackPaths].filter(path => path !== join(entryPath, 'custom.js'));
 
 const themePaths = Object.keys(themes).reduce(
-  (themePaths, name) => { 
+  (themePaths, name) => {
     themePaths[name] = resolve(join(settings.source_path, themes[name]));
     return themePaths;
   }, {});

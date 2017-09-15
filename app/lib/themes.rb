@@ -6,7 +6,7 @@ require 'yaml'
 class Themes
   include Singleton
 
-  def initialize()
+  def initialize
     @conf = YAML.load_file(Rails.root.join('config', 'themes.yml'))
   end
 
