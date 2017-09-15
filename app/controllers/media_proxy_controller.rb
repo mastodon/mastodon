@@ -7,7 +7,7 @@ class MediaProxyController < ApplicationController
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         @media_attachment = MediaAttachment.remote.find(params[:id])
-        redownload! if @media_attachment.needs_redownload?
+        redownload! if @media_attachment.needs_redownload? && !reject_media?
       end
     end
 
@@ -32,5 +32,9 @@ class MediaProxyController < ApplicationController
 
   def lock_options
     { redis: Redis.current, key: "media_download:#{params[:id]}" }
+  end
+
+  def reject_media?
+    DomainBlock.find_by(domain: @media_attachment.account.domain)&.reject_media?
   end
 end
