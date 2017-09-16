@@ -1,0 +1,191 @@
+/*
+* DOZ - Creative 404 Pages
+* Build Date: August 2015
+* Author: Madeon08
+* Copyright (C) 2015 Madeon08
+* This is a premium product available exclusively here : http://themeforest.net/user/Madeon08/portfolio
+*/
+/*  TABLE OF CONTENTS
+    ---------------------------
+    *. @Import & Reset
+    1. Generic styles
+    2. Media Queries
+*/
+/* ------------------------------------- */
+/* *. @Import & Reset .................. */
+/* ------------------------------------- */
+/* http://bourbon.io/ Sass Mixin Library */
+/* custom CSS files */
+@import url(font-awesome.min.css);
+@import url(ionicons.min.css);
+@import url(bootstrap.min.css);
+@import url(animate.css);
+@import url(vegas.css);
+@import url("http://fonts.googleapis.com/css?family=Montserrat:400,700");
+/*
+* http://meyerweb.com/eric/tools/css/reset/ 
+* v2.0 | 20110126
+* License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, main {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* ------------------------------------- */
+/* 1. Generic styles ................... */
+/* ------------------------------------- */
+body {
+  font-family: Montserrat, "Helvetica Neue", "Lucida Grande", Arial, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  position: static;
+  z-index: -2;
+  padding: 0;
+  margin: 0;
+  background: #FF1D4D; }
+
+p, a {
+  margin: 10px 0;
+  font-size: 18px;
+  color: white; }
+
+a {
+  -webkit-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  -ms-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  cursor: pointer;
+  text-decoration: none;
+  color: rgba(255, 29, 77, 0.6); }
+  a:hover {
+    color: #ff1d4d !important;
+    text-decoration: none !important;
+    outline: none !important; }
+  a:active, a:focus {
+    outline: none !important;
+    text-decoration: none !important;
+    color: rgba(255, 29, 77, 0.6); }
+
+#container {
+  background: #20232d;
+  border: 30px solid #FF1D4D;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0; }
+  #container .overlay {
+    position: absolute;
+    background-repeat: repeat;
+    opacity: 0.1;
+    width: 100%;
+    height: 100%; }
+  #container .item-title {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    padding: 0;
+    top: 50vh;
+    width: 100%;
+    padding: 0 5%;
+    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    -moz-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    -ms-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    -o-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    opacity: 1;
+    visibility: visible; }
+    #container .item-title #message {
+      max-width: 600px;
+      min-height: 300px;
+      margin: 0 auto; }
+      #container .item-title #message p:first-child {
+        font-size: 90px;
+        font-weight: 700; }
+    #container .item-title .link-bottom {
+      margin: 0 auto;
+      max-width: 600px; }
+      #container .item-title .link-bottom .link-icon {
+        margin-right: 10px;
+        font-size: 22px; }
+
+/* ------------------------------------- */
+/* 2. Media Queries .................... */
+/* ------------------------------------- */
+/* Large Devices, Wide Screens */
+/* Notebook devices */
+/* Medium Devices, Desktops */
+/* Small Devices, Tablets */
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  #container {
+    min-height: 100%;
+    height: auto; }
+    #container .overlay {
+      min-height: 100%;
+      height: auto; }
+    #container .item-title {
+      padding: 100px 5%;
+      position: relative;
+      top: 0;
+      -webkit-transform: translateY(0);
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -o-transform: translateY(0);
+      transform: translateY(0); }
+      #container .item-title #message {
+        min-height: 240px; }
+        #container .item-title #message p:first-child {
+          font-size: 50px;
+          font-weight: 700; } }
+/* Only for tablet in landscape mode */
+/* Only for phone in landscape mode */

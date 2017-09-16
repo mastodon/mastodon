@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../../ui/containers/status_list_container';
 import {
-  refreshPublicTimeline,
-  expandPublicTimeline,
+  refreshCommunityTimeline,
+  expandCommunityTimeline,
 } from '../../../actions/timelines';
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
@@ -34,10 +34,10 @@ export default class PublicTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
-    dispatch(refreshPublicTimeline());
+    dispatch(refreshCommunityTimeline());
 
     this.polling = setInterval(() => {
-      dispatch(refreshPublicTimeline());
+      dispatch(refreshCommunityTimeline());
     }, 3000);
   }
 
@@ -49,7 +49,7 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   handleLoadMore = () => {
-    this.props.dispatch(expandPublicTimeline());
+    this.props.dispatch(expandCommunityTimeline());
   }
 
   render () {
@@ -58,13 +58,13 @@ export default class PublicTimeline extends React.PureComponent {
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
-          icon='globe'
+          icon='users'
           title={intl.formatMessage(messages.title)}
           onClick={this.handleHeaderClick}
         />
 
         <StatusListContainer
-          timelineId='public'
+          timelineId='community'
           loadMore={this.handleLoadMore}
           scrollKey='standalone_public_timeline'
           trackScroll={false}

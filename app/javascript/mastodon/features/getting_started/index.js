@@ -43,7 +43,7 @@ export default class GettingStarted extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, me, columns, multiColumn } = this.props;
+    const { intl, me, columns, multiColumn, github_url } = this.props;
 
     let navItems = [];
 
@@ -93,13 +93,13 @@ export default class GettingStarted extends ImmutablePureComponent {
         <div className='getting-started__footer scrollable optionally-scrollable'>
           <div className='static-content getting-started'>
             <p>
-              <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
+              <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ_JA.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
             </p>
             <p>
               <FormattedMessage
                 id='getting_started.open_source_notice'
                 defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-                values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
+                values={{ github: <a href='https://github.com/GenkaiDev/mastodon/'  rel='noopener' target='_blank'>Gendaidev/mastodon</a> }}
               />
             </p>
           </div>

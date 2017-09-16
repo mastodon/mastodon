@@ -32,7 +32,15 @@ class InstancePresenter
     Mastodon::Version
   end
 
+  def github_url
+	Mastodon::Github.to_s
+  end
+  
   def source_url
     Mastodon::Version.source_url
+  end
+
+  def thumbnail
+    @thumbnail ||= Rails.cache.fetch('site_uploads/thumbnail') { SiteUpload.find_by(var: 'thumbnail') }
   end
 end

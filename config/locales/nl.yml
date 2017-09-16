@@ -41,8 +41,11 @@ nl:
     people_followed_by: Mensen die %{name} volgt
     people_who_follow: Mensen die %{name} volgen
     posts: Toots
+    posts_with_replies: Toots met reacties
     remote_follow: Extern volgen
     reserved_username: Deze gebruikersnaam is gereserveerd
+    roles:
+      admin: Beheerder
     unfollow: Ontvolgen
   admin:
     accounts:
@@ -56,7 +59,9 @@ nl:
       email: E-mail
       feed_url: Feed-URL
       followers: Volgers
+      followers_url: Volgers-URL
       follows: Volgt
+      inbox_url: Inbox-URL
       ip: IP
       location:
         all: Alles
@@ -86,6 +91,7 @@ nl:
       resubscribe: Opnieuw abonneren
       salmon_url: Salmon-URL
       search: Zoeken
+      shared_inbox_url: Gedeelde inbox-URL
       show:
         created_reports: Toots door dit account gerapporteerd
         report: gerapporteerd
@@ -160,6 +166,9 @@ nl:
       unresolved: Onopgelost
       view: Weergeven
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Meerdere gebruikersnamen met komma's scheiden. Alleen lokale en niet opgeschorte accounts werken. Laat leeg voor alle lokale beheerders.
+        title: Standaard te volgen accounts voor nieuwe gebruikers
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
         username: Vul een gebruikersnaam in
@@ -183,6 +192,9 @@ nl:
         desc_html: Je kan hier jouw eigen privacybeleid, gebruikersvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken.
         title: Aangepaste gebruikersvoorwaarden
       site_title: Naam Mastodon-server
+      thumbnail:
+        desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen.
+        title: Thumbnail Mastodon-server
       timeline_preview:
         desc_html: Toon de openbare tijdlijn op de startpagina
         title: Voorbeeld tijdlijn
@@ -272,7 +284,7 @@ nl:
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
       title: Veiligheidsverificatie mislukt
     '429': Te veel verbindingsaanvragen.
-    noscript_html: Schakel JavaScript in om de webapplicatie van Mastodon te gebruiken. Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a> zoeken voor jouw platform.
+    noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a> zoeken voor jouw platform.
   exports:
     blocks: Jij blokkeert
     csv: CSV
@@ -412,6 +424,7 @@ nl:
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
     delete: Account deletion
+    development: Ontwikkelaars
     edit_profile: Profiel bewerken
     export: Export
     followers: Geautoriseerde volgers
@@ -419,9 +432,15 @@ nl:
     preferences: Voorkeuren
     settings: Instellingen
     two_factor_authentication: Tweestapsverificatie
+    your_apps: Jouw toepassingen
   statuses:
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
+    pin_errors:
+      limit:  Te veel toots vastgezet
+      ownership: Een toot van iemand anders kan niet worden vastgezet
+      private:  Alleen openbare toots kunnen worden vastgezet
+      reblog: Een boost kan niet worden vastgezet
     show_more: Meer tonen
     visibilities:
       private: Alleen volgers
@@ -432,6 +451,7 @@ nl:
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   stream_entries:
     click_to_show: Klik om te tonen
+    pinned: Vastgemaakte toot
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
   terms:

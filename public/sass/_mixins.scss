@@ -1,0 +1,98 @@
+// WebKit font-smoothing
+// Values: none, antialiased (default), subpixel-antialiased
+@mixin font-smoothing($value: on) {
+    @if $value == on {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    @else {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+    }
+}
+
+// Cross-browser mixins transition cubic-bezier
+@mixin bezier-transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+@mixin box-shadow($params) {
+  -webkit-box-shadow: $params;
+     -moz-box-shadow: $params;
+          box-shadow: $params;
+}
+
+// Cross-browser mixins border-radius
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+// Cross-browser mixins rotate
+@mixin rotate($rotate) {
+    -ms-transform: rotate($rotate);
+    /* IE 9 */
+    -webkit-transform: rotate($rotate);
+    /* Chrome, Safari, Opera */
+    -moz-transform: rotate($rotate);
+    transform: rotate($rotate);
+}
+
+// Devices Media Queries
+$special-phone: 667px;
+$special-tablet: 1024px;
+
+// General Media Queries
+$phone-width: 480px;
+$tablet-width: 767px;
+$medium-width: 1024px;
+$notebook-width: 1280px;
+$desktop-width: 1600px;
+
+@mixin landscape-phone {
+    @media screen and (max-device-width: $special-phone) and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin landscape-tablet {
+    @media only screen and (max-device-width: $special-tablet) and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media only screen and (max-width: $phone-width) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media only screen and (max-width: $medium-width) {
+        @content;
+    }
+}
+
+@mixin notebook {
+    @media only screen and (max-width: $notebook-width) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media only screen and (max-width: $desktop-width) {
+        @content;
+    }
+}

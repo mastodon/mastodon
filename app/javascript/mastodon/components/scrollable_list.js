@@ -167,7 +167,7 @@ export default class ScrollableList extends PureComponent {
     const { children, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
     const childrenCount = React.Children.count(children);
 
-    const loadMore     = <LoadMore visible={!isLoading && childrenCount > 0 && hasMore} onClick={this.handleLoadMore} />;
+    const loadMore     = (hasMore && childrenCount > 0) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
     let scrollableArea = null;
 
     if (isLoading || childrenCount > 0 || !emptyMessage) {
