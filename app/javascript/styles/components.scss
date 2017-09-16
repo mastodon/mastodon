@@ -2706,6 +2706,8 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   text-align: center;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
 
   .status__content > & {
     margin-top: 15px; // Add margin when used bare for NSFW video player
