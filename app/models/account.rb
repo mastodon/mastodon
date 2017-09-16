@@ -44,8 +44,6 @@
 #
 
 class Account < ApplicationRecord
-  MENTION_RE = /(?:^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
-
   include AccountAvatar
   include AccountFinderConcern
   include AccountHeader

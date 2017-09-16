@@ -39,9 +39,9 @@ class LanguageDetector
 
   def simplify_text(text)
     text.dup.tap do |new_text|
-      new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
-      new_text.gsub!(Account::MENTION_RE, '')
-      new_text.gsub!(Tag::HASHTAG_RE, '')
+      new_text.gsub!(Regex[:valid_url_body], '')
+      new_text.gsub!(Regex[:valid_mention], '')
+      new_text.gsub!(Regex[:valid_hashtag], '')
       new_text.gsub!(/\s+/, ' ')
     end
   end

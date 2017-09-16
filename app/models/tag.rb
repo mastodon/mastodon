@@ -13,7 +13,6 @@ class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
 
   HASHTAG_NAME_RE = '[[:word:]_]*[[:alpha:]_][[:word:]_]*'
-  HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
 
   validates :name, presence: true, uniqueness: true, format: { with: /\A#{HASHTAG_NAME_RE}\z/i }
 

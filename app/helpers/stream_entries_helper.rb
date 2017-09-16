@@ -71,8 +71,8 @@ module StreamEntriesHelper
         new_text.gsub!(url, '')
       end
 
-      new_text.gsub!(Account::MENTION_RE, '')
-      new_text.gsub!(Tag::HASHTAG_RE, '')
+      new_text.gsub!(Regex[:valid_mention], '')
+      new_text.gsub!(Regex[:valid_hashtag], '')
       new_text.gsub!(/\s+/, '')
     end
   end

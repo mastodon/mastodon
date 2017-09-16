@@ -10,7 +10,7 @@ class ProcessMentionsService < BaseService
   def call(status)
     return unless status.local?
 
-    status.text.scan(Account::MENTION_RE).each do |match|
+    status.text.scan(Regex[:valid_mention]).each do |match|
       username, domain  = match.first.split('@')
       mentioned_account = Account.find_remote(username, domain)
 
