@@ -23,6 +23,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
       alerts: {
         follow: alerts_enabled,
         favourite: alerts_enabled,
+        profile_change: alerts_enabled,
         reblog: alerts_enabled,
         mention: alerts_enabled,
       },

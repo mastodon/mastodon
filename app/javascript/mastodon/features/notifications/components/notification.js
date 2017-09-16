@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
+import ProfileChangeContainer from '../../../containers/profile_change_container';
 import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -129,6 +130,22 @@ export default class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderProfileChange (notification, link) {
+    return (
+      <div className='notification notification-profile_change'>
+        <div className='notification__message'>
+          <div className='notification__favourite-icon-wrapper'>
+            <i className='fa fa-fw fa-pencil' />
+          </div>
+
+          <FormattedMessage id='notification.profile_change' defaultMessage='{name} changed name or avatar' values={{ name: link }} />
+        </div>
+
+        <ProfileChangeContainer id={notification.get('account').get('id')} profileChange={notification} withNote={false} hidden={this.props.hidden} />
+      </div>
+    );
+  }
+
   render () {
     const { notification } = this.props;
     const account          = notification.get('account');
@@ -144,6 +161,8 @@ export default class Notification extends ImmutablePureComponent {
       return this.renderFavourite(notification, link);
     case 'reblog':
       return this.renderReblog(notification, link);
+    case 'profile_change':
+      return this.renderProfileChange(notification, link);
     }
 
     return null;

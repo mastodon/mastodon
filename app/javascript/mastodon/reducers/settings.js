@@ -26,6 +26,7 @@ const initialState = ImmutableMap({
   notifications: ImmutableMap({
     alerts: ImmutableMap({
       follow: true,
+      profile_change: true,
       favourite: true,
       reblog: true,
       mention: true,
@@ -33,6 +34,7 @@ const initialState = ImmutableMap({
 
     shows: ImmutableMap({
       follow: true,
+      profile_change: true,
       favourite: true,
       reblog: true,
       mention: true,
@@ -40,6 +42,7 @@ const initialState = ImmutableMap({
 
     sounds: ImmutableMap({
       follow: true,
+      profile_change: true,
       favourite: true,
       reblog: true,
       mention: true,

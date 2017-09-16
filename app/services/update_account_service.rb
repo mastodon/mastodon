@@ -1,13 +1,24 @@
 # frozen_string_literal: true
 
 class UpdateAccountService < BaseService
+  include ProfileChangeNotifier
+
   def call(account, params, raise_error: false)
     was_locked = account.locked
     update_method = raise_error ? :update! : :update
-    account.send(update_method, params).tap do |ret|
+
+    if params['display_name'] != account.display_name || !params['avatar'].nil?
+      prepare_profile_change(account)
+    end
+
+    res = account.send(update_method, params).tap do |ret|
       next unless ret
       authorize_all_follow_requests(account) if was_locked && !account.locked
     end
+
+    notify_profile_change
+
+    res
   end
 
   private

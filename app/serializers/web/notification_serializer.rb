@@ -31,6 +31,8 @@ class Web::NotificationSerializer < ActiveModel::Serializer
         web_url("statuses/#{object.target_status.id}")
       when :follow
         web_url("accounts/#{object.from_account.id}")
+      when :profile_change
+        web_url("accounts/#{object.from_account.id}")
       when :favourite
         web_url("statuses/#{object.target_status.id}")
       when :reblog
@@ -68,6 +70,8 @@ class Web::NotificationSerializer < ActiveModel::Serializer
       when :mention
         object.target_status.text
       when :follow
+        object.from_account.note
+      when :profile_change
         object.from_account.note
       when :favourite
         object.target_status.text
@@ -129,6 +133,8 @@ class Web::NotificationSerializer < ActiveModel::Serializer
       I18n.t('push_notifications.mention.title', name: name)
     when :follow
       I18n.t('push_notifications.follow.title', name: name)
+    when :profile_change
+      I18n.t('push_notifications.profile_change.title', name: name)
     when :favourite
       I18n.t('push_notifications.favourite.title', name: name)
     when :reblog

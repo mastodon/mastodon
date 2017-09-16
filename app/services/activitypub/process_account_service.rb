@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::ProcessAccountService < BaseService
+  include ProfileChangeNotifier
   include JsonLdHelper
 
   # Should be called with confirmed valid JSON
@@ -27,6 +28,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
+    notify_profile_change
 
     @account
   rescue Oj::ParseError
@@ -47,6 +49,13 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def update_account
+    new_display_name             = @json['name'] || ''
+    new_avatar_remote_url        = skip_download? ? @account.avatar_remote_url : image_url('icon')
+
+    if new_display_name != @account.display_name || new_avatar_remote_url != @account.avatar_remote_url
+      prepare_profile_change(@account)
+    end
+
     @account.last_webfingered_at = Time.now.utc
     @account.protocol            = :activitypub
 

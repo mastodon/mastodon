@@ -6,6 +6,7 @@ const initialState = Immutable.Map({
   subscription: null,
   alerts: new Immutable.Map({
     follow: false,
+    profile_change: true,
     favourite: false,
     reblog: false,
     mention: false,
