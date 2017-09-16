@@ -83,7 +83,6 @@ namespace :mastodon do
 
       MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
-        media.type = :unknown
         media.save
       end
     end

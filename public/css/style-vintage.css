@@ -1,0 +1,219 @@
+/*
+* DOZ - Creative 404 Pages
+* Build Date: August 2015
+* Author: Madeon08
+* Copyright (C) 2015 Madeon08
+* This is a premium product available exclusively here : http://themeforest.net/user/Madeon08/portfolio
+*/
+/*  TABLE OF CONTENTS
+    ---------------------------
+    *. @Import & Reset
+    1. Generic styles
+    2. Media Queries
+*/
+/* ------------------------------------- */
+/* *. @Import & Reset .................. */
+/* ------------------------------------- */
+/* http://bourbon.io/ Sass Mixin Library */
+/* custom CSS files */
+@import url(font-awesome.min.css);
+@import url(ionicons.min.css);
+@import url(bootstrap.min.css);
+@import url(animate.css);
+@import url(vegas.css);
+/*
+* http://meyerweb.com/eric/tools/css/reset/ 
+* v2.0 | 20110126
+* License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, main {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* ------------------------------------- */
+/* 1. Generic styles ................... */
+/* ------------------------------------- */
+body {
+  font-family: "Courier", "Helvetica Neue", "Lucida Grande", Arial, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background: #20232D; }
+
+p, a {
+  text-shadow: 0 0 1ex #33ff33, 0 0 2px rgba(255, 255, 255, 0.8);
+  margin: 0.8em 0;
+  font-size: 18px;
+  color: rgba(128, 255, 128, 0.8); }
+
+a {
+  -webkit-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  -ms-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  cursor: pointer;
+  text-decoration: none;
+  color: rgba(128, 255, 128, 0.6);
+  text-shadow: 0 0 1ex rgba(51, 255, 51, 0.6), 0 0 2px rgba(255, 255, 255, 0.6); }
+  a:hover {
+    color: #80ff80;
+    text-decoration: none !important;
+    text-shadow: 0 0 1ex #33ff33, 0 0 2px rgba(255, 255, 255, 0.8);
+    outline: none !important; }
+  a:active, a:focus {
+    outline: none !important;
+    text-decoration: none !important;
+    text-shadow: 0 0 1ex #33ff33, 0 0 2px rgba(255, 255, 255, 0.8);
+    color: #80ff80; }
+
+#container {
+  background: rgba(32, 35, 45, 0.95);
+  border: 30px solid #1e212a;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0; }
+  #container:before {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background-image: linear-gradient(0deg, transparent 0%, rgba(32, 35, 45, 0.2) 2%, rgba(43, 45, 53, 0.8) 3%, rgba(43, 45, 53, 0.2) 3%, transparent 100%);
+    background-repeat: no-repeat;
+    -webkit-animation: scan 7s infinite linear;
+    -moz-animation: scan 7s infinite linear;
+    animation: scan 7s infinite linear; }
+  #container .overlay {
+    position: absolute;
+    background-image: url("../img/lightgrain.gif");
+    background-repeat: repeat;
+    opacity: 0.1;
+    width: 100%;
+    height: 100%; }
+  #container .item-title {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    padding: 0;
+    top: 50vh;
+    width: 100%;
+    padding: 0 5%;
+    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    -moz-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    -ms-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    -o-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    transition: all 0.3s cubic-bezier(0, 0, 0.58, 1);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    opacity: 1;
+    visibility: visible; }
+    #container .item-title #message {
+      max-width: 540px;
+      min-height: 180px;
+      margin: 0 auto; }
+    #container .item-title .link-bottom {
+      margin: 0 auto;
+      max-width: 540px; }
+      #container .item-title .link-bottom .link-icon {
+        margin-right: 10px;
+        font-size: 18px; }
+
+@-webkit-keyframes scan {
+  0% {
+    background-position: 0 -100vh; }
+  35%,
+    100% {
+    background-position: 0 100vh; } }
+@-moz-keyframes scan {
+  0% {
+    background-position: 0 -100vh; }
+  35%,
+    100% {
+    background-position: 0 100vh; } }
+@keyframes scan {
+  0% {
+    background-position: 0 -100vh; }
+  35%,
+    100% {
+    background-position: 0 100vh; } }
+/* ------------------------------------- */
+/* 7. Media Queries .................... */
+/* ------------------------------------- */
+/* Large Devices, Wide Screens */
+/* Notebook devices */
+/* Medium Devices, Desktops */
+/* Small Devices, Tablets */
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  #container {
+    min-height: 100%;
+    height: auto; }
+    #container .overlay {
+      min-height: 100%;
+      height: auto; }
+    #container .item-title {
+      padding: 100px 5%;
+      position: relative;
+      top: 0;
+      -webkit-transform: translateY(0);
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -o-transform: translateY(0);
+      transform: translateY(0); }
+      #container .item-title #message {
+        min-height: 240px; } }
+/* Only for tablet in landscape mode */
+/* Only for phone in landscape mode */

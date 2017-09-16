@@ -43,7 +43,7 @@ export default class StatusContent extends React.PureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else if (media) {
-        link.innerHTML = '<i class="fa fa-fw fa-photo"></i>';
+        link.innerHTML = '<i class="fa fa-file-image-o"></i>';
       } else {
         link.setAttribute('title', link.href);
       }
