@@ -121,6 +121,22 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'contains unsafe URL (XSS attack, visible part)' do
+      let(:text) { %q{http://example.com/b<del>b</del>} }
+
+      it 'has escaped HTML' do
+        is_expected.to include '&lt;del&gt;b&lt;/del&gt;'
+      end
+    end
+
+    context 'contains unsafe URL (XSS attack, invisible part)' do
+      let(:text) { %q{http://example.com/blahblahblahblah/a<script>alert("Hello")</script>} }
+
+      it 'has escaped HTML' do
+        is_expected.to include '&lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;'
+      end
+    end
+
     context 'contains HTML (script tag)' do
       let(:text) { '<script>alert("Hello")</script>' }
 
