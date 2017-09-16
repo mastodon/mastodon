@@ -10,6 +10,7 @@ import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
+import { remote_type } from '../remote_media_detector';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -128,9 +129,9 @@ export default class Status extends ImmutablePureComponent {
     }
 
     if (status.get('media_attachments').size > 0 && !this.props.muted) {
-      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+      if (status.get('media_attachments').some(item => remote_type(item) === 'unknown')) {
 
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+      } else if (remote_type(status.getIn(['media_attachments', 0])) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
 
         media = (

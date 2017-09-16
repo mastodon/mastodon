@@ -11,6 +11,7 @@ import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
+import { remote_type } from '../../../remote_media_detector';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -45,9 +46,9 @@ export default class DetailedStatus extends ImmutablePureComponent {
     let applicationLink = '';
 
     if (status.get('media_attachments').size > 0) {
-      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+      if (status.get('media_attachments').some(item => remote_type(item) === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+      } else if (remote_type(status.getIn(['media_attachments', 0])) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
 
         media = (
