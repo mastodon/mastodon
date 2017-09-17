@@ -37,7 +37,7 @@ class ActivityPub::TagManager
   end
 
   def activity_uri_for(target)
-    return nil unless %i(note comment activity).include?(target.object_type) && target.local?
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
     activity_account_status_url(target.account, target)
   end
