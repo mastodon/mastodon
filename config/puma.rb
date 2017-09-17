@@ -16,4 +16,6 @@ on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
 
+stdout_redirect '/home/mastodon/live/log/stdout', '/home/mastodon/live/log/stderr', true
+
 plugin :tmp_restart
