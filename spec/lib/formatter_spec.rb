@@ -223,6 +223,17 @@ RSpec.describe Formatter do
 
         include_examples 'encode and link URLs'
       end
+
+      context 'with custom_emojify option' do
+        let!(:emoji) { Fabricate(:custom_emoji) }
+        let(:status) { Fabricate(:status, account: local_account, text: 'Beep boop :coolcat:') }
+
+        subject { Formatter.instance.format(status, custom_emojify: true) }
+
+        it 'converts shortcode to image tag' do
+          is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
+        end
+      end
     end
 
     context 'with remote status' do
@@ -230,6 +241,17 @@ RSpec.describe Formatter do
 
       it 'reformats' do
         is_expected.to eq 'Beep boop'
+      end
+
+      context 'with custom_emojify option' do
+        let!(:emoji) { Fabricate(:custom_emoji, domain: remote_account.domain) }
+        let(:status) { Fabricate(:status, account: remote_account, text: '<p>Beep boop<br />:coolcat:</p>') }
+
+        subject { Formatter.instance.format(status, custom_emojify: true) }
+
+        it 'converts shortcode to image tag' do
+          is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
+        end
       end
     end
   end
