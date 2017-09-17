@@ -93,7 +93,7 @@ export default class GettingStarted extends ImmutablePureComponent {
         <div className='getting-started__footer scrollable optionally-scrollable'>
           <div className='static-content getting-started'>
             <p>
-              <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ_JA.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://discord.gg/5teHfRK' rel='noopener' target='_blank'><FormattedMessage id='getting_started.discord' defaultMessage='Discord' /></a> • <a href='mailto:contact@ncls.info' rel='noopener' target='_blank'><FormattedMessage id='getting_started.email' defaultMessage='E-Mail' /></a>
+              <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ_JA.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://discord.gg/5teHfRK' rel='noopener' target='_blank'><FormattedMessage id='getting_started.discord' defaultMessage='Discord' /></a> • <a href='mailto:contact@ncls.me' rel='noopener' target='_blank'><FormattedMessage id='getting_started.email' defaultMessage='E-Mail' /></a>
             </p>
             <p>
               <FormattedMessage
