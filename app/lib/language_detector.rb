@@ -1,26 +1,31 @@
 # frozen_string_literal: true
 
 class LanguageDetector
-  attr_reader :text, :account
+  include Singleton
 
-  def initialize(text, account = nil)
-    @text = text
-    @account = account
+  def initialize
     @identifier = CLD3::NNetLanguageIdentifier.new(1, 2048)
   end
 
-  def to_iso_s
-    detected_language_code || default_locale
+  def detect(text, account)
+    detect_language_code(text) || default_locale(account)
   end
 
-  def prepared_text
-    simplified_text.strip
+  def language_names
+    @language_names =
+      CLD3::TaskContextParams::LANGUAGE_NAMES.map { |name| iso6391(name.to_s).to_sym }
+                                             .uniq
   end
 
   private
 
-  def detected_language_code
-    iso6391(result.language).to_sym if detected_language_reliable?
+  def prepare_text(text)
+    simplify_text(text).strip
+  end
+
+  def detect_language_code(text)
+    result = @identifier.find_language(prepare_text(text))
+    iso6391(result.language.to_s).to_sym if result.reliable?
   end
 
   def iso6391(bcp47)
@@ -32,15 +37,7 @@ class LanguageDetector
     ISO_639.find(iso639).alpha2
   end
 
-  def result
-    @result ||= @identifier.find_language(prepared_text)
-  end
-
-  def detected_language_reliable?
-    result.reliable?
-  end
-
-  def simplified_text
+  def simplify_text(text)
     text.dup.tap do |new_text|
       new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
       new_text.gsub!(Account::MENTION_RE, '')
@@ -49,7 +46,7 @@ class LanguageDetector
     end
   end
 
-  def default_locale
-    account&.user_locale&.to_sym || nil
+  def default_locale(account)
+    account.user_locale&.to_sym
   end
 end

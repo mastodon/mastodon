@@ -27,7 +27,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def in_reply_to
-    return unless object.reply?
+    return unless object.reply? && !object.thread.nil?
 
     if object.thread.uri.nil? || object.thread.uri.start_with?('http')
       ActivityPub::TagManager.instance.uri_for(object.thread)
@@ -67,7 +67,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def in_reply_to_atom_uri
-    return unless object.reply?
+    return unless object.reply? && !object.thread.nil?
 
     ::TagManager.instance.uri_for(object.thread)
   end
