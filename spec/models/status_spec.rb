@@ -516,6 +516,14 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe 'validation' do
+    it 'disallow empty uri for remote status' do
+      alice.update(domain: 'example.com')
+      status = Fabricate.build(:status, uri: '', account: alice)
+      expect(status).to model_have_error_on_field(:uri)
+    end
+  end
+
   describe 'after_create' do
     it 'saves ActivityPub uri as uri for local status' do
       status = Status.create(account: alice, text: 'foo')
