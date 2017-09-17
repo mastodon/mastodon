@@ -70,7 +70,6 @@ class Status < ApplicationRecord
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
-  scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
@@ -221,7 +220,7 @@ class Status < ApplicationRecord
     private
 
     def timeline_scope(local_only = false)
-      starting_scope = local_only ? Status.local_only : Status
+      starting_scope = local_only ? Status.local : Status
       starting_scope
         .with_public_visibility
         .without_reblogs
