@@ -78,7 +78,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   handleChildrenContentChange() {
     if (!this.props.singleColumn) {
-      scrollRight(this.node, this.node.scrollWidth - window.innerWidth);
+      this._interruptScrollAnimation = scrollRight(this.node, this.node.scrollWidth - window.innerWidth);
     }
   }
 
