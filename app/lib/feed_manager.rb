@@ -7,11 +7,13 @@ class FeedManager
 
   MAX_ITEMS = 400
 
-  # Must be less than MAX_ITEMS or the tracking sets will grow forever
+  # Must be <= MAX_ITEMS or the tracking sets will grow forever
   REBLOG_FALLOFF = 40
 
-  def key(type, id)
-    "feed:#{type}:#{id}"
+  def key(type, id, subtype = nil)
+    return "feed:#{type}:#{id}" unless subtype
+
+    "feed:#{type}:#{id}:#{subtype}"
   end
 
   def filter?(timeline_type, status, receiver_id)
@@ -45,7 +47,7 @@ class FeedManager
 
   def trim(type, account_id)
     timeline_key = key(type, account_id)
-    reblog_key = "#{timeline_key}:reblogs"
+    reblog_key = key(type, account_id, 'reblogs')
     # Remove any items past the MAX_ITEMS'th entry in our feed
     redis.zremrangebyrank(timeline_key, '0', (-(FeedManager::MAX_ITEMS + 1)).to_s)
 
@@ -160,7 +162,7 @@ class FeedManager
   # either action is appropriate.
   def add_to_feed(timeline_type, account, status)
     timeline_key = key(timeline_type, account.id)
-    reblog_key = "#{timeline_key}:reblogs"
+    reblog_key = key(timeline_type, account.id, 'reblogs')
 
     if status.reblog?
       # If the original status or a reblog of it is within
@@ -187,7 +189,7 @@ class FeedManager
   # do so if appropriate.
   def remove_from_feed(timeline_type, account, status)
     timeline_key = key(timeline_type, account.id)
-    reblog_key = "#{timeline_key}:reblogs"
+    reblog_key = key(timeline_type, account.id, 'reblogs')
 
     if status.reblog?
       # 1. If the reblogging status is not in the feed, stop.

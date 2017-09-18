@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe FeedManager do
+  it 'tracks at least as many statuses as reblogs' do
+    expect(FeedManager::REBLOG_FALLOFF).to be <= FeedManager::MAX_ITEMS
+  end
+
   describe '#key' do
     subject { FeedManager.instance.key(:home, 1) }
 
