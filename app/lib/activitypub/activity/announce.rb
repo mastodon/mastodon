@@ -11,7 +11,12 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
     return status unless status.nil?
 
-    status = Status.create!(account: @account, reblog: original_status, uri: @json['id'])
+    status = Status.create!(
+      account: @account,
+      reblog: original_status,
+      uri: @json['id'],
+      created_at: @json['published'] || Time.now.utc
+    )
     distribute(status)
     status
   end
