@@ -21,15 +21,8 @@
     .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
-    .status__attachments
-      = render partial: 'stream_entries/content_spoiler', locals: { sensitive: status.sensitive? }
-      - if status.media_attachments.first.video?
-        .status__attachments__inner
-          .video-item
-            = link_to (status.media_attachments.first.remote_url.blank? ? status.media_attachments.first.file.url(:original) : status.media_attachments.first.remote_url), style: "background-image: url(#{status.media_attachments.first.file.url(:small)})", target: '_blank', rel: 'noopener', class: 'u-video' do
-              .video-item__play
-                = fa_icon('play')
-      - else
-        .status__attachments__inner
-          - status.media_attachments.each do |media|
-            = render partial: 'stream_entries/media', locals: { media: media }
+    - if status.media_attachments.first.video?
+      - video = status.media_attachments.first
+      %div{ data: { component: 'Video', props: Oj.dump(src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive?, width: 610, height: 343) }}
+    - else
+      %div{ data: { component: 'MediaGallery', props: Oj.dump(height: 343, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }) }}

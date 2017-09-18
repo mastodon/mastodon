@@ -11,6 +11,11 @@
   %hr/
 
   .fields-group
+    = f.input :thumbnail, as: :file, wrapper: :with_block_label, label: t('admin.settings.thumbnail.title'), hint: t('admin.settings.thumbnail.desc_html')
+
+  %hr/
+
+  .fields-group
     = f.input :timeline_preview, as: :boolean, wrapper: :with_label, label: t('admin.settings.timeline_preview.title'), hint: t('admin.settings.timeline_preview.desc_html')
 
   .fields-group

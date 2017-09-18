@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class REST::InstanceSerializer < ActiveModel::Serializer
+  include RoutingHelper
+
   attributes :uri, :title, :description, :announcement,
-             :email, :version, :urls, :stats
+             :email, :version, :urls, :stats, :thumbnail
 
   def uri
     Rails.configuration.x.local_domain
@@ -26,6 +28,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def version
     Mastodon::Version.to_s
+  end
+
+  def thumbnail
+    full_asset_url(instance_presenter.thumbnail.file.url) if instance_presenter.thumbnail
   end
 
   def stats

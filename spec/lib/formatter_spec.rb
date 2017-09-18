@@ -89,6 +89,54 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'matches a URL with Japanese path string' do
+      let(:text) { 'https://ja.wikipedia.org/wiki/日本' }
+
+      it 'has valid URL' do
+        is_expected.to include 'href="https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC"'
+      end
+    end
+
+    context 'matches a URL with Korean path string' do
+      let(:text) { 'https://ko.wikipedia.org/wiki/대한민국' }
+
+      it 'has valid URL' do
+        is_expected.to include 'href="https://ko.wikipedia.org/wiki/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD"'
+      end
+    end
+
+    context 'matches a URL with Simplified Chinese path string' do
+      let(:text) { 'https://baike.baidu.com/item/中华人民共和国' }
+
+      it 'has valid URL' do
+        is_expected.to include 'href="https://baike.baidu.com/item/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD"'
+      end
+    end
+
+    context 'matches a URL with Traditional Chinese path string' do
+      let(:text) { 'https://zh.wikipedia.org/wiki/臺灣' }
+
+      it 'has valid URL' do
+        is_expected.to include 'href="https://zh.wikipedia.org/wiki/%E8%87%BA%E7%81%A3"'
+      end
+    end
+
+    context 'contains unsafe URL (XSS attack, visible part)' do
+      let(:text) { %q{http://example.com/b<del>b</del>} }
+
+      it 'has escaped HTML' do
+        is_expected.to include '&lt;del&gt;b&lt;/del&gt;'
+      end
+    end
+
+    context 'contains unsafe URL (XSS attack, invisible part)' do
+      let(:text) { %q{http://example.com/blahblahblahblah/a<script>alert("Hello")</script>} }
+
+      it 'has escaped HTML' do
+        is_expected.to include '&lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;'
+      end
+    end
+
     context 'contains HTML (script tag)' do
       let(:text) { '<script>alert("Hello")</script>' }
 

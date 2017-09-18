@@ -20,6 +20,7 @@ import compose from './compose';
 import search from './search';
 import media_attachments from './media_attachments';
 import notifications from './notifications';
+import height_cache from './height_cache';
 
 const reducers = {
   timelines,
@@ -43,6 +44,7 @@ const reducers = {
   search,
   media_attachments,
   notifications,
+  height_cache,
 };
 
 export default combineReducers(reducers);

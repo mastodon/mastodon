@@ -15,9 +15,11 @@ class ActivityPub::ProcessAccountService < BaseService
     @account     = Account.find_by(uri: @uri)
     @collections = {}
 
+    old_public_key = @account&.public_key
     create_account  if @account.nil?
     upgrade_account if @account.ostatus?
     update_account
+    RefollowWorker.perform_async(@account.id) if !old_public_key.nil? && old_public_key != @account.public_key
 
     @account
   rescue Oj::ParseError
