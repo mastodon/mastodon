@@ -143,19 +143,6 @@
         }
       }
     }
-
-    .status__attachments {
-      margin-top: 8px;
-      overflow: hidden;
-      width: 100%;
-      box-sizing: border-box;
-      position: relative;
-
-      .status__attachments__inner {
-        display: flex;
-        height: 214px;
-      }
-    }
   }
 
   .detailed-status.light {
@@ -237,139 +224,22 @@
       }
     }
 
-    .detailed-status__attachments {
-      margin-top: 8px;
-      overflow: hidden;
-      width: 100%;
-      box-sizing: border-box;
-      position: relative;
+    .status-card {
+      border-color: lighten($ui-secondary-color, 4%);
+      color: darken($ui-primary-color, 4%);
 
-      .status__attachments__inner {
-        display: flex;
-        height: 360px;
+      &:hover {
+        background: lighten($ui-secondary-color, 4%);
       }
     }
 
-    .video-player {
-      margin-top: 8px;
-      height: 300px;
-      overflow: hidden;
-      position: relative;
-
-      video {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-  }
-
-  .media-item,
-  .video-item {
-    box-sizing: border-box;
-    position: relative;
-    left: auto;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    float: left;
-    border: medium none;
-    display: block;
-    flex: 1 1 auto;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    margin-right: 2px;
-
-    &:last-child {
-      margin-right: 0;
+    .status-card__title,
+    .status-card__description {
+      color: $ui-base-color;
     }
 
-    a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: no-repeat scroll center center / cover;
-      text-decoration: none;
-      cursor: zoom-in;
-    }
-
-    video {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-
-  .video-item {
-    a {
-      cursor: pointer;
-    }
-
-    .video-item__play {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      font-size: 36px;
-      transform: translate(-50%, -50%);
-      padding: 5px;
-      border-radius: 100px;
-      color: rgba($primary-text-color, 0.8);
-      z-index: 1;
-    }
-  }
-
-  .media-spoiler {
-    background: $ui-primary-color;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    transition: all 100ms linear;
-    z-index: 2;
-
-    &:hover {
-      background: darken($ui-primary-color, 5%);
-    }
-
-    span {
-      display: block;
-
-      &:first-child {
-        font-size: 14px;
-      }
-
-      &:last-child {
-        font-size: 11px;
-        font-weight: 500;
-      }
-    }
-  }
-
-  .media-spoiler-wrapper {
-    &.media-spoiler-wrapper__visible {
-      .media-spoiler {
-        display: none;
-      }
-
-      .spoiler-button {
-        display: block;
-      }
+    .status-card__image {
+      background: $ui-secondary-color;
     }
   }
 

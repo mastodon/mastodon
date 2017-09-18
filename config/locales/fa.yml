@@ -37,12 +37,16 @@ fa:
     follow: پی بگیرید
     followers: پیگیران
     following: پی می‌گیرد
+    media: عکس و ویدیو
     nothing_here: این‌جا چیزی نیست!
     people_followed_by: کسانی که %{name} پی می‌گیرد
     people_who_follow: کسانی که %{name} را پی می‌گیرند
-    posts: نوشته
+    posts: نوشته‌ها
+    posts_with_replies: نوشته‌ها و پاسخ‌ها
     remote_follow: پیگیری غیرمستقیم
     reserved_username: این نام کاربری در دسترس نیست
+    roles:
+      admin: مدیر
     unfollow: پایان پیگیری
   admin:
     accounts:
@@ -56,7 +60,9 @@ fa:
       email: ایمیل
       feed_url: نشانی فید
       followers: پیگیران
+      followers_url: نشانی پیگیران
       follows: پی می‌گیرد
+      inbox_url: نشانی صندوق ورودی
       ip: IP
       location:
         all: همه
@@ -76,8 +82,10 @@ fa:
         alphabetic: الفبایی
         most_recent: تازه‌ترین‌ها
         title: ترتیب
+      outbox_url: نشانی صندوق خروجی
       perform_full_suspension: انجام تعلیق کامل
       profile_url: نشانی نمایه
+      protocol: پروتکل
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
       redownload: به‌روزرسانی تصویر نمایه
@@ -86,6 +94,7 @@ fa:
       resubscribe: اشتراک دوباره
       salmon_url: نشانی Salmon
       search: جستجو
+      shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
         created_reports: گزارش‌ها از طرف این حساب
         report: گزارش
@@ -160,6 +169,9 @@ fa:
       unresolved: حل‌نشده
       view: نمایش
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: نام‌های کاربری را با ویرگول از هم جدا کنید. تنها حساب‌های محلی و قفل‌نشده کار می‌کنند. اگر این‌جا را خالی بگذارید، به طور پیش‌فرض همهٔ مدیرهای این سرور پی‌گرفته خواهند شد.
+        title: پیگیری‌های پیش‌فرض برای کاربران تازه
       contact_information:
         email: ایمیل کاری
         username: نام کاربری
@@ -183,6 +195,9 @@ fa:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
       site_title: نام سرور
+      thumbnail:
+        desc_html: برای دیدن با OpenGraph و رابط برنامه‌نویسی. وضوح پیشنهادی ۱۲۰۰×۶۳۰ پیکسل
+        title: تصویر کوچک فوری
       timeline_preview:
         desc_html: نوشته‌های عمومی این سرور را در صفحهٔ آغازین نشان دهید
         title: پیش‌نمایش نوشته‌ها
@@ -220,7 +235,13 @@ fa:
     signature: اعلان‌های ماستدون از %{instance}
     view: 'نمایش:'
   applications:
+    created: برنامه با موفقیت ساخته شد
+    destroyed: برنامه با موفقیت پاک شد
     invalid_url: نشانی واردشده معتبر نیست
+    regenerate_token: دوباره‌سازی کد دسترسی
+    token_regenerated: کد دسترسی با موفقیت ساخته شد
+    warning: خیلی مواظب این اطلاعات باشید و آن را به هیچ کس ندهید!
+    your_token: کد دسترسی شما
   auth:
     agreement_html: پیش از عضو شدن باید <a href="%{rules_path}">شرایط استفاده</a> و <a href="%{terms_path}">سیاست رازداری</a> ما را بپذیرید.
     change_password: امنیت
@@ -228,6 +249,7 @@ fa:
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
     forgot_password: رمزتان را گم کرده‌اید؟
+    invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: ورود
     logout: خروج
     register: عضو شوید
@@ -416,6 +438,7 @@ fa:
     authorized_apps: برنامه‌های مجاز
     back: بازگشت به ماستدون
     delete: پاک‌کردن حساب
+    development: Development
     edit_profile: ویرایش نمایه
     export: برون‌سپاری داده‌ها
     followers: پیگیران مورد تأیید
@@ -423,9 +446,15 @@ fa:
     preferences: ترجیحات
     settings: تنظیمات
     two_factor_authentication: ورود دومرحله‌ای
+    your_apps: برنامهٔ شما
   statuses:
     open_in_web: بازکردن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
+    pin_errors:
+      limit: نوشته‌های ثابت بیش از حد
+      ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
+      private: نوشته‌های غیرعمومی را نمی‌توان ثابت کرد
+      reblog: بازبوق‌ها را نمی‌توان ثابت کرد
     show_more: نمایش
     visibilities:
       private: خصوصی
@@ -436,6 +465,7 @@ fa:
       unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نمی‌یابد
   stream_entries:
     click_to_show: برای نمایش کلیک کنید
+    pinned: نوشته‌های ثابت
     reblogged: بازبوقید
     sensitive_content: محتوای حساس
   terms:
@@ -530,3 +560,4 @@ fa:
   users:
     invalid_email: نشانی ایمیل نامعتبر است
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
+    signed_in_as: 'واردشده به نام:'
