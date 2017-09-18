@@ -60,6 +60,7 @@ pl:
       email: Adres e-mail
       feed_url: Adres kanału
       followers: Śledzący
+      followers_url: Adres śledzących
       follows: Śledzeni
       ip: Adres IP
       location:
@@ -90,6 +91,7 @@ pl:
       resubscribe: Ponów subskrypcję
       salmon_url: Adres Salmon
       search: Szukaj
+      shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
         report: zgłoszeń
@@ -165,6 +167,9 @@ pl:
       unresolved: Nierozwiązane
       view: Wyświetl
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Oddzielaj nazwy użytkowników przecinkami. Działa tylko dla niezablokowanych kont w obrębie instancji. Jeżeli puste, zostaną użyte konta administratorów instancji.
+        title: Domyślne obserwacje nowych użytkowników
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
@@ -188,6 +193,9 @@ pl:
         desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać z tagów HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa instancji
+      thumbnail:
+        desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli.'
+        title: Miniatura instancji
       timeline_preview:
         desc_html: Wyświetlaj publiczną oś czasu na stronie widocznej dla niezalogowanych
         title: Podgląd osi czasu
@@ -355,6 +363,17 @@ pl:
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Następna
     prev: Poprzednia
@@ -434,17 +453,18 @@ pl:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
+      limit: Nie możesz przypiąć więcej wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
-      private_long: Widoczny tylko dla osób, które Cię śledzą
-      public: Publiczny
-      public_long: Widoczny dla wszystkich użytkowników
-      unlisted: Niewypisany
-      unlisted_long: Widoczny dla wszystkich, ale nie wyświetlany na publicznych osiach czasu
+      private_long: Widoczne tylko dla osób, które Cię śledzą
+      public: Publiczne
+      public_long: Widoczne dla wszystkich użytkowników
+      unlisted: Niewypisane
+      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
     pinned: Przypięty wpis

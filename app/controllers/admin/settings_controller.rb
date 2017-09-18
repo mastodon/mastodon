@@ -13,6 +13,8 @@ module Admin
       closed_registrations_message
       open_deletion
       timeline_preview
+      bootstrap_timeline_accounts
+      thumbnail
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -21,14 +23,23 @@ module Admin
       timeline_preview
     ).freeze
 
+    UPLOAD_SETTINGS = %w(
+      thumbnail
+    ).freeze
+
     def edit
       @admin_settings = Form::AdminSettings.new
     end
 
     def update
       settings_params.each do |key, value|
-        setting = Setting.where(var: key).first_or_initialize(var: key)
-        setting.update(value: value_for_update(key, value))
+        if UPLOAD_SETTINGS.include?(key)
+          upload = SiteUpload.where(var: key).first_or_initialize(var: key)
+          upload.update(file: value)
+        else
+          setting = Setting.where(var: key).first_or_initialize(var: key)
+          setting.update(value: value_for_update(key, value))
+        end
       end
 
       flash[:notice] = I18n.t('generic.changes_saved_msg')

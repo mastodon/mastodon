@@ -11,11 +11,19 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   end
 
   def url
-    full_asset_url(object.file.url(:original))
+    if object.needs_redownload?
+      media_proxy_url(object.id, :original)
+    else
+      full_asset_url(object.file.url(:original))
+    end
   end
 
   def preview_url
-    full_asset_url(object.file.url(:small))
+    if object.needs_redownload?
+      media_proxy_url(object.id, :small)
+    else
+      full_asset_url(object.file.url(:small))
+    end
   end
 
   def text_url

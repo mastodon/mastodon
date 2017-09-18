@@ -42,5 +42,10 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
     it 'subscribes to remote hub' do
       expect(a_request(:post, "https://quitter.no/main/push/hub")).to have_been_made
     end
+
+    it 'returns http success if already following, too' do
+      post :create, params: { uri: 'gargron@quitter.no' }
+      expect(response).to have_http_status(:success)
+    end
   end
 end

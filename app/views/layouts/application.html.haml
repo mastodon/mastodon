@@ -21,13 +21,13 @@
     = stylesheet_pack_tag 'common', media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
 
-    = javascript_pack_tag 'features/getting_started', integrity: true, crossorigin: 'anonymous', rel: 'preload', as: 'script'
-    = javascript_pack_tag 'features/compose', integrity: true, crossorigin: 'anonymous', rel: 'preload', as: 'script'
-    = javascript_pack_tag 'features/home_timeline', integrity: true, crossorigin: 'anonymous', rel: 'preload', as: 'script'
-    = javascript_pack_tag 'features/notifications', integrity: true, crossorigin: 'anonymous', rel: 'preload', as: 'script'
-    = javascript_pack_tag 'features/community_timeline', integrity: true, crossorigin: 'anonymous', rel: 'preload', as: 'script'
-    = javascript_pack_tag 'features/public_timeline', integrity: true, crossorigin: 'anonymous', rel: 'preload', as: 'script'
-    = javascript_pack_tag 'emojione_picker', integrity: true, crossorigin: 'anonymous', rel: 'preload', as: 'script'
+    %link{ href: asset_pack_path('features/getting_started.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
+    %link{ href: asset_pack_path('features/compose.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
+    %link{ href: asset_pack_path('features/home_timeline.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
+    %link{ href: asset_pack_path('features/notifications.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
+    %link{ href: asset_pack_path('features/community_timeline.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
+    %link{ href: asset_pack_path('features/public_timeline.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
+    %link{ href: asset_pack_path('emojione_picker.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
 
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags

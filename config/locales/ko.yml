@@ -1,29 +1,52 @@
 ---
 ko:
   about:
-    about_mastodon_html: Mastodon 은<em>자유로운 오픈 소스</em>소셜 네트워크입니다. 상용 플랫폼의 대체로써 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 Mastodon 인스턴스를 만들 수 있으며, Seamless하게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
+    about_mastodon_html: Mastodon은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 Mastodon 인스턴스를 만들 수 있으며, Seamless하게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
     closed_registrations: 현재 이 인스턴스에서는 신규 등록을 받고 있지 않습니다.
     contact: 연락처
-    description_headline: "%{domain} 는 무엇인가요?"
+    contact_missing: 미설정
+    contact_unavailable: N/A
+    description_headline: "%{domain} (은)는 무엇인가요?"
     domain_count_after: 개의 인스턴스
-    domain_count_before: 연결됨
+    domain_count_before: 연결된
+    extended_description_html: |
+      <h3>룰을 작성하는 장소</h3>
+      <p>아직 설명이 작성되지 않았습니다.</p>
+    features:
+      humane_approach_body: 다른 SNS의 실패를 교훈삼아, Mastodon은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
+      humane_approach_title: 보다 배려를 의식한 설계를 추구
+      not_a_product_body: Mastodon은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
+      not_a_product_title: 여러분은 사람이며, 상품이 아닙니다.
+      real_conversation_body: 자유롭게 사용할 수 있는 500문자의 메세지와 미디어 경고 내용을 바탕으로, 자기자신을 자유롭게 표현할 수 있습니다.
+      real_conversation_title: 진정한 커뮤니케이션을 위하여
+      within_reach_body: 개발자 친화적인 API에 의해서 실현된 iOS나 Android, 그 외의 여러 Platform들 덕분에 어디서든 친구들과 자유롭게 메세지를 주고 받을 수 있습니다.
+      within_reach_title: 언제나 유저의 곁에서
+    find_another_instance: 다른 인스턴스 찾기
+    generic_description: "%{domain} 은 Mastodon의 인스턴스 입니다."
+    hosted_on: Mastodon hosted on %{domain}
+    learn_more: 자세히
     other_instances: 다른 인스턴스
     source_code: 소스 코드
     status_count_after: Toot
     status_count_before: Toot 수
     user_count_after: 명
     user_count_before: 사용자 수
+    what_is_mastodon: Mastodon이란?
   accounts:
     follow: 팔로우
     followers: 팔로워
     following: 팔로잉
+    media: 미디어
     nothing_here: 아무 것도 없습니다.
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
-    posts: 포스트
+    posts: Toot
+    posts_with_replies: Toot와 답장
     remote_follow: 리모트 팔로우
     reserved_username: 이 아이디는 예약되어 있습니다.
+    roles:
+      admin: Admin
     unfollow: 팔로우 해제
   admin:
     accounts:
@@ -38,6 +61,7 @@ ko:
       feed_url: 피드 URL
       followers: 팔로워 수
       follows: 팔로잉 수
+      inbox_url: Inbox URL
       ip: IP
       location:
         all: 전체
@@ -57,8 +81,10 @@ ko:
         alphabetic: 알파벳 순
         most_recent: 최근 활동 순
         title: 순서
+      outbox_url: Outbox URL
       perform_full_suspension: 완전히 정지시키기
       profile_url: 프로필 URL
+      protocol: Protocol
       public: 전체 공개
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 아바타 업데이트
@@ -90,12 +116,14 @@ ko:
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 모더레이션을 적용하게 할 수 있습니다.
         severity:
           desc_html: "<strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 Toot을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다."
+          noop: 없음
           silence: 침묵
           suspend: 정지
         title: 새로운 도메인 차단
       reject_media: 미디어 파일 거부하기
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지하고는 관계 없습니다.
       severities:
+        noop: 없음
         silence: 침묵
         suspend: 정지
       severity: 심각도
@@ -146,16 +174,41 @@ ko:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. <br>HTML 태그를 사용할 수 있습니다.
           title: 신규 등록 정지 시 메시지
+        deletion:
+          desc_html: 유저가 자신의 계정을 삭제할 수 있도록 설정합니다.
+          title: 계정 삭제를 허가함
         open:
-          title: 신규 등록을 받음
+          desc_html: 유저가 자신의 계정을 생성할 수 있도록 설정합니다.
+          title: 신규 계정 등록을 받음
       site_description:
         desc_html: 탑 페이지와 meta 태그에 사용됩니다.<br>HTML 태그, 예를 들어<code>&lt;a&gt;</code> 태그와 <code>&lt;em&gt;</code> 태그를 사용할 수 있습니다.
         title: 사이트 설명
       site_description_extended:
         desc_html: 인스턴스 정보 페이지에 표시됩니다.<br>HTML 태그를 사용할 수 있습니다.
         title: 사이트 상세 설명
+      site_terms:
+        desc_html: 당신은 독자적인 개인정보 취급 방침이나 이용약관, 그 외의 법적 근거를 작성할 수 있습니다. 또한 HTML태그를 사용할 수 있습니다.
+        title: 커스텀 서비스 이용 약관
       site_title: 사이트 이름
+      timeline_preview:
+        desc_html: Landing page에 공개 타임라인을 표시합니다.
+        title: 타임라인 프리뷰
       title: 사이트 설정
+    statuses:
+      back_to_account: 계정으로 돌아가기
+      batch:
+        delete: 삭제
+        nsfw_off: NSFW 끄기
+        nsfw_on: NSFW 켜기
+      execute: 실행
+      failed_to_execute: 실행이 실패하였습니다.
+      media:
+        hide: 미디어 숨기기
+        show: 미디어 보여주기
+        title: 미디어
+      no_media: 미디어 없음
+      title: 계정 Toot
+      with_media: 미디어 있음
     subscriptions:
       callback_url: 콜백 URL
       confirmed: 확인됨
@@ -173,13 +226,21 @@ ko:
     signature: Mastodon %{instance} 인스턴스로에서 알림
     view: 'View:'
   applications:
+    created: 어플리케이션이 작성되었습니다.
+    destroyed: 어플리케이션이 삭제되었습니다.
     invalid_url: 올바르지 않은 URL입니다
+    regenerate_token: 토큰 재생성
+    token_regenerated: 액세스 토큰이 재생성되었습니다.
+    warning: 이 데이터는 다른 사람들과 절대로 공유하지 마세요.
+    your_token: 액세스 토큰
   auth:
+    agreement_html: 이 등록으로 <a href="%{rules_path}">이용규약</a> 과 <a href="%{terms_path}">개인정보 취급 방침</a>에 동의하는 것으로 간주됩니다.
     change_password: 보안
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
     forgot_password: 비밀번호를 잊어버리셨습니까?
+    invalid_reset_password_token: 비밀번호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
     login: 로그인
     logout: 로그아웃
     register: 등록하기
@@ -189,6 +250,12 @@ ko:
   authorize_follow:
     error: 리모트 팔로우 도중 오류가 발생했습니다.
     follow: 팔로우
+    follow_request: '당신은 다음 계정에 팔로우 신청을 했습니다:'
+    following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
+    post_follow:
+      close: 혹은, 당신은 이 윈도우를 닫을 수 있습니다
+      return: 유저 프로필로 돌아가기
+      web: 웹으로 가기
     title: "%{acct} 를 팔로우"
   datetime:
     distance_in_words:
@@ -271,8 +338,8 @@ ko:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
     favourite:
-      body: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다."
-      subject: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다"
+      body: "%{name} 님이 내 Toot를 즐겨찾기에 등록했습니다."
+      subject: "%{name} 님이 내 Toot를 즐겨찾기에 등록했습니다"
     follow:
       body: "%{name} 님이 나를 팔로우 했습니다"
       subject: "%{name} 님이 나를 팔로우 했습니다"
@@ -285,10 +352,35 @@ ko:
     reblog:
       body: "%{name} 님이 내 Toot을 부스트 했습니다:"
       subject: "%{name} 님이 내 Toot을 부스트 했습니다"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: 다음
     prev: 이전
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: "%{name} 님이 당신의 Toot를 즐겨찾기에 등록했습니다."
+    follow:
+      title: "%{name} 님이 나를 팔로우 하고 있습니다."
+    group:
+      title: "%{count} 건의 알림"
+    mention:
+      action_boost: 부스트
+      action_expand: 더보기
+      action_favourite: 즐겨찾기
+      title: "%{name} 님이 답장을 보냈습니다"
+    reblog:
+      title: "%{name} 님이 당신의 Toot를 부스트 했습니다."
   remote_follow:
     acct: 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
@@ -330,11 +422,14 @@ ko:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    revoke: 삭제
+    revoke_success: 세션이 삭제되었습니다.
     title: 세션
   settings:
     authorized_apps: 인증된 어플리케이션
     back: 돌아가기
     delete: 계정 삭제
+    development: 개발
     edit_profile: 프로필 편집
     export: 데이터 내보내기
     followers: 신뢰 중인 인스턴스
@@ -342,9 +437,14 @@ ko:
     preferences: 사용자 설정
     settings: 설정
     two_factor_authentication: 2단계 인증
+    your_apps: 애플리케이션
   statuses:
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
+    pin_errors:
+      ownership: 다른 사람의 Toot는 고정될 수 없습니다.
+      private: 비공개 Toot는 고정될 수 없습니다.
+      reblog: 부스트는 고정될 수 없습니다.
     show_more: 더 보기
     visibilities:
       private: 비공개
@@ -355,8 +455,11 @@ ko:
       unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
   stream_entries:
     click_to_show: 클릭해서 표시
+    pinned: 고정된 Toot
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
+  terms:
+    title: "%{instance} 이용약관과 개인정보 취급 방침"
   time:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"
@@ -379,3 +482,4 @@ ko:
   users:
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
+    signed_in_as: '다음과 같이 로그인 중:'

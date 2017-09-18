@@ -4,25 +4,30 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def perform
     return if delete_arrived_first?(object_uri) || unsupported_object_type?
 
-    status = find_existing_status
-
-    return status unless status.nil?
-
-    ApplicationRecord.transaction do
-      status = Status.create!(status_params)
-
-      process_tags(status)
-      process_attachments(status)
+    RedisLock.acquire(lock_options) do |lock|
+      if lock.acquired?
+        @status = find_existing_status
+        process_status if @status.nil?
+      end
     end
 
-    resolve_thread(status)
-    distribute(status)
-    forward_for_reply if status.public_visibility? || status.unlisted_visibility?
-
-    status
+    @status
   end
 
   private
+
+  def process_status
+    ApplicationRecord.transaction do
+      @status = Status.create!(status_params)
+
+      process_tags(@status)
+      process_attachments(@status)
+    end
+
+    resolve_thread(@status)
+    distribute(@status)
+    forward_for_reply if @status.public_visibility? || @status.unlisted_visibility?
+  end
 
   def find_existing_status
     status   = status_from_uri(object_uri)
@@ -33,7 +38,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def status_params
     {
       uri: @object['id'],
-      url: @object['url'] || @object['id'],
+      url: object_url || @object['id'],
       account: @account,
       text: text_from_content || '',
       language: language_from_content,
@@ -147,6 +152,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @object['contentMap'].keys.first
   end
 
+  def object_url
+    return if @object['url'].blank?
+
+    value = first_of_value(@object['url'])
+
+    return value if value.is_a?(String)
+
+    value['href']
+  end
+
   def language_map?
     @object['contentMap'].is_a?(Hash) && !@object['contentMap'].empty?
   end
@@ -171,5 +186,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def forward_for_reply
     return unless @json['signature'].present? && reply_to_local?
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id)
+  end
+
+  def lock_options
+    { redis: Redis.current, key: "create:#{@object['id']}" }
   end
 end

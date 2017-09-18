@@ -103,6 +103,7 @@ oc:
       title: Comptes
       undo_silenced: Levar lo silenci
       undo_suspension: Levar la suspension
+      unsubscribe: Se desabonar
       username: Nom d’utilizaire
       web: Web
     domain_blocks:
@@ -290,8 +291,8 @@ oc:
     - dissabte
     formats:
       default: "%e/%m/%Y"
-      long: Lo %e %B de %Y
-      short: "%e %b"
+      long: Lo %-d %b de %Y
+      short: "%e %B"
     month_names:
     - 
     - de genièr
@@ -430,6 +431,17 @@ oc:
     reblog:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Seguent
     prev: Precedent

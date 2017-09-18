@@ -50,16 +50,17 @@
       %button= t('admin.accounts.search')
       = link_to t('admin.accounts.reset'), admin_accounts_path, class: 'button negative'
 
-%table.table
-  %thead
-    %tr
-      %th= t('admin.accounts.username')
-      %th= t('admin.accounts.domain')
-      %th= t('admin.accounts.protocol')
-      %th= t('admin.accounts.confirmed')
-      %th= fa_icon 'paper-plane-o'
-      %th
-  %tbody
-    = render @accounts
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.accounts.username')
+        %th= t('admin.accounts.domain')
+        %th= t('admin.accounts.protocol')
+        %th= t('admin.accounts.confirmed')
+        %th= fa_icon 'paper-plane-o'
+        %th
+    %tbody
+      = render @accounts
 
 = paginate @accounts

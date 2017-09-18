@@ -97,6 +97,14 @@
       margin-bottom: 40px;
     }
 
+    h3 {
+      color: $ui-secondary-color;
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
     h6 {
       font-size: 16px;
       color: $ui-secondary-color;
@@ -190,11 +198,15 @@
 
 .filters {
   display: flex;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
 
   .filter-subset {
     flex: 0 0 auto;
-    margin-right: 40px;
+    margin: 0 40px 10px 0;
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
 
     ul {
       margin-top: 5px;

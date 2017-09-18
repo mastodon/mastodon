@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903041257) do
+ActiveRecord::Schema.define(version: 20170913000752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(version: 20170903041257) do
     t.bigint "from_account_id"
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
+    t.index ["id", "account_id", "activity_type"], name: "index_notifications_on_id_and_account_id_and_activity_type", order: { id: :desc }
   end
 
   create_table "oauth_access_grants", id: :bigint, default: -> { "timestamp_id('oauth_access_grants'::text)" }, force: :cascade do |t|
@@ -287,6 +288,18 @@ ActiveRecord::Schema.define(version: 20170903041257) do
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
 
+  create_table "site_uploads", id: :bigint, default: -> { "timestamp_id('site_uploads'::text)" }, force: :cascade do |t|
+    t.string "var", default: "", null: false
+    t.string "file_file_name"
+    t.string "file_content_type"
+    t.integer "file_file_size"
+    t.datetime "file_updated_at"
+    t.json "meta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["var"], name: "index_site_uploads_on_var", unique: true
+  end
+
   create_table "status_pins", id: :bigint, default: -> { "timestamp_id('status_pins'::text)" }, force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
@@ -314,6 +327,7 @@ ActiveRecord::Schema.define(version: 20170903041257) do
     t.integer "reblogs_count", default: 0, null: false
     t.string "language"
     t.bigint "conversation_id"
+    t.boolean "local"
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"

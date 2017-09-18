@@ -3,22 +3,23 @@
 
 %p.hint= t('applications.warning')
 
-%table.table
-  %tbody
-    %tr  
-      %th= t('doorkeeper.applications.show.application_id')
-      %td
-        %code= @application.uid
-    %tr
-      %th= t('doorkeeper.applications.show.secret')
-      %td
-        %code= @application.secret
-    %tr
-      %th{ rowspan: 2}= t('applications.your_token')
-      %td
-        %code= current_user.token_for_app(@application).token
-    %tr
-      %td= table_link_to 'refresh', t('applications.regenerate_token'), regenerate_settings_application_path(@application), method: :post
+.table-wrapper
+  %table.table
+    %tbody
+      %tr  
+        %th= t('doorkeeper.applications.show.application_id')
+        %td
+          %code= @application.uid
+      %tr
+        %th= t('doorkeeper.applications.show.secret')
+        %td
+          %code= @application.secret
+      %tr
+        %th{ rowspan: 2}= t('applications.your_token')
+        %td
+          %code= current_user.token_for_app(@application).token
+      %tr
+        %td= table_link_to 'refresh', t('applications.regenerate_token'), regenerate_settings_application_path(@application), method: :post
 
 %hr/
 

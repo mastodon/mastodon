@@ -22,6 +22,7 @@
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
 #  conversation_id        :integer
+#  local                  :boolean
 #
 
 class Status < ApplicationRecord
@@ -54,7 +55,7 @@ class Status < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
   has_one :stream_entry, as: :activity, inverse_of: :status
 
-  validates :uri, uniqueness: true, unless: :local?
+  validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: :reblog?
   validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
@@ -62,14 +63,13 @@ class Status < ApplicationRecord
   default_scope { recent }
 
   scope :recent, -> { reorder(id: :desc) }
-  scope :remote, -> { where.not(uri: nil) }
-  scope :local, -> { where(uri: nil) }
+  scope :remote, -> { where(local: false).or(where.not(uri: nil)) }
+  scope :local,  -> { where(local: true).or(where(uri: nil)) }
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
-  scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
@@ -84,7 +84,7 @@ class Status < ApplicationRecord
   end
 
   def local?
-    uri.nil?
+    attributes['local'] || uri.nil?
   end
 
   def reblog?
@@ -131,11 +131,14 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  after_create :store_uri, if: :local?
+
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
   before_validation :set_sensitivity
+  before_validation :set_local
 
   class << self
     def not_in_filtered_languages(account)
@@ -217,7 +220,7 @@ class Status < ApplicationRecord
     private
 
     def timeline_scope(local_only = false)
-      starting_scope = local_only ? Status.local_only : Status
+      starting_scope = local_only ? Status.local : Status
       starting_scope
         .with_public_visibility
         .without_reblogs
@@ -252,6 +255,10 @@ class Status < ApplicationRecord
   end
 
   private
+
+  def store_uri
+    update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
+  end
 
   def prepare_contents
     text&.strip!
@@ -291,5 +298,9 @@ class Status < ApplicationRecord
     else
       thread.account_id
     end
+  end
+
+  def set_local
+    self.local = account.local?
   end
 end

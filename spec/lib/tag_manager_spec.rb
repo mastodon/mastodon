@@ -63,23 +63,23 @@ RSpec.describe TagManager do
 
   describe '#local_url?' do
     around do |example|
-      original_local_domain = Rails.configuration.x.local_domain
+      original_web_domain = Rails.configuration.x.web_domain
       example.run
-      Rails.configuration.x.local_domain = original_local_domain
+      Rails.configuration.x.web_domain = original_web_domain
     end
 
     it 'returns true if the normalized string with port is local URL' do
-      Rails.configuration.x.local_domain = 'domain:42'
+      Rails.configuration.x.web_domain = 'domain:42'
       expect(TagManager.instance.local_url?('https://DoMaIn:42/')).to eq true
     end
 
     it 'returns true if the normalized string without port is local URL' do
-      Rails.configuration.x.local_domain = 'domain'
+      Rails.configuration.x.web_domain = 'domain'
       expect(TagManager.instance.local_url?('https://DoMaIn/')).to eq true
     end
 
     it 'returns false for string with irrelevant characters' do
-      Rails.configuration.x.local_domain = 'domain'
+      Rails.configuration.x.web_domain = 'domain'
       expect(TagManager.instance.local_url?('https://domainn/')).to eq false
     end
   end
@@ -157,23 +157,12 @@ RSpec.describe TagManager do
   describe '#uri_for' do
     subject { TagManager.instance.uri_for(target) }
 
-    context 'activity object' do
-      let(:target) { Fabricate(:status, reblog: Fabricate(:status)).stream_entry }
-
-      before { target.update!(created_at: '2000-01-01T00:00:00Z') }
-
-      it 'returns the unique tag for status' do
-        expect(target.object_type).to eq :activity
-        is_expected.to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{target.id}:objectType=Status"
-      end
-    end
-
     context 'comment object' do
       let(:target) { Fabricate(:status, created_at: '2000-01-01T00:00:00Z', reply: true) }
 
       it 'returns the unique tag for status' do
         expect(target.object_type).to eq :comment
-        is_expected.to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{target.id}:objectType=Status"
+        is_expected.to eq target.uri
       end
     end
 
@@ -182,7 +171,7 @@ RSpec.describe TagManager do
 
       it 'returns the unique tag for status' do
         expect(target.object_type).to eq :note
-        is_expected.to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{target.id}:objectType=Status"
+        is_expected.to eq target.uri
       end
     end
 

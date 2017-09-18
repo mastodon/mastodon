@@ -12,15 +12,15 @@ de:
     source_code: Quellcode
     status_count_after: Beiträge verfassten
     status_count_before: die
-    user_count_after: Benutzer
+    user_count_after: Profile
     user_count_before: Heimat für
   accounts:
     follow: Folgen
     followers: Folgende
     following: Folgt
     nothing_here: Hier gibt es nichts!
-    people_followed_by: Nutzer, denen %{name} folgt
-    people_who_follow: Nutzer, die %{name} folgen
+    people_followed_by: Profile, denen %{name} folgt
+    people_who_follow: Profile, die %{name} folgen
     posts: Beiträge
     remote_follow: Folgen
     unfollow: Entfolgen
@@ -67,7 +67,7 @@ de:
       title: Konten
       undo_silenced: Stummschaltung zurücknehmen
       undo_suspension: Sperre zurücknehmen
-      username: Benutzername
+      username: Profilname
       web: Web
     domain_blocks:
       add_new: Neu hinzufügen
@@ -124,7 +124,7 @@ de:
     settings:
       contact_information:
         email: Eine öffentliche E-Mail-Adresse angeben
-        username: Einen Benutzernamen angeben
+        username: Einen Profilnamen angeben
       registrations:
         closed_message:
           desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist<br>Du kannst HTML-Tags benutzen
@@ -208,7 +208,7 @@ de:
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
-  landing_strip_html: "<strong>%{name}</strong> ist ein Benutzer auf %{link_to_root_path}. Du kannst ihm folgen oder mit ihm interagieren, sofern du ein Konto irgendwo in der Fediverse hast."
+  landing_strip_html: "<strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}. Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum hast."
   landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   media_attachments:
     validations:
@@ -239,12 +239,23 @@ de:
     reblog:
       body: 'Dein Beitrag wurde von %{name} geteilt:'
       subject: "%{name} teilte deinen Beitrag."
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Vorwärts
     prev: Zurück
     truncate: "&hellip;"
   remote_follow:
-    acct: Dein Nutzername@Domain, von dem aus du dieser Person folgen möchtest.
+    acct: Dein Profilname@Domain, von dem aus du dieser Person folgen möchtest.
     missing_resource: Die erforderliche Weiterleitungs-URL konnte leider in deinem Profil nicht gefunden werden.
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'

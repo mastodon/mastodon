@@ -358,6 +358,17 @@ fr:
     reblog:
       body: "%{name} a partagé votre statut :"
       subject: "%{name} a partagé votre statut"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Suivant
     prev: Précédent
