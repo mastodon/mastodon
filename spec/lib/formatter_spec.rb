@@ -226,12 +226,40 @@ RSpec.describe Formatter do
 
       context 'with custom_emojify option' do
         let!(:emoji) { Fabricate(:custom_emoji) }
-        let(:status) { Fabricate(:status, account: local_account, text: 'Beep boop :coolcat:') }
+        let(:status) { Fabricate(:status, account: local_account, text: text) }
 
         subject { Formatter.instance.format(status, custom_emojify: true) }
 
-        it 'converts shortcode to image tag' do
-          is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
+        context 'with emoji at the start' do
+          let(:text) { ':coolcat: Beep boop' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with emoji in the middle' do
+          let(:text) { 'Beep :coolcat: boop' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with concatenated emoji' do
+          let(:text) { ':coolcat::coolcat:' }
+
+          it 'does not touch the shortcodes' do
+            is_expected.to match(/:coolcat::coolcat:/)
+          end
+        end
+
+        context 'with emoji at the end' do
+          let(:text) { 'Beep boop :coolcat:' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
         end
       end
     end
@@ -245,12 +273,40 @@ RSpec.describe Formatter do
 
       context 'with custom_emojify option' do
         let!(:emoji) { Fabricate(:custom_emoji, domain: remote_account.domain) }
-        let(:status) { Fabricate(:status, account: remote_account, text: '<p>Beep boop<br />:coolcat:</p>') }
+        let(:status) { Fabricate(:status, account: remote_account, text: text) }
 
         subject { Formatter.instance.format(status, custom_emojify: true) }
 
-        it 'converts shortcode to image tag' do
-          is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
+        context 'with emoji at the start' do
+          let(:text) { '<p>:coolcat: Beep boop<br />' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with emoji in the middle' do
+          let(:text) { '<p>Beep :coolcat: boop</p>' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with concatenated emoji' do
+          let(:text) { '<p>:coolcat::coolcat:</p>' }
+
+          it 'does not touch the shortcodes' do
+            is_expected.to match(/<p>:coolcat::coolcat:<\/p>/)
+          end
+        end
+
+        context 'with emoji at the end' do
+          let(:text) { '<p>Beep boop<br />:coolcat:</p>' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
         end
       end
     end
