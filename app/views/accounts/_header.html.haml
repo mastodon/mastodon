@@ -37,15 +37,15 @@
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }
         = link_to short_account_url(account), class: 'u-url u-uid' do
-          %span.counter-number= number_to_human account.statuses_count
+          %span.counter-number= number_to_human account.statuses_count, strip_insignificant_zeros: true
           %span.counter-label= t('accounts.posts')
 
       .counter{ class: active_nav_class(account_following_index_url(account)) }
         = link_to account_following_index_url(account) do
-          %span.counter-number= number_to_human account.following_count
+          %span.counter-number= number_to_human account.following_count, strip_insignificant_zeros: true
           %span.counter-label= t('accounts.following')
 
       .counter{ class: active_nav_class(account_followers_url(account)) }
         = link_to account_followers_url(account) do
-          %span.counter-number= number_to_human account.followers_count
+          %span.counter-number= number_to_human account.followers_count, strip_insignificant_zeros: true
           %span.counter-label= t('accounts.followers')
