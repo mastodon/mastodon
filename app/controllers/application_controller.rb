@@ -79,10 +79,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme
-    if Themes.instance.names.include? current_account&.user&.setting_theme 
-      return current_account&.user&.setting_theme 
+    if Themes.instance.names.include? current_account&.user&.setting_theme
+      return current_account&.user&.setting_theme
     end
-    return Setting.default_settings['theme']
+    Setting.default_settings['theme']
   end
 
   def cache_collection(raw, klass)
