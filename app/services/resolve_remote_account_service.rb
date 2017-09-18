@@ -80,6 +80,7 @@ class ResolveRemoteAccountService < BaseService
   def activitypub_ready?
     !@webfinger.link('self').nil? &&
       ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self').type) &&
+      !actor_json.nil? &&
       actor_json['inbox'].present?
   end
 

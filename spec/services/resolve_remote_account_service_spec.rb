@@ -72,6 +72,39 @@ RSpec.describe ResolveRemoteAccountService do
   end
 
   context 'with an ActivityPub account' do
+    before do
+      stub_request(:get, "https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com").to_return(request_fixture('activitypub-webfinger.txt'))
+      stub_request(:get, "https://ap.example.com/users/foo").to_return(request_fixture('activitypub-actor.txt'))
+      stub_request(:get, "https://ap.example.com/users/foo.atom").to_return(request_fixture('activitypub-feed.txt'))
+      stub_request(:get, %r{https://ap.example.com/users/foo/\w+}).to_return(status: 404)
+    end
+
+    it 'fallback to OStatus if actor json could not be fetched' do
+      stub_request(:get, "https://ap.example.com/users/foo").to_return(status: 404)
+
+      account = subject.call('foo@ap.example.com')
+
+      expect(account.ostatus?).to eq true
+      expect(account.remote_url).to eq 'https://ap.example.com/users/foo.atom'
+    end
+
+    it 'fallback to OStatus if actor json did not have inbox_url' do
+      stub_request(:get, "https://ap.example.com/users/foo").to_return(request_fixture('activitypub-actor-noinbox.txt'))
+
+      account = subject.call('foo@ap.example.com')
+
+      expect(account.ostatus?).to eq true
+      expect(account.remote_url).to eq 'https://ap.example.com/users/foo.atom'
+    end
+
+    it 'returns new remote account' do
+      account = subject.call('foo@ap.example.com')
+
+      expect(account.activitypub?).to eq true
+      expect(account.domain).to eq 'ap.example.com'
+      expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+    end
+
     pending
   end
 
