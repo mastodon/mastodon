@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme
-    if Themes.instance.names.include? current_account&.user&.setting_theme
+    if current_account and Themes.instance.names.include? current_account.user.setting_theme
       return current_account&.user&.setting_theme
     end
     Setting.default_settings['theme']
