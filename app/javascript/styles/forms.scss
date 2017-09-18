@@ -349,8 +349,45 @@ code {
   box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
   text-align: center;
 
+  p {
+    margin-bottom: 15px;
+  }
+
+  .oauth-code {
+    color: $ui-secondary-color;
+    outline: 0;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-family: 'mastodon-font-monospace', monospace;
+    background: $ui-base-color;
+    color: $ui-primary-color;
+    font-size: 14px;
+    margin: 0;
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
+
+    &:focus {
+      background: lighten($ui-base-color, 4%);
+    }
+  }
+
   strong {
     font-weight: 500;
+  }
+
+  @media screen and (max-width: 740px) and (min-width: 441px) {
+    margin-top: 40px;
   }
 }
 
