@@ -110,6 +110,10 @@ class User < ApplicationRecord
     settings.noindex
   end
 
+  def setting_theme
+    settings.theme
+  end
+
   def token_for_app(a)
     return nil if a.nil? || a.owner != self
     Doorkeeper::AccessToken
