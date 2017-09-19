@@ -368,5 +368,9 @@ class OStatus::AtomSerializer
     end
 
     append_element(entry, 'mastodon:scope', status.visibility)
+
+    status.emojis.each do |emoji|
+      append_element(entry, 'link', nil, rel: :emoji, href: full_asset_url(emoji.image.url), name: emoji.shortcode)
+    end
   end
 end

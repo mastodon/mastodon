@@ -61,6 +61,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_hashtag tag, status
       when 'Mention'
         process_mention tag, status
+      when 'Emoji'
+        process_emoji tag, status
       end
     end
   end
@@ -77,6 +79,17 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     account = FetchRemoteAccountService.new.call(tag['href']) if account.nil?
     return if account.nil?
     account.mentions.create(status: status)
+  end
+
+  def process_emoji(tag, _status)
+    shortcode = tag['name'].delete(':')
+    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
+
+    return if !emoji.nil? || skip_download?
+
+    emoji = CustomEmoji.new(domain: @account.domain, shortcode: shortcode)
+    emoji.image_remote_url = tag['href']
+    emoji.save
   end
 
   def process_attachments(status)

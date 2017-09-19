@@ -1,4 +1,4 @@
-FROM ruby:2.4.1-alpine3.6
+FROM ruby:2.4.2-alpine3.6
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="A GNU Social-compatible microblogging server"
