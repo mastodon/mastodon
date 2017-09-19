@@ -18,7 +18,7 @@ class MediaProxyController < ApplicationController
 
   def redownload!
     @media_attachment.file_remote_url = @media_attachment.remote_url
-    @media_attachment.touch(:created_at)
+    @media_attachment.created_at      = Time.now.utc
     @media_attachment.save!
   end
 
