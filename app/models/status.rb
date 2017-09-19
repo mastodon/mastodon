@@ -131,6 +131,10 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  def emojis
+    CustomEmoji.from_text(text, account.domain)
+  end
+
   after_create :store_uri, if: :local?
 
   before_validation :prepare_contents, if: :local?
