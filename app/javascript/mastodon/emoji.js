@@ -47,4 +47,22 @@ const emojify = (str, customEmojis = {}) => {
   return str;
 };
 
-export default emojify;
+const emojify_knzk = (str, customEmojis) => [
+  text => text.replace(/5,?000\s*兆円/g, (m) => {
+    return `<img alt="${m}" src="/emoji/5000tyoen.svg" style="height: 1.8em;"/>`;
+  }),
+  text => text.replace(/ニコる/g, (m) => {
+    return `<img alt="${m}" src="/emoji/nicoru.svg" style="height: 1.5em;"/>`;
+  }),
+  text => text.replace(/バジリスク\s*タイム/g, (m) => {
+    return `<img alt="${m}" src="/emoji/basilisktime.png" height="40"/>`;
+  }),
+  text => text.replace(/熱盛/g, (m) => {
+    return `<img alt="${m}" src="/emoji/atumori.png" height="51"/>`;
+  }),
+  text => text.replace(/欲しい！/g, (m) => {
+    return `<img alt="${m}" src="/emoji/hosii.png" height="30"/>`;
+  }),
+].reduce((text, f) => f(text), emojify(str, customEmojis));
+
+export default emojify_knzk;
