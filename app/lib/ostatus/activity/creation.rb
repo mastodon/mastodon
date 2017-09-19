@@ -188,6 +188,6 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   end
 
   def lock_options
-    { redis: Redis.current, key: "create:#{@object['id']}" }
+    { redis: Redis.current, key: "create:#{id}" }
   end
 end
