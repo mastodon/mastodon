@@ -97,10 +97,22 @@ RSpec.describe OStatus::AtomSerializer do
 
       mentioned = element.nodes.find do |node|
         node.name == 'link' &&
-        node[:rel] == 'mentioned' &&
-        node['ostatus:object-type'] == TagManager::TYPES[:person]
+          node[:rel] == 'mentioned' &&
+          node['ostatus:object-type'] == TagManager::TYPES[:person]
       end
+
       expect(mentioned[:href]).to eq 'https://cb6e6126.ngrok.io/users/username'
+    end
+
+    it 'appends link elements for emojis' do
+      Fabricate(:custom_emoji)
+
+      status  = Fabricate(:status, text: ':coolcat:')
+      element = serialize(status)
+      emoji   = element.nodes.find { |node| node.name == 'link' && node[:rel] == 'emoji' }
+
+      expect(emoji[:name]).to eq 'coolcat'
+      expect(emoji[:href]).to_not be_blank
     end
   end
 

@@ -17,6 +17,7 @@ RSpec.describe ActivityPub::Activity::Create do
 
   before do
     stub_request(:get, 'http://example.com/attachment.png').to_return(request_fixture('avatar.txt'))
+    stub_request(:get, 'http://example.com/emoji.png').to_return(body: attachment_fixture('emojo.png'))
   end
 
   describe '#perform' do
@@ -215,6 +216,30 @@ RSpec.describe ActivityPub::Activity::Create do
 
         expect(status).to_not be_nil
         expect(status.tags.map(&:name)).to include('test')
+      end
+    end
+
+    context 'with emojis' do
+      let(:object_json) do
+        {
+          id: 'bar',
+          type: 'Note',
+          content: 'Lorem ipsum :tinking:',
+          tag: [
+            {
+              type: 'Emoji',
+              href: 'http://example.com/emoji.png',
+              name: 'tinking',
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.emojis.map(&:shortcode)).to include('tinking')
       end
     end
   end
