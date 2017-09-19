@@ -17,12 +17,29 @@ class FollowingAccountsController < ApplicationController
 
   private
 
+  def page_url(page)
+    account_following_index_url(@account, page: page) unless page.nil?
+  end
+
   def collection_presenter
-    ActivityPub::CollectionPresenter.new(
-      id: account_following_index_url(@account),
+    page = ActivityPub::CollectionPresenter.new(
+      id: account_following_index_url(@account, page: params.fetch(:page, 1)),
       type: :ordered,
       size: @account.following_count,
-      items: @follows.map { |f| ActivityPub::TagManager.instance.uri_for(f.target_account) }
+      items: @follows.map { |f| ActivityPub::TagManager.instance.uri_for(f.target_account) },
+      part_of: account_following_index_url(@account),
+      next: page_url(@follows.next_page),
+      prev: page_url(@follows.prev_page)
     )
+    if params[:page].present?
+      page
+    else
+      ActivityPub::CollectionPresenter.new(
+        id: account_following_index_url(@account),
+        type: :ordered,
+        size: @account.following_count,
+        first: page
+      )
+    end
   end
 end
