@@ -17,13 +17,13 @@ oc:
       unconfirmed: Vos cal confirmar vòstra adreça de corrièl abans de contunhar.
     mailer:
       confirmation_instructions:
-        subject: "Mercés de confirmar vòstra inscripcion sus %{instance}"
+        subject: Mercés de confirmar vòstra inscripcion sus %{instance}
       password_change:
-        subject: 'Mastodon : senhal cambiat'
+        subject: Mastodon : senhal cambiat
       reset_password_instructions:
-        subject: 'Mastodon : instruccions per reïnicializar lo senhal'
+        subject: Mastodon : instruccions per reïnicializar lo senhal
       unlock_instructions:
-        subject: 'Mastodon : instuccions de desblocatge'
+        subject: Mastodon : instuccions de desblocatge
     omniauth_callbacks:
       failure: Fracàs al moment de vos autentificar de %{kind} perque "%{reason}".
       success: Sètz ben autentificat dempuèi lo compte %{kind}.

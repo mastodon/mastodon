@@ -32,7 +32,7 @@ es:
     status_count_before: Qué han escrito
     user_count_after: usuarios registrados
     user_count_before: Tenemos
-    what_is_mastodon: ¿Qué es Mastodon?
+    what_is_mastodon: "¿Qué es Mastodon?"
   accounts:
     follow: Seguir
     followers: Seguidores
@@ -50,7 +50,7 @@ es:
     unfollow: Dejar de seguir
   admin:
     accounts:
-      are_you_sure: ¿Estás seguro?
+      are_you_sure: "¿Estás seguro?"
       confirm: Confirmar
       confirmed: Confirmado
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -148,7 +148,7 @@ es:
       title: Instancias conocidas
     reports:
       action_taken_by: Acción tomada por
-      are_you_sure: ¿Estás seguro?
+      are_you_sure: "¿Estás seguro?"
       comment:
         label: Comentario
         none: Ninguno
@@ -238,18 +238,18 @@ es:
   applications:
     created: Aplicación creada exitosamente
     destroyed: Apicación eliminada exitosamente
+    invalid_url: La URL proporcionada es incorrecta
     regenerate_token: Regenerar token de acceso
     token_regenerated: Token de acceso regenerado exitosamente
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
-    invalid_url: La URL proporcionada es incorrecta
   auth:
     agreement_html: Al registrarte aceptas <a href="%{rules_path}">nuestros y términos y condiciones del servicio</a> y <a href="%{terms_path}">nuestras políticas de privacidda</a>.
     change_password: Cambiar contraseña
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
-    invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
     forgot_password: "¿Olvidaste tu contraseña?"
+    invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
     login: Iniciar sesión
     logout: Cerrar sesión
     register: Registrarse
@@ -260,7 +260,7 @@ es:
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Tienes una solicitud de seguimiento de:'
-    following: '¡Éxito! Ahora estás siguiendo a:'
+    following: "¡Éxito! Ahora estás siguiendo a:"
     post_follow:
       close: O, puedes simplemente cerrar esta ventana.
       return: Regresar al perfil del usuario
@@ -281,7 +281,7 @@ es:
       x_months: "%{count}m"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: ¡Buen intento, hackers! Contraseña incorrecta
+    bad_password_msg: "¡Buen intento, hackers! Contraseña incorrecta"
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
     description_html: Esto removerá el contenido de tu cuenta y la desactivará <strong>permanente e irrevesiblemente</strong>. Tu nombre de usuario quedará reservado para prevenir futuros robos de identidad.
     proceed: Eliminar cuenta
@@ -461,9 +461,9 @@ es:
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
   stream_entries:
     click_to_show: Click para mostrar
+    pinned: Toot fijado
     reblogged: retooteado
     sensitive_content: Contenido sensible
-    pinned: Toot fijado
   terms:
     body_html: |
       <h2>Políticas de privacidad</h2>
@@ -533,24 +533,24 @@ es:
       <p>Este documento está publicado bajo la licencia CC-BY-SA. Última vez actualizado el 31 de Mayo del 2013.</p>
 
       <p>Adaptado originalmente del <a href="https://github.com/discourse/discourse">discurso de las políticas de privacidad</a>.</p>
-    title: "Términos del Servicio y Políticas de Privacidad de %{instance}"
+    title: Términos del Servicio y Políticas de Privacidad de %{instance}
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
   two_factor_authentication:
-    generate_recovery_codes: generar códigos de recuperación
-    lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
-    recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
-    recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
+    code_hint: Ingresa el código generado por tu aplicación de autenticación para confirmar
     description_html: Si habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
     disable: Deshabilitar
     enable: Habilitar
     enabled_success: Verificación de dos factores activada exitosamente
+    generate_recovery_codes: generar códigos de recuperación
     instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
-    code_hint: Ingresa el código generado por tu aplicación de autenticación para confirmar
+    lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
+    recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
+    recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
     setup: Configurar
-    wrong_code: ¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?
+    wrong_code: "¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?"
   users:
     invalid_email: La dirección de correo es incorrecta
     invalid_otp_token: Código de dos factores incorrecto
-    signed_in_as: "Sesión iniciada como:"
+    signed_in_as: 'Sesión iniciada como:'
