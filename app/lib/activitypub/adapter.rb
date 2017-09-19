@@ -14,7 +14,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
         'atomUri'                   => 'ostatus:atomUri',
         'inReplyToAtomUri'          => 'ostatus:inReplyToAtomUri',
         'conversation'              => 'ostatus:conversation',
-        'emoji'                     => 'http://joinmastodon.org/ns/emoji',
+        'emoji'                     => 'http://joinmastodon.org/ns/emoji#',
         'Emoji'                     => 'emoji:Emoji',
       },
     ],
