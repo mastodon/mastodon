@@ -50,14 +50,14 @@ RSpec.describe BatchedRemoveStatusService do
 
   it 'sends PuSH update to PuSH subscribers' do
     expect(a_request(:post, 'http://example.com/push').with { |req|
-      matches = req.body.match(TagManager::VERBS[:delete])
+      matches = req.body.match(OStatus::TagManager::VERBS[:delete])
     }).to have_been_made.at_least_once
   end
 
   it 'sends Salmon slap to previously mentioned users' do
     expect(a_request(:post, "http://example.com/salmon").with { |req|
       xml = OStatus2::Salmon.new.unpack(req.body)
-      xml.match(TagManager::VERBS[:delete])
+      xml.match(OStatus::TagManager::VERBS[:delete])
     }).to have_been_made.once
   end
 
