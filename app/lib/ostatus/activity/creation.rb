@@ -29,6 +29,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   def process_status
     Rails.logger.debug "Creating remote status #{id}"
     cached_reblog = reblog
+    status = nil
 
     ApplicationRecord.transaction do
       status = Status.create!(
