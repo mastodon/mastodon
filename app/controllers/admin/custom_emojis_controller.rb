@@ -3,7 +3,7 @@
 module Admin
   class CustomEmojisController < BaseController
     def index
-      @custom_emojis = CustomEmoji.where(uri: nil)
+      @custom_emojis = CustomEmoji.where(domain: nil)
     end
 
     def new
