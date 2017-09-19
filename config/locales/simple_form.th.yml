@@ -5,13 +5,13 @@ th:
       defaults:
         avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 120x120px
         display_name:
-          one: '<span class="name-counter">1</span> character left'
-          other: '<span class="name-counter">%{count}</span> characters left'
+          one: <span class="name-counter">1</span> character left
+          other: <span class="name-counter">%{count}</span> characters left
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
         locked: Requires you to manually approve followers and defaults post privacy to followers-only
         note:
-          one: '<span class="name-counter">1</span> character left'
-          other: '<span class="note-counter">%{count}</span> characters left'
+          one: <span class="name-counter">1</span> character left
+          other: <span class="note-counter">%{count}</span> characters left
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:
@@ -48,8 +48,8 @@ th:
         follow_request: Send e-mail when someone requests to follow you
         mention: Send e-mail when someone mentions you
         reblog: Send e-mail when someone boosts your status
-    'no': 'ไม่'
+    'no': ไม่
     required:
       mark: "*"
       text: required
-    'yes': 'ใช่'
+    'yes': ใช่

@@ -57,7 +57,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def virtual_tags
-    object.mentions + object.tags
+    object.mentions + object.tags + object.emojis
   end
 
   def atom_uri
@@ -135,6 +135,24 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
     def name
       "##{object.name}"
+    end
+  end
+
+  class CustomEmojiSerializer < ActiveModel::Serializer
+    include RoutingHelper
+
+    attributes :type, :href, :name
+
+    def type
+      'Emoji'
+    end
+
+    def href
+      full_asset_url(object.image.url)
+    end
+
+    def name
+      ":#{object.shortcode}:"
     end
   end
 end

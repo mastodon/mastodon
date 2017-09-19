@@ -4,12 +4,21 @@ es:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Máximo 2MB. Será escalado a 120x120px
-        display_name: Máximo 30 caracteres
+        display_name:
+          one: <span class="name-counter">1</span> caracter restante
+          other: <span class="name-counter">%{count}</span> caracteres restantes
         header: PNG, GIF o JPG. Máximo 2MB. Será escalado a 700x335px
-        locked: Requiere que manualmente apruebes seguidores y las publicaciones serán mostradas solamente a tus seguidores 
-        note: Máximo 160 caracteres
+        locked: Requiere que manualmente apruebes seguidores y las publicaciones serán mostradas solamente a tus seguidores
+        note:
+          one: <span class="name-counter">1</span> caracter restante
+          other: <span class="name-counter">%{count}</span> caracteres restantes
+        setting_noindex: Afecta a tu perfil público y páginas de estado
       imports:
         data: Archivo CSV exportado desde otra instancia de Mastodon
+      sessions:
+        otp: Ingresa el código de autenticación de dos factores de tu teléfono o usa uno de tus códigos de recuperación.
+      user:
+        filtered_languages: Los lenguajes seleccionados serán removidos de tus líneas de tiempo públicas.
     labels:
       defaults:
         avatar: Avatar

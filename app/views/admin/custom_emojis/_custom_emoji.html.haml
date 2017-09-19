@@ -1,0 +1,7 @@
+%tr
+  %td
+    = image_tag custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:"
+  %td
+    %samp= ":#{custom_emoji.shortcode}:"
+  %td
+    = table_link_to 'times', t('admin.custom_emojis.delete'), admin_custom_emoji_path(custom_emoji), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

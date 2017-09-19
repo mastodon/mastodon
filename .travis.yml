@@ -26,11 +26,9 @@ addons:
   postgresql: 9.4
   apt:
     sources:
-    - ubuntu-toolchain-r-test
     - trusty-media
     packages:
     - ffmpeg
-    - g++-6
     - libprotobuf-dev
     - protobuf-compiler
     - libicu-dev

@@ -58,9 +58,14 @@ const normalizeStatus = (state, status) => {
   }
 
   const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
+    obj[`:${emoji.shortcode}:`] = emoji.url;
+    return obj;
+  }, {});
+
   normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-  normalStatus.contentHtml = emojify(normalStatus.content);
-  normalStatus.spoilerHtml = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''));
+  normalStatus.contentHtml = emojify(normalStatus.content, emojiMap);
+  normalStatus.spoilerHtml = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''), emojiMap);
 
   return state.update(status.id, ImmutableMap(), map => map.mergeDeep(fromJS(normalStatus)));
 };
