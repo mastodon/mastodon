@@ -24,7 +24,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def uri
-    TagManager.instance.uri_for(object)
+    OStatus::TagManager.instance.uri_for(object)
   end
 
   def content
