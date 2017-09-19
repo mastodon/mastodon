@@ -48,21 +48,11 @@ const emojify = (str, customEmojis = {}) => {
 };
 
 const emojify_knzk = (str, customEmojis) => [
-  text => text.replace(/5,?000\s*兆円/g, (m) => {
-    return `<img alt="${m}" src="/emoji/5000tyoen.svg" style="height: 1.8em;"/>`;
-  }),
-  text => text.replace(/ニコる/g, (m) => {
-    return `<img alt="${m}" src="/emoji/nicoru.svg" style="height: 1.5em;"/>`;
-  }),
-  text => text.replace(/バジリスク\s*タイム/g, (m) => {
-    return `<img alt="${m}" src="/emoji/basilisktime.png" height="40"/>`;
-  }),
-  text => text.replace(/熱盛/g, (m) => {
-    return `<img alt="${m}" src="/emoji/atumori.png" height="51"/>`;
-  }),
-  text => text.replace(/欲しい！/g, (m) => {
-    return `<img alt="${m}" src="/emoji/hosii.png" height="30"/>`;
-  }),
-].reduce((text, f) => f(text), emojify(str, customEmojis));
+  {re: /5,?000\s*兆円/g, file: '5000tyoen.svg', attrs: 'style="height: 1.8em;"'},
+  {re: /ニコる/g, file: 'nicoru.svg', attrs: 'style="height: 1.5em;"'},
+  {re: /バジリスク\s*タイム/g, file: 'basilisktime.png', attrs: 'height="40"'},
+  {re: /熱盛/g, file: 'atumori.png', attrs: 'height="51"'},
+  {re: /欲しい！/g, file: 'hosii.png', attrs: 'height="30"'},
+].reduce((text, e) => text.replace(e.re, m => `<img alt="${m}" src="/emoji/${e.file}" ${e.attrs}/>`), emojify(str, customEmojis));
 
 export default emojify_knzk;
