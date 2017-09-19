@@ -3033,64 +3033,6 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.announcements {
-  padding: 5px;
-
-  li {
-    display: flex;
-    padding: 10px;
-    color: $ui-base-color;
-    background: darken($white, 10%);
-    border-radius: 4px;
-
-    & + li {
-      margin-top: 10px;
-    }
-  }
-}
-
-.announcements__admin {
-  width: 100%;
-  position: relative;
-
-  p {
-    padding: 0 5px;
-    font-size: 14px;
-  }
-}
-
-.announcements__icon {
-  display: inline-block;
-  position: absolute;
-  margin: -5px 5px;
-  right: 10px;
-}
-
-.announcements__body {
-  width: 100%;
-  position: relative;
-
-  p {
-    padding: 0 5px;
-    font-size: 14px;
-  }
-
-  a {
-    display: inline-block;
-    float: right;
-    clear: both;
-    color: $ui-base-color;
-    background: darken($white, 5%);
-    text-decoration: none;
-    padding: 1px 10px 0;
-    border: solid 1px $ui-base-color;
-    font-size: 10px;
-    font-weight: 600;
-    border-radius: 4px;
-    margin-top: 5px;
-  }
-}
-
 .modal-root__overlay {
   position: absolute;
   top: 0;
@@ -4181,10 +4123,6 @@ noscript {
       will-change: opacity;
       transition: opacity $duration $delay;
     }
-  }
-
-  .announcements {
-    display: none;
   }
 
   .is-composing {
