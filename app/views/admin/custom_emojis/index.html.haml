@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = t('admin.custom_emojis.title')
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.custom_emojis.emoji')
+        %th= t('admin.custom_emojis.shortcode')
+        %th
+    %tbody
+      = render @custom_emojis
+
+= link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'
