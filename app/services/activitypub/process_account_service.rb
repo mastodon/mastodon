@@ -8,11 +8,11 @@ class ActivityPub::ProcessAccountService < BaseService
   def call(username, domain, json)
     return if json['inbox'].blank?
 
-    @json           = json
-    @uri            = @json['id']
-    @username       = username
-    @domain         = domain
-    @collections    = {}
+    @json        = json
+    @uri         = @json['id']
+    @username    = username
+    @domain      = domain
+    @collections = {}
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -20,7 +20,7 @@ class ActivityPub::ProcessAccountService < BaseService
         @old_public_key = @account&.public_key
         @old_protocol   = @account&.protocol
 
-        create_account  if @account.nil?
+        create_account if @account.nil?
         update_account
       end
     end
