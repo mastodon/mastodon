@@ -5,6 +5,8 @@
   = render 'shared/error_messages', object: current_user
 
   .fields-group
+    = f.input :setting_theme, collection: Themes.instance.names, label_method: lambda { |theme| safe_join([I18n.t("themes.#{theme}", default: theme)])}, wrapper: :with_label, include_blank: false
+
     = f.input :locale,
       collection: I18n.available_locales,
       wrapper: :with_label,
