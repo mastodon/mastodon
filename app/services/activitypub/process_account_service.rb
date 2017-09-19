@@ -23,12 +23,13 @@ class ActivityPub::ProcessAccountService < BaseService
 
         create_account if @account.nil?
         update_account
+
+        notify_profile_change
       end
     end
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
-    notify_profile_change
 
     @account
   rescue Oj::ParseError

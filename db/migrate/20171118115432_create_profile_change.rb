@@ -7,5 +7,6 @@ class CreateProfileChange < ActiveRecord::Migration[5.1]
     end
 
     add_foreign_key :profile_changes, :accounts, column: :account_id, on_delete: :cascade
+    add_index :profile_changes, :account_id, unique: true
   end
 end

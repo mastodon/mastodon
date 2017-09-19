@@ -3,6 +3,7 @@
 module ProfileChangeNotifier
   def prepare_profile_change(account)
     return unless notify_profile_change_recipients(account).exists?
+
     ProfileChange.where(account: account).destroy_all
     @profile_change = ProfileChange.create!(account: account, avatar: account.avatar, display_name: account.display_name)
   end

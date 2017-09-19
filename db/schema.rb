@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(version: 20171118115432) do
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string "display_name", default: "", null: false
+    t.index ["account_id"], name: "index_profile_changes_on_account_id", unique: true
   end
 
   create_table "reports", force: :cascade do |t|
