@@ -10,7 +10,7 @@ class OStatus::Activity::Share < OStatus::Activity::Creation
   end
 
   def object
-    @xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS)
+    @xml.at_xpath('.//activity:object', activity: OStatus::TagManager::AS_XMLNS)
   end
 
   private

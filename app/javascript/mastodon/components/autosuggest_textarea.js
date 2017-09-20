@@ -128,7 +128,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   onSuggestionClick = (e) => {
-    const suggestion = Number(e.currentTarget.getAttribute('data-index'));
+    const suggestion = e.currentTarget.getAttribute('data-index');
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();

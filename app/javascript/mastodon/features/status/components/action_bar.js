@@ -36,7 +36,7 @@ export default class ActionBar extends React.PureComponent {
     onReport: PropTypes.func,
     onPin: PropTypes.func,
     onEmbed: PropTypes.func,
-    me: PropTypes.number.isRequired,
+    me: PropTypes.string.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
