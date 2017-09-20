@@ -230,9 +230,9 @@ export function fetchComposeSuggestions(token) {
       });
     };
   } else if (leading === ':') {
-    // mojos
+    // shortcode
     let allShortcodes = Object.keys(emojione.emojioneList);
-    // TODO when we have custom emojons merged, add theme to this shortcode list
+    // TODO when we have custom emojons merged, add them to this shortcode list
     return (dispatch) => {
       dispatch(readyComposeSuggestionsTxt(token, allShortcodes.filter((sc) => {
         return sc.indexOf(token) === 0;
