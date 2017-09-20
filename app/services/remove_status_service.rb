@@ -4,7 +4,7 @@ class RemoveStatusService < BaseService
   include StreamEntryRenderer
 
   def call(status)
-    @payload      = Oj.dump(event: :delete, payload: status.id)
+    @payload      = Oj.dump(event: :delete, payload: status.id.to_s)
     @status       = status
     @account      = status.account
     @tags         = status.tags.pluck(:name).to_a
