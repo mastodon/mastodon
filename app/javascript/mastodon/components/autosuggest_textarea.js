@@ -43,6 +43,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     onSuggestionSelected: PropTypes.func.isRequired,
     onSuggestionsClearRequested: PropTypes.func.isRequired,
     onSuggestionsFetchRequested: PropTypes.func.isRequired,
+    onLocalSuggestionsFetchRequested: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onKeyUp: PropTypes.func,
     onKeyDown: PropTypes.func,
@@ -66,7 +67,13 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
 
     if (token !== null && this.state.lastToken !== token) {
       this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
-      this.props.onSuggestionsFetchRequested(token);
+      if (token[0] === ':') {
+        // faster debounce for shortcodes.
+        // hashtags have long debounce because they're fetched from server.
+        this.props.onLocalSuggestionsFetchRequested(token);
+      } else {
+        this.props.onSuggestionsFetchRequested(token);
+      }
     } else if (token === null) {
       this.setState({ lastToken: null });
       this.props.onSuggestionsClearRequested();
