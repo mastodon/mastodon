@@ -97,13 +97,13 @@ export default class StatusHeader extends React.PureComponent {
           className='status__avatar'
           onClick={this.handleAccountClick}
         >
-            {
-              friend ? (
-                <AvatarOverlay account={account} friend={friend} />
-              ) : (
-                <Avatar account={account} size={48} />
-              )
-            }
+          {
+            friend ? (
+              <AvatarOverlay account={account} friend={friend} />
+            ) : (
+              <Avatar account={account} size={48} />
+            )
+          }
         </a>
         <a
           href={account.get('url')}
