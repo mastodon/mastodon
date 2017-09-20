@@ -8,14 +8,17 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 export default class ColumnLoading extends ImmutablePureComponent {
 
   static propTypes = {
-    title: PropTypes.node,
+    title: PropTypes.oneOfType(PropTypes.node, PropTypes.string),
     icon: PropTypes.string,
-  }
+  };
+
+  static defaultProps = {
+    title: '',
+    icon: '',
+  };
 
   render() {
     let { title, icon } = this.props;
-    title = title || '';
-    icon = icon || '';
     return (
       <Column>
         <ColumnHeader icon={icon} title={title} multiColumn={false} focusable={false} />
