@@ -14,14 +14,22 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
       return result if result.first.present?
     end
 
+    RedisLock.acquire(lock_options) do |lock|
+      if lock.acquired?
+        # Return early if status already exists in db
+        @status = find_status(id)
+        return [@status, false] unless @status.nil?
+        @status = process_status
+      end
+    end
+
+    [@status, true]
+  end
+
+  def process_status
     Rails.logger.debug "Creating remote status #{id}"
-
-    # Return early if status already exists in db
-    status = find_status(id)
-
-    return [status, false] unless status.nil?
-
     cached_reblog = reblog
+    status = nil
 
     ApplicationRecord.transaction do
       status = Status.create!(
@@ -55,7 +63,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
     DistributionWorker.perform_async(status.id)
 
-    [status, true]
+    status
   end
 
   def perform_via_activitypub
@@ -178,5 +186,9 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     else
       Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
     end
+  end
+
+  def lock_options
+    { redis: Redis.current, key: "create:#{id}" }
   end
 end
