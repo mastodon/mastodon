@@ -21,6 +21,14 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
   }
 
+  updateOnProps = [
+    'id',
+    'index',
+    'listLength',
+    'saveHeightKey',
+    'cachedHeight',
+  ]
+
   shouldComponentUpdate (nextProps, nextState) {
     if (!nextState.isIntersecting && nextState.isHidden) {
       // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
