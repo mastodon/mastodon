@@ -1,5 +1,6 @@
 import React from 'react';
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
+import AutosuggestShortcode from '../features/compose/components/autosuggest_shortcode';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
@@ -18,11 +19,12 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
     word = str.slice(left, right + caretPosition);
   }
 
-  if (!word || word.trim().length < 2 || word[0] !== '@') {
+  if (!word || word.trim().length < 2 || ['@', ':', '#'].indexOf(word[0]) === -1) {
     return [null, null];
   }
 
-  word = word.trim().toLowerCase().slice(1);
+  word = word.trim().toLowerCase();
+  // was: .slice(1); - we leave the leading char there, handler can decide what to do based on it
 
   if (word.length > 0) {
     return [left + 1, word];
@@ -128,7 +130,9 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   onSuggestionClick = (e) => {
-    const suggestion = Number(e.currentTarget.getAttribute('data-index'));
+    // leave suggestion string unchanged if it's a hash / shortcode suggestion. convert account number to int.
+    const suggestionStr = e.currentTarget.getAttribute('data-index');
+    const suggestion = [':', '#'].indexOf(suggestionStr[0]) !== -1 ? suggestionStr : Number(suggestionStr);
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
@@ -160,6 +164,14 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
       style.direction = 'rtl';
     }
 
+    let makeItem = (suggestion) => {
+      if (suggestion[0] === ':') return <AutosuggestShortcode shortcode={suggestion} />;
+      if (suggestion[0] === '#') return suggestion; // hashtag
+
+      // else - accounts are always returned as IDs with no prefix
+      return <AutosuggestAccountContainer id={suggestion} />;
+    };
+
     return (
       <div className='autosuggest-textarea'>
         <label>
@@ -190,7 +202,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
               className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
               onMouseDown={this.onSuggestionClick}
             >
-              <AutosuggestAccountContainer id={suggestion} />
+              {makeItem(suggestion)}
             </div>
           ))}
         </div>

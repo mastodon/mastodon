@@ -1,4 +1,5 @@
 import api from '../api';
+import emojione from 'emojione';
 
 import {
   updateTimeline,
@@ -22,6 +23,7 @@ export const COMPOSE_UPLOAD_UNDO     = 'COMPOSE_UPLOAD_UNDO';
 
 export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
 export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
+export const COMPOSE_SUGGESTIONS_READY_TXT = 'COMPOSE_SUGGESTIONS_READY_TXT';
 export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
 
 export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
@@ -212,17 +214,43 @@ export function clearComposeSuggestions() {
 };
 
 export function fetchComposeSuggestions(token) {
-  return (dispatch, getState) => {
-    api(getState).get('/api/v1/accounts/search', {
-      params: {
-        q: token,
-        resolve: false,
-        limit: 4,
-      },
-    }).then(response => {
-      dispatch(readyComposeSuggestions(token, response.data));
-    });
-  };
+  let leading = token[0];
+
+  if (leading === '@') {
+    // handle search
+    return (dispatch, getState) => {
+      api(getState).get('/api/v1/accounts/search', {
+        params: {
+          q: token.slice(1), // remove the '@'
+          resolve: false,
+          limit: 4,
+        },
+      }).then(response => {
+        dispatch(readyComposeSuggestions(token, response.data));
+      });
+    };
+  } else if (leading === ':') {
+    // mojos
+    let allShortcodes = Object.keys(emojione.emojioneList);
+    // TODO when we have custom emojons merged, add theme to this shortcode list
+    return (dispatch) => {
+      dispatch(readyComposeSuggestionsTxt(token, allShortcodes.filter((sc) => {
+        return sc.indexOf(token) === 0;
+      })));
+    };
+  } else {
+    // hashtag
+    return (dispatch, getState) => {
+      api(getState).get('/api/v1/search', {
+        params: {
+          q: token,
+          resolve: true,
+        },
+      }).then(response => {
+        dispatch(readyComposeSuggestionsTxt(token, response.data.hashtags.map((ht) => `#${ht}`)));
+      });
+    };
+  }
 };
 
 export function readyComposeSuggestions(token, accounts) {
@@ -233,9 +261,19 @@ export function readyComposeSuggestions(token, accounts) {
   };
 };
 
+export function readyComposeSuggestionsTxt(token, items) {
+  return {
+    type: COMPOSE_SUGGESTIONS_READY_TXT,
+    token,
+    items,
+  };
+};
+
 export function selectComposeSuggestion(position, token, accountId) {
   return (dispatch, getState) => {
-    const completion = getState().getIn(['accounts', accountId, 'acct']);
+    const completion = (typeof accountId === 'string') ?
+      accountId.slice(1) : // text suggestion: discard the leading : or # - the replacing code replaces only what follows
+      getState().getIn(['accounts', accountId, 'acct']);
 
     dispatch({
       type: COMPOSE_SUGGESTION_SELECT,
