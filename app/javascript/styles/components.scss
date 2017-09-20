@@ -752,7 +752,7 @@
   }
 
   .notification__message {
-    margin: -10px 0 10px;
+    margin: -10px -10px 10px;
   }
 }
 
@@ -970,8 +970,7 @@
 
 .account__avatar-wrapper {
   float: left;
-  margin-left: 12px;
-  margin-right: 12px;
+  margin: 6px 16px 6px 6px;
 }
 
 .account__avatar {
@@ -987,6 +986,7 @@
 }
 
 .account__avatar-overlay {
+  position: relative;
   @include avatar-size(48px);
 
   &-base {
@@ -1007,7 +1007,7 @@
 
 .account__relationship {
   height: 18px;
-  padding: 10px;
+  padding: 12px 10px;
   white-space: nowrap;
 }
 
@@ -1322,9 +1322,7 @@
 }
 
 .notification__message {
-  margin-left: 68px;
-  padding: 8px 0;
-  padding-bottom: 0;
+  padding: 8px 10px 0;
   cursor: default;
   color: $ui-primary-color;
   font-size: 15px;
@@ -1336,8 +1334,10 @@
 }
 
 .notification__favourite-icon-wrapper {
-  left: -26px;
-  position: absolute;
+  float: left;
+  margin: 0 10px 0 0;
+  width: 48px;
+  text-align: right;
 
   .star-icon {
     color: $gold-star;
