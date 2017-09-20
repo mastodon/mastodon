@@ -2096,6 +2096,8 @@
 .autosuggest-textarea__suggestions {
   display: none;
   position: absolute;
+  max-height: 300px;
+  overflow-y: auto;
   top: 100%;
   width: 100%;
   z-index: 99;
