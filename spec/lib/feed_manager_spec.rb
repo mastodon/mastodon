@@ -258,7 +258,7 @@ RSpec.describe FeedManager do
       allow(Redis.current).to receive_messages(publish: nil)
       FeedManager.instance.unpush('type', account, status)
 
-      deletion = Oj.dump(event: :delete, payload: status.id)
+      deletion = Oj.dump(event: :delete, payload: status.id.to_s)
       expect(Redis.current).to have_received(:publish).with("timeline:#{account.id}", deletion)
     end
   end

@@ -39,7 +39,7 @@ class FeedManager
   def unpush(timeline_type, account, status)
     return false unless remove_from_feed(timeline_type, account, status)
 
-    payload = Oj.dump(event: :delete, payload: status.id)
+    payload = Oj.dump(event: :delete, payload: status.id.to_s)
     Redis.current.publish("timeline:#{account.id}", payload)
 
     true
