@@ -238,9 +238,17 @@ export function fetchComposeSuggestions(token) {
       // TODO when we have custom emojons merged, add them to this shortcode list
     }
     return (dispatch) => {
-      dispatch(readyComposeSuggestionsTxt(token, allShortcodes.filter((sc) => {
-        return sc.indexOf(token) === 0;
-      })));
+      const innertxt = token.slice(1);
+      if (innertxt.length > 1) { // prevent searching single letter, causes lag
+        dispatch(readyComposeSuggestionsTxt(token, allShortcodes.filter((sc) => {
+          return sc.indexOf(innertxt) !== -1;
+        }).sort((a, b) => {
+          if (a.indexOf(token) === 0 && b.indexOf(token) === 0) return a.localeCompare(b);
+          if (a.indexOf(token) === 0) return -1;
+          if (b.indexOf(token) === 0) return 1;
+          return a.localeCompare(b);
+        })));
+      }
     };
   } else {
     // hashtag
