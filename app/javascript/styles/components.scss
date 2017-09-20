@@ -1240,7 +1240,7 @@
 .dropdown-menu__separator {
   border-bottom: 1px solid darken($ui-secondary-color, 8%);
   margin: 5px 7px 6px;
-  padding-top: 1px;
+  height: 0;
 }
 
 .dropdown-menu {
@@ -3527,6 +3527,10 @@ button.icon-button.active i.fa-retweet {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  .dropdown-menu__separator {
+    border-bottom-color: $ui-secondary-color;
+  }
 }
 
 .boost-modal__container {
@@ -3604,6 +3608,10 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   max-width: 80vw;
 
+  .actions-modal__item-label {
+    font-weight: 500;
+  }
+
   ul {
     overflow-y: auto;
     flex-shrink: 0;
@@ -3616,11 +3624,20 @@ button.icon-button.active i.fa-retweet {
       a {
         color: $ui-base-color;
         display: flex;
-        padding: 10px;
+        padding: 12px 16px;
+        font-size: 15px;
         align-items: center;
         text-decoration: none;
 
-        &.active {
+        &,
+        button {
+          transition: none;
+        }
+
+        &.active,
+        &:hover,
+        &:active,
+        &:focus {
           &,
           button {
             background: $ui-highlight-color;
