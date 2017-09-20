@@ -188,7 +188,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} ref={this.setRef}>
+        <div className={classNames}>
           <p
             style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
             onMouseDown={this.handleMouseDown}
@@ -205,6 +205,7 @@ export default class StatusContent extends React.PureComponent {
 
           <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
             <div
+              ref={this.setRef}
               style={directionStyle}
               onMouseDown={this.handleMouseDown}
               onMouseUp={this.handleMouseUp}
@@ -218,11 +219,11 @@ export default class StatusContent extends React.PureComponent {
     } else if (parseClick) {
       return (
         <div
-          ref={this.setRef}
           className={classNames}
           style={directionStyle}
         >
           <div
+            ref={this.setRef}
             onMouseDown={this.handleMouseDown}
             onMouseUp={this.handleMouseUp}
             dangerouslySetInnerHTML={content}
@@ -233,11 +234,10 @@ export default class StatusContent extends React.PureComponent {
     } else {
       return (
         <div
-          ref={this.setRef}
           className='status__content'
           style={directionStyle}
         >
-          <div dangerouslySetInnerHTML={content} />
+          <div ref={this.setRef} dangerouslySetInnerHTML={content} />
           {media}
         </div>
       );
