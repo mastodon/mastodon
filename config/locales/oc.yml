@@ -60,6 +60,7 @@ oc:
       email: Corrièl
       feed_url: Flux URL
       followers: Seguidors
+      followers_url: URL dels seguidors
       follows: Abonaments
       inbox_url: URL de recepcion
       ip: IP
@@ -92,6 +93,7 @@ oc:
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
       salmon_url: URL Salmon
+      shared_inbox_url: URL de recepcion partejada
       search: Cercar
       show:
         created_reports: Rapòrts creat per aqueste compte
@@ -106,6 +108,18 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       web: Web
+    custom_emojis:
+      created_msg: Emoji ben creat !
+      delete: Suprimir
+      destroyed_msg: Emojo ben suprimit !
+      emoji: Emoji
+      image_hint: PNG cap a 50Ko
+      new:
+        title: Ajustar un nòu emoji personal
+      shortcode: Acorchi
+      shortcode_hint: Almens 2 caractèrs, solament alfanumerics e jonhent bas
+      title: Emojis personals
+      upload: Enviar
     domain_blocks:
       add_new: N’ajustar un nòu
       created_msg: Domeni blocat es a èsser tractat
@@ -141,6 +155,8 @@ oc:
     instances:
       account_count: Comptes coneguts
       domain_name: Domeni
+      reset: Reïnicializar
+      search: Cercar
       title: Instàncias conegudas
     reports:
       action_taken_by: Mesura menada per
@@ -167,6 +183,9 @@ oc:
       unresolved: Pas resolguts
       view: Veire
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Separatz los noms d’utilizaire amb de virgula. Pas que los comptes locals e pas clavats foncionaràn. Se lo camp es void los admins seràn selecionats.
+        title: Per defaut los nouvenguts sègon
       contact_information:
         email: Picatz una adreça de corrièl
         username: Picatz un nom d’utilizaire
@@ -190,6 +209,9 @@ oc:
         desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
         title: Politica de confidencialitat del site
       site_title: Títol del site
+      thumbnail:
+        desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px recomandada.
+        title: Miniatura de l’instància
       timeline_preview:
         desc_html: Mostrar lo flux public sus la pagina d’acuèlh
         title: Apercebut flux public
@@ -517,10 +539,13 @@ oc:
     settings: Paramètres
     two_factor_authentication: Autentificacion en dos temps
     your_apps: Vòstras aplicacions
+  themes:
+    default: Mastodon
   statuses:
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
+      limit: Tròp de tuts penjats
       ownership: Se pòt pas penjar lo tut de qualqu’un mai
       private: Se pòt pas penjar los tuts pas publics
       reblog: Se pòt pas penjar un tut partejat
