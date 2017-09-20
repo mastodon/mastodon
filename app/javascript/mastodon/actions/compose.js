@@ -213,6 +213,8 @@ export function clearComposeSuggestions() {
   };
 };
 
+let allShortcodes = null; // cached list of all shortcodes for suggestions
+
 export function fetchComposeSuggestions(token) {
   let leading = token[0];
 
@@ -231,8 +233,10 @@ export function fetchComposeSuggestions(token) {
     };
   } else if (leading === ':') {
     // shortcode
-    let allShortcodes = Object.keys(emojione.emojioneList);
-    // TODO when we have custom emojons merged, add them to this shortcode list
+    if (!allShortcodes) {
+      allShortcodes = Object.keys(emojione.emojioneList);
+      // TODO when we have custom emojons merged, add them to this shortcode list
+    }
     return (dispatch) => {
       dispatch(readyComposeSuggestionsTxt(token, allShortcodes.filter((sc) => {
         return sc.indexOf(token) === 0;
