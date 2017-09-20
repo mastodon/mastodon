@@ -24,6 +24,12 @@ namespace :db do
   # ensures it's always in place.
   Rake::Task['db:schema:load'].enhance ['db:define_timestamp_id']
 
+  # After we load the schema, make sure we have sequences for each
+  # table using timestamp IDs.
+  Rake::Task['db:schema:load'].enhance do
+    Rake::Task['db:ensure_id_sequences_exist'].invoke
+  end
+
   task :define_timestamp_id do
     conn = ActiveRecord::Base.connection
 
@@ -109,6 +115,36 @@ namespace :db do
           END
         $$ LANGUAGE plpgsql VOLATILE;
       ")
+    end
+  end
+
+  task :ensure_id_sequences_exist do
+    conn = ActiveRecord::Base.connection
+
+    # Find tables using timestamp IDs.
+    default_regex = /timestamp_id\('(?<seq_prefix>\w+)'/
+    conn.tables.each do |table|
+      # We're only concerned with "id" columns.
+      next unless (id_col = conn.columns(table).find { |col| col.name == 'id' })
+
+      # And only those that are using timestamp_id.
+      next unless (data = default_regex.match(id_col.default_function))
+
+      seq_name = data[:seq_prefix] + '_id_seq'
+      # If we were on Postgres 9.5+, we could do CREATE SEQUENCE IF
+      # NOT EXISTS, but we can't depend on that. Instead, catch the
+      # possible exception and ignore it.
+      # Note that seq_name isn't a column name, but it's a
+      # relation, like a column, and follows the same quoting rules
+      # in Postgres.
+      seq_query = "DO $$
+        BEGIN
+          CREATE SEQUENCE #{conn.quote_column_name(seq_name)};
+        EXCEPTION WHEN duplicate_table THEN
+          -- Do nothing, we have the sequence already.
+        END
+      $$ LANGUAGE plpgsql;"
+      conn.execute(seq_query)
     end
   end
 end

@@ -3,15 +3,15 @@ class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
     # Prepare the function we will use to generate IDs.
     Rake::Task['db:define_timestamp_id'].execute
 
-    # The `statuses_id_seq` sequence already exists, no need to create
-    # a new one.
-
     # Set up the statuses.id column to use our timestamp-based IDs.
     ActiveRecord::Base.connection.execute(
       "ALTER TABLE statuses
       ALTER COLUMN id
       SET DEFAULT timestamp_id('statuses')"
     )
+
+    # Make sure we have a sequence to use.
+    Rake::Task['db:ensure_id_sequences_exist'].execute
   end
 
   def down
