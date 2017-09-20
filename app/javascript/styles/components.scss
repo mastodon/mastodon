@@ -550,6 +550,7 @@
 .status__content,
 .reply-indicator__content {
   position: relative;
+  padding: 5px 12px;
   font-size: 15px;
   line-height: 20px;
   color: $primary-text-color;
@@ -660,7 +661,6 @@
 
 .status {
   padding: 8px 10px;
-  padding-left: 68px;
   position: relative;
   height: auto;
   min-height: 48px;
@@ -736,7 +736,7 @@
       content: "";
     }
 
-    .status__display-name:hover strong {
+    .display-name:hover .display-name__html {
       text-decoration: none;
     }
 
@@ -780,26 +780,21 @@
 }
 
 .status__display-name {
+  margin: 0 auto 0 0;
   color: $ui-base-lighter-color;
 }
 
-.status__info .status__display-name {
-  display: block;
-  max-width: 100%;
-}
-
 .status__info {
-  margin: 2px 0 0;
+  display: flex;
+  margin: 2px 0 5px;
   font-size: 15px;
   line-height: 24px;
 }
 
 .status__info__icons {
-  display: inline-block;
+  flex: none;
   position: relative;
-  float: right;
   color: lighten($ui-base-color, 26%);
-  z-index: 5; // to make it clickable
 
   .status__visibility-icon {
     padding-left: 6px;
@@ -842,15 +837,7 @@
 .status__action-bar {
   align-items: center;
   display: flex;
-  margin-top: 10px;
-  margin-left: -58px;
-
-  &::before {
-    display: block;
-    flex: 1 1 0;
-    max-width: 58px;
-    content: "";
-  }
+  margin: 10px 12px 0;
 }
 
 .status__action-bar-button {
@@ -1268,15 +1255,6 @@
   }
 }
 
-.status__display-name,
-.reply-indicator__display-name,
-.detailed-status__display-name,
-.account__display-name {
-  &:hover strong {
-    text-decoration: underline;
-  }
-}
-
 .account__display-name strong {
   display: block;
 }
@@ -1312,8 +1290,8 @@
 }
 
 .status__avatar {
-  position: absolute;
-  margin-left: -58px;
+  flex: none;
+  margin: 0 10px 0 0;
   height: 48px;
   width: 48px;
 }
@@ -1383,28 +1361,37 @@
 
 .display-name {
   display: block;
-  position: relative;
+  padding: 6px 0;
   max-width: 100%;
-  //overflow: hidden;
-  //text-overflow: ellipsis;
-  //white-space: nowrap;
-}
-
-.display-name__html {
-  font-weight: 500;
-}
-
-.display-name__account {
-  font-size: 14px;
-  display: block;
-  line-height: 1.1; // reduce the distance from the display name
-  padding-bottom: 3px;
-
-  // block ellipsis
-  max-width: 100%;
+  height: 36px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
+  strong {
+    display: block;
+    height: 18px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  span {
+    display: block;
+    height: 18px;
+    font-size: 15px;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    strong {
+      text-decoration: underline;
+    }
+  }
 }
 
 .status__relative-time,
@@ -3894,17 +3881,7 @@ button.icon-button.active i.fa-retweet {
   flex-direction: column;
 
   .status__display-name {
-    display: block;
-    max-width: 100%;
-    padding-right: 25px;
-  }
-
-  .status__avatar {
-    height: 28px;
-    left: 10px;
-    position: absolute;
-    top: 10px;
-    width: 48px;
+    display: flex;
   }
 }
 
