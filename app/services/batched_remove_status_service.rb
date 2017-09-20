@@ -18,7 +18,7 @@ class BatchedRemoveStatusService < BaseService
     @stream_entry_batches  = []
     @salmon_batches        = []
     @activity_json_batches = []
-    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id)] }.to_h
+    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id.to_s)] }.to_h
     @activity_json         = {}
     @activity_xml          = {}
 
