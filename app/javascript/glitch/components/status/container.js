@@ -38,6 +38,8 @@ import {
   favourite,
   unreblog,
   unfavourite,
+  pin,
+  unpin,
 } from '../../../mastodon/actions/interactions';
 import { blockAccount } from '../../../mastodon/actions/accounts';
 import { initMuteModal } from '../../../mastodon/actions/mutes';
@@ -185,6 +187,18 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else {
       dispatch(favourite(status));
     }
+  },
+
+  onPin (status) {
+    if (status.get('pinned')) {
+      dispatch(unpin(status));
+    } else {
+      dispatch(pin(status));
+    }
+  },
+
+  onEmbed (status) {
+    dispatch(openModal('EMBED', { url: status.get('url') }));
   },
 
   onDelete (status) {
