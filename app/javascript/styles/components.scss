@@ -550,7 +550,8 @@
 .status__content,
 .reply-indicator__content {
   position: relative;
-  padding: 5px 12px;
+  margin: 10px 0;
+  padding: 0 12px;
   font-size: 15px;
   line-height: 20px;
   color: $primary-text-color;
@@ -638,8 +639,10 @@
 }
 
 .status__prepend-icon-wrapper {
-  left: -26px;
-  position: absolute;
+  float: left;
+  margin: 0 10px 0 -58px;
+  width: 48px;
+  text-align: right;
 }
 
 .notif-cleaning {
@@ -823,9 +826,9 @@
 }
 
 .status__prepend {
-  margin: -10px 0 10px;
+  margin: -10px -10px 10px;
   color: $ui-base-lighter-color;
-  padding: 8px 0 2px;
+  padding: 8px 10px 0 68px;
   font-size: 14px;
   position: relative;
 
@@ -837,7 +840,7 @@
 .status__action-bar {
   align-items: center;
   display: flex;
-  margin: 10px 12px 0;
+  margin: 10px 4px 0;
 }
 
 .status__action-bar-button {
@@ -1322,7 +1325,7 @@
 }
 
 .notification__message {
-  padding: 8px 10px 0;
+  padding: 8px 10px 0 68px;
   cursor: default;
   color: $ui-primary-color;
   font-size: 15px;
@@ -1335,7 +1338,7 @@
 
 .notification__favourite-icon-wrapper {
   float: left;
-  margin: 0 10px 0 0;
+  margin: 0 10px 0 -58px;
   width: 48px;
   text-align: right;
 
