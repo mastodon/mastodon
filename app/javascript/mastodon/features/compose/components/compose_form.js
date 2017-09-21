@@ -90,6 +90,10 @@ export default class ComposeForm extends ImmutablePureComponent {
     this.props.onFetchSuggestions(token);
   }, 500, { trailing: true })
 
+  onLocalSuggestionsFetchRequested = debounce((token) => {
+    this.props.onFetchSuggestions(token);
+  }, 100, { trailing: true })
+
   onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
@@ -186,6 +190,7 @@ export default class ComposeForm extends ImmutablePureComponent {
             suggestions={this.props.suggestions}
             onKeyDown={this.handleKeyDown}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onLocalSuggestionsFetchRequested={this.onLocalSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             onPaste={onPaste}
