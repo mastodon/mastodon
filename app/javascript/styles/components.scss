@@ -237,6 +237,8 @@
   line-height: 0;
   display: inline-block;
   width: 0;
+  height: 0;
+  position: absolute;
 }
 
 .ellipsis {
@@ -394,6 +396,11 @@
       bottom: -1px;
       right: 8px;
     }
+
+    ::-webkit-scrollbar-track:hover,
+    ::-webkit-scrollbar-track:active {
+      background-color: rgba($base-overlay-background, 0.3);
+    }
   }
 }
 
@@ -411,6 +418,7 @@
   display: inline-block;
   font-size: inherit;
   vertical-align: middle;
+  object-fit: contain;
   margin: -.2ex .15em .2ex;
   width: 16px;
   height: 16px;
@@ -558,6 +566,10 @@
 
   opacity: 1;
   animation: fade 150ms linear;
+
+  .video-player {
+    margin-top: 8px;
+  }
 
   &.status-direct {
     background: lighten($ui-base-color, 8%);
@@ -726,6 +738,10 @@
       width: 22px;
       height: 22px;
     }
+  }
+
+  .video-player {
+    margin-top: 8px;
   }
 }
 
@@ -1050,6 +1066,8 @@
   strong,
   span {
     display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   strong {
@@ -1395,9 +1413,6 @@
 .drawer {
   flex: 1 1 100%;
   overflow: hidden;
-  @supports(display: grid) { // hack to fix Chrome <57
-    contain: strict;
-  }
 }
 
 @media screen and (min-width: 360px) {
@@ -1572,11 +1587,8 @@
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
-  backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
-  @supports(display: grid) { // hack to fix Chrome <57
-    contain: strict;
-  }
+  will-change: transform; // improves perf in mobile Chrome
 
   &.optionally-scrollable {
     overflow-y: auto;
@@ -1613,6 +1625,10 @@
 
   &:hover {
     text-decoration: underline;
+  }
+
+  &:last-child {
+    padding: 0 15px 0 0;
   }
 }
 
@@ -1866,7 +1882,7 @@
 
 .character-counter__wrapper {
   line-height: 36px;
-  margin-right: 16px;
+  margin: 0 16px 0 8px;
   padding-top: 10px;
 }
 
@@ -2047,6 +2063,18 @@ button.icon-button.active i.fa-retweet {
 .status-card__image {
   flex: 0 0 100px;
   background: lighten($ui-base-color, 8%);
+}
+
+.status-card.horizontal {
+  display: block;
+
+  .status-card__image {
+    width: 100%;
+  }
+
+  .status-card__image-image {
+    border-radius: 4px 4px 0 0;
+  }
 }
 
 .status-card__image-image {
@@ -2316,19 +2344,17 @@ button.icon-button.active i.fa-retweet {
 }
 
 .media-spoiler {
-  align-items: center;
   background: $base-overlay-background;
-  color: $primary-text-color;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
+  color: $ui-primary-color;
   border: 0;
   width: 100%;
   height: 100%;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  z-index: 100;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($ui-primary-color, 8%);
+  }
 }
 
 .media-spoiler__warning {
@@ -2906,8 +2932,6 @@ button.icon-button.active i.fa-retweet {
 }
 
 .search__input {
-  padding-right: 30px;
-  color: $ui-secondary-color;
   outline: 0;
   box-sizing: border-box;
   display: block;
@@ -3149,7 +3173,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal,
-.error-modal {
+.error-modal,
+.embed-modal {
   background: $ui-secondary-color;
   color: $ui-base-color;
   border-radius: 8px;
@@ -3839,6 +3864,182 @@ button.icon-button.active i.fa-retweet {
   z-index: 5;
 }
 
+.video-player {
+  overflow: hidden;
+  position: relative;
+  background: $base-shadow-color;
+  max-width: 100%;
+
+  video {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &.fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0;
+
+    video {
+      max-width: 100% !important;
+      max-height: 100% !important;
+    }
+  }
+
+  &.inline {
+    video {
+      object-fit: cover;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 60%, transparent);
+    padding: 0 10px;
+    opacity: 0;
+    transition: opacity .1s ease;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &.inactive {
+    video,
+    .video-player__controls {
+      visibility: hidden;
+    }
+  }
+
+  &__spoiler {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    border: 0;
+    background: $base-shadow-color;
+    color: $ui-primary-color;
+    transition: none;
+    pointer-events: none;
+
+    &.active {
+      display: block;
+      pointer-events: auto;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: lighten($ui-primary-color, 8%);
+      }
+    }
+
+    &__title {
+      display: block;
+      font-size: 14px;
+    }
+
+    &__subtitle {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+    }
+  }
+
+  &__buttons {
+    padding-bottom: 10px;
+    font-size: 16px;
+
+    &.left {
+      float: left;
+
+      button {
+        padding-right: 10px;
+      }
+    }
+
+    &.right {
+      float: right;
+
+      button {
+        padding-left: 10px;
+      }
+    }
+
+    button {
+      background: transparent;
+      padding: 0;
+      border: 0;
+      color: $white;
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $ui-highlight-color;
+      }
+    }
+  }
+
+  &__seek {
+    cursor: pointer;
+    height: 24px;
+    position: relative;
+
+    &::before {
+      content: "";
+      width: 100%;
+      background: rgba($white, 0.35);
+      display: block;
+      position: absolute;
+      height: 4px;
+      top: 10px;
+    }
+
+    &__progress {
+      display: block;
+      position: absolute;
+      height: 4px;
+      top: 10px;
+      background: $ui-highlight-color;
+    }
+
+    &__handle {
+      position: absolute;
+      z-index: 3;
+      opacity: 0;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      top: 6px;
+      margin-left: -6px;
+      transition: opacity .1s ease;
+      background: $ui-highlight-color;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      .video-player__seek__handle {
+        opacity: 1;
+      }
+    }
+  }
+}
+
 .media-spoiler-video {
   background-size: cover;
   background-repeat: no-repeat;
@@ -3846,6 +4047,8 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   margin-top: 8px;
   position: relative;
+  border: 0;
+  display: block;
 }
 
 .media-spoiler-video-play-icon {
@@ -3930,6 +4133,15 @@ noscript {
     margin: 30px auto;
     color: $ui-secondary-color;
     max-width: 400px;
+
+    a {
+      color: $ui-highlight-color;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -3971,10 +4183,6 @@ noscript {
     }
   }
 
-  .announcements {
-    display: none;
-  }
-
   .is-composing {
     .tabs-bar,
     .search {
@@ -4002,6 +4210,67 @@ noscript {
         pointer-events: auto;
         opacity: 1;
       }
+    }
+  }
+}
+
+.embed-modal {
+  max-width: 80vw;
+  max-height: 80vh;
+
+  h4 {
+    padding: 30px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .embed-modal__container {
+    padding: 10px;
+
+    .hint {
+      margin-bottom: 15px;
+    }
+
+    .embed-modal__html {
+      color: $ui-secondary-color;
+      outline: 0;
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      border: none;
+      padding: 10px;
+      font-family: 'mastodon-font-monospace', monospace;
+      background: $ui-base-color;
+      color: $ui-primary-color;
+      font-size: 14px;
+      margin: 0;
+      margin-bottom: 15px;
+
+      &::-moz-focus-inner {
+        border: 0;
+      }
+
+      &::-moz-focus-inner,
+      &:focus,
+      &:active {
+        outline: 0 !important;
+      }
+
+      &:focus {
+        background: lighten($ui-base-color, 4%);
+      }
+
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
+    }
+
+    .embed-modal__iframe {
+      width: 400px;
+      max-width: 100%;
+      overflow: hidden;
+      border: 0;
     }
   }
 }
