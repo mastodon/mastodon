@@ -1,5 +1,12 @@
 @import 'variables';
 
+@for $i from 2 through 5 {
+  .fa-#{$i}x > .emojione {
+    width: #{18 * $i}px !important;
+    height:  #{18 * $i}px !important;
+  }
+}
+
 .fa-star:before {
   content: "\f0f3" !important;
 }
