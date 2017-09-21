@@ -162,6 +162,15 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
   }
 
+  componentDidUpdate () {
+    if (this.refs.selected) {
+      if (this.refs.selected.scrollIntoViewIfNeeded)
+        this.refs.selected.scrollIntoViewIfNeeded();
+      else
+        this.refs.selected.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+    }
+  }
+
   render () {
     const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus } = this.props;
     const { suggestionsHidden, selectedSuggestion } = this.state;
@@ -202,6 +211,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
         <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
           {suggestions.map((suggestion, i) => (
             <div
+              ref={i === selectedSuggestion ? 'selected' : null}
               role='button'
               tabIndex='0'
               key={suggestion}
