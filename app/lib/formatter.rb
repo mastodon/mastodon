@@ -101,6 +101,9 @@ class Formatter
         emoji     = emoji_map[shortcode]
 
         if emoji
+          if emoji.match(/^http:\/\/.*/) then
+            emoji.sub!('http://','//')
+          end
           replacement = "<img draggable=\"false\" class=\"emojione\" alt=\":#{shortcode}:\" title=\":#{shortcode}:\" src=\"#{emoji}\" />"
           before_html = shortname_start_index.positive? ? html[0..shortname_start_index - 1] : ''
           html        = before_html + replacement + html[i + 1..-1]
