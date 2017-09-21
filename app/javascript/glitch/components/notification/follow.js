@@ -1,38 +1,12 @@
-/*
+//  `<NotificationFollow>`
+//  ======================
 
-`<NotificationFollow>`
-======================
+//  * * * * * * *  //
 
-This component renders a follow notification.
+//  Imports
+//  -------
 
-__Props:__
-
- -  __`id` (`PropTypes.number.isRequired`) :__
-    This is the id of the notification.
-
- -  __`onDeleteNotification` (`PropTypes.func.isRequired`) :__
-    The function to call when a notification should be
-    dismissed/deleted.
-
- -  __`account` (`PropTypes.object.isRequired`) :__
-    The account associated with the follow notification, ie the account
-    which followed the user.
-
- -  __`intl` (`PropTypes.object.isRequired`) :__
-    Our internationalization object, inserted by `@injectIntl`.
-
-*/
-
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-/*
-
-Imports:
---------
-
-*/
-
-//  Package imports  //
+//  Package imports.
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
@@ -40,22 +14,18 @@ import { FormattedMessage } from 'react-intl';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  Mastodon imports  //
+//  Mastodon imports.
 import emojify from '../../../mastodon/emoji';
 import Permalink from '../../../mastodon/components/permalink';
 import AccountContainer from '../../../mastodon/containers/account_container';
 
-// Our imports //
+// Our imports.
 import NotificationOverlayContainer from '../notification/overlay/container';
 
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//  * * * * * * *  //
 
-/*
-
-Implementation:
----------------
-
-*/
+//  Implementation
+//  --------------
 
 export default class NotificationFollow extends ImmutablePureComponent {
 
@@ -65,24 +35,10 @@ export default class NotificationFollow extends ImmutablePureComponent {
     notification         : ImmutablePropTypes.map.isRequired,
   };
 
-/*
-
-###  `render()`
-
-This actually renders the component.
-
-*/
-
   render () {
     const { account, notification } = this.props;
 
-/*
-
-`link` is a container for the account's `displayName`, which links to
-the account timeline using a `<Permalink>`.
-
-*/
-
+    //  Links to the display name.
     const displayName = account.get('display_name') || account.get('username');
     const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
     const link = (
@@ -95,12 +51,7 @@ the account timeline using a `<Permalink>`.
       />
     );
 
-/*
-
-We can now render our component.
-
-*/
-
+    //  Renders.
     return (
       <div className='notification notification-follow'>
         <div className='notification__message'>

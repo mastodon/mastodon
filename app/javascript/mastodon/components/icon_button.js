@@ -73,8 +73,23 @@ export default class IconButton extends React.PureComponent {
       classes.push(this.props.className);
     }
 
+    const flipDeg = this.props.flip ? -180 : -360;
+    const rotateDeg = this.props.active ? flipDeg : 0;
+
+    const motionDefaultStyle = {
+      rotate: rotateDeg,
+    };
+
+    const springOpts = {
+      stiffness: this.props.flip ? 60 : 120,
+      damping: 7,
+    };
+    const motionStyle = {
+      rotate: this.props.animate ? spring(rotateDeg, springOpts) : 0,
+    };
+
     return (
-      <Motion defaultStyle={{ rotate: this.props.active ? (this.props.flip ? -180 : -360) : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? (this.props.flip ? -180 : -360) : 0, { stiffness: this.props.flip ? 60 : 120, damping: 7 }) : 0 }}>
+      <Motion defaultStyle={motionDefaultStyle} style={motionStyle}>
         {({ rotate }) =>
           <button
             aria-label={this.props.title}

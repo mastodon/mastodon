@@ -9,41 +9,30 @@ component for better documentation and maintainance by
 
 */
 
-                            /* * * * */
+//  * * * * * * *  //
 
-/*
+//  Imports
+//  -------
 
-Imports:
---------
-
-*/
-
-//  Package imports  //
+//  Package imports.
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl } from 'react-intl';
 
-//  Mastodon imports  //
+//  Mastodon imports.
 import Avatar from '../../../mastodon/components/avatar';
 import AvatarOverlay from '../../../mastodon/components/avatar_overlay';
 import DisplayName from '../../../mastodon/components/display_name';
 import IconButton from '../../../mastodon/components/icon_button';
 import VisibilityIcon from './visibility_icon';
 
-                            /* * * * */
+//  * * * * * * *  //
 
-/*
+//  Initial setup
+//  -------------
 
-Inital setup:
--------------
-
-The `messages` constant is used to define any messages that we need
-from inside props. In our case, these are the `collapse` and
-`uncollapse` messages used with our collapse/uncollapse buttons.
-
-*/
-
+//  Messages for use with internationalization stuff.
 const messages = defineMessages({
   collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
@@ -53,43 +42,10 @@ const messages = defineMessages({
   direct: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
-                            /* * * * */
+//  * * * * * * *  //
 
-/*
-
-The `<StatusHeader>` component:
--------------------------------
-
-The `<StatusHeader>` component wraps together the header information
-(avatar, display name) and upper buttons and icons (collapsing, media
-icons) into a single `<header>` element.
-
-###  Props
-
- -  __`account`, `friend` (`ImmutablePropTypes.map`) :__
-    These give the accounts associated with the status. `account` is
-    the author of the post; `friend` will have their avatar appear
-    in the overlay if provided.
-
- -  __`mediaIcon` (`PropTypes.string`) :__
-    If a mediaIcon should be placed in the header, this string
-    specifies it.
-
- -  __`collapsible`, `collapsed` (`PropTypes.bool`) :__
-    These props tell whether a post can be, and is, collapsed.
-
- -  __`parseClick` (`PropTypes.func`) :__
-    This function will be called when the user clicks inside the header
-    information.
-
- -  __`setExpansion` (`PropTypes.func`) :__
-    This function is used to set the expansion state of the post.
-
- -  __`intl` (`PropTypes.object`) :__
-    This is our internationalization object, provided by
-    `injectIntl()`.
-
-*/
+//  The component
+//  -------------
 
 @injectIntl
 export default class StatusHeader extends React.PureComponent {
@@ -105,18 +61,7 @@ export default class StatusHeader extends React.PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-/*
-
-###  Implementation
-
-####  `handleCollapsedClick()`.
-
-`handleCollapsedClick()` is just a simple callback for our collapsing
-button. It calls `setExpansion` to set the collapsed state of the
-status.
-
-*/
-
+  //  Handles clicks on collapsed button
   handleCollapsedClick = (e) => {
     const { collapsed, setExpansion } = this.props;
     if (e.button === 0) {
@@ -125,29 +70,13 @@ status.
     }
   }
 
-/*
-
-####  `handleAccountClick()`.
-
-`handleAccountClick()` handles any clicks on the header info. It calls
-`parseClick()` with our `account` as the anticipatory `destination`.
-
-*/
-
+  //  Handles clicks on account name/image
   handleAccountClick = (e) => {
     const { status, parseClick } = this.props;
     parseClick(e, `/accounts/${+status.getIn(['account', 'id'])}`);
   }
 
-/*
-
-####  `render()`.
-
-`render()` actually puts our element on the screen. `<StatusHeader>`
-has a very straightforward rendering process.
-
-*/
-
+  //  Rendering.
   render () {
     const {
       status,
@@ -162,16 +91,28 @@ has a very straightforward rendering process.
 
     return (
       <header className='status__info'>
-        {
-
-/*
-
-We have to include the status icons before the header content because
-it is rendered as a float.
-
-*/
-
-        }
+        <a
+          href={account.get('url')}
+          target='_blank'
+          className='status__avatar'
+          onClick={this.handleAccountClick}
+        >
+          {
+            friend ? (
+              <AvatarOverlay account={account} friend={friend} />
+            ) : (
+              <Avatar account={account} size={48} />
+            )
+          }
+        </a>
+        <a
+          href={account.get('url')}
+          target='_blank'
+          className='status__display-name'
+          onClick={this.handleAccountClick}
+        >
+          <DisplayName account={account} />
+        </a>
         <div className='status__info__icons'>
           {mediaIcon ? (
             <i
@@ -197,32 +138,6 @@ it is rendered as a float.
             />
           ) : null}
         </div>
-        {
-
-/*
-
-This begins our header content. It is all wrapped inside of a link
-which gets handled by `handleAccountClick`. We use an `<AvatarOverlay>`
-if we have a `friend` and a normal `<Avatar>` if we don't.
-
-*/
-
-        }
-        <a
-          href={account.get('url')}
-          target='_blank'
-          className='status__display-name'
-          onClick={this.handleAccountClick}
-        >
-          <div className='status__avatar'>{
-            friend ? (
-              <AvatarOverlay account={account} friend={friend} />
-            ) : (
-              <Avatar account={account} size={48} />
-            )
-          }</div>
-          <DisplayName account={account} />
-        </a>
 
       </header>
     );
