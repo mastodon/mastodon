@@ -84,10 +84,9 @@ class Announcements extends React.PureComponent {
             <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={this.onClick} size={20} animate active={this.state.show} />
           </div>
         </li>
-      <ul className='announcements_bbcode'>
         <li>
           <Collapsable isVisible={this.state.show} fullHeight={310} minHeight={20} >
-            <div className='announcements__bbcode'>
+            <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
               <br />
 			  [spin]回転[/spin]<br />
