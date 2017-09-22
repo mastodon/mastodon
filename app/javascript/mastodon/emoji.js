@@ -3,6 +3,8 @@ import Trie from 'substring-trie';
 
 const trie = new Trie(Object.keys(unicodeMapping));
 
+const assetHost = process.env.CDN_HOST || '';
+
 const emojify = (str, customEmojis = {}) => {
   let rtn = '';
   for (;;) {
@@ -37,7 +39,7 @@ const emojify = (str, customEmojis = {}) => {
       str = str.slice(i + 1);
     } else {
       const [filename, shortCode] = unicodeMapping[match];
-      rtn += str.slice(0, i) + `<img draggable="false" class="emojione" alt="${match}" title=":${shortCode}:" src="/emoji/${filename}.svg" />`;
+      rtn += str.slice(0, i) + `<img draggable="false" class="emojione" alt="${match}" title=":${shortCode}:" src="${assetHost}/emoji/${filename}.svg" />`;
       str = str.slice(i + match.length);
     }
   }

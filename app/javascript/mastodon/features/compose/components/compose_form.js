@@ -138,7 +138,7 @@ export default class ComposeForm extends ImmutablePureComponent {
 
   handleEmojiPick = (data) => {
     const position     = this.autosuggestTextarea.textarea.selectionStart;
-    const emojiChar    = data.unicode.split('-').map(code => String.fromCodePoint(parseInt(code, 16))).join('');
+    const emojiChar    = data.native;
     this._restoreCaret = position + emojiChar.length + 1;
     this.props.onPickEmoji(position, data);
   }

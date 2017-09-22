@@ -120,7 +120,7 @@ const insertSuggestion = (state, position, token, completion) => {
 };
 
 const insertEmoji = (state, position, emojiData) => {
-  const emoji = emojiData.unicode.split('-').map(code => String.fromCodePoint(parseInt(code, 16))).join('');
+  const emoji = emojiData.native;
 
   return state.withMutations(map => {
     map.update('text', oldText => `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`);
