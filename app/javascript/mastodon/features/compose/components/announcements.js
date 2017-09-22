@@ -99,7 +99,8 @@ class Announcements extends React.PureComponent {
 			  [u]アンダーライン[/u]<br />
 			  [s]取り消し線[/s]<br />
 			  [size=5]サイズ変更[/size]<br />
-			  [color=red]色変更[/color]<br />
+			  [color=red]色変更01[/color]<br />
+			  [colorhex=A55A4A]色変更02[/colorhex]<br />
 			  [code]コード[/code]<br />
 			  [quote]引用[/quote]<br />
 			  </p>
