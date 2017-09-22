@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 export default class ColumnLoading extends ImmutablePureComponent {
 
   static propTypes = {
-    title: PropTypes.oneOfType(PropTypes.node, PropTypes.string),
+    title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
     icon: PropTypes.string,
   };
 
