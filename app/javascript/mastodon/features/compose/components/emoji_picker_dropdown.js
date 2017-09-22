@@ -22,7 +22,11 @@ const messages = defineMessages({
   flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' },
 });
 
+const assetHost = process.env.CDN_HOST || '';
+
 let EmojiPicker, Emoji; // load asynchronously
+
+const backgroundImageFn = () => `${assetHost}/emoji/sheet.png`;
 
 class ModifierPickerMenu extends React.PureComponent {
 
@@ -74,12 +78,12 @@ class ModifierPickerMenu extends React.PureComponent {
 
     return (
       <div className='emoji-picker-dropdown__modifiers__menu' style={{ display: active ? 'block' : 'none' }} ref={this.setRef}>
-        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} skin={1} /></button>
-        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} skin={2} /></button>
-        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} skin={3} /></button>
-        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} skin={4} /></button>
-        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} skin={5} /></button>
-        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} skin={6} /></button>
+        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={1} backgroundImageFn={backgroundImageFn} /></button>
+        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={2} backgroundImageFn={backgroundImageFn} /></button>
+        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={3} backgroundImageFn={backgroundImageFn} /></button>
+        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={4} backgroundImageFn={backgroundImageFn} /></button>
+        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={5} backgroundImageFn={backgroundImageFn} /></button>
+        <button onClick={this.handleClick}><Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={6} backgroundImageFn={backgroundImageFn} /></button>
       </div>
     );
   }
@@ -114,7 +118,7 @@ class ModifierPicker extends React.PureComponent {
 
     return (
       <div className='emoji-picker-dropdown__modifiers'>
-        <Emoji emoji='fist' set='twitter' size={22} skin={modifier} onClick={this.handleClick} />
+        <Emoji emoji='fist' set='twitter' size={22} sheetSize={32} skin={modifier} onClick={this.handleClick} backgroundImageFn={backgroundImageFn} />
         <ModifierPickerMenu active={active} onSelect={this.handleSelect} onClose={this.props.onClose} />
       </div>
     );
@@ -223,6 +227,7 @@ class EmojiPickerMenu extends React.PureComponent {
         <EmojiPicker
           perLine={8}
           emojiSize={22}
+          sheetSize={32}
           color=''
           emoji=''
           set='twitter'
@@ -230,6 +235,7 @@ class EmojiPickerMenu extends React.PureComponent {
           i18n={this.getI18n()}
           onClick={this.handleClick}
           skin={modifier}
+          backgroundImageFn={backgroundImageFn}
         />
 
         <ModifierPicker
@@ -317,7 +323,7 @@ export default class EmojiPickerDropdown extends React.PureComponent {
           <img
             className={classNames('emojione', { 'pulse-loading': active && loading })}
             alt='🙂'
-            src='/emoji/1f602.svg'
+            src={`${assetHost}/emoji/1f602.svg`}
           />
         </div>
 
