@@ -27,16 +27,12 @@ Collapsable.propTypes = {
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
   welcome: { id: 'welcome.message', defaultMessage: '{domain}へようこそ!' },
+  bbcode: { id: 'bbcode.list', defaultMessage: 'BBCode一覧' },
 });
 
 const hashtags = Immutable.fromJS([
   '神崎ドン自己紹介',
 ]);
-
-const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
-  welcome: { id: 'bbcode.list', defaultMessage: 'BBCode一覧' },
-});
 
 class Announcements extends React.PureComponent {
 
@@ -91,7 +87,7 @@ class Announcements extends React.PureComponent {
 		<li>
           <Collapsable isVisible={this.state.show} fullHeight={300} minHeight={20} >
             <div className='announcements__body'>
-              <p>{ this.nl2br(intl.formatMessage(bbode.list, { domain: document.title }))}<br />
+              <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
 			  <br />
 			  [spin]回転[/spin]<br />
 			  [pulse]点滅[/pulse]<br />
