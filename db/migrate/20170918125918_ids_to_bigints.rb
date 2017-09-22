@@ -8,7 +8,7 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
     change_column :blocks, :target_account_id, :bigint
     change_column :conversation_mutes, :account_id, :bigint
     change_column :conversation_mutes, :id, :bigint
-    change_column :deprecated_preview_cards, :id, :bigint
+    change_column :deprecated_preview_cards, :id, :bigint if table_exists?(:deprecated_preview_cards)
     change_column :domain_blocks, :id, :bigint
     change_column :favourites, :account_id, :bigint
     change_column :favourites, :id, :bigint
@@ -71,7 +71,7 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
     change_column :blocks, :target_account_id, :integer
     change_column :conversation_mutes, :account_id, :integer
     change_column :conversation_mutes, :id, :integer
-    change_column :deprecated_preview_cards, :id, :integer
+    change_column :deprecated_preview_cards, :id, :integer if table_exists?(:deprecated_preview_cards)
     change_column :domain_blocks, :id, :integer
     change_column :favourites, :account_id, :integer
     change_column :favourites, :id, :integer
