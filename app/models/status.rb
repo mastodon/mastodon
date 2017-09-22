@@ -146,7 +146,7 @@ class Status < ApplicationRecord
 
   class << self
     def not_in_filtered_languages(account)
-      where.not(language: account.filtered_languages)
+      where(language: nil).or where.not(language: account.filtered_languages)
     end
 
     def as_home_timeline(account)
