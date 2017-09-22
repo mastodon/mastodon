@@ -89,8 +89,21 @@ class Announcements extends React.PureComponent {
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
               <br />
-              Test
-              [spin]回転[/spin]</p>
+			  Test<br />
+			  [spin]回転[/spin]<br />
+			  [pulse]点滅[/pulse]<br />
+			  [large=2x]倍角文字[/large]<br />
+			  [flip=vertical]縦反転[/flip]<br />
+			  [flip=horizontal]横反転[/flip]<br />
+			  [b]太字[/b]<br />
+			  [i]斜体[/i]<br />
+			  [u]アンダーライン[/u]<br />
+			  [s]取り消し線[/s]<br />
+			  [size=5]サイズ変更[/size]<br />
+			  [color=red]色変更[/color]<br />
+			  [code]コード[/code]<br />
+			  [quote]引用[/quote]<br />
+			  </p>
             </div>
           </Collapsable>
           <div className='announcements__icon'>
