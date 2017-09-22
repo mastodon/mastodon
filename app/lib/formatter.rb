@@ -234,7 +234,15 @@ class Formatter
           :quick_param_format => /(2x|3x|4x|5x)/,
           :quick_param_format_description => 'The size parameter \'%param%\' is incorrect, a number is expected',
           :param_tokens => [{:token => :size}]},
-      }, :enable, :i, :b, :color, :quote, :code, :size, :u, :s, :spin, :pulse, :flip, :large)
+        :colorhex => {
+          :html_open => '<span style="color: #%colorcode%">', :html_close => '</span>',
+          :description => 'Use color code',
+          :example => '[colorhex=ffffff]White text[/colorhex]',
+          :allow_quick_param => true, :allow_between_as_param => false,
+          :quick_param_format => /([0-9a-fA-F]{6})/,
+          :quick_param_format_description => 'The size parameter \'%param%\' is incorrect',
+          :param_tokens => [{:token => :colorcode}]},
+      }, :enable, :i, :b, :color, :quote, :code, :size, :u, :s, :spin, :pulse, :flip, :large, :colorhex)
     rescue Exception => e
     end
     html
