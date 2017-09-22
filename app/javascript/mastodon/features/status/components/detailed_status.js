@@ -53,6 +53,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             sensitive={status.get('sensitive')}
             media={status.getIn(['media_attachments', 0])}
             letterbox={settings.getIn(['media', 'letterbox'])}
+            fullwidth={settings.getIn(['media', 'fullwidth'])}
             height={250}
             onOpenVideo={this.props.onOpenVideo}
             autoplay
@@ -65,6 +66,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             sensitive={status.get('sensitive')}
             media={status.get('media_attachments')}
             letterbox={settings.getIn(['media', 'letterbox'])}
+            fullwidth={settings.getIn(['media', 'fullwidth'])}
             height={250}
             onOpenMedia={this.props.onOpenMedia}
             autoPlayGif={this.props.autoPlayGif}

@@ -1,6 +1,14 @@
 @import 'variables';
 @import 'variables-glitch';
 
+@mixin fullwidth-gallery {
+  &.full-width {
+    margin-left: -22px;
+    margin-right: -22px;
+    width: inherit;
+  }
+}
+
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -2706,10 +2714,7 @@ button.icon-button.active i.fa-retweet {
     margin-top: 15px; // Add margin when used bare for NSFW video player
   }
 
-  &.full-width {
-    margin-left: -68px;
-    width: calc(100% + 80px);
-  }
+  @include fullwidth-gallery;
 }
 
 .media-spoiler__warning {
@@ -4135,15 +4140,12 @@ button.icon-button.active i.fa-retweet {
   background: $base-shadow-color;
   width: 100%;
 
-  &.full-width {
-    margin-left: -68px;
-    width: calc(100% + 80px);
-  }
-
   .detailed-status & {
     margin-left:-10px;
     width: calc(100% + 22px);
   }
+
+  @include fullwidth-gallery;
 }
 
 .media-gallery__item {
@@ -4214,10 +4216,7 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   width: 100%;
 
-  &.full-width {
-    margin-left: -68px;
-    width: calc(100% + 80px);
-  }
+  @include fullwidth-gallery;
 }
 
 .status__video-player-video {
@@ -4273,10 +4272,7 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   width: 100%;
 
-  &.full-width {
-    margin-left: -68px;
-    width: calc(100% + 80px);
-  }
+  @include fullwidth-gallery;
 
   border: 0;
   display: block;
