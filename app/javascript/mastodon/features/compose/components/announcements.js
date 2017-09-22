@@ -86,7 +86,7 @@ class Announcements extends React.PureComponent {
         </li>
         <li>
           <Collapsable isVisible={this.state.show} fullHeight={310} minHeight={20} >
-            <div className='announcements__body'>
+            <div className='announcements__bbcode'>
               <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
               <br />
 			  [spin]回転[/spin]<br />
