@@ -132,7 +132,7 @@ class Status < ApplicationRecord
   end
 
   def emojis
-    CustomEmoji.from_text(text, account.domain)
+    CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
   end
 
   after_create :store_uri, if: :local?
