@@ -658,6 +658,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  p {
+    display: inline;
+  }
 }
 
 .status-check-box-toggle {
@@ -3445,10 +3449,11 @@ button.icon-button.active i.fa-retweet {
   color: $ui-base-color;
   border-radius: 8px;
   overflow: hidden;
-  max-width: 90vw;
   width: 480px;
   position: relative;
   flex-direction: column;
+  max-height: 80vh;
+  max-width: 80vw;
 
   .status__display-name {
     display: block;
@@ -3465,17 +3470,8 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.actions-modal {
-  .status {
-    background: $white;
-    border-bottom-color: $ui-secondary-color;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-}
-
 .boost-modal__container {
-  overflow-x: scroll;
+  overflow-y: auto;
   padding: 10px;
 
   .status {
@@ -3488,10 +3484,11 @@ button.icon-button.active i.fa-retweet {
 .confirmation-modal__action-bar,
 .report-modal__action-bar {
   display: flex;
+  flex: 0 0 auto;
   justify-content: space-between;
+  align-items: center;
   background: $ui-secondary-color;
   padding: 10px;
-  line-height: 36px;
 
   & > div {
     flex: 1 1 auto;
@@ -3542,16 +3539,21 @@ button.icon-button.active i.fa-retweet {
 
 .actions-modal {
   .status {
+    background: $white;
+    border-bottom-color: $ui-secondary-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
     overflow-y: auto;
     max-height: 300px;
   }
 
-  max-height: 80vh;
-  max-width: 80vw;
-
   ul {
-    overflow-y: auto;
     flex-shrink: 0;
+
+    @media screen and (max-height: 430px) {
+      flex-shrink: 1;
+      overflow-y: auto;
+    }
 
     li:empty {
       margin: 0;
@@ -3565,7 +3567,8 @@ button.icon-button.active i.fa-retweet {
         align-items: center;
         text-decoration: none;
 
-        &.active {
+        &.active,
+        &:active {
           &,
           button {
             background: $ui-highlight-color;
@@ -3605,6 +3608,17 @@ button.icon-button.active i.fa-retweet {
   strong {
     font-weight: 500;
   }
+}
+
+.report-modal__comment .setting-text {
+  margin: 0;
+}
+
+@media screen and (max-height: 640px) {
+  .report-modal__target {
+    padding: 20px;
+  }
+
 }
 
 .loading-bar {
