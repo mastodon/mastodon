@@ -89,7 +89,6 @@ class Announcements extends React.PureComponent {
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
               <br />
-			  Test<br />
 			  [spin]回転[/spin]<br />
 			  [pulse]点滅[/pulse]<br />
 			  [large=2x]倍角文字[/large]<br />
