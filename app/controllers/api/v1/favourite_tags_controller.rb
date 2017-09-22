@@ -61,6 +61,6 @@ class Api::V1::FavouriteTagsController < Api::BaseController
   end
   
   def current_favourite_tags
-    current_account.favourite_tags.includes(:tag).map(&:to_json_for_api)
+    current_account.favourite_tags.order(:id).includes(:tag).map(&:to_json_for_api)
   end
 end
