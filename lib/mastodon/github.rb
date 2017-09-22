@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def author
-      'GenkaiDev'
+      'KnzkDev'
     end
 
     def repository
