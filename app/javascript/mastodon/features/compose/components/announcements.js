@@ -105,7 +105,7 @@ class Announcements extends React.PureComponent {
 			  [size=5]サイズ変更[/size]<br />
 			  [color=red]色変更[/color]<br />
 			  [code]コード[/code]<br />
-			  [quote]引用[/quote]<br />
+			  [quote]引用[/quote]<br /></p>
 			  )}
             </div>
           </Collapsable>
