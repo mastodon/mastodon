@@ -213,6 +213,10 @@
   }
 }
 
+.dropdown-menu {
+  position: absolute;
+}
+
 .dropdown--active .icon-button {
   color: $ui-highlight-color;
 }
@@ -694,8 +698,8 @@
 
 .status__action-bar-dropdown {
   float: left;
-  height: 18px;
-  width: 18px;
+  height: 23.15px;
+  width: 23.15px;
 }
 
 .detailed-status__action-bar-dropdown {
@@ -704,26 +708,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-
-  .dropdown {
-    display: block;
-    width: 18px;
-    height: 18px;
-  }
-
-  .dropdown--active {
-    .dropdown__content.dropdown__left {
-      left: 20px;
-      right: initial;
-    }
-
-    &::after {
-      bottom: initial;
-      margin-left: 7px;
-      margin-top: -7px;
-      right: initial;
-    }
-  }
 }
 
 .detailed-status {
@@ -1254,10 +1238,80 @@
   position: absolute;
 }
 
-.dropdown__sep {
+.dropdown-menu__separator {
   border-bottom: 1px solid darken($ui-secondary-color, 8%);
   margin: 5px 7px 6px;
-  padding-top: 1px;
+  height: 0;
+}
+
+.dropdown-menu {
+  background: $ui-secondary-color;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+
+  ul {
+    list-style: none;
+  }
+}
+
+.dropdown-menu__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+
+  &.left {
+    right: -5px;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: $ui-secondary-color;
+  }
+
+  &.top {
+    bottom: -5px;
+    margin-left: -13px;
+    border-width: 5px 5px 0;
+    border-top-color: $ui-secondary-color;
+  }
+
+  &.bottom {
+    top: -5px;
+    margin-left: -13px;
+    border-width: 0 5px 5px;
+    border-bottom-color: $ui-secondary-color;
+  }
+
+  &.right {
+    left: -5px;
+    margin-top: -5px;
+    border-width: 5px 5px 5px 0;
+    border-right-color: $ui-secondary-color;
+  }
+}
+
+.dropdown-menu__item {
+  a {
+    font-size: 13px;
+    line-height: 18px;
+    display: block;
+    padding: 4px 14px;
+    box-sizing: border-box;
+    text-decoration: none;
+    background: $ui-secondary-color;
+    color: $ui-base-color;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background: $ui-highlight-color;
+      color: $ui-secondary-color;
+      outline: 0;
+    }
+  }
 }
 
 .dropdown--active .dropdown__content {
@@ -3472,6 +3526,10 @@ button.icon-button.active i.fa-retweet {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  .dropdown-menu__separator {
+    border-bottom-color: $ui-secondary-color;
+  }
 }
 
 .boost-modal__container {
@@ -3549,6 +3607,10 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   max-width: 80vw;
 
+  .actions-modal__item-label {
+    font-weight: 500;
+  }
+
   ul {
     overflow-y: auto;
     flex-shrink: 0;
@@ -3561,11 +3623,20 @@ button.icon-button.active i.fa-retweet {
       a {
         color: $ui-base-color;
         display: flex;
-        padding: 10px;
+        padding: 12px 16px;
+        font-size: 15px;
         align-items: center;
         text-decoration: none;
 
-        &.active {
+        &,
+        button {
+          transition: none;
+        }
+
+        &.active,
+        &:hover,
+        &:active,
+        &:focus {
           &,
           button {
             background: $ui-highlight-color;
