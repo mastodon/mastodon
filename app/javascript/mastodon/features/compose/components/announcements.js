@@ -89,8 +89,8 @@ class Announcements extends React.PureComponent {
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
               <br />
-              Test</p>
-              )}
+              Test
+              [spin]回転[/spin]</p>
             </div>
           </Collapsable>
           <div className='announcements__icon'>
