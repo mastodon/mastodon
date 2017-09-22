@@ -243,6 +243,19 @@
     }
   }
 
+  .media-spoiler {
+    background: $ui-primary-color;
+    color: $white;
+    transition: all 100ms linear;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: darken($ui-primary-color, 5%);
+      color: unset;
+    }
+  }
+
   .pre-header {
     padding: 14px 0;
     padding-left: (48px + 14px * 2);

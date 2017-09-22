@@ -19,6 +19,7 @@
       = title
 
     = stylesheet_pack_tag 'common', media: 'all'
+    = stylesheet_pack_tag current_theme, media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
 
     %link{ href: asset_pack_path('features/getting_started.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/

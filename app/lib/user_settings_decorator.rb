@@ -25,6 +25,7 @@ class UserSettingsDecorator
     user.settings['auto_play_gif'] = auto_play_gif_preference
     user.settings['system_font_ui'] = system_font_ui_preference
     user.settings['noindex'] = noindex_preference
+    user.settings['theme'] = theme_preference
   end
 
   def merged_notification_emails
@@ -65,6 +66,10 @@ class UserSettingsDecorator
 
   def noindex_preference
     boolean_cast_setting 'setting_noindex'
+  end
+
+  def theme_preference
+    settings['setting_theme']
   end
 
   def boolean_cast_setting(key)

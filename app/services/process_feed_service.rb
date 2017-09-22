@@ -16,7 +16,7 @@ class ProcessFeedService < BaseService
   end
 
   def process_entries(xml, account)
-    xml.xpath('//xmlns:entry', xmlns: TagManager::XMLNS).reverse_each.map { |entry| process_entry(entry, account) }.compact
+    xml.xpath('//xmlns:entry', xmlns: OStatus::TagManager::XMLNS).reverse_each.map { |entry| process_entry(entry, account) }.compact
   end
 
   def process_entry(xml, account)
