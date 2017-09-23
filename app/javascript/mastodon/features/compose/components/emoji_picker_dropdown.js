@@ -5,7 +5,6 @@ import { Picker, Emoji } from 'emoji-mart';
 import { Overlay } from 'react-overlays';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { buildCustomEmojis } from '../../../emoji';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -223,7 +222,6 @@ class EmojiPickerMenu extends React.PureComponent {
     return (
       <div className={classNames('emoji-picker-dropdown__menu', { selecting: modifierOpen })} style={style} ref={this.setRef}>
         <Picker
-          custom={buildCustomEmojis(this.props.custom_emojis)}
           perLine={8}
           emojiSize={22}
           sheetSize={32}
