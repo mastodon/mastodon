@@ -76,12 +76,14 @@ export const buildCustomEmojis = customEmojis => {
     const name      = shortcode.replace(':', '');
 
     emojis.push({
+      id: name,
       name,
       short_names: [name],
       text: '',
       emoticons: [],
       keywords: [name],
       imageUrl: url,
+      custom: true,
     });
   });
 
