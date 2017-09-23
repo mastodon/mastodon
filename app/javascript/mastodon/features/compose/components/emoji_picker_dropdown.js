@@ -4,6 +4,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { Picker, Emoji } from 'emoji-mart';
 import { Overlay } from 'react-overlays';
 import classNames from 'classnames';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { buildCustomEmojis } from '../../../emoji';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -128,6 +130,7 @@ class ModifierPicker extends React.PureComponent {
 class EmojiPickerMenu extends React.PureComponent {
 
   static propTypes = {
+    custom_emojis: ImmutablePropTypes.list,
     onClose: PropTypes.func.isRequired,
     onPick: PropTypes.func.isRequired,
     style: PropTypes.object,
@@ -190,6 +193,10 @@ class EmojiPickerMenu extends React.PureComponent {
   }
 
   handleClick = emoji => {
+    if (!emoji.native) {
+      emoji.native = emoji.colons;
+    }
+
     this.props.onClose();
     this.props.onPick(emoji);
   }
@@ -216,6 +223,7 @@ class EmojiPickerMenu extends React.PureComponent {
     return (
       <div className={classNames('emoji-picker-dropdown__menu', { selecting: modifierOpen })} style={style} ref={this.setRef}>
         <Picker
+          custom={buildCustomEmojis(this.props.custom_emojis)}
           perLine={8}
           emojiSize={22}
           sheetSize={32}
@@ -246,6 +254,7 @@ class EmojiPickerMenu extends React.PureComponent {
 export default class EmojiPickerDropdown extends React.PureComponent {
 
   static propTypes = {
+    custom_emojis: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
   };
@@ -306,7 +315,11 @@ export default class EmojiPickerDropdown extends React.PureComponent {
         </div>
 
         <Overlay show={active} placement='bottom' target={this.findTarget}>
-          <EmojiPickerMenu onClose={this.onHideDropdown} onPick={onPickEmoji} />
+          <EmojiPickerMenu
+            custom_emojis={this.props.custom_emojis}
+            onClose={this.onHideDropdown}
+            onPick={onPickEmoji}
+          />
         </Overlay>
       </div>
     );
