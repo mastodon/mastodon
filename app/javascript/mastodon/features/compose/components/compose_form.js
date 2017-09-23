@@ -170,6 +170,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     let showSideArm = secondaryVisibility !== 'none';
 
     let publishText = '';
+    let publishText2 = '';
 
     const privacyIcons = {
       none: '',
@@ -195,6 +196,13 @@ export default class ComposeForm extends ImmutablePureComponent {
           }
         </span>
       );
+
+      publishText2 = (
+        <i
+          className={`fa fa-${privacyIcons[secondaryVisibility]}`}
+          aria-label={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${secondaryVisibility}.short` })}`}
+        />
+      );
     } else {
       if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
         publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
@@ -202,14 +210,6 @@ export default class ComposeForm extends ImmutablePureComponent {
         publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
       }
     }
-
-    // side-arm
-    let publishText2 = (
-      <i
-        className={`fa fa-${privacyIcons[secondaryVisibility]}`}
-        aria-label={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${secondaryVisibility}.short` })}`}
-      />
-    );
 
     const submitDisabled = disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0);
 
@@ -271,8 +271,7 @@ export default class ComposeForm extends ImmutablePureComponent {
                     text={publishText2}
                     onClick={this.handleSubmit2}
                     disabled={submitDisabled}
-                  /> :
-                  ''
+                  /> : ''
               }
               <Button
                 className='compose-form__publish__primary'
