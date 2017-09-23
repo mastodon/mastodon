@@ -19,19 +19,21 @@ export default class StatusList extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
+    displayPinned: PropTypes.bool,
   };
 
   static defaultProps = {
     trackScroll: true,
+    displayPinned: false,
   };
 
   render () {
-    const { statusIds, ...other } = this.props;
+    const { statusIds, displayPinned, ...other } = this.props;
     const { isLoading } = other;
 
     const scrollableContent = (isLoading || statusIds.size > 0) ? (
       statusIds.map((statusId) => (
-        <StatusContainer key={statusId} id={statusId} />
+        <StatusContainer key={statusId} id={statusId} displayPinned={displayPinned} />
       ))
     ) : null;
 
