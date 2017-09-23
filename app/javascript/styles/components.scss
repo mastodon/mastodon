@@ -3942,12 +3942,14 @@ button.icon-button.active i.fa-retweet {
 .account-gallery__container {
   margin: -2px;
   padding: 4px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .account-gallery__item {
-  float: left;
-  width: 96px;
-  height: 96px;
+  flex: 1 1 auto;
+  width: calc(100% / 3 - 4px);
+  height: 95px;
   margin: 2px;
 
   a {
@@ -3958,6 +3960,14 @@ button.icon-button.active i.fa-retweet {
     background-size: cover;
     background-position: center;
     position: relative;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: 0;
+    }
   }
 }
 
