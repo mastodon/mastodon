@@ -48,25 +48,6 @@ const emojify = (str, customEmojis = {}) => {
 
 export default emojify;
 
-export const toCodePoint = (unicodeSurrogates, sep = '-') => {
-  let r = [], c = 0, p = 0, i = 0;
-
-  while (i < unicodeSurrogates.length) {
-    c = unicodeSurrogates.charCodeAt(i++);
-
-    if (p) {
-      r.push((0x10000 + ((p - 0xD800) << 10) + (c - 0xDC00)).toString(16));
-      p = 0;
-    } else if (0xD800 <= c && c <= 0xDBFF) {
-      p = c;
-    } else {
-      r.push(c.toString(16));
-    }
-  }
-
-  return r.join(sep);
-};
-
 export const buildCustomEmojis = customEmojis => {
   const emojis = [];
 
@@ -76,12 +57,14 @@ export const buildCustomEmojis = customEmojis => {
     const name      = shortcode.replace(':', '');
 
     emojis.push({
+      id: name,
       name,
       short_names: [name],
       text: '',
       emoticons: [],
       keywords: [name],
       imageUrl: url,
+      custom: true,
     });
   });
 

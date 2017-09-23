@@ -1880,15 +1880,18 @@
 }
 
 .autosuggest-textarea__suggestions {
+  box-sizing: border-box;
   display: none;
   position: absolute;
   top: 100%;
   width: 100%;
   z-index: 99;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   background: $ui-secondary-color;
+  border-radius: 0 0 4px 4px;
   color: $ui-base-color;
   font-size: 14px;
+  padding: 6px;
 
   &.autosuggest-textarea__suggestions--visible {
     display: block;
@@ -1898,34 +1901,36 @@
 .autosuggest-textarea__suggestions__item {
   padding: 10px;
   cursor: pointer;
+  border-radius: 4px;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active,
+  &.selected {
     background: darken($ui-secondary-color, 10%);
   }
-
-  &.selected {
-    background: $ui-highlight-color;
-    color: $base-border-color;
-  }
 }
 
-.autosuggest-account {
-  overflow: hidden;
+.autosuggest-account,
+.autosuggest-emoji {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 18px;
+  font-size: 14px;
 }
 
-.autosuggest-account-icon {
-  float: left;
-  margin-right: 5px;
+.autosuggest-account-icon,
+.autosuggest-emoji img {
+  display: block;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
 }
 
-.autosuggest-status {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
-  strong {
-    font-weight: 500;
-  }
+.autosuggest-account .display-name__account {
+  color: lighten($ui-base-color, 36%);
 }
 
 .character-counter__wrapper {
