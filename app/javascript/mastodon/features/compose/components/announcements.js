@@ -79,7 +79,7 @@ export default class Announcements extends React.PureComponent {
       },
     })
     .then(resp => (Announcement.isCacheControlled = !!resp.headers['cache-control'], resp))
-    .then(resp => this.setState({ items: Immutable.fromJS(resp.data) }), () => {})
+    .then(resp => this.setState({ items: Immutable.fromJS(resp.data) || {} }), () => {})
     .then(this.setPolling);
   }
 
