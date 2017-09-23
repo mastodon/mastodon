@@ -27,6 +27,7 @@ Collapsable.propTypes = {
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
   welcome: { id: 'welcome.message', defaultMessage: '{domain}へようこそ!' },
+  bbcode: { id: 'bbcode.list', defaultMessage: 'BBCode一覧' },
 });
 
 const hashtags = Immutable.fromJS([
@@ -77,6 +78,32 @@ class Announcements extends React.PureComponent {
                   #{hashtag}
                 </Link>
               )}
+            </div>
+          </Collapsable>
+          <div className='announcements__icon'>
+            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={this.onClick} size={20} animate active={this.state.show} />
+          </div>
+        </li>
+        <li>
+          <Collapsable isVisible={this.state.show} fullHeight={310} minHeight={20} >
+            <div className='announcements__body'>
+              <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
+              <br />
+			  [spin]回転[/spin]<br />
+			  [pulse]点滅[/pulse]<br />
+			  [large=2x]倍角文字[/large]<br />
+			  [flip=vertical]縦反転[/flip]<br />
+			  [flip=horizontal]横反転[/flip]<br />
+			  [b]太字[/b]<br />
+			  [i]斜体[/i]<br />
+			  [u]アンダーライン[/u]<br />
+			  [s]取り消し線[/s]<br />
+			  [size=5]サイズ変更[/size]<br />
+			  [color=red]色変更01[/color]<br />
+			  [colorhex=A55A4A]色変更02[/colorhex]<br />
+			  [code]コード[/code]<br />
+			  [quote]引用[/quote]<br />
+			  </p>
             </div>
           </Collapsable>
           <div className='announcements__icon'>
