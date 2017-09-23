@@ -1880,15 +1880,18 @@
 }
 
 .autosuggest-textarea__suggestions {
+  box-sizing: border-box;
   display: none;
   position: absolute;
   top: 100%;
   width: 100%;
   z-index: 99;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   background: $ui-secondary-color;
+  border-radius: 0 0 4px 4px;
   color: $ui-base-color;
   font-size: 14px;
+  padding: 6px;
 
   &.autosuggest-textarea__suggestions--visible {
     display: block;
@@ -1898,14 +1901,13 @@
 .autosuggest-textarea__suggestions__item {
   padding: 10px;
   cursor: pointer;
+  border-radius: 4px;
 
-  &:hover {
-    background: darken($ui-secondary-color, 10%);
-  }
-
+  &:hover,
+  &:focus,
+  &:active,
   &.selected {
-    background: $ui-highlight-color;
-    color: $base-border-color;
+    background: darken($ui-secondary-color, 10%);
   }
 }
 
@@ -1925,6 +1927,10 @@
   margin-right: 8px;
   width: 16px;
   height: 16px;
+}
+
+.autosuggest-account .display-name__account {
+  color: lighten($ui-base-color, 36%);
 }
 
 .character-counter__wrapper {
