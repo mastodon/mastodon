@@ -1,6 +1,6 @@
 import detectPassiveEvents from 'detect-passive-events';
 
-const LAYOUT_BREAKPOINT = 1024;
+const LAYOUT_BREAKPOINT = 630;
 
 export function isMobile(width) {
   return width <= LAYOUT_BREAKPOINT;
