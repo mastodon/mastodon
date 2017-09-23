@@ -51,11 +51,13 @@ export default class ComposeForm extends ImmutablePureComponent {
     onSubmit: PropTypes.func.isRequired,
     onClearSuggestions: PropTypes.func.isRequired,
     onFetchSuggestions: PropTypes.func.isRequired,
+    onPrivacyChange: PropTypes.func.isRequired,
     onSuggestionSelected: PropTypes.func.isRequired,
     onChangeSpoilerText: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
+    settings : ImmutablePropTypes.map.isRequired,
   };
 
   static defaultProps = {
@@ -70,6 +72,11 @@ export default class ComposeForm extends ImmutablePureComponent {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
+  }
+
+  handleSubmit2 = () => {
+    this.props.onPrivacyChange(this.props.settings.get('side_arm'));
+    this.handleSubmit();
   }
 
   handleSubmit = () => {
@@ -157,13 +164,42 @@ export default class ComposeForm extends ImmutablePureComponent {
     const maybeEye = (this.props.advanced_options && this.props.advanced_options.do_not_federate) ? ' 👁️' : '';
     const text     = [this.props.spoiler_text, countableText(this.props.text), maybeEye].join('');
 
+    const sideArmVisibility = this.props.settings.get('side_arm');
+    let showSideArm = sideArmVisibility !== 'none';
+
     let publishText = '';
 
-    if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
-      publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
-    } else {
-      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
-    }
+    const privacyIcons = {
+      none: '',
+      public: 'globe',
+      unlisted: 'unlock-alt',
+      private: 'lock',
+      direct: 'envelope',
+    };
+
+    publishText = (
+      <span>
+        {
+          (this.props.settings.get('stretch') || !showSideArm) ?
+            <i
+              className={`fa fa-${privacyIcons[this.props.privacy]}`}
+              style={{ paddingRight: '5px' }}
+            /> :
+            ''
+        }
+        {intl.formatMessage(messages.publish)}
+      </span>
+    );
+
+    // side-arm
+    let publishText2 = (
+      <i
+        className={`fa fa-${privacyIcons[sideArmVisibility]}`}
+        aria-label={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${sideArmVisibility}.short` })}`}
+      />
+    );
+
+    const submitDisabled = disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0);
 
     return (
       <div className='compose-form'>
@@ -215,7 +251,25 @@ export default class ComposeForm extends ImmutablePureComponent {
 
           <div className='compose-form__publish'>
             <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block /></div>
+            <div className='compose-form__publish-button-wrapper'>
+              {
+                showSideArm ?
+                  <Button
+                    className='compose-form__publish__side-arm'
+                    text={publishText2}
+                    onClick={this.handleSubmit2}
+                    disabled={submitDisabled}
+                  /> :
+                  ''
+              }
+              <Button
+                className='compose-form__publish__primary'
+                text={publishText}
+                onClick={this.handleSubmit}
+                disabled={submitDisabled}
+                block
+              />
+            </div>
           </div>
         </div>
       </div>

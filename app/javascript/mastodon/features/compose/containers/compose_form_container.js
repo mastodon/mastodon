@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
-import { uploadCompose } from '../../../actions/compose';
+import { changeComposeVisibility, uploadCompose } from '../../../actions/compose';
 import {
   changeCompose,
   submitCompose,
@@ -25,12 +25,17 @@ const mapStateToProps = state => ({
   is_uploading: state.getIn(['compose', 'is_uploading']),
   me: state.getIn(['compose', 'me']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
+  settings: state.get('local_settings'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
 
   onChange (text) {
     dispatch(changeCompose(text));
+  },
+
+  onPrivacyChange (value) {
+    dispatch(changeComposeVisibility(value));
   },
 
   onSubmit () {

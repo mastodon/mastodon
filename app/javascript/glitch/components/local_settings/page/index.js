@@ -16,6 +16,7 @@ const messages = defineMessages({
   layout_auto: {  id: 'layout.auto', defaultMessage: 'Auto' },
   layout_desktop: { id: 'layout.desktop', defaultMessage: 'Desktop' },
   layout_mobile: { id: 'layout.single', defaultMessage: 'Mobile' },
+  side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
 });
 
 @injectIntl
@@ -61,6 +62,24 @@ export default class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.navbar_under' defaultMessage='Navbar at the bottom (Mobile only)' />
         </LocalSettingsPageItem>
+        <section>
+          <h2><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box options' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['side_arm']}
+            id='mastodon-settings--side_arm'
+            options={[
+              { value: 'none', message: intl.formatMessage(messages.side_arm_none) },
+              { value: 'direct', message: intl.formatMessage({ id: 'privacy.direct.short' }) },
+              { value: 'private', message: intl.formatMessage({ id: 'privacy.private.short' }) },
+              { value: 'unlisted', message: intl.formatMessage({ id: 'privacy.unlisted.short' }) },
+              { value: 'public', message: intl.formatMessage({ id: 'privacy.public.short' }) },
+            ]}
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.side_arm' defaultMessage='Secondary toot button:' />
+          </LocalSettingsPageItem>
+        </section>
       </div>
     ),
     ({ onChange, settings }) => (

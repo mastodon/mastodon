@@ -421,6 +421,24 @@
 .compose-form__publish-button-wrapper {
   overflow: hidden;
   padding-top: 10px;
+  white-space: nowrap;
+  display: flex;
+
+  button {
+    text-overflow: unset;
+  }
+}
+
+.compose-form__publish__side-arm {
+  padding: 0 !important;
+  width: 4em;
+  text-align: center;
+  opacity: .8;
+  margin-right: 2px;
+}
+
+.compose-form__publish__primary {
+  padding: 0 10px !important;
 }
 
 .emojione {
