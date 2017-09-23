@@ -34,10 +34,12 @@ export default class Status extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
-    me: PropTypes.string,
+    me: PropTypes.number,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
+    onPin: PropTypes.func,
+    displayPinned: PropTypes.bool,
     hidden: PropTypes.bool,
   };
 
@@ -112,6 +114,21 @@ export default class Status extends ImmutablePureComponent {
       );
     }
 
+    if (this.props.displayPinned && status.get('pinned')) {
+      const { displayPinned, intersectionObserverWrapper, ...otherProps } = this.props;
+
+      return (
+        <div className='status__wrapper pinned' ref={this.handleRef} data-id={status.get('id')} >
+          <div className='status__prepend'>
+            <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-pin status__prepend-icon' /></div>
+            <FormattedMessage id='status.pinned' defaultMessage='Pinned Toot' className='status__display-name muted' />
+          </div>
+
+          <Status {...otherProps} />
+        </div>
+      );
+    }
+
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
       const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 
@@ -122,7 +139,7 @@ export default class Status extends ImmutablePureComponent {
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={display_name_html} /></a> }} />
           </div>
 
-          <Status {...other} status={status.get('reblog')} account={status.get('account')} />
+          <Status {...other} status={status.get('reblog')} account={status.get('account')} displayPinned={false} />
         </div>
       );
     }
