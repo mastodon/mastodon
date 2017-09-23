@@ -8,6 +8,7 @@ class NotificationMailer < ApplicationMailer
     @status = notification.target_status
 
     locale_for_account(@me) do
+      set_conversation_id @status.conversation
       mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
     end
   end
@@ -27,6 +28,7 @@ class NotificationMailer < ApplicationMailer
     @status  = notification.target_status
 
     locale_for_account(@me) do
+      set_conversation_id @status.conversation
       mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
     end
   end
@@ -37,6 +39,7 @@ class NotificationMailer < ApplicationMailer
     @status  = notification.target_status
 
     locale_for_account(@me) do
+      set_conversation_id @status.conversation
       mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
     end
   end
@@ -66,5 +69,14 @@ class NotificationMailer < ApplicationMailer
              count: @notifications.size
            )
     end
+  end
+
+  private
+
+  def set_conversation_id(conversation)
+    return if conversation.nil?
+    msg_id = "<conversation-#{conversation.id}@#{Rails.configuration.x.local_domain}>"
+    headers['In-Reply-To'] = msg_id
+    headers['References'] = msg_id
   end
 end
