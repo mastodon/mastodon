@@ -251,7 +251,7 @@ export function selectComposeSuggestion(position, token, suggestion) {
     let completion, startPosition;
 
     if (typeof suggestion === 'object' && suggestion.id) {
-      completion    = suggestion.native;
+      completion    = suggestion.native || suggestion.colons;
       startPosition = position - 1;
     } else {
       completion    = getState().getIn(['accounts', suggestion, 'acct']);
