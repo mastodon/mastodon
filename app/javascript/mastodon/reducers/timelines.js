@@ -15,6 +15,10 @@ import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
+import {
+  PIN_SUCCESS,
+  UNPIN_SUCCESS,
+} from '../actions/interactions';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap();
@@ -117,30 +121,36 @@ const updateTop = (state, timeline, top) => {
 
 export default function timelines(state = initialState, action) {
   switch(action.type) {
-  case TIMELINE_REFRESH_REQUEST:
-  case TIMELINE_EXPAND_REQUEST:
-    return state.update(action.timeline, initialTimeline, map => map.set('isLoading', true));
-  case TIMELINE_REFRESH_FAIL:
-  case TIMELINE_EXPAND_FAIL:
-    return state.update(action.timeline, initialTimeline, map => map.set('isLoading', false));
-  case TIMELINE_REFRESH_SUCCESS:
-    return normalizeTimeline(state, action.timeline, fromJS(action.statuses), action.next);
-  case TIMELINE_EXPAND_SUCCESS:
-    return appendNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next);
-  case TIMELINE_UPDATE:
-    return updateTimeline(state, action.timeline, fromJS(action.status), action.references);
-  case TIMELINE_DELETE:
-    return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-    return filterTimelines(state, action.relationship, action.statuses);
-  case TIMELINE_SCROLL_TOP:
-    return updateTop(state, action.timeline, action.top);
-  case TIMELINE_CONNECT:
-    return state.update(action.timeline, initialTimeline, map => map.set('online', true));
-  case TIMELINE_DISCONNECT:
-    return state.update(action.timeline, initialTimeline, map => map.set('online', false));
-  default:
-    return state;
+    case TIMELINE_REFRESH_REQUEST:
+    case TIMELINE_EXPAND_REQUEST:
+      return state.update(action.timeline, initialTimeline, map => map.set('isLoading', true));
+    case TIMELINE_REFRESH_FAIL:
+    case TIMELINE_EXPAND_FAIL:
+      return state.update(action.timeline, initialTimeline, map => map.set('isLoading', false));
+    case TIMELINE_REFRESH_SUCCESS:
+      return normalizeTimeline(state, action.timeline, fromJS(action.statuses), action.next);
+    case TIMELINE_EXPAND_SUCCESS:
+      return appendNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next);
+    case TIMELINE_UPDATE:
+      return updateTimeline(state, action.timeline, fromJS(action.status), action.references);
+    case TIMELINE_DELETE:
+      return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
+    case ACCOUNT_BLOCK_SUCCESS:
+    case ACCOUNT_MUTE_SUCCESS:
+      return filterTimelines(state, action.relationship, action.statuses);
+    case TIMELINE_SCROLL_TOP:
+      return updateTop(state, action.timeline, action.top);
+    case TIMELINE_CONNECT:
+      return state.update(action.timeline, initialTimeline, map => map.set('online', true));
+    case TIMELINE_DISCONNECT:
+      return state.update(action.timeline, initialTimeline, map => map.set('online', false));
+    case PIN_SUCCESS:
+      return state.updateIn([`account:${action.status.getIn(['account', 'id'])}:pinned_status`], initialTimeline, map => map
+        .update('items', ImmutableList(), list => list.unshift(action.status.get('id')).toOrderedSet().toList()));
+    case UNPIN_SUCCESS:
+      return state.updateIn([`account:${action.status.getIn(['account', 'id'])}:pinned_status`], initialTimeline, map => map
+        .update('items', ImmutableList(), list => list.filter((id) => id !== action.status.get('id'))));
+    default:
+      return state;
   }
 };
