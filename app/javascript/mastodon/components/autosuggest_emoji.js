@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toCodePoint } from '../emoji';
+import { unicodeMapping } from '../emojione_light';
 
 const assetHost = process.env.CDN_HOST || '';
 
@@ -12,13 +12,21 @@ export default class AutosuggestEmoji extends React.PureComponent {
 
   render () {
     const { emoji } = this.props;
+    let url;
+
+    if (emoji.custom) {
+      url = emoji.imageUrl;
+    } else {
+      const [ filename ] = unicodeMapping[emoji.native];
+      url = `${assetHost}/emoji/${filename}.svg`;
+    }
 
     return (
       <div className='autosuggest-emoji'>
         <img
           className='emojione'
-          src={emoji.custom ? emoji.imageUrl : `${assetHost}/emoji/${toCodePoint(emoji.native)}.svg`}
-          alt={emoji.native}
+          src={url}
+          alt={emoji.native || emoji.colons}
         />
 
         {emoji.colons}
