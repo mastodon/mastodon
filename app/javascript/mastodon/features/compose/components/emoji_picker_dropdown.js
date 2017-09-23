@@ -4,6 +4,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
 import { Overlay } from 'react-overlays';
 import classNames from 'classnames';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { buildCustomEmojis } from '../../../emoji';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -130,6 +132,7 @@ class ModifierPicker extends React.PureComponent {
 class EmojiPickerMenu extends React.PureComponent {
 
   static propTypes = {
+    custom_emojis: ImmutablePropTypes.list,
     loading: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     onPick: PropTypes.func.isRequired,
@@ -194,6 +197,10 @@ class EmojiPickerMenu extends React.PureComponent {
   }
 
   handleClick = emoji => {
+    if (!emoji.native) {
+      emoji.native = emoji.colons;
+    }
+
     this.props.onClose();
     this.props.onPick(emoji);
   }
@@ -225,6 +232,7 @@ class EmojiPickerMenu extends React.PureComponent {
     return (
       <div className={classNames('emoji-picker-dropdown__menu', { selecting: modifierOpen })} style={style} ref={this.setRef}>
         <EmojiPicker
+          custom={buildCustomEmojis(this.props.custom_emojis)}
           perLine={8}
           emojiSize={22}
           sheetSize={32}
@@ -255,6 +263,7 @@ class EmojiPickerMenu extends React.PureComponent {
 export default class EmojiPickerDropdown extends React.PureComponent {
 
   static propTypes = {
+    custom_emojis: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
   };
@@ -328,7 +337,12 @@ export default class EmojiPickerDropdown extends React.PureComponent {
         </div>
 
         <Overlay show={active} placement='bottom' target={this.findTarget}>
-          <EmojiPickerMenu loading={loading} onClose={this.onHideDropdown} onPick={onPickEmoji} />
+          <EmojiPickerMenu
+            custom_emojis={this.props.custom_emojis}
+            loading={loading}
+            onClose={this.onHideDropdown}
+            onPick={onPickEmoji}
+          />
         </Overlay>
       </div>
     );
