@@ -258,14 +258,47 @@ const startWorker = (workerId) => {
     const streamType = notificationOnly ? ' (notification)' : '';
     log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}${streamType}`);
 
+
+    const content_filter = payload => {
+      const allowedWords = [/猫/,/ねこ/,/cat/];
+      const allowedDomains = [/cat/,/mstdn\.jp/];
+
+      var refused = true;
+      if(typeof payload.content === 'string' ) {
+        allowedWords.forEach((current, index, arr) => {
+          if(payload.content.match(current)) {
+            refused = false;
+            return;
+          }
+        });
+      }
+      if(refused && typeof payload.url === 'string') {
+        allowedDomains.forEach((current, index, arr) => {
+          if(payload.url.match(current)) {
+            refused = false;
+            return;
+          }
+        });
+      }
+      return !refused;
+    }
+
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message);
+
+      if (typeof payload !== 'number') {
+        if(!content_filter(payload)) {
+          log.verbose(req.requestId, 'No cat! filtered!: ' + JSON.stringify(payload));
+          return;
+        }
+      }
 
       const transmit = () => {
         const now            = new Date().getTime();
         const delta          = now - queued_at;
         const encodedPayload = typeof payload === 'number' ? payload : JSON.stringify(payload);
 
+        log.info(req.requestId, encodedPayload);
         log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
         output(event, encodedPayload);
       };
