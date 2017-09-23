@@ -78,8 +78,14 @@ export function mentionCompose(account, router) {
 export function submitCompose() {
   return function (dispatch, getState) {
     const status = getState().getIn(['compose', 'text'], '');
-
+    const isEnquete = getState().getIn(['enquetes', 'active']);
+    const enquete_duration = getState().getIn(['enquetes', 'duration']);
+    const enquete_items = getState().getIn(['enquetes', 'items']).toArray();
     if (!status || !status.length) {
+      return;
+    }
+
+    if (isEnquete && (enquete_items.filter(item => item !== '').length < 2)){
       return;
     }
 
@@ -92,6 +98,9 @@ export function submitCompose() {
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
       visibility: getState().getIn(['compose', 'privacy']),
+      isEnquete,
+      enquete_items,
+      enquete_duration,
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),

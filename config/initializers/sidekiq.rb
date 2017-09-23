@@ -9,6 +9,7 @@ end
 
 Sidekiq.configure_server do |config|
   config.redis = redis_params
+  config.average_scheduled_poll_interval = 1
 end
 
 Sidekiq.configure_client do |config|

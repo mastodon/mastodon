@@ -2,6 +2,7 @@
 
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
+  include EnqueteExtension
 
   before_action :authorize_if_got_token, except:            [:create, :destroy]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy]
@@ -39,16 +40,18 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
+    status_text, enquete_json = prepare_status_info
     @status = PostStatusService.new.call(current_user.account,
-                                         status_params[:status],
+                                         status_text,
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
-                                         idempotency: request.headers['Idempotency-Key'])
-
+                                         idempotency: request.headers['Idempotency-Key'],
+                                         enquete: enquete_json)
+    register_enquete_result_worker
     render json: @status, serializer: REST::StatusSerializer
   end
 

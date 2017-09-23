@@ -237,6 +237,8 @@ Rails.application.routes.draw do
           post :unmute
         end
       end
+      
+      post '/votes/:status_id', to: 'votes#create'
     end
 
     namespace :web do

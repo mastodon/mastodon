@@ -21,6 +21,8 @@ import media_attachments from './media_attachments';
 import notifications from './notifications';
 import height_cache from './height_cache';
 
+import enquetes from './enquetes';
+
 const reducers = {
   timelines,
   meta,
@@ -43,6 +45,7 @@ const reducers = {
   media_attachments,
   notifications,
   height_cache,
+  enquetes,
 };
 
 export default combineReducers(reducers);
