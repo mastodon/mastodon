@@ -23,6 +23,7 @@
 #  language               :string
 #  conversation_id        :integer
 #  local                  :boolean
+#  enquete                :json
 #
 
 class Status < ApplicationRecord

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917153509) do
+ActiveRecord::Schema.define(version: 20170923050248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,14 @@ ActiveRecord::Schema.define(version: 20170917153509) do
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
+  end
+
+  create_table "favourite_tags", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "tag_id"], name: "index_favourite_tags_on_account_id_and_tag_id", unique: true
   end
 
   create_table "favourites", id: :serial, force: :cascade do |t|
@@ -340,6 +348,7 @@ ActiveRecord::Schema.define(version: 20170917153509) do
     t.string "language"
     t.bigint "conversation_id"
     t.boolean "local"
+    t.json "enquete"
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"

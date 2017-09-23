@@ -29,7 +29,8 @@ class PostStatusService < BaseService
                                         spoiler_text: options[:spoiler_text] || '',
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
                                         language: LanguageDetector.instance.detect(text, account),
-                                        application: options[:application])
+                                        application: options[:application],
+                                        enquete: options[:enquete])
 
       attach_media(status, media)
     end

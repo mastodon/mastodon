@@ -39,6 +39,23 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def format_enquete(enquete)
+    raw_enquete_info = JSON.parse(enquete)
+    enquete_info = {}
+    question_html = encode_and_link_urls(raw_enquete_info['question'])
+    question_html = simple_format(question_html, {}, sanitize: false)
+    question_html = question_html.delete("\n")
+    enquete_info['question'] = question_html.html_safe
+    enquete_info['items'] = raw_enquete_info['items'].map do |item|
+      encode_and_link_urls(item)
+    end
+    enquete_info['ratios'] = raw_enquete_info['ratios']
+    enquete_info['ratios_text'] = raw_enquete_info['ratios_text']
+    enquete_info['type'] = raw_enquete_info['type']
+    enquete_info['duration'] = raw_enquete_info['duration']
+    JSON.generate(enquete_info)
+  end
+  
   def reformat(html)
     sanitize(html, Sanitize::Config::MASTODON_STRICT)
   end
