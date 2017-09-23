@@ -5,6 +5,7 @@ import { Picker, Emoji } from 'emoji-mart';
 import { Overlay } from 'react-overlays';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import detectPassiveEvents from 'detect-passive-events';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -24,8 +25,8 @@ const messages = defineMessages({
 });
 
 const assetHost = process.env.CDN_HOST || '';
-
 const backgroundImageFn = () => `${assetHost}/emoji/sheet.png`;
+const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
 
 class ModifierPickerMenu extends React.PureComponent {
 
@@ -60,12 +61,12 @@ class ModifierPickerMenu extends React.PureComponent {
 
   attachListeners () {
     document.addEventListener('click', this.handleDocumentClick, false);
-    document.addEventListener('touchend', this.handleDocumentClick, false);
+    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
   removeListeners () {
     document.removeEventListener('click', this.handleDocumentClick, false);
-    document.removeEventListener('touchend', this.handleDocumentClick, false);
+    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
   setRef = c => {
@@ -157,12 +158,12 @@ class EmojiPickerMenu extends React.PureComponent {
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
-    document.addEventListener('touchend', this.handleDocumentClick, false);
+    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
   componentWillUnmount () {
     document.removeEventListener('click', this.handleDocumentClick, false);
-    document.removeEventListener('touchend', this.handleDocumentClick, false);
+    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
   setRef = c => {

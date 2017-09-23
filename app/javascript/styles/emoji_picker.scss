@@ -91,8 +91,10 @@
 .emoji-mart-scroll {
   overflow-y: scroll;
   height: 270px;
+  max-height: 35vh;
   padding: 0 6px 6px;
   background: $simple-background-color;
+  will-change: transform;
 }
 
 .emoji-mart-search {

@@ -4,6 +4,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './icon_button';
 import { Overlay } from 'react-overlays';
 import { Motion, spring } from 'react-motion';
+import detectPassiveEvents from 'detect-passive-events';
+
+const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
 
 class DropdownMenu extends React.PureComponent {
 
@@ -33,12 +36,12 @@ class DropdownMenu extends React.PureComponent {
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
-    document.addEventListener('touchend', this.handleDocumentClick, false);
+    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
   componentWillUnmount () {
     document.removeEventListener('click', this.handleDocumentClick, false);
-    document.removeEventListener('touchend', this.handleDocumentClick, false);
+    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
   setRef = c => {
