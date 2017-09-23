@@ -5,6 +5,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
+import sizeMe from 'react-sizeme';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -171,12 +172,14 @@ class Item extends React.PureComponent {
 }
 
 @injectIntl
+@sizeMe({})
 export default class MediaGallery extends React.PureComponent {
 
   static propTypes = {
     sensitive: PropTypes.bool,
     standalone: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
+    size: PropTypes.object,
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -207,11 +210,18 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, height, standalone } = this.props;
+    const { media, intl, sensitive, height, standalone, size } = this.props;
 
     let children;
 
-    const style = standalone ? {} : { height: `${height}px` };
+    const standaloneEligible = standalone && size.width && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+    const style = {};
+
+    if (standaloneEligible) {
+      style.height = size.width / media.getIn([0, 'meta', 'small', 'aspect']);
+    } else {
+      style.height = height;
+    }
 
     if (!this.state.visible) {
       let warning;
@@ -223,7 +233,7 @@ export default class MediaGallery extends React.PureComponent {
       }
 
       children = (
-        <button className='media-spoiler' onClick={this.handleOpen} style={{ height: `${height}px` }}>
+        <button className='media-spoiler' onClick={this.handleOpen} style={style}>
           <span className='media-spoiler__warning'>{warning}</span>
           <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </button>
@@ -231,7 +241,7 @@ export default class MediaGallery extends React.PureComponent {
     } else {
       const size = media.take(4).size;
 
-      if (standalone && size === 1) {
+      if (standaloneEligible) {
         children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} autoPlayGif={this.props.autoPlayGif} />;
       } else {
         children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
