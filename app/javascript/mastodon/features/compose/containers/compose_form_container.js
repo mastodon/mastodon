@@ -26,6 +26,7 @@ const mapStateToProps = state => ({
   me: state.getIn(['compose', 'me']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   settings: state.get('local_settings'),
+  filesAttached: state.getIn(['compose', 'media_attachments']).size > 0,
 });
 
 const mapDispatchToProps = (dispatch) => ({

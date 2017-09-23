@@ -58,6 +58,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
     settings : ImmutablePropTypes.map.isRequired,
+    filesAttached : PropTypes.bool,
   };
 
   static defaultProps = {
@@ -159,13 +160,14 @@ export default class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste, showSearch } = this.props;
+    const { intl, onPaste, showSearch, filesAttached } = this.props;
     const disabled = this.props.is_submitting;
     const maybeEye = (this.props.advanced_options && this.props.advanced_options.do_not_federate) ? ' 👁️' : '';
     const text     = [this.props.spoiler_text, countableText(this.props.text), maybeEye].join('');
 
-    const sideArmVisibility = this.props.settings.get('side_arm');
-    let showSideArm = sideArmVisibility !== 'none';
+    const secondaryVisibility = this.props.settings.get('side_arm');
+    const isWideView = this.props.settings.get('stretch');
+    let showSideArm = secondaryVisibility !== 'none';
 
     let publishText = '';
 
@@ -177,25 +179,35 @@ export default class ComposeForm extends ImmutablePureComponent {
       direct: 'envelope',
     };
 
-    publishText = (
-      <span>
-        {
-          (this.props.settings.get('stretch') || !showSideArm) ?
+    if (showSideArm) {
+      publishText = (
+        <span>
+          {
             <i
               className={`fa fa-${privacyIcons[this.props.privacy]}`}
-              style={{ paddingRight: '5px' }}
-            /> :
-            ''
-        }
-        {intl.formatMessage(messages.publish)}
-      </span>
-    );
+              style={{
+                paddingRight: (filesAttached || !isWideView) ? '0' : '5px',
+              }}
+            />
+          }{
+            (filesAttached || !isWideView) ? '' :
+              intl.formatMessage(messages.publish)
+          }
+        </span>
+      );
+    } else {
+      if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
+        publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
+      } else {
+        publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
+      }
+    }
 
     // side-arm
     let publishText2 = (
       <i
-        className={`fa fa-${privacyIcons[sideArmVisibility]}`}
-        aria-label={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${sideArmVisibility}.short` })}`}
+        className={`fa fa-${privacyIcons[secondaryVisibility]}`}
+        aria-label={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${secondaryVisibility}.short` })}`}
       />
     );
 
