@@ -1909,23 +1909,22 @@
   }
 }
 
-.autosuggest-account {
-  overflow: hidden;
+.autosuggest-account,
+.autosuggest-emoji {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 18px;
+  font-size: 14px;
 }
 
-.autosuggest-account-icon {
-  float: left;
-  margin-right: 5px;
-}
-
-.autosuggest-status {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
-  strong {
-    font-weight: 500;
-  }
+.autosuggest-account-icon,
+.autosuggest-emoji img {
+  display: block;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
 }
 
 .character-counter__wrapper {

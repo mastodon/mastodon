@@ -1,4 +1,6 @@
 import api from '../api';
+import { emojiIndex } from 'emoji-mart';
+import { buildCustomEmojis } from '../emoji';
 
 import {
   updateTimeline,
@@ -210,19 +212,33 @@ export function clearComposeSuggestions() {
 
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
+    if (token[0] === ':') {
+      const results = emojiIndex.search(token.replace(':', ''), { maxResults: 3, custom: buildCustomEmojis(getState().get('custom_emojis', [])) });
+      dispatch(readyComposeSuggestionsEmojis(token, results));
+      return;
+    }
+
     api(getState).get('/api/v1/accounts/search', {
       params: {
-        q: token,
+        q: token.slice(1),
         resolve: false,
         limit: 4,
       },
     }).then(response => {
-      dispatch(readyComposeSuggestions(token, response.data));
+      dispatch(readyComposeSuggestionsAccounts(token, response.data));
     });
   };
 };
 
-export function readyComposeSuggestions(token, accounts) {
+export function readyComposeSuggestionsEmojis(token, emojis) {
+  return {
+    type: COMPOSE_SUGGESTIONS_READY,
+    token,
+    emojis,
+  };
+};
+
+export function readyComposeSuggestionsAccounts(token, accounts) {
   return {
     type: COMPOSE_SUGGESTIONS_READY,
     token,
@@ -230,13 +246,21 @@ export function readyComposeSuggestions(token, accounts) {
   };
 };
 
-export function selectComposeSuggestion(position, token, accountId) {
+export function selectComposeSuggestion(position, token, suggestion) {
   return (dispatch, getState) => {
-    const completion = getState().getIn(['accounts', accountId, 'acct']);
+    let completion, startPosition;
+
+    if (typeof suggestion === 'object' && suggestion.id) {
+      completion    = suggestion.native;
+      startPosition = position - 1;
+    } else {
+      completion    = getState().getIn(['accounts', suggestion, 'acct']);
+      startPosition = position;
+    }
 
     dispatch({
       type: COMPOSE_SUGGESTION_SELECT,
-      position,
+      position: startPosition,
       token,
       completion,
     });
