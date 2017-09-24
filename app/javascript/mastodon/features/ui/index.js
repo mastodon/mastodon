@@ -52,7 +52,7 @@ export default class UI extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
-  }
+  };
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -183,12 +183,16 @@ export default class UI extends React.PureComponent {
     document.removeEventListener('dragend', this.handleDragEnd);
   }
 
-  setRef = (c) => {
+  setRef = c => {
     this.node = c;
   }
 
-  setColumnsAreaRef = (c) => {
+  setColumnsAreaRef = c => {
     this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
+  }
+
+  setOverlayRef = c => {
+    this.overlay = c;
   }
 
   render () {

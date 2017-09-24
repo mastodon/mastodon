@@ -9,7 +9,7 @@ class REST::ApplicationSerializer < ActiveModel::Serializer
   end
 
   def client_id
-    object.uid.to_s
+    object.uid
   end
 
   def client_secret
