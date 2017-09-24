@@ -49,6 +49,7 @@ export default class Announcements extends React.PureComponent {
   }
 
   static isCacheControlled = false
+  static lastDate = null
 
   constructor () {
     super();
@@ -75,11 +76,16 @@ export default class Announcements extends React.PureComponent {
 
     axios.get('/system/announcements.json', {
       headers: {
-        'Cache-Control': Announcement.isCacheControlled ? '' : 'max-age=0',
+        'If-Modified-Since': !Announcement.isCacheControlled && Announcement.lastDate || '',
       },
     })
-    .then(resp => (Announcement.isCacheControlled = !!resp.headers['cache-control'], resp))
-    .then(resp => this.setState({ items: Immutable.fromJS(resp.data) || {} }), () => {})
+    .then(resp => {
+      Announcement.isCacheControlled = !!resp.headers['cache-control'];
+      Announcement.lastDate = resp.headers['last-modified'];
+      return resp;
+    })
+    .then(resp => this.setState({ items: Immutable.fromJS(resp.data) || {} }))
+    .catch(err => console.warn(err))
     .then(this.setPolling);
   }
 
