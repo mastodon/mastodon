@@ -8,7 +8,7 @@ class NotificationMailer < ApplicationMailer
     @status = notification.target_status
 
     locale_for_account(@me) do
-      set_conversation_id @status.conversation
+      thread_by_conversation(@status.conversation)
       mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
     end
   end
@@ -28,7 +28,7 @@ class NotificationMailer < ApplicationMailer
     @status  = notification.target_status
 
     locale_for_account(@me) do
-      set_conversation_id @status.conversation
+      thread_by_conversation(@status.conversation)
       mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
     end
   end
@@ -39,7 +39,7 @@ class NotificationMailer < ApplicationMailer
     @status  = notification.target_status
 
     locale_for_account(@me) do
-      set_conversation_id @status.conversation
+      thread_by_conversation(@status.conversation)
       mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
     end
   end
@@ -73,9 +73,9 @@ class NotificationMailer < ApplicationMailer
 
   private
 
-  def set_conversation_id(conversation)
+  def thread_by_conversation(conversation)
     return if conversation.nil?
-    msg_id = "<conversation-#{conversation.id}@#{Rails.configuration.x.local_domain}>"
+    msg_id = "<conversation-#{conversation.id}.#{conversation.created_at.strftime('%Y-%m-%d')}@#{Rails.configuration.x.local_domain}>"
     headers['In-Reply-To'] = msg_id
     headers['References'] = msg_id
   end
