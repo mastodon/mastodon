@@ -52,7 +52,6 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
-  include EmojiHelper
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -269,9 +268,6 @@ class Account < ApplicationRecord
   def prepare_contents
     display_name&.strip!
     note&.strip!
-
-    self.display_name = emojify(display_name)
-    self.note         = emojify(note)
   end
 
   def generate_keys

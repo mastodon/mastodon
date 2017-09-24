@@ -1,7 +1,3 @@
-export function EmojiPicker () {
-  return import(/* webpackChunkName: "emojione_picker" */'emojione-picker');
-}
-
 export function Compose () {
   return import(/* webpackChunkName: "features/compose" */'../../compose');
 }

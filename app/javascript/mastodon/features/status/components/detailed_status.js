@@ -61,7 +61,16 @@ export default class DetailedStatus extends ImmutablePureComponent {
           />
         );
       } else {
-        media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
+        media = (
+          <MediaGallery
+            standalone
+            sensitive={status.get('sensitive')}
+            media={status.get('media_attachments')}
+            height={300}
+            onOpenMedia={this.props.onOpenMedia}
+            autoPlayGif={this.props.autoPlayGif}
+          />
+        );
       }
     } else if (status.get('spoiler_text').length === 0) {
       media = <CardContainer statusId={status.get('id')} />;

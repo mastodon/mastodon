@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
+import detectPassiveEvents from 'detect-passive-events';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -89,12 +90,12 @@ export default class PrivacyDropdown extends React.PureComponent {
 
   componentDidMount () {
     window.addEventListener('click', this.onGlobalClick);
-    window.addEventListener('touchstart', this.onGlobalClick);
+    window.addEventListener('touchstart', this.onGlobalClick, detectPassiveEvents.hasSupport ? { passive: true } : false);
   }
 
   componentWillUnmount () {
     window.removeEventListener('click', this.onGlobalClick);
-    window.removeEventListener('touchstart', this.onGlobalClick);
+    window.removeEventListener('touchstart', this.onGlobalClick, detectPassiveEvents.hasSupport ? { passive: true } : false);
   }
 
   setRef = (c) => {

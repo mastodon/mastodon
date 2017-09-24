@@ -26,6 +26,8 @@ class CustomEmoji < ApplicationRecord
   validates_attachment :image, content_type: { content_type: 'image/png' }, presence: true, size: { in: 0..50.kilobytes }
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: /\A#{SHORTCODE_RE_FRAGMENT}\z/ }, length: { minimum: 2 }
 
+  scope :local, -> { where(domain: nil) }
+
   include Remotable
 
   class << self

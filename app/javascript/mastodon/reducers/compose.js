@@ -120,7 +120,7 @@ const insertSuggestion = (state, position, token, completion) => {
 };
 
 const insertEmoji = (state, position, emojiData) => {
-  const emoji = emojiData.unicode.split('-').map(code => String.fromCodePoint(parseInt(code, 16))).join('');
+  const emoji = emojiData.native;
 
   return state.withMutations(map => {
     map.update('text', oldText => `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`);
@@ -245,7 +245,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
-    return state.set('suggestions', ImmutableList(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
+    return state.set('suggestions', ImmutableList(action.accounts ? action.accounts.map(item => item.id) : action.emojis)).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion);
   case TIMELINE_DELETE:
