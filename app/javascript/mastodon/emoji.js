@@ -46,7 +46,7 @@ const emojify = (str, customEmojis = {}) => {
   return rtn + str;
 };
 
-const emojify_knzk = (str, customEmojis) => [
+const emojify_knzk = (str, customEmojis = {}) => [
   {re: /5,?000\s*兆円/g, file: '5000tyoen.svg', attrs: 'style="height: 1.8em;"'},
   {re: /ニコる/g, file: 'nicoru.svg', attrs: 'style="height: 1.5em;"'},
   {re: /バジリスク\s*タイム/g, file: 'basilisktime.png', attrs: 'height="40"'},
@@ -55,7 +55,6 @@ const emojify_knzk = (str, customEmojis) => [
 ].reduce((text, e) => text.replace(e.re, m => `<img alt="${m}" src="/emoji/${e.file}" ${e.attrs}/>`), emojify(str, customEmojis));
 
 export default emojify_knzk;
-export default emojify;
 
 export const buildCustomEmojis = customEmojis => {
   const emojis = [];
