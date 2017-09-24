@@ -16,7 +16,7 @@ module EnqueteExtension
       else
         @enquete_duration = 30
       end
-      if @enquete_duration < 30 || @enquete_duration > 60 * 60 * 12
+      if @enquete_duration < 30 || @enquete_duration > 60 * 60 * 24
         raise Mastodon::ValidationError, 'Enquete duration is invalid'
       end
 
