@@ -43,12 +43,12 @@ class Announcements extends React.PureComponent {
   };
 
   state = {
-    show: false,
+    showId: null,
     isLoaded: false,
   };
 
-  onClick = () => {
-    this.setState({ show: !this.state.show });
+  onClick = (announcementId, currentState) => {
+    this.setState({ showId: currentState.showId === announcementId ? null : announcementId });
   }
   nl2br (text) {
     return text.split(/(\n)/g).map((line, i) => {
@@ -65,7 +65,7 @@ class Announcements extends React.PureComponent {
     return (
       <ul className='announcements'>
         <li>
-          <Collapsable isVisible={this.state.show} fullHeight={300} minHeight={20} >
+          <Collapsable isVisible={this.state.showId === 'introduction'} fullHeight={300} minHeight={20} >
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.welcome, { domain: document.title }))}<br />
 			  <br />
@@ -81,11 +81,11 @@ class Announcements extends React.PureComponent {
             </div>
           </Collapsable>
           <div className='announcements__icon'>
-            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={this.onClick} size={20} animate active={this.state.show} />
+            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={() => this.onClick('introduction', this.state)} size={20} animate active={this.state.showId === 'introduction'} />
           </div>
         </li>
         <li>
-          <Collapsable isVisible={this.state.show} fullHeight={310} minHeight={20} >
+          <Collapsable isVisible={this.state.showId === 'bbcode'} fullHeight={310} minHeight={20} >
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
               <br />
@@ -107,7 +107,7 @@ class Announcements extends React.PureComponent {
             </div>
           </Collapsable>
           <div className='announcements__icon'>
-            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={this.onClick} size={20} animate active={this.state.show} />
+            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={() => this.onClick('bbcode', this.state)} size={20} animate active={this.state.showId === 'bbcode'} />
           </div>
         </li>
       </ul>
@@ -117,7 +117,7 @@ class Announcements extends React.PureComponent {
   componentWillReceiveProps (nextProps) {
     if (!this.state.isLoaded) {
       if (!nextProps.isLoading && (nextProps.homeSize === 0 || this.props.homeSize !== nextProps.homeSize)) {
-        this.setState({ show: nextProps.homeSize < 5, isLoaded: true });
+        this.setState({ isLoaded: true });
       }
     }
   }
