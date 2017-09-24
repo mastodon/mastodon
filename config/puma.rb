@@ -1,5 +1,6 @@
 threads_count = ENV.fetch('MAX_THREADS') { 5 }.to_i
 threads threads_count, threads_count
+application_path = "#{File.expand_path("../..", __FILE__)}"
 
 if ENV['SOCKET'] then
   bind 'unix://' + ENV['SOCKET']
@@ -16,6 +17,6 @@ on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
 
-stdout_redirect '/home/mastodon/live/log/stdout', '/home/mastodon/live/log/stderr', true
+stdout_redirect "#{application_path}/log/stdout", "#{application_path}/log/stderr", true
 
 plugin :tmp_restart
