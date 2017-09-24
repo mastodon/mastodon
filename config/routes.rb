@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :following, only: [:index], controller: :following_accounts
     resource :follow, only: [:create], controller: :account_follow
     resource :unfollow, only: [:create], controller: :account_unfollow
+    resources :emojis, only: [:index], module: :activitypub
     resource :outbox, only: [:show], module: :activitypub
     resource :inbox, only: [:create], module: :activitypub
   end
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
   resource :inbox, only: [:create], module: :activitypub
 
   get '/@:username', to: 'accounts#show', as: :short_account
+  get '/@:username/emojis/:shortcode', to: 'emojis#show', as: :short_account_emoji
   get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
   get '/@:username/media', to: 'accounts#show', as: :short_account_media
   get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
@@ -93,6 +95,8 @@ Rails.application.routes.draw do
     resource :delete, only: [:show, :destroy]
 
     resources :sessions, only: [:destroy]
+
+    resources :custom_emojis, only: [:index, :new, :create, :destroy]
   end
 
   resources :media, only: [:show]
@@ -136,8 +140,6 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
     end
-
-    resources :custom_emojis, only: [:index, :new, :create, :destroy]
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)
@@ -188,17 +190,21 @@ Rails.application.routes.draw do
       end
 
       resources :streaming, only: [:index]
-      resources :custom_emojis, only: [:index]
+      resources :custom_emojis, only: [] do
+        resource :favourite, only: :create
+        post :unfavourite, to: 'emojis/favourites#destroy'
+      end
 
       get '/search', to: 'search#index', as: :search
 
-      resources :follows,    only: [:create]
-      resources :media,      only: [:create]
-      resources :apps,       only: [:create]
-      resources :blocks,     only: [:index]
-      resources :mutes,      only: [:index]
-      resources :favourites, only: [:index]
-      resources :reports,    only: [:index, :create]
+      resources :follows,          only: [:create]
+      resources :media,            only: [:create]
+      resources :apps,             only: [:create]
+      resources :blocks,           only: [:index]
+      resources :mutes,            only: [:index]
+      resources :favourites,       only: [:index]
+      resources :emoji_favourites, only: [:index]
+      resources :reports,          only: [:index, :create]
 
       resource :instance,      only: [:show]
       resource :domain_blocks, only: [:show, :create, :destroy]

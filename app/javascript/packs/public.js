@@ -21,9 +21,10 @@ function main() {
   const { length } = require('stringz');
   const IntlRelativeFormat = require('intl-relativeformat').default;
   const { delegate } = require('rails-ujs');
-  const emojify = require('../mastodon/emoji').default;
+  const parseEmoji = require('../mastodon/emoji').default;
   const { getLocale } = require('../mastodon/locales');
   const { localeData } = getLocale();
+  const Emojified = require('../mastodon/components/emojified').default;
   const VideoContainer = require('../mastodon/containers/video_container').default;
   const MediaGalleryContainer = require('../mastodon/containers/media_gallery_container').default;
   const CardContainer = require('../mastodon/containers/card_container').default;
@@ -46,7 +47,7 @@ function main() {
     const relativeFormat = new IntlRelativeFormat(locale);
 
     [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
-      content.innerHTML = emojify(content.innerHTML);
+      ReactDOM.render(<Emojified tokens={parseEmoji(content.innerHTML)} />, content);
     });
 
     [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {

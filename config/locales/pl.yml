@@ -106,18 +106,6 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
-    custom_emojis:
-      created_msg: Pomyślnie utworzono emoji!
-      delete: Usuń
-      destroyed_msg: Pomyślnie usunięto emoji!
-      emoji: Emoji
-      image_hint: Plik PNG ważący do 50KB
-      new:
-        title: Dodaj nowe niestandardowe emoji
-      shortcode: Shortcode
-      shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
-      title: Niestandardowe emoji
-      upload: Wyślij
     domain_blocks:
       add_new: Dodaj nową
       created_msg: Blokada domen jest przetwarzana
@@ -277,6 +265,17 @@ pl:
       return: Powróć do strony użytkownika
       web: Przejdź do sieci
     title: Śledź %{acct}
+  custom_emojis:
+    created_msg: Pomyślnie utworzono emoji!
+    delete: Usuń
+    destroyed_msg: Pomyślnie usunięto emoji!
+    emoji: Emoji
+    image_hint: Plik PNG ważący do 50KB
+    new:
+      title: Dodaj nowe niestandardowe emoji
+    shortcode: Shortcode
+    shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
+    upload: Wyślij
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -452,6 +451,7 @@ pl:
   settings:
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
+    custom_emojis: Niestandardowe emoji
     delete: Usuń konto
     development: Tworzenie aplikacji
     edit_profile: Edytuj profil

@@ -3,7 +3,7 @@
 class ActivityPub::ActorSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :id, :type, :following, :followers,
+  attributes :id, :type, :emojis, :following, :followers,
              :inbox, :outbox,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers
@@ -45,6 +45,10 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   def type
     'Person'
+  end
+
+  def emojis
+    account_emojis_url(object)
   end
 
   def following

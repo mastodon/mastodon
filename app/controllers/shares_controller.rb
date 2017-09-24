@@ -14,7 +14,9 @@ class SharesController < ApplicationController
   private
 
   def initial_state_params
+    # TODO: paginate emojis
     {
+      custom_emojis: current_account.custom_emojis + current_user.favourited_emojis,
       settings: Web::Setting.find_by(user: current_user)&.data || {},
       push_subscription: current_account.user.web_push_subscription(current_session),
       current_account: current_account,

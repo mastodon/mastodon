@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = t('settings.custom_emojis')
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('custom_emojis.emoji')
+        %th= t('custom_emojis.shortcode')
+        %th
+    %tbody
+      = render @custom_emojis
+
+= link_to t('custom_emojis.upload'), new_settings_custom_emoji_path, class: 'button'

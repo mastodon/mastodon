@@ -108,18 +108,6 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       web: Web
-    custom_emojis:
-      created_msg: Emoji ben creat !
-      delete: Suprimir
-      destroyed_msg: Emojo ben suprimit !
-      emoji: Emoji
-      image_hint: PNG cap a 50Ko
-      new:
-        title: Ajustar un nòu emoji personal
-      shortcode: Acorchi
-      shortcode_hint: Almens 2 caractèrs, solament alfanumerics e jonhent bas
-      title: Emojis personals
-      upload: Enviar
     domain_blocks:
       add_new: N’ajustar un nòu
       created_msg: Domeni blocat es a èsser tractat
@@ -280,6 +268,17 @@ oc:
       return: Tornar al perfil
       web: Tornar a l’interfàcia Web
     title: Sègre %{acct}
+  custom_emojis:
+    created_msg: Emoji ben creat !
+    delete: Suprimir
+    destroyed_msg: Emojo ben suprimit !
+    emoji: Emoji
+    image_hint: PNG cap a 50Ko
+    new:
+      title: Ajustar un nòu emoji personal
+    shortcode: Acorchi
+    shortcode_hint: Almens 2 caractèrs, solament alfanumerics e jonhent bas
+    upload: Enviar
   date:
     abbr_day_names:
     - dg
@@ -529,6 +528,7 @@ oc:
   settings:
     authorized_apps: Aplicacions autorizadas
     back: Tornar a Mastodon
+    custom_emojis: Emojis personals
     delete: Supression de compte
     development: Desvolopament
     edit_profile: Modificar lo perfil

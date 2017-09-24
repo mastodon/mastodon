@@ -49,6 +49,7 @@ class Status < ApplicationRecord
   has_many :mentions, dependent: :destroy
   has_many :media_attachments, dependent: :destroy
 
+  has_and_belongs_to_many :custom_emojis
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :preview_cards
 
@@ -129,10 +130,6 @@ class Status < ApplicationRecord
 
   def non_sensitive_with_media?
     !sensitive? && media_attachments.any?
-  end
-
-  def emojis
-    CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
   end
 
   after_create :store_uri, if: :local?

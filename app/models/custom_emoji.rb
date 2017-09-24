@@ -5,13 +5,15 @@
 #
 #  id                 :integer          not null, primary key
 #  shortcode          :string           default(""), not null
-#  domain             :string
 #  image_file_name    :string
 #  image_content_type :string
 #  image_file_size    :integer
 #  image_updated_at   :datetime
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  account_id         :integer          not null
+#  href               :string
+#  uri                :string
 #
 
 class CustomEmoji < ApplicationRecord
@@ -21,20 +23,16 @@ class CustomEmoji < ApplicationRecord
     :(#{SHORTCODE_RE_FRAGMENT}):
     (?=[^[:alnum:]:]|$)/x
 
+  belongs_to :account, required: true
+
   has_attached_file :image
+  has_many :favourites, class_name: :emoji_favourite, inverse_of: :custom_emoji, dependent: :destroy
 
   validates_attachment :image, content_type: { content_type: 'image/png' }, presence: true, size: { in: 0..50.kilobytes }
-  validates :shortcode, uniqueness: { scope: :domain }, format: { with: /\A#{SHORTCODE_RE_FRAGMENT}\z/ }, length: { minimum: 2 }
-
-  scope :local, -> { where(domain: nil) }
 
   include Remotable
 
-  class << self
-    def from_text(text, domain)
-      return [] if text.blank?
-      shortcodes = text.scan(SCAN_RE).map(&:first)
-      where(shortcode: shortcodes, domain: domain)
-    end
+  def object_type
+    :emoji
   end
 end

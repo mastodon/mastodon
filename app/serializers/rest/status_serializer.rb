@@ -17,7 +17,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
   has_many :mentions
   has_many :tags
-  has_many :emojis, serializer: REST::CustomEmojiSerializer
+  has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
 
   def id
     object.id.to_s

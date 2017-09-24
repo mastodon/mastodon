@@ -2,6 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Emojified from '../../../components/emojified';
 import IconButton from '../../../components/icon_button';
 import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
@@ -118,17 +119,19 @@ export default class Header extends ImmutablePureComponent {
       lockedIcon = <i className='fa fa-lock' />;
     }
 
-    const content         = { __html: account.get('note_emojified') };
-    const displayNameHtml = { __html: account.get('display_name_html') };
+    const content           = account.get('note_parsed');
+    const displayNameParsed = account.get('display_name_parsed');
 
     return (
       <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
         <div>
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
-          <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHtml} />
+          <Emojified className='account__header__display-name' tokens={displayNameParsed} />
           <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
-          <div className='account__header__content' dangerouslySetInnerHTML={content} />
+          <div className='account__header__content'>
+            <Emojified tokens={content} />
+          </div>
 
           {info}
           {actionBtn}

@@ -44,7 +44,7 @@ import {
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
 import { STORE_HYDRATE } from '../actions/store';
-import emojify from '../emoji';
+import parse from '../emoji';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 import escapeTextContentForBrowser from 'escape-html';
 
@@ -56,8 +56,8 @@ const normalizeAccount = (state, account) => {
   delete account.statuses_count;
 
   const displayName = account.display_name.length === 0 ? account.username : account.display_name;
-  account.display_name_html = emojify(escapeTextContentForBrowser(displayName));
-  account.note_emojified = emojify(account.note);
+  account.display_name_parsed = parse(escapeTextContentForBrowser((displayName)));
+  account.note_parsed = parse(account.note);
 
   return state.set(account.id, fromJS(account));
 };
@@ -65,6 +65,14 @@ const normalizeAccount = (state, account) => {
 const normalizeAccounts = (state, accounts) => {
   accounts.forEach(account => {
     state = normalizeAccount(state, account);
+  });
+
+  return state;
+};
+
+const normalizeAccountsFromImmutableArrayMap = (state, accounts) => {
+  accounts.forEach(account => {
+    state = normalizeAccount(state, account.toJS());
   });
 
   return state;
@@ -93,7 +101,7 @@ const initialState = ImmutableMap();
 export default function accounts(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.merge(action.state.get('accounts'));
+    return normalizeAccountsFromImmutableArrayMap(state, action.state.get('accounts'));
   case ACCOUNT_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:
     return normalizeAccount(state, action.account);

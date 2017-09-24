@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
+import Emojified from './emojified';
 import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import StatusContent from './status_content';
@@ -113,13 +114,13 @@ export default class Status extends ImmutablePureComponent {
     }
 
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
-      const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
+      const display_name_parsed = status.getIn(['account', 'display_name_parsed']);
 
       return (
         <div className='status__wrapper' data-id={status.get('id')} >
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={display_name_html} /></a> }} />
+            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong><Emojified tokens={display_name_parsed} /></strong></a> }} />
           </div>
 
           <Status {...other} status={status.get('reblog')} account={status.get('account')} />

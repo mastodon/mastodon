@@ -66,6 +66,8 @@ class User < ApplicationRecord
   # handle this itself, and this can be removed from our User class.
   attribute :otp_secret
 
+  has_and_belongs_to_many :favourited_emojis, class_name: 'CustomEmoji', join_table: :emoji_favourites
+  has_many :emoji_favourites, inverse_of: :user, dependent: :destroy
   has_many :session_activations, dependent: :destroy
 
   def confirmed?

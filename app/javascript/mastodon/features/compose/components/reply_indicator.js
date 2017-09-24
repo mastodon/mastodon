@@ -2,6 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from '../../../components/avatar';
+import Emojified from '../../../components/emojified';
 import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -42,7 +43,7 @@ export default class ReplyIndicator extends ImmutablePureComponent {
       return null;
     }
 
-    const content  = { __html: status.get('contentHtml') };
+    const content = status.get('contentParsed');
 
     return (
       <div className='reply-indicator'>
@@ -55,7 +56,9 @@ export default class ReplyIndicator extends ImmutablePureComponent {
           </a>
         </div>
 
-        <div className='reply-indicator__content' dangerouslySetInnerHTML={content} />
+        <div className='reply-indicator__content'>
+          <Emojified tokens={content} />
+        </div>
       </div>
     );
   }

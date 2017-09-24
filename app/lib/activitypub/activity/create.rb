@@ -83,11 +83,24 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def process_emoji(tag, _status)
     shortcode = tag['name'].delete(':')
-    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
+    account = account_from_uri(tag['attributed_to'])
+    account = FetchRemoteAccountService.new.call(tag['attributed_to']) if account.nil?
+    return if account.nil?
+    emoji = CustomEmoji.find_by(
+      shortcode: shortcode,
+      account: TagManager.uri_to_resource(tag['attributed_to']),
+      uri: tag['id']
+    )
 
     return if !emoji.nil? || skip_download?
 
-    emoji = CustomEmoji.new(domain: @account.domain, shortcode: shortcode)
+    # FIXME: check if the emoji was made by the account attributed to.
+    emoji = CustomEmoji.new(
+      account: account,
+      shortcode: shortcode,
+      uri: tag['id'],
+      href: tag['href']
+    )
     emoji.image_remote_url = tag['href']
     emoji.save
   end

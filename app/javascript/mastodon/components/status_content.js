@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
+import Emojified from './emojified';
 import Permalink from './permalink';
 import classnames from 'classnames';
 
@@ -117,8 +118,8 @@ export default class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
-    const content = { __html: status.get('contentHtml') };
-    const spoilerContent = { __html: status.get('spoilerHtml') };
+    const content = status.get('contentParsed');
+    const spoilerContent = status.get('spoilerParsed');
     const directionStyle = { direction: 'ltr' };
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
@@ -146,14 +147,16 @@ export default class StatusContent extends React.PureComponent {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' aria-label={status.get('search_index')} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
-            <span dangerouslySetInnerHTML={spoilerContent} />
+            <Emojified tokens={spoilerContent} />
             {' '}
             <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden && 0} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden && 0} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle}>
+            <Emojified tokens={content} />
+          </div>
         </div>
       );
     } else if (this.props.onClick) {
@@ -166,8 +169,7 @@ export default class StatusContent extends React.PureComponent {
           style={directionStyle}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
-          dangerouslySetInnerHTML={content}
-        />
+        ><Emojified tokens={content} /></div>
       );
     } else {
       return (
@@ -177,8 +179,7 @@ export default class StatusContent extends React.PureComponent {
           ref={this.setRef}
           className='status__content'
           style={directionStyle}
-          dangerouslySetInnerHTML={content}
-        />
+        ><EmojifiedText tokens={content} /></div>
       );
     }
   }

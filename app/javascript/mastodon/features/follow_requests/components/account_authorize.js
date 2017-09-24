@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Permalink from '../../../components/permalink';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
+import Emojified from '../../../components/emojified';
 import IconButton from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -25,7 +26,7 @@ export default class AccountAuthorize extends ImmutablePureComponent {
 
   render () {
     const { intl, account, onAuthorize, onReject } = this.props;
-    const content = { __html: account.get('note_emojified') };
+    const content = account.get('note_parsed');
 
     return (
       <div className='account-authorize__wrapper'>
@@ -35,7 +36,9 @@ export default class AccountAuthorize extends ImmutablePureComponent {
             <DisplayName account={account} />
           </Permalink>
 
-          <div className='account__header__content' dangerouslySetInnerHTML={content} />
+          <div className='account__header__content'>
+            <Emojified tokens={content} />
+          </div>
         </div>
 
         <div className='account--panel'>

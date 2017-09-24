@@ -5,8 +5,8 @@ const trie = new Trie(Object.keys(unicodeMapping));
 
 const assetHost = process.env.CDN_HOST || '';
 
-const emojify = (str, customEmojis = {}) => {
-  let rtn = '';
+const parse = (str, customEmojis = {}) => {
+  let tokens = [];
   for (;;) {
     let match, i = 0, tag;
     while (i < str.length && (tag = '<&'.indexOf(str[i])) === -1 && str[i] !== ':' && !(match = trie.search(str.slice(i)))) {
@@ -18,7 +18,7 @@ const emojify = (str, customEmojis = {}) => {
       const tagend = str.indexOf('>;'[tag], i + 1) + 1;
       if (!tagend)
         break;
-      rtn += str.slice(0, tagend);
+      tokens.push({ type: 'html', value: str.slice(0, tagend) });
       str = str.slice(tagend);
     } else if (str[i] === ':') {
       try {
@@ -29,24 +29,31 @@ const emojify = (str, customEmojis = {}) => {
         if (!(lt === -1 || lt >= closeColon)) throw null; // tag appeared before closing ':'
         const shortname = str.slice(i, closeColon);
         if (shortname in customEmojis) {
-          rtn += str.slice(0, i) + `<img draggable="false" class="emojione" alt="${shortname}" title="${shortname}" src="${customEmojis[shortname]}" />`;
+          tokens.push(
+            { type: 'html', value: str.slice(0, i) },
+            { type: 'customEmoji', alt: shortname, title: shortname, src: customEmojis[shortname] }
+          );
           str = str.slice(closeColon);
           continue;
         }
       } catch (e) {}
       // replacing :shortname: failed
-      rtn += str.slice(0, i + 1);
+      tokens.push({ type: 'html', value: str.slice(0, i + 1) });
       str = str.slice(i + 1);
     } else {
       const [filename, shortCode] = unicodeMapping[match];
-      rtn += str.slice(0, i) + `<img draggable="false" class="emojione" alt="${match}" title=":${shortCode}:" src="${assetHost}/emoji/${filename}.svg" />`;
+      tokens.push(
+        { type: 'html', value: str.slice(0, i) },
+        { type: 'emoji', alt: match, title: `:${shortCode}:`, src: `${assetHost}/emoji/${filename}.svg` }
+      );
       str = str.slice(i + match.length);
     }
   }
-  return rtn + str;
+  tokens.push({ type: 'html', value: str });
+  return tokens;
 };
 
-export default emojify;
+export default parse;
 
 export const toCodePoint = (unicodeSurrogates, sep = '-') => {
   let r = [], c = 0, p = 0, i = 0;

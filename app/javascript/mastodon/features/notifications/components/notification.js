@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
 import { FormattedMessage } from 'react-intl';
+import Emojified from '../../../components/emojified';
 import Permalink from '../../../components/permalink';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -65,10 +66,14 @@ export default class Notification extends ImmutablePureComponent {
   }
 
   render () {
-    const { notification } = this.props;
-    const account          = notification.get('account');
-    const displayNameHtml  = { __html: account.get('display_name_html') };
-    const link             = <Permalink className='notification__display-name' href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHtml} />;
+    const { notification }   = this.props;
+    const account            = notification.get('account');
+    const displayNameParsed  = account.get('display_name_parsed');
+    const link               = (
+      <Permalink className='notification__display-name' href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`}>
+        <Emojified tokens={displayNameParsed} />
+      </Permalink>
+    );
 
     switch(notification.get('type')) {
     case 'follow':

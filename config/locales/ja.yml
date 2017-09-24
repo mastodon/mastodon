@@ -108,18 +108,6 @@ ja:
       unsubscribe: 購読の解除
       username: ユーザー名
       web: Web
-    custom_emojis:
-      created_msg: 絵文字の追加に成功しました
-      delete: 削除
-      destroyed_msg: 絵文字の削除に成功しました
-      emoji: 絵文字
-      image_hint: 50KBまでのPNG画像を利用できます。
-      new:
-        title: 新規カスタム絵文字の追加
-      shortcode: ショートコード
-      shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます。
-      title: カスタム絵文字
-      upload: アップロード
     domain_blocks:
       add_new: 新規追加
       created_msg: ドメインブロック処理を完了しました
@@ -279,6 +267,17 @@ ja:
       return: ユーザーのプロフィールに戻る
       web: Web を開く
     title: "%{acct} をフォロー"
+  custom_emojis:
+    created_msg: 絵文字の追加に成功しました
+    delete: 削除
+    destroyed_msg: 絵文字の削除に成功しました
+    emoji: 絵文字
+    image_hint: 50KBまでのPNG画像を利用できます。
+    new:
+      title: 新規カスタム絵文字の追加
+    shortcode: ショートコード
+    shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます。
+    upload: アップロード
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -450,6 +449,7 @@ ja:
   settings:
     authorized_apps: 認証済みアプリ
     back: Mastodon に戻る
+    custom_emojis: カスタム絵文字
     delete: アカウントの削除
     development: 開発
     edit_profile: プロフィールを編集

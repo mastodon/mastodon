@@ -4,6 +4,7 @@ class ActivityPub::CollectionSerializer < ActiveModel::Serializer
   def self.serializer_for(model, options)
     return ActivityPub::ActivitySerializer if model.class.name == 'Status'
     return ActivityPub::CollectionSerializer if model.class.name == 'ActivityPub::CollectionPresenter'
+    return ActivityPub::CustomEmojiSerializer if model.class.name == 'CustomEmoji'
     super
   end
 

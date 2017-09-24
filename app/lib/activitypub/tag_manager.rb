@@ -16,6 +16,8 @@ class ActivityPub::TagManager
     return target.url if target.respond_to?(:local?) && !target.local?
 
     case target.object_type
+    when :emoji
+      short_account_emoji_url(target.account, target.shortcode)
     when :person
       short_account_url(target)
     when :note, :comment, :activity

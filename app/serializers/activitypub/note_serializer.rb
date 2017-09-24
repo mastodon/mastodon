@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActiveModel::Serializer
+  def self.serializer_for(model, options)
+    return ActivityPub::CustomEmojiSerializer if model.class.name == 'CustomEmoji'
+    super
+  end
+
   attributes :id, :type, :summary, :content,
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
@@ -135,24 +140,6 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
     def name
       "##{object.name}"
-    end
-  end
-
-  class CustomEmojiSerializer < ActiveModel::Serializer
-    include RoutingHelper
-
-    attributes :type, :href, :name
-
-    def type
-      'Emoji'
-    end
-
-    def href
-      full_asset_url(object.image.url)
-    end
-
-    def name
-      ":#{object.shortcode}:"
     end
   end
 end

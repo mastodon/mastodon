@@ -9,7 +9,7 @@ describe('<DisplayName />', () => {
     const account = fromJS({
       username: 'bar',
       acct: 'bar@baz',
-      display_name_html: '<p>Foo</p>',
+      display_name_parsed: { type: 'html', value: 'Foo' },
     });
     const wrapper = render(<DisplayName account={account} />);
     expect(wrapper).to.have.text('Foo @bar@baz');

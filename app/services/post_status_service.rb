@@ -34,6 +34,7 @@ class PostStatusService < BaseService
       attach_media(status, media)
     end
 
+    process_emojis_service.call(status)
     process_mentions_service.call(status)
     process_hashtags_service.call(status)
 
@@ -67,6 +68,10 @@ class PostStatusService < BaseService
   def attach_media(status, media)
     return if media.nil?
     media.update(status_id: status.id)
+  end
+
+  def process_emojis_service
+    @process_emojis_service ||= ProcessEmojisService.new
   end
 
   def process_mentions_service

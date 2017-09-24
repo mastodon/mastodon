@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918125918) do
+ActiveRecord::Schema.define(version: 20170920000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,14 +91,23 @@ ActiveRecord::Schema.define(version: 20170918125918) do
 
   create_table "custom_emojis", force: :cascade do |t|
     t.string "shortcode", default: "", null: false
-    t.string "domain"
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
+    t.bigint "account_id", null: false
+    t.string "href"
+    t.string "uri"
+    t.index ["account_id"], name: "index_custom_emojis_on_account_id"
+    t.index ["uri", "account_id"], name: "index_custom_emojis_on_uri_and_account_id", unique: true
+  end
+
+  create_table "custom_emojis_statuses", id: false, force: :cascade do |t|
+    t.bigint "custom_emoji_id", null: false
+    t.bigint "status_id", null: false
+    t.index ["status_id", "custom_emoji_id"], name: "index_custom_emojis_statuses_on_status_id_and_custom_emoji_id", unique: true
   end
 
   create_table "domain_blocks", force: :cascade do |t|
@@ -108,6 +117,13 @@ ActiveRecord::Schema.define(version: 20170918125918) do
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
+  end
+
+  create_table "emoji_favourites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "custom_emoji_id", null: false
+    t.index ["custom_emoji_id"], name: "index_emoji_favourites_on_custom_emoji_id"
+    t.index ["user_id"], name: "index_emoji_favourites_on_user_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -443,6 +459,11 @@ ActiveRecord::Schema.define(version: 20170918125918) do
   add_foreign_key "blocks", "accounts", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
+  add_foreign_key "custom_emojis", "accounts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "custom_emojis_statuses", "custom_emojis", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "custom_emojis_statuses", "statuses", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "emoji_favourites", "custom_emojis", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "emoji_favourites", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "favourites", "accounts", on_delete: :cascade
   add_foreign_key "favourites", "statuses", on_delete: :cascade
   add_foreign_key "follow_requests", "accounts", column: "target_account_id", on_delete: :cascade
