@@ -3645,6 +3645,12 @@ button.icon-button.active i.fa-retweet {
   display: block;
   float: left;
   position: relative;
+
+  &.standalone {
+    .media-gallery__item-gifv-thumbnail {
+      transform: none;
+    }
+  }
 }
 
 .media-gallery__item-thumbnail {
@@ -3652,6 +3658,7 @@ button.icon-button.active i.fa-retweet {
   display: block;
   text-decoration: none;
   height: 100%;
+  line-height: 0;
 
   &,
   img {
