@@ -64,7 +64,7 @@ export default class EnqueteInputs extends ImmutablePureComponent {
             <option value={60 * 3} >3分</option>
             <option value={60 * 10} >10分</option>
             <option value={60 * 60} >１時間</option>
-            <option value={60 * 60 * 12} >１日</option>
+            <option value={60 * 60 * 24} >１日</option>
           </select>
         </div>
       </Collapsable>);
