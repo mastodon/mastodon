@@ -1,6 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { is } from 'immutable';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
@@ -196,7 +197,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.sensitive !== this.props.sensitive) {
+    if (!is(nextProps.media, this.props.media)) {
       this.setState({ visible: !nextProps.sensitive });
     }
   }
