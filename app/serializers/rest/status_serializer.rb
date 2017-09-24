@@ -24,11 +24,11 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def in_reply_to_id
-    object.in_reply_to_id.to_s
+    object.in_reply_to_id&.to_s
   end
 
   def in_reply_to_account_id
-    object.in_reply_to_account_id.to_s
+    object.in_reply_to_account_id&.to_s
   end
 
   def current_user?
