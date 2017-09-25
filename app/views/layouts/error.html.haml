@@ -3,12 +3,12 @@
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %meta{ charset: 'utf-8' }/
-    %title= yield :page_title
+    %title= safe_join([yield(:page_title), title], ' - ')
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
     = stylesheet_pack_tag 'common', media: 'all'
     = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
   %body.error
     .dialog
-      %img{ alt: 'Mastodon', src: '/oops.png' }/
+      %img{ alt: title, src: '/oops.gif' }/
       %div
         %h1= yield :content
