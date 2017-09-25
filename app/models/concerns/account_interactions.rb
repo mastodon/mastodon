@@ -19,7 +19,7 @@ module AccountInteractions
     def muting_map(target_account_ids, account_id)
       Mute.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |mute, mapping|
         mapping[mute.target_account_id] = {
-          notifications: mute.hide_notifications?
+          notifications: mute.hide_notifications?,
         }
       end
     end

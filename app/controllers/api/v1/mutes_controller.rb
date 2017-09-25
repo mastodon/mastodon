@@ -15,7 +15,7 @@ class Api::V1::MutesController < Api::BaseController
   def details
     @data = @mutes = load_mutes
     render json: @mutes, each_serializer: REST::MuteSerializer
-  end 
+  end
 
   private
 
@@ -44,19 +44,15 @@ class Api::V1::MutesController < Api::BaseController
   end
 
   def next_path
-    if records_continue?
-      url_for pagination_params(max_id: pagination_max_id)
-    end
+    url_for pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
-    unless@data.empty?
-      url_for pagination_params(since_id: pagination_since_id)
-    end
+    url_for pagination_params(since_id: pagination_since_id) unless @data.empty?
   end
 
   def pagination_max_id
-    if params[:action] == "details"
+    if params[:action] == 'details'
       @mutes.last.id
     else
       @accounts.last.muted_by_ids.last
@@ -64,7 +60,7 @@ class Api::V1::MutesController < Api::BaseController
   end
 
   def pagination_since_id
-    if params[:action] == "details"
+    if params[:action] == 'details'
       @mutes.first.id
     else
       @accounts.first.muted_by_ids.first
