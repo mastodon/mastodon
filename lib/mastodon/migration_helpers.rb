@@ -1,4 +1,6 @@
-# This file is copied almost entirely from GitLab, which has done a large 
+# frozen_string_literal: true
+
+# This file is copied almost entirely from GitLab, which has done a large
 # amount of work to ensure that migrations can happen with minimal downtime.
 # Many thanks to those engineers.
 
