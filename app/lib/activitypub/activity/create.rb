@@ -68,6 +68,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_hashtag(tag, status)
+    return if tag['name'].blank?
+
     hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
     hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
 
@@ -75,6 +77,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_mention(tag, status)
+    return if tag['href'].blank?
+
     account = account_from_uri(tag['href'])
     account = FetchRemoteAccountService.new.call(tag['href']) if account.nil?
     return if account.nil?
@@ -82,6 +86,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_emoji(tag, _status)
+    return if tag['name'].blank? || tag['href'].blank?
+
     shortcode = tag['name'].delete(':')
     emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
 
@@ -96,7 +102,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless @object['attachment'].is_a?(Array)
 
     @object['attachment'].each do |attachment|
-      next if unsupported_media_type?(attachment['mediaType'])
+      next if unsupported_media_type?(attachment['mediaType']) || attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s
       media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href)
@@ -106,6 +112,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       media_attachment.file_remote_url = href
       media_attachment.save
     end
+  rescue Addressable::URI::InvalidURIError => e
+    Rails.logger.debug e
   end
 
   def resolve_thread(status)
@@ -116,7 +124,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def conversation_from_uri(uri)
     return nil if uri.nil?
     return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
-    Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
+    Conversation.find_by(uri: uri) || Conversation.create(uri: uri)
   end
 
   def visibility_from_audience
