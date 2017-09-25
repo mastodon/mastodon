@@ -25,6 +25,8 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
   def fetch_remote_original_status
     if object_uri.start_with?('http')
+      return if ActivityPub::TagManager.instance.local_uri?(object_uri)
+
       ActivityPub::FetchRemoteStatusService.new.call(object_uri)
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'])
