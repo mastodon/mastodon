@@ -7,7 +7,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
              :atom_uri, :in_reply_to_atom_uri,
              :conversation
 
-  has_many :media_attachments, key: :attachment
+  has_many :virtual_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
 
   def id
@@ -44,6 +44,10 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     ActivityPub::TagManager.instance.url_for(object)
   end
 
+  def virtual_attachments
+    object.emojis + object.media_attachments
+  end
+
   def attributed_to
     ActivityPub::TagManager.instance.uri_for(object.account)
   end
@@ -57,7 +61,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def virtual_tags
-    object.mentions + object.tags + object.emojis
+    object.mentions + object.tags
   end
 
   def atom_uri
@@ -141,13 +145,13 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   class CustomEmojiSerializer < ActiveModel::Serializer
     include RoutingHelper
 
-    attributes :type, :href, :name
+    attributes :type, :url, :name
 
     def type
       'Emoji'
     end
 
-    def href
+    def url
       full_asset_url(object.image.url)
     end
 

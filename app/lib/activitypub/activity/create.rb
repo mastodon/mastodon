@@ -61,8 +61,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_hashtag tag, status
       when 'Mention'
         process_mention tag, status
-      when 'Emoji'
-        process_emoji tag, status
       end
     end
   end
@@ -81,14 +79,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     account.mentions.create(status: status)
   end
 
-  def process_emoji(tag, _status)
-    shortcode = tag['name'].delete(':')
+  def process_emoji(attachment, _status)
+    shortcode = attachment['name'].delete(':')
     emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
 
     return if !emoji.nil? || skip_download?
 
     emoji = CustomEmoji.new(domain: @account.domain, shortcode: shortcode)
-    emoji.image_remote_url = tag['href']
+    emoji.image_remote_url = attachment['url']
     emoji.save
   end
 
@@ -96,15 +94,20 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless @object['attachment'].is_a?(Array)
 
     @object['attachment'].each do |attachment|
-      next if unsupported_media_type?(attachment['mediaType'])
+      case attachment['type']
+      when 'Emoji'
+        process_emoji attachment, status
+      else
+        next if unsupported_media_type?(attachment['mediaType'])
 
-      href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-      media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href)
+        href             = Addressable::URI.parse(attachment['url']).normalize.to_s
+        media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href)
 
-      next if skip_download?
+        next if skip_download?
 
-      media_attachment.file_remote_url = href
-      media_attachment.save
+        media_attachment.file_remote_url = href
+        media_attachment.save
+      end
     end
   end
 
