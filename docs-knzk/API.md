@@ -27,7 +27,7 @@ Form data **(これらと一緒にstatus等も必要です)**:
 
 #### アンケートの投票:
 
-    POST  /api/v1/votes/:id
+    POST /api/v1/votes/:id
     
 Form data:
 
