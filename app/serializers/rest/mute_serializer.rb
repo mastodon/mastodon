@@ -13,4 +13,3 @@ class REST::MuteSerializer < ActiveModel::Serializer
     REST::AccountSerializer.new(object.target_account)
   end
 end
-
