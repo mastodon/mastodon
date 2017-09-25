@@ -161,10 +161,8 @@ class Item extends React.PureComponent {
       );
     }
 
-    const style = standalone ? {} : { left, top, right, bottom, width: `${width}%`, height: `${height}%` };
-
     return (
-      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={style}>
+      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
         {thumbnail}
       </div>
     );
