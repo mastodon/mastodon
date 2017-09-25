@@ -62,6 +62,27 @@ body {
     height: 100%;
     padding: 0;
   }
+
+  &.error {
+    text-align: center;
+    color: $ui-primary-color;
+    padding: 20px;
+
+    .dialog img {
+      display: block;
+      margin: 20px auto;
+      margin-top: 50px;
+      max-width: 600px;
+      width: 100%;
+      height: auto;
+    }
+
+    .dialog h1 {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 400;
+    }
+  }
 }
 
 button {
