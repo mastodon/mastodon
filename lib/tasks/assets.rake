@@ -2,6 +2,7 @@
 
 if Rake::Task.task_defined?('assets:precompile')
   Rake::Task['assets:precompile'].enhance do
+    Webpacker::Manifest.load
     html = ApplicationController.render('errors/500', layout: 'error')
     File.write(Rails.root.join('public', '500.html'), html)
   end
