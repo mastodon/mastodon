@@ -322,7 +322,7 @@ ActiveRecord::Schema.define(version: 20170924022025) do
 
   create_table "statuses", force: :cascade do |t|
     t.string "uri"
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.text "text", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -331,8 +331,8 @@ ActiveRecord::Schema.define(version: 20170924022025) do
     t.string "url"
     t.boolean "sensitive", default: false, null: false
     t.integer "visibility", default: 0, null: false
-    t.bigint "in_reply_to_account_id"
-    t.bigint "application_id"
+    t.integer "in_reply_to_account_id"
+    t.integer "application_id"
     t.text "spoiler_text", default: "", null: false
     t.boolean "reply", default: false, null: false
     t.integer "favourites_count", default: 0, null: false
