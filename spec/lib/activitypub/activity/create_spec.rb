@@ -225,10 +225,10 @@ RSpec.describe ActivityPub::Activity::Create do
           id: 'bar',
           type: 'Note',
           content: 'Lorem ipsum :tinking:',
-          tag: [
+          attachment: [
             {
               type: 'Emoji',
-              href: 'http://example.com/emoji.png',
+              url: 'http://example.com/emoji.png',
               name: 'tinking',
             },
           ],
