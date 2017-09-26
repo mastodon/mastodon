@@ -14,12 +14,9 @@ const entryPath = join(settings.source_path, settings.source_entry_path);
 const packPaths = sync(join(entryPath, extensionGlob));
 const entryPacks = [...packPaths, ...localePackPaths].filter(path => path !== join(entryPath, 'custom.js'));
 
-const customApplicationStyle = resolve(join(settings.source_path, 'styles/custom.scss'));
-const originalApplicationStyle = resolve(join(settings.source_path, 'styles/application.scss'));
-
 const themePaths = Object.keys(themes).reduce(
   (themePaths, name) => {
-    themeData = themes[name];
+    const themeData = themes[name];
     themePaths[`themes/${name}`] = resolve(themeData.pack_directory, themeData.pack);
     return themePaths;
   }, {}
