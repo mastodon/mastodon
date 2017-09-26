@@ -210,7 +210,7 @@ module Mastodon
     # column - The name of the column to create the foreign key on.
     # on_delete - The action to perform when associated data is removed,
     #             defaults to "CASCADE".
-    def add_concurrent_foreign_key(source, target, column:, on_delete: :cascade)
+    def add_concurrent_foreign_key(source, target, column:, on_delete: :cascade, target_col: 'id')
       # Transactions would result in ALTER TABLE locks being held for the
       # duration of the transaction, defeating the purpose of this method.
       if transaction_open?
@@ -230,7 +230,7 @@ module Mastodon
 
       disable_statement_timeout
 
-      key_name = concurrent_foreign_key_name(source, column)
+      key_name = concurrent_foreign_key_name(source, column, target_col)
 
       # Using NOT VALID allows us to create a key without immediately
       # validating it. This means we keep the ALTER TABLE lock only for a
@@ -240,7 +240,7 @@ module Mastodon
       ALTER TABLE #{source}
       ADD CONSTRAINT #{key_name}
       FOREIGN KEY (#{column})
-      REFERENCES #{target} (id)
+      REFERENCES #{target} (#{target_col})
       #{on_delete ? "ON DELETE #{on_delete.upcase}" : ''}
       NOT VALID;
       EOF
@@ -256,8 +256,8 @@ module Mastodon
     # PostgreSQL constraint names have a limit of 63 bytes. The logic used
     # here is based on Rails' foreign_key_name() method, which unfortunately
     # is private so we can't rely on it directly.
-    def concurrent_foreign_key_name(table, column)
-      "fk_#{Digest::SHA256.hexdigest("#{table}_#{column}_fk").first(10)}"
+    def concurrent_foreign_key_name(table, column, target_col)
+      "fk_#{Digest::SHA256.hexdigest("#{table}_#{column}_#{target_col}_fk").first(10)}"
     end
 
     # Long-running migrations may take more than the timeout allowed by
@@ -513,6 +513,44 @@ module Mastodon
       
       was_primary = (ActiveRecord::Base.get_primary_key(table) == column.to_s)
       old_default_fn = column_for(table, column).default_function
+      
+      old_fks = []
+      if was_primary
+        # Get any foreign keys pointing at this column we need to recreate, and
+        # remove the old ones.
+        # Based on code from:
+        # http://errorbank.blogspot.com/2011/03/list-all-foreign-keys-references-for.html
+        old_fks_res = execute <<-EOF.strip_heredoc
+          select m.relname as src_table,
+            (select a.attname
+              from pg_attribute a
+              where a.attrelid = m.oid
+                and a.attnum = o.conkey[1]
+                and a.attisdropped = false) as src_col,
+            o.conname as name,
+            o.confdeltype as on_delete
+          from pg_constraint o
+          left join pg_class f on f.oid = o.confrelid 
+          left join pg_class c on c.oid = o.conrelid
+          left join pg_class m on m.oid = o.conrelid
+          where o.contype = 'f'
+            and o.conrelid in (
+              select oid from pg_class c where c.relkind = 'r')
+            and f.relname = '#{table}';
+          EOF
+        old_fks = old_fks_res.to_a
+        old_fks.each do |old_fk|
+          add_concurrent_foreign_key(
+            old_fk['src_table'],
+            table,
+            column: old_fk['src_col'],
+            target_col: temp_column,
+            on_delete: extract_foreign_key_action(old_fk['on_delete'])
+          )
+          
+          remove_foreign_key(old_fk['src_table'], name: old_fk['name'])
+        end
+      end
 
       transaction do
         # This has to be performed in a transaction as otherwise we might have
@@ -545,9 +583,20 @@ module Mastodon
       
       # Rename any foreign keys back to names based on the real column.
       foreign_keys_for(table, column).each do |fk|
-        old_fk_name = concurrent_foreign_key_name(fk.from_table, temp_column)
-        new_fk_name = concurrent_foreign_key_name(fk.from_table, column)
+        old_fk_name = concurrent_foreign_key_name(fk.from_table, temp_column, 'id')
+        new_fk_name = concurrent_foreign_key_name(fk.from_table, column, 'id')
         execute("ALTER TABLE #{fk.from_table} RENAME CONSTRAINT " +
+          "#{old_fk_name} TO #{new_fk_name}")
+      end
+      
+      # Rename any foreign keys from other tables to names based on the real
+      # column.
+      old_fks.each do |old_fk|
+        old_fk_name = concurrent_foreign_key_name(old_fk['src_table'],
+          old_fk['src_col'], temp_column)
+        new_fk_name = concurrent_foreign_key_name(old_fk['src_table'],
+          old_fk['src_col'], column)
+        execute("ALTER TABLE #{old_fk['src_table']} RENAME CONSTRAINT " +
           "#{old_fk_name} TO #{new_fk_name}")
       end
       

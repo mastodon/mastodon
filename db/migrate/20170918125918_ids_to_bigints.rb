@@ -72,15 +72,8 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
     INCLUDED_COLUMNS.each do |column_parts|
       table, column = column_parts
 
-      if column == :id
-        # We can't use the concurrent migrations the way they're
-        # written at the moment because of foreign keys constraints.
-        # Luckily, most such tables should be small.
-        change_column table, column, :bigint
-      else
-        change_column_type_concurrently table, column, :bigint
-        cleanup_concurrent_column_type_change table, column
-      end
+      change_column_type_concurrently table, column, :bigint
+      cleanup_concurrent_column_type_change table, column
     end
   end
 
@@ -88,12 +81,8 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
     INCLUDED_COLUMNS.each do |column_parts|
       table, column = column_parts
 
-      if column == :id
-        change_column table, column, :integer
-      else
-        change_column_type_concurrently table, column, :integer
-        cleanup_concurrent_column_type_change table, column
-      end
+      change_column_type_concurrently table, column, :integer
+      cleanup_concurrent_column_type_change table, column
     end
   end
 end

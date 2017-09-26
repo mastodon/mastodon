@@ -438,46 +438,46 @@ ActiveRecord::Schema.define(version: 20170924022025) do
     t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true
   end
 
-  add_foreign_key "account_domain_blocks", "accounts", name: "fk_8da10d9564", on_delete: :cascade
-  add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_009e331529", on_delete: :cascade
-  add_foreign_key "blocks", "accounts", name: "fk_93fa0ef60e", on_delete: :cascade
-  add_foreign_key "conversation_mutes", "accounts", name: "fk_69510c1b77", on_delete: :cascade
+  add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
+  add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
+  add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
+  add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
-  add_foreign_key "favourites", "accounts", name: "fk_0763833708", on_delete: :cascade
-  add_foreign_key "favourites", "statuses", name: "fk_1d7900c97d", on_delete: :cascade
-  add_foreign_key "follow_requests", "accounts", column: "target_account_id", name: "fk_972b9f1173", on_delete: :cascade
-  add_foreign_key "follow_requests", "accounts", name: "fk_0af6523f3c", on_delete: :cascade
-  add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_ac4936d17b", on_delete: :cascade
-  add_foreign_key "follows", "accounts", name: "fk_f59577ad9d", on_delete: :cascade
-  add_foreign_key "imports", "accounts", name: "fk_138d41de18", on_delete: :cascade
-  add_foreign_key "media_attachments", "accounts", name: "fk_2d19cca08b", on_delete: :nullify
+  add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
+  add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
+  add_foreign_key "follow_requests", "accounts", column: "target_account_id", name: "fk_9291ec025d", on_delete: :cascade
+  add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
+  add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
+  add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
+  add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
+  add_foreign_key "media_attachments", "accounts", name: "fk_96dd81e81b", on_delete: :nullify
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify
-  add_foreign_key "mentions", "accounts", name: "fk_3130ff6a8f", on_delete: :cascade
+  add_foreign_key "mentions", "accounts", name: "fk_970d43f9d1", on_delete: :cascade
   add_foreign_key "mentions", "statuses", on_delete: :cascade
-  add_foreign_key "mutes", "accounts", column: "target_account_id", name: "fk_802b245a68", on_delete: :cascade
-  add_foreign_key "mutes", "accounts", name: "fk_cb49248c07", on_delete: :cascade
-  add_foreign_key "notifications", "accounts", column: "from_account_id", name: "fk_a9df2835a1", on_delete: :cascade
-  add_foreign_key "notifications", "accounts", name: "fk_1c0a19e3ee", on_delete: :cascade
-  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id", name: "fk_b4b53e07b8", on_delete: :cascade
-  add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id", name: "fk_330c32d8d9", on_delete: :cascade
-  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", name: "fk_732cb83ab7", on_delete: :cascade
-  add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", name: "fk_ee63f25419", on_delete: :cascade
-  add_foreign_key "oauth_applications", "users", column: "owner_id", name: "fk_cc886e315a", on_delete: :cascade
-  add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_e8e172880e", on_delete: :nullify
-  add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_66528197fd", on_delete: :cascade
-  add_foreign_key "reports", "accounts", name: "fk_126d07513e", on_delete: :cascade
-  add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_a0d14b4784", on_delete: :cascade
-  add_foreign_key "session_activations", "users", name: "fk_dd343c7f5b", on_delete: :cascade
-  add_foreign_key "status_pins", "accounts", on_delete: :cascade
+  add_foreign_key "mutes", "accounts", column: "target_account_id", name: "fk_eecff219ea", on_delete: :cascade
+  add_foreign_key "mutes", "accounts", name: "fk_b8d8daf315", on_delete: :cascade
+  add_foreign_key "notifications", "accounts", column: "from_account_id", name: "fk_fbd6b0bf9e", on_delete: :cascade
+  add_foreign_key "notifications", "accounts", name: "fk_c141c8ee55", on_delete: :cascade
+  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id", name: "fk_34d54b0a33", on_delete: :cascade
+  add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id", name: "fk_63b044929b", on_delete: :cascade
+  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", name: "fk_f5fc4c1ee3", on_delete: :cascade
+  add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", name: "fk_e84df68546", on_delete: :cascade
+  add_foreign_key "oauth_applications", "users", column: "owner_id", name: "fk_b0988c7c0a", on_delete: :cascade
+  add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
+  add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_eb37af34f0", on_delete: :cascade
+  add_foreign_key "reports", "accounts", name: "fk_4b81f7522c", on_delete: :cascade
+  add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade
+  add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade
+  add_foreign_key "status_pins", "accounts", name: "fk_d4cb435b62", on_delete: :cascade
   add_foreign_key "status_pins", "statuses", on_delete: :cascade
-  add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", name: "fk_5904f5f441", on_delete: :nullify
-  add_foreign_key "statuses", "accounts", name: "fk_1a7bc3aca9", on_delete: :cascade
+  add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", name: "fk_c7fa917661", on_delete: :nullify
+  add_foreign_key "statuses", "accounts", name: "fk_9bda1543f7", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
   add_foreign_key "statuses_tags", "statuses", on_delete: :cascade
-  add_foreign_key "statuses_tags", "tags", on_delete: :cascade
-  add_foreign_key "stream_entries", "accounts", name: "fk_9f7d3aa7ef", on_delete: :cascade
-  add_foreign_key "subscriptions", "accounts", name: "fk_eb0e3ffd90", on_delete: :cascade
-  add_foreign_key "users", "accounts", name: "fk_61ac11da2b", on_delete: :cascade
-  add_foreign_key "web_settings", "users", name: "fk_550a4959e4", on_delete: :cascade
+  add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
+  add_foreign_key "stream_entries", "accounts", name: "fk_5659b17554", on_delete: :cascade
+  add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
+  add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
+  add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
 end
