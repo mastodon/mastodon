@@ -517,6 +517,15 @@ module Mastodon
       transaction do
         # This has to be performed in a transaction as otherwise we might have
         # inconsistent data.
+        
+        # If there was a sequence owned by the old column, make it owned by the
+        # new column, as it will otherwise be deleted when we get rid of the
+        # old column.
+        if (seq_match = /^nextval\('([^']*)'(::text|::regclass)?\)/.match(old_default_fn))
+          seq_name = seq_match[1]
+          execute("ALTER SEQUENCE #{seq_name} OWNED BY #{table}.#{temp_column}")
+        end
+        
         cleanup_concurrent_column_rename(table, column, temp_column)
         rename_column(table, temp_column, column)
         
@@ -668,12 +677,18 @@ module Mastodon
         # This is necessary as we can't properly rename indexes such as
         # "ci_taggings_idx".
         name = index.name.include?(old) ? index.name.gsub(old, new) : index.name + "_copy#{new}"
+        
+        # If the order contained the old column, map it to the new one.
+        order = index.orders
+        if order.key?(old)
+          order[new] = order.delete(old)
+        end
 
         options = {
           unique: index.unique,
           name: name,
           length: index.lengths,
-          order: index.orders
+          order: order
         }
 
         # These options are not supported by MySQL, so we only add them if
