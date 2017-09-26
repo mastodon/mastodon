@@ -33,7 +33,7 @@ class Api::V2::MutesController < Api::BaseController
   end
 
   def prev_path
-    url_for pagination_params(since_id: pagination_since_id) unless @data.empty?
+    url_for pagination_params(since_id: pagination_since_id) unless @mutes.empty?
   end
 
   def pagination_max_id
