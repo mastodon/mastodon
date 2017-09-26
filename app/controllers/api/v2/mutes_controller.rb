@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::MutesController < Api::BaseController
+class Api::V2::MutesController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow }
   before_action :require_user!
   after_action :insert_pagination_headers
@@ -8,18 +8,12 @@ class Api::V1::MutesController < Api::BaseController
   respond_to :json
 
   def index
-    @accounts = load_accounts
-    render json: @accounts, each_serializer: REST::AccountSerializer
+    @mutes = load_mutes
+    render json: @mutes, each_serializer: REST::MuteSerializer
   end
 
-  private
-
-  def load_accounts
-    default_accounts.merge(paginated_mutes).to_a
-  end
-
-  def default_accounts
-    Account.includes(:muted_by).references(:muted_by)
+  def load_mutes
+    paginated_mutes.includes(:target_account).to_a
   end
 
   def paginated_mutes
@@ -35,27 +29,23 @@ class Api::V1::MutesController < Api::BaseController
   end
 
   def next_path
-    if records_continue?
-      api_v1_mutes_url pagination_params(max_id: pagination_max_id)
-    end
+    url_for pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
-    unless @accounts.empty?
-      api_v1_mutes_url pagination_params(since_id: pagination_since_id)
-    end
+    url_for pagination_params(since_id: pagination_since_id) unless @data.empty?
   end
 
   def pagination_max_id
-    @accounts.last.muted_by_ids.last
+    @mutes.last.id
   end
 
   def pagination_since_id
-    @accounts.first.muted_by_ids.first
+    @mutes.first.id
   end
 
   def records_continue?
-    @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    @mutes.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
   end
 
   def pagination_params(core_params)

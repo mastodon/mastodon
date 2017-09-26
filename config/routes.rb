@@ -206,11 +206,7 @@ Rails.application.routes.draw do
       resources :follows,    only: [:create]
       resources :media,      only: [:create, :update]
       resources :blocks,     only: [:index]
-      resources :mutes,      only: [:index] do
-        collection do 
-          get 'details'
-        end
-      end
+      resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
 
@@ -258,6 +254,10 @@ Rails.application.routes.draw do
           post :unmute
         end
       end
+    end
+
+    namespace :v2 do
+      resources :mutes, only: [:index]
     end
 
     namespace :web do
