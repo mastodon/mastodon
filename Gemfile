@@ -102,8 +102,8 @@ group :development do
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
   gem 'rubocop', require: false
-  gem 'brakeman', '~> 3.6', require: false
-  gem 'bundler-audit', '~> 0.5', require: false
+  gem 'brakeman', '~> 4.0', require: false
+  gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.53', require: false
   gem 'strong_migrations'
 
