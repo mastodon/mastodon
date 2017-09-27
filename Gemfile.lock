@@ -335,6 +335,8 @@ GEM
     rack-cors (0.4.1)
     rack-protection (2.0.0)
       rack
+    rack-proxy (0.6.2)
+      rack
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     rack-timeout (0.4.2)
@@ -510,9 +512,9 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    webpacker (2.0)
+    webpacker (3.0.1)
       activesupport (>= 4.2)
-      multi_json (~> 1.2)
+      rack-proxy (>= 0.6.1)
       railties (>= 4.2)
     webpush (0.3.2)
       hkdf (~> 0.2)
@@ -621,7 +623,7 @@ DEPENDENCIES
   tzinfo-data (~> 1.2017)
   uglifier (~> 3.2)
   webmock (~> 3.0)
-  webpacker (~> 2.0)
+  webpacker (~> 3.0)
   webpush
 
 RUBY VERSION
