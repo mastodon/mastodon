@@ -6,6 +6,12 @@ class CreateProfileChange < ActiveRecord::Migration[5.1]
       t.string "display_name", default: "", null: false
     end
 
+    reversible do |dir|
+      dir.down do
+          Notification.where(activity_type: 'ProfileChange').delete_all
+      end
+    end
+
     add_foreign_key :profile_changes, :accounts, column: :account_id, on_delete: :cascade
     add_index :profile_changes, :account_id, unique: true
   end
