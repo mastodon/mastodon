@@ -105,7 +105,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       next if unsupported_media_type?(attachment['mediaType']) || attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-      media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href)
+      media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href, description: attachment['name'].presence)
 
       next if skip_download?
 
