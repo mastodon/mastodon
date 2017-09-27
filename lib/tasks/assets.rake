@@ -16,7 +16,7 @@ end
 
 if Rake::Task.task_defined?('assets:precompile')
   Rake::Task['assets:precompile'].enhance do
-    Webpacker::Manifest.load
+    Webpacker.manifest.refresh
     Rake::Task['assets:generate_static_pages'].invoke
   end
 end
