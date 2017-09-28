@@ -32,7 +32,7 @@ class PreviewCard < ApplicationRecord
 
   has_and_belongs_to_many :statuses
 
-  has_attached_file :image, styles: { original: '280x120>' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :image, styles: { original: '280x280>' }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
   include Remotable

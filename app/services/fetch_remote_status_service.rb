@@ -27,7 +27,7 @@ class FetchRemoteStatusService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS))
+    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS))
     domain  = Addressable::URI.parse(url).normalized_host
 
     return nil unless !account.nil? && confirmed_domain?(domain, account)

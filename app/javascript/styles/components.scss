@@ -222,12 +222,16 @@
   }
 }
 
+.dropdown-menu {
+  position: absolute;
+}
+
 .dropdown--active .icon-button {
   color: $ui-highlight-color;
 }
 
 .dropdown--active::after {
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: 631px) {
     content: "";
     display: block;
     position: absolute;
@@ -395,16 +399,10 @@
 .compose-form__autosuggest-wrapper {
   position: relative;
 
-  .emoji-picker__dropdown {
+  .emoji-picker-dropdown {
     position: absolute;
     right: 5px;
     top: 5px;
-
-    &.dropdown--active::after {
-      border-color: transparent transparent $base-border-color;
-      bottom: -1px;
-      right: 8px;
-    }
 
     ::-webkit-scrollbar-track:hover,
     ::-webkit-scrollbar-track:active {
@@ -444,6 +442,7 @@
   display: inline-block;
   font-size: inherit;
   vertical-align: middle;
+  object-fit: contain;
   margin: -.2ex .15em .2ex;
   width: 16px;
   height: 16px;
@@ -809,8 +808,8 @@
 
 .status__action-bar-dropdown {
   float: left;
-  height: 18px;
-  width: 18px;
+  height: 23.15px;
+  width: 23.15px;
 
   // Dropdown style override for centering on the icon
   .dropdown--active {
@@ -836,26 +835,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-
-  .dropdown {
-    display: block;
-    width: 18px;
-    height: 18px;
-  }
-
-  .dropdown--active {
-    .dropdown__content.dropdown__left {
-      left: 20px;
-      right: initial;
-    }
-
-    &::after {
-      bottom: initial;
-      margin-left: 7px;
-      margin-top: -7px;
-      right: initial;
-    }
-  }
 }
 
 .detailed-status {
@@ -1131,7 +1110,7 @@
 }
 
 .account__action-bar-dropdown {
-  flex: 1 1 auto;
+  flex: 0 1 calc(50% - 140px);
   padding: 10px;
 
   .dropdown--active {
@@ -1158,7 +1137,7 @@
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
-  width: 80px;
+  flex: 0 1 80px;
   border-left: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 5px;
 
@@ -1445,10 +1424,80 @@
   position: absolute;
 }
 
-.dropdown__sep {
+.dropdown-menu__separator {
   border-bottom: 1px solid darken($ui-secondary-color, 8%);
   margin: 5px 7px 6px;
-  padding-top: 1px;
+  height: 0;
+}
+
+.dropdown-menu {
+  background: $ui-secondary-color;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+
+  ul {
+    list-style: none;
+  }
+}
+
+.dropdown-menu__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+
+  &.left {
+    right: -5px;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: $ui-secondary-color;
+  }
+
+  &.top {
+    bottom: -5px;
+    margin-left: -13px;
+    border-width: 5px 7px 0;
+    border-top-color: $ui-secondary-color;
+  }
+
+  &.bottom {
+    top: -5px;
+    margin-left: -13px;
+    border-width: 0 7px 5px;
+    border-bottom-color: $ui-secondary-color;
+  }
+
+  &.right {
+    left: -5px;
+    margin-top: -5px;
+    border-width: 5px 5px 5px 0;
+    border-right-color: $ui-secondary-color;
+  }
+}
+
+.dropdown-menu__item {
+  a {
+    font-size: 13px;
+    line-height: 18px;
+    display: block;
+    padding: 4px 14px;
+    box-sizing: border-box;
+    text-decoration: none;
+    background: $ui-secondary-color;
+    color: $ui-base-color;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background: $ui-highlight-color;
+      color: $ui-secondary-color;
+      outline: 0;
+    }
+  }
 }
 
 .dropdown--active .dropdown__content {
@@ -1633,7 +1682,7 @@
 }
 
 :root {  //  Overrides .wide stylings for mobile view
-  @include single-column('screen and (max-width: 1024px)', $parent: null) {
+  @include single-column('screen and (max-width: 630px)', $parent: null) {
     .column,
     .drawer {
       flex: auto;
@@ -1654,7 +1703,7 @@
   }
 }
 
-@include multi-columns('screen and (min-width: 1025px)', $parent: null) {
+@include multi-columns('screen and (min-width: 631px)', $parent: null) {
   .columns-area {
     padding: 0;
   }
@@ -1766,7 +1815,7 @@
   &:hover,
   &:focus,
   &:active {
-    @include multi-columns('screen and (min-width: 1025px)') {
+    @include multi-columns('screen and (min-width: 631px)') {
       background: lighten($ui-base-color, 14%);
       transition: all 100ms linear;
     }
@@ -1786,7 +1835,7 @@
   }
 }
 
-@include multi-columns('screen and (min-width: 1025px)', $parent: null) {
+@include multi-columns('screen and (min-width: 631px)', $parent: null) {
   .tabs-bar {
     display: none;
   }
@@ -2043,15 +2092,18 @@
 }
 
 .autosuggest-textarea__suggestions {
+  box-sizing: border-box;
   display: none;
   position: absolute;
   top: 100%;
   width: 100%;
   z-index: 99;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   background: $ui-secondary-color;
+  border-radius: 0 0 4px 4px;
   color: $ui-base-color;
   font-size: 14px;
+  padding: 6px;
 
   &.autosuggest-textarea__suggestions--visible {
     display: block;
@@ -2061,34 +2113,36 @@
 .autosuggest-textarea__suggestions__item {
   padding: 10px;
   cursor: pointer;
+  border-radius: 4px;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active,
+  &.selected {
     background: darken($ui-secondary-color, 10%);
   }
-
-  &.selected {
-    background: $ui-highlight-color;
-    color: $base-border-color;
-  }
 }
 
-.autosuggest-account {
-  overflow: hidden;
+.autosuggest-account,
+.autosuggest-emoji {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 18px;
+  font-size: 14px;
 }
 
-.autosuggest-account-icon {
-  float: left;
-  margin-right: 5px;
+.autosuggest-account-icon,
+.autosuggest-emoji img {
+  display: block;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
 }
 
-.autosuggest-status {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
-  strong {
-    font-weight: 500;
-  }
+.autosuggest-account .display-name__account {
+  color: lighten($ui-base-color, 36%);
 }
 
 .character-counter__wrapper {
@@ -2837,197 +2891,61 @@ button.icon-button.active i.fa-retweet {
   animation-direction: alternate;
 }
 
-.emoji-dialog {
-  width: 245px;
-  height: 270px;
+.emoji-picker-dropdown__menu {
   background: $simple-background-color;
-  box-sizing: border-box;
+  position: absolute;
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   border-radius: 4px;
+  margin-top: 5px;
+
+  .emoji-mart-scroll {
+    transition: opacity 200ms ease;
+  }
+
+  &.selecting .emoji-mart-scroll {
+    opacity: 0.5;
+  }
+}
+
+.emoji-picker-dropdown__modifiers {
+  position: absolute;
+  top: 60px;
+  right: 11px;
+  cursor: pointer;
+}
+
+.emoji-picker-dropdown__modifiers__menu {
+  position: absolute;
+  z-index: 4;
+  top: -4px;
+  left: -8px;
+  background: $simple-background-color;
+  border-radius: 4px;
+  box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
   overflow: hidden;
-  position: relative;
-  box-shadow: 0 0 8px rgba($base-shadow-color, 0.2);
 
-  .emojione {
-    margin: 0;
-    width: 100%;
-    height: auto;
-  }
-
-  .emoji-dialog-header {
-    padding: 0 10px;
-
-    ul {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    li {
-      display: inline-block;
-      box-sizing: border-box;
-      padding: 10px 5px;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-
-      .emoji {
-        width: 18px;
-        height: 18px;
-      }
-
-      img,
-      svg {
-        width: 18px;
-        height: 18px;
-        filter: grayscale(100%);
-      }
-
-      &:hover {
-        img,
-        svg {
-          filter: grayscale(0);
-        }
-      }
-
-      &.active {
-        border-bottom-color: $ui-highlight-color;
-
-        img,
-        svg {
-          filter: grayscale(0);
-        }
-      }
-    }
-  }
-
-  .emoji-row {
-    box-sizing: border-box;
-    overflow-y: hidden;
-    padding-left: 10px;
-
-    .emoji {
-      display: inline-block;
-      padding: 2.5px;
-      border-radius: 4px;
-    }
-  }
-
-  .emoji-category-header {
-    box-sizing: border-box;
-    overflow-y: hidden;
-    padding: 10px 8px 10px 16px;
-    display: table;
-
-    > * {
-      display: table-cell;
-      vertical-align: middle;
-    }
-  }
-
-  .emoji-category-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: darken($ui-secondary-color, 18%);
-    cursor: default;
-  }
-
-  .emoji-category-heading-decoration {
-    text-align: right;
-  }
-
-  .modifiers {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    vertical-align: middle;
-    white-space: nowrap;
-    margin-top: 4px;
-
-    li {
-      display: inline-block;
-      padding: 0 2px;
-
-      &:last-of-type {
-        padding-right: 0;
-      }
-    }
-
-    .modifier {
-      display: inline-block;
-      border-radius: 10px;
-      width: 15px;
-      height: 15px;
-      position: relative;
-      cursor: pointer;
-
-      &.active::after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 7px;
-        height: 7px;
-        border-radius: 10px;
-        border: 2px solid $base-border-color;
-        top: 2px;
-        left: 2px;
-      }
-    }
-  }
-
-  .emoji-search-wrapper {
-    padding: 10px;
-    border-bottom: 1px solid lighten($ui-secondary-color, 4%);
-  }
-
-  .emoji-search {
-    font-size: 14px;
-    font-weight: 400;
-    padding: 7px 9px;
-    font-family: inherit;
+  button {
     display: block;
-    width: 100%;
-    background: rgba($ui-secondary-color, 0.3);
-    color: darken($ui-secondary-color, 18%);
-    border: 1px solid $ui-secondary-color;
-    border-radius: 4px;
-  }
-
-  .emoji-categories-wrapper {
-    position: absolute;
-    top: 42px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .emoji-search-wrapper + .emoji-categories-wrapper {
-    top: 93px;
-  }
-
-  .emoji-row .emoji {
-    img,
-    svg {
-      transition: transform 60ms ease-in-out;
-    }
-
-    &:hover {
-      background: lighten($ui-secondary-color, 3%);
-
-      img,
-      svg {
-        transform: translateZ(0) scale(1.2);
-      }
-    }
-  }
-
-  .emoji {
-    width: 22px;
-    height: 22px;
     cursor: pointer;
+    border: 0;
+    padding: 4px 8px;
+    background: transparent;
 
-    &:focus {
-      outline: 0;
+    &:hover,
+    &:focus,
+    &:active {
+      background: rgba($ui-secondary-color, 0.4);
     }
+  }
+
+  .emoji-mart-emoji {
+    height: 22px;
+  }
+}
+
+.emoji-mart-emoji {
+  span {
+    background-repeat: no-repeat;
   }
 }
 
@@ -3314,8 +3232,6 @@ button.icon-button.active i.fa-retweet {
 }
 
 .search__input {
-  padding-right: 30px;
-  color: $ui-secondary-color;
   outline: 0;
   box-sizing: border-box;
   display: block;
@@ -3851,6 +3767,10 @@ button.icon-button.active i.fa-retweet {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  .dropdown-menu__separator {
+    border-bottom-color: $ui-secondary-color;
+  }
 }
 
 .boost-modal__container {
@@ -3929,6 +3849,10 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   max-width: 80vw;
 
+  .actions-modal__item-label {
+    font-weight: 500;
+  }
+
   ul {
     overflow-y: auto;
     flex-shrink: 0;
@@ -3941,11 +3865,20 @@ button.icon-button.active i.fa-retweet {
       a {
         color: $ui-base-color;
         display: flex;
-        padding: 10px;
+        padding: 12px 16px;
+        font-size: 15px;
         align-items: center;
         text-decoration: none;
 
-        &.active {
+        &,
+        button {
+          transition: none;
+        }
+
+        &.active,
+        &:hover,
+        &:active,
+        &:focus {
           &,
           button {
             background: $ui-highlight-color;
@@ -4102,6 +4035,12 @@ button.icon-button.active i.fa-retweet {
   display: block;
   float: left;
   position: relative;
+
+  &.standalone {
+    .media-gallery__item-gifv-thumbnail {
+      transform: none;
+    }
+  }
 }
 
 .media-gallery__item-thumbnail {
@@ -4109,6 +4048,7 @@ button.icon-button.active i.fa-retweet {
   text-decoration: none;
   width: 100%;
   height: 100%;
+  line-height: 0;
   display: flex;
 
   img {
@@ -4417,12 +4357,14 @@ button.icon-button.active i.fa-retweet {
 .account-gallery__container {
   margin: -2px;
   padding: 4px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .account-gallery__item {
-  float: left;
-  width: 96px;
-  height: 96px;
+  flex: 1 1 auto;
+  width: calc(100% / 3 - 4px);
+  height: 95px;
   margin: 2px;
 
   a {
@@ -4433,6 +4375,14 @@ button.icon-button.active i.fa-retweet {
     background-size: cover;
     background-position: center;
     position: relative;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: 0;
+    }
   }
 }
 
@@ -4502,7 +4452,7 @@ noscript {
   100% { opacity: 1; }
 }
 
-@media screen and (max-width: 1024px) and (max-height: 400px) {
+@media screen and (max-width: 630px) and (max-height: 400px) {
   $duration: 400ms;
   $delay: 100ms;
 

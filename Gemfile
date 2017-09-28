@@ -67,7 +67,7 @@ gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'statsd-instrument', '~> 2.1'
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2017'
-gem 'webpacker', '~> 2.0'
+gem 'webpacker', '~> 3.0'
 gem 'webpush'
 
 gem 'json-ld-preloaded', '~> 2.2.1'
@@ -102,9 +102,10 @@ group :development do
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
   gem 'rubocop', require: false
-  gem 'brakeman', '~> 3.6', require: false
-  gem 'bundler-audit', '~> 0.5', require: false
+  gem 'brakeman', '~> 4.0', require: false
+  gem 'bundler-audit', '~> 0.6', require: false
   gem 'scss_lint', '~> 0.53', require: false
+  gem 'strong_migrations'
 
   gem 'capistrano', '~> 3.8'
   gem 'capistrano-rails', '~> 1.2'

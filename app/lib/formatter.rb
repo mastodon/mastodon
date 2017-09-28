@@ -22,7 +22,7 @@ class Formatter
     unless status.local?
       html = reformat(raw_content)
       html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
-      return html
+      return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
     linkable_accounts = status.mentions.map(&:account)
@@ -39,7 +39,7 @@ class Formatter
   end
 
   def reformat(html)
-    sanitize(html, Sanitize::Config::MASTODON_STRICT).html_safe # rubocop:disable Rails/OutputSafety
+    sanitize(html, Sanitize::Config::MASTODON_STRICT)
   end
 
   def plaintext(status)
@@ -61,6 +61,12 @@ class Formatter
 
   def sanitize(html, config)
     Sanitize.fragment(html, config)
+  end
+
+  def format_spoiler(status)
+    html = encode(status.spoiler_text)
+    html = encode_custom_emojis(html, status.emojis)
+    html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   private

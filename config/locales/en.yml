@@ -310,6 +310,9 @@ en:
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
     '429': Throttled
+    '500':
+      content: We're sorry, but something went wrong on our end.
+      title: This page is not correct
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
   exports:
     blocks: You block
@@ -552,6 +555,8 @@ en:
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

@@ -4,17 +4,23 @@ class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings, :push_subscription
 
+  has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
+
+  def custom_emojis
+    CustomEmoji.local
+  end
+
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
-      admin: object.admin&.id,
+      admin: object.admin&.id&.to_s,
     }
 
     if object.current_account
-      store[:me]             = object.current_account.id
+      store[:me]             = object.current_account.id.to_s
       store[:unfollow_modal] = object.current_account.user.setting_unfollow_modal
       store[:boost_modal]    = object.current_account.user.setting_boost_modal
       store[:delete_modal]   = object.current_account.user.setting_delete_modal
@@ -28,7 +34,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     store = {}
 
     if object.current_account
-      store[:me]                = object.current_account.id
+      store[:me]                = object.current_account.id.to_s
       store[:default_privacy]   = object.current_account.user.setting_default_privacy
       store[:default_sensitive] = object.current_account.user.setting_default_sensitive
     end
@@ -40,12 +46,12 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def accounts
     store = {}
-    store[object.current_account.id] = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
-    store[object.admin.id]           = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
+    store[object.current_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
+    store[object.admin.id.to_s]           = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
     store
   end
 
   def media_attachments
-    { accept_content_types: MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES }
+    { accept_content_types: MediaAttachment::IMAGE_FILE_EXTENSIONS + MediaAttachment::VIDEO_FILE_EXTENSIONS + MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES }
   end
 end

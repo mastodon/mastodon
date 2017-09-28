@@ -38,10 +38,10 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, props) => ({
-    status: getStatus(state, Number(props.params.statusId)),
+    status: getStatus(state, props.params.statusId),
     settings: state.get('local_settings'),
-    ancestorsIds: state.getIn(['contexts', 'ancestors', Number(props.params.statusId)]),
-    descendantsIds: state.getIn(['contexts', 'descendants', Number(props.params.statusId)]),
+    ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
+    descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
     me: state.getIn(['meta', 'me']),
     boostModal: state.getIn(['meta', 'boost_modal']),
     deleteModal: state.getIn(['meta', 'delete_modal']),
@@ -66,7 +66,7 @@ export default class Status extends ImmutablePureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
-    me: PropTypes.number,
+    me: PropTypes.string,
     boostModal: PropTypes.bool,
     deleteModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
@@ -74,12 +74,12 @@ export default class Status extends ImmutablePureComponent {
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchStatus(Number(this.props.params.statusId)));
+    this.props.dispatch(fetchStatus(this.props.params.statusId));
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this.props.dispatch(fetchStatus(Number(nextProps.params.statusId)));
+      this.props.dispatch(fetchStatus(nextProps.params.statusId));
     }
   }
 
