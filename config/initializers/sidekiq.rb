@@ -9,14 +9,8 @@ end
 
 Sidekiq.configure_server do |config|
   config.redis = redis_params
-  config.client_middleware do |chain|
-    chain.add Mastodon::UniqueRetryJobMiddleware
-  end
 end
 
 Sidekiq.configure_client do |config|
   config.redis = redis_params
-  config.client_middleware do |chain|
-    chain.add Mastodon::UniqueRetryJobMiddleware
-  end
 end

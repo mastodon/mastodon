@@ -813,6 +813,10 @@
         "id": "navigation_bar.info"
       },
       {
+        "defaultMessage": "Pinned toots",
+        "id": "navigation_bar.pins"
+      },
+      {
         "defaultMessage": "FAQ",
         "id": "getting_started.faq"
       },
@@ -991,6 +995,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Pinned toot",
+        "id": "column.pins"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/pinned_statuses/index.json"
   },
   {
     "descriptors": [
@@ -1326,5 +1339,54 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Play",
+        "id": "video.play"
+      },
+      {
+        "defaultMessage": "Pause",
+        "id": "video.pause"
+      },
+      {
+        "defaultMessage": "Mute sound",
+        "id": "video.mute"
+      },
+      {
+        "defaultMessage": "Unmute sound",
+        "id": "video.unmute"
+      },
+      {
+        "defaultMessage": "Hide video",
+        "id": "video.hide"
+      },
+      {
+        "defaultMessage": "Expand video",
+        "id": "video.expand"
+      },
+      {
+        "defaultMessage": "Close video",
+        "id": "video.close"
+      },
+      {
+        "defaultMessage": "Full screen",
+        "id": "video.fullscreen"
+      },
+      {
+        "defaultMessage": "Exit full screen",
+        "id": "video.exit_fullscreen"
+      },
+      {
+        "defaultMessage": "Sensitive content",
+        "id": "status.sensitive_warning"
+      },
+      {
+        "defaultMessage": "Click to view",
+        "id": "status.sensitive_toggle"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/video/index.json"
   }
 ]

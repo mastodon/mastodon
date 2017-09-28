@@ -106,6 +106,7 @@ class Account < ApplicationRecord
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
+  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
   delegate :email,
            :current_sign_in_ip,
@@ -174,6 +175,10 @@ class Account < ApplicationRecord
   end
 
   class << self
+    def readonly_attributes
+      super - %w(statuses_count following_count followers_count)
+    end
+
     def domains
       reorder(nil).pluck('distinct accounts.domain')
     end

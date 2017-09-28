@@ -21,7 +21,7 @@ import {
   blockAccount,
   muteAccount,
 } from '../actions/accounts';
-import { muteStatus, unmuteStatus, deleteStatus, setStatusHeight } from '../actions/statuses';
+import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -139,10 +139,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else {
       dispatch(muteStatus(status.get('id')));
     }
-  },
-
-  onHeightChange (status, height) {
-    dispatch(setStatusHeight(status.get('id'), height));
   },
 
 });
