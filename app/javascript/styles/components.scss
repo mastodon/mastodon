@@ -335,12 +335,52 @@
 
 .compose-form__uploads-wrapper {
   display: flex;
+  flex-direction: row;
   padding: 5px;
+  flex-wrap: wrap;
 }
 
 .compose-form__upload {
   flex: 1 1 0;
+  min-width: 40%;
   margin: 5px;
+
+  &-description {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+    padding: 10px;
+    opacity: 0;
+    transition: opacity .1s ease;
+
+    input {
+      background: transparent;
+      color: $ui-secondary-color;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+
+      &:focus {
+        color: $white;
+      }
+    }
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .icon-button {
+    mix-blend-mode: difference;
+  }
 }
 
 .compose-form__upload-thumbnail {
@@ -350,13 +390,6 @@
   background-repeat: no-repeat;
   height: 100px;
   width: 100%;
-}
-
-.compose-form__upload-cancel {
-  background-size: cover;
-  border-radius: 4px;
-  height: 100px;
-  width: 100px;
 }
 
 .compose-form__label {
