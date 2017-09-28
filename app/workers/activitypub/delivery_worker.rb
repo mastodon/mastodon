@@ -15,7 +15,10 @@ class ActivityPub::DeliveryWorker
     perform_request
 
     raise Mastodon::UnexpectedResponseError, @response unless response_successful?
+
+    failure_tracker.track_success!
   rescue => e
+    failure_tracker.track_failure!
     raise e.class, "Delivery failed for #{inbox_url}: #{e.message}", e.backtrace[0]
   end
 
@@ -33,5 +36,9 @@ class ActivityPub::DeliveryWorker
 
   def response_successful?
     @response.code > 199 && @response.code < 300
+  end
+
+  def failure_tracker
+    @failure_tracker ||= DeliveryFailureTracker.new(@inbox_url)
   end
 end
