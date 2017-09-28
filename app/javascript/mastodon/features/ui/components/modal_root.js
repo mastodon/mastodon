@@ -54,7 +54,7 @@ export default class ModalRoot extends React.PureComponent {
 
       this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
     } else if (!nextProps.type) {
-      this.setState({revealed: false});
+      this.setState({ revealed: false });
     }
   }
 
@@ -100,13 +100,12 @@ export default class ModalRoot extends React.PureComponent {
 
     if (!visible) {
       return (
-        <div className='modal-root' ref={this.setRef} style={{opacity: 0}}>
-        </div>
+        <div className='modal-root' ref={this.setRef} style={{ opacity: 0 }} />
       );
     }
 
     return (
-      <div className='modal-root' ref={this.setRef} style={{opacity: revealed ? 1 : 0}}>
+      <div className='modal-root' ref={this.setRef} style={{ opacity: revealed ? 1 : 0 }}>
         <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
           <div role='presentation' className='modal-root__overlay' onClick={onClose} />
           <div role='dialog' className='modal-root__container'>
