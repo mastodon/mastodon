@@ -42,7 +42,7 @@ RUN apk -U upgrade \
     tini \
  && update-ca-certificates \
  && mkdir -p /tmp/src /opt \
- && wget -O yarn.tar.gz "https://github.com/yarnpkg/yarn/releases/download/v1.1.0/yarn-v$YARN_VERSION.tar.gz" \
+ && wget -O yarn.tar.gz "https://github.com/yarnpkg/yarn/releases/download/v$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
  && echo "$YARN_DOWNLOAD_SHA256 *yarn.tar.gz" | sha256sum -c - \
  && tar -xzf yarn.tar.gz -C /tmp/src \
  && rm yarn.tar.gz \
