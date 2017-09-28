@@ -15,7 +15,6 @@ import {
   COMPOSE_UPLOAD_PROGRESS,
   COMPOSE_SUGGESTIONS_CLEAR,
   COMPOSE_SUGGESTIONS_READY,
-  COMPOSE_SUGGESTIONS_READY_TXT,
   COMPOSE_SUGGESTION_SELECT,
   COMPOSE_ADVANCED_OPTIONS_CHANGE,
   COMPOSE_SENSITIVITY_CHANGE,
@@ -264,9 +263,6 @@ export default function compose(state = initialState, action) {
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
     return state.set('suggestions', ImmutableList(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
-  case COMPOSE_SUGGESTIONS_READY_TXT:
-    // suggestion received that is not an account - hashtag or emojo
-    return state.set('suggestions', ImmutableList(action.items.map(item => item))).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion);
   case TIMELINE_DELETE:

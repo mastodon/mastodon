@@ -1,6 +1,5 @@
 import React from 'react';
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
-import AutosuggestShortcode from '../features/compose/components/autosuggest_shortcode';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
@@ -19,12 +18,11 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
     word = str.slice(left, right + caretPosition);
   }
 
-  if (!word || word.trim().length < 2 || ['@', ':', '#'].indexOf(word[0]) === -1) {
+  if (!word || word.trim().length < 2 || word[0] !== '@') {
     return [null, null];
   }
 
-  word = word.trim().toLowerCase();
-  // was: .slice(1); - we leave the leading char there, handler can decide what to do based on it
+  word = word.trim().toLowerCase().slice(1);
 
   if (word.length > 0) {
     return [left + 1, word];
@@ -43,7 +41,6 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     onSuggestionSelected: PropTypes.func.isRequired,
     onSuggestionsClearRequested: PropTypes.func.isRequired,
     onSuggestionsFetchRequested: PropTypes.func.isRequired,
-    onLocalSuggestionsFetchRequested: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onKeyUp: PropTypes.func,
     onKeyDown: PropTypes.func,
@@ -67,13 +64,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
 
     if (token !== null && this.state.lastToken !== token) {
       this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
-      if (token[0] === ':') {
-        // faster debounce for shortcodes.
-        // hashtags have long debounce because they're fetched from server.
-        this.props.onLocalSuggestionsFetchRequested(token);
-      } else {
-        this.props.onSuggestionsFetchRequested(token);
-      }
+      this.props.onSuggestionsFetchRequested(token);
     } else if (token === null) {
       this.setState({ lastToken: null });
       this.props.onSuggestionsClearRequested();
@@ -137,9 +128,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   onSuggestionClick = (e) => {
-    // leave suggestion string unchanged if it's a hash / shortcode suggestion. convert account number to int.
-    const suggestionStr = e.currentTarget.getAttribute('data-index');
-    const suggestion = [':', '#'].indexOf(suggestionStr[0]) !== -1 ? suggestionStr : Number(suggestionStr);
+    const suggestion = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
@@ -180,14 +169,6 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
       style.direction = 'rtl';
     }
 
-    let makeItem = (suggestion) => {
-      if (suggestion[0] === ':') return <AutosuggestShortcode shortcode={suggestion} />;
-      if (suggestion[0] === '#') return suggestion; // hashtag
-
-      // else - accounts are always returned as IDs with no prefix
-      return <AutosuggestAccountContainer id={suggestion} />;
-    };
-
     return (
       <div className='autosuggest-textarea'>
         <label>
@@ -219,7 +200,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
               className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
               onMouseDown={this.onSuggestionClick}
             >
-              {makeItem(suggestion)}
+              <AutosuggestAccountContainer id={suggestion} />
             </div>
           ))}
         </div>
