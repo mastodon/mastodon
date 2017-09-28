@@ -140,7 +140,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def prepare_description
-    self.description = description.strip[0..140] unless description.nil?
+    self.description = description.strip[0...140] unless description.nil?
   end
 
   def set_type_and_extension
