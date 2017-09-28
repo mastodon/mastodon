@@ -219,8 +219,8 @@ RSpec.describe User, type: :model do
       user = Fabricate(:user)
       ActiveJob::Base.queue_adapter = :test
 
-      expect { user.request_approval }.to have_enqueued_job(ActionMailer::DeliveryJob)
-      expect ( user.approved? ).to be false
+      expect{user.request_approval}.to have_enqueued_job(ActionMailer::DeliveryJob)
+      expect(user.approved?).to be false
     end
 
     it 'automatically approve instead of requesting approval when need_approval is false' do
@@ -229,8 +229,8 @@ RSpec.describe User, type: :model do
       user = Fabricate(:user)
       ActiveJob::Base.queue_adapter = :test
 
-      expect { user.request_approval }.not_to have_enqueued_job(ActionMailer::DeliveryJob)
-      expect ( user.approved? ).to be true
+      expect{user.request_approval}.not_to have_enqueued_job(ActionMailer::DeliveryJob)
+      expect(user.approved?).to be true
     end
   end
 

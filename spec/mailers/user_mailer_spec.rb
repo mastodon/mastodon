@@ -39,14 +39,11 @@ describe UserMailer, type: :mailer do
 
     it 'renders approval request' do
       receiver.update!(locale: nil)
-      expect(mail.body.encoded).to include receiver.email
+      expect(mail.body.encoded).to include receiver.account.username
+      expect(mail.body.encoded).to include newcomer.email
       expect(mail.body.encoded).to include newcomer.account.local_username_and_domain
       expect(mail.body.encoded).to include Rails.configuration.x.local_domain
     end
-
-    include_examples 'localized subject',
-                     'devise.mailer.new_user_waiting_for_approval.subject',
-                     acct: 'spec'
   end
 
   describe 'reset_password_instructions' do
