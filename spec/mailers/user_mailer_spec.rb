@@ -34,12 +34,13 @@ describe UserMailer, type: :mailer do
   end
 
   describe 'new_user_waiting_for_approval' do
-    let(:mail) { UserMailer.new_user_waiting_for_approval(receiver, 'spec', 'hogehoge') }
+    let(:newcomer) { Fabricate(:user) }
+    let(:mail) { UserMailer.new_user_waiting_for_approval(receiver, newcomer) }
 
     it 'renders approval request' do
       receiver.update!(locale: nil)
       expect(mail.body.encoded).to include receiver.email
-      expect(mail.body.encoded).to include 'spec'
+      expect(mail.body.encoded).to include newcomer.account.local_username_and_domain
       expect(mail.body.encoded).to include Rails.configuration.x.local_domain
     end
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::ConfirmationsController, type: :controller do
+RSpec.describe Admin::ApprovalsController, type: :controller do
   render_views
 
   before do
