@@ -2,8 +2,8 @@
   %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
 
-  = javascript_pack_tag "frontends/#{@frontend}", integrity: true, crossorigin: 'anonymous'
-  = stylesheet_pack_tag "frontends/#{@frontend}", integrity: true, media: 'all'
+  = javascript_pack_tag "themes/#{current_theme}", integrity: true, crossorigin: 'anonymous'
+  = stylesheet_pack_tag "themes/#{current_theme}", integrity: true, media: 'all'
 
 .app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
   %noscript
