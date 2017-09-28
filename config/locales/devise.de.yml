@@ -2,31 +2,31 @@
 de:
   devise:
     confirmations:
-      confirmed: Vielen Dank für deine Registrierung. Bitte melde dich jetzt an.
-      send_instructions: Du erhältst in wenigen Minuten eine E-Mail, mit der du deine Registrierung bestätigen kannst.
-      send_paranoid_instructions: Falls Deine E-Mail-Adresse in unserer Datenbank existiert, erhältst Du in wenigen Minuten eine E-Mail mit der du deine Registrierung bestätigen kannst.
+      confirmed: Deine E-Mail-Adresse wurde bestätigt.
+      send_instructions: Du erhältst in wenigen Minuten eine E-Mail, mit der du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinen Spam-Ordner!
+      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail, mit der du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinen Spam-Ordner!
     failure:
       already_authenticated: Du bist bereits angemeldet.
-      inactive: Dein Account ist nicht aktiv.
-      invalid: Ungültige Anmeldedaten.
-      last_attempt: Du hast noch einen Versuch bevor dein Account gesperrt wird.
-      locked: Dein Account ist gesperrt.
-      not_found_in_database: E-Mail-Adresse oder Passwort ungültig.
-      timeout: Deine Sitzung ist abgelaufen, bitte melde dich erneut an.
-      unauthenticated: Du musst Dich anmelden oder registrieren, bevor du fortfahren kannst.
-      unconfirmed: Du musst deinen Account bestätigen, bevor du fortfahren kannst.
+      inactive: Dein Konto wurde noch nicht aktiviert.
+      invalid: '%{authentication_keys} oder Passwort ungültig.'
+      last_attempt: Du hast noch einen Versuch, bevor dein Konto gesperrt wird.
+      locked: Dein Konto ist gesperrt.
+      not_found_in_database: '%{authentication_keys} oder Passwort ungültig.'
+      timeout: Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.
+      unauthenticated: Du musst dich anmelden oder registrieren, bevor du fortfahren kannst.
+      unconfirmed: Du musst deine E-Mail-Adresse bestätigen, bevor du fortfahren kannst.
     mailer:
       confirmation_instructions:
-        subject: 'Mastodon: Anleitung zur Bestätigung deines Accounts'
+        subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
       password_change:
-        subject: 'Mastodon: Passwort wurde geändert'
+        subject: 'Mastodon: Passwort geändert'
       reset_password_instructions:
-        subject: 'Mastodon: Anleitung um dein Passwort zurückzusetzen'
+        subject: 'Mastodon: Passwort zurücksetzen'
       unlock_instructions:
-        subject: 'Mastodon: Anleitung um deinen Account freizuschalten'
+        subject: 'Mastodon: Konto entsperren'
     omniauth_callbacks:
-      failure: Du konntest nicht mit deinem %{kind}-Account angemeldet werden, weil '%{reason}'.
-      success: Du hast dich erfolgreich mit Deinem %{kind}-Account angemeldet.
+      failure: Du konntest nicht mit deinem %{kind}-Konto angemeldet werden, weil '%{reason}'.
+      success: Du hast dich erfolgreich mit deinem %{kind}-Account angemeldet.
     passwords:
       no_token: Du kannst diese Seite nur über den Link aus der E-Mail zum Passwort-Zurücksetzen aufrufen. Wenn du einen solchen Link aufgerufen hast, stelle bitte sicher, dass du die vollständige Adresse aufrufst.
       send_instructions: Du erhältst in wenigen Minuten eine E-Mail mit der Anleitung, wie du dein Passwort zurücksetzen kannst.
