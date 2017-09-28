@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = t('admin.blacklisted_email_domains.title')
+
+%table.table
+  %thead
+    %tr
+      %th= t('admin.blacklisted_email_domains.domain')
+      %th= t('admin.blacklisted_email_domains.note')
+      %th
+  %tbody
+    = render @blacklisted_email_domains
+
+= paginate @blacklisted_email_domains
+= link_to t('admin.blacklisted_email_domains.add_new'), new_admin_blacklisted_email_domain_path, class: 'button'
