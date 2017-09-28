@@ -44,6 +44,15 @@ module SignatureVerification
     if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
       @signed_request_account = account
       @signed_request_account
+    elsif account.possibly_stale?
+      account = account.refresh!
+
+      if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
+        @signed_request_account = account
+        @signed_request_account
+      else
+        @signed_request_account = nil
+      end
     else
       @signed_request_account = nil
     end
