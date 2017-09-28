@@ -84,14 +84,17 @@ export default class MediaModal extends ImmutablePureComponent {
       return null;
     }).toArray();
 
+    const containerStyle = {
+      alignItems: 'center', // center vertically
+    };
+
     return (
       <div className='modal-root__modal media-modal'>
         {leftNav}
 
         <div className='media-modal__content'>
           <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-
-          <ReactSwipeableViews onChangeIndex={this.handleSwipe} index={index} animateHeight>
+          <ReactSwipeableViews containerStyle={containerStyle} onChangeIndex={this.handleSwipe} index={index}>
             {content}
           </ReactSwipeableViews>
         </div>
