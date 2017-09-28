@@ -30,7 +30,7 @@ import NotificationOverlayContainer from '../notification/overlay/container';
 export default class NotificationFollow extends ImmutablePureComponent {
 
   static propTypes = {
-    id                   : PropTypes.number.isRequired,
+    id                   : PropTypes.string.isRequired,
     account              : ImmutablePropTypes.map.isRequired,
     notification         : ImmutablePropTypes.map.isRequired,
   };

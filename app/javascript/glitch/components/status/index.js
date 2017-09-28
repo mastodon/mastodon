@@ -155,12 +155,12 @@ export default class Status extends ImmutablePureComponent {
   };
 
   static propTypes = {
-    id                          : PropTypes.number,
+    id                          : PropTypes.string,
     status                      : ImmutablePropTypes.map,
     account                     : ImmutablePropTypes.map,
     settings                    : ImmutablePropTypes.map,
     notification                : ImmutablePropTypes.map,
-    me                          : PropTypes.number,
+    me                          : PropTypes.string,
     onFavourite                 : PropTypes.func,
     onReblog                    : PropTypes.func,
     onModalReblog               : PropTypes.func,
