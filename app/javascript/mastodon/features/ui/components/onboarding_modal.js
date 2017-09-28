@@ -10,7 +10,10 @@ import ComposeForm from '../../compose/components/compose_form';
 import Search from '../../compose/components/search';
 import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
-import { List as ImmutableList } from 'immutable';
+import {
+  List as ImmutableList,
+  Map as ImmutableMap,
+} from 'immutable';
 
 const noop = () => { };
 
@@ -59,7 +62,9 @@ const PageTwo = ({ me }) => (
         onClearSuggestions={noop}
         onFetchSuggestions={noop}
         onSuggestionSelected={noop}
+        onPrivacyChange={noop}
         showSearch
+        settings={ImmutableMap.of('side_arm', 'none')}
       />
     </div>
 
