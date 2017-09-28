@@ -59,7 +59,7 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_size :file, less_than: 8.megabytes
 
   validates :account, presence: true
-  validates :description, length: { maximum: 140 }, if: :local?
+  validates :description, length: { maximum: 420 }, if: :local?
 
   scope :attached,   -> { where.not(status_id: nil) }
   scope :unattached, -> { where(status_id: nil) }
@@ -140,7 +140,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def prepare_description
-    self.description = description.strip[0...140] unless description.nil?
+    self.description = description.strip[0...420] unless description.nil?
   end
 
   def set_type_and_extension

@@ -79,7 +79,7 @@ export default class Upload extends ImmutablePureComponent {
                     placeholder={intl.formatMessage(messages.description)}
                     type='text'
                     value={description}
-                    maxLength={140}
+                    maxLength={420}
                     onFocus={this.handleInputFocus}
                     onChange={this.handleInputChange}
                     onBlur={this.handleInputBlur}
