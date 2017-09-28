@@ -2983,14 +2983,18 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.modal-root {
+  transition: opacity 0.3s linear;
+  will-change: opacity;
+  z-index: 9999;
+}
+
 .modal-root__overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 9999;
-  opacity: 0;
   background: rgba($base-overlay-background, 0.7);
   transform: translateZ(0);
 }
@@ -3007,7 +3011,6 @@ button.icon-button.active i.fa-retweet {
   justify-content: center;
   align-content: space-around;
   z-index: 9999;
-  opacity: 0;
   pointer-events: none;
   user-select: none;
 }
