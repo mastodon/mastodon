@@ -28,7 +28,7 @@ class ActivityPub::DeliveryWorker
   end
 
   def perform_request
-    @response = build_request.perform
+    @response = build_request.perform.flush
   end
 
   def response_successful?
