@@ -131,11 +131,9 @@ export default class StatusContent extends React.PureComponent {
       this.state.hidden
     );
 
-    const content = { __html: emojify(status.get('content')) };
+    const content = { __html: status.get('contentHtml') };
     const spoilerContent = {
-      __html: emojify(escapeTextContentForBrowser(
-        status.get('spoiler_text', '')
-      )),
+      __html: status.get('spoilerHtml'),
     };
     const directionStyle = { direction: 'ltr' };
     const classNames = classnames('status__content', {
