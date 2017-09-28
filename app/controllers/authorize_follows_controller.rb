@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AuthorizeFollowsController < ApplicationController
-  layout 'public'
+  layout 'modal'
 
   before_action :authenticate_user!
 
@@ -15,7 +15,7 @@ class AuthorizeFollowsController < ApplicationController
     if @account.nil?
       render :error
     else
-      redirect_to web_url("accounts/#{@account.id}")
+      render :success
     end
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     render :error

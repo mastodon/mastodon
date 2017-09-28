@@ -1,8 +1,12 @@
 import api from '../api';
+import { emojiIndex } from 'emoji-mart';
 
-import { updateTimeline } from './timelines';
-
-import * as emojione from 'emojione';
+import {
+  updateTimeline,
+  refreshHomeTimeline,
+  refreshCommunityTimeline,
+  refreshPublicTimeline,
+} from './timelines';
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
@@ -29,8 +33,13 @@ export const COMPOSE_SPOILERNESS_CHANGE = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
+export const COMPOSE_COMPOSING_CHANGE = 'COMPOSE_COMPOSING_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
+
+export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
+export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
+export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
 export function changeCompose(text) {
   return {
@@ -73,11 +82,14 @@ export function mentionCompose(account, router) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
-    const status = emojione.shortnameToUnicode(getState().getIn(['compose', 'text'], ''));
+    const status = getState().getIn(['compose', 'text'], '');
+
     if (!status || !status.length) {
       return;
     }
+
     dispatch(submitComposeRequest());
+
     api(getState).post('/api/v1/statuses', {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
@@ -93,16 +105,20 @@ export function submitCompose() {
       dispatch(submitComposeSuccess({ ...response.data }));
 
       // To make the app more responsive, immediately get the status into the columns
-      dispatch(updateTimeline('home', { ...response.data }));
+
+      const insertOrRefresh = (timelineId, refreshAction) => {
+        if (getState().getIn(['timelines', timelineId, 'online'])) {
+          dispatch(updateTimeline(timelineId, { ...response.data }));
+        } else if (getState().getIn(['timelines', timelineId, 'loaded'])) {
+          dispatch(refreshAction());
+        }
+      };
+
+      insertOrRefresh('home', refreshHomeTimeline);
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        if (getState().getIn(['timelines', 'community', 'loaded'])) {
-          dispatch(updateTimeline('community', { ...response.data }));
-        }
-
-        if (getState().getIn(['timelines', 'public', 'loaded'])) {
-          dispatch(updateTimeline('public', { ...response.data }));
-        }
+        insertOrRefresh('community', refreshCommunityTimeline);
+        insertOrRefresh('public', refreshPublicTimeline);
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -153,6 +169,40 @@ export function uploadCompose(files) {
   };
 };
 
+export function changeUploadCompose(id, description) {
+  return (dispatch, getState) => {
+    dispatch(changeUploadComposeRequest());
+
+    api(getState).put(`/api/v1/media/${id}`, { description }).then(response => {
+      dispatch(changeUploadComposeSuccess(response.data));
+    }).catch(error => {
+      dispatch(changeUploadComposeFail(id, error));
+    });
+  };
+};
+
+export function changeUploadComposeRequest() {
+  return {
+    type: COMPOSE_UPLOAD_CHANGE_REQUEST,
+    skipLoading: true,
+  };
+};
+export function changeUploadComposeSuccess(media) {
+  return {
+    type: COMPOSE_UPLOAD_CHANGE_SUCCESS,
+    media: media,
+    skipLoading: true,
+  };
+};
+
+export function changeUploadComposeFail(error) {
+  return {
+    type: COMPOSE_UPLOAD_CHANGE_FAIL,
+    error: error,
+    skipLoading: true,
+  };
+};
+
 export function uploadComposeRequest() {
   return {
     type: COMPOSE_UPLOAD_REQUEST,
@@ -199,19 +249,33 @@ export function clearComposeSuggestions() {
 
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
+    if (token[0] === ':') {
+      const results = emojiIndex.search(token.replace(':', ''), { maxResults: 3 });
+      dispatch(readyComposeSuggestionsEmojis(token, results));
+      return;
+    }
+
     api(getState).get('/api/v1/accounts/search', {
       params: {
-        q: token,
+        q: token.slice(1),
         resolve: false,
         limit: 4,
       },
     }).then(response => {
-      dispatch(readyComposeSuggestions(token, response.data));
+      dispatch(readyComposeSuggestionsAccounts(token, response.data));
     });
   };
 };
 
-export function readyComposeSuggestions(token, accounts) {
+export function readyComposeSuggestionsEmojis(token, emojis) {
+  return {
+    type: COMPOSE_SUGGESTIONS_READY,
+    token,
+    emojis,
+  };
+};
+
+export function readyComposeSuggestionsAccounts(token, accounts) {
   return {
     type: COMPOSE_SUGGESTIONS_READY,
     token,
@@ -219,13 +283,21 @@ export function readyComposeSuggestions(token, accounts) {
   };
 };
 
-export function selectComposeSuggestion(position, token, accountId) {
+export function selectComposeSuggestion(position, token, suggestion) {
   return (dispatch, getState) => {
-    const completion = getState().getIn(['accounts', accountId, 'acct']);
+    let completion, startPosition;
+
+    if (typeof suggestion === 'object' && suggestion.id) {
+      completion    = suggestion.native || suggestion.colons;
+      startPosition = position - 1;
+    } else {
+      completion    = getState().getIn(['accounts', suggestion, 'acct']);
+      startPosition = position;
+    }
 
     dispatch({
       type: COMPOSE_SUGGESTION_SELECT,
-      position,
+      position: startPosition,
       token,
       completion,
     });
@@ -277,3 +349,10 @@ export function insertEmojiCompose(position, emoji) {
     emoji,
   };
 };
+
+export function changeComposing(value) {
+  return {
+    type: COMPOSE_COMPOSING_CHANGE,
+    value,
+  };
+}

@@ -3,59 +3,114 @@
   margin: 0 auto;
   margin-top: 40px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 740px) {
     width: 100%;
     margin: 0;
   }
 }
 
 .logo-container {
-  max-width: 400px;
   margin: 100px auto;
-  margin-bottom: 0;
-  cursor: default;
+  margin-bottom: 50px;
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 400px) {
     margin: 30px auto;
+    margin-bottom: 20px;
   }
 
   h1 {
-    display: block;
-    text-align: center;
-    color: $primary-text-color;
-    font-size: 48px;
-    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
-      display: block;
-      margin: 20px auto;
-      width: 180px;
-      height: 180px;
+      height: 42px;
+      margin-right: 10px;
     }
 
     a {
-      color: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $primary-text-color;
       text-decoration: none;
       outline: 0;
-
-      img {
-        opacity: 0.8;
-        transition: opacity 0.8s ease;
-      }
-
-      &:hover {
-        img {
-          opacity: 1;
-          transition-duration: 0.2s;
-        }
-      }
+      padding: 12px 16px;
+      line-height: 32px;
+      font-family: 'mastodon-font-display', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
     }
+  }
+}
 
-    small {
+.compose-standalone {
+  .compose-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px 0;
+    margin-top: 40px;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 400px) {
+      width: 100%;
+      margin-top: 0;
+      padding: 20px;
+    }
+  }
+}
+
+.account-header {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  font-size: 13px;
+  line-height: 18px;
+  box-sizing: border-box;
+  padding: 20px 0;
+  padding-bottom: 0;
+  margin-bottom: -30px;
+  margin-top: 40px;
+
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 20px;
+    padding-bottom: 0;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+
+    img {
+      width: 100%;
+      height: 100%;
       display: block;
-      font-size: 12px;
-      font-weight: 400;
-      font-family: 'mastodon-font-monospace', monospace;
+      margin: 0;
+      border-radius: 4px;
     }
+  }
+
+  .name {
+    flex: 1 1 auto;
+    color: $ui-secondary-color;
+    width: calc(100% - 88px);
+
+    .username {
+      display: block;
+      font-weight: 500;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .logout-link {
+    display: block;
+    font-size: 32px;
+    line-height: 40px;
+    margin-left: 8px;
   }
 }

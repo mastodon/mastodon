@@ -65,15 +65,12 @@ RSpec.describe PostStatusService do
   end
 
   it 'creates a status with a language set' do
-    detector = double(to_iso_s: :en)
-    allow(LanguageDetector).to receive(:new).and_return(detector)
-
     account = Fabricate(:account)
-    text = 'test status text'
+    text = 'This is an English text.'
 
-    subject.call(account, text)
+    status = subject.call(account, text)
 
-    expect(LanguageDetector).to have_received(:new).with(text, account)
+    expect(status.language).to eq 'en'
   end
 
   it 'processes mentions' do
@@ -100,16 +97,18 @@ RSpec.describe PostStatusService do
     expect(hashtags_service).to have_received(:call).with(status)
   end
 
-  it 'pings PuSH hubs' do
+  it 'gets distributed' do
     allow(DistributionWorker).to receive(:perform_async)
     allow(Pubsubhubbub::DistributionWorker).to receive(:perform_async)
+    allow(ActivityPub::DistributionWorker).to receive(:perform_async)
+
     account = Fabricate(:account)
 
     status = subject.call(account, "test status update")
 
     expect(DistributionWorker).to have_received(:perform_async).with(status.id)
-    expect(Pubsubhubbub::DistributionWorker).
-      to have_received(:perform_async).with(status.stream_entry.id)
+    expect(Pubsubhubbub::DistributionWorker).to have_received(:perform_async).with(status.stream_entry.id)
+    expect(ActivityPub::DistributionWorker).to have_received(:perform_async).with(status.id)
   end
 
   it 'crawls links' do

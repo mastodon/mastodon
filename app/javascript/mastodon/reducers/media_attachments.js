@@ -1,7 +1,7 @@
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import { Map as ImmutableMap } from 'immutable';
 
-const initialState = Immutable.Map({
+const initialState = ImmutableMap({
   accept_content_types: [],
 });
 

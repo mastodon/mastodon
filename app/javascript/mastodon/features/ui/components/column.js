@@ -2,7 +2,8 @@ import React from 'react';
 import ColumnHeader from './column_header';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
-import scrollTop from '../../../scroll';
+import { scrollTop } from '../../../scroll';
+import { isMobile } from '../../../is_mobile';
 
 export default class Column extends React.PureComponent {
 
@@ -24,6 +25,17 @@ export default class Column extends React.PureComponent {
     this._interruptScrollAnimation = scrollTop(scrollable);
   }
 
+  scrollTop () {
+    const scrollable = this.node.querySelector('.scrollable');
+
+    if (!scrollable) {
+      return;
+    }
+
+    this._interruptScrollAnimation = scrollTop(scrollable);
+  }
+
+
   handleScroll = debounce(() => {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
       this._interruptScrollAnimation();
@@ -37,13 +49,12 @@ export default class Column extends React.PureComponent {
   render () {
     const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
 
-    let columnHeaderId = null;
-    let header = '';
+    const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
-    if (heading) {
-      columnHeaderId = heading.replace(/ /g, '-');
-      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} hideOnMobile={hideHeadingOnMobile} columnHeaderId={columnHeaderId} />;
-    }
+    const columnHeaderId = showHeading && heading.replace(/ /g, '-');
+    const header = showHeading && (
+      <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} />
+    );
     return (
       <div
         ref={this.setRef}

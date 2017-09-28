@@ -1,7 +1,7 @@
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import { Map as ImmutableMap } from 'immutable';
 
-const initialState = Immutable.Map({
+const initialState = ImmutableMap({
   streaming_api_base_url: null,
   access_token: null,
   me: null,

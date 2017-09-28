@@ -13,5 +13,9 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'StatsD'
   inflect.acronym 'OEmbed'
+  inflect.acronym 'OStatus'
   inflect.acronym 'ActivityPub'
+  inflect.acronym 'PubSubHubbub'
+  inflect.acronym 'ActivityStreams'
+  inflect.acronym 'JsonLd'
 end

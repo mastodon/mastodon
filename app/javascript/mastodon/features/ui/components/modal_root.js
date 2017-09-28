@@ -1,21 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import BundleContainer from '../containers/bundle_container';
+import BundleModalError from './bundle_modal_error';
+import ModalLoading from './modal_loading';
+import ActionsModal from './actions_modal';
 import MediaModal from './media_modal';
-import OnboardingModal from './onboarding_modal';
 import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
 import ConfirmationModal from './confirmation_modal';
-import ReportModal from './report_modal';
-import TransitionMotion from 'react-motion/lib/TransitionMotion';
-import spring from 'react-motion/lib/spring';
+import {
+  OnboardingModal,
+  ReportModal,
+  EmbedModal,
+} from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
-  'MEDIA': MediaModal,
+  'MEDIA': () => Promise.resolve({ default: MediaModal }),
   'ONBOARDING': OnboardingModal,
-  'VIDEO': VideoModal,
-  'BOOST': BoostModal,
-  'CONFIRM': ConfirmationModal,
+  'VIDEO': () => Promise.resolve({ default: VideoModal }),
+  'BOOST': () => Promise.resolve({ default: BoostModal }),
+  'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'REPORT': ReportModal,
+  'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
+  'EMBED': EmbedModal,
 };
 
 export default class ModalRoot extends React.PureComponent {
@@ -24,6 +31,10 @@ export default class ModalRoot extends React.PureComponent {
     type: PropTypes.string,
     props: PropTypes.object,
     onClose: PropTypes.func.isRequired,
+  };
+
+  state = {
+    revealed: false,
   };
 
   handleKeyUp = (e) => {
@@ -37,54 +48,77 @@ export default class ModalRoot extends React.PureComponent {
     window.addEventListener('keyup', this.handleKeyUp, false);
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!!nextProps.type && !this.props.type) {
+      this.activeElement = document.activeElement;
+
+      this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
+    } else if (!nextProps.type) {
+      this.setState({ revealed: false });
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (!this.props.type && !!prevProps.type) {
+      this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
+      this.activeElement.focus();
+      this.activeElement = null;
+    }
+    if (this.props.type) {
+      requestAnimationFrame(() => {
+        this.setState({ revealed: true });
+      });
+    }
+  }
+
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
   }
 
-  willEnter () {
-    return { opacity: 0, scale: 0.98 };
+  getSiblings = () => {
+    return Array(...this.node.parentElement.childNodes).filter(node => node !== this.node);
   }
 
-  willLeave () {
-    return { opacity: spring(0), scale: spring(0.98) };
+  setRef = ref => {
+    this.node = ref;
+  }
+
+  renderLoading = modalId => () => {
+    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
+  }
+
+  renderError = (props) => {
+    const { onClose } = this.props;
+
+    return <BundleModalError {...props} onClose={onClose} />;
   }
 
   render () {
     const { type, props, onClose } = this.props;
+    const { revealed } = this.state;
     const visible = !!type;
-    const items = [];
 
-    if (visible) {
-      items.push({
-        key: type,
-        data: { type, props },
-        style: { opacity: spring(1), scale: spring(1, { stiffness: 120, damping: 14 }) },
-      });
+    if (!visible) {
+      return (
+        <div className='modal-root' ref={this.setRef} style={{ opacity: 0 }} />
+      );
     }
 
     return (
-      <TransitionMotion
-        styles={items}
-        willEnter={this.willEnter}
-        willLeave={this.willLeave}
-      >
-        {interpolatedStyles =>
-          <div className='modal-root'>
-            {interpolatedStyles.map(({ key, data: { type, props }, style }) => {
-              const SpecificComponent = MODAL_COMPONENTS[type];
-
-              return (
-                <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-                  <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
-                  <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
-                    <SpecificComponent {...props} onClose={onClose} />
-                  </div>
-                </div>
-              );
-            })}
+      <div className='modal-root' ref={this.setRef} style={{ opacity: revealed ? 1 : 0 }}>
+        <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
+          <div role='presentation' className='modal-root__overlay' onClick={onClose} />
+          <div role='dialog' className='modal-root__container'>
+            {
+              visible ?
+                (<BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
+                  {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
+                </BundleContainer>) :
+              null
+            }
           </div>
-        }
-      </TransitionMotion>
+        </div>
+      </div>
     );
   }
 

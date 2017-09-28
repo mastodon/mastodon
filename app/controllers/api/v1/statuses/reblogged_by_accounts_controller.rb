@@ -11,7 +11,7 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
 
   def index
     @accounts = load_accounts
-    render 'api/v1/statuses/accounts'
+    render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
   private

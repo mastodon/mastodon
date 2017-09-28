@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RemoteFollowController < ApplicationController
-  layout 'public'
+  layout 'modal'
 
   before_action :set_account
   before_action :gone, if: :suspended_account?

@@ -24,6 +24,24 @@ code {
 
   p.hint {
     margin-bottom: 15px;
+    color: $ui-primary-color;
+
+    &.subtle-hint {
+      text-align: center;
+      font-size: 12px;
+      line-height: 18px;
+      margin-top: 15px;
+      margin-bottom: 0;
+      color: $ui-primary-color;
+
+      a {
+        color: $ui-highlight-color;
+      }
+    }
+  }
+
+  .card {
+    margin-bottom: 15px;
   }
 
   strong {
@@ -35,7 +53,6 @@ code {
 
     label {
       flex: 0 0 auto;
-      width: 100px;
     }
 
     input {
@@ -43,12 +60,18 @@ code {
     }
   }
 
-  .input.file,
-  .input.select,
-  .input.radio_buttons,
-  .input.check_boxes {
+  .input.with_label {
     padding: 15px 0;
     margin-bottom: 0;
+
+    .label_input {
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    &.select .label_input {
+      align-items: initial;
+    }
 
     .label_input > label {
       font-family: inherit;
@@ -56,6 +79,60 @@ code {
       color: $primary-text-color;
       display: block;
       padding-top: 5px;
+      margin-bottom: 5px;
+      flex: 1;
+      min-width: 150px;
+      word-wrap: break-word;
+
+      &.select {
+        flex: 0;
+      }
+
+      & ~ * {
+        margin-left: 10px;
+      }
+    }
+
+    ul {
+      flex: 390px;
+    }
+
+    &.boolean {
+      padding: initial;
+      margin-bottom: initial;
+
+      .label_input > label {
+        font-family: inherit;
+        font-size: 14px;
+        color: $primary-text-color;
+        display: block;
+        width: auto;
+      }
+
+      label.checkbox {
+        position: relative;
+        padding-left: 25px;
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  .input.with_block_label {
+    & > label {
+      font-family: inherit;
+      font-size: 16px;
+      color: $primary-text-color;
+      display: block;
+      padding-top: 5px;
+    }
+
+    .hint {
+      margin-bottom: 15px;
+    }
+
+    li {
+      float: left;
+      width: 50%;
     }
   }
 
@@ -92,13 +169,36 @@ code {
     input[type=checkbox] {
       position: absolute;
       left: 0;
-      top: 1px;
+      top: 5px;
       margin: 0;
     }
 
     .hint {
       padding-left: 25px;
       margin-left: 0;
+    }
+  }
+
+  .check_boxes {
+    .checkbox {
+      label {
+        font-family: inherit;
+        font-size: 14px;
+        color: $primary-text-color;
+        display: block;
+        width: auto;
+        position: relative;
+        padding-top: 5px;
+        padding-left: 25px;
+        flex: 1 1 auto;
+      }
+
+      input[type=checkbox] {
+        position: absolute;
+        left: 0;
+        top: 5px;
+        margin: 0;
+      }
     }
   }
 
@@ -197,8 +297,6 @@ code {
 
     &:active,
     &:focus {
-      position: relative;
-      top: 1px;
       background-color: darken($ui-highlight-color, 5%);
     }
 
@@ -219,10 +317,31 @@ code {
   select {
     font-size: 16px;
   }
+
+  .input-with-append {
+    position: relative;
+
+    .input input {
+      padding-right: 127px;
+    }
+
+    .append {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 7px 4px;
+      padding-bottom: 9px;
+      font-size: 16px;
+      color: $ui-base-lighter-color;
+      font-family: inherit;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
 }
 
 .flash-message {
-  background: $ui-base-color;
+  background: lighten($ui-base-color, 8%);
   color: $ui-primary-color;
   border-radius: 4px;
   padding: 15px 10px;
@@ -230,8 +349,45 @@ code {
   box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
   text-align: center;
 
+  p {
+    margin-bottom: 15px;
+  }
+
+  .oauth-code {
+    color: $ui-secondary-color;
+    outline: 0;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-family: 'mastodon-font-monospace', monospace;
+    background: $ui-base-color;
+    color: $ui-primary-color;
+    font-size: 14px;
+    margin: 0;
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
+
+    &:focus {
+      background: lighten($ui-base-color, 4%);
+    }
+  }
+
   strong {
     font-weight: 500;
+  }
+
+  @media screen and (max-width: 740px) and (min-width: 441px) {
+    margin-top: 40px;
   }
 }
 
@@ -240,7 +396,7 @@ code {
   text-align: center;
 
   a {
-    color: $primary-text-color;
+    color: $ui-primary-color;
     text-decoration: none;
 
     &:hover {
@@ -264,17 +420,23 @@ code {
     color: $ui-secondary-color;
     font-weight: 500;
   }
+
+  @media screen and (max-width: 740px) and (min-width: 441px) {
+    margin-top: 40px;
+  }
 }
 
 .qr-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .qr-code {
   flex: 0 0 auto;
   background: $simple-background-color;
   padding: 4px;
-  margin-bottom: 20px;
+  margin: 0 10px 20px 0;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   display: inline-block;
 
@@ -285,8 +447,9 @@ code {
 }
 
 .qr-alternative {
-  margin-left: 10px;
-  color: $ui-primary-color;
+  margin-bottom: 20px;
+  color: $ui-secondary-color;
+  flex: 150px;
 
   samp {
     display: block;
@@ -296,7 +459,6 @@ code {
 
 .table-form {
   p {
-    max-width: 400px;
     margin-bottom: 15px;
 
     strong {
@@ -308,7 +470,6 @@ code {
 .simple_form,
 .table-form {
   .warning {
-    max-width: 400px;
     box-sizing: border-box;
     background: rgba($error-value-color, 0.5);
     color: $primary-text-color;
@@ -357,21 +518,11 @@ code {
   }
 }
 
-.user_filtered_languages {
-  & > label {
-    font-family: inherit;
-    font-size: 16px;
-    color: $primary-text-color;
-    display: block;
-    padding-top: 5px;
-  }
+.post-follow-actions {
+  text-align: center;
+  color: $ui-primary-color;
 
-  .hint {
-    margin-bottom: 15px;
-  }
-
-  li {
-    float: left;
-    width: 50%;
+  div {
+    margin-bottom: 4px;
   }
 }

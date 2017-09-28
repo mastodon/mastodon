@@ -1,11 +1,10 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import escapeTextContentForBrowser from 'escape-html';
 import PropTypes from 'prop-types';
-import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import classnames from 'classnames';
 
 export default class StatusContent extends React.PureComponent {
 
@@ -17,7 +16,6 @@ export default class StatusContent extends React.PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
-    onHeightUpdate: PropTypes.func,
     onClick: PropTypes.func,
   };
 
@@ -25,12 +23,17 @@ export default class StatusContent extends React.PureComponent {
     hidden: true,
   };
 
-  componentDidMount () {
+  _updateStatusLinks () {
     const node  = this.node;
     const links = node.querySelectorAll('a');
 
     for (var i = 0; i < links.length; ++i) {
-      let link    = links[i];
+      let link = links[i];
+      if (link.classList.contains('status-link')) {
+        continue;
+      }
+      link.classList.add('status-link');
+
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
       if (mention) {
@@ -39,21 +42,24 @@ export default class StatusContent extends React.PureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener');
         link.setAttribute('title', link.href);
       }
+
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
     }
+  }
+
+  componentDidMount () {
+    this._updateStatusLinks();
   }
 
   componentDidUpdate () {
-    if (this.props.onHeightUpdate) {
-      this.props.onHeightUpdate();
-    }
+    this._updateStatusLinks();
   }
 
   onMentionClick = (mention, e) => {
-    if (e.button === 0) {
+    if (this.context.router && e.button === 0) {
       e.preventDefault();
       this.context.router.history.push(`/accounts/${mention.get('id')}`);
     }
@@ -62,7 +68,7 @@ export default class StatusContent extends React.PureComponent {
   onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '').toLowerCase();
 
-    if (e.button === 0) {
+    if (this.context.router && e.button === 0) {
       e.preventDefault();
       this.context.router.history.push(`/timelines/tag/${hashtag}`);
     }
@@ -111,9 +117,12 @@ export default class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
-    const content = { __html: emojify(status.get('content')) };
-    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
+    const content = { __html: status.get('contentHtml') };
+    const spoilerContent = { __html: status.get('spoilerHtml') };
     const directionStyle = { direction: 'ltr' };
+    const classNames = classnames('status__content', {
+      'status__content--with-action': this.props.onClick && this.context.router,
+    });
 
     if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
@@ -135,7 +144,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content status__content--with-action' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} ref={this.setRef} tabIndex='0' aria-label={status.get('search_index')} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
@@ -144,14 +153,16 @@ export default class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden && 0} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
         </div>
       );
     } else if (this.props.onClick) {
       return (
         <div
           ref={this.setRef}
-          className='status__content status__content--with-action'
+          tabIndex='0'
+          aria-label={status.get('search_index')}
+          className={classNames}
           style={directionStyle}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
@@ -161,6 +172,8 @@ export default class StatusContent extends React.PureComponent {
     } else {
       return (
         <div
+          tabIndex='0'
+          aria-label={status.get('search_index')}
           ref={this.setRef}
           className='status__content'
           style={directionStyle}

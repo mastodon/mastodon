@@ -11,26 +11,27 @@ class BlockDomainService < BaseService
   private
 
   def process_domain_block
+    clear_media! if domain_block.reject_media?
     if domain_block.silence?
       silence_accounts!
-    else
+    elsif domain_block.suspend?
       suspend_accounts!
     end
   end
 
   def silence_accounts!
     blocked_domain_accounts.in_batches.update_all(silenced: true)
-    clear_media! if domain_block.reject_media?
   end
 
   def clear_media!
     clear_account_images
     clear_account_attachments
+    clear_emojos
   end
 
   def suspend_accounts!
     blocked_domain_accounts.where(suspended: false).find_each do |account|
-      account.subscription(api_subscription_url(account.id)).unsubscribe if account.subscribed?
+      UnsubscribeService.new.call(account) if account.subscribed?
       SuspendAccountService.new.call(account)
     end
   end
@@ -51,6 +52,10 @@ class BlockDomainService < BaseService
     end
   end
 
+  def clear_emojos
+    emojis_from_blocked_domains.destroy_all
+  end
+
   def blocked_domain
     domain_block.domain
   end
@@ -61,5 +66,9 @@ class BlockDomainService < BaseService
 
   def media_from_blocked_domain
     MediaAttachment.joins(:account).merge(blocked_domain_accounts).reorder(nil)
+  end
+
+  def emojis_from_blocked_domains
+    CustomEmoji.where(domain: blocked_domain)
   end
 end

@@ -17,13 +17,13 @@ module Admin
     end
 
     def unsubscribe
-      UnsubscribeService.new.call(@account)
+      Pubsubhubbub::UnsubscribeWorker.perform_async(@account.id)
       redirect_to admin_account_path(@account.id)
     end
 
     def redownload
-      @account.avatar = @account.avatar_remote_url
-      @account.header = @account.header_remote_url
+      @account.reset_avatar!
+      @account.reset_header!
       @account.save!
 
       redirect_to admin_account_path(@account.id)

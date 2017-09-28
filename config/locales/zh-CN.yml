@@ -1,35 +1,19 @@
 ---
 zh-CN:
   about:
-    about_mastodon: Mastodon（长毛象）是一个<em>自由、开放源码</em>的社交网站。它是一个分布式的服务，避免你的通信被单一商业机构垄断操控。请你选择一家你信任的 Mastodon 实例，在上面创建帐号，然后你就可以和任一 Mastodon 实例上的用户互通，享受无缝的<em>社交</em>交流。
+    about_mastodon_html: Mastodon（长毛象）是一个<em>自由、开放源码</em>的社交网站。它是一个分布式的服务，避免你的通信被单一商业机构垄断操控。请你选择一家你信任的 Mastodon 实例，在上面创建帐号，然后你就可以和任一 Mastodon 实例上的用户互通，享受无缝的<em>社交</em>交流。
     about_this: 关于本实例
-    apps: 应用程序
-    business_email: 商业电邮︰
     closed_registrations: 这个实例目前不开放注册 _(:3」∠)_
     contact: 联络
     description_headline: 关于 %{domain}
     domain_count_after: 个其它实例
     domain_count_before: 现已接入
-    features:
-      api: 开放 API，供各式应用程序及服务接入
-      blocks: 完善的封锁用户、静音功能
-      characters: 每篇嘟文最多 500 字
-      chronology: 纯粹按时间排序，不作多余处理
-      ethics: 良心设计︰没有广告，不追踪你的使用行为
-      gifv: 支持显示 GIFV 动图小视频
-      privacy: 可逐篇嘟文设置隐私
-      public: 提供公共时间轴
-    features_headline: 是什么让 Mastodon 与众不同
-    get_started: 上手使用
-    links: 链接
     other_instances: 其它实例
     source_code: 源码
     status_count_after: 条嘟文
     status_count_before: 他们共嘟出了
-    terms: 条款
     user_count_after: 位用户
     user_count_before: 这里共注册有
-    version: 版本
   accounts:
     follow: 关注
     followers: 粉丝
@@ -40,15 +24,6 @@ zh-CN:
     posts: 嘟文
     remote_follow: 跨站关注
     unfollow: 取消关注
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} 分享了一个活动。"
-      create:
-        name: "%{account_name} 创建了一个记事。"
-    outbox:
-      name: "%{account_name} 的集合"
-      summary: "%{account_name} 的活动集合"
   admin:
     accounts:
       are_you_sure: 你确定吗？
@@ -90,9 +65,9 @@ zh-CN:
       salmon_url: Salmon 反馈 URL
       search: 搜索
       show:
-        created_reports: 这个账户创建的报告
+        created_reports: 这个帐户创建的报告
         report: 报告
-        targeted_reports: 关于这个账户的报告
+        targeted_reports: 关于这个帐户的报告
       silence: 静音
       statuses: 嘟文
       title: 用户
@@ -107,7 +82,7 @@ zh-CN:
       domain: 域名阻隔
       new:
         create: 添加域名阻隔
-        hint: "「域名阻隔」不会隔绝该域名用户的嘟账户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。"
+        hint: "「域名阻隔」不会隔绝该域名用户的嘟帐户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。"
         severity:
           desc_html: "「<strong>自动静音</strong>」令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。 「<strong>自动除名</strong>」会自动将该域名用户的嘟文、媒体文件、个人资料从本服务器实例删除。"
           silence: 自动静音
@@ -121,11 +96,11 @@ zh-CN:
       severity: 阻隔程度
       show:
         affected_accounts:
-          one: 数据库中有1个账户受影响
-          other: 数据库中有%{count}个账户受影响
+          one: 数据库中有1个帐户受影响
+          other: 数据库中有%{count}个帐户受影响
         retroactive:
-          silence: 对此域名的所有账户取消静音
-          suspend: 对此域名的所有账户取消除名
+          silence: 对此域名的所有帐户取消静音
+          suspend: 对此域名的所有帐户取消除名
         title: 撤销 %{domain} 的域名阻隔
         undo: 撤销
       title: 域名阻隔
@@ -159,17 +134,13 @@ zh-CN:
     settings:
       contact_information:
         email: 输入一个公开的电邮地址
-        label: 联系数据
         username: 输入用户名称
       registrations:
         closed_message:
           desc_html: 当本站暂停接受注册时，会显示这个消息。<br/> 可使用 HTML
           title: 暂停注册消息
         open:
-          disabled: 停用
-          enabled: 启用
           title: 开放注册
-      setting: 设置
       site_description:
         desc_html: 在首页显示，及在 meta 标签中用作网站介绍。<br>你可以在此使用 HTML 标签，尤其是<code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
         title: 本站介绍
@@ -183,7 +154,7 @@ zh-CN:
       confirmed: 确定
       expires_in: 期限
       last_delivery: 数据最后送抵时间
-      title: PubSubHubbub 订阅
+      title: WebSub 订阅
       topic: 所订阅资源
     title: 管理
   application_mailer:
@@ -205,7 +176,6 @@ zh-CN:
   authorize_follow:
     error: 对不起，寻找这个跨站用户时出错
     follow: 关注
-    prompt_html: 你 (<strong>%{self}</strong>) 正准备关注︰
     title: 关注 %{acct}
   datetime:
     distance_in_words:
@@ -239,12 +209,12 @@ zh-CN:
     domain: 域名
     explanation_html: 想要保护你的嘟文的话，请慎重考虑关注你的人。<strong>你的受保护的嘟文会发送到有你的关注者的所有实例上</strong>。你也许想要复查一下关注者列表来移除那些你无法信任的关注者。
     followers_count: 关注者数量
-    lock_link: 保护你的账户
+    lock_link: 保护你的帐户
     purge: 从关注者中移除
     success: 从 %{count} 个域名中移除了关注者。
     true_privacy_html: "<strong>真正的隐私只能靠端到端加密来实现</strong>！"
     unlocked_warning_html: 任何人都可以关注你然后查看被保护的嘟文， %{lock_link} 可以复核和拒绝关注请求。
-    unlocked_warning_title: 你的账户没被保护
+    unlocked_warning_title: 你的帐户没被保护
   generic:
     changes_saved_msg: 更改已被保存。
     powered_by: 基于 %{link} 构建
@@ -261,7 +231,7 @@ zh-CN:
       muting: 静音名单
     upload: 上载
   landing_strip_html: "<strong>%{name}</strong> 是一个在 %{link_to_root_path} 的用户。只要你是象毛世界里（Mastodon、GNU social）任一服务器实例的用户，便可以跨站关注此站用户并与其沟通。"
-  landing_strip_signup_html: 如果你没有这类账户，欢迎在<a href="%{sign_up_path}">此处登记</a>。
+  landing_strip_signup_html: 如果你没有这类帐户，欢迎在<a href="%{sign_up_path}">此处登记</a>。
   media_attachments:
     validations:
       images_and_video: 无法添加视频到一个已经包含图片的嘟文中
@@ -277,8 +247,8 @@ zh-CN:
         one: "你有一个新通知 \U0001F418"
         other: "%{count} 个通知太多，赶快去看看 \U0001F418"
     favourite:
-      body: "%{name} 赞你"
-      subject: "%{name} 对你点赞"
+      body: "%{name} 收藏了你"
+      subject: "%{name} 给你点了收藏"
     follow:
       body: "%{name} 关注了你"
       subject: "%{name} 关注了你"
@@ -291,13 +261,24 @@ zh-CN:
     reblog:
       body: 你的嘟文得到 %{name} 的转嘟
       subject: "%{name} 转嘟（嘟嘟滴）了你的嘟文"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: 下一页
     prev: 上一页
     truncate: "……"
   remote_follow:
     acct: 请输入你的︰用户名称@实例域名
-    missing_resource: 无法找到您的账户转接网址
+    missing_resource: 无法找到您的帐户转接网址
     proceed: 下一步
     prompt: 你正准备关注︰
   settings:
@@ -336,10 +317,10 @@ zh-CN:
     enabled_success: 已成功启用两步认证
     generate_recovery_codes: 生成恢复代码
     instructions_html: "<strong>请用你手机的认证器应用（如 Google Authenticator、Authy），扫描这里的 QR 二维码</strong>。在两步认证启用后，你登录时将需要使用此应用程序产生的认证码。"
-    lost_recovery_codes: 如果你丢了手机，你可以用恢复代码重新访问你的账户。如果你丢了恢复代码，也可以在这里重新生成一个，不过以前的恢复代码就失效了。<del>（废话）</del>
+    lost_recovery_codes: 如果你丢了手机，你可以用恢复代码重新访问你的帐户。如果你丢了恢复代码，也可以在这里重新生成一个，不过以前的恢复代码就失效了。<del>（废话）</del>
     manual_instructions: 如果你无法扫描 QR 二维码，请手动输入这个文本密码︰
     recovery_codes_regenerated: 已成功重新生成恢复代码
-    recovery_instructions_html: 如果你的手机无法使用，你可以使用下面的任何恢复代码来恢复你的账号。请保管好你的恢复代码以防泄漏（例如你可以打印好它们并和重要文档一起保存）。
+    recovery_instructions_html: 如果你的手机无法使用，你可以使用下面的任何恢复代码来恢复你的帐号。请保管好你的恢复代码以防泄漏（例如你可以打印好它们并和重要文档一起保存）。
     setup: 设置
     wrong_code: 你输入的认证码并不正确！可能服务器时间和你手机不一致，请检查你手机的时钟，或与本站管理员联系。
   users:

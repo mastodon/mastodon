@@ -184,6 +184,14 @@ RSpec.describe User, type: :model do
       expect(user.setting_auto_play_gif).to eq false
     end
   end
+  
+  describe '#setting_system_font_ui' do
+    it 'returns system font ui setting' do
+      user = Fabricate(:user)
+      user.settings[:system_font_ui] = false
+      expect(user.setting_system_font_ui).to eq false
+    end
+  end
 
   describe '#setting_boost_modal' do
     it 'returns boost modal setting' do
@@ -208,6 +216,14 @@ RSpec.describe User, type: :model do
     it "returns 'public' if user has not configured default privacy setting and account is not locked" do
       user = Fabricate(:user, account: Fabricate(:account, locked: false))
       expect(user.setting_default_privacy).to eq 'public'
+    end
+  end
+
+  describe '#setting_unfollow_modal' do
+    it 'returns unfollow modal setting' do
+      user = Fabricate(:user)
+      user.settings[:unfollow_modal] = true
+      expect(user.setting_unfollow_modal).to eq true
     end
   end
 
@@ -268,6 +284,26 @@ RSpec.describe User, type: :model do
 
     def fabricate
       Fabricate(:user)
+    end
+  end
+
+  describe 'token_for_app' do
+    let(:user) { Fabricate(:user) }
+    let(:app) { Fabricate(:application, owner: user) }
+
+    it 'returns a token' do
+      expect(user.token_for_app(app)).to be_a(Doorkeeper::AccessToken)
+    end
+
+    it 'persists a token' do
+      t = user.token_for_app(app)
+      expect(user.token_for_app(app)).to eql(t)
+    end
+
+    it 'is nil if user does not own app' do
+      app.update!(owner: nil)
+
+      expect(user.token_for_app(app)).to be_nil
     end
   end
 end

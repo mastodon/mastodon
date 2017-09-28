@@ -1,18 +1,10 @@
 # frozen_string_literal: true
 
 namespace :mastodon do
-  desc 'Execute daily tasks'
+  desc 'Execute daily tasks (deprecated)'
   task :daily do
-    %w(
-      mastodon:feeds:clear
-      mastodon:media:clear
-      mastodon:users:clear
-      mastodon:push:refresh
-    ).each do |task|
-      puts "Starting #{task} at #{Time.now.utc}"
-      Rake::Task[task].invoke
-    end
-    puts "Completed daily tasks at #{Time.now.utc}"
+    # No-op
+    # All of these tasks are now executed via sidekiq-scheduler
   end
 
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
@@ -55,7 +47,7 @@ namespace :mastodon do
     confirm = STDIN.gets.chomp
     puts
 
-    if confirm.casecmp?('y')
+    if confirm.casecmp('y').zero?
       password = SecureRandom.hex
       user = User.new(email: email, password: password, account_attributes: { username: username })
       if user.save
@@ -74,7 +66,7 @@ namespace :mastodon do
   end
 
   namespace :media do
-    desc 'Removes media attachments that have not been assigned to any status for longer than a day'
+    desc 'Removes media attachments that have not been assigned to any status for longer than a day (deprecated)'
     task clear: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
@@ -85,33 +77,43 @@ namespace :mastodon do
       MediaAttachment.where(account: Account.silenced).find_each(&:destroy)
     end
 
-    desc 'Remove cached remote media attachments that are older than a week'
+    desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
-      MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
+      time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
+
+      MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
-        media.type = :unknown
         media.save
       end
     end
 
     desc 'Set unknown attachment type for remote-only attachments'
     task set_unknown: :environment do
-      Rails.logger.debug 'Setting unknown attachment type for remote-only attachments...'
+      puts 'Setting unknown attachment type for remote-only attachments...'
       MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
+    end
+
+    desc 'Redownload avatars/headers of remote users. Optionally limit to a particular domain with DOMAIN'
+    task redownload_avatars: :environment do
+      accounts = Account.remote
+      accounts = accounts.where(domain: ENV['DOMAIN']) if ENV['DOMAIN'].present?
+
+      accounts.find_each do |account|
+        account.reset_avatar!
+        account.reset_header!
+        account.save
+      end
     end
   end
 
   namespace :push do
     desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
     task clear: :environment do
-      Account.remote.without_followers.where.not(subscription_expires_at: nil).find_each do |a|
-        Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
-        UnsubscribeService.new.call(a)
-      end
+      Pubsubhubbub::UnsubscribeWorker.push_bulk(Account.remote.without_followers.where.not(subscription_expires_at: nil).pluck(:id))
     end
 
-    desc 'Re-subscribes to soon expiring PuSH subscriptions'
+    desc 'Re-subscribes to soon expiring PuSH subscriptions (deprecated)'
     task refresh: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
@@ -119,15 +121,22 @@ namespace :mastodon do
   end
 
   namespace :feeds do
-    desc 'Clear timelines of inactive users'
+    desc 'Clear timelines of inactive users (deprecated)'
     task clear: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
     end
 
-    desc 'Clears all timelines'
+    desc 'Clear all timelines without regenerating them'
     task clear_all: :environment do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
+    end
+
+    desc 'Generates home timelines for users who logged in in the past two weeks'
+    task build: :environment do
+      User.active.includes(:account).find_each do |u|
+        PrecomputeFeedService.new.call(u.account)
+      end
     end
   end
 
@@ -141,17 +150,13 @@ namespace :mastodon do
   end
 
   namespace :users do
-    desc 'Clear out unconfirmed users'
+    desc 'Clear out unconfirmed users (deprecated)'
     task clear: :environment do
-      # Users that never confirmed e-mail never signed in, means they
-      # only have a user record and an avatar record, with no files uploaded
-      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_in_batches do |batch|
-        Account.where(id: batch.map(&:account_id)).delete_all
-        User.where(id: batch.map(&:id)).delete_all
-      end
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
 
-    desc 'List all admin users'
+    desc 'List e-mails of all admin users'
     task admins: :environment do
       puts 'Admin user emails:'
       puts User.admins.map(&:email).join("\n")
@@ -161,40 +166,45 @@ namespace :mastodon do
   namespace :settings do
     desc 'Open registrations on this instance'
     task open_registrations: :environment do
-      setting = Setting.where(var: 'open_registrations').first
-      setting.value = true
-      setting.save
+      Setting.open_registrations = true
     end
 
     desc 'Close registrations on this instance'
     task close_registrations: :environment do
-      setting = Setting.where(var: 'open_registrations').first
-      setting.value = false
-      setting.save
+      Setting.open_registrations = false
+    end
+  end
+
+  namespace :webpush do
+    desc 'Generate VAPID key'
+    task generate_vapid_key: :environment do
+      vapid_key = Webpush.generate_key
+      puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
+      puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
     end
   end
 
   namespace :maintenance do
     desc 'Update counter caches'
     task update_counter_caches: :environment do
-      Rails.logger.debug 'Updating counter caches for accounts...'
+      puts 'Updating counter caches for accounts...'
 
-      Account.unscoped.select('id').find_in_batches do |batch|
+      Account.unscoped.where.not(protocol: :activitypub).select('id').find_in_batches do |batch|
         Account.where(id: batch.map(&:id)).update_all('statuses_count = (select count(*) from statuses where account_id = accounts.id), followers_count = (select count(*) from follows where target_account_id = accounts.id), following_count = (select count(*) from follows where account_id = accounts.id)')
       end
 
-      Rails.logger.debug 'Updating counter caches for statuses...'
+      puts 'Updating counter caches for statuses...'
 
       Status.unscoped.select('id').find_in_batches do |batch|
         Status.where(id: batch.map(&:id)).update_all('favourites_count = (select count(*) from favourites where favourites.status_id = statuses.id), reblogs_count = (select count(*) from statuses as reblogs where reblogs.reblog_of_id = statuses.id)')
       end
 
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
     end
 
     desc 'Generate static versions of GIF avatars/headers'
     task add_static_avatars: :environment do
-      Rails.logger.debug 'Generating static avatars/headers for GIF ones...'
+      puts 'Generating static avatars/headers for GIF ones...'
 
       Account.unscoped.where(avatar_content_type: 'image/gif').or(Account.unscoped.where(header_content_type: 'image/gif')).find_each do |account|
         begin
@@ -206,16 +216,23 @@ namespace :mastodon do
         end
       end
 
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
     end
 
     desc 'Ensure referencial integrity'
     task prepare_for_foreign_keys: :environment do
       # All the deletes:
       ActiveRecord::Base.connection.execute('DELETE FROM statuses USING statuses s LEFT JOIN accounts a ON a.id = s.account_id WHERE statuses.id = s.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM account_domain_blocks USING account_domain_blocks adb LEFT JOIN accounts a ON a.id = adb.account_id WHERE account_domain_blocks.id = adb.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN accounts a ON a.id = cm.account_id WHERE conversation_mutes.id = cm.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN conversations c ON c.id = cm.conversation_id WHERE conversation_mutes.id = cm.id AND c.id IS NULL')
+
+      if ActiveRecord::Base.connection.table_exists? :account_domain_blocks
+        ActiveRecord::Base.connection.execute('DELETE FROM account_domain_blocks USING account_domain_blocks adb LEFT JOIN accounts a ON a.id = adb.account_id WHERE account_domain_blocks.id = adb.id AND a.id IS NULL')
+      end
+
+      if ActiveRecord::Base.connection.table_exists? :conversation_mutes
+        ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN accounts a ON a.id = cm.account_id WHERE conversation_mutes.id = cm.id AND a.id IS NULL')
+        ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN conversations c ON c.id = cm.conversation_id WHERE conversation_mutes.id = cm.id AND c.id IS NULL')
+      end
+
       ActiveRecord::Base.connection.execute('DELETE FROM favourites USING favourites f LEFT JOIN accounts a ON a.id = f.account_id WHERE favourites.id = f.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM favourites USING favourites f LEFT JOIN statuses s ON s.id = f.status_id WHERE favourites.id = f.id AND s.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM blocks USING blocks b LEFT JOIN accounts a ON a.id = b.account_id WHERE blocks.id = b.id AND a.id IS NULL')
@@ -251,6 +268,36 @@ namespace :mastodon do
       ActiveRecord::Base.connection.execute('UPDATE media_attachments SET status_id = NULL FROM media_attachments ma LEFT JOIN statuses s ON s.id = ma.status_id WHERE media_attachments.id = ma.id AND ma.status_id IS NOT NULL AND s.id IS NULL')
       ActiveRecord::Base.connection.execute('UPDATE media_attachments SET account_id = NULL FROM media_attachments ma LEFT JOIN accounts a ON a.id = ma.account_id WHERE media_attachments.id = ma.id AND ma.account_id IS NOT NULL AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('UPDATE reports SET action_taken_by_account_id = NULL FROM reports r LEFT JOIN accounts a ON a.id = r.action_taken_by_account_id WHERE reports.id = r.id AND r.action_taken_by_account_id IS NOT NULL AND a.id IS NULL')
+    end
+
+    desc 'Remove deprecated preview cards'
+    task remove_deprecated_preview_cards: :environment do
+      next unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
+
+      class DeprecatedPreviewCard < ActiveRecord::Base
+        self.inheritance_column = false
+
+        path = '/preview_cards/:attachment/:id_partition/:style/:filename'
+        if ENV['S3_ENABLED'] != 'true'
+          path = (ENV['PAPERCLIP_ROOT_PATH'] || ':rails_root/public/system') + path
+        end
+
+        has_attached_file :image, styles: { original: '280x120>' }, convert_options: { all: '-quality 80 -strip' }, path: path
+      end
+
+      puts 'Delete records and associated files from deprecated preview cards? [y/N]: '
+      confirm = STDIN.gets.chomp
+
+      if confirm.casecmp('y').zero?
+        DeprecatedPreviewCard.in_batches.destroy_all
+
+        puts 'Drop deprecated preview cards table? [y/N]: '
+        confirm = STDIN.gets.chomp
+
+        if confirm.casecmp('y').zero?
+          ActiveRecord::Migration.drop_table :deprecated_preview_cards
+        end
+      end
     end
   end
 end
