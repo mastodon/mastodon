@@ -137,15 +137,6 @@ class Account < ApplicationRecord
     subscription_expires_at.present?
   end
 
-  def possibly_stale?
-    last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
-  end
-
-  def refresh!
-    return if local?
-    ResolveRemoteAccountService.new.call(acct)
-  end
-
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end

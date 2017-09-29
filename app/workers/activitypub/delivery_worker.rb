@@ -16,7 +16,7 @@ class ActivityPub::DeliveryWorker
 
     raise Mastodon::UnexpectedResponseError, @response unless response_successful?
   rescue => e
-    raise e.class, "Delivery failed for #{inbox_url}: #{e.message}", e.backtrace[0]
+    raise e.class, "Delivery failed for #{inbox_url}: #{e.message}"
   end
 
   private
@@ -28,7 +28,7 @@ class ActivityPub::DeliveryWorker
   end
 
   def perform_request
-    @response = build_request.perform.flush
+    @response = build_request.perform
   end
 
   def response_successful?

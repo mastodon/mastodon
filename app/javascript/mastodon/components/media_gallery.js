@@ -1,7 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { is } from 'immutable';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
@@ -136,7 +135,7 @@ class Item extends React.PureComponent {
           onClick={this.handleClick}
           target='_blank'
         >
-          <img src={previewUrl} srcSet={srcSet} sizes={sizes} alt={attachment.get('description')} />
+          <img src={previewUrl} srcSet={srcSet} sizes={sizes} alt='' />
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
@@ -146,7 +145,6 @@ class Item extends React.PureComponent {
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
           <video
             className='media-gallery__item-gifv-thumbnail'
-            aria-label={attachment.get('description')}
             role='application'
             src={attachment.get('url')}
             onClick={this.handleClick}
@@ -162,8 +160,10 @@ class Item extends React.PureComponent {
       );
     }
 
+    const style = standalone ? {} : { left, top, right, bottom, width: `${width}%`, height: `${height}%` };
+
     return (
-      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={style}>
         {thumbnail}
       </div>
     );
@@ -196,7 +196,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   componentWillReceiveProps (nextProps) {
-    if (!is(nextProps.media, this.props.media)) {
+    if (nextProps.sensitive !== this.props.sensitive) {
       this.setState({ visible: !nextProps.sensitive });
     }
   }

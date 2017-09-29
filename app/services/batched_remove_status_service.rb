@@ -84,8 +84,6 @@ class BatchedRemoveStatusService < BaseService
   end
 
   def unpush_from_public_timelines(status)
-    return unless status.public_visibility?
-
     payload = @json_payloads[status.id]
 
     redis.pipelined do

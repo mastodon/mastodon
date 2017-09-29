@@ -1,8 +1,17 @@
 import { connect } from 'react-redux';
 import UploadForm from '../components/upload_form';
+import { undoUploadCompose } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
-  mediaIds: state.getIn(['compose', 'media_attachments']).map(item => item.get('id')),
+  media: state.getIn(['compose', 'media_attachments']),
 });
 
-export default connect(mapStateToProps)(UploadForm);
+const mapDispatchToProps = dispatch => ({
+
+  onRemoveFile (media_id) {
+    dispatch(undoUploadCompose(media_id));
+  },
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UploadForm);
