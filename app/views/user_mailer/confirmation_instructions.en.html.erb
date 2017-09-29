@@ -5,6 +5,9 @@
 <p>To confirm your inscription, please click on the following link : <br>
 <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
 
+<p>If above link not worked, Copy and paste this URL</p>
+<span><%= confirmation_url(@resource, confirmation_token: @token) %></span>
+
 <p>Please also check out our <%= link_to 'terms and conditions', terms_url %>.</p>
 
 <p>Sincerely,<p>
