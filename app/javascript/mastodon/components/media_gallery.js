@@ -6,7 +6,6 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
-import sizeMe from 'react-sizeme';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -172,7 +171,6 @@ class Item extends React.PureComponent {
 }
 
 @injectIntl
-@sizeMe({})
 export default class MediaGallery extends React.PureComponent {
 
   static propTypes = {
@@ -210,16 +208,14 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, height, standalone, size } = this.props;
+    const { media, intl, sensitive, height, standalone } = this.props;
 
     let children;
 
-    const standaloneEligible = standalone && size.width && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+    const standaloneEligible = standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
     const style = {};
 
-    if (standaloneEligible) {
-      style.height = size.width / media.getIn([0, 'meta', 'small', 'aspect']);
-    } else {
+    if (!standaloneEligible) {
       style.height = height;
     }
 
