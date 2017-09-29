@@ -60,7 +60,9 @@ pl:
       email: Adres e-mail
       feed_url: Adres kanału
       followers: Śledzący
+      followers_url: Adres śledzących
       follows: Śledzeni
+      inbox: Adres skrzynki
       ip: Adres IP
       location:
         all: Wszystkie
@@ -90,6 +92,7 @@ pl:
       resubscribe: Ponów subskrypcję
       salmon_url: Adres Salmon
       search: Szukaj
+      shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
         report: zgłoszeń
@@ -103,6 +106,18 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    custom_emojis:
+      created_msg: Pomyślnie utworzono emoji!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto emoji!
+      emoji: Emoji
+      image_hint: Plik PNG ważący do 50KB
+      new:
+        title: Dodaj nowe niestandardowe emoji
+      shortcode: Shortcode
+      shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
+      title: Niestandardowe emoji
+      upload: Wyślij
     domain_blocks:
       add_new: Dodaj nową
       created_msg: Blokada domen jest przetwarzana
@@ -165,6 +180,9 @@ pl:
       unresolved: Nierozwiązane
       view: Wyświetl
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Oddzielaj nazwy użytkowników przecinkami. Działa tylko dla niezablokowanych kont w obrębie instancji. Jeżeli puste, zostaną użyte konta administratorów instancji.
+        title: Domyślne obserwacje nowych użytkowników
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
@@ -188,6 +206,9 @@ pl:
         desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać z tagów HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa instancji
+      thumbnail:
+        desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli.'
+        title: Miniatura instancji
       timeline_preview:
         desc_html: Wyświetlaj publiczną oś czasu na stronie widocznej dla niezalogowanych
         title: Podgląd osi czasu
@@ -286,6 +307,9 @@ pl:
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
     '429': Uduszono
+    '500':
+      content: Przepraszamy, coś poszło nie tak…
+      title: Ta strona jest nieprawidłowa
     noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   exports:
     blocks: Zablokowani
@@ -445,6 +469,7 @@ pl:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
+      limit: Nie możesz przypiąć więcej wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
@@ -531,6 +556,8 @@ pl:
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

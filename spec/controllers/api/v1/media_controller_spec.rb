@@ -53,7 +53,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
 
       it 'returns media ID in JSON' do
-        expect(body_as_json[:id]).to eq MediaAttachment.first.id
+        expect(body_as_json[:id]).to eq MediaAttachment.first.id.to_s
       end
     end
 
@@ -75,7 +75,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
 
       it 'returns media ID in JSON' do
-        expect(body_as_json[:id]).to eq MediaAttachment.first.id
+        expect(body_as_json[:id]).to eq MediaAttachment.first.id.to_s
       end
     end
 
@@ -97,7 +97,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
 
       xit 'returns media ID in JSON' do
-        expect(body_as_json[:id]).to eq MediaAttachment.first.id
+        expect(body_as_json[:id]).to eq MediaAttachment.first.id.to_s
       end
     end
   end

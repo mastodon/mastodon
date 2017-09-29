@@ -517,6 +517,22 @@
         "id": "emoji_button.search"
       },
       {
+        "defaultMessage": "No emojos!! (╯°□°）╯︵ ┻━┻",
+        "id": "emoji_button.not_found"
+      },
+      {
+        "defaultMessage": "Custom",
+        "id": "emoji_button.custom"
+      },
+      {
+        "defaultMessage": "Frequently used",
+        "id": "emoji_button.recent"
+      },
+      {
+        "defaultMessage": "Search results",
+        "id": "emoji_button.search_results"
+      },
+      {
         "defaultMessage": "People",
         "id": "emoji_button.people"
       },
@@ -682,10 +698,6 @@
       {
         "defaultMessage": "locked",
         "id": "compose_form.lock_disclaimer.lock"
-      },
-      {
-        "defaultMessage": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}}? Post privacy only works on Mastodon instances. If {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, there will be no indication that your post is private, and it may be boosted or otherwise made visible to unintended recipients.",
-        "id": "compose_form.privacy_disclaimer"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/warning_container.json"
@@ -811,6 +823,10 @@
       {
         "defaultMessage": "Extended information",
         "id": "navigation_bar.info"
+      },
+      {
+        "defaultMessage": "Pinned toots",
+        "id": "navigation_bar.pins"
       },
       {
         "defaultMessage": "FAQ",
@@ -991,6 +1007,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Pinned toot",
+        "id": "column.pins"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/pinned_statuses/index.json"
   },
   {
     "descriptors": [
@@ -1321,10 +1346,50 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Close",
-        "id": "lightbox.close"
+        "defaultMessage": "Play",
+        "id": "video.play"
+      },
+      {
+        "defaultMessage": "Pause",
+        "id": "video.pause"
+      },
+      {
+        "defaultMessage": "Mute sound",
+        "id": "video.mute"
+      },
+      {
+        "defaultMessage": "Unmute sound",
+        "id": "video.unmute"
+      },
+      {
+        "defaultMessage": "Hide video",
+        "id": "video.hide"
+      },
+      {
+        "defaultMessage": "Expand video",
+        "id": "video.expand"
+      },
+      {
+        "defaultMessage": "Close video",
+        "id": "video.close"
+      },
+      {
+        "defaultMessage": "Full screen",
+        "id": "video.fullscreen"
+      },
+      {
+        "defaultMessage": "Exit full screen",
+        "id": "video.exit_fullscreen"
+      },
+      {
+        "defaultMessage": "Sensitive content",
+        "id": "status.sensitive_warning"
+      },
+      {
+        "defaultMessage": "Click to view",
+        "id": "status.sensitive_toggle"
       }
     ],
-    "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
+    "path": "app/javascript/mastodon/features/video/index.json"
   }
 ]

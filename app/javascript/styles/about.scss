@@ -124,6 +124,7 @@
     box-sizing: border-box;
     max-width: 800px;
     margin: 0 auto;
+    word-wrap: break-word;
   }
 
   .header-wrapper {
@@ -137,7 +138,7 @@
       padding-bottom: 15px;
 
       .hero .heading {
-        padding-bottom: 30px;
+        padding-bottom: 20px;
         font-family: 'mastodon-font-sans-serif', sans-serif;
         font-size: 16px;
         font-weight: 400;
@@ -327,7 +328,7 @@
 
   .about-short {
     background: darken($ui-base-color, 4%);
-    padding: 50px 0;
+    padding: 50px 0 30px;
     font-family: 'mastodon-font-sans-serif', sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -640,8 +641,11 @@
     .header-wrapper {
       padding-top: 0;
 
+      &.compact {
+        padding-bottom: 0;
+      }
+
       &.compact .hero .heading {
-        padding-bottom: 20px;
         text-align: initial;
       }
     }

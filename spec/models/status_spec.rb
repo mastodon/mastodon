@@ -173,16 +173,19 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.local_only' do
-    it 'returns only statuses from local accounts' do
-      local_account = Fabricate(:account, domain: nil)
-      remote_account = Fabricate(:account, domain: 'test.com')
-      local_status = Fabricate(:status, account: local_account)
-      remote_status = Fabricate(:status, account: remote_account)
+  describe '.not_in_filtered_languages' do
+    context 'for accounts with language filters' do
+      let(:user) { Fabricate(:user, filtered_languages: ['en']) }
 
-      results = described_class.local_only
-      expect(results).to include(local_status)
-      expect(results).not_to include(remote_status)
+      it 'does not include statuses in filtered languages' do
+        status = Fabricate(:status, language: 'en')
+        expect(Status.not_in_filtered_languages(user.account)).not_to include status
+      end
+
+      it 'includes status with unknown language' do
+        status = Fabricate(:status, language: nil)
+        expect(Status.not_in_filtered_languages(user.account)).to include status
+      end
     end
   end
 
@@ -526,6 +529,14 @@ RSpec.describe Status, type: :model do
     it 'sets `local` to false for status by remote account' do
       alice.update(domain: 'example.com')
       expect(Status.create(account: alice, text: 'foo').local).to be false
+    end
+  end
+
+  describe 'validation' do
+    it 'disallow empty uri for remote status' do
+      alice.update(domain: 'example.com')
+      status = Fabricate.build(:status, uri: '', account: alice)
+      expect(status).to model_have_error_on_field(:uri)
     end
   end
 

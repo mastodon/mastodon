@@ -982,6 +982,10 @@ base64-js@^1.0.2:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.1.tgz#a91947da1f4a516ea38e5b4ec0ec3773675e0886"
 
+batch-processor@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/batch-processor/-/batch-processor-1.0.0.tgz#75c95c32b748e0850d10c2b168f6bdbe9891ace8"
+
 batch@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
@@ -1233,6 +1237,10 @@ chai@^4.1.0:
     get-func-name "^2.0.0"
     pathval "^1.0.0"
     type-detect "^4.0.0"
+
+chain-function@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/chain-function/-/chain-function-1.0.0.tgz#0d4ab37e7e18ead0bdc47b920764118ce58733dc"
 
 chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
   version "1.1.3"
@@ -1972,7 +1980,7 @@ doctrine@^2.0.0:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
-"dom-helpers@^2.4.0 || ^3.0.0", dom-helpers@^3.0.0, dom-helpers@^3.2.1:
+"dom-helpers@^2.4.0 || ^3.0.0", dom-helpers@^3.0.0, dom-helpers@^3.2.0, dom-helpers@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
 
@@ -2049,6 +2057,12 @@ electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.14:
   version "1.3.15"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.15.tgz#08397934891cbcfaebbd18b82a95b5a481138369"
 
+element-resize-detector@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/element-resize-detector/-/element-resize-detector-1.1.12.tgz#8b3fd6eedda17f9c00b360a0ea2df9927ae80ba2"
+  dependencies:
+    batch-processor "^1.0.0"
+
 elliptic@^6.0.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.0.tgz#cac9af8762c85836187003c8dfe193e5e2eae5df"
@@ -2060,6 +2074,12 @@ elliptic@^6.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
+
+emoji-mart@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/emoji-mart/-/emoji-mart-1.0.1.tgz#0ef2fd2bf4b6762aab7486c26c574387f034e392"
+  dependencies:
+    measure-scrollbar "^0.1.0"
 
 emoji-regex@^6.1.0:
   version "6.4.3"
@@ -3853,6 +3873,10 @@ mathjs@^3.11.5:
     tiny-emitter "2.0.0"
     typed-function "0.10.5"
 
+measure-scrollbar@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/measure-scrollbar/-/measure-scrollbar-0.1.0.tgz#2bbfac6773bcbb98d814e6890554c0b92846fe6f"
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
@@ -5131,6 +5155,12 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
+prop-types-extra@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/prop-types-extra/-/prop-types-extra-1.0.1.tgz#a57bd4810e82d27a3ff4317ecc1b4ad005f79a82"
+  dependencies:
+    warning "^3.0.0"
+
 prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
@@ -5329,6 +5359,17 @@ react-notification@^6.7.1:
   dependencies:
     prop-types "^15.5.10"
 
+react-overlays@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.8.1.tgz#26e480003c2fd6f581a4a66c0c86cb3dff17e626"
+  dependencies:
+    classnames "^2.2.5"
+    dom-helpers "^3.2.1"
+    prop-types "^15.5.10"
+    prop-types-extra "^1.0.1"
+    react-transition-group "^2.0.0-beta.0"
+    warning "^3.0.0"
+
 react-redux-loading-bar@^2.9.2:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/react-redux-loading-bar/-/react-redux-loading-bar-2.9.2.tgz#f0e604ee35af5ecb25addb10bf24ca3d478c95a8"
@@ -5382,6 +5423,14 @@ react-simple-dropdown@^3.0.0:
     classnames "^2.1.2"
     prop-types "^15.5.8"
 
+react-sizeme@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/react-sizeme/-/react-sizeme-2.3.5.tgz#f14c0a15f9b24d7b8b6f196871b0af19aa01a422"
+  dependencies:
+    element-resize-detector "^1.1.12"
+    invariant "^2.2.2"
+    lodash "^4.17.4"
+
 react-swipeable-views-core@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/react-swipeable-views-core/-/react-swipeable-views-core-0.11.1.tgz#61d046799f90725bbf91a0eb3abcab805c774cac"
@@ -5429,6 +5478,17 @@ react-toggle@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-toggle/-/react-toggle-4.0.1.tgz#0e83e8c94d94232debfa21a938ff3d2b2106ec72"
   dependencies:
     classnames "^2.2.5"
+
+react-transition-group@^2.0.0-beta.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.2.0.tgz#793bf8cb15bfe91b3101b24bce1c1d2891659575"
+  dependencies:
+    chain-function "^1.0.0"
+    classnames "^2.2.5"
+    dom-helpers "^3.2.0"
+    loose-envify "^1.3.1"
+    prop-types "^15.5.8"
+    warning "^3.0.0"
 
 react-virtualized@^9.7.4:
   version "9.9.0"

@@ -11,7 +11,7 @@ import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
 import { refreshHomeTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
-import { clearStatusesHeight } from '../../actions/statuses';
+import { clearHeight } from '../../actions/height_cache';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -57,7 +57,7 @@ export default class UI extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
-  }
+  };
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -77,7 +77,7 @@ export default class UI extends React.PureComponent {
 
   handleResize = debounce(() => {
     // The cached heights are no longer accurate, invalidate
-    this.props.dispatch(clearStatusesHeight());
+    this.props.dispatch(clearHeight());
 
     this.setState({ width: window.innerWidth });
   }, 500, {
@@ -193,12 +193,16 @@ export default class UI extends React.PureComponent {
     document.removeEventListener('dragend', this.handleDragEnd);
   }
 
-  setRef = (c) => {
+  setRef = c => {
     this.node = c;
   }
 
-  setColumnsAreaRef = (c) => {
+  setColumnsAreaRef = c => {
     this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
+  }
+
+  setOverlayRef = c => {
+    this.overlay = c;
   }
 
   render () {

@@ -11,11 +11,9 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Mastodon imports.
-import emojify from '../../../mastodon/emoji';
 import Permalink from '../../../mastodon/components/permalink';
 import AccountContainer from '../../../mastodon/containers/account_container';
 
@@ -30,7 +28,7 @@ import NotificationOverlayContainer from '../notification/overlay/container';
 export default class NotificationFollow extends ImmutablePureComponent {
 
   static propTypes = {
-    id                   : PropTypes.number.isRequired,
+    id                   : PropTypes.string.isRequired,
     account              : ImmutablePropTypes.map.isRequired,
     notification         : ImmutablePropTypes.map.isRequired,
   };
@@ -39,15 +37,14 @@ export default class NotificationFollow extends ImmutablePureComponent {
     const { account, notification } = this.props;
 
     //  Links to the display name.
-    const displayName = account.get('display_name') || account.get('username');
-    const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+    const displayName = account.get('display_name_html') || account.get('username');
     const link = (
       <Permalink
         className='notification__display-name'
         href={account.get('url')}
         title={account.get('acct')}
         to={`/accounts/${account.get('id')}`}
-        dangerouslySetInnerHTML={displayNameHTML}
+        dangerouslySetInnerHTML={{ __html: displayName }}
       />
     );
 

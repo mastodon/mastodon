@@ -2,7 +2,7 @@ import loadPolyfills from '../mastodon/load_polyfills';
 
 // import default stylesheet with variables
 require('font-awesome/css/font-awesome.css');
-require('mastodon-application-style');
+import 'styles/application';
 
 require.context('../images/', true);
 

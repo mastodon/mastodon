@@ -18,7 +18,7 @@ class BatchedRemoveStatusService < BaseService
     @stream_entry_batches  = []
     @salmon_batches        = []
     @activity_json_batches = []
-    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id)] }.to_h
+    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id.to_s)] }.to_h
     @activity_json         = {}
     @activity_xml          = {}
 
@@ -84,6 +84,8 @@ class BatchedRemoveStatusService < BaseService
   end
 
   def unpush_from_public_timelines(status)
+    return unless status.public_visibility?
+
     payload = @json_payloads[status.id]
 
     redis.pipelined do

@@ -44,7 +44,6 @@ Imports:
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -89,7 +88,7 @@ export default class AccountHeader extends ImmutablePureComponent {
 
   static propTypes = {
     account  : ImmutablePropTypes.map,
-    me       : PropTypes.number.isRequired,
+    me       : PropTypes.string.isRequired,
     onFollow : PropTypes.func.isRequired,
     intl     : PropTypes.object.isRequired,
   };
@@ -117,7 +116,7 @@ then we set the `displayName` to just be the `username` of the account.
       return null;
     }
 
-    let displayName = account.get('display_name');
+    let displayName = account.get('display_name_html');
     let info        = '';
     let actionBtn   = '';
     let following   = false;
@@ -167,16 +166,11 @@ appropriate icon.
     }
 
 /*
-
-`displayNameHTML` processes the `displayName` and prepares it for
-insertion into the document. Meanwhile, we extract the `text` and
+ we extract the `text` and
 `metadata` from our account's `note` using `processBio()`.
 
 */
 
-    const displayNameHTML    = {
-      __html : emojify(escapeTextContentForBrowser(displayName)),
-    };
     const { text, metadata } = processBio(account.get('note'));
 
 /*
@@ -198,7 +192,7 @@ Here, we render our component using all the things we've defined above.
               </span>
               <span
                 className='account__header__display-name'
-                dangerouslySetInnerHTML={displayNameHTML}
+                dangerouslySetInnerHTML={{ __html: displayName }}
               />
             </a>
             <span className='account__header__username'>

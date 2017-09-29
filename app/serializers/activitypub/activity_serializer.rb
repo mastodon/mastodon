@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::ActivitySerializer < ActiveModel::Serializer
-  attributes :id, :type, :actor, :to, :cc
+  attributes :id, :type, :actor, :published, :to, :cc
 
   has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer
 
@@ -15,6 +15,10 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
 
   def actor
     ActivityPub::TagManager.instance.uri_for(object.account)
+  end
+
+  def published
+    object.created_at.iso8601
   end
 
   def to

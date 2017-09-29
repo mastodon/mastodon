@@ -37,7 +37,7 @@ class ActivityPub::TagManager
   end
 
   def activity_uri_for(target)
-    return nil unless %i(note comment activity).include?(target.object_type) && target.local?
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
     activity_account_status_url(target.account, target)
   end
@@ -98,8 +98,8 @@ class ActivityPub::TagManager
       else
         StatusFinder.new(uri).status
       end
-    elsif ::TagManager.instance.local_id?(uri)
-      klass.find_by(id: ::TagManager.instance.unique_tag_to_local_id(uri, klass.to_s))
+    elsif OStatus::TagManager.instance.local_id?(uri)
+      klass.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, klass.to_s))
     else
       klass.find_by(uri: uri.split('#').first)
     end

@@ -26,7 +26,7 @@ export default class ActionBar extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
-    me: PropTypes.number.isRequired,
+    me: PropTypes.string.isRequired,
     onFollow: PropTypes.func,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,

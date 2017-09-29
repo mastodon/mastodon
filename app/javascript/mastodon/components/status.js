@@ -12,7 +12,7 @@ import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { MediaGallery, VideoPlayer } from '../features/ui/util/async-components';
+import { MediaGallery, Video } from '../features/ui/util/async-components';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -37,7 +37,7 @@ export default class Status extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
-    me: PropTypes.number,
+    me: PropTypes.string,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
@@ -73,7 +73,7 @@ export default class Status extends ImmutablePureComponent {
 
   handleAccountClick = (e) => {
     if (this.context.router && e.button === 0) {
-      const id = Number(e.currentTarget.getAttribute('data-id'));
+      const id = e.currentTarget.getAttribute('data-id');
       e.preventDefault();
       this.context.router.history.push(`/accounts/${id}`);
     }
@@ -89,6 +89,10 @@ export default class Status extends ImmutablePureComponent {
 
   renderLoadingVideoPlayer () {
     return <div className='media-spoiler-video' style={{ height: '110px' }} />;
+  }
+
+  handleOpenVideo = startTime => {
+    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
   }
 
   render () {
@@ -130,9 +134,18 @@ export default class Status extends ImmutablePureComponent {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
 
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        const video = status.getIn(['media_attachments', 0]);
+
         media = (
-          <Bundle fetchComponent={VideoPlayer} loading={this.renderLoadingVideoPlayer} >
-            {Component => <Component media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />}
+          <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
+            {Component => <Component
+              preview={video.get('preview_url')}
+              src={video.get('url')}
+              width={239}
+              height={110}
+              sensitive={status.get('sensitive')}
+              onOpenVideo={this.handleOpenVideo}
+            />}
           </Bundle>
         );
       } else {

@@ -1,0 +1,9 @@
+#  (REQUIRED) Name must be unique across all installed themes.
+name: default
+
+#  (REQUIRED) The location of the pack file inside `pack_directory`.
+pack: application.js
+
+#  (OPTIONAL) The directory which contains the pack file.
+#  Defaults to the theme directory (`app/javascript/themes/[theme]`).
+pack_directory: app/javascript/packs

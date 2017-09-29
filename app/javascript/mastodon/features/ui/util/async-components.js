@@ -1,7 +1,3 @@
-export function EmojiPicker () {
-  return import(/* webpackChunkName: "emojione_picker" */'emojione-picker');
-}
-
 export function Compose () {
   return import(/* webpackChunkName: "features/compose" */'../../compose');
 }
@@ -107,6 +103,10 @@ export function MediaGallery () {
 
 export function VideoPlayer () {
   return import(/* webpackChunkName: "status/video_player" */'../../../components/video_player');
+}
+
+export function Video () {
+  return import(/* webpackChunkName: "features/video" */'../../video');
 }
 
 export function EmbedModal () {

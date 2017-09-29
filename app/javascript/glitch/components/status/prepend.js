@@ -22,11 +22,7 @@ Imports:
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import escapeTextContentForBrowser from 'escape-html';
 import { FormattedMessage } from 'react-intl';
-
-//  Mastodon imports  //
-import emojify from '../../../mastodon/emoji';
 
                             /* * * * */
 
@@ -99,9 +95,7 @@ generate the message.
       >
         <b
           dangerouslySetInnerHTML={{
-            __html : emojify(escapeTextContentForBrowser(
-              account.get('display_name') || account.get('username')
-            )),
+            __html : account.get('display_name_html') || account.get('username'),
           }}
         />
       </a>

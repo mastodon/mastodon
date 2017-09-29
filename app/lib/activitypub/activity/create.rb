@@ -4,25 +4,30 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def perform
     return if delete_arrived_first?(object_uri) || unsupported_object_type?
 
-    status = find_existing_status
-
-    return status unless status.nil?
-
-    ApplicationRecord.transaction do
-      status = Status.create!(status_params)
-
-      process_tags(status)
-      process_attachments(status)
+    RedisLock.acquire(lock_options) do |lock|
+      if lock.acquired?
+        @status = find_existing_status
+        process_status if @status.nil?
+      end
     end
 
-    resolve_thread(status)
-    distribute(status)
-    forward_for_reply if status.public_visibility? || status.unlisted_visibility?
-
-    status
+    @status
   end
 
   private
+
+  def process_status
+    ApplicationRecord.transaction do
+      @status = Status.create!(status_params)
+
+      process_tags(@status)
+      process_attachments(@status)
+    end
+
+    resolve_thread(@status)
+    distribute(@status)
+    forward_for_reply if @status.public_visibility? || @status.unlisted_visibility?
+  end
 
   def find_existing_status
     status   = status_from_uri(object_uri)
@@ -56,11 +61,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_hashtag tag, status
       when 'Mention'
         process_mention tag, status
+      when 'Emoji'
+        process_emoji tag, status
       end
     end
   end
 
   def process_hashtag(tag, status)
+    return if tag['name'].blank?
+
     hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
     hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
 
@@ -68,17 +77,32 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_mention(tag, status)
+    return if tag['href'].blank?
+
     account = account_from_uri(tag['href'])
     account = FetchRemoteAccountService.new.call(tag['href']) if account.nil?
     return if account.nil?
     account.mentions.create(status: status)
   end
 
+  def process_emoji(tag, _status)
+    return if tag['name'].blank? || tag['href'].blank?
+
+    shortcode = tag['name'].delete(':')
+    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
+
+    return if !emoji.nil? || skip_download?
+
+    emoji = CustomEmoji.new(domain: @account.domain, shortcode: shortcode)
+    emoji.image_remote_url = tag['href']
+    emoji.save
+  end
+
   def process_attachments(status)
     return unless @object['attachment'].is_a?(Array)
 
     @object['attachment'].each do |attachment|
-      next if unsupported_media_type?(attachment['mediaType'])
+      next if unsupported_media_type?(attachment['mediaType']) || attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s
       media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href)
@@ -88,6 +112,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       media_attachment.file_remote_url = href
       media_attachment.save
     end
+  rescue Addressable::URI::InvalidURIError => e
+    Rails.logger.debug e
   end
 
   def resolve_thread(status)
@@ -97,8 +123,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def conversation_from_uri(uri)
     return nil if uri.nil?
-    return Conversation.find_by(id: TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if TagManager.instance.local_id?(uri)
-    Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
+    return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
+    Conversation.find_by(uri: uri) || Conversation.create(uri: uri)
   end
 
   def visibility_from_audience
@@ -181,5 +207,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def forward_for_reply
     return unless @json['signature'].present? && reply_to_local?
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id)
+  end
+
+  def lock_options
+    { redis: Redis.current, key: "create:#{@object['id']}" }
   end
 end

@@ -49,7 +49,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onEmbed: PropTypes.func,
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
-    me: PropTypes.number,
+    me: PropTypes.string,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };

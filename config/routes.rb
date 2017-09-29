@@ -98,6 +98,8 @@ Rails.application.routes.draw do
   resources :media, only: [:show]
   resources :tags,  only: [:show]
 
+  get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
+
   # Remote follow
   resource :authorize_follow, only: [:show, :create]
   resource :share, only: [:show, :create]
@@ -134,6 +136,8 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
     end
+
+    resources :custom_emojis, only: [:index, :new, :create, :destroy]
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)
@@ -184,6 +188,7 @@ Rails.application.routes.draw do
       end
 
       resources :streaming, only: [:index]
+      resources :custom_emojis, only: [:index]
 
       get '/search', to: 'search#index', as: :search
 
