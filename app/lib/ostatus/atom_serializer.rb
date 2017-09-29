@@ -34,6 +34,22 @@ class OStatus::AtomSerializer
     author
   end
 
+  def emoji_icon(icon, root = false)
+    image = Ox::Element.new('entry')
+
+    add_namespaces(image) if root
+    append_element(image, 'id', OStatus::TagManager.instance.uri_for(icon))
+    append_element(
+      image,
+      'link',
+      nil,
+      rel: :enclosure,
+      href: icon.image_remote_url || full_asset_url(icon.image.url(:original, false))
+    )
+
+    image
+  end
+
   def feed(account, stream_entries)
     feed = Ox::Element.new('feed')
 
@@ -370,7 +386,7 @@ class OStatus::AtomSerializer
     append_element(entry, 'mastodon:scope', status.visibility)
 
     status.emojis.each do |emoji|
-      append_element(entry, 'link', nil, rel: :emoji, href: full_asset_url(emoji.image.url), name: emoji.shortcode)
+      append_element(entry, 'link', nil, rel: :emoji, href: OStatus::TagManager.instance.uri_for(emoji.custom_emoji_icon), name: emoji.shortcode)
     end
   end
 end

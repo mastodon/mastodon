@@ -1,5 +1,4 @@
 Fabricator(:custom_emoji) do
   shortcode 'coolcat'
-  domain    nil
-  image     { File.open(Rails.root.join('spec', 'fixtures', 'files', 'emojo.png')) }
+  custom_emoji_icon
 end

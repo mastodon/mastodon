@@ -95,6 +95,7 @@ Rails.application.routes.draw do
     resources :sessions, only: [:destroy]
   end
 
+  resources :emojis, only: [:show]
   resources :media, only: [:show]
   resources :tags,  only: [:show]
 

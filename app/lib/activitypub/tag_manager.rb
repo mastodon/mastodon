@@ -28,6 +28,8 @@ class ActivityPub::TagManager
     return target.uri if target.respond_to?(:local?) && !target.local?
 
     case target.object_type
+    when :emoji
+      emoji_url(target)
     when :person
       account_url(target)
     when :note, :comment, :activity
@@ -95,6 +97,8 @@ class ActivityPub::TagManager
       case klass.name
       when 'Account'
         klass.find_local(uri_to_local_id(uri, :username))
+      when 'CustomEmojiIcon'
+        klass.find_local(uri_to_local_id(uri))
       else
         StatusFinder.new(uri).status
       end

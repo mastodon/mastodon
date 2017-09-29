@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927215609) do
+ActiveRecord::Schema.define(version: 20170929000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,15 +89,23 @@ ActiveRecord::Schema.define(version: 20170927215609) do
     t.index ["uri"], name: "index_conversations_on_uri", unique: true
   end
 
-  create_table "custom_emojis", force: :cascade do |t|
-    t.string "shortcode", default: "", null: false
-    t.string "domain"
+  create_table "custom_emoji_icons", force: :cascade do |t|
+    t.string "uri"
+    t.string "image_remote_url"
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.index ["uri"], name: "index_custom_emoji_icons_on_uri", unique: true
+  end
+
+  create_table "custom_emojis", force: :cascade do |t|
+    t.string "shortcode", default: "", null: false
+    t.string "domain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "custom_emoji_icon_id", null: false
+    t.index ["custom_emoji_icon_id"], name: "index_custom_emojis_on_custom_emoji_icon_id"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
@@ -444,6 +452,7 @@ ActiveRecord::Schema.define(version: 20170927215609) do
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
+  add_foreign_key "custom_emojis", "custom_emoji_icons", on_update: :cascade, on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "follow_requests", "accounts", column: "target_account_id", name: "fk_9291ec025d", on_delete: :cascade
