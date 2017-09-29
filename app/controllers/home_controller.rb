@@ -3,6 +3,7 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
   before_action :set_initial_state_json
+  before_action :set_cache_control
 
   def index
     @body_classes = 'app-body'
@@ -60,5 +61,9 @@ class HomeController < ApplicationController
     else
       about_path
     end
+  end
+
+  def set_cache_control
+    request.headers['Cache-Control'] = 'max-age=0'
   end
 end
