@@ -6,7 +6,6 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
-import sizeMe from 'react-sizeme';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -172,7 +171,6 @@ class Item extends React.PureComponent {
 }
 
 @injectIntl
-@sizeMe({})
 export default class MediaGallery extends React.PureComponent {
 
   static propTypes = {
@@ -209,21 +207,42 @@ export default class MediaGallery extends React.PureComponent {
     this.props.onOpenMedia(this.props.media, index);
   }
 
+  handleRef = (node) => {
+    if (node && this.isStandaloneEligible()) {
+      // offsetWidth triggers a layout, so only calculate when we need to
+      this.setState({
+        width: node.offsetWidth,
+      });
+    }
+  }
+
+  isStandaloneEligible() {
+    const { media, standalone } = this.props;
+    return standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+  }
+
   render () {
-    const { media, intl, sensitive, height, standalone, size } = this.props;
+    const { media, intl, sensitive, height } = this.props;
+    const { width, visible } = this.state;
 
     let children;
 
-    const standaloneEligible = standalone && size.width && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
     const style = {};
 
-    if (standaloneEligible) {
-      style.height = size.width / media.getIn([0, 'meta', 'small', 'aspect']);
+    if (this.isStandaloneEligible()) {
+      if (!visible && width) {
+        // only need to forcibly set the height in "sensitive" mode
+        style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+      } else {
+        // layout automatically, using image's natural aspect ratio
+        style.height = '';
+      }
     } else {
+      // crop the image
       style.height = height;
     }
 
-    if (!this.state.visible) {
+    if (!visible) {
       let warning;
 
       if (sensitive) {
@@ -233,7 +252,7 @@ export default class MediaGallery extends React.PureComponent {
       }
 
       children = (
-        <button className='media-spoiler' onClick={this.handleOpen} style={style}>
+        <button className='media-spoiler' onClick={this.handleOpen} style={style} ref={this.handleRef}>
           <span className='media-spoiler__warning'>{warning}</span>
           <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </button>
@@ -241,7 +260,7 @@ export default class MediaGallery extends React.PureComponent {
     } else {
       const size = media.take(4).size;
 
-      if (standaloneEligible) {
+      if (this.isStandaloneEligible()) {
         children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} autoPlayGif={this.props.autoPlayGif} />;
       } else {
         children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
@@ -250,8 +269,8 @@ export default class MediaGallery extends React.PureComponent {
 
     return (
       <div className='media-gallery' style={style}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--visible': this.state.visible })}>
-          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
+        <div className={classNames('spoiler-button', { 'spoiler-button--visible': visible })}>
+          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
         </div>
 
         {children}
