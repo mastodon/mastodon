@@ -216,8 +216,8 @@ export default class ComposeForm extends ImmutablePureComponent {
           </div>
 
           <div className='compose-form__publish'>
-            <div className='character-counter__wrapper'><CharacterCounter max={2048} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} style={buttonStyle} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 2048 || (text.length !== 0 && text.trim().length === 0) || (this.props.enquete.get('active') && this.props.text.length !== 0 && this.props.text.trim().length === 0)} block /></div>
+            <div className='character-counter__wrapper'><CharacterCounter max={4096} text={text} /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} style={buttonStyle} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 4096 || (text.length !== 0 && text.trim().length === 0) || (this.props.enquete.get('active') && this.props.text.length !== 0 && this.props.text.trim().length === 0)} block /></div>
           </div>
         </div>
       </div>
