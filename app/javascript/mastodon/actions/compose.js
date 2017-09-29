@@ -1,6 +1,6 @@
 import api from '../api';
 import { emojiIndex } from 'emoji-mart';
-import { debounce } from 'lodash';
+import { throttle } from 'lodash';
 
 import {
   updateTimeline,
@@ -248,7 +248,7 @@ export function clearComposeSuggestions() {
   };
 };
 
-const fetchComposeSuggestionsAccounts = debounce((dispatch, getState, token) => {
+const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => {
   api(getState).get('/api/v1/accounts/search', {
     params: {
       q: token.slice(1),
@@ -258,10 +258,10 @@ const fetchComposeSuggestionsAccounts = debounce((dispatch, getState, token) => 
   }).then(response => {
     dispatch(readyComposeSuggestionsAccounts(token, response.data));
   });
-}, 200, { trailing: true });
+}, 200, { leading: true, trailing: true });
 
 const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
-  const results = emojiIndex.search(token.replace(':', ''), { maxResults: 3 });
+  const results = emojiIndex.search(token.replace(':', ''), { maxResults: 5 });
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
 
