@@ -14,6 +14,7 @@ class RemoveStatusService < BaseService
 
     remove_from_self if status.account.local?
     remove_from_followers
+    remove_from_affected
     remove_reblogs
     remove_from_hashtags
     remove_from_public
@@ -35,6 +36,12 @@ class RemoveStatusService < BaseService
   def remove_from_followers
     @account.followers.local.find_each do |follower|
       unpush(:home, follower, @status)
+    end
+  end
+
+  def remove_from_affected
+    @mentions.map(&:account).select(&:local?).each do |account|
+      Redis.current.publish("timeline:#{account.id}", @payload)
     end
   end
 
@@ -105,6 +112,8 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_hashtags
+    return unless @status.public_visibility?
+
     @tags.each do |hashtag|
       Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
       Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
@@ -112,6 +121,8 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_public
+    return unless @status.public_visibility?
+
     Redis.current.publish('timeline:public', @payload)
     Redis.current.publish('timeline:public:local', @payload) if @status.local?
   end

@@ -193,7 +193,7 @@ Rails.application.routes.draw do
       get '/search', to: 'search#index', as: :search
 
       resources :follows,    only: [:create]
-      resources :media,      only: [:create]
+      resources :media,      only: [:create, :update]
       resources :apps,       only: [:create]
       resources :blocks,     only: [:index]
       resources :mutes,      only: [:index]
