@@ -18,6 +18,11 @@
       "value": "false",
       "required": true
     },
+    "STREAMING_PORT": {
+      "description": "Binding port for streaming server.",
+      "value": "4000",
+      "required": true
+    },
     "PAPERCLIP_SECRET": {
       "description": "The secret key for storing media files",
       "generator": "secret"

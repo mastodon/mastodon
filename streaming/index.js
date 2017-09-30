@@ -460,7 +460,7 @@ const startWorker = (workerId) => {
     });
   }, 30000);
 
-  server.listen(process.env.PORT || 4000, () => {
+  server.listen(process.env.STREAMING_PORT || process.env.PORT || 4000, () => {
     log.info(`Worker ${workerId} now listening on ${server.address().address}:${server.address().port}`);
   });
 

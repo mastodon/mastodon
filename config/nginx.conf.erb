@@ -43,11 +43,11 @@ http {
     }
 
     upstream streaming_server {
-        server localhost:4000;
+        server localhost:<%= ENV['STREAMING_PORT'] || 4000 %>;
     }
 
     server {
-        listen <%= ENV["PORT"] %> default_server;
+        listen <%= ENV["PORT"] || 80 %> default_server;
         server_name _;
         keepalive_timeout 5;
 
