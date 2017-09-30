@@ -194,11 +194,16 @@ Rails.application.routes.draw do
 
       resources :follows,    only: [:create]
       resources :media,      only: [:create, :update]
-      resources :apps,       only: [:create]
       resources :blocks,     only: [:index]
       resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+
+      namespace :apps do
+        get :verify_credentials, to: 'credentials#show'
+      end
+
+      resources :apps, only: [:create]
 
       resource :instance,      only: [:show]
       resource :domain_blocks, only: [:show, :create, :destroy]
