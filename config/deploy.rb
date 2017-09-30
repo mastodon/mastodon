@@ -12,3 +12,6 @@ set :migration_role, :app
 
 append :linked_files, '.env.production', 'public/robots.txt'
 append :linked_dirs, 'vendor/bundle', 'node_modules', 'public/system'
+
+set :assets_prefix, 'packs'
+set :assets_dependencies, %w(app/javascripts package.json yarn.lock config/environments/production.rb config/webpack)
