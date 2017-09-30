@@ -17,8 +17,13 @@ export default class AutosuggestEmoji extends React.PureComponent {
     if (emoji.custom) {
       url = emoji.imageUrl;
     } else {
-      const [ filename ] = unicodeMapping[emoji.native];
-      url = `${assetHost}/emoji/${filename}.svg`;
+      const mapping = unicodeMapping[emoji.native] || unicodeMapping[emoji.native.replace(/\uFE0F$/, '')];
+
+      if (!mapping) {
+        return null;
+      }
+
+      url = `${assetHost}/emoji/${mapping[0]}.svg`;
     }
 
     return (
