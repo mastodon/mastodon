@@ -16,4 +16,8 @@ on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
 
+on_worker_fork do
+  FileUtils.touch('/tmp/app-initialized')
+end
+
 plugin :tmp_restart

@@ -1,2 +1,2 @@
-web: bundle exec puma -C config/puma.rb
+web: bin/runsvdir-dyno
 worker: bundle exec sidekiq
