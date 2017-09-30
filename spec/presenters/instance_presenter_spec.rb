@@ -117,4 +117,64 @@ describe InstancePresenter do
       expect(instance_presenter.domain_count).to eq(345)
     end
   end
+
+  describe "active_user_count_30d" do
+    it "returns the number of users which logged in the last 30 days" do
+      cache = double
+      allow(Rails).to receive(:cache).and_return(cache)
+      allow(cache).to receive(:fetch).with("active_user_count_30d").and_return(456)
+
+      expect(instance_presenter.domain_count).to eq(456)
+    end
+  end
+
+  describe "active_user_count_14d" do
+    it "returns the number of users which logged in the last 14 days" do
+      cache = double
+      allow(Rails).to receive(:cache).and_return(cache)
+      allow(cache).to receive(:fetch).with("active_user_count_14d").and_return(567)
+
+      expect(instance_presenter.domain_count).to eq(567)
+    end
+  end
+
+  describe "active_user_count_7d" do
+    it "returns the number of users which logged in the last 7 days" do
+      cache = double
+      allow(Rails).to receive(:cache).and_return(cache)
+      allow(cache).to receive(:fetch).with("active_user_count_7d").and_return(678)
+
+      expect(instance_presenter.domain_count).to eq(678)
+    end
+  end
+
+  describe "active_user_count_1d" do
+    it "returns the number of users which logged in the last day" do
+      cache = double
+      allow(Rails).to receive(:cache).and_return(cache)
+      allow(cache).to receive(:fetch).with("active_user_count_1d").and_return(789)
+
+      expect(instance_presenter.domain_count).to eq(789)
+    end
+  end
+
+  describe "active_user_count_1h" do
+    it "returns the number of users which logged in the last hour" do
+      cache = double
+      allow(Rails).to receive(:cache).and_return(cache)
+      allow(cache).to receive(:fetch).with("active_user_count_1h").and_return(1123)
+
+      expect(instance_presenter.domain_count).to eq(1123)
+    end
+  end
+
+  describe "first_user_created_at" do
+    it "returns the date the first user of the instance has been created" do
+      cache = double
+      allow(Rails).to receive(:cache).and_return(cache)
+      allow(cache).to receive(:fetch).with("first_user_created_at").and_return(Date.parse('01-01-2000 01:01:01'))
+
+      expect(instance_presenter.domain_count).to eq(Date.parse('01-01-2000 01:01:01'))
+    end
+  end
 end

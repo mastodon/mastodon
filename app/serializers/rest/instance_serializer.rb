@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 class REST::InstanceSerializer < ActiveModel::Serializer
@@ -35,6 +36,14 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       user_count: instance_presenter.user_count,
       status_count: instance_presenter.status_count,
       domain_count: instance_presenter.domain_count,
+      active_user_count: {
+        '30d': instance_presenter.active_user_count_30d,
+        '14d': instance_presenter.active_user_count_14d,
+        '7d': instance_presenter.active_user_count_7d,
+        '1d': instance_presenter.active_user_count_1d,
+        '1h': instance_presenter.active_user_count_1h,
+      },
+      first_user_created_at: instance_presenter.first_user_created_at
     }
   end
 
