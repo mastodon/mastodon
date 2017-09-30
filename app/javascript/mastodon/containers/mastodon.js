@@ -5,7 +5,7 @@ import configureStore from '../store/configureStore';
 import { showOnboardingOnce } from '../actions/onboarding';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import Route from 'react-router-dom/Route';
-import ScrollContext from 'react-router-scroll/lib/ScrollBehaviorContext';
+import { ScrollContext } from 'react-router-scroll';
 import UI from '../features/ui';
 import { hydrateStore } from '../actions/store';
 import { connectUserStream } from '../actions/streaming';
