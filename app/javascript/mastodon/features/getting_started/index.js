@@ -93,7 +93,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     ]);
 
     return (
-      <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
+      <Column name='getting-started' icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
         <div className='scrollable optionally-scrollable'>
           <div className='getting-started__wrapper'>
             <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
