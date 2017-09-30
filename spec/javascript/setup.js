@@ -1,26 +1,15 @@
-import chai from 'chai';
-import chaiEnzyme from 'chai-enzyme';
-chai.use(chaiEnzyme());
+import { JSDOM } from 'jsdom';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-/**
- * http://airbnb.io/enzyme/docs/guides/jsdom.html
- */
-var jsdom = require('jsdom').jsdom;
+Enzyme.configure({ adapter: new Adapter() });
 
-var exposedProperties = ['window', 'navigator', 'document'];
-
-global.document = jsdom('');
-global.window = document.defaultView;
-Object.keys(document.defaultView).forEach((property) => {
-  if (typeof global[property] === 'undefined') {
-    exposedProperties.push(property);
-    global[property] = document.defaultView[property];
-  }
+const { window } = new JSDOM('', {
+  userAgent: 'node.js',
 });
 
-global.navigator = {
-  userAgent: 'node.js'
-};
-
-var React    = window.React    = global.React    = require('react');
-var ReactDOM = window.ReactDOM = global.ReactDOM = require('react-dom');
+Object.keys(window).forEach(property => {
+  if (typeof global[property] === 'undefined') {
+    global[property] = window[property];
+  }
+});

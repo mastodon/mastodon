@@ -1,16 +1,74 @@
 # frozen_string_literal: true
 
 class BlockDomainService < BaseService
-  def call(domain, severity)
-    DomainBlock.where(domain: domain).first_or_create!(domain: domain, severity: severity)
+  attr_reader :domain_block
 
-    if severity == :silence
-      Account.where(domain: domain).update_all(silenced: true)
-    else
-      Account.where(domain: domain).find_each do |account|
-        account.subscription(api_subscription_url(account.id)).unsubscribe if account.subscribed?
-        SuspendAccountService.new.call(account)
-      end
+  def call(domain_block)
+    @domain_block = domain_block
+    process_domain_block
+  end
+
+  private
+
+  def process_domain_block
+    clear_media! if domain_block.reject_media?
+    if domain_block.silence?
+      silence_accounts!
+    elsif domain_block.suspend?
+      suspend_accounts!
     end
+  end
+
+  def silence_accounts!
+    blocked_domain_accounts.in_batches.update_all(silenced: true)
+  end
+
+  def clear_media!
+    clear_account_images
+    clear_account_attachments
+    clear_emojos
+  end
+
+  def suspend_accounts!
+    blocked_domain_accounts.where(suspended: false).find_each do |account|
+      UnsubscribeService.new.call(account) if account.subscribed?
+      SuspendAccountService.new.call(account)
+    end
+  end
+
+  def clear_account_images
+    blocked_domain_accounts.find_each do |account|
+      account.avatar.destroy
+      account.header.destroy
+      account.save
+    end
+  end
+
+  def clear_account_attachments
+    media_from_blocked_domain.find_each do |attachment|
+      attachment.file.destroy
+      attachment.type = :unknown
+      attachment.save
+    end
+  end
+
+  def clear_emojos
+    emojis_from_blocked_domains.destroy_all
+  end
+
+  def blocked_domain
+    domain_block.domain
+  end
+
+  def blocked_domain_accounts
+    Account.where(domain: blocked_domain)
+  end
+
+  def media_from_blocked_domain
+    MediaAttachment.joins(:account).merge(blocked_domain_accounts).reorder(nil)
+  end
+
+  def emojis_from_blocked_domains
+    CustomEmoji.where(domain: blocked_domain)
   end
 end

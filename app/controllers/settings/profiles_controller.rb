@@ -14,10 +14,11 @@ class Settings::ProfilesController < ApplicationController
   def show; end
 
   def update
-    if @account.update(account_params)
+    if UpdateAccountService.new.call(@account, account_params)
+      ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
       redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg')
     else
-      render action: :show
+      render :show
     end
   end
 

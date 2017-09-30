@@ -4,37 +4,29 @@ class RejectFollowService < BaseService
   def call(source_account, target_account)
     follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
     follow_request.reject!
-    NotificationWorker.perform_async(build_xml(follow_request), target_account.id, source_account.id) unless source_account.local?
+    create_notification(follow_request) unless source_account.local?
+    follow_request
   end
 
   private
 
+  def create_notification(follow_request)
+    if follow_request.account.ostatus?
+      NotificationWorker.perform_async(build_xml(follow_request), follow_request.target_account_id, follow_request.account_id)
+    elsif follow_request.account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), follow_request.target_account_id, follow_request.account.inbox_url)
+    end
+  end
+
+  def build_json(follow_request)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+      follow_request,
+      serializer: ActivityPub::RejectFollowSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json).sign!(follow_request.target_account))
+  end
+
   def build_xml(follow_request)
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, Time.now.utc, follow_request.id, 'FollowRequest'
-        title xml, "#{follow_request.target_account.acct} rejects follow request by #{follow_request.account.acct}"
-
-        author(xml) do
-          include_author xml, follow_request.target_account
-        end
-
-        object_type xml, :activity
-        verb xml, :reject
-
-        target(xml) do
-          author(xml) do
-            include_author xml, follow_request.account
-          end
-
-          object_type xml, :activity
-          verb xml, :request_friend
-
-          target(xml) do
-            include_author xml, follow_request.target_account
-          end
-        end
-      end
-    end.to_xml
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.reject_follow_request_salmon(follow_request))
   end
 end

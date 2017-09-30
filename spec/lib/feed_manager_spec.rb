@@ -10,14 +10,145 @@ RSpec.describe FeedManager do
   end
 
   describe '#filter?' do
-    let(:followee) { Fabricate(:account, username: 'alice') }
-    let(:status)   { Fabricate(:status, text: 'Hello world', account: followee) }
-    let(:follower) { Fabricate(:account, username: 'bob') }
+    let(:alice) { Fabricate(:account, username: 'alice') }
+    let(:bob)   { Fabricate(:account, username: 'bob', domain: 'example.com') }
+    let(:jeff)  { Fabricate(:account, username: 'jeff') }
 
-    subject { FeedManager.instance.filter?(:home, status, follower) }
+    context 'for home feed' do
+      it 'returns false for followee\'s status' do
+        status = Fabricate(:status, text: 'Hello world', account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:home, status, bob.id)).to be false
+      end
 
-    it 'returns a boolean value' do
-      expect(subject).to be false
+      it 'returns false for reblog by followee' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reblog = Fabricate(:status, reblog: status, account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be false
+      end
+
+      it 'returns true for reblog by followee of blocked account' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reblog = Fabricate(:status, reblog: status, account: alice)
+        bob.follow!(alice)
+        bob.block!(jeff)
+        expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
+      end
+
+      it 'returns true for reblog by followee of muted account' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reblog = Fabricate(:status, reblog: status, account: alice)
+        bob.follow!(alice)
+        bob.mute!(jeff)
+        expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
+      end
+
+      it 'returns true for reblog by followee of someone who is blocking recipient' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reblog = Fabricate(:status, reblog: status, account: alice)
+        bob.follow!(alice)
+        jeff.block!(bob)
+        expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
+      end
+
+      it 'returns false for reply by followee to another followee' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
+        bob.follow!(alice)
+        bob.follow!(jeff)
+        expect(FeedManager.instance.filter?(:home, reply, bob.id)).to be false
+      end
+
+      it 'returns false for reply by followee to recipient' do
+        status = Fabricate(:status, text: 'Hello world', account: bob)
+        reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:home, reply, bob.id)).to be false
+      end
+
+      it 'returns false for reply by followee to self' do
+        status = Fabricate(:status, text: 'Hello world', account: alice)
+        reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:home, reply, bob.id)).to be false
+      end
+
+      it 'returns true for reply by followee to non-followed account' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:home, reply, bob.id)).to be true
+      end
+
+      it 'returns true for the second reply by followee to a non-federated status' do
+        reply        = Fabricate(:status, text: 'Reply 1', reply: true, account: alice)
+        second_reply = Fabricate(:status, text: 'Reply 2', thread: reply, account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:home, second_reply, bob.id)).to be true
+      end
+
+      it 'returns false for status by followee mentioning another account' do
+        bob.follow!(alice)
+        status = PostStatusService.new.call(alice, 'Hey @jeff')
+        expect(FeedManager.instance.filter?(:home, status, bob.id)).to be false
+      end
+
+      it 'returns true for status by followee mentioning blocked account' do
+        bob.block!(jeff)
+        bob.follow!(alice)
+        status = PostStatusService.new.call(alice, 'Hey @jeff')
+        expect(FeedManager.instance.filter?(:home, status, bob.id)).to be true
+      end
+
+      it 'returns true for reblog of a personally blocked domain' do
+        alice.block_domain!('example.com')
+        alice.follow!(jeff)
+        status = Fabricate(:status, text: 'Hello world', account: bob)
+        reblog = Fabricate(:status, reblog: status, account: jeff)
+        expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
+      end
+    end
+
+    context 'for mentions feed' do
+      it 'returns true for status that mentions blocked account' do
+        bob.block!(jeff)
+        status = PostStatusService.new.call(alice, 'Hey @jeff')
+        expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be true
+      end
+
+      it 'returns true for status that replies to a blocked account' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
+        bob.block!(jeff)
+        expect(FeedManager.instance.filter?(:mentions, reply, bob.id)).to be true
+      end
+
+      it 'returns true for status by silenced account who recipient is not following' do
+        status = Fabricate(:status, text: 'Hello world', account: alice)
+        alice.update(silenced: true)
+        expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be true
+      end
+
+      it 'returns false for status by followed silenced account' do
+        status = Fabricate(:status, text: 'Hello world', account: alice)
+        alice.update(silenced: true)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be false
+      end
+    end
+  end
+
+  describe '#push' do
+    it 'trims timelines if they will have more than FeedManager::MAX_ITEMS' do
+      account = Fabricate(:account)
+      status = Fabricate(:status)
+      members = FeedManager::MAX_ITEMS.times.map { |count| [count, count] }
+      Redis.current.zadd("feed:type:#{account.id}", members)
+
+      FeedManager.instance.push('type', account, status)
+
+      expect(Redis.current.zcard("feed:type:#{account.id}")).to eq FeedManager::MAX_ITEMS
     end
   end
 end

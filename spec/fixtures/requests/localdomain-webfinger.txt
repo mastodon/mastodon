@@ -1,0 +1,20 @@
+HTTP/1.1 200 OK
+Server: nginx/1.6.2
+Date: Sun, 20 Mar 2016 11:11:00 GMT
+Content-Type: application/xrd+xml
+Transfer-Encoding: chunked
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Vary: Accept-Encoding,Cookie
+Strict-Transport-Security: max-age=31536000; includeSubdomains;
+
+<?xml version="1.0"?>
+<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
+  <Subject>acct:foo@localdomain.com</Subject>
+  <Alias>https://webdomain.com/@foo</Alias>
+  <Link rel="http://webfinger.net/rel/profile-page" type="text/html" href="https://webdomain.com/@foo"/>
+  <Link rel="http://schemas.google.com/g/2010#updates-from" type="application/atom+xml" href="https://webdomain.com/users/foo.atom"/>
+  <Link rel="salmon" href="https://webdomain.com/api/salmon/1"/>
+  <Link rel="magic-public-key" href="data:application/magic-public-key,RSA.wnIYUQp-jMqH8tzStBoVriiGtbMvH12IU125p-3shZHxJNDi7RHwseKi5ADEGwGwpXLMxqiyNlgCff1hG9DBc8MzHZi1V93F2hCOXK0bqZm2lbsWfjkpsDIdBZ8TltwSejuQCt_rqL-K5XCfknd94P7tHOCBnizQRBanj0IdcSSqh7CmRS5wa1UjwflXVMsgbDc2io1knMeMkXsl0jzwt-CFHprmITzWy9X6Ia4QevkntiXdMlwUf_UoJC7BRns-J-j_dz2LqFl1QfspMhR2R9p8plDSD-jjk8DUVSBFZ7GLWVHEd6dWkLncEVEeRLliCaQQBqF1huSuMDtYWfukWQ==.AQAB"/>
+  <Link rel="http://ostatus.org/schema/1.0/subscribe" template="https://webdomain.com/authorize_follow?acct={uri}"/>
+</XRD>

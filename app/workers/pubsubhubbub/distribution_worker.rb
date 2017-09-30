@@ -5,22 +5,28 @@ class Pubsubhubbub::DistributionWorker
 
   sidekiq_options queue: 'push'
 
-  def perform(stream_entry_id)
-    stream_entry = StreamEntry.find(stream_entry_id)
+  def perform(stream_entry_ids)
+    stream_entries = StreamEntry.where(id: stream_entry_ids).includes(:status).reject { |e| e.status.nil? || e.status.hidden? }
 
-    return if stream_entry.hidden?
+    return if stream_entries.empty?
 
-    account  = stream_entry.account
-    renderer = AccountsController.renderer.new(method: 'get', http_host: Rails.configuration.x.local_domain, https: Rails.configuration.x.use_https)
-    payload  = renderer.render(:show, assigns: { account: account, entries: [stream_entry] }, formats: [:atom])
-    # domains  = account.followers_domains
+    @account       = stream_entries.first.account
+    @subscriptions = active_subscriptions.to_a
 
-    Subscription.where(account: account).active.select('id, callback_url').find_each do |subscription|
-      host = Addressable::URI.parse(subscription.callback_url).host
-      next if DomainBlock.blocked?(host) # || !domains.include?(host)
-      Pubsubhubbub::DeliveryWorker.perform_async(subscription.id, payload)
+    distribute_public!(stream_entries)
+  end
+
+  private
+
+  def distribute_public!(stream_entries)
+    @payload = OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, stream_entries))
+
+    Pubsubhubbub::DeliveryWorker.push_bulk(@subscriptions) do |subscription_id|
+      [subscription_id, @payload]
     end
-  rescue ActiveRecord::RecordNotFound
-    true
+  end
+
+  def active_subscriptions
+    Subscription.where(account: @account).active.pluck(:id)
   end
 end

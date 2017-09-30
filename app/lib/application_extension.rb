@@ -4,6 +4,6 @@ module ApplicationExtension
   extend ActiveSupport::Concern
 
   included do
-    validates :website, url: true, unless: 'website.blank?'
+    validates :website, url: true, if: :website?
   end
 end

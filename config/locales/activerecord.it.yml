@@ -1,0 +1,13 @@
+---
+it:
+  activerecord:
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: solo lettere, numeri e trattino basso
+        status:
+          attributes:
+            reblog:
+              taken: dello stato esiste già

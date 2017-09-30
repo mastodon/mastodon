@@ -1,16 +1,22 @@
 # frozen_string_literal: true
 
 class FetchRemoteStatusService < BaseService
-  def call(url, prefetched_body = nil)
+  include AuthorExtractor
+
+  def call(url, prefetched_body = nil, protocol = :ostatus)
     if prefetched_body.nil?
-      atom_url, body = FetchAtomService.new.call(url)
+      resource_url, body, protocol = FetchAtomService.new.call(url)
     else
-      atom_url = url
-      body     = prefetched_body
+      resource_url = url
+      body         = prefetched_body
     end
 
-    return nil if atom_url.nil?
-    process_atom(atom_url, body)
+    case protocol
+    when :ostatus
+      process_atom(resource_url, body)
+    when :activitypub
+      ActivityPub::FetchRemoteStatusService.new.call(resource_url, body)
+    end
   end
 
   private
@@ -21,27 +27,19 @@ class FetchRemoteStatusService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    account = extract_author(url, xml)
+    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS))
+    domain  = Addressable::URI.parse(url).normalized_host
 
-    return nil if account.nil?
+    return nil unless !account.nil? && confirmed_domain?(domain, account)
 
     statuses = ProcessFeedService.new.call(body, account)
-
     statuses.first
-  end
-
-  def extract_author(url, xml)
-    url_parts = Addressable::URI.parse(url)
-    username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
-    domain    = url_parts.host
-
-    return nil if username.nil?
-
-    Rails.logger.debug "Going to webfinger #{username}@#{domain}"
-
-    return FollowRemoteAccountService.new.call("#{username}@#{domain}")
   rescue Nokogiri::XML::XPath::SyntaxError
     Rails.logger.debug 'Invalid XML or missing namespace'
     nil
+  end
+
+  def confirmed_domain?(domain, account)
+    account.domain.nil? || domain.casecmp(account.domain).zero? || domain.casecmp(Addressable::URI.parse(account.remote_url).normalized_host).zero?
   end
 end

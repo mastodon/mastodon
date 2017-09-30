@@ -1,4 +1,4 @@
-class CreateStreamEntries < ActiveRecord::Migration
+class CreateStreamEntries < ActiveRecord::Migration[4.2]
   def change
     create_table :stream_entries do |t|
       t.integer :account_id

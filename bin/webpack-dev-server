@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+$stdout.sync = true
+
+require "shellwords"
+require "yaml"
+require "socket"
+
+ENV["RAILS_ENV"] ||= "development"
+RAILS_ENV = ENV["RAILS_ENV"]
+
+ENV["NODE_ENV"] ||= RAILS_ENV
+NODE_ENV = ENV["NODE_ENV"]
+
+APP_PATH          = File.expand_path("../", __dir__)
+CONFIG_FILE       = File.join(APP_PATH, "config/webpacker.yml")
+NODE_MODULES_PATH = File.join(APP_PATH, "node_modules")
+WEBPACK_CONFIG    = File.join(APP_PATH, "config/webpack/#{NODE_ENV}.js")
+
+DEFAULT_LISTEN_HOST_ADDR = NODE_ENV == 'development' ? 'localhost' : '0.0.0.0'
+
+def args(key)
+  index = ARGV.index(key)
+  index ? ARGV[index + 1] : nil
+end
+
+begin
+  dev_server = YAML.load_file(CONFIG_FILE)[RAILS_ENV]["dev_server"]
+
+  HOSTNAME          = args('--host') || dev_server["host"]
+  PORT              = args('--port') || dev_server["port"]
+  HTTPS             = ARGV.include?('--https') || dev_server["https"]
+  DEV_SERVER_ADDR   = "http#{"s" if HTTPS}://#{HOSTNAME}:#{PORT}"
+  LISTEN_HOST_ADDR  = args('--listen-host') || DEFAULT_LISTEN_HOST_ADDR
+
+rescue Errno::ENOENT, NoMethodError
+  $stdout.puts "Webpack dev_server configuration not found in #{CONFIG_FILE}."
+  $stdout.puts "Please run bundle exec rails webpacker:install to install webpacker"
+  exit!
+end
+
+begin
+  server = TCPServer.new(LISTEN_HOST_ADDR, PORT)
+  server.close
+
+rescue Errno::EADDRINUSE
+  $stdout.puts "Another program is running on port #{PORT}. Set a new port in #{CONFIG_FILE} for dev_server"
+  exit!
+end
+
+# Delete supplied host, port and listen-host CLI arguments
+["--host", "--port", "--listen-host"].each do |arg|
+  ARGV.delete(args(arg))
+  ARGV.delete(arg)
+end
+
+env = { "NODE_PATH" => NODE_MODULES_PATH.shellescape }
+
+cmd = [
+  "#{NODE_MODULES_PATH}/.bin/webpack-dev-server", "--progress", "--color",
+  "--config", WEBPACK_CONFIG,
+  "--host", LISTEN_HOST_ADDR,
+  "--public", "#{HOSTNAME}:#{PORT}",
+  "--port", PORT.to_s
+] + ARGV
+
+Dir.chdir(APP_PATH) do
+  exec env, *cmd
+end

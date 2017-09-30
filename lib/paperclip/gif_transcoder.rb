@@ -7,7 +7,11 @@ module Paperclip
     def make
       num_frames = identify('-format %n :file', file: file.path).to_i
 
-      return file unless options[:style] == :original && num_frames > 1
+      unless options[:style] == :original && num_frames > 1
+        tmp_file = Paperclip::TempfileFactory.new.generate(attachment.instance.file_file_name)
+        tmp_file << file.read
+        return tmp_file
+      end
 
       final_file = Paperclip::Transcoder.make(file, options, attachment)
 

@@ -5,6 +5,6 @@
     %li= link_to t('settings.preferences'), settings_preferences_path
   - if controller_name != 'registrations'
     %li= link_to t('auth.change_password'), edit_user_registration_path
-  - if controller_name != 'two_factor_auths'
-    %li= link_to t('settings.two_factor_auth'), settings_two_factor_auth_path
+  - if controller_name != 'two_factor_authentications'
+    %li= link_to t('settings.two_factor_authentication'), settings_two_factor_authentication_path
   %li= link_to t('settings.back'), root_path

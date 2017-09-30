@@ -1,56 +1,58 @@
 - content_for :page_title do
-  #{Rails.configuration.x.local_domain}
+  = site_hostname
 
-.wrapper.thicc
-  .sidebar-layout
-    .main
-      .panel
-        %h2= Rails.configuration.x.local_domain
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = render partial: 'og'
 
-        - unless @description.blank?
-          %p= @description.html_safe
+.landing-page
+  .header-wrapper.compact
+    .header
+      .container.links
+        .brand
+          = link_to root_url do
+            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
 
-      .information-board
+        %ul.nav
+          %li
+            - if user_signed_in?
+              = link_to t('settings.back'), root_url, class: 'webapp-btn'
+            - else
+              = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
+          %li= link_to t('about.about_this'), about_more_path
+          %li
+            = link_to 'https://joinmastodon.org/' do
+              = "#{t('about.other_instances')}"
+              %i.fa.fa-external-link{ style: 'padding-left: 5px;' }
+
+      .container.hero
+        .heading
+          %h3= t('about.description_headline', domain: site_hostname)
+          %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+
+  .information-board
+    .container
+      .information-board-sections
         .section
           %span= t 'about.user_count_before'
-          %strong= number_with_delimiter @user_count
+          %strong= number_with_delimiter @instance_presenter.user_count
           %span= t 'about.user_count_after'
         .section
           %span= t 'about.status_count_before'
-          %strong= number_with_delimiter @status_count
+          %strong= number_with_delimiter @instance_presenter.status_count
           %span= t 'about.status_count_after'
         .section
           %span= t 'about.domain_count_before'
-          %strong= number_with_delimiter @domain_count
+          %strong= number_with_delimiter @instance_presenter.domain_count
           %span= t 'about.domain_count_after'
+      = render 'contact', contact: @instance_presenter
 
-      - unless @extended_description.blank?
-        .panel= @extended_description.html_safe
+  .extended-description
+    .container
+      = @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
 
-    .sidebar
-      .panel
-        .panel-header= t 'about.contact'
-        .panel-body
-          - if @contact_account
-            .owner
-              .avatar= image_tag @contact_account.avatar.url
-              .name
-                = link_to TagManager.instance.url_for(@contact_account) do
-                  %span.display_name.emojify= display_name(@contact_account)
-                  %span.username= "@#{@contact_account.acct}"
-
-          - unless @contact_email.blank?
-            .contact-email
-              = t 'about.business_email'
-              %strong= @contact_email
-      .panel
-        .panel-header= t 'about.links'
-        .panel-list
-          %ul
-            - if user_signed_in?
-              %li= link_to t('about.get_started'), root_path
-            - else
-              %li= link_to t('about.get_started'), new_user_registration_path
-              %li= link_to t('auth.login'), new_user_session_path
-            %li= link_to t('about.terms'), terms_path
-            %li= link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+  .footer-links
+    .container
+      %p
+        = link_to t('about.source_code'), @instance_presenter.source_url
+        = " (#{@instance_presenter.version_number})"

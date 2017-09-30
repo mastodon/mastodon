@@ -1,4 +1,4 @@
-class CreateStatuses < ActiveRecord::Migration
+class CreateStatuses < ActiveRecord::Migration[4.2]
   def change
     create_table :statuses do |t|
       t.string :uri, null: false, default: ''

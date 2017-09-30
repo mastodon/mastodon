@@ -1,0 +1,27 @@
+---
+ar:
+  devise:
+    failure:
+      inactive: لم يتم تنشيط حسابك بعد.
+      locked: إن حسابك مقفل.
+    mailer:
+      password_change:
+        subject: 'ماستدون : تم تغيير كلمة المرور'
+      reset_password_instructions:
+        subject: 'ماستدون : تعليمات إستعادة كلمة المرور'
+      unlock_instructions:
+        subject: 'ماستدون : تعليمات فك القفل'
+    passwords:
+      updated: تم تغيير كلمة المرور بنجاح. أنت مسجل الآن.
+      updated_not_active: تم تغيير كلمة المرور بنجاح.
+    registrations:
+      signed_up: أهلا وسهلا ! تم تسجيل دخولك بنجاح.
+      updated: تم تحديث حسابك بنجاح.
+    sessions:
+      already_signed_out: تم تسجيل خروجك بنجاح.
+      signed_in: تم تسجيل دخولك بنجاح.
+      signed_out: تم تسجيل خروجك بنجاح.
+  errors:
+    messages:
+      not_found: لا يوجد
+      not_locked: ليس مقفلاً

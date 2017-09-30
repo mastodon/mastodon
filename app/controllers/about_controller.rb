@@ -2,26 +2,37 @@
 
 class AboutController < ApplicationController
   before_action :set_body_classes
+  before_action :set_instance_presenter, only: [:show, :more, :terms]
 
-  def index
-    @description = Setting.site_description
+  def show
+    serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
+    @initial_state_json   = serializable_resource.to_json
   end
 
-  def more
-    @description          = Setting.site_description
-    @extended_description = Setting.site_extended_description
-    @contact_account      = Account.find_local(Setting.site_contact_username)
-    @contact_email        = Setting.site_contact_email
-    @user_count           = Rails.cache.fetch('user_count')            { User.count }
-    @status_count         = Rails.cache.fetch('local_status_count')    { Status.local.count }
-    @domain_count         = Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
-  end
+  def more; end
 
   def terms; end
 
   private
 
+  def new_user
+    User.new.tap(&:build_account)
+  end
+
+  helper_method :new_user
+
+  def set_instance_presenter
+    @instance_presenter = InstancePresenter.new
+  end
+
   def set_body_classes
     @body_classes = 'about-body'
+  end
+
+  def initial_state_params
+    {
+      settings: {},
+      token: current_session&.token,
+    }
   end
 end

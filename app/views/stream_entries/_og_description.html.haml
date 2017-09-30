@@ -1,0 +1,4 @@
+- if activity.is_a?(Status) && activity.spoiler_text?
+  = opengraph 'og:description', activity.spoiler_text
+- else
+  = opengraph 'og:description', activity.content

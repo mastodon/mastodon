@@ -1,0 +1,61 @@
+---
+id:
+  devise:
+    confirmations:
+      confirmed: Alamat email anda berhasil dikonfirmasi.
+      send_instructions: Anda akan menerima email berisi instruksi untuk mengkonfirmasi alamat email anda dalam beberapa menit.
+      send_paranoid_instructions: Jika email anda sudah ada dalam database kami, Anda akan menerima email berisi instruksi untuk mengkonfirmasi alamat email anda dalam beberapa menit.
+    failure:
+      already_authenticated: Anda sudak masuk.
+      inactive: Akun anda masih belum diaktifkan.
+      invalid: Ada %{authentication_keys} atau kata sandi yang tidak cocok.
+      last_attempt: Anda memiliki beberapa kali mencoba sebelum akun anda dikunci.
+      locked: Akun anda dikunci.
+      not_found_in_database: Ada %{authentication_keys} atau kata sandi yang tidak cocok.
+      timeout: Sesi anda telah berakhir. Silahkan coba masuk lagi.
+      unauthenticated: Anda harus masuk atau mendaftar terlebih dahulu.
+      unconfirmed: Anda harus mengkonfirmasi alamat email terlebih dahulu.
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: Petunjuk mengkonfirmasi untuk %{instance}'
+      password_change:
+        subject: 'Mastodon: Kata sandi telah diubah'
+      reset_password_instructions:
+        subject: 'Mastodon: Petunjuk mereset kata sandi'
+      unlock_instructions:
+        subject: 'Mastodon: Petunjuk membuka'
+    omniauth_callbacks:
+      failure: Tidak dapat mengautentikasi anda dari %{kind} karena "%{reason}".
+      success: Autentikasi dari akun %{kind} berhasil dilakukan.
+    passwords:
+      no_token: Anda tidak dapat mengakses halaman ini jika tidak berasal dari email berisi reset kata sandi. Jika anda datang dari email berisi reset kata sandi, mohon masukkan URL selengkapnya.
+      send_instructions: Jika alamat email anda telah ada dalam database kami, anda akan menerima sebuah link pemulihan kata sandi pada alamat email anda dalam beberapa menit.
+      send_paranoid_instructions: Jika alamat email anda telah ada dalam database kami, anda akan menerima sebuah link pemulihan kata sandi pada alamat email anda dalam beberapa menit.
+      updated: Kata sandi anda berhasil diubah. Anda telah masuk sekarang.
+      updated_not_active: Kata sandi anda berhasil diubah.
+    registrations:
+      destroyed: Selamat tinggal! Akun anda berhasil dibatalkan. Kami harap berjumpa lagi dengan anda dilain waktu.
+      signed_up: Selamat datang! Pendaftaran anda berhasil.
+      signed_up_but_inactive: Anda berhasil melakukan pendaftaran. Tetapi kami tidak dapat memasukkan anda karena akun anda belum diaktifkan.
+      signed_up_but_locked: Anda berhasil melakukan pendaftaran. Tetapi kami tidak dapat memasukkan anda karena akun anda dikunci.
+      signed_up_but_unconfirmed: Sebuah pesan berisi link konfirmasi telah dikirim ke alamat email anda. Silakan ikuti link tersebut untuk mengaktifkan akun anda.
+      update_needs_confirmation: Akun anda telah berhasil diubah, tetapi kami harus memverifikasi alamat email anda yang baru. Mohon cek email anda dan ikuti link untuk mengkonfirmasi alamat email anda yang baru.
+      updated: Akun anda berhasil diubah.
+    sessions:
+      already_signed_out: Berhasil logout.
+      signed_in: Berhasil masuk.
+      signed_out: Berhasil keluar.
+    unlocks:
+      send_instructions: Anda akan menerima sebuah email berisi petunjuk bagaimana cara membuka akun anda dalam beberapa menit.
+      send_paranoid_instructions: Jika akun anda telah terdaftar, anda akan menerima email berisi petunjuk cara membuka akun anda dalam beberapa menit.
+      unlocked: Akun anda berhasil dibuka. Silakan masuk untuk melanjutkan.
+  errors:
+    messages:
+      already_confirmed: sudah dikonfirmasikan, silakan coba masuk
+      confirmation_period_expired: harus dikonfirmasi dalam %{period}, silakan buat permintaan baru
+      expired: sudah kadaluarsa, silakan buat permintaan baru
+      not_found: tidak ditemukan
+      not_locked: tidak dikunci
+      not_saved:
+        one: '1 error yang membuat %{resource} ini tidak dapat disimpan:'
+        other: "%{count} error yang membuat %{resource} ini tidak dapat disimpan:"

@@ -5,14 +5,16 @@ class FollowService < BaseService
 
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
-  # @param [String] uri User URI to follow in the form of username@domain
+  # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
   def call(source_account, uri)
-    target_account = FollowRemoteAccountService.new.call(uri)
+    target_account = uri.is_a?(Account) ? uri : ResolveRemoteAccountService.new.call(uri)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
-    raise Mastodon::NotPermittedError       if target_account.blocking?(source_account) || source_account.blocking?(target_account)
+    raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
 
-    if target_account.locked?
+    return if source_account.following?(target_account) || source_account.requested?(target_account)
+
+    if target_account.locked? || target_account.activitypub?
       request_follow(source_account, target_account)
     else
       direct_follow(source_account, target_account)
@@ -26,9 +28,11 @@ class FollowService < BaseService
 
     if target_account.local?
       NotifyService.new.call(target_account, follow_request)
-    else
+    elsif target_account.ostatus?
       NotificationWorker.perform_async(build_follow_request_xml(follow_request), source_account.id, target_account.id)
       AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
+    elsif target_account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), source_account.id, target_account.inbox_url)
     end
 
     follow_request
@@ -40,7 +44,7 @@ class FollowService < BaseService
     if target_account.local?
       NotifyService.new.call(target_account, follow)
     else
-      SubscribeService.new.call(target_account) unless target_account.subscribed?
+      Pubsubhubbub::SubscribeWorker.perform_async(target_account.id) unless target_account.subscribed?
       NotificationWorker.perform_async(build_follow_xml(follow), source_account.id, target_account.id)
       AfterRemoteFollowWorker.perform_async(follow.id)
     end
@@ -55,48 +59,18 @@ class FollowService < BaseService
   end
 
   def build_follow_request_xml(follow_request)
-    description = "#{follow_request.account.acct} requested to follow #{follow_request.target_account.acct}"
-
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, follow_request.created_at, follow_request.id, 'FollowRequest'
-        title xml, description
-        content xml, description
-
-        author(xml) do
-          include_author xml, follow_request.account
-        end
-
-        object_type xml, :activity
-        verb xml, :request_friend
-
-        target(xml) do
-          include_author xml, follow_request.target_account
-        end
-      end
-    end.to_xml
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_request_salmon(follow_request))
   end
 
   def build_follow_xml(follow)
-    description = "#{follow.account.acct} started following #{follow.target_account.acct}"
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_salmon(follow))
+  end
 
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, follow.created_at, follow.id, 'Follow'
-        title xml, description
-        content xml, description
-
-        author(xml) do
-          include_author xml, follow.account
-        end
-
-        object_type xml, :activity
-        verb xml, :follow
-
-        target(xml) do
-          include_author xml, follow.target_account
-        end
-      end
-    end.to_xml
+  def build_json(follow_request)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+      follow_request,
+      serializer: ActivityPub::FollowSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json).sign!(follow_request.account))
   end
 end

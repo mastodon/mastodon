@@ -1,7 +1,7 @@
 MIGRATION_BASE_CLASS = if ActiveRecord::VERSION::MAJOR >= 5
   ActiveRecord::Migration[5.0]
 else
-  ActiveRecord::Migration
+  ActiveRecord::Migration[4.2]
 end
 
 class RailsSettingsMigration < MIGRATION_BASE_CLASS

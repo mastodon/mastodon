@@ -1,0 +1,113 @@
+---
+hr:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Ime
+        redirect_uri: Redirect URI
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ne može sadržavati fragment.
+              invalid_uri: mora biti valjan URI.
+              relative_uri: mora biti apsolutan URI.
+              secured_uri: mora biti HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Odobri
+        cancel: Otkaži
+        destroy: Uništi
+        edit: Uredi
+        submit: Pošalji
+      confirmations:
+        destroy: Jesi li siguran?
+      edit:
+        title: Uredi aplikaciju
+      form:
+        error: Ups! Provjeri svoju formu za moguće greške
+      help:
+        native_redirect_uri: Koristi %{native_redirect_uri} za lokalne testove
+        redirect_uri: Koristi jednu liniju po URI
+        scopes: Odvoji scopes sa razmacima. Ostavi prazninu kako bi koristio zadane scopes.
+      index:
+        callback_url: Callback URL
+        name: Ime
+        new: Nova Aplikacija
+        title: Tvoje aplikacije
+      new:
+        title: Nova Aplikacija
+      show:
+        actions: Akcije
+        application_id: Id Aplikacije
+        callback_urls: Callback urls
+        scopes: Scopes
+        secret: Tajna
+        title: 'Aplikacija: %{name}'
+    authorizations:
+      buttons:
+        authorize: Odobri
+        deny: Odbij
+      error:
+        title: Došlo je do greške
+      new:
+        able_to: Moći će
+        prompt: Aplikacija %{client_name} je zatražila pristup tvom računu
+        title: Traži se autorizacija
+      show:
+        title: Copy this authorization code and paste it to the application.
+    authorized_applications:
+      buttons:
+        revoke: Odbij
+      confirmations:
+        revoke: Jesi li siguran?
+      index:
+        application: Aplikacija
+        created_at: Ovlašeno
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Scopes
+        title: Tvoje autorizirane aplikacije
+    errors:
+      messages:
+        access_denied: Vlasnik resursa / autorizacijski server je odbio zahtjev.
+        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Autentifikacija klijenta nije uspjela zbog nepoznatog klijenta, neuključene autentifikacije od strane klijenta, ili nepodržane metode autentifikacije.
+        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
+        invalid_redirect_uri: The redirect uri included nije valjan.
+        invalid_request: Zahtjevu nedostaje traženi parametar, uključuje nepodržanu vrijednost parametra, ili je na neki drugi način neispravno formiran.
+        invalid_resource_owner: The provided resource owner credentials nisu valjani, ili vlasnik resursa ne može biti nađen
+        invalid_scope: Traženi scope nije valjan, znan, ili je neispravno oblikovan.
+        invalid_token:
+          expired: Pristupni token je istekao
+          revoked: Pristupni token je odbijen
+          unknown: Pristupni token nije valjan
+        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        server_error: Autorizacijski server naišao je na neočekivani uvjet, što ga je onemogućilo da ispuni zahtjev.
+        temporarily_unavailable: Autorizacijski server trenutno nije u mogućnosti  izvesti zahtjev zbog privremenog preopterećenja ili održavanja servera.
+        unauthorized_client: Klijent nije ovlašten izvesti zahtjev koristeći ovu metodu.
+        unsupported_grant_type: The authorization grant tip nije podržan od autorizacijskog servera.
+        unsupported_response_type: Autorizacijski server ne podržava ovaj tip odgovora.
+    flash:
+      applications:
+        create:
+          notice: Aplikacija je stvorena.
+        destroy:
+          notice: Aplikacija je obrisana.
+        update:
+          notice: Aplikacija je ažurirana.
+      authorized_applications:
+        destroy:
+          notice: Aplikacija je odbijena.
+    layouts:
+      admin:
+        nav:
+          applications: Aplikacije
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: Traži se OAuth autorizacija
+    scopes:
+      follow: slijediti, blokirati, deblokirati i prestati slijediti račune
+      read: čitati  podatke tvog računa
+      write: slati poruke u tvoje ime

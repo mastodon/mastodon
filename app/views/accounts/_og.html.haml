@@ -1,0 +1,9 @@
+= opengraph 'og:url', url
+= opengraph 'og:site_name', site_title
+= opengraph 'og:title', [yield(:page_title).strip.presence, site_title].compact.join(' - ')
+= opengraph 'og:description', account.note
+= opengraph 'og:image', full_asset_url(account.avatar.url(:original))
+= opengraph 'og:image:width', '120'
+= opengraph 'og:image:height', '120'
+= opengraph 'twitter:card', 'summary'
+= opengraph 'profile:username', account.local_username_and_domain

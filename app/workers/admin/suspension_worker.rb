@@ -3,7 +3,9 @@
 class Admin::SuspensionWorker
   include Sidekiq::Worker
 
-  def perform(account_id)
-    SuspendAccountService.new.call(Account.find(account_id))
+  sidekiq_options queue: 'pull'
+
+  def perform(account_id, remove_user = false)
+    SuspendAccountService.new.call(Account.find(account_id), remove_user)
   end
 end

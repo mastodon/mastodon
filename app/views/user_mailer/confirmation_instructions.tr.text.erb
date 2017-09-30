@@ -1,0 +1,13 @@
+Aramıza hoşgeldin <%= @resource.email %>
+
+Bu sunucumuzda yeni bir hesap oluşturduğunu görüyoruz: <%= @instance %>.
+
+Siz olduğunuzu teyit edebilmemiz için lütfen aşağıdaki linke tıklayınız:
+
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+Ayrıca kullanım şartları ve koşulları sayfamızı inceleyebilirsin <%= terms_url %>
+
+En içten dileklerimizle,
+
+<%= @instance %> ekibi

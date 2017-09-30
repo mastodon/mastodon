@@ -1,0 +1,12 @@
+Welkom <%= @resource.email %> !
+
+Je hebt zojuist een account aangemaakt op <%= @instance %>.
+
+Klik op de volgende link om jouw registratie te bevestigen :
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+Lees ook onze gebruikersvoorwaarden op <%= terms_url %>
+
+Vriendelijke groet,
+
+De beheerder(s) van <%= @instance %>

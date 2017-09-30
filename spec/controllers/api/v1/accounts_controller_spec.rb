@@ -4,7 +4,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { double acceptable?: true, resource_owner_id: user.id }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'follow read') }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
@@ -17,47 +17,49 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
-  describe 'GET #verify_credentials' do
-    it 'returns http success' do
-      get :verify_credentials
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #statuses' do
-    it 'returns http success' do
-      get :statuses, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #followers' do
-    it 'returns http success' do
-      get :followers, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #following' do
-    it 'returns http success' do
-      get :following, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'POST #follow' do
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: locked)).account }
 
     before do
       post :follow, params: { id: other_account.id }
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
+    context 'with unlocked account' do
+      let(:locked) { false }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns JSON with following=true and requested=false' do
+        json = body_as_json
+
+        expect(json[:following]).to be true
+        expect(json[:requested]).to be false
+      end
+
+      it 'creates a following relation between user and target user' do
+        expect(user.account.following?(other_account)).to be true
+      end
     end
 
-    it 'creates a following relation between user and target user' do
-      expect(user.account.following?(other_account)).to be true
+    context 'with locked account' do
+      let(:locked) { true }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns JSON with following=false and requested=true' do
+        json = body_as_json
+
+        expect(json[:following]).to be false
+        expect(json[:requested]).to be true
+      end
+
+      it 'creates a follow request relation between user and target user' do
+        expect(user.account.requested?(other_account)).to be true
+      end
     end
   end
 
@@ -151,48 +153,6 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
     it 'removes the muting relation between user and target user' do
       expect(user.account.muting?(other_account)).to be false
-    end
-  end
-
-  describe 'GET #relationships' do
-    let(:simon) { Fabricate(:user, email: 'simon@example.com', account: Fabricate(:account, username: 'simon')).account }
-    let(:lewis) { Fabricate(:user, email: 'lewis@example.com', account: Fabricate(:account, username: 'lewis')).account }
-
-    before do
-      user.account.follow!(simon)
-      lewis.follow!(user.account)
-    end
-
-    context 'provided only one ID' do
-      before do
-        get :relationships, params: { id: simon.id }
-      end
-
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-
-      it 'returns JSON with correct data' do
-        json = body_as_json
-
-        expect(json).to be_a Enumerable
-        expect(json.first[:following]).to be true
-        expect(json.first[:followed_by]).to be false
-      end
-    end
-
-    context 'provided multiple IDs' do
-      before do
-        get :relationships, params: { id: [simon.id, lewis.id] }
-      end
-
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-
-      xit 'returns JSON with correct data' do
-        # todo
-      end
     end
   end
 end

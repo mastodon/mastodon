@@ -1,0 +1,5 @@
+Tervetuloa <%= @resource.email %>!
+
+Voit vahvistaa Mastodon tilisi klikkaamalla alla olevaa linkkiä:
+
+<%= confirmation_url(@resource, confirmation_token: @token) %>

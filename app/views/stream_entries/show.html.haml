@@ -1,27 +1,23 @@
 - content_for :header_tags do
+  - if @account.user&.setting_noindex
+    %meta{ name: 'robots', content: 'noindex' }/
+
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_stream_entry_url(@account, @stream_entry, format: 'atom') }/
   %link{ rel: 'alternate', type: 'application/json+oembed', href: api_oembed_url(url: account_stream_entry_url(@account, @stream_entry), format: 'json') }/
+  %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@stream_entry.activity) }/
 
-  %meta{ property: 'og:site_name', content: 'Mastodon' }/
-  %meta{ property: 'og:type', content: 'article' }/
-  %meta{ property: 'og:title', content: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
+  = opengraph 'og:site_name', site_title
+  = opengraph 'og:type', 'article'
+  = opengraph 'og:title', "#{@account.username} on #{site_hostname}"
+  = opengraph 'og:url', account_stream_entry_url(@account, @stream_entry)
 
-  - if @stream_entry.activity.is_a?(Status) && !@stream_entry.activity.spoiler_text.blank?
-    %meta{ property: 'og:description', content: @stream_entry.activity.spoiler_text }/
-  - else
-    %meta{ property: 'og:description', content: @stream_entry.activity.content }/
+  = render 'stream_entries/og_description', activity: @stream_entry.activity
+  = render 'stream_entries/og_image', activity: @stream_entry.activity, account: @account
 
-  - if @stream_entry.activity.is_a?(Status) && @stream_entry.activity.media_attachments.size > 0
-    %meta{ property: 'og:image', content: full_asset_url(@stream_entry.activity.media_attachments.first.file.url(:small)) }/
-  - else
-    %meta{ property: 'og:image', content: full_asset_url(@account.avatar.url(:original)) }/
-    %meta{ property: 'og:image:width', content: '120' }/
-    %meta{ property: 'og:image:height', content: '120' }/
+  = opengraph 'twitter:card', 'summary_large_image'
 
-  %meta{ property: 'twitter:card', content: 'summary' }/
-
-- if !user_signed_in? && !Rails.configuration.x.single_user_mode
+- if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
 
-.activity-stream.activity-stream-headless
+.activity-stream.activity-stream-headless.h-entry
   = render partial: "stream_entries/#{@type}", locals: { @type.to_sym => @stream_entry.activity, include_threads: true }

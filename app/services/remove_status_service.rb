@@ -4,56 +4,99 @@ class RemoveStatusService < BaseService
   include StreamEntryRenderer
 
   def call(status)
-    remove_from_self(status) if status.account.local?
-    remove_from_followers(status)
-    remove_from_mentioned(status)
-    remove_reblogs(status)
-    remove_from_hashtags(status)
-    remove_from_public(status)
+    @payload      = Oj.dump(event: :delete, payload: status.id.to_s)
+    @status       = status
+    @account      = status.account
+    @tags         = status.tags.pluck(:name).to_a
+    @mentions     = status.mentions.includes(:account).to_a
+    @reblogs      = status.reblogs.to_a
+    @stream_entry = status.stream_entry
 
-    status.destroy!
+    remove_from_self if status.account.local?
+    remove_from_followers
+    remove_from_affected
+    remove_reblogs
+    remove_from_hashtags
+    remove_from_public
 
-    return unless status.account.local?
+    @status.destroy!
 
-    Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+    return unless @account.local?
+
+    remove_from_remote_followers
+    remove_from_remote_affected
   end
 
   private
 
-  def remove_from_self(status)
-    unpush(:home, status.account, status)
+  def remove_from_self
+    unpush(:home, @account, @status)
   end
 
-  def remove_from_followers(status)
-    status.account.followers.each do |follower|
-      next unless follower.local?
-      unpush(:home, follower, status)
+  def remove_from_followers
+    @account.followers.local.find_each do |follower|
+      unpush(:home, follower, @status)
     end
   end
 
-  def remove_from_mentioned(status)
-    notified_domains = []
-
-    status.mentions.each do |mention|
-      mentioned_account = mention.account
-
-      if mentioned_account.local?
-        unpush(:mentions, mentioned_account, status)
-      else
-        next if notified_domains.include?(mentioned_account.domain)
-        notified_domains << mentioned_account.domain
-        send_delete_salmon(mentioned_account, status)
-      end
+  def remove_from_affected
+    @mentions.map(&:account).select(&:local?).each do |account|
+      Redis.current.publish("timeline:#{account.id}", @payload)
     end
   end
 
-  def send_delete_salmon(account, status)
-    return unless status.local?
-    NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, account.id)
+  def remove_from_remote_affected
+    # People who got mentioned in the status, or who
+    # reblogged it from someone else might not follow
+    # the author and wouldn't normally receive the
+    # delete notification - so here, we explicitly
+    # send it to them
+
+    target_accounts = (@mentions.map(&:account).reject(&:local?) + @reblogs.map(&:account).reject(&:local?)).uniq(&:id)
+
+    # Ostatus
+    NotificationWorker.push_bulk(target_accounts.select(&:ostatus?).uniq(&:domain)) do |target_account|
+      [salmon_xml, @account.id, target_account.id]
+    end
+
+    # ActivityPub
+    ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:inbox_url)) do |target_account|
+      [signed_activity_json, @account.id, target_account.inbox_url]
+    end
   end
 
-  def remove_reblogs(status)
-    status.reblogs.each do |reblog|
+  def remove_from_remote_followers
+    # OStatus
+    Pubsubhubbub::RawDistributionWorker.perform_async(salmon_xml, @account.id)
+
+    # ActivityPub
+    ActivityPub::DeliveryWorker.push_bulk(@account.followers.inboxes) do |inbox_url|
+      [signed_activity_json, @account.id, inbox_url]
+    end
+  end
+
+  def salmon_xml
+    @salmon_xml ||= stream_entry_to_xml(@stream_entry)
+  end
+
+  def signed_activity_json
+    @signed_activity_json ||= Oj.dump(ActivityPub::LinkedDataSignature.new(activity_json).sign!(@account))
+  end
+
+  def activity_json
+    @activity_json ||= ActiveModelSerializers::SerializableResource.new(
+      @status,
+      serializer: @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json
+  end
+
+  def remove_reblogs
+    # We delete reblogs of the status before the original status,
+    # because once original status is gone, reblogs will disappear
+    # without us being able to do all the fancy stuff
+
+    @reblogs.each do |reblog|
       RemoveStatusService.new.call(reblog)
     end
   end
@@ -65,17 +108,23 @@ class RemoveStatusService < BaseService
       redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
     end
 
-    FeedManager.instance.broadcast(receiver.id, event: 'delete', payload: status.id)
+    Redis.current.publish("timeline:#{receiver.id}", @payload)
   end
 
-  def remove_from_hashtags(status)
-    status.tags.each do |tag|
-      FeedManager.instance.broadcast("hashtag:#{tag.name}", event: 'delete', payload: status.id)
+  def remove_from_hashtags
+    return unless @status.public_visibility?
+
+    @tags.each do |hashtag|
+      Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
+      Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
     end
   end
 
-  def remove_from_public(status)
-    FeedManager.instance.broadcast(:public, event: 'delete', payload: status.id)
+  def remove_from_public
+    return unless @status.public_visibility?
+
+    Redis.current.publish('timeline:public', @payload)
+    Redis.current.publish('timeline:public:local', @payload) if @status.local?
   end
 
   def redis

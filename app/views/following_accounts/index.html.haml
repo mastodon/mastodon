@@ -1,0 +1,12 @@
+- content_for :page_title do
+  = t('accounts.people_followed_by', name: display_name(@account))
+
+- content_for :header_tags do
+  - if @account.user&.setting_noindex
+    %meta{ name: 'robots', content: 'noindex' }/
+
+  = render 'accounts/og', account: @account, url: account_followers_url(@account, only_path: false)
+
+= render 'accounts/header', account: @account
+
+= render 'accounts/follow_grid', follows: @follows, accounts: @follows.map(&:target_account)

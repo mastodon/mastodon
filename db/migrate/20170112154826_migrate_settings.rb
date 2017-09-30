@@ -1,4 +1,4 @@
-class MigrateSettings < ActiveRecord::Migration
+class MigrateSettings < ActiveRecord::Migration[4.2]
   def up
     remove_index :settings, [:target_type, :target_id, :var]
     rename_column :settings, :target_id, :thing_id
