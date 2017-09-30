@@ -1,5 +1,6 @@
 import api from '../api';
 import { emojiIndex } from 'emoji-mart';
+import { throttle } from 'lodash';
 
 import {
   updateTimeline,
@@ -247,23 +248,30 @@ export function clearComposeSuggestions() {
   };
 };
 
+const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => {
+  api(getState).get('/api/v1/accounts/search', {
+    params: {
+      q: token.slice(1),
+      resolve: false,
+      limit: 4,
+    },
+  }).then(response => {
+    dispatch(readyComposeSuggestionsAccounts(token, response.data));
+  });
+}, 200, { leading: true, trailing: true });
+
+const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
+  const results = emojiIndex.search(token.replace(':', ''), { maxResults: 5 });
+  dispatch(readyComposeSuggestionsEmojis(token, results));
+};
+
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
     if (token[0] === ':') {
-      const results = emojiIndex.search(token.replace(':', ''), { maxResults: 3 });
-      dispatch(readyComposeSuggestionsEmojis(token, results));
-      return;
+      fetchComposeSuggestionsEmojis(dispatch, getState, token);
+    } else {
+      fetchComposeSuggestionsAccounts(dispatch, getState, token);
     }
-
-    api(getState).get('/api/v1/accounts/search', {
-      params: {
-        q: token.slice(1),
-        resolve: false,
-        limit: 4,
-      },
-    }).then(response => {
-      dispatch(readyComposeSuggestionsAccounts(token, response.data));
-    });
   };
 };
 

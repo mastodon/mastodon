@@ -190,7 +190,8 @@ class Account < ApplicationRecord
     end
 
     def inboxes
-      reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
+      urls = reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
+      DeliveryFailureTracker.filter(urls)
     end
 
     def triadic_closures(account, limit: 5, offset: 0)

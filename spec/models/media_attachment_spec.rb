@@ -52,9 +52,9 @@ RSpec.describe MediaAttachment, type: :model do
 
   describe 'descriptions for remote attachments' do
     it 'are cut off at 140 characters' do
-      media = Fabricate(:media_attachment, description: 'foo' * 100, remote_url: 'http://example.com/blah.jpg')
+      media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
 
-      expect(media.description.size).to be <= 140
+      expect(media.description.size).to be <= 420
     end
   end
 end

@@ -3,8 +3,8 @@ de:
   devise:
     confirmations:
       confirmed: Deine E-Mail-Adresse wurde bestätigt.
-      send_instructions: Du erhältst in wenigen Minuten eine E-Mail, mit der du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinen Spam-Ordner!
-      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail, mit der du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinen Spam-Ordner!
+      send_instructions: Du erhältst in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinen Spam-Ordner!
+      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du deine E-Mail-Adresse bestätigen kannst. Schau bitte auch in deinen Spam-Ordner!
     failure:
       already_authenticated: Du bist bereits angemeldet.
       inactive: Dein Konto wurde noch nicht aktiviert.
@@ -26,29 +26,29 @@ de:
         subject: 'Mastodon: Konto entsperren'
     omniauth_callbacks:
       failure: Du konntest nicht mit deinem %{kind}-Konto angemeldet werden, weil '%{reason}'.
-      success: Du hast dich erfolgreich mit deinem %{kind}-Account angemeldet.
+      success: Du hast dich erfolgreich mit deinem %{kind}-Konto angemeldet.
     passwords:
       no_token: Du kannst diese Seite nur über den Link aus der E-Mail zum Passwort-Zurücksetzen aufrufen. Wenn du einen solchen Link aufgerufen hast, stelle bitte sicher, dass du die vollständige Adresse aufrufst.
-      send_instructions: Du erhältst in wenigen Minuten eine E-Mail mit der Anleitung, wie du dein Passwort zurücksetzen kannst.
-      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank existiert erhältst du in wenigen Minuten eine E-Mail mit der Anleitung, wie du dein Passwort zurücksetzen kannst.
+      send_instructions: Du erhältst in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Passwort zurücksetzen kannst.
+      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank existiert, erhältst du in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Passwort zurücksetzen kannst.
       updated: Dein Passwort wurde geändert. Du bist jetzt angemeldet.
       updated_not_active: Dein Passwort wurde geändert.
     registrations:
-      destroyed: Dein Account wurde gelöscht.
+      destroyed: Dein Konto wurde gelöscht.
       signed_up: Du hast dich erfolgreich registriert.
-      signed_up_but_inactive: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Account inaktiv ist.
-      signed_up_but_locked: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Account gesperrt ist.
-      signed_up_but_unconfirmed: Du hast Dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Account noch nicht bestätigt ist. Du erhältst in Kürze eine E-Mail mit der Anleitung, wie Du Deinen Account freischalten kannst.
-      update_needs_confirmation: Deine Daten wurden aktualisiert, aber du musst deine neue E-Mail-Adresse bestätigen. Du erhälst in wenigen Minuten eine E-Mail, mit der du die Änderung deiner E-Mail-Adresse abschließen kannst.
+      signed_up_but_inactive: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto inaktiv ist.
+      signed_up_but_locked: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto gesperrt ist.
+      signed_up_but_unconfirmed: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto noch nicht bestätigt ist. Du erhältst in Kürze eine E-Mail. Darin ist erklärt, wie du dein Konto freischalten kannst.
+      update_needs_confirmation: Deine Daten wurden aktualisiert, aber du musst deine neue E-Mail-Adresse bestätigen. Du erhältst in wenigen Minuten eine E-Mail. Darin ist erklärt, wie du die Änderung deiner E-Mail-Adresse abschließen kannst.
       updated: Deine Daten wurden aktualisiert.
     sessions:
       already_signed_out: Erfolgreich abgemeldet.
       signed_in: Erfolgreich angemeldet.
       signed_out: Erfolgreich abgemeldet.
     unlocks:
-      send_instructions: Du erhältst in wenigen Minuten eine E-Mail mit der Anleitung, wie du deinen Account entsperren können.
-      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank existiert erhältst du in wenigen Minuten eine E-Mail mit der Anleitung, wie du deinen Account entsperren kannst.
-      unlocked: Dein Account wurde entsperrt. Du bist jetzt angemeldet.
+      send_instructions: Du erhältst in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Konto entsperren kannst.
+      send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Konto entsperren kannst.
+      unlocked: Dein Konto wurde entsperrt. Du bist jetzt angemeldet.
   errors:
     messages:
       already_confirmed: wurde bereits bestätigt.
