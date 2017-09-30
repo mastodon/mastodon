@@ -43,7 +43,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         '1d': instance_presenter.active_user_count_1d,
         '1h': instance_presenter.active_user_count_1h,
       },
-      first_user_created_at: instance_presenter.first_user_created_at
+      first_user_created_at: instance_presenter.first_user_created_at,
     }
   end
 

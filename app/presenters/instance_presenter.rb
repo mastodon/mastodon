@@ -41,11 +41,11 @@ class InstancePresenter
   end
 
   def active_user_count_1d
-    Rails.cache.fetch('active_user_count_1d') { User.confirmed.where('current_sign_in_at >= ?', 1.days.ago).count }
+    Rails.cache.fetch('active_user_count_1d') { User.confirmed.where('current_sign_in_at >= ?', 1.day.ago).count }
   end
 
   def active_user_count_1h
-    Rails.cache.fetch('active_user_count_1h') { User.confirmed.where('current_sign_in_at >= ?', 1.hours.ago).count }
+    Rails.cache.fetch('active_user_count_1h') { User.confirmed.where('current_sign_in_at >= ?', 1.hour.ago).count }
   end
 
   def first_user_created_at
