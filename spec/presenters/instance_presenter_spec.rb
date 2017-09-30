@@ -124,7 +124,7 @@ describe InstancePresenter do
       allow(Rails).to receive(:cache).and_return(cache)
       allow(cache).to receive(:fetch).with("active_user_count_30d").and_return(456)
 
-      expect(instance_presenter.domain_count).to eq(456)
+      expect(instance_presenter.active_user_count_30d).to eq(456)
     end
   end
 
@@ -134,7 +134,7 @@ describe InstancePresenter do
       allow(Rails).to receive(:cache).and_return(cache)
       allow(cache).to receive(:fetch).with("active_user_count_14d").and_return(567)
 
-      expect(instance_presenter.domain_count).to eq(567)
+      expect(instance_presenter.active_user_count_14d).to eq(567)
     end
   end
 
@@ -144,7 +144,7 @@ describe InstancePresenter do
       allow(Rails).to receive(:cache).and_return(cache)
       allow(cache).to receive(:fetch).with("active_user_count_7d").and_return(678)
 
-      expect(instance_presenter.domain_count).to eq(678)
+      expect(instance_presenter.active_user_count_7d).to eq(678)
     end
   end
 
@@ -154,7 +154,7 @@ describe InstancePresenter do
       allow(Rails).to receive(:cache).and_return(cache)
       allow(cache).to receive(:fetch).with("active_user_count_1d").and_return(789)
 
-      expect(instance_presenter.domain_count).to eq(789)
+      expect(instance_presenter.active_user_count_1d).to eq(789)
     end
   end
 
@@ -164,7 +164,7 @@ describe InstancePresenter do
       allow(Rails).to receive(:cache).and_return(cache)
       allow(cache).to receive(:fetch).with("active_user_count_1h").and_return(1123)
 
-      expect(instance_presenter.domain_count).to eq(1123)
+      expect(instance_presenter.active_user_count_1h).to eq(1123)
     end
   end
 
@@ -174,7 +174,7 @@ describe InstancePresenter do
       allow(Rails).to receive(:cache).and_return(cache)
       allow(cache).to receive(:fetch).with("first_user_created_at").and_return(Date.parse('01-01-2000 01:01:01'))
 
-      expect(instance_presenter.domain_count).to eq(Date.parse('01-01-2000 01:01:01'))
+      expect(instance_presenter.first_user_created_at).to eq(Date.parse('01-01-2000 01:01:01'))
     end
   end
 end
