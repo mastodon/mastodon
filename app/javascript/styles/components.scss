@@ -1275,7 +1275,7 @@
   background: $ui-secondary-color;
   padding: 4px 0;
   border-radius: 4px;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
 
   ul {
     list-style: none;
@@ -2805,19 +2805,12 @@ button.icon-button.active i.fa-retweet {
   filter: none;
 }
 
-.privacy-dropdown {
-  position: relative;
-}
-
 .privacy-dropdown__dropdown {
-  display: none;
   position: absolute;
-  left: 0;
-  top: 27px;
-  width: 230px;
   background: $simple-background-color;
-  border-radius: 0 4px 4px;
-  z-index: 2;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  border-radius: 4px;
+  margin-left: 40px;
   overflow: hidden;
 }
 
@@ -2869,6 +2862,18 @@ button.icon-button.active i.fa-retweet {
     background: $simple-background-color;
     border-radius: 4px 4px 0 0;
     box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
+
+    .icon-button {
+      transition: none;
+    }
+
+    &.active {
+      background: $ui-highlight-color;
+
+      .icon-button {
+        color: $primary-text-color;
+      }
+    }
   }
 
   .privacy-dropdown__dropdown {
