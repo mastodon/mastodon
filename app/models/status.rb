@@ -305,5 +305,3 @@ class Status < ApplicationRecord
     self.local = account.local?
   end
 end
-
-Status.include(Friends::StatusProfileEmoji)

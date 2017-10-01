@@ -35,10 +35,6 @@ export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE = 'COMPOSE_COMPOSING_CHANGE';
 
-export const COMPOSE_PROFILE_EMOJI_SUGGESTIONS_CLEAR = 'COMPOSE_PROFILE_EMOJI_SUGGESTIONS_CLEAR';
-export const COMPOSE_PROFILE_EMOJI_SUGGESTIONS_READY = 'COMPOSE_PROFILE_EMOJI_SUGGESTIONS_READY';
-export const COMPOSE_PROFILE_EMOJI_SUGGESTION_SELECT = 'COMPOSE_PROFILE_EMOJI_SUGGESTION_SELECT';
-
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
 export function changeCompose(text) {
@@ -276,43 +272,6 @@ export function selectComposeSuggestion(position, token, suggestion) {
       token,
       completion,
     });
-  };
-};
-
-export function clearProfileEmojiSuggestions() {
-  return {
-    type: COMPOSE_PROFILE_EMOJI_SUGGESTIONS_CLEAR,
-  };
-};
-
-export function fetchProfileEmojiSuggestions(token) {
-  return (dispatch, getState) => {
-    api(getState).get('/api/v1/accounts/search', {
-      params: {
-        q: token,
-        resolve: false,
-        limit: 4,
-      },
-    }).then(response => {
-      dispatch(readyProfileEmojiSuggestions(token, response.data));
-    });
-  };
-};
-
-export function readyProfileEmojiSuggestions(token, accounts) {
-  return {
-    type: COMPOSE_PROFILE_EMOJI_SUGGESTIONS_READY,
-    token,
-    accounts,
-  };
-};
-
-export function selectProfileEmojiSuggestion(position, token, completion) {
-  return {
-    type: COMPOSE_PROFILE_EMOJI_SUGGESTION_SELECT,
-    position,
-    token,
-    completion,
   };
 };
 

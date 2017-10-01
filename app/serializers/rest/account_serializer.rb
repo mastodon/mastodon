@@ -7,8 +7,6 @@ class REST::AccountSerializer < ActiveModel::Serializer
              :note, :url, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count
 
-  has_many :profile_emojis, serializer: REST::ProfileEmojiSerializer
-
   def id
     object.id.to_s
   end
