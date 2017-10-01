@@ -83,7 +83,7 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
 
     10.downto(1) do |i|
       say "Continuing in #{i} second#{i == 1 ? '' : 's'}...", true
-      # sleep 1
+      sleep 1
     end
 
     tables = INCLUDED_COLUMNS.map(&:first).uniq
