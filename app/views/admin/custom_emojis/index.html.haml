@@ -11,4 +11,19 @@
     %tbody
       = render @custom_emojis
 
-= link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'
+%hr
+
+%section
+  %h3
+    = t('admin.custom_emojis.upload.link')
+  = link_to t('admin.custom_emojis.upload.shorthand'), upload_form_admin_custom_emojis_path, class: 'button'
+
+%hr
+
+%section
+  %h3
+    = t('admin.custom_emojis.import.link')
+  = simple_form_for @status, class: 'custom-emojis-import-status-form', method: 'get', url: import_form_admin_custom_emojis_path do |f|
+    = render 'shared/error_messages', object: @status
+    = f.input :url, placeholder: 'URL'
+    = f.button :button, t('admin.custom_emojis.import.shorthand'), type: :submit

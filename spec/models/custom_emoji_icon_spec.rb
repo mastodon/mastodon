@@ -15,6 +15,18 @@ describe CustomEmojiIcon, type: :model do
     end
   end
 
+  describe 'remote scope' do
+    it 'does not return local custom emoji icons' do
+      local = Fabricate(:custom_emoji_icon, uri: nil)
+      expect(CustomEmojiIcon.remote).not_to include local
+    end
+
+    it 'returns remote custom emoji icons' do
+      remote = Fabricate(:custom_emoji_icon, uri: 'remote')
+      expect(CustomEmojiIcon.remote).to include remote
+    end
+  end
+
   describe '#local?' do
     it 'returns true if custom emoji icon is local' do
       local = Fabricate(:custom_emoji_icon, uri: nil)

@@ -19,6 +19,7 @@ class CustomEmojiIcon < ApplicationRecord
   validates_attachment :image, content_type: { content_type: 'image/png' }, presence: true, size: { in: 0..50.kilobytes }
 
   scope :local, -> { where(uri: nil) }
+  scope :remote, -> { where.not(uri: nil) }
 
   include Remotable
 

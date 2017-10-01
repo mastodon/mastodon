@@ -1,0 +1,16 @@
+- content_for :page_title do
+  = t('.title')
+
+= simple_form_for @custom_emoji, url: import_admin_custom_emojis_path do |f|
+  %input{ name: 'status[id]', value: @status.id, type: 'hidden' }
+
+  .fields-group
+    = f.input :shortcode, placeholder: t('admin.custom_emojis.overriding_shortcode'), hint: t('admin.custom_emojis.shortcode_hint')
+    - @remote_custom_emojis.each do |remote_custom_emoji|
+      %label
+        %input{ name: 'custom_emoji[super_id]', type: 'radio', value: remote_custom_emoji.id }
+        %img.emojione{ alt: remote_custom_emoji.shortcode, src: full_asset_url(remote_custom_emoji.custom_emoji_icon.image.url) }
+        %code :#{remote_custom_emoji.shortcode}:
+
+  .actions
+    = f.button :button, t('admin.custom_emojis.import.shorthand'), type: :submit
