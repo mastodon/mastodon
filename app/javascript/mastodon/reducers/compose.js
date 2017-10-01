@@ -22,6 +22,9 @@ import {
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
+  COMPOSE_UPLOAD_CHANGE_REQUEST,
+  COMPOSE_UPLOAD_CHANGE_SUCCESS,
+  COMPOSE_UPLOAD_CHANGE_FAIL,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -220,15 +223,15 @@ export default function compose(state = initialState, action) {
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUBMIT_REQUEST:
+  case COMPOSE_UPLOAD_CHANGE_REQUEST:
     return state.set('is_submitting', true);
   case COMPOSE_SUBMIT_SUCCESS:
     return clearAll(state);
   case COMPOSE_SUBMIT_FAIL:
+  case COMPOSE_UPLOAD_CHANGE_FAIL:
     return state.set('is_submitting', false);
   case COMPOSE_UPLOAD_REQUEST:
-    return state.withMutations(map => {
-      map.set('is_uploading', true);
-    });
+    return state.set('is_uploading', true);
   case COMPOSE_UPLOAD_SUCCESS:
     return appendMedia(state, fromJS(action.media));
   case COMPOSE_UPLOAD_FAIL:
@@ -256,6 +259,16 @@ export default function compose(state = initialState, action) {
     }
   case COMPOSE_EMOJI_INSERT:
     return insertEmoji(state, action.position, action.emoji);
+  case COMPOSE_UPLOAD_CHANGE_SUCCESS:
+    return state
+      .set('is_submitting', false)
+      .update('media_attachments', list => list.map(item => {
+        if (item.get('id') === action.media.id) {
+          return item.set('description', action.media.description);
+        }
+
+        return item;
+      }));
   default:
     return state;
   }

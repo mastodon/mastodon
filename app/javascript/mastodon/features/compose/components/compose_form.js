@@ -5,7 +5,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import { debounce } from 'lodash';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import Collapsable from '../../../components/collapsable';
@@ -82,9 +81,9 @@ export default class ComposeForm extends ImmutablePureComponent {
     this.props.onClearSuggestions();
   }
 
-  onSuggestionsFetchRequested = debounce((token) => {
+  onSuggestionsFetchRequested = (token) => {
     this.props.onFetchSuggestions(token);
-  }, 500, { trailing: true })
+  }
 
   onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;

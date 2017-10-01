@@ -7,7 +7,7 @@ class UnsubscribeService < BaseService
     @account = account
 
     begin
-      @response = build_request.perform
+      @response = build_request.perform.flush
 
       Rails.logger.debug "PuSH unsubscribe for #{@account.acct} failed: #{@response.status}" unless @response.status.success?
     rescue HTTP::Error, OpenSSL::SSL::SSLError => e

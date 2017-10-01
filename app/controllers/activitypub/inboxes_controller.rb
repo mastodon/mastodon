@@ -32,6 +32,7 @@ class ActivityPub::InboxesController < Api::BaseController
     end
 
     Pubsubhubbub::UnsubscribeWorker.perform_async(signed_request_account.id) if signed_request_account.subscribed?
+    DeliveryFailureTracker.track_inverse_success!(signed_request_account)
   end
 
   def process_payload
