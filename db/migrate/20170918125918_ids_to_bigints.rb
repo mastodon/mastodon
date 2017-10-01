@@ -95,8 +95,8 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
     end
 
     ordered_columns = INCLUDED_COLUMNS.sort_by do |col_parts|
-      table_sizes[col_parts.first]
-    end.reverse!
+      [-table_sizes[col_parts.first], col_parts.last]
+    end
 
     ordered_columns.each do |column_parts|
       table, column = column_parts
