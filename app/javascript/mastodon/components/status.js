@@ -138,8 +138,8 @@ export default class Status extends ImmutablePureComponent {
             {Component => <Component
               preview={video.get('preview_url')}
               src={video.get('url')}
-              width={239}
-              height={110}
+              width={287}
+              height={161}
               sensitive={status.get('sensitive')}
               onOpenVideo={this.handleOpenVideo}
             />}
@@ -148,7 +148,13 @@ export default class Status extends ImmutablePureComponent {
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />}
+            {Component => <Component
+              media={status.get('media_attachments')}
+              sensitive={status.get('sensitive')}
+              height={161}
+              onOpenMedia={this.props.onOpenMedia}
+              autoPlayGif={this.props.autoPlayGif}
+            />}
           </Bundle>
         );
       }
@@ -162,23 +168,19 @@ export default class Status extends ImmutablePureComponent {
 
     return (
       <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')}>
-        <div className='status__info'>
-          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
-
-          <a onClick={this.handleAccountClick} target='_blank' data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
-            <div className='status__avatar'>
-              {statusAvatar}
-            </div>
-
-            <DisplayName account={status.get('account')} />
-          </a>
-        </div>
+        <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} target='_blank' data-id={status.getIn(['account', 'id'])} className='detailed-status__display-name'>
+          <div className='detailed-status__display-avatar'>{statusAvatar}</div>
+          <DisplayName account={status.get('account')} />
+        </a>
 
         <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} />
 
         {media}
 
-        <StatusActionBar {...this.props} />
+        <div>
+          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+          <StatusActionBar {...this.props} />
+        </div>
       </div>
     );
   }
