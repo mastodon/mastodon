@@ -104,6 +104,7 @@ export default class Video extends React.PureComponent {
   static propTypes = {
     preview: PropTypes.string,
     src: PropTypes.string.isRequired,
+    alt: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
@@ -247,7 +248,7 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl } = this.props;
+    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl, alt } = this.props;
     const { progress, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
 
     return (
@@ -260,6 +261,7 @@ export default class Video extends React.PureComponent {
           loop
           role='button'
           tabIndex='0'
+          aria-label={alt}
           width={width}
           height={height}
           onClick={this.togglePlay}

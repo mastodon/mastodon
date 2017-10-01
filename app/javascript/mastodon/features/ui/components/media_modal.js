@@ -76,13 +76,17 @@ export default class MediaModal extends ImmutablePureComponent {
       const height = image.getIn(['meta', 'original', 'height']) || null;
 
       if (image.get('type') === 'image') {
-        return <ImageLoader previewSrc={image.get('preview_url')} src={image.get('url')} width={width} height={height} key={image.get('preview_url')} />;
+        return <ImageLoader previewSrc={image.get('preview_url')} src={image.get('url')} width={width} height={height} alt={image.get('description')} key={image.get('preview_url')} />;
       } else if (image.get('type') === 'gifv') {
-        return <ExtendedVideoPlayer src={image.get('url')} muted controls={false} width={width} height={height} key={image.get('preview_url')} />;
+        return <ExtendedVideoPlayer src={image.get('url')} muted controls={false} width={width} height={height} key={image.get('preview_url')} alt={image.get('description')} />;
       }
 
       return null;
     }).toArray();
+
+    const containerStyle = {
+      alignItems: 'center', // center vertically
+    };
 
     return (
       <div className='modal-root__modal media-modal'>
@@ -90,7 +94,7 @@ export default class MediaModal extends ImmutablePureComponent {
 
         <div className='media-modal__content'>
           <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-          <ReactSwipeableViews onChangeIndex={this.handleSwipe} index={index} animateHeight>
+          <ReactSwipeableViews containerStyle={containerStyle} onChangeIndex={this.handleSwipe} index={index}>
             {content}
           </ReactSwipeableViews>
         </div>

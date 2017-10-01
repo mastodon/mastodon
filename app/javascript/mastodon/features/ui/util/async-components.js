@@ -90,10 +90,6 @@ export function MediaGallery () {
   return import(/* webpackChunkName: "status/media_gallery" */'../../../components/media_gallery');
 }
 
-export function VideoPlayer () {
-  return import(/* webpackChunkName: "status/video_player" */'../../../components/video_player');
-}
-
 export function Video () {
   return import(/* webpackChunkName: "features/video" */'../../video');
 }

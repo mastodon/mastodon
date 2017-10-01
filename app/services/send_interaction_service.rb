@@ -12,7 +12,7 @@ class SendInteractionService < BaseService
 
     return if !target_account.ostatus? || block_notification?
 
-    delivery = build_request.perform
+    delivery = build_request.perform.flush
 
     raise Mastodon::UnexpectedResponseError, delivery unless delivery.code > 199 && delivery.code < 300
   end

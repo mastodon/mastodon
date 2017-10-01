@@ -171,6 +171,26 @@ RSpec.describe ActivityPub::Activity::Create do
       end
     end
 
+    context 'with mentions missing href' do
+      let(:object_json) do
+        {
+          id: 'bar',
+          type: 'Note',
+          content: 'Lorem ipsum',
+          tag: [
+            {
+              type: 'Mention',
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+        expect(status).to_not be_nil
+      end
+    end
+
     context 'with media attachments' do
       let(:object_json) do
         {
@@ -192,6 +212,27 @@ RSpec.describe ActivityPub::Activity::Create do
 
         expect(status).to_not be_nil
         expect(status.media_attachments.map(&:remote_url)).to include('http://example.com/attachment.png')
+      end
+    end
+
+    context 'with media attachments missing url' do
+      let(:object_json) do
+        {
+          id: 'bar',
+          type: 'Note',
+          content: 'Lorem ipsum',
+          attachment: [
+            {
+              type: 'Document',
+              mime_type: 'image/png',
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+        expect(status).to_not be_nil
       end
     end
 
@@ -219,6 +260,27 @@ RSpec.describe ActivityPub::Activity::Create do
       end
     end
 
+    context 'with hashtags missing name' do
+      let(:object_json) do
+        {
+          id: 'bar',
+          type: 'Note',
+          content: 'Lorem ipsum',
+          tag: [
+            {
+              type: 'Hashtag',
+              href: 'http://example.com/blah',
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+        expect(status).to_not be_nil
+      end
+    end
+
     context 'with emojis' do
       let(:object_json) do
         {
@@ -240,6 +302,48 @@ RSpec.describe ActivityPub::Activity::Create do
 
         expect(status).to_not be_nil
         expect(status.emojis.map(&:shortcode)).to include('tinking')
+      end
+    end
+
+    context 'with emojis missing name' do
+      let(:object_json) do
+        {
+          id: 'bar',
+          type: 'Note',
+          content: 'Lorem ipsum :tinking:',
+          tag: [
+            {
+              type: 'Emoji',
+              href: 'http://example.com/emoji.png',
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+        expect(status).to_not be_nil
+      end
+    end
+
+    context 'with emojis missing href' do
+      let(:object_json) do
+        {
+          id: 'bar',
+          type: 'Note',
+          content: 'Lorem ipsum :tinking:',
+          tag: [
+            {
+              type: 'Emoji',
+              name: 'tinking',
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+        expect(status).to_not be_nil
       end
     end
   end

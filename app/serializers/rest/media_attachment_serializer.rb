@@ -4,7 +4,8 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :id, :type, :url, :preview_url,
-             :remote_url, :text_url, :meta
+             :remote_url, :text_url, :meta,
+             :description
 
   def id
     object.id.to_s

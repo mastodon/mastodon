@@ -85,6 +85,6 @@ class Request
   end
 
   def http_client
-    HTTP.timeout(:per_operation, timeout).follow
+    HTTP.timeout(:per_operation, timeout).follow(max_hops: 2)
   end
 end
