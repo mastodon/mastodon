@@ -11,7 +11,7 @@ import {
 } from '../actions/notifications';
 import {
   ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS
+  ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
