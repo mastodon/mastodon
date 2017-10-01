@@ -9,7 +9,7 @@ class ActivityPub::ProcessCollectionService < BaseService
 
     return unless supported_context?
     return if different_actor? && verify_account!.nil?
-    return if @account.suspended? || @account.local?
+    return if @account.suspended?
 
     case @json['type']
     when 'Collection', 'CollectionPage'

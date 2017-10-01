@@ -1,38 +1,13 @@
 // @preval
-// http://www.unicode.org/Public/emoji/5.0/emoji-test.txt
+// Force tree shaking on emojione by exposing just a subset of its functionality
 
-const emojis         = require('./emoji_map.json');
-const { emojiIndex } = require('emoji-mart');
-const excluded       = ['®', '©', '™'];
-const skins          = ['🏻', '🏼', '🏽', '🏾', '🏿'];
-const shortcodeMap   = {};
+const emojione = require('emojione');
 
-Object.keys(emojiIndex.emojis).forEach(key => {
-  shortcodeMap[emojiIndex.emojis[key].native] = emojiIndex.emojis[key].id;
-});
+const mappedUnicode = emojione.mapUnicodeToShort();
+const excluded = ['®', '©', '™'];
 
-const stripModifiers = unicode => {
-  skins.forEach(tone => {
-    unicode = unicode.replace(tone, '');
-  });
-
-  return unicode;
-};
-
-Object.keys(emojis).forEach(key => {
-  if (excluded.includes(key)) {
-    delete emojis[key];
-    return;
-  }
-
-  const normalizedKey = stripModifiers(key);
-  let shortcode       = shortcodeMap[normalizedKey];
-
-  if (!shortcode) {
-    shortcode = shortcodeMap[normalizedKey + '\uFE0F'];
-  }
-
-  emojis[key] = [emojis[key], shortcode];
-});
-
-module.exports.unicodeMapping = emojis;
+module.exports.unicodeMapping = Object.keys(emojione.jsEscapeMap)
+  .filter(c => !excluded.includes(c))
+  .map(unicodeStr => [unicodeStr, mappedUnicode[emojione.jsEscapeMap[unicodeStr]]])
+  .map(([unicodeStr, shortCode]) => ({ [unicodeStr]: [emojione.emojioneList[shortCode].fname.replace(/^0+/g, ''), shortCode.slice(1, shortCode.length - 1)] }))
+  .reduce((x, y) => Object.assign(x, y), { });

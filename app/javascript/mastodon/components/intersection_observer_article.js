@@ -58,31 +58,26 @@ export default class IntersectionObserverArticle extends React.Component {
   }
 
   handleIntersection = (entry) => {
-    this.entry = entry;
-
-    scheduleIdleTask(this.calculateHeight);
-    this.setState(this.updateStateAfterIntersection);
-  }
-
-  updateStateAfterIntersection = (prevState) => {
-    if (prevState.isIntersecting && !this.entry.isIntersecting) {
-      scheduleIdleTask(this.hideIfNotIntersecting);
-    }
-    return {
-      isIntersecting: this.entry.isIntersecting,
-      isHidden: false,
-    };
-  }
-
-  calculateHeight = () => {
     const { onHeightChange, saveHeightKey, id } = this.props;
-    // save the height of the fully-rendered element (this is expensive
-    // on Chrome, where we need to fall back to getBoundingClientRect)
-    this.height = getRectFromEntry(this.entry).height;
 
-    if (onHeightChange && saveHeightKey) {
-      onHeightChange(saveHeightKey, id, this.height);
+    if (this.node && this.node.children.length !== 0) {
+      // save the height of the fully-rendered element
+      this.height = getRectFromEntry(entry).height;
+
+      if (onHeightChange && saveHeightKey) {
+        onHeightChange(saveHeightKey, id, this.height);
+      }
     }
+
+    this.setState((prevState) => {
+      if (prevState.isIntersecting && !entry.isIntersecting) {
+        scheduleIdleTask(this.hideIfNotIntersecting);
+      }
+      return {
+        isIntersecting: entry.isIntersecting,
+        isHidden: false,
+      };
+    });
   }
 
   hideIfNotIntersecting = () => {

@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import { Overlay } from 'react-overlays';
-import { Motion, spring } from 'react-motion';
 import detectPassiveEvents from 'detect-passive-events';
-import classNames from 'classnames';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -19,77 +16,10 @@ const messages = defineMessages({
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
-const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
-
-class PrivacyDropdownMenu extends React.PureComponent {
-
-  static propTypes = {
-    style: PropTypes.object,
-    items: PropTypes.array.isRequired,
-    value: PropTypes.string.isRequired,
-    onClose: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
-
-  handleDocumentClick = e => {
-    if (this.node && !this.node.contains(e.target)) {
-      this.props.onClose();
-    }
-  }
-
-  handleClick = e => {
-    if (e.key === 'Escape') {
-      this.props.onClose();
-    } else if (!e.key || e.key === 'Enter') {
-      const value = e.currentTarget.getAttribute('data-index');
-
-      e.preventDefault();
-
-      this.props.onClose();
-      this.props.onChange(value);
-    }
-  }
-
-  componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, false);
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, false);
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
-  }
-
-  setRef = c => {
-    this.node = c;
-  }
-
-  render () {
-    const { style, items, value } = this.props;
-
-    return (
-      <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
-        {({ opacity, scaleX, scaleY }) => (
-          <div className='privacy-dropdown__dropdown' style={{ ...style, opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }} ref={this.setRef}>
-            {items.map(item =>
-              <div role='button' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })}>
-                <div className='privacy-dropdown__option__icon'>
-                  <i className={`fa fa-fw fa-${item.icon}`} />
-                </div>
-
-                <div className='privacy-dropdown__option__content'>
-                  <strong>{item.text}</strong>
-                  {item.meta}
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </Motion>
-    );
-  }
-
-}
+const iconStyle = {
+  height: null,
+  lineHeight: '27px',
+};
 
 @injectIntl
 export default class PrivacyDropdown extends React.PureComponent {
@@ -125,30 +55,26 @@ export default class PrivacyDropdown extends React.PureComponent {
 
   handleModalActionClick = (e) => {
     e.preventDefault();
-
     const { value } = this.options[e.currentTarget.getAttribute('data-index')];
-
     this.props.onModalClose();
     this.props.onChange(value);
   }
 
-  handleKeyDown = e => {
-    switch(e.key) {
-    case 'Enter':
-      this.handleToggle();
-      break;
-    case 'Escape':
-      this.handleClose();
-      break;
+  handleClick = (e) => {
+    if (e.key === 'Escape') {
+      this.setState({ open: false });
+    } else if (!e.key || e.key === 'Enter') {
+      const value = e.currentTarget.getAttribute('data-index');
+      e.preventDefault();
+      this.setState({ open: false });
+      this.props.onChange(value);
     }
   }
 
-  handleClose = () => {
-    this.setState({ open: false });
-  }
-
-  handleChange = value => {
-    this.props.onChange(value);
+  onGlobalClick = (e) => {
+    if (e.target !== this.node && !this.node.contains(e.target) && this.state.open) {
+      this.setState({ open: false });
+    }
   }
 
   componentWillMount () {
@@ -162,6 +88,20 @@ export default class PrivacyDropdown extends React.PureComponent {
     ];
   }
 
+  componentDidMount () {
+    window.addEventListener('click', this.onGlobalClick);
+    window.addEventListener('touchstart', this.onGlobalClick, detectPassiveEvents.hasSupport ? { passive: true } : false);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('click', this.onGlobalClick);
+    window.removeEventListener('touchstart', this.onGlobalClick, detectPassiveEvents.hasSupport ? { passive: true } : false);
+  }
+
+  setRef = (c) => {
+    this.node = c;
+  }
+
   render () {
     const { value, intl } = this.props;
     const { open } = this.state;
@@ -169,29 +109,19 @@ export default class PrivacyDropdown extends React.PureComponent {
     const valueOption = this.options.find(item => item.value === value);
 
     return (
-      <div className={classNames('privacy-dropdown', { active: open })} onKeyDown={this.handleKeyDown}>
-        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === 0 })}>
-          <IconButton
-            className='privacy-dropdown__value-icon'
-            icon={valueOption.icon}
-            title={intl.formatMessage(messages.change_privacy)}
-            size={18}
-            expanded={open}
-            active={open}
-            inverted
-            onClick={this.handleToggle}
-            style={{ height: null, lineHeight: '27px' }}
-          />
+      <div ref={this.setRef} className={`privacy-dropdown ${open ? 'active' : ''}`}>
+        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} expanded={open} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
+        <div className='privacy-dropdown__dropdown'>
+          {open && this.options.map(item =>
+            <div role='button' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
+              <div className='privacy-dropdown__option__icon'><i className={`fa fa-fw fa-${item.icon}`} /></div>
+              <div className='privacy-dropdown__option__content'>
+                <strong>{item.text}</strong>
+                {item.meta}
+              </div>
+            </div>
+          )}
         </div>
-
-        <Overlay show={open} placement='bottom' target={this}>
-          <PrivacyDropdownMenu
-            items={this.options}
-            value={value}
-            onClose={this.handleClose}
-            onChange={this.handleChange}
-          />
-        </Overlay>
       </div>
     );
   }

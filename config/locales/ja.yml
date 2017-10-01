@@ -244,10 +244,9 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
-    salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
     signature: Mastodon %{instance} インスタンスからの通知
-    view: リンク
+    view: 'View:'
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました

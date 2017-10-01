@@ -33,11 +33,7 @@ class CustomEmoji < ApplicationRecord
   class << self
     def from_text(text, domain)
       return [] if text.blank?
-
-      shortcodes = text.scan(SCAN_RE).map(&:first).uniq
-
-      return [] if shortcodes.empty?
-
+      shortcodes = text.scan(SCAN_RE).map(&:first)
       where(shortcode: shortcodes, domain: domain)
     end
   end

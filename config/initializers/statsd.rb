@@ -1,15 +1,18 @@
 # frozen_string_literal: true
+RESERVED_CHARACTERS_REGEX = /[\:\|\@]/
 
-if ENV['STATSD_ADDR'].present?
-  host, port = ENV['STATSD_ADDR'].split(':')
+StatsD.prefix              = 'mastodon'
+StatsD.default_sample_rate = 1
 
-  statsd = ::Statsd.new(host, port)
-  statsd.namespace = ['Mastodon', Rails.env].join('.')
+def clean_name(str)
+  str.gsub('::', '.').gsub(RESERVED_CHARACTERS_REGEX, '_')
+end
 
-  ::NSA.inform_statsd(statsd) do |informant|
-    informant.collect(:action_controller, :web)
-    informant.collect(:active_record, :db)
-    informant.collect(:cache, :cache)
-    informant.collect(:sidekiq, :sidekiq)
-  end
+ActiveSupport::Notifications.subscribe(/performance/) do |name, _start, _finish, _id, payload|
+  action      = payload[:action] || :increment
+  measurement = payload[:measurement]
+  value       = payload[:value]
+  key_name    = clean_name("#{name}.#{measurement}")
+
+  StatsD.send(action.to_s, key_name, (value || 1))
 end

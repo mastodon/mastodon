@@ -74,7 +74,7 @@ class ResolveRemoteAccountService < BaseService
   end
 
   def webfinger_update_due?
-    @account.nil? || @account.possibly_stale?
+    @account.nil? || @account.last_webfingered_at.nil? || @account.last_webfingered_at <= 1.day.ago
   end
 
   def activitypub_ready?
