@@ -52,6 +52,7 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   defaultText: '',
+  reply_privacy: '',
   tag_privacy: '',
 });
 
@@ -74,11 +75,15 @@ function clearAll(state) {
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
-    map.set('privacy', state.get('tag_privacy') === '' ? state.get('default_privacy') : state.get('tag_privacy'));
+    map.set('privacy', getPrivacy(state));
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
     map.set('idempotencyKey', uuid());
   });
+};
+
+function getPrivacy(state) {
+  return state.get('tag_privacy') || state.get('default_privacy');
 };
 
 function appendMedia(state, media) {
@@ -135,13 +140,12 @@ const insertEmoji = (state, position, emojiData) => {
 
 const setDefaultTag = (state, text, visibility) => {
   const replaceRE = new RegExp(` *${state.get('defaultText')}`);
+  const privacy = state.get('privacy') || state.get('default_privacy');
   return state.withMutations(map => {
     map.update('text', oldText => oldText.replace(replaceRE, '') + (text === '' ? '' : ` ${text}`));
     map.set('defaultText', text);
-    if (visibility !== '') {
-      map.set('privacy', visibility);
-    }
     map.set('tag_privacy', visibility);
+    map.set('privacy', visibility === '' ? state.get('reply_privacy') || state.get('default_privacy') : privacyPreference(privacy, visibility));
   });
 };
 
@@ -210,10 +214,12 @@ export default function compose(state = initialState, action) {
   case COMPOSE_COMPOSING_CHANGE:
     return state.set('is_composing', action.value);
   case COMPOSE_REPLY:
+    const privacy = privacyPreference(action.status.get('visibility'), getPrivacy(state));
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
-      map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
+      map.set('privacy', privacy);
+      map.set('reply_privacy', privacy);
       map.set('focusDate', new Date());
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
@@ -232,7 +238,8 @@ export default function compose(state = initialState, action) {
       map.set('text', '');
       map.set('spoiler', false);
       map.set('spoiler_text', '');
-      map.set('privacy', state.get('default_privacy'));
+      map.set('privacy', getPrivacy(state));
+      map.set('reply_privacy', '');
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUBMIT_REQUEST:
