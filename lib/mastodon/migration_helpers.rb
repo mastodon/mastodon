@@ -84,6 +84,12 @@ module Mastodon
 
     BACKGROUND_MIGRATION_BATCH_SIZE = 1000 # Number of rows to process per job
     BACKGROUND_MIGRATION_JOB_BUFFER_SIZE = 1000 # Number of jobs to bulk queue at a time
+    
+    # Gets an estimated number of rows for a table
+    def estimate_rows_in_table(table_name)
+      exec_query('SELECT reltuples FROM pg_class WHERE relname = ' +
+        "'#{table_name}'").to_a.first['reltuples']
+    end
 
     # Adds `created_at` and `updated_at` columns with timezone information.
     #
@@ -299,21 +305,24 @@ module Mastodon
     # make things _more_ complex).
     #
     # rubocop: disable Metrics/AbcSize
-    def update_column_in_batches(table, column, value)
+    def update_column_in_batches(table_name, column, value)
       if transaction_open?
         raise 'update_column_in_batches can not be run inside a transaction, ' \
           'you can disable transactions by calling disable_ddl_transaction! ' \
           'in the body of your migration class'
       end
 
-      table = Arel::Table.new(table)
-
-      count_arel = table.project(Arel.star.count.as('count'))
-      count_arel = yield table, count_arel if block_given?
-
-      total = exec_query(count_arel.to_sql).to_hash.first['count'].to_i
-
-      return if total == 0
+      table = Arel::Table.new(table_name)
+      
+      total = estimate_rows_in_table(table_name).to_i
+      if total == 0
+        count_arel = table.project(Arel.star.count.as('count'))
+        count_arel = yield table, count_arel if block_given?
+        
+        total = exec_query(count_arel.to_sql).to_hash.first['count'].to_i
+        
+        return if total == 0
+      end
 
       # Update in batches of 5% until we run out of any rows to update.
       batch_size = ((total / 100.0) * 5.0).ceil
@@ -327,31 +336,66 @@ module Mastodon
       start_arel = table.project(table[:id]).order(table[:id].asc).take(1)
       start_arel = yield table, start_arel if block_given?
       start_id = exec_query(start_arel.to_sql).to_hash.first['id'].to_i
+      
+      say "Migrating #{table_name}.#{column} (~#{total.to_i} rows)"
 
+      started_time = Time.now
+      last_time = Time.now
+      migrated = 0
       loop do
-        stop_arel = table.project(table[:id])
-          .where(table[:id].gteq(start_id))
-          .order(table[:id].asc)
-          .take(1)
-          .skip(batch_size)
+        stop_row = nil
+        
+        suppress_messages do
+          stop_arel = table.project(table[:id])
+            .where(table[:id].gteq(start_id))
+            .order(table[:id].asc)
+            .take(1)
+            .skip(batch_size)
 
-        stop_arel = yield table, stop_arel if block_given?
-        stop_row = exec_query(stop_arel.to_sql).to_hash.first
+          stop_arel = yield table, stop_arel if block_given?
+          stop_row = exec_query(stop_arel.to_sql).to_hash.first
 
-        update_arel = Arel::UpdateManager.new
-          .table(table)
-          .set([[table[column], value]])
-          .where(table[:id].gteq(start_id))
+          update_arel = Arel::UpdateManager.new
+            .table(table)
+            .set([[table[column], value]])
+            .where(table[:id].gteq(start_id))
 
-        if stop_row
-          stop_id = stop_row['id'].to_i
-          start_id = stop_id
-          update_arel = update_arel.where(table[:id].lt(stop_id))
+          if stop_row
+            stop_id = stop_row['id'].to_i
+            start_id = stop_id
+            update_arel = update_arel.where(table[:id].lt(stop_id))
+          end
+
+          update_arel = yield table, update_arel if block_given?
+
+          execute(update_arel.to_sql)
         end
-
-        update_arel = yield table, update_arel if block_given?
-
-        execute(update_arel.to_sql)
+        
+        migrated += batch_size
+        if Time.now - last_time > 1
+          status = "Migrated #{migrated} rows"
+          
+          percentage = 100.0 * migrated / total
+          status += " (~#{sprintf('%.2f', percentage)}%, "
+          
+          remaining_time = (100.0 - percentage) * (Time.now - started_time) / percentage
+          
+          status += "#{(remaining_time / 60).to_i}:"
+          status += sprintf('%02d', remaining_time.to_i % 60)
+          status += ' remaining, '
+          
+          # Tell users not to interrupt if we're almost done.
+          if remaining_time > 10
+            status += 'safe to interrupt'
+          else
+            status += 'DO NOT interrupt'
+          end
+          
+          status += ')'
+          
+          say status, true
+          last_time = Time.now
+        end
 
         # There are no more rows left to update.
         break unless stop_row
@@ -435,21 +479,41 @@ module Mastodon
       end
 
       check_trigger_permissions!(table)
+      trigger_name = rename_trigger_name(table, old, new)
+      
+      # If we were in the middle of update_column_in_batches, we should remove
+      # the old column and start over, as we have no idea where we were.
+      if column_for(table, new)
+        if MigrationHelpers.postgresql?
+          remove_rename_triggers_for_postgresql(table, trigger_name)
+        else
+          remove_rename_triggers_for_mysql(trigger_name)
+        end
+        
+        remove_column(table, new)
+      end
 
       old_col = column_for(table, old)
       new_type = type || old_col.type
 
-      add_column(table, new, new_type,
-                 limit: old_col.limit,
-                 precision: old_col.precision,
-                 scale: old_col.scale)
+      col_opts = {
+        precision: old_col.precision,
+        scale: old_col.scale,
+      }
+
+      # We may be trying to reset the limit on an integer column type, so let
+      # Rails handle that.
+      unless [:bigint, :integer].include?(new_type)
+        col_opts[:limit] = old_col.limit
+      end
+
+      add_column(table, new, new_type, col_opts)
 
       # We set the default value _after_ adding the column so we don't end up
       # updating any existing data with the default value. This isn't
       # necessary since we copy over old values further down.
       change_column_default(table, new, old_col.default) if old_col.default
 
-      trigger_name = rename_trigger_name(table, old, new)
       quoted_table = quote_table_name(table)
       quoted_old = quote_column_name(old)
       quoted_new = quote_column_name(new)
@@ -483,7 +547,7 @@ module Mastodon
       # Primary keys don't necessarily have an associated index.
       if ActiveRecord::Base.get_primary_key(table) == column.to_s
         old_pk_index_name = "index_#{table}_on_#{column}"
-        new_pk_index_name = "index_#{table}_on_#{temp_column}"
+        new_pk_index_name = "index_#{table}_on_#{column}_cm"
         
         unless indexes_for(table, column).find{|i| i.name == old_pk_index_name}
           add_concurrent_index(table, [temp_column], {
@@ -504,8 +568,7 @@ module Mastodon
 
       # Wait for the indices to be built
       indexes_for(table, column).each do |index|
-        expected_name = index.name.gsub(column.to_s, temp_column)
-        expected_name += "_copy#{temp_column}" unless expected_name.include?(temp_column)
+        expected_name = index.name + '_cm'
         
         puts "Waiting for index #{expected_name}"
         sleep 1 until indexes_for(table, temp_column).find {|i| i.name == expected_name }
@@ -552,17 +615,17 @@ module Mastodon
         end
       end
 
+      # If there was a sequence owned by the old column, make it owned by the
+      # new column, as it will otherwise be deleted when we get rid of the
+      # old column.
+      if (seq_match = /^nextval\('([^']*)'(::text|::regclass)?\)/.match(old_default_fn))
+        seq_name = seq_match[1]
+        execute("ALTER SEQUENCE #{seq_name} OWNED BY #{table}.#{temp_column}")
+      end
+
       transaction do
         # This has to be performed in a transaction as otherwise we might have
         # inconsistent data.
-        
-        # If there was a sequence owned by the old column, make it owned by the
-        # new column, as it will otherwise be deleted when we get rid of the
-        # old column.
-        if (seq_match = /^nextval\('([^']*)'(::text|::regclass)?\)/.match(old_default_fn))
-          seq_name = seq_match[1]
-          execute("ALTER SEQUENCE #{seq_name} OWNED BY #{table}.#{temp_column}")
-        end
         
         cleanup_concurrent_column_rename(table, column, temp_column)
         rename_column(table, temp_column, column)
@@ -574,10 +637,9 @@ module Mastodon
       
       # Rename any indices back to what they should be.
       indexes_for(table, column).each do |index|
-        next unless index.name.include?(temp_column)
+        next unless index.name.end_with?('_cm')
 
-        real_index_name = index.name.gsub(temp_column, column.to_s)
-        real_index_name.gsub!(Regexp.new("_copy#{column.to_s}$"), '')
+        real_index_name = index.name.sub(/_cm$/, '')
         rename_index(table, index.name, real_index_name)
       end
       
@@ -689,10 +751,10 @@ module Mastodon
     def rename_trigger_name(table, old, new)
       'trigger_' + Digest::SHA256.hexdigest("#{table}_#{old}_#{new}").first(12)
     end
-    
+
     # Returns the name to use for temporary rename columns.
     def rename_column_name(base)
-      'c' + Digest::SHA256.hexdigest(base.to_s).first(3)
+      base.to_s + '_cm'
     end
 
     # Returns an Array containing the indexes for the given column
@@ -725,7 +787,7 @@ module Mastodon
 
         # This is necessary as we can't properly rename indexes such as
         # "ci_taggings_idx".
-        name = index.name.include?(old) ? index.name.gsub(old, new) : index.name + "_copy#{new}"
+        name = index.name + '_cm'
         
         # If the order contained the old column, map it to the new one.
         order = index.orders
