@@ -6,6 +6,7 @@ require_relative './sanitize_config'
 class Formatter
   include Singleton
   include RoutingHelper
+  include StreamEntriesHelper
 
   include ActionView::Helpers::TextHelper
 
@@ -31,6 +32,7 @@ class Formatter
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = encode_and_link_urls(html, linkable_accounts)
+	html = encode_profile_emojis(html, status.profile_emojis) if options[:profile_emojify]
     html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
@@ -56,6 +58,16 @@ class Formatter
     JSON.generate(enquete_info)
   end
   
+  def format_display_name(account, options = {})
+    display_name = display_name(account)
+    return reformat(display_name) unless account.local?
+
+    html = encode_and_link_urls(display_name)
+    html = encode_profile_emojis(html, account.profile_emojis, false) if options[:profile_emojify]
+
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+  
   def reformat(html)
     sanitize(html, Sanitize::Config::MASTODON_STRICT)
   end
@@ -67,10 +79,11 @@ class Formatter
     strip_tags(text)
   end
 
-  def simplified_format(account)
+  def simplified_format(account, options = {})
     return reformat(account.note) unless account.local?
 
     html = encode_and_link_urls(account.note)
+	html = encode_profile_emojis(html, account.profile_emojis) if options[:profile_emojify]
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
     html = format_bbcode(html)
@@ -149,6 +162,58 @@ class Formatter
     html
   end
 
+  def encode_profile_emojis(html, profile_emojis, embed_links = true)
+    return html if profile_emojis == nil || profile_emojis.empty?
+
+    profile_emoji_map = profile_emojis.map do |e|
+      REST::ProfileEmojiSerializer.new(e).to_h
+    end.map do |e|
+      [e[:shortcode], e]
+    end.to_h
+
+    i = -1
+    inside_tag = false
+    inside_colon = false
+    shortname = ''
+    shortname_start_index = -1
+    while i + 1 < html.size
+      i += 1
+      if html[i] == '<'
+        inside_tag = true
+      elsif inside_tag && html[i] == '>'
+        inside_tag = false
+      elsif !inside_tag
+        if !inside_colon && html[i] == ':'
+          inside_colon = true
+          shortname = ''
+          shortname_start_index = i
+        elsif inside_colon && html[i] == ':'
+          inside_colon = false
+          stripped_shortname = shortname[1..-1]
+          emoji = profile_emoji_map[stripped_shortname]
+          if shortname[0] == '@' && emoji
+            if embed_links
+              replacement = "<a href=\"#{emoji[:account_url]}\" class=\"profile-emoji\" data-account-name=\"#{stripped_shortname}\">" \
+                          +   "<img draggable=\"false\" class=\"emojione\" alt=\":#{shortname}:\" title=\":#{shortname}:\"  src=\"#{emoji[:url]}\" />" \
+                          + "</a>"
+            else
+              replacement = "<img draggable=\"false\" class=\"emojione\" alt=\":#{shortname}:\" title=\":#{shortname}:\" src=\"#{emoji[:url]}\" />"
+            end
+            before_html = shortname_start_index.positive? ? html[0..shortname_start_index - 1] : ''
+            html = before_html + replacement + html[i + 1..-1]
+            i = shortname_start_index + replacement.size - 1
+          else
+            i -= 1
+          end
+        elsif inside_colon && html[i] != ' '
+          shortname += html[i]
+        end
+      end
+    end
+
+    html
+  end
+  
   def rewrite(text, entities)
     chars = text.to_s.to_char_a
 

@@ -505,6 +505,14 @@ RSpec.describe Account, type: :model do
     xit 'does not match URL querystring' do
       expect(subject.match('https://example.com/?x=@alice')).to be_nil
     end
+	
+    it 'does not match profile emoji' do
+      expect(subject.match('Hello to :@alice: from me')).to be_nil
+    end
+
+    it 'matches username mixed with profile emoji' do
+      expect(subject.match(':@alice: @alice Hey how are you?')[1]).to eq 'alice'
+    end
   end
 
   describe 'validations' do

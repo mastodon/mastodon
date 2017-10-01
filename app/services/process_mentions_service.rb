@@ -10,8 +10,12 @@ class ProcessMentionsService < BaseService
   def call(status)
     return unless status.local?
 
+	profile_emojis = status.profile_emojis || []
+	profile_emojis_names = profile_emojis.map { |e| e[:shortcode] }
+	
     status.text.scan(Account::MENTION_RE).each do |match|
       username, domain  = match.first.split('@')
+	  
       mentioned_account = Account.find_remote(username, domain)
 
       if mentioned_account.nil? && !domain.nil?

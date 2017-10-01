@@ -21,7 +21,7 @@
 
   .card__bio
     %h1.name
-      %span.p-name.emojify= display_name(account)
+      %span.p-name.emojify= Formatter.instance.format_display_name(account, profile_emojify: true)
       %small
         %span @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
@@ -32,7 +32,7 @@
           = t 'accounts.roles.admin'
 
     .bio
-      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)
+      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account, profile_emojify: true)
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }

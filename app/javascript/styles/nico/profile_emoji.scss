@@ -1,0 +1,26 @@
+// Overrides 'overflow: hidden' due to display expanded emojis
+.status__content,
+.display-name,
+.display-name__html,
+.detailed-status .detailed-status__display-name,
+.account-authorize .detailed-status__display-name,
+.account__header__content {
+  overflow: visible;
+}
+
+@media screen and (min-width: 1025px) {
+  .profile-emoji {
+    img {
+      position: relative;
+      transition: all .1s cubic-bezier(0, 0.49, 0.1, 1.43);
+
+      &:hover {
+        transition: all .1s cubic-bezier(0, 0.49, 0.1, 1.43) .2s;
+        z-index: 100;
+        transform: scale(2.2) translate3d(0, -3px, 0);
+        border-radius: 1px;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+      }
+    }
+  }
+}

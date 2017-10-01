@@ -4,7 +4,7 @@
       .avatar
         = image_tag status.account.avatar.url(:original), width: 48, height: 48, alt: '', class: 'u-photo'
     %span.display-name
-      %strong.p-name.emojify= display_name(status.account)
+      %strong.p-name.emojify= Formatter.instance.format_display_name(status.account, profile_emojify: true)
       %span= acct(status.account)
 
   - if embedded_view?
@@ -15,9 +15,9 @@
   .status__content.p-name.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
-        %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
+        %span.p-summary> #{Formatter.instance.send(:encode_profile_emojis, status.spoiler_text, status.profile_emojis).html_safe}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true)
+    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify, profile_emojify: true)
 
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?

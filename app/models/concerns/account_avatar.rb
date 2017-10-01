@@ -30,3 +30,4 @@ module AccountAvatar
     avatar_content_type == 'image/gif' ? avatar.url(:static) : avatar_original_url
   end
 end
+AccountAvatar.include(Friends::AvatarUpdateObserver)

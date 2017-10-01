@@ -46,6 +46,53 @@ const emojify = (str, customEmojis = {}) => {
   return rtn + str;
 };
 
+const profileEmojify = (str, profileEmojiMap) => {
+  // Replace custom emoji string, ignoring any tags and spaces
+  // e.g. ':@foo:' -> '<img alt="foo.png" />'
+  // e.g. ':<span><a>@<span>foo</span> </a></span>:' -> '<img alt="foo.png" />'
+  // Reference: https://github.com/tootsuite/mastodon/pull/4988
+  let i = -1;
+  let insideTag = false;
+  let insideColon = false;
+  let shortname = '';
+  let shortnameStartIndex = -1;
+
+  while (++i < str.length) {
+    const char = str.charAt(i);
+    if (char === '<') {
+      insideTag = true;
+    } else if (insideTag && char === '>') {
+      insideTag = false;
+    } else if (!insideTag) {
+      if (!insideColon && char === ':') {
+        insideColon = true;
+        shortname = '';
+        shortnameStartIndex = i;
+      } else if (insideColon && char === ':') {
+        insideColon = false;
+        const strippedShortname = shortname.substring(1);
+        if (shortname[0] === '@' && strippedShortname in profileEmojiMap) {
+          const { url, account_url } = profileEmojiMap[strippedShortname];
+          const replacement = `<a href="${account_url}" class="profile-emoji" data-account-name="${strippedShortname}">`
+                            +   `<img draggable="false" class="emojione" alt=":${shortname}:" title=":${shortname}:" src="${url}" />`
+                            + '</a>';
+          str = str.substring(0, shortnameStartIndex) + replacement + str.substring(i + 1);
+          i = shortnameStartIndex + replacement.length - 1; // jump ahead the length we've added to the string
+        } else {
+          i--;
+        }
+      } else if (insideColon && char ) {
+        if (char !== ' ') {
+          shortname += char;
+        }
+      }
+    }
+  }
+  return str;
+};
+
+const _emojify = (str, profileEmojiMap = {}) => profileEmojify(nicoruToImage(emojify(str)), profileEmojiMap);
+
 const emojify_knzk = (str, customEmojis = {}) => [
   {re: /5,?000\s*兆円/g, file: '5000tyoen.svg', attrs: 'style="height: 1.8em;"'},
   {re: /ニコる/g, file: 'nicoru.svg', attrs: 'style="height: 1.5em;"'},

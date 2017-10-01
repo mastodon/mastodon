@@ -38,7 +38,14 @@ export default class StatusContent extends React.PureComponent {
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
       let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url'));
 
-      if (mention) {
+      if (link.classList.contains('profile-emoji')) {
+        const accountName = link.getAttribute('data-account-name') || '';
+        const profileEmoji = this.props.status.get('profile_emojis').find(item => accountName === item.get('shortcode'));
+        if (profileEmoji) {
+          link.addEventListener('click', this.onProfileEmojiClick.bind(this, profileEmoji), false);
+          link.setAttribute('title', accountName);
+        }
+      } else if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
@@ -78,6 +85,13 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  onProfileEmojiClick = (profileEmoji, e) => {
+    if (this.context.router && e.button === 0) {
+      e.preventDefault();
+      this.context.router.history.push(`/accounts/${profileEmoji.get('account_id')}`);
+    }
+  }
+  
   handleMouseDown = (e) => {
     this.startXY = [e.clientX, e.clientY];
   }
