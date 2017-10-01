@@ -234,6 +234,7 @@ class EmojiPickerMenu extends React.PureComponent {
           onClick={this.handleClick}
           skin={modifier}
           backgroundImageFn={backgroundImageFn}
+          showPreview={false}
         />
 
         <ModifierPicker
