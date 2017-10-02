@@ -32,7 +32,7 @@ class Request
   def perform
     http_client.headers(headers).public_send(@verb, @url.to_s, @options)
   rescue => e
-    raise e.class, "#{e.message} on #{@url}"
+    raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
   end
 
   def headers
