@@ -16,7 +16,8 @@ class ActivityPub::ProcessAccountService < BaseService
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        @account        = Account.find_by(uri: @uri)
+        @account        = Account.find_by(username: @username, domain: @domain)
+        @account      ||= Account.find_by(uri: @uri)
         @old_public_key = @account&.public_key
         @old_protocol   = @account&.protocol
 
@@ -49,6 +50,8 @@ class ActivityPub::ProcessAccountService < BaseService
   def update_account
     @account.last_webfingered_at = Time.now.utc
     @account.protocol            = :activitypub
+    @account.username            = @username
+    @account.domain              = @domain
 
     set_immediate_attributes!
     set_fetchable_attributes!
