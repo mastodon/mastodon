@@ -2,6 +2,12 @@
 
 module AuthorExtractor
   def author_from_xml(xml, update_profile = true)
+    acct = acct_uri_from_xml(xml)
+    return nil if acct.nil?
+    ResolveRemoteAccountService.new.call(acct, update_profile)
+  end
+
+  def acct_uri_from_xml(xml)
     return nil if xml.nil?
 
     # Try <email> for acct
@@ -18,6 +24,6 @@ module AuthorExtractor
       acct   = "#{username}@#{domain}"
     end
 
-    ResolveRemoteAccountService.new.call(acct, update_profile)
+    acct
   end
 end
