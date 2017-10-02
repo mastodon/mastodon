@@ -50,6 +50,8 @@ class ResolveRemoteAccountService < BaseService
         else
           handle_ostatus
         end
+
+        account_deduplication
       end
     end
 
@@ -60,6 +62,10 @@ class ResolveRemoteAccountService < BaseService
   end
 
   private
+
+  def account_deduplication
+    AccountDeduplicationService.new.call(@account)
+  end
 
   def links_missing?
     !(activitypub_ready? || ostatus_ready?)
