@@ -31,7 +31,9 @@ class ResolveRemoteAccountService < BaseService
       @username = confirmed_username
       @domain   = confirmed_domain
     elsif redirected.nil?
-      return call("#{confirmed_username}@#{confirmed_domain}", update_profile, true)
+      redirected_account = call("#{confirmed_username}@#{confirmed_domain}", update_profile, true)
+      @account.destroy unless @account.nil? || redirected_account.nil?
+      return redirected_account
     else
       Rails.logger.debug 'Requested and returned acct URIs do not match'
       return
