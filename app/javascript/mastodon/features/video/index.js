@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
+import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -67,35 +68,6 @@ const getPointerPosition = (el, event) => {
   position.x = Math.max(0, Math.min(1, (pageX - boxX) / boxW));
 
   return position;
-};
-
-const isFullscreen = () => document.fullscreenElement ||
-  document.webkitFullscreenElement ||
-  document.mozFullScreenElement ||
-  document.msFullscreenElement;
-
-const exitFullscreen = () => {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
-  }
-};
-
-const requestFullscreen = el => {
-  if (el.requestFullscreen) {
-    el.requestFullscreen();
-  } else if (el.webkitRequestFullscreen) {
-    el.webkitRequestFullscreen();
-  } else if (el.mozRequestFullScreen) {
-    el.mozRequestFullScreen();
-  } else if (el.msRequestFullscreen) {
-    el.msRequestFullscreen();
-  }
 };
 
 @injectIntl
