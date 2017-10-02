@@ -9,6 +9,7 @@ RSpec.describe ResolveRemoteAccountService do
     stub_request(:get, "https://redirected.com/.well-known/host-meta").to_return(request_fixture('redirected.host-meta.txt'))
     stub_request(:get, "https://example.com/.well-known/host-meta").to_return(status: 404)
     stub_request(:get, "https://quitter.no/.well-known/webfinger?resource=acct:gargron@quitter.no").to_return(request_fixture('webfinger.txt'))
+    stub_request(:get, "https://quitter.yes/.well-known/webfinger?resource=acct:gargron@quitter.yes").to_return(request_fixture('webfinger-noncanonical.txt'))
     stub_request(:get, "https://redirected.com/.well-known/webfinger?resource=acct:gargron@redirected.com").to_return(request_fixture('webfinger.txt'))
     stub_request(:get, "https://redirected.com/.well-known/webfinger?resource=acct:hacker1@redirected.com").to_return(request_fixture('webfinger-hacker1.txt'))
     stub_request(:get, "https://redirected.com/.well-known/webfinger?resource=acct:hacker2@redirected.com").to_return(request_fixture('webfinger-hacker2.txt'))
@@ -69,11 +70,43 @@ RSpec.describe ResolveRemoteAccountService do
       expect(account.domain).to eq 'localdomain.com'
       expect(account.remote_url).to eq 'https://webdomain.com/users/foo.atom'
     end
+
+    it 'returns a new remote account with canonical acct: uri' do
+      account = subject.call('gargron@quitter.yes')
+      expect(account.username).to eq 'gargron'
+      expect(account.domain).to eq 'quitter.no'
+      expect(account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
+    end
+
+    it 'destroys stale accounts with conflicting uri' do
+      old_account      = Fabricate(:account, username: 'gargron', domain: 'quitter.yes', uri: 'https://quitter.no/user/7477')
+      returned_account = subject.call('gargron@quitter.no')
+
+      expect(returned_account.uri).to eq 'https://quitter.no/user/7477'
+      expect(returned_account.username).to eq 'gargron'
+      expect(returned_account.domain).to eq 'quitter.no'
+      expect(returned_account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
+      expect(Account.where(uri: 'https://quitter.no/user/7477').count).to eq 1
+    end
+
+    it 'deduplicate existing accounts with conflicting uri' do
+      old_account      = Fabricate(:account, username: 'gargron', domain: 'quitter.yes', uri: 'https://quitter.no/user/7477')
+      new_account      = Fabricate(:account, username: 'gargron', domain: 'quitter.no', uri: 'https://quitter.no/user/7477', last_webfingered_at: nil)
+      returned_account = subject.call('gargron@quitter.no')
+
+      expect(returned_account.uri).to eq 'https://quitter.no/user/7477'
+      expect(returned_account.username).to eq 'gargron'
+      expect(returned_account.domain).to eq 'quitter.no'
+      expect(returned_account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
+      expect(Account.where(uri: 'https://quitter.no/user/7477').count).to eq 1
+    end
   end
 
   context 'with an ActivityPub account' do
     before do
       stub_request(:get, "https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com").to_return(request_fixture('activitypub-webfinger.txt'))
+      stub_request(:get, "https://ap2.example.com/.well-known/webfinger?resource=acct:foo@ap2.example.com").to_return(request_fixture('activitypub-webfinger-noncanonical.txt'))
+      stub_request(:get, "https://ap.redirected.com/.well-known/webfinger?resource=acct:foo@ap.redirected.com").to_return(request_fixture('activitypub-webfinger.txt'))
       stub_request(:get, "https://ap.example.com/users/foo").to_return(request_fixture('activitypub-actor.txt'))
       stub_request(:get, "https://ap.example.com/users/foo.atom").to_return(request_fixture('activitypub-feed.txt'))
       stub_request(:get, %r{https://ap.example.com/users/foo/\w+}).to_return(status: 404)
@@ -103,6 +136,60 @@ RSpec.describe ResolveRemoteAccountService do
       expect(account.activitypub?).to eq true
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+    end
+
+    it 'follows a legitimate account redirection' do
+      account = subject.call('foo@ap.redirected.com')
+
+      expect(account.activitypub?).to eq true
+      expect(account.domain).to eq 'ap.example.com'
+      expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+    end
+
+    it 'returns new remote account with canonical acct: uri' do
+      account = subject.call('foo@ap2.example.com')
+
+      expect(account.activitypub?).to eq true
+      expect(account.domain).to eq 'ap.example.com'
+      expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+    end
+
+    it 'destroys stale accounts with conflicting uri' do
+      old_account      = Fabricate(:account, username: 'foo', domain: 'ap2.example.com', uri: 'https://ap.example.com/users/foo')
+      returned_account = subject.call('foo@ap.example.com')
+
+      expect(returned_account.uri).to eq 'https://ap.example.com/users/foo'
+      expect(returned_account.activitypub?).to eq true
+      expect(returned_account.domain).to eq 'ap.example.com'
+      expect(returned_account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+      expect(Account.where(uri: 'https://ap.example.com/users/foo').count).to eq 1
+    end
+
+    it 'deduplicate existing accounts with conflicting uri' do
+      old_account      = Fabricate(:account, username: 'foo', domain: 'ap2.example.com', uri: 'https://ap.example.com/users/foo')
+      new_account      = Fabricate(:account, username: 'foo', domain: 'ap.example.com', uri: 'https://ap.example.com/users/foo', last_webfingered_at: nil)
+      returned_account = subject.call('foo@ap.example.com')
+
+      expect(returned_account.uri).to eq 'https://ap.example.com/users/foo'
+      expect(returned_account.activitypub?).to eq true
+      expect(returned_account.domain).to eq 'ap.example.com'
+      expect(returned_account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+      expect(Account.where(uri: 'https://ap.example.com/users/foo').count).to eq 1
+    end
+
+    it 'destroys stale accounts with conflicting uri / merge accounts' do
+      old_account        = subject.call('foo@ap.example.com')
+      old_account.domain = 'ap2.example.com'
+      old_account.save!
+      status             = Status.create!(account: old_account, text: 'Test')
+      returned_account   = subject.call('foo@ap.example.com')
+
+      expect(returned_account.uri).to eq 'https://ap.example.com/users/foo'
+      expect(returned_account.activitypub?).to eq true
+      expect(returned_account.domain).to eq 'ap.example.com'
+      expect(returned_account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+      expect(status.account_id).to eq returned_account.id
+      expect(Account.where(uri: 'https://ap.example.com/users/foo').count).to eq 1
     end
 
     pending
