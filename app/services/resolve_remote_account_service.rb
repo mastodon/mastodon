@@ -3,6 +3,7 @@
 class ResolveRemoteAccountService < BaseService
   include OStatus2::MagicKey
   include JsonLdHelper
+  include AuthorExtractor
 
   DFRN_NS = 'http://purl.org/macgirvin/dfrn/1.0'
 
@@ -25,7 +26,7 @@ class ResolveRemoteAccountService < BaseService
 
     @webfinger = Goldfinger.finger("acct:#{uri}")
 
-    confirmed_username, confirmed_domain = @webfinger.subject.gsub(/\Aacct:/, '').split('@')
+    confirmed_username, confirmed_domain = split_acct(@webfinger.subject)
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
       @username = confirmed_username
@@ -85,9 +86,34 @@ class ResolveRemoteAccountService < BaseService
   end
 
   def handle_ostatus
+    acct = acct_uri_from_xml(atom.at_xpath('/xmlns:feed'))
+    return if acct.nil?
+    return unless verified_webfinger?(acct)
     create_account if @account.nil?
     update_account
     update_account_profile if update_profile?
+  end
+
+  def verified_webfinger?(acct)
+    return true if acct.casecmp("#{@username}@#{@domain}").zero?
+
+    webfinger                            = Goldfinger.finger("acct:#{acct}")
+    confirmed_username, confirmed_domain = split_acct(webfinger.subject)
+    atom_link                            = webfinger.link('http://schemas.google.com/g/2010#updates-from')
+
+    return atom_link&.href == atom_url if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
+
+    webfinger                            = Goldfinger.finger("acct:#{confirmed_username}@#{confirmed_domain}")
+    @username, @domain                   = split_acct(webfinger.subject)
+    atom_link                            = webfinger.link('http://schemas.google.com/g/2010#updates-from')
+
+    # Disallow account hijacking
+    return false unless @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
+    return false if atom_link&.href != atom_url
+
+    true
+  rescue Goldfinger::Error
+    false
   end
 
   def update_profile?
@@ -200,6 +226,10 @@ class ResolveRemoteAccountService < BaseService
 
   def update_account_profile
     RemoteProfileUpdateWorker.perform_async(@account.id, atom_body.force_encoding('UTF-8'), false)
+  end
+
+  def split_acct(acct)
+    acct.gsub(/\Aacct:/, '').split('@')
   end
 
   def lock_options
