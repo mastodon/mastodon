@@ -1,6 +1,6 @@
 import api from '../api';
-import { emojiIndex } from 'emoji-mart';
 import { throttle } from 'lodash';
+import { search as emojiSearch } from '../emoji_index_light';
 
 import {
   updateTimeline,
@@ -261,7 +261,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
 }, 200, { leading: true, trailing: true });
 
 const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
-  const results = emojiIndex.search(token.replace(':', ''), { maxResults: 5 });
+  const results = emojiSearch(token.replace(':', ''), { maxResults: 5 });
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
 
