@@ -95,9 +95,9 @@ class ResolveRemoteAccountService < BaseService
   end
 
   def handle_activitypub
-    return if actor_json.nil?
-
-    @account = ActivityPub::ProcessAccountService.new.call(@username, @domain, actor_json)
+    @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url,
+                                                               webfinger_username: @username,
+                                                               webfinger_domain: @domain)
   rescue Oj::ParseError
     nil
   end
