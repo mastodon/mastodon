@@ -14,8 +14,8 @@ if (process.env.NODE_ENV === 'development') {
   }
   marky = require('marky');
   // allows us to easily do e.g. ReactPerf.printWasted() while debugging
-  window.ReactPerf = require('react-addons-perf');
-  window.ReactPerf.start();
+  //window.ReactPerf = require('react-addons-perf');
+  //window.ReactPerf.start();
 }
 
 export function start(name) {

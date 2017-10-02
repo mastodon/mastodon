@@ -101,4 +101,33 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
     end
   end
+
+  describe 'PUT #update' do
+    context 'when somebody else\'s' do
+      let(:media) { Fabricate(:media_attachment, status: nil) }
+
+      it 'returns http not found' do
+        put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context 'when not attached to a status' do
+      let(:media) { Fabricate(:media_attachment, status: nil, account: user.account) }
+
+      it 'updates the description' do
+        put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
+        expect(media.reload.description).to eq 'Lorem ipsum!!!'
+      end
+    end
+
+    context 'when attached to a status' do
+      let(:media) { Fabricate(:media_attachment, status: Fabricate(:status), account: user.account) }
+
+      it 'returns http not found' do
+        put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end

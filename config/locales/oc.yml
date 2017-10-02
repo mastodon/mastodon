@@ -93,8 +93,8 @@ oc:
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
       salmon_url: URL Salmon
-      shared_inbox_url: URL de recepcion partejada
       search: Cercar
+      shared_inbox_url: URL de recepcion partejada
       show:
         created_reports: Rapòrts creat per aqueste compte
         report: rapòrt
@@ -388,6 +388,9 @@ oc:
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
       title: Verificacion de seguretat fracassada
     '429': Lo servidor mòla (subrecargada)
+    '500':
+      content: Un quicomet a pas foncionat coma caliá.
+      title: Aquesta pagina es incorrècta
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
     blocks: Personas que blocatz
@@ -468,6 +471,12 @@ oc:
     next: Seguent
     prev: Precedent
     truncate: "&hellip;"
+  preferences:
+    languages: Lengas
+    notifications: Notificacions
+    other: Autre
+    publishing: Publicar
+    web: Interfàcia Web
   push_notifications:
     favourite:
       title: "%{name} a mes vòstre estatut en favorit"

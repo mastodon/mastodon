@@ -7,15 +7,14 @@ Doorkeeper.configure do
     current_user || redirect_to(new_user_session_url)
   end
 
-  resource_owner_from_credentials do |routes|
-    request.params[:user] = { email: request.params[:username], password: request.params[:password] }
-    request.env["devise.allow_params_authentication"] = true
-    request.env["warden"].authenticate!(scope: :user)
+  resource_owner_from_credentials do |_routes|
+    user = User.find_by(email: request.params[:username])
+    user if !user&.otp_required_for_login? && user&.valid_password?(request.params[:password])
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   admin_authenticator do
-    (current_user && current_user.admin?) || redirect_to(new_user_session_url)
+    current_user&.admin? || redirect_to(new_user_session_url)
   end
 
   # Authorization Code expiration time (default 10 minutes).
