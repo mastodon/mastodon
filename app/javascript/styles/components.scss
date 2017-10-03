@@ -371,6 +371,11 @@
       &:focus {
         color: $white;
       }
+
+      &::placeholder {
+        opacity: 0.54;
+        color: $ui-secondary-color;
+      }
     }
 
     &.active {
@@ -1275,7 +1280,7 @@
   background: $ui-secondary-color;
   padding: 4px 0;
   border-radius: 4px;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
 
   ul {
     list-style: none;
@@ -1673,6 +1678,16 @@
 
   &.optionally-scrollable {
     overflow-y: auto;
+  }
+
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
+}
+
+.scrollable.fullscreen {
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: none;
   }
 }
 
@@ -2805,19 +2820,12 @@ button.icon-button.active i.fa-retweet {
   filter: none;
 }
 
-.privacy-dropdown {
-  position: relative;
-}
-
 .privacy-dropdown__dropdown {
-  display: none;
   position: absolute;
-  left: 0;
-  top: 27px;
-  width: 230px;
   background: $simple-background-color;
-  border-radius: 0 4px 4px;
-  z-index: 2;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  border-radius: 4px;
+  margin-left: 40px;
   overflow: hidden;
 }
 
@@ -2869,6 +2877,18 @@ button.icon-button.active i.fa-retweet {
     background: $simple-background-color;
     border-radius: 4px 4px 0 0;
     box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
+
+    .icon-button {
+      transition: none;
+    }
+
+    &.active {
+      background: $ui-highlight-color;
+
+      .icon-button {
+        color: $primary-text-color;
+      }
+    }
   }
 
   .privacy-dropdown__dropdown {
@@ -3058,6 +3078,33 @@ button.icon-button.active i.fa-retweet {
 
 .media-modal__content {
   background: $base-overlay-background;
+}
+
+.media-modal__pagination {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: -40px;
+}
+
+.media-modal__page-dot {
+  display: inline-block;
+}
+
+.media-modal__button {
+  background-color: $white;
+  height: 12px;
+  width: 12px;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 0;
+  border: 0;
+  font-size: 0;
+}
+
+.media-modal__button--active {
+  background-color: $ui-highlight-color;
 }
 
 .media-modal__close {
@@ -4046,6 +4093,37 @@ button.icon-button.active i.fa-retweet {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 0;
+}
+
+.search-popout {
+  background: $simple-background-color;
+  border-radius: 4px;
+  padding: 10px 14px;
+  padding-bottom: 14px;
+  margin-top: 10px;
+  color: $ui-primary-color;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+
+  h4 {
+    text-transform: uppercase;
+    color: $ui-primary-color;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  li {
+    padding: 4px 0;
+  }
+
+  ul {
+    margin-bottom: 10px;
+  }
+
+  em {
+    font-weight: 500;
+    color: $ui-base-color;
+  }
 }
 
 noscript {

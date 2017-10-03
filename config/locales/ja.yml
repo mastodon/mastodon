@@ -254,9 +254,10 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
+    salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
     signature: Mastodon %{instance} インスタンスからの通知
-    view: 'View:'
+    view: リンク
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
@@ -319,6 +320,9 @@ ja:
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
     '429': リクエストの制限に達しました。
+    '500':
+      content: もうしわけありませんが、なにかが間違っています。
+      title: このページは正しくありません
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
     blocks: ブロック
@@ -399,6 +403,12 @@ ja:
     next: 次
     prev: 前
     truncate: "&hellip;"
+  preferences:
+    languages: 言語
+    notifications: 通知
+    other: その他
+    publishing: 投稿
+    web: ウェブ
   push_notifications:
     favourite:
       title: あなたのトゥートが %{name} さんにお気に入り登録されました

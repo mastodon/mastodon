@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Motion, spring } from 'react-motion';
 
 export default class Warning extends React.PureComponent {
 
@@ -11,9 +12,13 @@ export default class Warning extends React.PureComponent {
     const { message } = this.props;
 
     return (
-      <div className='compose-form__warning'>
-        {message}
-      </div>
+      <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
+        {({ opacity, scaleX, scaleY }) => (
+          <div className='compose-form__warning' style={{ opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }}>
+            {message}
+          </div>
+        )}
+      </Motion>
     );
   }
 
