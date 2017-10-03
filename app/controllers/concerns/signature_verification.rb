@@ -117,7 +117,7 @@ module SignatureVerification
       ResolveRemoteAccountService.new.call(key_id.gsub(/\Aacct:/, ''))
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       account   = ActivityPub::TagManager.instance.uri_to_resource(key_id, Account)
-      account ||= ActivityPub::FetchRemoteKeyService.new.call(key_id)
+      account ||= ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false)
       account
     end
   end

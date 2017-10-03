@@ -30,6 +30,39 @@ describe JsonLdHelper do
   end
 
   describe '#fetch_resource' do
-    pending
+    context 'when the second argument is false' do
+      it 'returns resource even if the retrieved ID and the given URI does not match' do
+        stub_request(:get, 'https://bob/').to_return body: '{"id": "https://alice/"}'
+        stub_request(:get, 'https://alice/').to_return body: '{"id": "https://alice/"}'
+
+        expect(fetch_resource('https://bob/', false)).to eq({ 'id' => 'https://alice/' })
+      end
+
+      it 'returns nil if the object identified by the given URI and the object identified by the retrieved ID does not match' do
+        stub_request(:get, 'https://mallory/').to_return body: '{"id": "https://marvin/"}'
+        stub_request(:get, 'https://marvin/').to_return body: '{"id": "https://alice/"}'
+
+        expect(fetch_resource('https://mallory/', false)).to eq nil
+      end
+    end
+
+    context 'when the second argument is true' do
+      it 'returns nil if the retrieved ID and the given URI does not match' do
+        stub_request(:get, 'https://mallory/').to_return body: '{"id": "https://alice/"}'
+        expect(fetch_resource('https://mallory/', true)).to eq nil
+      end
+    end
+  end
+
+  describe '#fetch_resource_without_id_validation' do
+    it 'returns nil if the status code is not 200' do
+      stub_request(:get, 'https://host/').to_return status: 400, body: '{}'
+      expect(fetch_resource_without_id_validation('https://host/')).to eq nil
+    end
+
+    it 'returns hash' do
+      stub_request(:get, 'https://host/').to_return status: 200, body: '{}'
+      expect(fetch_resource_without_id_validation('https://host/')).to eq({})
+    end
   end
 end
