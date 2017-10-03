@@ -137,6 +137,15 @@ class Account < ApplicationRecord
     subscription_expires_at.present?
   end
 
+  def possibly_stale?
+    last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
+  end
+
+  def refresh!
+    return if local?
+    ResolveRemoteAccountService.new.call(acct)
+  end
+
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
@@ -181,7 +190,8 @@ class Account < ApplicationRecord
     end
 
     def inboxes
-      reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
+      urls = reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
+      DeliveryFailureTracker.filter(urls)
     end
 
     def triadic_closures(account, limit: 5, offset: 0)

@@ -128,22 +128,8 @@ body.rtl {
   }
 
   .privacy-dropdown__dropdown {
-    left: auto;
-    right: 0;
-  }
-
-  .dropdown--active .dropdown__content {
-    text-align: right;
-  }
-
-  .dropdown--active .dropdown__content::before {
-    left: auto;
-    right: 8px;
-  }
-
-  .dropdown--active .dropdown__content > ul {
-    left: auto;
-    right: -10px;
+    margin-left: 0;
+    margin-right: 40px;
   }
 
   .privacy-dropdown__option__icon {

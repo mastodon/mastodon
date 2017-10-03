@@ -1,6 +1,6 @@
 import { List as ImmutableList } from 'immutable';
 import { STORE_HYDRATE } from '../actions/store';
-import { emojiIndex } from 'emoji-mart';
+import { search as emojiSearch } from '../emoji_index_light';
 import { buildCustomEmojis } from '../emoji';
 
 const initialState = ImmutableList();
@@ -8,7 +8,7 @@ const initialState = ImmutableList();
 export default function custom_emojis(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    emojiIndex.search('', { custom: buildCustomEmojis(action.state.get('custom_emojis', [])) });
+    emojiSearch('', { custom: buildCustomEmojis(action.state.get('custom_emojis', [])) });
     return action.state.get('custom_emojis');
   default:
     return state;

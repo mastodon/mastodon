@@ -22,10 +22,10 @@ describe('emojify', () => {
 
   it('does unicode', () => {
     expect(emojify('\uD83D\uDC69\u200D\uD83D\uDC69\u200D\uD83D\uDC66\u200D\uD83D\uDC66')).to.equal(
-      '<img draggable="false" class="emojione" alt="👩‍👩‍👦‍👦" title=":family_wwbb:" src="/emoji/1f469-1f469-1f466-1f466.svg" />');
-    expect(emojify('\uD83D\uDC68\uD83D\uDC69\uD83D\uDC67\uD83D\uDC67')).to.equal(
-      '<img draggable="false" class="emojione" alt="👨👩👧👧" title=":family_mwgg:" src="/emoji/1f468-1f469-1f467-1f467.svg" />');
-    expect(emojify('\uD83D\uDC69\uD83D\uDC69\uD83D\uDC66')).to.equal('<img draggable="false" class="emojione" alt="👩👩👦" title=":family_wwb:" src="/emoji/1f469-1f469-1f466.svg" />');
+      '<img draggable="false" class="emojione" alt="👩‍👩‍👦‍👦" title=":woman-woman-boy-boy:" src="/emoji/1f469-200d-1f469-200d-1f466-200d-1f466.svg" />');
+    expect(emojify('👨‍👩‍👧‍👧')).to.equal(
+      '<img draggable="false" class="emojione" alt="👨‍👩‍👧‍👧" title=":man-woman-girl-girl:" src="/emoji/1f468-200d-1f469-200d-1f467-200d-1f467.svg" />');
+    expect(emojify('👩‍👩‍👦')).to.equal('<img draggable="false" class="emojione" alt="👩‍👩‍👦" title=":woman-woman-boy:" src="/emoji/1f469-200d-1f469-200d-1f466.svg" />');
     expect(emojify('\u2757')).to.equal(
       '<img draggable="false" class="emojione" alt="❗" title=":exclamation:" src="/emoji/2757.svg" />');
   });
