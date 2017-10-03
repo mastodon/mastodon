@@ -34,7 +34,7 @@ module Admin
     end
 
     def resource_params
-      params.require(:blacklisted_email_domain).permit(:domain, :note)
+      params.require(:blacklisted_email_domain).permit(:domain)
     end
   end
 end

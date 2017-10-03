@@ -5,7 +5,6 @@
   = render 'shared/error_messages', object: @blacklisted_email_domain
 
   = f.input :domain, placeholder: t('admin.blacklisted_email_domains.domain')
-  = f.input :note, placeholder: t('admin.blacklisted_email_domains.note'), hint: ''
 
   .actions
     = f.button :button, t('.create'), type: :submit

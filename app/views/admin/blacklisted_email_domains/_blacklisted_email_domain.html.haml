@@ -1,7 +1,5 @@
 %tr
   %td.domain
     %samp= blacklisted_email_domain.domain
-  %td.note
-    %samp= blacklisted_email_domain.note
   %td
     = table_link_to 'trash', t('admin.blacklisted_email_domains.delete'), admin_blacklisted_email_domain_path(blacklisted_email_domain), method: :delete

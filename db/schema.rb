@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20170928082043) do
 
   create_table "blacklisted_email_domains", force: :cascade do |t|
     t.string "domain", null: false
-    t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -115,6 +114,21 @@ ActiveRecord::Schema.define(version: 20170928082043) do
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
+  end
+
+  create_table "email_blacks", force: :cascade do |t|
+    t.string "domain", null: false
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favourite_tags", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "tag_id"], name: "index_favourite_tags_on_account_id_and_tag_id", unique: true
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -347,6 +361,7 @@ ActiveRecord::Schema.define(version: 20170928082043) do
     t.integer "reblogs_count", default: 0, null: false
     t.string "language"
     t.bigint "conversation_id"
+    t.json "enquete"
     t.boolean "local"
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
@@ -421,11 +436,16 @@ ActiveRecord::Schema.define(version: 20170928082043) do
     t.boolean "otp_required_for_login", default: false, null: false
     t.datetime "last_emailed_at"
     t.string "otp_backup_codes", array: true
+    t.string "provider"
+    t.string "uid"
+    t.boolean "hide_oauth", default: false
     t.string "filtered_languages", default: [], null: false, array: true
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["filtered_languages"], name: "index_users_on_filtered_languages", using: :gin
+    t.index ["provider", "uid", "hide_oauth"], name: "index_users_on_provider_and_uid_and_hide_oauth"
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -451,6 +471,8 @@ ActiveRecord::Schema.define(version: 20170928082043) do
   add_foreign_key "blocks", "accounts", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
+  add_foreign_key "favourite_tags", "accounts", on_delete: :cascade
+  add_foreign_key "favourite_tags", "tags", on_delete: :cascade
   add_foreign_key "favourites", "accounts", on_delete: :cascade
   add_foreign_key "favourites", "statuses", on_delete: :cascade
   add_foreign_key "follow_requests", "accounts", column: "target_account_id", on_delete: :cascade

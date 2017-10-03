@@ -38,7 +38,7 @@ RSpec.describe Admin::BlacklistedEmailDomainsController, type: :controller do
 
   describe 'POST #create' do
     it 'blocks the domain when succeeded to save' do
-      post :create, params: { blacklisted_email_domain: { domain: 'example.com', note: 'memo' } }
+      post :create, params: { blacklisted_email_domain: { domain: 'example.com'} }
 
       expect(flash[:notice]).to eq I18n.t('admin.blacklisted_email_domains.created_msg')
       expect(response).to redirect_to(admin_blacklisted_email_domains_path)
