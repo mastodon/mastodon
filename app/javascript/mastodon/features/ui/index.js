@@ -50,6 +50,7 @@ const mapStateToProps = state => ({
 
 const keyMap = {
   new: 'n',
+  search: 's',
   forceNew: 'option+n',
   focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
   reply: 'r',
@@ -85,7 +86,7 @@ export default class UI extends React.Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     isComposing: PropTypes.bool,
-    me: PropTypes.number,
+    me: PropTypes.string,
     location: PropTypes.object,
   };
 
@@ -234,6 +235,14 @@ export default class UI extends React.Component {
     }
   }
 
+  handleHotkeySearch = () => {
+    const element = this.node.querySelector('.search__input');
+
+    if (element) {
+      element.focus();
+    }
+  }
+
   handleHotkeyForceNew = () => {
     this.handleHotkeyNew();
     this.props.dispatch(resetCompose());
@@ -310,6 +319,7 @@ export default class UI extends React.Component {
 
     const handlers = {
       new: this.handleHotkeyNew,
+      search: this.handleHotkeySearch,
       forceNew: this.handleHotkeyForceNew,
       focusColumn: this.handleHotkeyFocusColumn,
       back: this.handleHotkeyBack,
