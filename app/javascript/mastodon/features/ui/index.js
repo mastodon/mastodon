@@ -42,6 +42,8 @@ import {
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 
+import TutorialContainer from '../tutorial/containers/tutorial_container';
+
 const mapStateToProps = state => ({
   isComposing: state.getIn(['compose', 'is_composing']),
 });
@@ -170,7 +172,7 @@ export default class UI extends React.PureComponent {
 
   componentDidUpdate (prevProps) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      this.columnsAreaNode.handleChildrenContentChange();
+      this.columnsAreaNode.handleChildrenContentChange(prevProps);
     }
   }
 
@@ -231,6 +233,7 @@ export default class UI extends React.PureComponent {
         <NotificationsContainer />
         <LoadingBarContainer className='loading-bar' />
         <ModalContainer />
+        <TutorialContainer />
         <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
       </div>
     );

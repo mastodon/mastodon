@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
-import { showOnboardingOnce } from '../actions/onboarding';
+import { showOnboardingOnce } from '../actions/tutorial';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import Route from 'react-router-dom/Route';
 import ScrollContext from 'react-router-scroll/lib/ScrollBehaviorContext';
