@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 const messages = defineMessages({
   just_now: { id: 'relative_time.just_now', defaultMessage: 'now' },
-  seconds: { id: 'relative_time.seconds', defaultMessage: 's' },
-  minutes: { id: 'relative_time.minutes', defaultMessage: 'm' },
-  hours: { id: 'relative_time.hours', defaultMessage: 'h' },
-  days: { id: 'relative_time.days', defaultMessage: 'd' },
+  seconds: { id: 'relative_time.seconds', defaultMessage: '{number}s' },
+  minutes: { id: 'relative_time.minutes', defaultMessage: '{number}m' },
+  hours: { id: 'relative_time.hours', defaultMessage: '{number}h' },
+  days: { id: 'relative_time.days', defaultMessage: '{number}d' },
 });
 
 const dateFormatOptions = {
@@ -20,8 +20,8 @@ const dateFormatOptions = {
 };
 
 const shortDateFormatOptions = {
-  month: '2-digit',
-  day: '2-digit',
+  month: 'numeric',
+  day: 'numeric',
 };
 
 const SECOND = 1000;
@@ -121,13 +121,13 @@ export default class RelativeTimestamp extends React.Component {
       relativeTime = intl.formatMessage(messages.just_now);
     } else if (delta < 3 * DAY) {
       if (delta < MINUTE) {
-        relativeTime = Math.floor(delta / SECOND) + intl.formatMessage(messages.seconds);
+        relativeTime = intl.formatMessage(messages.seconds, { number: Math.floor(delta / SECOND) });
       } else if (delta < HOUR) {
-        relativeTime = Math.floor(delta / MINUTE) + intl.formatMessage(messages.minutes);
+        relativeTime = intl.formatMessage(messages.minutes, { number: Math.floor(delta / MINUTE) });
       } else if (delta < DAY) {
-        relativeTime = Math.floor(delta / HOUR) + intl.formatMessage(messages.hours);
+        relativeTime = intl.formatMessage(messages.hours, { number: Math.floor(delta / HOUR) });
       } else {
-        relativeTime = Math.floor(delta / DAY) + intl.formatMessage(messages.days);
+        relativeTime = intl.formatMessage(messages.days, { number: Math.floor(delta / DAY) });
       }
     } else {
       relativeTime = intl.formatDate(date, shortDateFormatOptions);
