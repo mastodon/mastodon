@@ -189,7 +189,7 @@ de:
   application_mailer:
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     signature: Mastodon-Benachrichtigungen von %{instance}
-    view: 'Darstellung:'
+    view: 'Ansehen:'
   applications:
     invalid_url: Die angegebene URL ist ungültig
   auth:
@@ -317,9 +317,29 @@ de:
     next: Vorwärts
     prev: Zurück
     truncate: "&hellip;"
+  preferences:
+    languages: Sprachen
+    notifications: Benachrichtigungen
+    other: Weiteres
+    publishing: Beiträge
+    web: Web
+  push_notifications:
+    favourite:
+      title: "%{name} hat deinen Beitrag favorisiert"
+    follow:
+      title: "%{name} folgt dir nun"
+    group:
+      title: "%{count} Benachrichtigungen"
+    mention:
+      action_boost: Teilen
+      action_expand: Mehr anzeigen
+      action_favourite: Favorisieren
+      title: "%{name} hat dich erwähnt"
+    reblog:
+      title: "%{name} hat deinen Beitrag geteilt"
   remote_follow:
-    acct: Dein Profilname@Domain, von dem aus du dieser Person folgen möchtest.
-    missing_resource: Die erforderliche Weiterleitungs-URL konnte leider in deinem Profil nicht gefunden werden.
+    acct: Dein Profilname@Domain, von dem aus du dieser Person folgen möchtest
+    missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
   sessions:
