@@ -104,8 +104,8 @@ class FeedManager
   def populate_feed(account)
     prepopulate_limit = FeedManager::MAX_ITEMS / 4
     statuses = Status.as_home_timeline(account).order(account_id: :desc).limit(prepopulate_limit)
-    to_add = statuses.reverse_each.lazy.reject { |status| filter_from_home?(status, account) }
-    to_add.each do |status|
+    statuses.reverse_each do |status|
+      next if filter_from_home?(status, account)
       add_to_feed(:home, account, status)
     end
   end

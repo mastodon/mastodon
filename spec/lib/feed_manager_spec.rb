@@ -202,24 +202,22 @@ RSpec.describe FeedManager do
       it 'does not save a new reblog of a recently-reblogged status' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)
-        reblog1 = Fabricate(:status, reblog: reblogged)
-        reblog2 = Fabricate(:status, reblog: reblogged)
+        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
-        FeedManager.instance.push('type', account, reblog1)
+        FeedManager.instance.push('type', account, reblogs.first)
 
         # The second reblog should be ignored
-        expect(FeedManager.instance.push('type', account, reblog2)).to be false
+        expect(FeedManager.instance.push('type', account, reblogs.last)).to be false
       end
 
       it 'saves a new reblog of a long-ago-reblogged status' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)
-        reblog1 = Fabricate(:status, reblog: reblogged)
-        reblog2 = Fabricate(:status, reblog: reblogged)
+        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
-        FeedManager.instance.push('type', account, reblog1)
+        FeedManager.instance.push('type', account, reblogs.first)
 
         # Fill the feed with intervening statuses
         FeedManager::REBLOG_FALLOFF.times do
@@ -227,7 +225,7 @@ RSpec.describe FeedManager do
         end
 
         # The second reblog should also be accepted
-        expect(FeedManager.instance.push('type', account, reblog2)).to be true
+        expect(FeedManager.instance.push('type', account, reblogs.last)).to be true
       end
     end
   end

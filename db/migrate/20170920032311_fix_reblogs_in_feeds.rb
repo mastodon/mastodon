@@ -28,23 +28,22 @@ class FixReblogsInFeeds < ActiveRecord::Migration[5.1]
       timeline_key = fm.key(:home, account.id)
       reblog_key = fm.key(:home, account.id, 'reblogs')
       redis.zrange(timeline_key, 0, -1, with_scores: true).each do |entry|
-        if (entry[0] != entry[1])
-          # The score and value don't match, so this is a reblog.
-          # (note that we're transitioning from IDs < 53 bits so we
-          # don't have to worry about the loss of precision)
+        next if entry[0] == entry[1]
 
-          reblogged_id = entry[0]
-          reblogging_id = entry[1]
+        # The score and value don't match, so this is a reblog.
+        # (note that we're transitioning from IDs < 53 bits so we
+        # don't have to worry about the loss of precision)
 
-          # Remove the old entry
-          redis.zrem(timeline_key, reblogged_id)
+        reblogged_id, reblogging_id = entry
 
-          # Add a new one for the reblogging status
-          redis.zadd(timeline_key, reblogging_id, reblogging_id)
+        # Remove the old entry
+        redis.zrem(timeline_key, reblogged_id)
 
-          # Track the fact that this was a reblog
-          redis.zadd(reblog_key, reblogging_id, reblogged_id)
-        end
+        # Add a new one for the reblogging status
+        redis.zadd(timeline_key, reblogging_id, reblogging_id)
+
+        # Track the fact that this was a reblog
+        redis.zadd(reblog_key, reblogging_id, reblogged_id)
       end
     end
   end

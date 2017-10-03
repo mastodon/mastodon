@@ -34,11 +34,16 @@ namespace :db do
     conn = ActiveRecord::Base.connection
 
     # Make sure we don't already have a `timestamp_id` function.
-    unless conn.execute("SELECT EXISTS(
-      SELECT * FROM pg_proc WHERE proname = 'timestamp_id'
-      );").values.first.first
+    unless conn.execute(
+        <<~SQL
+          SELECT EXISTS(
+            SELECT * FROM pg_proc WHERE proname = 'timestamp_id'
+          );
+        SQL
+      ).values.first.first
       # The function doesn't exist, so we'll define it.
-      conn.execute("
+      conn.execute(
+        <<~SQL
         CREATE OR REPLACE FUNCTION timestamp_id(table_name text)
         RETURNS bigint AS
         $$
@@ -114,7 +119,8 @@ namespace :db do
             RETURN time_part | tail;
           END
         $$ LANGUAGE plpgsql VOLATILE;
-      ")
+        SQL
+      )
     end
   end
 
@@ -137,13 +143,15 @@ namespace :db do
       # Note that seq_name isn't a column name, but it's a
       # relation, like a column, and follows the same quoting rules
       # in Postgres.
-      seq_query = "DO $$
-        BEGIN
-          CREATE SEQUENCE #{conn.quote_column_name(seq_name)};
-        EXCEPTION WHEN duplicate_table THEN
-          -- Do nothing, we have the sequence already.
-        END
-      $$ LANGUAGE plpgsql;"
+      seq_query = <<~SQL
+        DO $$
+          BEGIN
+            CREATE SEQUENCE #{conn.quote_column_name(seq_name)};
+          EXCEPTION WHEN duplicate_table THEN
+            -- Do nothing, we have the sequence already.
+          END
+        $$ LANGUAGE plpgsql;
+      SQL
       conn.execute(seq_query)
     end
   end

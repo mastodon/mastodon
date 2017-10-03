@@ -5,9 +5,11 @@ class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
 
     # Set up the statuses.id column to use our timestamp-based IDs.
     ActiveRecord::Base.connection.execute(
-      "ALTER TABLE statuses
-      ALTER COLUMN id
-      SET DEFAULT timestamp_id('statuses')"
+      <<~SQL
+        ALTER TABLE statuses
+        ALTER COLUMN id
+        SET DEFAULT timestamp_id('statuses')
+      SQL
     )
 
     # Make sure we have a sequence to use.
@@ -22,11 +24,13 @@ class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
     # We lock the table during this so that the ID won't get clobbered,
     # but ID is indexed, so this should be a fast operation.
     ActiveRecord::Base.connection.execute(
-      "LOCK statuses;
-      SELECT setval('statuses_id_seq', (SELECT MAX(id) FROM statuses));
-      ALTER TABLE statuses
-        ALTER COLUMN id
-        SET DEFAULT nextval('statuses_id_seq');"
+      <<~SQL
+        LOCK statuses;
+        SELECT setval('statuses_id_seq', (SELECT MAX(id) FROM statuses));
+        ALTER TABLE statuses
+          ALTER COLUMN id
+          SET DEFAULT nextval('statuses_id_seq');"
+      SQL
     )
   end
 end
