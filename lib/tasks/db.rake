@@ -34,13 +34,11 @@ namespace :db do
     conn = ActiveRecord::Base.connection
 
     # Make sure we don't already have a `timestamp_id` function.
-    unless conn.execute(
-        <<~SQL
-          SELECT EXISTS(
-            SELECT * FROM pg_proc WHERE proname = 'timestamp_id'
-          );
-        SQL
-      ).values.first.first
+    unless conn.execute(<<~SQL).values.first.first
+        SELECT EXISTS(
+          SELECT * FROM pg_proc WHERE proname = 'timestamp_id'
+        );
+      SQL
       # The function doesn't exist, so we'll define it.
       conn.execute(
         <<~SQL
