@@ -3080,6 +3080,33 @@ button.icon-button.active i.fa-retweet {
   background: $base-overlay-background;
 }
 
+.media-modal__pagination {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: -40px;
+}
+
+.media-modal__page-dot {
+  display: inline-block;
+}
+
+.media-modal__button {
+  background-color: $white;
+  height: 12px;
+  width: 12px;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 0;
+  border: 0;
+  font-size: 0;
+}
+
+.media-modal__button--active {
+  background-color: $ui-highlight-color;
+}
+
 .media-modal__close {
   position: absolute;
   right: 4px;
