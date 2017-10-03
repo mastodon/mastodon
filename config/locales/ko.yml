@@ -60,6 +60,7 @@ ko:
       email: E-mail
       feed_url: 피드 URL
       followers: 팔로워 수
+      followers_url: 팔로워 URL
       follows: 팔로잉 수
       inbox_url: Inbox URL
       ip: IP
@@ -106,6 +107,18 @@ ko:
       unsubscribe: 구독 해제
       username: 아이디
       web: Web
+    custom_emojis:
+      created_msg: 에모지가 성공적으로 생성되었습니다!
+      delete: 삭제
+      destroyed_msg: 에모지가 성공적으로 삭제되었습니다!
+      emoji: Emoji
+      image_hint: 50KB 이하의 PNG
+      new:
+        title: 새 커스텀 에모지 추가
+      shortcode: Shortcode
+      shortcode_hint: 최소 2글자, 영문자, 숫자, _만 사용 가능
+      title: 커스텀 에모지
+      upload: 업로드
     domain_blocks:
       add_new: 추가하기
       created_msg: 도메인 차단 처리를 완료했습니다.
@@ -141,6 +154,8 @@ ko:
     instances:
       account_count: 알려진 계정의 수
       domain_name: 도메인 이름
+      reset: 리셋
+      search: 검색
       title: 알려진 인스턴스들
     reports:
       action_taken_by: 신고 처리자
@@ -167,6 +182,9 @@ ko:
       unresolved: 미해결
       view: 표시
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: 콤마로 여러 유저명을 구분. 로컬의 잠기지 않은 계정만 가능합니다. 비워 둘 경우 모든 로컬 관리자가 기본으로 사용 됩니다.
+        title: 새 유저가 팔로우 할 계정들
       contact_information:
         email: 공개할 메일 주소를 입력
         username: 아이디를 입력
@@ -190,6 +208,9 @@ ko:
         desc_html: 당신은 독자적인 개인정보 취급 방침이나 이용약관, 그 외의 법적 근거를 작성할 수 있습니다. 또한 HTML태그를 사용할 수 있습니다.
         title: 커스텀 서비스 이용 약관
       site_title: 사이트 이름
+      thumbnail:
+        desc_html: OpenGraph와 API의 미리보기로 사용 됩니다. 1200x630px을 권장합니다
+        title: 인스턴스 썸네일
       timeline_preview:
         desc_html: Landing page에 공개 타임라인을 표시합니다.
         title: 타임라인 프리뷰
@@ -287,6 +308,9 @@ ko:
       content: 보안 인증에 실패했습니다. Cookie를 차단하고 있진 않습니까?
       title: 보안 인증 실패
     '429': 요청 횟수 제한에 도달했습니다.
+    '500':
+      content: 죄송합니다, 뭔가 잘못 되었습니다.
+      title: 이 페이지는 잘못되었습니다.
     noscript_html: Mastodon을 사용하기 위해서는 JavaScript를 켜 주십시오.
   exports:
     blocks: 차단
@@ -338,8 +362,8 @@ ko:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
     favourite:
-      body: "%{name} 님이 내 Toot를 즐겨찾기에 등록했습니다."
-      subject: "%{name} 님이 내 Toot를 즐겨찾기에 등록했습니다"
+      body: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다."
+      subject: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다"
     follow:
       body: "%{name} 님이 나를 팔로우 했습니다"
       subject: "%{name} 님이 나를 팔로우 했습니다"
@@ -367,6 +391,12 @@ ko:
     next: 다음
     prev: 이전
     truncate: "&hellip;"
+  preferences:
+    languages: 언어
+    notifications: 알림
+    other: 기타
+    publishing: 퍼블리싱
+    web: 웹
   push_notifications:
     favourite:
       title: "%{name} 님이 당신의 Toot를 즐겨찾기에 등록했습니다."
@@ -442,8 +472,9 @@ ko:
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
-      ownership: 다른 사람의 Toot는 고정될 수 없습니다.
-      private: 비공개 Toot는 고정될 수 없습니다.
+      limit: 너무 많은 툿을 고정했습니다.
+      ownership: 다른 사람의 툿은 고정될 수 없습니다.
+      private: 비공개 툿은 고정될 수 없습니다.
       reblog: 부스트는 고정될 수 없습니다.
     show_more: 더 보기
     visibilities:
@@ -455,11 +486,13 @@ ko:
       unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
   stream_entries:
     click_to_show: 클릭해서 표시
-    pinned: 고정된 Toot
+    pinned: 고정된 툿
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
   terms:
     title: "%{instance} 이용약관과 개인정보 취급 방침"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"
