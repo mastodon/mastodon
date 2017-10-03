@@ -45,11 +45,12 @@ class Announcement extends React.PureComponent {
 export default class Announcements extends React.PureComponent {
 
   state = {
-    items: Immutable.Map(),
+    items: Announcement.cache || Immutable.Map(),
   }
 
   static isCacheControlled = false
   static lastDate = null
+  static cache = null
 
   constructor () {
     super();
@@ -84,8 +85,8 @@ export default class Announcements extends React.PureComponent {
       Announcement.lastDate = resp.headers['last-modified'];
       return resp;
     })
-    .then(resp => this.setState({ items: Immutable.fromJS(resp.data) || {} }))
-    .catch(err => console.warn(err))
+    .then(resp => this.setState({ items: Announcement.cache = Immutable.fromJS(resp.data) || {} }))
+    .catch(err => err.response.status !== 304 && console.warn(err))
     .then(this.setPolling);
   }
 
