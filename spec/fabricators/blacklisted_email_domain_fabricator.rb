@@ -1,4 +1,3 @@
 Fabricator(:blacklisted_email_domain) do
-  domain "example.com"
-  note   "Note"
+  domain { sequence(:domain) { |i| "#{i}#{Faker::Internet.domain_name}" } }
 end
