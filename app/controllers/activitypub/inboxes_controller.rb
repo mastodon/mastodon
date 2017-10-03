@@ -9,9 +9,9 @@ class ActivityPub::InboxesController < Api::BaseController
     if signed_request_account
       upgrade_account
       process_payload
-      head 201
-    else
       head 202
+    else
+      [signature_verification_failure_reason, 401]
     end
   end
 

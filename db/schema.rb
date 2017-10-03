@@ -346,13 +346,10 @@ ActiveRecord::Schema.define(version: 20170927215609) do
     t.string "language"
     t.bigint "conversation_id"
     t.boolean "local"
-<<<<<<< HEAD
     t.json "enquete"
-=======
     t.bigint "account_id", null: false
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
->>>>>>> 395a57d03d4592df0ffe0d8ad7c6ea86510a202d
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"

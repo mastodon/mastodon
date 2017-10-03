@@ -310,6 +310,9 @@ ja:
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
     '429': リクエストの制限に達しました。
+    '500':
+      content: もうしわけありませんが、なにかが間違っています。
+      title: このページは正しくありません
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
     blocks: ブロック
@@ -390,6 +393,12 @@ ja:
     next: 次
     prev: 前
     truncate: "&hellip;"
+  preferences:
+    languages: 言語
+    notifications: 通知
+    other: その他
+    publishing: 投稿
+    web: ウェブ
   push_notifications:
     favourite:
       title: あなたのトゥートが %{name} さんにお気に入り登録されました

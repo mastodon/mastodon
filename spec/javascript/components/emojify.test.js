@@ -44,4 +44,9 @@ describe('emojify', () => {
   it('ignores unicode inside of tags', () => {
     expect(emojify('<p data-foo="\uD83D\uDC69\uD83D\uDC69\uD83D\uDC66"></p>')).to.equal('<p data-foo="\uD83D\uDC69\uD83D\uDC69\uD83D\uDC66"></p>');
   });
+
+  it('does multiple emoji properly (issue 5188)', () => {
+    expect(emojify('👌🌈💕')).to.equal('<img draggable="false" class="emojione" alt="👌" title=":ok_hand:" src="/emoji/1f44c.svg" /><img draggable="false" class="emojione" alt="🌈" title=":rainbow:" src="/emoji/1f308.svg" /><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg" />');
+    expect(emojify('👌 🌈 💕')).to.equal('<img draggable="false" class="emojione" alt="👌" title=":ok_hand:" src="/emoji/1f44c.svg" /> <img draggable="false" class="emojione" alt="🌈" title=":rainbow:" src="/emoji/1f308.svg" /> <img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg" />');
+  });
 });
