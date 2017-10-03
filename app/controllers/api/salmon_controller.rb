@@ -9,7 +9,7 @@ class Api::SalmonController < Api::BaseController
       process_salmon
       head 202
     elsif payload.present?
-      head 401
+      [signature_verification_failure_reason, 401]
     else
       head 400
     end

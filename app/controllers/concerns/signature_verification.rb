@@ -9,10 +9,15 @@ module SignatureVerification
     request.headers['Signature'].present?
   end
 
+  def signature_verification_failure_reason
+    return @signature_verification_failure_reason if defined?(@signature_verification_failure_reason)
+  end
+
   def signed_request_account
     return @signed_request_account if defined?(@signed_request_account)
 
     unless signed_request?
+      @signature_verification_failure_reason = 'Request not signed'
       @signed_request_account = nil
       return
     end
@@ -27,6 +32,7 @@ module SignatureVerification
     end
 
     if incompatible_signature?(signature_params)
+      @signature_verification_failure_reason = 'Incompatible request signature'
       @signed_request_account = nil
       return
     end
@@ -34,6 +40,7 @@ module SignatureVerification
     account = account_from_key_id(signature_params['keyId'])
 
     if account.nil?
+      @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
       @signed_request_account = nil
       return
     end
@@ -51,9 +58,11 @@ module SignatureVerification
         @signed_request_account = account
         @signed_request_account
       else
+        @signed_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
         @signed_request_account = nil
       end
     else
+      @signed_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
       @signed_request_account = nil
     end
   end
