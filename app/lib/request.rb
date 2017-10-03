@@ -12,19 +12,27 @@ class Request
     @headers = {}
 
     set_common_headers!
+    set_digest! if options.key?(:body)
   end
 
-  def on_behalf_of(account)
+  def on_behalf_of(account, key_id_format = :acct)
     raise ArgumentError unless account.local?
-    @account = account
+
+    @account       = account
+    @key_id_format = key_id_format
+
+    self
   end
 
   def add_headers(new_headers)
     @headers.merge!(new_headers)
+    self
   end
 
   def perform
     http_client.headers(headers).public_send(@verb, @url.to_s, @options)
+  rescue => e
+    raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
   end
 
   def headers
@@ -40,8 +48,11 @@ class Request
     @headers['Date']         = Time.now.utc.httpdate
   end
 
+  def set_digest!
+    @headers['Digest'] = "SHA-256=#{Digest::SHA256.base64digest(@options[:body])}"
+  end
+
   def signature
-    key_id    = @account.to_webfinger_s
     algorithm = 'rsa-sha256'
     signature = Base64.strict_encode64(@account.keypair.sign(OpenSSL::Digest::SHA256.new, signed_string))
 
@@ -60,11 +71,20 @@ class Request
     @user_agent ||= "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::Version}; +#{root_url})"
   end
 
+  def key_id
+    case @key_id_format
+    when :acct
+      @account.to_webfinger_s
+    when :uri
+      [ActivityPub::TagManager.instance.uri_for(@account), '#main-key'].join
+    end
+  end
+
   def timeout
     { write: 10, connect: 10, read: 10 }
   end
 
   def http_client
-    HTTP.timeout(:per_operation, timeout).follow
+    HTTP.timeout(:per_operation, timeout).follow(max_hops: 2)
   end
 end

@@ -1,22 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export default class AvatarOverlay extends React.PureComponent {
 
   static propTypes = {
-    staticSrc: PropTypes.string.isRequired,
-    overlaySrc: PropTypes.string.isRequired,
+    account: ImmutablePropTypes.map.isRequired,
+    friend: ImmutablePropTypes.map.isRequired,
   };
 
   render() {
-    const { staticSrc, overlaySrc } = this.props;
+    const { account, friend } = this.props;
 
     const baseStyle = {
-      backgroundImage: `url(${staticSrc})`,
+      backgroundImage: `url(${account.get('avatar_static')})`,
     };
 
     const overlayStyle = {
-      backgroundImage: `url(${overlaySrc})`,
+      backgroundImage: `url(${friend.get('avatar_static')})`,
     };
 
     return (

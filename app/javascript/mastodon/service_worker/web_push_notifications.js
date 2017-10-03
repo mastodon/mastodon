@@ -9,7 +9,7 @@ const notify = options =>
     if (notifications.length === MAX_NOTIFICATIONS) {
       // Reached the maximum number of notifications, proceed with grouping
       const group = {
-        title: formatGroupTitle(notifications[0].data.message, notifications.length + 1),
+        title: formatGroupTitle(options.data.message, notifications.length + 1),
         body: notifications
           .sort((n1, n2) => n1.timestamp < n2.timestamp)
           .map(notification => notification.title).join('\n'),
@@ -19,7 +19,7 @@ const notify = options =>
         data: {
           url: (new URL('/web/notifications', self.location)).href,
           count: notifications.length + 1,
-          message: notifications[0].data.message,
+          message: options.data.message,
         },
       };
 
@@ -31,8 +31,8 @@ const notify = options =>
       const group = cloneNotification(notifications[0]);
 
       group.title = formatGroupTitle(group.data.message, group.data.count + 1);
-      group.body = `${options.title}\n${group.body}`;
-      group.data = { ...group.data, count: group.data.count + 1 };
+      group.body  = `${options.title}\n${group.body}`;
+      group.data  = { ...group.data, count: group.data.count + 1 };
 
       return self.registration.showNotification(group.title, group);
     }
@@ -43,18 +43,18 @@ const notify = options =>
 const handlePush = (event) => {
   const options = event.data.json();
 
-  options.body = options.data.nsfw || options.data.content;
-  options.image = options.image || undefined; // Null results in a network request (404)
+  options.body      = options.data.nsfw || options.data.content;
+  options.dir       = options.data.dir;
+  options.image     = options.image || undefined; // Null results in a network request (404)
   options.timestamp = options.timestamp && new Date(options.timestamp);
 
   const expandAction = options.data.actions.find(action => action.todo === 'expand');
 
   if (expandAction) {
-    options.actions = [expandAction];
-    options.hiddenActions = options.data.actions.filter(action => action !== expandAction);
-
+    options.actions          = [expandAction];
+    options.hiddenActions    = options.data.actions.filter(action => action !== expandAction);
     options.data.hiddenImage = options.image;
-    options.image = undefined;
+    options.image            = undefined;
   } else {
     options.actions = options.data.actions;
   }
@@ -75,8 +75,8 @@ const cloneNotification = (notification) => {
 const expandNotification = (notification) => {
   const nextNotification = cloneNotification(notification);
 
-  nextNotification.body = notification.data.content;
-  nextNotification.image = notification.data.hiddenImage;
+  nextNotification.body    = notification.data.content;
+  nextNotification.image   = notification.data.hiddenImage;
   nextNotification.actions = notification.data.actions.filter(action => action.todo !== 'expand');
 
   return self.registration.showNotification(nextNotification.title, nextNotification);
@@ -105,8 +105,7 @@ const openUrl = url =>
       const webClients = clientList.filter(client => /\/web\//.test(client.url));
 
       if (webClients.length !== 0) {
-        const client = findBestClient(webClients);
-
+        const client       = findBestClient(webClients);
         const { pathname } = new URL(url);
 
         if (pathname.startsWith('/web/')) {
@@ -126,8 +125,7 @@ const openUrl = url =>
   });
 
 const removeActionFromNotification = (notification, action) => {
-  const actions = notification.actions.filter(act => act.action !== action.action);
-
+  const actions          = notification.actions.filter(act => act.action !== action.action);
   const nextNotification = cloneNotification(notification);
 
   nextNotification.actions = actions;

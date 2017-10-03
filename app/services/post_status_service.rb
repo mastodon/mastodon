@@ -27,9 +27,10 @@ class PostStatusService < BaseService
                                         thread: in_reply_to,
                                         sensitive: options[:sensitive],
                                         spoiler_text: options[:spoiler_text] || '',
-                                        visibility: options[:visibility],
-                                        language: detect_language_for(text, account),
+                                        visibility: options[:visibility] || account.user&.setting_default_privacy,
+                                        language: LanguageDetector.instance.detect(text, account),
                                         application: options[:application])
+
       attach_media(status, media)
     end
 
@@ -39,6 +40,8 @@ class PostStatusService < BaseService
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
     DistributionWorker.perform_async(status.id)
     Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+    ActivityPub::DistributionWorker.perform_async(status.id)
+    ActivityPub::ReplyDistributionWorker.perform_async(status.id) if status.reply? && status.thread.account.local?
 
     if options[:idempotency].present?
       redis.setex("idempotency:status:#{account.id}:#{options[:idempotency]}", 3_600, status.id)
@@ -64,10 +67,6 @@ class PostStatusService < BaseService
   def attach_media(status, media)
     return if media.nil?
     media.update(status_id: status.id)
-  end
-
-  def detect_language_for(text, account)
-    LanguageDetector.new(text, account).to_iso_s
   end
 
   def process_mentions_service

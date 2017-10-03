@@ -1,95 +1,131 @@
 - content_for :page_title do
   = @account.acct
 
-%table.table
-  %tbody
-    %tr
-      %th= t('admin.accounts.username')
-      %td= @account.username
-    %tr
-      %th= t('admin.accounts.domain')
-      %td= @account.domain
-    %tr
-      %th= t('admin.accounts.display_name')
-      %td= @account.display_name
+.table-wrapper
+  %table.table
+    %tbody
+      %tr
+        %th= t('admin.accounts.username')
+        %td= @account.username
+      %tr
+        %th= t('admin.accounts.domain')
+        %td= @account.domain
+      %tr
+        %th= t('admin.accounts.display_name')
+        %td= @account.display_name
+
+      - if @account.local?
+        %tr
+          %th= t('admin.accounts.email')
+          %td= @account.user_email
+        %tr
+          %th= t('admin.accounts.most_recent_ip')
+          %td= @account.user_current_sign_in_ip
+        %tr
+          %th= t('admin.accounts.most_recent_activity')
+          %td
+            - if @account.user_current_sign_in_at
+              %time.formatted{ datetime: @account.user_current_sign_in_at.iso8601, title: l(@account.user_current_sign_in_at) }
+                = l @account.user_current_sign_in_at
+            - else
+              Never
+      - else
+        %tr
+          %th= t('admin.accounts.profile_url')
+          %td= link_to @account.url, @account.url
+        %tr
+          %th= t('admin.accounts.protocol')
+          %td= @account.protocol.humanize
+
+      %tr
+        %th= t('admin.accounts.follows')
+        %td= @account.following_count
+      %tr
+        %th= t('admin.accounts.followers')
+        %td= @account.followers_count
+      %tr
+        %th= t('admin.accounts.statuses')
+        %td= link_to @account.statuses_count, admin_account_statuses_path(@account.id)
+      %tr
+        %th= t('admin.accounts.media_attachments')
+        %td
+          = link_to @account.media_attachments.count, admin_account_statuses_path(@account.id, { media: true })
+          = surround '(', ')' do
+            = number_to_human_size @account.media_attachments.sum('file_file_size')
+      %tr
+        %th= t('.created_reports')
+        %td= link_to pluralize(@account.reports.count, t('.report')), admin_reports_path(account_id: @account.id)
+      %tr
+        %th= t('.targeted_reports')
+        %td= link_to pluralize(@account.targeted_reports.count, t('.report')), admin_reports_path(target_account_id: @account.id)
+
+%div{ style: 'overflow: hidden' }
+  %div{ style: 'float: right' }
+    - if @account.local?
+      = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
+      - if @account.user&.otp_required_for_login?
+        = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button'
+    - else
+      = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button'
+
+  %div{ style: 'float: left' }
+    - if @account.silenced?
+      = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
+    - else
+      = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
 
     - if @account.local?
-      %tr
-        %th= t('admin.accounts.email')
-        %td= @account.user_email
-      %tr
-        %th= t('admin.accounts.most_recent_ip')
-        %td= @account.user_current_sign_in_ip
-      %tr
-        %th= t('admin.accounts.most_recent_activity')
-        %td
-          - if @account.user_current_sign_in_at
-            = l @account.user_current_sign_in_at
-          - else
-            Never
+      - unless @account.user_confirmed?
+        = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button'
+
+    - if @account.suspended?
+      = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
     - else
-      %tr
-        %th= t('admin.accounts.profile_url')
-        %td= link_to @account.url, @account.url
-      %tr
-        %th= t('admin.accounts.feed_url')
-        %td= link_to @account.remote_url, @account.remote_url
-      %tr
-        %th= t('admin.accounts.push_subscription_expires')
-        %td
-          - if @account.subscribed?
-            = l @account.subscription_expires_at
-          - else
-            = t('admin.accounts.not_subscribed')
-      %tr
-        %th= t('admin.accounts.salmon_url')
-        %td= link_to @account.salmon_url, @account.salmon_url
+      = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
 
-    %tr
-      %th= t('admin.accounts.follows')
-      %td= @account.following_count
-    %tr
-      %th= t('admin.accounts.followers')
-      %td= @account.followers_count
-    %tr
-      %th= t('admin.accounts.statuses')
-      %td= link_to @account.statuses_count, admin_account_statuses_path(@account.id)
-    %tr
-      %th= t('admin.accounts.media_attachments')
-      %td
-        = link_to @account.media_attachments.count, admin_account_statuses_path(@account.id, { media: true })
-        = surround '(', ')' do
-          = number_to_human_size @account.media_attachments.sum('file_file_size')
-    %tr
-      %th= t('.created_reports')
-      %td= link_to pluralize(@account.reports.count, t('.report')), admin_reports_path(account_id: @account.id)
-    %tr
-      %th= t('.targeted_reports')
-      %td= link_to pluralize(@account.targeted_reports.count, t('.report')), admin_reports_path(target_account_id: @account.id)
+- unless @account.local?
+  %hr
+  %h3 OStatus
 
+  .table-wrapper
+    %table.table
+      %tbody
+        %tr
+          %th= t('admin.accounts.feed_url')
+          %td= link_to @account.remote_url, @account.remote_url
+        %tr
+          %th= t('admin.accounts.push_subscription_expires')
+          %td
+            - if @account.subscribed?
+              %time.formatted{ datetime: @account.subscription_expires_at.iso8601, title: l(@account.subscription_expires_at) }
+                = l @account.subscription_expires_at
+            - else
+              = t('admin.accounts.not_subscribed')
+        %tr
+          %th= t('admin.accounts.salmon_url')
+          %td= link_to @account.salmon_url, @account.salmon_url
 
-%div{ style: 'float: right' }
-  - if @account.local?
-    = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
-    - if @account.user&.otp_required_for_login?
-      = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button'
-  - else
-    = link_to @account.subscribed? ? t('admin.accounts.resubscribe') : t('admin.accounts.subscribe'), subscribe_admin_account_path(@account.id), method: :post, class: 'button'
-    - if @account.subscribed?
-      = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative'
-    = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button'
+  %div{ style: 'overflow: hidden' }
+    %div{ style: 'float: right' }
+      = link_to @account.subscribed? ? t('admin.accounts.resubscribe') : t('admin.accounts.subscribe'), subscribe_admin_account_path(@account.id), method: :post, class: 'button'
+      - if @account.subscribed?
+        = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative'
 
-%div{ style: 'float: left' }
-  - if @account.silenced?
-    = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
-  - else
-    = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
+  %hr
+  %h3 ActivityPub
 
-  - if @account.local?
-    - unless @account.user_confirmed?
-      = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button'
-
-  - if @account.suspended?
-    = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
-  - else
-    = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
+  .table-wrapper
+    %table.table
+      %tbody
+        %tr
+          %th= t('admin.accounts.inbox_url')
+          %td= link_to @account.inbox_url, @account.inbox_url
+        %tr
+          %th= t('admin.accounts.outbox_url')
+          %td= link_to @account.outbox_url, @account.outbox_url
+        %tr
+          %th= t('admin.accounts.shared_inbox_url')
+          %td= link_to @account.shared_inbox_url, @account.shared_inbox_url
+        %tr
+          %th= t('admin.accounts.followers_url')
+          %td= link_to @account.followers_url, @account.followers_url

@@ -5,6 +5,10 @@ module ApplicationHelper
     current_page?(path) ? 'active' : ''
   end
 
+  def active_link_to(label, path, options = {})
+    link_to label, path, options.merge(class: active_nav_class(path))
+  end
+
   def show_landing_strip?
     !user_signed_in? && !single_user_mode?
   end
@@ -37,5 +41,9 @@ module ApplicationHelper
     class_names += icon.split(' ').map { |cl| "fa-#{cl}" }
 
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
+  end
+
+  def opengraph(property, content)
+    tag(:meta, content: content, property: property)
   end
 end

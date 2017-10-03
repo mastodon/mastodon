@@ -160,7 +160,6 @@ uk:
   authorize_follow:
     error: На жаль, при пошуку віддаленого аккаунту виникла помилка
     follow: Підписатися
-    prompt_html: 'Ви (<strong>%{self}</strong>) запитали про підписку:'
     title: Підписатися на %{acct}
   datetime:
     distance_in_words:
@@ -251,6 +250,17 @@ uk:
     reblog:
       body: 'Ваш статус було передмухнуто %{name}:'
       subject: "%{name} передмухнув ваш статус"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Далі
     prev: Назад

@@ -3,16 +3,16 @@
 #
 # Table name: subscriptions
 #
-#  id                          :integer          not null, primary key
 #  callback_url                :string           default(""), not null
 #  secret                      :string
 #  expires_at                  :datetime
 #  confirmed                   :boolean          default(FALSE), not null
-#  account_id                  :integer          not null
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
 #  last_successful_delivery_at :datetime
 #  domain                      :string
+#  account_id                  :integer          not null
+#  id                          :integer          not null, primary key
 #
 
 class Subscription < ApplicationRecord
@@ -26,6 +26,7 @@ class Subscription < ApplicationRecord
 
   scope :confirmed, -> { where(confirmed: true) }
   scope :future_expiration, -> { where(arel_table[:expires_at].gt(Time.now.utc)) }
+  scope :expired, -> { where(arel_table[:expires_at].lt(Time.now.utc)) }
   scope :active, -> { confirmed.future_expiration }
 
   def lease_seconds=(value)

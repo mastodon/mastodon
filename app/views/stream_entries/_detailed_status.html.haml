@@ -7,24 +7,26 @@
       %strong.p-name.emojify= display_name(status.account)
       %span= acct(status.account)
 
+  - if embedded_view?
+    = link_to "web+mastodon://follow?uri=#{status.account.local_username_and_domain}", class: 'button button-secondary logo-button', target: '_new' do
+      = render file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')
+      = t('accounts.follow')
+
   .status__content.p-name.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
-        %span.p-summary> #{status.spoiler_text}&nbsp;
+        %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
+    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true)
 
-  - unless status.media_attachments.empty?
+  - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
-      .video-player
-        = render partial: 'stream_entries/content_spoiler', locals: { sensitive: status.sensitive? }
-        %video.u-video{ src: status.media_attachments.first.file.url(:original), loop: true }
+      - video = status.media_attachments.first
+      %div{ data: { component: 'Video', props: Oj.dump(src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive?, width: 670, height: 380) }}
     - else
-      .detailed-status__attachments
-        = render partial: 'stream_entries/content_spoiler', locals: { sensitive: status.sensitive? }
-        .status__attachments__inner
-          - status.media_attachments.each do |media|
-            = render partial: 'stream_entries/media', locals: { media: media }
+      %div{ data: { component: 'MediaGallery', props: Oj.dump(height: 380, sensitive: status.sensitive?, standalone: true, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }) }}
+  - elsif status.preview_cards.first
+    %div{ data: { component: 'Card', props: Oj.dump('maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_cards.first, serializer: REST::PreviewCardSerializer).as_json) }}
 
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }

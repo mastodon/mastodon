@@ -7,6 +7,8 @@ import {
   FAVOURITE_SUCCESS,
   FAVOURITE_FAIL,
   UNFAVOURITE_SUCCESS,
+  PIN_SUCCESS,
+  UNPIN_SUCCESS,
 } from '../actions/interactions';
 import {
   STATUS_FETCH_SUCCESS,
@@ -22,6 +24,7 @@ import {
 } from '../actions/timelines';
 import {
   ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
 import {
   NOTIFICATIONS_UPDATE,
@@ -32,8 +35,15 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
+import {
+  PINNED_STATUSES_FETCH_SUCCESS,
+} from '../actions/pin_statuses';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
+import emojify from '../emoji';
 import { Map as ImmutableMap, fromJS } from 'immutable';
+import escapeTextContentForBrowser from 'escape-html';
+
+const domParser = new DOMParser();
 
 const normalizeStatus = (state, status) => {
   if (!status) {
@@ -49,7 +59,14 @@ const normalizeStatus = (state, status) => {
   }
 
   const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-  normalStatus.search_index = new DOMParser().parseFromString(searchContent, 'text/html').documentElement.textContent;
+  const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
+    obj[`:${emoji.shortcode}:`] = emoji.url;
+    return obj;
+  }, {});
+
+  normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+  normalStatus.contentHtml = emojify(normalStatus.content, emojiMap);
+  normalStatus.spoilerHtml = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''), emojiMap);
 
   return state.update(status.id, ImmutableMap(), map => map.mergeDeep(fromJS(normalStatus)));
 };
@@ -94,6 +111,8 @@ export default function statuses(state = initialState, action) {
   case UNREBLOG_SUCCESS:
   case FAVOURITE_SUCCESS:
   case UNFAVOURITE_SUCCESS:
+  case PIN_SUCCESS:
+  case UNPIN_SUCCESS:
     return normalizeStatus(state, action.response);
   case FAVOURITE_REQUEST:
     return state.setIn([action.status.get('id'), 'favourited'], true);
@@ -114,11 +133,13 @@ export default function statuses(state = initialState, action) {
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
+  case PINNED_STATUSES_FETCH_SUCCESS:
   case SEARCH_FETCH_SUCCESS:
     return normalizeStatuses(state, action.statuses);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
     return filterStatuses(state, action.relationship);
   default:
     return state;

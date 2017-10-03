@@ -22,6 +22,7 @@
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
 #  conversation_id        :integer
+#  local                  :boolean
 #
 
 class Status < ApplicationRecord
@@ -29,7 +30,6 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
   include StatusThreadingConcern
-  include EmojiHelper
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
@@ -47,12 +47,14 @@ class Status < ApplicationRecord
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
   has_many :media_attachments, dependent: :destroy
+
   has_and_belongs_to_many :tags
+  has_and_belongs_to_many :preview_cards
 
   has_one :notification, as: :activity, dependent: :destroy
-  has_one :preview_card, dependent: :destroy
+  has_one :stream_entry, as: :activity, inverse_of: :status
 
-  validates :uri, uniqueness: true, unless: :local?
+  validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: :reblog?
   validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
@@ -60,14 +62,13 @@ class Status < ApplicationRecord
   default_scope { recent }
 
   scope :recent, -> { reorder(id: :desc) }
-  scope :remote, -> { where.not(uri: nil) }
-  scope :local, -> { where(uri: nil) }
+  scope :remote, -> { where(local: false).or(where.not(uri: nil)) }
+  scope :local,  -> { where(local: true).or(where(uri: nil)) }
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
-  scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
@@ -82,7 +83,7 @@ class Status < ApplicationRecord
   end
 
   def local?
-    uri.nil?
+    attributes['local'] || uri.nil?
   end
 
   def reblog?
@@ -90,7 +91,11 @@ class Status < ApplicationRecord
   end
 
   def verb
-    reblog? ? :share : :post
+    if destroyed?
+      :delete
+    else
+      reblog? ? :share : :post
+    end
   end
 
   def object_type
@@ -110,7 +115,11 @@ class Status < ApplicationRecord
   end
 
   def title
-    reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
+    if destroyed?
+      "#{account.acct} deleted status"
+    else
+      reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
+    end
   end
 
   def hidden?
@@ -121,15 +130,22 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  def emojis
+    CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+  end
+
+  after_create :store_uri, if: :local?
+
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
   before_validation :set_sensitivity
+  before_validation :set_local
 
   class << self
     def not_in_filtered_languages(account)
-      where.not(language: account.filtered_languages)
+      where(language: nil).or where.not(language: account.filtered_languages)
     end
 
     def as_home_timeline(account)
@@ -162,6 +178,10 @@ class Status < ApplicationRecord
 
     def mutes_map(conversation_ids, account_id)
       ConversationMute.select('conversation_id').where(conversation_id: conversation_ids).where(account_id: account_id).map { |m| [m.conversation_id, true] }.to_h
+    end
+
+    def pins_map(status_ids, account_id)
+      StatusPin.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |p| [p.status_id, true] }.to_h
     end
 
     def reload_stale_associations!(cached_items)
@@ -203,7 +223,7 @@ class Status < ApplicationRecord
     private
 
     def timeline_scope(local_only = false)
-      starting_scope = local_only ? Status.local_only : Status
+      starting_scope = local_only ? Status.local : Status
       starting_scope
         .with_public_visibility
         .without_reblogs
@@ -239,12 +259,13 @@ class Status < ApplicationRecord
 
   private
 
+  def store_uri
+    update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
+  end
+
   def prepare_contents
     text&.strip!
     spoiler_text&.strip!
-
-    self.text         = emojify(text)
-    self.spoiler_text = emojify(spoiler_text)
   end
 
   def set_reblog
@@ -277,5 +298,9 @@ class Status < ApplicationRecord
     else
       thread.account_id
     end
+  end
+
+  def set_local
+    self.local = account.local?
   end
 end

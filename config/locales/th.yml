@@ -170,7 +170,6 @@ th:
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: ติดตาม
-    prompt_html: 'คุณ (<strong>%{self}</strong>) ขอติดตาม:'
     title: ติดตาม %{acct}
   datetime:
     distance_in_words:
@@ -258,6 +257,17 @@ th:
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: ต่อไป
     prev: ย้อนกลับ

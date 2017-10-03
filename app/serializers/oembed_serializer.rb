@@ -21,7 +21,7 @@ class OEmbedSerializer < ActiveModel::Serializer
   end
 
   def author_url
-    account_url(object.account)
+    short_account_url(object.account)
   end
 
   def provider_name
@@ -37,13 +37,15 @@ class OEmbedSerializer < ActiveModel::Serializer
   end
 
   def html
-    tag :iframe,
-        src: embed_account_stream_entry_url(object.account, object),
-        style: 'width: 100%; overflow: hidden',
-        frameborder: '0',
-        scrolling: 'no',
-        width: width,
-        height: height
+    attributes = {
+      src: embed_short_account_status_url(object.account, object),
+      class: 'mastodon-embed',
+      style: 'max-width: 100%; border: 0',
+      width: width,
+      height: height,
+    }
+
+    content_tag(:iframe, nil, attributes) + content_tag(:script, nil, src: full_asset_url('embed.js', skip_pipeline: true), async: true)
   end
 
   def width

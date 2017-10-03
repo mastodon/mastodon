@@ -264,7 +264,7 @@ const startWorker = (workerId) => {
       const transmit = () => {
         const now            = new Date().getTime();
         const delta          = now - queued_at;
-        const encodedPayload = typeof payload === 'number' ? payload : JSON.stringify(payload);
+        const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
         log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
         output(event, encodedPayload);
@@ -403,11 +403,11 @@ const startWorker = (workerId) => {
   });
 
   app.get('/api/v1/streaming/hashtag', (req, res) => {
-    streamFrom(`timeline:hashtag:${req.query.tag}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
 
   app.get('/api/v1/streaming/hashtag/local', (req, res) => {
-    streamFrom(`timeline:hashtag:${req.query.tag}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
 
   const wss    = new WebSocket.Server({ server, verifyClient: wsVerifyClient });
@@ -438,10 +438,10 @@ const startWorker = (workerId) => {
       streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     case 'hashtag':
-      streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     case 'hashtag:local':
-      streamFrom(`timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     default:
       ws.close();

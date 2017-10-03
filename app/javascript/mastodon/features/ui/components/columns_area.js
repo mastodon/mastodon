@@ -9,8 +9,12 @@ import { links, getIndex, getLink } from './tabs_bar';
 
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
+import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
 import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, FavouritedStatuses } from '../../ui/util/async-components';
+
+import detectPassiveEvents from 'detect-passive-events';
+import { scrollRight } from '../../../scroll';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -22,7 +26,7 @@ const componentMap = {
   'FAVOURITES': FavouritedStatuses,
 };
 
-@injectIntl
+@component => injectIntl(component, { withRef: true })
 export default class ColumnsArea extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -45,13 +49,37 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   componentDidMount() {
+    if (!this.props.singleColumn) {
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+    }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
   }
 
-  componentDidUpdate() {
+  componentWillUpdate(nextProps) {
+    if (this.props.singleColumn !== nextProps.singleColumn && nextProps.singleColumn) {
+      this.node.removeEventListener('wheel', this.handleWheel);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+    }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
+  }
+
+  componentWillUnmount () {
+    if (!this.props.singleColumn) {
+      this.node.removeEventListener('wheel', this.handleWheel);
+    }
+  }
+
+  handleChildrenContentChange() {
+    if (!this.props.singleColumn) {
+      this._interruptScrollAnimation = scrollRight(this.node, this.node.scrollWidth - window.innerWidth);
+    }
   }
 
   handleSwipe = (index) => {
@@ -74,6 +102,18 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
   }
 
+  handleWheel = () => {
+    if (typeof this._interruptScrollAnimation !== 'function') {
+      return;
+    }
+
+    this._interruptScrollAnimation();
+  }
+
+  setRef = (node) => {
+    this.node = node;
+  }
+
   renderView = (link, index) => {
     const columnIndex = getIndex(this.context.router.history.location.pathname);
     const title = this.props.intl.formatMessage({ id: link.props['data-preview-title-id'] });
@@ -90,8 +130,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
     );
   }
 
-  renderLoading = () => {
-    return <ColumnLoading />;
+  renderLoading = columnId => () => {
+    return columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading />;
   }
 
   renderError = (props) => {
@@ -114,12 +154,12 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
 
     return (
-      <div className='columns-area'>
+      <div className='columns-area' ref={this.setRef}>
         {columns.map(column => {
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
 
           return (
-            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading} error={this.renderError}>
+            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading(column.get('id'))} error={this.renderError}>
               {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn />}
             </BundleContainer>
           );

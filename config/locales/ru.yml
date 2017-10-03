@@ -162,7 +162,6 @@ ru:
   authorize_follow:
     error: К сожалению, при поиске удаленного аккаунта возникла ошибка
     follow: Подписаться
-    prompt_html: 'Вы (<strong>%{self}</strong>) запросили подписку:'
     title: Подписаться на %{acct}
   datetime:
     distance_in_words:
@@ -194,7 +193,7 @@ ru:
       content: Проверка безопасности не удалась. Возможно, Вы блокируете cookies?
       title: Проверка безопасности не удалась.
     '429': Слишком много запросов
-    noscript: Для работы с Mastodon, пожалуйста, включите JavaScript.
+    noscript_html: Для работы с Mastodon, пожалуйста, включите JavaScript.
   exports:
     blocks: Список блокировки
     csv: CSV
@@ -263,25 +262,33 @@ ru:
     reblog:
       body: 'Ваш статус был продвинут %{name}:'
       subject: "%{name} продвинул(а) Ваш статус"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: След
     prev: Пред
     truncate: "&hellip;"
   push_notifications:
     favourite:
-      title: "Ваш статус понравился %{name}"
+      title: Ваш статус понравился %{name}
     follow:
       title: "%{name} теперь подписан(а) на Вас"
     mention:
       action_boost: Продвинуть
       action_expand: Развернуть
       action_favourite: Нравится
-      title: "Вас упомянул(а) %{name}"
+      title: Вас упомянул(а) %{name}
     reblog:
       title: "%{name} продвинул(а) Ваш статус"
-    subscribed:
-      body: Теперь Вы можете получать push-уведомления.
-      title: Подписка зарегистрирована!
   remote_follow:
     acct: Введите username@domain, откуда Вы хотите подписаться
     missing_resource: Поиск требуемого перенаправления URL для Вашего аккаунта завершился неудачей
@@ -351,7 +358,7 @@ ru:
     reblogged: продвинул(а)
     sensitive_content: Чувствительный контент
   terms:
-    title: "Условия обслуживания и политика конфиденциальности %{instance}"
+    title: Условия обслуживания и политика конфиденциальности %{instance}
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

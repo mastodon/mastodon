@@ -170,7 +170,6 @@
   authorize_follow:
     error: Uheldigvis så skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans.
     follow: Følg
-    prompt_html: 'Du (<strong>%{self}</strong>) har spurt om å følge:'
     title: Følg %{acct}
   datetime:
     distance_in_words:
@@ -258,6 +257,17 @@
     reblog:
       body: 'Din status ble fremhevd av %{name}:'
       subject: "%{name} fremhevde din status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Neste
     prev: Forrige

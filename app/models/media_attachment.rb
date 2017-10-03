@@ -16,6 +16,7 @@
 #  shortcode         :string
 #  type              :integer          default("image"), not null
 #  file_meta         :json
+#  description       :text
 #
 
 require 'mime/types'
@@ -24,6 +25,9 @@ class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
   enum type: [:image, :gifv, :video, :unknown]
+
+  IMAGE_FILE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif'].freeze
+  VIDEO_FILE_EXTENSIONS = ['.webm', '.mp4', '.m4v'].freeze
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
@@ -55,20 +59,28 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_size :file, less_than: 8.megabytes
 
   validates :account, presence: true
+  validates :description, length: { maximum: 420 }, if: :local?
 
-  scope :attached, -> { where.not(status_id: nil) }
+  scope :attached,   -> { where.not(status_id: nil) }
   scope :unattached, -> { where(status_id: nil) }
-  scope :local, -> { where(remote_url: '') }
+  scope :local,      -> { where(remote_url: '') }
+  scope :remote,     -> { where.not(remote_url: '') }
+
   default_scope { order(id: :asc) }
 
   def local?
     remote_url.blank?
   end
 
+  def needs_redownload?
+    file.blank? && remote_url.present?
+  end
+
   def to_param
     shortcode
   end
 
+  before_create :prepare_description, unless: :local?
   before_create :set_shortcode
   before_post_process :set_type_and_extension
   before_save :set_meta
@@ -127,6 +139,10 @@ class MediaAttachment < ApplicationRecord
     end
   end
 
+  def prepare_description
+    self.description = description.strip[0...420] unless description.nil?
+  end
+
   def set_type_and_extension
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
     extension = appropriate_extension
@@ -142,9 +158,11 @@ class MediaAttachment < ApplicationRecord
 
   def populate_meta
     meta = {}
+
     file.queued_for_write.each do |style, file|
       begin
         geo = Paperclip::Geometry.from_file file
+
         meta[style] = {
           width: geo.width.to_i,
           height: geo.height.to_i,
@@ -155,6 +173,7 @@ class MediaAttachment < ApplicationRecord
         meta[style] = {}
       end
     end
+
     meta
   end
 

@@ -2,7 +2,7 @@ import React from 'react';
 import ColumnHeader from './column_header';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
-import scrollTop from '../../../scroll';
+import { scrollTop } from '../../../scroll';
 import { isMobile } from '../../../is_mobile';
 
 export default class Column extends React.PureComponent {
@@ -24,6 +24,17 @@ export default class Column extends React.PureComponent {
 
     this._interruptScrollAnimation = scrollTop(scrollable);
   }
+
+  scrollTop () {
+    const scrollable = this.node.querySelector('.scrollable');
+
+    if (!scrollable) {
+      return;
+    }
+
+    this._interruptScrollAnimation = scrollTop(scrollable);
+  }
+
 
   handleScroll = debounce(() => {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
