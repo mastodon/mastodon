@@ -146,7 +146,7 @@ class MediaAttachment < ApplicationRecord
     self.description = description.strip[0...420] unless description.nil?
   end
 
-  def set_type_and_extension
+  def set_type
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
   end
 
