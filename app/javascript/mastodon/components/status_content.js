@@ -144,7 +144,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' aria-label={status.get('search_index')} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
@@ -161,7 +161,6 @@ export default class StatusContent extends React.PureComponent {
         <div
           ref={this.setRef}
           tabIndex='0'
-          aria-label={status.get('search_index')}
           className={classNames}
           style={directionStyle}
           onMouseDown={this.handleMouseDown}
@@ -173,7 +172,6 @@ export default class StatusContent extends React.PureComponent {
       return (
         <div
           tabIndex='0'
-          aria-label={status.get('search_index')}
           ref={this.setRef}
           className='status__content'
           style={directionStyle}

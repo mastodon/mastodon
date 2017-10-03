@@ -26,12 +26,18 @@ class CustomEmoji < ApplicationRecord
   validates_attachment :image, content_type: { content_type: 'image/png' }, presence: true, size: { in: 0..50.kilobytes }
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: /\A#{SHORTCODE_RE_FRAGMENT}\z/ }, length: { minimum: 2 }
 
+  scope :local, -> { where(domain: nil) }
+
   include Remotable
 
   class << self
     def from_text(text, domain)
       return [] if text.blank?
-      shortcodes = text.scan(SCAN_RE).map(&:first)
+
+      shortcodes = text.scan(SCAN_RE).map(&:first).uniq
+
+      return [] if shortcodes.empty?
+
       where(shortcode: shortcodes, domain: domain)
     end
   end

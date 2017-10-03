@@ -90,11 +90,6 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
 
-  config.to_prepare do
-    StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
-    Sidekiq::Logging.logger.level = Logger::WARN
-  end
-
   config.action_dispatch.default_headers = {
     'Server'                 => 'Mastodon',
     'X-Frame-Options'        => 'DENY',

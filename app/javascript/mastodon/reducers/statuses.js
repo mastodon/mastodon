@@ -24,6 +24,7 @@ import {
 } from '../actions/timelines';
 import {
   ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
 import {
   NOTIFICATIONS_UPDATE,
@@ -138,6 +139,7 @@ export default function statuses(state = initialState, action) {
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
     return filterStatuses(state, action.relationship);
   default:
     return state;

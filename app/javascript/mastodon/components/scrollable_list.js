@@ -6,6 +6,8 @@ import LoadMore from './load_more';
 import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
+import classNames from 'classnames';
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 
 export default class ScrollableList extends PureComponent {
 
@@ -66,6 +68,7 @@ export default class ScrollableList extends PureComponent {
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
+    attachFullscreenListener(this.onFullScreenChange);
 
     // Handle initial scroll posiiton
     this.handleScroll();
@@ -92,6 +95,11 @@ export default class ScrollableList extends PureComponent {
   componentWillUnmount () {
     this.detachScrollListener();
     this.detachIntersectionObserver();
+    detachFullscreenListener(this.onFullScreenChange);
+  }
+
+  onFullScreenChange = () => {
+    this.setState({ fullscreen: isFullscreen() });
   }
 
   attachIntersectionObserver () {
@@ -165,6 +173,7 @@ export default class ScrollableList extends PureComponent {
 
   render () {
     const { children, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
+    const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
     const loadMore     = (hasMore && childrenCount > 0) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
@@ -172,7 +181,7 @@ export default class ScrollableList extends PureComponent {
 
     if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
-        <div className='scrollable' ref={this.setRef} onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseLeave}>
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseLeave}>
           <div role='feed' className='item-list' onKeyDown={this.handleKeyDown}>
             {prepend}
 

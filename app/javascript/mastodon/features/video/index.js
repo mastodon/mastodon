@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
+import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -69,41 +70,13 @@ const getPointerPosition = (el, event) => {
   return position;
 };
 
-const isFullscreen = () => document.fullscreenElement ||
-  document.webkitFullscreenElement ||
-  document.mozFullScreenElement ||
-  document.msFullscreenElement;
-
-const exitFullscreen = () => {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
-  }
-};
-
-const requestFullscreen = el => {
-  if (el.requestFullscreen) {
-    el.requestFullscreen();
-  } else if (el.webkitRequestFullscreen) {
-    el.webkitRequestFullscreen();
-  } else if (el.mozRequestFullScreen) {
-    el.mozRequestFullScreen();
-  } else if (el.msRequestFullscreen) {
-    el.msRequestFullscreen();
-  }
-};
-
 @injectIntl
 export default class Video extends React.PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
     src: PropTypes.string.isRequired,
+    alt: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
@@ -247,7 +220,7 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl } = this.props;
+    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl, alt } = this.props;
     const { progress, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
 
     return (
@@ -260,6 +233,7 @@ export default class Video extends React.PureComponent {
           loop
           role='button'
           tabIndex='0'
+          aria-label={alt}
           width={width}
           height={height}
           onClick={this.togglePlay}
