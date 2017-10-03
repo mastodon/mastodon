@@ -86,6 +86,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
       %w(public unlisted).include?(object.visibility)
   end
 
+  def emojis
+    object.emojis + object.avatar_emojis
+  end
+
   class ApplicationSerializer < ActiveModel::Serializer
     attributes :name, :website
   end

@@ -21,7 +21,7 @@ class Formatter
 
     unless status.local?
       html = reformat(raw_content)
-      html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
+      html = encode_custom_emojis(html, status.emojis + status.avatar_emojis) if options[:custom_emojify]
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
@@ -31,7 +31,7 @@ class Formatter
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = encode_and_link_urls(html, linkable_accounts)
-    html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
+    html = encode_custom_emojis(html, status.emojis + status.avatar_emojis) if options[:custom_emojify]
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
 
@@ -65,7 +65,7 @@ class Formatter
 
   def format_spoiler(status)
     html = encode(status.spoiler_text)
-    html = encode_custom_emojis(html, status.emojis)
+    html = encode_custom_emojis(html, status.emojis + status.avatar_emojis)
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
