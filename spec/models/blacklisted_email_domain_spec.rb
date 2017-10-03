@@ -7,7 +7,7 @@ RSpec.describe BlacklistedEmailDomain, type: :model do
       expect(blacklisted_email_domain).to be_valid
     end
   end
- 
+
   describe 'block?' do
     it 'returns true if the domain is registed' do
       Fabricate(:blacklisted_email_domain, domain: 'example.com')
