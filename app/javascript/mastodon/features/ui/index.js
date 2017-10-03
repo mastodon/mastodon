@@ -44,6 +44,7 @@ import { HotKeys } from 'react-hotkeys';
 import '../../components/status';
 
 const mapStateToProps = state => ({
+  me: state.getIn(['meta', 'me']),
   isComposing: state.getIn(['compose', 'is_composing']),
 });
 
@@ -55,11 +56,21 @@ const keyMap = {
   favourite: 'f',
   boost: 'b',
   mention: 'm',
-  open: 'enter',
+  open: ['enter', 'o'],
   openProfile: 'p',
   moveDown: ['down', 'j'],
   moveUp: ['up', 'k'],
   back: 'backspace',
+  goToHome: 'g h',
+  goToNotifications: 'g n',
+  goToLocal: 'g l',
+  goToFederated: 'g t',
+  goToStart: 'g s',
+  goToFavourites: 'g f',
+  goToPinned: 'g p',
+  goToProfile: 'g u',
+  goToBlocked: 'g b',
+  goToMuted: 'g m',
 };
 
 @connect(mapStateToProps)
@@ -74,6 +85,7 @@ export default class UI extends React.Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     isComposing: PropTypes.bool,
+    me: PropTypes.number,
     location: PropTypes.object,
   };
 
@@ -252,6 +264,46 @@ export default class UI extends React.Component {
     this.hotkeys = c;
   }
 
+  handleHotkeyGoToHome = () => {
+    this.context.router.history.push('/timelines/home');
+  }
+
+  handleHotkeyGoToNotifications = () => {
+    this.context.router.history.push('/notifications');
+  }
+
+  handleHotkeyGoToLocal = () => {
+    this.context.router.history.push('/timelines/public/local');
+  }
+
+  handleHotkeyGoToFederated = () => {
+    this.context.router.history.push('/timelines/public');
+  }
+
+  handleHotkeyGoToStart = () => {
+    this.context.router.history.push('/getting-started');
+  }
+
+  handleHotkeyGoToFavourites = () => {
+    this.context.router.history.push('/favourites');
+  }
+
+  handleHotkeyGoToPinned = () => {
+    this.context.router.history.push('/pinned');
+  }
+
+  handleHotkeyGoToProfile = () => {
+    this.context.router.history.push(`/accounts/${this.props.me}`);
+  }
+
+  handleHotkeyGoToBlocked = () => {
+    this.context.router.history.push('/blocks');
+  }
+
+  handleHotkeyGoToMuted = () => {
+    this.context.router.history.push('/mutes');
+  }
+
   render () {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
@@ -261,6 +313,16 @@ export default class UI extends React.Component {
       forceNew: this.handleHotkeyForceNew,
       focusColumn: this.handleHotkeyFocusColumn,
       back: this.handleHotkeyBack,
+      goToHome: this.handleHotkeyGoToHome,
+      goToNotifications: this.handleHotkeyGoToNotifications,
+      goToLocal: this.handleHotkeyGoToLocal,
+      goToFederated: this.handleHotkeyGoToFederated,
+      goToStart: this.handleHotkeyGoToStart,
+      goToFavourites: this.handleHotkeyGoToFavourites,
+      goToPinned: this.handleHotkeyGoToPinned,
+      goToProfile: this.handleHotkeyGoToProfile,
+      goToBlocked: this.handleHotkeyGoToBlocked,
+      goToMuted: this.handleHotkeyGoToMuted,
     };
 
     return (
