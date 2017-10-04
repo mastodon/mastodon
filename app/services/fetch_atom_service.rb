@@ -15,8 +15,8 @@ class FetchAtomService < BaseService
   rescue OpenSSL::SSL::SSLError => e
     Rails.logger.debug "SSL error: #{e}"
     nil
-  rescue HTTP::ConnectionError => e
-    Rails.logger.debug "HTTP ConnectionError: #{e}"
+  rescue HTTP::Error => e
+    Rails.logger.debug "HTTP error: #{e}"
     nil
   end
 

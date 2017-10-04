@@ -78,6 +78,10 @@ RSpec.describe TagManager do
       expect(TagManager.instance.local_url?('https://DoMaIn/')).to eq true
     end
 
+    it 'returns false for URL without host' do
+      expect(TagManager.instance.local_url?('')).to eq false
+    end
+
     it 'returns false for string with irrelevant characters' do
       Rails.configuration.x.web_domain = 'domain'
       expect(TagManager.instance.local_url?('https://domainn/')).to eq false

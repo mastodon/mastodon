@@ -145,14 +145,14 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   class CustomEmojiSerializer < ActiveModel::Serializer
     include RoutingHelper
 
-    attributes :type, :href, :name
+    attributes :type, :name
 
     def type
       'Emoji'
     end
 
-    def href
-      full_asset_url(object.image.url)
+    def icon
+      ActivityPub::TagManager.instance.uri_for(object.custom_emoji_icon)
     end
 
     def name

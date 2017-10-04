@@ -151,10 +151,6 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   end
 
   def save_emojis(parent)
-    do_not_download = DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
-
-    return if do_not_download
-
     @xml.xpath('./xmlns:link[@rel="emoji"]', xmlns: OStatus::TagManager::XMLNS).each do |link|
       next unless link['href'] && link['name']
 
@@ -163,8 +159,29 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
 
       next unless emoji.nil?
 
-      emoji = CustomEmoji.new(shortcode: shortcode, domain: parent.account.domain)
-      emoji.image_remote_url = link['href']
+      icon = ActivityPub::TagManager.instance.uri_to_resource(link['href'], CustomEmojiIcon)
+      if icon.nil?
+        begin
+          parsed_href = Addressable::URI.parse(link['href'])
+        rescue Addressable::URI::InvalidURIError => e
+          Rails.logger.debug e
+          next
+        end
+
+        do_not_download = DomainBlock.find_by(domain: parsed_href.normalized_host)&.reject_media?
+
+        next if do_not_download
+
+        icon = FetchRemoteCustomEmojiIconService.new.call(link['href'])
+      end
+
+      next if icon.nil?
+
+      emoji = CustomEmoji.new(
+        custom_emoji_icon: icon,
+        shortcode: shortcode,
+        domain: parent.account.domain
+      )
       emoji.save
     end
   end

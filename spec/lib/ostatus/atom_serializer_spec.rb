@@ -312,6 +312,58 @@ RSpec.describe OStatus::AtomSerializer do
     end
   end
 
+  describe '#emoji_icon' do
+    context 'it is root' do
+      include_examples 'namespaces' do
+       let(:icon) { Fabricate(:custom_emoji_icon) }
+
+        def serialize
+          OStatus::AtomSerializer.new.emoji_icon(icon, true)
+        end
+      end
+    end
+
+    context 'it is not root' do
+      include_examples 'no namespaces' do
+        let(:icon) { Fabricate(:custom_emoji_icon) }
+
+        def serialize
+          OStatus::AtomSerializer.new.emoji_icon(icon, false)
+        end
+      end
+    end
+
+    it 'appends id element with unique tag' do
+      icon = Fabricate(:custom_emoji_icon)
+      entry = OStatus::AtomSerializer.new.emoji_icon(icon)
+
+      expect(entry.id.text).to eq OStatus::TagManager.instance.uri_for(icon)
+    end
+
+    it 'appends link element for icon with generated href if image_remote_url is not set' do
+      icon = Fabricate(:custom_emoji_icon, image_remote_url: nil)
+      entry = OStatus::AtomSerializer.new.emoji_icon(icon)
+
+      enclosure = entry.nodes.find do |node|
+        node.name == 'link' &&
+        node[:rel] == 'enclosure'
+      end
+      expect(enclosure[:href]).to match /^https:\/\/cb6e6126.ngrok.io\/system\/custom_emoji_icons\/images\/.+$/
+    end
+
+    it 'appends link element for icon with image_remote_url if it is set' do
+      stub_request(:get, 'https://remote/emojo.png').to_return body: attachment_fixture('emojo.png')
+      icon = Fabricate(:custom_emoji_icon, image_remote_url: 'https://remote/emojo.png')
+      entry = OStatus::AtomSerializer.new.emoji_icon(icon)
+
+      enclosure = entry.nodes.find do |node|
+        node.name == 'link' &&
+        node[:rel] == 'enclosure'
+      end
+      expect(enclosure[:href]).to eq 'https://remote/emojo.png'
+    end
+  end
+
   describe '#entry' do
     shared_examples 'not root' do
       include_examples 'no namespaces' do

@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     resources :sessions, only: [:destroy]
   end
 
+  resources :emojis, only: [:show]
   resources :media, only: [:show]
   resources :tags,  only: [:show]
 
@@ -138,7 +139,14 @@ Rails.application.routes.draw do
       resource :two_factor_authentication, only: [:destroy]
     end
 
-    resources :custom_emojis, only: [:index, :new, :create, :destroy]
+    resources :custom_emojis, only: [:index, :destroy] do
+      collection do
+        get :import_form
+        get :upload_form
+        post :import
+        post :upload
+      end
+    end
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)

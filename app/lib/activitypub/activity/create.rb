@@ -86,16 +86,36 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_emoji(tag, _status)
-    return if tag['name'].blank? || tag['href'].blank?
+    return if tag['name'].blank? || tag['icon'].blank?
 
+    uri = value_or_id(tag['icon'])
     shortcode = tag['name'].delete(':')
-    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
 
-    return if !emoji.nil? || skip_download?
+    return if uri.blank?
 
-    emoji = CustomEmoji.new(domain: @account.domain, shortcode: shortcode)
-    emoji.image_remote_url = tag['href']
-    emoji.save
+    emoji = CustomEmoji.find_by(domain: @account.domain, shortcode: shortcode)
+
+    return unless emoji.nil?
+
+    icon = emoji_from_uri(uri)
+    if icon.nil?
+      parsed_uri = Addressable::URI.parse(uri)
+      domain_block = DomainBlock.find_by(domain: parsed_uri.normalized_host)
+
+      unless domain_block&.reject_media?
+        icon = ActivityPub::FetchRemoteCustomEmojiIconService.new.call(uri) if icon.nil?
+      end
+    end
+
+    if icon.present?
+      CustomEmoji.create!(
+        domain: @account.domain,
+        custom_emoji_icon: icon,
+        shortcode: shortcode
+      )
+    end
+  rescue Addressable::URI::InvalidURIError => e
+    Rails.logger.debug e
   end
 
   def process_attachments(status)

@@ -49,6 +49,10 @@ class ActivityPub::Activity
 
   protected
 
+  def emoji_from_uri(uri)
+    ActivityPub::TagManager.instance.uri_to_resource(uri, CustomEmojiIcon)
+  end
+
   def status_from_uri(uri)
     ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
   end

@@ -6,6 +6,6 @@ class REST::CustomEmojiSerializer < ActiveModel::Serializer
   attributes :shortcode, :url
 
   def url
-    full_asset_url(object.image.url)
+    full_asset_url(object.custom_emoji_icon.image.url)
   end
 end

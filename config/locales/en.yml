@@ -113,13 +113,25 @@ en:
       delete: Delete
       destroyed_msg: Emojo successfully destroyed!
       emoji: Emoji
-      image_hint: PNG up to 50KB
-      new:
-        title: Add new custom emoji
+      emoji_not_found_msg: The specified emoji was not found
+      emoji_unspecified_msg: The emoji to import is not specified
+      icon_hint: PNG up to 50KB
+      import:
+        link: Import from toot
+        shorthand: Import
+      import_form:
+        title: Import new custom emoji
+      overriding_shortcode: Overriding shortcode (optional)
+      upload:
+        link: Upload image
+        shorthand: Upload
+      upload_form:
+        title: Upload new custom emoji
       shortcode: Shortcode
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      status_not_found_msg: The specified toot was not found
+      status_unspecified_msg: The toot to search for emojis is not specified
       title: Custom emojis
-      upload: Upload
     domain_blocks:
       add_new: Add new
       created_msg: Domain block is now being processed

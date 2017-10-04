@@ -17,14 +17,18 @@ RSpec.describe ActivityPub::Activity::Create do
 
   before do
     stub_request(:get, 'http://example.com/attachment.png').to_return(request_fixture('avatar.txt'))
-    stub_request(:get, 'http://example.com/emoji.png').to_return(body: attachment_fixture('emojo.png'))
+    stub_request(:get, 'http://example.com/icon.png').to_return(body: attachment_fixture('emojo.png'))
+    stub_request(:get, 'http://example.com/icon.json').to_return(body: <<~JSON)
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "id": "http://example.com/icon.json",
+        "type": "Image",
+        "url": "http://example.com/icon.png"
+      }
+    JSON
   end
 
   describe '#perform' do
-    before do
-      subject.perform
-    end
-
     context 'standalone' do
       let(:object_json) do
         {
@@ -35,6 +39,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -42,6 +47,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'missing to/cc defaults to direct privacy' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -60,6 +66,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -78,6 +85,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -96,6 +104,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -116,6 +125,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -136,6 +146,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -164,6 +175,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -186,6 +198,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
         expect(status).to_not be_nil
       end
@@ -208,6 +221,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -231,6 +245,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
         expect(status).to_not be_nil
       end
@@ -253,6 +268,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
@@ -276,6 +292,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
         expect(status).to_not be_nil
       end
@@ -290,7 +307,7 @@ RSpec.describe ActivityPub::Activity::Create do
           tag: [
             {
               type: 'Emoji',
-              href: 'http://example.com/emoji.png',
+              icon: 'http://example.com/icon.json',
               name: 'tinking',
             },
           ],
@@ -298,10 +315,43 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
 
         expect(status).to_not be_nil
         expect(status.emojis.map(&:shortcode)).to include('tinking')
+      end
+
+      context 'when emoji icon does not exist' do
+        it 'creates emoji icon when it does not exist' do
+          expect(CustomEmojiIcon.where(uri: 'http://example.com/icon.json')).not_to exist
+
+          subject.perform
+          status = sender.statuses.first
+
+          expect(CustomEmojiIcon.where(uri: 'http://example.com/icon.json')).to exist
+        end
+
+        it 'does not create emoji icon when its domain is blocked' do
+          expect(CustomEmojiIcon.where(uri: 'http://example.com/icon.json')).not_to exist
+          Fabricate(:domain_block, domain: 'example.com', reject_media: true)
+
+          subject.perform
+          status = sender.statuses.first
+
+          expect(CustomEmojiIcon.where(uri: 'http://example.com/icon.json')).not_to exist
+        end
+      end
+
+      context 'when emoji icon exists' do
+        it 'reuses emoji icon' do
+          custom_emoji_icon = Fabricate(:custom_emoji_icon, uri: 'http://example.com/icon.json')
+
+          subject.perform
+          status = sender.statuses.first
+
+          expect(status.emojis.map(&:custom_emoji_icon)).to include(custom_emoji_icon)
+        end
       end
     end
 
@@ -314,19 +364,20 @@ RSpec.describe ActivityPub::Activity::Create do
           tag: [
             {
               type: 'Emoji',
-              href: 'http://example.com/emoji.png',
+              icon: 'http://example.com/icon.json',
             },
           ],
         }
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
         expect(status).to_not be_nil
       end
     end
 
-    context 'with emojis missing href' do
+    context 'with emojis missing icon' do
       let(:object_json) do
         {
           id: 'bar',
@@ -342,6 +393,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       it 'creates status' do
+        subject.perform
         status = sender.statuses.first
         expect(status).to_not be_nil
       end

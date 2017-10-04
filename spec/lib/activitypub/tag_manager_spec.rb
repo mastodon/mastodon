@@ -101,6 +101,16 @@ RSpec.describe ActivityPub::TagManager do
       expect(subject.uri_to_resource('https://example.com/123#456', Account)).to eq account
     end
 
+    it 'returns the local emoji' do
+      emoji = Fabricate(:custom_emoji_icon, uri: nil)
+      expect(subject.uri_to_resource(subject.uri_for(emoji), CustomEmojiIcon)).to eq emoji
+    end
+
+    it 'returns the remote emoji by matching URI without fragment part' do
+      emoji = Fabricate(:custom_emoji_icon, uri: 'https://example.com/123')
+      expect(subject.uri_to_resource('https://example.com/123#456', CustomEmojiIcon)).to eq emoji
+    end
+
     it 'returns the local status for ActivityPub URI' do
       status = Fabricate(:status)
       expect(subject.uri_to_resource(subject.uri_for(status), Status)).to eq status
