@@ -40,7 +40,8 @@ class OStatus::AtomSerializer
     add_namespaces(feed)
 
     append_element(feed, 'id', tag_url(tag, format: 'atom'))
-    # append_element(feed, 'title', tag.name.downcase)
+    append_element(feed, 'title', "\##{tag.name.downcase}")
+    append_element(feed, 'updated', statuses.first.updated_at.iso8601)
 
     append_element(feed, 'link', nil, rel: :alternate, type: 'text/html', href: tag_url(tag, format: 'html'))
     append_element(feed, 'link', nil, rel: :self, type: 'application/atom+xml', href: tag_url(tag, format: 'atom'))
