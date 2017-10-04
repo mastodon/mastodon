@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927215609) do
+ActiveRecord::Schema.define(version: 20170928082043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(version: 20170927215609) do
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
+  end
+
+  create_table "email_domain_blocks", force: :cascade do |t|
+    t.string "domain", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "favourites", force: :cascade do |t|
