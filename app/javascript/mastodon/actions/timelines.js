@@ -37,7 +37,7 @@ export function updateTimeline(timeline, status) {
     if (status.in_reply_to_id) {
       let parent = getState().getIn(['statuses', status.in_reply_to_id]);
 
-      while (parent.get('in_reply_to_id')) {
+      while (parent && parent.get('in_reply_to_id')) {
         parents.push(parent.get('id'));
         parent = getState().getIn(['statuses', parent.get('in_reply_to_id')]);
       }
