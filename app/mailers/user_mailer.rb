@@ -18,6 +18,7 @@ class UserMailer < Devise::Mailer
   def reset_password_instructions(user, token, _opts = {})
     @resource = user
     @token    = token
+    @instance = Rails.configuration.x.local_domain
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.reset_password_instructions.subject')
@@ -26,6 +27,7 @@ class UserMailer < Devise::Mailer
 
   def password_change(user, _opts = {})
     @resource = user
+    @instance = Rails.configuration.x.local_domain
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.password_change.subject')

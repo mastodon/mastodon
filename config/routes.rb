@@ -108,6 +108,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
+    resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resource :settings, only: [:edit, :update]
 
     resources :instances, only: [:index] do
