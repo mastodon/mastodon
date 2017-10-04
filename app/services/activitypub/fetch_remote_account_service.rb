@@ -31,7 +31,7 @@ class ActivityPub::FetchRemoteAccountService < BaseService
     webfinger                            = Goldfinger.finger("acct:#{@username}@#{@domain}")
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
 
-    return true if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
+    return webfinger.link('self')&.href == @uri if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
 
     webfinger                            = Goldfinger.finger("acct:#{confirmed_username}@#{confirmed_domain}")
     @username, @domain                   = split_acct(webfinger.subject)
