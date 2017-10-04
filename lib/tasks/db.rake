@@ -40,8 +40,7 @@ namespace :db do
         );
       SQL
       # The function doesn't exist, so we'll define it.
-      conn.execute(
-        <<~SQL
+      conn.execute(<<~SQL)
         CREATE OR REPLACE FUNCTION timestamp_id(table_name text)
         RETURNS bigint AS
         $$
@@ -117,8 +116,7 @@ namespace :db do
             RETURN time_part | tail;
           END
         $$ LANGUAGE plpgsql VOLATILE;
-        SQL
-      )
+      SQL
     end
   end
 
@@ -141,7 +139,7 @@ namespace :db do
       # Note that seq_name isn't a column name, but it's a
       # relation, like a column, and follows the same quoting rules
       # in Postgres.
-      seq_query = <<~SQL
+      conn.execute(<<~SQL)
         DO $$
           BEGIN
             CREATE SEQUENCE #{conn.quote_column_name(seq_name)};
@@ -150,7 +148,6 @@ namespace :db do
           END
         $$ LANGUAGE plpgsql;
       SQL
-      conn.execute(seq_query)
     end
   end
 end
