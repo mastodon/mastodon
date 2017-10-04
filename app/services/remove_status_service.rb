@@ -29,14 +29,11 @@ class RemoveStatusService < BaseService
 
   private
 
-  def remove_from_self
-    unpush(:home, @account, @status)
-  end
+  def remove_from_feeds
+    receiver_ids = @account.followers.local.pluck(:id)
+    receiver_ids << @account.id if @account.local?
 
-  def remove_from_followers
-    @account.followers.local.find_each do |follower|
-      unpush(:home, follower, @status)
-    end
+    unpush_bulk(:home, receiver_ids, @status)
   end
 
   def remove_from_affected
@@ -101,14 +98,30 @@ class RemoveStatusService < BaseService
     end
   end
 
-  def unpush(type, receiver, status)
-    if status.reblog? && !redis.zscore(FeedManager.instance.key(type, receiver.id), status.reblog_of_id).nil?
-      redis.zadd(FeedManager.instance.key(type, receiver.id), status.reblog_of_id, status.reblog_of_id)
-    else
-      redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
-    end
+  def unpush_bulk(type, receiver_ids, status)
+    return if receiver_ids.empty?
 
-    Redis.current.publish("timeline:#{receiver.id}", @payload)
+    if status.reblog?
+      scores = redis.pipelined do
+        receiver_ids.each do |receiver_id|
+          redis.zscore(FeedManager.instance.key(type, receiver_id), status.reblog_of_id)
+        end
+      end
+
+      redis.pipelined do
+        receiver_ids.each_with_index do |receiver_id, index|
+          redis.zadd(FeedManager.instance.key(type, receiver_id), status.reblog_of_id, status.reblog_of_id) if scores[index].present?
+          redis.publish("timeline:#{receiver_id}", @payload)
+        end
+      end
+    else
+      redis.pipelined do
+        receiver_ids.each do |receiver_id|
+          redis.zremrangebyscore(FeedManager.instance.key(type, receiver_id), status.id, status.id)
+          redis.publish("timeline:#{receiver_id}", @payload)
+        end
+      end
+    end
   end
 
   def remove_from_hashtags
