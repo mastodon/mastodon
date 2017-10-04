@@ -102,13 +102,7 @@ class RemoveStatusService < BaseService
   end
 
   def unpush(type, receiver, status)
-    if status.reblog? && !redis.zscore(FeedManager.instance.key(type, receiver.id), status.reblog_of_id).nil?
-      redis.zadd(FeedManager.instance.key(type, receiver.id), status.reblog_of_id, status.reblog_of_id)
-    else
-      redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
-    end
-
-    Redis.current.publish("timeline:#{receiver.id}", @payload)
+    FeedManager.instance.unpush(type, receiver, status)
   end
 
   def remove_from_hashtags
