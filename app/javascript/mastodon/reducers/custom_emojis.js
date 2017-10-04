@@ -1,7 +1,7 @@
 import { List as ImmutableList } from 'immutable';
 import { STORE_HYDRATE } from '../actions/store';
-import { search as emojiSearch } from '../emoji_index_light';
-import { buildCustomEmojis } from '../emoji';
+import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
+import { buildCustomEmojis } from '../features/emoji/emoji';
 
 const initialState = ImmutableList();
 

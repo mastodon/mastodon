@@ -1,6 +1,6 @@
 import api from '../api';
 import { throttle } from 'lodash';
-import { search as emojiSearch } from '../emoji_index_light';
+import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
 
 import {
   updateTimeline,

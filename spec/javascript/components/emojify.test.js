@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import emojify from '../../../app/javascript/mastodon/emoji';
+import emojify from '../../../app/javascript/mastodon/features/emoji/emoji';
 
 describe('emojify', () => {
   it('ignores unknown shortcodes', () => {
@@ -49,4 +49,13 @@ describe('emojify', () => {
     expect(emojify('👌🌈💕')).to.equal('<img draggable="false" class="emojione" alt="👌" title=":ok_hand:" src="/emoji/1f44c.svg" /><img draggable="false" class="emojione" alt="🌈" title=":rainbow:" src="/emoji/1f308.svg" /><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg" />');
     expect(emojify('👌 🌈 💕')).to.equal('<img draggable="false" class="emojione" alt="👌" title=":ok_hand:" src="/emoji/1f44c.svg" /> <img draggable="false" class="emojione" alt="🌈" title=":rainbow:" src="/emoji/1f308.svg" /> <img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg" />');
   });
+
+  it('does an emoji that has no shortcode', () => {
+    expect(emojify('🕉️')).to.equal('<img draggable="false" class="emojione" alt="🕉️" title="" src="/emoji/1f549.svg" />');
+  });
+
+  it('does an emoji whose filename is irregular', () => {
+    expect(emojify('↙️')).to.equal('<img draggable="false" class="emojione" alt="↙️" title=":arrow_lower_left:" src="/emoji/2199.svg" />');
+  });
+
 });
