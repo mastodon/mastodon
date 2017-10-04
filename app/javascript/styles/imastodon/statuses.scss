@@ -1,0 +1,16 @@
+.account__avatar-overlay-icon {
+  &-base {
+    @include avatar-radius();
+    @include avatar-size(40px);
+  }
+
+  &-overlay {
+    @include avatar-radius();
+
+    background-color: darken($white, 20%);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
+}

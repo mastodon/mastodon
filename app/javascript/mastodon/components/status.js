@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
+import AvatarOverlayIcon from './avatar_overlay_icon';
 import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import StatusContent from './status_content';
@@ -14,6 +15,13 @@ import { MediaGallery, Video } from '../features/ui/util/async-components';
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
+
+const iconList = [
+  { key: 'public', value: 'globe' },
+  { key: 'unlisted', value: 'unlock-alt' },
+  { key: 'private', value: 'lock' },
+  { key: 'direct', value: 'envelope' },
+];
 
 export default class Status extends ImmutablePureComponent {
 
@@ -155,8 +163,12 @@ export default class Status extends ImmutablePureComponent {
     }
 
     if (account === undefined || account === null) {
-      statusAvatar = <Avatar account={status.get('account')} size={48} />;
-    }else{
+      if (status.get('visibility') === 'public') {
+        statusAvatar = <Avatar account={status.get('account')} size={48} />;
+      } else {
+        statusAvatar = <AvatarOverlayIcon account={status.get('account')} icon={iconList.find(item => item.key === status.get('visibility')).value} />;
+      }
+    } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
 
