@@ -186,8 +186,7 @@ export default class UI extends React.Component {
 
   componentDidMount () {
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      const skip = ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
-      return skip;
+      return !(e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) && ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
     };
   }
 
@@ -227,7 +226,9 @@ export default class UI extends React.Component {
     this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
   }
 
-  handleHotkeyNew = () => {
+  handleHotkeyNew = e => {
+    e.preventDefault();
+
     const element = this.node.querySelector('.compose-form__autosuggest-wrapper textarea');
 
     if (element) {
@@ -235,7 +236,9 @@ export default class UI extends React.Component {
     }
   }
 
-  handleHotkeySearch = () => {
+  handleHotkeySearch = e => {
+    e.preventDefault();
+
     const element = this.node.querySelector('.search__input');
 
     if (element) {
@@ -243,8 +246,8 @@ export default class UI extends React.Component {
     }
   }
 
-  handleHotkeyForceNew = () => {
-    this.handleHotkeyNew();
+  handleHotkeyForceNew = e => {
+    this.handleHotkeyNew(e);
     this.props.dispatch(resetCompose());
   }
 
@@ -253,7 +256,7 @@ export default class UI extends React.Component {
     const column = this.node.querySelector(`.column:nth-child(${index})`);
 
     if (column) {
-      const status = column.querySelector('.status__wrapper');
+      const status = column.querySelector('.focusable');
 
       if (status) {
         status.focus();
