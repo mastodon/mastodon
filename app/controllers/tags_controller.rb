@@ -5,7 +5,13 @@ class TagsController < ApplicationController
 
   def show
     @tag      = Tag.find_by!(name: params[:id].downcase)
-    @statuses = Status.as_tag_timeline(@tag, current_account, params[:local]).paginate_by_max_id(20, params[:max_id])
+    @statuses = Timeline.tag(
+      @tag,
+      account: current_account,
+      local_only: params[:local],
+      limit: 20,
+      max_id: params[:max_id]
+    )
     @statuses = cache_collection(@statuses, Status)
 
     respond_to do |format|

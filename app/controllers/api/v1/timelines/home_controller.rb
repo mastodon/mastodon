@@ -23,15 +23,12 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   end
 
   def home_statuses
-    account_home_feed.get(
-      limit_param(DEFAULT_STATUSES_LIMIT),
-      params[:max_id],
-      params[:since_id]
+    Timeline.home(
+      current_account,
+      limit: limit_param(DEFAULT_STATUSES_LIMIT),
+      max_id: params[:max_id],
+      since_id: params[:since_id]
     )
-  end
-
-  def account_home_feed
-    Feed.new(:home, current_account)
   end
 
   def insert_pagination_headers

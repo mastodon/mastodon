@@ -38,7 +38,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
   end
 
   def tag_timeline_statuses
-    Status.as_tag_timeline(@tag, current_account, params[:local])
+    Timeline.tag(@tag, account: current_account, local_only: params[:local])
   end
 
   def insert_pagination_headers
