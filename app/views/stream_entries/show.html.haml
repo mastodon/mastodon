@@ -14,8 +14,6 @@
   = render 'stream_entries/og_description', activity: @stream_entry.activity
   = render 'stream_entries/og_image', activity: @stream_entry.activity, account: @account
 
-  = opengraph 'twitter:card', 'summary_large_image'
-
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
 
