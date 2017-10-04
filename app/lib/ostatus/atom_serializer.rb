@@ -34,6 +34,25 @@ class OStatus::AtomSerializer
     author
   end
 
+  def tag_feed(tag, statuses)
+    feed = Ox::Element.new('feed')
+
+    add_namespaces(feed)
+
+    append_element(feed, 'id', tag_url(tag, format: 'atom'))
+    # append_element(feed, 'title', tag.name.downcase)
+
+    append_element(feed, 'link', nil, rel: :alternate, type: 'text/html', href: tag_url(tag, format: 'html'))
+    append_element(feed, 'link', nil, rel: :self, type: 'application/atom+xml', href: tag_url(tag, format: 'atom'))
+    append_element(feed, 'link', nil, rel: :next, type: 'application/atom+xml', href: tag_url(tag, format: 'atom', max_id: statuses.last.id)) if statuses.size == 20
+
+    statuses.each do |status|
+      feed << status(status)
+    end
+
+    feed
+  end
+
   def feed(account, stream_entries)
     feed = Ox::Element.new('feed')
 
@@ -60,7 +79,32 @@ class OStatus::AtomSerializer
     feed
   end
 
-  def entry(stream_entry, root = false)
+  def status(status, root = false, force_author = false)
+    entry = Ox::Element.new('entry')
+
+    add_namespaces(entry) if root
+
+    append_element(entry, 'id', OStatus::TagManager.instance.uri_for(status))
+    append_element(entry, 'published', status.created_at.iso8601)
+    append_element(entry, 'updated', status.updated_at.iso8601)
+    append_element(entry, 'title', status.title)
+
+    entry << author(status.account) if root || force_author
+
+    append_element(entry, 'activity:object-type', OStatus::TagManager::TYPES[status.object_type])
+    append_element(entry, 'activity:verb', OStatus::TagManager::VERBS[status.verb])
+
+    serialize_status_attributes(entry, status)
+
+    append_element(entry, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(status))
+    # append_element(entry, 'link', nil, rel: :self, type: 'application/atom+xml', href: account_stream_entry_url(status.account, stream_entry, format: 'atom'))
+    append_element(entry, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(status.thread), href: TagManager.instance.url_for(status.thread)) unless status.thread.nil?
+    append_element(entry, 'ostatus:conversation', nil, ref: conversation_uri(status.conversation)) unless status&.conversation_id.nil?
+
+    entry
+  end
+
+  def entry(stream_entry, root = false, force_author = false)
     entry = Ox::Element.new('entry')
 
     add_namespaces(entry) if root
@@ -70,7 +114,7 @@ class OStatus::AtomSerializer
     append_element(entry, 'updated', stream_entry.updated_at.iso8601)
     append_element(entry, 'title', stream_entry&.status&.title || "#{stream_entry.account.acct} deleted status")
 
-    entry << author(stream_entry.account) if root
+    entry << author(stream_entry.account) if root || force_author
 
     append_element(entry, 'activity:object-type', OStatus::TagManager::TYPES[stream_entry.object_type])
     append_element(entry, 'activity:verb', OStatus::TagManager::VERBS[stream_entry.verb])

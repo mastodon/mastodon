@@ -13,6 +13,12 @@ class TagsController < ApplicationController
         @initial_state_json   = serializable_resource.to_json
       end
 
+      format.atom do
+        @statuses = Status.as_tag_timeline(@tag, current_account, params[:local]).paginate_by_max_id(20, params[:max_id])
+        @statuses = cache_collection(@statuses, Status)
+        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.tag_feed(@tag, @statuses))
+      end
+
       format.json do
         @statuses = Status.as_tag_timeline(@tag, current_account, params[:local]).paginate_by_max_id(20, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
