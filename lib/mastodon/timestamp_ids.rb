@@ -2,6 +2,46 @@
 
 module Mastodon
   module TimestampIds
+    class Callbacks
+      def self.around_create(obj)
+        if obj.created_at == obj.updated_at
+          # If this is just a new status, pass it along.
+          yield
+        else
+          # Otherwise, we want to backdate this ID to have it sort
+          # nicely by ID.
+          obj.id = Mastodon::TimestampIds.id_at(obj.created_at)
+          tries = 0
+          begin
+            # This will almost never be necessary, but if for some
+            # reason we have a glut of statuses all inserted at the
+            # same time, we may need to increment the ID until we find
+            # one that's free. We increment by a random amount to avoid
+            # repeatedly querying the same set of IDs in such a case.
+            # (This mostly exists to avoid a DoS attack, and should
+            # rarely be useful under normal circumstances.)
+            obj.id = rand(100) if tries.positive?
+            yield
+          rescue ActiveRecord::RecordNotUnique
+            # If we go a truly absurd number of times without being
+            # able to insert successfully, just fail.
+            raise if tries > 1000
+            retry
+          end
+        end
+      end
+    end
+
+    def self.id_at(timestamp)
+      # Get the time in milliseconds from the Unix epoch.
+      millis = (timestamp.to_i * 1000) + (timestamp.usec / 1000)
+
+      # Shift over two bytes and set the low two byes to random data.
+      # Note that we don't actually care about this being a CSPRNG, as
+      # long as it has a relatively high period.
+      (millis << 16) + rand(2**16)
+    end
+
     def self.define_timestamp_id
       conn = ActiveRecord::Base.connection
 
