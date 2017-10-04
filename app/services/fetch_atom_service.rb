@@ -43,7 +43,7 @@ class FetchAtomService < BaseService
     if @response.mime_type == 'application/atom+xml'
       [@url, { prefetched_body: @response.to_s }, :ostatus]
     elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@response.mime_type)
-      json = body_to_json(body)
+      json = body_to_json(@response.to_s)
       if supported_context?(json) && json['type'] == 'Person' && json['inbox'].present?
         [json['id'], { id: true }, :activitypub]
       else
