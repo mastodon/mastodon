@@ -108,6 +108,18 @@ de:
       unsubscribe: Abbestellen
       username: Profilname
       web: Web
+    custom_emojis:
+      created_msg: Emoji erstellt!
+      delete: Löschen
+      destroyed_msg: Emoji gelöscht!
+      emoji: Emoji
+      image_hint: PNG bis 50 kB
+      new:
+        title: Eigenes Emoji hinzufügen
+      shortcode: Shortcode
+      shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
+      title: Eigene Emojis
+      upload: Hochladen
     domain_blocks:
       add_new: Neu hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
@@ -115,18 +127,20 @@ de:
       domain: Domain
       new:
         create: Blockade einrichten
-        hint: Die Domain-Blockade wird nicht die Erstellung von Konteneinträgen in der Datenbank verhindern, aber rückwirkend und automatisch alle Moderationsmethoden auf diese Konten anwenden.
+        hint: Die Domain-Blockade wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden. Aber es werden rückwirkend und automatisch alle Moderationsmethoden auf diese Konten angewendet.
         severity:
-          desc_html: "<strong>Stummschaltung</strong> wird die Beiträge dieses Kontos für alle, die ihm nicht folgen, unsichtbar machen. Eine <strong>Sperre</strong> wird alle Beiträge, Medien und Profildaten dieses Kontos entfernen."
+          desc_html: "<strong>Stummschaltung</strong> wird die Beiträge dieses Kontos für alle, die ihm nicht folgen, unsichtbar machen. Eine <strong>Sperre</strong> wird alle Beiträge, Medien und Profildaten dieses Kontos entfernen. Verwende <strong>Kein,</strong> um nur Mediendateien abzulehnen."
+          noop: Kein
           silence: Stummschaltung
           suspend: Sperre
         title: Neue Domain-Blockade
       reject_media: Mediendateien ablehnen
-      reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verweigert künftig deren Herunterladen. Irrelevant für Sperren
+      reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       severities:
+        none: Kein
         silence: Stummschaltung
         suspend: Sperren
-      severity: Gewichtung
+      severity: Schweregrad
       show:
         affected_accounts:
           one: Ein Konto in der Datenbank betroffen
@@ -138,18 +152,36 @@ de:
         undo: Zurücknehmen
       title: Domain-Blockaden
       undo: Zurücknehmen
+    email_domain_blocks:
+      add_new: Neue hinzufügen
+      created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
+      delete: Löschen
+      destroyed_msg: E-Mail-Domain-Blockade erfolgreich gelöscht
+      domain: Domain
+      new:
+        create: Blockade erstellen
+        title: Neue E-Mail-Domain-Blockade
+      title: E-Mail-Domain-Blockade
     instances:
       account_count: Bekannte Konten
       domain_name: Domain
+      reset: Zurücksetzen
+      search: Suchen
       title: Bekannte Instanzen
     reports:
+      action_taken_by: Maßnahme ergriffen durch
+      are_you_sure: Bist du dir sicher?
       comment:
         label: Kommentar
         none: Kein
       delete: Löschen
       id: ID
       mark_as_resolved: Als gelöst markieren
-      report: "#%{id} melden"
+      nsfw:
+        'false': Medienanhänge wieder anzeigen
+        'true': Medienanhänge verbergen
+      report: "Meldung #%{id}"
+      report_contents: Inhalt
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
@@ -161,23 +193,54 @@ de:
       unresolved: Ungelöst
       view: Ansehen
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Mehrere Profilnamen durch Kommata trennen. Funktioniert nur mit lokalen und nicht gesperrten Konten. Standardwert bei freigelassenem Feld sind alle lokalen Admins.
+        title: Konten, denen Neu-Angemeldete automatisch folgen
       contact_information:
-        email: Eine öffentliche E-Mail-Adresse angeben
-        username: Einen Profilnamen angeben
+        email: Öffentliche E-Mail-Adresse
+        username: Profilname für die Kontaktaufnahme
       registrations:
         closed_message:
-          desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist<br>Du kannst HTML-Tags benutzen
+          desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist. Du kannst HTML-Tags benutzen
           title: Nachricht über geschlossene Registrierung
+        deletion:
+          desc_html: Allen erlauben, ihr Konto eigenmächtig zu löschen
+          title: Kontolöschung erlauben
         open:
-          title: Offene Registrierung
+          desc_html: Allen erlauben, ein Konto zu erstellen
+          title: Registrierung öffnen
       site_description:
-        desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt.<br>Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
-        title: Seitenbeschreibung
+        desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
+        title: Beschreibung der Instanz
       site_description_extended:
-        desc_html: Wird auf der erweiterten Informationsseite angezeigt<br>Du kannst HTML-Tags benutzen
-        title: Erweiterte Seitenbeschreibung
-      site_title: Seitentitel
-      title: Seiteneinstellungen
+        desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres an, was deine Instanz auszeichnet. Du kannst HTML-Tags benutzen
+        title: Erweiterte Beschreibung der Instanz
+      site_terms:
+        desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags benutzen
+        title: Eigene Geschäftsbedingungen
+      site_title: Name der Instanz
+      thumbnail:
+        desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630 px wird empfohlen
+        title: Instanz-Thumbnail
+      timeline_preview:
+        desc_html: Auf der Frontseite die öffentliche Zeitleiste anzeigen
+        title: Zeitleisten-Vorschau
+      title: Instanz-Einstellungen
+    statuses:
+      back_to_account: Zurück zum Konto
+      batch:
+        delete: Löschen
+        nsfw_off: NSFW aus
+        nsfw_on: NSFW ein
+      execute: Ausführen
+      failed_to_execute: Ausführen fehlgeschlagen
+      media:
+        hide: Medien verbergen
+        show: Medien anzeigen
+        title: Medien
+      no_media: Keine Medien
+      title: Beiträge des Kontos
+      with_media: Mit Medien
     subscriptions:
       callback_url: Callback-URL
       confirmed: Bestätigt
@@ -186,12 +249,23 @@ de:
       title: WebSub
       topic: Thema
     title: Administration
+  admin_mailer:
+    new_report:
+      body: "%{reporter} hat %{target} gemeldet"
+      subject: Neue Meldung auf %{instance} (#%{id})
   application_mailer:
+    salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     signature: Mastodon-Benachrichtigungen von %{instance}
     view: 'Ansehen:'
   applications:
+    created: Anwendung erstellt
+    destroyed: Anwendung gelöscht
     invalid_url: Die angegebene URL ist ungültig
+    regenerate_token: Zugangs-Token neu erstellen
+    token_regenerated: Zugangs-Token neu erstellt
+    warning: Sei mit diesen Daten sehr vorsichtig! Teile sie niemandem mit.
+    your_token: Dein Zugangs-Token
   auth:
     agreement_html: Indem du dich registrierst, erklärst du dich mit unseren <a href="%{rules_path}">Geschäftsbedingungen</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
     change_password: Sicherheit
@@ -209,6 +283,12 @@ de:
   authorize_follow:
     error: Das Profil konnte nicht geladen werden
     follow: Folgen
+    follow_request: 'Du hast eine Folgeanfrage gesendet an:'
+    following: 'Erfolg! Du folgst nun:'
+    post_follow:
+      close: Oder du schließt einfach dieses Fenster.
+      return: Zurück zum Profil dieses Wesens
+      web: Das Web öffnen
     title: "%{acct} folgen"
   datetime:
     distance_in_words:
@@ -233,11 +313,17 @@ de:
     warning_html: Wir können nur dafür garantieren, dass die Inhalte auf dieser einen Instanz gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
     warning_title: Verfügbarkeit verstreuter Inhalte
   errors:
-    '404': Die Seite, die du gesucht hast, existiert nicht.
-    '410': Die Seite, die du gesucht hast, existiert nicht mehr.
+    '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
+    '404': Diese Seite existiert nicht.
+    '410': Diese Seite existiert nicht mehr.
     '422':
       content: Sicherheitsüberprüfung fehlgeschlagen. Blockierst du Cookies?
       title: Sicherheitsüberprüfung fehlgeschlagen
+    '429': Du wurdest gedrosselt
+    '500':
+      content: Bitte verzeih, etwas ist bei uns schief gegangen.
+      title: Diese Seite ist kaputt
+    noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   exports:
     blocks: Du hast blockiert
     csv: CSV
@@ -282,26 +368,26 @@ de:
       body: 'Hier ist eine kurze Zusammenfasung dessen, was du auf %{instance} seit deinem letzten Besuch am %{since} verpasst hast:'
       mention: "%{name} hat dich erwähnt:"
       new_followers_summary:
-        one: Du hast einen neuen Folgenden bekommen! Juhu!
-        other: Du hast %{count} neue Folgende bekommen! Großartig!
+        one: Ein weiteres Wesen folgt dir nun! Juhu!
+        other: "%{count} weitere Wesen folgen dir nun! Großartig!"
       subject:
         one: "1 neue Mitteilung seit deinem letzten Besuch \U0001F418"
         other: "%{count} neue Mitteilungen seit deinem letzten Besuch \U0001F418"
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
-      subject: "%{name} hat deinen Beitrag favorisiert."
+      subject: "%{name} hat deinen Beitrag favorisiert"
     follow:
       body: "%{name} folgt dir jetzt!"
-      subject: "%{name} folgt dir jetzt."
+      subject: "%{name} folgt dir jetzt"
     follow_request:
       body: "%{name} möchte dir folgen:"
-      subject: "%{name} möchte dir folgen."
+      subject: "%{name} möchte dir folgen"
     mention:
       body: "%{name} hat dich erwähnt:"
-      subject: "%{name} hat dich erwähnt."
+      subject: "%{name} hat dich erwähnt"
     reblog:
-      body: 'Dein Beitrag wurde von %{name} geteilt:'
-      subject: "%{name} teilte deinen Beitrag."
+      body: '%{name} hat deinen Beitrag geteilt:'
+      subject: "%{name} hat deinen Beitrag geteilt"
   number:
     human:
       decimal_units:
@@ -408,7 +494,8 @@ de:
       private_long: Nur für Folgende sichtbar
       public: Öffentlich
       public_long: Für alle sichtbar
-      unlisted: Für alle sichtbar, aber nicht in öffentlichen Zeitleisten aufgelistet
+      unlisted: Nicht gelistet
+      unlisted_long: Für alle sichtbar, aber nicht in öffentlichen Zeitleisten aufgelistet
   stream_entries:
     click_to_show: Klicken, um zu zeigen
     pinned: Angehefteter Beitrag
@@ -420,19 +507,22 @@ de:
     formats:
       default: "%d.%m.%Y %H:%M"
   two_factor_authentication:
-    code_hint: Gib den Code, den deine Authenticator-App generiert hat, zur Bestätigung an
-    description_html: Wenn du <strong>Zwei-Faktor-Authentisierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Tokens erzeugt, die du eingeben musst.
+    code_hint: Gib zur Bestätigung den Code ein, den deine Authenticator-App generiert hat
+    description_html: Wenn du <strong>Zwei-Faktor-Authentisierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Tokens erzeugt, die du bei der Anmeldung eingeben musst.
     disable: Deaktivieren
     enable: Aktivieren
+    enabled: Zwei-Faktor-Authentisierung ist aktiviert
     enabled_success: Zwei-Faktor-Authentisierung erfolgreich aktiviert
     generate_recovery_codes: Wiederherstellungscodes generieren
-    instructions_html: "<strong>Lese diesen QR-Code mit Google Authenticator oder einer ähnlichen TOTP-App auf deinem Telefon ein.</strong> Von nun an wird diese App Tokens generieren, die du beim Anmelden eingeben musst."
-    lost_recovery_codes: Wiederherstellungscodes erlauben dir, wieder den Zugang zu deinem Konto zu erlangen, falls du dein Telefon verlierst. Wenn du deine Wiederherstellungscodes verloren hast, kannst du sie hier regenerieren. Deine alten Wiederherstellungscodes werden damit ungültig gemacht.
+    instructions_html: "<strong>Lies diesen QR-Code mit Google Authenticator oder einer ähnlichen TOTP-App auf deinem Telefon ein.</strong> Von nun an wird diese App Tokens generieren, die du beim Anmelden eingeben musst."
+    lost_recovery_codes: Wiederherstellungscodes erlauben dir, wieder den Zugang zu deinem Konto zu erlangen, falls du dein Telefon verlieren solltest. Wenn du deine Wiederherstellungscodes verloren hast, kannst du sie hier neu generieren. Deine alten Wiederherstellungscodes werden damit ungültig gemacht.
     manual_instructions: 'Wenn du den QR-Code nicht einlesen kannst und ihn manuell eingeben musst, ist hier das Klartext-Geheimnis:'
-    recovery_codes_regenerated: Wiederherstellungscodes erfolgreich regeneriert
-    recovery_instructions_html: Wenn du jemals den Zugang zu deinem Telefon verlierst, kannst du einen der Wiederherstellungscodes unten benutzen, um wieder auf dein Konto zugreifen zu können. Bewahre die Wiederherstellungscodes sicher auf, indem du sie beispielsweise ausdruckst und sie zusammen mit anderen wichtigen Dokumenten lagerst.
+    recovery_codes: Wiederherstellungs-Codes sichern
+    recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu generiert
+    recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscodes benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
     setup: Einrichten
-    wrong_code: Der eingegebene Code war ungültig! Sind die Server- und die Gerätezeit korrekt?
+    wrong_code: Der eingegebene Code war ungültig! Stimmen Serverzeit und Gerätezeit?
   users:
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
+    signed_in_as: 'Angemeldet als:'
