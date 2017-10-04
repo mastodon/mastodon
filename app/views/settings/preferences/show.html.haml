@@ -18,25 +18,6 @@
 
     = f.input :setting_default_sensitive, as: :boolean, wrapper: :with_label
 
-  %h4= t 'preferences.notifications'
-
-  .fields-group
-    = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
-      = ff.input :follow, as: :boolean, wrapper: :with_label
-      = ff.input :follow_request, as: :boolean, wrapper: :with_label
-      = ff.input :reblog, as: :boolean, wrapper: :with_label
-      = ff.input :favourite, as: :boolean, wrapper: :with_label
-      = ff.input :mention, as: :boolean, wrapper: :with_label
-
-  .fields-group
-    = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
-      = ff.input :digest, as: :boolean, wrapper: :with_label
-
-  .fields-group
-    = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
-      = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
-      = ff.input :must_be_following, as: :boolean, wrapper: :with_label
-
   %h4= t 'preferences.other'
 
   .fields-group

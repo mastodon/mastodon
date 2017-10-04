@@ -321,7 +321,7 @@ ActiveRecord::Schema.define(version: 20170927215609) do
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
   end
 
-  create_table "statuses", force: :cascade do |t|
+  create_table "statuses", id: :bigint, default: -> { "timestamp_id('statuses'::text)" }, force: :cascade do |t|
     t.string "uri"
     t.text "text", default: "", null: false
     t.datetime "created_at", null: false

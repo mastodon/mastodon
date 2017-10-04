@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe FeedManager do
+  it 'tracks at least as many statuses as reblogs' do
+    expect(FeedManager::REBLOG_FALLOFF).to be <= FeedManager::MAX_ITEMS
+  end
+
   describe '#key' do
     subject { FeedManager.instance.key(:home, 1) }
 
@@ -149,6 +153,111 @@ RSpec.describe FeedManager do
       FeedManager.instance.push('type', account, status)
 
       expect(Redis.current.zcard("feed:type:#{account.id}")).to eq FeedManager::MAX_ITEMS
+    end
+
+    it 'sends push updates for non-home timelines' do
+      account = Fabricate(:account)
+      status = Fabricate(:status)
+      allow(Redis.current).to receive_messages(publish: nil)
+
+      FeedManager.instance.push('type', account, status)
+
+      expect(Redis.current).to have_received(:publish).with("timeline:#{account.id}", any_args).at_least(:once)
+    end
+
+    context 'reblogs' do
+      it 'saves reblogs of unseen statuses' do
+        account = Fabricate(:account)
+        reblogged = Fabricate(:status)
+        reblog = Fabricate(:status, reblog: reblogged)
+
+        expect(FeedManager.instance.push('type', account, reblog)).to be true
+      end
+
+      it 'does not save a new reblog of a recent status' do
+        account = Fabricate(:account)
+        reblogged = Fabricate(:status)
+        reblog = Fabricate(:status, reblog: reblogged)
+
+        FeedManager.instance.push('type', account, reblogged)
+
+        expect(FeedManager.instance.push('type', account, reblog)).to be false
+      end
+
+      it 'saves a new reblog of an old status' do
+        account = Fabricate(:account)
+        reblogged = Fabricate(:status)
+        reblog = Fabricate(:status, reblog: reblogged)
+
+        FeedManager.instance.push('type', account, reblogged)
+
+        # Fill the feed with intervening statuses
+        FeedManager::REBLOG_FALLOFF.times do
+          FeedManager.instance.push('type', account, Fabricate(:status))
+        end
+
+        expect(FeedManager.instance.push('type', account, reblog)).to be true
+      end
+
+      it 'does not save a new reblog of a recently-reblogged status' do
+        account = Fabricate(:account)
+        reblogged = Fabricate(:status)
+        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
+
+        # The first reblog will be accepted
+        FeedManager.instance.push('type', account, reblogs.first)
+
+        # The second reblog should be ignored
+        expect(FeedManager.instance.push('type', account, reblogs.last)).to be false
+      end
+
+      it 'saves a new reblog of a long-ago-reblogged status' do
+        account = Fabricate(:account)
+        reblogged = Fabricate(:status)
+        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
+
+        # The first reblog will be accepted
+        FeedManager.instance.push('type', account, reblogs.first)
+
+        # Fill the feed with intervening statuses
+        FeedManager::REBLOG_FALLOFF.times do
+          FeedManager.instance.push('type', account, Fabricate(:status))
+        end
+
+        # The second reblog should also be accepted
+        expect(FeedManager.instance.push('type', account, reblogs.last)).to be true
+      end
+    end
+  end
+
+  describe '#unpush' do
+    it 'leaves a reblogged status when deleting the reblog' do
+      account = Fabricate(:account)
+      reblogged = Fabricate(:status)
+      status = Fabricate(:status, reblog: reblogged)
+
+      FeedManager.instance.push('type', account, status)
+
+      # The reblogging status should show up under normal conditions.
+      expect(Redis.current.zrange("feed:type:#{account.id}", 0, -1)).to eq [status.id.to_s]
+
+      FeedManager.instance.unpush('type', account, status)
+
+      # Because we couldn't tell if the status showed up any other way,
+      # we had to stick the reblogged status in by itself.
+      expect(Redis.current.zrange("feed:type:#{account.id}", 0, -1)).to eq [reblogged.id.to_s]
+    end
+
+    it 'sends push updates' do
+      account = Fabricate(:account)
+      status = Fabricate(:status)
+      FeedManager.instance.push('type', account, status)
+
+      allow(Redis.current).to receive_messages(publish: nil)
+      FeedManager.instance.unpush('type', account, status)
+
+      deletion = Oj.dump(event: :delete, payload: status.id.to_s)
+      expect(Redis.current).to have_received(:publish).with("timeline:#{account.id}", deletion)
     end
   end
 end
