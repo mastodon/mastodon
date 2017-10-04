@@ -22,7 +22,7 @@ describe FetchRemoteResourceService do
       allow(FetchAtomService).to receive(:new).and_return service
       feed_url = 'http://feed-url'
       feed_content = '<feed>contents</feed>'
-      allow(service).to receive(:call).with(url).and_return([feed_url, feed_content])
+      allow(service).to receive(:call).with(url).and_return([feed_url, { prefetched_body: feed_content }])
 
       account_service = double
       allow(FetchRemoteAccountService).to receive(:new).and_return(account_service)
@@ -39,7 +39,7 @@ describe FetchRemoteResourceService do
       allow(FetchAtomService).to receive(:new).and_return service
       feed_url = 'http://feed-url'
       feed_content = '<entry>contents</entry>'
-      allow(service).to receive(:call).with(url).and_return([feed_url, feed_content])
+      allow(service).to receive(:call).with(url).and_return([feed_url, { prefetched_body: feed_content }])
 
       account_service = double
       allow(FetchRemoteStatusService).to receive(:new).and_return(account_service)

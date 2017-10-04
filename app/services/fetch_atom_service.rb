@@ -45,7 +45,7 @@ class FetchAtomService < BaseService
     elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@response.mime_type)
       json = body_to_json(@response.to_s)
       if supported_context?(json) && json['type'] == 'Person' && json['inbox'].present?
-        [json['id'], { id: true }, :activitypub]
+        [json['id'], { prefetched_body: @response.to_s, id: true }, :activitypub]
       else
         @unsupported_activity = true
         nil
