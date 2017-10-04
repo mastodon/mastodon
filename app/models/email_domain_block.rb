@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # == Schema Information
 #
-# Table name: blacklisted_email_domains
+# Table name: email_domain_blocks
 #
 #  id         :integer          not null, primary key
 #  domain     :string           not null
@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-class BlacklistedEmailDomain < ApplicationRecord
+class EmailDomainBlock < ApplicationRecord
   def self.block?(email)
     domain = email.gsub(/.+@([^.]+)/, '\1')
     where(domain: domain).exists?

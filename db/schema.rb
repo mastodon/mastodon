@@ -68,12 +68,6 @@ ActiveRecord::Schema.define(version: 20170928082043) do
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true
   end
 
-  create_table "blacklisted_email_domains", force: :cascade do |t|
-    t.string "domain", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -114,6 +108,12 @@ ActiveRecord::Schema.define(version: 20170928082043) do
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
+  end
+
+  create_table "email_domain_blocks", force: :cascade do |t|
+    t.string "domain", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "favourites", force: :cascade do |t|
