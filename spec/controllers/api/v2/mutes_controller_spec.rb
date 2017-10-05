@@ -23,11 +23,11 @@ RSpec.describe Api::V2::MutesController, type: :controller do
     end
 
     it 'returns one mute' do
-      expect(mutes.size).to be(1)
+      expect(mutes.size).to be 1
     end
 
     it 'returns whether the mute hides notifications' do
-      expect(mutes.first["hide_notifications"]).to be(false)
+      expect(mutes.first["hide_notifications"]).to be false
     end 
   end
 end
