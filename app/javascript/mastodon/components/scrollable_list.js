@@ -145,32 +145,6 @@ export default class ScrollableList extends PureComponent {
     return this._lastMouseMove !== null && ((new Date()) - this._lastMouseMove < 600);
   }
 
-  handleKeyDown = (e) => {
-    if (['PageDown', 'PageUp'].includes(e.key) || (e.ctrlKey && ['End', 'Home'].includes(e.key))) {
-      const article = (() => {
-        switch (e.key) {
-        case 'PageDown':
-          return e.target.nodeName === 'ARTICLE' && e.target.nextElementSibling;
-        case 'PageUp':
-          return e.target.nodeName === 'ARTICLE' && e.target.previousElementSibling;
-        case 'End':
-          return this.node.querySelector('[role="feed"] > article:last-of-type');
-        case 'Home':
-          return this.node.querySelector('[role="feed"] > article:first-of-type');
-        default:
-          return null;
-        }
-      })();
-
-
-      if (article) {
-        e.preventDefault();
-        article.focus();
-        article.scrollIntoView();
-      }
-    }
-  }
-
   render () {
     const { children, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
     const { fullscreen } = this.state;
@@ -182,7 +156,7 @@ export default class ScrollableList extends PureComponent {
     if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
         <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseLeave}>
-          <div role='feed' className='item-list' onKeyDown={this.handleKeyDown}>
+          <div role='feed' className='item-list'>
             {prepend}
 
             {React.Children.map(this.props.children, (child, index) => (

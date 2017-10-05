@@ -74,6 +74,8 @@ export default class Search extends React.PureComponent {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.props.onSubmit();
+    } else if (e.key === 'Escape') {
+      document.querySelector('.ui').parentElement.focus();
     }
   }
 

@@ -16,6 +16,7 @@ export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
 export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
 export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
+export const COMPOSE_RESET           = 'COMPOSE_RESET';
 export const COMPOSE_UPLOAD_REQUEST  = 'COMPOSE_UPLOAD_REQUEST';
 export const COMPOSE_UPLOAD_SUCCESS  = 'COMPOSE_UPLOAD_SUCCESS';
 export const COMPOSE_UPLOAD_FAIL     = 'COMPOSE_UPLOAD_FAIL';
@@ -65,6 +66,12 @@ export function replyCompose(status, router) {
 export function cancelReplyCompose() {
   return {
     type: COMPOSE_REPLY_CANCEL,
+  };
+};
+
+export function resetCompose() {
+  return {
+    type: COMPOSE_RESET,
   };
 };
 
