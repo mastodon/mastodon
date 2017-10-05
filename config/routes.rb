@@ -139,7 +139,13 @@ Rails.application.routes.draw do
       resource :two_factor_authentication, only: [:destroy]
     end
 
-    resources :custom_emojis, only: [:index, :new, :create, :destroy]
+    resources :custom_emojis, only: [:index, :new, :create, :destroy] do
+      member do
+        post :copy
+        post :enable
+        post :disable
+      end
+    end
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)
