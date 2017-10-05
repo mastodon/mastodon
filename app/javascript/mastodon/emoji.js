@@ -52,7 +52,7 @@ export const buildCustomEmojis = customEmojis => {
 
   customEmojis.forEach(emoji => {
     const shortcode = emoji.get('shortcode');
-    const url       = emoji.get('url');
+    const url       = emoji.get('static_url');
     const name      = shortcode.replace(':', '');
 
     emojis.push({
