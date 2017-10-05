@@ -60,7 +60,7 @@ const normalizeStatus = (state, status) => {
 
   const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
   const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
-    obj[`:${emoji.shortcode}:`] = emoji.url;
+    obj[`:${emoji.shortcode}:`] = emoji.static_url;
     return obj;
   }, {});
 
