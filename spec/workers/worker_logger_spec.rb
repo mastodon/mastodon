@@ -17,14 +17,5 @@ describe WorkerLogger do
         expect(subject.logger).to have_received(:info).with(Regexp.new(info))
       end
     end
-
-    it 'does not log wihout published timestamp' do
-      subject.log_delay(nil, 'URL', 'delivered')
-      expect(subject.logger).not_to have_received(:info)
-    end
-
-    it 'does not raise error with malformed timestamp' do
-      expect { subject.log_delay('this is not time', 'URL', 'delivered') }.to_not raise_error
-    end
   end
 end

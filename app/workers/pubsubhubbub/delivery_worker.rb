@@ -17,7 +17,7 @@ class Pubsubhubbub::DeliveryWorker
     @subscription = Subscription.find(subscription_id)
     @payload = payload
     process_delivery unless blocked_domain?
-    published = @payload.scan(%r|<published>([^<]+)</published>|)&.flatten[0]
+    published = @payload.scan(%r{<published>([^<]+)</published>}).flatten.first
     log_delay(published, subscription&.callback_url, 'delivered')
   rescue => e
     raise e.class, "Delivery failed for #{subscription&.callback_url}: #{e.message}", e.backtrace[0]

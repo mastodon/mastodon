@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 module WorkerLogger
-  def log_delay(published, url, at, current_time = Time.now)
-    return unless published
-    begin
-      delay = current_time - Time.parse(published)
-      logger.info "source=#{self.class} destination=#{url.inspect} measure#delivery.delay=#{'%.0f' % delay}sec count##{at}=1"
-    rescue
-      # Ignore possible parse errors from Time.parse
-    end
+  def log_delay(published, url, at, current_time = Time.current)
+    delay = current_time - Time.parse(published).utc
+    logger.info format('source=%s destination=%s measure#delivery.delay=%.0fsec count#%s=1', self.class, url.inspect, delay, at)
   end
 end
