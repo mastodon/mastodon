@@ -17,10 +17,7 @@ class ActivityPub::DeliveryWorker
 
     raise Mastodon::UnexpectedResponseError, @response unless response_successful?
 
-    begin
-      log_delay(JSON.parse(@json)&.dig('published'), @inbox_url, 'delivered')
-    rescue JSON::ParserError
-    end
+    log_delay(JSON.parse(@json).dig('published'), @inbox_url, 'delivered')
     failure_tracker.track_success!
   rescue => e
     failure_tracker.track_failure!
