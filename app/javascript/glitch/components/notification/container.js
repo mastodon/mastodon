@@ -19,38 +19,30 @@ Imports:
 //  Package imports  //
 import { connect } from 'react-redux';
 
-//  Mastodon imports  //
-import { makeGetNotification } from '../../../mastodon/selectors';
-
 //  Our imports  //
 import Notification from '.';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-/*
+const mapStateToProps = (state, props) => {
+  // replace account id with object
+  let leNotif = props.notification.set('account', state.getIn(['accounts', props.notification.get('account')]));
 
-State mapping:
---------------
+  // populate markedForDelete from state - is mysteriously lost somewhere
+  for (let n of state.getIn(['notifications', 'items'])) {
+    if (n.get('id') === props.notification.get('id')) {
+      leNotif = leNotif.set('markedForDelete', n.get('markedForDelete'));
+      break;
+    }
+  }
 
-The `mapStateToProps()` function maps various state properties to the
-props of our component. We wrap this in `makeMapStateToProps()` so that
-we only have to call `makeGetNotification()` once instead of every
-time.
-
-*/
-
-const makeMapStateToProps = () => {
-  const getNotification = makeGetNotification();
-
-  const mapStateToProps = (state, props) => ({
-    notification: getNotification(state, props.notification, props.accountId),
+  return ({
+    notification: leNotif,
     settings: state.get('local_settings'),
     notifCleaning: state.getIn(['notifications', 'cleaningMode']),
   });
-
-  return mapStateToProps;
 };
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-export default connect(makeMapStateToProps)(Notification);
+export default connect(mapStateToProps)(Notification);
