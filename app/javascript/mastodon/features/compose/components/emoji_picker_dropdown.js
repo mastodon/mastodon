@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
-import { Overlay } from 'react-overlays';
+import Overlay from 'react-overlays/lib/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import detectPassiveEvents from 'detect-passive-events';
