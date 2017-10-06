@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/bbd4fbe/src/utils/emoji-index.js
 
-import data from './emoji_data_light';
+import data from './emoji_mart_data_light';
 import { getData, getSanitizedData, intersect } from './emoji_utils';
 
 let index = {};

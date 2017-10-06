@@ -1,4 +1,4 @@
-import { unicodeMapping } from './emojione_light';
+import unicodeMapping from './emoji_unicode_mapping_light';
 import Trie from 'substring-trie';
 
 const trie = new Trie(Object.keys(unicodeMapping));
@@ -35,8 +35,9 @@ const emojify = (str, customEmojis = {}) => {
       if (!rend) break;
       i = rend;
     } else { // matched to unicode emoji
-      const [filename, shortCode] = unicodeMapping[match];
-      replacement = `<img draggable="false" class="emojione" alt="${match}" title=":${shortCode}:" src="${assetHost}/emoji/${filename}.svg" />`;
+      const { filename, shortCode } = unicodeMapping[match];
+      const title = shortCode ? `:${shortCode}:` : '';
+      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${filename}.svg" />`;
       rend = i + match.length;
     }
     rtn += str.slice(0, i) + replacement;
