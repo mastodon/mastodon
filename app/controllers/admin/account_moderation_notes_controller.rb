@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::AccountModerationNotesController < Admin::BaseController
   def create
     @account_moderation_note = current_account.account_moderation_notes.new(resource_params)
