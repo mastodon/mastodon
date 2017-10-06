@@ -140,6 +140,7 @@ Rails.application.routes.draw do
     end
 
     resources :custom_emojis, only: [:index, :new, :create, :destroy]
+    resources :account_moderation_notes, only: [:create, :destroy]
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)
