@@ -15,6 +15,7 @@ module.exports = JSON.parse(JSON.stringify({
   categories: data.categories,
   short_names: data.short_names,
 }));
+=======
 const data = require('./emoji_data_compressed');
 
 // decompress
