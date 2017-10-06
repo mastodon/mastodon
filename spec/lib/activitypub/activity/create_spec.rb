@@ -290,7 +290,9 @@ RSpec.describe ActivityPub::Activity::Create do
           tag: [
             {
               type: 'Emoji',
-              href: 'http://example.com/emoji.png',
+              icon: {
+                url: 'http://example.com/emoji.png',
+              },
               name: 'tinking',
             },
           ],
@@ -314,7 +316,9 @@ RSpec.describe ActivityPub::Activity::Create do
           tag: [
             {
               type: 'Emoji',
-              href: 'http://example.com/emoji.png',
+              icon: {
+                url: 'http://example.com/emoji.png',
+              },
             },
           ],
         }
@@ -326,7 +330,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
     end
 
-    context 'with emojis missing href' do
+    context 'with emojis missing icon' do
       let(:object_json) do
         {
           id: 'bar',
