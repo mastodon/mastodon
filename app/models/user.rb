@@ -31,9 +31,7 @@
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
 #  filtered_languages        :string           default([]), not null, is an Array
-#  approval_sent_at          :datetime
 #  approved_at               :datetime
-#  approved_by               :integer
 #
 
 class User < ApplicationRecord
