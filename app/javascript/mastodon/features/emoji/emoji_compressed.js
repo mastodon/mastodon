@@ -54,7 +54,9 @@ Object.keys(emojiMap).forEach(key => {
   if (typeof shortcode === 'undefined') {
     emojisWithoutShortCodes.push(filenameData);
   } else {
-    shortCodesToEmojiData[shortcode] = shortCodesToEmojiData[shortcode] || [[]];
+    if (!Array.isArray(shortCodesToEmojiData[shortcode])) {
+      shortCodesToEmojiData[shortcode] = [[]];
+    }
     shortCodesToEmojiData[shortcode][0].push(filenameData);
   }
 });
