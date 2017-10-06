@@ -14,6 +14,7 @@ require_relative '../lib/mastodon/version'
 Dotenv::Railtie.load
 
 require_relative '../lib/mastodon/redis_config'
+require_relative '../lib/mastodon/timestamp_ids'
 
 module Mastodon
   class Application < Rails::Application

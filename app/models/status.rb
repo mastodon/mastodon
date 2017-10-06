@@ -135,6 +135,7 @@ class Status < ApplicationRecord
   end
 
   after_create :store_uri, if: :local?
+  around_create Mastodon::TimestampIds::Callbacks
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
