@@ -96,4 +96,11 @@ describe('emoji_index', () => {
     expect(search('polo').map(trimEmojis)).to.deep.equal(expected);
     expect(emojiIndex.search('polo').map(trimEmojis)).to.deep.equal(expected);
   });
+
+  it('can search for thinking_face', () => {
+    let expected = [ { id: 'thinking_face', unified: '1f914', native: '🤔' } ];
+    expect(search('thinking_fac').map(trimEmojis)).to.deep.equal(expected);
+    // this is currently broken in emoji-mart
+    // expect(emojiIndex.search('thinking_fac').map(trimEmojis)).to.deep.equal(expected);
+  });
 });
