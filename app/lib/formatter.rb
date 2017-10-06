@@ -50,7 +50,7 @@ class Formatter
   end
 
   def simplified_format(account)
-    return reformat(account.note) unless account.local?
+    return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
 
     html = encode_and_link_urls(account.note)
     html = simple_format(html, {}, sanitize: false)
