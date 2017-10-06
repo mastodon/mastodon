@@ -20,10 +20,10 @@ def each_schema_load_environment
 
   if Rails.env == 'development'
     test_conf = ActiveRecord::Base.configurations['test']
+
     if test_conf['database']&.present?
       ActiveRecord::Base.establish_connection(:test)
       yield
-
       ActiveRecord::Base.establish_connection(Rails.env.to_sym)
     end
   end

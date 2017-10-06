@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { Overlay } from 'react-overlays';
-import { Motion, spring } from 'react-motion';
+import Overlay from 'react-overlays/lib/Overlay';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
@@ -74,6 +75,8 @@ export default class Search extends React.PureComponent {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.props.onSubmit();
+    } else if (e.key === 'Escape') {
+      document.querySelector('.ui').parentElement.focus();
     }
   }
 

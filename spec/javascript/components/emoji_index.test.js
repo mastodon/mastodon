@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { search } from '../../../app/javascript/mastodon/emoji_index_light';
+import { search } from '../../../app/javascript/mastodon/features/emoji/emoji_mart_search_light';
 import { emojiIndex } from 'emoji-mart';
 import { pick } from 'lodash';
 
@@ -77,5 +77,30 @@ describe('emoji_index', () => {
       .to.deep.equal([]);
     expect(emojiIndex.search('flag', { include: ['people'] }))
       .to.deep.equal([]);
+  });
+
+  it('does an emoji whose unified name is irregular', () => {
+    let expected = [{
+      'id': 'water_polo',
+      'unified': '1f93d',
+      'native': '🤽',
+    }, {
+      'id': 'man-playing-water-polo',
+      'unified': '1f93d-200d-2642-fe0f',
+      'native': '🤽‍♂️',
+    }, {
+      'id': 'woman-playing-water-polo',
+      'unified': '1f93d-200d-2640-fe0f',
+      'native': '🤽‍♀️',
+    }];
+    expect(search('polo').map(trimEmojis)).to.deep.equal(expected);
+    expect(emojiIndex.search('polo').map(trimEmojis)).to.deep.equal(expected);
+  });
+
+  it('can search for thinking_face', () => {
+    let expected = [ { id: 'thinking_face', unified: '1f914', native: '🤔' } ];
+    expect(search('thinking_fac').map(trimEmojis)).to.deep.equal(expected);
+    // this is currently broken in emoji-mart
+    // expect(emojiIndex.search('thinking_fac').map(trimEmojis)).to.deep.equal(expected);
   });
 });

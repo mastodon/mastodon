@@ -69,12 +69,16 @@
     position: relative;
     z-index: 2;
     margin-bottom: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     small {
       display: block;
       font-size: 14px;
       color: $ui-highlight-color;
       font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -284,21 +288,15 @@
     color: lighten($ui-base-color, 10%);
   }
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 700px) {
     padding: 30px 20px;
 
-    a,
-    .current,
-    .next,
-    .prev,
-    .gap {
+    .page {
       display: none;
     }
 
     .next,
-    .prev,
-    .next a,
-    .prev a {
+    .prev {
       display: inline-block;
     }
   }
@@ -375,6 +373,7 @@
         height: 80px;
         border-radius: 80px;
         border: 2px solid $simple-background-color;
+        background: $simple-background-color;
       }
     }
 

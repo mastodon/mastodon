@@ -92,7 +92,7 @@ class Formatter
   def encode_custom_emojis(html, emojis)
     return html if emojis.empty?
 
-    emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url)] }.to_h
+    emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
 
     i                     = -1
     inside_tag            = false

@@ -587,6 +587,22 @@
   position: absolute;
 }
 
+.focusable {
+  &:focus {
+    outline: 0;
+    background: lighten($ui-base-color, 4%);
+
+    &.status-direct {
+      background: lighten($ui-base-color, 12%);
+    }
+
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+}
+
 .status {
   padding: 8px 10px;
   padding-left: 68px;
@@ -1046,11 +1062,11 @@
   strong {
     color: $primary-text-color;
   }
+}
 
-  &.muted {
-    .emojione {
-      opacity: 0.5;
-    }
+.muted {
+  .emojione {
+    opacity: 0.5;
   }
 }
 

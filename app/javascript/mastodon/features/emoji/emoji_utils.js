@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/bbd4fbe/src/utils/index.js
 
-import data from './emoji_data_light';
+import data from './emoji_mart_data_light';
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/;
 
@@ -125,13 +125,16 @@ function getData(emoji) {
 }
 
 function intersect(a, b) {
-  let aSet = new Set(a);
-  let bSet = new Set(b);
-  let intersection = new Set(
-    [...aSet].filter(x => bSet.has(x))
-  );
-
-  return Array.from(intersection);
+  let set;
+  let list;
+  if (a.length < b.length) {
+    set = new Set(a);
+    list = b;
+  } else {
+    set = new Set(b);
+    list = a;
+  }
+  return Array.from(new Set(list.filter(x => set.has(x))));
 }
 
 export { getData, getSanitizedData, intersect };
