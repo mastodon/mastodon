@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/bbd4fbe/src/utils/index.js
 
-import data from './emoji_data_light';
+import data from './emoji_mart_data_light';
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/;
 

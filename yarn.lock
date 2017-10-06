@@ -1684,6 +1684,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+create-react-class@^15.5.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.2.tgz#cf1ed15f12aad7f14ef5f2dfe05e6c42f91ef02a"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 cross-env@^5.0.1:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.0.5.tgz#4383d364d9660873dd185b398af3bfef5efffef3"
@@ -4209,6 +4217,10 @@ mocha@^3.4.1:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
+mousetrap@^1.5.2:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/mousetrap/-/mousetrap-1.6.1.tgz#2a085f5c751294c75e7e81f6ec2545b29cbf42d9"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -5552,6 +5564,15 @@ react-event-listener@^0.5.0:
     fbjs "^0.8.14"
     prop-types "^15.5.10"
     warning "^3.0.0"
+
+react-hotkeys@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-hotkeys/-/react-hotkeys-0.10.0.tgz#d1e78bd63f16d6db58d550d33c8eb071f35d94fb"
+  dependencies:
+    create-react-class "^15.5.2"
+    lodash "^4.13.1"
+    mousetrap "^1.5.2"
+    prop-types "^15.5.8"
 
 react-immutable-proptypes@^2.1.0:
   version "2.1.0"
