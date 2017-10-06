@@ -3,17 +3,28 @@ import PropTypes from 'prop-types';
 
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
-const ColumnLoading = ({ title = '', icon = ' ' }) => (
-  <Column>
-    <ColumnHeader icon={icon} title={title} multiColumn={false} focusable={false} />
-    <div className='scrollable' />
-  </Column>
-);
+export default class ColumnLoading extends ImmutablePureComponent {
 
-ColumnLoading.propTypes = {
-  title: PropTypes.node,
-  icon: PropTypes.string,
-};
+  static propTypes = {
+    title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+    icon: PropTypes.string,
+  };
 
-export default ColumnLoading;
+  static defaultProps = {
+    title: '',
+    icon: '',
+  };
+
+  render() {
+    let { title, icon } = this.props;
+    return (
+      <Column>
+        <ColumnHeader icon={icon} title={title} multiColumn={false} focusable={false} />
+        <div className='scrollable' />
+      </Column>
+    );
+  }
+
+}

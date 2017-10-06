@@ -63,6 +63,12 @@ class Formatter
     Sanitize.fragment(html, config)
   end
 
+  def format_spoiler(status)
+    html = encode(status.spoiler_text)
+    html = encode_custom_emojis(html, status.emojis)
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   private
 
   def encode(html)
@@ -86,7 +92,7 @@ class Formatter
   def encode_custom_emojis(html, emojis)
     return html if emojis.empty?
 
-    emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url)] }.to_h
+    emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
 
     i                     = -1
     inside_tag            = false

@@ -17,18 +17,18 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
   has_many :mentions
   has_many :tags
-  has_many :emojis
+  has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   def id
     object.id.to_s
   end
 
   def in_reply_to_id
-    object.in_reply_to_id.to_s
+    object.in_reply_to_id&.to_s
   end
 
   def in_reply_to_account_id
-    object.in_reply_to_account_id.to_s
+    object.in_reply_to_account_id&.to_s
   end
 
   def current_user?
@@ -117,16 +117,6 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
     def url
       tag_url(object)
-    end
-  end
-
-  class CustomEmojiSerializer < ActiveModel::Serializer
-    include RoutingHelper
-
-    attributes :shortcode, :url
-
-    def url
-      full_asset_url(object.image.url)
     end
   end
 end

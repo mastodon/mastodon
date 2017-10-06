@@ -109,10 +109,17 @@ en:
       username: Username
       web: Web
     custom_emojis:
+      copied_msg: Successfully created local copy of the emoji
+      copy: Copy
+      copy_failed_msg: Could not make a local copy of that emoji
       created_msg: Emoji successfully created!
       delete: Delete
       destroyed_msg: Emojo successfully destroyed!
+      disable: Disable
+      disabled_msg: Successfully disabled that emoji
       emoji: Emoji
+      enable: Enable
+      enabled_msg: Successfully enabled that emoji
       image_hint: PNG up to 50KB
       new:
         title: Add new custom emoji
@@ -152,6 +159,16 @@ en:
         undo: Undo
       title: Domain Blocks
       undo: Undo
+    email_domain_blocks:
+      add_new: Add new
+      created_msg: Email domain block successfully created
+      delete: Delete
+      destroyed_msg: Email domain block successfully deleted
+      domain: Domain
+      new:
+        create: Create block
+        title: New email domain block
+      title: Email Domain Block
     instances:
       account_count: Known accounts
       domain_name: Domain
@@ -310,6 +327,9 @@ en:
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
     '429': Throttled
+    '500':
+      content: We're sorry, but something went wrong on our end.
+      title: This page is not correct
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
   exports:
     blocks: You block
@@ -390,6 +410,11 @@ en:
     next: Next
     prev: Prev
     truncate: "&hellip;"
+  preferences:
+    languages: Languages
+    other: Other
+    publishing: Publishing
+    web: Web
   push_notifications:
     favourite:
       title: "%{name} favourited your status"
@@ -457,12 +482,11 @@ en:
     export: Data export
     followers: Authorized followers
     import: Import
+    notifications: Notifications
     preferences: Preferences
     settings: Settings
     two_factor_authentication: Two-factor Authentication
     your_apps: Your applications
-  themes:
-    default: Mastodon
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
@@ -554,6 +578,8 @@ en:
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

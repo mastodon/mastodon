@@ -89,10 +89,14 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   class MediaAttachmentSerializer < ActiveModel::Serializer
     include RoutingHelper
 
-    attributes :type, :media_type, :url
+    attributes :type, :media_type, :url, :name
 
     def type
       'Document'
+    end
+
+    def name
+      object.description
     end
 
     def media_type
