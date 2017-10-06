@@ -3,6 +3,8 @@
 #
 # Table name: imports
 #
+#  id                :integer          not null, primary key
+#  account_id        :integer          not null
 #  type              :integer          not null
 #  approved          :boolean          default(FALSE), not null
 #  created_at        :datetime         not null
@@ -11,8 +13,6 @@
 #  data_content_type :string
 #  data_file_size    :integer
 #  data_updated_at   :datetime
-#  account_id        :integer          not null
-#  id                :integer          not null, primary key
 #
 
 class Import < ApplicationRecord
