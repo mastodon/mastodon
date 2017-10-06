@@ -7,22 +7,166 @@ eo:
     description_headline: Kio estas %{domain}?
     domain_count_after: aliaj aperaĵoj
     domain_count_before: Konektita al
+    hosted_on: Mastodon gastigita sur %{domain}
+    learn_more: Lernu pli
     other_instances: Aliaj aperaĵoj
     source_code: Fontkodo
     status_count_after: mesaĝoj
     status_count_before: Kiu publikigis
     user_count_after: uzantoj
     user_count_before: Hejmo de
+    what_is_mastodon: Kio estas Mastodon?
   accounts:
     follow: Sekvi
     followers: Sekvantoj
     following: Sekvatoj
+    media: Kumunikiloj
     nothing_here: Estas nenio ĉi tie!
     people_followed_by: Sekvatoj de %{name}
     people_who_follow: Sekvantoj de %{name}
     posts: Mesaĝoj
+    posts_with_replies: Tootoj kun respondaj
     remote_follow: Fore sekvi
+    reserved_username: La usantnomo estas reservis
+    roles:
+      admin: Administranto
     unfollow: Malsekvi
+  admin:
+    accounts:
+      are_you_sure: Ĉu vi certe?
+      confirm: Confirmi
+      confirmed: Confirmis
+      disable_two_factor_authentication: Malebligi 2FA
+      display_name: Montri nomo
+      domain: Damajno
+      edit: Redakti
+      email: Retpoŝto
+      followers: Sekvantoj
+      followers_url: Sekvantoj URL
+      ip: IP
+      location:
+        all: Ĉio
+        local: Loka
+        remote: Fora
+        title: Loko
+      media_attachments: Komunkiloj kunsendaĵo
+      moderation:
+        all: Ĉio
+        silenced: Silentis
+        suspended: Suspendis
+        title: Moderulo
+      most_recent_activity: Ple freŝa aktiveco
+      most_recent_ip: Ple freŝa IP
+      not_subscribed: Ne abonis
+      order:
+        alphabetic: Alfabetiko
+        most_recent: Ple freŝa
+        title: Ordono
+      perform_full_suspension: Fari kompleta suspendi
+      profile_url: Profilo URL
+      protocol: Protokolo
+      public: Publika
+      push_subscription_expires: PuSH subscription expires
+      redownload: Refreŝigi avataro
+      reset: Restarigi
+      reset_password: Restarigi pasvorto
+      resubscribe: Reaboni
+      salmon_url: Salmon URL
+      search: Serĉi
+      shared_inbox_url: Shared Inbox URL
+      show:
+        created_reports: Raportoj kreita de ĉi tiu konto
+        report: raporto
+        targeted_reports: Raportoj kreita al ĉi tiu konton
+      silence: Silenti
+      statuses: Statusoj
+      subscribe: Aboni
+      title: Kontoj
+      undo_silenced: Malfari silenti
+      undo_suspension: Malfari suspendi
+      unsubscribe: Malaboni
+      username: Uzantnomo
+      web: Ret
+    custom_emojis:
+      copied_msg: Sukcese kreis loka kopio de la emojio
+      copy: Kopi
+      copy_failed_msg: Could not make a local copy of that emoji
+      created_msg: Emojio estas kreita sukcesa!
+      delete: Forigi
+      destroyed_msg: Emojio estas forigis sukcesa!
+      disable: Malebligi
+      disabled_msg: Emojio estas malebligis sukcesa
+      emoji: Emojio
+      enable: Ebligi
+      enabled_msg: Emojio estas ebligis sukcesa
+      image_hint: PNG ĝis 50KB
+      new:
+        title: Aldoni nova kutimo emojio
+      shortcode: Malongakodo
+      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      title: Kutimo emojioj
+      upload: Alŝuti
+    domain_blocks:
+      add_new: Aldoni novo
+      created_msg: Domajno bloko nun estas procesita
+      destroyed_msg: Domajno bloko estas malfaris
+      domain: Domajno
+      new:
+        create: Krei bloko
+          noop: Nenio
+          silence: Silenti
+          suspend: Suspendi
+        title: Nova domajno bloko
+      reject_media: Reject media files
+      severities:
+        noop: Nenio
+        silence: Silenti
+        suspend: Suspendi
+      severity: Severeco
+        title: Malfari domajno bloko por %{domain}
+        undo: Malfari
+      title: Domajnoj blokoj
+      undo: Malfari
+    email_domain_blocks:
+      add_new: Aldoni novo
+      created_msg: Retpoŝto domajno bloko estas kreita sukcesa
+      delete: Forigi
+      destroyed_msg: Retpoŝto domajno bloko estas foriga sukcesa
+      domain: Domajno
+      new:
+        create: Aldoni bloko
+        title: Nova retpoŝto domajno bloko
+      title: Retpoŝto domajno bloko
+    instances:
+      account_count: Konataj kontoj
+      domain_name: Domajno
+      reset: Restarigi
+      search: Serĉi
+      title: Konataj petskriboj
+    reports:
+      action_taken_by: Action taken by
+      are_you_sure: Ĉu vi certe?
+      comment:
+        label: komento
+        none: Nenio
+      delete: Forigi
+      id: ID
+      mark_as_resolved: Marki kiel solvita
+      nsfw:
+        'false': Ne kaŝi kumunikiloj kunsendaĵoj
+        'true': Kaŝi kumunikiloj kunsendaĵoj
+      report: 'Raporto #%{id}'
+      report_contents: Enhavo
+      reported_account: Raportis konto
+      reported_by: Raporta de
+      resolved: Solvita
+      silence_account: Silenti konton
+      status: Statusoj
+      suspend_account: Suspendi konton
+      target: Celo
+      title: Raportoj
+      unresolved: Ne solvita
+      view: Vidi
   application_mailer:
     settings: 'Ŝanĝi la retpoŝt-mesaĝajn preferojn: %{link}'
     signature: Sciigoj de Mastodon el %{instance}
