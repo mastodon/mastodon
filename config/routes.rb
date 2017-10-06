@@ -67,7 +67,6 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
-    resource :notifications, only: [:show, :update]
     resource :import, only: [:show, :create]
 
     resource :export, only: [:show]
@@ -108,7 +107,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
-    resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resource :settings, only: [:edit, :update]
 
     resources :instances, only: [:index] do

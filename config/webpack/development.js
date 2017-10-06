@@ -4,17 +4,6 @@ const merge = require('webpack-merge');
 const sharedConfig = require('./shared.js');
 const { settings, output } = require('./configuration.js');
 
-const watchOptions = {
-  ignored: /node_modules/,
-};
-
-if (process.env.VAGRANT) {
-  // If we are in Vagrant, we can't rely on inotify to update us with changed
-  // files, so we must poll instead. Here, we poll every second to see if
-  // anything has changed.
-  watchOptions.poll = 1000;
-}
-
 module.exports = merge(sharedConfig, {
   devtool: 'cheap-module-eval-source-map',
 
@@ -37,6 +26,8 @@ module.exports = merge(sharedConfig, {
     headers: { 'Access-Control-Allow-Origin': '*' },
     historyApiFallback: true,
     disableHostCheck: true,
-    watchOptions: watchOptions,
+    watchOptions: {
+      ignored: /node_modules/,
+    },
   },
 });
