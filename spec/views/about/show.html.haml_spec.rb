@@ -26,9 +26,9 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
 
     header_tags = view.content_for(:header_tags)
 
-    expect(header_tags).to match(%r{<meta content='.+' property='og:title'>})
-    expect(header_tags).to match(%r{<meta content='website' property='og:type'>})
-    expect(header_tags).to match(%r{<meta content='.+' property='og:image'>})
-    expect(header_tags).to match(%r{<meta content='http://.+' property='og:url'>})
+    expect(header_tags).to match(%r{<meta content=".+" property="og:title" />})
+    expect(header_tags).to match(%r{<meta content="website" property="og:type" />})
+    expect(header_tags).to match(%r{<meta content=".+" property="og:image" />})
+    expect(header_tags).to match(%r{<meta content="http://.+" property="og:url" />})
   end
 end

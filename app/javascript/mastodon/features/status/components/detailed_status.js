@@ -11,7 +11,7 @@ import Link from 'react-router-dom/Link';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import Video from '../../video';
+// import Video from '../../video';
 import VisibilityIcon from '../../../../glitch/components/status/visibility_icon';
 
 export default class DetailedStatus extends ImmutablePureComponent {
@@ -37,9 +37,9 @@ export default class DetailedStatus extends ImmutablePureComponent {
     e.stopPropagation();
   }
 
-  handleOpenVideo = startTime => {
-    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
-  }
+  // handleOpenVideo = startTime => {
+  //   this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
+  // }
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
