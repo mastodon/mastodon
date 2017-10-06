@@ -58,6 +58,26 @@
       "note": ""
     },
     {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "34efc76883080f8b1110a30c34ec4f903946ee56651aae46c62477f45d4fc412",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/mastodon/timestamp_ids.rb",
+      "line": 63,
+      "link": "http://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "connection.execute(\"        CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\n        RETURNS bigint AS\\n        $$\\n          DECLARE\\n            time_part bigint;\\n            sequence_base bigint;\\n            tail bigint;\\n          BEGIN\\n            time_part := (\\n              -- Get the time in milliseconds\\n              ((date_part('epoch', now()) * 1000))::bigint\\n              -- And shift it over two bytes\\n              << 16);\\n\\n            sequence_base := (\\n              'x' ||\\n              -- Take the first two bytes (four hex characters)\\n              substr(\\n                -- Of the MD5 hash of the data we documented\\n                md5(table_name ||\\n                  '#{SecureRandom.hex(16)}' ||\\n                  time_part::text\\n                ),\\n                1, 4\\n              )\\n            -- And turn it into a bigint\\n            )::bit(16)::bigint;\\n\\n            -- Finally, add our sequence number to our base, and chop\\n            -- it to the last two bytes\\n            tail := (\\n              (sequence_base + nextval(table_name || '_id_seq'))\\n              & 65535);\\n\\n            -- Return the time part and the sequence part. OR appears\\n            -- faster here than addition, but they're equivalent:\\n            -- time_part has no trailing two bytes, and tail is only\\n            -- the last two bytes.\\n            RETURN time_part | tail;\\n          END\\n        $$ LANGUAGE plpgsql VOLATILE;\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Mastodon::TimestampIds",
+        "method": "define_timestamp_id"
+      },
+      "user_input": "SecureRandom.hex(16)",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
       "fingerprint": "3b0a20b08aef13cf8cf865384fae0cfd3324d8200a83262bf4abbc8091b5fec5",
@@ -211,26 +231,6 @@
       "note": ""
     },
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "cd440d9d0bcb76225f4142030cec0bdec6ad119c537c108c9d514bf87bc34d29",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "lib/mastodon/timestamp_ids.rb",
-      "line": 69,
-      "link": "http://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "ActiveRecord::Base.connection.execute(\"          CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\n          RETURNS bigint AS\\n          $$\\n            DECLARE\\n              time_part bigint;\\n              sequence_base bigint;\\n              tail bigint;\\n            BEGIN\\n              -- Our ID will be composed of the following:\\n              -- 6 bytes (48 bits) of millisecond-level timestamp\\n              -- 2 bytes (16 bits) of sequence data\\n\\n              -- The 'sequence data' is intended to be unique within a\\n              -- given millisecond, yet obscure the 'serial number' of\\n              -- this row.\\n\\n              -- To do this, we hash the following data:\\n              -- * Table name (if provided, skipped if not)\\n              -- * Secret salt (should not be guessable)\\n              -- * Timestamp (again, millisecond-level granularity)\\n\\n              -- We then take the first two bytes of that value, and add\\n              -- the lowest two bytes of the table ID sequence number\\n              -- (`table_name`_id_seq). This means that even if we insert\\n              -- two rows at the same millisecond, they will have\\n              -- distinct 'sequence data' portions.\\n\\n              -- If this happens, and an attacker can see both such IDs,\\n              -- they can determine which of the two entries was inserted\\n              -- first, but not the total number of entries in the table\\n              -- (even mod 2**16).\\n\\n              -- The table name is included in the hash to ensure that\\n              -- different tables derive separate sequence bases so rows\\n              -- inserted in the same millisecond in different tables do\\n              -- not reveal the table ID sequence number for one another.\\n\\n              -- The secret salt is included in the hash to ensure that\\n              -- external users cannot derive the sequence base given the\\n              -- timestamp and table name, which would allow them to\\n              -- compute the table ID sequence number.\\n\\n              time_part := (\\n                -- Get the time in milliseconds\\n                ((date_part('epoch', now()) * 1000))::bigint\\n                -- And shift it over two bytes\\n                << 16);\\n\\n              sequence_base := (\\n                'x' ||\\n                -- Take the first two bytes (four hex characters)\\n                substr(\\n                  -- Of the MD5 hash of the data we documented\\n                  md5(table_name ||\\n                    '#{SecureRandom.hex(16)}' ||\\n                    time_part::text\\n                  ),\\n                  1, 4\\n                )\\n              -- And turn it into a bigint\\n              )::bit(16)::bigint;\\n\\n              -- Finally, add our sequence number to our base, and chop\\n              -- it to the last two bytes\\n              tail := (\\n                (sequence_base + nextval(table_name || '_id_seq'))\\n                & 65535);\\n\\n              -- Return the time part and the sequence part. OR appears\\n              -- faster here than addition, but they're equivalent:\\n              -- time_part has no trailing two bytes, and tail is only\\n              -- the last two bytes.\\n              RETURN time_part | tail;\\n            END\\n          $$ LANGUAGE plpgsql VOLATILE;\\n\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Mastodon::TimestampIds",
-        "method": "s(:self).define_timestamp_id"
-      },
-      "user_input": "SecureRandom.hex(16)",
-      "confidence": "Medium",
-      "note": ""
-    },
-    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
       "fingerprint": "e04aafe1e06cf8317fb6ac0a7f35783e45aa1274272ee6eaf28d39adfdad489b",
@@ -269,6 +269,6 @@
       "note": ""
     }
   ],
-  "updated": "2017-10-05 20:06:40 +0200",
+  "updated": "2017-10-06 03:27:46 +0200",
   "brakeman_version": "4.0.1"
 }
