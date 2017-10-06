@@ -1,4 +1,4 @@
-import { unicodeMapping } from './emojione_light';
+import unicodeMapping from './emoji_unicode_mapping_light';
 import Trie from 'substring-trie';
 
 const trie = new Trie(Object.keys(unicodeMapping));
@@ -35,8 +35,9 @@ const emojify = (str, customEmojis = {}) => {
       if (!rend) break;
       i = rend;
     } else { // matched to unicode emoji
-      const [filename, shortCode] = unicodeMapping[match];
-      replacement = `<img draggable="false" class="emojione" alt="${match}" title=":${shortCode}:" src="${assetHost}/emoji/${filename}.svg" />`;
+      const { filename, shortCode } = unicodeMapping[match];
+      const title = shortCode ? `:${shortCode}:` : '';
+      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${filename}.svg" />`;
       rend = i + match.length;
     }
     rtn += str.slice(0, i) + replacement;
@@ -45,22 +46,14 @@ const emojify = (str, customEmojis = {}) => {
   return rtn + str;
 };
 
-const emojify_knzk = (str, customEmojis = {}) => [
-  {re: /5,?000\s*兆円/g, file: '5000tyoen.svg', attrs: 'style="height: 1.8em;"'},
-  {re: /ニコる/g, file: 'nicoru.svg', attrs: 'style="height: 1.5em;"'},
-  {re: /バジリスク\s*タイム/g, file: 'basilisktime.png', attrs: 'height="40"'},
-  {re: /熱盛/g, file: 'atumori.png', attrs: 'height="51"'},
-  {re: /欲しい！/g, file: 'hosii.png', attrs: 'height="30"'},
-].reduce((text, e) => text.replace(e.re, m => `<img alt="${m}" src="/emoji/${e.file}" ${e.attrs}/>`), emojify(str, customEmojis));
-
-export default emojify_knzk;
+export default emojify;
 
 export const buildCustomEmojis = customEmojis => {
   const emojis = [];
 
   customEmojis.forEach(emoji => {
     const shortcode = emoji.get('shortcode');
-    const url       = emoji.get('url');
+    const url       = emoji.get('static_url');
     const name      = shortcode.replace(':', '');
 
     emojis.push({

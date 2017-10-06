@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { unicodeMapping } from '../emojione_light';
+import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
 
 const assetHost = process.env.CDN_HOST || '';
 
@@ -23,7 +23,7 @@ export default class AutosuggestEmoji extends React.PureComponent {
         return null;
       }
 
-      url = `${assetHost}/emoji/${mapping[0]}.svg`;
+      url = `${assetHost}/emoji/${mapping.filename}.svg`;
     }
 
     return (
