@@ -76,21 +76,21 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'need_approval?' do
+  describe 'require_approval?' do
     it 'returns true when approval is needed' do
       without_partial_double_verification do
-        expect(Setting).to receive(:need_approval).and_return(true)
+        expect(Setting).to receive(:require_approval).and_return(true)
       end
 
-      expect(helper.need_approval?).to eq true
+      expect(helper.require_approval?).to eq true
     end
 
     it 'returns false when approval is not needed' do
       without_partial_double_verification do
-        expect(Setting).to receive(:need_approval).and_return(false)
+        expect(Setting).to receive(:require_approval).and_return(false)
       end
 
-      expect(helper.need_approval?).to eq false
+      expect(helper.require_approval?).to eq false
     end
   end
 

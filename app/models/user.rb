@@ -154,11 +154,11 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && (approved? || !Setting.need_approval)
+    super && (approved? || !Setting.require_approval)
   end
 
   def inactive_message
-    if !approved? && Setting.need_approval
+    if !approved? && Setting.require_approval
       :not_approved
     else
       super

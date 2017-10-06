@@ -74,13 +74,13 @@ RSpec.describe User, type: :model do
 
     describe 'approved' do
       around do |example|
-        need_approval = Setting.need_approval
+        require_approval = Setting.require_approval
         example.run
-        Setting.need_approval = need_approval
+        Setting.require_approval = require_approval
       end
 
       it 'returns an array of users who are approved' do
-        Setting.need_approval = true
+        Setting.require_approval = true
         user_1 = Fabricate(:user, approved_at: nil)
         user_2 = Fabricate(:user, approved_at: Time.now)
         expect(User.approved).to match_array([user_2])

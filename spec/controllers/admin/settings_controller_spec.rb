@@ -81,17 +81,17 @@ RSpec.describe Admin::SettingsController, type: :controller do
 
       context do
         around do |example|
-          need_approval = Setting.need_approval
+          require_approval = Setting.require_approval
           example.run
-          Setting.need_approval = need_approval
+          Setting.require_approval = require_approval
         end
 
-        it 'typecasts need_approval to boolean' do
-          Setting.need_approval = false
-          patch :update, params: { form_admin_settings: { need_approval: '1' } }
+        it 'typecasts require_approval to boolean' do
+          Setting.require_approval = false
+          patch :update, params: { form_admin_settings: { require_approval: '1' } }
 
           expect(response).to redirect_to(edit_admin_settings_path)
-          expect(Setting.need_approval).to eq true
+          expect(Setting.require_approval).to eq true
         end
       end
     end

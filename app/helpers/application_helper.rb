@@ -21,8 +21,8 @@ module ApplicationHelper
     Setting.open_deletion
   end
 
-  def need_approval?
-    Setting.need_approval
+  def require_approval?
+    Setting.require_approval
   end
 
   def add_rtl_body_class(other_classes)

@@ -218,8 +218,8 @@ en:
         desc_html: Display public timeline on landing page
         title: Timeline preview
       title: Site Settings
-      need_approval:
-        desc_html: Need admins' approval for registration
+      require_approval:
+        desc_html: Require admins' approval for registration
         title: Restricted registration
     statuses:
       back_to_account: Back to account page
@@ -263,7 +263,7 @@ en:
     your_token: Your access token
   auth:
     agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
-    need_approval_hint: Your account will be activated after administrator's approval.
+    require_approval_hint: Your account will be activated after administrator's approval.
     change_password: Security
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.

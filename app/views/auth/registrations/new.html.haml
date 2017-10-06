@@ -18,6 +18,6 @@
     = f.button :button, t('auth.register'), type: :submit
 
   %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
-  - if need_approval?
-    %p.hint.subtle-hint=t('auth.need_approval_hint')
+  - if require_approval?
+    %p.hint.subtle-hint=t('auth.require_approval_hint')
 .form-footer= render 'auth/shared/links'
