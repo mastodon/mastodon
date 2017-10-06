@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { makeGetNotification } from '../../../selectors';
 import Notification from '../components/notification';
-import { mentionCompose } from '../../../actions/compose';
 
 const makeMapStateToProps = () => {
   const getNotification = makeGetNotification();
@@ -13,10 +12,4 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = dispatch => ({
-  onMention: (account, router) => {
-    dispatch(mentionCompose(account, router));
-  },
-});
-
-export default connect(makeMapStateToProps, mapDispatchToProps)(Notification);
+export default connect(makeMapStateToProps)(Notification);

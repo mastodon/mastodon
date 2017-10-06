@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Motion from 'react-motion/lib/Motion';
-import spring from 'react-motion/lib/spring';
+import { Motion, spring } from 'react-motion';
 
 export default class Warning extends React.PureComponent {
 
