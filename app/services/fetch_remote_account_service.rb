@@ -5,24 +5,24 @@ class FetchRemoteAccountService < BaseService
 
   def call(url, prefetched_body = nil, protocol = :ostatus)
     if prefetched_body.nil?
-      resource_url, resource_options, protocol = FetchAtomService.new.call(url)
+      resource_url, body, protocol = FetchAtomService.new.call(url)
     else
-      resource_url     = url
-      resource_options = { prefetched_body: prefetched_body }
+      resource_url = url
+      body         = prefetched_body
     end
 
     case protocol
     when :ostatus
-      process_atom(resource_url, **resource_options)
+      process_atom(resource_url, body)
     when :activitypub
-      ActivityPub::FetchRemoteAccountService.new.call(resource_url, **resource_options)
+      ActivityPub::FetchRemoteAccountService.new.call(resource_url, body)
     end
   end
 
   private
 
-  def process_atom(url, prefetched_body:)
-    xml = Nokogiri::XML(prefetched_body)
+  def process_atom(url, body)
+    xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
     account = author_from_xml(xml.at_xpath('/xmlns:feed', xmlns: OStatus::TagManager::XMLNS), false)

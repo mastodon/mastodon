@@ -189,7 +189,7 @@ class ResolveRemoteAccountService < BaseService
   def actor_json
     return @actor_json if defined?(@actor_json)
 
-    json        = fetch_resource(actor_url, false)
+    json        = fetch_resource(actor_url)
     @actor_json = supported_context?(json) && json['type'] == 'Person' ? json : nil
   end
 
