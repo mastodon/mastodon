@@ -131,7 +131,7 @@ class Formatter
   end
 
   def rewrite(text, entities)
-    chars = text.to_s.to_char_a
+    chars = text.to_s.chars
 
     # Sort by start index
     entities = entities.sort_by do |entity|
@@ -154,10 +154,7 @@ class Formatter
   end
 
   def link_to_url(entity)
-    normalized_url = Addressable::URI.parse(entity[:url]).normalize
-    html_attrs     = { target: '_blank', rel: 'nofollow noopener' }
-
-    Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), normalized_url, html_attrs)
+    url_html(entity[:url])
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     encode(entity[:url])
   end
@@ -184,14 +181,15 @@ class Formatter
     hashtag_html(entity[:hashtag])
   end
 
-  def link_html(url)
-    url    = Addressable::URI.parse(url).to_s
-    prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
-    text   = url[prefix.length, 30]
-    suffix = url[prefix.length + 30..-1]
-    cutoff = url[prefix.length..-1].length > 30
+  def url_html(url)
+    url            = Addressable::URI.parse(url).to_s
+    normalized_url = Addressable::URI.parse(url).normalize
+    prefix         = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
+    text           = url[prefix.length, 30]
+    suffix         = url[prefix.length + 30..-1]
+    cutoff         = url[prefix.length..-1].length > 30
 
-    "<span class=\"invisible\">#{encode(prefix)}</span><span class=\"#{cutoff ? 'ellipsis' : ''}\">#{encode(text)}</span><span class=\"invisible\">#{encode(suffix)}</span>"
+    "<a href=\"#{encode(normalized_url)}\" target=\"_blank\" rel=\"nofollow noopener\"><span class=\"invisible\">#{encode(prefix)}</span><span class=\"#{cutoff ? 'ellipsis' : ''}\">#{encode(text)}</span><span class=\"invisible\">#{encode(suffix)}</span></a>"
   end
 
   def hashtag_html(tag)

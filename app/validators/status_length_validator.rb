@@ -24,8 +24,8 @@ class StatusLengthValidator < ActiveModel::Validator
 
   def countable_text(status)
     status.text.dup.tap do |new_text|
-      new_text.gsub!(FetchLinkCardService::URL_PATTERN, 'x' * 23)
-      new_text.gsub!(Account::MENTION_RE, '@\2')
+      new_text.gsub!(Regex[:valid_url_body], 'x' * 23)
+      new_text.gsub!(Regex[:valid_mention], '@\2')
     end
   end
 end
