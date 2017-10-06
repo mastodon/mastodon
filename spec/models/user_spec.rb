@@ -204,36 +204,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#request_approval' do
-    around do |example|
-      queue_adapter = ActiveJob::Base.queue_adapter
-      need_approval = Setting.need_approval?
-      example.run
-      ActiveJob::Base.queue_adapter = queue_adapter
-      Setting.need_approval = need_approval
-    end
-
-    it 'delivers approval request later when need_approval is true' do
-      Setting.need_approval = true
-      admin = Fabricate(:user, admin: true)
-      user = Fabricate(:user)
-      ActiveJob::Base.queue_adapter = :test
-
-      expect{user.request_approval}.to have_enqueued_job(ActionMailer::DeliveryJob)
-      expect(user.approved?).to be false
-    end
-
-    it 'automatically approve instead of requesting approval when need_approval is false' do
-      Setting.need_approval = false
-      admin = Fabricate(:user, admin: true)
-      user = Fabricate(:user)
-      ActiveJob::Base.queue_adapter = :test
-
-      expect{user.request_approval}.not_to have_enqueued_job(ActionMailer::DeliveryJob)
-      expect(user.approved?).to be true
-    end
-  end
-
   describe '#setting_auto_play_gif' do
     it 'returns auto-play gif setting' do
       user = Fabricate(:user)
