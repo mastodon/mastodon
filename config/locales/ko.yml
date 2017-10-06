@@ -28,8 +28,8 @@ ko:
     learn_more: 자세히
     other_instances: 다른 인스턴스
     source_code: 소스 코드
-    status_count_after: Toot
-    status_count_before: Toot 수
+    status_count_after: 툿
+    status_count_before: 툿 수
     user_count_after: 명
     user_count_before: 사용자 수
     what_is_mastodon: Mastodon이란?
@@ -41,8 +41,8 @@ ko:
     nothing_here: 아무 것도 없습니다.
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
-    posts: Toot
-    posts_with_replies: Toot와 답장
+    posts: 툿
+    posts_with_replies: 툿과 답장
     remote_follow: 리모트 팔로우
     reserved_username: 이 아이디는 예약되어 있습니다.
     roles:
@@ -94,12 +94,13 @@ ko:
       resubscribe: 다시 구독
       salmon_url: Salmon URL
       search: 검색
+      shared_inbox_url: 공유된 inbox URL
       show:
         created_reports: 이 계정에서 제출된 신고
         report: 신고
         targeted_reports: 이 계정에 대한 신고
       silence: 침묵
-      statuses: Toot 수
+      statuses: 툿 수
       subscribe: 구독하기
       title: 계정
       undo_silenced: 침묵 해제
@@ -108,14 +109,21 @@ ko:
       username: 아이디
       web: Web
     custom_emojis:
+      copied_msg: 성공적으로 emoji의 로컬 복사본을 생성했습니다
+      copy: 복사
+      copy_failed_msg: Emoji의 로컬 복사본을 만드는 데 실패하였습니다
       created_msg: 에모지가 성공적으로 생성되었습니다!
       delete: 삭제
       destroyed_msg: 에모지가 성공적으로 삭제되었습니다!
-      emoji: Emoji
+      disable: Disable
+      disabled_msg: 성공적으로 비활성화하였습니다
+      emoji: 에모지
+      enable: 활성화
+      enabled_msg: 성공적으로 활성화하였습니다
       image_hint: 50KB 이하의 PNG
       new:
         title: 새 커스텀 에모지 추가
-      shortcode: Shortcode
+      shortcode: 짧은 코드
       shortcode_hint: 최소 2글자, 영문자, 숫자, _만 사용 가능
       title: 커스텀 에모지
       upload: 업로드
@@ -128,7 +136,7 @@ ko:
         create: 차단 추가
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 모더레이션을 적용하게 할 수 있습니다.
         severity:
-          desc_html: "<strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 Toot을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다."
+          desc_html: "<strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 툿을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다."
           noop: 없음
           silence: 침묵
           suspend: 정지
@@ -151,6 +159,16 @@ ko:
         undo: 실행 취소
       title: 도메인 차단
       undo: 실행 취소
+    email_domain_blocks:
+      add_new: 새로 추가
+      created_msg: Email 도메인 차단 규칙을 생성했습니다
+      delete: 삭제
+      destroyed_msg: Email 도메인 차단 규칙을 삭제했습니다
+      domain: 도메인
+      new:
+        create: 차단 규칙 생성
+        title: 새 Email 도메인 차단
+      title: Email 도메인 차단
     instances:
       account_count: 알려진 계정의 수
       domain_name: 도메인 이름
@@ -228,7 +246,7 @@ ko:
         show: 미디어 보여주기
         title: 미디어
       no_media: 미디어 없음
-      title: 계정 Toot
+      title: 계정 툿
       with_media: 미디어 있음
     subscriptions:
       callback_url: 콜백 URL
@@ -362,8 +380,8 @@ ko:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
     favourite:
-      body: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다."
-      subject: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다"
+      body: "%{name} 님이 내 툿을 즐겨찾기에 등록했습니다."
+      subject: "%{name} 님이 내 툿을 즐겨찾기에 등록했습니다"
     follow:
       body: "%{name} 님이 나를 팔로우 했습니다"
       subject: "%{name} 님이 나를 팔로우 했습니다"
@@ -374,8 +392,8 @@ ko:
       body: "%{name} 님이 답장을 보냈습니다:"
       subject: "%{name} 님이 답장을 보냈습니다"
     reblog:
-      body: "%{name} 님이 내 Toot을 부스트 했습니다:"
-      subject: "%{name} 님이 내 Toot을 부스트 했습니다"
+      body: "%{name} 님이 내 툿을 부스트 했습니다:"
+      subject: "%{name} 님이 내 툿을 부스트 했습니다"
   number:
     human:
       decimal_units:
@@ -398,7 +416,7 @@ ko:
     web: 웹
   push_notifications:
     favourite:
-      title: "%{name} 님이 당신의 Toot를 즐겨찾기에 등록했습니다."
+      title: "%{name} 님이 당신의 툿를 즐겨찾기에 등록했습니다."
     follow:
       title: "%{name} 님이 나를 팔로우 하고 있습니다."
     group:
@@ -409,7 +427,7 @@ ko:
       action_favourite: 즐겨찾기
       title: "%{name} 님이 답장을 보냈습니다"
     reblog:
-      title: "%{name} 님이 당신의 Toot를 부스트 했습니다."
+      title: "%{name} 님이 당신의 툿을 부스트 했습니다."
   remote_follow:
     acct: 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
@@ -479,7 +497,7 @@ ko:
     show_more: 더 보기
     visibilities:
       private: 비공개
-      private_long: 팔로워에게만 표시됩니다
+      private_long: 팔로워에게만 공개됩니다
       public: 공개
       public_long: 누구나 볼 수 있으며, 공개 타임라인에 표시됩니다
       unlisted: Unlisted
