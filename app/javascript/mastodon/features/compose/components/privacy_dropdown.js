@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import { Overlay } from 'react-overlays';
+import Overlay from 'react-overlays/lib/Overlay';
 import { Motion, spring } from 'react-motion';
 import detectPassiveEvents from 'detect-passive-events';
 import classNames from 'classnames';
