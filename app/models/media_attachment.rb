@@ -44,6 +44,7 @@ class MediaAttachment < ApplicationRecord
                 threads: 2,
                 vcodec: 'libx264',
                 acodec: 'aac',
+                movflags: '+faststart',
             },
         },
     },
