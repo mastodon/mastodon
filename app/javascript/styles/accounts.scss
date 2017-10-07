@@ -203,6 +203,31 @@
     color: $ui-secondary-color;
   }
 
+  .metadata {
+    margin: 15px 0;
+    border: thin $ui-base-color solid;
+    border-collapse: collapse;
+    padding: 0;
+
+    th {
+      margin: 0;
+      border: thin $ui-base-color solid;
+      padding: 0 5px;
+      color: $ui-secondary-color;
+      background: darken($ui-base-color, 8%);
+      width: 94px;
+      vertical-align: middle;
+    }
+
+    td {
+      margin: 0;
+      border: thin $ui-base-color solid;
+      padding: 0 5px;
+      color: $ui-primary-color;
+      vertical-align: middle;
+    }
+  }
+
   @media screen and (max-width: 480px) {
     display: block;
 

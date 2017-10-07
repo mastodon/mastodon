@@ -34,11 +34,11 @@
     .bio
       .account__header__content.p-note.emojify!=processed_bio[:text]
       - if processed_bio[:metadata].length > 0
-        .metadata<
+        %table.metadata<
           - processed_bio[:metadata].each do |i|
-            .metadata-item><
-              %b.emojify>!=i[0]
-              %span.emojify>!=i[1]
+            %tr.metadata-item><
+              %th.emojify>!=i[0]
+              %td.emojify>!=i[1]
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }
