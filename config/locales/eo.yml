@@ -123,6 +123,13 @@ eo:
         silence: Silenti
         suspend: Suspendi
       severity: Severeco
+      show:
+        affected_accounts:
+          one: Unu konto en la datumbazo esta afekta
+          other: "%{count} kontoj en la datumbazo esta afekta"
+        retroactive:
+          silence: Malfari silenti ĉio konton de ĉi tiu domajno
+          suspend: Malfari suspendi ĉio konton de ĉi tiu domajno
         title: Malfari domajno bloko por %{domain}
         undo: Malfari
       title: Domajnoj blokoj
@@ -167,6 +174,29 @@ eo:
       title: Raportoj
       unresolved: Ne solvita
       view: Vidi
+    settings:
+      bootstrap_timeline_accounts:
+        desc_html: Disigi multaj uzantnomoj per komo. Nur lokaj kaj malsloŝi kontoj estus operaci. Defaŭlo Defaŭlo kiam malplena estas ĉio lokaj administristoj.
+        title: Defaŭltoj sakvatoj al novoj uzantoj
+      contact_information:
+        email: Afero retpoŝto
+        username: kontakto uzantnomo
+      registrations:
+        deletion:
+          desc_html: Permesi ĉiuj forigi ilian konton
+          title: Malfermi konto forigo
+        open:
+          desc_html: Permesi ĉiuj krei konto
+          title: Malfermi registrado
+      title: Retparaĝoj preferoj
+    statuses:
+      batch:
+        delete: Forigi
+    title: Administri
+  admin_mailer:
+    new_report:
+      body: "%{reporter} raportis %{target}"
+      subject: Nova raporto por %{instance} (#%{id})
   application_mailer:
     settings: 'Ŝanĝi la retpoŝt-mesaĝajn preferojn: %{link}'
     signature: Sciigoj de Mastodon el %{instance}
@@ -175,6 +205,7 @@ eo:
     invalid_url: La URL donita ne estas valida
   auth:
     change_password: Ŝanĝi pasvorton
+    delete_account: Forigi konton
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     forgot_password: Pasvorto forgesita?
     login: Ensaluti
@@ -186,6 +217,12 @@ eo:
   authorize_follow:
     error: Bedaŭrinde, okazis eraro provante konsulti la foran konton
     follow: Sekvi
+    follow_request: 'Vi sendis sekvatin peton al:'
+    following: 'Sukceso! Vi nun sekvi:'
+    post_follow:
+      close: Aŭ, Vi justa povas fermi ĉi tion.
+      return: "Return to the user's profile"
+      web: Iri al reto
     title: Sekvi %{acct}
   datetime:
     distance_in_words:
