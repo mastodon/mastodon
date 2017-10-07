@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20171006142024) do
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
   end
 
+  create_table "account_moderation_notes", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "account_id"
+    t.bigint "target_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_moderation_notes_on_account_id"
+    t.index ["target_account_id"], name: "index_account_moderation_notes_on_target_account_id"
+  end
+
   create_table "accounts", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "domain"
@@ -449,6 +459,7 @@ ActiveRecord::Schema.define(version: 20171006142024) do
   end
 
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
+  add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade

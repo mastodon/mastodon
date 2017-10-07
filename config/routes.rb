@@ -147,6 +147,8 @@ Rails.application.routes.draw do
         post :disable
       end
     end
+
+    resources :account_moderation_notes, only: [:create, :destroy]
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)
