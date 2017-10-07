@@ -100,7 +100,12 @@ describe('emoji_index', () => {
   it('can search for thinking_face', () => {
     let expected = [ { id: 'thinking_face', unified: '1f914', native: '🤔' } ];
     expect(search('thinking_fac').map(trimEmojis)).to.deep.equal(expected);
-    // this is currently broken in emoji-mart
-    // expect(emojiIndex.search('thinking_fac').map(trimEmojis)).to.deep.equal(expected);
+    expect(emojiIndex.search('thinking_fac').map(trimEmojis)).to.deep.equal(expected);
+  });
+
+  it('can search for woman-facepalming', () => {
+    let expected = [ { id: 'woman-facepalming', unified: '1f926-200d-2640-fe0f', native: '🤦‍♀️' } ];
+    expect(search('woman-facep').map(trimEmojis)).to.deep.equal(expected);
+    expect(emojiIndex.search('woman-facep').map(trimEmojis)).deep.equal(expected);
   });
 });
