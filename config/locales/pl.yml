@@ -62,7 +62,7 @@ pl:
       followers: Śledzący
       followers_url: Adres śledzących
       follows: Śledzeni
-      inbox: Adres skrzynki
+      inbox_url: Adres skrzynki
       ip: Adres IP
       location:
         all: Wszystkie
@@ -107,10 +107,17 @@ pl:
       username: Nazwa użytkownika
       web: Sieć
     custom_emojis:
+      copied_msg: Pomyślnie utworzono lokalną kopię emoji
+      copy: Kopiuj
+      copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
       created_msg: Pomyślnie utworzono emoji!
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto emoji!
+      disable: Wyłącz
+      disabled_msg: Pomyślnie wyłączono emoji
       emoji: Emoji
+      enable: Włącz
+      enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
       new:
         title: Dodaj nowe niestandardowe emoji
@@ -151,6 +158,16 @@ pl:
         undo: Cofnij
       title: Zablokowane domeny
       undo: Cofnij
+    email_domain_blocks:
+      add_new: Dodaj nową
+      created_msg: Pomyślnie utworzono blokadę domeny e-mail
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
+      domain: Domena
+      new:
+        create: Utwórz blokadę
+        title: Nowa blokada domeny e-mail
+      title: Blokowanie domen e-mail
     instances:
       account_count: Znane konta
       domain_name: Domena
@@ -394,6 +411,11 @@ pl:
     next: Następna
     prev: Poprzednia
     truncate: "&hellip;"
+  preferences:
+    languages: Języki
+    other: Pozostałe
+    publishing: Publikowanie
+    web: Sieć
   push_notifications:
     favourite:
       title: "%{name} dodał Twój status do ulubionych"
@@ -461,6 +483,7 @@ pl:
     export: Eksportowanie danych
     followers: Autoryzowani śledzący
     import: Importowanie danych
+    notifications: Powiadomienia
     preferences: Preferencje
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { unicodeMapping } from '../emojione_light';
+import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
 
 const assetHost = process.env.CDN_HOST || '';
 
@@ -17,8 +17,13 @@ export default class AutosuggestEmoji extends React.PureComponent {
     if (emoji.custom) {
       url = emoji.imageUrl;
     } else {
-      const [ filename ] = unicodeMapping[emoji.native];
-      url = `${assetHost}/emoji/${filename}.svg`;
+      const mapping = unicodeMapping[emoji.native] || unicodeMapping[emoji.native.replace(/\uFE0F$/, '')];
+
+      if (!mapping) {
+        return null;
+      }
+
+      url = `${assetHost}/emoji/${mapping.filename}.svg`;
     }
 
     return (

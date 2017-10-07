@@ -29,7 +29,7 @@ export default class MediaModal extends ImmutablePureComponent {
   };
 
   handleSwipe = (index) => {
-    this.setState({ index: (index) % this.props.media.size });
+    this.setState({ index: index % this.props.media.size });
   }
 
   handleNextClick = () => {
@@ -38,6 +38,11 @@ export default class MediaModal extends ImmutablePureComponent {
 
   handlePrevClick = () => {
     this.setState({ index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size });
+  }
+
+  handleChangeIndex = (e) => {
+    const index = Number(e.currentTarget.getAttribute('data-index'));
+    this.setState({ index: index % this.props.media.size });
   }
 
   handleKeyUp = (e) => {
@@ -67,9 +72,20 @@ export default class MediaModal extends ImmutablePureComponent {
     const { media, intl, onClose } = this.props;
 
     const index = this.getIndex();
+    let pagination = [];
 
     const leftNav  = media.size > 1 && <button tabIndex='0' className='modal-container__nav modal-container__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><i className='fa fa-fw fa-chevron-left' /></button>;
     const rightNav = media.size > 1 && <button tabIndex='0' className='modal-container__nav  modal-container__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><i className='fa fa-fw fa-chevron-right' /></button>;
+
+    if (media.size > 1) {
+      pagination = media.map((item, i) => {
+        const classes = ['media-modal__button'];
+        if (i === index) {
+          classes.push('media-modal__button--active');
+        }
+        return (<li className='media-modal__page-dot' key={i}><button tabIndex='0' className={classes.join(' ')} onClick={this.handleChangeIndex} data-index={i}>{i + 1}</button></li>);
+      });
+    }
 
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
@@ -98,6 +114,9 @@ export default class MediaModal extends ImmutablePureComponent {
             {content}
           </ReactSwipeableViews>
         </div>
+        <ul className='media-modal__pagination'>
+          {pagination}
+        </ul>
 
         {rightNav}
       </div>

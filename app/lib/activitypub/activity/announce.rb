@@ -27,7 +27,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
     if object_uri.start_with?('http')
       return if ActivityPub::TagManager.instance.local_uri?(object_uri)
 
-      ActivityPub::FetchRemoteStatusService.new.call(object_uri)
+      ActivityPub::FetchRemoteStatusService.new.call(object_uri, id: true)
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'])
     end
