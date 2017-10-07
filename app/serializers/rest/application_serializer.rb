@@ -15,4 +15,8 @@ class REST::ApplicationSerializer < ActiveModel::Serializer
   def client_secret
     object.secret
   end
+
+  def website
+    object.website.presence
+  end
 end
