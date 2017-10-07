@@ -3,13 +3,13 @@
 module Paperclip
   class AudioTranscoder < Paperclip::Processor
     def make
-       final_file = Paperclip::Transcoder.make(file, options, attachment)
+      final_file = Paperclip::Transcoder.make(file, options, attachment)
+      
+      attachment.instance.file_file_name    = 'media.mp4'
+      attachment.instance.file_content_type = 'video/mp4'
+      attachment.instance.type              = MediaAttachment.types[:video]
 
-       attachment.instance.file_file_name    = 'media.mp4'
-       attachment.instance.file_content_type = 'video/mp4'
-       attachment.instance.type              = MediaAttachment.types[:video]
-
-       final_file
+      final_file
     end
   end
 end
