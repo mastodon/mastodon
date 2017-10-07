@@ -31,6 +31,19 @@ let EmojiPicker, Emoji; // load asynchronously
 const backgroundImageFn = () => `${assetHost}/emoji/sheet.png`;
 const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
 
+const categoriesSort = [
+  'recent',
+  'custom',
+  'people',
+  'nature',
+  'foods',
+  'activity',
+  'places',
+  'objects',
+  'symbols',
+  'flags',
+];
+
 class ModifierPickerMenu extends React.PureComponent {
 
   static propTypes = {
@@ -141,6 +154,9 @@ class EmojiPickerMenu extends React.PureComponent {
     arrowOffsetLeft: PropTypes.string,
     arrowOffsetTop: PropTypes.string,
     intl: PropTypes.object.isRequired,
+    skinTone: PropTypes.number.isRequired,
+    onSkinTone: PropTypes.func.isRequired,
+    autoPlay: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -151,7 +167,6 @@ class EmojiPickerMenu extends React.PureComponent {
 
   state = {
     modifierOpen: false,
-    modifier: 1,
   };
 
   handleDocumentClick = e => {
@@ -214,20 +229,18 @@ class EmojiPickerMenu extends React.PureComponent {
   }
 
   handleModifierChange = modifier => {
-    if (modifier !== this.state.modifier) {
-      this.setState({ modifier });
-    }
+    this.props.onSkinTone(modifier);
   }
 
   render () {
-    const { loading, style, intl } = this.props;
+    const { loading, style, intl, custom_emojis, autoPlay, skinTone } = this.props;
 
     if (loading) {
       return <div style={{ width: 299 }} />;
     }
 
     const title = intl.formatMessage(messages.emoji);
-    const { modifierOpen, modifier } = this.state;
+    const { modifierOpen } = this.state;
 
     return (
       <div className={classNames('emoji-picker-dropdown__menu', { selecting: modifierOpen })} style={style} ref={this.setRef}>
@@ -235,20 +248,22 @@ class EmojiPickerMenu extends React.PureComponent {
           perLine={8}
           emojiSize={22}
           sheetSize={32}
+          custom={buildCustomEmojis(custom_emojis, autoPlay)}
           color=''
           emoji=''
           set='twitter'
           title={title}
           i18n={this.getI18n()}
           onClick={this.handleClick}
-          skin={modifier}
+          include={categoriesSort}
+          skin={skinTone}
           showPreview={false}
           backgroundImageFn={backgroundImageFn}
         />
 
         <ModifierPicker
           active={modifierOpen}
-          modifier={modifier}
+          modifier={skinTone}
           onOpen={this.handleModifierOpen}
           onClose={this.handleModifierClose}
           onChange={this.handleModifierChange}
@@ -267,6 +282,8 @@ export default class EmojiPickerDropdown extends React.PureComponent {
     autoPlay: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
+    onSkinTone: PropTypes.func.isRequired,
+    skinTone: PropTypes.number.isRequired,
   };
 
   state = {
@@ -279,8 +296,6 @@ export default class EmojiPickerDropdown extends React.PureComponent {
   }
 
   onShowDropdown = () => {
-    const { autoPlay } = this.props;
-
     this.setState({ active: true });
 
     if (!EmojiPicker) {
@@ -288,9 +303,8 @@ export default class EmojiPickerDropdown extends React.PureComponent {
 
       EmojiPickerAsync().then(EmojiMart => {
         EmojiPicker = EmojiMart.Picker;
-        Emoji = EmojiMart.Emoji;
-        // populate custom emoji in search
-        EmojiMart.emojiIndex.search('', { custom: buildCustomEmojis(this.props.custom_emojis, autoPlay) });
+        Emoji       = EmojiMart.Emoji;
+
         this.setState({ loading: false });
       }).catch(() => {
         this.setState({ loading: false });
@@ -327,7 +341,7 @@ export default class EmojiPickerDropdown extends React.PureComponent {
   }
 
   render () {
-    const { intl, onPickEmoji } = this.props;
+    const { intl, onPickEmoji, autoPlay, onSkinTone, skinTone } = this.props;
     const title = intl.formatMessage(messages.emoji);
     const { active, loading } = this.state;
 
@@ -347,6 +361,9 @@ export default class EmojiPickerDropdown extends React.PureComponent {
             loading={loading}
             onClose={this.onHideDropdown}
             onPick={onPickEmoji}
+            autoPlay={autoPlay}
+            onSkinTone={onSkinTone}
+            skinTone={skinTone}
           />
         </Overlay>
       </div>
