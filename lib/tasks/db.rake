@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require Rails.root.join('lib', 'mastodon', 'timestamp_ids')
+require_relative '../mastodon/snowflake'
 
 def each_schema_load_environment
   # If we're in development, also run this for the test environment.
@@ -63,13 +63,13 @@ namespace :db do
 
   task :define_timestamp_id do
     each_schema_load_environment do
-      Mastodon::TimestampIds.define_timestamp_id
+      Mastodon::Snowflake.define_timestamp_id
     end
   end
 
   task :ensure_id_sequences_exist do
     each_schema_load_environment do
-      Mastodon::TimestampIds.ensure_id_sequences_exist
+      Mastodon::Snowflake.ensure_id_sequences_exist
     end
   end
 end

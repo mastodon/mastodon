@@ -34,7 +34,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         reblog: cached_reblog,
         text: content,
         spoiler_text: content_warning,
-        created_at: published,
+        created_at: @options[:override_timestamps] ? nil : published,
         reply: thread?,
         language: content_language,
         visibility: visibility_scope,
