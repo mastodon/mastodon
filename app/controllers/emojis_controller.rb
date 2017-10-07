@@ -6,7 +6,10 @@ class EmojisController < ApplicationController
   def show
     respond_to do |format|
       format.json do
-        render json: @emoji, serializer: ActivityPub::EmojiSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
+        render json: @emoji,
+               serializer: ActivityPub::EmojiSerializer,
+               adapter: ActivityPub::Adapter,
+               content_type: 'application/activity+json'
       end
     end
   end

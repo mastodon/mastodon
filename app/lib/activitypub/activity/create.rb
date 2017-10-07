@@ -86,6 +86,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_emoji(tag, _status)
+    return if skip_download?
     return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
 
     shortcode = tag['name'].delete(':')
@@ -94,7 +95,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     updated   = tag['updated']
     emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
 
-    return if skip_download? || (!emoji.nil? && emoji.updated_at >= updated && emoji.image_remote_url == image_url)
+    return unless emoji.nil? || emoji.updated_at >= updated
 
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
     emoji.image_remote_url = image_url
