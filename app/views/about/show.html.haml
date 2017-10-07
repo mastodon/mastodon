@@ -62,7 +62,7 @@
       .about-mastodon
         %h3= t 'about.what_is_mastodon'
         %p= t 'about.about_mastodon_html'
-        %a.button.button-secondary{ href: 'https://joinmastodon.org/' }= t 'about.learn_more'
+        = link_to t('about.learn_more'), 'https://joinmastodon.org/', class: 'button button-secondary'
         = render 'features'
   .footer-links
     .container
