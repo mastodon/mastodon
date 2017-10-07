@@ -43,6 +43,7 @@ eo:
       email: Retpoŝto
       followers: Sekvantoj
       followers_url: Sekvantoj URL
+      follows: Sekvatoj
       ip: IP
       location:
         all: Ĉio
@@ -104,7 +105,7 @@ eo:
         title: Aldoni nova kutimo emojio
       shortcode: Malongakodo
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
-      title: Kutimo emojioj
+      title: Kutimoj emojioj
       upload: Alŝuti
     domain_blocks:
       add_new: Aldoni novo
@@ -113,9 +114,9 @@ eo:
       domain: Domajno
       new:
         create: Krei bloko
-          noop: Nenio
-          silence: Silenti
-          suspend: Suspendi
+        noop: Nenio
+        silence: Silenti
+        suspend: Suspendi
         title: Nova domajno bloko
       reject_media: Reject media files
       severities:
@@ -196,15 +197,15 @@ eo:
       site_description_extended:
         title: Kutimo etendis informaĵo
       site_terms:
-        desc_html: Vi povas skribi via politika pri privateco reguloj de serve aŭ aliaj senpagaj. Vi povas uzi HTML
+        desc_html: Vi povas skribi via politika pri privateco reguloj de servo aŭ aliaj senpagaj. Vi povas uzi HTML
         title: Kutimoj reguloj de servo
       site_title: Petskribo nomo
       thumbnail:
         desc_html: Uzis por antaŭvido vojo OpenGraph kaj API. 1200x630px rekomendis
         title: Bildeto de petskribo
       timeline_preview:
-        desc_html: Vidigi publika kronologio sur surteriĝo paĝo
-        title: Antaŭvido de kronologio
+        desc_html: Vidigi publika tempolinio sur surteriĝo paĝo
+        title: Antaŭvido de tempolinio
       title: Retparaĝoj preferoj
     statuses:
       back_to_account: Irienigi al konton paĝon
@@ -262,7 +263,7 @@ eo:
     following: 'Sukceso! Vi nun sekvi:'
     post_follow:
       close: Aŭ, Vi justa povas fermi ĉi tion.
-      return: "Return to the user's profile"
+      return: Ilienigi al la uzantoan profilon
       web: Iri al reto
     title: Sekvi %{acct}
   datetime:
@@ -280,10 +281,16 @@ eo:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   exports:
-    blocks: Vi blokas
+    blocks: Via blokoj
     csv: CSV
-    follows: Vi sekvas
+    follows: Via sekvatoj
+    mutes: Via silentoj
     storage: Mediaĵa konservado
+  followers:
+    domain: Domajno
+    followers_count: Nombro de sekvatoj
+    lock_link: Ŝlosi via konton
+    purge: Forigi de sakvantoj
   generic:
     changes_saved_msg: Ŝanĝoj senprobleme konservitaj!
     powered_by: povigita de %{link}
@@ -297,9 +304,14 @@ eo:
     types:
       blocking: Listo de blokitoj
       following: Listo de sekvatoj
+      muting: Listo de silentoj
     upload: Alporti
   landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la Fediverse."
   landing_strip_signup_html: Se vi ne havas, vi povas <a href="%{sign_up_path}">membriĝi ĉi tie.</a>.
+  media_attachments:
+    validations:
+      images_and_video: Vi ne povas alligi video al statuson kiu jam havas bilojn
+      too_many: Vi ne povas alligi pli ol 4 dosieroj
   notification_mailer:
     digest:
       body: 'Jen eta resumo de tio, kio okazis en %{instance}, ekde kiam vi laste vizitis en %{since}:'
@@ -339,32 +351,79 @@ eo:
   pagination:
     next: Sekva
     prev: Malsekva
+  preferences:
+    languages: Lingvoj
+    other: Aliaj
+    publishing: Publikigi
+    web: Ret
+  push_notifications:
+    favourite:
+      title: "%{name} preferitis via statuso"
+    follow:
+      title: "%{name} estas sekvantas vin"
+    group:
+      title: "%{count} sciigoj"
+    mention:
+      action_boost: Akceli
+      action_expand: Pli
+      action_favourite: Preferi
+      title: "%{name} menciitis vin"
+    reblog:
+      title: "%{name} akcelis via statuson"
   remote_follow:
     acct: Enmetu vian uzantnomo@aperaĵo de kie vi volas sekvi tiun uzanton
     missing_resource: La URL de plusendado ne povis esti trovita
     proceed: Daŭrigi por plusendi
     prompt: 'Vi eksekvos:'
+  sessions:
+    activity: Lasta Aktiveco
+    browser: Retumilo
+    current_session: Aktuala sesio
+    description: "%{browser} sur %{platform}"
+    explanation: Ĉi tiuj estas la retumiloj nun ensalutinda en via Mastodon konton.
+    ip: IP
+    revoke: Revoki
+    revoke_success: La sesio estas revokis
+    title: Sesioj
   settings:
     authorized_apps: Rajtigitaj aplikaĵoj
     back: Reveni al Mastodon
+    delete: Konto forigo
+    development: Evoluno
     edit_profile: Redakti la profilon
     export: Elporti datumojn
+    followers: Rajtigis sekvantoj
     import: Alporti
+    notifications: Avizoj
     preferences: Preferoj
     settings: Agordoj
     two_factor_authentication: Dufaktora aŭtentigo
+    your_apps: Via aplikaĵoj
   statuses:
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj trapasita
+    pin_errors:
+      limit: Tro multaj tootoj fiksis
+      ownership: Aliaja tooto ne povas esti fiksis
+      private: Nepublika tooto ne povas esti fixis
+      reblog: Diskonigo ne povas esti fiksis
     show_more: Montri pli
     visibilities:
       private: Montri nur al sekvantoj
+      private_long: Montri nur al sekvantoj
       public: Publika
+      public_long: Ĉiuj povas vidi
       unlisted: Publika, sed ne aperos en publikaj tempolinioj
+      unlisted_long: Publika, sed ne aperos en publikaj tempolinioj
   stream_entries:
     click_to_show: Alklaki por montri
+    pinned: Fiksis
     reblogged: diskonigis
     sensitive_content: Tikla enhavo
+  terms:
+    title: "%{instance} Reguloj de servo kaj Politikaj pri privatecoj"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
