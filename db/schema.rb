@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005171936) do
+ActiveRecord::Schema.define(version: 20171006142024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 20171005171936) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "disabled", default: false, null: false
+    t.string "uri"
+    t.string "image_remote_url"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 

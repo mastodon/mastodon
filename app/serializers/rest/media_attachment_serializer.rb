@@ -19,6 +19,10 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
     end
   end
 
+  def remote_url
+    object.remote_url.presence
+  end
+
   def preview_url
     if object.needs_redownload?
       media_proxy_url(object.id, :small)

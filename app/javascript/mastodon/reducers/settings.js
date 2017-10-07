@@ -7,6 +7,8 @@ import uuid from '../uuid';
 const initialState = ImmutableMap({
   onboarded: false,
 
+  skinTone: 1,
+
   home: ImmutableMap({
     shows: ImmutableMap({
       reblog: true,

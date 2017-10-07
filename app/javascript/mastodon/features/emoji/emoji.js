@@ -5,6 +5,8 @@ const trie = new Trie(Object.keys(unicodeMapping));
 
 const assetHost = process.env.CDN_HOST || '';
 
+let allowAnimations = false;
+
 const emojify = (str, customEmojis = {}) => {
   let rtn = '';
   for (;;) {
@@ -25,7 +27,8 @@ const emojify = (str, customEmojis = {}) => {
         // now got a replacee as ':shortname:'
         // if you want additional emoji handler, add statements below which set replacement and return true.
         if (shortname in customEmojis) {
-          replacement = `<img draggable="false" class="emojione" alt="${shortname}" title="${shortname}" src="${customEmojis[shortname]}" />`;
+          const filename = allowAnimations ? customEmojis[shortname].url : customEmojis[shortname].static_url;
+          replacement = `<img draggable="false" class="emojione" alt="${shortname}" title="${shortname}" src="${filename}" />`;
           return true;
         }
         return false;
@@ -48,12 +51,14 @@ const emojify = (str, customEmojis = {}) => {
 
 export default emojify;
 
-export const buildCustomEmojis = customEmojis => {
+export const buildCustomEmojis = (customEmojis, overrideAllowAnimations = false) => {
   const emojis = [];
+
+  allowAnimations = overrideAllowAnimations;
 
   customEmojis.forEach(emoji => {
     const shortcode = emoji.get('shortcode');
-    const url       = emoji.get('static_url');
+    const url       = allowAnimations ? emoji.get('url') : emoji.get('static_url');
     const name      = shortcode.replace(':', '');
 
     emojis.push({

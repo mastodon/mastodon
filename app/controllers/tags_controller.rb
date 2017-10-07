@@ -17,7 +17,10 @@ class TagsController < ApplicationController
         @statuses = Status.as_tag_timeline(@tag, current_account, params[:local]).paginate_by_max_id(20, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
-        render json: collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
+        render json: collection_presenter,
+               serializer: ActivityPub::CollectionSerializer,
+               adapter: ActivityPub::Adapter,
+               content_type: 'application/activity+json'
       end
     end
   end

@@ -732,6 +732,12 @@
   .status__display-name strong {
     color: $ui-base-lighter-color;
   }
+
+  > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .status__action-bar {
@@ -896,9 +902,12 @@
   .account__header__display-name {
     color: $primary-text-color;
     display: inline-block;
+    width: 100%;
     font-size: 20px;
     line-height: 27px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .account__header__username {
@@ -907,6 +916,8 @@
     font-weight: 400;
     display: block;
     margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -1082,6 +1093,8 @@
 
 .account__display-name strong {
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .detailed-status__application,
@@ -1158,6 +1171,12 @@
 
   .fa {
     color: $ui-highlight-color;
+  }
+
+  > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -1266,11 +1285,14 @@
 .navigation-bar__profile {
   flex: 1 1 auto;
   margin-left: 8px;
+  overflow: hidden;
 }
 
 .navigation-bar__profile-account {
   display: block;
   font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .navigation-bar__profile-edit {
@@ -2632,19 +2654,36 @@ button.icon-button.active i.fa-retweet {
   flex-direction: column;
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
   }
 
-  100% {
-    opacity: 0.5;
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
   }
 }
 
 .pulse-loading {
-  animation: pulse 1s ease-in-out infinite;
-  animation-direction: alternate;
+  animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
 .emoji-picker-dropdown__menu {

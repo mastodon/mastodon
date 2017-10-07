@@ -96,8 +96,9 @@ Rails.application.routes.draw do
     resources :sessions, only: [:destroy]
   end
 
-  resources :media, only: [:show]
-  resources :tags,  only: [:show]
+  resources :media,  only: [:show]
+  resources :tags,   only: [:show]
+  resources :emojis, only: [:show]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 

@@ -58,9 +58,10 @@ const normalizeStatus = (state, status) => {
     normalStatus.reblog = status.reblog.id;
   }
 
-  const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  const searchContent = [status.spoiler_text, status.content].join('\n\n').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+
   const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
-    obj[`:${emoji.shortcode}:`] = emoji.static_url;
+    obj[`:${emoji.shortcode}:`] = emoji;
     return obj;
   }, {});
 
