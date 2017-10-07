@@ -38,7 +38,7 @@ eo:
       confirmed: Confirmis
       disable_two_factor_authentication: Malebligi 2FA
       display_name: Montri nomo
-      domain: Damajno
+      domain: Domajno
       edit: Redakti
       email: Retpoŝto
       followers: Sekvantoj
@@ -182,16 +182,52 @@ eo:
         email: Afero retpoŝto
         username: kontakto uzantnomo
       registrations:
+        closed_message:
+          desc_html: Vidigis sur antaŭpaĝo kian registrado estas fermis. Vi povas uzi HTML
+          title: Fermis registrado mesaĝo
         deletion:
           desc_html: Permesi ĉiuj forigi ilian konton
           title: Malfermi konto forigo
         open:
           desc_html: Permesi ĉiuj krei konto
           title: Malfermi registrado
+      site_description:
+        title: Priskribo de petskribo
+      site_description_extended:
+        title: Kutimo etendis informaĵo
+      site_terms:
+        desc_html: Vi povas skribi via politika pri privateco reguloj de serve aŭ aliaj senpagaj. Vi povas uzi HTML
+        title: Kutimoj reguloj de servo
+      site_title: Petskribo nomo
+      thumbnail:
+        desc_html: Uzis por antaŭvido vojo OpenGraph kaj API. 1200x630px rekomendis
+        title: Bildeto de petskribo
+      timeline_preview:
+        desc_html: Vidigi publika kronologio sur surteriĝo paĝo
+        title: Antaŭvido de kronologio
       title: Retparaĝoj preferoj
     statuses:
+      back_to_account: Irienigi al konton paĝon
       batch:
         delete: Forigi
+        nsfw_off: Malŝalti NSFW
+        nsfw_on: Ŝalti NSFW
+      execute: Execute
+      failed_to_execute: Failed to execute
+      media:
+        hide: Kaŝi kumunikiloj
+        show: Vidigi kumunikiloj
+        title: Kumunikiloj
+      no_media: Neniu Kumunikilo
+      title: Kontoj statusoj
+      with_media: Kun kumunikiloj
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmis
+      expires_in: Finiĝus en
+      last_delivery: plej freŝa transdono
+      title: WebSub
+      topic: Topic
     title: Administri
   admin_mailer:
     new_report:
@@ -202,7 +238,12 @@ eo:
     signature: Sciigoj de Mastodon el %{instance}
     view: 'Vidi:'
   applications:
+    created: Aplikaĵo sukcesa kreis
+    destroyed: Aplikaĵo sukcesa forigis
     invalid_url: La URL donita ne estas valida
+    regenerate_token: Regeneri aliron signon
+    token_regenerated: Aliro signo regeneris sukcese
+    your_token: Via aliro signo
   auth:
     change_password: Ŝanĝi pasvorton
     delete_account: Forigi konton
