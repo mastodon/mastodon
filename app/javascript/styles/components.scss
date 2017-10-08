@@ -4028,12 +4028,17 @@ button.icon-button.active i.fa-retweet {
       top: 10px;
     }
 
-    &__progress {
+    &__progress,
+    &__buffer {
       display: block;
       position: absolute;
       height: 4px;
       top: 10px;
       background: $ui-highlight-color;
+    }
+
+    &__buffer {
+      background: rgba($white, 0.2);
     }
 
     &__handle {
