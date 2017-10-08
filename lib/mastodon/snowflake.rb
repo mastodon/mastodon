@@ -1,7 +1,31 @@
 # frozen_string_literal: true
 
-module Mastodon::TimestampIds
+module Mastodon::Snowflake
   DEFAULT_REGEX = /timestamp_id\('(?<seq_prefix>\w+)'/
+
+  class Callbacks
+    def self.around_create(record)
+      now = Time.now.utc
+
+      if record.created_at.nil? || record.created_at >= now || record.created_at == record.updated_at
+        yield
+      else
+        record.id = Mastodon::Snowflake.id_at(record.created_at)
+        tries     = 0
+
+        begin
+          yield
+        rescue ActiveRecord::RecordNotUnique
+          raise if tries > 100
+
+          tries     += 1
+          record.id += rand(100)
+
+          retry
+        end
+      end
+    end
+  end
 
   class << self
     # Our ID will be composed of the following:
@@ -112,6 +136,13 @@ module Mastodon::TimestampIds
           $$ LANGUAGE plpgsql;
         SQL
       end
+    end
+
+    def id_at(timestamp)
+      id  = timestamp.to_i * 1000 + rand(1000)
+      id  = id << 16
+      id += rand(2**16)
+      id
     end
 
     private
