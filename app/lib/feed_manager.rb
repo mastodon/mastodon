@@ -84,10 +84,8 @@ class FeedManager
     timeline_key = key(:home, into_account.id)
     oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
 
-    from_account.statuses.select('id').where('id > ?', oldest_home_score).reorder(nil).find_in_batches do |statuses|
-      statuses.each do |status|
-        unpush(:home, into_account, status)
-      end
+    from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_home_score).reorder(nil).find_each do |status|
+      unpush(:home, into_account, status)
     end
   end
 
