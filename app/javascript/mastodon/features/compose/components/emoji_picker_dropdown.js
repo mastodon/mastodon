@@ -262,6 +262,7 @@ class EmojiPickerMenu extends React.PureComponent {
           skin={skinTone}
           showPreview={false}
           backgroundImageFn={backgroundImageFn}
+          emojiTooltip
         />
 
         <ModifierPicker
