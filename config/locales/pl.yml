@@ -2,6 +2,7 @@
 pl:
   about:
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
+    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_this: O tej instancji
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
@@ -75,6 +76,7 @@ pl:
         silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
+      moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
       not_subscribed: Nie zasubskrybowano
@@ -106,6 +108,13 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    account_moderation_notes:
+      account: Autor
+      created_at: Data
+      create: Dodaj
+      created_msg: Pomyślnie dodano notatkę moderacyjną!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     custom_emojis:
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
@@ -173,7 +182,7 @@ pl:
       domain_name: Domena
       title: Znane instancje
     reports:
-      action_taken_by: Akcja podjęta przez
+      action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       comment:
         label: Komentarz
