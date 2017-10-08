@@ -114,9 +114,10 @@ eo:
       domain: Domajno
       new:
         create: Krei bloko
-        noop: Nenio
-        silence: Silenti
-        suspend: Suspendi
+        severity:
+          noop: Nenio
+          silence: Silenti
+          suspend: Suspendi
         title: Nova domajno bloko
       reject_media: Reject media files
       severities:
