@@ -6,6 +6,7 @@ import { Map as ImmutableMap } from 'immutable';
 import { useEmoji } from '../../../actions/emojis';
 
 const perLine = 8;
+const lines   = 2;
 
 const getFrequentlyUsedEmojis = createSelector([
   state => state.getIn(['settings', 'frequentlyUsedEmojis'], ImmutableMap()),
@@ -13,7 +14,7 @@ const getFrequentlyUsedEmojis = createSelector([
     .keySeq()
     .sort((a, b) => emojiCounters.get(a) - emojiCounters.get(b))
     .reverse()
-    .slice(0, perLine * 4)
+    .slice(0, perLine * lines)
     .toArray()
 );
 
