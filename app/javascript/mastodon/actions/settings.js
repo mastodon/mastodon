@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const SETTING_CHANGE = 'SETTING_CHANGE';
+export const SETTING_SAVE   = 'SETTING_SAVE';
 
 export function changeSetting(key, value) {
   return dispatch => {
@@ -15,9 +16,9 @@ export function changeSetting(key, value) {
 };
 
 export function saveSettings() {
-  return (_, getState) => {
-    axios.put('/api/web/settings', {
-      data: getState().get('settings').toJS(),
-    });
+  return (dispatch, getState) => {
+    const data = getState().get('settings').filter((_, key) => key !== 'saved').toJS();
+
+    axios.put('/api/web/settings', { data }).then(() => dispatch({ type: SETTING_SAVE }));
   };
 };
