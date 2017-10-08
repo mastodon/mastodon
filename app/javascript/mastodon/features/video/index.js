@@ -233,7 +233,7 @@ export default class Video extends React.PureComponent {
           ref={this.setVideoRef}
           src={src}
           poster={preview}
-          preload={startTime ? true : null}
+          preload={startTime ? 'auto' : 'none'}
           loop
           role='button'
           tabIndex='0'
