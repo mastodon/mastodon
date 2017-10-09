@@ -29,7 +29,8 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", mastodon-font-sans-serif, sans-serif;
   }
 
-  &.app-body {
+  &.app-body,
+  &.error {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -72,13 +73,16 @@ body {
     text-align: center;
     color: $ui-primary-color;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .dialog img {
       display: block;
-      margin: 0 auto;
       max-width: 470px;
       width: 100%;
       height: auto;
+      margin-top: -120px;
     }
 
     .dialog h1 {

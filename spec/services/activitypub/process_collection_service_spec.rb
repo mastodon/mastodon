@@ -28,7 +28,7 @@ RSpec.describe ActivityPub::ProcessCollectionService do
 
       it 'processes payload with sender if no signature exists' do
         expect_any_instance_of(ActivityPub::LinkedDataSignature).not_to receive(:verify_account!)
-        expect(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), forwarder)
+        expect(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), forwarder, instance_of(Hash))
 
         subject.call(json, forwarder)
       end
@@ -37,7 +37,7 @@ RSpec.describe ActivityPub::ProcessCollectionService do
         payload['signature'] = {'type' => 'RsaSignature2017'}
 
         expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_account!).and_return(actor)
-        expect(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor)
+        expect(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
 
         subject.call(json, forwarder)
       end
