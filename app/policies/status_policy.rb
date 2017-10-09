@@ -9,6 +9,8 @@ class StatusPolicy
   end
 
   def show?
+    return false if local_only? && account.nil?
+
     if direct?
       owned? || status.mentions.where(account: account).exists?
     elsif private?
@@ -44,5 +46,9 @@ class StatusPolicy
 
   def private?
     status.private_visibility?
+  end
+  
+  def local_only?
+    status.local_only?
   end
 end

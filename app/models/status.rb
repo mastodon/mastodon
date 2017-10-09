@@ -257,6 +257,11 @@ class Status < ApplicationRecord
     end
   end
 
+  def local_only?
+    # match both with and without U+FE0F (the emoji variation selector)
+    /👁\ufe0f?\z/.match?(content)
+  end
+
   private
 
   def store_uri

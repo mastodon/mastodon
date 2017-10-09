@@ -48,7 +48,7 @@ class StreamEntriesController < ApplicationController
     @type         = @stream_entry.activity_type.downcase
 
     raise ActiveRecord::RecordNotFound if @stream_entry.activity.nil?
-    authorize @stream_entry.activity, :show? if @stream_entry.hidden?
+    authorize @stream_entry.activity, :show? if @stream_entry.hidden? || @stream_entry.local_only?
   rescue Mastodon::NotPermittedError
     # Reraise in order to get a 404
     raise ActiveRecord::RecordNotFound
