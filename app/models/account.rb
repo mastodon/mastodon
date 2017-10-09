@@ -90,6 +90,10 @@ class Account < ApplicationRecord
   has_many :reports
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
+  # Moderation notes
+  has_many :account_moderation_notes
+  has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where(followers_count: 0) }

@@ -58,26 +58,6 @@
       "note": ""
     },
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "34efc76883080f8b1110a30c34ec4f903946ee56651aae46c62477f45d4fc412",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "lib/mastodon/timestamp_ids.rb",
-      "line": 63,
-      "link": "http://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "connection.execute(\"        CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\n        RETURNS bigint AS\\n        $$\\n          DECLARE\\n            time_part bigint;\\n            sequence_base bigint;\\n            tail bigint;\\n          BEGIN\\n            time_part := (\\n              -- Get the time in milliseconds\\n              ((date_part('epoch', now()) * 1000))::bigint\\n              -- And shift it over two bytes\\n              << 16);\\n\\n            sequence_base := (\\n              'x' ||\\n              -- Take the first two bytes (four hex characters)\\n              substr(\\n                -- Of the MD5 hash of the data we documented\\n                md5(table_name ||\\n                  '#{SecureRandom.hex(16)}' ||\\n                  time_part::text\\n                ),\\n                1, 4\\n              )\\n            -- And turn it into a bigint\\n            )::bit(16)::bigint;\\n\\n            -- Finally, add our sequence number to our base, and chop\\n            -- it to the last two bytes\\n            tail := (\\n              (sequence_base + nextval(table_name || '_id_seq'))\\n              & 65535);\\n\\n            -- Return the time part and the sequence part. OR appears\\n            -- faster here than addition, but they're equivalent:\\n            -- time_part has no trailing two bytes, and tail is only\\n            -- the last two bytes.\\n            RETURN time_part | tail;\\n          END\\n        $$ LANGUAGE plpgsql VOLATILE;\\n\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Mastodon::TimestampIds",
-        "method": "define_timestamp_id"
-      },
-      "user_input": "SecureRandom.hex(16)",
-      "confidence": "Medium",
-      "note": ""
-    },
-    {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
       "fingerprint": "3b0a20b08aef13cf8cf865384fae0cfd3324d8200a83262bf4abbc8091b5fec5",
@@ -106,7 +86,7 @@
       "line": 3,
       "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :centered => true })",
-      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":35,"file":"app/controllers/statuses_controller.rb"}],
+      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":41,"file":"app/controllers/statuses_controller.rb"}],
       "location": {
         "type": "template",
         "template": "stream_entries/embed"
@@ -151,6 +131,26 @@
       },
       "user_input": "Account.find(params[:id]).salmon_url",
       "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "9ccb9ba6a6947400e187d515e0bf719d22993d37cfc123c824d7fafa6caa9ac3",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/mastodon/snowflake.rb",
+      "line": 86,
+      "link": "http://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "connection.execute(\"        CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\n        RETURNS bigint AS\\n        $$\\n          DECLARE\\n            time_part bigint;\\n            sequence_base bigint;\\n            tail bigint;\\n          BEGIN\\n            time_part := (\\n              -- Get the time in milliseconds\\n              ((date_part('epoch', now()) * 1000))::bigint\\n              -- And shift it over two bytes\\n              << 16);\\n\\n            sequence_base := (\\n              'x' ||\\n              -- Take the first two bytes (four hex characters)\\n              substr(\\n                -- Of the MD5 hash of the data we documented\\n                md5(table_name ||\\n                  '#{SecureRandom.hex(16)}' ||\\n                  time_part::text\\n                ),\\n                1, 4\\n              )\\n            -- And turn it into a bigint\\n            )::bit(16)::bigint;\\n\\n            -- Finally, add our sequence number to our base, and chop\\n            -- it to the last two bytes\\n            tail := (\\n              (sequence_base + nextval(table_name || '_id_seq'))\\n              & 65535);\\n\\n            -- Return the time part and the sequence part. OR appears\\n            -- faster here than addition, but they're equivalent:\\n            -- time_part has no trailing two bytes, and tail is only\\n            -- the last two bytes.\\n            RETURN time_part | tail;\\n          END\\n        $$ LANGUAGE plpgsql VOLATILE;\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Mastodon::Snowflake",
+        "method": "define_timestamp_id"
+      },
+      "user_input": "SecureRandom.hex(16)",
+      "confidence": "Medium",
       "note": ""
     },
     {
@@ -269,6 +269,6 @@
       "note": ""
     }
   ],
-  "updated": "2017-10-06 03:27:46 +0200",
+  "updated": "2017-10-07 19:24:02 +0200",
   "brakeman_version": "4.0.1"
 }

@@ -1,55 +1,61 @@
 // This code is largely borrowed from:
-// https://github.com/missive/emoji-mart/blob/bbd4fbe/src/utils/emoji-index.js
+// https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/emoji-index.js
 
 import data from './emoji_mart_data_light';
 import { getData, getSanitizedData, intersect } from './emoji_utils';
 
+let originalPool = {};
 let index = {};
 let emojisList = {};
 let emoticonsList = {};
-let previousInclude = [];
-let previousExclude = [];
 
 for (let emoji in data.emojis) {
-  let emojiData = data.emojis[emoji],
-    { short_names, emoticons } = emojiData,
-    id = short_names[0];
+  let emojiData = data.emojis[emoji];
+  let { short_names, emoticons } = emojiData;
+  let id = short_names[0];
 
-  for (let emoticon of (emoticons || [])) {
-    if (!emoticonsList[emoticon]) {
+  if (emoticons) {
+    emoticons.forEach(emoticon => {
+      if (emoticonsList[emoticon]) {
+        return;
+      }
+
       emoticonsList[emoticon] = id;
-    }
+    });
   }
 
   emojisList[id] = getSanitizedData(id);
+  originalPool[id] = emojiData;
+}
+
+function addCustomToPool(custom, pool) {
+  custom.forEach((emoji) => {
+    let emojiId = emoji.id || emoji.short_names[0];
+
+    if (emojiId && !pool[emojiId]) {
+      pool[emojiId] = getData(emoji);
+      emojisList[emojiId] = getSanitizedData(emoji);
+    }
+  });
 }
 
 function search(value, { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}) {
+  addCustomToPool(custom, originalPool);
+
   maxResults = maxResults || 75;
   include = include || [];
   exclude = exclude || [];
 
-  if (custom.length) {
-    for (const emoji of custom) {
-      data.emojis[emoji.id] = getData(emoji);
-      emojisList[emoji.id] = getSanitizedData(emoji);
-    }
-
-    data.categories.push({
-      name: 'Custom',
-      emojis: custom.map(emoji => emoji.id),
-    });
-  }
-
-  let results = null;
-  let pool = data.emojis;
+  let results = null,
+    pool = originalPool;
 
   if (value.length) {
     if (value === '-' || value === '-1') {
       return [emojisList['-1']];
     }
 
-    let values = value.toLowerCase().split(/[\s|,|\-|_]+/);
+    let values = value.toLowerCase().split(/[\s|,|\-|_]+/),
+      allResults = [];
 
     if (values.length > 2) {
       values = [values[0], values[1]];
@@ -58,33 +64,32 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
     if (include.length || exclude.length) {
       pool = {};
 
-      if (previousInclude !== include.sort().join(',') || previousExclude !== exclude.sort().join(',')) {
-        previousInclude = include.sort().join(',');
-        previousExclude = exclude.sort().join(',');
-        index = {};
-      }
-
-      for (let category of data.categories) {
+      data.categories.forEach(category => {
         let isIncluded = include && include.length ? include.indexOf(category.name.toLowerCase()) > -1 : true;
         let isExcluded = exclude && exclude.length ? exclude.indexOf(category.name.toLowerCase()) > -1 : false;
         if (!isIncluded || isExcluded) {
-          continue;
+          return;
         }
 
-        for (let emojiId of category.emojis) {
-          pool[emojiId] = data.emojis[emojiId];
+        category.emojis.forEach(emojiId => pool[emojiId] = data.emojis[emojiId]);
+      });
+
+      if (custom.length) {
+        let customIsIncluded = include && include.length ? include.indexOf('custom') > -1 : true;
+        let customIsExcluded = exclude && exclude.length ? exclude.indexOf('custom') > -1 : false;
+        if (customIsIncluded && !customIsExcluded) {
+          addCustomToPool(custom, pool);
         }
       }
-    } else if (previousInclude.length || previousExclude.length) {
-      index = {};
     }
 
-    let allResults = values.map((value) => {
-      let aPool = pool;
-      let aIndex = index;
-      let length = 0;
+    allResults = values.map((value) => {
+      let aPool = pool,
+        aIndex = index,
+        length = 0;
 
-      for (let char of value.split('')) {
+      for (let charIndex = 0; charIndex < value.length; charIndex++) {
+        const char = value[charIndex];
         length++;
 
         aIndex[char] = aIndex[char] || {};
@@ -104,9 +109,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
             if (subIndex !== -1) {
               let score = subIndex + 1;
-              if (sub === id) {
-                score = 0;
-              }
+              if (sub === id) score = 0;
 
               aIndex.results.push(emojisList[id]);
               aIndex.pool[id] = emoji;
@@ -130,7 +133,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
     }).filter(a => a);
 
     if (allResults.length > 1) {
-      results = intersect(...allResults);
+      results = intersect.apply(null, allResults);
     } else if (allResults.length) {
       results = allResults[0];
     } else {

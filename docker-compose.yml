@@ -3,13 +3,13 @@ services:
 
   db:
     restart: always
-    image: postgres:alpine
+    image: postgres:9.6-alpine
     volumes:
       - /home/ubuntu/mastodon_data/postgresql:/var/lib/postgresql/data
 
   redis:
     restart: always
-    image: redis:alpine
+    image: redis:4.0-alpine
     volumes:
       - /home/ubuntu/mastodon_data/redis:/data
 

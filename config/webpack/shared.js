@@ -48,6 +48,13 @@ module.exports = {
 
   plugins: [
     new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(env))),
+    new webpack.NormalModuleReplacementPlugin(
+      /^history\//, (resource) => {
+        // temporary fix for https://github.com/ReactTraining/react-router/issues/5576
+        // to reduce bundle size
+        resource.request = resource.request.replace(/^history/, 'history/es');
+      }
+    ),
     new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css'),
     new ManifestPlugin({
       publicPath: output.publicPath,

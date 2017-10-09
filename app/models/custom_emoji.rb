@@ -13,6 +13,8 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  disabled           :boolean          default(FALSE), not null
+#  uri                :string
+#  image_remote_url   :string
 #
 
 class CustomEmoji < ApplicationRecord
@@ -35,6 +37,10 @@ class CustomEmoji < ApplicationRecord
 
   def local?
     domain.nil?
+  end
+
+  def object_type
+    :emoji
   end
 
   class << self
