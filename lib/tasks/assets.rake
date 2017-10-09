@@ -10,7 +10,7 @@ end
 namespace :assets do
   desc 'Generate static pages'
   task :generate_static_pages do
-    render_static_page 'errors/500', layout: 'error', dest: Rails.root.join('public', '500.html')
+    render_static_page 'errors/500', layout: 'error', dest: Rails.root.join('public', 'assets', '500.html')
   end
 end
 
