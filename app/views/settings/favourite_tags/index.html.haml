@@ -28,7 +28,4 @@
         %td
           = I18n.t("statuses.visibilities.#{fav_tag.visibility}")
         %td
-          = form_for fav_tag, url: settings_favourite_tag_url(fav_tag), method: :delete do |f|
-            = f.button :button, type: :submit, class: :negative do
-              = fa_icon('times')
-              = t('favourite_tags.delete')
+          = table_link_to 'trash', t('favourite_tags.delete'), settings_favourite_tag_path(fav_tag), method: :delete
