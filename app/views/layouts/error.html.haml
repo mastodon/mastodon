@@ -9,6 +9,6 @@
     = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
   %body.error
     .dialog
-      %img{ alt: title, src: '/oops.gif' }/
+      %img{ alt: Setting.default_settings['site_title'], src: '/oops.gif' }/
       %div
         %h1= yield :content
