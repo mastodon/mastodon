@@ -14,8 +14,9 @@ describe Auth::ConfirmationsController, type: :controller do
   describe 'GET #show' do
     let!(:user) { Fabricate(:user, confirmation_token: 'foobar', confirmed_at: nil) }
 
+    around { |example| Sidekiq::Testing.fake! &example }
+
     before do
-      allow(BootstrapTimelineWorker).to receive(:perform_async)
       @request.env['devise.mapping'] = Devise.mappings[:user]
       get :show, params: { confirmation_token: 'foobar' }
     end
@@ -25,7 +26,7 @@ describe Auth::ConfirmationsController, type: :controller do
     end
 
     it 'queues up bootstrapping of home timeline' do
-      expect(BootstrapTimelineWorker).to have_received(:perform_async).with(user.account_id)
+      expect(BootstrapTimelineWorker).to have_enqueued_sidekiq_job user.account_id
     end
   end
 end

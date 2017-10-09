@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostStatusService do
+  around { |example| Sidekiq::Testing.fake! &example }
   subject { PostStatusService.new }
 
   it 'creates a new status' do
@@ -98,26 +99,21 @@ RSpec.describe PostStatusService do
   end
 
   it 'gets distributed' do
-    allow(DistributionWorker).to receive(:perform_async)
-    allow(Pubsubhubbub::DistributionWorker).to receive(:perform_async)
-    allow(ActivityPub::DistributionWorker).to receive(:perform_async)
-
     account = Fabricate(:account)
 
     status = subject.call(account, "test status update")
 
-    expect(DistributionWorker).to have_received(:perform_async).with(status.id)
-    expect(Pubsubhubbub::DistributionWorker).to have_received(:perform_async).with(status.stream_entry.id)
-    expect(ActivityPub::DistributionWorker).to have_received(:perform_async).with(status.id)
+    expect(DistributionWorker).to have_enqueued_sidekiq_job status.id
+    expect(Pubsubhubbub::DistributionWorker).to have_enqueued_sidekiq_job status.stream_entry.id
+    expect(ActivityPub::DistributionWorker).to have_enqueued_sidekiq_job status.id
   end
 
   it 'crawls links' do
-    allow(LinkCrawlWorker).to receive(:perform_async)
     account = Fabricate(:account)
 
     status = subject.call(account, "test status update")
 
-    expect(LinkCrawlWorker).to have_received(:perform_async).with(status.id)
+    expect(LinkCrawlWorker).to have_enqueued_sidekiq_job status.id
   end
 
   it 'attaches the given media to the created status' do

@@ -39,12 +39,13 @@ describe Pubsubhubbub::SubscribeService do
 
     context 'with a valid account and callback' do
       it 'returns success status and confirms subscription' do
-        allow(Pubsubhubbub::ConfirmationWorker).to receive(:perform_async).and_return(nil)
-        subscription = Fabricate(:subscription, account: user_account)
+        Sidekiq::Testing.fake! do
+          subscription = Fabricate(:subscription, account: user_account)
 
-        result = service_call(callback: subscription.callback_url)
-        expect(result).to eq success_status
-        expect(Pubsubhubbub::ConfirmationWorker).to have_received(:perform_async).with(subscription.id, 'subscribe', 'asdf', 3600)
+          result = service_call(callback: subscription.callback_url)
+          expect(result).to eq success_status
+          expect(Pubsubhubbub::ConfirmationWorker).to have_enqueued_sidekiq_job subscription.id, 'subscribe', 'asdf', 3600
+        end
       end
     end
   end

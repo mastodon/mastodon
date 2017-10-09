@@ -20,9 +20,9 @@ describe Api::V1::Accounts::CredentialsController do
 
     describe 'PATCH #update' do
       describe 'with valid data' do
-        before do
-          allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+        around { |example| Sidekiq::Testing.fake! &example }
 
+        before do
           patch :update, params: {
             display_name: "Alice Isn't Dead",
             note: "Hi!\n\nToot toot!",
@@ -45,7 +45,7 @@ describe Api::V1::Accounts::CredentialsController do
         end
 
         it 'queues up an account update distribution' do
-          expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(user.account_id)
+          expect(ActivityPub::UpdateDistributionWorker).to have_enqueued_sidekiq_job user.account_id
         end
       end
 

@@ -31,8 +31,10 @@ RSpec.describe ProcessInteractionService do
     end
 
     it 'deletes a record' do
-      expect(RemovalWorker).to receive(:perform_async).with(remote_status.id)
-      subject.call(envelope, receiver)
+      Sidekiq::Testing.fake! do
+        subject.call(envelope, receiver)
+        expect(RemovalWorker).to have_enqueued_sidekiq_job remote_status.id
+      end
     end
   end
 
