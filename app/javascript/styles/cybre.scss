@@ -1,0 +1,278 @@
+$ui-base-color: #181818; // darkest
+$ui-highlight-color: #1ea21e; // vibrant
+$ui-secondary-color: #E4F2E4; // lightest
+$ui-primary-color: #E4F2E4; // lighter
+$ui-primary-color-alt: #a0b49c; // darker, for external pages
+
+$about-page-text: lighten($ui-base-color, 50%);
+
+@import 'application';
+
+body, body.about-body {
+  background: $ui-base-color url('../images/background-cybre.png');
+}
+
+body.about-body {
+  // basics.scss &.about-body
+  background: darken($ui-base-color, 8%) url('../images/background-cybre.png');
+
+  background-position-y: 60px;
+  background-position-x: center;
+}
+
+@media screen and (min-width: 1300px) {
+  .column {
+    flex-grow: 1 !important;
+    max-width: 400px;
+  }
+
+  .drawer {
+    width: 17%;
+    max-width: 400px;
+    min-width: 330px;
+  }
+}
+
+.muted {
+  .status__content p, .status__content a {
+    color: lighten($ui-base-color, 35%);
+  }
+
+  .status__display-name strong {
+    color: lighten($ui-base-color, 35%);
+  }
+}
+
+[data-whatinput="mouse"], [data-whatinput="touch"] {
+  .status__content:focus, .status:focus {
+    outline: none;
+  }
+}
+
+.status time:after,
+.detailed-status__datetime span:after {
+  font: normal normal normal 14px/1 FontAwesome;
+  content: "\00a0\00a0\f08e";
+}
+
+.compose-form__buttons button.active:last-child {
+  color:$ui-secondary-color;
+  background-color: $ui-highlight-color;
+  border-radius:3px;
+}
+
+.about-body .mascot {
+  display:none;
+}
+
+.screenshot-with-signup {
+  min-height:300px;
+}
+
+.container.hero .closed-registrations-message .clock {
+  font-size: 150%;
+  margin: 1em auto;
+}
+
+.column .static-content.getting-started {
+  background-image: url('../images/logo-cybre.png'), url('../images/background-cybre.png');
+  background-position: 50% 50%;
+  background-size:cover;
+}
+
+.columns-area {
+  background: $ui-base-color url('../images/background-cybre.png');
+}
+
+.drawer .drawer__inner {
+  overflow: visible;
+  height:inherit;
+}
+
+.drawer__pager {
+  overflow-y:auto;
+}
+
+.column {
+  max-height:100vh;
+}
+
+
+.media-gallery {
+  max-height:30vh;
+  height:30vh !important;
+  position:relative;
+  margin-top:20px;
+  margin-left:-68px;
+  width: calc(100% + 80px);
+}
+
+.detailed-status .media-gallery {
+  margin-left:-10px;
+  width: calc(100% + 22px);
+}
+
+.media-spoiler-video,
+.status__video-player,
+.detailed-status > .media-spoiler,
+.status > .media-spoiler {
+  max-height:30vh;
+  height:30vh !important;
+  position:relative;
+  margin-top:20px;
+  margin-left:-68px;
+  width: calc(100% + 80px) !important;
+}
+
+.status__video-player-video {
+  transform:unset;
+  top:unset;
+}
+
+.detailed-status > .media-spoiler,
+.status > .media-spoiler {
+  height:30vh !important;
+  vertical-align:middle;
+}
+
+.actions .button.button-alternative {
+    background: $ui-highlight-color;
+    color: $ui-primary-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-highlight-color, 4%);
+    }
+}
+
+@media screen and (max-width: 1280px) {
+  .landing-page .container.links {
+      top: -15px;
+  }
+}
+
+.landing-page .header-wrapper,
+.landing-page .header-wrapper.compact {
+    background-image:url('../images/header-cybre.jpeg');
+    background-size:cover;
+    background-position:50% 50%;
+}
+
+.landing-page .header {
+    .heading {
+        visibility:hidden;
+    }
+
+    .hero .floats {
+        .float-1, .float-2, .float-3 {
+            opacity:0.4;
+            background-image:url('../images/floppy-1.svg');
+        }
+
+        .float-1 {
+            background-size:200px 200px;
+            width:200px;
+            height:200px;
+            bottom:60px;
+        }
+
+        .float-2 {
+            background-size:150px 150px;
+            width:150px;
+            height:150px;
+            right:280px;
+        }
+
+        .float-3 {
+            background-size:300px 300px;
+            width:300px;
+            height:300px;
+            right: 200px;
+            top: -80px;
+        }
+    }
+}
+
+.about-body .brand {
+    visibility:hidden;
+}
+
+.activity-stream {
+  .status.light {
+    .status__header .status__meta .status__relative-time {
+      color: $ui-primary-color-alt;
+    }
+
+    .display-name span {
+      color: $ui-primary-color-alt;
+    }
+
+    .status__content {
+      a.status__content__spoiler-link {
+        background: $ui-primary-color-alt;
+
+        &:hover {
+          background: lighten($ui-primary-color-alt, 8%);
+        }
+      }
+    }
+  }
+
+  .detailed-status.light {
+    .detailed-status__display-name .display-name span {
+      color: $ui-primary-color-alt;
+    }
+
+    .status__content a.status__content__spoiler-link {
+      background: $ui-primary-color-alt;
+
+      &:hover {
+        background: lighten($ui-primary-color-alt, 8%);
+      }
+    }
+
+    .detailed-status__meta {
+      color: $ui-primary-color-alt;
+    }
+  }
+
+  .media-spoiler {
+    background: $ui-primary-color-alt;
+    &:hover {
+      background: darken($ui-primary-color-alt, 5%);
+    }
+  }
+
+  .pre-header {
+    color: $ui-primary-color-alt;
+    .status__display-name.muted strong {
+      color: $ui-primary-color-alt;
+    }
+  }
+}
+
+.embed .activity-stream .entry .detailed-status.light .button.button-secondary.logo-button {
+  color: $ui-primary-color-alt;
+  svg {
+    path:first-child {
+      fill: $ui-primary-color-alt;
+    }
+  }
+  &:active,
+  &:focus,
+  &:hover {
+    svg path:first-child {
+      fill: lighten($ui-primary-color-alt, 4%);
+    }
+  }
+}
+
+.account__avatar,
+.account__avatar-overlay-base,
+.account__header__avatar,
+.account__avatar-overlay-overlay {
+    border-radius:0px !important;
+    -webkit-clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+    clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+}

@@ -1,0 +1,24 @@
+// via https://github.com/ashfurrow/mastodon/pull/1
+
+$color1: #0E2333; // darkest
+$color2: #E4E6DA; // lightest
+$color3: #EBDC98; // lighter
+$color4: #398CCC; // vibrant
+$color5: #ffffff; // white
+$color6: #FF003C; // error red
+$color7: #A8BF34; // succ green
+$color8: #000000; // black
+
+$ui-base-color: $color1;
+$ui-secondary-color: $color2;
+$ui-primary-color: $color3;
+$ui-highlight-color: $color4;
+$base-border-color: $color5;
+$simple-background-color: $color5;
+$primary-text-color: $color5;
+$error-value-color: $color6;
+$valid-value-color: $color7;
+$base-shadow-color: $color8;
+$base-overlay-background: $color8;
+
+@import 'application';
