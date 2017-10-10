@@ -93,10 +93,10 @@ class FavouriteTags extends React.PureComponent {
 
     return (
       <div className='favourite-tags'>
-        <div className='favourite-tags__header'>
+        <div className='compose__extra__header'>
           <i className='fa fa-tag' />
           <div className='favourite-tags__header__name'>{intl.formatMessage(messages.favourite_tags)}</div>
-          <div className='favourite-tags__lock'>
+          <div className='compose__extra__header__icon'>
             <a href='/settings/favourite_tags'>
               <i className='fa fa-gear' />
             </a>

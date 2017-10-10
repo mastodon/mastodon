@@ -1,0 +1,32 @@
+.compose__extra__header {
+    background: $ui-base-color;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: lighten($ui-base-color, 4%);
+    font-size: 16px;
+  
+    a {
+      color: $white;
+    }
+  
+    > i {
+      padding-right: 4px;
+    }
+  
+    &__icon {
+      background: transparent;
+      position: absolute;
+      color: $white;
+      border: 0;
+      padding: 0;
+      right: 20px;
+      top: 8px;
+      text-align: center;
+  
+      i {
+        width: 14px;
+      }
+    }
+  }
