@@ -18,8 +18,23 @@ const getFrequentlyUsedEmojis = createSelector([
     .toArray()
 );
 
+const getCustomEmojis = createSelector([
+  state => state.get('custom_emojis'),
+], emojis => emojis.sort((a, b) => {
+  const aShort = a.get('shortcode').toLowerCase();
+  const bShort = b.get('shortcode').toLowerCase();
+
+  if (aShort < bShort) {
+    return -1;
+  } else if (aShort > bShort ) {
+    return 1;
+  } else {
+    return 0;
+  }
+}));
+
 const mapStateToProps = state => ({
-  custom_emojis: state.get('custom_emojis'),
+  custom_emojis: getCustomEmojis(state),
   autoPlay: state.getIn(['meta', 'auto_play_gif']),
   skinTone: state.getIn(['settings', 'skinTone']),
   frequentlyUsedEmojis: getFrequentlyUsedEmojis(state),

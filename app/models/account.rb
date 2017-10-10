@@ -91,8 +91,8 @@ class Account < ApplicationRecord
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
   # Moderation notes
-  has_many :account_moderation_notes
-  has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id
+  has_many :account_moderation_notes, dependent: :destroy
+  has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
