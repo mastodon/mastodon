@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006142024) do
+ActiveRecord::Schema.define(version: 20171010023049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -459,6 +459,7 @@ ActiveRecord::Schema.define(version: 20171006142024) do
   end
 
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
+  add_foreign_key "account_moderation_notes", "accounts"
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
