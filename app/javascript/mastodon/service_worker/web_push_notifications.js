@@ -14,7 +14,6 @@ const notify = options =>
           .sort((n1, n2) => n1.timestamp < n2.timestamp)
           .map(notification => notification.title).join('\n'),
         badge: '/badge.png',
-        icon: '/android-chrome-192x192.png',
         tag: GROUP_TAG,
         data: {
           url: (new URL('/web/notifications', self.location)).href,
