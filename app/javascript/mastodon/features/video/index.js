@@ -210,7 +210,9 @@ export default class Video extends React.PureComponent {
   }
 
   handleProgress = () => {
-    this.setState({ buffer: this.video.buffered.end(0) / this.video.duration * 100 });
+    if (this.video.buffered.length > 0) {
+      this.setState({ buffer: this.video.buffered.end(0) / this.video.duration * 100 });
+    }
   }
 
   handleOpenVideo = () => {
