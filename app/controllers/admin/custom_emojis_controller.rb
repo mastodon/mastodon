@@ -28,8 +28,7 @@ module Admin
     end
 
     def copy
-      emoji = @custom_emoji.dup
-      emoji.domain = nil
+      emoji = CustomEmoji.new(domain: nil, shortcode: @custom_emoji.shortcode, image: @custom_emoji.image)
 
       if emoji.save
         redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.copied_msg')
