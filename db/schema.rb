@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010023049) do
+ActiveRecord::Schema.define(version: 20171010025614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20171010023049) do
 
   create_table "account_moderation_notes", force: :cascade do |t|
     t.text "content", null: false
-    t.bigint "account_id"
-    t.bigint "target_account_id"
+    t.bigint "account_id", null: false
+    t.bigint "target_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_moderation_notes_on_account_id"

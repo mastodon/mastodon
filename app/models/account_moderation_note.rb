@@ -1,13 +1,12 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: account_moderation_notes
 #
 #  id                :integer          not null, primary key
 #  content           :text             not null
-#  account_id        :integer
-#  target_account_id :integer
+#  account_id        :integer          not null
+#  target_account_id :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
