@@ -117,7 +117,13 @@ export default class StatusGalleryItem extends React.PureComponent {
           onClick={this.handleClick}
           target='_blank'
         >
-          <img className={letterbox ? 'letterbox' : ''} src={previewUrl} srcSet={srcSet} sizes={sizes} alt='' />
+          <img
+            className={letterbox ? 'letterbox' : ''}
+            src={previewUrl} srcSet={srcSet}
+            sizes={sizes}
+            alt={attachment.get('description')}
+            title={attachment.get('description')}
+          />
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
