@@ -240,9 +240,9 @@ export default class Status extends ImmutablePureComponent {
   }
 
   componentDidUpdate () {
-    const { ancestorsIds } = this.props;
+    const { status, ancestorsIds } = this.props;
 
-    if (ancestorsIds && ancestorsIds.size > 0) {
+    if (status && ancestorsIds && ancestorsIds.size > 0) {
       const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size];
       element.scrollIntoView();
     }
