@@ -50,7 +50,7 @@ class Formatter
   end
 
   def simplified_format(account)
-    return reformat(account.note) unless account.local?
+    return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
 
     html = encode_and_link_urls(account.note)
     html = simple_format(html, {}, sanitize: false)
@@ -92,7 +92,7 @@ class Formatter
   def encode_custom_emojis(html, emojis)
     return html if emojis.empty?
 
-    emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url)] }.to_h
+    emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
 
     i                     = -1
     inside_tag            = false

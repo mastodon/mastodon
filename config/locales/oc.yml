@@ -2,6 +2,7 @@
 oc:
   about:
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
+    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_this: A prepaus d’aquesta instància
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
@@ -93,8 +94,8 @@ oc:
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
       salmon_url: URL Salmon
-      shared_inbox_url: URL de recepcion partejada
       search: Cercar
+      shared_inbox_url: URL de recepcion partejada
       show:
         created_reports: Rapòrts creat per aqueste compte
         report: rapòrt
@@ -109,10 +110,17 @@ oc:
       username: Nom d’utilizaire
       web: Web
     custom_emojis:
+      copied_msg: Còpia locale de l’emoji ben creada
+      copy: Copiar
+      copy_failed_msg: Fracàs de la còpia locale de l’emoji
       created_msg: Emoji ben creat !
       delete: Suprimir
       destroyed_msg: Emojo ben suprimit !
+      disable: Desactivar
+      disabled_msg: Aqueste emoji es ben desactivat
       emoji: Emoji
+      enable: Activar
+      enabled_msg: Aqueste emoji es ben activat
       image_hint: PNG cap a 50Ko
       new:
         title: Ajustar un nòu emoji personal
@@ -152,6 +160,16 @@ oc:
         undo: Restablir
       title: Blòc de domeni
       undo: Restablir
+    email_domain_blocks:
+       add_new: Ajustar
+       created_msg: Blocatge del domeni de corrièl ben plaçat
+       delete: Suprimir
+       destroyed_msg: Blocatge del domeni de corrièl ben levat
+       domain: Domeni
+       new:
+         create: Crear un blocatge
+         title: Nòu blocatge de domeni de corrièl
+       title: Blocatge de domeni de corrièl      
     instances:
       account_count: Comptes coneguts
       domain_name: Domeni
@@ -388,6 +406,9 @@ oc:
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
       title: Verificacion de seguretat fracassada
     '429': Lo servidor mòla (subrecargada)
+    '500':
+      content: Un quicomet a pas foncionat coma caliá.
+      title: Aquesta pagina es incorrècta
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
     blocks: Personas que blocatz
@@ -468,6 +489,11 @@ oc:
     next: Seguent
     prev: Precedent
     truncate: "&hellip;"
+  preferences:
+    languages: Lengas
+    other: Autre
+    publishing: Publicar
+    web: Interfàcia Web
   push_notifications:
     favourite:
       title: "%{name} a mes vòstre estatut en favorit"
@@ -535,6 +561,7 @@ oc:
     export: Export donadas
     followers: Seguidors autorizats
     import: Importar
+    notifications: Notificacions
     preferences: Preferéncias
     settings: Paramètres
     two_factor_authentication: Autentificacion en dos temps

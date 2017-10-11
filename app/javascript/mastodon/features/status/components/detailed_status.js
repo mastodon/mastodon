@@ -7,7 +7,7 @@ import StatusContent from '../../../../glitch/components/status/content';
 import StatusGallery from '../../../../glitch/components/status/gallery';
 import StatusPlayer from '../../../../glitch/components/status/player';
 import AttachmentList from '../../../components/attachment_list';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';

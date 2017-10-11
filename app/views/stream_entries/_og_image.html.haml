@@ -17,7 +17,9 @@
       - unless media.file.meta.nil?
         = opengraph 'og:video:width', media.file.meta['small']['width']
         = opengraph 'og:video:height', media.file.meta['small']['height']
+  = opengraph 'twitter:card', 'summary_large_image'
 - else
   = opengraph 'og:image', full_asset_url(account.avatar.url(:original))
   = opengraph 'og:image:width', '120'
   = opengraph 'og:image:height','120'
+  = opengraph 'twitter:card', 'summary'

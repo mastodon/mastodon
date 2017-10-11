@@ -89,10 +89,14 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   class MediaAttachmentSerializer < ActiveModel::Serializer
     include RoutingHelper
 
-    attributes :type, :media_type, :url
+    attributes :type, :media_type, :url, :name
 
     def type
       'Document'
+    end
+
+    def name
+      object.description
     end
 
     def media_type
@@ -138,21 +142,6 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     end
   end
 
-  class CustomEmojiSerializer < ActiveModel::Serializer
-    include RoutingHelper
-
-    attributes :type, :href, :name
-
-    def type
-      'Emoji'
-    end
-
-    def href
-      full_asset_url(object.image.url)
-    end
-
-    def name
-      ":#{object.shortcode}:"
-    end
+  class CustomEmojiSerializer < ActivityPub::EmojiSerializer
   end
 end

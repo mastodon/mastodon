@@ -9,11 +9,6 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
 
     return [nil, false] if @account.suspended?
 
-    if activitypub_uri? && [:public, :unlisted].include?(visibility_scope)
-      result = perform_via_activitypub
-      return result if result.first.present?
-    end
-
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         # Return early if status already exists in db
@@ -39,7 +34,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         reblog: cached_reblog,
         text: content,
         spoiler_text: content_warning,
-        created_at: published,
+        created_at: @options[:override_timestamps] ? nil : published,
         reply: thread?,
         language: content_language,
         visibility: visibility_scope,
@@ -64,10 +59,6 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     DistributionWorker.perform_async(status.id)
 
     status
-  end
-
-  def perform_via_activitypub
-    [find_status(activitypub_uri) || ActivityPub::FetchRemoteStatusService.new.call(activitypub_uri), false]
   end
 
   def content

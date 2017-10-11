@@ -8,7 +8,7 @@ import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },

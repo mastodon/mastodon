@@ -9,7 +9,10 @@ module Admin
       @accounts = filtered_accounts.page(params[:page])
     end
 
-    def show; end
+    def show
+      @account_moderation_note = current_account.account_moderation_notes.new(target_account: @account)
+      @moderation_notes = @account.targeted_moderation_notes.latest
+    end
 
     def subscribe
       Pubsubhubbub::SubscribeWorker.perform_async(@account.id)

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
 import { openModal } from '../../actions/modal';
 import { changeLocalSetting } from '../../../glitch/actions/local_settings';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';
 import Motion from 'react-motion/lib/Motion';

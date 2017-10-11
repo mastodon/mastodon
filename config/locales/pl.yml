@@ -2,6 +2,7 @@
 pl:
   about:
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
+    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_this: O tej instancji
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
@@ -62,7 +63,7 @@ pl:
       followers: Śledzący
       followers_url: Adres śledzących
       follows: Śledzeni
-      inbox: Adres skrzynki
+      inbox_url: Adres skrzynki
       ip: Adres IP
       location:
         all: Wszystkie
@@ -75,6 +76,7 @@ pl:
         silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
+      moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
       not_subscribed: Nie zasubskrybowano
@@ -106,11 +108,25 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    account_moderation_notes:
+      account: Autor
+      created_at: Data
+      create: Dodaj
+      created_msg: Pomyślnie dodano notatkę moderacyjną!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     custom_emojis:
+      copied_msg: Pomyślnie utworzono lokalną kopię emoji
+      copy: Kopiuj
+      copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
       created_msg: Pomyślnie utworzono emoji!
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto emoji!
+      disable: Wyłącz
+      disabled_msg: Pomyślnie wyłączono emoji
       emoji: Emoji
+      enable: Włącz
+      enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
       new:
         title: Dodaj nowe niestandardowe emoji
@@ -151,12 +167,22 @@ pl:
         undo: Cofnij
       title: Zablokowane domeny
       undo: Cofnij
+    email_domain_blocks:
+      add_new: Dodaj nową
+      created_msg: Pomyślnie utworzono blokadę domeny e-mail
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
+      domain: Domena
+      new:
+        create: Utwórz blokadę
+        title: Nowa blokada domeny e-mail
+      title: Blokowanie domen e-mail
     instances:
       account_count: Znane konta
       domain_name: Domena
       title: Znane instancje
     reports:
-      action_taken_by: Akcja podjęta przez
+      action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       comment:
         label: Komentarz
@@ -394,6 +420,11 @@ pl:
     next: Następna
     prev: Poprzednia
     truncate: "&hellip;"
+  preferences:
+    languages: Języki
+    other: Pozostałe
+    publishing: Publikowanie
+    web: Sieć
   push_notifications:
     favourite:
       title: "%{name} dodał Twój status do ulubionych"
@@ -461,6 +492,7 @@ pl:
     export: Eksportowanie danych
     followers: Autoryzowani śledzący
     import: Importowanie danych
+    notifications: Powiadomienia
     preferences: Preferencje
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe

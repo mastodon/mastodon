@@ -16,6 +16,7 @@
 #  shortcode         :string
 #  type              :integer          default("image"), not null
 #  file_meta         :json
+#  description       :text
 #
 
 require 'mime/types'
@@ -75,6 +76,7 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_size :file, less_than: 8.megabytes
 
   validates :account, presence: true
+  validates :description, length: { maximum: 420 }, if: :local?
 
   scope :attached,   -> { where.not(status_id: nil) }
   scope :unattached, -> { where(status_id: nil) }
@@ -95,6 +97,7 @@ class MediaAttachment < ApplicationRecord
     shortcode
   end
 
+  before_create :prepare_description, unless: :local?
   before_create :set_shortcode
   before_post_process :set_type_and_extension
   before_save :set_meta
@@ -155,6 +158,10 @@ class MediaAttachment < ApplicationRecord
       self.shortcode = SecureRandom.urlsafe_base64(14)
       break if MediaAttachment.find_by(shortcode: shortcode).nil?
     end
+  end
+
+  def prepare_description
+    self.description = description.strip[0...420] unless description.nil?
   end
 
   def set_type_and_extension

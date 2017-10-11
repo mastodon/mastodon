@@ -92,6 +92,10 @@ class Account < ApplicationRecord
   has_many :reports
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
+  # Moderation notes
+  has_many :account_moderation_notes, dependent: :destroy
+  has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where(followers_count: 0) }
@@ -139,6 +143,15 @@ class Account < ApplicationRecord
     subscription_expires_at.present?
   end
 
+  def possibly_stale?
+    last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
+  end
+
+  def refresh!
+    return if local?
+    ResolveRemoteAccountService.new.call(acct)
+  end
+
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
@@ -183,7 +196,8 @@ class Account < ApplicationRecord
     end
 
     def inboxes
-      reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
+      urls = reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
+      DeliveryFailureTracker.filter(urls)
     end
 
     def triadic_closures(account, limit: 5, offset: 0)

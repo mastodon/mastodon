@@ -135,6 +135,31 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "now",
+        "id": "relative_time.just_now"
+      },
+      {
+        "defaultMessage": "{number}s",
+        "id": "relative_time.seconds"
+      },
+      {
+        "defaultMessage": "{number}m",
+        "id": "relative_time.minutes"
+      },
+      {
+        "defaultMessage": "{number}h",
+        "id": "relative_time.hours"
+      },
+      {
+        "defaultMessage": "{number}d",
+        "id": "relative_time.days"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/relative_timestamp.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "status.delete"
       },
@@ -226,39 +251,6 @@
       }
     ],
     "path": "app/javascript/mastodon/components/status.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Toggle sound",
-        "id": "video_player.toggle_sound"
-      },
-      {
-        "defaultMessage": "Toggle visibility",
-        "id": "video_player.toggle_visible"
-      },
-      {
-        "defaultMessage": "Expand video",
-        "id": "video_player.expand"
-      },
-      {
-        "defaultMessage": "Sensitive content",
-        "id": "status.sensitive_warning"
-      },
-      {
-        "defaultMessage": "Click to view",
-        "id": "status.sensitive_toggle"
-      },
-      {
-        "defaultMessage": "Media hidden",
-        "id": "status.media_hidden"
-      },
-      {
-        "defaultMessage": "Video could not be played",
-        "id": "video_player.video_error"
-      }
-    ],
-    "path": "app/javascript/mastodon/components/video_player.json"
   },
   {
     "descriptors": [
@@ -640,6 +632,26 @@
       {
         "defaultMessage": "Search",
         "id": "search.placeholder"
+      },
+      {
+        "defaultMessage": "Advanced search format",
+        "id": "search_popout.search_format"
+      },
+      {
+        "defaultMessage": "hashtag",
+        "id": "search_popout.tips.hashtag"
+      },
+      {
+        "defaultMessage": "user",
+        "id": "search_popout.tips.user"
+      },
+      {
+        "defaultMessage": "status",
+        "id": "search_popout.tips.status"
+      },
+      {
+        "defaultMessage": "Simple text returns matching display names, usernames and hashtags",
+        "id": "search_popout.tips.text"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/search.json"
@@ -656,20 +668,24 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Undo",
-        "id": "upload_form.undo"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/compose/components/upload_form.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Uploading...",
         "id": "upload_progress.label"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/upload_progress.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Undo",
+        "id": "upload_form.undo"
+      },
+      {
+        "defaultMessage": "Describe for the visually impaired",
+        "id": "upload_form.description"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/upload.json"
   },
   {
     "descriptors": [

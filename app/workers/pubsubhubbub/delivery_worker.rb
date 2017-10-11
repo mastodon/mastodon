@@ -37,7 +37,7 @@ class Pubsubhubbub::DeliveryWorker
   def callback_post_payload
     request = Request.new(:post, subscription.callback_url, body: payload)
     request.add_headers(headers)
-    request.perform
+    request.perform.flush
   end
 
   def blocked_domain?

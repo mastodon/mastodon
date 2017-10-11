@@ -1,5 +1,7 @@
 import api from '../api';
-import { emojiIndex } from 'emoji-mart';
+import { throttle } from 'lodash';
+import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
+import { useEmoji } from './emojis';
 
 import {
   updateTimeline,
@@ -15,6 +17,7 @@ export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
 export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
 export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
+export const COMPOSE_RESET           = 'COMPOSE_RESET';
 export const COMPOSE_UPLOAD_REQUEST  = 'COMPOSE_UPLOAD_REQUEST';
 export const COMPOSE_UPLOAD_SUCCESS  = 'COMPOSE_UPLOAD_SUCCESS';
 export const COMPOSE_UPLOAD_FAIL     = 'COMPOSE_UPLOAD_FAIL';
@@ -37,6 +40,10 @@ export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE = 'COMPOSE_COMPOSING_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
+
+export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
+export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
+export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
 export function changeCompose(text) {
   return {
@@ -61,6 +68,12 @@ export function replyCompose(status, router) {
 export function cancelReplyCompose() {
   return {
     type: COMPOSE_REPLY_CANCEL,
+  };
+};
+
+export function resetCompose() {
+  return {
+    type: COMPOSE_RESET,
   };
 };
 
@@ -168,6 +181,40 @@ export function uploadCompose(files) {
   };
 };
 
+export function changeUploadCompose(id, description) {
+  return (dispatch, getState) => {
+    dispatch(changeUploadComposeRequest());
+
+    api(getState).put(`/api/v1/media/${id}`, { description }).then(response => {
+      dispatch(changeUploadComposeSuccess(response.data));
+    }).catch(error => {
+      dispatch(changeUploadComposeFail(id, error));
+    });
+  };
+};
+
+export function changeUploadComposeRequest() {
+  return {
+    type: COMPOSE_UPLOAD_CHANGE_REQUEST,
+    skipLoading: true,
+  };
+};
+export function changeUploadComposeSuccess(media) {
+  return {
+    type: COMPOSE_UPLOAD_CHANGE_SUCCESS,
+    media: media,
+    skipLoading: true,
+  };
+};
+
+export function changeUploadComposeFail(error) {
+  return {
+    type: COMPOSE_UPLOAD_CHANGE_FAIL,
+    error: error,
+    skipLoading: true,
+  };
+};
+
 export function uploadComposeRequest() {
   return {
     type: COMPOSE_UPLOAD_REQUEST,
@@ -212,23 +259,30 @@ export function clearComposeSuggestions() {
   };
 };
 
+const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => {
+  api(getState).get('/api/v1/accounts/search', {
+    params: {
+      q: token.slice(1),
+      resolve: false,
+      limit: 4,
+    },
+  }).then(response => {
+    dispatch(readyComposeSuggestionsAccounts(token, response.data));
+  });
+}, 200, { leading: true, trailing: true });
+
+const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
+  const results = emojiSearch(token.replace(':', ''), { maxResults: 5 });
+  dispatch(readyComposeSuggestionsEmojis(token, results));
+};
+
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
     if (token[0] === ':') {
-      const results = emojiIndex.search(token.replace(':', ''), { maxResults: 3 });
-      dispatch(readyComposeSuggestionsEmojis(token, results));
-      return;
+      fetchComposeSuggestionsEmojis(dispatch, getState, token);
+    } else {
+      fetchComposeSuggestionsAccounts(dispatch, getState, token);
     }
-
-    api(getState).get('/api/v1/accounts/search', {
-      params: {
-        q: token.slice(1),
-        resolve: false,
-        limit: 4,
-      },
-    }).then(response => {
-      dispatch(readyComposeSuggestionsAccounts(token, response.data));
-    });
   };
 };
 
@@ -255,6 +309,8 @@ export function selectComposeSuggestion(position, token, suggestion) {
     if (typeof suggestion === 'object' && suggestion.id) {
       completion    = suggestion.native || suggestion.colons;
       startPosition = position - 1;
+
+      dispatch(useEmoji(suggestion));
     } else {
       completion    = getState().getIn(['accounts', suggestion, 'acct']);
       startPosition = position;
