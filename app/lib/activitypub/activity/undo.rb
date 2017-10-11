@@ -33,6 +33,8 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
 
     if @account.following?(target_account)
       @account.unfollow!(target_account)
+    elsif @account.requested?(target_account)
+      FollowRequest.find_by(account: @account, target_account: target_account)&.destroy
     else
       delete_later!(object_uri)
     end
@@ -64,6 +66,6 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
   end
 
   def target_uri
-    @target_uri ||= @object['object'].is_a?(String) ? @object['object'] : @object['object']['id']
+    @target_uri ||= value_or_id(@object['object'])
   end
 end

@@ -9,13 +9,13 @@ import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
-import { MediaGallery, VideoPlayer } from '../features/ui/util/async-components';
+import { MediaGallery, Video } from '../features/ui/util/async-components';
+import { HotKeys } from 'react-hotkeys';
+import classNames from 'classnames';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
-import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
 
 export default class Status extends ImmutablePureComponent {
 
@@ -26,27 +26,27 @@ export default class Status extends ImmutablePureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.map,
-    wrapped: PropTypes.bool,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
+    onPin: PropTypes.func,
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,
+    onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
-    me: PropTypes.number,
+    me: PropTypes.string,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
-    intersectionObserverWrapper: PropTypes.object,
-    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    listLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hidden: PropTypes.bool,
+    onMoveUp: PropTypes.func,
+    onMoveDown: PropTypes.func,
   };
 
   state = {
     isExpanded: false,
-    isHidden: false, // set to true in requestIdleCallback to trigger un-render
   }
 
   // Avoid checking props that are functions (and whose equality will always
@@ -54,90 +54,14 @@ export default class Status extends ImmutablePureComponent {
   updateOnProps = [
     'status',
     'account',
-    'wrapped',
     'me',
     'boostModal',
     'autoPlayGif',
     'muted',
-    'listLength',
+    'hidden',
   ]
 
   updateOnStates = ['isExpanded']
-
-  shouldComponentUpdate (nextProps, nextState) {
-    if (!nextState.isIntersecting && nextState.isHidden) {
-      // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
-      // that either "isIntersecting" or "isHidden" matter, and then they're
-      // the only things that matter (and updated ARIA attributes).
-      return this.state.isIntersecting || !this.state.isHidden || nextProps.listLength !== this.props.listLength;
-    } else if (nextState.isIntersecting && !this.state.isIntersecting) {
-      // If we're going from a non-intersecting state to an intersecting state,
-      // (i.e. offscreen to onscreen), then we definitely need to re-render
-      return true;
-    }
-    // Otherwise, diff based on "updateOnProps" and "updateOnStates"
-    return super.shouldComponentUpdate(nextProps, nextState);
-  }
-
-  componentDidMount () {
-    if (!this.props.intersectionObserverWrapper) {
-      // TODO: enable IntersectionObserver optimization for notification statuses.
-      // These are managed in notifications/index.js rather than status_list.js
-      return;
-    }
-    this.props.intersectionObserverWrapper.observe(
-      this.props.id,
-      this.node,
-      this.handleIntersection
-    );
-
-    this.componentMounted = true;
-  }
-
-  componentWillUnmount () {
-    if (this.props.intersectionObserverWrapper) {
-      this.props.intersectionObserverWrapper.unobserve(this.props.id, this.node);
-    }
-
-    this.componentMounted = false;
-  }
-
-  handleIntersection = (entry) => {
-    if (this.node && this.node.children.length !== 0) {
-      // save the height of the fully-rendered element
-      this.height = getRectFromEntry(entry).height;
-
-      if (this.props.onHeightChange) {
-        this.props.onHeightChange(this.props.status, this.height);
-      }
-    }
-
-    this.setState((prevState) => {
-      if (prevState.isIntersecting && !entry.isIntersecting) {
-        scheduleIdleTask(this.hideIfNotIntersecting);
-      }
-      return {
-        isIntersecting: entry.isIntersecting,
-        isHidden: false,
-      };
-    });
-  }
-
-  hideIfNotIntersecting = () => {
-    if (!this.componentMounted) {
-      return;
-    }
-
-    // When the browser gets a chance, test if we're still not intersecting,
-    // and if so, set our isHidden to true to trigger an unrender. The point of
-    // this is to save DOM nodes and avoid using up too much memory.
-    // See: https://github.com/tootsuite/mastodon/issues/2900
-    this.setState((prevState) => ({ isHidden: !prevState.isIntersecting }));
-  }
-
-  handleRef = (node) => {
-    this.node = node;
-  }
 
   handleClick = () => {
     if (!this.context.router) {
@@ -150,7 +74,7 @@ export default class Status extends ImmutablePureComponent {
 
   handleAccountClick = (e) => {
     if (this.context.router && e.button === 0) {
-      const id = Number(e.currentTarget.getAttribute('data-id'));
+      const id = e.currentTarget.getAttribute('data-id');
       e.preventDefault();
       this.context.router.history.push(`/accounts/${id}`);
     }
@@ -168,54 +92,106 @@ export default class Status extends ImmutablePureComponent {
     return <div className='media-spoiler-video' style={{ height: '110px' }} />;
   }
 
+  handleOpenVideo = startTime => {
+    this.props.onOpenVideo(this._properStatus().getIn(['media_attachments', 0]), startTime);
+  }
+
+  handleHotkeyReply = e => {
+    e.preventDefault();
+    this.props.onReply(this._properStatus(), this.context.router.history);
+  }
+
+  handleHotkeyFavourite = () => {
+    this.props.onFavourite(this._properStatus());
+  }
+
+  handleHotkeyBoost = e => {
+    this.props.onReblog(this._properStatus(), e);
+  }
+
+  handleHotkeyMention = e => {
+    e.preventDefault();
+    this.props.onMention(this._properStatus().get('account'), this.context.router.history);
+  }
+
+  handleHotkeyOpen = () => {
+    this.context.router.history.push(`/statuses/${this._properStatus().get('id')}`);
+  }
+
+  handleHotkeyOpenProfile = () => {
+    this.context.router.history.push(`/accounts/${this._properStatus().getIn(['account', 'id'])}`);
+  }
+
+  handleHotkeyMoveUp = () => {
+    this.props.onMoveUp(this.props.status.get('id'));
+  }
+
+  handleHotkeyMoveDown = () => {
+    this.props.onMoveDown(this.props.status.get('id'));
+  }
+
+  _properStatus () {
+    const { status } = this.props;
+
+    if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+      return status.get('reblog');
+    } else {
+      return status;
+    }
+  }
+
   render () {
     let media = null;
-    let statusAvatar;
+    let statusAvatar, prepend;
 
-    // Exclude intersectionObserverWrapper from `other` variable
-    // because intersection is managed in here.
-    const { status, account, intersectionObserverWrapper, index, listLength, wrapped, ...other } = this.props;
-    const { isExpanded, isIntersecting, isHidden } = this.state;
+    const { hidden }     = this.props;
+    const { isExpanded } = this.state;
+
+    let { status, account, ...other } = this.props;
 
     if (status === null) {
       return null;
     }
 
-    const hasIntersectionObserverWrapper = !!this.props.intersectionObserverWrapper;
-    const isHiddenForSure = isIntersecting === false && isHidden;
-    const visibilityUnknownButHeightIsCached = isIntersecting === undefined && status.has('height');
-
-    if (hasIntersectionObserverWrapper && (isHiddenForSure || visibilityUnknownButHeightIsCached)) {
+    if (hidden) {
       return (
-        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0' style={{ height: `${this.height || status.get('height')}px`, opacity: 0, overflow: 'hidden' }}>
+        <div>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
-        </article>
+        </div>
       );
     }
 
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
       const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 
-      return (
-        <article className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0'>
-          <div className='status__prepend'>
-            <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={display_name_html} /></a> }} />
-          </div>
-
-          <Status {...other} wrapped status={status.get('reblog')} account={status.get('account')} />
-        </article>
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
+          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={display_name_html} /></a> }} />
+        </div>
       );
+
+      account = status.get('account');
+      status  = status.get('reblog');
     }
 
     if (status.get('media_attachments').size > 0 && !this.props.muted) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
 
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        const video = status.getIn(['media_attachments', 0]);
+
         media = (
-          <Bundle fetchComponent={VideoPlayer} loading={this.renderLoadingVideoPlayer} >
-            {Component => <Component media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />}
+          <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
+            {Component => <Component
+              preview={video.get('preview_url')}
+              src={video.get('url')}
+              width={239}
+              height={110}
+              sensitive={status.get('sensitive')}
+              onOpenVideo={this.handleOpenVideo}
+            />}
           </Bundle>
         );
       } else {
@@ -233,26 +209,43 @@ export default class Status extends ImmutablePureComponent {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
 
-    return (
-      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} tabIndex={wrapped ? null : '0'}  ref={this.handleRef}>
-        <div className='status__info'>
-          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+    const handlers = this.props.muted ? {} : {
+      reply: this.handleHotkeyReply,
+      favourite: this.handleHotkeyFavourite,
+      boost: this.handleHotkeyBoost,
+      mention: this.handleHotkeyMention,
+      open: this.handleHotkeyOpen,
+      openProfile: this.handleHotkeyOpenProfile,
+      moveUp: this.handleHotkeyMoveUp,
+      moveDown: this.handleHotkeyMoveDown,
+    };
 
-          <a onClick={this.handleAccountClick} target='_blank' data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
-            <div className='status__avatar'>
-              {statusAvatar}
+    return (
+      <HotKeys handlers={handlers}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0}>
+          {prepend}
+
+          <div className={classNames('status', `status-${status.get('visibility')}`, { muted: this.props.muted })} data-id={status.get('id')}>
+            <div className='status__info'>
+              <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+
+              <a onClick={this.handleAccountClick} target='_blank' data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} className='status__display-name'>
+                <div className='status__avatar'>
+                  {statusAvatar}
+                </div>
+
+                <DisplayName account={status.get('account')} />
+              </a>
             </div>
 
-            <DisplayName account={status.get('account')} />
-          </a>
+            <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} />
+
+            {media}
+
+            <StatusActionBar status={status} account={account} {...other} />
+          </div>
         </div>
-
-        <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} />
-
-        {media}
-
-        <StatusActionBar {...this.props} />
-      </article>
+      </HotKeys>
     );
   }
 

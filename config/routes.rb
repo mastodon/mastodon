@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
+  get 'intent', to: 'intents#show'
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
     resources :statuses, only: [:show] do
       member do
         get :activity
+        get :embed
       end
     end
 
@@ -54,12 +56,18 @@ Rails.application.routes.draw do
     resource :inbox, only: [:create], module: :activitypub
   end
 
+  resource :inbox, only: [:create], module: :activitypub
+
   get '/@:username', to: 'accounts#show', as: :short_account
+  get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
+  get '/@:username/media', to: 'accounts#show', as: :short_account_media
   get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
+  get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
 
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
+    resource :notifications, only: [:show, :update]
     resource :import, only: [:show, :create]
 
     resource :export, only: [:show]
@@ -76,22 +84,34 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
+
+    resources :applications, except: [:edit] do
+      member do
+        post :regenerate
+      end
+    end
+
     resource :delete, only: [:show, :destroy]
 
     resources :sessions, only: [:destroy]
   end
 
-  resources :media, only: [:show]
-  resources :tags,  only: [:show]
+  resources :media,  only: [:show]
+  resources :tags,   only: [:show]
+  resources :emojis, only: [:show]
+
+  get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
   # Remote follow
   resource :authorize_follow, only: [:show, :create]
+  resource :share, only: [:show, :create]
 
   namespace :admin do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
+    resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resource :settings, only: [:edit, :update]
-    
+
     resources :instances, only: [:index] do
       collection do
         post :resubscribe
@@ -119,6 +139,16 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
     end
+
+    resources :custom_emojis, only: [:index, :new, :create, :destroy] do
+      member do
+        post :copy
+        post :enable
+        post :disable
+      end
+    end
+
+    resources :account_moderation_notes, only: [:create, :destroy]
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)
@@ -151,6 +181,9 @@ Rails.application.routes.draw do
 
           resource :mute, only: :create
           post :unmute, to: 'mutes#destroy'
+
+          resource :pin, only: :create
+          post :unpin, to: 'pins#destroy'
         end
 
         member do
@@ -164,17 +197,24 @@ Rails.application.routes.draw do
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
       end
-      resources :streaming,  only: [:index]
+
+      resources :streaming, only: [:index]
+      resources :custom_emojis, only: [:index]
 
       get '/search', to: 'search#index', as: :search
 
       resources :follows,    only: [:create]
-      resources :media,      only: [:create]
-      resources :apps,       only: [:create]
+      resources :media,      only: [:create, :update]
       resources :blocks,     only: [:index]
       resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+
+      namespace :apps do
+        get :verify_credentials, to: 'credentials#show'
+      end
+
+      resources :apps, only: [:create]
 
       resource :instance,      only: [:show]
       resource :domain_blocks, only: [:show, :create, :destroy]
@@ -199,6 +239,7 @@ Rails.application.routes.draw do
         resource :search, only: :show, controller: :search
         resources :relationships, only: :index
       end
+
       resources :accounts, only: [:show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
@@ -217,6 +258,7 @@ Rails.application.routes.draw do
 
     namespace :web do
       resource :settings, only: [:update]
+      resource :embed, only: [:create]
       resources :push_subscriptions, only: [:create] do
         member do
           put :update
@@ -234,7 +276,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   match '*unmatched_route',
-    via: :all,
-    to: 'application#raise_not_found',
-    format: false
+        via: :all,
+        to: 'application#raise_not_found',
+        format: false
 end

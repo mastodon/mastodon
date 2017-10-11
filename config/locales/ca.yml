@@ -21,7 +21,7 @@ ca:
       real_conversation_body: Amb 500 caràcters a la teva disposició i suport per a continguts granulars i avisos multimèdia, pots expressar-te de la manera que vulguis.
       real_conversation_title: Construït per a converses reals
       within_reach_body: Diverses aplicacions per a iOS, Android i altres plataformes gràcies a un ecosistema API amable amb el desenvolupador, et permet mantenir-te al dia amb els teus amics en qualsevol lloc..
-      within_reach_title: Sempre a l'abast   
+      within_reach_title: Sempre a l'abast
     find_another_instance: Troba altres instàncies
     generic_description: "%{domain} és un servidor a la xarxa"
     hosted_on: Mastodon allotjat a %{domain}
@@ -215,7 +215,7 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       subject: Nou informe per a %{instance} (#%{id})
   application_mailer:
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'Canviar preferències de correu: %{link}'
     signature: Notificacions de Mastodon desde %{instance}
     view: 'Vista:'
@@ -275,7 +275,7 @@ ca:
       content: La verificació de seguretat ha fallat. Bloquejes les galetes?
       title: La verificació de seguretat ha fallat
     '429': Estrangulat
-    noscript: Per utilitzar Mastodon si us plau activa JavaScript.
+    noscript_html: Per utilitzar Mastodon si us plau activa JavaScript.
   exports:
     blocks: Persones que has bloquejat
     csv: CSV
@@ -340,6 +340,17 @@ ca:
     reblog:
       body: "%{name} ha retootejat el teu estat"
       subject: "%{name} ha retootejat el teu estat"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Pròxim
     prev: Anterior
@@ -358,9 +369,6 @@ ca:
       title: "%{name} t'ha mencionat"
     reblog:
       title: "%{name} t'ha retootejat"
-    subscribed:
-      body: Ara pots rebre notificacions push.
-      title: Subscripció registrada
   remote_follow:
     acct: Escriu el usuari@domini de la persona que vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per el compte.
@@ -432,74 +440,7 @@ ca:
     reblogged: retooteado
     sensitive_content: Contingut sensible
   terms:
-    body_html: |
-      <h2>Política de privacitat</h2>
-
-      <h3 id="collect">Quina informació recollim?</h3>
-
-      <p>Recopilem informació teva quan et registres en aquesta instància i recopilem dades quan participes en el fòrum llegint, escrivint i avaluant el contingut aquí compartit.</p>
-
-      <p>En registrar-te en aquesta instància, se't pot demanar que introduexisu el teu nom i l'adreça de correu electrònic. També pots visitar el nostre lloc sense registrar-te. La teva adreça de correu electrònic es verificarà mitjançant un correu electrònic que conté un enllaç únic. Si es visita aquest enllaç, sabem que controles l'adreça de correu electrònic.</p>
-
-      <p>Quan es registra i publica, registrem l'adreça IP de la qual es va originar la publicació. També podrem conservar els registres del servidor que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</p>
-
-      <h3 id="use">Per a què utilitzem la teva informació?</h3>
-
-      <p>Qualsevol de la informació que recopilem de tu pot utilitzar-se d'una de les maneres següents:</p>
-
-      <ul>
-        <li>Per a personalitzar la teva experiència &mdash; la teva informació ens ajuda a respondre millor a les teves necessitats individuals.</li>
-        <li>Per millorar el nostre lloc &mdash; ens esforcem contínuament per millorar les nostres ofertes de llocs basats en la informació i els comentaris que rebem de tu.</li>
-        <li>Per millorar el servei al client &mdash; la teva informació ens ajuda a respondre més eficaçment a les teves sol·licituds de servei al client i a les necessitats de suport.</li>
-        <li>Per enviar correus electrònics periòdics &mdash; l'adreça electrònica que proporcionis es pot utilitzar per enviar-te informació, notificacions que sol·licitis sobre canvis en temes o en resposta al teu nom d'usuari, respondre a les consultes i/o altres sol·licituds o preguntes.</li>
-      </ul>
-
-      <h3 id="protect">Com protegim la teva informació?</h3>
-
-      <p>Implementem diverses mesures de seguretat per mantenir la seguretat de la teva informació personal quan introdueixes, envies o accedeixes a la teva informació personal.</p>
-
-      <h3 id="data-retention">Quina és la nostre política de retenció de dades?</h3>
-
-      <p>Farem un esforç de bona fe per a:</p>
-
-      <ul>
-        <li>Conserva els registres de servidor que continguin l'adreça IP de totes les sol·licituds a aquest servidor no més de 90 dies.</li>
-        <li>Conserva les adreces IP associades als usuaris registrats i les seves publicacions no més de 5 anys.</li>
-      </ul>
-
-      <h3 id="cookies">Utilitzem galetes?</h3>
-
-      <p>Sí. Les cookies són fitxers petits que un lloc o el proveïdor de serveis transfereix al disc dur del vostre ordinador a través del navegador web (si ho permet). Aquestes galetes permeten al lloc reconèixer el vostre navegador i, si teniu un compte registrat, associar-lo al vostre compte registrat.</p>
-
-      <p>Utilitzem cookies per comprendre i desar les vostres preferències per a futures visites i compilar dades agregades sobre el trànsit del lloc i la interacció del lloc, de manera que podrem oferir millors experiències i eines del lloc en el futur. Podem contractar amb proveïdors de serveis de tercers per ajudar-nos a comprendre millor els visitants del nostre lloc. Aquests proveïdors de serveis no estan autoritzats a utilitzar la informació recollida en nom nostre, excepte per ajudar-nos a dur a terme i millorar el nostre negoci.</p>
-
-      <h3 id="disclose">Publiquem informació al exterior?</h3>
-
-      <p>No venem, comercialitzem ni transmetem a tercers la vostra informació d'identificació personal. Això no inclou tercers de confiança que ens ajudin a operar el nostre lloc, a dur a terme el nostre negoci o a fer-ho, sempre que aquestes parts acceptin mantenir confidencial aquesta informació. També podem publicar la vostra informació quan creiem que l'alliberament és apropiat per complir amb la llei, fer complir les polítiques del nostre lloc o protegir els nostres drets o altres drets, propietat o seguretat. No obstant això, la informació de visitant que no sigui personalment identificable es pot proporcionar a altres parts per a la comercialització, la publicitat o altres usos.</p>  
-
-      <h3 id="third-party">Vincles de tercers</h3>
-
-      <p>De tant en tant, segons el nostre criteri, podem incloure o oferir productes o serveis de tercers al nostre lloc. Aquests llocs de tercers tenen polítiques de privadesa separades i independents. Per tant, no tenim responsabilitat ni responsabilitat civil pel contingut i les activitats d'aquests llocs enllaçats. No obstant això, busquem protegir la integritat del nostre lloc i donem la benvinguda a qualsevol comentari sobre aquests llocs.</p>
-
-      <h3 id="coppa">Compliment de la Llei de protecció de la privacitat en línia dels nens</h3>
-
-      <p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i teniu menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no feu servir aquest lloc.</p>
-
-      <h3 id="online">Només la política de privacitat en línia</h3>
-
-      <p>Aquesta política de privacitat en línia només s'aplica a la informació recopilada a través del nostre lloc i no a la informació recopilada fora de línia.</p>
-
-      <h3 id="consent">El vostre consentiment</h3>
-
-      <p>En utilitzar el nostre lloc, accepta la política de privadesa del nostre lloc web.</p>
-
-      <h3 id="changes">Canvis a la nostra política de privacitat</h3>
-
-      <p>Si decidim canviar la nostra política de privadesa, publicarem aquests canvis en aquesta pàgina.</p>
-
-      <p>Aquest document és CC-BY-SA. Es va actualitzar per última vegada el 31 de maig de 2013.</p>
-
-      <p>Originalment adaptat a la <a href="https://github.com/discourse/discourse">política de privadesa del Discurs</a>.</p>
+    body_html: "<h2>Política de privacitat</h2>\n\n<h3 id=\"collect\">Quina informació recollim?</h3>\n\n<p>Recopilem informació teva quan et registres en aquesta instància i recopilem dades quan participes en el fòrum llegint, escrivint i avaluant el contingut aquí compartit.</p>\n\n<p>En registrar-te en aquesta instància, se't pot demanar que introduexisu el teu nom i l'adreça de correu electrònic. També pots visitar el nostre lloc sense registrar-te. La teva adreça de correu electrònic es verificarà mitjançant un correu electrònic que conté un enllaç únic. Si es visita aquest enllaç, sabem que controles l'adreça de correu electrònic.</p>\n\n<p>Quan es registra i publica, registrem l'adreça IP de la qual es va originar la publicació. També podrem conservar els registres del servidor que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</p>\n\n<h3 id=\"use\">Per a què utilitzem la teva informació?</h3>\n\n<p>Qualsevol de la informació que recopilem de tu pot utilitzar-se d'una de les maneres següents:</p>\n\n<ul>\n  <li>Per a personalitzar la teva experiència &mdash; la teva informació ens ajuda a respondre millor a les teves necessitats individuals.</li>\n  <li>Per millorar el nostre lloc &mdash; ens esforcem contínuament per millorar les nostres ofertes de llocs basats en la informació i els comentaris que rebem de tu.</li>\n  <li>Per millorar el servei al client &mdash; la teva informació ens ajuda a respondre més eficaçment a les teves sol·licituds de servei al client i a les necessitats de suport.</li>\n  <li>Per enviar correus electrònics periòdics &mdash; l'adreça electrònica que proporcionis es pot utilitzar per enviar-te informació, notificacions que sol·licitis sobre canvis en temes o en resposta al teu nom d'usuari, respondre a les consultes i/o altres sol·licituds o preguntes.</li>\n</ul>\n\n<h3 id=\"protect\">Com protegim la teva informació?</h3>\n\n<p>Implementem diverses mesures de seguretat per mantenir la seguretat de la teva informació personal quan introdueixes, envies o accedeixes a la teva informació personal.</p>\n\n<h3 id=\"data-retention\">Quina és la nostre política de retenció de dades?</h3>\n\n<p>Farem un esforç de bona fe per a:</p>\n\n<ul>\n  <li>Conserva els registres de servidor que continguin l'adreça IP de totes les sol·licituds a aquest servidor no més de 90 dies.</li>\n  <li>Conserva les adreces IP associades als usuaris registrats i les seves publicacions no més de 5 anys.</li>\n</ul>\n\n<h3 id=\"cookies\">Utilitzem galetes?</h3>\n\n<p>Sí. Les cookies són fitxers petits que un lloc o el proveïdor de serveis transfereix al disc dur del vostre ordinador a través del navegador web (si ho permet). Aquestes galetes permeten al lloc reconèixer el vostre navegador i, si teniu un compte registrat, associar-lo al vostre compte registrat.</p>\n\n<p>Utilitzem cookies per comprendre i desar les vostres preferències per a futures visites i compilar dades agregades sobre el trànsit del lloc i la interacció del lloc, de manera que podrem oferir millors experiències i eines del lloc en el futur. Podem contractar amb proveïdors de serveis de tercers per ajudar-nos a comprendre millor els visitants del nostre lloc. Aquests proveïdors de serveis no estan autoritzats a utilitzar la informació recollida en nom nostre, excepte per ajudar-nos a dur a terme i millorar el nostre negoci.</p>\n\n<h3 id=\"disclose\">Publiquem informació al exterior?</h3>\n\n<p>No venem, comercialitzem ni transmetem a tercers la vostra informació d'identificació personal. Això no inclou tercers de confiança que ens ajudin a operar el nostre lloc, a dur a terme el nostre negoci o a fer-ho, sempre que aquestes parts acceptin mantenir confidencial aquesta informació. També podem publicar la vostra informació quan creiem que l'alliberament és apropiat per complir amb la llei, fer complir les polítiques del nostre lloc o protegir els nostres drets o altres drets, propietat o seguretat. No obstant això, la informació de visitant que no sigui personalment identificable es pot proporcionar a altres parts per a la comercialització, la publicitat o altres usos.</p>  \n\n<h3 id=\"third-party\">Vincles de tercers</h3>\n\n<p>De tant en tant, segons el nostre criteri, podem incloure o oferir productes o serveis de tercers al nostre lloc. Aquests llocs de tercers tenen polítiques de privadesa separades i independents. Per tant, no tenim responsabilitat ni responsabilitat civil pel contingut i les activitats d'aquests llocs enllaçats. No obstant això, busquem protegir la integritat del nostre lloc i donem la benvinguda a qualsevol comentari sobre aquests llocs.</p>\n\n<h3 id=\"coppa\">Compliment de la Llei de protecció de la privacitat en línia dels nens</h3>\n\n<p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i teniu menys de 13 anys, segons els requisits de COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\">Children's Online Privacy Protection Act</a>) no feu servir aquest lloc.</p>\n\n<h3 id=\"online\">Només la política de privacitat en línia</h3>\n\n<p>Aquesta política de privacitat en línia només s'aplica a la informació recopilada a través del nostre lloc i no a la informació recopilada fora de línia.</p>\n\n<h3 id=\"consent\">El vostre consentiment</h3>\n\n<p>En utilitzar el nostre lloc, accepta la política de privadesa del nostre lloc web.</p>\n\n<h3 id=\"changes\">Canvis a la nostra política de privacitat</h3>\n\n<p>Si decidim canviar la nostra política de privadesa, publicarem aquests canvis en aquesta pàgina.</p>\n\n<p>Aquest document és CC-BY-SA. Es va actualitzar per última vegada el 31 de maig de 2013.</p>\n\n<p>Originalment adaptat a la <a href=\"https://github.com/discourse/discourse\">política de privadesa del Discurs</a>.</p>\n"
     title: "%{instance} Condicions del servei i política de privadesa"
   time:
     formats:

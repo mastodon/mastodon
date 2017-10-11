@@ -21,7 +21,7 @@ class InstancePresenter
   end
 
   def status_count
-    Rails.cache.fetch('local_status_count') { Status.local.count }
+    Rails.cache.fetch('local_status_count') { Account.local.sum(:statuses_count) }
   end
 
   def domain_count
@@ -30,5 +30,13 @@ class InstancePresenter
 
   def version_number
     Mastodon::Version
+  end
+
+  def source_url
+    Mastodon::Version.source_url
+  end
+
+  def thumbnail
+    @thumbnail ||= Rails.cache.fetch('site_uploads/thumbnail') { SiteUpload.find_by(var: 'thumbnail') }
   end
 end

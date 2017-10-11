@@ -3,10 +3,11 @@
 class ActivityPub::Activity
   include JsonLdHelper
 
-  def initialize(json, account)
+  def initialize(json, account, options = {})
     @json    = json
     @account = account
     @object  = @json['object']
+    @options = options
   end
 
   def perform
@@ -14,9 +15,9 @@ class ActivityPub::Activity
   end
 
   class << self
-    def factory(json, account)
+    def factory(json, account, options = {})
       @json = json
-      klass&.new(json, account)
+      klass&.new(json, account, options)
     end
 
     private
@@ -39,6 +40,10 @@ class ActivityPub::Activity
         ActivityPub::Activity::Update
       when 'Undo'
         ActivityPub::Activity::Undo
+      when 'Accept'
+        ActivityPub::Activity::Accept
+      when 'Reject'
+        ActivityPub::Activity::Reject
       end
     end
   end
@@ -54,7 +59,7 @@ class ActivityPub::Activity
   end
 
   def object_uri
-    @object_uri ||= @object.is_a?(String) ? @object : @object['id']
+    @object_uri ||= value_or_id(@object)
   end
 
   def redis
@@ -89,18 +94,11 @@ class ActivityPub::Activity
   end
 
   def distribute_to_followers(status)
-    DistributionWorker.perform_async(status.id)
+    ::DistributionWorker.perform_async(status.id)
   end
 
   def delete_arrived_first?(uri)
-    key = "delete_upon_arrival:#{@account.id}:#{uri}"
-
-    if redis.exists(key)
-      redis.del(key)
-      true
-    else
-      false
-    end
+    redis.exists("delete_upon_arrival:#{@account.id}:#{uri}")
   end
 
   def delete_later!(uri)

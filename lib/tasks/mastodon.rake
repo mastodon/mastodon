@@ -47,7 +47,7 @@ namespace :mastodon do
     confirm = STDIN.gets.chomp
     puts
 
-    if confirm.casecmp?('y')
+    if confirm.casecmp('y').zero?
       password = SecureRandom.hex
       user = User.new(email: email, password: password, account_attributes: { username: username })
       if user.save
@@ -83,16 +83,15 @@ namespace :mastodon do
 
       MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
-        media.type = :unknown
         media.save
       end
     end
 
     desc 'Set unknown attachment type for remote-only attachments'
     task set_unknown: :environment do
-      Rails.logger.debug 'Setting unknown attachment type for remote-only attachments...'
+      puts 'Setting unknown attachment type for remote-only attachments...'
       MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
     end
 
     desc 'Redownload avatars/headers of remote users. Optionally limit to a particular domain with DOMAIN'
@@ -111,10 +110,7 @@ namespace :mastodon do
   namespace :push do
     desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
     task clear: :environment do
-      Account.remote.without_followers.where.not(subscription_expires_at: nil).find_each do |a|
-        Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
-        UnsubscribeService.new.call(a)
-      end
+      Pubsubhubbub::UnsubscribeWorker.push_bulk(Account.remote.without_followers.where.not(subscription_expires_at: nil).pluck(:id))
     end
 
     desc 'Re-subscribes to soon expiring PuSH subscriptions (deprecated)'
@@ -191,24 +187,24 @@ namespace :mastodon do
   namespace :maintenance do
     desc 'Update counter caches'
     task update_counter_caches: :environment do
-      Rails.logger.debug 'Updating counter caches for accounts...'
+      puts 'Updating counter caches for accounts...'
 
-      Account.unscoped.select('id').find_in_batches do |batch|
+      Account.unscoped.where.not(protocol: :activitypub).select('id').find_in_batches do |batch|
         Account.where(id: batch.map(&:id)).update_all('statuses_count = (select count(*) from statuses where account_id = accounts.id), followers_count = (select count(*) from follows where target_account_id = accounts.id), following_count = (select count(*) from follows where account_id = accounts.id)')
       end
 
-      Rails.logger.debug 'Updating counter caches for statuses...'
+      puts 'Updating counter caches for statuses...'
 
       Status.unscoped.select('id').find_in_batches do |batch|
         Status.where(id: batch.map(&:id)).update_all('favourites_count = (select count(*) from favourites where favourites.status_id = statuses.id), reblogs_count = (select count(*) from statuses as reblogs where reblogs.reblog_of_id = statuses.id)')
       end
 
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
     end
 
     desc 'Generate static versions of GIF avatars/headers'
     task add_static_avatars: :environment do
-      Rails.logger.debug 'Generating static avatars/headers for GIF ones...'
+      puts 'Generating static avatars/headers for GIF ones...'
 
       Account.unscoped.where(avatar_content_type: 'image/gif').or(Account.unscoped.where(header_content_type: 'image/gif')).find_each do |account|
         begin
@@ -220,7 +216,7 @@ namespace :mastodon do
         end
       end
 
-      Rails.logger.debug 'Done!'
+      puts 'Done!'
     end
 
     desc 'Ensure referencial integrity'
@@ -272,6 +268,36 @@ namespace :mastodon do
       ActiveRecord::Base.connection.execute('UPDATE media_attachments SET status_id = NULL FROM media_attachments ma LEFT JOIN statuses s ON s.id = ma.status_id WHERE media_attachments.id = ma.id AND ma.status_id IS NOT NULL AND s.id IS NULL')
       ActiveRecord::Base.connection.execute('UPDATE media_attachments SET account_id = NULL FROM media_attachments ma LEFT JOIN accounts a ON a.id = ma.account_id WHERE media_attachments.id = ma.id AND ma.account_id IS NOT NULL AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('UPDATE reports SET action_taken_by_account_id = NULL FROM reports r LEFT JOIN accounts a ON a.id = r.action_taken_by_account_id WHERE reports.id = r.id AND r.action_taken_by_account_id IS NOT NULL AND a.id IS NULL')
+    end
+
+    desc 'Remove deprecated preview cards'
+    task remove_deprecated_preview_cards: :environment do
+      next unless ActiveRecord::Base.connection.table_exists? 'deprecated_preview_cards'
+
+      class DeprecatedPreviewCard < ActiveRecord::Base
+        self.inheritance_column = false
+
+        path = '/preview_cards/:attachment/:id_partition/:style/:filename'
+        if ENV['S3_ENABLED'] != 'true'
+          path = (ENV['PAPERCLIP_ROOT_PATH'] || ':rails_root/public/system') + path
+        end
+
+        has_attached_file :image, styles: { original: '280x120>' }, convert_options: { all: '-quality 80 -strip' }, path: path
+      end
+
+      puts 'Delete records and associated files from deprecated preview cards? [y/N]: '
+      confirm = STDIN.gets.chomp
+
+      if confirm.casecmp('y').zero?
+        DeprecatedPreviewCard.in_batches.destroy_all
+
+        puts 'Drop deprecated preview cards table? [y/N]: '
+        confirm = STDIN.gets.chomp
+
+        if confirm.casecmp('y').zero?
+          ActiveRecord::Migration.drop_table :deprecated_preview_cards
+        end
+      end
     end
   end
 end

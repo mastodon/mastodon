@@ -10,17 +10,18 @@
 
 = form_tag do
 
-  %table.table
-    %thead
-      %tr
-        -# %th
-        %th= t('admin.reports.id')
-        %th= t('admin.reports.target')
-        %th= t('admin.reports.reported_by')
-        %th= t('admin.reports.comment.label')
-        %th= t('admin.reports.report_contents')
-        %th
-    %tbody
-      = render @reports
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          -# %th
+          %th= t('admin.reports.id')
+          %th= t('admin.reports.target')
+          %th= t('admin.reports.reported_by')
+          %th= t('admin.reports.comment.label')
+          %th= t('admin.reports.report_contents')
+          %th
+      %tbody
+        = render @reports
 
 = paginate @reports

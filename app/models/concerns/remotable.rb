@@ -27,9 +27,11 @@ module Remotable
 
           matches  = response.headers['content-disposition']&.match(/filename="([^"]*)"/)
           filename = matches.nil? ? parsed_url.path.split('/').last : matches[1]
+          basename = SecureRandom.hex(8)
+          extname  = File.extname(filename)
 
           send("#{attachment_name}=", StringIO.new(response.to_s))
-          send("#{attachment_name}_file_name=", filename)
+          send("#{attachment_name}_file_name=", basename + extname)
 
           self[attribute_name] = url if has_attribute?(attribute_name)
         rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError => e

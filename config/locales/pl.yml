@@ -2,6 +2,7 @@
 pl:
   about:
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
+    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_this: O tej instancji
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
@@ -18,7 +19,7 @@ pl:
       humane_approach_title: Bardziej ludzkie podejście
       not_a_product_body: Mastodon nie jest komercyjną siecią. Nie doświadczysz tu reklam, zbierania danych, ani centralnego ośrodka, tak jak w przypadku wielu rozwiązań.
       not_a_product_title: Jesteś człowiekiem, nie produktem
-      real_conversation_body: Mając do dyspozycji 500 znaków na post, rozdrobnienie zawartości i ostrzeżenia o multimediach, możesz wyrażać siebie na wszystkie możliwe sposoby.
+      real_conversation_body: Mając do dyspozycji 500 znaków na wpis, rozdrobnienie zawartości i ostrzeżenia o multimediach, możesz wyrażać siebie na wszystkie możliwe sposoby.
       real_conversation_title: Zaprojektowany do prawdziwych rozmów
       within_reach_body: Wiele aplikacji dla Androida, iOS i innych platform dzięki przyjaznemu programistom API sprawia, że możesz utrzymywać kontakt ze znajomymi praktycznie wszędzie.
       within_reach_title: Zawsze w Twoim zasięgu
@@ -37,12 +38,16 @@ pl:
     follow: Śledź
     followers: Śledzących
     following: Śledzi
+    media: Zawartość multimedialna
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
     posts: Wpisy
-    remote_follow: Zdalne śledzenie
+    posts_with_replies: Wpisy z odpowiedziami
+    remote_follow: Śledź zdalnie
     reserved_username: Ta nazwa użytkownika jest zarezerwowana.
+    roles:
+      admin: Administrator
     unfollow: Przestań śledzić
   admin:
     accounts:
@@ -56,7 +61,9 @@ pl:
       email: Adres e-mail
       feed_url: Adres kanału
       followers: Śledzący
+      followers_url: Adres śledzących
       follows: Śledzeni
+      inbox_url: Adres skrzynki
       ip: Adres IP
       location:
         all: Wszystkie
@@ -69,6 +76,7 @@ pl:
         silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
+      moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
       not_subscribed: Nie zasubskrybowano
@@ -86,6 +94,7 @@ pl:
       resubscribe: Ponów subskrypcję
       salmon_url: Adres Salmon
       search: Szukaj
+      shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
         report: zgłoszeń
@@ -99,6 +108,32 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    account_moderation_notes:
+      account: Autor
+      created_at: Data
+      create: Dodaj
+      created_msg: Pomyślnie dodano notatkę moderacyjną!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
+    custom_emojis:
+      copied_msg: Pomyślnie utworzono lokalną kopię emoji
+      copy: Kopiuj
+      copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
+      created_msg: Pomyślnie utworzono emoji!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto emoji!
+      disable: Wyłącz
+      disabled_msg: Pomyślnie wyłączono emoji
+      emoji: Emoji
+      enable: Włącz
+      enabled_msg: Pomyślnie przywrócono emoji
+      image_hint: Plik PNG ważący do 50KB
+      new:
+        title: Dodaj nowe niestandardowe emoji
+      shortcode: Shortcode
+      shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
+      title: Niestandardowe emoji
+      upload: Wyślij
     domain_blocks:
       add_new: Dodaj nową
       created_msg: Blokada domen jest przetwarzana
@@ -122,8 +157,8 @@ pl:
       severity: Priorytet
       show:
         affected_accounts:
-          one: Dotyczy jednego konta w bazie danych
           many: Dotyczy %{count} kont w bazie danych
+          one: Dotyczy jednego konta w bazie danych
           other: Dotyczy %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
@@ -132,12 +167,22 @@ pl:
         undo: Cofnij
       title: Zablokowane domeny
       undo: Cofnij
+    email_domain_blocks:
+      add_new: Dodaj nową
+      created_msg: Pomyślnie utworzono blokadę domeny e-mail
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
+      domain: Domena
+      new:
+        create: Utwórz blokadę
+        title: Nowa blokada domeny e-mail
+      title: Blokowanie domen e-mail
     instances:
       account_count: Znane konta
       domain_name: Domena
       title: Znane instancje
     reports:
-      action_taken_by: Akcja podjęta przez
+      action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       comment:
         label: Komentarz
@@ -161,6 +206,9 @@ pl:
       unresolved: Nierozwiązane
       view: Wyświetl
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Oddzielaj nazwy użytkowników przecinkami. Działa tylko dla niezablokowanych kont w obrębie instancji. Jeżeli puste, zostaną użyte konta administratorów instancji.
+        title: Domyślne obserwacje nowych użytkowników
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
@@ -184,6 +232,9 @@ pl:
         desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać z tagów HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa instancji
+      thumbnail:
+        desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli.'
+        title: Miniatura instancji
       timeline_preview:
         desc_html: Wyświetlaj publiczną oś czasu na stronie widocznej dla niezalogowanych
         title: Podgląd osi czasu
@@ -221,7 +272,13 @@ pl:
     signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
   applications:
-    invalid_url: Ten URL jest nieprawidłowy
+    created: Pomyślnie utworzono aplikację
+    destroyed: Pomyślnie usunięto aplikację
+    invalid_url: Wprowadzony adres URL jest nieprawidłowy
+    regenerate_token: Wygeneruj nowy token dostępu
+    token_regenerated: Pomyślnie wygenerowano nowy token dostępu
+    warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
+    your_token: Twój token dostępu
   auth:
     agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">naszymi zasadami użytkowania</a> i <a href="%{terms_path}">polityką prywatności</a>.
     change_password: Bezpieczeństwo
@@ -276,12 +333,15 @@ pl:
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
     '429': Uduszono
-    noscript: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z natywnej aplikacji obsługującej Twoje urządzenie.
+    '500':
+      content: Przepraszamy, coś poszło nie tak…
+      title: Ta strona jest nieprawidłowa
+    noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   exports:
-    blocks: Blokujesz
+    blocks: Zablokowani
     csv: CSV
-    follows: Śledzisz
-    mutes: Wyciszyłeś
+    follows: Śledzeni
+    mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
   followers:
     domain: Domena
@@ -345,10 +405,26 @@ pl:
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Następna
     prev: Poprzednia
     truncate: "&hellip;"
+  preferences:
+    languages: Języki
+    other: Pozostałe
+    publishing: Publikowanie
+    web: Sieć
   push_notifications:
     favourite:
       title: "%{name} dodał Twój status do ulubionych"
@@ -363,9 +439,6 @@ pl:
       title: "%{name} wspomniał o Tobie"
     reblog:
       title: "%{name} podbił Twój status"
-    subscribed:
-      body: Otrzymujesz teraz powiadomienia push.
-      title: Zarejestrowano subskrypcję!
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -414,26 +487,35 @@ pl:
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
     delete: Usuń konto
+    development: Tworzenie aplikacji
     edit_profile: Edytuj profil
-    export: Eksportuj dane
+    export: Eksportowanie danych
     followers: Autoryzowani śledzący
-    import: Importuj dane
+    import: Importowanie danych
+    notifications: Powiadomienia
     preferences: Preferencje
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe
+    your_apps: Twoje aplikacje
   statuses:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
+    pin_errors:
+      limit: Nie możesz przypiąć więcej wpisów
+      ownership: Nie możesz przypiąć cudzego wpisu
+      private: Nie możesz przypiąć niepublicznego wpisu
+      reblog: Nie możesz przypiąć podbicia wpisu
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
-      private_long: Widoczne tylko dla śledzących
-      public: Publiczny
-      public_long: Widoczne dla wszystkich
-      unlisted: Niewypisany
+      private_long: Widoczne tylko dla osób, które Cię śledzą
+      public: Publiczne
+      public_long: Widoczne dla wszystkich użytkowników
+      unlisted: Niewypisane
       unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
+    pinned: Przypięty wpis
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość
   terms:
@@ -446,7 +528,7 @@ pl:
 
       <p>Podczas rejestracji, możesz otrzymać prośbę o podanie adresu e-mail. Możesz jednak odwiedzać stronę bez rejestracji. Adres zostanie zweryfikowany przez kliknięcie w link wysłany w wiadomości. Dzięki temu wiemy, że jesteś właścicielem tego adresu.</p>
 
-      <p>Podczas rejestracji i tworzenia postów, Twój adres IP jest zapisywany na naszych serwerach. Możemy też przechowywać adres IP użyty przy każdej operacji w serwisie.</p>
+      <p>Podczas rejestracji i tworzenia wpisów, Twój adres IP jest zapisywany na naszych serwerach. Możemy też przechowywać adres IP użyty przy każdej operacji w serwisie.</p>
 
       <h3 id="use">Jak wykorzystujemy zebrane informacje?</h3>
 
@@ -506,6 +588,8 @@ pl:
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

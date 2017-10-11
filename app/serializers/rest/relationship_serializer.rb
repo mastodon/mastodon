@@ -4,6 +4,10 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
   attributes :id, :following, :followed_by, :blocking,
              :muting, :requested, :domain_blocking
 
+  def id
+    object.id.to_s
+  end
+
   def following
     instance_options[:relationships].following[object.id] || false
   end

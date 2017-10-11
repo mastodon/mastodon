@@ -17,8 +17,8 @@ import ColumnBackButton from '../../components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'items']),
-  hasMore: !!state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'next']),
+  accountIds: state.getIn(['user_lists', 'followers', props.params.accountId, 'items']),
+  hasMore: !!state.getIn(['user_lists', 'followers', props.params.accountId, 'next']),
 });
 
 @connect(mapStateToProps)
@@ -32,14 +32,14 @@ export default class Followers extends ImmutablePureComponent {
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchAccount(Number(this.props.params.accountId)));
-    this.props.dispatch(fetchFollowers(Number(this.props.params.accountId)));
+    this.props.dispatch(fetchAccount(this.props.params.accountId));
+    this.props.dispatch(fetchFollowers(this.props.params.accountId));
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
-      this.props.dispatch(fetchAccount(Number(nextProps.params.accountId)));
-      this.props.dispatch(fetchFollowers(Number(nextProps.params.accountId)));
+      this.props.dispatch(fetchAccount(nextProps.params.accountId));
+      this.props.dispatch(fetchFollowers(nextProps.params.accountId));
     }
   }
 
@@ -47,13 +47,13 @@ export default class Followers extends ImmutablePureComponent {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
     if (scrollTop === scrollHeight - clientHeight && this.props.hasMore) {
-      this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
+      this.props.dispatch(expandFollowers(this.props.params.accountId));
     }
   }
 
   handleLoadMore = (e) => {
     e.preventDefault();
-    this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
+    this.props.dispatch(expandFollowers(this.props.params.accountId));
   }
 
   render () {
