@@ -1,6 +1,7 @@
 import api from '../api';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
+import { useEmoji } from './emojis';
 
 import {
   updateTimeline,
@@ -305,6 +306,8 @@ export function selectComposeSuggestion(position, token, suggestion) {
     if (typeof suggestion === 'object' && suggestion.id) {
       completion    = suggestion.native || suggestion.colons;
       startPosition = position - 1;
+
+      dispatch(useEmoji(suggestion));
     } else {
       completion    = getState().getIn(['accounts', suggestion, 'acct']);
       startPosition = position;

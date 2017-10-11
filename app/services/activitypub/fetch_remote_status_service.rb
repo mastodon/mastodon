@@ -11,7 +11,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
               body_to_json(prefetched_body)
             end
 
-    return unless expected_type? && supported_context?
+    return unless supported_context? && expected_type?
 
     return if actor_id.nil? || !trustworthy_attribution?(@json['id'], actor_id)
 

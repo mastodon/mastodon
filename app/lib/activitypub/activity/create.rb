@@ -43,7 +43,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       text: text_from_content || '',
       language: language_from_content,
       spoiler_text: @object['summary'] || '',
-      created_at: @object['published'] || Time.now.utc,
+      created_at: @options[:override_timestamps] ? nil : @object['published'],
       reply: @object['inReplyTo'].present?,
       sensitive: @object['sensitive'] || false,
       visibility: visibility_from_audience,

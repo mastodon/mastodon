@@ -5,15 +5,15 @@ module Mastodon
     module_function
 
     def major
-      1
+      2
     end
 
     def minor
-      6
+      0
     end
 
     def patch
-      1
+      0
     end
 
     def pre
@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def flags
-      ''
+      'rc2'
     end
 
     def to_a

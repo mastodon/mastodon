@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class OStatus::Activity::Base
-  def initialize(xml, account = nil)
-    @xml = xml
+  def initialize(xml, account = nil, options = {})
+    @xml     = xml
     @account = account
+    @options = options
   end
 
   def status?

@@ -78,6 +78,7 @@ export default class Status extends ImmutablePureComponent {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
+      this._scrolledIntoView = false;
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
     }
   }
@@ -240,11 +241,17 @@ export default class Status extends ImmutablePureComponent {
   }
 
   componentDidUpdate () {
-    const { ancestorsIds } = this.props;
+    if (this._scrolledIntoView) {
+      return;
+    }
 
-    if (ancestorsIds && ancestorsIds.size > 0) {
-      const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size];
-      element.scrollIntoView();
+    const { status, ancestorsIds } = this.props;
+
+    if (status && ancestorsIds && ancestorsIds.size > 0) {
+      const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
+
+      element.scrollIntoView(true);
+      this._scrolledIntoView = true;
     }
   }
 

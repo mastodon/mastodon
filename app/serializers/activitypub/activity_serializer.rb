@@ -3,10 +3,11 @@
 class ActivityPub::ActivitySerializer < ActiveModel::Serializer
   attributes :id, :type, :actor, :published, :to, :cc
 
-  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer
+  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer, unless: :announce?
+  attribute :proper_uri, key: :object, if: :announce?
 
   def id
-    [ActivityPub::TagManager.instance.activity_uri_for(object)].join
+    ActivityPub::TagManager.instance.activity_uri_for(object)
   end
 
   def type
@@ -27,6 +28,10 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
 
   def cc
     ActivityPub::TagManager.instance.cc(object)
+  end
+
+  def proper_uri
+    ActivityPub::TagManager.instance.uri_for(object.proper)
   end
 
   def announce?
