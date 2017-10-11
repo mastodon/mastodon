@@ -121,10 +121,6 @@ then we set the `displayName` to just be the `username` of the account.
     let actionBtn   = '';
     let following   = false;
 
-    if (displayName.length === 0) {
-      displayName = account.get('username');
-    }
-
 /*
 
 Next, we handle the account relationships. If the account follows the
