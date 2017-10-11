@@ -36,6 +36,12 @@ export default class ColumnSettings extends React.PureComponent {
           <ClearColumnButton onClick={onClear} />
         </div>
 
+        <div className='column-settings__section'>
+          <a href='/settings/preferences' className='text-btn column-header__setting-btn'>
+            <FormattedMessage id='notifications.column_settings.notify_block' defaultMessage='Notify Block Setting' />
+          </a>
+        </div>
+
         <div role='group' aria-labelledby='notifications-follow'>
           <span id='notifications-follow' className='column-settings__section'><FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' /></span>
 
