@@ -7,7 +7,7 @@ module EnqueteExtension
     if enquete_params['isEnquete']
       @enquete_items = enquete_params['enquete_items'].select do |item|
         item.present? && item.length <= 15
-      end.slice(0, 4).push('🤔')
+      end.slice(0, 4).push('😋')
       if @enquete_items.size < 3
         raise Mastodon::ValidationError, 'Enquete needs more than 2 items'
       end
