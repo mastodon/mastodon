@@ -34,7 +34,7 @@ RSpec.describe UnfollowService do
     it 'sends an unfollow salmon slap' do
       expect(a_request(:post, "http://salmon.example.com/").with { |req|
         xml = OStatus2::Salmon.new.unpack(req.body)
-        xml.match(TagManager::VERBS[:unfollow])
+        xml.match(OStatus::TagManager::VERBS[:unfollow])
       }).to have_been_made.once
     end
   end

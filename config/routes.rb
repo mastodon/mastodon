@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
+    resource :notifications, only: [:show, :update]
     resource :import, only: [:show, :create]
 
     resource :export, only: [:show]
@@ -95,8 +96,9 @@ Rails.application.routes.draw do
     resources :sessions, only: [:destroy]
   end
 
-  resources :media, only: [:show]
-  resources :tags,  only: [:show]
+  resources :media,  only: [:show]
+  resources :tags,   only: [:show]
+  resources :emojis, only: [:show]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
@@ -107,6 +109,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
+    resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resource :settings, only: [:edit, :update]
 
     resources :instances, only: [:index] do
@@ -136,6 +139,16 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
     end
+
+    resources :custom_emojis, only: [:index, :new, :create, :destroy] do
+      member do
+        post :copy
+        post :enable
+        post :disable
+      end
+    end
+
+    resources :account_moderation_notes, only: [:create, :destroy]
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)
@@ -186,16 +199,22 @@ Rails.application.routes.draw do
       end
 
       resources :streaming, only: [:index]
+      resources :custom_emojis, only: [:index]
 
       get '/search', to: 'search#index', as: :search
 
       resources :follows,    only: [:create]
-      resources :media,      only: [:create]
-      resources :apps,       only: [:create]
+      resources :media,      only: [:create, :update]
       resources :blocks,     only: [:index]
       resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+
+      namespace :apps do
+        get :verify_credentials, to: 'credentials#show'
+      end
+
+      resources :apps, only: [:create]
 
       resource :instance,      only: [:show]
       resource :domain_blocks, only: [:show, :create, :destroy]

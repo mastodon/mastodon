@@ -2,14 +2,12 @@ version: '3'
 services:
 
   db:
-    restart: always
-    image: postgres:alpine
+    image: postgres:9.6-alpine
     volumes:
     - /var/data/docker-data/catgram-postgres:/var/lib/postgresql/data
 
   redis:
-    restart: always
-    image: redis:alpine
+    image: redis:4.0-alpine
     volumes:
     - /var/data/docker-data/catgram-redis:/data
 

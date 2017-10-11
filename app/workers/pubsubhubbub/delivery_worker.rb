@@ -17,7 +17,7 @@ class Pubsubhubbub::DeliveryWorker
     @payload = payload
     process_delivery unless blocked_domain?
   rescue => e
-    raise e.class, "Delivery failed for #{subscription&.callback_url}: #{e.message}"
+    raise e.class, "Delivery failed for #{subscription&.callback_url}: #{e.message}", e.backtrace[0]
   end
 
   private
@@ -37,7 +37,7 @@ class Pubsubhubbub::DeliveryWorker
   def callback_post_payload
     request = Request.new(:post, subscription.callback_url, body: payload)
     request.add_headers(headers)
-    request.perform
+    request.perform.flush
   end
 
   def blocked_domain?

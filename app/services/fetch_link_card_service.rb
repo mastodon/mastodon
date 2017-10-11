@@ -27,7 +27,8 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::ConnectionError, OpenSSL::SSL::SSLError
+  rescue HTTP::Error, Addressable::URI::InvalidURIError => e
+    Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
 

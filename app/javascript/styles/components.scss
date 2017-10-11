@@ -66,6 +66,7 @@
     text-transform: none;
     background: transparent;
     padding: 3px 15px;
+    border-radius: 4px;
     border: 1px solid $ui-primary-color;
 
     &:active,
@@ -213,12 +214,16 @@
   }
 }
 
+.dropdown-menu {
+  position: absolute;
+}
+
 .dropdown--active .icon-button {
   color: $ui-highlight-color;
 }
 
 .dropdown--active::after {
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: 631px) {
     content: "";
     display: block;
     position: absolute;
@@ -331,12 +336,57 @@
 
 .compose-form__uploads-wrapper {
   display: flex;
+  flex-direction: row;
   padding: 5px;
+  flex-wrap: wrap;
 }
 
 .compose-form__upload {
   flex: 1 1 0;
+  min-width: 40%;
   margin: 5px;
+
+  &-description {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+    padding: 10px;
+    opacity: 0;
+    transition: opacity .1s ease;
+
+    input {
+      background: transparent;
+      color: $ui-secondary-color;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+
+      &:focus {
+        color: $white;
+      }
+
+      &::placeholder {
+        opacity: 0.54;
+        color: $ui-secondary-color;
+      }
+    }
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .icon-button {
+    mix-blend-mode: difference;
+  }
 }
 
 .compose-form__upload-thumbnail {
@@ -346,13 +396,6 @@
   background-repeat: no-repeat;
   height: 100px;
   width: 100%;
-}
-
-.compose-form__upload-cancel {
-  background-size: cover;
-  border-radius: 4px;
-  height: 100px;
-  width: 100px;
 }
 
 .compose-form__label {
@@ -386,16 +429,10 @@
 .compose-form__autosuggest-wrapper {
   position: relative;
 
-  .emoji-picker__dropdown {
+  .emoji-picker-dropdown {
     position: absolute;
     right: 5px;
     top: 5px;
-
-    &.dropdown--active::after {
-      border-color: transparent transparent $base-border-color;
-      bottom: -1px;
-      right: 8px;
-    }
 
     ::-webkit-scrollbar-track:hover,
     ::-webkit-scrollbar-track:active {
@@ -418,6 +455,7 @@
   display: inline-block;
   font-size: inherit;
   vertical-align: middle;
+  object-fit: contain;
   margin: -.2ex .15em .2ex;
   width: 16px;
   height: 16px;
@@ -550,6 +588,22 @@
   position: absolute;
 }
 
+.focusable {
+  &:focus {
+    outline: 0;
+    background: lighten($ui-base-color, 4%);
+
+    &.status-direct {
+      background: lighten($ui-base-color, 12%);
+    }
+
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+}
+
 .status {
   padding: 8px 10px;
   padding-left: 68px;
@@ -678,6 +732,12 @@
   .status__display-name strong {
     color: $ui-base-lighter-color;
   }
+
+  > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .status__action-bar {
@@ -693,8 +753,8 @@
 
 .status__action-bar-dropdown {
   float: left;
-  height: 18px;
-  width: 18px;
+  height: 23.15px;
+  width: 23.15px;
 }
 
 .detailed-status__action-bar-dropdown {
@@ -703,26 +763,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-
-  .dropdown {
-    display: block;
-    width: 18px;
-    height: 18px;
-  }
-
-  .dropdown--active {
-    .dropdown__content.dropdown__left {
-      left: 20px;
-      right: initial;
-    }
-
-    &::after {
-      bottom: initial;
-      margin-left: 7px;
-      margin-top: -7px;
-      right: initial;
-    }
-  }
 }
 
 .detailed-status {
@@ -862,9 +902,12 @@
   .account__header__display-name {
     color: $primary-text-color;
     display: inline-block;
+    width: 100%;
     font-size: 20px;
     line-height: 27px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .account__header__username {
@@ -873,6 +916,8 @@
     font-weight: 400;
     display: block;
     margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -941,7 +986,7 @@
 }
 
 .account__action-bar-dropdown {
-  flex: 1 1 auto;
+  flex: 0 1 calc(50% - 140px);
   padding: 10px;
 
   .dropdown--active {
@@ -968,7 +1013,7 @@
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
-  width: 80px;
+  flex: 0 1 80px;
   border-left: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 5px;
 
@@ -1029,11 +1074,11 @@
   strong {
     color: $primary-text-color;
   }
+}
 
-  &.muted {
-    .emojione {
-      opacity: 0.5;
-    }
+.muted {
+  .emojione {
+    opacity: 0.5;
   }
 }
 
@@ -1048,6 +1093,8 @@
 
 .account__display-name strong {
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .detailed-status__application,
@@ -1124,6 +1171,12 @@
 
   .fa {
     color: $ui-highlight-color;
+  }
+
+  > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -1232,11 +1285,14 @@
 .navigation-bar__profile {
   flex: 1 1 auto;
   margin-left: 8px;
+  overflow: hidden;
 }
 
 .navigation-bar__profile-account {
   display: block;
   font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .navigation-bar__profile-edit {
@@ -1253,10 +1309,80 @@
   position: absolute;
 }
 
-.dropdown__sep {
+.dropdown-menu__separator {
   border-bottom: 1px solid darken($ui-secondary-color, 8%);
   margin: 5px 7px 6px;
-  padding-top: 1px;
+  height: 0;
+}
+
+.dropdown-menu {
+  background: $ui-secondary-color;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+
+  ul {
+    list-style: none;
+  }
+}
+
+.dropdown-menu__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+
+  &.left {
+    right: -5px;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: $ui-secondary-color;
+  }
+
+  &.top {
+    bottom: -5px;
+    margin-left: -13px;
+    border-width: 5px 7px 0;
+    border-top-color: $ui-secondary-color;
+  }
+
+  &.bottom {
+    top: -5px;
+    margin-left: -13px;
+    border-width: 0 7px 5px;
+    border-bottom-color: $ui-secondary-color;
+  }
+
+  &.right {
+    left: -5px;
+    margin-top: -5px;
+    border-width: 5px 5px 5px 0;
+    border-right-color: $ui-secondary-color;
+  }
+}
+
+.dropdown-menu__item {
+  a {
+    font-size: 13px;
+    line-height: 18px;
+    display: block;
+    padding: 4px 14px;
+    box-sizing: border-box;
+    text-decoration: none;
+    background: $ui-secondary-color;
+    color: $ui-base-color;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background: $ui-highlight-color;
+      color: $ui-secondary-color;
+      outline: 0;
+    }
+  }
 }
 
 .dropdown--active .dropdown__content {
@@ -1425,7 +1551,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 630px) {
   .column,
   .drawer {
     width: 100%;
@@ -1442,7 +1568,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 631px) {
   .columns-area {
     padding: 0;
   }
@@ -1556,7 +1682,7 @@
   &:hover,
   &:focus,
   &:active {
-    @media screen and (min-width: 1025px) {
+    @media screen and (min-width: 631px) {
       background: lighten($ui-base-color, 14%);
       transition: all 100ms linear;
     }
@@ -1576,7 +1702,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 631px) {
   .tabs-bar {
     display: none;
   }
@@ -1587,9 +1713,20 @@
   overflow-x: hidden;
   flex: 1 1 auto;
   -webkit-overflow-scrolling: touch;
+  will-change: transform; // improves perf in mobile Chrome
 
   &.optionally-scrollable {
     overflow-y: auto;
+  }
+
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
+}
+
+.scrollable.fullscreen {
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: none;
   }
 }
 
@@ -1830,15 +1967,18 @@
 }
 
 .autosuggest-textarea__suggestions {
+  box-sizing: border-box;
   display: none;
   position: absolute;
   top: 100%;
   width: 100%;
   z-index: 99;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   background: $ui-secondary-color;
+  border-radius: 0 0 4px 4px;
   color: $ui-base-color;
   font-size: 14px;
+  padding: 6px;
 
   &.autosuggest-textarea__suggestions--visible {
     display: block;
@@ -1848,34 +1988,36 @@
 .autosuggest-textarea__suggestions__item {
   padding: 10px;
   cursor: pointer;
+  border-radius: 4px;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active,
+  &.selected {
     background: darken($ui-secondary-color, 10%);
   }
-
-  &.selected {
-    background: $ui-highlight-color;
-    color: $base-border-color;
-  }
 }
 
-.autosuggest-account {
-  overflow: hidden;
+.autosuggest-account,
+.autosuggest-emoji {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 18px;
+  font-size: 14px;
 }
 
-.autosuggest-account-icon {
-  float: left;
-  margin-right: 5px;
+.autosuggest-account-icon,
+.autosuggest-emoji img {
+  display: block;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
 }
 
-.autosuggest-status {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
-  strong {
-    font-weight: 500;
-  }
+.autosuggest-account .display-name__account {
+  color: lighten($ui-base-color, 36%);
 }
 
 .character-counter__wrapper {
@@ -2013,22 +2155,9 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status-card-video {
-  position: relative;
-  width: 100%;
-  height: auto;
-  padding-top: 56.25%;
-
   iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 1px;
-    min-width: 100%;
-    height: 1px;
-    min-height: 100%;
-    margin: auto;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -2512,212 +2641,93 @@ button.icon-button.active i.fa-retweet {
   flex-direction: column;
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
   }
 
-  100% {
-    opacity: 0.5;
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
   }
 }
 
 .pulse-loading {
-  animation: pulse 1s ease-in-out infinite;
-  animation-direction: alternate;
+  animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-.emoji-dialog {
-  width: 245px;
-  height: 270px;
+.emoji-picker-dropdown__menu {
   background: $simple-background-color;
-  box-sizing: border-box;
+  position: absolute;
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   border-radius: 4px;
+  margin-top: 5px;
+
+  .emoji-mart-scroll {
+    transition: opacity 200ms ease;
+  }
+
+  &.selecting .emoji-mart-scroll {
+    opacity: 0.5;
+  }
+}
+
+.emoji-picker-dropdown__modifiers {
+  position: absolute;
+  top: 60px;
+  right: 11px;
+  cursor: pointer;
+}
+
+.emoji-picker-dropdown__modifiers__menu {
+  position: absolute;
+  z-index: 4;
+  top: -4px;
+  left: -8px;
+  background: $simple-background-color;
+  border-radius: 4px;
+  box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
   overflow: hidden;
-  position: relative;
-  box-shadow: 0 0 8px rgba($base-shadow-color, 0.2);
 
-  .emojione {
-    margin: 0;
-    width: 100%;
-    height: auto;
-  }
-
-  .emoji-dialog-header {
-    padding: 0 10px;
-
-    ul {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    li {
-      display: inline-block;
-      box-sizing: border-box;
-      padding: 10px 5px;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-
-      .emoji {
-        width: 18px;
-        height: 18px;
-      }
-
-      img,
-      svg {
-        width: 18px;
-        height: 18px;
-        filter: grayscale(100%);
-      }
-
-      &:hover {
-        img,
-        svg {
-          filter: grayscale(0);
-        }
-      }
-
-      &.active {
-        border-bottom-color: $ui-highlight-color;
-
-        img,
-        svg {
-          filter: grayscale(0);
-        }
-      }
-    }
-  }
-
-  .emoji-row {
-    box-sizing: border-box;
-    overflow-y: hidden;
-    padding-left: 10px;
-
-    .emoji {
-      display: inline-block;
-      padding: 2.5px;
-      border-radius: 4px;
-    }
-  }
-
-  .emoji-category-header {
-    box-sizing: border-box;
-    overflow-y: hidden;
-    padding: 10px 8px 10px 16px;
-    display: table;
-
-    > * {
-      display: table-cell;
-      vertical-align: middle;
-    }
-  }
-
-  .emoji-category-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: darken($ui-secondary-color, 18%);
-    cursor: default;
-  }
-
-  .emoji-category-heading-decoration {
-    text-align: right;
-  }
-
-  .modifiers {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    vertical-align: middle;
-    white-space: nowrap;
-    margin-top: 4px;
-
-    li {
-      display: inline-block;
-      padding: 0 2px;
-
-      &:last-of-type {
-        padding-right: 0;
-      }
-    }
-
-    .modifier {
-      display: inline-block;
-      border-radius: 10px;
-      width: 15px;
-      height: 15px;
-      position: relative;
-      cursor: pointer;
-
-      &.active::after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 7px;
-        height: 7px;
-        border-radius: 10px;
-        border: 2px solid $base-border-color;
-        top: 2px;
-        left: 2px;
-      }
-    }
-  }
-
-  .emoji-search-wrapper {
-    padding: 10px;
-    border-bottom: 1px solid lighten($ui-secondary-color, 4%);
-  }
-
-  .emoji-search {
-    font-size: 14px;
-    font-weight: 400;
-    padding: 7px 9px;
-    font-family: inherit;
+  button {
     display: block;
-    width: 100%;
-    background: rgba($ui-secondary-color, 0.3);
-    color: darken($ui-secondary-color, 18%);
-    border: 1px solid $ui-secondary-color;
-    border-radius: 4px;
-  }
-
-  .emoji-categories-wrapper {
-    position: absolute;
-    top: 42px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .emoji-search-wrapper + .emoji-categories-wrapper {
-    top: 93px;
-  }
-
-  .emoji-row .emoji {
-    img,
-    svg {
-      transition: transform 60ms ease-in-out;
-    }
-
-    &:hover {
-      background: lighten($ui-secondary-color, 3%);
-
-      img,
-      svg {
-        transform: translateZ(0) scale(1.2);
-      }
-    }
-  }
-
-  .emoji {
-    width: 22px;
-    height: 22px;
     cursor: pointer;
+    border: 0;
+    padding: 4px 8px;
+    background: transparent;
 
-    &:focus {
-      outline: 0;
+    &:hover,
+    &:focus,
+    &:active {
+      background: rgba($ui-secondary-color, 0.4);
     }
+  }
+
+  .emoji-mart-emoji {
+    height: 22px;
+  }
+}
+
+.emoji-mart-emoji {
+  span {
+    background-repeat: no-repeat;
   }
 }
 
@@ -2853,19 +2863,12 @@ button.icon-button.active i.fa-retweet {
   filter: none;
 }
 
-.privacy-dropdown {
-  position: relative;
-}
-
 .privacy-dropdown__dropdown {
-  display: none;
   position: absolute;
-  left: 0;
-  top: 27px;
-  width: 230px;
   background: $simple-background-color;
-  border-radius: 0 4px 4px;
-  z-index: 2;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  border-radius: 4px;
+  margin-left: 40px;
   overflow: hidden;
 }
 
@@ -2917,6 +2920,18 @@ button.icon-button.active i.fa-retweet {
     background: $simple-background-color;
     border-radius: 4px 4px 0 0;
     box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
+
+    .icon-button {
+      transition: none;
+    }
+
+    &.active {
+      background: $ui-highlight-color;
+
+      .icon-button {
+        color: $primary-text-color;
+      }
+    }
   }
 
   .privacy-dropdown__dropdown {
@@ -2930,8 +2945,6 @@ button.icon-button.active i.fa-retweet {
 }
 
 .search__input {
-  padding-right: 30px;
-  color: $ui-secondary-color;
   outline: 0;
   box-sizing: border-box;
   display: block;
@@ -3033,14 +3046,18 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.modal-root {
+  transition: opacity 0.3s linear;
+  will-change: opacity;
+  z-index: 9999;
+}
+
 .modal-root__overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 9999;
-  opacity: 0;
   background: rgba($base-overlay-background, 0.7);
   transform: translateZ(0);
 }
@@ -3057,7 +3074,6 @@ button.icon-button.active i.fa-retweet {
   justify-content: center;
   align-content: space-around;
   z-index: 9999;
-  opacity: 0;
   pointer-events: none;
   user-select: none;
 }
@@ -3105,6 +3121,33 @@ button.icon-button.active i.fa-retweet {
 
 .media-modal__content {
   background: $base-overlay-background;
+}
+
+.media-modal__pagination {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: -40px;
+}
+
+.media-modal__page-dot {
+  display: inline-block;
+}
+
+.media-modal__button {
+  background-color: $white;
+  height: 12px;
+  width: 12px;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 0;
+  border: 0;
+  font-size: 0;
+}
+
+.media-modal__button--active {
+  background-color: $ui-highlight-color;
 }
 
 .media-modal__close {
@@ -3472,6 +3515,10 @@ button.icon-button.active i.fa-retweet {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  .dropdown-menu__separator {
+    border-bottom-color: $ui-secondary-color;
+  }
 }
 
 .boost-modal__container {
@@ -3549,6 +3596,10 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   max-width: 80vw;
 
+  .actions-modal__item-label {
+    font-weight: 500;
+  }
+
   ul {
     overflow-y: auto;
     flex-shrink: 0;
@@ -3561,11 +3612,20 @@ button.icon-button.active i.fa-retweet {
       a {
         color: $ui-base-color;
         display: flex;
-        padding: 10px;
+        padding: 12px 16px;
+        font-size: 15px;
         align-items: center;
         text-decoration: none;
 
-        &.active {
+        &,
+        button {
+          transition: none;
+        }
+
+        &.active,
+        &:hover,
+        &:active,
+        &:focus {
           &,
           button {
             background: $ui-highlight-color;
@@ -3711,6 +3771,12 @@ button.icon-button.active i.fa-retweet {
   display: block;
   float: left;
   position: relative;
+
+  &.standalone {
+    .media-gallery__item-gifv-thumbnail {
+      transform: none;
+    }
+  }
 }
 
 .media-gallery__item-thumbnail {
@@ -3718,6 +3784,7 @@ button.icon-button.active i.fa-retweet {
   display: block;
   text-decoration: none;
   height: 100%;
+  line-height: 0;
 
   &,
   img {
@@ -3948,12 +4015,17 @@ button.icon-button.active i.fa-retweet {
       top: 10px;
     }
 
-    &__progress {
+    &__progress,
+    &__buffer {
       display: block;
       position: absolute;
       height: 4px;
       top: 10px;
       background: $ui-highlight-color;
+    }
+
+    &__buffer {
+      background: rgba($white, 0.2);
     }
 
     &__handle {
@@ -4008,12 +4080,14 @@ button.icon-button.active i.fa-retweet {
 .account-gallery__container {
   margin: -2px;
   padding: 4px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .account-gallery__item {
-  float: left;
-  width: 96px;
-  height: 96px;
+  flex: 1 1 auto;
+  width: calc(100% / 3 - 4px);
+  height: 95px;
   margin: 2px;
 
   a {
@@ -4024,6 +4098,14 @@ button.icon-button.active i.fa-retweet {
     background-size: cover;
     background-position: center;
     position: relative;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: 0;
+    }
   }
 }
 
@@ -4061,6 +4143,37 @@ button.icon-button.active i.fa-retweet {
   border-radius: 0;
 }
 
+.search-popout {
+  background: $simple-background-color;
+  border-radius: 4px;
+  padding: 10px 14px;
+  padding-bottom: 14px;
+  margin-top: 10px;
+  color: $ui-primary-color;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+
+  h4 {
+    text-transform: uppercase;
+    color: $ui-primary-color;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  li {
+    padding: 4px 0;
+  }
+
+  ul {
+    margin-bottom: 10px;
+  }
+
+  em {
+    font-weight: 500;
+    color: $ui-base-color;
+  }
+}
+
 noscript {
   text-align: center;
 
@@ -4093,7 +4206,7 @@ noscript {
   100% { opacity: 1; }
 }
 
-@media screen and (max-width: 1024px) and (max-height: 400px) {
+@media screen and (max-width: 630px) and (max-height: 400px) {
   $duration: 400ms;
   $delay: 100ms;
 

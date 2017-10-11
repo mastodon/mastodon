@@ -15,16 +15,17 @@ class UserSettingsDecorator
   private
 
   def process_update
-    user.settings['notification_emails'] = merged_notification_emails
-    user.settings['interactions'] = merged_interactions
-    user.settings['default_privacy'] = default_privacy_preference
-    user.settings['default_sensitive'] = default_sensitive_preference
-    user.settings['unfollow_modal'] = unfollow_modal_preference
-    user.settings['boost_modal'] = boost_modal_preference
-    user.settings['delete_modal'] = delete_modal_preference
-    user.settings['auto_play_gif'] = auto_play_gif_preference
-    user.settings['system_font_ui'] = system_font_ui_preference
-    user.settings['noindex'] = noindex_preference
+    user.settings['notification_emails'] = merged_notification_emails if change?('notification_emails')
+    user.settings['interactions']        = merged_interactions if change?('interactions')
+    user.settings['default_privacy']     = default_privacy_preference if change?('setting_default_privacy')
+    user.settings['default_sensitive']   = default_sensitive_preference if change?('setting_default_sensitive')
+    user.settings['unfollow_modal']      = unfollow_modal_preference if change?('setting_unfollow_modal')
+    user.settings['boost_modal']         = boost_modal_preference if change?('setting_boost_modal')
+    user.settings['delete_modal']        = delete_modal_preference if change?('setting_delete_modal')
+    user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
+    user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
+    user.settings['noindex']             = noindex_preference if change?('setting_noindex')
+    user.settings['theme']               = theme_preference if change?('setting_theme')
   end
 
   def merged_notification_emails
@@ -67,6 +68,10 @@ class UserSettingsDecorator
     boolean_cast_setting 'setting_noindex'
   end
 
+  def theme_preference
+    settings['setting_theme']
+  end
+
   def boolean_cast_setting(key)
     settings[key] == '1'
   end
@@ -77,5 +82,9 @@ class UserSettingsDecorator
 
   def coerce_values(params_hash)
     params_hash.transform_values { |x| x == '1' }
+  end
+
+  def change?(key)
+    !settings[key].nil?
   end
 end

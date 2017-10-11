@@ -30,7 +30,6 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
   include StatusThreadingConcern
-  include EmojiHelper
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
@@ -131,7 +130,13 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  def emojis
+    CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+  end
+
   after_create :store_uri, if: :local?
+
+  around_create Mastodon::Snowflake::Callbacks
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
@@ -142,7 +147,7 @@ class Status < ApplicationRecord
 
   class << self
     def not_in_filtered_languages(account)
-      where.not(language: account.filtered_languages)
+      where(language: nil).or where.not(language: account.filtered_languages)
     end
 
     def as_home_timeline(account)
@@ -264,9 +269,6 @@ class Status < ApplicationRecord
   def prepare_contents
     text&.strip!
     spoiler_text&.strip!
-
-    self.text         = emojify(text)
-    self.spoiler_text = emojify(spoiler_text)
   end
 
   def set_reblog

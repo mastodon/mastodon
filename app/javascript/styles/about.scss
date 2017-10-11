@@ -124,6 +124,7 @@
     box-sizing: border-box;
     max-width: 800px;
     margin: 0 auto;
+    word-wrap: break-word;
   }
 
   .header-wrapper {
@@ -480,6 +481,7 @@
       flex: 0 0 auto;
       background: $ui-base-color;
       overflow: hidden;
+      border-radius: 4px;
       box-shadow: 0 0 6px rgba($black, 0.1);
 
       .column-header {
@@ -702,8 +704,98 @@
     .features #mastodon-timeline {
       height: 70vh;
       width: 100%;
+      min-width: 330px;
       margin-bottom: 50px;
+
+      .column {
+        width: 100%;
+      }
     }
+  }
+
+  .cta {
+    margin: 20px;
+  }
+
+  &.tag-page {
+    .brand {
+      padding-top: 20px;
+      margin-bottom: 20px;
+
+      img {
+        height: 48px;
+        width: auto;
+      }
+    }
+
+    .container {
+      max-width: 690px;
+    }
+
+    .cta {
+      margin: 40px 0;
+      margin-bottom: 80px;
+
+      .button {
+        margin-right: 4px;
+      }
+    }
+
+    .about-mastodon {
+      max-width: 330px;
+
+      p {
+        strong {
+          color: $ui-secondary-color;
+          font-weight: 700;
+        }
+      }
+    }
+
+    @media screen and (max-width: 675px) {
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .features {
+        padding: 20px 0;
+      }
+
+      .about-mastodon {
+        order: 1;
+        flex: 0 0 auto;
+        max-width: 100%;
+      }
+
+      #mastodon-timeline {
+        order: 2;
+        flex: 0 0 auto;
+        height: 60vh;
+      }
+
+      .cta {
+        margin: 20px 0;
+        margin-bottom: 30px;
+      }
+
+      .features-list {
+        display: none;
+      }
+
+      .stripe {
+        display: none;
+      }
+    }
+  }
+
+  .stripe {
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    background: darken($ui-base-color, 4%);
+    position: absolute;
+    z-index: -1;
   }
 }
 
