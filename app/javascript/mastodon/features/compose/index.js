@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';
 import Motion from 'react-motion/lib/Motion';

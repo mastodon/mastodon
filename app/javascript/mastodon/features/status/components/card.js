@@ -30,6 +30,10 @@ export default class Card extends React.PureComponent {
     maxDescription: 50,
   };
 
+  state = {
+    width: 0,
+  };
+
   renderLink () {
     const { card, maxDescription } = this.props;
 
@@ -75,14 +79,25 @@ export default class Card extends React.PureComponent {
     );
   }
 
+  setRef = c => {
+    if (c) {
+      this.setState({ width: c.offsetWidth });
+    }
+  }
+
   renderVideo () {
-    const { card } = this.props;
-    const content  = { __html: card.get('html') };
+    const { card }  = this.props;
+    const content   = { __html: card.get('html') };
+    const { width } = this.state;
+    const ratio     = card.get('width') / card.get('height');
+    const height    = card.get('width') > card.get('height') ? (width / ratio) : (width * ratio);
 
     return (
       <div
+        ref={this.setRef}
         className='status-card-video'
         dangerouslySetInnerHTML={content}
+        style={{ height }}
       />
     );
   }

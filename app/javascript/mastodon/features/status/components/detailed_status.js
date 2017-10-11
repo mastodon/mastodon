@@ -6,7 +6,7 @@ import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import AttachmentList from '../../../components/attachment_list';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';

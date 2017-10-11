@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = t('admin.email_domain_blocks.title')
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.email_domain_blocks.domain')
+        %th
+    %tbody
+      = render @email_domain_blocks
+
+= paginate @email_domain_blocks
+= link_to t('admin.email_domain_blocks.add_new'), new_admin_email_domain_block_path, class: 'button'

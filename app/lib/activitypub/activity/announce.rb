@@ -15,8 +15,9 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       account: @account,
       reblog: original_status,
       uri: @json['id'],
-      created_at: @json['published'] || Time.now.utc
+      created_at: @options[:override_timestamps] ? nil : @json['published']
     )
+
     distribute(status)
     status
   end
@@ -27,7 +28,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
     if object_uri.start_with?('http')
       return if ActivityPub::TagManager.instance.local_uri?(object_uri)
 
-      ActivityPub::FetchRemoteStatusService.new.call(object_uri)
+      ActivityPub::FetchRemoteStatusService.new.call(object_uri, id: true)
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'])
     end

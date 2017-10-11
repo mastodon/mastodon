@@ -1,6 +1,7 @@
 import api from '../api';
 import { throttle } from 'lodash';
-import { search as emojiSearch } from '../emoji_index_light';
+import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
+import { useEmoji } from './emojis';
 
 import {
   updateTimeline,
@@ -16,6 +17,7 @@ export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
 export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
 export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
+export const COMPOSE_RESET           = 'COMPOSE_RESET';
 export const COMPOSE_UPLOAD_REQUEST  = 'COMPOSE_UPLOAD_REQUEST';
 export const COMPOSE_UPLOAD_SUCCESS  = 'COMPOSE_UPLOAD_SUCCESS';
 export const COMPOSE_UPLOAD_FAIL     = 'COMPOSE_UPLOAD_FAIL';
@@ -65,6 +67,12 @@ export function replyCompose(status, router) {
 export function cancelReplyCompose() {
   return {
     type: COMPOSE_REPLY_CANCEL,
+  };
+};
+
+export function resetCompose() {
+  return {
+    type: COMPOSE_RESET,
   };
 };
 
@@ -307,6 +315,8 @@ export function selectComposeSuggestion(position, token, suggestion) {
     if (typeof suggestion === 'object' && suggestion.id) {
       completion    = suggestion.native || suggestion.colons;
       startPosition = position - 1;
+
+      dispatch(useEmoji(suggestion));
     } else {
       completion    = getState().getIn(['accounts', suggestion, 'acct']);
       startPosition = position;

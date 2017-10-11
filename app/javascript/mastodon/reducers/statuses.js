@@ -24,6 +24,7 @@ import {
 } from '../actions/timelines';
 import {
   ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
 import {
   NOTIFICATIONS_UPDATE,
@@ -38,7 +39,7 @@ import {
   PINNED_STATUSES_FETCH_SUCCESS,
 } from '../actions/pin_statuses';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
-import emojify from '../emoji';
+import emojify from '../features/emoji/emoji';
 import {
   VOTE_SUCCESS,
   SET_ENQUETE_TIMEOUT,
@@ -61,9 +62,10 @@ const normalizeStatus = (state, status) => {
     normalStatus.reblog = status.reblog.id;
   }
 
-  const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  const searchContent = [status.spoiler_text, status.content].join('\n\n').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+
   const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
-    obj[`:${emoji.shortcode}:`] = emoji.url;
+    obj[`:${emoji.shortcode}:`] = emoji;
     return obj;
   }, {});
 
@@ -142,6 +144,7 @@ export default function statuses(state = initialState, action) {
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
     return filterStatuses(state, action.relationship);
   case VOTE_SUCCESS:
     return state

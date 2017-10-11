@@ -1,7 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import emojify from '../../../emoji';
+import emojify from '../../../features/emoji/emoji';
 import Immutable from 'immutable';
 
 export default class EnqueteContent extends React.PureComponent {

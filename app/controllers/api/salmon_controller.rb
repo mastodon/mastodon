@@ -7,9 +7,11 @@ class Api::SalmonController < Api::BaseController
   def update
     if verify_payload?
       process_salmon
-      head 201
-    else
       head 202
+    elsif payload.present?
+      [signature_verification_failure_reason, 401]
+    else
+      head 400
     end
   end
 

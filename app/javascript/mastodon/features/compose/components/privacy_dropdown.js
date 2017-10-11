@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import { Overlay } from 'react-overlays';
-import { Motion, spring } from 'react-motion';
+import Overlay from 'react-overlays/lib/Overlay';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import detectPassiveEvents from 'detect-passive-events';
 import classNames from 'classnames';
 
