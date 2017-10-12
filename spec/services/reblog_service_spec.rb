@@ -34,9 +34,13 @@ RSpec.describe ReblogService do
       allow(ActivityPub::DistributionWorker).to receive(:perform_async)
       subject.call(alice, status)
     end
-    
+
+    it 'creates a reblog' do
+      expect(status.reblogs.count).to eq 1
+    end
+
     describe 'after_create_commit :store_uri' do
-      it 'creates a reblog' do
+      it 'keeps consistent reblog count' do
         expect(status.reblogs.count).to eq 1
       end
     end
