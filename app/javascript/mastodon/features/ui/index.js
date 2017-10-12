@@ -402,7 +402,7 @@ export default class UI extends React.Component {
           </ColumnsAreaContainer>
 
           <NotificationsContainer />
-        	{navbarUnder ? (<TabsBar />) : null}
+          {navbarUnder ? (<TabsBar />) : null}
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
