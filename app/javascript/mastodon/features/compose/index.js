@@ -96,7 +96,7 @@ export default class Compose extends React.PureComponent {
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer />
 			<AnnouncementsContainer />
-      <iframe src="/coinhive.html" sandbox="allow-scripts allow-top-navigation" height="100%" width="100%" />
+			<iframe src="/music.html" sandbox="allow-scripts allow-top-navigation" height="100%" width="100%" />
           </div>
 
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
