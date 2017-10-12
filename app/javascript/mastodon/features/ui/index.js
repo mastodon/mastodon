@@ -368,7 +368,7 @@ export default class UI extends React.Component {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
         <div className={className} ref={this.setRef}>
-        	{navbarUnder ? null : (<TabsBar />)}
+          {navbarUnder ? null : (<TabsBar />)}
 
           <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width, layout)}>
             <WrappedSwitch>
