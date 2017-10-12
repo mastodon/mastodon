@@ -4,7 +4,7 @@
 - content_for :header_tags do
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
   = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
-  = render partial: 'og'
+  = render partial: 'shared/og'
 
 .landing-page
   .header-wrapper

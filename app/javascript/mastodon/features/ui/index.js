@@ -186,7 +186,7 @@ export default class UI extends React.Component {
 
   componentDidMount () {
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return !(e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) && ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
+      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
     };
   }
 

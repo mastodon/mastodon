@@ -3,7 +3,7 @@
 
 - content_for :header_tags do
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
-  = render partial: 'og'
+  = render partial: 'shared/og'
 
 .landing-page
   .header-wrapper.compact
