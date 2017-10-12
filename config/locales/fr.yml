@@ -2,7 +2,7 @@
 fr:
   about:
     about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
-    about_hashtag_html: Ce sont des pouets publics étiquetés avec des <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte quelque part dans le fediverse.
+    about_hashtag_html: Figurent ci-dessous les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fediverse.
     about_this: À propos
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
@@ -13,7 +13,7 @@ fr:
     domain_count_before: Connectés à
     extended_description_html: |
       <h3>Un bon endroit pour les règles</h3>
-      <p>La description étendue n'a pas été remplie.</p>
+      <p>La description étendue n’a pas été remplie.</p>
     features:
       humane_approach_body: Ayant appris des échecs d’autres réseaux, Mastodon à l’ambition de combattre l’abus des médias sociaux en effectuant des choix de conception éthiques.
       humane_approach_title: Une approche plus humaine
@@ -61,9 +61,9 @@ fr:
       email: Courriel
       feed_url: URL du flux
       followers: Abonné⋅es
-      followers_url: URL des abonné⋅es
+      followers_url: URL des abonné·e·s
       follows: Abonnements
-      inbox_url: URL d'entrée
+      inbox_url: URL d’entrée
       ip: Adresse IP
       location:
         all: Tous
@@ -96,7 +96,7 @@ fr:
       resubscribe: Se réabonner
       salmon_url: URL Salmon
       search: Rechercher
-      shared_inbox_url: URL d'entrée partagée
+      shared_inbox_url: URL de la boite de réception partagée
       show:
         created_reports: Signalements créés par ce compte
         report: signalement
@@ -120,7 +120,7 @@ fr:
       destroyed_msg: Note de modération détruite avec succès !
   
     custom_emojis:
-      copied_msg: Copie locale de l'émoji créée avec succès !
+      copied_msg: Copie locale de l’émoji créée avec succès !
       copy: Copier
       copy_failed_msg: Impossible de faire une copie locale de cette émoji
       created_msg: Emoji créée avec succès !
@@ -131,11 +131,11 @@ fr:
       emoji: Emoji
       enable: Activer
       enabled_msg: Emoji activé avec succès !
-      image_hint: PNG jusqu'à 50KB
+      image_hint: PNG de moins de 50 Ko
       new:
         title: Ajouter un nouvel émoji personnalisé
       shortcode: Raccourci
-      shortcode_hint: Au moins 2 caractères, seulement alphanumériques et aussi le souligné (tiret bas)
+      shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques ou des tirets bas
       title: Émoji personnalisé
       upload: Envoyer
     domain_blocks:
@@ -171,15 +171,15 @@ fr:
       title: Blocage de domaines
       undo: Annuler
     email_domain_blocks:
-      add_new: Ajouter nouveau
-      created_msg: Blocage du nom de domaine créé
+      add_new: Ajouter
+      created_msg: Le blocage de domaine de courriel est désormais activé
       delete: Supprimer
-      destroyed_msg: Suppression du blocage du nom de domaine réussi
+      destroyed_msg: Le blocage de domaine de courriel a été désactivé
       domain: Domaine
       new:
-        create: Créer un nouveau blocage
-        title: Nouveau blocage d'un nom de domaine
-      title: Blocage de domaine email
+        create: Créer le blocage
+        title: Nouveau blocage de domaine de courriel
+      title: Blocage de domaines de courriel
     instances:
       account_count: Comptes connus
       domain_name: Domaine
@@ -212,8 +212,8 @@ fr:
       view: Voir
     settings:
       bootstrap_timeline_accounts:
-        desc_html: Séparez plusieurs noms d'utilisateur⋅ice⋅s par une virgule. Seuls les comptes locaux et débloqués fonctionneront. Par défaut, lorsque le champ est vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
-        title: Abonnements par défaut pour les nouveaux utilisateurs
+        desc_html: Séparez les noms d’utilisateur·rice par des virgules. Ne fonctionne qu’avec des comptes locaux et non-verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
+        title: Abonnements par défaut pour les nouveaux·elles utilisateur·rice·s
       contact_information:
         email: Entrez une adresse courriel publique
         username: Entrez un nom d’utilisateur⋅ice
@@ -239,7 +239,7 @@ fr:
       site_title: Titre du site
       thumbnail:
         desc_html: Utilisée pour les prévisualisations via OpenGraph et API. 1200x630px recommandé
-        title: Vignette de l'instance
+        title: Vignette de l’instance
       timeline_preview:
         desc_html: Afficher le fil public sur la page d’accueil
         title: Prévisualisation du fil global
@@ -280,10 +280,10 @@ fr:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
     invalid_url: L’URL fournie est invalide
-    regenerate_token: Regénérer le jeton d'accès
-    token_regenerated: Jeton d'accès regénéré avec succès
+    regenerate_token: Regénérer le jeton d’accès
+    token_regenerated: Jeton d’accès regénéré avec succès
     warning: Soyez prudent⋅e avec ces données. Ne les partagez pas !
-    your_token: Votre jeton d'accès
+    your_token: Votre jeton d’accès
   auth:
     agreement_html: En vous inscrivant, vous souscrivez à <a href="%{rules_path}">nos conditions d’utilisation</a> ainsi qu’à <a href="%{terms_path}">notre politique de confidentialité</a>.
     change_password: Sécurité
@@ -314,9 +314,9 @@ fr:
       about_x_months: "%{count}mois"
       about_x_years: "%{count}an(s)"
       almost_x_years: "%{count}an(s)"
-      half_a_minute: À l'instant
+      half_a_minute: À l’instant
       less_than_x_minutes: "%{count}min"
-      less_than_x_seconds: À l'instant
+      less_than_x_seconds: À l’instant
       over_x_years: "%{count}an(s)"
       x_days: "%{count}j"
       x_minutes: "%{count}min"
@@ -339,8 +339,8 @@ fr:
       title: Vérification de sécurité échouée
     '429': Trop de requêtes émises dans un délai donné.
     '500':
-      content: Nous sommes désolé⋅e⋅s, mais quelque chose a mal tourné de notre côté.
-      title: Cette page n'est pas correcte
+      content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
+      title: Cette page n’est pas correcte
     noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript
   exports:
     blocks: Vous bloquez
