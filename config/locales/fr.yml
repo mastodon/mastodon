@@ -2,7 +2,7 @@
 fr:
   about:
     about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
-    about_hashtag_html: Ce sont des pouets publics étiquetés avec des <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n'importe où dans le fediverse.
+    about_hashtag_html: Ce sont des pouets publics étiquetés avec des <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte quelque part dans le fediverse.
     about_this: À propos
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
@@ -115,29 +115,29 @@ fr:
       account: Modérateur⋅ice 
       created_at: Date
       create: Créer
-      created_msg: Note de modération créée avec succès!
+      created_msg: Note de modération créée avec succès !
       delete: Supprimer
-      destroyed_msg: Note de modération détruite avec succès!
+      destroyed_msg: Note de modération détruite avec succès !
   
     custom_emojis:
-      copied_msg: Copie locale de l'émoji créée avec succès!
+      copied_msg: Copie locale de l'émoji créée avec succès !
       copy: Copier
       copy_failed_msg: Impossible de faire une copie locale de cette émoji
-      created_msg: Emoji créée avec succès!
+      created_msg: Emoji créée avec succès !
       delete: Supprimer
-      destroyed_msg: Emoji supprimé avec succès !
+      destroyed_msg: Emoji supprimé avec succès !
       disable: Désactiver
-      disabled_msg: Emoji désactivée avec succès !
+      disabled_msg: Emoji désactivé avec succès !
       emoji: Emoji
       enable: Activer
-      enabled_msg: Emoji activée avec succès !
+      enabled_msg: Emoji activé avec succès !
       image_hint: PNG jusqu'à 50KB
       new:
         title: Ajouter un nouvel émoji personnalisé
-      shortcode: Raccourcis
-      shortcode_hint: Au moins 2 caractères, seulement alphanumériques et souligné (tiret bas)
-      title: Émojis personnalisés
-      upload: Upload
+      shortcode: Raccourci
+      shortcode_hint: Au moins 2 caractères, seulement alphanumériques et aussi le souligné (tiret bas)
+      title: Émoji personnalisé
+      upload: Envoyer
     domain_blocks:
       add_new: Ajouter
       created_msg: Le blocage de domaine est désormais activé
@@ -174,12 +174,12 @@ fr:
       add_new: Ajouter nouveau
       created_msg: Blocage du nom de domaine créé
       delete: Supprimer
-      destroyed_msg: Suppression du blockage du nom de domaine réussi
+      destroyed_msg: Suppression du blocage du nom de domaine réussi
       domain: Domaine
       new:
-        create: Créer un nouveau blockage
+        create: Créer un nouveau blocage
         title: Nouveau blocage d'un nom de domaine
-      title: Blockage de domaine email
+      title: Blocage de domaine email
     instances:
       account_count: Comptes connus
       domain_name: Domaine
@@ -188,7 +188,7 @@ fr:
       title: Instances connues
     reports:
       action_taken_by: Intervention de
-      are_you_sure: Êtes vous certain⋅e?
+      are_you_sure: Êtes vous certain⋅e ?
       comment:
         label: Commentaire
         none: Aucun
@@ -212,7 +212,7 @@ fr:
       view: Voir
     settings:
       bootstrap_timeline_accounts:
-        desc_html: Séparez plusieurs noms d'utilisateur⋅ice⋅s par une virgule. Seuls les comptes locaux et débloqués fonctionneront. Par défaut, lorsque le champs est vide, tous les administrateurs locaux sont sélectionnés.
+        desc_html: Séparez plusieurs noms d'utilisateur⋅ice⋅s par une virgule. Seuls les comptes locaux et débloqués fonctionneront. Par défaut, lorsque le champ est vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
         title: Abonnements par défaut pour les nouveaux utilisateurs
       contact_information:
         email: Entrez une adresse courriel publique
@@ -238,7 +238,7 @@ fr:
         title: Politique de confidentialité
       site_title: Titre du site
       thumbnail:
-        desc_html: Utilisée pour les prévisualisations via OpenGraph et API. 1200x630px recommendé
+        desc_html: Utilisée pour les prévisualisations via OpenGraph et API. 1200x630px recommandé
         title: Vignette de l'instance
       timeline_preview:
         desc_html: Afficher le fil public sur la page d’accueil
@@ -317,7 +317,7 @@ fr:
       half_a_minute: À l'instant
       less_than_x_minutes: "%{count}min"
       less_than_x_seconds: À l'instant
-      over_x_years: "%{count}ans"
+      over_x_years: "%{count}an(s)"
       x_days: "%{count}j"
       x_minutes: "%{count}min"
       x_months: "%{count}mois"
@@ -422,13 +422,13 @@ fr:
     prev: Précédent
     truncate: "&hellip;"
   preferences:
-    languages: Langue
+    languages: Langues
     other: Autre
     publishing: Publication
     web: Web
   push_notifications:
     favourite:
-      title: "%{name} à mis votre statut en favori"
+      title: "%{name} a mis votre statut en favori"
     follow:
       title: "%{name} vous suit"
     group:
