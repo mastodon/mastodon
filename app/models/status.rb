@@ -134,7 +134,7 @@ class Status < ApplicationRecord
     CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
   end
 
-  after_create :store_uri, if: :local?
+  after_create_commit :store_uri, if: :local?
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
