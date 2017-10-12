@@ -13,14 +13,10 @@
 
   %h4= t 'preferences.publishing'
 
-  %h4= t 'preferences.notifications'
-
   .fields-group
     = f.input :setting_default_privacy, collection: Status.visibilities.keys - ['direct'], wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), content_tag(:span, I18n.t("statuses.visibilities.#{visibility}_long"), class: 'hint')]) }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
     = f.input :setting_default_sensitive, as: :boolean, wrapper: :with_label
-
-  %h4= t 'preferences.other'
 
   %h4= t 'preferences.other'
 
