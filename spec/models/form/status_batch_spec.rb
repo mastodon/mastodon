@@ -35,18 +35,16 @@ describe Form::StatusBatch do
     let(:action) { 'delete' }
     let!(:another_status) { Fabricate(:status) }
 
-    before do
-      allow(RemovalWorker).to receive(:perform_async)
-    end
+    around { |example| Sidekiq::Testing.fake! &example }
 
     it 'call RemovalWorker' do
       form.save
-      expect(RemovalWorker).to have_received(:perform_async).with(status.id)
+      expect(RemovalWorker).to have_enqueued_sidekiq_job status.id
     end
 
     it 'do not call RemovalWorker' do
       form.save
-      expect(RemovalWorker).not_to have_received(:perform_async).with(another_status.id)
+      expect(RemovalWorker).not_to have_enqueued_sidekiq_job another_status.id
     end
   end
 end

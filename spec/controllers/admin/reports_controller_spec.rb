@@ -70,16 +70,16 @@ describe Admin::ReportsController do
 
     describe 'with an outcome of `suspend`' do
       it 'suspends the reported account' do
-        report = Fabricate(:report)
-        allow(Admin::SuspensionWorker).to receive(:perform_async)
+        Sidekiq::Testing.fake! do
+          report = Fabricate(:report)
 
-        put :update, params: { id: report, outcome: 'suspend' }
-        expect(response).to redirect_to(admin_report_path(report))
-        report.reload
-        expect(report.action_taken_by_account).to eq user.account
-        expect(report.action_taken).to eq true
-        expect(Admin::SuspensionWorker).
-          to have_received(:perform_async).with(report.target_account_id)
+          put :update, params: { id: report, outcome: 'suspend' }
+          expect(response).to redirect_to(admin_report_path(report))
+          report.reload
+          expect(report.action_taken_by_account).to eq user.account
+          expect(report.action_taken).to eq true
+          expect(Admin::SuspensionWorker).to have_enqueued_sidekiq_job report.target_account_id
+        end
       end
     end
 

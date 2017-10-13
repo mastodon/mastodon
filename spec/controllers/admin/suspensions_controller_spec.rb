@@ -9,12 +9,14 @@ describe Admin::SuspensionsController do
 
   describe 'POST #create' do
     it 'redirects to admin accounts page' do
-      account = Fabricate(:account, suspended: false)
-      expect(Admin::SuspensionWorker).to receive(:perform_async).with(account.id)
+      Sidekiq::Testing.fake! do
+        account = Fabricate(:account, suspended: false)
 
-      post :create, params: { account_id: account.id }
+        post :create, params: { account_id: account.id }
 
-      expect(response).to redirect_to(admin_accounts_path)
+        expect(Admin::SuspensionWorker).to have_enqueued_sidekiq_job account.id
+        expect(response).to redirect_to(admin_accounts_path)
+      end
     end
   end
 

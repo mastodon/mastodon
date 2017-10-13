@@ -29,11 +29,8 @@ RSpec.describe ReblogService do
 
     subject { ReblogService.new }
 
-    before do
-      stub_request(:post, bob.inbox_url)
-      allow(ActivityPub::DistributionWorker).to receive(:perform_async)
-      subject.call(alice, status)
-    end
+    around { |example| Sidekiq::Testing.fake! &example }
+    before { subject.call(alice, status) }
 
     it 'creates a reblog' do
       expect(status.reblogs.count).to eq 1
@@ -46,11 +43,7 @@ RSpec.describe ReblogService do
     end
 
     it 'distributes to followers' do
-      expect(ActivityPub::DistributionWorker).to have_received(:perform_async)
-    end
-
-    it 'sends an announce activity to the author' do
-      expect(a_request(:post, bob.inbox_url)).to have_been_made.once
+      expect(ActivityPub::DistributionWorker).to have_enqueued_sidekiq_job status.reblogs.first.id
     end
   end
 end

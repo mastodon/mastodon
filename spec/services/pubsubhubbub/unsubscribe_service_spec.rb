@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Pubsubhubbub::UnsubscribeService do
   describe '#call' do
+    around { |example| Sidekiq::Testing.fake! &example }
     subject { described_class.new }
 
     context 'with a nil account' do
@@ -18,20 +19,18 @@ describe Pubsubhubbub::UnsubscribeService do
       let(:account) { Fabricate(:account) }
 
       it 'returns a valid topic status and does not run confirm when no subscription' do
-        allow(Pubsubhubbub::ConfirmationWorker).to receive(:perform_async).and_return(nil)
         result = subject.call(account, 'callback.host')
 
         expect(result).to eq valid_topic_status
-        expect(Pubsubhubbub::ConfirmationWorker).not_to have_received(:perform_async)
+        expect(Pubsubhubbub::ConfirmationWorker).not_to have_enqueued_sidekiq_job
       end
 
       it 'returns a valid topic status and does run confirm when there is a subscription' do
         subscription = Fabricate(:subscription, account: account, callback_url: 'callback.host')
-        allow(Pubsubhubbub::ConfirmationWorker).to receive(:perform_async).and_return(nil)
         result = subject.call(account, 'callback.host')
 
         expect(result).to eq valid_topic_status
-        expect(Pubsubhubbub::ConfirmationWorker).to have_received(:perform_async).with(subscription.id, 'unsubscribe')
+        expect(Pubsubhubbub::ConfirmationWorker).to have_enqueued_sidekiq_job subscription.id, 'unsubscribe'
       end
     end
 

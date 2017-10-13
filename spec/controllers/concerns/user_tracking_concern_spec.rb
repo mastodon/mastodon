@@ -43,13 +43,14 @@ describe ApplicationController, type: :controller do
     end
 
     it 'regenerates feed when sign in is older than two weeks' do
-      allow(RegenerationWorker).to receive(:perform_async)
-      user.update(current_sign_in_at: 3.weeks.ago)
-      sign_in user, scope: :user
-      get :show
+      Sidekiq::Testing.fake! do
+        user.update(current_sign_in_at: 3.weeks.ago)
+        sign_in user, scope: :user
+        get :show
 
-      expect_updated_sign_in_at(user)
-      expect(RegenerationWorker).to have_received(:perform_async)
+        expect_updated_sign_in_at(user)
+        expect(RegenerationWorker).to have_enqueued_sidekiq_job user.account_id
+      end
     end
 
     def expect_updated_sign_in_at(user)

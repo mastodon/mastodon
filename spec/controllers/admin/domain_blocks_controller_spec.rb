@@ -47,23 +47,24 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
 
   describe 'POST #create' do
     it 'blocks the domain when succeeded to save' do
-      allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
+      Sidekiq::Testing.fake! do
+        post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
 
-      post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
-
-      expect(DomainBlockWorker).to have_received(:perform_async)
-      expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
-      expect(response).to redirect_to(admin_domain_blocks_path)
+        expect(DomainBlockWorker).to have_enqueued_sidekiq_job DomainBlock.find_by!(domain: 'example.com').id
+        expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
+        expect(response).to redirect_to(admin_domain_blocks_path)
+      end
     end
 
     it 'renders new when failed to save' do
-      Fabricate(:domain_block, domain: 'example.com')
-      allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
+      Sidekiq::Testing.fake! do
+        Fabricate(:domain_block, domain: 'example.com')
 
-      post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
+        post :create, params: { domain_block: { domain: 'example.com', severity: 'silence' } }
 
-      expect(DomainBlockWorker).not_to have_received(:perform_async)
-      expect(response).to render_template :new
+        expect(DomainBlockWorker).not_to have_enqueued_sidekiq_job
+        expect(response).to render_template :new
+      end
     end
   end
 

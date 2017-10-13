@@ -81,12 +81,11 @@ describe Admin::ReportedStatusesController do
 
   describe 'DELETE #destroy' do
     it 'removes a status' do
-      allow(RemovalWorker).to receive(:perform_async)
-
-      delete :destroy, params: { report_id: report, id: status }
-      expect(response).to have_http_status(:success)
-      expect(RemovalWorker).
-        to have_received(:perform_async).with(status.id)
+      Sidekiq::Testing.fake! do
+        delete :destroy, params: { report_id: report, id: status }
+        expect(response).to have_http_status(:success)
+        expect(RemovalWorker).to have_enqueued_sidekiq_job status.id
+      end
     end
   end
 end
