@@ -23,8 +23,7 @@ RSpec.describe FanOutOnWriteService do
   end
 
   it 'delivers status to local followers' do
-    pending 'some sort of problem in test environment causes this to sometimes fail'
-    expect(Feed.new(:home, follower).get(10).map(&:id)).to include status.id
+    expect(Feed.new(:home, follower).get(10, nil, 0).map(&:id)).to include status.id
   end
 
   it 'delivers status to hashtag' do
