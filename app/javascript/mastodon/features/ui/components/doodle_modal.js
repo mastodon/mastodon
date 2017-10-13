@@ -17,8 +17,13 @@ export default class DoodleModal extends ImmutablePureComponent {
 
   handleKeyUp = (e) => {
     if (e.key === 'Delete' || e.key === 'Backspace') {
-      this.sketcher.clear();
+      this.clearScreen();
     }
+  }
+
+  clearScreen () {
+    this.sketcher.context.fillStyle = 'white';
+    this.sketcher.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   componentDidMount () {
@@ -36,9 +41,7 @@ export default class DoodleModal extends ImmutablePureComponent {
     if (elem) {
       this.sketcher = new Atrament(elem, 500, 500, 'black');
 
-      // pre-fill with white
-      this.sketcher.context.fillStyle = 'white';
-      this.sketcher.context.fillRect(0, 0, elem.width, elem.height);
+      this.clearScreen();
 
       // .smoothing looks good with mouse but works really poorly with a tablet
       this.sketcher.smoothing = false;
