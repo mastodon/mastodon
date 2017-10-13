@@ -45,6 +45,8 @@ export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST'
 export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
+export const COMPOSE_DOODLE_SET        = 'COMPOSE_DOODLE_SET';
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -155,6 +157,13 @@ export function submitComposeFail(error) {
   return {
     type: COMPOSE_SUBMIT_FAIL,
     error: error,
+  };
+};
+
+export function doodleSet(options) {
+  return {
+    type: COMPOSE_DOODLE_SET,
+    options: options,
   };
 };
 

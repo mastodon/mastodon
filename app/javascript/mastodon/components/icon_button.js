@@ -22,6 +22,7 @@ export default class IconButton extends React.PureComponent {
     flip: PropTypes.bool,
     overlay: PropTypes.bool,
     tabIndex: PropTypes.string,
+    label: PropTypes.string,
   };
 
   static defaultProps = {
@@ -42,14 +43,18 @@ export default class IconButton extends React.PureComponent {
   }
 
   render () {
-    const style = {
+    let style = {
       fontSize: `${this.props.size}px`,
-      width: `${this.props.size * 1.28571429}px`,
       height: `${this.props.size * 1.28571429}px`,
       lineHeight: `${this.props.size}px`,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
+    if (!this.props.label) {
+      style.width = `${this.props.size * 1.28571429}px`;
+    } else {
+      style.textAlign = 'left';
+    }
 
     const classes = ['icon-button'];
 
@@ -102,6 +107,7 @@ export default class IconButton extends React.PureComponent {
             tabIndex={this.props.tabIndex}
           >
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
+            {this.props.label}
           </button>
         }
       </Motion>
