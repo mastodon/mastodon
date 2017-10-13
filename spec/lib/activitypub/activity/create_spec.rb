@@ -330,11 +330,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
     end
 
-<<<<<<< HEAD
-    context 'with emojis missing href' do
-=======
     context 'with emojis missing icon' do
->>>>>>> 9b3d8ee3467e262e50a8e7414d5aadae8e345650
       let(:object_json) do
         {
           id: 'bar',

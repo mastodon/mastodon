@@ -250,7 +250,6 @@ export default class Status extends ImmutablePureComponent {
                 <div className='status__avatar'>
                   {statusAvatar}
                 </div>
-
                 <DisplayName account={status.get('account')} />
               </a>
             </div>

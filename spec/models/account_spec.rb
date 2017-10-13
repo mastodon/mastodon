@@ -505,6 +505,18 @@ RSpec.describe Account, type: :model do
     xit 'does not match URL querystring' do
       expect(subject.match('https://example.com/?x=@alice')).to be_nil
     end
+
+    it 'maches colon-appended username' do
+      expect(subject.match('@alice: I want everybody to see this')[1]).to eq 'alice'
+    end
+
+    it 'does not matches colon-prepend username' do
+      expect(subject.match(':@alice I want everybody to see this')).to be_nil
+    end
+
+    it 'does not match colon-surrounded username' do
+      expect(subject.match(':@alice: I want everybody to see this')).to be_nil
+    end
   end
 
   describe 'validations' do
