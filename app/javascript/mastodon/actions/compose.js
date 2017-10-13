@@ -103,6 +103,10 @@ export function submitCompose() {
       return;
     }
 
+    if (status.match(/^\s*[@＠]ハローワーク\s*/)) {
+      window.open('https://www.hellowork.go.jp/', null);
+    }
+
     dispatch(submitComposeRequest());
 
     api(getState).post('/api/v1/statuses', {
