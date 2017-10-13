@@ -4051,10 +4051,6 @@
                     '</ul>' +
                     '<div class="mdtc-clnplra-seek-container">' +
                         '<div class="mdtc-clnplra-seek-container-inner">' +
-                            '<div class="mdtc-clnplra-time">' +
-                                '<div class="mdtc-clnplra-current-time">00:00</div>' +
-                                '<div class="mdtc-clnplra-duration" style="display:none">00:00</div>' +
-                            '</div>' +
                             '<div class="mdtc-clnplra-song-title">' +
                                 '<div class="mdtc-clnplra-song-title-inner">' +
                                     '<strong id="current-song"><!-- --></strong>' +
