@@ -4051,18 +4051,9 @@
                     '</ul>' +
                     '<div class="mdtc-clnplra-seek-container">' +
                         '<div class="mdtc-clnplra-seek-container-inner">' +
-                            '<div class="mdtc-clnplra-time">' +
-                                '<div class="mdtc-clnplra-current-time">00:00</div>' +
-                                '<div class="mdtc-clnplra-duration" style="display:none">00:00</div>' +
-                            '</div>' +
                             '<div class="mdtc-clnplra-song-title">' +
                                 '<div class="mdtc-clnplra-song-title-inner">' +
                                     '<strong id="current-song"><!-- --></strong>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="mdtc-clnplra-progress">' +
-                                '<div class="mdtc-clnplra-seek-bar" style="width:0%">' +
-                                    '<div class="mdtc-clnplra-play-bar" style="width:0%"><!-- --></div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
@@ -4071,9 +4062,7 @@
 						'<div class="mdtc-clnplra-volume-bar-value"><i><!-- --></i></div>' +
 					'</div>' +
 					'<ul class="mdtc-clnplra-toggles">' +
-						'<li><a title="Repeat" tabindex="1" class="mdtc-clnplra-repeat mdtc-clnplra-icon-repeat" href="javascript:;"></a></li>' +
 						'<li><a title="Repeat off" tabindex="1" class="mdtc-clnplra-repeat-off mdtc-clnplra-icon-repeat" href="javascript:;" style="display:none"></a></li>' +
-						'<li><a href="javascript:;" class="mdtc-clnplra-shuffle mdtc-clnplra-icon-shuffle" tabindex="1" title="Shuffle"></a></li>' +
 						'<li><a href="javascript:;" class="mdtc-clnplra-shuffle-off mdtc-clnplra-icon-shuffle" tabindex="1" title="Shuffle off" style="display:none"></a></li>' +
 						'<li><a href="javascript:;" class="mdtc-clnplra-download-one mdtc-clnplra-icon-download" tabindex="1" title="Download" style="display:none"></a></li>' +
 					'</ul>' +
