@@ -220,9 +220,7 @@ class Status < ApplicationRecord
         # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in.
         visibility.push(:private) if account.following?(target_account)
 
-        joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
-          .where(arel_table[:visibility].in(visibility).or(Mention.arel_table[:id].not_eq(nil)))
-          .order(visibility: :desc)
+        where(visibility: visibility).or(where(id: account.mentions.select(:status_id)))
       end
     end
 
