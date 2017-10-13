@@ -39,6 +39,8 @@ GEM
       activemodel (= 5.1.4)
       activesupport (= 5.1.4)
       arel (~> 8.0)
+    activerecord-nulldb-adapter (0.3.7)
+      activerecord (>= 2.0.0)
     activesupport (5.1.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -536,6 +538,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10)
   active_record_query_trace (~> 1.5)
+  activerecord-nulldb-adapter
   addressable (~> 2.5)
   annotate (~> 2.7)
   aws-sdk (~> 2.9)

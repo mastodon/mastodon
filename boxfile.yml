@@ -44,7 +44,7 @@ run.config:
 
 deploy.config:
   extra_steps:
-    - NODE_ENV=production bundle exec rake assets:precompile
+    - NODE_ENV=production DB_ADAPTER=nulldb bundle exec rake assets:precompile
   transform:
     - "sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' /app/.env.nanobox | envsubst > /app/.env.production"
     - |-
