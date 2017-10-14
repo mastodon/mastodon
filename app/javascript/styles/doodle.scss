@@ -1,12 +1,15 @@
+$doodleBg: #d9e1e8;
 .doodle-modal {
   @extend .boost-modal;
   width: unset;
 }
 
 .doodle-modal__container {
+  background: $doodleBg;
+  text-align: center;
   line-height: 0; // remove weird gap under canvas
   canvas {
-    border: 5px solid #d9e1e8;
+    border: 5px solid $doodleBg;
   }
 }
 
@@ -15,9 +18,13 @@
 
   .filler {
     flex-grow: 1;
+    margin: 0;
+    padding: 0;
   }
 
   .doodle-toolbar {
+    line-height: 1;
+
     display: flex;
     flex-direction: column;
     flex-grow: 0;
@@ -60,10 +67,19 @@
       cursor: pointer;
       box-shadow: inset 0 0 1px rgba(white, .5);
       border: 1px solid black;
+      outline-offset:-1px;
 
-      &.selected {
-        outline-offset:-1px;
-        outline: 1px dotted white;
+      &.foreground {
+        outline: 1px dashed white;
+      }
+
+      &.background {
+        outline: 1px dashed red;
+      }
+
+      &.foreground.background {
+        outline: 1px dashed red;
+        border-color: white;
       }
     }
   }

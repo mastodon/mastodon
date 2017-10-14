@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onOpenCanvas () {
-    dispatch(openModal('DOODLE', {}));
+    dispatch(openModal('DOODLE', { noEsc: true }));
   },
 });
 
