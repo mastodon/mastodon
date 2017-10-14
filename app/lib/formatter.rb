@@ -230,7 +230,7 @@ class Formatter
           :description => 'Make text spin',
           :example => 'This is [spin]spin[/spin].'},
         :pulse => {
-          :html_open => '<span class="pulse-loading">', :html_close => '</span>',
+          :html_open => '<span class="bbcode-pulse-loading">', :html_close => '</span>',
           :description => 'Make text pulse',
           :example => 'This is [pulse]pulse[/pulse].'},
         :b => {
