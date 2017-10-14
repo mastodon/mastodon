@@ -10,4 +10,6 @@
 #
 
 class KeywordMute < ApplicationRecord
+  def self.matches?(text)
+  end
 end

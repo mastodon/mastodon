@@ -138,6 +138,8 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id)
+    return true if KeywordMute.where(account_id: receiver_id).matches?(status.text)
+
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
 
