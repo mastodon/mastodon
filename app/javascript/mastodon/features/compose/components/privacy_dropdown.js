@@ -4,7 +4,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from 'react-motion/lib/Motion';
-import spring from 'react-motion/lib/spring';
+import createSpring from '../../ui/util/reduce_motion_spring';
 import detectPassiveEvents from 'detect-passive-events';
 import classNames from 'classnames';
 
@@ -30,6 +30,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
     value: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
+    reduceMotion: PropTypes.bool.isRequired,
   };
 
   handleDocumentClick = e => {
@@ -66,7 +67,9 @@ class PrivacyDropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { style, items, value } = this.props;
+    const { style, items, value, reduceMotion } = this.props;
+
+    const spring = createSpring(reduceMotion);
 
     return (
       <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
@@ -103,6 +106,7 @@ export default class PrivacyDropdown extends React.PureComponent {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    reduceMotion: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -164,7 +168,7 @@ export default class PrivacyDropdown extends React.PureComponent {
   }
 
   render () {
-    const { value, intl } = this.props;
+    const { value, intl, reduceMotion } = this.props;
     const { open } = this.state;
 
     const valueOption = this.options.find(item => item.value === value);
@@ -191,6 +195,7 @@ export default class PrivacyDropdown extends React.PureComponent {
             value={value}
             onClose={this.handleClose}
             onChange={this.handleChange}
+            reduceMotion={reduceMotion}
           />
         </Overlay>
       </div>

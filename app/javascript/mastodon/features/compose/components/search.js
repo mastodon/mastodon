@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from 'react-motion/lib/Motion';
-import spring from 'react-motion/lib/spring';
+import createSpring from '../../../features/ui/util/reduce_motion_spring';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
@@ -13,10 +13,13 @@ class SearchPopout extends React.PureComponent {
 
   static propTypes = {
     style: PropTypes.object,
+    reduceMotion: PropTypes.bool.isRequired,
   };
 
   render () {
-    const { style } = this.props;
+    const { style, reduceMotion } = this.props;
+
+    const spring = createSpring(reduceMotion);
 
     return (
       <div style={{ ...style, position: 'absolute', width: 285 }}>
@@ -53,6 +56,7 @@ export default class Search extends React.PureComponent {
     onClear: PropTypes.func.isRequired,
     onShow: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    reduceMotion: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -94,7 +98,7 @@ export default class Search extends React.PureComponent {
   }
 
   render () {
-    const { intl, value, submitted } = this.props;
+    const { intl, value, submitted, reduceMotion } = this.props;
     const { expanded } = this.state;
     const hasValue = value.length > 0 || submitted;
 
@@ -120,7 +124,7 @@ export default class Search extends React.PureComponent {
         </div>
 
         <Overlay show={expanded && !hasValue} placement='bottom' target={this}>
-          <SearchPopout />
+          <SearchPopout reduceMotion={reduceMotion} />
         </Overlay>
       </div>
     );

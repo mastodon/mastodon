@@ -1,6 +1,6 @@
 import React from 'react';
 import Motion from 'react-motion/lib/Motion';
-import spring from 'react-motion/lib/spring';
+import createSpring from '../features/ui/util/reduce_motion_spring';
 import PropTypes from 'prop-types';
 
 export default class IconButton extends React.PureComponent {
@@ -21,6 +21,7 @@ export default class IconButton extends React.PureComponent {
     animate: PropTypes.bool,
     overlay: PropTypes.bool,
     tabIndex: PropTypes.string,
+    reduceMotion: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -71,6 +72,8 @@ export default class IconButton extends React.PureComponent {
     if (this.props.className) {
       classes.push(this.props.className);
     }
+
+    const spring = createSpring(this.props.reduceMotion);
 
     return (
       <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
