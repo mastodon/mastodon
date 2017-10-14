@@ -39,7 +39,6 @@ const makeMapStateToProps = () => {
     boostModal: state.getIn(['meta', 'boost_modal']),
     deleteModal: state.getIn(['meta', 'delete_modal']),
     autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
-    reduceMotion: state.getIn(['meta', 'reduce_motion']),
   });
 
   return mapStateToProps;

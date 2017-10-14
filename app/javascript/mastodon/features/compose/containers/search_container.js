@@ -10,7 +10,6 @@ import Search from '../components/search';
 const mapStateToProps = state => ({
   value: state.getIn(['search', 'value']),
   submitted: state.getIn(['search', 'submitted']),
-  reduceMotion: state.getIn(['meta', 'reduce_motion']),
 });
 
 const mapDispatchToProps = dispatch => ({
