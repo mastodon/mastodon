@@ -2684,6 +2684,20 @@ button.icon-button.active i.fa-retweet {
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.bbcode-pulse-loading {
+  animation: pulse 1s ease-in-out infinite;
+  animation-direction: alternate;
+}
+
 .emoji-picker-dropdown__menu {
   background: $simple-background-color;
   position: absolute;
