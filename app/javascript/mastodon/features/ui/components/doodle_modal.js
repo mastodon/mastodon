@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { doodleSet, uploadCompose } from '../../../actions/compose';
 import IconButton from '../../../components/icon_button';
-import { debounce } from 'lodash';
+import { debounce, mapValues } from 'lodash';
+import classNames from 'classnames';
 
 // palette nicked from MyPaint, CC0
 const palette = [
@@ -110,16 +111,40 @@ function dataURLtoFile(dataurl, filename) {
   return new File([u8arr], filename, { type: mime });
 }
 
+const DOODLE_SIZES = {
+  normal: [500, 500, 'Square 500'],
+  tootbanner: [702, 330, 'Tootbanner'],
+  s640x480: [640, 480, '640×480 - 480p'],
+  s800x600: [800, 600, '800×600 - SVGA'],
+  s720x480: [720, 405, '720x405 - 16:9'],
+};
+
 
 const mapStateToProps = state => ({
   options: state.getIn(['compose', 'doodle']),
 });
 
 const mapDispatchToProps = dispatch => ({
+  /** Set options in the redux store */
   setOpt: (opts) => dispatch(doodleSet(opts)),
+  /** Submit doodle for upload */
   submit: (file) => dispatch(uploadCompose([file])),
 });
 
+/**
+ * Doodling dialog with drawing canvas
+ *
+ * Keyboard shortcuts:
+ * - Delete: Clear screen, fill with background color
+ * - Backspace, Ctrl+Z: Undo one step
+ * - Ctrl held while drawing: Use background color
+ * - Shift held while clicking screen: Use fill tool
+ *
+ * Palette:
+ * - Left mouse button: pick foreground
+ * - Ctrl + left mouse button: pick background
+ * - Right mouse button: pick background
+ */
 @connect(mapStateToProps, mapDispatchToProps)
 export default class DoodleModal extends ImmutablePureComponent {
 
@@ -132,121 +157,145 @@ export default class DoodleModal extends ImmutablePureComponent {
 
   //region Option getters/setters
 
+  /** Foreground color */
   get fg () {
     return this.props.options.get('fg');
   }
-
   set fg (value) {
     this.props.setOpt({ fg: value });
   }
 
+  /** Background color */
   get bg () {
     return this.props.options.get('bg');
   }
-
   set bg (value) {
     this.props.setOpt({ bg: value });
   }
 
+  /** Swap Fg and Bg for drawing */
+  get swapped () {
+    return this.props.options.get('swapped');
+  }
+  set swapped (value) {
+    this.props.setOpt({ swapped: value });
+  }
+
+  /** Mode - 'draw' or 'fill' */
   get mode () {
     return this.props.options.get('mode');
   }
-
   set mode (value) {
     this.props.setOpt({ mode: value });
   }
 
+  /** Base line weight */
   get weight () {
     return this.props.options.get('weight');
   }
-
   set weight (value) {
     this.props.setOpt({ weight: value });
   }
 
+  /** Drawing opacity */
   get opacity () {
     return this.props.options.get('opacity');
   }
-
   set opacity (value) {
     this.props.setOpt({ opacity: value });
   }
 
+  /** Adaptive stroke - change width with speed */
   get adaptiveStroke () {
     return this.props.options.get('adaptiveStroke');
   }
-
   set adaptiveStroke (value) {
     this.props.setOpt({ adaptiveStroke: value });
   }
 
+  /** Smoothing (for mouse drawing) */
   get smoothing () {
     return this.props.options.get('smoothing');
   }
-
   set smoothing (value) {
     this.props.setOpt({ smoothing: value });
   }
 
+  /** Size preset */
+  get size () {
+    return this.props.options.get('size');
+  }
+  set size (value) {
+    this.props.setOpt({ size: value });
+  }
+
   //endregion
 
+  /** Key up handler */
   handleKeyUp = (e) => {
-    if (e.key === 'Delete' || e.key === 'Backspace') {
+    if (e.target.nodeName === 'INPUT') return;
+
+    if (e.key === 'Delete') {
       e.preventDefault();
-      this.clearScreen();
+      this.handleClearBtn();
+      return;
     }
 
-    if (e.key === 'z' && (e.ctrlKey || e.metaKey)) {
+    if (e.key === 'Backspace' || (e.key === 'z' && (e.ctrlKey || e.metaKey))) {
       e.preventDefault();
       this.undo();
     }
+
+    if (e.key === 'Control' || e.key === 'Meta') {
+      this.controlHeld = false;
+      this.swapped = false;
+    }
+
+    if (e.key === 'Shift') {
+      this.shiftHeld = false;
+      this.mode = 'draw';
+    }
   };
 
+  /** Key down handler */
+  handleKeyDown = (e) => {
+    if (e.key === 'Control' || e.key === 'Meta') {
+      this.controlHeld = true;
+      this.swapped = true;
+    }
+
+    if (e.key === 'Shift') {
+      this.shiftHeld = true;
+      this.mode = 'fill';
+    }
+  };
+
+  /**
+   * Component installed in the DOM, do some initial set-up
+   */
   componentDidMount () {
+    this.controlHeld = false;
+    this.shiftHeld = false;
+    this.swapped = false;
     window.addEventListener('keyup', this.handleKeyUp, false);
+    window.addEventListener('keydown', this.handleKeyDown, false);
   };
 
+  /**
+   * Tear component down
+   */
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp, false);
+    window.removeEventListener('keydown', this.handleKeyDown, false);
+    if (this.sketcher) this.sketcher.destroy();
   }
 
-  clearScreen = () => {
-    this.sketcher.context.fillStyle = this.bg;
-    this.sketcher.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    this.undos = [];
-
-    this.doSaveUndo();
-  };
-
-  handleDone = () => {
-    const dataUrl = this.sketcher.toImage();
-    const file = dataURLtoFile(dataUrl, 'doodle.png');
-    this.props.submit(file);
-
-    this.sketcher.destroy();
-    this.props.onClose();
-  };
-
-  updateSketcherSettings () {
-    if (!this.sketcher) return;
-
-    this.sketcher.color = this.fg;
-    this.sketcher.opacity = this.opacity;
-    this.sketcher.weight = this.weight;
-    this.sketcher.mode = this.mode;
-    this.sketcher.smoothing = this.smoothing;
-    this.sketcher.adaptiveStroke = this.adaptiveStroke;
-  }
-
-  initSketcher (elem) {
-    this.sketcher = new Atrament(elem, 500, 500);
-
-    this.mode = 'draw'; // Reset mode - it's confusing if left at 'fill'
-
-    this.updateSketcherSettings();
-    this.clearScreen();
-  }
-
+  /**
+   * Set reference to the canvas element.
+   * This is called during component init
+   *
+   * @param elem - canvas element
+   */
   setCanvasRef = (elem) => {
     this.canvas = elem;
     if (elem) {
@@ -254,6 +303,7 @@ export default class DoodleModal extends ImmutablePureComponent {
         this.saveUndo();
         this.sketcher._dirty = false;
       });
+
       elem.addEventListener('click', () => {
         // sketcher bug - does not fire dirty on fill
         if (this.mode === 'fill') {
@@ -261,58 +311,233 @@ export default class DoodleModal extends ImmutablePureComponent {
         }
       });
 
+      // prevent context menu
+      elem.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+      });
+
+      elem.addEventListener('mousedown', (e) => {
+        if (e.button === 2) {
+          this.swapped = true;
+        }
+      });
+
+      elem.addEventListener('mouseup', (e) => {
+        if (e.button === 2) {
+          this.swapped = this.controlHeld;
+        }
+      });
+
       this.initSketcher(elem);
+      this.mode = 'draw'; // Reset mode - it's confusing if left at 'fill'
     }
   };
 
-  onPaletteClick = (e) => {
-    this.fg = e.target.dataset.color;
-    e.target.blur();
+  /**
+   * Set up the sketcher instance
+   *
+   * @param canvas - canvas element. Null if we're just resizing
+   */
+  initSketcher (canvas = null) {
+    const sizepreset = DOODLE_SIZES[this.size];
+
+    if (this.sketcher) this.sketcher.destroy();
+    this.sketcher = new Atrament(canvas || this.canvas, sizepreset[0], sizepreset[1]);
+
+    if (canvas) {
+      this.ctx = this.sketcher.context;
+      this.updateSketcherSettings();
+    }
+
+    this.clearScreen();
+  }
+
+  /**
+   * Done button handler
+   */
+  onDoneButton = () => {
+    const dataUrl = this.sketcher.toImage();
+    const file = dataURLtoFile(dataUrl, 'doodle.png');
+    this.props.submit(file);
+    this.props.onClose(); // close dialog
   };
 
-  setModeDraw = (e) => {
-    this.mode = 'draw';
-    e.target.blur();
+  /**
+   * Cancel button handler
+   */
+  onCancelButton = () => {
+    if (this.undos.length > 1 && !confirm('Discard doodle? All changes will be lost!')) {
+      return;
+    }
+
+    this.props.onClose(); // close dialog
   };
 
-  setModeFill = (e) => {
-    this.mode = 'fill';
-    e.target.blur();
+  /**
+   * Update sketcher options based on state
+   */
+  updateSketcherSettings () {
+    if (!this.sketcher) return;
+
+    if (this.oldSize !== this.size) this.initSketcher();
+
+    this.sketcher.color = (this.swapped ? this.bg : this.fg);
+    this.sketcher.opacity = this.opacity;
+    this.sketcher.weight = this.weight;
+    this.sketcher.mode = this.mode;
+    this.sketcher.smoothing = this.smoothing;
+    this.sketcher.adaptiveStroke = this.adaptiveStroke;
+
+    this.oldSize = this.size;
+  }
+
+  /**
+   * Fill screen with background color
+   */
+  clearScreen = () => {
+    this.ctx.fillStyle = this.bg;
+    this.ctx.fillRect(-1, -1, this.canvas.width+2, this.canvas.height+2);
+    this.undos = [];
+
+    this.doSaveUndo();
   };
 
-  tglSmooth = (e) => {
-    this.smoothing = !this.smoothing;
-    e.target.blur();
-  };
-
-  tglAdaptive = (e) => {
-    this.adaptiveStroke = !this.adaptiveStroke;
-    e.target.blur();
-  };
-
-  setWeight = (e) => {
-    this.weight = +e.target.value || 1;
-  };
-
+  /**
+   * Undo one step
+   */
   undo = () => {
     if (this.undos.length > 1) {
       this.undos.pop();
       const buf = this.undos.pop();
 
       this.sketcher.clear();
-      this.sketcher.context.putImageData(buf, 0, 0);
+      this.ctx.putImageData(buf, 0, 0);
       this.doSaveUndo();
     }
   };
 
+  /**
+   * Save canvas content into the undo buffer immediately
+   */
   doSaveUndo = () => {
-    this.undos.push(this.sketcher.context.getImageData(0, 0, this.canvas.width, this.canvas.height));
+    this.undos.push(this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height));
   };
 
+  /**
+   * Called on each canvas change.
+   * Saves canvas content to the undo buffer after some period of inactivity.
+   */
   saveUndo = debounce(() => {
     this.doSaveUndo();
   }, 100);
 
+  /**
+   * Palette left click.
+   * Selects Fg color (or Bg, if Control/Meta is held)
+   *
+   * @param e - event
+   */
+  onPaletteClick = (e) => {
+    const c = e.target.dataset.color;
+
+    if (this.controlHeld) {
+      this.bg = c;
+    } else {
+      this.fg = c;
+    }
+
+    e.target.blur();
+    e.preventDefault();
+  };
+
+  /**
+   * Palette right click.
+   * Selects Bg color
+   *
+   * @param e - event
+   */
+  onPaletteRClick = (e) => {
+    this.bg = e.target.dataset.color;
+    e.target.blur();
+    e.preventDefault();
+  };
+
+  /**
+   * Handle click on the Draw mode button
+   *
+   * @param e - event
+   */
+  setModeDraw = (e) => {
+    this.mode = 'draw';
+    e.target.blur();
+  };
+
+  /**
+   * Handle click on the Fill mode button
+   *
+   * @param e - event
+   */
+  setModeFill = (e) => {
+    this.mode = 'fill';
+    e.target.blur();
+  };
+
+  /**
+   * Handle click on Smooth checkbox
+   *
+   * @param e - event
+   */
+  tglSmooth = (e) => {
+    this.smoothing = !this.smoothing;
+    e.target.blur();
+  };
+
+  /**
+   * Handle click on Adaptive checkbox
+   *
+   * @param e - event
+   */
+  tglAdaptive = (e) => {
+    this.adaptiveStroke = !this.adaptiveStroke;
+    e.target.blur();
+  };
+
+  /**
+   * Handle change of the Weight input field
+   *
+   * @param e - event
+   */
+  setWeight = (e) => {
+    this.weight = +e.target.value || 1;
+  };
+
+  /**
+   * Set size - clalback from the select box
+   *
+   * @param e - event
+   */
+  changeSize = (e) => {
+    let newSize = e.target.value;
+    if (newSize === this.oldSize) return;
+
+    if (this.undos.length > 1 && !confirm('Change size? This will erase your drawing!')) {
+      return;
+    }
+
+    this.size = newSize;
+  };
+
+  handleClearBtn = () => {
+    if (this.undos.length > 1 && !confirm('Clear screen? This will erase your drawing!')) {
+      return;
+    }
+
+    this.clearScreen();
+  };
+
+  /**
+   * Render the component
+   */
   render () {
     this.updateSketcherSettings();
 
@@ -323,7 +548,10 @@ export default class DoodleModal extends ImmutablePureComponent {
         </div>
 
         <div className='doodle-modal__action-bar'>
-          <Button text='Done' onClick={this.handleDone} />
+          <div className='doodle-toolbar'>
+            <Button text='Done' onClick={this.onDoneButton} />
+            <Button text='Cancel' onClick={this.onCancelButton} />
+          </div>
           <div className='filler' />
           <div className='doodle-toolbar with-inputs'>
             <div>
@@ -344,12 +572,19 @@ export default class DoodleModal extends ImmutablePureComponent {
                 <input type='number' min={1} id='dd_weight' value={this.weight} onChange={this.setWeight} />
               </span>
             </div>
+            <div>
+              <select aria-label='Canvas size' onInput={this.changeSize} defaultValue={this.size}>
+                { Object.values(mapValues(DOODLE_SIZES, (val, k) =>
+                  <option key={k} value={k}>{val[2]}</option>
+                )) }
+              </select>
+            </div>
           </div>
           <div className='doodle-toolbar'>
-            <IconButton icon='pencil' label='Draw' onClick={this.setModeDraw} size={18} active={this.mode === 'draw'} inverted />
-            <IconButton icon='bath' label='Fill' onClick={this.setModeFill} size={18} active={this.mode === 'fill'} inverted />
-            <IconButton icon='undo' label='Undo' onClick={this.undo} size={18} inverted />
-            <IconButton icon='trash' label='Clear' onClick={this.clearScreen} size={18} inverted />
+            <IconButton icon='pencil' title='Draw' label='Draw' onClick={this.setModeDraw} size={18} active={this.mode === 'draw'} inverted />
+            <IconButton icon='bath' title='Fill' label='Fill' onClick={this.setModeFill} size={18} active={this.mode === 'fill'} inverted />
+            <IconButton icon='undo' title='Undo' label='Undo' onClick={this.undo} size={18} inverted />
+            <IconButton icon='trash' title='Clear' label='Clear' onClick={this.handleClearBtn} size={18} inverted />
           </div>
           <div className='doodle-palette'>
             {
@@ -360,9 +595,13 @@ export default class DoodleModal extends ImmutablePureComponent {
                     key={i}
                     style={{ backgroundColor: c[0] }}
                     onClick={this.onPaletteClick}
+                    onContextMenu={this.onPaletteRClick}
                     data-color={c[0]}
                     title={c[1]}
-                    className={this.fg === c[0] ? 'selected' : ''}
+                    className={classNames({
+                      'foreground': this.fg === c[0],
+                      'background': this.bg === c[0],
+                    })}
                   />
               )
             }
