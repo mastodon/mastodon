@@ -1,7 +1,7 @@
 // Like react-motion's Motion, but checks to see if the user prefers
 // reduced motion and uses a cross-fade in those cases.
 
-import Motion from 'react-motion/lib/motion';
+import Motion from 'react-motion/lib/Motion';
 import { connect } from 'react-redux';
 import { pick } from 'lodash';
 
