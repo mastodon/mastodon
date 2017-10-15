@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = t('settings.keyword_mutes.add_keyword')
+
+= simple_form_for @keyword_mute, url: settings_keyword_mutes_path do |f|
+  = render 'shared/error_messages', object: @keyword_mute
+
+  %p.muted-hint
+    Keywords match word boundaries case-insensitively.  For example:
+    %ul
+      %li
+        <strong>alice</strong> matches <strong>alice</strong>, <strong>Alice</strong>, and <strong>Alice's</strong>
+      %li
+        <strong>bob</strong> matches <strong>bob</strong> and <strong>Bob</strong> but not <strong>bobcat</strong>
+
+  .fields-group
+    = f.input :keyword
+
+  .actions
+    = f.button :button, t('admin.keyword_mutes.add_keyword'), type: :submit

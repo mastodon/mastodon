@@ -1,2 +1,15 @@
 - content_for :page_title do
   = t('settings.keyword_mutes')
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('settings.keyword_mutes.keyword')
+        %th
+        %th
+      %tbody
+        = render @keyword_mutes
+
+= paginate @keyword_mutes
+= link_to t('settings.keyword_mutes.add_keyword'), new_settings_keyword_mute_path, class: 'button'
