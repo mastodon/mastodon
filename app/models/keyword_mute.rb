@@ -23,16 +23,11 @@ class KeywordMute < ApplicationRecord
     attr_reader :regex
 
     def initialize(account)
-      re = String.new.tap do |str|
-        scoped = KeywordMute.where(account: account)
-        keywords = scoped.select(:id, :keyword)
-        count = scoped.count
-
-        keywords.find_each.with_index do |kw, index|
-          str << Regexp.escape(kw.keyword.strip)
-          str << '|' if index < count - 1
+      re = [].tap do |arr|
+        KeywordMute.where(account: account).select(:keyword, :id).find_each do |m|
+          arr << Regexp.escape(m.keyword.strip)
         end
-      end
+      end.join('|')
 
       @regex = /\b(?:#{re})\b/i unless re.empty?
     end
