@@ -1,0 +1,616 @@
+---
+sv:
+  about:
+    about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
+    about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
+    about_this: About
+    closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
+    contact: Contact
+    contact_missing: Not set
+    contact_unavailable: N/A
+    description_headline: What is %{domain}?
+    domain_count_after: other instances
+    domain_count_before: Connected to
+    extended_description_html: |
+      <h3>A good place for rules</h3>
+      <p>The extended description has not been set up yet.</p>
+    features:
+      humane_approach_body: Learning from failures of other networks, Mastodon aims to make ethical design choices to combat the misuse of social media.
+      humane_approach_title: A more humane approach
+      not_a_product_body: Mastodon is not a commercial network. No advertising, no data mining, no walled gardens. There is no central authority.
+      not_a_product_title: You’re a person, not a product
+      real_conversation_body: With 500 characters at your disposal and support for granular content and media warnings, you can express yourself the way you want to.
+      real_conversation_title: Built for real conversation
+      within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
+      within_reach_title: Always within reach
+    find_another_instance: Find another instance
+    generic_description: "%{domain} is one server in the network"
+    hosted_on: Mastodon hosted on %{domain}
+    learn_more: Learn more
+    other_instances: Instance list
+    source_code: Source code
+    status_count_after: statuses
+    status_count_before: Who authored
+    user_count_after: users
+    user_count_before: Home to
+    what_is_mastodon: What is Mastodon?
+  accounts:
+    follow: Follow
+    followers: Followers
+    following: Following
+    media: Media
+    nothing_here: There is nothing here!
+    people_followed_by: People whom %{name} follows
+    people_who_follow: People who follow %{name}
+    posts: Toots
+    posts_with_replies: Toots with replies
+    remote_follow: Remote follow
+    reserved_username: The username is reserved
+    roles:
+      admin: Admin
+    unfollow: Unfollow
+  admin:
+    accounts:
+      are_you_sure: Are you sure?
+      confirm: Confirm
+      confirmed: Confirmed
+      disable_two_factor_authentication: Disable 2FA
+      display_name: Display name
+      domain: Domain
+      edit: Edit
+      email: E-mail
+      feed_url: Feed URL
+      followers: Followers
+      followers_url: Followers URL
+      follows: Follows
+      inbox_url: Inbox URL
+      ip: IP
+      location:
+        all: All
+        local: Local
+        remote: Remote
+        title: Location
+      media_attachments: Media attachments
+      moderation:
+        all: All
+        silenced: Silenced
+        suspended: Suspended
+        title: Moderation
+      moderation_notes: Moderation notes
+      most_recent_activity: Most recent activity
+      most_recent_ip: Most recent IP
+      not_subscribed: Not subscribed
+      order:
+        alphabetic: Alphabetic
+        most_recent: Most recent
+        title: Order
+      outbox_url: Outbox URL
+      perform_full_suspension: Perform full suspension
+      profile_url: Profile URL
+      protocol: Protocol
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      redownload: Refresh avatar
+      reset: Reset
+      reset_password: Reset password
+      resubscribe: Resubscribe
+      salmon_url: Salmon URL
+      search: Search
+      shared_inbox_url: Shared Inbox URL
+      show:
+        created_reports: Reports created by this account
+        report: report
+        targeted_reports: Reports made about this account
+      silence: Silence
+      statuses: Statuses
+      subscribe: Subscribe
+      title: Accounts
+      undo_silenced: Undo silence
+      undo_suspension: Undo suspension
+      unsubscribe: Unsubscribe
+      username: Username
+      web: Web
+
+    account_moderation_notes:
+      account: Moderator
+      created_at: Date
+      create: Create
+      created_msg: Moderation note successfully created!
+      delete: Delete
+      destroyed_msg: Moderation note successfully destroyed!
+
+    custom_emojis:
+      copied_msg: Successfully created local copy of the emoji
+      copy: Copy
+      copy_failed_msg: Could not make a local copy of that emoji
+      created_msg: Emoji successfully created!
+      delete: Delete
+      destroyed_msg: Emojo successfully destroyed!
+      disable: Disable
+      disabled_msg: Successfully disabled that emoji
+      emoji: Emoji
+      enable: Enable
+      enabled_msg: Successfully enabled that emoji
+      image_hint: PNG up to 50KB
+      new:
+        title: Add new custom emoji
+      shortcode: Shortcode
+      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      title: Custom emojis
+      upload: Upload
+    domain_blocks:
+      add_new: Add new
+      created_msg: Domain block is now being processed
+      destroyed_msg: Domain block has been undone
+      domain: Domain
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        severity:
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
+          noop: None
+          silence: Silence
+          suspend: Suspend
+        title: New domain block
+      reject_media: Reject media files
+      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      severities:
+        noop: None
+        silence: Silence
+        suspend: Suspend
+      severity: Severity
+      show:
+        affected_accounts:
+          one: One account in the database affected
+          other: "%{count} accounts in the database affected"
+        retroactive:
+          silence: Unsilence all existing accounts from this domain
+          suspend: Unsuspend all existing accounts from this domain
+        title: Undo domain block for %{domain}
+        undo: Undo
+      title: Domain Blocks
+      undo: Undo
+    email_domain_blocks:
+      add_new: Add new
+      created_msg: Email domain block successfully created
+      delete: Delete
+      destroyed_msg: Email domain block successfully deleted
+      domain: Domain
+      new:
+        create: Create block
+        title: New email domain block
+      title: Email Domain Block
+    instances:
+      account_count: Known accounts
+      domain_name: Domain
+      reset: Reset
+      search: Search
+      title: Known Instances
+    reports:
+      action_taken_by: Action taken by
+      are_you_sure: Are you sure?
+      comment:
+        label: Comment
+        none: None
+      delete: Delete
+      id: ID
+      mark_as_resolved: Mark as resolved
+      nsfw:
+        'false': Unhide media attachments
+        'true': Hide media attachments
+      report: 'Report #%{id}'
+      report_contents: Contents
+      reported_account: Reported account
+      reported_by: Reported by
+      resolved: Resolved
+      silence_account: Silence account
+      status: Status
+      suspend_account: Suspend account
+      target: Target
+      title: Reports
+      unresolved: Unresolved
+      view: View
+    settings:
+      bootstrap_timeline_accounts:
+        desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
+        title: Default follows for new users
+      contact_information:
+        email: Business e-mail
+        username: Contact username
+      registrations:
+        closed_message:
+          desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags
+          title: Closed registration message
+        deletion:
+          desc_html: Allow anyone to delete their account
+          title: Open account deletion
+        open:
+          desc_html: Allow anyone to create an account
+          title: Open registration
+      site_description:
+        desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Instance description
+      site_description_extended:
+        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
+        title: Custom extended information
+      site_terms:
+        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
+        title: Custom terms of service
+      site_title: Instance name
+      thumbnail:
+        desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
+        title: Instance thumbnail
+      timeline_preview:
+        desc_html: Display public timeline on landing page
+        title: Timeline preview
+      title: Site Settings
+    statuses:
+      back_to_account: Back to account page
+      batch:
+        delete: Delete
+        nsfw_off: NSFW OFF
+        nsfw_on: NSFW ON
+      execute: Execute
+      failed_to_execute: Failed to execute
+      media:
+        hide: Hide media
+        show: Show media
+        title: Media
+      no_media: No media
+      title: Account statuses
+      with_media: With media
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: WebSub
+      topic: Topic
+    title: Administration
+  admin_mailer:
+    new_report:
+      body: "%{reporter} has reported %{target}"
+      subject: New report for %{instance} (#%{id})
+  application_mailer:
+    salutation: "%{name},"
+    settings: 'Change e-mail preferences: %{link}'
+    signature: Mastodon notifications from %{instance}
+    view: 'View:'
+  applications:
+    created: Application successfully created
+    destroyed: Application successfully deleted
+    invalid_url: The provided URL is invalid
+    regenerate_token: Regenerate access token
+    token_regenerated: Access token successfully regenerated
+    warning: Be very careful with this data. Never share it with anyone!
+    your_token: Your access token
+  auth:
+    agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
+    change_password: Security
+    delete_account: Delete account
+    delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
+    didnt_get_confirmation: Didn't receive confirmation instructions?
+    forgot_password: Forgot your password?
+    invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
+    login: Log in
+    logout: Logout
+    register: Sign up
+    resend_confirmation: Resend confirmation instructions
+    reset_password: Reset password
+    set_new_password: Set new password
+  authorize_follow:
+    error: Unfortunately, there was an error looking up the remote account
+    follow: Follow
+    follow_request: 'You have sent a follow request to:'
+    following: 'Success! You are now following:'
+    post_follow:
+      close: Or, you can just close this window.
+      return: Return to the user's profile
+      web: Go to web
+    title: Follow %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Just now
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Just now
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Nice try, hackers! Incorrect password
+    confirm_password: Enter your current password to verify your identity
+    description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
+    proceed: Delete account
+    success_msg: Your account was successfully deleted
+    warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
+    warning_title: Disseminated content availability
+  errors:
+    '403': You don't have permission to view this page.
+    '404': The page you were looking for doesn't exist.
+    '410': The page you were looking for doesn't exist anymore.
+    '422':
+      content: Security verification failed. Are you blocking cookies?
+      title: Security verification failed
+    '429': Throttled
+    '500':
+      content: We're sorry, but something went wrong on our end.
+      title: This page is not correct
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
+  exports:
+    blocks: You block
+    csv: CSV
+    follows: You follow
+    mutes: You mute
+    storage: Media storage
+  followers:
+    domain: Domain
+    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    followers_count: Number of followers
+    lock_link: Lock your account
+    purge: Remove from followers
+    success:
+      one: In the process of soft-blocking followers from one domain...
+      other: In the process of soft-blocking followers from %{count} domains...
+    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
+    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
+    unlocked_warning_title: Your account is not locked
+  generic:
+    changes_saved_msg: Changes successfully saved!
+    powered_by: powered by %{link}
+    save_changes: Save changes
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  imports:
+    preface: You can import data that you have exported from another instance, such as a list of the people you are following or blocking.
+    success: Your data was successfully uploaded and will now be processed in due time
+    types:
+      blocking: Blocking list
+      following: Following list
+      muting: Muting list
+    upload: Upload
+  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
+  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  media_attachments:
+    validations:
+      images_and_video: Cannot attach a video to a status that already contains images
+      too_many: Cannot attach more than 4 files
+  notification_mailer:
+    digest:
+      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      mention: "%{name} mentioned you in:"
+      new_followers_summary:
+        one: You have acquired one new follower! Yay!
+        other: You have gotten %{count} new followers! Amazing!
+      subject:
+        one: "1 new notification since your last visit \U0001F418"
+        other: "%{count} new notifications since your last visit \U0001F418"
+    favourite:
+      body: 'Your status was favourited by %{name}:'
+      subject: "%{name} favourited your status"
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+    follow_request:
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
+    mention:
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+    reblog:
+      body: 'Your status was boosted by %{name}:'
+      subject: "%{name} boosted your status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
+  pagination:
+    next: Next
+    prev: Prev
+    truncate: "&hellip;"
+  preferences:
+    languages: Languages
+    other: Other
+    publishing: Publishing
+    web: Web
+  push_notifications:
+    favourite:
+      title: "%{name} favourited your status"
+    follow:
+      title: "%{name} is now following you"
+    group:
+      title: "%{count} notifications"
+    mention:
+      action_boost: Boost
+      action_expand: Show more
+      action_favourite: Favourite
+      title: "%{name} mentioned you"
+    reblog:
+      title: "%{name} boosted your status"
+  remote_follow:
+    acct: Enter your username@domain you want to follow from
+    missing_resource: Could not find the required redirect URL for your account
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
+  sessions:
+    activity: Last activity
+    browser: Browser
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Unknown browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Current session
+    description: "%{browser} on %{platform}"
+    explanation: These are the web browsers currently logged in to your Mastodon account.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: unknown platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revoke
+    revoke_success: Session successfully revoked
+    title: Sessions
+  settings:
+    authorized_apps: Authorized apps
+    back: Back to Mastodon
+    delete: Account deletion
+    development: Development
+    edit_profile: Edit profile
+    export: Data export
+    followers: Authorized followers
+    import: Import
+    notifications: Notifications
+    preferences: Preferences
+    settings: Settings
+    two_factor_authentication: Two-factor Authentication
+    your_apps: Your applications
+  statuses:
+    open_in_web: Open in web
+    over_character_limit: character limit of %{max} exceeded
+    pin_errors:
+      limit: Too many toots pinned
+      ownership: Someone else's toot cannot be pinned
+      private: Non-public toot cannot be pinned
+      reblog: A boost cannot be pinned
+    show_more: Show more
+    visibilities:
+      private: Followers-only
+      private_long: Only show to followers
+      public: Public
+      public_long: Everyone can see
+      unlisted: Unlisted
+      unlisted_long: Everyone can see, but not listed on public timelines
+  stream_entries:
+    click_to_show: Click to show
+    pinned: Pinned toot
+    reblogged: boosted
+    sensitive_content: Sensitive content
+  terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+
+      <h3 id="collect">What information do we collect?</h3>
+
+      <p>We collect information from you when you register on our site and gather data when you participate in the forum by reading, writing, and evaluating the content shared here.</p>
+
+      <p>When registering on our site, you may be asked to enter your name and e-mail address. You may, however, visit our site without registering. Your e-mail address will be verified by an email containing a unique link. If that link is visited, we know that you control the e-mail address.</p>
+
+      <p>When registered and posting, we record the IP address that the post originated from. We also may retain server logs which include the IP address of every request to our server.</p>
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in one of the following ways:</p>
+
+      <ul>
+        <li>To personalize your experience &mdash; your information helps us to better respond to your individual needs.</li>
+        <li>To improve our site &mdash; we continually strive to improve our site offerings based on the information and feedback we receive from you.</li>
+        <li>To improve customer service &mdash; your information helps us to more effectively respond to your customer service requests and support needs.</li>
+        <li>To send periodic emails &mdash; The email address you provide may be used to send you information, notifications that you request about changes to topics or in response to your user name, respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.</p>
+
+      <h3 id="data-retention">What is your data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+        <li>Retain server logs containing the IP address of all requests to this server no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users and their posts no more than 5 years.</li>
+      </ul>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our business.</p>
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.</p>
+
+      <h3 id="third-party">Third party links</h3>
+
+      <p>Occasionally, at our discretion, we may include or offer third party products or services on our site. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.</p>
+
+      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+
+      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <h3 id="online">Online Privacy Policy Only</h3>
+
+      <p>This online privacy policy applies only to information collected through our site and not to information collected offline.</p>
+
+      <h3 id="consent">Your Consent</h3>
+
+      <p>By using our site, you consent to our web site privacy policy.</p>
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated May 31, 2013.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "%{instance} Terms of Service and Privacy Policy"
+  themes:
+    default: Mastodon
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Enter the code generated by your authenticator app to confirm
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    disable: Disable
+    enable: Enable
+    enabled: Two-factor authentication is enabled
+    enabled_success: Two-factor authentication successfully enabled
+    generate_recovery_codes: Generate recovery codes
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    recovery_codes: Backup recovery codes
+    recovery_codes_regenerated: Recovery codes successfully regenerated
+    recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
+    setup: Set up
+    wrong_code: The entered code was invalid! Are server time and device time correct?
+  users:
+    invalid_email: The e-mail address is invalid
+    invalid_otp_token: Invalid two-factor code
+    signed_in_as: 'Signed in as:'
