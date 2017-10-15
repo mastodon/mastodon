@@ -51,7 +51,13 @@ RSpec.describe KeywordMute, type: :model do
       it 'matches if at least one keyword case-insensitively matches the text' do
         KeywordMute.create!(account: alice, keyword: 'hot')
 
-        expect(matcher =~ 'This is a hot take').to be_truthy
+        expect(matcher =~ 'This is a HOT take').to be_truthy
+      end
+
+      it 'matches keywords surrounded by non-alphanumeric ornamentation' do
+        KeywordMute.create!(account: alice, keyword: 'hot')
+
+        expect(matcher =~ 'This is a ~*HOT*~ take').to be_truthy
       end
 
       it 'uses case-folding rules appropriate for more than just English' do
