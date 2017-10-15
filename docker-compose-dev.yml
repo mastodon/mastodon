@@ -2,14 +2,14 @@ version: '3'
 services:
 
   db:
-    image: postgres:alpine
+    image: postgres:9.6-alpine
     ports:
       - "5432:5432"
     volumes:
     - /var/data/docker-data/catgram-postgres:/var/lib/postgresql/data
 
   redis:
-    image: redis:alpine
+    image: redis:4.0-alpine
     volumes:
     - /var/data/docker-data/catgram-redis:/data
 
@@ -21,7 +21,7 @@ services:
     - ".:/mastodon"
     ports:
       - "3000:3000"
-      - "8080:8080"
+      - "3035:3035"
     depends_on:
       - db
       - redis
