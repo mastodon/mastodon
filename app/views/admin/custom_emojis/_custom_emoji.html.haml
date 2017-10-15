@@ -10,7 +10,7 @@
       = custom_emoji.domain
   %td
     - unless custom_emoji.local?
-      = table_link_to 'copy', t('admin.custom_emojis.copy'), copy_admin_custom_emoji_path(custom_emoji), method: :post
+      = table_link_to 'copy', t('admin.custom_emojis.copy'), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post
   %td
     - if custom_emoji.disabled?
       = table_link_to 'power-off', t('admin.custom_emojis.enable'), enable_admin_custom_emoji_path(custom_emoji), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }

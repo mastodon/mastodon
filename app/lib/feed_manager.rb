@@ -85,7 +85,7 @@ class FeedManager
     oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
 
     from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_home_score).reorder(nil).find_each do |status|
-      unpush(:home, into_account, status)
+      remove_from_feed(:home, into_account, status)
     end
   end
 
@@ -115,7 +115,8 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id)
-    return true if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
+    return false if receiver_id == status.account_id
+    return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
 
     check_for_mutes = [status.account_id]
     check_for_mutes.concat([status.reblog.account_id]) if status.reblog?

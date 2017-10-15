@@ -7,29 +7,41 @@
   = render 'og'
 
 .landing-page.tag-page
-  .stripe
   .features
     .container
       #mastodon-timeline{ data: { props: Oj.dump(default_props.merge(hashtag: @tag.name)) } }
 
       .about-mastodon
-        .brand
-          = link_to root_url do
-            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+        .about-hashtag
+          .brand
+            = link_to root_url do
+              = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
 
-        %p= t 'about.about_hashtag_html', hashtag: @tag.name
+          %p= t 'about.about_hashtag_html', hashtag: @tag.name
 
-        .cta
-          = link_to t('auth.login'), new_user_session_path, class: 'button button-secondary'
-          = link_to t('about.learn_more'), root_url, class: 'button button-alternative'
+          .cta
+            = link_to t('auth.login'), new_user_session_path, class: 'button button-secondary'
+            = link_to t('about.learn_more'), root_url, class: 'button button-alternative'
 
         .features-list
+          .features-list__row
+            .text
+              %h6= t 'about.features.real_conversation_title'
+              = t 'about.features.real_conversation_body'
+            .visual
+              = fa_icon 'fw comments'
           .features-list__row
             .text
               %h6= t 'about.features.not_a_product_title'
               = t 'about.features.not_a_product_body'
             .visual
               = fa_icon 'fw users'
+          .features-list__row
+            .text
+              %h6= t 'about.features.within_reach_title'
+              = t 'about.features.within_reach_body'
+            .visual
+              = fa_icon 'fw mobile'
           .features-list__row
             .text
               %h6= t 'about.features.humane_approach_title'
