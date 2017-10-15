@@ -481,6 +481,7 @@
       flex: 0 0 auto;
       background: $ui-base-color;
       overflow: hidden;
+      border-radius: 4px;
       box-shadow: 0 0 6px rgba($black, 0.1);
 
       .column-header {
@@ -704,6 +705,106 @@
       height: 70vh;
       width: 100%;
       margin-bottom: 50px;
+
+      .column {
+        width: 100%;
+      }
+    }
+  }
+
+  .cta {
+    margin: 20px;
+  }
+
+  &.tag-page {
+    .features {
+      padding: 30px 0;
+
+      .container {
+        max-width: 820px;
+
+        #mastodon-timeline {
+          margin-right: 0;
+          border-top-right-radius: 0;
+        }
+
+        .about-mastodon {
+          .about-hashtag {
+            background: darken($ui-base-color, 4%);
+            padding: 0 20px 20px 30px;
+            border-radius: 0 5px 5px 0;
+
+            .brand {
+              padding-top: 20px;
+              margin-bottom: 20px;
+
+              img {
+                height: 48px;
+                width: auto;
+              }
+            }
+
+            p {
+              strong {
+                color: $ui-secondary-color;
+                font-weight: 700;
+              }
+            }
+
+            .cta {
+              margin: 0;
+
+              .button {
+                margin-right: 4px;
+              }
+            }
+          }
+
+          .features-list {
+            margin-left: 30px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 675px) {
+      .features {
+        padding: 10px 0;
+
+        .container {
+          display: flex;
+          flex-direction: column;
+
+          #mastodon-timeline {
+            order: 2;
+            flex: 0 0 auto;
+            height: 60vh;
+            margin-bottom: 20px;
+            border-top-right-radius: 4px;
+          }
+
+          .about-mastodon {
+            order: 1;
+            flex: 0 0 auto;
+            max-width: 100%;
+
+            .about-hashtag {
+              background: unset;
+              padding: 0;
+              border-radius: 0;
+
+              .cta {
+                margin: 20px 0;
+              }
+            }
+
+            .features-list {
+              display: none;
+            }
+          }
+        }
+      }
     }
   }
 }

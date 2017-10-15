@@ -39,7 +39,7 @@ import {
   PINNED_STATUSES_FETCH_SUCCESS,
 } from '../actions/pin_statuses';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
-import emojify from '../emoji';
+import emojify from '../features/emoji/emoji';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 import escapeTextContentForBrowser from 'escape-html';
 
@@ -58,9 +58,10 @@ const normalizeStatus = (state, status) => {
     normalStatus.reblog = status.reblog.id;
   }
 
-  const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  const searchContent = [status.spoiler_text, status.content].join('\n\n').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+
   const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
-    obj[`:${emoji.shortcode}:`] = emoji.url;
+    obj[`:${emoji.shortcode}:`] = emoji;
     return obj;
   }, {});
 

@@ -43,7 +43,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       text: text_from_content || '',
       language: language_from_content,
       spoiler_text: @object['summary'] || '',
-      created_at: @object['published'] || Time.now.utc,
+      created_at: @options[:override_timestamps] ? nil : @object['published'],
       reply: @object['inReplyTo'].present?,
       sensitive: @object['sensitive'] || false,
       visibility: visibility_from_audience,
@@ -86,15 +86,19 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_emoji(tag, _status)
-    return if tag['name'].blank? || tag['href'].blank?
+    return if skip_download?
+    return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
 
     shortcode = tag['name'].delete(':')
+    image_url = tag['icon']['url']
+    uri       = tag['id']
+    updated   = tag['updated']
     emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
 
-    return if !emoji.nil? || skip_download?
+    return unless emoji.nil? || emoji.updated_at >= updated
 
-    emoji = CustomEmoji.new(domain: @account.domain, shortcode: shortcode)
-    emoji.image_remote_url = tag['href']
+    emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
+    emoji.image_remote_url = image_url
     emoji.save
   end
 

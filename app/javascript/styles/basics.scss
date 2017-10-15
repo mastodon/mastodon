@@ -42,6 +42,11 @@ body {
     padding-bottom: 0;
   }
 
+  &.tag-body {
+    background: darken($ui-base-color, 8%);
+    padding-bottom: 0;
+  }
+
   &.embed {
     background: transparent;
     margin: 0;
@@ -64,22 +69,34 @@ body {
   }
 
   &.error {
+    position: absolute;
     text-align: center;
     color: $ui-primary-color;
-    padding: 20px;
+    background: $ui-base-color;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .dialog img {
-      display: block;
-      margin: 0 auto;
-      max-width: 470px;
-      width: 100%;
-      height: auto;
-    }
+    .dialog {
+      vertical-align: middle;
+      margin: 20px;
 
-    .dialog h1 {
-      font-size: 20px;
-      line-height: 28px;
-      font-weight: 400;
+      img {
+        display: block;
+        max-width: 470px;
+        width: 100%;
+        height: auto;
+        margin-top: -120px;
+      }
+
+      h1 {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 400;
+      }
     }
   }
 }
@@ -94,9 +111,12 @@ button {
 }
 
 .app-holder {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+  &,
+  & > div {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 }

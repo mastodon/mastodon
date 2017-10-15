@@ -2,7 +2,7 @@
 
 class OStatus::Activity::General < OStatus::Activity::Base
   def specialize
-    special_class&.new(@xml, @account)
+    special_class&.new(@xml, @account, @options)
   end
 
   private

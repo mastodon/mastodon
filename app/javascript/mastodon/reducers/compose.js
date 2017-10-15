@@ -25,6 +25,7 @@ import {
   COMPOSE_UPLOAD_CHANGE_REQUEST,
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
   COMPOSE_UPLOAD_CHANGE_FAIL,
+  COMPOSE_RESET,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -214,6 +215,7 @@ export default function compose(state = initialState, action) {
       }
     });
   case COMPOSE_REPLY_CANCEL:
+  case COMPOSE_RESET:
     return state.withMutations(map => {
       map.set('in_reply_to', null);
       map.set('text', '');

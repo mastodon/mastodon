@@ -25,7 +25,7 @@ class UserSettingsDecorator
     user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
-    user.settings['theme']               = theme_preference if change?('theme')
+    user.settings['theme']               = theme_preference if change?('setting_theme')
   end
 
   def merged_notification_emails

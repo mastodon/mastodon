@@ -15,8 +15,9 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       account: @account,
       reblog: original_status,
       uri: @json['id'],
-      created_at: @json['published'] || Time.now.utc
+      created_at: @options[:override_timestamps] ? nil : @json['published']
     )
+
     distribute(status)
     status
   end

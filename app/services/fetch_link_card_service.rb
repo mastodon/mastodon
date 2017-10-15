@@ -27,7 +27,8 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::ConnectionError, OpenSSL::SSL::SSLError
+  rescue HTTP::Error, Addressable::URI::InvalidURIError => e
+    Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
 
@@ -71,6 +72,8 @@ class FetchLinkCardService < BaseService
   def attempt_oembed
     response = OEmbed::Providers.get(@url)
 
+    return false unless response.respond_to?(:type)
+
     @card.type          = response.type
     @card.title         = response.respond_to?(:title)         ? response.title         : ''
     @card.author_name   = response.respond_to?(:author_name)   ? response.author_name   : ''
@@ -112,7 +115,7 @@ class FetchLinkCardService < BaseService
     detector.strip_tags = true
 
     guess = detector.detect(html, response.charset)
-    page  = Nokogiri::HTML(html, nil, guess&.fetch(:encoding))
+    page  = Nokogiri::HTML(html, nil, guess&.fetch(:encoding, nil))
 
     if meta_property(page, 'twitter:player')
       @card.type   = :video
