@@ -38,7 +38,7 @@ class KeywordMute < ApplicationRecord
     end
 
     def =~(str)
-      @regex ? @regex =~ str : false
+      regex ? regex =~ str : false
     end
   end
 end
