@@ -3,7 +3,6 @@
 
 import Motion from 'react-motion/lib/Motion';
 import { connect } from 'react-redux';
-import { pick } from 'lodash';
 
 const stylesToKeep = ['opacity', 'backgroundOpacity'];
 
@@ -12,26 +11,19 @@ const extractValue = (value) => {
   return (typeof value === 'object' && value && 'val' in value) ? value.val : value;
 };
 
-const reduceMotionFromOptions = (styles) => {
-  return pick(styles, stylesToKeep);
-};
-
 const mapStateToProps = (state, ownProps) => {
   const reduceMotion = state.getIn(['meta', 'reduce_motion']);
 
   if (reduceMotion) {
-    const oldStyle = ownProps.style;
-    const oldDefaultStyle = ownProps.defaultStyle;
-    const style = reduceMotionFromOptions(oldStyle);
-    const defaultStyle = reduceMotionFromOptions(oldDefaultStyle);
+    const { style, defaultStyle } = ownProps;
 
-    Object.keys(oldStyle).forEach(key => {
+    Object.keys(style).forEach(key => {
       if (stylesToKeep.includes(key)) {
         return;
       }
       // If it's setting an x or height or scale or some other value, we need
       // to preserve the end-state value without actually animating it
-      style[key] = defaultStyle[key] = extractValue(oldStyle[key]);
+      style[key] = defaultStyle[key] = extractValue(style[key]);
     });
 
     return { style, defaultStyle };
