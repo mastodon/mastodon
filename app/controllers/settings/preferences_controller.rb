@@ -40,6 +40,7 @@ class Settings::PreferencesController < ApplicationController
       :setting_delete_modal,
       :setting_auto_play_gif,
       :setting_system_font_ui,
+      :setting_use_hotkeys,
       :setting_noindex,
       :setting_theme,
       notification_emails: %i(follow follow_request reblog favourite mention digest),

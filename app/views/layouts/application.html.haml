@@ -27,6 +27,7 @@
     = yield :header_tags
 
   - body_classes ||= @body_classes || ''
+  - body_classes += ' use-hotkeys' if current_account&.user&.setting_use_hotkeys
   - body_classes += ' system-font' if current_account&.user&.setting_system_font_ui
 
   %body{ class: add_rtl_body_class(body_classes) }

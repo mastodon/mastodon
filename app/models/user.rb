@@ -106,6 +106,10 @@ class User < ApplicationRecord
     settings.system_font_ui
   end
 
+  def setting_use_hotkeys
+    settings.use_hotkeys
+  end
+
   def setting_noindex
     settings.noindex
   end
