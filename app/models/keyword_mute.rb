@@ -15,16 +15,24 @@ class KeywordMute < ApplicationRecord
 
   validates_presence_of :keyword
 
-  def self.matcher_for(account)
-    Rails.cache.fetch("keyword_mutes:matcher:#{account}") { Matcher.new(account) }
+  after_commit :invalidate_cached_matcher
+
+  def self.matcher_for(account_id)
+    Rails.cache.fetch("keyword_mutes:matcher:#{account_id}") { Matcher.new(account_id) }
+  end
+
+  private
+
+  def invalidate_cached_matcher
+    Rails.cache.delete("keyword_mutes:matcher:#{account_id}")
   end
 
   class Matcher
     attr_reader :regex
 
-    def initialize(account)
+    def initialize(account_id)
       re = [].tap do |arr|
-        KeywordMute.where(account: account).select(:keyword, :id).find_each do |m|
+        KeywordMute.where(account_id: account_id).select(:keyword, :id).find_each do |m|
           arr << Regexp.escape(m.keyword.strip)
         end
       end.join('|')
