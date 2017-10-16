@@ -100,11 +100,24 @@ class FeedManager
   end
 
   def populate_feed(account)
-    prepopulate_limit = FeedManager::MAX_ITEMS / 4
-    statuses = Status.as_home_timeline(account).order(account_id: :desc).limit(prepopulate_limit)
-    statuses.reverse_each do |status|
-      next if filter_from_home?(status, account)
-      add_to_feed(:home, account, status)
+    added  = 0
+    limit  = FeedManager::MAX_ITEMS / 2
+    max_id = nil
+
+    loop do
+      statuses = Status.as_home_timeline(account)
+                       .paginate_by_max_id(limit, max_id)
+
+      break if statuses.empty?
+
+      statuses.each do |status|
+        next if filter_from_home?(status, account)
+        added += 1 if add_to_feed(:home, account, status)
+      end
+
+      break unless added.zero?
+
+      max_id = statuses.last.id
     end
   end
 
