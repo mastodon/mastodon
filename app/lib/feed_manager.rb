@@ -215,6 +215,10 @@ class FeedManager
       redis.zadd(timeline_key, other_reblog, other_reblog) if other_reblog
 
       # 4. Remove the reblogging status from the feed (as normal)
+      # (outside conditional)
+    else
+      # If the original is getting deleted, no use for reblog references
+      redis.del(key(timeline_type, account.id, "reblogs:#{status.id}"))
     end
 
     redis.zrem(timeline_key, status.id)
