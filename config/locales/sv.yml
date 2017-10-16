@@ -203,94 +203,94 @@ sv:
       reported_account: Rapporterat konto
       reported_by: Rapporterad av
       resolved: Löst
-      silence_account: Silence account
+      silence_account: Tystat konto
       status: Status
-      suspend_account: Suspend account
-      target: Target
-      title: Reports
-      unresolved: Unresolved
-      view: View
+      suspend_account: Suspenderat konto
+      target: Mål
+      title: Rapporter
+      unresolved: Olösta
+      view: Granska
     settings:
       bootstrap_timeline_accounts:
-        desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
-        title: Default follows for new users
+        desc_html: Separera flera användarnamn med kommatecken. Endast lokala och olåsta konton kommer att fungera. Standard när det är tomt och alla är lokala administratörer.
+        title: Standard att följa för nya användare
       contact_information:
-        email: Business e-mail
-        username: Contact username
+        email: Företag E-post
+        username: Kontakten användarnamn
       registrations:
         closed_message:
-          desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags
-          title: Closed registration message
+          desc_html: Visas på framsidan när registreringen är stängd. Du kan använda HTML-taggar
+          title: Stängt registreringsmeddelande
         deletion:
-          desc_html: Allow anyone to delete their account
+          desc_html: Tillåt alla att ta bort sitt konto
           title: Open account deletion
         open:
-          desc_html: Allow anyone to create an account
-          title: Open registration
+          desc_html: Tillåt alla att skapa ett konto
+          title: Öppen registrering
       site_description:
-        desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Instance description
+        desc_html: Inledande stycke på framsidan och i metataggar. Du kan använda HTML-taggar, i synnerhet <code>&lt;a&gt;</code> och <code>&lt;em&gt;</code>.
+        title: Instansbeskrivning
       site_description_extended:
-        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
-        title: Custom extended information
+        desc_html: Ett bra ställe för din uppförandekod, regler, riktlinjer och andra saker som stämmer med din instans. Du kan använda HTML-taggar
+        title: Custom utökad information
       site_terms:
-        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
-        title: Custom terms of service
-      site_title: Instance name
+        desc_html: Du kan skriva din egen integritetspolicy, användarvillkor eller andra regler. Du kan använda HTML-taggar
+        title: Custom Villkor för tjänster
+      site_title: Namn på instans
       thumbnail:
-        desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
-        title: Instance thumbnail
+        desc_html: Används för förhandsgranskningar via OpenGraph och API. 1200x630px rekommenderas
+        title: Instans tumnagelbild
       timeline_preview:
-        desc_html: Display public timeline on landing page
-        title: Timeline preview
-      title: Site Settings
+        desc_html: Visa offentlig tidslinje på landingsidan
+        title: Förhandsgranska tidslinje
+      title: Sidans inställningar
     statuses:
-      back_to_account: Back to account page
+      back_to_account: Tillbaka till kontosidan
       batch:
-        delete: Delete
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Execute
-      failed_to_execute: Failed to execute
+        delete: Ta bort
+        nsfw_off: NSFW AV
+        nsfw_on: NSFW PÅ
+      execute: Kör
+      failed_to_execute: Misslyckades att köra
       media:
-        hide: Hide media
-        show: Show media
+        hide: Dölj media
+        show: Visa media
         title: Media
-      no_media: No media
-      title: Account statuses
-      with_media: With media
+      no_media: Ingen media
+      title: Kontostatus
+      with_media: med media
     subscriptions:
-      callback_url: Callback URL
-      confirmed: Confirmed
-      expires_in: Expires in
-      last_delivery: Last delivery
+      callback_url: Återanrop URL
+      confirmed: Bekräftad
+      expires_in: Går ut om
+      last_delivery: Sista leverans
       title: WebSub
-      topic: Topic
+      topic: Ämne
     title: Administration
   admin_mailer:
     new_report:
-      body: "%{reporter} has reported %{target}"
-      subject: New report for %{instance} (#%{id})
+      body: "%{reporter} har rapporterat %{target}"
+      subject: Ny rapport för %{instance} (#%{id})
   application_mailer:
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
-    signature: Mastodon notifications from %{instance}
-    view: 'View:'
+    signature: Mastodon meddelande från %{instance}
+    view: 'Granska:'
   applications:
-    created: Application successfully created
-    destroyed: Application successfully deleted
-    invalid_url: The provided URL is invalid
-    regenerate_token: Regenerate access token
-    token_regenerated: Access token successfully regenerated
-    warning: Be very careful with this data. Never share it with anyone!
-    your_token: Your access token
+    created: Ansökan är framgångsrikt skapad
+    destroyed: Ansökan är framgångsrikt borttagen
+    invalid_url: Den angivna webbadressen är ogiltig
+    regenerate_token: Regenerera access token
+    token_regenerated: Access token lyckades regenereras
+    warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
+    your_token: Din access token
   auth:
-    agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
-    change_password: Security
-    delete_account: Delete account
-    delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
-    didnt_get_confirmation: Didn't receive confirmation instructions?
-    forgot_password: Forgot your password?
+    agreement_html: Genom att registrera dig godkänner du <a href="%{rules_path}">våra användarvillkor</a> och <a href="%{terms_path}">sekretesspolicy</a>.
+    change_password: Säkerhet
+    delete_account: Ta bort konto
+    delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
+    didnt_get_confirmation: Fick inte instruktioner om bekräftelse?
+    forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
     logout: Logout
