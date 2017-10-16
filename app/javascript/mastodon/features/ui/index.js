@@ -28,6 +28,7 @@ import {
   Following,
   Reblogs,
   Favourites,
+  DirectTimeline,
   HashtagTimeline,
   Notifications,
   FollowRequests,
@@ -350,6 +351,7 @@ export default class UI extends React.Component {
               <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
               <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
               <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
+              <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
               <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
 
               <WrappedRoute path='/notifications' component={Notifications} content={children} />
