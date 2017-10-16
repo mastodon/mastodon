@@ -1,4 +1,3 @@
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import * as WebPushSubscription from './web_push_subscription';
 import Mastodon from 'mastodon/containers/mastodon';
 import React from 'react';
@@ -25,7 +24,7 @@ function main() {
     ReactDOM.render(<Mastodon {...props} />, mountNode);
     if (process.env.NODE_ENV === 'production') {
       // avoid offline in dev mode because it's harder to debug
-      OfflinePluginRuntime.install();
+      require('offline-plugin/runtime').install();
       WebPushSubscription.register();
     }
     perf.stop('main()');
