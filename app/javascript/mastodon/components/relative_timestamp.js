@@ -94,6 +94,10 @@ export default class RelativeTimestamp extends React.Component {
     this._scheduleNextUpdate(nextProps, nextState);
   }
 
+  componentWillUnmount () {
+    clearTimeout(this._timer);
+  }
+
   _scheduleNextUpdate (props, state) {
     clearTimeout(this._timer);
 
