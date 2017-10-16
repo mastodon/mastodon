@@ -198,10 +198,11 @@ class FeedManager
       # 2. Remove the reblogged status from the `:reblogs` zset.
       redis.zrem(reblog_key, status.reblog_of_id)
 
-      # 3. Add the reblogged status to the feed using the reblogging
-      # status' ID as its score, and the reblogged status' ID as its
-      # value.
-      redis.zadd(timeline_key, status.id, status.reblog_of_id)
+      # 3. Add the reblogged status to the feed.
+      # Note that we can't use old score in here
+      # and it must be an ID of corresponding status
+      # because we need to filter timeline by status ID.
+      redis.zadd(timeline_key, status.reblog_of_id, status.reblog_of_id)
 
       # 4. Remove the reblogging status from the feed (as normal)
     end
