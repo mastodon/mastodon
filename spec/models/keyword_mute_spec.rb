@@ -30,10 +30,16 @@ RSpec.describe KeywordMute, type: :model do
         expect(matcher =~ 'This is a hot take').to be_falsy
       end
 
-      it 'does not match substrings matching keywords' do
-        KeywordMute.create!(account: alice, keyword: 'take')
+      it 'considers word boundaries when matching' do
+        KeywordMute.create!(account: alice, keyword: 'bob', whole_word: true)
 
-        expect(matcher =~ 'This is a shiitake mushroom').to be_falsy
+        expect(matcher =~ 'bobcats').to be_falsy
+      end
+
+      it 'matches substrings if whole_word is false' do
+        KeywordMute.create!(account: alice, keyword: 'take', whole_word: false)
+
+        expect(matcher =~ 'This is a shiitake mushroom').to be_truthy
       end
 
       it 'matches keywords at the beginning of the text' do

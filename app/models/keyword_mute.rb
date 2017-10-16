@@ -6,6 +6,7 @@
 #  id         :integer          not null, primary key
 #  account_id :integer          not null
 #  keyword    :string           not null
+#  whole_word :boolean          default(TRUE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -32,12 +33,13 @@ class KeywordMute < ApplicationRecord
 
     def initialize(account_id)
       re = [].tap do |arr|
-        KeywordMute.where(account_id: account_id).select(:keyword, :id).find_each do |m|
-          arr << Regexp.escape(m.keyword.strip)
+        KeywordMute.where(account_id: account_id).select(:keyword, :id, :whole_word).find_each do |m|
+          boundary = m.whole_word ? '\b' : ''
+          arr << "#{boundary}#{Regexp.escape(m.keyword.strip)}#{boundary}"
         end
       end.join('|')
 
-      @regex = /\b(?:#{re})\b/i unless re.empty?
+      @regex = /#{re}/i unless re.empty?
     end
 
     def =~(str)

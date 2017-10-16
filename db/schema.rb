@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 20171010025614) do
   create_table "keyword_mutes", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.string "keyword", null: false
+    t.boolean "whole_word", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_keyword_mutes_on_account_id"
