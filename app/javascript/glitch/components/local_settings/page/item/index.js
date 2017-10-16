@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 //  Stylesheet imports
-import './style';
+import './style.scss';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

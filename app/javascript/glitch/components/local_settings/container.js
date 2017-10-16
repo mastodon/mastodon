@@ -2,10 +2,10 @@
 import { connect } from 'react-redux';
 
 //  Mastodon imports  //
-import { closeModal } from 'mastodon/actions/modal';
+import { closeModal } from '../../../mastodon/actions/modal';
 
 //  Our imports  //
-import { changeLocalSetting } from 'glitch/actions/local_settings';
+import { changeLocalSetting } from '../../../glitch/actions/local_settings';
 import LocalSettings from '.';
 
 const mapStateToProps = state => ({

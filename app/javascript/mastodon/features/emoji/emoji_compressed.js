@@ -9,7 +9,8 @@ const { unicodeToFilename } = require('./unicode_to_filename');
 const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
 const emojiMap         = require('./emoji_map.json');
 const { emojiIndex } = require('emoji-mart');
-const emojiMartData = require('emoji-mart/dist/data').default;
+const { default: emojiMartData } = require('emoji-mart/dist/data');
+
 const excluded       = ['®', '©', '™'];
 const skins          = ['🏻', '🏼', '🏽', '🏾', '🏿'];
 const shortcodeMap   = {};

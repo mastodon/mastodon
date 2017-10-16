@@ -5,12 +5,14 @@ env:
   browser: true
   node: true
   es6: true
+  jest: true
 
 parser: babel-eslint
 
 plugins:
 - react
 - jsx-a11y
+- import
 
 parserOptions:
   sourceType: module
@@ -21,8 +23,14 @@ parserOptions:
     modules: true
     spread: true
 
-rules:
+settings:
+  import/extensions:
+  - .js
+  import/ignore:
+  - node_modules
+  - \\.(css|scss|json)$
 
+rules:
   brace-style: warn
   comma-dangle:
   - error
@@ -125,3 +133,17 @@ rules:
   jsx-a11y/role-supports-aria-props: off
   jsx-a11y/scope: warn
   jsx-a11y/tabindex-no-positive: warn
+
+  import/extensions:
+  - error
+  - always
+  - js: never
+  import/newline-after-import: error
+  import/no-extraneous-dependencies:
+  - error
+  - devDependencies:
+    - "config/webpack/**"
+    - "app/javascript/mastodon/test_setup.js"
+    - "app/javascript/**/__tests__/**"
+  import/no-unresolved: error
+  import/no-webpack-loader-syntax: error

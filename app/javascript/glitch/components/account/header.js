@@ -48,7 +48,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Mastodon imports  //
-import emojify from 'mastodon/features/emoji/emoji';
+import emojify from '../../../mastodon/features/emoji/emoji';
 import IconButton from '../../../mastodon/components/icon_button';
 import Avatar from '../../../mastodon/components/avatar';
 
