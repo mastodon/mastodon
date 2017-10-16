@@ -143,7 +143,7 @@ rules:
   - error
   - devDependencies:
     - "config/webpack/**"
-    - "spec/javascript/**"
-    - "**/__tests__/**"
+    - "app/javascript/mastodon/test_setup.js"
+    - "app/javascript/**/__tests__/**"
   import/no-unresolved: error
   import/no-webpack-loader-syntax: error
