@@ -53,7 +53,7 @@ sv:
     accounts:
       are_you_sure: Är du säker?
       confirm: Bekräfta
-      confirmed: Bekräftat
+      confirmed: Bekräftad
       disable_two_factor_authentication: Inaktivera 2FA
       display_name: Visningsnamn
       domain: Domän
@@ -105,104 +105,104 @@ sv:
       statuses: Status
       subscribe: Prenumerera
       title: Konton
-      undo_silenced: Undo silence
-      undo_suspension: Undo suspension
-      unsubscribe: Unsubscribe
-      username: Username
-      web: Web
+      undo_silenced: Ångra tystnad
+      undo_suspension: Ångra avstängning
+      unsubscribe: Säga upp
+      username: Användarnamn
+      web: Webb
 
     account_moderation_notes:
       account: Moderator
-      created_at: Date
-      create: Create
-      created_msg: Moderation note successfully created!
-      delete: Delete
-      destroyed_msg: Moderation note successfully destroyed!
+      created_at: Datum
+      create: Skapa
+      created_msg: Modereringsnotering skapad utan problem!
+      delete: Ta bort
+      destroyed_msg: Modereringsnotering borttagen utan problem!
 
     custom_emojis:
-      copied_msg: Successfully created local copy of the emoji
-      copy: Copy
-      copy_failed_msg: Could not make a local copy of that emoji
-      created_msg: Emoji successfully created!
-      delete: Delete
-      destroyed_msg: Emojo successfully destroyed!
-      disable: Disable
-      disabled_msg: Successfully disabled that emoji
+      copied_msg: Skapade en lokal kopia av emoji utan problem
+      copy: Kopia
+      copy_failed_msg: Kunde inte skapa en lokal kopia av den emoji
+      created_msg: Emoji skapades utan problem!
+      delete: Ta bort
+      destroyed_msg: Emojo borttagen utan problem!
+      disable: Inaktivera
+      disabled_msg: Inaktiverade emoji utan problem
       emoji: Emoji
-      enable: Enable
-      enabled_msg: Successfully enabled that emoji
-      image_hint: PNG up to 50KB
+      enable: Aktivera
+      enabled_msg: Aktiverade den emoji utan problem
+      image_hint: PNG upp till 50KB
       new:
-        title: Add new custom emoji
-      shortcode: Shortcode
-      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+        title: Lägg till ny egen emoji
+      shortcode: Kortkod
+      shortcode_hint: Minst 2 tecken, endast alfanumeriska tecken och understreck
       title: Custom emojis
-      upload: Upload
+      upload: Ladda upp
     domain_blocks:
-      add_new: Add new
-      created_msg: Domain block is now being processed
-      destroyed_msg: Domain block has been undone
-      domain: Domain
+      add_new: Lägg till ny
+      created_msg: Domänblocket behandlas nu
+      destroyed_msg: Domänblocket är ogjord
+      domain: Domän
       new:
-        create: Create block
-        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        create: Skapa block
+        hint: Domänblocket hindrar inte skapandet av kontoposter i databasen, men kommer retroaktivt, automatiskt att tillämpa specifika modereringsmetoder på dessa konton.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
-          noop: None
-          silence: Silence
-          suspend: Suspend
-        title: New domain block
-      reject_media: Reject media files
-      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+          desc_html: "<strong>Tystnad</strong> kommer att göra kontoinlägg osynliga för alla som inte följer dem. <strong>Suspendera</strong> tar bort allt kontons innehåll, media och profildata. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
+          noop: Ingen
+          silence: Tystnad
+          suspend: Suspendera
+        title: Nytt domänblock
+      reject_media: Avvisa mediafiler
+      reject_media_hint: Ta bort lokalt lagrade mediefiler och tar bor möjligheten att ladda ner någon i framtiden. Irrelevant för suspensioner
       severities:
-        noop: None
-        silence: Silence
-        suspend: Suspend
-      severity: Severity
+        noop: Ingen
+        silence: Tystnad
+        suspend: Suspendera
+      severity: Strikthet
       show:
         affected_accounts:
-          one: One account in the database affected
-          other: "%{count} accounts in the database affected"
+          one: Ett konto i databasen drabbades
+          other: "%{count} konton i databasen drabbades"
         retroactive:
-          silence: Unsilence all existing accounts from this domain
-          suspend: Unsuspend all existing accounts from this domain
-        title: Undo domain block for %{domain}
-        undo: Undo
-      title: Domain Blocks
-      undo: Undo
+          silence: Ta bort tystnad från alla befintliga konton från den här domänen
+          suspend: Ta bort suspendering från alla befintliga konton i den här domänen
+        title: Ångra domänblockering för %{domain}
+        undo: Ångra
+      title: Domänblockering
+      undo: Ångra
     email_domain_blocks:
-      add_new: Add new
-      created_msg: Email domain block successfully created
-      delete: Delete
-      destroyed_msg: Email domain block successfully deleted
-      domain: Domain
+      add_new: Lägg till ny
+      created_msg: E-postdomänblocket har skapats
+      delete: Ta bort
+      destroyed_msg: E-postdomänblocket har tagits bort
+      domain: Domän
       new:
-        create: Create block
-        title: New email domain block
-      title: Email Domain Block
+        create: Skapa block
+        title: Nytt E-postdomänblock
+      title: E-postdomänblock
     instances:
-      account_count: Known accounts
-      domain_name: Domain
-      reset: Reset
-      search: Search
-      title: Known Instances
+      account_count: Kända konton
+      domain_name: Domän
+      reset: Återställa
+      search: Sök
+      title: Kända instanser
     reports:
-      action_taken_by: Action taken by
-      are_you_sure: Are you sure?
+      action_taken_by: Åtgärder vidtagna av
+      are_you_sure: Är du säker?
       comment:
-        label: Comment
-        none: None
-      delete: Delete
+        label: Kommentar
+        none: Ingen
+      delete: Ta bort
       id: ID
-      mark_as_resolved: Mark as resolved
+      mark_as_resolved: Markera som löst
       nsfw:
-        'false': Unhide media attachments
-        'true': Hide media attachments
-      report: 'Report #%{id}'
-      report_contents: Contents
-      reported_account: Reported account
-      reported_by: Reported by
-      resolved: Resolved
+        'false': Visa bifogade mediafiler
+        'true': Dölj bifogade mediafiler
+      report: 'Rapportera #%{id}'
+      report_contents: Innehåll
+      reported_account: Rapporterat konto
+      reported_by: Rapporterad av
+      resolved: Löst
       silence_account: Silence account
       status: Status
       suspend_account: Suspend account
