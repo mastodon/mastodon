@@ -119,8 +119,8 @@ class Item extends React.PureComponent {
 
       const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
-      const srcSet = hasSize && `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w`;
-      const sizes = hasSize && `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw`;
+      const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
+      const sizes = hasSize ? `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw` : null;
 
       thumbnail = (
         <a
