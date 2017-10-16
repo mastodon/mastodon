@@ -1,5 +1,5 @@
 import 'intl';
-import 'intl/locale-data/jsonp/en.js';
+import 'intl/locale-data/jsonp/en';
 import 'es6-symbol/implement';
 import includes from 'array-includes';
 import assign from 'object-assign';

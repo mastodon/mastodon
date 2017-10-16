@@ -1,5 +1,5 @@
 import * as WebPushSubscription from './web_push_subscription';
-import Mastodon from 'mastodon/containers/mastodon';
+import Mastodon from './containers/mastodon';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ready from './ready';
