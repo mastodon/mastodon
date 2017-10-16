@@ -233,19 +233,22 @@ RSpec.describe FeedManager do
   describe '#unpush' do
     it 'leaves a reblogged status when deleting the reblog' do
       account = Fabricate(:account)
-      reblogged = Fabricate(:status)
+      reblogged = Fabricate(:status, id: Mastodon::Snowflake.id_at(2.day.ago.utc))
+      other_status = Fabricate(:status, id: Mastodon::Snowflake.id_at(1.day.ago.utc))
       status = Fabricate(:status, reblog: reblogged)
 
+      FeedManager.instance.push('type', account, other_status)
       FeedManager.instance.push('type', account, status)
 
       # The reblogging status should show up under normal conditions.
-      expect(Redis.current.zrange("feed:type:#{account.id}", 0, -1)).to eq [status.id.to_s]
+      expect(Redis.current.zrange("feed:type:#{account.id}", 0, -1)).to eq [other_status.id.to_s, status.id.to_s]
 
       FeedManager.instance.unpush('type', account, status)
 
       # Because we couldn't tell if the status showed up any other way,
       # we had to stick the reblogged status in by itself.
-      expect(Redis.current.zrange("feed:type:#{account.id}", 0, -1)).to eq [reblogged.id.to_s]
+      # And it must be ordered by status ids.
+      expect(Redis.current.zrange("feed:type:#{account.id}", 0, -1)).to eq [reblogged.id.to_s, other_status.id.to_s]
     end
 
     it 'sends push updates' do

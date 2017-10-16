@@ -1,14 +1,18 @@
-import { expect } from 'chai';
-import { mount } from 'enzyme';
-import sinon from 'sinon';
 import React from 'react';
-import Column from '../../../../../../app/javascript/mastodon/features/ui/components/column';
-import ColumnHeader from '../../../../../../app/javascript/mastodon/features/ui/components/column_header';
+import { mount } from 'enzyme';
+import Column from '../column';
+import ColumnHeader from '../column_header';
 
 describe('<Column />', () => {
   describe('<ColumnHeader /> click handler', () => {
+    const originalRaf = global.requestAnimationFrame;
+
     beforeEach(() => {
-      global.requestAnimationFrame = sinon.spy();
+      global.requestAnimationFrame = jest.fn();
+    });
+
+    afterAll(() => {
+      global.requestAnimationFrame = originalRaf;
     });
 
     it('runs the scroll animation if the column contains scrollable content', () => {
@@ -18,13 +22,13 @@ describe('<Column />', () => {
         </Column>
       );
       wrapper.find(ColumnHeader).simulate('click');
-      expect(global.requestAnimationFrame.called).to.equal(true);
+      expect(global.requestAnimationFrame.mock.calls.length).toEqual(1);
     });
 
     it('does not try to scroll if there is no scrollable content', () => {
       const wrapper = mount(<Column heading='notifications' />);
       wrapper.find(ColumnHeader).simulate('click');
-      expect(global.requestAnimationFrame.called).to.equal(false);
+      expect(global.requestAnimationFrame.mock.calls.length).toEqual(0);
     });
   });
 });

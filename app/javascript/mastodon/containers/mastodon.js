@@ -10,6 +10,7 @@ import { hydrateStore } from '../actions/store';
 import { connectUserStream } from '../actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
+
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
