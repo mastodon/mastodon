@@ -231,36 +231,66 @@ RSpec.describe FeedManager do
   end
 
   describe '#unpush' do
-    it 'leaves a reblogged status when deleting the reblog' do
-      account = Fabricate(:account)
-      reblogged = Fabricate(:status, id: Mastodon::Snowflake.id_at(2.day.ago.utc))
-      other_status = Fabricate(:status, id: Mastodon::Snowflake.id_at(1.day.ago.utc))
-      status = Fabricate(:status, reblog: reblogged)
+    let(:receiver) { Fabricate(:account) }
 
-      FeedManager.instance.push('type', account, other_status)
-      FeedManager.instance.push('type', account, status)
+    it 'leaves a reblogged status if original was on feed' do
+      reblogged = Fabricate(:status)
+      status    = Fabricate(:status, reblog: reblogged)
+
+      FeedManager.instance.push('type', receiver, reblogged)
+      FeedManager::REBLOG_FALLOFF.times { FeedManager.instance.push('type', receiver, Fabricate(:status)) }
+      FeedManager.instance.push('type', receiver, status)
 
       # The reblogging status should show up under normal conditions.
-      expect(Redis.current.zrange("feed:type:#{account.id}", 0, -1)).to eq [other_status.id.to_s, status.id.to_s]
+      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to include(status.id.to_s)
 
-      FeedManager.instance.unpush('type', account, status)
+      FeedManager.instance.unpush('type', receiver, status)
 
-      # Because we couldn't tell if the status showed up any other way,
-      # we had to stick the reblogged status in by itself.
-      # And it must be ordered by status ids.
-      expect(Redis.current.zrange("feed:type:#{account.id}", 0, -1)).to eq [reblogged.id.to_s, other_status.id.to_s]
+      # Restore original status
+      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to_not include(status.id.to_s)
+      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to include(reblogged.id.to_s)
+    end
+
+    it 'removes a reblogged status if it was only reblogged once' do
+      reblogged = Fabricate(:status)
+      status    = Fabricate(:status, reblog: reblogged)
+
+      FeedManager.instance.push('type', receiver, status)
+
+      # The reblogging status should show up under normal conditions.
+      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to eq [status.id.to_s]
+
+      FeedManager.instance.unpush('type', receiver, status)
+
+      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to be_empty
+    end
+
+    it 'leaves a reblogged status if another reblog was in feed' do
+      reblogged      = Fabricate(:status)
+      status         = Fabricate(:status, reblog: reblogged)
+      another_status = Fabricate(:status, reblog: reblogged)
+
+      FeedManager.instance.push('type', receiver, status)
+      FeedManager.instance.push('type', receiver, another_status)
+
+      # The reblogging status should show up under normal conditions.
+      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to eq [status.id.to_s]
+
+      FeedManager.instance.unpush('type', receiver, status)
+
+      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to eq [another_status.id.to_s]
     end
 
     it 'sends push updates' do
-      account = Fabricate(:account)
-      status = Fabricate(:status)
-      FeedManager.instance.push('type', account, status)
+      status  = Fabricate(:status)
+
+      FeedManager.instance.push('type', receiver, status)
 
       allow(Redis.current).to receive_messages(publish: nil)
-      FeedManager.instance.unpush('type', account, status)
+      FeedManager.instance.unpush('type', receiver, status)
 
       deletion = Oj.dump(event: :delete, payload: status.id.to_s)
-      expect(Redis.current).to have_received(:publish).with("timeline:#{account.id}", deletion)
+      expect(Redis.current).to have_received(:publish).with("timeline:#{receiver.id}", deletion)
     end
   end
 end
