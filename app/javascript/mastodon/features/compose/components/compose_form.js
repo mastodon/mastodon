@@ -162,7 +162,6 @@ export default class ComposeForm extends ImmutablePureComponent {
     const text     = [this.props.spoiler_text, countableText(this.props.text), maybeEye].join('');
 
     const secondaryVisibility = this.props.settings.get('side_arm');
-    const isWideView = this.props.settings.get('stretch');
     let showSideArm = secondaryVisibility !== 'none';
 
     let publishText = '';
@@ -182,14 +181,9 @@ export default class ComposeForm extends ImmutablePureComponent {
           {
             <i
               className={`fa fa-${privacyIcons[this.props.privacy]}`}
-              style={{
-                paddingRight: (filesAttached || !isWideView) ? '0' : '5px',
-              }}
+              style={{ paddingRight: '5px' }}
             />
-          }{
-            (filesAttached || !isWideView) ? '' :
-              intl.formatMessage(messages.publish)
-          }
+          }{intl.formatMessage(messages.publish)}
         </span>
       );
 
@@ -273,7 +267,6 @@ export default class ComposeForm extends ImmutablePureComponent {
               text={publishText}
               onClick={this.handleSubmit}
               disabled={submitDisabled}
-              block
             />
           </div>
         </div>
