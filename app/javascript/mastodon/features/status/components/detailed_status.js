@@ -43,6 +43,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
     let media           = '';
     let applicationLink = '';
+    let reblogLink = '';
+    let reblogIcon = 'retweet';
 
     if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
@@ -80,6 +82,23 @@ export default class DetailedStatus extends ImmutablePureComponent {
       applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
     }
 
+    if (status.get('visibility') === 'direct') {
+      reblogIcon = 'envelope';
+    } else if (status.get('visibility') === 'private') {
+      reblogIcon = 'lock';
+    }
+
+    if (status.get('visibility') === 'private') {
+      reblogLink = <i className={`fa fa-${reblogIcon}`} />;
+    } else {
+      reblogLink = (<Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
+        <i className={`fa fa-${reblogIcon}`} />
+        <span className='detailed-status__reblogs'>
+          <FormattedNumber value={status.get('reblogs_count')} />
+        </span>
+      </Link>);
+    }
+
     return (
       <div className='detailed-status'>
         <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
@@ -94,12 +113,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <div className='detailed-status__meta'>
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
             <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
-          </a>{applicationLink} · <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
-            <i className='fa fa-retweet' />
-            <span className='detailed-status__reblogs'>
-              <FormattedNumber value={status.get('reblogs_count')} />
-            </span>
-          </Link> · <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
+          </a>{applicationLink} · {reblogLink} · <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
             <i className='fa fa-star' />
             <span className='detailed-status__favorites'>
               <FormattedNumber value={status.get('favourites_count')} />
