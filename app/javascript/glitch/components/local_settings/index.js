@@ -8,7 +8,7 @@ import LocalSettingsPage from './page';
 import LocalSettingsNavigation from './navigation';
 
 //  Stylesheet imports
-import './style';
+import './style.scss';
 
 export default class LocalSettings extends React.PureComponent {
 

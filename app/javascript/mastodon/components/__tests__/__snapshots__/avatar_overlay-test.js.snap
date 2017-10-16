@@ -6,6 +6,7 @@ exports[`<AvatarOverlay renders a overlay avatar 1`] = `
 >
   <div
     className="account__avatar-overlay-base"
+    data-avatar-of="@alice"
     style={
       Object {
         "backgroundImage": "url(/static/alice.jpg)",
@@ -14,6 +15,7 @@ exports[`<AvatarOverlay renders a overlay avatar 1`] = `
   />
   <div
     className="account__avatar-overlay-overlay"
+    data-avatar-of="@eve@blackhat.lair"
     style={
       Object {
         "backgroundImage": "url(/static/eve.jpg)",

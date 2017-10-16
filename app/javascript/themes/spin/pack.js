@@ -1,2 +1,2 @@
-import 'packs/application';
-import 'themes/spin/style';
+import '../../packs/application';
+import './style.scss';
