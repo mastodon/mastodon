@@ -247,36 +247,34 @@ export default class ComposeForm extends ImmutablePureComponent {
           <UploadFormContainer />
         </div>
 
-        <div className='compose-form__buttons-wrapper'>
-          <div className='compose-form__buttons'>
-            <UploadButtonContainer />
-            <DoodleButtonContainer />
-            <PrivacyDropdownContainer />
-            <ComposeAdvancedOptionsContainer />
-            <SensitiveButtonContainer />
-            <SpoilerButtonContainer />
-          </div>
+        <div className='compose-form__buttons'>
+          <UploadButtonContainer />
+          <DoodleButtonContainer />
+          <PrivacyDropdownContainer />
+          <ComposeAdvancedOptionsContainer />
+          <SensitiveButtonContainer />
+          <SpoilerButtonContainer />
+        </div>
 
-          <div className='compose-form__publish'>
-            <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'>
-              {
-                showSideArm ?
-                  <Button
-                    className='compose-form__publish__side-arm'
-                    text={publishText2}
-                    onClick={this.handleSubmit2}
-                    disabled={submitDisabled}
-                  /> : ''
-              }
-              <Button
-                className='compose-form__publish__primary'
-                text={publishText}
-                onClick={this.handleSubmit}
-                disabled={submitDisabled}
-                block
-              />
-            </div>
+        <div className='compose-form__publish'>
+          <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
+          <div className='compose-form__publish-button-wrapper'>
+            {
+              showSideArm ?
+                <Button
+                  className='compose-form__publish__side-arm'
+                  text={publishText2}
+                  onClick={this.handleSubmit2}
+                  disabled={submitDisabled}
+                /> : ''
+            }
+            <Button
+              className='compose-form__publish__primary'
+              text={publishText}
+              onClick={this.handleSubmit}
+              disabled={submitDisabled}
+              block
+            />
           </div>
         </div>
       </div>
