@@ -10,7 +10,8 @@ import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
-import { HotKeys } from 'react-hotkeys';
+import { getHotKeys } from '../features/ui/util/optional_hotkeys';
+const HotKeys = getHotKeys();
 import classNames from 'classnames';
 
 // We use the component (and not the container) since we do not want

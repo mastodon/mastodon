@@ -6,7 +6,8 @@ import AccountContainer from '../../../containers/account_container';
 import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { HotKeys } from 'react-hotkeys';
+import { getHotKeys } from '../../ui/util/optional_hotkeys';
+const HotKeys = getHotKeys();
 
 export default class Notification extends ImmutablePureComponent {
 

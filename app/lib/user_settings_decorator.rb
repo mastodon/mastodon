@@ -25,6 +25,7 @@ class UserSettingsDecorator
     user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
     user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
+    user.settings['use_hotkeys']         = use_hotkeys_preference if change?('setting_use_hotkeys')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
     user.settings['theme']               = theme_preference if change?('setting_theme')
   end
@@ -59,6 +60,10 @@ class UserSettingsDecorator
 
   def system_font_ui_preference
     boolean_cast_setting 'setting_system_font_ui'
+  end
+
+  def use_hotkeys_preference
+    boolean_cast_setting 'setting_use_hotkeys'
   end
 
   def auto_play_gif_preference

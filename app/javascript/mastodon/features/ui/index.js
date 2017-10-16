@@ -37,7 +37,8 @@ import {
   Mutes,
   PinnedStatuses,
 } from './util/async-components';
-import { HotKeys } from 'react-hotkeys';
+import { getHotKeys } from '../ui/util/optional_hotkeys';
+const HotKeys = getHotKeys();
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
@@ -185,9 +186,11 @@ export default class UI extends React.Component {
   }
 
   componentDidMount () {
-    this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
-    };
+    if (this.hotkeys.__mousetrap__) { // false if user has disabled hotkeys
+      this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
+        return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
+      };
+    }
   }
 
   shouldComponentUpdate (nextProps) {

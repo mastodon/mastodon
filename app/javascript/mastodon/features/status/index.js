@@ -28,7 +28,8 @@ import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { HotKeys } from 'react-hotkeys';
+import { getHotKeys } from '../ui/util/optional_hotkeys';
+const HotKeys = getHotKeys();
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
