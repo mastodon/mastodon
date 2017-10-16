@@ -6,8 +6,9 @@ class Scheduler::FeedCleanupScheduler
 
   def perform
     redis.pipelined do
-      inactive_users.pluck(:account_id).each do |account_id|
+      inactive_users.each do |account_id|
         redis.del(FeedManager.instance.key(:home, account_id))
+        redis.del(FeedManager.instance.key(:home, account_id, 'reblogs'))
       end
     end
   end
@@ -15,7 +16,7 @@ class Scheduler::FeedCleanupScheduler
   private
 
   def inactive_users
-    User.confirmed.inactive
+    @inactive_users ||= User.confirmed.inactive.pluck(:account_id)
   end
 
   def redis
