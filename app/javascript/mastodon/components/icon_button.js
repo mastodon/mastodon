@@ -90,11 +90,11 @@ export default class IconButton extends React.PureComponent {
       damping: 7,
     };
     const motionStyle = {
-      rotate: this.props.animate ? spring(rotateDeg, springOpts) : 0,
+      rotate: animate ? spring(rotateDeg, springOpts) : 0,
     };
 
     return (
-      <Motion defaultStyle={{ rotate: active ? -360 : 0 }} style={{ rotate: animate ? spring(active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
+      <Motion defaultStyle={motionDefaultStyle} style={motionStyle}>
         {({ rotate }) =>
           <button
             aria-label={title}
