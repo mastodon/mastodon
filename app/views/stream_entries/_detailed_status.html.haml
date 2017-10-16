@@ -42,7 +42,6 @@
     - if status.direct_visibility?
       %span<
         = fa_icon('envelope')
-        %span= status.reblogs_count
     - elsif status.private_visibility?
       %span<
         = fa_icon('lock')
