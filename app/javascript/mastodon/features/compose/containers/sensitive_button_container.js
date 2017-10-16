@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import IconButton from '../../../components/icon_button';
 import { changeComposeSensitivity } from '../../../actions/compose';
-import Motion from 'react-motion/lib/Motion';
+import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { injectIntl, defineMessages } from 'react-intl';
 

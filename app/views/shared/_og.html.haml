@@ -1,6 +1,6 @@
 - thumbnail = @instance_presenter.thumbnail
 = opengraph 'og:site_name', t('about.hosted_on', domain: site_hostname)
-= opengraph 'og:url', about_url
+= opengraph 'og:url', url_for(only_path: false)
 = opengraph 'og:type', 'website'
 = opengraph 'og:title', @instance_presenter.site_title
 = opengraph 'og:description', strip_tags(@instance_presenter.site_description.presence || t('about.about_mastodon_html'))

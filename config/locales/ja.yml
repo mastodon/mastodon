@@ -1,6 +1,7 @@
 ---
 ja:
   about:
+    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
@@ -49,6 +50,13 @@ ja:
       admin: Admin
     unfollow: フォロー解除
   admin:
+    account_moderation_notes:
+      account: モデレータ
+      create: 書き込む
+      created_at: 日付
+      created_msg: モデレーションメモを書き込みました
+      delete: 削除
+      destroyed_msg: モデレーションメモを削除しました
     accounts:
       are_you_sure: 本当に実行しますか？
       confirm: 確認
@@ -75,6 +83,7 @@ ja:
         silenced: サイレンス中
         suspended: 停止中
         title: モデレーション
+      moderation_notes: モデレーションメモ
       most_recent_activity: 直近の活動
       most_recent_ip: 直近のIP
       not_subscribed: 購読していない
@@ -109,10 +118,17 @@ ja:
       username: ユーザー名
       web: Web
     custom_emojis:
+      copied_msg: 絵文字のコピーをローカルに作成しました
+      copy: コピー
+      copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
       created_msg: 絵文字の追加に成功しました
       delete: 削除
       destroyed_msg: 絵文字の削除に成功しました
+      disable: 無効化
+      disabled_msg: 絵文字を無効化しました
       emoji: 絵文字
+      enable: 有効化
+      enabled_msg: 絵文字を有効化しました
       image_hint: 50KBまでのPNG画像を利用できます。
       new:
         title: 新規カスタム絵文字の追加

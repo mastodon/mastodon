@@ -85,7 +85,7 @@ class FeedManager
     oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
 
     from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_home_score).reorder(nil).find_each do |status|
-      unpush(:home, into_account, status)
+      remove_from_feed(:home, into_account, status)
     end
   end
 
@@ -100,11 +100,24 @@ class FeedManager
   end
 
   def populate_feed(account)
-    prepopulate_limit = FeedManager::MAX_ITEMS / 4
-    statuses = Status.as_home_timeline(account).order(account_id: :desc).limit(prepopulate_limit)
-    statuses.reverse_each do |status|
-      next if filter_from_home?(status, account)
-      add_to_feed(:home, account, status)
+    added  = 0
+    limit  = FeedManager::MAX_ITEMS / 2
+    max_id = nil
+
+    loop do
+      statuses = Status.as_home_timeline(account)
+                       .paginate_by_max_id(limit, max_id)
+
+      break if statuses.empty?
+
+      statuses.each do |status|
+        next if filter_from_home?(status, account)
+        added += 1 if add_to_feed(:home, account, status)
+      end
+
+      break unless added.zero?
+
+      max_id = statuses.last.id
     end
   end
 
@@ -115,7 +128,8 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id)
-    return true if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
+    return false if receiver_id == status.account_id
+    return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
 
     check_for_mutes = [status.account_id]
     check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
@@ -197,10 +211,11 @@ class FeedManager
       # 2. Remove the reblogged status from the `:reblogs` zset.
       redis.zrem(reblog_key, status.reblog_of_id)
 
-      # 3. Add the reblogged status to the feed using the reblogging
-      # status' ID as its score, and the reblogged status' ID as its
-      # value.
-      redis.zadd(timeline_key, status.id, status.reblog_of_id)
+      # 3. Add the reblogged status to the feed.
+      # Note that we can't use old score in here
+      # and it must be an ID of corresponding status
+      # because we need to filter timeline by status ID.
+      redis.zadd(timeline_key, status.reblog_of_id, status.reblog_of_id)
 
       # 4. Remove the reblogging status from the feed (as normal)
     end
