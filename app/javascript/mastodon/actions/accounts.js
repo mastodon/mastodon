@@ -122,7 +122,7 @@ export function unfollowAccount(id) {
     dispatch(unfollowAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/unfollow`).then(response => {
-      dispatch(unfollowAccountSuccess(response.data));
+      dispatch(unfollowAccountSuccess(response.data, getState().get('statuses')));
     }).catch(error => {
       dispatch(unfollowAccountFail(error));
     });
@@ -157,10 +157,11 @@ export function unfollowAccountRequest(id) {
   };
 };
 
-export function unfollowAccountSuccess(relationship) {
+export function unfollowAccountSuccess(relationship, statuses) {
   return {
     type: ACCOUNT_UNFOLLOW_SUCCESS,
     relationship,
+    statuses,
   };
 };
 

@@ -66,9 +66,9 @@ oc:
       inbox_url: URL de recepcion
       ip: IP
       location:
-        all: Tot
-        local: Local
-        remote: Alonhat
+        all: Totes
+        local: Locals
+        remote: Alonhats
         title: Emplaçament
       media_attachments: Mèdias ajustats
       moderation:
@@ -76,6 +76,7 @@ oc:
         silenced: Rescondut
         suspended: Suspendut
         title: Moderacion
+      moderation_notes: Nòtas de moderacion
       most_recent_activity: Activitat mai recenta
       most_recent_ip: IP mai recenta
       not_subscribed: Pas seguidor
@@ -109,6 +110,15 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       web: Web
+
+    account_moderation_notes:
+      account: Moderator
+      created_at: Data
+      create: Crear
+      created_msg: Nòta de moderacion ben creada !
+      delete: Suprimir
+      destroyed_msg: Nòta de moderacion ben suprimida !
+
     custom_emojis:
       copied_msg: Còpia locale de l’emoji ben creada
       copy: Copiar
@@ -331,8 +341,8 @@ oc:
     - dissabte
     formats:
       default: "%e/%m/%Y"
-      long: Lo %-d %b de %Y
-      short: "%e %B"
+      long: Lo %e %B de %Y
+      short: "%e %b. de %Y"
     month_names:
     - 
     - de genièr

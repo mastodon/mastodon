@@ -31,10 +31,12 @@ module Admin
       emoji = CustomEmoji.new(domain: nil, shortcode: @custom_emoji.shortcode, image: @custom_emoji.image)
 
       if emoji.save
-        redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.copied_msg')
+        flash[:notice] = I18n.t('admin.custom_emojis.copied_msg')
       else
-        redirect_to admin_custom_emojis_path, alert: I18n.t('admin.custom_emojis.copy_failed_msg')
+        flash[:alert] = I18n.t('admin.custom_emojis.copy_failed_msg')
       end
+
+      redirect_to admin_custom_emojis_path(params[:page])
     end
 
     def enable
