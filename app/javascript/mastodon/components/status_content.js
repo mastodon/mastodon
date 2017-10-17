@@ -122,6 +122,7 @@ export default class StatusContent extends React.PureComponent {
     const directionStyle = { direction: 'ltr' };
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
+      'status__content--with-spoiler': status.get('spoiler_text').length > 0,
     });
 
     if (isRtl(status.get('search_index'))) {
