@@ -1,8 +1,8 @@
 ---
 en:
   about:
-    about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
+    about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
     contact: Contact
@@ -50,6 +50,13 @@ en:
       admin: Admin
     unfollow: Unfollow
   admin:
+    account_moderation_notes:
+      account: Moderator
+      create: Create
+      created_at: Date
+      created_msg: Moderation note successfully created!
+      delete: Delete
+      destroyed_msg: Moderation note successfully destroyed!
     accounts:
       are_you_sure: Are you sure?
       confirm: Confirm
@@ -110,15 +117,6 @@ en:
       unsubscribe: Unsubscribe
       username: Username
       web: Web
-
-    account_moderation_notes:
-      account: Moderator
-      created_at: Date
-      create: Create
-      created_msg: Moderation note successfully created!
-      delete: Delete
-      destroyed_msg: Moderation note successfully destroyed!
-
     custom_emojis:
       copied_msg: Successfully created local copy of the emoji
       copy: Copy
