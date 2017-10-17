@@ -7,7 +7,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
 
-  after_action :request_approval, only: [:create]
+  prepend_after_action :request_approval, only: [:create]
 
   def destroy
     not_found
