@@ -449,6 +449,13 @@
 .compose-form__publish-button-wrapper {
   overflow: hidden;
   padding-top: 10px;
+
+  .button.button--block {
+    padding: 0 6px !important;
+    min-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .emojione {
