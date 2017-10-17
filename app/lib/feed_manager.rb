@@ -222,24 +222,20 @@ class FeedManager
   # do so if appropriate.
   def remove_from_feed(timeline_type, account, status)
     timeline_key = key(timeline_type, account.id)
-    reblog_key   = key(timeline_type, account.id, 'reblogs')
 
     if status.reblog?
       # 1. If the reblogging status is not in the feed, stop.
       status_rank = redis.zrevrank(timeline_key, status.id)
       return false if status_rank.nil?
 
-      # 2. Remove the reblogged status from the `:reblogs` zset.
-      redis.zrem(reblog_key, status.reblog_of_id)
-
-      # 3. Remove reblog from set of this status's reblogs, and
-      # re-insert another reblog or original into the feed if
-      # one remains in the set
+      # 2. Remove reblog from set of this status's reblogs.
       reblog_set_key = key(timeline_type, account.id, "reblogs:#{status.reblog_of_id}")
 
       redis.srem(reblog_set_key, status.id)
-      # We could pick a random element, but this set should generally be small,
-      # and it seems ideal to show the oldest potential such reblog.
+      # 3. Re-insert another reblog or original into the feed if one
+      # remains in the set. We could pick a random element, but this
+      # set should generally be small, and it seems ideal to show the
+      # oldest potential such reblog.
       other_reblog = redis.smembers(reblog_set_key).map(&:to_i).sort.first
 
       redis.zadd(timeline_key, other_reblog, other_reblog) if other_reblog
