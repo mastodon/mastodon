@@ -39,9 +39,16 @@
       - else
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
       ·
-    %span<
-      = fa_icon('retweet')
-      %span= status.reblogs_count
+    - if status.direct_visibility?
+      %span<
+        = fa_icon('envelope')
+    - elsif status.private_visibility?
+      %span<
+        = fa_icon('lock')
+    - else
+      %span<
+        = fa_icon('retweet')
+        %span= status.reblogs_count
     ·
     %span<
       = fa_icon('star')
