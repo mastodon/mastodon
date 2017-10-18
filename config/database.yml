@@ -6,7 +6,7 @@ default: &default
 
 development:
   <<: *default
-  database: mastodon_development
+  database: <%= ENV['DB_NAME'] || 'mastodon_development' %>
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASS'] %>
   host: <%= ENV['DB_HOST'] %>
@@ -17,7 +17,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: mastodon_test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: <%= ENV['DB_NAME'] || 'mastodon' %>_test<%= ENV['TEST_ENV_NUMBER'] %>
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASS'] %>
   host: <%= ENV['DB_HOST'] %>

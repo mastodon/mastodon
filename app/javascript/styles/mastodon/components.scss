@@ -551,6 +551,14 @@
   overflow: visible;
   white-space: pre-wrap;
 
+  &.status__content--with-spoiler {
+    white-space: normal;
+
+    .status__content__text {
+      white-space: pre-wrap;
+    }
+  }
+
   .emojione {
     width: 18px;
     height: 18px;
