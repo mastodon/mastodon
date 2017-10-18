@@ -9,7 +9,7 @@ class VerifySalmonService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS))
+    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS))
 
     if account.nil?
       false

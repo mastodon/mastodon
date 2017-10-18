@@ -4,13 +4,15 @@ ja:
     hints:
       defaults:
         avatar: 2MBまでのPNGやGIF、JPGが利用可能です。120x120pxまで縮小されます。
+        digest: 長期間ログインしなかった際、その期間に受け取った返信の要約を受け取ることができます。
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます。
-        locked: フォロワーを手動で承認する必要があります。
+        locked: フォロワーを手動で承認する必要があります
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
+        setting_theme: ログインしている全てのデバイスで適用されるデザインです。
       imports:
-        data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
+        data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい。
       sessions:
         otp: 携帯電話に表示された2段階認証コードを入力するか、生成したリカバリーコードを使用してください。
       user:
@@ -38,7 +40,9 @@ ja:
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
         setting_noindex: 検索エンジンによるインデックスを拒否する
+        setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
+        setting_theme: サイトテーマ
         setting_unfollow_modal: フォロー解除する前に確認ダイアログを表示する
         severity: 重大性
         type: インポートする項目

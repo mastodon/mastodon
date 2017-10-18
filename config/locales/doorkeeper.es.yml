@@ -5,6 +5,8 @@ es:
       doorkeeper/application:
         name: Nombre
         redirect_uri: URI para redirección
+        scopes: Ámbitos
+        website: Sitio web
     errors:
       models:
         doorkeeper/application:
@@ -23,26 +25,30 @@ es:
         edit: Editar
         submit: Enviar
       confirmations:
-        destroy: ¿Está seguro?
+        destroy: "¿Está seguro?"
       edit:
         title: Editar aplicación
       form:
-        error: ¡Uuups! Compruebe su formulario
+        error: "¡Uuups! Compruebe su formulario"
       help:
         native_redirect_uri: Utilice %{native_redirect_uri} para pruebas locales
         redirect_uri: Utilice una línea por URI
         scopes: Separe los ámbitos con espacios. Déjelo en blanco para utilizar los ámbitos por defecto.
       index:
+        application: Aplicación
         callback_url: Callback URL
+        delete: Eliminar
         name: Nombre
         new: Nueva aplicación
+        scopes: Ámbitos
+        show: Mostrar
         title: Sus aplicaciones
       new:
         title: Nueva aplicación
       show:
         actions: Acciones
         application_id: Id de la aplicación
-        callback_urls: Callback urls
+        callback_urls: Callback URLs
         scopes: Ámbitos
         secret: Secreto
         title: 'Aplicación: %{name}'
@@ -62,11 +68,12 @@ es:
       buttons:
         revoke: Revocar
       confirmations:
-        revoke: ¿Está seguro?
+        revoke: "¿Está seguro?"
       index:
         application: Aplicación
         created_at: Creado el
         date_format: "%A-%m-%d %H:%M:%S"
+        scopes: Ámbitos
         title: Sus aplicaciones autorizadas
     errors:
       messages:

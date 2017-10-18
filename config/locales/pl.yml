@@ -1,6 +1,7 @@
 ---
 pl:
   about:
+    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
@@ -49,6 +50,13 @@ pl:
       admin: Administrator
     unfollow: Przestań śledzić
   admin:
+    account_moderation_notes:
+      account: Autor
+      create: Dodaj
+      created_at: Data
+      created_msg: Pomyślnie dodano notatkę moderacyjną!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       are_you_sure: Jesteś tego pewien?
       confirm: Potwierdź
@@ -62,6 +70,7 @@ pl:
       followers: Śledzący
       followers_url: Adres śledzących
       follows: Śledzeni
+      inbox_url: Adres skrzynki
       ip: Adres IP
       location:
         all: Wszystkie
@@ -74,6 +83,7 @@ pl:
         silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
+      moderation_notes: Notatki moderacyjne
       most_recent_activity: Najnowsza aktywność
       most_recent_ip: Ostatnie IP
       not_subscribed: Nie zasubskrybowano
@@ -81,8 +91,10 @@ pl:
         alphabetic: Alfabetycznie
         most_recent: Najnowsze
         title: Kolejność
+      outbox_url: Adres skrzynki nadawczej
       perform_full_suspension: Całkowicie zawieś
       profile_url: Adres profilu
+      protocol: Protokół
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież awatar
@@ -105,6 +117,25 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    custom_emojis:
+      copied_msg: Pomyślnie utworzono lokalną kopię emoji
+      copy: Kopiuj
+      copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
+      created_msg: Pomyślnie utworzono emoji!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto emoji!
+      disable: Wyłącz
+      disabled_msg: Pomyślnie wyłączono emoji
+      emoji: Emoji
+      enable: Włącz
+      enabled_msg: Pomyślnie przywrócono emoji
+      image_hint: Plik PNG ważący do 50KB
+      new:
+        title: Dodaj nowe niestandardowe emoji
+      shortcode: Shortcode
+      shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
+      title: Niestandardowe emoji
+      upload: Wyślij
     domain_blocks:
       add_new: Dodaj nową
       created_msg: Blokada domen jest przetwarzana
@@ -138,12 +169,24 @@ pl:
         undo: Cofnij
       title: Zablokowane domeny
       undo: Cofnij
+    email_domain_blocks:
+      add_new: Dodaj nową
+      created_msg: Pomyślnie utworzono blokadę domeny e-mail
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
+      domain: Domena
+      new:
+        create: Utwórz blokadę
+        title: Nowa blokada domeny e-mail
+      title: Blokowanie domen e-mail
     instances:
       account_count: Znane konta
       domain_name: Domena
+      reset: Przywróć
+      search: Szukaj
       title: Znane instancje
     reports:
-      action_taken_by: Akcja podjęta przez
+      action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       comment:
         label: Komentarz
@@ -294,6 +337,9 @@ pl:
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
     '429': Uduszono
+    '500':
+      content: Przepraszamy, coś poszło nie tak…
+      title: Ta strona jest nieprawidłowa
     noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   exports:
     blocks: Zablokowani
@@ -378,6 +424,11 @@ pl:
     next: Następna
     prev: Poprzednia
     truncate: "&hellip;"
+  preferences:
+    languages: Języki
+    other: Pozostałe
+    publishing: Publikowanie
+    web: Sieć
   push_notifications:
     favourite:
       title: "%{name} dodał Twój status do ulubionych"
@@ -445,6 +496,7 @@ pl:
     export: Eksportowanie danych
     followers: Autoryzowani śledzący
     import: Importowanie danych
+    notifications: Powiadomienia
     preferences: Preferencje
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe
@@ -540,6 +592,8 @@ pl:
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

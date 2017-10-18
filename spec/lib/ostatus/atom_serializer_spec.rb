@@ -17,7 +17,7 @@ RSpec.describe OStatus::AtomSerializer do
       follow_request_salmon = serialize(follow_request)
 
       object_type = follow_request_salmon.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:activity]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:activity]
     end
 
     it 'appends activity:verb element with request_friend type' do
@@ -26,7 +26,7 @@ RSpec.describe OStatus::AtomSerializer do
       follow_request_salmon = serialize(follow_request)
 
       verb = follow_request_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:request_friend]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:request_friend]
     end
 
     it 'appends activity:object with target account' do
@@ -44,13 +44,13 @@ RSpec.describe OStatus::AtomSerializer do
     it 'adds namespaces' do
       element = serialize
 
-      expect(element['xmlns']).to eq TagManager::XMLNS
-      expect(element['xmlns:thr']).to eq TagManager::THR_XMLNS
-      expect(element['xmlns:activity']).to eq TagManager::AS_XMLNS
-      expect(element['xmlns:poco']).to eq TagManager::POCO_XMLNS
-      expect(element['xmlns:media']).to eq TagManager::MEDIA_XMLNS
-      expect(element['xmlns:ostatus']).to eq TagManager::OS_XMLNS
-      expect(element['xmlns:mastodon']).to eq TagManager::MTDN_XMLNS
+      expect(element['xmlns']).to eq OStatus::TagManager::XMLNS
+      expect(element['xmlns:thr']).to eq OStatus::TagManager::THR_XMLNS
+      expect(element['xmlns:activity']).to eq OStatus::TagManager::AS_XMLNS
+      expect(element['xmlns:poco']).to eq OStatus::TagManager::POCO_XMLNS
+      expect(element['xmlns:media']).to eq OStatus::TagManager::MEDIA_XMLNS
+      expect(element['xmlns:ostatus']).to eq OStatus::TagManager::OS_XMLNS
+      expect(element['xmlns:mastodon']).to eq OStatus::TagManager::MTDN_XMLNS
     end
   end
 
@@ -97,10 +97,22 @@ RSpec.describe OStatus::AtomSerializer do
 
       mentioned = element.nodes.find do |node|
         node.name == 'link' &&
-        node[:rel] == 'mentioned' &&
-        node['ostatus:object-type'] == TagManager::TYPES[:person]
+          node[:rel] == 'mentioned' &&
+          node['ostatus:object-type'] == OStatus::TagManager::TYPES[:person]
       end
+
       expect(mentioned[:href]).to eq 'https://cb6e6126.ngrok.io/users/username'
+    end
+
+    it 'appends link elements for emojis' do
+      Fabricate(:custom_emoji)
+
+      status  = Fabricate(:status, text: ':coolcat:')
+      element = serialize(status)
+      emoji   = element.nodes.find { |node| node.name == 'link' && node[:rel] == 'emoji' }
+
+      expect(emoji[:name]).to eq 'coolcat'
+      expect(emoji[:href]).to_not be_blank
     end
   end
 
@@ -176,7 +188,7 @@ RSpec.describe OStatus::AtomSerializer do
       author = OStatus::AtomSerializer.new.author(account)
 
       object_type = author.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:person]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:person]
     end
 
     it 'appends email element with username and domain for local account' do
@@ -346,9 +358,9 @@ RSpec.describe OStatus::AtomSerializer do
         mentioned_person = entry.nodes.find do |node|
           node.name == 'link' &&
           node[:rel] == 'mentioned' &&
-          node['ostatus:object-type'] == TagManager::TYPES[:collection]
+          node['ostatus:object-type'] == OStatus::TagManager::TYPES[:collection]
         end
-        expect(mentioned_person[:href]).to eq TagManager::COLLECTIONS[:public]
+        expect(mentioned_person[:href]).to eq OStatus::TagManager::COLLECTIONS[:public]
       end
 
       it 'does not append link element for the public collection if status is not publicly visible' do
@@ -359,8 +371,8 @@ RSpec.describe OStatus::AtomSerializer do
         entry.nodes.each do |node|
           if node.name == 'link' &&
              node[:rel] == 'mentioned' &&
-             node['ostatus:object-type'] == TagManager::TYPES[:collection]
-            expect(mentioned_collection[:href]).not_to eq TagManager::COLLECTIONS[:public]
+             node['ostatus:object-type'] == OStatus::TagManager::TYPES[:collection]
+            expect(mentioned_collection[:href]).not_to eq OStatus::TagManager::COLLECTIONS[:public]
           end
         end
       end
@@ -494,7 +506,7 @@ RSpec.describe OStatus::AtomSerializer do
       status = Fabricate(:status)
       entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
       object_type = entry.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:note]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:note]
     end
 
     it 'appends activity:verb element with object type' do
@@ -503,7 +515,7 @@ RSpec.describe OStatus::AtomSerializer do
       entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
 
       object_type = entry.nodes.find { |node| node.name == 'activity:verb' }
-      expect(object_type.text).to eq TagManager::VERBS[:post]
+      expect(object_type.text).to eq OStatus::TagManager::VERBS[:post]
     end
 
     it 'appends activity:object element with target if present' do
@@ -727,8 +739,8 @@ RSpec.describe OStatus::AtomSerializer do
       time_after = Time.now
 
       expect(block_salmon.id.text).to(
-        eq(TagManager.instance.unique_tag(time_before.utc, block.id, 'Block'))
-          .or(eq(TagManager.instance.unique_tag(time_after.utc, block.id, 'Block')))
+        eq(OStatus::TagManager.instance.unique_tag(time_before.utc, block.id, 'Block'))
+          .or(eq(OStatus::TagManager.instance.unique_tag(time_after.utc, block.id, 'Block')))
       )
     end
 
@@ -757,7 +769,7 @@ RSpec.describe OStatus::AtomSerializer do
       block_salmon = OStatus::AtomSerializer.new.block_salmon(block)
 
       object_type = block_salmon.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:activity]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:activity]
     end
 
     it 'appends activity:verb element with block' do
@@ -766,7 +778,7 @@ RSpec.describe OStatus::AtomSerializer do
       block_salmon = OStatus::AtomSerializer.new.block_salmon(block)
 
       verb = block_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:block]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:block]
     end
 
     it 'appends activity:object element with target account' do
@@ -814,8 +826,8 @@ RSpec.describe OStatus::AtomSerializer do
       time_after = Time.now
 
       expect(unblock_salmon.id.text).to(
-        eq(TagManager.instance.unique_tag(time_before.utc, block.id, 'Block'))
-          .or(eq(TagManager.instance.unique_tag(time_after.utc, block.id, 'Block')))
+        eq(OStatus::TagManager.instance.unique_tag(time_before.utc, block.id, 'Block'))
+          .or(eq(OStatus::TagManager.instance.unique_tag(time_after.utc, block.id, 'Block')))
       )
     end
 
@@ -844,7 +856,7 @@ RSpec.describe OStatus::AtomSerializer do
       unblock_salmon = OStatus::AtomSerializer.new.unblock_salmon(block)
 
       object_type = unblock_salmon.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:activity]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:activity]
     end
 
     it 'appends activity:verb element with block' do
@@ -853,7 +865,7 @@ RSpec.describe OStatus::AtomSerializer do
       unblock_salmon = OStatus::AtomSerializer.new.unblock_salmon(block)
 
       verb = unblock_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:unblock]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:unblock]
     end
 
     it 'appends activity:object element with target account' do
@@ -922,7 +934,7 @@ RSpec.describe OStatus::AtomSerializer do
       favourite_salmon = OStatus::AtomSerializer.new.favourite_salmon(favourite)
 
       verb = favourite_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:favorite]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:favorite]
     end
 
     it 'appends activity:object element with status' do
@@ -993,8 +1005,8 @@ RSpec.describe OStatus::AtomSerializer do
       time_after = Time.now
 
       expect(unfavourite_salmon.id.text).to(
-        eq(TagManager.instance.unique_tag(time_before.utc, favourite.id, 'Favourite'))
-          .or(eq(TagManager.instance.unique_tag(time_after.utc, favourite.id, 'Favourite')))
+        eq(OStatus::TagManager.instance.unique_tag(time_before.utc, favourite.id, 'Favourite'))
+          .or(eq(OStatus::TagManager.instance.unique_tag(time_after.utc, favourite.id, 'Favourite')))
       )
     end
 
@@ -1022,7 +1034,7 @@ RSpec.describe OStatus::AtomSerializer do
       unfavourite_salmon = OStatus::AtomSerializer.new.unfavourite_salmon(favourite)
 
       verb = unfavourite_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:unfavorite]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:unfavorite]
     end
 
     it 'appends activity:object element with status' do
@@ -1105,7 +1117,7 @@ RSpec.describe OStatus::AtomSerializer do
       follow_salmon = OStatus::AtomSerializer.new.follow_salmon(follow)
 
       object_type = follow_salmon.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:activity]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:activity]
     end
 
     it 'appends activity:verb element with follow' do
@@ -1114,7 +1126,7 @@ RSpec.describe OStatus::AtomSerializer do
       follow_salmon = OStatus::AtomSerializer.new.follow_salmon(follow)
 
       verb = follow_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:follow]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:follow]
     end
 
     it 'appends activity:object element with target account' do
@@ -1178,8 +1190,8 @@ RSpec.describe OStatus::AtomSerializer do
       time_after = Time.now
 
       expect(unfollow_salmon.id.text).to(
-        eq(TagManager.instance.unique_tag(time_before.utc, follow.id, 'Follow'))
-          .or(eq(TagManager.instance.unique_tag(time_after.utc, follow.id, 'Follow')))
+        eq(OStatus::TagManager.instance.unique_tag(time_before.utc, follow.id, 'Follow'))
+          .or(eq(OStatus::TagManager.instance.unique_tag(time_after.utc, follow.id, 'Follow')))
       )
     end
 
@@ -1222,7 +1234,7 @@ RSpec.describe OStatus::AtomSerializer do
       unfollow_salmon = OStatus::AtomSerializer.new.unfollow_salmon(follow)
 
       object_type = unfollow_salmon.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:activity]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:activity]
     end
 
     it 'appends activity:verb element with follow' do
@@ -1232,7 +1244,7 @@ RSpec.describe OStatus::AtomSerializer do
       unfollow_salmon = OStatus::AtomSerializer.new.unfollow_salmon(follow)
 
       verb = unfollow_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:unfollow]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:unfollow]
     end
 
     it 'appends activity:object element with target account' do
@@ -1326,8 +1338,8 @@ RSpec.describe OStatus::AtomSerializer do
       time_after = Time.now
 
       expect(authorize_follow_request_salmon.id.text).to(
-        eq(TagManager.instance.unique_tag(time_before.utc, follow_request.id, 'FollowRequest'))
-          .or(eq(TagManager.instance.unique_tag(time_after.utc, follow_request.id, 'FollowRequest')))
+        eq(OStatus::TagManager.instance.unique_tag(time_before.utc, follow_request.id, 'FollowRequest'))
+          .or(eq(OStatus::TagManager.instance.unique_tag(time_after.utc, follow_request.id, 'FollowRequest')))
       )
     end
 
@@ -1347,7 +1359,7 @@ RSpec.describe OStatus::AtomSerializer do
       authorize_follow_request_salmon = OStatus::AtomSerializer.new.authorize_follow_request_salmon(follow_request)
 
       object_type = authorize_follow_request_salmon.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:activity]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:activity]
     end
 
     it 'appends activity:verb element with authorize' do
@@ -1356,7 +1368,7 @@ RSpec.describe OStatus::AtomSerializer do
       authorize_follow_request_salmon = OStatus::AtomSerializer.new.authorize_follow_request_salmon(follow_request)
 
       verb = authorize_follow_request_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:authorize]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:authorize]
     end
 
     it 'returns element whose rendered view creates follow from follow request when processed' do
@@ -1395,8 +1407,8 @@ RSpec.describe OStatus::AtomSerializer do
       time_after = Time.now
 
       expect(reject_follow_request_salmon.id.text).to(
-        eq(TagManager.instance.unique_tag(time_before.utc, follow_request.id, 'FollowRequest'))
-          .or(TagManager.instance.unique_tag(time_after.utc, follow_request.id, 'FollowRequest'))
+        eq(OStatus::TagManager.instance.unique_tag(time_before.utc, follow_request.id, 'FollowRequest'))
+          .or(OStatus::TagManager.instance.unique_tag(time_after.utc, follow_request.id, 'FollowRequest'))
       )
     end
 
@@ -1412,14 +1424,14 @@ RSpec.describe OStatus::AtomSerializer do
       follow_request = Fabricate(:follow_request)
       reject_follow_request_salmon = OStatus::AtomSerializer.new.reject_follow_request_salmon(follow_request)
       object_type = reject_follow_request_salmon.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:activity]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:activity]
     end
 
     it 'appends activity:verb element with authorize' do
       follow_request = Fabricate(:follow_request)
       reject_follow_request_salmon = OStatus::AtomSerializer.new.reject_follow_request_salmon(follow_request)
       verb = reject_follow_request_salmon.nodes.find { |node| node.name == 'activity:verb' }
-      expect(verb.text).to eq TagManager::VERBS[:reject]
+      expect(verb.text).to eq OStatus::TagManager::VERBS[:reject]
     end
 
     it 'returns element whose rendered view deletes follow request when processed' do
@@ -1491,7 +1503,7 @@ RSpec.describe OStatus::AtomSerializer do
       entry = OStatus::AtomSerializer.new.object(status)
 
       object_type = entry.nodes.find { |node| node.name == 'activity:object-type' }
-      expect(object_type.text).to eq TagManager::TYPES[:note]
+      expect(object_type.text).to eq OStatus::TagManager::TYPES[:note]
     end
 
     it 'appends activity:verb element with verb' do
@@ -1500,7 +1512,7 @@ RSpec.describe OStatus::AtomSerializer do
       entry = OStatus::AtomSerializer.new.object(status)
 
       object_type = entry.nodes.find { |node| node.name == 'activity:verb' }
-      expect(object_type.text).to eq TagManager::VERBS[:post]
+      expect(object_type.text).to eq OStatus::TagManager::VERBS[:post]
     end
 
     it 'appends link element for an alternative' do

@@ -3,13 +3,14 @@
 class ActivityPub::ProcessCollectionService < BaseService
   include JsonLdHelper
 
-  def call(body, account)
+  def call(body, account, options = {})
     @account = account
     @json    = Oj.load(body, mode: :strict)
+    @options = options
 
     return unless supported_context?
     return if different_actor? && verify_account!.nil?
-    return if @account.suspended?
+    return if @account.suspended? || @account.local?
 
     case @json['type']
     when 'Collection', 'CollectionPage'
@@ -38,7 +39,7 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def process_item(item)
-    activity = ActivityPub::Activity.factory(item, @account)
+    activity = ActivityPub::Activity.factory(item, @account, @options)
     activity&.perform
   end
 

@@ -1,0 +1,20 @@
+%tr
+  %td
+    = image_tag custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:"
+  %td
+    %samp= ":#{custom_emoji.shortcode}:"
+  %td
+    - if custom_emoji.local?
+      = t('admin.accounts.location.local')
+    - else
+      = custom_emoji.domain
+  %td
+    - unless custom_emoji.local?
+      = table_link_to 'copy', t('admin.custom_emojis.copy'), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post
+  %td
+    - if custom_emoji.disabled?
+      = table_link_to 'power-off', t('admin.custom_emojis.enable'), enable_admin_custom_emoji_path(custom_emoji), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+    - else
+      = table_link_to 'power-off', t('admin.custom_emojis.disable'), disable_admin_custom_emoji_path(custom_emoji), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+  %td
+    = table_link_to 'times', t('admin.custom_emojis.delete'), admin_custom_emoji_path(custom_emoji), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

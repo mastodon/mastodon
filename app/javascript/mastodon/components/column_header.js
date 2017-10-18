@@ -135,7 +135,7 @@ export default class ColumnHeader extends React.PureComponent {
 
     return (
       <div className={wrapperClassName}>
-        <h1 tabIndex={focusable && '0'} role='button' className={buttonClassName} aria-label={title} onClick={this.handleTitleClick}>
+        <h1 tabIndex={focusable ? 0 : null} role='button' className={buttonClassName} aria-label={title} onClick={this.handleTitleClick}>
           <i className={`fa fa-fw fa-${icon} column-header__icon`} />
           {title}
 
@@ -145,7 +145,7 @@ export default class ColumnHeader extends React.PureComponent {
           </div>
         </h1>
 
-        <div className={collapsibleClassName} tabIndex={collapsed && -1} onTransitionEnd={this.handleTransitionEnd}>
+        <div className={collapsibleClassName} tabIndex={collapsed ? -1 : null} onTransitionEnd={this.handleTransitionEnd}>
           <div className='column-header__collapsible-inner'>
             {(!collapsed || animating) && collapsedContent}
           </div>

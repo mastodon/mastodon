@@ -7,9 +7,9 @@
     "build:production": "cross-env RAILS_ENV=production ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "node ./streaming/index.js",
-    "test": "npm run test:lint && npm run test:mocha",
+    "test": "npm run test:lint && npm run test:jest",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ streaming/",
-    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/**/*.test.js",
+    "test:jest": "cross-env NODE_ENV=test jest --coverage",
     "postinstall": "npm rebuild node-sass"
   },
   "repository": {
@@ -45,8 +45,7 @@
     "css-loader": "^0.28.4",
     "detect-passive-events": "^1.0.2",
     "dotenv": "^4.0.0",
-    "emojione": "^2.2.7",
-    "emojione-picker": "^2.2.1",
+    "emoji-mart": "Gargron/emoji-mart#build",
     "es6-symbol": "^3.1.1",
     "escape-html": "^1.0.3",
     "express": "^4.15.2",
@@ -58,6 +57,7 @@
     "immutable": "^3.8.1",
     "intersection-observer": "^0.4.0",
     "intl": "^1.2.5",
+    "intl-messageformat": "^2.1.0",
     "intl-relativeformat": "^2.0.0",
     "is-nan": "^1.2.1",
     "js-yaml": "^3.9.0",
@@ -79,20 +79,19 @@
     "prop-types": "^15.5.10",
     "punycode": "^2.1.0",
     "rails-ujs": "^5.1.2",
-    "react": "^15.6.1",
-    "react-addons-perf": "^15.4.2",
-    "react-addons-shallow-compare": "^15.6.0",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-hotkeys": "^0.10.0",
     "react-immutable-proptypes": "^2.1.0",
     "react-immutable-pure-component": "^1.0.0",
     "react-intl": "^2.4.0",
     "react-motion": "^0.5.0",
     "react-notification": "^6.7.1",
+    "react-overlays": "^0.8.1",
     "react-redux": "^5.0.4",
     "react-redux-loading-bar": "^2.9.2",
     "react-router-dom": "^4.1.1",
-    "react-router-scroll": "ytase/react-router-scroll#build",
-    "react-simple-dropdown": "^3.0.0",
+    "react-router-scroll": "Gargron/react-router-scroll#build",
     "react-swipeable-views": "^0.12.3",
     "react-textarea-autosize": "^5.0.7",
     "react-toggle": "^4.0.1",
@@ -107,7 +106,7 @@
     "sass-loader": "^6.0.6",
     "stringz": "^0.2.2",
     "style-loader": "^0.18.2",
-    "substring-trie": "^1.0.1",
+    "substring-trie": "^1.0.2",
     "throng": "^4.0.0",
     "tiny-queue": "^0.2.1",
     "uuid": "^3.1.0",
@@ -120,21 +119,37 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "chai": "^4.1.0",
-    "chai-enzyme": "^0.8.0",
-    "enzyme": "^2.9.1",
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
     "eslint": "^3.19.0",
+    "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "jsdom": "^11.1.0",
-    "mocha": "^3.4.1",
+    "jest": "^21.2.1",
+    "raf": "^3.4.0",
     "react-intl-translations-manager": "^5.0.0",
-    "react-test-renderer": "^15.6.1",
-    "sinon": "^2.3.7",
+    "react-test-renderer": "^16.0.0",
     "webpack-dev-server": "^2.6.1",
     "yargs": "^8.0.2"
   },
   "optionalDependencies": {
     "fsevents": "*"
+  },
+  "jest": {
+    "projects": [
+      "<rootDir>/app/javascript/mastodon"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/vendor/",
+      "<rootDir>/config/",
+      "<rootDir>/log/",
+      "<rootDir>/public/",
+      "<rootDir>/tmp/"
+    ],
+    "setupFiles": [
+      "raf/polyfill"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/app/javascript/mastodon/test_setup.js"
   }
 }

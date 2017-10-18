@@ -10,7 +10,7 @@ zh-TW:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: 'URI 不可包含 "#fragment" 部份'
+              fragment_present: URI 不可包含 "#fragment" 部份
               invalid_uri: 必需有正確的 URI.
               relative_uri: 必需為絕對 URI.
               secured_uri: 必需使用有 HTTPS/SSL 加密的 URI.
@@ -45,7 +45,7 @@ zh-TW:
         callback_urls: 回傳網址
         scopes: 權限範圍
         secret: 密碼
-        title: '應用程式︰ %{name}'
+        title: 應用程式︰ %{name}
     authorizations:
       buttons:
         authorize: 允許

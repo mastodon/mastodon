@@ -60,7 +60,7 @@ RSpec.describe FollowService do
       it 'sends a follow request salmon slap' do
         expect(a_request(:post, "http://salmon.example.com/").with { |req|
           xml = OStatus2::Salmon.new.unpack(req.body)
-          xml.match(TagManager::VERBS[:request_friend])
+          xml.match(OStatus::TagManager::VERBS[:request_friend])
         }).to have_been_made.once
       end
     end
@@ -81,7 +81,7 @@ RSpec.describe FollowService do
       it 'sends a follow salmon slap' do
         expect(a_request(:post, "http://salmon.example.com/").with { |req|
           xml = OStatus2::Salmon.new.unpack(req.body)
-          xml.match(TagManager::VERBS[:follow])
+          xml.match(OStatus::TagManager::VERBS[:follow])
         }).to have_been_made.once
       end
 
