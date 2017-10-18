@@ -88,7 +88,6 @@ function appendMedia(state, media) {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
-    map.update('text', oldText => `${oldText.trim()} ${media.get('text_url')}`);
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
 
@@ -104,7 +103,6 @@ function removeMedia(state, mediaId) {
 
   return state.withMutations(map => {
     map.update('media_attachments', list => list.filterNot(item => item.get('id') === mediaId));
-    map.update('text', text => text.replace(media.get('text_url'), '').trim());
     map.set('idempotencyKey', uuid());
 
     if (prevSize === 1) {
