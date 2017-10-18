@@ -3,6 +3,7 @@
 class ActivityPub::Activity::Create < ActivityPub::Activity
   def perform
     return if delete_arrived_first?(object_uri) || unsupported_object_type?
+    return if AllowDomainService.blocked?(@account.domain)
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -201,7 +202,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def skip_download?
     return @skip_download if defined?(@skip_download)
-    @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
+    @skip_download ||= AllowDomainService.reject_media?(@account.domain)
   end
 
   def reply_to_local?

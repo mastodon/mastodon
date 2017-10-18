@@ -7,7 +7,7 @@
 # For more information, see docs/Running-Mastodon/Administration-guide.md
 #
 defaults: &defaults
-  site_title: Mastodon
+  site_title: Awoo.space
   site_description: ''
   site_extended_description: ''
   site_terms: ''
@@ -44,6 +44,7 @@ defaults: &defaults
     - webmaster
     - administrator
   bootstrap_timeline_accounts: ''
+  whitelist_enabled: true
 
 development:
   <<: *defaults

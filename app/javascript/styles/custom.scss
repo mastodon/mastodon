@@ -1,0 +1,41 @@
+@import 'application';
+
+.button {
+  &:disabled {
+    background-color: #bca498;
+  }
+}
+
+.text-icon-button {
+  &.active {
+    color: #ffffff;
+    background-color: #FF5500;
+    border-radius: 4px;
+  }
+}
+
+.compose-form__sensitive-button__icon {
+  &.inverted.active {
+    color: #ffffff;
+    background-color: #FF5500;
+    border-radius: 4px;
+  }
+}
+
+.column {
+  flex-grow: 1 !important;
+}
+
+.status__content__spoiler-link {
+  font-weight: 800;
+}
+
+.landing-page {
+  .header-wrapper {
+    .mascot {
+      bottom: 0px;
+      height: 75%;
+      left: 180px;
+    }
+  }
+}

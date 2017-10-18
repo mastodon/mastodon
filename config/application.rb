@@ -29,6 +29,7 @@ module Mastodon
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
+      :awoo,
       :en,
       :ar,
       :bg,
@@ -87,5 +88,12 @@ module Mastodon
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
     end
+
+    config.action_dispatch.default_headers = {
+      'Server'                 => 'Awoo.space',
+      'X-Frame-Options'        => 'DENY',
+      'X-Content-Type-Options' => 'nosniff',
+      'X-XSS-Protection'       => '1; mode=block',
+    }
   end
 end

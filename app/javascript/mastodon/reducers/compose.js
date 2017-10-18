@@ -25,6 +25,7 @@ import {
   COMPOSE_UPLOAD_CHANGE_REQUEST,
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
   COMPOSE_UPLOAD_CHANGE_FAIL,
+  COMPOSE_DOODLE_SET,
   COMPOSE_RESET,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -54,6 +55,17 @@ const initialState = ImmutableMap({
   default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
+  doodle: ImmutableMap({
+    fg: 'rgb(  0,    0,    0)',
+    bg: 'rgb(255,  255,  255)',
+    swapped: false,
+    mode: 'draw',
+    size: 'normal',
+    weight: 2,
+    opacity: 1,
+    adaptiveStroke: true,
+    smoothing: false,
+  }),
 });
 
 function statusToTextMentions(state, status) {
@@ -115,7 +127,7 @@ function removeMedia(state, mediaId) {
 
 const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
+    map.update('text', oldText => `${oldText.slice(0, position)}${completion}\u200B${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
@@ -127,7 +139,7 @@ const insertEmoji = (state, position, emojiData) => {
   const emoji = emojiData.native;
 
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`);
+    map.update('text', oldText => `${oldText.slice(0, position)}${emoji}\u200B${oldText.slice(position)}`);
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
   });
@@ -271,6 +283,8 @@ export default function compose(state = initialState, action) {
 
         return item;
       }));
+  case COMPOSE_DOODLE_SET:
+    return state.mergeIn(['doodle'], action.options);
   default:
     return state;
   }
