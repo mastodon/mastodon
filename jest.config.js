@@ -14,4 +14,12 @@ module.exports = {
     'raf/polyfill',
   ],
   setupTestFrameworkScriptFile: '<rootDir>/app/javascript/mastodon/test_setup.js',
+  collectCoverageFrom: [
+    'app/javascript/mastodon/**/*.js',
+    '!app/javascript/mastodon/features/emoji/emoji_compressed.js',
+    '!app/javascript/mastodon/locales/locale-data/*.js',
+    '!app/javascript/mastodon/service_worker/entry.js',
+    '!app/javascript/mastodon/test_setup.js',
+  ],
+  coverageDirectory: '<rootDir>/coverage',
 };
