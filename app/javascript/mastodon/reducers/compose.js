@@ -98,7 +98,6 @@ function appendMedia(state, media) {
 };
 
 function removeMedia(state, mediaId) {
-  const media    = state.get('media_attachments').find(item => item.get('id') === mediaId);
   const prevSize = state.get('media_attachments').size;
 
   return state.withMutations(map => {
