@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def flags
-      'rc2'
+      ''
     end
 
     def to_a
@@ -33,7 +33,7 @@ module Mastodon
     end
 
     def source_base_url
-      'https://github.com/KnzkDev/mastodon'
+      'https://github.com/tootsuite/mastodon'
     end
 
     # specify git tag or commit hash here
