@@ -1,0 +1,12 @@
+Välkommen <%= @resource.email %> !
+
+Du har precis skapat ett konto på <%= @instance %>.
+
+För att bekräfta din inskrift, vänligen klicka på följande länk :
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+Vänligen läs även våra användarvillkor <%= terms_url %>
+
+Vänliga hälsningar,
+
+Teamet på <%= @instance %>

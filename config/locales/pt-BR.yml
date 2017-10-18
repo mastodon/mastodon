@@ -1,8 +1,8 @@
 ---
 pt-BR:
   about:
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Voce pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
     closed_registrations: Cadastros estão atualmente fechados nesta instância. No entanto! Você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
@@ -11,7 +11,7 @@ pt-BR:
     description_headline: O que é %{domain}?
     domain_count_after: outras instâncias
     domain_count_before: Conectado a
-    extended_description_html:
+    extended_description_html: |
       <h3>Um bom lugar para regras</h3>
       <p>A descrição da instância ainda não foi feita.</p>
     features:
@@ -50,6 +50,13 @@ pt-BR:
       admin: Administrador
     unfollow: Deixar de seguir
   admin:
+    account_moderation_notes:
+      account: Moderador
+      create: Criar
+      created_at: Data
+      created_msg: Nota de moderação criada com sucesso!
+      delete: Excluir
+      destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       are_you_sure: Você tem certeza?
       confirm: Confirmar
@@ -110,15 +117,6 @@ pt-BR:
       unsubscribe: Desinscrever-se
       username: Nome de usuário
       web: Web
-
-    account_moderation_notes:
-      account: Moderador
-      created_at: Data
-      create: Criar
-      created_msg: Nota de moderação criada com sucesso!
-      delete: Excluir
-      destroyed_msg: Nota de moderação excluída com sucesso!
-
     custom_emojis:
       copied_msg: Cópia local do emoji criada com sucesso!
       copy: Copiar
@@ -520,7 +518,7 @@ pt-BR:
     reblogged: compartilhado
     sensitive_content: Conteúdo sensível
   terms:
-    body_html:
+    body_html: |
       <h2>Política de privacidade</h2>
 
       <h3 id="collect">Que informações nós coletamos?</h3>

@@ -1,0 +1,119 @@
+---
+sv:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Applikationsnamn
+        redirect_uri: Omdirigera URI
+        scopes: Omfattning
+        website: Applikationswebbplats
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kan inte innehålla ett fragment.
+              invalid_uri: måste vara en giltig URI.
+              relative_uri: måste vara en absolut URI.
+              secured_uri: måste vara en HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Godkänna
+        cancel: Ångra
+        destroy: Förstöra
+        edit: Redigera
+        submit: Skicka
+      confirmations:
+        destroy: Äre du säker?
+      edit:
+        title: Redigera applikation
+      form:
+        error: Hoppsan! Kontrollera i formuläret efter eventuella fel
+      help:
+        native_redirect_uri: Använd %{native_redirect_uri} för lokalt test
+        redirect_uri: Använd en per rad URI
+        scopes: Separera omfattningen med mellanslag. Lämna tomt för att använda standardomfattning.
+      index:
+        application: Applikation
+        callback_url: Callback URL
+        delete: Ta bort
+        name: Namn
+        new: Ny applikation
+        scopes: Omfattning
+        show: Visa
+        title: Dina applikationer
+      new:
+        title: Ny applikation
+      show:
+        actions: Handlingar
+        application_id: Klientnyckel
+        callback_urls: Callback URLs
+        scopes: Omfattning
+        secret: Kundhemlighet
+        title: 'Application: %{name}'
+    authorizations:
+      buttons:
+        authorize: Godkänna
+        deny: Neka
+      error:
+        title: Ett fel har uppstått
+      new:
+        able_to: Det kommer att kunna
+        prompt: Applikation %{client_name} begär tillgång till ditt konto
+        title: Godkännande krävs
+      show:
+        title: Kopiera denna behörighetskod och klistra in den i programmet.
+    authorized_applications:
+      buttons:
+        revoke: Återkalla
+      confirmations:
+        revoke: Är du säker?
+      index:
+        application: Applikation
+        created_at: Auktoriserad
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Omfattning
+        title: Dina behöriga ansökningar
+    errors:
+      messages:
+        access_denied: Resursägaren eller behörighetsservern nekade begäran.
+        credential_flow_not_configured: Resurs Ägare Lösenord Credentials flöde misslyckades på grund av att Doorkeeper.configure.resource_owner_from_credentials är okonfigurerad.
+        invalid_client: Klientautentisering misslyckades på grund av okänd klient, ingen klientautentisering inkluderad eller icke godkänd autentiseringsmetod.
+        invalid_grant: Det beviljade godkännandetillskottet är ogiltigt, upphört, återkallat, matchar inte den omdirigering URI som användes i auktorisationsförfrågan eller har utfärdats till en annan klient.
+        invalid_redirect_uri: Den omdirigerade uri är inte giltig.
+        invalid_request: Förfrågan saknar en obligatorisk parameter, innehåller ett icke-stödt parametervärde eller är annars felaktigt.
+        invalid_resource_owner: De angivna resursägarnas referenser är inte giltiga, eller resursägare kan inte hittas
+        invalid_scope: Det begärda räckvidden är ogiltigt, okänt eller felaktigt.
+        invalid_token:
+          expired: The access token utgången
+          revoked: The access token är återkallad
+          unknown: The access token är ogiltig
+        resource_owner_authenticator_not_configured: Resursägaren hittade fel på grund av Doorkeeper.configure.resource_owner_authenticator är okonfigurerad.
+        server_error: Tillståndsservern stötte på ett oväntat villkor som hindrade det från att uppfylla förfrågan.
+        temporarily_unavailable: Autorisationsservern kan inte hantera begäran på grund av tillfällig överbelastning eller underhåll av servern.
+        unauthorized_client: Klienten är inte behörig att utföra denna förfrågan med den här metoden.
+        unsupported_grant_type: Typgodkännandet för godkännande beviljas inte av behörighetsservern.
+        unsupported_response_type: Autorisationsservern stöder inte den här svarstypen.
+    flash:
+      applications:
+        create:
+          notice: Applikation skapad.
+        destroy:
+          notice: Applikation borttagen.
+        update:
+          notice: Applikation uppdaterad.
+      authorized_applications:
+        destroy:
+          notice: Applikation återkallas.
+    layouts:
+      admin:
+        nav:
+          applications: Applikationer
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: OAuth-behörighet krävs
+    scopes:
+      follow: följ, blockera, ta bort blockering och sluta följa konton
+      read: läs dina kontodata
+      write: posta på dina vägnar
