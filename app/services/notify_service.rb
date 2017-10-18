@@ -1,3 +1,4 @@
+require 'pry'
 # frozen_string_literal: true
 
 class NotifyService < BaseService
@@ -5,6 +6,7 @@ class NotifyService < BaseService
     @recipient    = recipient
     @activity     = activity
     @notification = Notification.new(account: @recipient, activity: @activity)
+    @visibility   = nil
 
     return if recipient.user.nil? || blocked?
 
@@ -15,6 +17,14 @@ class NotifyService < BaseService
   end
 
   private
+  
+  def visibility
+    unless @visibility.nil? && (@activity.is_a?(Follow) || @activity.is_a?(FollowRequest))
+      status = @activity.is_a?(Status) ? @activity : @activity.status
+      @visibility = status.visibility
+    end
+    @visibility
+  end
 
   def blocked_mention?
     FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient.id)
@@ -43,10 +53,12 @@ class NotifyService < BaseService
     blocked ||= @recipient.blocking?(@notification.from_account)                                                                     # Skip for blocked accounts
     blocked ||= @recipient.muting?(@notification.from_account)                                                                       # Skip for muted accounts
     blocked ||= (@notification.from_account.silenced? && !@recipient.following?(@notification.from_account))                         # Hellban
-    blocked ||= (@recipient.user.settings.interactions['must_be_follower']  && !@notification.from_account.following?(@recipient))   # Options
-    blocked ||= (@recipient.user.settings.interactions['must_be_following'] && !@recipient.following?(@notification.from_account))   # Options
+    blocked ||= (@recipient.user.settings.interactions['must_be_follower']     && !@notification.from_account.following?(@recipient))   # Options
+    blocked ||= (@recipient.user.settings.interactions['must_be_following']    && !@recipient.following?(@notification.from_account))   # Options
+    blocked ||= (@recipient.user.settings.interactions['must_be_following_dm'] && !@recipient.following?(@notification.from_account) && visibility == 'direct')   # Options
     blocked ||= conversation_muted?
     blocked ||= send("blocked_#{@notification.type}?")                                                                               # Type-dependent filters
+    binding.pry
     blocked
   end
 

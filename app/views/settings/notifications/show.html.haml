@@ -20,6 +20,7 @@
     = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
       = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
       = ff.input :must_be_following, as: :boolean, wrapper: :with_label
+      = ff.input :must_be_following_dm, as: :boolean, wrapper: :with_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

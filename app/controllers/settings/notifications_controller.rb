@@ -26,7 +26,7 @@ class Settings::NotificationsController < ApplicationController
   def user_settings_params
     params.require(:user).permit(
       notification_emails: %i(follow follow_request reblog favourite mention digest),
-      interactions: %i(must_be_follower must_be_following)
+      interactions: %i(must_be_follower must_be_following must_be_following_dm)
     )
   end
 end
