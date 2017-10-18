@@ -309,6 +309,7 @@ export default class EmojiPickerDropdown extends React.PureComponent {
       EmojiPickerAsync().then(EmojiMart => {
         EmojiPicker = EmojiMart.Picker;
         Emoji       = EmojiMart.Emoji;
+
         this.setState({ loading: false });
       }).catch(() => {
         this.setState({ loading: false });

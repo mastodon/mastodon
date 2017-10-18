@@ -20,6 +20,7 @@ class SubscribeService < BaseService
       # We need to retry at a later time. Fail loudly!
       raise Mastodon::UnexpectedResponseError, @response
     end
+    @response.connection&.close
   end
 
   private

@@ -29,9 +29,8 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", mastodon-font-sans-serif, sans-serif;
   }
 
-  &.app-body,
-  &.error {
-    position: fixed;
+  &.app-body {
+    position: absolute;
     width: 100%;
     height: 100%;
     padding: 0;

@@ -27,6 +27,7 @@ class Pubsubhubbub::DeliveryWorker
 
     raise Mastodon::UnexpectedResponseError, payload_delivery unless response_successful?
 
+    payload_delivery.connection&.close
     subscription.touch(:last_successful_delivery_at)
   end
 

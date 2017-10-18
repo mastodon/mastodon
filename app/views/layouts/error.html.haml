@@ -1,62 +1,14 @@
 !!!
-%html.no-js{:lang => "en-us"}
+%html{ lang: I18n.locale }
   %head
-    %meta{:charset => "utf-8"}/
-    %title We're sorry, but something went wrong.
-    %meta{:content => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", :name => "description"}/
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %meta{:content => "Madeon08", :name => "author"}/
-    / ================= Favicon ==================
-    / Standard
-    %link{:href => "https://knzk.me/img/favicon.png", :rel => "shortcut icon"}/
-    / Retina iPad Touch Icon
-    %link{:href => "https://knzk.me/img/favicon-retina-ipad.png", :rel => "apple-touch-icon", :sizes => "144x144"}/
-    / Retina iPhone Touch Icon
-    %link{:href => "https://knzk.me/img/favicon-retina-iphone.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
-    / Standard iPad Touch Icon
-    %link{:href => "https://knzk.me/img/favicon-standard-ipad.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
-    / Standard iPhone Touch Icon
-    %link{:href => "https://knzk.me/img/favicon-standard-iphone.png", :rel => "apple-touch-icon", :sizes => "57x57"}/
-    / ============== Resources style ==============
-    %link{:href => "https://knzk.me/css/style-vintage.css", :rel => "stylesheet"}/
-    %link{:crossorigin => "anonymous", :href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", :integrity => "sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", :rel => "stylesheet"}/
-    / Modernizr runs quickly on page load to detect features
-    %script{:src => "https://knzk.me/js/modernizr.js"}
-  %body
-    #container
-      .overlay
-      .item-title
-        #message
-        .link-bottom
-          %a.link-icon{:href => "https://discord.gg/5teHfRK"}
-            %i.fa.fa-phone-square{"aria-hidden" => "true"}
-            Discord
-          %a.link-icon{:href => "mailto:contact@ncls.me"}
-            %i.fa.fa-envelope{"aria-hidden" => "true"}
-            Email
-    / ///////////////////\\\\\\\\\\\\\\\\\\\
-    / ********** Resources jQuery **********
-    / \\\\\\\\\\\\\\\\\\\///////////////////
-    / * Libraries jQuery, Easing and Bootstrap - Be careful to not remove them *
-    %script{:src => "https://knzk.me/js/jquery.min.js"}
-    %script{:src => "https://knzk.me/js/jquery.easings.min.js"}
-    %script{:src => "https://knzk.me/js/bootstrap.min.js"}
-    / Slideshow plugin
-    %script{:src => "https://knzk.me/js/vegas.js"}
-    :javascript
-      $('body').vegas({
-          slides: [
-              { src: 'https://knzk.me/img/background-vintage.jpg' },
-              // { src: 'img/slide-2.jpg' },
-              // { src: 'img/slide-3.jpg' },
-          ],
-
-          // Delay beetween slides in milliseconds.
-          // delay: 5000,
-
-          // Chose your transition effect (See the documentation provided in your download pack)
-          // transition: 'fade'
-      });
-    / Main JS File
-    %script{:src => "https://knzk.me/js/main-vintage.js"}
-    /[if lt IE 10] <script type="text/javascript" src="js/placeholder.js"></script>
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
+    %meta{ charset: 'utf-8' }/
+    %title= safe_join([yield(:page_title), Setting.default_settings['site_title']], ' - ')
+    %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
+    = stylesheet_pack_tag 'common', media: 'all'
+    = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
+  %body.error
+    .dialog
+      %img{ alt: Setting.default_settings['site_title'], src: '/oops.gif' }/
+      %div
+        %h1= yield :content

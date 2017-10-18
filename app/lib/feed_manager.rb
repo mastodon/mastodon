@@ -56,7 +56,17 @@ class FeedManager
     falloff_rank = FeedManager::REBLOG_FALLOFF - 1
     falloff_range = redis.zrevrange(timeline_key, falloff_rank, falloff_rank, with_scores: true)
     falloff_score = falloff_range&.first&.last&.to_i || 0
-    redis.zremrangebyscore(reblog_key, 0, falloff_score)
+
+    # Get any reblogs we might have to clean up after.
+    redis.zrangebyscore(reblog_key, 0, falloff_score).each do |reblogged_id|
+      # Remove it from the set of reblogs we're tracking *first* to avoid races.
+      redis.zrem(reblog_key, reblogged_id)
+      # Just drop any set we might have created to track additional reblogs.
+      # This means that if this reblog is deleted, we won't automatically insert
+      # another reblog, but also that any new reblog can be inserted into the
+      # feed.
+      redis.del(key(type, account_id, "reblogs:#{reblogged_id}"))
+    end
   end
 
   def push_update_required?(timeline_type, account_id)
@@ -85,7 +95,7 @@ class FeedManager
     oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
 
     from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_home_score).reorder(nil).find_each do |status|
-      unpush(:home, into_account, status)
+      remove_from_feed(:home, into_account, status)
     end
   end
 
@@ -100,11 +110,24 @@ class FeedManager
   end
 
   def populate_feed(account)
-    prepopulate_limit = FeedManager::MAX_ITEMS / 4
-    statuses = Status.as_home_timeline(account).order(account_id: :desc).limit(prepopulate_limit)
-    statuses.reverse_each do |status|
-      next if filter_from_home?(status, account)
-      add_to_feed(:home, account, status)
+    added  = 0
+    limit  = FeedManager::MAX_ITEMS / 2
+    max_id = nil
+
+    loop do
+      statuses = Status.as_home_timeline(account)
+                       .paginate_by_max_id(limit, max_id)
+
+      break if statuses.empty?
+
+      statuses.each do |status|
+        next if filter_from_home?(status, account)
+        added += 1 if add_to_feed(:home, account, status)
+      end
+
+      break unless added.zero?
+
+      max_id = statuses.last.id
     end
   end
 
@@ -115,7 +138,8 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id)
-    return true if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
+    return false if receiver_id == status.account_id
+    return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
 
     check_for_mutes = [status.account_id]
     check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
@@ -160,20 +184,31 @@ class FeedManager
   # either action is appropriate.
   def add_to_feed(timeline_type, account, status)
     timeline_key = key(timeline_type, account.id)
-    reblog_key = key(timeline_type, account.id, 'reblogs')
+    reblog_key   = key(timeline_type, account.id, 'reblogs')
 
     if status.reblog?
       # If the original status or a reblog of it is within
       # REBLOG_FALLOFF statuses from the top, do not re-insert it into
       # the feed
       rank = redis.zrevrank(timeline_key, status.reblog_of_id)
+
       return false if !rank.nil? && rank < FeedManager::REBLOG_FALLOFF
 
       reblog_rank = redis.zrevrank(reblog_key, status.reblog_of_id)
-      return false unless reblog_rank.nil?
-
-      redis.zadd(timeline_key, status.id, status.id)
-      redis.zadd(reblog_key, status.id, status.reblog_of_id)
+      if reblog_rank.nil?
+        # This is not something we've already seen reblogged, so we
+        # can just add it to the feed (and note that we're
+        # reblogging it).
+        redis.zadd(timeline_key, status.id, status.id)
+        redis.zadd(reblog_key, status.id, status.reblog_of_id)
+      else
+        # Another reblog of the same status was already in the
+        # REBLOG_FALLOFF most recent statuses, so we note that this
+        # is an "extra" reblog, by storing it in reblog_set_key.
+        reblog_set_key = key(timeline_type, account.id, "reblogs:#{status.reblog_of_id}")
+        redis.sadd(reblog_set_key, status.id)
+        return false
+      end
     else
       redis.zadd(timeline_key, status.id, status.id)
     end
@@ -187,22 +222,29 @@ class FeedManager
   # do so if appropriate.
   def remove_from_feed(timeline_type, account, status)
     timeline_key = key(timeline_type, account.id)
-    reblog_key = key(timeline_type, account.id, 'reblogs')
 
     if status.reblog?
       # 1. If the reblogging status is not in the feed, stop.
       status_rank = redis.zrevrank(timeline_key, status.id)
       return false if status_rank.nil?
 
-      # 2. Remove the reblogged status from the `:reblogs` zset.
-      redis.zrem(reblog_key, status.reblog_of_id)
+      # 2. Remove reblog from set of this status's reblogs.
+      reblog_set_key = key(timeline_type, account.id, "reblogs:#{status.reblog_of_id}")
 
-      # 3. Add the reblogged status to the feed using the reblogging
-      # status' ID as its score, and the reblogged status' ID as its
-      # value.
-      redis.zadd(timeline_key, status.id, status.reblog_of_id)
+      redis.srem(reblog_set_key, status.id)
+      # 3. Re-insert another reblog or original into the feed if one
+      # remains in the set. We could pick a random element, but this
+      # set should generally be small, and it seems ideal to show the
+      # oldest potential such reblog.
+      other_reblog = redis.smembers(reblog_set_key).map(&:to_i).sort.first
+
+      redis.zadd(timeline_key, other_reblog, other_reblog) if other_reblog
 
       # 4. Remove the reblogging status from the feed (as normal)
+      # (outside conditional)
+    else
+      # If the original is getting deleted, no use for reblog references
+      redis.del(key(timeline_type, account.id, "reblogs:#{status.id}"))
     end
 
     redis.zrem(timeline_key, status.id)
