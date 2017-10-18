@@ -102,6 +102,16 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, ownProps) => {
 
     let status = getStatus(state, ownProps.id);
+
+    if(status === null) {
+      console.error(`ERROR! NULL STATUS! ${ownProps.id}`);
+      // work-around: find first good status
+      for (let k of state.get('statuses').keys()) {
+        status = getStatus(state, k);
+        if (status !== null) break;
+      }
+    }
+
     let reblogStatus = status.get('reblog', null);
     let account = undefined;
     let prepend = undefined;
