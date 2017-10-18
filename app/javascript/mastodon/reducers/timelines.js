@@ -31,10 +31,10 @@ const initialTimeline = ImmutableMap({
 });
 
 const normalizeTimeline = (state, timeline, statuses, next) => {
-  const ids       = ImmutableList(statuses.map(status => status.get('id')));
+  const oldIds    = state.getIn([timeline, 'items'], ImmutableList());
+  const ids       = ImmutableList(statuses.map(status => status.get('id'))).filter(newId => !oldIds.includes(newId));
   const wasLoaded = state.getIn([timeline, 'loaded']);
   const hadNext   = state.getIn([timeline, 'next']);
-  const oldIds    = state.getIn([timeline, 'items'], ImmutableList());
 
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('loaded', true);
@@ -45,8 +45,8 @@ const normalizeTimeline = (state, timeline, statuses, next) => {
 };
 
 const appendNormalizedTimeline = (state, timeline, statuses, next) => {
-  const ids    = ImmutableList(statuses.map(status => status.get('id')));
   const oldIds = state.getIn([timeline, 'items'], ImmutableList());
+  const ids    = ImmutableList(statuses.map(status => status.get('id'))).filter(newId => !oldIds.includes(newId));
 
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('isLoading', false);
@@ -75,15 +75,9 @@ const updateTimeline = (state, timeline, status, references) => {
   }));
 };
 
-const deleteStatus = (state, id, accountId, references, reblogOf) => {
+const deleteStatus = (state, id, accountId, references) => {
   state.keySeq().forEach(timeline => {
-    state = state.updateIn([timeline, 'items'], list => {
-      if (reblogOf && !list.includes(reblogOf)) {
-        return list.map(item => item === id ? reblogOf : item);
-      } else {
-        return list.filterNot(item => item === id);
-      }
-    });
+    state = state.updateIn([timeline, 'items'], list => list.filterNot(item => item === id));
   });
 
   // Remove reblogs of deleted status
