@@ -95,7 +95,7 @@ export function submitCompose() {
     let status  = getState().getIn(['compose', 'text'], '');
 
     if (status.length === 0 && media.size > 0) {
-      status = "\u200B";
+      status = '\u200B';
     } else if (status.length === 0) {
       return;
     }
