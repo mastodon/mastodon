@@ -42,7 +42,7 @@ class RemoteFollow
 
   def acct_resource
     @_acct_resource ||= Goldfinger.finger("acct:#{acct}")
-  rescue Goldfinger::Error
+  rescue Goldfinger::Error, HTTP::ConnectionError
     nil
   end
 

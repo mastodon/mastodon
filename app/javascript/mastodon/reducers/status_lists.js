@@ -2,14 +2,24 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
+import {
+  PINNED_STATUSES_FETCH_SUCCESS,
+} from '../actions/pin_statuses';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import {
   FAVOURITE_SUCCESS,
   UNFAVOURITE_SUCCESS,
+  PIN_SUCCESS,
+  UNPIN_SUCCESS,
 } from '../actions/interactions';
 
 const initialState = ImmutableMap({
   favourites: ImmutableMap({
+    next: null,
+    loaded: false,
+    items: ImmutableList(),
+  }),
+  pins: ImmutableMap({
     next: null,
     loaded: false,
     items: ImmutableList(),
@@ -53,6 +63,12 @@ export default function statusLists(state = initialState, action) {
     return prependOneToList(state, 'favourites', action.status);
   case UNFAVOURITE_SUCCESS:
     return removeOneFromList(state, 'favourites', action.status);
+  case PINNED_STATUSES_FETCH_SUCCESS:
+    return normalizeList(state, 'pins', action.statuses, action.next);
+  case PIN_SUCCESS:
+    return prependOneToList(state, 'pins', action.status);
+  case UNPIN_SUCCESS:
+    return removeOneFromList(state, 'pins', action.status);
   default:
     return state;
   }

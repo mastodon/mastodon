@@ -1,6 +1,7 @@
 ---
 ja:
   about:
+    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
@@ -49,8 +50,15 @@ ja:
       admin: Admin
     unfollow: フォロー解除
   admin:
+    account_moderation_notes:
+      account: モデレータ
+      create: 書き込む
+      created_at: 日付
+      created_msg: モデレーションメモを書き込みました
+      delete: 削除
+      destroyed_msg: モデレーションメモを削除しました
     accounts:
-      are_you_sure: 本当に実行しますか?
+      are_you_sure: 本当に実行しますか？
       confirm: 確認
       confirmed: 確認済み
       disable_two_factor_authentication: 二段階認証を無効にする
@@ -60,6 +68,7 @@ ja:
       email: E-mail
       feed_url: フィードURL
       followers: フォロワー数
+      followers_url: Followers URL
       follows: フォロー数
       inbox_url: Inbox URL
       ip: IP
@@ -74,6 +83,7 @@ ja:
         silenced: サイレンス中
         suspended: 停止中
         title: モデレーション
+      moderation_notes: モデレーションメモ
       most_recent_activity: 直近の活動
       most_recent_ip: 直近のIP
       not_subscribed: 購読していない
@@ -93,6 +103,7 @@ ja:
       resubscribe: 再講読
       salmon_url: Salmon URL
       search: 検索
+      shared_inbox_url: Shared Inbox URL
       show:
         created_reports: このアカウントで作られたレポート
         report: レポート
@@ -106,6 +117,25 @@ ja:
       unsubscribe: 購読の解除
       username: ユーザー名
       web: Web
+    custom_emojis:
+      copied_msg: 絵文字のコピーをローカルに作成しました
+      copy: コピー
+      copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
+      created_msg: 絵文字の追加に成功しました
+      delete: 削除
+      destroyed_msg: 絵文字の削除に成功しました
+      disable: 無効化
+      disabled_msg: 絵文字を無効化しました
+      emoji: 絵文字
+      enable: 有効化
+      enabled_msg: 絵文字を有効化しました
+      image_hint: 50KBまでのPNG画像を利用できます。
+      new:
+        title: 新規カスタム絵文字の追加
+      shortcode: ショートコード
+      shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます。
+      title: カスタム絵文字
+      upload: アップロード
     domain_blocks:
       add_new: 新規追加
       created_msg: ドメインブロック処理を完了しました
@@ -138,9 +168,21 @@ ja:
         undo: 元に戻す
       title: ドメインブロック
       undo: 元に戻す
+    email_domain_blocks:
+      add_new: 新規追加
+      created_msg: 処理を完了しました
+      delete: 消去
+      destroyed_msg: 消去しました
+      domain: ドメイン
+      new:
+        create: ブロックを作成
+        title: 新規メールドメインブロック
+      title: メールドメインブロック
     instances:
       account_count: 既知のアカウント数
       domain_name: ドメイン名
+      reset: リセット
+      search: 検索
       title: 既知のインスタンス
     reports:
       action_taken_by: レポート処理者
@@ -167,12 +209,15 @@ ja:
       unresolved: 未解決
       view: 表示
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
+        title: 新規ユーザーが自動フォローするアカウント
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先のユーザー名
       registrations:
         closed_message:
-          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
+          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます。
           title: 新規登録停止時のメッセージ
         deletion:
           desc_html: 誰でも自分のアカウントを削除できるようにします
@@ -184,12 +229,15 @@ ja:
         desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
       site_description_extended:
-        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
+        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます。
         title: カスタム詳細説明
       site_terms:
-        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
+        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます。
         title: カスタム利用規約
       site_title: インスタンスの名前
+      thumbnail:
+        desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です。
+        title: インスタンスのサムネイル
       timeline_preview:
         desc_html: ランディングページに公開タイムラインを表示します
         title: タイムラインプレビュー
@@ -222,9 +270,10 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
+    salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
     signature: Mastodon %{instance} インスタンスからの通知
-    view: 'View:'
+    view: リンク
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
@@ -251,7 +300,7 @@ ja:
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました。
     follow: フォロー
     follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
-    following: '成功! あなたは現在以下のアカウントをフォローしています:'
+    following: '成功！ あなたは現在以下のアカウントをフォローしています:'
     post_follow:
       close: またはこのウィンドウを閉じます
       return: ユーザーのプロフィールに戻る
@@ -280,14 +329,17 @@ ja:
     warning_html: 削除が保証されるのはこのインスタンス上のコンテンツのみです。他のインスタンス等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
     warning_title: 共有されたコンテンツについて
   errors:
-    '403': このページを表示する権限がありません
+    '403': このページを表示する権限がありません。
     '404': お探しのページは見つかりませんでした。
     '410': お探しのページはもう存在しません。
     '422':
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
     '429': リクエストの制限に達しました。
-    noscript: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けのMastodonネイティブアプリを探すことができます。
+    '500':
+      content: もうしわけありませんが、なにかが間違っています。
+      title: このページは正しくありません
+    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
     blocks: ブロック
     csv: CSV
@@ -311,11 +363,11 @@ ja:
     powered_by: powered by %{link}
     save_changes: 変更を保存
     validation_errors:
-      one: エラーが発生しました。以下のエラーを確認してください
-      other: エラーが発生しました。以下の%{count}個のエラーを確認してください
+      one: エラーが発生しました。以下のエラーを確認してください。
+      other: エラーが発生しました。以下の%{count}個のエラーを確認してください。
   imports:
     preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
-    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
+    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください。
     types:
       blocking: ブロックしたアカウントリスト
       following: フォロー中のアカウントリスト
@@ -344,7 +396,7 @@ ja:
       body: "%{name} さんにフォローされています"
       subject: "%{name} さんにフォローされています"
     follow_request:
-      body: "%{name} さんがあなたにフォローをリクエストしました。"
+      body: "%{name} さんがあなたにフォローをリクエストしました"
       subject: "%{name} さんからのフォローリクエスト"
     mention:
       body: "%{name} さんから返信がありました:"
@@ -352,10 +404,26 @@ ja:
     reblog:
       body: 'あなたのトゥートが %{name} さんにブーストされました:'
       subject: あなたのトゥートが %{name} さんにブーストされました
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: 次
     prev: 前
     truncate: "&hellip;"
+  preferences:
+    languages: 言語
+    other: その他
+    publishing: 投稿
+    web: ウェブ
   push_notifications:
     favourite:
       title: あなたのトゥートが %{name} さんにお気に入り登録されました
@@ -370,9 +438,6 @@ ja:
       title: "%{name} さんから返信がありました"
     reblog:
       title: あなたのトゥートが %{name} さんにブーストされました
-    subscribed:
-      body: あなたはプッシュ通知を受け取ることが出来ます
-      title: Subscription が登録されました
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
@@ -426,6 +491,7 @@ ja:
     export: データのエクスポート
     followers: 信頼済みのインスタンス
     import: データのインポート
+    notifications: 通知
     preferences: ユーザー設定
     settings: 設定
     two_factor_authentication: 二段階認証
@@ -433,6 +499,11 @@ ja:
   statuses:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
+    pin_errors:
+      limit: 固定されているトゥートが多すぎます
+      ownership: 他人のトゥートを固定することはできません
+      private: 非公開のトゥートを固定することはできません
+      reblog: ブーストされたトゥートを固定することはできません
     show_more: もっと見る
     visibilities:
       private: 非公開
@@ -443,6 +514,7 @@ ja:
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
     click_to_show: クリックして表示
+    pinned: 固定されたトゥート
     reblogged: さんにブーストされました
     sensitive_content: 閲覧注意
   terms:
@@ -515,11 +587,13 @@ ja:
 
       <p>オリジナルの出典 <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} 利用規約・プライバシーポリシー"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 確認するには認証アプリで表示されたコードを入力してください
+    code_hint: 確認するには認証アプリで表示されたコードを入力してください。
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効

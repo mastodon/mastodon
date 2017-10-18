@@ -106,7 +106,7 @@ export default function accountsCounters(state = initialState, action) {
   case BLOCKS_EXPAND_SUCCESS:
   case MUTES_FETCH_SUCCESS:
   case MUTES_EXPAND_SUCCESS:
-    return normalizeAccounts(state, action.accounts);
+    return action.accounts ? normalizeAccounts(state, action.accounts) : state;
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case SEARCH_FETCH_SUCCESS:

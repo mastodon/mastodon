@@ -1,6 +1,7 @@
 ---
 en:
   about:
+    about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
@@ -49,6 +50,13 @@ en:
       admin: Admin
     unfollow: Unfollow
   admin:
+    account_moderation_notes:
+      account: Moderator
+      create: Create
+      created_at: Date
+      created_msg: Moderation note successfully created!
+      delete: Delete
+      destroyed_msg: Moderation note successfully destroyed!
     accounts:
       are_you_sure: Are you sure?
       confirm: Confirm
@@ -60,6 +68,7 @@ en:
       email: E-mail
       feed_url: Feed URL
       followers: Followers
+      followers_url: Followers URL
       follows: Follows
       inbox_url: Inbox URL
       ip: IP
@@ -74,6 +83,7 @@ en:
         silenced: Silenced
         suspended: Suspended
         title: Moderation
+      moderation_notes: Moderation notes
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
       not_subscribed: Not subscribed
@@ -93,6 +103,7 @@ en:
       resubscribe: Resubscribe
       salmon_url: Salmon URL
       search: Search
+      shared_inbox_url: Shared Inbox URL
       show:
         created_reports: Reports created by this account
         report: report
@@ -106,6 +117,25 @@ en:
       unsubscribe: Unsubscribe
       username: Username
       web: Web
+    custom_emojis:
+      copied_msg: Successfully created local copy of the emoji
+      copy: Copy
+      copy_failed_msg: Could not make a local copy of that emoji
+      created_msg: Emoji successfully created!
+      delete: Delete
+      destroyed_msg: Emojo successfully destroyed!
+      disable: Disable
+      disabled_msg: Successfully disabled that emoji
+      emoji: Emoji
+      enable: Enable
+      enabled_msg: Successfully enabled that emoji
+      image_hint: PNG up to 50KB
+      new:
+        title: Add new custom emoji
+      shortcode: Shortcode
+      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      title: Custom emojis
+      upload: Upload
     domain_blocks:
       add_new: Add new
       created_msg: Domain block is now being processed
@@ -138,9 +168,21 @@ en:
         undo: Undo
       title: Domain Blocks
       undo: Undo
+    email_domain_blocks:
+      add_new: Add new
+      created_msg: Email domain block successfully created
+      delete: Delete
+      destroyed_msg: Email domain block successfully deleted
+      domain: Domain
+      new:
+        create: Create block
+        title: New email domain block
+      title: Email Domain Block
     instances:
       account_count: Known accounts
       domain_name: Domain
+      reset: Reset
+      search: Search
       title: Known Instances
     reports:
       action_taken_by: Action taken by
@@ -167,6 +209,9 @@ en:
       unresolved: Unresolved
       view: View
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
+        title: Default follows for new users
       contact_information:
         email: Business e-mail
         username: Contact username
@@ -190,6 +235,9 @@ en:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
       site_title: Instance name
+      thumbnail:
+        desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
+        title: Instance thumbnail
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
@@ -288,7 +336,10 @@ en:
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
     '429': Throttled
-    noscript: To use the Mastodon web application, please enable JavaScript. Alternatively, find a native app for Mastodon for your platform.
+    '500':
+      content: We're sorry, but something went wrong on our end.
+      title: This page is not correct
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
   exports:
     blocks: You block
     csv: CSV
@@ -353,10 +404,26 @@ en:
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Next
     prev: Prev
     truncate: "&hellip;"
+  preferences:
+    languages: Languages
+    other: Other
+    publishing: Publishing
+    web: Web
   push_notifications:
     favourite:
       title: "%{name} favourited your status"
@@ -371,9 +438,6 @@ en:
       title: "%{name} mentioned you"
     reblog:
       title: "%{name} boosted your status"
-    subscribed:
-      body: You can now receive push notifications.
-      title: Subscription registered!
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
@@ -427,6 +491,7 @@ en:
     export: Data export
     followers: Authorized followers
     import: Import
+    notifications: Notifications
     preferences: Preferences
     settings: Settings
     two_factor_authentication: Two-factor Authentication
@@ -434,6 +499,11 @@ en:
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
+    pin_errors:
+      limit: Too many toots pinned
+      ownership: Someone else's toot cannot be pinned
+      private: Non-public toot cannot be pinned
+      reblog: A boost cannot be pinned
     show_more: Show more
     visibilities:
       private: Followers-only
@@ -444,6 +514,7 @@ en:
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     click_to_show: Click to show
+    pinned: Pinned toot
     reblogged: boosted
     sensitive_content: Sensitive content
   terms:
@@ -516,6 +587,8 @@ en:
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

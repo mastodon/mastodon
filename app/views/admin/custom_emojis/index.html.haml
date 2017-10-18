@@ -1,0 +1,34 @@
+- content_for :page_title do
+  = t('admin.custom_emojis.title')
+
+.filters
+  .filter-subset
+    %strong= t('admin.accounts.location.title')
+    %ul
+      %li= filter_link_to t('admin.accounts.location.all'), local: nil, remote: nil
+      %li
+        - if selected? local: '1', remote: nil
+          = filter_link_to t('admin.accounts.location.local'), {local: nil, remote: nil}, {local: '1', remote: nil}
+        - else
+          = filter_link_to t('admin.accounts.location.local'), local: '1', remote: nil
+      %li
+        - if selected? remote: '1', local: nil
+          = filter_link_to t('admin.accounts.location.remote'), {remote: nil, local: nil}, {remote: '1', local: nil}
+        - else
+          = filter_link_to t('admin.accounts.location.remote'), remote: '1', local: nil
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.custom_emojis.emoji')
+        %th= t('admin.custom_emojis.shortcode')
+        %th= t('admin.accounts.domain')
+        %th
+        %th
+        %th
+    %tbody
+      = render @custom_emojis
+
+= paginate @custom_emojis
+= link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'

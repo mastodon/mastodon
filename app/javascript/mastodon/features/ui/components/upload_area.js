@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Motion from 'react-motion/lib/Motion';
+import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { FormattedMessage } from 'react-intl';
 
@@ -12,13 +12,12 @@ export default class UploadArea extends React.PureComponent {
   };
 
   handleKeyUp = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
     const keyCode = e.keyCode;
     if (this.props.active) {
       switch(keyCode) {
       case 27:
+        e.preventDefault();
+        e.stopPropagation();
         this.props.onClose();
         break;
       }

@@ -2,7 +2,6 @@
 $stdout.sync = true
 
 require "shellwords"
-require "yaml"
 
 ENV["RAILS_ENV"] ||= "development"
 RAILS_ENV = ENV["RAILS_ENV"]
@@ -20,9 +19,9 @@ unless File.exist?(WEBPACK_CONFIG)
   exit!
 end
 
-newenv  = { "NODE_PATH" => NODE_MODULES_PATH.shellescape }
-cmdline = ["yarn", "run", "webpack", "--", "--config", WEBPACK_CONFIG] + ARGV
+env = { "NODE_PATH" => NODE_MODULES_PATH.shellescape }
+cmd = [ "#{NODE_MODULES_PATH}/.bin/webpack", "--config", WEBPACK_CONFIG ] + ARGV
 
 Dir.chdir(APP_PATH) do
-  exec newenv, *cmdline
+  exec env, *cmd
 end

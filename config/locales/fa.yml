@@ -1,6 +1,7 @@
 ---
 fa:
   about:
+    about_hashtag_html: این‌ها نوشته‌های عمومی هستند که برچسب (هشتگ) <strong>#%{hashtag}</strong> را دارند. اگر شما روی هر سروری حساب داشته باشید می‌توانید به این نوشته‌ها واکنش نشان دهید.
     about_mastodon_html: ماستدون (Mastodon) یک شبکهٔ اجتماعی است که بر اساس پروتکل‌های آزاد وب و نرم‌افزارهای آزاد و کدباز ساخته شده است. این شبکه مانند ایمیل غیرمتمرکز است.
     about_this: درباره
     closed_registrations: ثبت‌نام روی این سرور هم‌اینک فعال نیست. اما شما می‌توانید سرور دیگری بیابید و با حسابی که آن‌جا می‌سازید دقیقاً به همین شبکه دسترسی داشته باشید.
@@ -37,14 +38,25 @@ fa:
     follow: پی بگیرید
     followers: پیگیران
     following: پی می‌گیرد
+    media: عکس و ویدیو
     nothing_here: این‌جا چیزی نیست!
     people_followed_by: کسانی که %{name} پی می‌گیرد
     people_who_follow: کسانی که %{name} را پی می‌گیرند
-    posts: نوشته
+    posts: نوشته‌ها
+    posts_with_replies: نوشته‌ها و پاسخ‌ها
     remote_follow: پیگیری غیرمستقیم
     reserved_username: این نام کاربری در دسترس نیست
+    roles:
+      admin: مدیر
     unfollow: پایان پیگیری
   admin:
+    account_moderation_notes:
+      account: مدیر
+      create: نوشتن
+      created_at: تاریخ
+      created_msg: یادداشت مدیر با موفقیت ساخته شد!
+      delete: پاک کردن
+      destroyed_msg: یادداشت مدیر با موفقیت پاک شد!
     accounts:
       are_you_sure: آیا مطمئن هستید؟
       confirm: تأیید
@@ -56,7 +68,9 @@ fa:
       email: ایمیل
       feed_url: نشانی فید
       followers: پیگیران
+      followers_url: نشانی پیگیران
       follows: پی می‌گیرد
+      inbox_url: نشانی صندوق ورودی
       ip: IP
       location:
         all: همه
@@ -69,6 +83,7 @@ fa:
         silenced: بی‌صدا شده
         suspended: معلق شده
         title: مدیریت
+      moderation_notes: یادداشت مدیر
       most_recent_activity: آخرین فعالیت‌ها
       most_recent_ip: آخرین IP ها
       not_subscribed: عضو نیست
@@ -76,8 +91,10 @@ fa:
         alphabetic: الفبایی
         most_recent: تازه‌ترین‌ها
         title: ترتیب
+      outbox_url: نشانی صندوق خروجی
       perform_full_suspension: انجام تعلیق کامل
       profile_url: نشانی نمایه
+      protocol: پروتکل
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
       redownload: به‌روزرسانی تصویر نمایه
@@ -86,6 +103,7 @@ fa:
       resubscribe: اشتراک دوباره
       salmon_url: نشانی Salmon
       search: جستجو
+      shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
         created_reports: گزارش‌ها از طرف این حساب
         report: گزارش
@@ -99,6 +117,25 @@ fa:
       unsubscribe: لغو اشتراک
       username: نام کاربری
       web: وب
+    custom_emojis:
+      copied_msg: نسخهٔ محلی شکلک با موفقیت ساخته شد
+      copy: نسخه‌برداری
+      copy_failed_msg: نشد که نسخهٔ محلی این شکلک ساخته شود
+      created_msg: این شکلک با موفقیت ساخته شد!
+      delete: پاک کردن
+      destroyed_msg: این شکلک با موفقیت پاک شد!
+      disable: غیرفعال‌سازی
+      disabled_msg: این شکلک با موفقیت غیرفعال شد
+      emoji: شکلک
+      enable: فعال‌سازی
+      enabled_msg: این شکلک با موفقیت فعال شد
+      image_hint: پروندهٔ PNG حداکثر 50KB
+      new:
+        title: افزودن شکلک سفارشی
+      shortcode: کد کوتاه
+      shortcode_hint: دست‌کم ۲ نویسه و تنها شامل حروف، اعداد و زیرخط
+      title: شکلک‌های سفارشی
+      upload: بارگذاری
     domain_blocks:
       add_new: افزودن تازه
       created_msg: مسدودکردن دامین در حال انجام است
@@ -131,9 +168,21 @@ fa:
         undo: واگردانی
       title: دامین‌های مسدودشده
       undo: واگردانی
+    email_domain_blocks:
+      add_new: افزودن تازه
+      created_msg: مسدودسازی دامین ایمیل با موفقیت ساخته شد
+      delete: Delete
+      destroyed_msg: مسدودسازی دامین ایمیل با موفقیت پاک شد
+      domain: دامین
+      new:
+        create: ساختن مسدودسازی
+        title: مسدودسازی دامین ایمیل تازه
+      title: مسدودسازی دامین‌های ایمیل
     instances:
       account_count: حساب‌های شناخته‌شده
       domain_name: دامین
+      reset: بازنشانی
+      search: جستجو
       title: سرورهای شناخته‌شده
     reports:
       action_taken_by: انجام‌دهنده
@@ -160,6 +209,9 @@ fa:
       unresolved: حل‌نشده
       view: نمایش
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: نام‌های کاربری را با ویرگول از هم جدا کنید. تنها حساب‌های محلی و قفل‌نشده کار می‌کنند. اگر این‌جا را خالی بگذارید، به طور پیش‌فرض همهٔ مدیرهای این سرور پی‌گرفته خواهند شد.
+        title: پیگیری‌های پیش‌فرض برای کاربران تازه
       contact_information:
         email: ایمیل کاری
         username: نام کاربری
@@ -183,6 +235,9 @@ fa:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
       site_title: نام سرور
+      thumbnail:
+        desc_html: برای دیدن با OpenGraph و رابط برنامه‌نویسی. وضوح پیشنهادی ۱۲۰۰×۶۳۰ پیکسل
+        title: تصویر کوچک فوری
       timeline_preview:
         desc_html: نوشته‌های عمومی این سرور را در صفحهٔ آغازین نشان دهید
         title: پیش‌نمایش نوشته‌ها
@@ -220,7 +275,13 @@ fa:
     signature: اعلان‌های ماستدون از %{instance}
     view: 'نمایش:'
   applications:
+    created: برنامه با موفقیت ساخته شد
+    destroyed: برنامه با موفقیت پاک شد
     invalid_url: نشانی واردشده معتبر نیست
+    regenerate_token: دوباره‌سازی کد دسترسی
+    token_regenerated: کد دسترسی با موفقیت ساخته شد
+    warning: خیلی مواظب این اطلاعات باشید و آن را به هیچ کس ندهید!
+    your_token: کد دسترسی شما
   auth:
     agreement_html: پیش از عضو شدن باید <a href="%{rules_path}">شرایط استفاده</a> و <a href="%{terms_path}">سیاست رازداری</a> ما را بپذیرید.
     change_password: امنیت
@@ -228,6 +289,7 @@ fa:
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
     forgot_password: رمزتان را گم کرده‌اید؟
+    invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: ورود
     logout: خروج
     register: عضو شوید
@@ -272,9 +334,12 @@ fa:
     '410': صفحه‌ای که به دنبالش بودید دیگر وجود ندارد.
     '422':
       content: تأیید امنیتی انجام نشد. آیا مرورگر شما کوکی‌ها را مسدود می‌کند؟
-      title: تأیید امنیتی شکست خورد
+      title: تأیید امنیتی کار نکرد
     '429': درخواست‌های بیش از حد
-    noscript: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید یک اپ ماستدون را به‌کار ببرید.
+    '500':
+      content: شرمنده، یک چیزی از سمت ما اشتباه شده.
+      title: این صفحه درست نیست
+    noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید یک اپ ماستدون را به‌کار ببرید.
   exports:
     blocks: حساب‌های مسدودشده
     csv: CSV
@@ -339,10 +404,26 @@ fa:
     reblog:
       body: "%{name} نوشتهٔ شما را بازبوقید:"
       subject: "%{name} نوشتهٔ شما را بازبوقید"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: بعدی
     prev: قبلی
     truncate: "&hellip;"
+  preferences:
+    languages: زبان‌ها
+    other: سایر
+    publishing: انتشار
+    web: وب
   push_notifications:
     favourite:
       title: "%{name} نوشتهٔ شما را پسندید"
@@ -357,9 +438,6 @@ fa:
       title: "%{name} از شما نام برد"
     reblog:
       title: "%{name} نوشتهٔ شما را بازبوقید"
-    subscribed:
-      body: از این به بعد سرور می‌تواندبه شما اعلان‌های تازه بفرستد .
-      title: عضویت ثبت شد!
   remote_follow:
     acct: نشانی حساب username@domain خود را این‌جا بنویسید
     missing_resource: نشانی اینترنتی برای رسیدن به حساب شما پیدا نشد
@@ -408,16 +486,24 @@ fa:
     authorized_apps: برنامه‌های مجاز
     back: بازگشت به ماستدون
     delete: پاک‌کردن حساب
+    development: Development
     edit_profile: ویرایش نمایه
     export: برون‌سپاری داده‌ها
     followers: پیگیران مورد تأیید
     import: درون‌ریزی
+    notifications: اعلان‌ها
     preferences: ترجیحات
     settings: تنظیمات
     two_factor_authentication: ورود دومرحله‌ای
+    your_apps: برنامهٔ شما
   statuses:
     open_in_web: بازکردن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
+    pin_errors:
+      limit: نوشته‌های ثابت بیش از حد
+      ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
+      private: نوشته‌های غیرعمومی را نمی‌توان ثابت کرد
+      reblog: بازبوق‌ها را نمی‌توان ثابت کرد
     show_more: نمایش
     visibilities:
       private: خصوصی
@@ -428,6 +514,7 @@ fa:
       unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نمی‌یابد
   stream_entries:
     click_to_show: برای نمایش کلیک کنید
+    pinned: نوشته‌های ثابت
     reblogged: بازبوقید
     sensitive_content: محتوای حساس
   terms:
@@ -500,6 +587,8 @@ fa:
 
       <p>این نوشته اقتباسی است از <a href="https://github.com/discourse/discourse">سیاست رازداری Discourse</a>.</p>
     title: شرایط استفاده و سیاست رازداری %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -522,3 +611,4 @@ fa:
   users:
     invalid_email: نشانی ایمیل نامعتبر است
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
+    signed_in_as: 'واردشده به نام:'

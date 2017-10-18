@@ -25,10 +25,7 @@ class StreamEntriesController < ApplicationController
   end
 
   def embed
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
-    return gone if @stream_entry.activity.nil?
-
-    render layout: 'embedded'
+    redirect_to embed_short_account_status_url(@account, @stream_entry.activity), status: 301
   end
 
   private

@@ -36,7 +36,7 @@ describe Api::V1::Statuses::ReblogsController do
       it 'return json with updated attributes' do
         hash_body = body_as_json
 
-        expect(hash_body[:reblog][:id]).to eq status.id
+        expect(hash_body[:reblog][:id]).to eq status.id.to_s
         expect(hash_body[:reblog][:reblogs_count]).to eq 1
         expect(hash_body[:reblog][:reblogged]).to be true
       end

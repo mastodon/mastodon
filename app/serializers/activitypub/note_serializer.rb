@@ -3,12 +3,12 @@
 class ActivityPub::NoteSerializer < ActiveModel::Serializer
   attributes :id, :type, :summary, :content,
              :in_reply_to, :published, :url,
-             :attributed_to, :to, :cc, :sensitive
+             :attributed_to, :to, :cc, :sensitive,
+             :atom_uri, :in_reply_to_atom_uri,
+             :conversation
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
-
-  attribute :atom_uri, key: '_:atomUri', if: :local?
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -27,7 +27,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def in_reply_to
-    return unless object.reply?
+    return unless object.reply? && !object.thread.nil?
 
     if object.thread.uri.nil? || object.thread.uri.start_with?('http')
       ActivityPub::TagManager.instance.uri_for(object.thread)
@@ -57,11 +57,29 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def virtual_tags
-    object.mentions + object.tags
+    object.mentions + object.tags + object.emojis
   end
 
   def atom_uri
-    ::TagManager.instance.uri_for(object)
+    return unless object.local?
+
+    OStatus::TagManager.instance.uri_for(object)
+  end
+
+  def in_reply_to_atom_uri
+    return unless object.reply? && !object.thread.nil?
+
+    OStatus::TagManager.instance.uri_for(object.thread)
+  end
+
+  def conversation
+    return if object.conversation.nil?
+
+    if object.conversation.uri?
+      object.conversation.uri
+    else
+      OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
+    end
   end
 
   def local?
@@ -71,10 +89,14 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   class MediaAttachmentSerializer < ActiveModel::Serializer
     include RoutingHelper
 
-    attributes :type, :media_type, :url
+    attributes :type, :media_type, :url, :name
 
     def type
       'Document'
+    end
+
+    def name
+      object.description
     end
 
     def media_type
@@ -118,5 +140,8 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     def name
       "##{object.name}"
     end
+  end
+
+  class CustomEmojiSerializer < ActivityPub::EmojiSerializer
   end
 end
