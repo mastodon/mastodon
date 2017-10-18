@@ -57,8 +57,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
-    settings : ImmutablePropTypes.map.isRequired,
-    filesAttached : PropTypes.bool,
+    settings : ImmutablePropTypes.map.isRequired
   };
 
   static defaultProps = {
@@ -156,7 +155,7 @@ export default class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste, showSearch, filesAttached } = this.props;
+    const { intl, onPaste, showSearch } = this.props;
     const disabled = this.props.is_submitting;
     const maybeEye = (this.props.advanced_options && this.props.advanced_options.do_not_federate) ? ' 👁️' : '';
     const text     = [this.props.spoiler_text, countableText(this.props.text), maybeEye].join('');
