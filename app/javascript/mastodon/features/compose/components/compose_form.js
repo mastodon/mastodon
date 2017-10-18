@@ -57,7 +57,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
-    settings : ImmutablePropTypes.map.isRequired
+    settings : ImmutablePropTypes.map.isRequired,
   };
 
   static defaultProps = {
