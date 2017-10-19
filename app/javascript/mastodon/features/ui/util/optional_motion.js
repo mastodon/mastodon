@@ -4,10 +4,9 @@
 import React from 'react';
 import Motion from 'react-motion/lib/Motion';
 import PropTypes from 'prop-types';
+import { reduceMotion } from '../../../initial_state';
 
 const stylesToKeep = ['opacity', 'backgroundOpacity'];
-
-let reduceMotion;
 
 const extractValue = (value) => {
   // This is either an object with a "val" property or it's a number
@@ -26,12 +25,6 @@ class OptionalMotion extends React.Component {
 
     const { style, defaultStyle, children } = this.props;
 
-    if (typeof reduceMotion !== 'boolean') {
-      // This never changes without a page reload, so we can just grab it
-      // once from the body classes as opposed to using Redux's connect(),
-      // which would unnecessarily update every state change
-      reduceMotion = document.body.classList.contains('reduce-motion');
-    }
     if (reduceMotion) {
       Object.keys(style).forEach(key => {
         if (stylesToKeep.includes(key)) {

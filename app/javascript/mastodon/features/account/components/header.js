@@ -5,8 +5,8 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
-import { connect } from 'react-redux';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { autoPlayGif } from '../../../initial_state';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -14,19 +14,10 @@ const messages = defineMessages({
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
 });
 
-const makeMapStateToProps = () => {
-  const mapStateToProps = state => ({
-    autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
-  });
-
-  return mapStateToProps;
-};
-
 class Avatar extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -44,7 +35,7 @@ class Avatar extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, autoPlayGif }   = this.props;
+    const { account }   = this.props;
     const { isHovered } = this.state;
 
     return (
@@ -71,7 +62,6 @@ class Avatar extends ImmutablePureComponent {
 
 }
 
-@connect(makeMapStateToProps)
 @injectIntl
 export default class Header extends ImmutablePureComponent {
 
@@ -80,7 +70,6 @@ export default class Header extends ImmutablePureComponent {
     me: PropTypes.string.isRequired,
     onFollow: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired,
   };
 
   render () {
@@ -124,7 +113,7 @@ export default class Header extends ImmutablePureComponent {
     return (
       <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
         <div>
-          <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
+          <Avatar account={account} />
 
           <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHtml} />
           <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
