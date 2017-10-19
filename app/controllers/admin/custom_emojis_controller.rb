@@ -5,7 +5,7 @@ module Admin
     before_action :set_custom_emoji, except: [:index, :new, :create]
 
     def index
-      @custom_emojis = filtered_custom_emojis.page(params[:page])
+      @custom_emojis = filtered_custom_emojis.eager_load(:local_counterpart).page(params[:page])
     end
 
     def new
