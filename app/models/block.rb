@@ -5,9 +5,9 @@
 #
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  account_id        :integer          not null
-#  id                :integer          not null, primary key
-#  target_account_id :integer          not null
+#  account_id        :bigint           not null
+#  id                :bigint           not null, primary key
+#  target_account_id :bigint           not null
 #
 
 class Block < ApplicationRecord
