@@ -11,7 +11,7 @@
   %td
     - unless custom_emoji.local?
       - if custom_emoji.local_counterpart.present?
-        = link_to safe_join(custom_emoji_tag(custom_emoji.local_counterpart), t('admin.custom_emojis.overwrite')), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post
+        = link_to safe_join([custom_emoji_tag(custom_emoji.local_counterpart), t('admin.custom_emojis.overwrite')]), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post
       - else
         = table_link_to 'copy', t('admin.custom_emojis.copy'), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post
   %td
