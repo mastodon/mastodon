@@ -105,7 +105,7 @@ export default class Compose extends React.PureComponent {
         <SearchContainer />
 
         <div className='drawer__pager'>
-          <div className='drawer__inner' onFocus={this.onFocus}>
+          <div className='drawer__inner scrollable optionally-scrollable' onFocus={this.onFocus}>
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer />
           </div>
