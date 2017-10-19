@@ -234,7 +234,7 @@ RSpec.describe Formatter do
           let(:text) { ':coolcat: Beep boop' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<p><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -242,7 +242,7 @@ RSpec.describe Formatter do
           let(:text) { 'Beep :coolcat: boop' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/Beep <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -258,7 +258,7 @@ RSpec.describe Formatter do
           let(:text) { 'Beep boop :coolcat:' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/boop <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
       end
@@ -281,7 +281,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>:coolcat: Beep boop<br />' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<p><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -289,7 +289,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>Beep :coolcat: boop</p>' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/Beep <img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
 
@@ -305,7 +305,7 @@ RSpec.describe Formatter do
           let(:text) { '<p>Beep boop<br />:coolcat:</p>' }
 
           it 'converts shortcode to image tag' do
-            is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
+            is_expected.to match(/<br><img draggable="false" class="emojione custom-emoji" alt=":coolcat:"/)
           end
         end
       end
