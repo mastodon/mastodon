@@ -28,9 +28,9 @@ module Admin
     end
 
     def copy
-      emoji = CustomEmoji.new(domain: nil, shortcode: @custom_emoji.shortcode, image: @custom_emoji.image)
+      emoji = CustomEmoji.find_or_create_by(domain: nil, shortcode: @custom_emoji.shortcode)
 
-      if emoji.save
+      if emoji.update(image: @custom_emoji.image)
         flash[:notice] = I18n.t('admin.custom_emojis.copied_msg')
       else
         flash[:alert] = I18n.t('admin.custom_emojis.copy_failed_msg')
