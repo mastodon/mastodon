@@ -69,6 +69,10 @@ functions are:
   easier to read and to maintain. I leave it to the future readers of
   this code to determine the extent of my successes in this endeavor.
 
+  UPDATE 19 Oct 2017: We no longer allow character escapes inside our
+  double-quoted strings for ease of processing. We now internally use
+  the name "ƔAML" in our code to clarify that this is Not Quite YAML.
+
                                        Sending love + warmth eternal,
                                        - kibigo [@kibi@glitch.social]
 
@@ -96,10 +100,7 @@ const ALLOWED_CHAR      =  unirex( //  `c-printable` in the YAML 1.2 spec.
     compat_mode ? '[\t\n\r\x20-\x7e\x85\xa0-\ufffd]' : '[\t\n\r\x20-\x7e\x85\xa0-\ud7ff\ue000-\ufffd\u{10000}-\u{10FFFF}]'
   );
 const WHITE_SPACE       = /[ \t]/;
-const INDENTATION       = / */;  //  Indentation must be only spaces.
 const LINE_BREAK        = /\r?\n|\r|<br\s*\/?>/;
-const ESCAPE_CHAR       = /[0abt\tnvfre "\/\\N_LP]/;
-const HEXADECIMAL_CHARS = /[0-9a-fA-F]/;
 const INDICATOR         = /[-?:,[\]{}&#*!|>'"%@`]/;
 const FLOW_CHAR         = /[,[\]{}]/;
 
@@ -121,7 +122,7 @@ const NEW_LINE          = unirex(
   rexstr(ANY_WHITE_SPACE) + rexstr(LINE_BREAK)
 );
 const SOME_NEW_LINES    = unirex(
-  '(?:' + rexstr(ANY_WHITE_SPACE) + rexstr(LINE_BREAK) + ')+'
+  '(?:' + rexstr(NEW_LINE) + ')+'
 );
 const POSSIBLE_STARTS   = unirex(
   rexstr(DOCUMENT_START) + rexstr(/<p[^<>]*>/) + '?'
@@ -131,22 +132,13 @@ const POSSIBLE_ENDS     = unirex(
   rexstr(DOCUMENT_END) + '|' +
   rexstr(/<\/p>/)
 );
-const CHARACTER_ESCAPE  = unirex(
-  rexstr(/\\/) +
-  '(?:' +
-    rexstr(ESCAPE_CHAR) + '|' +
-    rexstr(/x/) + rexstr(HEXADECIMAL_CHARS) + '{2}' + '|' +
-    rexstr(/u/) + rexstr(HEXADECIMAL_CHARS) + '{4}' + '|' +
-    rexstr(/U/) + rexstr(HEXADECIMAL_CHARS) + '{8}' +
-  ')'
+const QUOTE_CHAR         = unirex(
+  '(?=' + rexstr(NOT_LINE_BREAK) + ')[^"]'
 );
-const ESCAPED_CHAR      = unirex(
-  rexstr(/(?!["\\])/) + rexstr(NOT_LINE_BREAK) + '|' +
-  rexstr(CHARACTER_ESCAPE)
+const ANY_QUOTE_CHAR    = unirex(
+  rexstr(QUOTE_CHAR) + '*'
 );
-const ANY_ESCAPED_CHARS = unirex(
-  rexstr(ESCAPED_CHAR) + '*'
-);
+
 const ESCAPED_APOS      = unirex(
   '(?=' + rexstr(NOT_LINE_BREAK) + ')' + rexstr(/[^']|''/)
 );
@@ -190,120 +182,76 @@ const LATER_VALUE_CHAR  = unirex(
 
 /*  YAML CONSTRUCTS  */
 
-const YAML_START        = unirex(
-  rexstr(ANY_WHITE_SPACE) + rexstr(/---/)
+const ƔAML_START        = unirex(
+  rexstr(ANY_WHITE_SPACE) + '---'
 );
-const YAML_END          = unirex(
-  rexstr(ANY_WHITE_SPACE) + rexstr(/(?:---|\.\.\.)/)
+const ƔAML_END          = unirex(
+  rexstr(ANY_WHITE_SPACE) + '(?:---|\.\.\.)'
 );
-const YAML_LOOKAHEAD    = unirex(
+const ƔAML_LOOKAHEAD    = unirex(
   '(?=' +
-    rexstr(YAML_START) +
+    rexstr(ƔAML_START) +
     rexstr(ANY_ALLOWED_CHARS) + rexstr(NEW_LINE) +
-    rexstr(YAML_END) + rexstr(POSSIBLE_ENDS) +
+    rexstr(ƔAML_END) + rexstr(POSSIBLE_ENDS) +
   ')'
 );
-const YAML_DOUBLE_QUOTE = unirex(
-  rexstr(/"/) + rexstr(ANY_ESCAPED_CHARS) + rexstr(/"/)
+const ƔAML_DOUBLE_QUOTE = unirex(
+  '"' + rexstr(ANY_QUOTE_CHAR) + '"'
 );
-const YAML_SINGLE_QUOTE = unirex(
-  rexstr(/'/) + rexstr(ANY_ESCAPED_APOS) + rexstr(/'/)
+const ƔAML_SINGLE_QUOTE = unirex(
+  '\'' + rexstr(ANY_ESCAPED_APOS) + '\''
 );
-const YAML_SIMPLE_KEY   = unirex(
+const ƔAML_SIMPLE_KEY   = unirex(
   rexstr(FIRST_KEY_CHAR) + rexstr(LATER_KEY_CHAR) + '*'
 );
-const YAML_SIMPLE_VALUE = unirex(
+const ƔAML_SIMPLE_VALUE = unirex(
   rexstr(FIRST_VALUE_CHAR) + rexstr(LATER_VALUE_CHAR) + '*'
 );
-const YAML_KEY          = unirex(
-  rexstr(YAML_DOUBLE_QUOTE) + '|' +
-  rexstr(YAML_SINGLE_QUOTE) + '|' +
-  rexstr(YAML_SIMPLE_KEY)
+const ƔAML_KEY          = unirex(
+  rexstr(ƔAML_DOUBLE_QUOTE) + '|' +
+  rexstr(ƔAML_SINGLE_QUOTE) + '|' +
+  rexstr(ƔAML_SIMPLE_KEY)
 );
-const YAML_VALUE        = unirex(
-  rexstr(YAML_DOUBLE_QUOTE) + '|' +
-  rexstr(YAML_SINGLE_QUOTE) + '|' +
-  rexstr(YAML_SIMPLE_VALUE)
+const ƔAML_VALUE        = unirex(
+  rexstr(ƔAML_DOUBLE_QUOTE) + '|' +
+  rexstr(ƔAML_SINGLE_QUOTE) + '|' +
+  rexstr(ƔAML_SIMPLE_VALUE)
 );
-const YAML_SEPARATOR    = unirex(
+const ƔAML_SEPARATOR    = unirex(
   rexstr(ANY_WHITE_SPACE) +
   ':' + rexstr(WHITE_SPACE) +
   rexstr(ANY_WHITE_SPACE)
 );
-const YAML_LINE         = unirex(
-  '(' + rexstr(YAML_KEY) + ')' +
-  rexstr(YAML_SEPARATOR) +
-  '(' + rexstr(YAML_VALUE) + ')'
+const ƔAML_LINE         = unirex(
+  '(' + rexstr(ƔAML_KEY) + ')' +
+  rexstr(ƔAML_SEPARATOR) +
+  '(' + rexstr(ƔAML_VALUE) + ')'
 );
 
 /*  FRONTMATTER REGEX  */
 
-const YAML_FRONTMATTER  = unirex(
+const ƔAML_FRONTMATTER  = unirex(
   rexstr(POSSIBLE_STARTS) +
-  rexstr(YAML_LOOKAHEAD) +
-  rexstr(YAML_START) + rexstr(SOME_NEW_LINES) +
+  rexstr(ƔAML_LOOKAHEAD) +
+  rexstr(ƔAML_START) + rexstr(SOME_NEW_LINES) +
   '(?:' +
-    '(' + rexstr(INDENTATION) + ')' +
-    rexstr(YAML_LINE) + rexstr(SOME_NEW_LINES) +
-    '(?:' +
-      '\\1' + rexstr(YAML_LINE) + rexstr(SOME_NEW_LINES) +
-    '){0,4}' +
-  ')?' +
-  rexstr(YAML_END) + rexstr(POSSIBLE_ENDS)
+    rexstr(ANY_WHITE_SPACE) + rexstr(ƔAML_LINE) + rexstr(SOME_NEW_LINES) +
+  '){0,5}' +
+  rexstr(ƔAML_END) + rexstr(POSSIBLE_ENDS)
 );
 
 /*  SEARCHES  */
 
-const FIND_YAML_LINES   = unirex(
-  rexstr(NEW_LINE) + rexstr(INDENTATION) + rexstr(YAML_LINE)
+const FIND_ƔAML_LINE    = unirex(
+  rexstr(NEW_LINE) + rexstr(ANY_WHITE_SPACE) + rexstr(ƔAML_LINE)
 );
 
 /*  STRING PROCESSING  */
 
-function processString(str) {
+function processString (str) {
   switch (str.charAt(0)) {
   case '"':
-    return str
-      .substring(1, str.length - 1)
-      .replace(/\\0/g, '\x00')
-      .replace(/\\a/g, '\x07')
-      .replace(/\\b/g, '\x08')
-      .replace(/\\t/g, '\x09')
-      .replace(/\\\x09/g, '\x09')
-      .replace(/\\n/g, '\x0a')
-      .replace(/\\v/g, '\x0b')
-      .replace(/\\f/g, '\x0c')
-      .replace(/\\r/g, '\x0d')
-      .replace(/\\e/g, '\x1b')
-      .replace(/\\ /g, '\x20')
-      .replace(/\\"/g, '\x22')
-      .replace(/\\\//g, '\x2f')
-      .replace(/\\\\/g, '\x5c')
-      .replace(/\\N/g, '\x85')
-      .replace(/\\_/g, '\xa0')
-      .replace(/\\L/g, '\u2028')
-      .replace(/\\P/g, '\u2029')
-      .replace(
-        new RegExp(
-          unirex(
-            rexstr(/\\x/) + '(' + rexstr(HEXADECIMAL_CHARS) + '{2})'
-          ), 'gu'
-        ), (_, n) => String.fromCodePoint('0x' + n)
-      )
-      .replace(
-        new RegExp(
-          unirex(
-            rexstr(/\\u/) + '(' + rexstr(HEXADECIMAL_CHARS) + '{4})'
-          ), 'gu'
-        ), (_, n) => String.fromCodePoint('0x' + n)
-      )
-      .replace(
-        new RegExp(
-          unirex(
-            rexstr(/\\U/) + '(' + rexstr(HEXADECIMAL_CHARS) + '{8})'
-          ), 'gu'
-        ), (_, n) => String.fromCodePoint('0x' + n)
-      );
+    return str.substring(1, str.length - 1);
   case '\'':
     return str
       .substring(1, str.length - 1)
@@ -321,15 +269,18 @@ export function processBio(content) {
     text: content,
     metadata: [],
   };
-  let yaml = content.match(YAML_FRONTMATTER);
-  if (!yaml) return result;
-  else yaml = yaml[0];
-  let start = content.search(YAML_START);
-  let end = start + yaml.length - yaml.search(YAML_START);
-  result.text = content.substr(0, start) + content.substr(end);
+  let ɣaml = content.match(ƔAML_FRONTMATTER);
+  if (!ɣaml) {
+    return result;
+  } else {
+    ɣaml = ɣaml[0];
+  }
+  const start = content.search(ƔAML_START);
+  const end = start + ɣaml.length - ɣaml.search(ƔAML_START);
+  result.text = content.substr(end);
   let metadata = null;
-  let query = new RegExp(FIND_YAML_LINES, 'g');
-  while ((metadata = query.exec(yaml))) {
+  let query = new RegExp(rexstr(FIND_ƔAML_LINE), 'g');  //  Some browsers don't allow flags unless both args are strings
+  while ((metadata = query.exec(ɣaml))) {
     result.metadata.push([
       processString(metadata[1]),
       processString(metadata[2]),
@@ -352,63 +303,23 @@ export function createBio(note, data) {
         let val = '' + data[i][1];
 
         //  Key processing
-        if (key === (key.match(YAML_SIMPLE_KEY) || [])[0]) /*  do nothing  */;
-        else if (key.indexOf('\'') === -1 && key === (key.match(ANY_ESCAPED_APOS) || [])[0]) key = '\'' + key + '\'';
+        if (key === (key.match(ƔAML_SIMPLE_KEY) || [])[0]) /*  do nothing  */;
+        else if (key === (key.match(ANY_QUOTE_CHAR) || [])[0]) key = '"' + key + '"';
         else {
           key = key
-            .replace(/\x00/g, '\\0')
-            .replace(/\x07/g, '\\a')
-            .replace(/\x08/g, '\\b')
-            .replace(/\x0a/g, '\\n')
-            .replace(/\x0b/g, '\\v')
-            .replace(/\x0c/g, '\\f')
-            .replace(/\x0d/g, '\\r')
-            .replace(/\x1b/g, '\\e')
-            .replace(/\x22/g, '\\"')
-            .replace(/\x5c/g, '\\\\');
-          let badchars = key.match(
-            new RegExp(rexstr(NOT_ALLOWED_CHAR), 'gu')
-          ) || [];
-          for (let j = 0; j < badchars.length; j++) {
-            key = key.replace(
-              badchars[i],
-              '\\u' + badchars[i].codePointAt(0).toLocaleString('en', {
-                useGrouping: false,
-                minimumIntegerDigits: 4,
-              })
-            );
-          }
-          key = '"' + key + '"';
+            .replace(/'/g, '\'\'')
+            .replace(new RegExp(rexstr(NOT_ALLOWED_CHAR), compat_mode ? 'g' : 'gu'), '�');
+          key = '\'' + key + '\'';
         }
 
         //  Value processing
-        if (val === (val.match(YAML_SIMPLE_VALUE) || [])[0]) /*  do nothing  */;
-        else if (val.indexOf('\'') === -1 && val === (val.match(ANY_ESCAPED_APOS) || [])[0]) val = '\'' + val + '\'';
+        if (val === (val.match(ƔAML_SIMPLE_VALUE) || [])[0]) /*  do nothing  */;
+        else if (val === (val.match(ANY_QUOTE_CHAR) || [])[0]) val = '"' + val + '"';
         else {
-          val = val
-            .replace(/\x00/g, '\\0')
-            .replace(/\x07/g, '\\a')
-            .replace(/\x08/g, '\\b')
-            .replace(/\x0a/g, '\\n')
-            .replace(/\x0b/g, '\\v')
-            .replace(/\x0c/g, '\\f')
-            .replace(/\x0d/g, '\\r')
-            .replace(/\x1b/g, '\\e')
-            .replace(/\x22/g, '\\"')
-            .replace(/\x5c/g, '\\\\');
-          let badchars = val.match(
-            new RegExp(rexstr(NOT_ALLOWED_CHAR), 'gu')
-          ) || [];
-          for (let j = 0; j < badchars.length; j++) {
-            val = val.replace(
-              badchars[i],
-              '\\u' + badchars[i].codePointAt(0).toLocaleString('en', {
-                useGrouping: false,
-                minimumIntegerDigits: 4,
-              })
-            );
-          }
-          val = '"' + val + '"';
+          key = key
+            .replace(/'/g, '\'\'')
+            .replace(new RegExp(rexstr(NOT_ALLOWED_CHAR), compat_mode ? 'g' : 'gu'), '�');
+          key = '\'' + key + '\'';
         }
 
         frontmatter += key + ': ' + val + '\n';
