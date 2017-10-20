@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+improt { openModal } from './modal.js';
 
 export const TWEXILE_SUBSCRIBE_CHANGE = "TWEXILE_SUBSCRIBE_CHANGE"
 
