@@ -7,13 +7,12 @@ export function changeTwexileStatus(getState) {
     var authorized = axios
       .get(`https://twexile.nayukana.info/authorize?token=${getState().getIn(['meta', 'access_token'])}`)
       .then(response => {
-        return true;
+        if (response.data === "")
+          return true;
+        else
+          return response.data;
       }).catch(response => {
-        if (response.status == 302) {
-          return response.headers['location']
-        } else {
-          return false;
-        }
+        return false;
       });
     authorized.then(authorized => {
       if (typeof authorized === "string") {
