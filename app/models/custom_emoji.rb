@@ -15,6 +15,7 @@
 #  disabled           :boolean          default(FALSE), not null
 #  uri                :string
 #  image_remote_url   :string
+#  visible_in_picker  :boolean          default(TRUE), not null
 #
 
 class CustomEmoji < ApplicationRecord
