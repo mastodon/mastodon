@@ -268,12 +268,12 @@ ru:
     title: Администрирование
   admin_mailer:
     new_report:
-      body: %{reporter} подал(а) жалобу на %{target}
-      subject: Новая жалоба, узел %{instance} (#%{id})
+      body: '%{reporter} подал(а) жалобу на %{target}'
+      subject: 'Новая жалоба, узел %{instance} (#%{id})'
   application_mailer:
     salutation: "%{name},"
     settings: 'Изменить настройки e-mail: %{link}'
-    signature: Уведомления Mastodon от %{instance}
+    signature: 'Уведомления Mastodon от %{instance}'
     view: 'Просмотр:'
   applications:
     created: Приложение успешно создано
