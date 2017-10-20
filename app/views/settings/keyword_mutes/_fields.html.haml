@@ -1,0 +1,11 @@
+.fields-group
+  = f.input :keyword
+  = f.check_box :whole_word
+  = f.label :whole_word, t('keyword_mutes.match_whole_word')
+
+.actions
+  - if f.object.persisted?
+    = f.button :button, t('generic.save_changes'), type: :submit
+    = link_to t('keyword_mutes.remove'), settings_keyword_mute_path(f.object), class: 'negative button', method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+  - else
+    = f.button :button, t('keyword_mutes.add_keyword'), type: :submit
