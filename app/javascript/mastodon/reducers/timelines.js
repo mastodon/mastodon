@@ -55,7 +55,7 @@ const appendNormalizedTimeline = (state, timeline, statuses, next) => {
   }));
 };
 
-const updateTimeline = (state, timeline, status, references) => {
+const updateTimeline = (state, timeline, status) => {
   const top        = state.getIn([timeline, 'top']);
   const ids        = state.getIn([timeline, 'items'], ImmutableList());
   const includesId = ids.includes(status.get('id'));
@@ -128,7 +128,7 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_EXPAND_SUCCESS:
     return appendNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next);
   case TIMELINE_UPDATE:
-    return updateTimeline(state, action.timeline, fromJS(action.status), action.references);
+    return updateTimeline(state, action.timeline, fromJS(action.status));
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
   case ACCOUNT_BLOCK_SUCCESS:
