@@ -3,7 +3,7 @@
 MODE=$1
 
 bundle install --without="" \
- && yarn --ignore-optional --pure-lockfile
+ && yarn --pure-lockfile
 
 
 echo "Start with ${MODE} mode..."
