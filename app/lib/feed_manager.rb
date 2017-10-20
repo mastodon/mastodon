@@ -138,16 +138,11 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id)
-    # extremely violent filtering code BEGIN
-    #filter_string = 'e'
-    #reggie = Regexp.new(filter_string)
-    #return true if reggie === status.content || reggie === status.spoiler_text
-    # extremely violent filtering code END
-
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
 
     check_for_mutes = [status.account_id]
+    check_for_mutes.concat(status.mentions.pluck(:account_id))
     check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
 
     return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?

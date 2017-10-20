@@ -105,6 +105,13 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, status, bob.id)).to be true
       end
 
+      it 'returns true for status by followee mentioning muted account' do
+        bob.mute!(jeff)
+        bob.follow!(alice)
+        status = PostStatusService.new.call(alice, 'Hey @jeff')
+        expect(FeedManager.instance.filter?(:home, status, bob.id)).to be true
+      end
+
       it 'returns true for reblog of a personally blocked domain' do
         alice.block_domain!('example.com')
         alice.follow!(jeff)
