@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010025614) do
+ActiveRecord::Schema.define(version: 20171018193735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,19 +123,19 @@ ActiveRecord::Schema.define(version: 20171010025614) do
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 
-  create_table "favourite_tags", force: :cascade do |t|
-    t.integer "account_id", null: false
-    t.integer "tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "visibility", default: 0, null: false
-    t.index ["account_id", "tag_id"], name: "index_favourite_tags_on_account_id_and_tag_id", unique: true
-  end
-
   create_table "email_domain_blocks", force: :cascade do |t|
     t.string "domain", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favourite_tags", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "visibility", default: 0, null: false
+    t.index ["account_id", "tag_id"], name: "index_favourite_tags_on_account_id_and_tag_id", unique: true
   end
 
   create_table "favourites", force: :cascade do |t|
