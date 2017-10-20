@@ -23,7 +23,7 @@ class OStatus::AtomSerializer
     append_element(author, 'name', account.username)
     append_element(author, 'email', account.local? ? account.local_username_and_domain : account.acct)
     append_element(author, 'summary', Formatter.instance.simplified_format(account).to_str, type: :html) if account.note?
-    append_element(author, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(account))
+    append_element(author, 'link', nil, rel: :alternate, type: 'text/html', href: ::TagManager.instance.url_for(account))
     append_element(author, 'link', nil, rel: :avatar, type: account.avatar_content_type, 'media:width': 120, 'media:height': 120, href: full_asset_url(account.avatar.url(:original))) if account.avatar?
     append_element(author, 'link', nil, rel: :header, type: account.header_content_type, 'media:width': 700, 'media:height': 335, href: full_asset_url(account.header.url(:original))) if account.header?
     append_element(author, 'poco:preferredUsername', account.username)
@@ -47,7 +47,7 @@ class OStatus::AtomSerializer
 
     feed << author(account)
 
-    append_element(feed, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(account))
+    append_element(feed, 'link', nil, rel: :alternate, type: 'text/html', href: ::TagManager.instance.url_for(account))
     append_element(feed, 'link', nil, rel: :self, type: 'application/atom+xml', href: account_url(account, format: 'atom'))
     append_element(feed, 'link', nil, rel: :next, type: 'application/atom+xml', href: account_url(account, format: 'atom', max_id: stream_entries.last.id)) if stream_entries.size == 20
     append_element(feed, 'link', nil, rel: :hub, href: api_push_url)
@@ -86,9 +86,9 @@ class OStatus::AtomSerializer
       serialize_status_attributes(entry, stream_entry.status)
     end
 
-    append_element(entry, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(stream_entry.status))
+    append_element(entry, 'link', nil, rel: :alternate, type: 'text/html', href: ::TagManager.instance.url_for(stream_entry.status))
     append_element(entry, 'link', nil, rel: :self, type: 'application/atom+xml', href: account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom'))
-    append_element(entry, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(stream_entry.thread), href: TagManager.instance.url_for(stream_entry.thread)) if stream_entry.threaded?
+    append_element(entry, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(stream_entry.thread), href: ::TagManager.instance.url_for(stream_entry.thread)) if stream_entry.threaded?
     append_element(entry, 'ostatus:conversation', nil, ref: conversation_uri(stream_entry.status.conversation)) unless stream_entry&.status&.conversation_id.nil?
 
     entry
@@ -109,8 +109,8 @@ class OStatus::AtomSerializer
 
     serialize_status_attributes(object, status)
 
-    append_element(object, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(status))
-    append_element(object, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(status.thread), href: TagManager.instance.url_for(status.thread)) unless status.thread.nil?
+    append_element(object, 'link', nil, rel: :alternate, type: 'text/html', href: ::TagManager.instance.url_for(status))
+    append_element(object, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(status.thread), href: ::TagManager.instance.url_for(status.thread)) unless status.thread.nil?
     append_element(object, 'ostatus:conversation', nil, ref: conversation_uri(status.conversation)) unless status.conversation_id.nil?
 
     object
@@ -290,7 +290,7 @@ class OStatus::AtomSerializer
 
     entry << object(favourite.status)
 
-    append_element(entry, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(favourite.status), href: TagManager.instance.url_for(favourite.status))
+    append_element(entry, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(favourite.status), href: ::TagManager.instance.url_for(favourite.status))
 
     entry
   end
@@ -312,7 +312,7 @@ class OStatus::AtomSerializer
 
     entry << object(favourite.status)
 
-    append_element(entry, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(favourite.status), href: TagManager.instance.url_for(favourite.status))
+    append_element(entry, 'thr:in-reply-to', nil, ref: OStatus::TagManager.instance.uri_for(favourite.status), href: ::TagManager.instance.url_for(favourite.status))
 
     entry
   end

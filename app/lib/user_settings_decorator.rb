@@ -23,6 +23,7 @@ class UserSettingsDecorator
     user.settings['boost_modal']         = boost_modal_preference if change?('setting_boost_modal')
     user.settings['delete_modal']        = delete_modal_preference if change?('setting_delete_modal')
     user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
+    user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
     user.settings['theme']               = theme_preference if change?('setting_theme')
@@ -62,6 +63,10 @@ class UserSettingsDecorator
 
   def auto_play_gif_preference
     boolean_cast_setting 'setting_auto_play_gif'
+  end
+
+  def reduce_motion_preference
+    boolean_cast_setting 'setting_reduce_motion'
   end
 
   def noindex_preference

@@ -26,7 +26,7 @@ class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
       SELECT setval('statuses_id_seq', (SELECT MAX(id) FROM statuses));
       ALTER TABLE statuses
         ALTER COLUMN id
-        SET DEFAULT nextval('statuses_id_seq');"
+        SET DEFAULT nextval('statuses_id_seq');
     SQL
   end
 end

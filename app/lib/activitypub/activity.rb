@@ -67,9 +67,14 @@ class ActivityPub::Activity
   end
 
   def distribute(status)
+    crawl_links(status)
+
+    # Only continue if the status is supposed to have
+    # arrived in real-time
+    return unless @options[:override_timestamps]
+
     notify_about_reblog(status) if reblog_of_local_account?(status)
     notify_about_mentions(status)
-    crawl_links(status)
     distribute_to_followers(status)
   end
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Overlay from 'react-overlays/lib/Overlay';
-import Motion from 'react-motion/lib/Motion';
+import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 
 const messages = defineMessages({

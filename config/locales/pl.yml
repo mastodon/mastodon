@@ -1,8 +1,8 @@
 ---
 pl:
   about:
-    about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
+    about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
@@ -50,6 +50,13 @@ pl:
       admin: Administrator
     unfollow: Przestań śledzić
   admin:
+    account_moderation_notes:
+      account: Autor
+      create: Dodaj
+      created_at: Data
+      created_msg: Pomyślnie dodano notatkę moderacyjną!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       are_you_sure: Jesteś tego pewien?
       confirm: Potwierdź
@@ -84,8 +91,10 @@ pl:
         alphabetic: Alfabetycznie
         most_recent: Najnowsze
         title: Kolejność
+      outbox_url: Adres skrzynki nadawczej
       perform_full_suspension: Całkowicie zawieś
       profile_url: Adres profilu
+      protocol: Protokół
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież awatar
@@ -108,13 +117,6 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
-    account_moderation_notes:
-      account: Autor
-      created_at: Data
-      create: Dodaj
-      created_msg: Pomyślnie dodano notatkę moderacyjną!
-      delete: Usuń
-      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     custom_emojis:
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
@@ -180,6 +182,8 @@ pl:
     instances:
       account_count: Znane konta
       domain_name: Domena
+      reset: Przywróć
+      search: Szukaj
       title: Znane instancje
     reports:
       action_taken_by: Działanie podjęte przez

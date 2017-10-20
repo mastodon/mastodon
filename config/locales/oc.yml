@@ -1,8 +1,8 @@
 ---
 oc:
   about:
-    about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
+    about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
@@ -50,6 +50,13 @@ oc:
       admin: Admin
     unfollow: Quitar de sègre
   admin:
+    account_moderation_notes:
+      account: Moderator
+      create: Crear
+      created_at: Data
+      created_msg: Nòta de moderacion ben creada !
+      delete: Suprimir
+      destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
       are_you_sure: Sètz segur ?
       confirm: Confirmar
@@ -66,9 +73,9 @@ oc:
       inbox_url: URL de recepcion
       ip: IP
       location:
-        all: Tot
-        local: Local
-        remote: Alonhat
+        all: Totes
+        local: Locals
+        remote: Alonhats
         title: Emplaçament
       media_attachments: Mèdias ajustats
       moderation:
@@ -76,6 +83,7 @@ oc:
         silenced: Rescondut
         suspended: Suspendut
         title: Moderacion
+      moderation_notes: Nòtas de moderacion
       most_recent_activity: Activitat mai recenta
       most_recent_ip: IP mai recenta
       not_subscribed: Pas seguidor
@@ -110,9 +118,9 @@ oc:
       username: Nom d’utilizaire
       web: Web
     custom_emojis:
-      copied_msg: Còpia locale de l’emoji ben creada
+      copied_msg: Còpia locala de l’emoji ben creada
       copy: Copiar
-      copy_failed_msg: Fracàs de la còpia locale de l’emoji
+      copy_failed_msg: Fracàs de la còpia locala de l’emoji
       created_msg: Emoji ben creat !
       delete: Suprimir
       destroyed_msg: Emojo ben suprimit !
@@ -161,15 +169,15 @@ oc:
       title: Blòc de domeni
       undo: Restablir
     email_domain_blocks:
-       add_new: Ajustar
-       created_msg: Blocatge del domeni de corrièl ben plaçat
-       delete: Suprimir
-       destroyed_msg: Blocatge del domeni de corrièl ben levat
-       domain: Domeni
-       new:
-         create: Crear un blocatge
-         title: Nòu blocatge de domeni de corrièl
-       title: Blocatge de domeni de corrièl      
+      add_new: Ajustar
+      created_msg: Blocatge del domeni de corrièl ben plaçat
+      delete: Suprimir
+      destroyed_msg: Blocatge del domeni de corrièl ben levat
+      domain: Domeni
+      new:
+        create: Crear un blocatge
+        title: Nòu blocatge de domeni de corrièl
+      title: Blocatge de domeni de corrièl
     instances:
       account_count: Comptes coneguts
       domain_name: Domeni
@@ -331,8 +339,8 @@ oc:
     - dissabte
     formats:
       default: "%e/%m/%Y"
-      long: Lo %-d %b de %Y
-      short: "%e %B"
+      long: Lo %e %B de %Y
+      short: "%e %b. de %Y"
     month_names:
     - 
     - de genièr
