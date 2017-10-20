@@ -27,6 +27,7 @@ import {
   COMPOSE_UPLOAD_CHANGE_FAIL,
   COMPOSE_RESET,
 } from '../actions/compose';
+import { TWEXILE_SUBSCRIBE_CHANGE } from '../actions/twexile';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
@@ -73,6 +74,7 @@ function clearAll(state) {
     map.set('spoiler', false);
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
+    map.set('twexile', false);
     map.set('in_reply_to', null);
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', false);
@@ -182,6 +184,10 @@ export default function compose(state = initialState, action) {
       if (!state.get('sensitive') && state.get('media_attachments').size >= 1) {
         map.set('sensitive', true);
       }
+    });
+  case TWEXILE_SUBSCRIBE_CHANGE:
+    return state.withMutations(map => {
+      map.set('twexile', !state.get('twexile'));
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state

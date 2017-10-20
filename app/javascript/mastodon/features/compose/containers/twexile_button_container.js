@@ -15,7 +15,6 @@ const mapStateToProps = (state, { intl }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
   onClick () {
     dispatch(changeTwexileStatus());
   },
