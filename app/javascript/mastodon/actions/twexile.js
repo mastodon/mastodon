@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { openModal } from './modal.js';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
-export const TWEXILE_SUBSCRIBE_CHANGE = "TWEXILE_SUBSCRIBE_CHANGE"
+export const TWEXILE_SUBSCRIBE_CHANGE = "TWEXILE_SUBSCRIBE_CHANGE";
 
 export function changeTwexileStatus(getState) {
   return (dispatch, getState) => {
