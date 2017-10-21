@@ -1,2 +1,2 @@
-Fabricator(:glitch_keyword_mute) do
+Fabricator('Glitch::KeywordMute') do
 end

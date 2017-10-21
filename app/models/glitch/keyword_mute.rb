@@ -45,5 +45,9 @@ class Glitch::KeywordMute < ApplicationRecord
     def =~(str)
       regex ? regex =~ str : false
     end
+
+    def matches?(str)
+      !!(regex =~ str)
+    end
   end
 end

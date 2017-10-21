@@ -119,6 +119,23 @@ RSpec.describe FeedManager do
         reblog = Fabricate(:status, reblog: status, account: jeff)
         expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
       end
+
+      it 'returns true for a status containing a muted keyword' do
+        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take')
+        alice.follow!(bob)
+        status = Fabricate(:status, text: 'This is a hot take', account: bob)
+
+        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+      end
+
+      it 'returns true for a reblog containing a muted keyword' do
+        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take')
+        alice.follow!(jeff)
+        status = Fabricate(:status, text: 'This is a hot take', account: bob)
+        reblog = Fabricate(:status, reblog: status, account: jeff)
+
+        expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
+      end
     end
 
     context 'for mentions feed' do
