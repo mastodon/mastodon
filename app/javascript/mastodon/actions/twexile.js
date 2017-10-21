@@ -39,7 +39,7 @@ export function changeTwexileStatus(getState) {
           dispatch(openModal('CONFIRM', {
             message: <FormattedMessage id='confirmations.authorize.required.message' 
                                       defaultMessage='click this {link} and authorize with twitter'
-                                      values={{ link: <a href={authorized}>link</a> }} />,
+                                      values={{ link: <a href={authorized} target="_blank">link</a> }} />,
           }));
         } else if (authorized === false) {
           dispatch(openModal('CONFIRM', {
