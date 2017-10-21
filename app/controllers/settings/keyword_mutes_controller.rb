@@ -55,7 +55,7 @@ class Settings::KeywordMutesController < ApplicationController
   end
 
   def keyword_mutes_for_account
-    KeywordMute.where(account: @account)
+    Glitch::KeywordMute.where(account: @account)
   end
 
   def load_keyword_mute

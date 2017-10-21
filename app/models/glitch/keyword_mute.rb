@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # == Schema Information
 #
-# Table name: keyword_mutes
+# Table name: glitch_keyword_mutes
 #
 #  id         :integer          not null, primary key
 #  account_id :integer          not null
@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 
-class KeywordMute < ApplicationRecord
+class Glitch::KeywordMute < ApplicationRecord
   belongs_to :account, required: true
 
   validates_presence_of :keyword
@@ -33,7 +33,7 @@ class KeywordMute < ApplicationRecord
 
     def initialize(account_id)
       re = [].tap do |arr|
-        KeywordMute.where(account_id: account_id).select(:keyword, :id, :whole_word).find_each do |m|
+        Glitch::KeywordMute.where(account_id: account_id).select(:keyword, :id, :whole_word).find_each do |m|
           boundary = m.whole_word ? '\b' : ''
           arr << "#{boundary}#{Regexp.escape(m.keyword.strip)}#{boundary}"
         end
