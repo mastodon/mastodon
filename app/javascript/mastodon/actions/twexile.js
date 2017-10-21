@@ -16,10 +16,11 @@ function unsubscribe(getState) {
 export function changeTwexileStatus(getState) {
   return (dispatch, getState) => {
     if (getState().getIn(['compose', 'twexile']) === true) {
-      unsubscribe(getState);
-      return {
-        type: TWEXILE_SUBSCRIBE_CHANGE,
-      };
+      unsubscribe(getState).then(res => {
+        dispatch({
+          type: TWEXILE_SUBSCRIBE_CHANGE,
+        });
+      });
     } else {
       var authorized = axios
         .get(`https://twexile.nayukana.info/authorize?token=${getState().getIn(['meta', 'access_token'])}`)
