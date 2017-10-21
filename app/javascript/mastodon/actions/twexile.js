@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 export const TWEXILE_SUBSCRIBE_CHANGE = 'TWEXILE_SUBSCRIBE_CHANGE';
 
 function subscribe(getState) {
-  reuturn axios.get(`https://twexile.nayukana.info/subscribe?token=${getState().getIn(['meta', 'access_token'])}`);
+  return axios.get(`https://twexile.nayukana.info/subscribe?token=${getState().getIn(['meta', 'access_token'])}`);
 }
 
 
