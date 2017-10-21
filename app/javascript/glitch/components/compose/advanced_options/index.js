@@ -47,11 +47,9 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { injectIntl, defineMessages } from 'react-intl';
 
-//  Mastodon imports  //
-import IconButton from '../../../../mastodon/components/icon_button';
-
 //  Our imports  //
 import ComposeAdvancedOptionsToggle from './toggle';
+import ComposeDropdown from '../dropdown/index';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -77,11 +75,6 @@ const messages = defineMessages({
     { id: 'advanced_options.icon_title', defaultMessage: 'Advanced options' },
 });
 
-const iconStyle = {
-  height     : null,
-  lineHeight : '27px',
-};
-
 /*
 
 Implementation:
@@ -100,67 +93,6 @@ export default class ComposeAdvancedOptions extends React.PureComponent {
     intl     : PropTypes.object.isRequired,
   };
 
-  state = {
-    open: false,
-  };
-
-/*
-
-###  `onToggleDropdown()`
-
-This function toggles the opening and closing of the advanced options
-dropdown.
-
-*/
-
-  onToggleDropdown = () => {
-    this.setState({ open: !this.state.open });
-  };
-
-/*
-
-###  `onGlobalClick(e)`
-
-This function closes the advanced options dropdown if you click
-anywhere else on the screen.
-
-*/
-
-  onGlobalClick = (e) => {
-    if (e.target !== this.node && !this.node.contains(e.target) && this.state.open) {
-      this.setState({ open: false });
-    }
-  }
-
-/*
-
-###  `componentDidMount()`, `componentWillUnmount()`
-
-This function closes the advanced options dropdown if you click
-anywhere else on the screen.
-
-*/
-
-  componentDidMount () {
-    window.addEventListener('click', this.onGlobalClick);
-    window.addEventListener('touchstart', this.onGlobalClick);
-  }
-  componentWillUnmount () {
-    window.removeEventListener('click', this.onGlobalClick);
-    window.removeEventListener('touchstart', this.onGlobalClick);
-  }
-
-/*
-
-###  `setRef(c)`
-
-`setRef()` stores a reference to the dropdown's `<div> in `this.node`.
-
-*/
-
-  setRef = (c) => {
-    this.node = c;
-  }
 
 /*
 
@@ -171,7 +103,6 @@ anywhere else on the screen.
 */
 
   render () {
-    const { open } = this.state;
     const { intl, values } = this.props;
 
 /*
@@ -218,23 +149,14 @@ toggle as its `key` so that React can keep track of it.
 Finally, we can render our component.
 
 */
-
     return (
-      <div ref={this.setRef} className={`advanced-options-dropdown ${open ?  'open' : ''} ${anyEnabled ? 'active' : ''} `}>
-        <div className='advanced-options-dropdown__value'>
-          <IconButton
-            className='advanced-options-dropdown__value'
-            title={intl.formatMessage(messages.advanced_options_icon_title)}
-            icon='ellipsis-h' active={open || anyEnabled}
-            size={18}
-            style={iconStyle}
-            onClick={this.onToggleDropdown}
-          />
-        </div>
-        <div className='advanced-options-dropdown__dropdown'>
-          {optionElems}
-        </div>
-      </div>
+      <ComposeDropdown
+        title={intl.formatMessage(messages.advanced_options_icon_title)}
+        icon='home'
+        highlight={anyEnabled}
+      >
+        {optionElems}
+      </ComposeDropdown>
     );
   }
 
