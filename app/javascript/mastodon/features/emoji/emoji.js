@@ -26,6 +26,11 @@ const emojify = (str, customEmojis = {}) => {
         const shortname = str.slice(i, rend);
         // now got a replacee as ':shortname:'
         // if you want additional emoji handler, add statements below which set replacement and return true.
+        const nicoru = /^:nicoru(\d*):$/.exec(shortname);
+        if (nicoru) {
+          replacement = `<img alt="${shortname}" title="${shortname}" src="/emoji/nicoru.svg" style="height: 1.5em; transform: rotate(${nicoru[1] || 0}deg)"/>`;
+          return true;
+        }
         if (shortname in customEmojis) {
           const filename = allowAnimations ? customEmojis[shortname].url : customEmojis[shortname].static_url;
           replacement = `<img draggable="false" class="emojione" alt="${shortname}" title="${shortname}" src="${filename}" />`;
@@ -51,7 +56,6 @@ const emojify = (str, customEmojis = {}) => {
 
 const emojify_knzk = (str, customEmojis = {}) => [
   {re: /5,?000\s*兆円/g, file: '5000tyoen.svg', attrs: 'style="height: 1.8em;"'}, 
-  {re: /:nicoru:/g, file: 'nicoru.svg', attrs: 'style="height: 1.5em;"'},
   {re: /バジリスク\s*タイム/g, file: 'basilisktime.png', attrs: 'height="40"'},
   {re: /熱盛/g, file: 'atumori.png', attrs: 'height="51"'},
   {re: /欲しい！/g, file: 'hosii.png', attrs: 'height="30"'},
