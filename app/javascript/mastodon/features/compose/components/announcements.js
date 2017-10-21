@@ -69,7 +69,7 @@ class Announcements extends React.PureComponent {
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.welcome, { domain: document.title }))}</p>
               {hashtags.map((hashtag, i) =>
-                <Link key={i} to={`/timelines/tag/${hashtag}`}>
+                <Link key={i} to={`/timelines/tag/${hashtag}`} tabIndex={this.state.show ? undefined : -1}>
                   #{hashtag}
                 </Link>
               )}
