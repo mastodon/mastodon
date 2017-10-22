@@ -138,12 +138,10 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id)
-    keyword_mute_matcher = Glitch::KeywordMute.matcher_for(receiver_id)
-
-    return true if keyword_mute_matcher =~ status.text
-
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
+
+    return true if keyword_filter?(status, Glitch::KeywordMute.matcher_for(receiver_id))
 
     check_for_mutes = [status.account_id]
     check_for_mutes.concat(status.mentions.pluck(:account_id))
@@ -163,12 +161,23 @@ class FeedManager
       return should_filter
     elsif status.reblog?                                                                                                 # Filter out a reblog
       should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me
-      should_filter ||= keyword_mute_matcher.matches?(status.reblog.text)
       should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?  # or the author's domain is blocked
       return should_filter
     end
 
     false
+  end
+
+  def keyword_filter?(status, matcher)
+    should_filter   = matcher =~ status.text
+    should_filter ||= matcher =~ status.spoiler_text
+
+    if status.reblog?
+      should_filter ||= matcher =~ status.reblog.text
+      should_filter ||= matcher =~ status.reblog.spoiler_text
+    end
+
+    should_filter
   end
 
   def filter_from_mentions?(status, receiver_id)
