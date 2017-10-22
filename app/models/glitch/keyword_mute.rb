@@ -19,35 +19,49 @@ class Glitch::KeywordMute < ApplicationRecord
   after_commit :invalidate_cached_matcher
 
   def self.matcher_for(account_id)
-    Rails.cache.fetch("keyword_mutes:matcher:#{account_id}") { Matcher.new(account_id) }
+    Matcher.new(account_id)
   end
 
   private
 
   def invalidate_cached_matcher
-    Rails.cache.delete("keyword_mutes:matcher:#{account_id}")
+    Rails.cache.delete("keyword_mutes:regex:#{account_id}")
   end
 
   class Matcher
+    attr_reader :account_id
     attr_reader :regex
 
     def initialize(account_id)
-      re = [].tap do |arr|
-        Glitch::KeywordMute.where(account_id: account_id).select(:keyword, :id, :whole_word).find_each do |m|
-          boundary = m.whole_word ? '\b' : ''
-          arr << "#{boundary}#{Regexp.escape(m.keyword.strip)}#{boundary}"
+      @account_id = account_id
+      @regex = Rails.cache.fetch("keyword_mutes:regex:#{account_id}") { regex_for_account }
+    end
+
+    def keywords
+      Glitch::KeywordMute.
+        where(account_id: account_id).
+        select(:keyword, :id, :whole_word)
+    end
+
+    def regex_for_account
+      re_text = [].tap do |arr|
+        keywords.find_each do |kw|
+          arr << (kw.whole_word ? boundary_regex_for_keyword(kw.keyword) : Regexp.escape(kw.keyword))
         end
       end.join('|')
 
-      @regex = /#{re}/i unless re.empty?
+      /#{re_text}/i unless re_text.empty?
+    end
+
+    def boundary_regex_for_keyword(keyword)
+      sb = keyword =~ /\A[[:word:]]/ ? '\b' : ''
+      eb = keyword =~ /[[:word:]]\Z/ ? '\b' : ''
+
+      "#{sb}#{Regexp.escape(keyword)}#{eb}"
     end
 
     def =~(str)
       regex ? regex =~ str : false
-    end
-
-    def matches?(str)
-      !!(regex =~ str)
     end
   end
 end

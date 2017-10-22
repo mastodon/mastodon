@@ -7,7 +7,7 @@ RSpec.describe Glitch::KeywordMute, type: :model do
   describe '.matcher_for' do
     let(:matcher) { Glitch::KeywordMute.matcher_for(alice) }
 
-    describe 'with no Glitch::KeywordMutes for an account' do
+    describe 'with no mutes' do
       before do
         Glitch::KeywordMute.delete_all
       end
@@ -17,7 +17,7 @@ RSpec.describe Glitch::KeywordMute, type: :model do
       end
     end
 
-    describe 'with Glitch::KeywordMutes for an account' do
+    describe 'with mutes' do
       it 'does not match keywords set by a different account' do
         Glitch::KeywordMute.create!(account: bob, keyword: 'take')
 
@@ -63,7 +63,13 @@ RSpec.describe Glitch::KeywordMute, type: :model do
       it 'matches keywords surrounded by non-alphanumeric ornamentation' do
         Glitch::KeywordMute.create!(account: alice, keyword: 'hot')
 
-        expect(matcher =~ 'This is a ~*HOT*~ take').to be_truthy
+        expect(matcher =~ '(hot take)').to be_truthy
+      end
+
+      it 'escapes metacharacters in keywords' do
+        Glitch::KeywordMute.create!(account: alice, keyword: '(hot take)')
+
+        expect(matcher =~ '(hot take)').to be_truthy
       end
 
       it 'uses case-folding rules appropriate for more than just English' do
