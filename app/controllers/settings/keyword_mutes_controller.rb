@@ -4,7 +4,6 @@ class Settings::KeywordMutesController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
-  before_action :set_account
   before_action :load_keyword_mute, only: [:edit, :update, :destroy]
 
   def index
@@ -50,12 +49,8 @@ class Settings::KeywordMutesController < ApplicationController
 
   private
 
-  def set_account
-    @account = current_user.account
-  end
-
   def keyword_mutes_for_account
-    Glitch::KeywordMute.where(account: @account)
+    Glitch::KeywordMute.where(account: current_account)
   end
 
   def load_keyword_mute
