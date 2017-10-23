@@ -16,7 +16,7 @@ RSpec.describe Api::V2::MutesController, type: :controller do
       get :index, params: { limit: 1 }
     end
 
-    let(:mutes) { JSON.parse(response.body) }
+    let(:mutes) { body_as_json }
 
     it 'returns http success' do
       expect(response).to have_http_status(:success)
@@ -27,7 +27,7 @@ RSpec.describe Api::V2::MutesController, type: :controller do
     end
 
     it 'returns whether the mute hides notifications' do
-      expect(mutes.first["hide_notifications"]).to be false
+      expect(mutes.first[:hide_notifications]).to be false
     end 
   end
 end

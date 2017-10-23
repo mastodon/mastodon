@@ -4,7 +4,6 @@ describe AccountInteractions do
   describe 'muting an account' do
     let(:me) { Fabricate(:account, username: 'Me') }
     let(:you) { Fabricate(:account, username: 'You') }
-    end
 
     context 'with the notifications option unspecified' do
       before do

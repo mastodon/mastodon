@@ -79,8 +79,7 @@ module AccountInteractions
     mute = mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
     if mute.hide_notifications? != notifications
-      mute.hide_notifications = notifications
-      mute.save!
+      mute.update!(hide_notifications: notifications)
     end
   end
 
