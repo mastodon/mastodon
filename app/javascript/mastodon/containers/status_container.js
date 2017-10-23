@@ -22,6 +22,7 @@ import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { boostModal, deleteModal } from '../initial_state';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -36,8 +37,6 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.id),
     me: state.getIn(['meta', 'me']),
-    boostModal: state.getIn(['meta', 'boost_modal']),
-    deleteModal: state.getIn(['meta', 'delete_modal']),
   });
 
   return mapStateToProps;
@@ -57,7 +56,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
-      if (e.shiftKey || !this.boostModal) {
+      if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
         dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
@@ -86,7 +85,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onDelete (status) {
-    if (!this.deleteModal) {
+    if (!deleteModal) {
       dispatch(deleteStatus(status.get('id')));
     } else {
       dispatch(openModal('CONFIRM', {

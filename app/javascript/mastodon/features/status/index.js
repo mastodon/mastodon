@@ -29,6 +29,7 @@ import { openModal } from '../../actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
+import { boostModal, deleteModal } from '../../initial_state';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -43,8 +44,6 @@ const makeMapStateToProps = () => {
     ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
     descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
     me: state.getIn(['meta', 'me']),
-    boostModal: state.getIn(['meta', 'boost_modal']),
-    deleteModal: state.getIn(['meta', 'delete_modal']),
   });
 
   return mapStateToProps;
@@ -65,8 +64,6 @@ export default class Status extends ImmutablePureComponent {
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
     me: PropTypes.string,
-    boostModal: PropTypes.bool,
-    deleteModal: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -109,7 +106,7 @@ export default class Status extends ImmutablePureComponent {
     if (status.get('reblogged')) {
       this.props.dispatch(unreblog(status));
     } else {
-      if (e.shiftKey || !this.props.boostModal) {
+      if (e.shiftKey || !boostModal) {
         this.handleModalReblog(status);
       } else {
         this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
@@ -120,7 +117,7 @@ export default class Status extends ImmutablePureComponent {
   handleDeleteClick = (status) => {
     const { dispatch, intl } = this.props;
 
-    if (!this.props.deleteModal) {
+    if (!deleteModal) {
       dispatch(deleteStatus(status.get('id')));
     } else {
       dispatch(openModal('CONFIRM', {
