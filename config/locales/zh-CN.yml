@@ -143,7 +143,7 @@ zh-CN:
       domain: 域名阻隔
       new:
         create: 添加域名阻隔
-        hint: "域名阻隔不会隔绝该域名用户的嘟帐户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。"
+        hint: 域名阻隔不会隔绝该域名用户的嘟帐户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。
         severity:
           desc_html: "<strong>自动静音</strong>令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。<strong>自动除名</strong>会自动将该域名用户的嘟文、媒体文件、个人资料从本服务器实例删除。如果你只是想拒绝媒体文件，请选择<strong>无</strong>。"
           noop: 无
@@ -269,9 +269,9 @@ zh-CN:
       subject: 来自 %{instance} 的新举报（#%{id}）
   application_mailer:
     salutation: "%{name}，"
-    settings: '更改电邮设置：%{link}'
+    settings: 更改电邮设置：%{link}
     signature: 来自 %{instance} 的 Mastodon 通知
-    view: '查看：'
+    view: 查看：
   applications:
     created: 应用创建成功
     destroyed: 应用删除成功
@@ -297,8 +297,8 @@ zh-CN:
   authorize_follow:
     error: 对不起，寻找这个跨站用户时出错
     follow: 关注
-    follow_request: '关注请求已发送给：'
-    following: '成功！你正在关注：'
+    follow_request: 关注请求已发送给：
+    following: 成功！你正在关注：
     post_follow:
       close: 你也可以直接关闭这个窗口。
       return: 返回至帐号信息页
@@ -596,7 +596,7 @@ zh-CN:
     generate_recovery_codes: 生成恢复代码
     instructions_html: "<strong>请用你手机的认证器应用（如 Google Authenticator、Authy），扫描这里的 QR 二维码</strong>。在两步认证启用后，你登录时将需要使用此应用程序产生的认证码。"
     lost_recovery_codes: 如果你丢了手机，你可以用恢复代码重新访问你的帐户。如果你丢了恢复代码，也可以在这里重新生成一个，不过以前的恢复代码就失效了。<del>（废话）</del>
-    manual_instructions: '如果你无法扫描 QR 二维码，请手动输入这个文本密码：'
+    manual_instructions: 如果你无法扫描 QR 二维码，请手动输入这个文本密码：
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 已成功重新生成恢复代码
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下面的任何恢复代码来恢复你的帐号。请保管好你的恢复代码以防泄漏（例如你可以打印好它们并和重要文档一起保存）。
@@ -605,4 +605,4 @@ zh-CN:
   users:
     invalid_email: 邮箱格式有误
     invalid_otp_token: 两步认证码有误
-    signed_in_as: '当前登录帐号：'
+    signed_in_as: 当前登录帐号：
