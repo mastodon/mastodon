@@ -3,11 +3,14 @@ zh-CN:
   simple_form:
     hints:
       defaults:
-        avatar: 最大 2 MB，限 PNG、GIF 或 JPG 格式，将缩到 120x120px
+        avatar: 最大 2 MB，限 PNG、GIF 或 JPG 格式，将缩到 120x120 px
+        digest: 在你长时间未登录的情况下，我们会向你发送一份摘要，其中含有提及你的嘟文的简要信息
         display_name: 不起过 30 个字符
-        header: 最大 2 MB，限 PNG、GIF 或 JPG 格式，将缩到 700x335px
+        header: 最大 2 MB，限 PNG、GIF 或 JPG 格式，将缩到 700x335 px
         locked: 默认仅向粉丝公开嘟文，需要手工批准粉丝关注请求。
         note: 最多 160 个字符
+        setting_noindex: 此设置会影响到你的公开个人资料以及嘟文页面
+        setting_theme: 此设置会影响到你从任意设备登录时 Mastodon 的显示样式
       imports:
         data: 从其他服务器节点导出的 CSV 文件
       sessions:
@@ -31,8 +34,16 @@ zh-CN:
         note: 简介
         otp_attempt: 两步认证码
         password: 密码
+        setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
         setting_default_privacy: 嘟文默认隐私度
+        setting_default_sensitive: 总是将媒体文件标示为敏感内容
+        setting_delete_modal: 在删除嘟文前询问我
+        setting_noindex: 禁止搜索引擎建立索引
+        setting_reduce_motion: 降低过渡动画效果
+        setting_system_font_ui: 使用系统默认字体
+        setting_theme: 站点主题
+        setting_unfollow_modal: 在取消关注前询问我
         severity: 等级
         type: 导入数据类型
         username: 用户名
