@@ -67,6 +67,7 @@ const keyMap = {
   goToNotifications: 'g n',
   goToLocal: 'g l',
   goToFederated: 'g t',
+  goToDirect: 'g d',
   goToStart: 'g s',
   goToFavourites: 'g f',
   goToPinned: 'g p',
@@ -293,6 +294,10 @@ export default class UI extends React.Component {
     this.context.router.history.push('/timelines/public');
   }
 
+  handleHotkeyGoToDirect = () => {
+    this.context.router.history.push('/timelines/direct');
+  }
+
   handleHotkeyGoToStart = () => {
     this.context.router.history.push('/getting-started');
   }
@@ -331,6 +336,7 @@ export default class UI extends React.Component {
       goToNotifications: this.handleHotkeyGoToNotifications,
       goToLocal: this.handleHotkeyGoToLocal,
       goToFederated: this.handleHotkeyGoToFederated,
+      goToDirect: this.handleHotkeyGoToDirect,
       goToStart: this.handleHotkeyGoToStart,
       goToFavourites: this.handleHotkeyGoToFavourites,
       goToPinned: this.handleHotkeyGoToPinned,

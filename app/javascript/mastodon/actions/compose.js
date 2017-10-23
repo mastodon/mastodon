@@ -8,6 +8,7 @@ import {
   refreshHomeTimeline,
   refreshCommunityTimeline,
   refreshPublicTimeline,
+  refreshDirectTimeline,
 } from './timelines';
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
@@ -129,7 +130,7 @@ export function submitCompose() {
         insertOrRefresh('community', refreshCommunityTimeline);
         insertOrRefresh('public', refreshPublicTimeline);
       } else if (response.data.visibility === 'direct') {
-        dispatch(updateTimeline('direct', { ...response.data }));
+        insertOrRefresh('direct', refreshDirectTimeline);
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
