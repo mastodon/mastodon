@@ -1,3 +1,5 @@
+require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+
 class AddHideNotificationsToMute < ActiveRecord::Migration[5.1]
   include Mastodon::MigrationHelpers
 
