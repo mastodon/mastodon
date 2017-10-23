@@ -37,7 +37,7 @@ zh-CN:
       feed_url: 订阅 URL
       followers: 关注者
       follows: 正在关注
-      ip: IP地址
+      ip: IP 地址
       location:
         all: 全部
         local: 本地
@@ -82,9 +82,9 @@ zh-CN:
       domain: 域名阻隔
       new:
         create: 添加域名阻隔
-        hint: "「域名阻隔」不会隔绝该域名用户的嘟帐户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。"
+        hint: "域名阻隔不会隔绝该域名用户的嘟帐户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。"
         severity:
-          desc_html: "「<strong>自动静音</strong>」令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。 「<strong>自动除名</strong>」会自动将该域名用户的嘟文、媒体文件、个人资料从本服务器实例删除。"
+          desc_html: "<strong>自动静音</strong>令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。<strong>自动除名</strong>会自动将该域名用户的嘟文、媒体文件、个人资料从本服务器实例删除。"
           silence: 自动静音
           suspend: 自动除名
         title: 添加域名阻隔
@@ -96,8 +96,8 @@ zh-CN:
       severity: 阻隔程度
       show:
         affected_accounts:
-          one: 数据库中有1个帐户受影响
-          other: 数据库中有%{count}个帐户受影响
+          one: 数据库中有 1 个帐户受影响
+          other: 数据库中有 %{count} 个帐户受影响
         retroactive:
           silence: 对此域名的所有帐户取消静音
           suspend: 对此域名的所有帐户取消除名
@@ -110,16 +110,16 @@ zh-CN:
       domain_name: 域名
       title: 已知实例
     reports:
-      are_you_sure: 你确定吗?
+      are_you_sure: 你确定吗？
       comment:
         label: 备注
         none: 没有
       delete: 删除
       id: ID
-      mark_as_resolved: 标示为「已处理」
+      mark_as_resolved: 标示为“已处理”
       nsfw:
-        'false': NSFW无效
-        'true': NSFW有效
+        'false': NSFW 无效
+        'true': NSFW 有效
       report: '举报 #%{id}'
       reported_account: 举报用户
       reported_by: 举报者
@@ -137,12 +137,12 @@ zh-CN:
         username: 输入用户名称
       registrations:
         closed_message:
-          desc_html: 当本站暂停接受注册时，会显示这个消息。<br/> 可使用 HTML
+          desc_html: 当本站暂停接受注册时，会显示这个消息。<br/>可使用 HTML
           title: 暂停注册消息
         open:
           title: 开放注册
       site_description:
-        desc_html: 在首页显示，及在 meta 标签中用作网站介绍。<br>你可以在此使用 HTML 标签，尤其是<code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
+        desc_html: 在首页显示，及在 meta 标签中用作网站介绍。<br>你可以在此使用 HTML 标签，尤其是 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
         title: 本站介绍
       site_description_extended:
         desc_html: 本站详细信息页的內容<br/>你可在此使用 HTML
@@ -158,7 +158,7 @@ zh-CN:
       topic: 所订阅资源
     title: 管理
   application_mailer:
-    settings: 更改电邮设置︰%{link}
+    settings: 更改电邮设置：%{link}
     signature: 来自 %{instance} 的 Mastodon 通知
     view: 查看：
   applications:
@@ -213,7 +213,7 @@ zh-CN:
     purge: 从关注者中移除
     success: 从 %{count} 个域名中移除了关注者。
     true_privacy_html: "<strong>真正的隐私只能靠端到端加密来实现</strong>！"
-    unlocked_warning_html: 任何人都可以关注你然后查看被保护的嘟文， %{lock_link} 可以复核和拒绝关注请求。
+    unlocked_warning_html: 任何人都可以关注你然后查看被保护的嘟文，%{lock_link}可以复核和拒绝关注请求。
     unlocked_warning_title: 你的帐户没被保护
   generic:
     changes_saved_msg: 更改已被保存。
@@ -223,7 +223,7 @@ zh-CN:
       one: 出错啦！请确认以下出错的地方，修改之后再来一次：
       other: 出错啦！请确认以下 %{count} 处出错的地方，修改之后再来一次：
   imports:
-    preface: 你可以在此导入你在其他服务器实例所导出的数据文件，包括︰你所关注、封锁的用户。
+    preface: 你可以在此导入你在其他服务器实例所导出的数据文件，包括：你所关注、封锁的用户。
     success: 你已成功上载数据文件，我们正将数据导入，请稍候
     types:
       blocking: 封锁名单
@@ -235,11 +235,11 @@ zh-CN:
   media_attachments:
     validations:
       images_and_video: 无法添加视频到一个已经包含图片的嘟文中
-      too_many: 最多只能添加4张图片
+      too_many: 最多只能添加 4 张图片
   notification_mailer:
     digest:
-      body: 自从你在%{since}使用%{instance}以后，错过了这些嘟嘟滴滴：
-      mention: "%{name} 在此提及了你︰"
+      body: 自从你在 %{since} 使用 %{instance} 以后，错过了这些嘟嘟滴滴：
+      mention: "%{name} 在此提及了你："
       new_followers_summary:
         one: 有人关注你了！耶！
         other: 有 %{count} 个人关注了你！别激动！
@@ -254,9 +254,9 @@ zh-CN:
       subject: "%{name} 关注了你"
     follow_request:
       body: "%{name} 要求关注你"
-      subject: 等候关注你的用户︰ %{name}
+      subject: 等候关注你的用户：%{name}
     mention:
-      body: "%{name} 在文章中提及你︰"
+      body: "%{name} 在文章中提及你："
       subject: "%{name} 在文章中提及你"
     reblog:
       body: 你的嘟文得到 %{name} 的转嘟
@@ -277,10 +277,10 @@ zh-CN:
     prev: 上一页
     truncate: "……"
   remote_follow:
-    acct: 请输入你的︰用户名称@实例域名
+    acct: 请输入你的：用户名称@实例域名
     missing_resource: 无法找到您的帐户转接网址
     proceed: 下一步
-    prompt: 你正准备关注︰
+    prompt: 你正准备关注：
   settings:
     authorized_apps: 已授权的应用
     back: 回到 Mastodon
@@ -308,7 +308,7 @@ zh-CN:
     sensitive_content: 敏感内容
   time:
     formats:
-      default: "%Y年%-m月%d日 %H:%M"
+      default: "%Y 年 %-m 月 %d 日 %H:%M"
   two_factor_authentication:
     code_hint: 请输入你认证器产生的代码，以确认设置
     description_html: 当你启用<strong>两步认证</strong>后，你登录时将额外需要使用手机或其他认证器生成的代码。
@@ -318,7 +318,7 @@ zh-CN:
     generate_recovery_codes: 生成恢复代码
     instructions_html: "<strong>请用你手机的认证器应用（如 Google Authenticator、Authy），扫描这里的 QR 二维码</strong>。在两步认证启用后，你登录时将需要使用此应用程序产生的认证码。"
     lost_recovery_codes: 如果你丢了手机，你可以用恢复代码重新访问你的帐户。如果你丢了恢复代码，也可以在这里重新生成一个，不过以前的恢复代码就失效了。<del>（废话）</del>
-    manual_instructions: 如果你无法扫描 QR 二维码，请手动输入这个文本密码︰
+    manual_instructions: 如果你无法扫描 QR 二维码，请手动输入这个文本密码：
     recovery_codes_regenerated: 已成功重新生成恢复代码
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下面的任何恢复代码来恢复你的帐号。请保管好你的恢复代码以防泄漏（例如你可以打印好它们并和重要文档一起保存）。
     setup: 设置
