@@ -96,5 +96,10 @@ RSpec.describe NotifyService do
       user.settings.interactions = interactions.merge('must_be_following_dm' => true)
       is_expected.to_not change(Notification, :count)
     end
+    
+    it 'does notify when direct messages are sent to the recipient with a follow request' do
+      FollowRequest.create(account: recipient, target_account: asshole)
+      is_expected.to change(Notification, :count)
+    end
   end
 end

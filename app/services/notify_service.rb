@@ -18,7 +18,7 @@ class NotifyService < BaseService
   private
 
   def visibility
-    unless @visibility.nil? && (@activity.is_a?(Follow) || @activity.is_a?(FollowRequest))
+    unless !@visibility.nil? || @activity.is_a?(Follow) || @activity.is_a?(FollowRequest)
       status = @activity.is_a?(Status) ? @activity : @activity.status
       @visibility = status.visibility
     end
@@ -46,17 +46,18 @@ class NotifyService < BaseService
   end
 
   def blocked?
-    blocked   = @recipient.suspended?                                                                                                                             # Skip if the recipient account is suspended anyway
-    blocked ||= @recipient.id == @notification.from_account.id                                                                                                    # Skip for interactions with self
-    blocked ||= @recipient.domain_blocking?(@notification.from_account.domain) && !@recipient.following?(@notification.from_account)                              # Skip for domain blocked accounts
-    blocked ||= @recipient.blocking?(@notification.from_account)                                                                                                  # Skip for blocked accounts
-    blocked ||= @recipient.muting?(@notification.from_account)                                                                                                    # Skip for muted accounts
-    blocked ||= (@notification.from_account.silenced? && !@recipient.following?(@notification.from_account))                                                      # Hellban
-    blocked ||= (@recipient.user.settings.interactions['must_be_follower']     && !@notification.from_account.following?(@recipient))                             # Options
-    blocked ||= (@recipient.user.settings.interactions['must_be_following']    && !@recipient.following?(@notification.from_account))                             # Options
-    blocked ||= (@recipient.user.settings.interactions['must_be_following_dm'] && !@recipient.following?(@notification.from_account) && visibility == 'direct')   # Options
+    follow_attempted = @recipient.following?(@notification.from_account) || @recipient.requested?(@notification.from_account)        # Check for follow or follow request
+    blocked   = @recipient.suspended?                                                                                                # Skip if the recipient account is suspended anyway
+    blocked ||= @recipient.id == @notification.from_account.id                                                                       # Skip for interactions with self
+    blocked ||= @recipient.domain_blocking?(@notification.from_account.domain) && !follow_attempted                                  # Skip for domain blocked accounts
+    blocked ||= @recipient.blocking?(@notification.from_account)                                                                     # Skip for blocked accounts
+    blocked ||= @recipient.muting?(@notification.from_account)                                                                       # Skip for muted accounts
+    blocked ||= @notification.from_account.silenced? && !follow_attempted                                                            # Hellban
+    blocked ||= @recipient.user.settings.interactions['must_be_follower']     && !@notification.from_account.following?(@recipient)  # Options
+    blocked ||= @recipient.user.settings.interactions['must_be_following']    && !follow_attempted                                   # Options
+    blocked ||= @recipient.user.settings.interactions['must_be_following_dm'] && !follow_attempted && visibility == 'direct'         # Options
     blocked ||= conversation_muted?
-    blocked ||= send("blocked_#{@notification.type}?")                                                                                                            # Type-dependent filters
+    blocked ||= send("blocked_#{@notification.type}?")                                                                               # Type-dependent filters
     blocked
   end
 
