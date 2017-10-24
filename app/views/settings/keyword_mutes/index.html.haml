@@ -10,7 +10,7 @@
         %th
         %th
       %tbody
-        = render @keyword_mutes
+        = render partial: 'keyword_mute', collection: @keyword_mutes, as: :keyword_mute
 
 = paginate @keyword_mutes
 .simple_form
