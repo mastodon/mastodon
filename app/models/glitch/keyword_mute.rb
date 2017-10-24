@@ -35,30 +35,32 @@ class Glitch::KeywordMute < ApplicationRecord
     def initialize(account_id)
       @account_id = account_id
       regex_text = Rails.cache.fetch("keyword_mutes:regex:#{account_id}") { regex_text_for_account }
-      @regex = /#{regex_text}/i unless regex_text.empty?
+      @regex = /#{regex_text}/i
     end
+
+    def =~(str)
+      regex ? regex =~ str : nil
+    end
+
+    private
 
     def keywords
       Glitch::KeywordMute.where(account_id: account_id).select(:keyword, :id, :whole_word)
     end
 
     def regex_text_for_account
-      [].tap do |arr|
-        keywords.find_each do |kw|
-          arr << (kw.whole_word ? boundary_regex_for_keyword(kw.keyword) : Regexp.escape(kw.keyword))
-        end
-      end.join('|')
+      kws = keywords.find_each.with_object([]) do |kw, a|
+        a << (kw.whole_word ? boundary_regex_for_keyword(kw.keyword) : kw.keyword)
+      end
+
+      Regexp.union(kws).source
     end
 
     def boundary_regex_for_keyword(keyword)
       sb = keyword =~ /\A[[:word:]]/ ? '\b' : ''
       eb = keyword =~ /[[:word:]]\Z/ ? '\b' : ''
 
-      "#{sb}#{Regexp.escape(keyword)}#{eb}"
-    end
-
-    def =~(str)
-      regex ? regex =~ str : nil
+      /#{sb}#{Regexp.escape(keyword)}#{eb}/
     end
   end
 end
