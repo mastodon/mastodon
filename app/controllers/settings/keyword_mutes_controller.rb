@@ -28,7 +28,7 @@ class Settings::KeywordMutesController < ApplicationController
     if @keyword_mute.update(keyword_mute_params)
       redirect_to settings_keyword_mutes_path, notice: I18n.t('generic.changes_saved_msg')
     else
-      render :new
+      render :edit
     end
   end
 
