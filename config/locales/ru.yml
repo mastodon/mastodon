@@ -412,23 +412,30 @@ ru:
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: "%n %u"
         units:
-          billion: B
-          million: M
+          billion: млрд
+          million: млн
           quadrillion: Q
-          thousand: K
-          trillion: T
+          thousand: тыс
+          trillion: трлн
           unit: ''
   pagination:
     next: След
     prev: Пред
     truncate: "&hellip;"
+  preferences:
+    languages: Языки
+    other: Другое
+    publishing: Публикация
+    web: WWW
   push_notifications:
     favourite:
       title: Ваш статус понравился %{name}
     follow:
       title: "%{name} теперь подписан(а) на Вас"
+    group:
+      title: "%{count} уведомлений"
     mention:
       action_boost: Продвинуть
       action_expand: Развернуть
@@ -482,16 +489,24 @@ ru:
     authorized_apps: Авторизованные приложения
     back: Назад в Mastodon
     delete: Удаление аккаунта
+    development: Разработка
     edit_profile: Изменить профиль
     export: Экспорт данных
     followers: Авторизованные подписчики
     import: Импорт
+    notifications: Уведомления
     preferences: Настройки
     settings: Опции
     two_factor_authentication: Двухфакторная аутентификация
+    your_apps: Ваши приложения
   statuses:
     open_in_web: Открыть в WWW
     over_character_limit: превышен лимит символов (%{max})
+    pin_errors:
+      limit: Слишком много закрепленных статусов
+      ownership: Нельзя закрепить чужой статус
+      private: Нельзя закрепить непубличный статус
+      reblog: Нельзя закрепить продвинутый статус
     show_more: Подробнее
     visibilities:
       private: Для подписчиков
@@ -506,6 +521,8 @@ ru:
     sensitive_content: Чувствительный контент
   terms:
     title: Условия обслуживания и политика конфиденциальности %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -514,11 +531,13 @@ ru:
     description_html: При включении <strong>двухфакторной аутентификации</strong>, вход потребует от Вас использования Вашего телефона, который сгенерирует входные токены.
     disable: Отключить
     enable: Включить
+    enabled: Двухфакторная аутентификация включена
     enabled_success: Двухфакторная аутентификация успешно включена
     generate_recovery_codes: Сгенерировать коды восстановления
     instructions_html: "<strong>Отсканируйте этот QR-код с помощью Google Authenticator или другого подобного приложения на Вашем телефоне</strong>. С этого момента приложение будет генерировать токены, которые будет необходимо ввести для входа."
     lost_recovery_codes: Коды восстановления позволяют вернуть доступ к аккаунту в случае утери телефона. Если Вы потеряли Ваши коды восстановления, вы можете заново сгенерировать их здесь. Ваши старые коды восстановления будут аннулированы.
     manual_instructions: 'Если Вы не можете отсканировать QR-код и хотите ввести его вручную, секрет представлен здесь открытым текстом:'
+    recovery_codes: Коды восстановления
     recovery_codes_regenerated: Коды восстановления успешно сгенерированы
     recovery_instructions_html: В случае утери доступа к Вашему телефону Вы можете использовать один из кодов восстановления, указанных ниже, чтобы вернуть доступ к аккаунту. Держите коды восстановления в безопасности, например, распечатав их и храня с другими важными документами.
     setup: Настроить
@@ -526,3 +545,4 @@ ru:
   users:
     invalid_email: Введенный e-mail неверен
     invalid_otp_token: Введен неверный код
+    signed_in_as: 'Выполнен вход под именем:'
