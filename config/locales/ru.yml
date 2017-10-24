@@ -12,8 +12,8 @@ ru:
     domain_count_after: другими узлами
     domain_count_before: Связан с
     extended_description_html: |
-        <h3>Хорошее место для правил</h3>
-        <p>Расширенное описание еще не настроено.</p>
+      <h3>Хорошее место для правил</h3>
+      <p>Расширенное описание еще не настроено.</p>
     features:
       humane_approach_body: Наученный ошибками других проектов, Mastodon направлен на выбор этичных решений в борьбе со злоупотреблениями возможностями социальных сетей.
       humane_approach_title: Человечный подход
@@ -187,7 +187,7 @@ ru:
       search: Поиск
       title: Известные узлы
     reports:
-      action_taken_by: Действие предпринято:
+      action_taken_by: 'Действие предпринято:'
       are_you_sure: Вы уверены?
       comment:
         label: Комментарий
@@ -268,13 +268,13 @@ ru:
     title: Администрирование
   admin_mailer:
     new_report:
-      body: '%{reporter} подал(а) жалобу на %{target}'
-      subject: 'Новая жалоба, узел %{instance} (#%{id})'
+      body: "%{reporter} подал(а) жалобу на %{target}"
+      subject: Новая жалоба, узел %{instance} (#%{id})
   application_mailer:
     salutation: "%{name},"
-    settings: 'Изменить настройки e-mail: %{link}'
-    signature: 'Уведомления Mastodon от %{instance}'
-    view: 'Просмотр:'
+    settings: Изменить настройки e-mail: %{link}
+    signature: Уведомления Mastodon от %{instance}
+    view: Просмотр:
   applications:
     created: Приложение успешно создано
     destroyed: Приложение успешно удалено
