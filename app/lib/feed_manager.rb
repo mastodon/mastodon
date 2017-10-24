@@ -177,7 +177,7 @@ class FeedManager
       should_filter ||= matcher =~ status.reblog.spoiler_text
     end
 
-    should_filter
+    !!should_filter
   end
 
   def filter_from_mentions?(status, receiver_id)
@@ -189,6 +189,7 @@ class FeedManager
 
     should_filter   = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?                                     # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
     should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
+    should_filter ||= keyword_filter?(status, Glitch::KeywordMute.matcher_for(receiver_id))                                              # or if the mention contains a muted keyword
 
     should_filter
   end

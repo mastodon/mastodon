@@ -185,6 +185,13 @@ RSpec.describe FeedManager do
         bob.follow!(alice)
         expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be false
       end
+
+      it 'returns true for status that contains a muted keyword' do
+        Fabricate('Glitch::KeywordMute', account: bob, keyword: 'take')
+        status = Fabricate(:status, text: 'This is a hot take', account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be true
+      end
     end
   end
 
