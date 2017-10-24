@@ -112,3 +112,19 @@ exports[`<Button /> renders the props.text instead of children 1`] = `
   foo
 </button>
 `;
+
+exports[`<Button /> renders title if props.title is given 1`] = `
+<button
+  className="button"
+  disabled={undefined}
+  onClick={[Function]}
+  style={
+    Object {
+      "height": "36px",
+      "lineHeight": "36px",
+      "padding": "0 16px",
+    }
+  }
+  title="foo"
+/>
+`;

@@ -14,6 +14,7 @@ export default class Button extends React.PureComponent {
     className: PropTypes.string,
     style: PropTypes.object,
     children: PropTypes.node,
+    title: PropTypes.string,
   };
 
   static defaultProps = {
@@ -35,26 +36,26 @@ export default class Button extends React.PureComponent {
   }
 
   render () {
-    const style = {
-      padding: `0 ${this.props.size / 2.25}px`,
-      height: `${this.props.size}px`,
-      lineHeight: `${this.props.size}px`,
-      ...this.props.style,
+    let attrs = {
+      className: classNames('button', this.props.className, {
+        'button-secondary': this.props.secondary,
+        'button--block': this.props.block,
+      }),
+      disabled: this.props.disabled,
+      onClick: this.handleClick,
+      ref: this.setRef,
+      style: {
+        padding: `0 ${this.props.size / 2.25}px`,
+        height: `${this.props.size}px`,
+        lineHeight: `${this.props.size}px`,
+        ...this.props.style,
+      },
     };
 
-    const className = classNames('button', this.props.className, {
-      'button-secondary': this.props.secondary,
-      'button--block': this.props.block,
-    });
+    if (this.props.title) attrs.title = this.props.title;
 
     return (
-      <button
-        className={className}
-        disabled={this.props.disabled}
-        onClick={this.handleClick}
-        ref={this.setRef}
-        style={style}
-      >
+      <button {...attrs}>
         {this.props.text || this.props.children}
       </button>
     );

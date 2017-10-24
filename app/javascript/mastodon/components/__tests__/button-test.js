@@ -72,4 +72,11 @@ describe('<Button />', () => {
 
     expect(tree).toMatchSnapshot();
   });
+
+  it('renders title if props.title is given', () => {
+    const component = renderer.create(<Button title='foo' />);
+    const tree      = component.toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
