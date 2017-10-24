@@ -33,12 +33,9 @@ class Settings::KeywordMutesController < ApplicationController
   end
 
   def destroy
-    if @keyword_mute.destroy
-      redirect_to settings_keyword_mutes_path, notice: I18n.t('generic.changes_saved_msg')
-    else
-      # FIXME
-      redirect_to settings_keyword_mutes_path, notice: "huh that didn't work right"
-    end
+    @keyword_mute.destroy!
+
+    redirect_to settings_keyword_mutes_path, notice: I18n.t('generic.changes_saved_msg')
   end
 
   def destroy_all
