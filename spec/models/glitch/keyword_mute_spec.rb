@@ -48,7 +48,7 @@ RSpec.describe Glitch::KeywordMute, type: :model do
         expect(matcher =~ 'Take this').to be_truthy
       end
 
-      it 'matches keywords at the beginning of the text' do
+      it 'matches keywords at the end of the text' do
         Glitch::KeywordMute.create!(account: alice, keyword: 'take')
 
         expect(matcher =~ 'This is a hot take').to be_truthy
