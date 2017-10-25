@@ -523,6 +523,14 @@
   white-space: pre-wrap;
   padding-top: 5px;
 
+  &.status__content--with-spoiler {
+    white-space: normal;
+
+    .status__content__text {
+      white-space: pre-wrap;
+    }
+  }
+
   .emojione {
     width: 20px;
     height: 20px;
@@ -1565,7 +1573,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 630px) {
   .column,
   .drawer {
     width: 100%;
@@ -1582,7 +1590,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 631px) {
   .columns-area {
     padding: 0;
   }
@@ -1696,7 +1704,7 @@
   &:hover,
   &:focus,
   &:active {
-    @media screen and (min-width: 1025px) {
+    @media screen and (min-width: 631px) {
       background: lighten($ui-base-color, 14%);
       transition: all 100ms linear;
     }
@@ -1716,7 +1724,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 631px) {
   .tabs-bar {
     display: none;
   }
@@ -4292,7 +4300,7 @@ noscript {
   100% { opacity: 1; }
 }
 
-@media screen and (max-width: 1024px) and (max-height: 400px) {
+@media screen and (max-width: 630px) and (max-height: 400px) {
   $duration: 400ms;
   $delay: 100ms;
 
