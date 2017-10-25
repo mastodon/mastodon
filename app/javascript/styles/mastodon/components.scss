@@ -1738,6 +1738,13 @@
   }
 }
 
+.item-list {
+  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
+    // auto-hiding scrollbar in Edge, add margin to avoid scrollbar appearing over content
+    padding-right: 16px;
+  }
+}
+
 .column-back-button {
   background: lighten($ui-base-color, 4%);
   color: $ui-highlight-color;
