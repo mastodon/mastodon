@@ -1,5 +1,5 @@
 export function EmojiPicker () {
-  return import(/* webpackChunkName: "emojione_picker" */'emojione-picker');
+  return import(/* webpackChunkName: "emoji_picker" */'../../emoji/emoji_picker');
 }
 
 export function Compose () {
@@ -92,10 +92,6 @@ export function ReportModal () {
 
 export function MediaGallery () {
   return import(/* webpackChunkName: "status/media_gallery" */'../../../components/media_gallery');
-}
-
-export function VideoPlayer () {
-  return import(/* webpackChunkName: "status/video_player" */'../../../components/video_player');
 }
 
 export function Video () {

@@ -19,22 +19,15 @@
       = title
 
     = stylesheet_pack_tag 'common', media: 'all'
+    = stylesheet_pack_tag current_theme, media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-
-    %link{ href: asset_pack_path('features/getting_started.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-    %link{ href: asset_pack_path('features/compose.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-    %link{ href: asset_pack_path('features/home_timeline.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-    %link{ href: asset_pack_path('features/notifications.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-    %link{ href: asset_pack_path('features/community_timeline.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-    %link{ href: asset_pack_path('features/public_timeline.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-    %link{ href: asset_pack_path('emojione_picker.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
     = yield :header_tags
 
   - body_classes ||= @body_classes || ''
+  - body_classes += ' reduce-motion' if current_account&.user&.setting_reduce_motion
   - body_classes += ' system-font' if current_account&.user&.setting_system_font_ui
 
   %body{ class: add_rtl_body_class(body_classes) }
