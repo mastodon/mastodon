@@ -17,6 +17,7 @@ const messages = defineMessages({
   navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
@@ -78,18 +79,22 @@ export default class GettingStarted extends ImmutablePureComponent {
       }
     }
 
-    navItems = navItems.concat([
-      <ColumnLink key='4' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
-      <ColumnLink key='5' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
-    ]);
-
-    if (me.get('locked')) {
-      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
+    if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
+      navItems.push(<ColumnLink key='4' icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />);
     }
 
     navItems = navItems.concat([
-      <ColumnLink key='7' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
-      <ColumnLink key='8' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
+      <ColumnLink key='5' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
+      <ColumnLink key='6' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
+    ]);
+
+    if (me.get('locked')) {
+      navItems.push(<ColumnLink key='7' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
+    }
+
+    navItems = navItems.concat([
+      <ColumnLink key='8' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
+      <ColumnLink key='9' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
     ]);
 
     return (
