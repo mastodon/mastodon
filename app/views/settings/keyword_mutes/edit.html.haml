@@ -1,0 +1,6 @@
+- content_for :page_title do
+  = t('keyword_mutes.edit_keyword')
+
+= simple_form_for @keyword_mute, url: settings_keyword_mute_path(@keyword_mute), as: :keyword_mute do |f|
+  = render 'shared/error_messages', object: @keyword_mute
+  = render 'fields', f: f
