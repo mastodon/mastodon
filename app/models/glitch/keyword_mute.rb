@@ -39,7 +39,7 @@ class Glitch::KeywordMute < ApplicationRecord
     end
 
     def =~(str)
-      regex ? regex =~ str : nil
+      regex =~ str
     end
 
     private
