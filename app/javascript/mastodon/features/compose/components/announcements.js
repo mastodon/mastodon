@@ -74,7 +74,7 @@ class Announcements extends React.PureComponent {
 			  <br />
 			  あなたがまだフォローする人を決めていない場合、下記のタグを付けて投稿しているユーザーを確認してみると良いかもしれません。</p>
               {hashtags.map((hashtag, i) =>
-                <Link key={i} to={`/timelines/tag/${hashtag}`}>
+                <Link key={i} to={`/timelines/tag/${hashtag}`} tabIndex={this.state.showId === 'introduction' ? undefined : -1}>
                   #{hashtag}
                 </Link>
               )}
