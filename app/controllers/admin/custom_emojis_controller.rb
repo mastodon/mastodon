@@ -36,7 +36,7 @@ module Admin
         flash[:alert] = I18n.t('admin.custom_emojis.copy_failed_msg')
       end
 
-      redirect_to admin_custom_emojis_path(params[:page])
+      redirect_to admin_custom_emojis_path(page: params[:page])
     end
 
     def enable
