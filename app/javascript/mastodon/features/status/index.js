@@ -45,7 +45,6 @@ const makeMapStateToProps = () => {
     me: state.getIn(['meta', 'me']),
     boostModal: state.getIn(['meta', 'boost_modal']),
     deleteModal: state.getIn(['meta', 'delete_modal']),
-    autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
 
   return mapStateToProps;
@@ -68,7 +67,6 @@ export default class Status extends ImmutablePureComponent {
     me: PropTypes.string,
     boostModal: PropTypes.bool,
     deleteModal: PropTypes.bool,
-    autoPlayGif: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -257,7 +255,7 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { status, ancestorsIds, descendantsIds, me, autoPlayGif } = this.props;
+    const { status, ancestorsIds, descendantsIds, me } = this.props;
 
     if (status === null) {
       return (
@@ -298,7 +296,6 @@ export default class Status extends ImmutablePureComponent {
               <div className='focusable' tabIndex='0'>
                 <DetailedStatus
                   status={status}
-                  autoPlayGif={autoPlayGif}
                   me={me}
                   onOpenVideo={this.handleOpenVideo}
                   onOpenMedia={this.handleOpenMedia}

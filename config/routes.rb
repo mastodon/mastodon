@@ -140,7 +140,7 @@ Rails.application.routes.draw do
       resource :two_factor_authentication, only: [:destroy]
     end
 
-    resources :custom_emojis, only: [:index, :new, :create, :destroy] do
+    resources :custom_emojis, only: [:index, :new, :create, :update, :destroy] do
       member do
         post :copy
         post :enable
