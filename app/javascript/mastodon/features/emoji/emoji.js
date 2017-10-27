@@ -26,7 +26,7 @@ const emojify = (str, customEmojis = {}) => {
         const shortname = str.slice(i, rend);
         // now got a replacee as ':shortname:'
         // if you want additional emoji handler, add statements below which set replacement and return true.
-        const nicoru = /^:nicoru(\d*):$/.exec(shortname);
+        const nicoru = /^:nicoru(-?\d+)?:$/.exec(shortname);
         if (nicoru) {
           replacement = `<img alt="${shortname}" title="${shortname}" src="/emoji/nicoru.svg" style="height: 1.5em; transform: rotate(${nicoru[1] || 0}deg)"/>`;
           return true;
