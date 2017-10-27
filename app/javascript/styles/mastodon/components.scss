@@ -2280,6 +2280,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header {
+  display: flex;
   padding: 15px;
   font-size: 16px;
   background: lighten($ui-base-color, 4%);
@@ -2305,12 +2306,10 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header__buttons {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  display: flex;
   height: 48px;
+  display: flex;
+  margin: -15px;
+  margin-left: 0;
 }
 
 .column-header__button {
@@ -2376,6 +2375,14 @@ button.icon-button.active i.fa-retweet {
       padding-right: 0;
     }
   }
+}
+
+.column-header__title {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
 }
 
 .text-btn {
@@ -3008,21 +3015,21 @@ button.icon-button.active i.fa-retweet {
   }
 
   .fa-search {
-    transform: translateZ(0) rotate(90deg);
+    transform: rotate(90deg);
 
     &.active {
       pointer-events: none;
-      transform: translateZ(0) rotate(0deg);
+      transform: rotate(0deg);
     }
   }
 
   .fa-times-circle {
     top: 11px;
-    transform: translateZ(0) rotate(0deg);
+    transform: rotate(0deg);
     cursor: pointer;
 
     &.active {
-      transform: translateZ(0) rotate(90deg);
+      transform: rotate(90deg);
     }
 
     &:hover {
@@ -3067,7 +3074,6 @@ button.icon-button.active i.fa-retweet {
   right: 0;
   bottom: 0;
   background: rgba($base-overlay-background, 0.7);
-  transform: translateZ(0);
 }
 
 .modal-root__container {
