@@ -19,7 +19,8 @@
     = f.input :timeline_preview, as: :boolean, wrapper: :with_label, label: t('admin.settings.timeline_preview.title'), hint: t('admin.settings.timeline_preview.desc_html')
 
   .fields-group
-    = f.input :registrations_status, collection: [:open, :closed], wrapper: :with_label, label_method: lambda { |status| safe_join([I18n.t("admin.settings.registrations.statuses.#{status}.label"), content_tag(:span, I18n.t("admin.settings.registrations.statuses.#{status}.desc_html"), class: 'hint')]) }, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+    = f.input :registrations_status, collection: [:open, :keyed, :closed], wrapper: :with_label, label_method: lambda { |status| safe_join([I18n.t("admin.settings.registrations.statuses.#{status}.label"), content_tag(:span, I18n.t("admin.settings.registrations.statuses.#{status}.desc_html"), class: 'hint')]) }, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+    = f.input :registration_key, wrapper: :with_block_label, label: t('admin.settings.registrations.key.label'), hint: t('admin.settings.registrations.key.desc_html')
 
   .fields-group
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')

@@ -18,6 +18,8 @@ class Form::AdminSettings
     :site_terms=,
     :registrations_status,
     :registrations_status=,
+    :registration_key,
+    :registration_key=,
     :closed_registrations_message,
     :closed_registrations_message=,
     :open_deletion,

@@ -10,6 +10,7 @@ module Admin
       site_extended_description
       site_terms
       registrations_status
+      registration_key
       closed_registrations_message
       open_deletion
       timeline_preview

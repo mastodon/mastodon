@@ -19,7 +19,9 @@ module ApplicationHelper
       Setting.registrations_status = Setting.open_registrations ? 'open' : 'closed'
       Setting.destroy(:open_registrations)
     end
-    Setting.registrations_status == 'open'
+    registrations_status = @instance_presenter.registrations_status
+    return true if registrations_status == 'keyed' && params[:key] == Setting.registration_key
+    registrations_status == 'open'
   end
 
   def open_deletion?

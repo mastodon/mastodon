@@ -7,6 +7,8 @@
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = render 'shared/error_messages', object: resource
 
+  = hidden_field_tag(:key, params[:key])
+
   = f.simple_fields_for :account do |ff|
     .input-with-append
       = ff.input :username, autofocus: true, placeholder: t('simple_form.labels.defaults.username'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off' }
