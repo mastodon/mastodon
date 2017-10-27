@@ -16,7 +16,7 @@ class ProcessMentionsService < BaseService
 
       if mentioned_account.nil? && !domain.nil?
         begin
-          mentioned_account = follow_remote_account_service.call(match.first.to_s)
+          mentioned_account = resolve_remote_account_service.call(match.first.to_s)
         rescue Goldfinger::Error, HTTP::Error
           mentioned_account = nil
         end
@@ -54,7 +54,7 @@ class ProcessMentionsService < BaseService
     ).as_json).sign!(status.account))
   end
 
-  def follow_remote_account_service
-    @follow_remote_account_service ||= ResolveRemoteAccountService.new
+  def resolve_remote_account_service
+    ResolveRemoteAccountService.new
   end
 end
