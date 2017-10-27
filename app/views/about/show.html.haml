@@ -38,7 +38,7 @@
           %h1
             = @instance_presenter.site_title
             %small= t 'about.hosted_on', domain: site_hostname
-        - if @instance_presenter.open_registrations
+        - if @instance_presenter.registrations_status == 'open'
           = render 'registration'
         - else
           .closed-registrations-message

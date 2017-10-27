@@ -35,7 +35,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || !Setting.open_registrations
+    registrations_status = Setting.registrations_status
+    redirect_to root_path if single_user_mode? || registrations_status != 'open'
   end
 
   private

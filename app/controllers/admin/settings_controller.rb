@@ -9,7 +9,7 @@ module Admin
       site_description
       site_extended_description
       site_terms
-      open_registrations
+      registrations_status
       closed_registrations_message
       open_deletion
       timeline_preview
@@ -18,7 +18,6 @@ module Admin
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
-      open_registrations
       open_deletion
       timeline_preview
     ).freeze

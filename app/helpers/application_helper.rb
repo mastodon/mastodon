@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def open_registrations?
-    Setting.open_registrations
+    Setting.registrations_status == 'open'
   end
 
   def open_deletion?

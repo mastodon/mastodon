@@ -226,9 +226,13 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
-        open:
-          desc_html: Allow anyone to create an account
-          title: Open registration
+        statuses:
+          open:
+            label: Open
+            desc_html: Allow anyone to create an account
+          closed:
+            label: Closed
+            desc_html: Allow no-one to create an account
       site_description:
         desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description
