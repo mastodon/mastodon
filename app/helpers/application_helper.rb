@@ -14,6 +14,11 @@ module ApplicationHelper
   end
 
   def open_registrations?
+    @instance_presenter ||= InstancePresenter.new
+    unless Setting.open_registrations.nil?
+      Setting.registrations_status = Setting.open_registrations ? 'open' : 'closed'
+      Setting.destroy(:open_registrations)
+    end
     Setting.registrations_status == 'open'
   end
 
