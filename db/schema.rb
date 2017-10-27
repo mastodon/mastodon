@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20171021191900) do
     t.boolean "disabled", default: false, null: false
     t.string "uri"
     t.string "image_remote_url"
+    t.boolean "visible_in_picker", default: true, null: false
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 

@@ -9,7 +9,12 @@
     - else
       = custom_emoji.domain
   %td
-    - unless custom_emoji.local?
+    - if custom_emoji.local?
+      - if custom_emoji.visible_in_picker
+        = table_link_to 'eye', t('admin.custom_emojis.listed'), admin_custom_emoji_path(custom_emoji, custom_emoji: { visible_in_picker: false }), method: :patch
+      - else
+        = table_link_to 'eye-slash', t('admin.custom_emojis.unlisted'), admin_custom_emoji_path(custom_emoji, custom_emoji: { visible_in_picker: true }), method: :patch
+    - else
       = table_link_to 'copy', t('admin.custom_emojis.copy'), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post
   %td
     - if custom_emoji.disabled?
