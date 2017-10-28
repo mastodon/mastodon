@@ -620,6 +620,12 @@
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
 
+  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
+    // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
+    // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
+    padding-right: 26px; // 10px + 16px
+  }
+
   @keyframes fade {
     0% { opacity: 0; }
     100% { opacity: 1; }
@@ -1735,13 +1741,6 @@
 .scrollable.fullscreen {
   @supports(display: grid) { // hack to fix Chrome <57
     contain: none;
-  }
-}
-
-.item-list {
-  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
-    // auto-hiding scrollbar in Edge, add margin to avoid scrollbar appearing over content
-    padding-right: 16px;
   }
 }
 
