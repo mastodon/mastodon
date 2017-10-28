@@ -2494,7 +2494,7 @@ button.icon-button.active i.fa-retweet {
 
 .media-spoiler {
   background: $base-overlay-background;
-  color: $ui-primary-color;
+  color: #000000;
   border: 0;
   width: 100%;
   height: 100%;
@@ -2502,7 +2502,7 @@ button.icon-button.active i.fa-retweet {
   &:hover,
   &:active,
   &:focus {
-    color: lighten($ui-primary-color, 8%);
+    color: lighten(#000000, 8%);
   }
 }
 
