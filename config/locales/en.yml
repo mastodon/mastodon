@@ -227,18 +227,18 @@ en:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
         key:
+          desc_html: 'The secret registration key can be passed as a URL query parameter like so: <code>/about?key=verysecret</code>'
           label: Secret registration key
-          desc_html: "The secret registration key can be passed as a URL query parameter like so: <code>/about?key=verysecret</code>"
         statuses:
-          open:
-            label: Open
-            desc_html: Allow anyone to create an account
-          keyed:
-            label: Keyed
-            desc_html: Allow anyone with a secret key to create an account
           closed:
-            label: Closed
             desc_html: Allow no-one to create an account
+            label: Closed registration
+          keyed:
+            desc_html: Allow anyone with a secret key to create an account
+            label: Keyed registration
+          open:
+            desc_html: Allow anyone to create an account
+            label: Open registration
       site_description:
         desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description
