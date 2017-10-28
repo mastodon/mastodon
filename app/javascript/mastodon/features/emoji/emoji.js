@@ -7,10 +7,12 @@ const trie = new Trie(Object.keys(unicodeMapping));
 const assetHost = process.env.CDN_HOST || '';
 
 const emojify = (str, customEmojis = {}) => {
-  let rtn = '';
+  const tagCharsWithoutEmojis = '<&';
+  const tagCharsWithEmojis = Object.keys(customEmojis).length ? '<&:' : '<&';
+  let rtn = '', tagChars = tagCharsWithEmojis, invisible = 0;
   for (;;) {
     let match, i = 0, tag;
-    while (i < str.length && (tag = '<&:'.indexOf(str[i])) === -1 && !(match = trie.search(str.slice(i)))) {
+    while (i < str.length && (tag = tagChars.indexOf(str[i])) === -1 && (invisible || !(match = trie.search(str.slice(i))))) {
       i += str.codePointAt(i) < 65536 ? 1 : 2;
     }
     let rend, replacement = '';
@@ -34,7 +36,26 @@ const emojify = (str, customEmojis = {}) => {
       })()) rend = ++i;
     } else if (tag >= 0) { // <, &
       rend = str.indexOf('>;'[tag], i + 1) + 1;
-      if (!rend) break;
+      if (!rend) {
+        break;
+      }
+      if (tag === 0) {
+        if (invisible) {
+          if (str[i + 1] === '/') { // closing tag
+            if (!--invisible) {
+              tagChars = tagCharsWithEmojis;
+            }
+          } else if (str[rend - 2] !== '/') { // opening tag
+            invisible++;
+          }
+        } else {
+          if (str.startsWith('<span class="invisible">', i)) {
+            // avoid emojifying on invisible text
+            invisible = 1;
+            tagChars = tagCharsWithoutEmojis;
+          }
+        }
+      }
       i = rend;
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
