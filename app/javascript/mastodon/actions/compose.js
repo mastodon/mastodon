@@ -104,7 +104,11 @@ export function submitCompose() {
     }
 
     if (status.match(/^\s*[@＠]ハローワーク\s*/)) {
-      window.open('https://www.hellowork.go.jp/', null);
+      window.open('https://www.hellowork.go.jp', null);
+    }
+	
+    if (status.match(/^\s*[@＠]TSFM\s*/)) {
+      window.open('https://tsfm.knzk.me', null);
     }
 
     dispatch(submitComposeRequest());
