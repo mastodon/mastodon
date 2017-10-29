@@ -5,15 +5,15 @@ services:
     restart: always
     image: postgres:9.6-alpine
 ### Uncomment to enable DB persistance
-#    volumes:
-#      - ./postgres:/var/lib/postgresql/data
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
 
   redis:
     restart: always
     image: redis:4.0-alpine
 ### Uncomment to enable REDIS persistance
-#    volumes:
-#      - ./redis:/data
+    volumes:
+      - ./redis:/data
 
   web:
     build: .
@@ -54,3 +54,38 @@ services:
       - redis
     volumes:
       - ./public/system:/mastodon/public/system
+
+  nginxserver:
+    image: nginx:stable
+    volumes:
+      - ./nginx:/conf
+      - ./public:/public
+    depends_on:
+      - web
+      - streaming
+    restart: always
+    command: /bin/bash -c "cp -Rp /conf/* /etc/nginx/conf.d/ && nginx -g 'daemon off;'"
+
+  https-portal:
+      image: steveltn/https-portal:1.0.0
+      ports:
+        - '80:80'
+        - '443:443'
+      depends_on:
+        - nginxserver
+        - redirector
+      restart: always
+      environment:
+        DOMAINS: 'akabe.co -> http://redirector:8080, don.akabe.co -> http://nginxserver'
+        STAGE: 'production'
+        WEBSOCKET: 'true'
+        CLIENT_MAX_BODY_SIZE: '512M'
+
+  redirector:
+      restart: always
+      ports:
+          - '8080:8080'
+      image: maxcnunes/docker-url-redirect
+      environment:
+          REDIRECT_URL: https://don.akabe.co/
+          REDIRECT_STATUS: 301
