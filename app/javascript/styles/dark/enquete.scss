@@ -1,0 +1,274 @@
+/**
+ * Declarations
+ */
+
+ $item-color: #525b73;
+ $button-text-color: #ffffff;
+ 
+ $gauge-height: 5px;
+ $tv-chan-width: 24px;
+ $button-height: 30px;
+ $item-font-size: 12px;
+ 
+ /**
+  * Enquete input form
+  */
+ .enquete-input{
+     margin: 3px 0;
+ 
+     &__input {
+         display: block;
+         box-sizing: border-box;
+         width: 100%;
+         margin: 0;
+         color: $ui-base-color;
+         padding: 10px;
+         font-family: inherit;
+         font-size: 14px;
+         resize: vertical;
+         border: 0;
+         outline: 0;
+         border-radius: 2px;
+         height:36px;
+ 
+         &:focus {
+             outline: 0;
+         }
+ 
+         @media screen and (max-width: 600px) {
+             font-size: 16px;
+         }
+     }
+ }
+ 
+ .character-counter__wrapper {
+     line-height: 36px;
+     margin:0 8px;
+     padding-top: 10px;
+ }
+ 
+ /**
+  * Enquete view in timeline
+  */
+ .enquete-form {
+     margin: 0;
+     padding: 0;
+     display: block;
+     white-space: normal;
+ }
+ 
+ /**
+  * Enquete items(button for voting)
+  */
+ .enquete-button {
+     margin: 2px 0;
+     padding: 2px 6px;
+     width: 90%;
+     height: $button-height;
+     display: inline;
+     overflow-wrap: break-word;
+     font-size: $item-font-size;
+     line-height: 100%;
+     border-radius: 8px;
+     text-align: left;
+     border: none;
+     color: $button-text-color;
+     position: relative;
+     opacity: 0.8;
+     border: solid 1px $ui-primary-color;
+     background-color: $item-color;
+     transition: all 100ms ease-in;
+     &.active {
+         &:hover {
+             background-color: lighten($item-color, 15%);
+         }
+     }
+     &.disable {
+         opacity: 0.3;
+ 
+         // choosed item
+         &__voted {
+             opacity: 1.0;
+             
+             &::after {
+                 content: "\f00c";            // check mark
+                 font-family: FontAwesome;
+                 color: #ffffff;
+                 position: absolute;
+                 right: -24px;
+                 font-size: 14px;
+             }
+         }
+     }
+ }
+ 
+ /**
+  * Gauge corresponding to the number of votes(enquete result)
+  */
+ .enquete-result-item-gauge {
+     width: 100%;
+     overflow-wrap: break-word;
+     font-size: $item-font-size;
+     line-height: 100%;
+     margin: 2px 0;
+     text-align: left;
+     height: $button-height;
+     display: block;
+     box-sizing: border-box;
+     position: relative;
+     color: $button-text-color;
+ }
+ 
+ .item-gauge__outer {
+     display: block;
+     position: absolute;
+     top: 0;
+     height: $button-height;
+     z-index: 10;
+     border-radius: 0px;
+     box-sizing: border-box;
+     background: darken($ui-base-color, 3%);
+ }
+ 
+ .item-gauge__inner {
+     display: block;
+     position: absolute;
+     top: 0;
+     height: $button-height;
+     z-index: 10;
+     border-radius: 0px;
+     box-sizing: border-box;
+     //background: darken($ui-highlight-color, 3%);
+     background: #00B0FF;
+ }
+ 
+ .item-gauge__content {
+     position: relative;
+     top: 0;
+     box-sizing: border-box;
+     width: 100%;
+     vertical-align: middle;
+     height: $button-height;
+     z-index: 1000;
+     padding: 0 8px 0 8px;
+     font-size: $item-font-size;
+     line-height: 14px;
+ }
+ .item-gauge__text__wrapper{
+     width: 100%;
+     margin: 0 -80px 0 0;
+     padding: 0 80px 0 0;
+     float: left;
+     box-sizing: border-box;
+     height: 100%;
+ }
+ .item-gauge__text {
+     position: absolute;
+     top: 50%;
+     z-index: 0;
+     width: 100%;
+     transform: translate(0, -50%);
+     padding: 0 100px 0 0;
+     box-sizing: border-box;
+ }
+ 
+ .item-gauge__ratio__wrapper{
+     width: 80px;
+     float: right;
+     height: 100%;
+     position: relative;
+ }
+ .item-gauge__ratio {
+     position: absolute;
+     top: 50%;
+     z-index: 0;
+     width: 100%;
+     transform: translate(0, -50%);
+     text-align: right;
+ }
+ 
+ /**
+  * Time-count gauge
+  */
+ .enquete-deadline {
+     height: 40px;
+ }
+ .enquete-gauge{
+     width: 70%;
+     float: left;
+     height: 40px;
+     position: relative;
+ }
+ .enquete-gauge-outer{
+     width: 100%;
+     height: $gauge-height;
+     background: lighten($ui-base-color, 13%);;
+     line-height: 5px;
+     bottom: 0;
+     position: absolute;
+ }
+ .enquete-gauge-inner{
+     height: $gauge-height;
+     background: darken($ui-highlight-color, 3%);
+     position: relative;
+ }
+ .tv-chan{
+     width: $tv-chan-width;
+     height: 24px;
+     position: absolute;
+     right: -$tv-chan-width/2;
+     bottom: $gauge-height;
+     color: #000;
+ }
+ .knzk-gauge-icon:before{
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/knzk-gauge-icon.png");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10px;
+    -webkit-transition: opacity .18s ease-out;
+    transition: opacity .18s ease-out;
+ }
+ .enquete-time{
+     width: 20%;
+     float: right;
+     text-align: right;
+     line-height: 20px;
+     margin: 20px 0 0 0;
+ }
+ 
+ 
+ /**
+  * Boosted enquete
+  */
+ .muted {
+   .status__content button,
+   .enquete-deadline,
+   .enquete-result-items {
+       opacity: 0.5;
+   }
+ }
+
+ .enquete-duration > select {
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    color: #282c37;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    border-radius: 2px;
+    height: 36px;
+    text-align: right;
+}

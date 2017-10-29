@@ -1,0 +1,12 @@
+@mixin avatar-radius() {
+  border-radius: 4px;
+  background: transparent no-repeat;
+  background-position: 50%;
+  background-clip: padding-box;
+}
+
+@mixin avatar-size($size:48px) {
+  width: $size;
+  height: $size;
+  background-size: $size $size;
+}
