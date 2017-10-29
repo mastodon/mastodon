@@ -149,7 +149,7 @@ zh-CN:
         create: 添加域名屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
         severity:
-          desc_html: "选择<strong>自动静音</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；选择<strong>无</strong>可以拒绝接收来自该域名的任何媒体文件。"
+          desc_html: 选择<strong>自动静音</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；选择<strong>无</strong>可以拒绝接收来自该域名的任何媒体文件。
           noop: 无
           silence: 自动静音
           suspend: 自动封禁
@@ -355,7 +355,7 @@ zh-CN:
     lock_link: 为你的帐户开启保护
     purge: 从关注者中移除
     success: 正在从 %{count} 个域名中移除关注者……
-    true_privacy_html: "请始终铭记：<strong>真正的隐私只能靠端到端加密来实现</strong>！"
+    true_privacy_html: 请始终铭记：<strong>真正的隐私只能靠端到端加密来实现</strong>！
     unlocked_warning_html: 任何人都可以通过关注你来立即查看被保护的嘟文。%{lock_link}，即可审核并拒绝关注请求。
     unlocked_warning_title: 你的帐户未受到保护
   generic:
@@ -388,7 +388,7 @@ zh-CN:
         other: 有 %{count} 个人关注了你！好棒！
       subject: "自从你最后一次登录以来，你错过了 %{count} 条新通知 \U0001F418"
     favourite:
-      body: "你的嘟文被 %{name} 收藏了："
+      body: 你的嘟文被 %{name} 收藏了：
       subject: "%{name} 收藏了你的嘟文"
     follow:
       body: "%{name} 关注了你！"
