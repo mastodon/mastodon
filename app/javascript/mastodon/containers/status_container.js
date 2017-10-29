@@ -36,7 +36,6 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.id),
-    me: state.getIn(['meta', 'me']),
   });
 
   return mapStateToProps;

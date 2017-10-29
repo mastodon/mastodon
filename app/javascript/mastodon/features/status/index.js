@@ -43,7 +43,6 @@ const makeMapStateToProps = () => {
     status: getStatus(state, props.params.statusId),
     ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
     descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
-    me: state.getIn(['meta', 'me']),
   });
 
   return mapStateToProps;
@@ -63,7 +62,6 @@ export default class Status extends ImmutablePureComponent {
     status: ImmutablePropTypes.map,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
-    me: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
 
@@ -252,7 +250,7 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { status, ancestorsIds, descendantsIds, me } = this.props;
+    const { status, ancestorsIds, descendantsIds } = this.props;
 
     if (status === null) {
       return (
@@ -293,14 +291,12 @@ export default class Status extends ImmutablePureComponent {
               <div className='focusable' tabIndex='0'>
                 <DetailedStatus
                   status={status}
-                  me={me}
                   onOpenVideo={this.handleOpenVideo}
                   onOpenMedia={this.handleOpenMedia}
                 />
 
                 <ActionBar
                   status={status}
-                  me={me}
                   onReply={this.handleReplyClick}
                   onFavourite={this.handleFavouriteClick}
                   onReblog={this.handleReblogClick}
