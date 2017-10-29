@@ -32,7 +32,7 @@ RSpec.describe BlockService do
     it 'sends a block salmon slap' do
       expect(a_request(:post, "http://salmon.example.com/").with { |req|
         xml = OStatus2::Salmon.new.unpack(req.body)
-        xml.match(TagManager::VERBS[:block])
+        xml.match(OStatus::TagManager::VERBS[:block])
       }).to have_been_made.once
     end
   end

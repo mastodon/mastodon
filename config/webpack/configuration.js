@@ -9,6 +9,9 @@ const configPath = resolve('config', 'webpacker.yml');
 const loadersDir = join(__dirname, 'loaders');
 const settings = safeLoad(readFileSync(configPath), 'utf8')[env.NODE_ENV];
 
+const themePath = resolve('config', 'themes.yml');
+const themes = safeLoad(readFileSync(themePath), 'utf8');
+
 function removeOuterSlashes(string) {
   return string.replace(/^\/*/, '').replace(/\/*$/, '');
 }
@@ -29,6 +32,7 @@ const output = {
 
 module.exports = {
   settings,
+  themes,
   env,
   loadersDir,
   output,

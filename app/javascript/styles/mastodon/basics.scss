@@ -1,0 +1,122 @@
+body {
+  font-family: 'mastodon-font-sans-serif', sans-serif;
+  background: $ui-base-color;
+  background-size: cover;
+  background-attachment: fixed;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  color: $primary-text-color;
+  padding-bottom: 20px;
+  text-rendering: optimizelegibility;
+  font-feature-settings: "kern";
+  text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+
+  &.system-font {
+    // system-ui => standard property (Chrome/Android WebView 56+, Opera 43+, Safari 11+)
+    // -apple-system => Safari <11 specific
+    // BlinkMacSystemFont => Chrome <56 on macOS specific
+    // Segoe UI => Windows 7/8/10
+    // Oxygen => KDE
+    // Ubuntu => Unity/Ubuntu
+    // Cantarell => GNOME
+    // Fira Sans => Firefox OS
+    // Droid Sans => Older Androids (<4.0)
+    // Helvetica Neue => Older macOS <10.11
+    // mastodon-font-sans-serif => web-font (Roboto) fallback and newer Androids (>=4.0)
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", mastodon-font-sans-serif, sans-serif;
+  }
+
+  &.app-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: $ui-base-color;
+  }
+
+  &.about-body {
+    background: darken($ui-base-color, 8%);
+    padding-bottom: 0;
+  }
+
+  &.tag-body {
+    background: darken($ui-base-color, 8%);
+    padding-bottom: 0;
+  }
+
+  &.embed {
+    background: transparent;
+    margin: 0;
+    padding-bottom: 0;
+
+    .container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  &.admin {
+    background: darken($ui-base-color, 4%);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  &.error {
+    position: absolute;
+    text-align: center;
+    color: $ui-primary-color;
+    background: $ui-base-color;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .dialog {
+      vertical-align: middle;
+      margin: 20px;
+
+      img {
+        display: block;
+        max-width: 470px;
+        width: 100%;
+        height: auto;
+        margin-top: -120px;
+      }
+
+      h1 {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.app-holder {
+  &,
+  & > div {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}

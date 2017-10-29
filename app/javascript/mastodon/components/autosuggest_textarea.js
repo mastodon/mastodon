@@ -1,10 +1,12 @@
 import React from 'react';
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
+import AutosuggestEmoji from './autosuggest_emoji';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Textarea from 'react-textarea-autosize';
+import classNames from 'classnames';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -18,11 +20,11 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
     word = str.slice(left, right + caretPosition);
   }
 
-  if (!word || word.trim().length < 2 || word[0] !== '@') {
+  if (!word || word.trim().length < 3 || ['@', ':'].indexOf(word[0]) === -1) {
     return [null, null];
   }
 
-  word = word.trim().toLowerCase().slice(1);
+  word = word.trim().toLowerCase();
 
   if (word.length > 0) {
     return [left + 1, word];
@@ -123,12 +125,22 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     this.props.onKeyDown(e);
   }
 
+  onKeyUp = e => {
+    if (e.key === 'Escape' && this.state.suggestionsHidden) {
+      document.querySelector('.ui').parentElement.focus();
+    }
+
+    if (this.props.onKeyUp) {
+      this.props.onKeyUp(e);
+    }
+  }
+
   onBlur = () => {
     this.setState({ suggestionsHidden: true });
   }
 
   onSuggestionClick = (e) => {
-    const suggestion = Number(e.currentTarget.getAttribute('data-index'));
+    const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
@@ -151,9 +163,28 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
   }
 
+  renderSuggestion = (suggestion, i) => {
+    const { selectedSuggestion } = this.state;
+    let inner, key;
+
+    if (typeof suggestion === 'object') {
+      inner = <AutosuggestEmoji emoji={suggestion} />;
+      key   = suggestion.id;
+    } else {
+      inner = <AutosuggestAccountContainer id={suggestion} />;
+      key   = suggestion;
+    }
+
+    return (
+      <div role='button' tabIndex='0' key={key} data-index={i} className={classNames('autosuggest-textarea__suggestions__item', { selected: i === selectedSuggestion })} onMouseDown={this.onSuggestionClick}>
+        {inner}
+      </div>
+    );
+  }
+
   render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus } = this.props;
-    const { suggestionsHidden, selectedSuggestion } = this.state;
+    const { value, suggestions, disabled, placeholder, autoFocus } = this.props;
+    const { suggestionsHidden } = this.state;
     const style = { direction: 'ltr' };
 
     if (isRtl(value)) {
@@ -164,6 +195,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
       <div className='autosuggest-textarea'>
         <label>
           <span style={{ display: 'none' }}>{placeholder}</span>
+
           <Textarea
             inputRef={this.setTextarea}
             className='autosuggest-textarea__textarea'
@@ -173,7 +205,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
             value={value}
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
-            onKeyUp={onKeyUp}
+            onKeyUp={this.onKeyUp}
             onBlur={this.onBlur}
             onPaste={this.onPaste}
             style={style}
@@ -181,18 +213,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
         </label>
 
         <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
-          {suggestions.map((suggestion, i) => (
-            <div
-              role='button'
-              tabIndex='0'
-              key={suggestion}
-              data-index={suggestion}
-              className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
-              onMouseDown={this.onSuggestionClick}
-            >
-              <AutosuggestAccountContainer id={suggestion} />
-            </div>
-          ))}
+          {suggestions.map(this.renderSuggestion)}
         </div>
       </div>
     );

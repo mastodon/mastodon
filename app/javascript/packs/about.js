@@ -4,9 +4,9 @@ require.context('../images/', true);
 
 function loaded() {
   const TimelineContainer = require('../mastodon/containers/timeline_container').default;
-  const React = require('react');
-  const ReactDOM = require('react-dom');
-  const mountNode = document.getElementById('mastodon-timeline');
+  const React             = require('react');
+  const ReactDOM          = require('react-dom');
+  const mountNode         = document.getElementById('mastodon-timeline');
 
   if (mountNode !== null) {
     const props = JSON.parse(mountNode.getAttribute('data-props'));

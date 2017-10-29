@@ -14,6 +14,7 @@ import {
 import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
+  ACCOUNT_UNFOLLOW_SUCCESS,
 } from '../actions/accounts';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
@@ -30,10 +31,10 @@ const initialTimeline = ImmutableMap({
 });
 
 const normalizeTimeline = (state, timeline, statuses, next) => {
-  const ids       = ImmutableList(statuses.map(status => status.get('id')));
+  const oldIds    = state.getIn([timeline, 'items'], ImmutableList());
+  const ids       = ImmutableList(statuses.map(status => status.get('id'))).filter(newId => !oldIds.includes(newId));
   const wasLoaded = state.getIn([timeline, 'loaded']);
   const hadNext   = state.getIn([timeline, 'next']);
-  const oldIds    = state.getIn([timeline, 'items'], ImmutableList());
 
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('loaded', true);
@@ -44,8 +45,8 @@ const normalizeTimeline = (state, timeline, statuses, next) => {
 };
 
 const appendNormalizedTimeline = (state, timeline, statuses, next) => {
-  const ids    = ImmutableList(statuses.map(status => status.get('id')));
   const oldIds = state.getIn([timeline, 'items'], ImmutableList());
+  const ids    = ImmutableList(statuses.map(status => status.get('id'))).filter(newId => !oldIds.includes(newId));
 
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('isLoading', false);
@@ -74,15 +75,9 @@ const updateTimeline = (state, timeline, status, references) => {
   }));
 };
 
-const deleteStatus = (state, id, accountId, references, reblogOf) => {
+const deleteStatus = (state, id, accountId, references) => {
   state.keySeq().forEach(timeline => {
-    state = state.updateIn([timeline, 'items'], list => {
-      if (reblogOf && !list.includes(reblogOf)) {
-        return list.map(item => item === id ? reblogOf : item);
-      } else {
-        return list.filterNot(item => item === id);
-      }
-    });
+    state = state.updateIn([timeline, 'items'], list => list.filterNot(item => item === id));
   });
 
   // Remove reblogs of deleted status
@@ -107,6 +102,12 @@ const filterTimelines = (state, relationship, statuses) => {
 
   return state;
 };
+
+const filterTimeline = (timeline, state, relationship, statuses) =>
+  state.updateIn([timeline, 'items'], ImmutableList(), list =>
+    list.filterNot(statusId =>
+      statuses.getIn([statusId, 'account']) === relationship.id
+    ));
 
 const updateTop = (state, timeline, top) => {
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
@@ -134,6 +135,8 @@ export default function timelines(state = initialState, action) {
   case ACCOUNT_BLOCK_SUCCESS:
   case ACCOUNT_MUTE_SUCCESS:
     return filterTimelines(state, action.relationship, action.statuses);
+  case ACCOUNT_UNFOLLOW_SUCCESS:
+    return filterTimeline('home', state, action.relationship, action.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:
