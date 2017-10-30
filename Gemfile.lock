@@ -387,7 +387,7 @@ GEM
       link_header (~> 0.0, >= 0.0.8)
     rdf-normalize (0.3.2)
       rdf (~> 2.0)
-    redis (3.3.3)
+    redis (3.3.5)
     redis-actionpack (5.0.1)
       actionpack (>= 4.0, < 6)
       redis-rack (>= 1, < 3)
@@ -453,11 +453,11 @@ GEM
     scss_lint (0.55.0)
       rake (>= 0.9, < 13)
       sass (~> 3.4.20)
-    sidekiq (5.0.4)
+    sidekiq (5.0.5)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
-      redis (~> 3.3, >= 3.3.3)
+      redis (>= 3.3.4, < 5)
     sidekiq-bulk (0.1.1)
       activesupport
       sidekiq
