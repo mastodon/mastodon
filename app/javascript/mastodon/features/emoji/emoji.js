@@ -9,64 +9,87 @@ const assetHost = process.env.CDN_HOST || '';
 const emojify = (str, customEmojis = {}) => {
   const tagCharsWithoutEmojis = '<&';
   const tagCharsWithEmojis = Object.keys(customEmojis).length ? '<&:' : '<&';
-  let rtn = '', tagChars = tagCharsWithEmojis, invisible = 0;
+  let rtn = '', tagChars = tagCharsWithEmojis;
+
+  // This loop initializes the internal state.
   for (;;) {
-    let match, i = 0, tag;
-    while (i < str.length && (tag = tagChars.indexOf(str[i])) === -1 && (invisible || !(match = trie.search(str.slice(i))))) {
-      i += str.codePointAt(i) < 65536 ? 1 : 2;
-    }
-    let rend, replacement = '';
-    if (i === str.length) {
-      break;
-    } else if (str[i] === ':') {
-      if (!(() => {
-        rend = str.indexOf(':', i + 1) + 1;
-        if (!rend) return false; // no pair of ':'
-        const lt = str.indexOf('<', i + 1);
-        if (!(lt === -1 || lt >= rend)) return false; // tag appeared before closing ':'
-        const shortname = str.slice(i, rend);
-        // now got a replacee as ':shortname:'
-        // if you want additional emoji handler, add statements below which set replacement and return true.
-        if (shortname in customEmojis) {
-          const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
-          replacement = `<img draggable="false" class="emojione" alt="${shortname}" title="${shortname}" src="${filename}" />`;
-          return true;
-        }
-        return false;
-      })()) rend = ++i;
-    } else if (tag >= 0) { // <, &
-      rend = str.indexOf('>;'[tag], i + 1) + 1;
-      if (!rend) {
-        break;
+    let i = 0, shortCodeStart = null, invisible = 0;
+
+    // This loop looks for:
+    // 1. the end of the string and
+    // 2. an emoji to be replaced with a HTML representation.
+    // In case of 1, it will return the result and ends this function.
+    // In case of 2, the processed string will be concatenated to rtn. i will be
+    // the index of the beginning of the remainder.
+    for (;;) {
+      // The string ended. Return the processed string and the remainder.
+      if (i >= str.length) {
+        return rtn + str;
       }
-      if (tag === 0) {
-        if (invisible) {
-          if (str[i + 1] === '/') { // closing tag
-            if (!--invisible) {
-              tagChars = tagCharsWithEmojis;
-            }
-          } else if (str[rend - 2] !== '/') { // opening tag
-            invisible++;
+
+      const tag = tagChars.indexOf(str[i]);
+      if (tag < 0) {
+        if (invisible <= 0) {
+          const match = trie.search(str.slice(i));
+          if (match) {
+            // An Unicode emoji was matched to.
+
+            const { filename, shortCode } = unicodeMapping[match];
+            const title = shortCode ? `:${shortCode}:` : '';
+            rtn += str.slice(0, i) + `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${filename}.svg" />`;
+            i += match.length;
+            break;
           }
-        } else {
-          if (str.startsWith('<span class="invisible">', i)) {
-            // avoid emojifying on invisible text
+        }
+      } else if (tag < 2) {
+        // An HTML tag started. Look for its end and advance i after that if
+        // found.
+        const rend = str.indexOf('>;'[tag], i + 1) + 1;
+        if (rend) {
+          if (invisible) {
+            if (str[i + 1] === '/') {
+              if (!--invisible) {
+                tagChars = tagCharsWithEmojis;
+              }
+            } else if (str[rend - 2] !== '/') {
+              invisible++;
+            }
+          } else if (str.startsWith('<span class="invisible">', i)) {
             invisible = 1;
             tagChars = tagCharsWithoutEmojis;
           }
+
+          i = rend;
+          continue;
+        }
+      } else if (shortCodeStart === null) {
+        // Short code started.
+
+        // Note that it is just a "candidate"; there may not be an ending
+        // colon and the end of the string, an HTML tag, or a Unicode emoji
+        // may appear. Therefore here just mark the start and continue the
+        // loop.
+        shortCodeStart = i;
+      } else {
+        // Shortcode ended without any intrusive strings.
+
+        // Get replacee as ':shortCode:'
+        const shortCode = str.slice(shortCodeStart, i + 1);
+
+        if (shortCode in customEmojis) {
+          const filename = autoPlayGif ? customEmojis[shortCode].url : customEmojis[shortCode].static_url;
+          rtn += str.slice(0, shortCodeStart) + `<img draggable="false" class="emojione" alt="${shortCode}" title="${shortCode}" src="${filename}" />`;
+          i++;
+          break;
         }
       }
-      i = rend;
-    } else { // matched to unicode emoji
-      const { filename, shortCode } = unicodeMapping[match];
-      const title = shortCode ? `:${shortCode}:` : '';
-      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${filename}.svg" />`;
-      rend = i + match.length;
+
+      i++;
     }
-    rtn += str.slice(0, i) + replacement;
-    str = str.slice(rend);
+
+    // Slice the remainder.
+    str = str.slice(i);
   }
-  return rtn + str;
 };
 
 export default emojify;
