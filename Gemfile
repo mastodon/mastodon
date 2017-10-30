@@ -91,7 +91,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.14', require: false
   gem 'webmock', '~> 3.0'
-  gem 'parallel_tests', '~> 2.14'
+  gem 'parallel_tests', '~> 2.17'
 end
 
 group :development do
