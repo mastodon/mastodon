@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
 import { showOnboardingOnce } from '../actions/onboarding';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { ScrollContext } from 'react-router-scroll';
+import { ScrollContext } from 'react-router-scroll-4';
 import UI from '../features/ui';
 import { hydrateStore } from '../actions/store';
 import { connectUserStream } from '../actions/streaming';

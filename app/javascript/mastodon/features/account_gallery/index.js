@@ -12,7 +12,7 @@ import { getAccountGallery } from '../../selectors';
 import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import { FormattedMessage } from 'react-intl';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import LoadMore from '../../components/load_more';
 
 const mapStateToProps = (state, props) => ({
