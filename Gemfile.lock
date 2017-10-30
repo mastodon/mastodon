@@ -83,7 +83,7 @@ GEM
     bundler-audit (0.6.0)
       bundler (~> 1.2)
       thor (~> 0.18)
-    capistrano (3.9.1)
+    capistrano (3.10.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -211,7 +211,8 @@ GEM
     httplog (0.99.7)
       colorize
       rack
-    i18n (0.8.6)
+    i18n (0.9.0)
+      concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.18)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
@@ -379,7 +380,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (12.1.0)
+    rake (12.2.1)
     rdf (2.2.9)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
@@ -546,7 +547,7 @@ DEPENDENCIES
   browser
   bullet (~> 5.5)
   bundler-audit (~> 0.6)
-  capistrano (~> 3.8)
+  capistrano (~> 3.10)
   capistrano-rails (~> 1.2)
   capistrano-rbenv (~> 2.1)
   capistrano-yarn (~> 2.0)
