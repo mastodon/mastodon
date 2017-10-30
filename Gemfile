@@ -75,7 +75,7 @@ gem 'json-ld-preloaded', '~> 2.2.1'
 gem 'rdf-normalize', '~> 0.3.1'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.16'
+  gem 'fabrication', '~> 2.18'
   gem 'fuubar', '~> 2.2'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-rails', '~> 0.3'
