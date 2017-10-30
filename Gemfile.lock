@@ -151,7 +151,7 @@ GEM
       thread_safe
     encryptor (3.0.0)
     erubi (1.7.0)
-    et-orbi (1.0.5)
+    et-orbi (1.0.8)
       tzinfo
     excon (0.59.0)
     execjs (2.7.0)
@@ -461,8 +461,8 @@ GEM
     sidekiq-bulk (0.1.1)
       activesupport
       sidekiq
-    sidekiq-scheduler (2.1.9)
-      redis (~> 3)
+    sidekiq-scheduler (2.1.10)
+      redis (>= 3, < 5)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 3)
       tilt (>= 1.4.0)
