@@ -41,7 +41,6 @@ export default class ComposeForm extends ImmutablePureComponent {
     preselectDate: PropTypes.instanceOf(Date),
     is_submitting: PropTypes.bool,
     is_uploading: PropTypes.bool,
-    me: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onClearSuggestions: PropTypes.func.isRequired,

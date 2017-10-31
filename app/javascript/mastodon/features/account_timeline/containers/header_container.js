@@ -29,7 +29,6 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
-    me: state.getIn(['meta', 'me']),
   });
 
   return mapStateToProps;

@@ -6,7 +6,7 @@ import IconButton from '../../../components/icon_button';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif } from '../../../initial_state';
+import { autoPlayGif, me } from '../../../initial_state';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -67,13 +67,12 @@ export default class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
-    me: PropTypes.string.isRequired,
     onFollow: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
   render () {
-    const { account, me, intl } = this.props;
+    const { account, intl } = this.props;
 
     if (!account) {
       return null;
