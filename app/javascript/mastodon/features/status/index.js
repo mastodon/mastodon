@@ -22,7 +22,7 @@ import {
 import { deleteStatus } from '../../actions/statuses';
 import { initReport } from '../../actions/reports';
 import { makeGetStatus } from '../../selectors';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import ColumnBackButton from '../../components/column_back_button';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
