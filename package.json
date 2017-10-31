@@ -40,7 +40,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.5",
-    "compression-webpack-plugin": "^0.4.0",
+    "compression-webpack-plugin": "^1.0.1",
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.4",
     "detect-passive-events": "^1.0.2",
@@ -133,6 +133,7 @@
     "yargs": "^8.0.2"
   },
   "optionalDependencies": {
-    "fsevents": "*"
+    "fsevents": "*",
+    "node-zopfli": "^2.0.2"
   }
 }
