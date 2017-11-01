@@ -9,6 +9,7 @@ const log = require('npmlog');
 const url = require('url');
 const WebSocket = require('uws');
 const uuid = require('uuid');
+const cluster = require('cluster');
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -17,6 +18,14 @@ dotenv.config({
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
+
+const cores = process.env.CORES || 1;
+if (cluster.isMaster) {
+  for (let i=0; i < cores; i++) {
+    cluster.fork();
+  }
+  return;
+}
 
 const dbUrlToConfig = (dbUrl) => {
   if (!dbUrl) {
