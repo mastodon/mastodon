@@ -32,11 +32,9 @@ class Formatter
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = encode_and_link_urls(html, linkable_accounts)
     html = encode_custom_emojis(html, status.emojis + status.avatar_emojis) if options[:custom_emojify]
-    #html = simple_format(html, {}, sanitize: false)
-    #html = html.delete("\n")
+    html = simple_format(html, {}, sanitize: false)
+    html = html.delete("\n")
     html = format_bbcode(html)
-	html = markdown(html)
-	html = clean_paragraphs(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -68,12 +66,7 @@ class Formatter
     text = status.text.gsub(/(<br \/>|<br>|<\/p>)+/) { |match| "#{match}\n" }
     strip_tags(text)
   end
-  
-    def clean_paragraphs(html)
-    puts html
-    html.gsub(/<p><\/p>/,"")
-  end
-  
+
   def simplified_format(account)
     return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
 
@@ -103,10 +96,8 @@ class Formatter
 
   def encode_and_link_urls(html, accounts = nil)
     entities = Extractor.extract_entities_with_indices(html, extract_url_without_protocol: false)
-	html
 
-    rewrite(html, entities) do |entity|
-	  puts entity
+    rewrite(html.dup, entities) do |entity|
       if entity[:url]
         link_to_url(entity)
       elsif entity[:hashtag]
@@ -160,8 +151,7 @@ class Formatter
 
   def rewrite(text, entities)
     chars = text.to_s.to_char_a
-	
-	puts text
+
     # Sort by start index
     entities = entities.sort_by do |entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
@@ -172,12 +162,12 @@ class Formatter
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
-      result << chars[index...indices.first].join
+      result << encode(chars[index...indices.first].join)
       result << yield(entity)
       indices.last
     end
 
-    result << chars[last_index..-1].join #encode(chars[last_index..-1].join)
+    result << encode(chars[last_index..-1].join)
 
     result.flatten.join
   end
@@ -230,36 +220,7 @@ class Formatter
   def mention_html(account)
     "<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@<span>#{account.username}</span></a></span>"
   end
-  
-  def markdown(html)
-    # Bold + Italic
 
-    html = html.gsub(/^&gt; (.*?)(\n|$)/m, '</p><blockquote>\1</blockquote><p>')
-
-    renderer = MDRenderer.new(
-      no_links: true,
-      no_styles: true,
-      no_images: true,
-      hard_wrap: true,
-      filter_html: false,
-      escape_html: false
-    )
-    markdown = Redcarpet::Markdown.new(
-      renderer,
-      autolink: true,
-      tables: true,
-      strikethrough: true,
-      fenced_code_blocks: true
-    )
-    html = markdown.render(html)
-
-    html = html.gsub(/<\/blockquote><p><\/p><blockquote>/, '<br>') # Not so cool
-    html = html.gsub(/<br>\n<\/p>/, '</p>')
-    html = html.gsub(/<p><br>\n/, '<p>')
-
-    html
-  end
-  
   def format_bbcode(html)
     
     begin
@@ -308,50 +269,5 @@ class Formatter
     rescue Exception => e
     end
     html
-  end
-end
-
-class MDRenderer < Redcarpet::Render::HTML
-  def header(text, _header_level)
-    text
-  end
-
-  def block_code(code, lang)
-    %(<pre><code class="block-code">#{code}</code></pre>)
-  end
-
-  def codespan(code)
-    %(<code class="inline-code">#{code}</code>)
-  end
-
-  def link(link, title, content)
-    title
-  end
-
-  def link_html(url)
-    prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
-    text   = url[prefix.length, 30]
-    suffix = url[prefix.length + 30..-1]
-    cutoff = url[prefix.length..-1].length > 30
-
-    "<span class=\"invisible\">#{prefix}</span><span class=\"#{cutoff ? 'ellipsis' : ''}\">#{text}</span><span class=\"invisible\">#{suffix}</span>"
-  end
-
-  def autolink(link, link_type)
-    "<a href=\"#{link}\" target=\"_blank\" rel=\"nofollow noopener\">#{link_html(link)}</a>"
-  end
-end
-
-class MDRenderer < Redcarpet::Render::HTML
-  def header(text, _header_level)
-    text
-  end
-
-  def block_code(code, lang)
-    %(<pre><code class="block-code">#{code}</code></pre>)
-  end
-
-  def codespan(code)
-    %(<code class="inline-code">#{code}</code>)
   end
 end
