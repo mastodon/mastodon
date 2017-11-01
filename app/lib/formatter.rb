@@ -36,7 +36,7 @@ class Formatter
     #html = html.delete("\n")
     html = format_bbcode(html)
 	html = markdown(html)
-	html = clean_paragraphs(html)
+	#html = clean_paragraphs(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -69,7 +69,7 @@ class Formatter
     strip_tags(text)
   end
   
-    def clean_paragraphs(html)
+  def clean_paragraphs(html)
     puts html
     html.gsub(/<p><\/p>/,"")
   end
@@ -103,10 +103,8 @@ class Formatter
 
   def encode_and_link_urls(html, accounts = nil)
     entities = Extractor.extract_entities_with_indices(html, extract_url_without_protocol: false)
-	html
 
-    rewrite(html, entities) do |entity|
-	  puts entity
+    rewrite(html.dup, entities) do |entity|
       if entity[:url]
         link_to_url(entity)
       elsif entity[:hashtag]
@@ -161,7 +159,6 @@ class Formatter
   def rewrite(text, entities)
     chars = text.to_s.to_char_a
 	
-	puts text
     # Sort by start index
     entities = entities.sort_by do |entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
@@ -172,12 +169,12 @@ class Formatter
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
-      result << chars[index...indices.first].join
+      result << encode(chars[index...indices.first].join)
       result << yield(entity)
       indices.last
     end
 
-    result << chars[last_index..-1].join #encode(chars[last_index..-1].join)
+    result << encode(chars[last_index..-1].join)
 
     result.flatten.join
   end
@@ -254,8 +251,8 @@ class Formatter
     html = markdown.render(html)
 
     html = html.gsub(/<\/blockquote><p><\/p><blockquote>/, '<br>') # Not so cool
-    html = html.gsub(/<br>\n<\/p>/, '</p>')
-    html = html.gsub(/<p><br>\n/, '<p>')
+	#html = html.gsub(/<br>\n<\/p>/, '</p>')
+	#html = html.gsub(/<p><br>\n/, '<p>')
 
     html
   end
