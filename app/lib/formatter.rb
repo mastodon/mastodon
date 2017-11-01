@@ -240,7 +240,7 @@ class Formatter
       no_links: true,
       no_styles: true,
       no_images: true,
-      hard_wrap: true,
+      hard_wrap: false,
       filter_html: false,
       escape_html: false
     )
