@@ -234,7 +234,7 @@ class Formatter
     html = html.gsub(/^&gt; (.*?)(\n|$)/m, '</p><blockquote>\1</blockquote><p>')
 
     renderer = MDRenderer.new(
-      no_links: true,
+      no_links: false,
       no_styles: true,
       no_images: true,
       hard_wrap: false,
@@ -243,7 +243,7 @@ class Formatter
     )
     markdown = Redcarpet::Markdown.new(
       renderer,
-      autolink: true,
+      autolink: false,
       tables: true,
       strikethrough: true,
       fenced_code_blocks: true
