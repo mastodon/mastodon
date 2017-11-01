@@ -9,6 +9,16 @@ const OfflinePlugin = require('offline-plugin');
 const { publicPath } = require('./configuration.js');
 const path = require('path');
 
+let compressionAlgorithm;
+try {
+  const zopfli = require('node-zopfli');
+  compressionAlgorithm = (content, options, fn) => {
+    zopfli.gzip(content, options, fn);
+  };
+} catch (error) {
+  compressionAlgorithm = 'gzip';
+}
+
 module.exports = merge(sharedConfig, {
   output: {
     filename: '[name]-[chunkhash].js',
@@ -33,7 +43,7 @@ module.exports = merge(sharedConfig, {
     }),
     new CompressionPlugin({
       asset: '[path].gz[query]',
-      algorithm: 'gzip',
+      algorithm: compressionAlgorithm,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf)$/,
     }),
     new BundleAnalyzerPlugin({ // generates report.html and stats.json
