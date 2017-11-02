@@ -231,7 +231,7 @@ class Formatter
   def markdown(html)
     # Bold + Italic
 
-    html = html.gsub(/^&gt; (.*?)(\n|$)/m, '</p><blockquote>\1</blockquote><p>')
+    html = html.gsub(/^&gt; (.*?)(\n|$)/m, '<blockquote>\1</blockquote>')
 
     renderer = MDRenderer.new(
       no_links: false,
