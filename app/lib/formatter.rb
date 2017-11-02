@@ -34,9 +34,9 @@ class Formatter
     html = encode_custom_emojis(html, status.emojis + status.avatar_emojis) if options[:custom_emojify]
     #html = simple_format(html, {}, sanitize: false)
     #html = html.delete("\n")
-	html = markdown(html)
     html = format_bbcode(html)
-	#html = clean_paragraphs(html)
+	html = markdown(html)
+	html = clean_paragraphs(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -70,7 +70,6 @@ class Formatter
   end
   
   def clean_paragraphs(html)
-    puts html
     html.gsub(/<p><\/p>/,"")
   end
   
@@ -158,7 +157,7 @@ class Formatter
 
   def rewrite(text, entities)
     chars = text.to_s.to_char_a
-
+	
     # Sort by start index
     entities = entities.sort_by do |entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
@@ -230,28 +229,31 @@ class Formatter
   
   def markdown(html)
     # Bold + Italic
-    html = html.gsub(/(^| )[*]{3}([^*\n]+)[*]{3}( |$)/, '\1<em><strong>\2</strong></em>\3')
 
-    # Bold
-    html = html.gsub(/(^| )[*]{2}([^*\n]+)[*]{2}( |$)/, '\1<strong>\2</strong>\3')
+    html = html.gsub(/^&gt; (.*?)(\n|$)/m, '</p><blockquote>\1</blockquote><p>')
 
-    # Italic
-    html = html.gsub(/(^| )[*]([^*\n]+)[*]( |$)/, '\1<em>\2</em>\3')
+    renderer = MDRenderer.new(
+      no_links: false,
+      no_styles: true,
+      no_images: true,
+      hard_wrap: false,
+      filter_html: false,
+      escape_html: false
+    )
+    markdown = Redcarpet::Markdown.new(
+      renderer,
+      autolink: false,
+      tables: true,
+      strikethrough: true,
+      fenced_code_blocks: true,
+	  no_intra_emphasis: true
+    )
+    html = markdown.render(html)
 
-    # `code`
-    html = html.gsub(/(^| )[`]([^`\n]+)[`]( |$)/, '\1<pre>\2</pre>\3')
+    html = html.gsub(/<\/blockquote><p><\/p><blockquote>/, '<br>') # Not so cool
+	#html = html.gsub(/<br>\n<\/p>/, '</p>')
+	#html = html.gsub(/<p><br>\n/, '<p>')
 
-    # Strikethrough
-    html = html.gsub(/(^| )[~]{2}([^~\n]+)[~]{2}( |$)/, '\1<del>\2</del>\3')
-
-    # Blockquote / Greentext
-    html = html.gsub(/^&gt; (.*?)(\n|$)/m, '<blockquote>\1</blockquote>')
-    html = html.gsub('</blockquote><blockquote>', '<br>') # Not so cool
-
-    # ```
-    # code
-    # ```
-    html = html.gsub(/(^| )[`]{3}\n([^`]+)\n[`]{3}( |$)/, '\1<code>\2</code>\3')
     html
   end
   
@@ -303,5 +305,50 @@ class Formatter
     rescue Exception => e
     end
     html
+  end
+end
+
+class MDRenderer < Redcarpet::Render::HTML
+  def header(text, _header_level)
+    text
+  end
+
+  def block_code(code, lang)
+    %(<pre><code class="block-code">#{code}</code></pre>)
+  end
+
+  def codespan(code)
+    %(<code class="inline-code">#{code}</code>)
+  end
+
+  def link(link, title, content)
+    title
+  end
+
+  def link_html(url)
+    prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
+    text   = url[prefix.length, 30]
+    suffix = url[prefix.length + 30..-1]
+    cutoff = url[prefix.length..-1].length > 30
+
+    "<span class=\"invisible\">#{prefix}</span><span class=\"#{cutoff ? 'ellipsis' : ''}\">#{text}</span><span class=\"invisible\">#{suffix}</span>"
+  end
+
+  def autolink(link, link_type)
+    "<a href=\"#{link}\" target=\"_blank\" rel=\"nofollow noopener\">#{link_html(link)}</a>"
+  end
+end
+
+class MDRenderer < Redcarpet::Render::HTML
+  def header(text, _header_level)
+    text
+  end
+
+  def block_code(code, lang)
+    %(<pre><code class="block-code">#{code}</code></pre>)
+  end
+
+  def codespan(code)
+    %(<code class="inline-code">#{code}</code>)
   end
 end
