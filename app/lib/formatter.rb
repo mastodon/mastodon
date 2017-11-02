@@ -32,9 +32,11 @@ class Formatter
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = encode_and_link_urls(html, linkable_accounts)
     html = encode_custom_emojis(html, status.emojis + status.avatar_emojis) if options[:custom_emojify]
-    html = simple_format(html, {}, sanitize: false)
-    html = html.delete("\n")
+    #html = simple_format(html, {}, sanitize: false)
+    #html = html.delete("\n")
+	html = markdown(html)
     html = format_bbcode(html)
+	#html = clean_paragraphs(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -66,7 +68,12 @@ class Formatter
     text = status.text.gsub(/(<br \/>|<br>|<\/p>)+/) { |match| "#{match}\n" }
     strip_tags(text)
   end
-
+  
+  def clean_paragraphs(html)
+    puts html
+    html.gsub(/<p><\/p>/,"")
+  end
+  
   def simplified_format(account)
     return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
 
@@ -220,7 +227,34 @@ class Formatter
   def mention_html(account)
     "<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@<span>#{account.username}</span></a></span>"
   end
+  
+  def markdown(html)
+    # Bold + Italic
+    html = html.gsub(/(^| )[*]{3}([^*\n]+)[*]{3}( |$)/, '\1<em><strong>\2</strong></em>\3')
 
+    # Bold
+    html = html.gsub(/(^| )[*]{2}([^*\n]+)[*]{2}( |$)/, '\1<strong>\2</strong>\3')
+
+    # Italic
+    html = html.gsub(/(^| )[*]([^*\n]+)[*]( |$)/, '\1<em>\2</em>\3')
+
+    # `code`
+    html = html.gsub(/(^| )[`]([^`\n]+)[`]( |$)/, '\1<pre>\2</pre>\3')
+
+    # Strikethrough
+    html = html.gsub(/(^| )[~]{2}([^~\n]+)[~]{2}( |$)/, '\1<del>\2</del>\3')
+
+    # Blockquote / Greentext
+    html = html.gsub(/^&gt; (.*?)(\n|$)/m, '<blockquote>\1</blockquote>')
+    html = html.gsub('</blockquote><blockquote>', '<br>') # Not so cool
+
+    # ```
+    # code
+    # ```
+    html = html.gsub(/(^| )[`]{3}\n([^`]+)\n[`]{3}( |$)/, '\1<code>\2</code>\3')
+    html
+  end
+  
   def format_bbcode(html)
     
     begin

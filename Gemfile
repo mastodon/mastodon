@@ -71,7 +71,11 @@ gem 'tzinfo-data', '~> 1.2017'
 gem 'webpacker', '~> 3.0'
 gem 'webpush'
 
+# BBCode
 gem 'ruby-bbcode'
+
+# Markdown
+gem 'redcarpet'
 
 gem 'json-ld-preloaded', '~> 2.2.1'
 gem 'rdf-normalize', '~> 0.3.1'
