@@ -238,7 +238,7 @@ class Formatter
       no_styles: true,
       no_images: true,
       hard_wrap: false,
-      filter_html: false,
+      filter_html: true,
       escape_html: false
     )
     markdown = Redcarpet::Markdown.new(
