@@ -71,6 +71,7 @@ class Formatter
   
   def clean_paragraphs(html)
     html.gsub(/<p><\/p>/,"")
+	html.gsub("\n","")
   end
   
   def simplified_format(account)
