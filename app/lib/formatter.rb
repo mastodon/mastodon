@@ -238,16 +238,22 @@ class Formatter
       no_styles: true,
       no_images: true,
       hard_wrap: false,
-      filter_html: true,
+      filter_html: false,
       escape_html: false
     )
     markdown = Redcarpet::Markdown.new(
       renderer,
-      autolink: false,
+      autolink: true,
       tables: true,
       strikethrough: true,
       fenced_code_blocks: true,
-	  no_intra_emphasis: true
+	  highlight: true,
+	  quote: true,
+	  no_intra_emphasis: true,
+	  fenced_code_blocks: true,
+	  lax_spacing: true,
+	  superscript: true,
+	  footnotes: true
     )
     html = markdown.render(html)
 
@@ -343,6 +349,10 @@ end
 class MDRenderer < Redcarpet::Render::HTML
   def header(text, _header_level)
     text
+  end
+
+  def block_quote(quote)
+    %(<blockquote><quote class="block_quote">#{code}</code></blockquote>)
   end
 
   def block_code(code, lang)
