@@ -243,7 +243,7 @@ class Formatter
     )
     markdown = Redcarpet::Markdown.new(
       renderer,
-      autolink: true,
+      autolink: false,
       tables: true,
       strikethrough: true,
       fenced_code_blocks: true,
