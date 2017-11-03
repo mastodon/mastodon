@@ -26,8 +26,8 @@ Collapsable.propTypes = {
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
-  welcome: { id: 'welcome.message', defaultMessage: '{domain}へようこそ!' },
-  bbcode: { id: 'bbcode.list', defaultMessage: 'BBCode,Markdown一覧' },
+  welcome: { id: 'welcome.message', defaultMessage: 'BBCode' },
+  bbcode: { id: 'bbcode.list', defaultMessage: 'Markdown' },
 });
 
 const hashtags = Immutable.fromJS([
@@ -65,31 +65,10 @@ class Announcements extends React.PureComponent {
     return (
       <ul className='announcements'>
         <li>
-          <Collapsable isVisible={this.state.showId === 'introduction'} fullHeight={300} minHeight={20} >
+          <Collapsable isVisible={this.state.showId === 'introduction'} fullHeight={320} minHeight={20} >
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.welcome, { domain: document.title }))}<br />
 			  <br />
-			  このインスタンスではBBCodeを使ってテキストをアニメーションさせたり、多くのカスタム絵文字を使うことが出来ます。<br />
-			  about/moreではBBCodeやカスタム絵文字の使い方などを見ることが出来ます。<br />
-			  <br />
-			  あなたがまだフォローする人を決めていない場合、下記のタグを付けて投稿しているユーザーを確認してみると良いかもしれません。</p>
-              {hashtags.map((hashtag, i) =>
-                <Link key={i} to={`/timelines/tag/${hashtag}`} tabIndex={this.state.showId === 'introduction' ? undefined : -1}>
-                  #{hashtag}
-                </Link>
-              )}
-            </div>
-          </Collapsable>
-          <div className='announcements__icon'>
-            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={() => this.onClick('introduction', this.state)} size={20} animate active={this.state.showId === 'introduction'} />
-          </div>
-        </li>
-        <li>
-          <Collapsable isVisible={this.state.showId === 'bbcode'} fullHeight={650} minHeight={20} >
-            <div className='announcements__body'>
-              <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
-              <br />
-              BBCode<br />
 				[spin]回転[/spin]<br />
 				[pulse]点滅[/pulse]<br />
 				[large=2x]倍角文字[/large]<br />
@@ -104,8 +83,18 @@ class Announcements extends React.PureComponent {
 				[colorhex=A55A4A]色変更02[/colorhex]<br />
 				[code]コード[/code]<br />
 				[quote]引用[/quote]<br />
-				<br />
-				Markdown<br />
+				</p>
+            </div>
+          </Collapsable>
+          <div className='announcements__icon'>
+            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={() => this.onClick('introduction', this.state)} size={20} animate active={this.state.showId === 'introduction'} />
+          </div>
+        </li>
+        <li>
+          <Collapsable isVisible={this.state.showId === 'bbcode'} fullHeight={340} minHeight={20} >
+            <div className='announcements__body'>
+              <p>{ this.nl2br(intl.formatMessage(messages.bbcode, { domain: document.title }))}<br />
+              <br />
 				・リスト<br />
 				- List1<br />
 				- List2<br />
