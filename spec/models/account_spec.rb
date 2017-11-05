@@ -123,6 +123,34 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '#possibly_stale?' do
+    let(:account) { Fabricate(:account, last_webfingered_at: last_webfingered_at) }
+
+    context 'last_webfingered_at is nil' do
+      let(:last_webfingered_at) { nil }
+
+      it 'returns true' do
+        expect(account.possibly_stale?).to be true
+      end
+    end
+
+    context 'last_webfingered_at is more than 24 hours before' do
+      let(:last_webfingered_at) { 25.hours.ago }
+
+      it 'returns true' do
+        expect(account.possibly_stale?).to be true
+      end
+    end
+
+    context 'last_webfingered_at is less than 24 hours before' do
+      let(:last_webfingered_at) { 23.hours.ago }
+
+      it 'returns false' do
+        expect(account.possibly_stale?).to be false
+      end
+    end
+  end
+
   describe '#to_param' do
     it 'returns username' do
       account = Fabricate(:account, username: 'alice')
