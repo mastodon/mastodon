@@ -287,6 +287,7 @@ properly and our intersection observer is good to go.
       muted,
       id,
       intersectionObserverWrapper,
+      prepend,
     } = this.props;
     const autoCollapseSettings = settings.getIn(['collapsed', 'auto']);
 
@@ -299,6 +300,9 @@ properly and our intersection observer is good to go.
         node.clientHeight > (
           status.get('media_attachments').size && !muted ? 650 : 400
         )
+      ) || (
+        autoCollapseSettings.get('reblogs') &&
+        prepend === 'reblogged_by'
       ) || (
         autoCollapseSettings.get('replies') &&
         status.get('in_reply_to_id', null) !== null
