@@ -14,8 +14,10 @@ gem 'pg', '~> 0.20'
 gem 'pghero', '~> 1.7'
 gem 'dotenv-rails', '~> 2.2'
 
-gem 'aws-sdk', '~> 2.9'
-gem 'fog-openstack', '~> 0.1'
+gem 'fog-aws', '~> 1.4', require: false
+gem 'fog-core', '~> 1.45'
+gem 'fog-local', '~> 0.4', require: false
+gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder', '~> 0.6'
 
