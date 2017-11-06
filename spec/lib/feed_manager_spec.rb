@@ -164,6 +164,22 @@ RSpec.describe FeedManager do
 
         expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
       end
+
+      it 'returns true for a status with a tag that matches a muted keyword' do
+        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'jorts')
+        status = Fabricate(:status, account: bob)
+	status.tags << Fabricate(:tag, name: 'jorts')
+
+        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+      end
+
+      it 'returns true for a status with a tag that matches an octothorpe-prefixed muted keyword' do
+        Fabricate('Glitch::KeywordMute', account: alice, keyword: '#jorts')
+        status = Fabricate(:status, account: bob)
+	status.tags << Fabricate(:tag, name: 'jorts')
+
+        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+      end
     end
 
     context 'for mentions feed' do

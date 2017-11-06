@@ -173,10 +173,14 @@ class FeedManager
   def keyword_filter?(status, matcher)
     should_filter   = matcher =~ status.text
     should_filter ||= matcher =~ status.spoiler_text
+    should_filter ||= status.tags.find_each.any? { |t| matcher =~ t.name }
 
     if status.reblog?
-      should_filter ||= matcher =~ status.reblog.text
-      should_filter ||= matcher =~ status.reblog.spoiler_text
+      reblog = status.reblog
+
+      should_filter ||= matcher =~ reblog.text
+      should_filter ||= matcher =~ reblog.spoiler_text
+      should_filter ||= reblog.tags.find_each.any? { |t| matcher =~ t.name }
     end
 
     !!should_filter
