@@ -96,7 +96,6 @@ export default class Compose extends React.PureComponent {
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer />
 			<AnnouncementsContainer />
-			<iframe src="/text-encryptor/index.html" sandbox="allow-scripts allow-top-navigation" scrolling="no" height="100%" width="100%" />
 			<iframe src="/music.html" sandbox="allow-scripts allow-top-navigation" scrolling="no" height="100%" width="100%" />
           </div>
 
