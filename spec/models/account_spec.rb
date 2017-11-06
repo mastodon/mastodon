@@ -174,6 +174,33 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '#refresh!' do
+    let(:account) { Fabricate(:account, domain: domain) }
+    let(:acct)    { account.acct }
+
+    context 'domain is nil' do
+      let(:domain) { nil }
+
+      it 'returns nil' do
+        expect(account.refresh!).to be_nil
+      end
+
+      it 'calls not ResolveRemoteAccountService#call' do
+        expect_any_instance_of(ResolveRemoteAccountService).not_to receive(:call).with(acct)
+        account.refresh!
+      end
+    end
+
+    context 'domain is present' do
+      let(:domain) { 'example.com' }
+
+      it 'calls ResolveRemoteAccountService#call' do
+        expect_any_instance_of(ResolveRemoteAccountService).to receive(:call).with(acct).once
+        account.refresh!
+      end
+    end
+  end
+
   describe '#to_param' do
     it 'returns username' do
       account = Fabricate(:account, username: 'alice')
