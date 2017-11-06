@@ -31,12 +31,12 @@ class Formatter
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = encode_and_link_urls(html, linkable_accounts)
-    html = encode_custom_emojis(html, status.emojis + status.avatar_emojis) if options[:custom_emojify]
     #html = simple_format(html, {}, sanitize: false)
     #html = html.delete("\n")
     html = format_bbcode(html)
-	html = markdown(html)
-	html = clean_paragraphs(html)
+    html = markdown(html)
+    html = clean_paragraphs(html)
+    html = encode_custom_emojis(html, status.emojis + status.avatar_emojis) if options[:custom_emojify]
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -57,7 +57,7 @@ class Formatter
     enquete_info['duration'] = raw_enquete_info['duration']
     JSON.generate(enquete_info)
   end
-  
+
   def reformat(html)
     sanitize(html, Sanitize::Config::MASTODON_STRICT)
   end
@@ -68,12 +68,12 @@ class Formatter
     text = status.text.gsub(/(<br \/>|<br>|<\/p>)+/) { |match| "#{match}\n" }
     strip_tags(text)
   end
-  
+
   def clean_paragraphs(html)
     html.gsub(/<p><\/p>/,"")
-	html.gsub("\n","")
+    html.gsub("\n","")
   end
-  
+
   def simplified_format(account)
     return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
 
@@ -158,7 +158,7 @@ class Formatter
 
   def rewrite(text, entities)
     chars = text.to_s.to_char_a
-	
+
     # Sort by start index
     entities = entities.sort_by do |entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
@@ -227,7 +227,7 @@ class Formatter
   def mention_html(account)
     "<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@<span>#{account.username}</span></a></span>"
   end
-  
+
   def markdown(html)
     # Bold + Italic
 
@@ -246,26 +246,25 @@ class Formatter
       autolink: false,
       tables: true,
       strikethrough: true,
+      highlight: true,
+      quote: true,
+      no_intra_emphasis: true,
       fenced_code_blocks: true,
-	  highlight: true,
-	  quote: true,
-	  no_intra_emphasis: true,
-	  fenced_code_blocks: true,
-	  lax_spacing: true,
-	  superscript: true,
-	  footnotes: true
+      lax_spacing: true,
+      superscript: true,
+      footnotes: true
     )
     html = markdown.render(html)
 
     html = html.gsub(/<\/blockquote><p><\/p><blockquote>/, '<br>') # Not so cool
-	#html = html.gsub(/<br>\n<\/p>/, '</p>')
-	#html = html.gsub(/<p><br>\n/, '<p>')
+    #html = html.gsub(/<br>\n<\/p>/, '</p>')
+    #html = html.gsub(/<p><br>\n/, '<p>')
 
     html
   end
-  
+
   def format_bbcode(html)
-    
+
     begin
       html = html.bbcode_to_html(false, {
         :spin => {
