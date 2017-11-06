@@ -126,6 +126,16 @@ export default class LocalSettingsPage extends React.PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
+            item={['collapsed', 'auto', 'reblogs']}
+            id='mastodon-settings--collapsed-auto-reblogs'
+            onChange={onChange}
+            dependsOn={[['collapsed', 'enabled']]}
+            dependsOnNot={[['collapsed', 'auto', 'all']]}
+          >
+            <FormattedMessage id='settings.auto_collapse_reblogs' defaultMessage='Boosts' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
             item={['collapsed', 'auto', 'replies']}
             id='mastodon-settings--collapsed-auto-replies'
             onChange={onChange}
