@@ -41,10 +41,11 @@
 #  shared_inbox_url        :string           default(""), not null
 #  followers_url           :string           default(""), not null
 #  protocol                :integer          default("ostatus"), not null
+#  memorial                :boolean          default(FALSE), not null
 #
 
 class Account < ApplicationRecord
-  MENTION_RE = /(?:^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  MENTION_RE = /(?<=^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
 
   include AccountAvatar
   include AccountFinderConcern
@@ -148,6 +149,20 @@ class Account < ApplicationRecord
   def refresh!
     return if local?
     ResolveRemoteAccountService.new.call(acct)
+  end
+
+  def unsuspend!
+    transaction do
+      user&.enable! if local?
+      update!(suspended: false)
+    end
+  end
+
+  def memorialize!
+    transaction do
+      user&.disable! if local?
+      update!(memorial: true)
+    end
   end
 
   def keypair

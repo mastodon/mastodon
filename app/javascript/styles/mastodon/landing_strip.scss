@@ -1,4 +1,5 @@
-.landing-strip {
+.landing-strip,
+.memoriam-strip {
   background: rgba(darken($ui-base-color, 7%), 0.8);
   color: $ui-primary-color;
   font-weight: 400;
@@ -28,4 +29,8 @@
   @media screen and (max-width: 740px) {
     margin-bottom: 0;
   }
+}
+
+.memoriam-strip {
+  background: rgba($base-shadow-color, 0.7);
 }
