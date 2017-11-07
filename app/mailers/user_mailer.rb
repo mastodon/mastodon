@@ -10,6 +10,8 @@ class UserMailer < Devise::Mailer
     @token    = token
     @instance = Rails.configuration.x.local_domain
 
+    return if @resource.disabled?
+
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.unconfirmed_email.blank? ? @resource.email : @resource.unconfirmed_email, subject: I18n.t('devise.mailer.confirmation_instructions.subject', instance: @instance)
     end
@@ -20,6 +22,8 @@ class UserMailer < Devise::Mailer
     @token    = token
     @instance = Rails.configuration.x.local_domain
 
+    return if @resource.disabled?
+
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.reset_password_instructions.subject')
     end
@@ -28,6 +32,8 @@ class UserMailer < Devise::Mailer
   def password_change(user, _opts = {})
     @resource = user
     @instance = Rails.configuration.x.local_domain
+
+    return if @resource.disabled?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.password_change.subject')

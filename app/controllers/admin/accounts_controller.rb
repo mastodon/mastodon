@@ -2,8 +2,9 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload]
+    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :enable, :disable, :memorialize]
     before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
+    before_action :require_local_account!, only: [:enable, :disable, :memorialize]
 
     def index
       @accounts = filtered_accounts.page(params[:page])
@@ -24,6 +25,21 @@ module Admin
       redirect_to admin_account_path(@account.id)
     end
 
+    def memorialize
+      @account.memorialize!
+      redirect_to admin_account_path(@account.id)
+    end
+
+    def enable
+      @account.user.enable!
+      redirect_to admin_account_path(@account.id)
+    end
+
+    def disable
+      @account.user.disable!
+      redirect_to admin_account_path(@account.id)
+    end
+
     def redownload
       @account.reset_avatar!
       @account.reset_header!
@@ -40,6 +56,10 @@ module Admin
 
     def require_remote_account!
       redirect_to admin_account_path(@account.id) if @account.local?
+    end
+
+    def require_local_account!
+      redirect_to admin_account_path(@account.id) unless @account.local? && @account.user.present?
     end
 
     def filtered_accounts
