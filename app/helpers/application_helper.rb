@@ -13,17 +13,6 @@ module ApplicationHelper
     !user_signed_in? && !single_user_mode?
   end
 
-  def open_registrations?
-    @instance_presenter ||= InstancePresenter.new
-    unless Setting.open_registrations.nil?
-      Setting.registrations_status = Setting.open_registrations ? 'open' : 'closed'
-      Setting.destroy(:open_registrations)
-    end
-    registrations_status = @instance_presenter.registrations_status
-    return true if registrations_status == 'keyed' && params[:key] == Setting.registration_key
-    registrations_status == 'open'
-  end
-
   def open_deletion?
     Setting.open_deletion
   end

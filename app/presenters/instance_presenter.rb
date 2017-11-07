@@ -5,6 +5,7 @@ class InstancePresenter
     :closed_registrations_message,
     :site_contact_email,
     :registrations_status,
+    :registrations_open?,
     :site_title,
     :site_description,
     :site_extended_description,

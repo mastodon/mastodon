@@ -38,7 +38,7 @@
           %h1
             = @instance_presenter.site_title
             %small= t 'about.hosted_on', domain: site_hostname
-        - if open_registrations?
+        - if @instance_presenter.registrations_open?(params[:key])
           = render 'registration'
         - else
           .closed-registrations-message
