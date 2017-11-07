@@ -39,13 +39,19 @@ import {
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me } from '../../initial_state';
+import { defineMessages, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 
+const messages = defineMessages({
+  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your composing text will be lost by leaving from Mastodon.' },
+});
+
 const mapStateToProps = state => ({
   isComposing: state.getIn(['compose', 'is_composing']),
+  hasComposingText: state.getIn(['compose', 'text']) !== '',
 });
 
 const keyMap = {
@@ -75,6 +81,7 @@ const keyMap = {
 };
 
 @connect(mapStateToProps)
+@injectIntl
 @withRouter
 export default class UI extends React.Component {
 
@@ -86,13 +93,25 @@ export default class UI extends React.Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     isComposing: PropTypes.bool,
+    hasComposingText: PropTypes.bool,
     location: PropTypes.object,
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
     width: window.innerWidth,
     draggingOver: false,
   };
+
+  handleBeforeUnload = (e) => {
+    const { intl, isComposing, hasComposingText } = this.props;
+
+    if (isComposing && hasComposingText) {
+      // Now this text won't be displayed to users (except Edge)
+      // but still used as a flag to show a confirmation dialog.
+      e.returnValue = intl.formatMessage(messages.beforeUnload);
+    }
+  }
 
   handleResize = debounce(() => {
     // The cached heights are no longer accurate, invalidate
@@ -168,6 +187,7 @@ export default class UI extends React.Component {
   }
 
   componentWillMount () {
+    window.addEventListener('beforeunload', this.handleBeforeUnload, false);
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
@@ -209,6 +229,7 @@ export default class UI extends React.Component {
   }
 
   componentWillUnmount () {
+    window.removeEventListener('beforeunload', this.handleBeforeUnload);
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
