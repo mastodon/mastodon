@@ -11,15 +11,10 @@ class ProcessMentionsService < BaseService
     return unless status.local?
 
     status.text.scan(Account::MENTION_RE).each do |match|
-      username, domain  = match.first.split('@')
-      mentioned_account = Account.find_remote(username, domain)
-
-      if mentioned_account.nil? && !domain.nil?
-        begin
-          mentioned_account = resolve_remote_account_service.call(match.first.to_s)
-        rescue Goldfinger::Error, HTTP::Error
-          mentioned_account = nil
-        end
+      begin
+        mentioned_account = resolve_remote_account_service.call(match.first.to_s)
+      rescue Goldfinger::Error, HTTP::Error
+        mentioned_account = nil
       end
 
       next if mentioned_account.nil?
