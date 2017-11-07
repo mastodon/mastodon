@@ -21,6 +21,8 @@ export default class MediaItem extends ImmutablePureComponent {
 
     if (!status.get('sensitive')) {
       style = { backgroundImage: `url(${media.get('preview_url')})` };
+    } else {
+      style = { backgroundImage: `url(${media.get('preview_url')})` ,filter: `blur(4px)` };
     }
 
     return (
