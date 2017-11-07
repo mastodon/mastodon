@@ -67,10 +67,9 @@ export default class Status extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  constructor (props) {
-    super(props);
-    this.state = {};
-  }
+  state = {
+    fullscreen: false,
+  };
 
   componentWillMount () {
     this.props.dispatch(fetchStatus(this.props.params.statusId));
