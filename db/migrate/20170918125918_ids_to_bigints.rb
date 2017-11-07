@@ -65,6 +65,9 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
     [:users, :id],
     [:web_settings, :id],
     [:web_settings, :user_id],
+    [:favourite_tags, :id],
+    [:favourite_tags, :tag_id],
+    [:favourite_tags, :account_id],
   ]
   INCLUDED_COLUMNS << [:deprecated_preview_cards, :id] if table_exists?(:deprecated_preview_cards)
 
