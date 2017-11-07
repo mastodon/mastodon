@@ -7,7 +7,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
 
   def custom_emojis
-    CustomEmoji.local
+    CustomEmoji.local.where(disabled: false)
   end
 
   def meta
