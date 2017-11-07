@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { fetchStatus } from '../../actions/statuses';
 import MissingIndicator from '../../components/missing_indicator';
@@ -30,6 +31,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 import { boostModal, deleteModal } from '../../initial_state';
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../../features/ui/util/fullscreen';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -65,8 +67,16 @@ export default class Status extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
+  state = {
+    fullscreen: false,
+  };
+
   componentWillMount () {
     this.props.dispatch(fetchStatus(this.props.params.statusId));
+  }
+
+  componentDidMount () {
+    attachFullscreenListener(this.onFullScreenChange);
   }
 
   componentWillReceiveProps (nextProps) {
@@ -248,9 +258,18 @@ export default class Status extends ImmutablePureComponent {
     }
   }
 
+  componentWillUnmount () {
+    detachFullscreenListener(this.onFullScreenChange);
+  }
+
+  onFullScreenChange = () => {
+    this.setState({ fullscreen: isFullscreen() });
+  }
+
   render () {
     let ancestors, descendants;
     const { status, ancestorsIds, descendantsIds } = this.props;
+    const { fullscreen } = this.state;
 
     if (status === null) {
       return (
@@ -284,7 +303,7 @@ export default class Status extends ImmutablePureComponent {
         <ColumnBackButton />
 
         <ScrollContainer scrollKey='thread'>
-          <div className='scrollable detailed-status__wrapper' ref={this.setRef}>
+          <div className={classNames('scrollable', 'detailed-status__wrapper', { fullscreen })} ref={this.setRef}>
             {ancestors}
 
             <HotKeys handlers={handlers}>
