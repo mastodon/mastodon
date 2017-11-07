@@ -43,6 +43,10 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
+  def custom_emoji_tag(custom_emoji)
+    image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
+  end
+
   def opengraph(property, content)
     tag(:meta, content: content, property: property)
   end
