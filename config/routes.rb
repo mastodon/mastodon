@@ -126,7 +126,10 @@ Rails.application.routes.draw do
       member do
         post :subscribe
         post :unsubscribe
+        post :enable
+        post :disable
         post :redownload
+        post :memorialize
       end
 
       resource :reset, only: [:create]
