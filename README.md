@@ -1,3 +1,20 @@
+# im@stodon
+
+[![Build Status](http://img.shields.io/travis/tootsuite/imastodon.svg)][travis]
+
+[travis]: https://travis-ci.org/imas/mastodon
+
+このリポジトリは[Mastodon](https://github.com/tootsuite/mastodon)を元に独自の機能を加え[imastodon.net](https://imastodon.net/about)でサービスを提供しているソフトウェアを、MastodonのAGPLライセンスに基づき公開するリポジトリです。
+
+im@stodon is a variety of Mastodon for [imastodon.net](https://imastodon.net/about).  
+About what is Mastodon, see [tootsuite/mastodon](https://github.com/tootsuite/mastodon).
+
+## 主な独自機能
+- 投稿の添付画像をpngからjpgへ変換し保存
+- 画像サイズ制限をフルHD(長辺1920px)に緩和
+- 未収載タグ付き投稿のタグTLへの表示
+- お気に入りタグ機能
+
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
