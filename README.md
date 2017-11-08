@@ -1,8 +1,8 @@
 # im@stodon
 
-[![Build Status](http://img.shields.io/travis/tootsuite/imastodon.svg)][travis]
+[![Build Status](http://img.shields.io/travis/imas/mastodon.svg)][travis_imastodon]
 
-[travis]: https://travis-ci.org/imas/mastodon
+[travis_imastodon]: https://travis-ci.org/imas/mastodon
 
 このリポジトリは[Mastodon](https://github.com/tootsuite/mastodon)を元に独自の機能を加え[imastodon.net](https://imastodon.net/about)でサービスを提供しているソフトウェアを、MastodonのAGPLライセンスに基づき公開するリポジトリです。
 
