@@ -16,12 +16,9 @@ class AccountDomainBlock < ApplicationRecord
   belongs_to :account, required: true
   validates :domain, presence: true, uniqueness: { scope: :account_id }
 
-  after_create  :remove_blocking_cache
-  after_destroy :remove_blocking_cache
-
-  private
-
-  def remove_blocking_cache
-    Rails.cache.delete("exclude_domains_for:#{account_id}")
+  REMOVE_BLOCKING_CACHE = -> do
+    remove_blocking_cache('exclude_domains_for', account_id)
   end
+
+  include CacheRemovable
 end
