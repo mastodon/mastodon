@@ -58,12 +58,12 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      approve: Approve
+      approved: Approved
       are_you_sure: Are you sure?
       by_domain: Domain
       confirm: Confirm
       confirmed: Confirmed
-      approve: Approve
-      approved: Approved
       disable: Disable
       disable_two_factor_authentication: Disable 2FA
       disabled: Disabled
@@ -239,6 +239,9 @@ en:
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
+      require_approval:
+        desc_html: Require admins' approval for registration
+        title: Restricted registration
       site_description:
         desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description
@@ -256,9 +259,6 @@ en:
         desc_html: Display public timeline on landing page
         title: Timeline preview
       title: Site Settings
-      require_approval:
-        desc_html: Require admins' approval for registration
-        title: Restricted registration
     statuses:
       back_to_account: Back to account page
       batch:
@@ -301,7 +301,6 @@ en:
     your_token: Your access token
   auth:
     agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
-    require_approval_hint: Your account will be activated after administrator's approval.
     change_password: Security
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -311,6 +310,7 @@ en:
     login: Log in
     logout: Logout
     register: Sign up
+    require_approval_hint: Your account will be activated after administrator's approval.
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     set_new_password: Set new password
