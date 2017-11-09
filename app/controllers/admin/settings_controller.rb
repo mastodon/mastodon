@@ -28,10 +28,13 @@ module Admin
     ).freeze
 
     def edit
+      authorize :settings, :show?
       @admin_settings = Form::AdminSettings.new
     end
 
     def update
+      authorize :settings, :update?
+
       settings_params.each do |key, value|
         if UPLOAD_SETTINGS.include?(key)
           upload = SiteUpload.where(var: key).first_or_initialize(var: key)

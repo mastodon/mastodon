@@ -5,14 +5,18 @@ module Admin
     before_action :set_custom_emoji, except: [:index, :new, :create]
 
     def index
+      authorize :custom_emoji, :index?
       @custom_emojis = filtered_custom_emojis.eager_load(:local_counterpart).page(params[:page])
     end
 
     def new
+      authorize :custom_emoji, :create?
       @custom_emoji = CustomEmoji.new
     end
 
     def create
+      authorize :custom_emoji, :create?
+
       @custom_emoji = CustomEmoji.new(resource_params)
 
       if @custom_emoji.save
@@ -23,6 +27,8 @@ module Admin
     end
 
     def update
+      authorize @custom_emoji, :update?
+
       if @custom_emoji.update(resource_params)
         redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.updated_msg')
       else
@@ -31,11 +37,14 @@ module Admin
     end
 
     def destroy
+      authorize @custom_emoji, :destroy?
       @custom_emoji.destroy
       redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.destroyed_msg')
     end
 
     def copy
+      authorize @custom_emoji, :copy?
+
       emoji = CustomEmoji.find_or_create_by(domain: nil, shortcode: @custom_emoji.shortcode)
 
       if emoji.update(image: @custom_emoji.image)
@@ -48,11 +57,13 @@ module Admin
     end
 
     def enable
+      authorize @custom_emoji, :enable?
       @custom_emoji.update!(disabled: false)
       redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.enabled_msg')
     end
 
     def disable
+      authorize @custom_emoji, :disable?
       @custom_emoji.update!(disabled: true)
       redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.disabled_msg')
     end

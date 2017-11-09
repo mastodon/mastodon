@@ -40,6 +40,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless current_user&.admin?
   end
 
+  def require_staff!
+    redirect_to root_path unless current_user&.staff?
+  end
+
   def check_suspension
     forbidden if current_user.account.suspended?
   end

@@ -5,11 +5,13 @@ module Admin
     before_action :set_account
 
     def create
+      authorize @account, :suspend?
       Admin::SuspensionWorker.perform_async(@account.id)
       redirect_to admin_accounts_path
     end
 
     def destroy
+      authorize @account, :unsuspend?
       @account.unsuspend!
       redirect_to admin_accounts_path
     end

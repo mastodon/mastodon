@@ -32,6 +32,7 @@
 #  filtered_languages        :string           default([]), not null, is an Array
 #  account_id                :integer          not null
 #  disabled                  :boolean          default(FALSE), not null
+#  moderator                 :boolean          default(FALSE), not null
 #
 
 class User < ApplicationRecord
@@ -53,8 +54,10 @@ class User < ApplicationRecord
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
 
-  scope :recent,    -> { order(id: :desc) }
-  scope :admins,    -> { where(admin: true) }
+  scope :recent, -> { order(id: :desc) }
+  scope :admins, -> { where(admin: true) }
+  scope :moderators, -> { where(moderator: true) }
+  scope :staff, -> { admins.or(moderators) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
@@ -72,6 +75,10 @@ class User < ApplicationRecord
 
   def confirmed?
     confirmed_at.present?
+  end
+
+  def staff?
+    admin? || moderator?
   end
 
   def disable!

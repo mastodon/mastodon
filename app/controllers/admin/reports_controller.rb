@@ -5,14 +5,17 @@ module Admin
     before_action :set_report, except: [:index]
 
     def index
+      authorize :report, :index?
       @reports = filtered_reports.page(params[:page])
     end
 
     def show
+      authorize @report, :show?
       @form = Form::StatusBatch.new
     end
 
     def update
+      authorize @report, :update?
       process_report
       redirect_to admin_report_path(@report)
     end
