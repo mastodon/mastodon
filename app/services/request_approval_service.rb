@@ -2,7 +2,7 @@
 
 class RequestApprovalService < BaseService
   def call(user)
-    if user.id == nil
+    if user.id.nil?
       return
     end
 
