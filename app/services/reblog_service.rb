@@ -17,11 +17,14 @@ class ReblogService < BaseService
 
     return reblog unless reblog.nil?
 
-    reblog = account.statuses.create!(reblog: reblogged_status, text: '')
+    reblog = account.statuses.create!(reblog: reblogged_status, text: '', federate: reblogged_status.federate)
 
     DistributionWorker.perform_async(reblog.id)
-    Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)
-    ActivityPub::DistributionWorker.perform_async(reblog.id)
+
+    if reblog.federate?
+      Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)
+      ActivityPub::DistributionWorker.perform_async(reblog.id)
+    end
 
     create_notification(reblog)
     reblog

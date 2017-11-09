@@ -44,5 +44,16 @@ describe ActivityPub::DistributionWorker do
         expect(ActivityPub::DeliveryWorker).to_not have_received(:push_bulk)
       end
     end
+
+    context 'with unfederate flag' do
+      before do
+        status.update(federate: false)
+      end
+
+      it 'does nothing' do
+        subject.perform(status.id)
+        expect(ActivityPub::DeliveryWorker).to_not have_received(:push_bulk)
+      end
+    end
   end
 end

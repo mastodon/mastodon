@@ -48,7 +48,11 @@ class AccountsController < ApplicationController
   end
 
   def default_statuses
-    @account.statuses.where(visibility: [:public, :unlisted])
+    if current_account.nil?
+      @account.statuses.where(visibility: [:public, :unlisted], federate: true)
+    else
+      @account.statuses.where(visibility: [:public, :unlisted])
+    end
   end
 
   def only_media_scope

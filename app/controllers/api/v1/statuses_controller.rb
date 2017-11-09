@@ -45,6 +45,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
+                                         federate: status_params[:federate],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
@@ -72,7 +73,7 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def status_params
-    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, media_ids: [])
+    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :federate, :visibility, media_ids: [])
   end
 
   def pagination_params(core_params)

@@ -13,8 +13,10 @@ class StatusPolicy
       owned? || status.mentions.where(account: account).exists?
     elsif private?
       owned? || account&.following?(status.account) || status.mentions.where(account: account).exists?
+    elsif !federate?
+      !account.nil? && !blocked?
     else
-      account.nil? || !status.account.blocking?(account)
+      account.nil? || !blocked?
     end
   end
 
@@ -44,5 +46,13 @@ class StatusPolicy
 
   def private?
     status.private_visibility?
+  end
+
+  def federate?
+    status.federate?
+  end
+
+  def blocked?
+    status.account.blocking?(account)
   end
 end

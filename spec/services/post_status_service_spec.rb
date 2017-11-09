@@ -55,6 +55,13 @@ RSpec.describe PostStatusService do
     expect(status.visibility).to eq "private"
   end
 
+  it 'creates a status with the given federate flag' do
+    status = create_status_with_options(federate: false)
+
+    expect(status).to be_persisted
+    expect(status.federate).to eq false
+  end
+
   it 'creates a status for the given application' do
     application = Fabricate(:application)
 

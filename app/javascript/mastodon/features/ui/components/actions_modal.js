@@ -15,6 +15,7 @@ export default class ActionsModal extends ImmutablePureComponent {
     status: ImmutablePropTypes.map,
     actions: PropTypes.array,
     onClick: PropTypes.func,
+    object: PropTypes.object,
   };
 
   renderAction = (action, i) => {
@@ -59,10 +60,12 @@ export default class ActionsModal extends ImmutablePureComponent {
         <StatusContent status={this.props.status} />
       </div>
     );
+    const object = this.props.object;
 
     return (
       <div className='modal-root__modal actions-modal'>
         {status}
+        {object}
 
         <ul>
           {this.props.actions.map(this.renderAction)}
