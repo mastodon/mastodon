@@ -94,4 +94,49 @@ RSpec.describe Notification, type: :model do
       expect(notification.type).to eq :follow
     end
   end
+
+  describe '.reload_stale_associations!' do
+    context 'account_ids are empty' do
+      let(:cached_items) { [] }
+
+      subject { described_class.reload_stale_associations!(cached_items) }
+
+      it 'returns nil' do
+        is_expected.to be nil
+      end
+    end
+
+    context 'account_ids are present' do
+      before do
+        allow(accounts_with_ids).to receive(:[]).with(stale_account1.id).and_return(account1)
+        allow(accounts_with_ids).to receive(:[]).with(stale_account2.id).and_return(account2)
+        allow(Account).to receive_message_chain(:where, :map, :to_h).and_return(accounts_with_ids)
+      end
+
+      let(:cached_items) do
+        [
+          Fabricate(:notification, activity: Fabricate(:status)),
+          Fabricate(:notification, activity: Fabricate(:follow)),
+        ]
+      end
+
+      let(:stale_account1) { cached_items[0].from_account }
+      let(:stale_account2) { cached_items[1].from_account }
+
+      let(:account1) { Fabricate(:account) }
+      let(:account2) { Fabricate(:account) }
+
+      let(:accounts_with_ids) { { account1.id => account1, account2.id => account2 } }
+
+      it 'reloads associations' do
+        expect(cached_items[0].from_account).to be stale_account1
+        expect(cached_items[1].from_account).to be stale_account2
+
+        described_class.reload_stale_associations!(cached_items)
+
+        expect(cached_items[0].from_account).to be account1
+        expect(cached_items[1].from_account).to be account2
+      end
+    end
+  end
 end
