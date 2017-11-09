@@ -135,6 +135,31 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "now",
+        "id": "relative_time.just_now"
+      },
+      {
+        "defaultMessage": "{number}s",
+        "id": "relative_time.seconds"
+      },
+      {
+        "defaultMessage": "{number}m",
+        "id": "relative_time.minutes"
+      },
+      {
+        "defaultMessage": "{number}h",
+        "id": "relative_time.hours"
+      },
+      {
+        "defaultMessage": "{number}d",
+        "id": "relative_time.days"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/relative_timestamp.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "status.delete"
       },
@@ -157,6 +182,10 @@
       {
         "defaultMessage": "Share",
         "id": "status.share"
+      },
+      {
+        "defaultMessage": "More",
+        "id": "status.more"
       },
       {
         "defaultMessage": "Reply to thread",
@@ -883,11 +912,7 @@
         "id": "column.home"
       },
       {
-        "defaultMessage": "Your home feed is empty. If you have been inactive for a while, it will be regenerated for you soon.",
-        "id": "empty_column.home.inactivity"
-      },
-      {
-        "defaultMessage": "You aren't following anyone yet. Visit {public} or use search to get started and meet other users.",
+        "defaultMessage": "Your home timeline is empty! Visit {public} or use search to get started and meet other users.",
         "id": "empty_column.home"
       },
       {

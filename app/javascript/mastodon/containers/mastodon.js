@@ -3,19 +3,20 @@ import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
 import { showOnboardingOnce } from '../actions/onboarding';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
-import Route from 'react-router-dom/Route';
-import { ScrollContext } from 'react-router-scroll';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { ScrollContext } from 'react-router-scroll-4';
 import UI from '../features/ui';
 import { hydrateStore } from '../actions/store';
 import { connectUserStream } from '../actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
+import initialState from '../initial_state';
+
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
 export const store = configureStore();
-const hydrateAction = hydrateStore(JSON.parse(document.getElementById('initial-state').textContent));
+const hydrateAction = hydrateStore(initialState);
 store.dispatch(hydrateAction);
 
 export default class Mastodon extends React.PureComponent {

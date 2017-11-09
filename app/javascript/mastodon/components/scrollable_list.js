@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import PropTypes from 'prop-types';
 import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import LoadMore from './load_more';

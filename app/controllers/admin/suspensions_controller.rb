@@ -10,7 +10,7 @@ module Admin
     end
 
     def destroy
-      @account.update(suspended: false)
+      @account.unsuspend!
       redirect_to admin_accounts_path
     end
 

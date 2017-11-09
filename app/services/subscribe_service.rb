@@ -6,7 +6,7 @@ class SubscribeService < BaseService
 
     @account        = account
     @account.secret = SecureRandom.hex
-    @response       = build_request.perform.flush
+    @response       = build_request.perform
 
     if response_failed_permanently?
       # We're not allowed to subscribe. Fail and move on.
@@ -20,6 +20,7 @@ class SubscribeService < BaseService
       # We need to retry at a later time. Fail loudly!
       raise Mastodon::UnexpectedResponseError, @response
     end
+    @response.connection&.close
   end
 
   private

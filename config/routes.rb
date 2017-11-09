@@ -96,8 +96,9 @@ Rails.application.routes.draw do
     resources :sessions, only: [:destroy]
   end
 
-  resources :media, only: [:show]
-  resources :tags,  only: [:show]
+  resources :media,  only: [:show]
+  resources :tags,   only: [:show]
+  resources :emojis, only: [:show]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
@@ -125,7 +126,10 @@ Rails.application.routes.draw do
       member do
         post :subscribe
         post :unsubscribe
+        post :enable
+        post :disable
         post :redownload
+        post :memorialize
       end
 
       resource :reset, only: [:create]
@@ -140,13 +144,15 @@ Rails.application.routes.draw do
       resource :two_factor_authentication, only: [:destroy]
     end
 
-    resources :custom_emojis, only: [:index, :new, :create, :destroy] do
+    resources :custom_emojis, only: [:index, :new, :create, :update, :destroy] do
       member do
         post :copy
         post :enable
         post :disable
       end
     end
+
+    resources :account_moderation_notes, only: [:create, :destroy]
   end
 
   get '/admin', to: redirect('/admin/settings/edit', status: 302)

@@ -335,7 +335,10 @@ module Mastodon
 
       start_arel = table.project(table[:id]).order(table[:id].asc).take(1)
       start_arel = yield table, start_arel if block_given?
-      start_id = exec_query(start_arel.to_sql).to_hash.first['id'].to_i
+      first_row = exec_query(start_arel.to_sql).to_hash.first
+      # In case there are no rows but we didn't catch it in the estimated size:
+      return unless first_row
+      start_id = first_row['id'].to_i
       
       say "Migrating #{table_name}.#{column} (~#{total.to_i} rows)"
 

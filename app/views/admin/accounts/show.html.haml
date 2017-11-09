@@ -19,6 +19,15 @@
           %th= t('admin.accounts.email')
           %td= @account.user_email
         %tr
+          %th= t('admin.accounts.login_status')
+          %td
+            - if @account.user&.disabled?
+              = t('admin.accounts.disabled')
+              = table_link_to 'unlock', t('admin.accounts.enable'), enable_admin_account_path(@account.id), method: :post
+            - else
+              = t('admin.accounts.enabled')
+              = table_link_to 'lock', t('admin.accounts.disable'), disable_admin_account_path(@account.id), method: :post
+        %tr
           %th= t('admin.accounts.most_recent_ip')
           %td= @account.user_current_sign_in_ip
         %tr
@@ -65,6 +74,8 @@
       = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
       - if @account.user&.otp_required_for_login?
         = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button'
+      - unless @account.memorial?
+        = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
     - else
       = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button'
 
@@ -132,3 +143,25 @@
         %tr
           %th= t('admin.accounts.followers_url')
           %td= link_to @account.followers_url, @account.followers_url
+
+%hr
+%h3= t('admin.accounts.moderation_notes')
+
+= simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |f|
+  = render 'shared/error_messages', object: @account_moderation_note
+
+  = f.input :content
+  = f.hidden_field :target_account_id
+
+  .actions
+  = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th
+        %th= t('admin.account_moderation_notes.account')
+        %th= t('admin.account_moderation_notes.created_at')
+    %tbody
+      = render @moderation_notes

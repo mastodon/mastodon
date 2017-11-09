@@ -1,6 +1,9 @@
 - content_for :page_title do
   = t('auth.register')
 
+- content_for :header_tags do
+  = render partial: 'shared/og'
+
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = render 'shared/error_messages', object: resource
 

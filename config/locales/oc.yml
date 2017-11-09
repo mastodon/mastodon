@@ -1,6 +1,7 @@
 ---
 oc:
   about:
+    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
@@ -49,15 +50,27 @@ oc:
       admin: Admin
     unfollow: Quitar de sègre
   admin:
+    account_moderation_notes:
+      account: Moderator
+      create: Crear
+      created_at: Data
+      created_msg: Nòta de moderacion ben creada !
+      delete: Suprimir
+      destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
       are_you_sure: Sètz segur ?
+      by_domain: Domeni
       confirm: Confirmar
       confirmed: Confirmat
+      disable: Desactivar
       disable_two_factor_authentication: Desactivar 2FA
+      disabled: Desactivat
       display_name: Escais-nom
       domain: Domeni
       edit: Modificar
       email: Corrièl
+      enable: Activar
+      enabled: Activat
       feed_url: Flux URL
       followers: Seguidors
       followers_url: URL dels seguidors
@@ -65,16 +78,19 @@ oc:
       inbox_url: URL de recepcion
       ip: IP
       location:
-        all: Tot
-        local: Local
-        remote: Alonhat
+        all: Totes
+        local: Locals
+        remote: Alonhats
         title: Emplaçament
+      login_status: Estat formulari de connexion
       media_attachments: Mèdias ajustats
+      memorialize: Passar en memorial
       moderation:
         all: Tot
         silenced: Rescondut
         suspended: Suspendut
         title: Moderacion
+      moderation_notes: Nòtas de moderacion
       most_recent_activity: Activitat mai recenta
       most_recent_ip: IP mai recenta
       not_subscribed: Pas seguidor
@@ -109,16 +125,28 @@ oc:
       username: Nom d’utilizaire
       web: Web
     custom_emojis:
+      copied_msg: Còpia locala de l’emoji ben creada
+      copy: Copiar
+      copy_failed_msg: Fracàs de la còpia locala de l’emoji
       created_msg: Emoji ben creat !
       delete: Suprimir
       destroyed_msg: Emojo ben suprimit !
+      disable: Desactivar
+      disabled_msg: Aqueste emoji es ben desactivat
       emoji: Emoji
+      enable: Activar
+      enabled_msg: Aqueste emoji es ben activat
       image_hint: PNG cap a 50Ko
+      listed: Listat
       new:
         title: Ajustar un nòu emoji personal
+      overwrite: Remplaçar
       shortcode: Acorchi
       shortcode_hint: Almens 2 caractèrs, solament alfanumerics e jonhent bas
       title: Emojis personals
+      unlisted: Pas listat
+      update_failed_msg: Mesa a jorn de l’emoji fracasada
+      updated_msg: Emoji ben mes a jorn !
       upload: Enviar
     domain_blocks:
       add_new: N’ajustar un nòu
@@ -152,6 +180,16 @@ oc:
         undo: Restablir
       title: Blòc de domeni
       undo: Restablir
+    email_domain_blocks:
+      add_new: Ajustar
+      created_msg: Blocatge del domeni de corrièl ben plaçat
+      delete: Suprimir
+      destroyed_msg: Blocatge del domeni de corrièl ben levat
+      domain: Domeni
+      new:
+        create: Crear un blocatge
+        title: Nòu blocatge de domeni de corrièl
+      title: Blocatge de domeni de corrièl
     instances:
       account_count: Comptes coneguts
       domain_name: Domeni
@@ -313,8 +351,8 @@ oc:
     - dissabte
     formats:
       default: "%e/%m/%Y"
-      long: Lo %-d %b de %Y
-      short: "%e %B"
+      long: Lo %e %B de %Y
+      short: "%e %b. de %Y"
     month_names:
     - 
     - de genièr
@@ -425,6 +463,7 @@ oc:
       following: Lista de mond que seguètz
       muting: Lista de mond que volètz pas legir
     upload: Importar
+  in_memoriam_html: En Memòria.
   landing_strip_html: "<strong>%{name}</strong> utiliza %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasque sul fediverse."
   landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
   media_attachments:

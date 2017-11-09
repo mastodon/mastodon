@@ -2,14 +2,18 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload]
+    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :enable, :disable, :memorialize]
     before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
+    before_action :require_local_account!, only: [:enable, :disable, :memorialize]
 
     def index
       @accounts = filtered_accounts.page(params[:page])
     end
 
-    def show; end
+    def show
+      @account_moderation_note = current_account.account_moderation_notes.new(target_account: @account)
+      @moderation_notes = @account.targeted_moderation_notes.latest
+    end
 
     def subscribe
       Pubsubhubbub::SubscribeWorker.perform_async(@account.id)
@@ -18,6 +22,21 @@ module Admin
 
     def unsubscribe
       Pubsubhubbub::UnsubscribeWorker.perform_async(@account.id)
+      redirect_to admin_account_path(@account.id)
+    end
+
+    def memorialize
+      @account.memorialize!
+      redirect_to admin_account_path(@account.id)
+    end
+
+    def enable
+      @account.user.enable!
+      redirect_to admin_account_path(@account.id)
+    end
+
+    def disable
+      @account.user.disable!
       redirect_to admin_account_path(@account.id)
     end
 
@@ -37,6 +56,10 @@ module Admin
 
     def require_remote_account!
       redirect_to admin_account_path(@account.id) if @account.local?
+    end
+
+    def require_local_account!
+      redirect_to admin_account_path(@account.id) unless @account.local? && @account.user.present?
     end
 
     def filtered_accounts

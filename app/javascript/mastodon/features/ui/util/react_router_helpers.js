@@ -1,18 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Switch from 'react-router-dom/Switch';
-import Route from 'react-router-dom/Route';
+import { Switch, Route } from 'react-router-dom';
 
 import ColumnLoading from '../components/column_loading';
 import BundleColumnError from '../components/bundle_column_error';
 import BundleContainer from '../containers/bundle_container';
 
 // Small wrapper to pass multiColumn to the route components
-export const WrappedSwitch = ({ multiColumn, children }) => (
-  <Switch>
-    {React.Children.map(children, child => React.cloneElement(child, { multiColumn }))}
-  </Switch>
-);
+export class WrappedSwitch extends React.PureComponent {
+
+  render () {
+    const { multiColumn, children } = this.props;
+
+    return (
+      <Switch>
+        {React.Children.map(children, child => React.cloneElement(child, { multiColumn }))}
+      </Switch>
+    );
+  }
+
+}
 
 WrappedSwitch.propTypes = {
   multiColumn: PropTypes.bool,

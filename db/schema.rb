@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005171936) do
+ActiveRecord::Schema.define(version: 20171107143624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20171005171936) do
     t.datetime "updated_at", null: false
     t.bigint "account_id"
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
+  end
+
+  create_table "account_moderation_notes", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "account_id", null: false
+    t.bigint "target_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_moderation_notes_on_account_id"
+    t.index ["target_account_id"], name: "index_account_moderation_notes_on_target_account_id"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -61,6 +71,7 @@ ActiveRecord::Schema.define(version: 20171005171936) do
     t.string "shared_inbox_url", default: "", null: false
     t.string "followers_url", default: "", null: false
     t.integer "protocol", default: 0, null: false
+    t.boolean "memorial", default: false, null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower"
     t.index ["uri"], name: "index_accounts_on_uri"
@@ -99,6 +110,9 @@ ActiveRecord::Schema.define(version: 20171005171936) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "disabled", default: false, null: false
+    t.string "uri"
+    t.string "image_remote_url"
+    t.boolean "visible_in_picker", default: true, null: false
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
@@ -422,6 +436,7 @@ ActiveRecord::Schema.define(version: 20171005171936) do
     t.string "otp_backup_codes", array: true
     t.string "filtered_languages", default: [], null: false, array: true
     t.bigint "account_id", null: false
+    t.boolean "disabled", default: false, null: false
     t.datetime "approved_at"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -448,6 +463,8 @@ ActiveRecord::Schema.define(version: 20171005171936) do
   end
 
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
+  add_foreign_key "account_moderation_notes", "accounts"
+  add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade

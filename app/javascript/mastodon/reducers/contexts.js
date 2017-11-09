@@ -34,7 +34,13 @@ const deleteFromContexts = (state, id) => {
 const updateContext = (state, status, references) => {
   return state.update('descendants', map => {
     references.forEach(parentId => {
-      map = map.update(parentId, ImmutableList(), list => list.push(status.id));
+      map = map.update(parentId, ImmutableList(), list => {
+        if (list.includes(status.id)) {
+          return list;
+        }
+
+        return list.push(status.id);
+      });
     });
 
     return map;

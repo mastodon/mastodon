@@ -1,6 +1,7 @@
 ---
 en:
   about:
+    about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
@@ -49,17 +50,29 @@ en:
       admin: Admin
     unfollow: Unfollow
   admin:
+    account_moderation_notes:
+      account: Moderator
+      create: Create
+      created_at: Date
+      created_msg: Moderation note successfully created!
+      delete: Delete
+      destroyed_msg: Moderation note successfully destroyed!
     accounts:
       are_you_sure: Are you sure?
+      by_domain: Domain
       confirm: Confirm
       confirmed: Confirmed
       approve: Approve
       approved: Approved
+      disable: Disable
       disable_two_factor_authentication: Disable 2FA
+      disabled: Disabled
       display_name: Display name
       domain: Domain
       edit: Edit
       email: E-mail
+      enable: Enable
+      enabled: Enabled
       feed_url: Feed URL
       followers: Followers
       followers_url: Followers URL
@@ -71,12 +84,15 @@ en:
         local: Local
         remote: Remote
         title: Location
+      login_status: Login status
       media_attachments: Media attachments
+      memorialize: Turn into memoriam
       moderation:
         all: All
         silenced: Silenced
         suspended: Suspended
         title: Moderation
+      moderation_notes: Moderation notes
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
       not_subscribed: Not subscribed
@@ -123,11 +139,16 @@ en:
       enable: Enable
       enabled_msg: Successfully enabled that emoji
       image_hint: PNG up to 50KB
+      listed: Listed
       new:
         title: Add new custom emoji
+      overwrite: Overwrite
       shortcode: Shortcode
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
       title: Custom emojis
+      unlisted: Unlisted
+      update_failed_msg: Could not update that emoji
+      updated_msg: Emoji successfully updated!
       upload: Upload
     domain_blocks:
       add_new: Add new
@@ -370,6 +391,7 @@ en:
       following: Following list
       muting: Muting list
     upload: Upload
+  in_memoriam_html: In Memoriam.
   landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:

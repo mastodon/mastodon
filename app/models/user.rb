@@ -5,7 +5,6 @@
 #
 #  id                        :integer          not null, primary key
 #  email                     :string           default(""), not null
-#  account_id                :integer          not null
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  encrypted_password        :string           default(""), not null
@@ -32,10 +31,13 @@
 #  otp_backup_codes          :string           is an Array
 #  filtered_languages        :string           default([]), not null, is an Array
 #  approved_at               :datetime
+#  account_id                :integer          not null
+#  disabled                  :boolean          default(FALSE), not null
 #
 
 class User < ApplicationRecord
   include Settings::Extend
+
   ACTIVE_DURATION = 14.days
 
   devise :registerable, :recoverable,
@@ -74,10 +76,24 @@ class User < ApplicationRecord
     confirmed_at.present?
   end
 
+  def disable!
+    update!(disabled: true,
+            last_sign_in_at: current_sign_in_at,
+            current_sign_in_at: nil)
+  end
+
+  def enable!
+    update!(disabled: false)
+  end
+
   def disable_two_factor!
     self.otp_required_for_login = false
     otp_backup_codes&.clear
     save!
+  end
+
+  def active_for_authentication?
+    super && !disabled?
   end
 
   def setting_default_privacy
@@ -102,6 +118,10 @@ class User < ApplicationRecord
 
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  def setting_reduce_motion
+    settings.reduce_motion
   end
 
   def setting_system_font_ui

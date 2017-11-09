@@ -13,6 +13,9 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  disabled           :boolean          default(FALSE), not null
+#  uri                :string
+#  image_remote_url   :string
+#  visible_in_picker  :boolean          default(TRUE), not null
 #
 
 class CustomEmoji < ApplicationRecord
@@ -21,6 +24,8 @@ class CustomEmoji < ApplicationRecord
   SCAN_RE = /(?<=[^[:alnum:]:]|\n|^)
     :(#{SHORTCODE_RE_FRAGMENT}):
     (?=[^[:alnum:]:]|$)/x
+
+  has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
   has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }
 
@@ -35,6 +40,10 @@ class CustomEmoji < ApplicationRecord
 
   def local?
     domain.nil?
+  end
+
+  def object_type
+    :emoji
   end
 
   class << self

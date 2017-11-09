@@ -209,6 +209,12 @@ export default class Video extends React.PureComponent {
     }
   }
 
+  handleProgress = () => {
+    if (this.video.buffered.length > 0) {
+      this.setState({ buffer: this.video.buffered.end(0) / this.video.duration * 100 });
+    }
+  }
+
   handleOpenVideo = () => {
     this.video.pause();
     this.props.onOpenVideo(this.video.currentTime);
@@ -221,7 +227,7 @@ export default class Video extends React.PureComponent {
 
   render () {
     const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl, alt } = this.props;
-    const { progress, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
+    const { progress, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
 
     return (
       <div className={classNames('video-player', { inactive: !revealed, inline: width && height && !fullscreen, fullscreen })} style={{ width, height }} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -229,7 +235,7 @@ export default class Video extends React.PureComponent {
           ref={this.setVideoRef}
           src={src}
           poster={preview}
-          preload={!!startTime}
+          preload={startTime ? 'auto' : 'none'}
           loop
           role='button'
           tabIndex='0'
@@ -241,6 +247,7 @@ export default class Video extends React.PureComponent {
           onPause={this.handlePause}
           onTimeUpdate={this.handleTimeUpdate}
           onLoadedData={this.handleLoadedData}
+          onProgress={this.handleProgress}
         />
 
         <button className={classNames('video-player__spoiler', { active: !revealed })} onClick={this.toggleReveal}>
@@ -250,6 +257,7 @@ export default class Video extends React.PureComponent {
 
         <div className={classNames('video-player__controls', { active: paused || hovered })}>
           <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
+            <div className='video-player__seek__buffer' style={{ width: `${buffer}%` }} />
             <div className='video-player__seek__progress' style={{ width: `${progress}%` }} />
 
             <span
