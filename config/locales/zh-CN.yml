@@ -59,13 +59,18 @@ zh-CN:
       destroyed_msg: 管理记录删除成功！
     accounts:
       are_you_sure: 你确定吗？
+      by_domain: 域名
       confirm: 确认
       confirmed: 已确认
+      disable: 停用
       disable_two_factor_authentication: 停用两步验证
+      disabled: 已停用
       display_name: 昵称
       domain: 域名
       edit: 编辑
       email: 电子邮件地址
+      enable: 启用
+      enabled: 已启用
       feed_url: 订阅 URL
       followers: 关注者
       followers_url: 关注者（Followers）URL
@@ -77,7 +82,9 @@ zh-CN:
         local: 本地
         remote: 远程
         title: 位置
+      login_status: 登录状态
       media_attachments: 媒体文件
+      memorialize: 设置为追悼帐户
       moderation:
         all: 全部
         silenced: 已静音
@@ -133,6 +140,7 @@ zh-CN:
       listed: 已显示
       new:
         title: 添加新的自定义表情
+      overwrite: 覆盖
       shortcode: 短代码
       shortcode_hint: 至少 2 个字符，只能使用字母、数字和下划线
       title: 自定义表情
@@ -373,6 +381,7 @@ zh-CN:
       following: 关注列表
       muting: 静音列表
     upload: 上传
+  in_memoriam_html: 谨此悼念。
   landing_strip_html: "<strong>%{name}</strong> 是一位来自 %{link_to_root_path} 的用户。如果你想关注这个人或者与这个人互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。"
   landing_strip_signup_html: 还没有这种帐户？你可以<a href="%{sign_up_path}">在本站注册一个</a>。
   media_attachments:

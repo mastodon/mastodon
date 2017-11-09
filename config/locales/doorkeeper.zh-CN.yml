@@ -6,6 +6,7 @@ zh-CN:
         name: 名称
         redirect_uri: 登录回调地址
         scopes: 权限范围
+        website: 应用网站
     errors:
       models:
         doorkeeper/application:
@@ -34,9 +35,13 @@ zh-CN:
         redirect_uri: 每行只能有一个 URL
         scopes: 用空格分割权限范围，留空则使用默认设置
       index:
+        application: 应用
         callback_url: 登录回调地址
+        delete: 删除
         name: 名称
         new: 创建新应用
+        scopes: 权限范围
+        show: 显示
         title: 你的应用
       new:
         title: 创建新应用
@@ -58,7 +63,7 @@ zh-CN:
         prompt: 授权 %{client_name} 使用你的帐户？
         title: 需要授权
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: 接下来请复制此处的授权代码并粘贴到应用中。
     authorized_applications:
       buttons:
         revoke: 撤销授权
@@ -68,6 +73,7 @@ zh-CN:
         application: 应用
         created_at: 授权时间
         date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: 权限范围
         title: 你授权的应用列表
     errors:
       messages:
