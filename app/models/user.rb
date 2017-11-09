@@ -92,10 +92,6 @@ class User < ApplicationRecord
     save!
   end
 
-  def active_for_authentication?
-    super && !disabled?
-  end
-
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
@@ -170,7 +166,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && (approved? || !Setting.require_approval)
+    super && !disabled? && (approved? || !Setting.require_approval)
   end
 
   def inactive_message
