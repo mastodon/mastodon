@@ -235,11 +235,20 @@ RSpec.describe Status, type: :model do
   describe '.as_public_timeline' do
     it 'only includes statuses with public visibility' do
       public_status = Fabricate(:status, visibility: :public)
-      private_status = Fabricate(:status, visibility: :private)
+      private_status = Fabricate(:status, visibility: :private, federate: true)
 
       results = Status.as_public_timeline
       expect(results).to include(public_status)
       expect(results).not_to include(private_status)
+    end
+
+    it 'only includes statuses with federate flag' do
+      public_status = Fabricate(:status, visibility: :public)
+      unfederate_status = Fabricate(:status, visibility: :public, federate: false)
+
+      results = Status.as_public_timeline
+      expect(results).to include(public_status)
+      expect(results).not_to include(unfederate_status)
     end
 
     it 'does not include replies' do
@@ -459,6 +468,7 @@ RSpec.describe Status, type: :model do
     let!(:public_status) { Fabricate(:status, account: target_account, visibility: 'public') }
     let!(:unlisted_status) { Fabricate(:status, account: target_account, visibility: 'unlisted') }
     let!(:private_status) { Fabricate(:status, account: target_account, visibility: 'private') }
+    let!(:unfederate_status) { Fabricate(:status, account: target_account, federate: false) }
 
     let!(:direct_status) do
       Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
@@ -488,7 +498,7 @@ RSpec.describe Status, type: :model do
 
     context 'given same account' do
       let(:account) { target_account }
-      it { is_expected.to eq(%w(direct direct private unlisted public)) }
+      it { is_expected.to eq(%w(direct direct public private unlisted public)) }
     end
 
     context 'given followed account' do
@@ -496,11 +506,11 @@ RSpec.describe Status, type: :model do
         account.follow!(target_account)
       end
 
-      it { is_expected.to eq(%w(direct private unlisted public)) }
+      it { is_expected.to eq(%w(direct public private unlisted public)) }
     end
 
     context 'given unfollowed account' do
-      it { is_expected.to eq(%w(direct unlisted public)) }
+      it { is_expected.to eq(%w(direct public unlisted public)) }
     end
   end
 

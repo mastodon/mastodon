@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   suggestions: state.getIn(['compose', 'suggestions']),
   spoiler: state.getIn(['compose', 'spoiler']),
   spoiler_text: state.getIn(['compose', 'spoiler_text']),
+  federate: state.getIn(['compose', 'federate']),
   privacy: state.getIn(['compose', 'privacy']),
   focusDate: state.getIn(['compose', 'focusDate']),
   preselectDate: state.getIn(['compose', 'preselectDate']),

@@ -27,6 +27,7 @@ class PostStatusService < BaseService
                                         thread: in_reply_to,
                                         sensitive: options[:sensitive],
                                         spoiler_text: options[:spoiler_text] || '',
+                                        federate: options[:federate].nil? ? Setting.default_federate : options[:federate],
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
                                         language: LanguageDetector.instance.detect(text, account),
                                         application: options[:application])

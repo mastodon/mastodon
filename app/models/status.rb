@@ -5,7 +5,6 @@
 #
 #  id                     :integer          not null, primary key
 #  uri                    :string
-#  account_id             :integer          not null
 #  text                   :text             default(""), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -14,8 +13,6 @@
 #  url                    :string
 #  sensitive              :boolean          default(FALSE), not null
 #  visibility             :integer          default("public"), not null
-#  in_reply_to_account_id :integer
-#  application_id         :integer
 #  spoiler_text           :text             default(""), not null
 #  reply                  :boolean          default(FALSE), not null
 #  favourites_count       :integer          default(0), not null
@@ -23,6 +20,10 @@
 #  language               :string
 #  conversation_id        :integer
 #  local                  :boolean
+#  account_id             :integer          not null
+#  application_id         :integer
+#  in_reply_to_account_id :integer
+#  federate               :boolean          default(TRUE), not null
 #
 
 class Status < ApplicationRecord
@@ -71,6 +72,7 @@ class Status < ApplicationRecord
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
+  scope :excluding_unfederate, -> { where(federate: true) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
 
@@ -123,7 +125,11 @@ class Status < ApplicationRecord
   end
 
   def hidden?
-    private_visibility? || direct_visibility?
+    private_visibility? || direct_visibility? || !federate?
+  end
+
+  def federate?
+    federate
   end
 
   def non_sensitive_with_media?
@@ -210,7 +216,7 @@ class Status < ApplicationRecord
       visibility = [:public, :unlisted]
 
       if account.nil?
-        where(visibility: visibility)
+        where(visibility: visibility, federate: true)
       elsif target_account.blocking?(account) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
@@ -249,7 +255,7 @@ class Status < ApplicationRecord
     end
 
     def filter_timeline_default(query)
-      query.excluding_silenced_accounts
+      query.excluding_silenced_accounts.excluding_unfederate
     end
 
     def account_silencing_filter(account)

@@ -14,6 +14,12 @@ RSpec.describe StatusPolicy, type: :model do
       expect(subject).to permit(nil, status)
     end
 
+    it 'denies access for not federated when no viewer' do
+      status.federate = false
+
+      expect(subject).not_to permit(nil, status)
+    end
+
     it 'denies access when viewer is blocked' do
       block = Fabricate(:block)
       status.visibility = :private
