@@ -126,6 +126,7 @@ export default function accountsCounters(state = initialState, action) {
   case STATUS_FETCH_SUCCESS:
     return normalizeAccountFromStatus(state, action.status);
   case ACCOUNT_FOLLOW_SUCCESS:
+    if (action.alreadyFollowing) { return state; }
     return state.updateIn([action.relationship.id, 'followers_count'], num => num + 1);
   case ACCOUNT_UNFOLLOW_SUCCESS:
     return state.updateIn([action.relationship.id, 'followers_count'], num => Math.max(0, num - 1));
