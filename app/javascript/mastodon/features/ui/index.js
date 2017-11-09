@@ -46,7 +46,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import '../../components/status';
 
 const messages = defineMessages({
-  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your composing text will be lost by leaving from Mastodon.' },
+  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
 });
 
 const mapStateToProps = state => ({
@@ -107,8 +107,9 @@ export default class UI extends React.Component {
     const { intl, isComposing, hasComposingText } = this.props;
 
     if (isComposing && hasComposingText) {
-      // Now this text won't be displayed to users (except Edge)
-      // but still used as a flag to show a confirmation dialog.
+      // Setting returnValue to any string causes confirmation dialog.
+      // Many browsers no longer display this text to users,
+      // but we set user-friendly message for other browsers, e.g. Edge.
       e.returnValue = intl.formatMessage(messages.beforeUnload);
     }
   }
