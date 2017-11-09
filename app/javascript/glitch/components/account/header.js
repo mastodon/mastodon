@@ -152,7 +152,7 @@ appropriate icon.
             <IconButton
               size={26}
               icon={following ? 'user-times' : 'user-plus'}
-              active={following}
+              active={following ? true : false}
               title={intl.formatMessage(following ? messages.unfollow : messages.follow)}
               onClick={this.props.onFollow}
             />

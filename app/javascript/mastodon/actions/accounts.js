@@ -105,11 +105,11 @@ export function fetchAccountFail(id, error) {
   };
 };
 
-export function followAccount(id) {
+export function followAccount(id, reblogs = true) {
   return (dispatch, getState) => {
     dispatch(followAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/follow`).then(response => {
+    api(getState).post(`/api/v1/accounts/${id}/follow`, { reblogs }).then(response => {
       dispatch(followAccountSuccess(response.data));
     }).catch(error => {
       dispatch(followAccountFail(error));
