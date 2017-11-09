@@ -27,7 +27,5 @@ class FollowRequest < ApplicationRecord
     destroy!
   end
 
-  def reject!
-    destroy!
-  end
+  alias reject! destroy!
 end
