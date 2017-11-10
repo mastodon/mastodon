@@ -22,4 +22,48 @@ RSpec.describe RemoteFollow do
       end
     end
   end
+
+  describe '#valid?' do
+    let(:remote_follow) { RemoteFollow.new }
+
+    context 'super is falsy' do
+      module InvalidSuper
+        def valid?
+          nil
+        end
+      end
+
+      before do
+        class RemoteFollow
+          include InvalidSuper
+        end
+      end
+
+      it 'returns false without calling #populate_template and #errors' do
+        expect(remote_follow).not_to receive(:populate_template)
+        expect(remote_follow).not_to receive(:errors)
+        expect(remote_follow.valid?).to be false
+      end
+    end
+
+    context 'super is truthy' do
+      module ValidSuper
+        def valid?
+          true
+        end
+      end
+
+      before do
+        class RemoteFollow
+          include ValidSuper
+        end
+      end
+
+      it 'calls #populate_template and #errors.empty?' do
+        expect(remote_follow).to receive(:populate_template)
+        expect(remote_follow).to receive_message_chain(:errors, :empty?)
+        remote_follow.valid?
+      end
+    end
+  end
 end
