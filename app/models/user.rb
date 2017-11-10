@@ -81,6 +81,16 @@ class User < ApplicationRecord
     admin? || moderator?
   end
 
+  def role
+    if admin?
+      'admin'
+    elsif moderator?
+      'moderator'
+    else
+      'user'
+    end
+  end
+
   def disable!
     update!(disabled: true,
             last_sign_in_at: current_sign_in_at,
@@ -89,6 +99,27 @@ class User < ApplicationRecord
 
   def enable!
     update!(disabled: false)
+  end
+
+  def confirm!
+    skip_confirmation!
+    save!
+  end
+
+  def promote!
+    if moderator?
+      update!(moderator: false, admin: true)
+    elsif !admin?
+      update!(moderator: true)
+    end
+  end
+
+  def demote!
+    if admin?
+      update!(admin: false, moderator: true)
+    elsif moderator?
+      update!(moderator: false)
+    end
   end
 
   def disable_two_factor!

@@ -2,15 +2,15 @@
 
 class UserPolicy < ApplicationPolicy
   def reset_password?
-    staff?
+    staff? && !record.staff?
   end
 
   def disable_2fa?
-    admin?
+    admin? && !record.staff?
   end
 
   def confirm?
-    staff?
+    staff? && !record.confirmed?
   end
 
   def enable?
@@ -18,6 +18,24 @@ class UserPolicy < ApplicationPolicy
   end
 
   def disable?
-    admin?
+    admin? && !record.admin?
+  end
+
+  def promote?
+    admin? && promoteable?
+  end
+
+  def demote?
+    admin? && !record.admin? && demoteable?
+  end
+
+  private
+
+  def promoteable?
+    !record.staff? || !record.admin?
+  end
+
+  def demoteable?
+    record.staff?
   end
 end

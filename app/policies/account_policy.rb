@@ -10,7 +10,7 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def suspend?
-    staff?
+    staff? && !record.user&.staff?
   end
 
   def unsuspend?
@@ -18,7 +18,7 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def silence?
-    staff?
+    staff? && !record.user&.staff?
   end
 
   def unsilence?
@@ -38,6 +38,6 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def memorialize?
-    admin?
+    admin? && !record.user&.admin?
   end
 end
