@@ -44,7 +44,7 @@ class Settings::PreferencesController < ApplicationController
       :setting_noindex,
       :setting_theme,
       notification_emails: %i(follow follow_request reblog favourite mention digest),
-      interactions: %i(must_be_follower must_be_following)
+      interactions: %i(must_be_follower must_be_following must_be_following_dm)
     )
   end
 end
