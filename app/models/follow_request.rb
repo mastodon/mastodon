@@ -8,6 +8,7 @@
 #  account_id        :bigint           not null
 #  id                :bigint           not null, primary key
 #  target_account_id :bigint           not null
+#  remote_id         :string
 #
 
 class FollowRequest < ApplicationRecord
