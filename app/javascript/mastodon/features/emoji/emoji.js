@@ -56,7 +56,7 @@ const emojify = (str, customEmojis = {}) => {
 
 const emojify_knzk = (str, customEmojis = {}) => [
   {re: /5,?000\s*兆円/g, file: '5000tyoen.svg', attrs: 'style="height: 1.8em;"'}, 
-  {re: /卍/g, file: 'manzi.svg', attrs: 'style="height: 1.5em;"'}, 
+  {re: /卍/g, file: 'manzi.svg', attrs: 'style="height: 2em;"'}, 
   {re: /熱盛/g, file: 'atumori.svg', attrs: 'style="height: 2.5em;"'}, 
   {re: /バジリスク\s*タイム/g, file: 'basilisktime.png', attrs: 'height="40"'},
   {re: /欲しい！/g, file: 'hosii.png', attrs: 'height="30"'},
