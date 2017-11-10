@@ -66,4 +66,20 @@ RSpec.describe RemoteFollow do
       end
     end
   end
+
+  describe '#subscribe_address_for' do
+    before do
+      allow(remote_follow).to receive(:addressable_template).and_return(addressable_template)
+    end
+
+    let(:account)                   { instance_double('Account', local_username_and_domain: local_username_and_domain) }
+    let(:addressable_template)      { instance_double('Addressable::Template') }
+    let(:local_username_and_domain) { 'hoge@example.com' }
+    let(:remote_follow)             { RemoteFollow.new }
+
+    it 'calls Addressable::Template#expand.to_s' do
+      expect(addressable_template).to receive_message_chain(:expand, :to_s).with(uri: local_username_and_domain).with(no_args)
+      remote_follow.subscribe_address_for(account)
+    end
+  end
 end
