@@ -32,6 +32,7 @@
 #  filtered_languages        :string           default([]), not null, is an Array
 #  account_id                :integer          not null
 #  disabled                  :boolean          default(FALSE), not null
+#  moderator                 :boolean          default(FALSE), not null
 #
 
 class User < ApplicationRecord
@@ -53,8 +54,10 @@ class User < ApplicationRecord
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
 
-  scope :recent,    -> { order(id: :desc) }
-  scope :admins,    -> { where(admin: true) }
+  scope :recent, -> { order(id: :desc) }
+  scope :admins, -> { where(admin: true) }
+  scope :moderators, -> { where(moderator: true) }
+  scope :staff, -> { admins.or(moderators) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
@@ -74,6 +77,20 @@ class User < ApplicationRecord
     confirmed_at.present?
   end
 
+  def staff?
+    admin? || moderator?
+  end
+
+  def role
+    if admin?
+      'admin'
+    elsif moderator?
+      'moderator'
+    else
+      'user'
+    end
+  end
+
   def disable!
     update!(disabled: true,
             last_sign_in_at: current_sign_in_at,
@@ -82,6 +99,27 @@ class User < ApplicationRecord
 
   def enable!
     update!(disabled: false)
+  end
+
+  def confirm!
+    skip_confirmation!
+    save!
+  end
+
+  def promote!
+    if moderator?
+      update!(moderator: false, admin: true)
+    elsif !admin?
+      update!(moderator: true)
+    end
+  end
+
+  def demote!
+    if admin?
+      update!(admin: false, moderator: true)
+    elsif moderator?
+      update!(moderator: false)
+    end
   end
 
   def disable_two_factor!

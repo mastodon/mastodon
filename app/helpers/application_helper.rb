@@ -35,6 +35,11 @@ module ApplicationHelper
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 
+  def can?(action, record)
+    return false if record.nil?
+    policy(record).public_send("#{action}?")
+  end
+
   def fa_icon(icon, attributes = {})
     class_names = attributes[:class]&.split(' ') || []
     class_names << 'fa'

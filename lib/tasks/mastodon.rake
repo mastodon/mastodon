@@ -10,14 +10,41 @@ namespace :mastodon do
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
   task make_admin: :environment do
     include RoutingHelper
+
     account_username = ENV.fetch('USERNAME')
-    user = User.joins(:account).where(accounts: { username: account_username })
+    user             = User.joins(:account).where(accounts: { username: account_username })
 
     if user.present?
       user.update(admin: true)
       puts "Congrats! #{account_username} is now an admin. \\o/\nNavigate to #{edit_admin_settings_url} to get started"
     else
-      puts "User could not be found; please make sure an Account with the `#{account_username}` username exists."
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
+    end
+  end
+
+  desc 'Turn a user into a moderator, identified by the USERNAME environment variable'
+  task make_mod: :environment do
+    account_username = ENV.fetch('USERNAME')
+    user             = User.joins(:account).where(accounts: { username: account_username })
+
+    if user.present?
+      user.update(moderator: true)
+      puts "Congrats! #{account_username} is now a moderator \\o/"
+    else
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
+    end
+  end
+
+  desc 'Remove admin and moderator privileges from user identified by the USERNAME environment variable'
+  task revoke_staff: :environment do
+    account_username = ENV.fetch('USERNAME')
+    user             = User.joins(:account).where(accounts: { username: account_username })
+
+    if user.present?
+      user.update(moderator: false, admin: false)
+      puts "#{account_username} is no longer admin or moderator."
+    else
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
     end
   end
 
