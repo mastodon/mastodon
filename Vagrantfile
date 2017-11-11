@@ -27,7 +27,7 @@ sudo apt-get install \
   libpq-dev \
   libxml2-dev \
   libxslt1-dev \
-  imagemagick \
+  graphicsmagick \
   nodejs \
   redis-server \
   redis-tools \

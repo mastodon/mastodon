@@ -12,7 +12,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
 
   describe 'POST #create' do
     describe 'with paperclip errors' do
-      context 'when imagemagick cant identify the file type' do
+      context 'when graphicsmagick cant identify the file type' do
         before do
           expect_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Errors::NotIdentifiedByImageMagickError)
           post :create, params: { file: fixture_file_upload('files/attachment.jpg', 'image/jpeg') }
