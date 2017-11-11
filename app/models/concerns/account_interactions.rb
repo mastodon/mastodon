@@ -77,10 +77,7 @@ module AccountInteractions
   def follow!(other_account, reblogs: nil)
     reblogs = true if reblogs.nil?
     rel = active_relationships.create_with(show_reblogs: reblogs).find_or_create_by!(target_account: other_account)
-    if rel.show_reblogs != reblogs
-      rel.show_reblogs = reblogs
-      rel.save!
-    end
+    rel.update!(show_reblogs: reblogs)
 
     rel
   end

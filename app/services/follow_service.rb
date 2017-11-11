@@ -6,6 +6,7 @@ class FollowService < BaseService
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
   # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
+  # @param [true, false, nil] reblogs Whether or not to show reblogs, defaults to true
   def call(source_account, uri, reblogs: nil)
     reblogs = true if reblogs.nil?
     target_account = uri.is_a?(Account) ? uri : ResolveRemoteAccountService.new.call(uri)
@@ -22,10 +23,7 @@ class FollowService < BaseService
       # This isn't managed by a method in AccountInteractions, so we modify it
       # ourselves if necessary.
       req = follow_requests.find_by(target_account: other_account)
-      if req.show_reblogs != reblogs
-        req.show_reblogs = reblogs
-        req.save!
-      end
+      req.update!(show_reblogs: reblogs)
       return
     end
 
