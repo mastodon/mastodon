@@ -36,9 +36,6 @@ export default class Status extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
-    me: PropTypes.number,
-    boostModal: PropTypes.bool,
-    autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
     onPin: PropTypes.func,
     displayPinned: PropTypes.bool,
@@ -56,9 +53,6 @@ export default class Status extends ImmutablePureComponent {
   updateOnProps = [
     'status',
     'account',
-    'me',
-    'boostModal',
-    'autoPlayGif',
     'muted',
     'hidden',
   ]
@@ -214,7 +208,7 @@ export default class Status extends ImmutablePureComponent {
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />}
+            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />}
           </Bundle>
         );
       }

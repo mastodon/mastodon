@@ -13,11 +13,9 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  statusIds: state.getIn(['timelines', `account:${Number(props.params.accountId)}`, 'items'], ImmutableList()),
-  isLoading: state.getIn(['timelines', `account:${Number(props.params.accountId)}`, 'isLoading']),
-  hasMore: !!state.getIn(['timelines', `account:${Number(props.params.accountId)}`, 'next']),
-  me: state.getIn(['meta', 'me']),
-  pinnedStatusIds: state.getIn(['timelines', `account:${Number(props.params.accountId)}:pinned_status`, 'items'], ImmutableList()),
+  statusIds: state.getIn(['timelines', `account:${props.params.accountId}`, 'items'], ImmutableList()),
+  isLoading: state.getIn(['timelines', `account:${props.params.accountId}`, 'isLoading']),
+  hasMore: !!state.getIn(['timelines', `account:${props.params.accountId}`, 'next']),
 });
 
 @connect(mapStateToProps)
@@ -29,8 +27,6 @@ export default class AccountTimeline extends ImmutablePureComponent {
     statusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
-    me: PropTypes.number.isRequired,
-    pinnedStatusIds: ImmutablePropTypes.list,
   };
 
   componentWillMount () {
@@ -54,7 +50,7 @@ export default class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, isLoading, hasMore, me, pinnedStatusIds } = this.props;
+    const { statusIds, isLoading, hasMore } = this.props;
 
     if (!statusIds && isLoading) {
       return (
@@ -76,7 +72,6 @@ export default class AccountTimeline extends ImmutablePureComponent {
           statusIds={uniqueStatusIds}
           isLoading={isLoading}
           hasMore={hasMore}
-          me={me}
           onScrollToBottom={this.handleScrollToBottom}
           displayPinned
         />

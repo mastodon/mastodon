@@ -68,7 +68,7 @@ export default class Upload extends ImmutablePureComponent {
       <div className='compose-form__upload' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) => (
-            <div className='compose-form__upload-thumbnail' style={{ transform: `translateZ(0) scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})` }}>
+            <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})` }}>
               <IconButton icon='times' title={intl.formatMessage(messages.undo)} size={36} onClick={this.handleUndoClick} />
 
               <div className={classNames('compose-form__upload-description', { active })}>

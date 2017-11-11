@@ -4,12 +4,13 @@ export const PINNED_STATUSES_FETCH_REQUEST = 'PINNED_STATUSES_FETCH_REQUEST';
 export const PINNED_STATUSES_FETCH_SUCCESS = 'PINNED_STATUSES_FETCH_SUCCESS';
 export const PINNED_STATUSES_FETCH_FAIL = 'PINNED_STATUSES_FETCH_FAIL';
 
+import { me } from '../initial_state';
+
 export function fetchPinnedStatuses() {
   return (dispatch, getState) => {
     dispatch(fetchPinnedStatusesRequest());
 
-    const accountId = getState().getIn(['meta', 'me']);
-    api(getState).get(`/api/v1/accounts/${accountId}/statuses`, { params: { pinned: true } }).then(response => {
+    api(getState).get(`/api/v1/accounts/${me}/statuses`, { params: { pinned: true } }).then(response => {
       dispatch(fetchPinnedStatusesSuccess(response.data, null));
     }).catch(error => {
       dispatch(fetchPinnedStatusesFail(error));

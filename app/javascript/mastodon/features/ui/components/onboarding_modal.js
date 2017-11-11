@@ -11,6 +11,7 @@ import Search from '../../compose/components/search';
 import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
 import { List as ImmutableList } from 'immutable';
+import { me } from '../../../initial_state';
 
 const noop = () => { };
 
@@ -40,11 +41,11 @@ PageOne.propTypes = {
   domain: PropTypes.string.isRequired,
 };
 
-const PageTwo = ({ me }) => (
+const PageTwo = ({ myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
       <div className='pseudo-drawer'>
-        <NavigationBar account={me} />
+        <NavigationBar account={myAccount} />
       </div>
       <ComposeForm
         text='Awoo! #introductions'
@@ -68,10 +69,10 @@ const PageTwo = ({ me }) => (
 );
 
 PageTwo.propTypes = {
-  me: ImmutablePropTypes.map.isRequired,
+  myAccount: ImmutablePropTypes.map.isRequired,
 };
 
-const PageThree = ({ me }) => (
+const PageThree = ({ myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
     <div className='figure non-interactive'>
       <Search
@@ -83,7 +84,7 @@ const PageThree = ({ me }) => (
       />
 
       <div className='pseudo-drawer'>
-        <NavigationBar account={me} />
+        <NavigationBar account={myAccount} />
       </div>
     </div>
 
@@ -93,7 +94,7 @@ const PageThree = ({ me }) => (
 );
 
 PageThree.propTypes = {
-  me: ImmutablePropTypes.map.isRequired,
+  myAccount: ImmutablePropTypes.map.isRequired,
 };
 
 const PageFour = ({ domain, intl }) => (
@@ -162,7 +163,7 @@ PageSix.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
+  myAccount: state.getIn(['accounts', me]),
   admin: state.getIn(['accounts', state.getIn(['meta', 'admin'])]),
   domain: state.getIn(['meta', 'domain']),
   github_url: state.getIn(['meta', 'github_url']),
@@ -175,7 +176,7 @@ export default class OnboardingModal extends React.PureComponent {
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    me: ImmutablePropTypes.map.isRequired,
+    myAccount: ImmutablePropTypes.map.isRequired,
     domain: PropTypes.string.isRequired,
     admin: ImmutablePropTypes.map,
 	github_url: PropTypes.string.isRequired,
@@ -188,9 +189,9 @@ export default class OnboardingModal extends React.PureComponent {
   componentWillMount() {
     const { me, admin, domain, intl, github_url } = this.props;
     this.pages = [
-      <PageOne acct={me.get('acct')} domain={domain} />,
-      <PageTwo me={me} />,
-      <PageThree me={me} />,
+      <PageOne acct={myAccount.get('acct')} domain={domain} />,
+      <PageTwo myAccount={myAccount} />,
+      <PageThree myAccount={myAccount} />,
       <PageFour domain={domain} intl={intl} />,
 	  <PageSix admin={admin} domain={domain} github_url={github_url} />,
     ];
