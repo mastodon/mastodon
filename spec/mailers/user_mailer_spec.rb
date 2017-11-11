@@ -33,6 +33,19 @@ describe UserMailer, type: :mailer do
                      instance: Rails.configuration.x.local_domain
   end
 
+  describe 'new_user_waiting_for_approval' do
+    let(:newcomer) { Fabricate(:user) }
+    let(:mail) { UserMailer.new_user_waiting_for_approval(receiver, newcomer) }
+
+    it 'renders approval request' do
+      receiver.update!(locale: nil)
+      expect(mail.body.encoded).to include receiver.account.username
+      expect(mail.body.encoded).to include newcomer.email
+      expect(mail.body.encoded).to include newcomer.account.local_username_and_domain
+      expect(mail.body.encoded).to include Rails.configuration.x.local_domain
+    end
+  end
+
   describe 'reset_password_instructions' do
     let(:mail) { UserMailer.reset_password_instructions(receiver, 'spec') }
 

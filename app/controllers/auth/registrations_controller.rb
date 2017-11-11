@@ -8,6 +8,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_instance_presenter, only: [:new, :create, :update]
 
+  prepend_after_action :request_approval, only: [:create]
+
   def destroy
     not_found
   end
@@ -50,5 +52,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_sessions
     @sessions = current_user.session_activations
+  end
+
+  def request_approval
+    RequestApprovalService.new.call(@user)
   end
 end

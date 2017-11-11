@@ -47,6 +47,20 @@ describe InstancePresenter do
 
   context do
     around do |example|
+      require_approval = Setting.require_approval
+      example.run
+      Setting.require_approval = require_approval
+    end
+
+    it "delegates require_approval to Setting" do
+      Setting.require_approval = false
+
+      expect(instance_presenter.require_approval).to eq false
+    end
+  end
+
+  context do
+    around do |example|
       closed_registrations_message = Setting.closed_registrations_message
       example.run
       Setting.closed_registrations_message = closed_registrations_message

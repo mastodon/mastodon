@@ -18,6 +18,8 @@ class Form::AdminSettings
     :site_terms=,
     :open_registrations,
     :open_registrations=,
+    :require_approval,
+    :require_approval=,
     :closed_registrations_message,
     :closed_registrations_message=,
     :open_deletion,

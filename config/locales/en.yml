@@ -58,6 +58,8 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      approve: Approve
+      approved: Approved
       are_you_sure: Are you sure?
       by_domain: Domain
       confirm: Confirm
@@ -237,6 +239,9 @@ en:
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
+      require_approval:
+        desc_html: Require admins' approval for registration
+        title: Restricted registration
       site_description:
         desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description
@@ -305,6 +310,7 @@ en:
     login: Log in
     logout: Logout
     register: Sign up
+    require_approval_hint: Your account will be activated after administrator's approval.
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     set_new_password: Set new password

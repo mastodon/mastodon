@@ -437,6 +437,7 @@ ActiveRecord::Schema.define(version: 20171107143624) do
     t.string "filtered_languages", default: [], null: false, array: true
     t.bigint "account_id", null: false
     t.boolean "disabled", default: false, null: false
+    t.datetime "approved_at"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

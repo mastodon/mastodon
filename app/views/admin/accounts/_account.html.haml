@@ -13,6 +13,12 @@
         %i.fa.fa-check
       - else
         %i.fa.fa-times
+  %td.approved
+    - if account.local?
+      - if account.user_approved?
+        %i.fa.fa-check
+      - else
+        %i.fa.fa-times
   %td.subscribed
     - if account.local?
       = t('admin.accounts.location.local')

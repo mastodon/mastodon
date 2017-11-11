@@ -13,3 +13,5 @@
     = f.button :button, t('auth.register'), type: :submit, class: 'button button-alternative'
 
   %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
+  - if @instance_presenter.require_approval
+    %p.hint.subtle-hint=t('auth.require_approval_hint')

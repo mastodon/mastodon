@@ -22,6 +22,9 @@
     = f.input :open_registrations, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.open.title'), hint: t('admin.settings.registrations.open.desc_html')
 
   .fields-group
+    = f.input :require_approval, as: :boolean, wrapper: :with_label, label: t('admin.settings.require_approval.title'), hint: t('admin.settings.require_approval.desc_html')
+
+  .fields-group
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
 
   .fields-group

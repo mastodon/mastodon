@@ -30,6 +30,7 @@
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
 #  filtered_languages        :string           default([]), not null, is an Array
+#  approved_at               :datetime
 #  account_id                :integer          not null
 #  disabled                  :boolean          default(FALSE), not null
 #
@@ -60,6 +61,7 @@ class User < ApplicationRecord
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
+  scope :approved, -> { where.not(approved_at: nil) }
 
   before_validation :sanitize_languages
 
@@ -88,10 +90,6 @@ class User < ApplicationRecord
     self.otp_required_for_login = false
     otp_backup_codes&.clear
     save!
-  end
-
-  def active_for_authentication?
-    super && !disabled?
   end
 
   def setting_default_privacy
@@ -161,6 +159,26 @@ class User < ApplicationRecord
 
   def web_push_subscription(session)
     session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
+  end
+
+  def approved?
+    approved_at.present?
+  end
+
+  def active_for_authentication?
+    super && !disabled? && (approved? || !Setting.require_approval)
+  end
+
+  def inactive_message
+    if !approved? && Setting.require_approval
+      :not_approved
+    else
+      super
+    end
+  end
+
+  def approve
+    update(approved_at: Time.now.utc)
   end
 
   protected

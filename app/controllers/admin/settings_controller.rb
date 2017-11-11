@@ -15,12 +15,14 @@ module Admin
       timeline_preview
       bootstrap_timeline_accounts
       thumbnail
+      require_approval
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
       open_registrations
       open_deletion
       timeline_preview
+      require_approval
     ).freeze
 
     UPLOAD_SETTINGS = %w(

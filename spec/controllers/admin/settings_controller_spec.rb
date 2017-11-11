@@ -78,6 +78,22 @@ RSpec.describe Admin::SettingsController, type: :controller do
           expect(Setting.open_registrations).to eq true
         end
       end
+
+      context do
+        around do |example|
+          require_approval = Setting.require_approval
+          example.run
+          Setting.require_approval = require_approval
+        end
+
+        it 'typecasts require_approval to boolean' do
+          Setting.require_approval = false
+          patch :update, params: { form_admin_settings: { require_approval: '1' } }
+
+          expect(response).to redirect_to(edit_admin_settings_path)
+          expect(Setting.require_approval).to eq true
+        end
+      end
     end
   end
 end

@@ -58,6 +58,8 @@ ja:
       delete: 削除
       destroyed_msg: モデレーションメモを削除しました
     accounts:
+      approve: 承認
+      approved: 承認済み
       are_you_sure: 本当に実行しますか？
       by_domain: ドメイン
       confirm: 確認
@@ -237,6 +239,9 @@ ja:
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
+      require_approval:
+        desc_html: アカウント作成時にあなたの許可を求めます
+        title: 登録の制限
       site_description:
         desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
@@ -305,6 +310,7 @@ ja:
     login: ログイン
     logout: ログアウト
     register: 登録する
+    require_approval_hint: あなたのアカウントは管理者の承認の後に有効化されます。
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     set_new_password: 新しいパスワード

@@ -1,0 +1,6 @@
+Hello <%= @me.account.username %>.
+
+<%= @resource.account.local_username_and_domain %> wants to create new account
+on <%= @instance %> . His/Her email is <%= @resource.email %>.
+
+Please complete the operation from <%= link_to "here", admin_account_url(@resource.account.id) %>.
