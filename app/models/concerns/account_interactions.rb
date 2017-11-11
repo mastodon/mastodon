@@ -81,7 +81,7 @@ module AccountInteractions
       rel.show_reblogs = reblogs
       rel.save!
     end
-    
+
     rel
   end
 
@@ -154,6 +154,10 @@ module AccountInteractions
 
   def muting_notifications?(other_account)
     mute_relationships.where(target_account: other_account, hide_notifications: true).exists?
+  end
+
+  def muting_reblogs?(other_account)
+    active_relationships.where(target_account: other_account, show_reblogs: false).exists?
   end
 
   def requested?(other_account)

@@ -22,7 +22,7 @@ class FollowRequest < ApplicationRecord
   validates :account_id, uniqueness: { scope: :target_account_id }
 
   def authorize!
-    account.follow!(target_account, reblogs: reblogs)
+    account.follow!(target_account, reblogs: show_reblogs)
     MergeWorker.perform_async(target_account.id, account.id)
 
     destroy!

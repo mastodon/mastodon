@@ -39,7 +39,7 @@ class FollowService < BaseService
   private
 
   def request_follow(source_account, target_account, reblogs: true)
-    follow_request = FollowRequest.create!(account: source_account, target_account: target_account, reblogs: reblogs)
+    follow_request = FollowRequest.create!(account: source_account, target_account: target_account, show_reblogs: reblogs)
 
     if target_account.local?
       NotifyService.new.call(target_account, follow_request)

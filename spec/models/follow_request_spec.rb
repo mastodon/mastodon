@@ -1,7 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe FollowRequest, type: :model do
-  describe '#authorize!'
+  describe '#authorize!' do
+    it 'generates a Follow' do
+      follow_request = Fabricate.create(:follow_request)
+      follow_request.authorize!
+      target = follow_request.target_account
+      expect(follow_request.account.following?(target)).to be true
+    end
+
+    it 'correctly passes show_reblogs when true' do
+      follow_request = Fabricate.create(:follow_request, show_reblogs: true)
+      follow_request.authorize!
+      target = follow_request.target_account
+      expect(follow_request.account.muting_reblogs?(target)).to be false
+    end
+
+    it 'correctly passes show_reblogs when false' do
+      follow_request = Fabricate.create(:follow_request, show_reblogs: false)
+      follow_request.authorize!
+      target = follow_request.target_account
+      expect(follow_request.account.muting_reblogs?(target)).to be true
+    end
+  end
+
   describe '#reject!'
 
   describe 'validations' do
