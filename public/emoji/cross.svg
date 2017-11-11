@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   viewBox="-80 -25 300 300"
+   version="1.1"
+   id="svg40"
+   height="60">
+  <defs
+     id="defs30">
+    <linearGradient
+       id="gr-kin" x1="0" x2="0" y1="0" y2="1.20" spreadMethod="repeat">
+ <stop offset="0" stop-color="#fff525" />
+ <stop stop-color="#fffeeb" offset="0.33" />
+ <stop offset="0.39" stop-color="#fcd940" />
+ <stop stop-color="#fd6c20" offset="0.48" />
+ <stop stop-color="#551f00" offset="0.57" />
+ <stop stop-color="#fd6c20" offset="0.72" />
+ <stop offset="0.78" stop-color="#fcd940" />
+ <stop stop-color="#fffeeb" offset="0.83" />
+ <stop offset="1" stop-color="#fff525" />
+     </linearGradient>
+    <path
+	   id="mawari"
+	   d="M75,128H53.54V52.45H11V32.85H53.33V0H74.81V32.63h42.73V52.25H75Z"
+       />
+    <path
+       id="moto"
+	   d="M75.17,123H55.38V53.35H16.16V35.29h39V5H75V35.08h39.39V53.17H75.17Z"
+       />
+    <linearGradient
+       id="gr-aka" x1="0" x2="0" y1="-0.5" y2="0.5" spreadMethod="repeat">
+      <stop
+         offset="0"
+         stop-color="rgb(255,9,9)"
+         id="stop4" />
+      <stop
+         offset="1"
+         stop-color="rgb( 5,0,0)"
+         id="stop10" />
+	  <animate attributeName="y1" from="0" to="-1.0" begin="0s" dur="0.8s" repeatCount="indefinite"/>
+	  <animate attributeName="y2" from="1.0" to="0" begin="0s" dur="0.8s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient8968"
+       id="linearGradient8946"
+       x1="49.61536"
+       y1="192.74821"
+       x2="49.337582"
+       y2="240.06731"
+       gradientUnits="userSpaceOnUse"
+       spreadMethod="repeat" />
+
+<filter id="dodai" >
+<feMorphology in="SourceGraphic" operator="dilate" radius="0.7" result="huto"/>
+<feOffset in="huto" dx="0.6" dy="2.1" result="zurasi"/>
+</filter>
+
+  </defs>
+  
+  <g transform="translate(-2.4667022,0.53911794)" ><use xlink:href="#mawari" fill="#555" filter="url(#dodai)"/></g>
+  <g
+     style="display:inline"
+     transform="translate(-2.4667022,0.53911794)">
+
+    <use xlink:href="#mawari"
+       style="fill:url(#gr-kin);fill-opacity:1;stroke:#3b0c00;stroke-width:0.60000002;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     style="display:inline"
+     transform="translate(-2.4667022,0.53911794)">
+    <use
+       xlink:href="#moto"
+		fill="fill:url(#gr-aka)" stroke="black" stroke-width="0.5"
+       x="0.5"
+       y="0.8"
+       width="100%"
+       height="100%" />
+    <use
+       xlink:href="#moto"
+       style="fill:url(#gr-aka);fill-opacity:1"
+		fill="fill:url(#gr-aka)" stroke="white" stroke-width="0.5"
+       x="0"
+       y="0"
+       width="100%"
+       height="100%" />
+  </g>
+</svg>
