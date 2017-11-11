@@ -255,15 +255,6 @@
   width: 0;
   height: 0;
   position: absolute;
-
-  img,
-  svg {
-    margin: 0 !important;
-    border: 0 !important;
-    padding: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-  }
 }
 
 .ellipsis {
@@ -529,7 +520,6 @@
   word-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
-  white-space: pre-wrap;
   padding-top: 5px;
 
   &.status__content--with-spoiler {
@@ -543,7 +533,7 @@
   .emojione {
     width: 20px;
     height: 20px;
-    margin: -5px 0 0;
+	margin: -5px 0 0;
   }
 
   p {
@@ -623,7 +613,7 @@
     outline: 0;
     background: lighten($ui-base-color, 4%);
 
-    .status.status-direct {
+    &.status-direct {
       background: lighten($ui-base-color, 12%);
     }
 
@@ -641,12 +631,6 @@
   min-height: 48px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
-
-  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
-    // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
-    // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
-    padding-right: 26px; // 10px + 16px
-  }
 
   @keyframes fade {
     0% { opacity: 0; }
@@ -812,7 +796,7 @@
     .emojione {
       width: 24px;
       height: 24px;
-      margin: -5px 0 0;
+	  margin: -5px 0 0;
     }
   }
 
@@ -2309,7 +2293,6 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header {
-  display: flex;
   padding: 15px;
   font-size: 16px;
   background: lighten($ui-base-color, 4%);
@@ -2335,10 +2318,12 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header__buttons {
-  height: 48px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
   display: flex;
-  margin: -15px;
-  margin-left: 0;
+  height: 48px;
 }
 
 .column-header__button {
@@ -2404,14 +2389,6 @@ button.icon-button.active i.fa-retweet {
       padding-right: 0;
     }
   }
-}
-
-.column-header__title {
-  display: inline-block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  flex: 1;
 }
 
 .text-btn {
@@ -2617,7 +2594,7 @@ button.icon-button.active i.fa-retweet {
   color: $primary-text-color;
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
   opacity: 0.7;
   display: inline-block;
   vertical-align: top;
@@ -2632,7 +2609,7 @@ button.icon-button.active i.fa-retweet {
 .account--action-button {
   position: absolute;
   top: 10px;
-  right: 20px;
+  left: 20px;
 }
 
 .setting-toggle {
@@ -3058,21 +3035,21 @@ button.icon-button.active i.fa-retweet {
   }
 
   .fa-search {
-    transform: rotate(90deg);
+    transform: translateZ(0) rotate(90deg);
 
     &.active {
       pointer-events: none;
-      transform: rotate(0deg);
+      transform: translateZ(0) rotate(0deg);
     }
   }
 
   .fa-times-circle {
     top: 11px;
-    transform: rotate(0deg);
+    transform: translateZ(0) rotate(0deg);
     cursor: pointer;
 
     &.active {
-      transform: rotate(90deg);
+      transform: translateZ(0) rotate(90deg);
     }
 
     &:hover {
@@ -3175,6 +3152,7 @@ button.icon-button.active i.fa-retweet {
   right: 0;
   bottom: 0;
   background: rgba($base-overlay-background, 0.7);
+  transform: translateZ(0);
 }
 
 .modal-root__container {

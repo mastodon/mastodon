@@ -115,28 +115,20 @@ class Formatter
     end
   end
 
-  def count_tag_nesting(tag)
-    if tag[1] == '/' then -1
-    elsif tag[-2] == '/' then 0
-    else 1
-    end
-  end
-
   def encode_custom_emojis(html, emojis)
     return html if emojis.empty?
 
     emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url)] }.to_h
 
     i                     = -1
-    tag_open_index        = nil
+    inside_tag            = false
     inside_shortname      = false
     shortname_start_index = -1
-    invisible_depth       = 0
 
     while i + 1 < html.size
       i += 1
 
-      if invisible_depth.zero? && inside_shortname && html[i] == ':'
+      if inside_shortname && html[i] == ':'
         shortcode = html[shortname_start_index + 1..i - 1]
         emoji     = emoji_map[shortcode]
 
@@ -150,18 +142,12 @@ class Formatter
         end
 
         inside_shortname = false
-      elsif tag_open_index && html[i] == '>'
-        tag = html[tag_open_index..i]
-        tag_open_index = nil
-        if invisible_depth.positive?
-          invisible_depth += count_tag_nesting(tag)
-        elsif tag == '<span class="invisible">'
-          invisible_depth = 1
-        end
+      elsif inside_tag && html[i] == '>'
+        inside_tag = false
       elsif html[i] == '<'
-        tag_open_index   = i
+        inside_tag       = true
         inside_shortname = false
-      elsif !tag_open_index && html[i] == ':'
+      elsif !inside_tag && html[i] == ':'
         inside_shortname      = true
         shortname_start_index = i
       end

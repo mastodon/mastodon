@@ -6,14 +6,15 @@ import { hydrateStore } from '../actions/store';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
 import Compose from '../features/standalone/compose';
-import initialState from '../initial_state';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
 const store = configureStore();
+const initialStateContainer = document.getElementById('initial-state');
 
-if (initialState) {
+if (initialStateContainer !== null) {
+  const initialState = JSON.parse(initialStateContainer.textContent);
   store.dispatch(hydrateStore(initialState));
 }
 

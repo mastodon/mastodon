@@ -1,4 +1,3 @@
-import { autoPlayGif } from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import Trie from 'substring-trie';
 
@@ -6,13 +5,13 @@ const trie = new Trie(Object.keys(unicodeMapping));
 
 const assetHost = process.env.CDN_HOST || '';
 
+let allowAnimations = false;
+
 const emojify = (str, customEmojis = {}) => {
-  const tagCharsWithoutEmojis = '<&';
-  const tagCharsWithEmojis = Object.keys(customEmojis).length ? '<&:' : '<&';
-  let rtn = '', tagChars = tagCharsWithEmojis, invisible = 0;
+  let rtn = '';
   for (;;) {
     let match, i = 0, tag;
-    while (i < str.length && (tag = tagChars.indexOf(str[i])) === -1 && (invisible || !(match = trie.search(str.slice(i))))) {
+    while (i < str.length && (tag = '<&:'.indexOf(str[i])) === -1 && !(match = trie.search(str.slice(i)))) {
       i += str.codePointAt(i) < 65536 ? 1 : 2;
     }
     let rend, replacement = '';
@@ -33,7 +32,7 @@ const emojify = (str, customEmojis = {}) => {
           return true;
         }
         if (shortname in customEmojis) {
-          const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
+          const filename = allowAnimations ? customEmojis[shortname].url : customEmojis[shortname].static_url;
           replacement = `<img draggable="false" class="emojione" alt="${shortname}" title="${shortname}" src="${filename}" />`;
           return true;
         }
@@ -41,26 +40,7 @@ const emojify = (str, customEmojis = {}) => {
       })()) rend = ++i;
     } else if (tag >= 0) { // <, &
       rend = str.indexOf('>;'[tag], i + 1) + 1;
-      if (!rend) {
-        break;
-      }
-      if (tag === 0) {
-        if (invisible) {
-          if (str[i + 1] === '/') { // closing tag
-            if (!--invisible) {
-              tagChars = tagCharsWithEmojis;
-            }
-          } else if (str[rend - 2] !== '/') { // opening tag
-            invisible++;
-          }
-        } else {
-          if (str.startsWith('<span class="invisible">', i)) {
-            // avoid emojifying on invisible text
-            invisible = 1;
-            tagChars = tagCharsWithoutEmojis;
-          }
-        }
-      }
+      if (!rend) break;
       i = rend;
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
@@ -85,12 +65,14 @@ const emojify_knzk = (str, customEmojis = {}) => [
 
 export default emojify_knzk;
 
-export const buildCustomEmojis = (customEmojis) => {
+export const buildCustomEmojis = (customEmojis, overrideAllowAnimations = false) => {
   const emojis = [];
+
+  allowAnimations = overrideAllowAnimations;
 
   customEmojis.forEach(emoji => {
     const shortcode = emoji.get('shortcode');
-    const url       = autoPlayGif ? emoji.get('url') : emoji.get('static_url');
+    const url       = allowAnimations ? emoji.get('url') : emoji.get('static_url');
     const name      = shortcode.replace(':', '');
 
     emojis.push({

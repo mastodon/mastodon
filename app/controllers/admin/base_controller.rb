@@ -2,9 +2,7 @@
 
 module Admin
   class BaseController < ApplicationController
-    include Authorization
-
-    before_action :require_staff!
+    before_action :require_admin!
 
     layout 'admin'
   end

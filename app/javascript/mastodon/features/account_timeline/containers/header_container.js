@@ -15,7 +15,6 @@ import { initReport } from '../../../actions/reports';
 import { openModal } from '../../../actions/modal';
 import { blockDomain, unblockDomain } from '../../../actions/domain_blocks';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { unfollowModal } from '../../../initial_state';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
@@ -29,6 +28,8 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
+    me: state.getIn(['meta', 'me']),
+    unfollowModal: state.getIn(['meta', 'unfollow_modal']),
   });
 
   return mapStateToProps;
@@ -38,7 +39,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
-      if (unfollowModal) {
+      if (this.unfollowModal) {
         dispatch(openModal('CONFIRM', {
           message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
           confirm: intl.formatMessage(messages.unfollowConfirm),

@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import Warning from '../components/warning';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { me } from '../../../initial_state';
 
 const mapStateToProps = state => ({
-  needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
+  needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', state.getIn(['meta', 'me']), 'locked']),
 });
 
 const WarningWrapper = ({ needsLockWarning }) => {

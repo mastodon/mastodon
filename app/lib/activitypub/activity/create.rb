@@ -53,9 +53,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_tags(status)
-    return if @object['tag'].nil?
+    return unless @object['tag'].is_a?(Array)
 
-    as_array(@object['tag']).each do |tag|
+    @object['tag'].each do |tag|
       case tag['type']
       when 'Hashtag'
         process_hashtag tag, status
@@ -103,9 +103,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_attachments(status)
-    return if @object['attachment'].nil?
+    return unless @object['attachment'].is_a?(Array)
 
-    as_array(@object['attachment']).each do |attachment|
+    @object['attachment'].each do |attachment|
       next if unsupported_media_type?(attachment['mediaType']) || attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s

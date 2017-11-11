@@ -2,18 +2,15 @@
 
 module Admin
   class ConfirmationsController < BaseController
-    before_action :set_user
-
     def create
-      authorize @user, :confirm?
-      @user.confirm!
+      account_user.confirm
       redirect_to admin_accounts_path
     end
 
     private
 
-    def set_user
-      @user = Account.find(params[:account_id]).user || raise(ActiveRecord::RecordNotFound)
+    def account_user
+      Account.find(params[:account_id]).user || raise(ActiveRecord::RecordNotFound)
     end
   end
 end

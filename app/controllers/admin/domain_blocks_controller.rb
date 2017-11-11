@@ -5,18 +5,14 @@ module Admin
     before_action :set_domain_block, only: [:show, :destroy]
 
     def index
-      authorize :domain_block, :index?
       @domain_blocks = DomainBlock.page(params[:page])
     end
 
     def new
-      authorize :domain_block, :create?
       @domain_block = DomainBlock.new
     end
 
     def create
-      authorize :domain_block, :create?
-
       @domain_block = DomainBlock.new(resource_params)
 
       if @domain_block.save
@@ -27,12 +23,9 @@ module Admin
       end
     end
 
-    def show
-      authorize @domain_block, :show?
-    end
+    def show; end
 
     def destroy
-      authorize @domain_block, :destroy?
       UnblockDomainService.new.call(@domain_block, retroactive_unblock?)
       redirect_to admin_domain_blocks_path, notice: I18n.t('admin.domain_blocks.destroyed_msg')
     end

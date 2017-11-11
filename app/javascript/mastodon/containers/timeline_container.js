@@ -7,14 +7,15 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
 import PublicTimeline from '../features/standalone/public_timeline';
 import HashtagTimeline from '../features/standalone/hashtag_timeline';
-import initialState from '../initial_state';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
 const store = configureStore();
+const initialStateContainer = document.getElementById('initial-state');
 
-if (initialState) {
+if (initialStateContainer !== null) {
+  const initialState = JSON.parse(initialStateContainer.textContent);
   store.dispatch(hydrateStore(initialState));
 }
 

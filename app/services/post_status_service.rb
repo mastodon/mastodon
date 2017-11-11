@@ -71,11 +71,11 @@ class PostStatusService < BaseService
   end
 
   def process_mentions_service
-    ProcessMentionsService.new
+    @process_mentions_service ||= ProcessMentionsService.new
   end
 
   def process_hashtags_service
-    ProcessHashtagsService.new
+    @process_hashtags_service ||= ProcessHashtagsService.new
   end
 
   def redis

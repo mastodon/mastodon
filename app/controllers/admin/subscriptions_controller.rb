@@ -3,7 +3,6 @@
 module Admin
   class SubscriptionsController < BaseController
     def index
-      authorize :subscription, :index?
       @subscriptions = ordered_subscriptions.page(requested_page)
     end
 

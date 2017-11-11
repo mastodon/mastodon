@@ -137,9 +137,7 @@ export default class ColumnHeader extends React.PureComponent {
       <div className={wrapperClassName}>
         <h1 tabIndex={focusable ? 0 : null} role='button' className={buttonClassName} aria-label={title} onClick={this.handleTitleClick}>
           <i className={`fa fa-fw fa-${icon} column-header__icon`} />
-          <span className='column-header__title'>
-            {title}
-          </span>
+          {title}
 
           <div className='column-header__buttons'>
             {backButton}

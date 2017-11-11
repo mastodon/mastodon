@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
-class StatusPolicy < ApplicationPolicy
-  def index?
-    staff?
+class StatusPolicy
+  attr_reader :account, :status
+
+  def initialize(account, status)
+    @account = account
+    @status = status
   end
 
   def show?
     if direct?
-      owned? || record.mentions.where(account: current_account).exists?
+      owned? || status.mentions.where(account: account).exists?
     elsif private?
-      owned? || current_account&.following?(author) || record.mentions.where(account: current_account).exists?
+      owned? || account&.following?(status.account) || status.mentions.where(account: account).exists?
     else
-      current_account.nil? || !author.blocking?(current_account)
+      account.nil? || !status.account.blocking?(account)
     end
   end
 
@@ -20,30 +23,26 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def destroy?
-    staff? || owned?
+    admin? || owned?
   end
 
   alias unreblog? destroy?
 
-  def update?
-    staff?
-  end
-
   private
 
+  def admin?
+    account&.user&.admin?
+  end
+
   def direct?
-    record.direct_visibility?
+    status.direct_visibility?
   end
 
   def owned?
-    author.id == current_account&.id
+    status.account.id == account&.id
   end
 
   def private?
-    record.private_visibility?
-  end
-
-  def author
-    record.account
+    status.private_visibility?
   end
 end
