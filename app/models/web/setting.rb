@@ -6,8 +6,8 @@
 #  data       :json
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  id         :integer          not null, primary key
-#  user_id    :integer
+#  id         :bigint           not null, primary key
+#  user_id    :bigint
 #
 
 class Web::Setting < ApplicationRecord

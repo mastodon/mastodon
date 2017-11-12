@@ -3,7 +3,7 @@
 #
 # Table name: accounts
 #
-#  id                      :integer          not null, primary key
+#  id                      :bigint           not null, primary key
 #  username                :string           default(""), not null
 #  domain                  :string
 #  secret                  :string           default(""), not null
