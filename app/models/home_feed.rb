@@ -8,11 +8,11 @@ class HomeFeed < Feed
   end
 
   def get(limit, max_id = nil, since_id = nil)
-    if redis.exists("account:#{@account.id}:regeneration")
-      from_database(limit, max_id, since_id)
-    else
-      super
+    unless redis.exists("account:#{@account.id}:regeneration")
+      statuses = super
+      return statuses unless statuses.empty?
     end
+    from_database(limit, max_id, since_id)
   end
 
   private
