@@ -64,7 +64,7 @@ zh-CN:
       confirmed: 已确认
       demote: 降任
       disable: 停用
-      disable_two_factor_authentication: 停用两步验证
+      disable_two_factor_authentication: 停用双重认证
       disabled: 已停用
       display_name: 昵称
       domain: 域名
@@ -508,7 +508,7 @@ zh-CN:
     notifications: 通知
     preferences: 首选项
     settings: 设置
-    two_factor_authentication: 两步验证
+    two_factor_authentication: 双重认证
     your_apps: 你的应用
   statuses:
     open_in_web: 在站内打开
@@ -607,22 +607,22 @@ zh-CN:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 输入你的验证器生成的代码以确认
-    description_html: 启用<strong>两步验证</strong>后，你需要输入手机验证器生成的代码才能登录
+    code_hint: 输入你的认证器生成的代码以确认
+    description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录
     disable: 停用
     enable: 启用
-    enabled: 两步验证已启用
-    enabled_success: 两步验证启用成功
+    enabled: 双重认证已启用
+    enabled_success: 双重认证启用成功
     generate_recovery_codes: 生成恢复代码
-    instructions_html: "<strong>请使用 Google 身份验证器或其他类似的 TOTP 两步验证手机应用扫描此处的二维码</strong>。启用两步验证后，你需要输入该应用生成的代码来登录你的帐户。"
+    instructions_html: "<strong>请使用 Google 身份验证器或其他类似的 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
     lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
     manual_instructions: 如果你无法扫描二维码，请手动输入下列文本：
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     setup: 设置
-    wrong_code: 输入的验证码无效！请检查你设备上显示的时间是否正确，如果正确，你可能需要联系管理员以检查服务器的时间是否正确。
+    wrong_code: 输入的认证码无效！请检查你设备上显示的时间是否正确，如果正确，你可能需要联系管理员以检查服务器的时间是否正确。
   users:
     invalid_email: 输入的电子邮件地址无效
-    invalid_otp_token: 输入的两步验证代码无效
+    invalid_otp_token: 输入的双重认证代码无效
     signed_in_as: 当前登录的帐户：
