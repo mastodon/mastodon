@@ -35,7 +35,7 @@ class Glitch::KeywordMute < ApplicationRecord
     def initialize(account_id)
       @account_id = account_id
       regex_text = Rails.cache.fetch("keyword_mutes:regex:#{account_id}") { regex_text_for_account }
-      @regex = /#{regex_text}/i
+      @regex = /#{regex_text}/
     end
 
     def =~(str)
@@ -60,7 +60,7 @@ class Glitch::KeywordMute < ApplicationRecord
       sb = keyword =~ /\A[[:word:]]/ ? '\b' : ''
       eb = keyword =~ /[[:word:]]\Z/ ? '\b' : ''
 
-      /#{sb}#{Regexp.escape(keyword)}#{eb}/
+      /(?mix:#{sb}#{Regexp.escape(keyword)}#{eb})/
     end
   end
 end
