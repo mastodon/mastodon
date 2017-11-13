@@ -53,8 +53,15 @@ class NotifyService < BaseService
     @notification.type == :mention && @notification.target_status.direct_visibility?
   end
 
+  def response_to_recipient?
+    @notification.target_status.in_reply_to_account_id == @recipient.id
+  end
+
   def optional_non_following_and_direct?
-    direct_message? && @recipient.user.settings.interactions['must_be_following_dm'] && !following_sender?
+    direct_message? &&
+      @recipient.user.settings.interactions['must_be_following_dm'] &&
+      !following_sender? &&
+      !response_to_recipient?
   end
 
   def hellbanned?
