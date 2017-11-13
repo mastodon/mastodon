@@ -6,7 +6,7 @@ describe ActivityPub::DeliveryWorker do
   subject { described_class.new }
 
   let(:sender)  { Fabricate(:account) }
-  let(:payload) { 'test' }
+  let(:payload) { '{"published":"2017-10-03T03:27:34Z"}' }
 
   describe 'perform' do
     it 'performs a request' do
