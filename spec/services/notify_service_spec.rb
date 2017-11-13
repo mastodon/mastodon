@@ -39,6 +39,30 @@ RSpec.describe NotifyService do
   end
 
   context do
+    let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct)) }
+
+    before do
+      user.settings.interactions = user.settings.interactions.merge('must_be_following_dm' => enabled)
+    end
+
+    context do
+      let(:enabled) { true }
+
+      it 'does not notify about direct message if recipient is supposed to be following sender' do
+        is_expected.to_not change(Notification, :count)
+      end
+    end
+
+    context do
+      let(:enabled) { false }
+
+      it 'does still notify about direct message if recipient is not supposed to be following sender' do
+        is_expected.to change(Notification, :count)
+      end
+    end
+  end
+
+  context do
     let(:asshole)  { Fabricate(:account, username: 'asshole') }
     let(:reply_to) { Fabricate(:status, account: asshole) }
     let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, thread: reply_to)) }
