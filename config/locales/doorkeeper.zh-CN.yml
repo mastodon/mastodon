@@ -47,10 +47,10 @@ zh-CN:
         title: 创建新应用
       show:
         actions: 操作
-        application_id: 客户端 ID
+        application_id: 应用 ID
         callback_urls: 回调 URL
         scopes: 权限范围
-        secret: 客户端密钥
+        secret: 应用密钥
         title: 应用：%{name}
     authorizations:
       buttons:
@@ -78,8 +78,8 @@ zh-CN:
     errors:
       messages:
         access_denied: 用户或服务器拒绝了请求
-        credential_flow_not_configured: 由于 Doorkeeper.configure.resource_owner_from_credentials 尚未配置，客户端验证授权流程失败。
-        invalid_client: 由于客户端信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
+        credential_flow_not_configured: 由于 Doorkeeper.configure.resource_owner_from_credentials 尚未配置，应用验证授权流程失败。
+        invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
         invalid_grant: 授权方式无效，或者登录回调地址无效、过期或已被撤销
         invalid_redirect_uri: 无效的登录回调地址
         invalid_request: 请求缺少必要的参数，或者参数值、格式不正确
