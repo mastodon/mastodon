@@ -18,8 +18,13 @@ class HomeFeed < Feed
   private
 
   def from_database(limit, max_id, since_id)
-    Status.as_home_timeline(@account)
-          .paginate_by_max_id(limit, max_id, since_id)
-          .reject { |status| FeedManager.instance.filter?(:home, status, @account.id) }
+    loop do
+      statuses = Status.as_home_timeline(@account)
+                       .paginate_by_max_id(limit, max_id, since_id)
+      return statuses if statuses.empty?
+      max_id = statuses.last.id
+      statuses = statuses.reject { |status| FeedManager.instance.filter?(:home, status, @account.id) }
+      return statuses unless statuses.empty?
+    end
   end
 end
