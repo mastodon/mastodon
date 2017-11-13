@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from '../../initial_state';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -28,7 +27,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  myAccount: state.getIn(['accounts', me]),
+  me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
   columns: state.getIn(['settings', 'columns']),
 });
 
@@ -38,13 +37,13 @@ export default class GettingStarted extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    myAccount: ImmutablePropTypes.map.isRequired,
+    me: ImmutablePropTypes.map.isRequired,
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
   };
 
   render () {
-    const { intl, myAccount, columns, multiColumn } = this.props;
+    const { intl, me, columns, multiColumn, github_url } = this.props;
 
     let navItems = [];
 
@@ -71,7 +70,7 @@ export default class GettingStarted extends ImmutablePureComponent {
       <ColumnLink key='5' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
     ]);
 
-    if (myAccount.get('locked')) {
+    if (me.get('locked')) {
       navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
     }
 
