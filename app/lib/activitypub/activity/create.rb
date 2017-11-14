@@ -173,7 +173,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def language_from_content
-    return nil unless language_map?
+    return LanguageDetector.instance.detect(text_from_content, @account) unless language_map?
     @object['contentMap'].keys.first
   end
 
