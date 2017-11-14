@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class AuthorizeFollowService < BaseService
-  def call(source_account, target_account, options = {})
-    if options[:skip_follow_request]
-      follow_request = FollowRequest.new(account: source_account, target_account: target_account)
-    else
-      follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
-      follow_request.authorize!
-    end
+  def call(source_account, target_account)
+    follow_request = FollowRequest.find_by!(account: source_account, target_account: target_account)
+    follow_request.authorize!
 
     create_notification(follow_request) unless source_account.local?
     follow_request

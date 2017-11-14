@@ -3,7 +3,8 @@
 class ActivityPub::AcceptFollowSerializer < ActiveModel::Serializer
   attributes :id, :type, :actor
 
-  has_one :object, serializer: ActivityPub::FollowSerializer
+  attribute :remote_id, key: :object
+  delegate :remote_id, to: :object
 
   def id
     [ActivityPub::TagManager.instance.uri_for(object.target_account), '#accepts/follows/', object.id].join
