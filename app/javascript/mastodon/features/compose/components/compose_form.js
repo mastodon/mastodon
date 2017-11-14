@@ -18,6 +18,8 @@ import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
+import initialState from '../../../initial_state';
+const maxChars = initialState.max_chars;
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -201,8 +203,8 @@ export default class ComposeForm extends ImmutablePureComponent {
           </div>
 
           <div className='compose-form__publish'>
-            <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block /></div>
+            <div className='character-counter__wrapper'><CharacterCounter max={maxChars} text={text} /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > maxChars || (text.length !== 0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
       </div>
