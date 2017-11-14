@@ -19,6 +19,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
 import initialState from '../../../initial_state';
+
 const maxChars = initialState.max_chars;
 
 const messages = defineMessages({
