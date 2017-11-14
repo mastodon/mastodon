@@ -1,6 +1,12 @@
 $win95-bg: #bfbfbf;
+$win95-dark-grey: #404040;
+$win95-mid-grey: #808080;
 $win95-window-header: #00007f;
 $win95-tooltip-yellow: #ffffcc;
+$win95-blue: blue;
+
+$ui-base-lighter-color: $win95-dark-grey;
+$ui-highlight-color: $win95-window-header;
 
 @mixin win95-border-outset() {
   border-left: 2px solid #efefef;
@@ -66,6 +72,53 @@ $win95-tooltip-yellow: #ffffcc;
 }
 
 @import 'application';
+
+/* borrowed from cybrespace style: wider columns and full column width images */
+
+@media screen and (min-width: 1300px) {
+  .column {
+    flex-grow: 1 !important;
+    max-width: 400px;
+  }
+
+  .drawer {
+    width: 17%;
+    max-width: 400px;
+    min-width: 330px;
+  }
+}
+
+.media-gallery,
+.video-player {
+  max-height:30vh;
+  height:30vh !important;
+  position:relative;
+  margin-top:20px;
+  margin-left:-68px;
+  width: calc(100% + 80px) !important;
+  max-width: calc(100% + 80px);
+}
+
+.detailed-status .media-gallery,
+.detailed-status .video-player {
+  margin-left:-5px;
+  width: calc(100% + 9px);
+  max-width: calc(100% + 9px);
+}
+
+.video-player video {
+  transform: unset;
+  top: unset;
+}
+
+.detailed-status .media-spoiler,
+.status .media-spoiler {
+  height: 100%!important;
+  vertical-align: middle;
+}
+
+
+/* main win95 style */
 
 body {
   font-size:13px;
@@ -417,13 +470,33 @@ body.admin {
 .status__action-bar-dropdown {
   margin-left:auto;
   margin-right:10px;
+
+  .icon-button {
+    min-width:28px;
+  }
 }
 .status.light .status__content a {
   color:blue;
 }
 
+.focusable:focus {
+  background: $win95-bg;
+  .detailed-status__action-bar {
+    background: $win95-bg;
+  }
+
+  .status, .detailed-status {
+    background: white;
+    outline:2px dotted $win95-mid-grey;
+  }
+}
+
 .dropdown__trigger.icon-button {
   padding-right:6px;
+}
+
+.detailed-status__action-bar-dropdown .icon-button {
+  min-width:28px;
 }
 
 .detailed-status {
@@ -464,12 +537,11 @@ body.admin {
   @include win95-border-outset()
   padding:0px 0px 0px 0px;
   margin-right:4px;
-}
-.icon-button,
-.icon-button.inverted,
-.icon-button:hover,
-.icon-button.inverted:hover {
+
   color:#3f3f3f;
+  &.inverted, &:hover, &.inverted:hover, &:active, &:focus {
+    color:#3f3f3f;
+  }
 }
 
 .icon-button:active {
@@ -487,6 +559,13 @@ body.admin {
   border:none;
 }
 
+.icon-button.star-icon.active {
+  color: $gold-star;
+  &:active,  &:hover, &:focus {
+    color: $gold-star;
+  }
+}
+
 .icon-button.star-icon > i {
   background:$win95-bg;
   @include win95-border-outset()
@@ -495,6 +574,10 @@ body.admin {
 
 .icon-button.star-icon:active > i {
   @include win95-border-inset();
+}
+
+.text-icon-button {
+  color:$win95-dark-grey;
 }
 
 .detailed-status__action-bar-dropdown {
@@ -672,6 +755,20 @@ body.admin {
   background-color:white;
 }
 
+.search-popout {
+  box-shadow: unset;
+  color:black;
+  border-radius:0px;
+  background-color:$win95-tooltip-yellow;
+  border:1px solid black;
+
+  h4 {
+    color:black;
+    text-transform: none;
+    font-weight:bold;
+  }
+}
+
 .search-results__header {
   background-color: $win95-bg;
   color:black;
@@ -688,6 +785,18 @@ body.admin {
 .search-results__section .search-results__hashtag:hover {
   background-color:$win95-window-header;
   color:white;
+}
+
+.search__icon .fa {
+  color:#808080;
+
+  &.active {
+    opacity:1.0;
+  }
+
+  &:hover {
+    color: #808080;
+  }
 }
 
 .drawer__inner,
@@ -857,14 +966,24 @@ body.admin {
   border-radius:0px;
   color:black;
   font-weight:bold;
-}
 
-.button:hover, .button:focus {
-  background-color:$win95-bg;
-}
+  &:hover, &:focus, &:disabled {
+    background-color:$win95-bg;
+  }
 
-.button:active {
-  @include win95-inset();
+  &:active {
+    @include win95-inset();
+  }
+
+  &:disabled {
+    color: #808080;
+    text-shadow: 1px 1px 0px #efefef;
+
+    &:active {
+      @include win95-outset();
+    }
+  }
+
 }
 
 #Getting-started {
@@ -1029,11 +1148,16 @@ body.admin {
   @include win95-inset();
 }
 
-.dropdown--active .dropdown__content > ul {
+.dropdown--active .dropdown__content > ul,
+.dropdown-menu {
   background:$win95-tooltip-yellow;
   border-radius:0px;
   border:1px solid black;
   box-shadow:unset;
+}
+
+.dropdown-menu a {
+  background-color:transparent;
 }
 
 .dropdown--active::after {
@@ -1055,7 +1179,9 @@ body.admin {
   text-decoration:underline;
 }
 
-.dropdown__sep {
+.dropdown__sep,
+.dropdown-menu__separator
+{
   border-color:#7f7f7f;
 }
 
@@ -1206,6 +1332,23 @@ body.admin {
   overflow:hidden;
 }
 
+@media screen and (max-width: 1120px) {
+  .admin-wrapper {
+    width:90vw;
+    height:95vh;
+    margin:2.5vh auto;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .admin-wrapper {
+    width:100vw;
+    height:95vh;
+    height:calc(100vh - 24px);
+    margin:0px 0px 0px 0px;
+  }
+}
+
 .admin-wrapper .sidebar-wrapper {
   position:static;
   height:auto;
@@ -1354,6 +1497,36 @@ body.admin {
   }
 }
 
+@media screen and (max-width: 1520px) {
+  .admin-wrapper .sidebar > ul > li > ul {
+    max-width:1000px;
+  }
+
+  .admin-wrapper .sidebar {
+    padding-bottom: 45px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .admin-wrapper .sidebar > ul > li > ul {
+    max-width:500px;
+  }
+
+  .admin-wrapper {
+    .sidebar {
+      padding:0px;
+      padding-bottom: 70px;
+      width: 100%;
+      height: auto;
+    }
+    .content-wrapper {
+      overflow:auto;
+      height:80%;
+      height:calc(100% - 150px);
+    }
+  }
+}
+
 .flash-message {
   background-color:$win95-tooltip-yellow;
   color:black;
@@ -1376,11 +1549,13 @@ body.admin {
 .admin-wrapper .content > p,
 .admin-wrapper .content .muted-hint,
 .simple_form span.hint,
+.simple_form h4,
 .simple_form .check_boxes .checkbox label,
 .simple_form .input.with_label.boolean .label_input > label,
 .filters .filter-subset a,
 .simple_form .input.radio_buttons .radio label,
 a.table-action-link,
+a.table-action-link:hover,
 .simple_form .input.with_block_label > label,
 .simple_form p.hint {
   color:black;
@@ -1399,6 +1574,10 @@ a.table-action-link,
   color:black;
   background-color:white;
   @include win95-border-slight-inset();
+
+  &:active, &:focus {
+    background-color:white;
+  }
 }
 
 .simple_form button, 
@@ -1412,6 +1591,20 @@ a.table-action-link,
 
   &:hover {
     background: $win95-bg;
+  }
+}
+
+.simple_form .warning, .table-form .warning
+{
+  background: $win95-tooltip-yellow;
+  color:black;
+  box-shadow: unset;
+  text-shadow:unset;
+  border:1px solid black;
+
+  a {
+    color: blue;
+    text-decoration:underline;
   }
 }
 
