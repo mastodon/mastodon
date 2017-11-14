@@ -39,17 +39,15 @@ class LanguageDetector
 
   def simplify_text(text)
     new_text = remove_html(text)
-    new_text.tap do |new_text|
-      new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
-      new_text.gsub!(Account::MENTION_RE, '')
-      new_text.gsub!(Tag::HASHTAG_RE, '')
-      new_text.gsub!(/\s+/, ' ')
-    end
+    new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
+    new_text.gsub!(Account::MENTION_RE, '')
+    new_text.gsub!(Tag::HASHTAG_RE, '')
+    new_text.gsub!(/\s+/, ' ')
   end
 
   def new_scrubber
-    scrubber= Rails::Html::PermitScrubber.new
-    scrubber.tags = ['br', 'p']
+    scrubber = Rails::Html::PermitScrubber.new
+    scrubber.tags = %w(br p)
     scrubber
   end
 
