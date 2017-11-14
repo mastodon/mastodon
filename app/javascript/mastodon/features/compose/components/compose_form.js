@@ -20,7 +20,7 @@ import { length } from 'stringz';
 import { countableText } from '../util/counter';
 import initialState from '../../../initial_state';
 
-const maxChars = initialState.max_chars;
+const maxChars = initialState.max_toot_chars;
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },

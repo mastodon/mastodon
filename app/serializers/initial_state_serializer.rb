@@ -3,11 +3,11 @@
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings, :push_subscription,
-             :max_chars
+             :max_toot_chars
 
   has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
 
-  def max_chars
+  def max_toot_chars
     StatusLengthValidator::MAX_CHARS
   end
 
