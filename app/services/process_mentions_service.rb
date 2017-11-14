@@ -17,6 +17,11 @@ class ProcessMentionsService < BaseService
         mentioned_account = nil
       end
 
+      if mentioned_account.nil?
+        username, domain  = match.first.split('@')
+        mentioned_account = Account.find_remote(username, domain)
+      end
+
       next match if mentioned_account.nil? || (!mentioned_account.local? && mentioned_account.ostatus? && status.stream_entry.hidden?)
 
       mentioned_account.mentions.where(status: status).first_or_create(status: status)
