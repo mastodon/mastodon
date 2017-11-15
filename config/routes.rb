@@ -206,6 +206,7 @@ Rails.application.routes.draw do
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
+        resources :list, only: :show
       end
 
       resources :streaming, only: [:index]

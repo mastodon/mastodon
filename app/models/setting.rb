@@ -3,13 +3,13 @@
 #
 # Table name: settings
 #
+#  id         :integer          not null, primary key
 #  var        :string           not null
 #  value      :text
 #  thing_type :string
 #  created_at :datetime
 #  updated_at :datetime
-#  id         :bigint           not null, primary key
-#  thing_id   :bigint
+#  thing_id   :integer
 #
 
 class Setting < RailsSettings::Base

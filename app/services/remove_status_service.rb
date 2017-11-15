@@ -14,6 +14,7 @@ class RemoveStatusService < BaseService
 
     remove_from_self if status.account.local?
     remove_from_followers
+    remove_from_lists
     remove_from_affected
     remove_reblogs
     remove_from_hashtags
@@ -36,6 +37,12 @@ class RemoveStatusService < BaseService
   def remove_from_followers
     @account.followers.local.find_each do |follower|
       unpush(:home, follower, @status)
+    end
+  end
+
+  def remove_from_lists
+    @account.lists.select(:id, :account_id).find_each do |list|
+      FeedManager.instance.unpush_from_list(list, @status)
     end
   end
 

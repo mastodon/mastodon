@@ -3,7 +3,7 @@
 #
 # Table name: accounts
 #
-#  id                      :bigint           not null, primary key
+#  id                      :integer          not null, primary key
 #  username                :string           default(""), not null
 #  domain                  :string
 #  secret                  :string           default(""), not null
@@ -94,6 +94,9 @@ class Account < ApplicationRecord
   # Moderation notes
   has_many :account_moderation_notes, dependent: :destroy
   has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
+
+  # Lists
+  has_and_belongs_to_many :lists
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }

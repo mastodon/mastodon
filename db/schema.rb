@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114080328) do
+ActiveRecord::Schema.define(version: 20171114231843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(version: 20171114080328) do
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url"
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true
+  end
+
+  create_table "accounts_lists", id: false, force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "list_id", null: false
+    t.index ["account_id", "list_id"], name: "index_accounts_lists_on_account_id_and_list_id", unique: true
+    t.index ["list_id", "account_id"], name: "index_accounts_lists_on_list_id_and_account_id"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -168,6 +175,14 @@ ActiveRecord::Schema.define(version: 20171114080328) do
     t.integer "data_file_size"
     t.datetime "data_updated_at"
     t.bigint "account_id", null: false
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "title", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_lists_on_account_id"
   end
 
   create_table "media_attachments", force: :cascade do |t|
@@ -478,6 +493,7 @@ ActiveRecord::Schema.define(version: 20171114080328) do
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
+  add_foreign_key "lists", "accounts", on_delete: :cascade
   add_foreign_key "media_attachments", "accounts", name: "fk_96dd81e81b", on_delete: :nullify
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify
   add_foreign_key "mentions", "accounts", name: "fk_970d43f9d1", on_delete: :cascade
