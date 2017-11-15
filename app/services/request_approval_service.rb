@@ -9,7 +9,7 @@ class RequestApprovalService < BaseService
         UserMailer.new_user_waiting_for_approval(admin, user).deliver_later
       end
     else
-      user.approve
+      user.approve!
     end
   end
 end

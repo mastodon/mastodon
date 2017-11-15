@@ -177,8 +177,8 @@ class User < ApplicationRecord
     end
   end
 
-  def approve
-    update(approved_at: Time.now.utc)
+  def approve!
+    update!(approved_at: Time.now.utc)
   end
 
   protected
