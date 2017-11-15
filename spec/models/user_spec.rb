@@ -177,6 +177,13 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'settings' do
+    it 'is instance of Settings::ScopedSettings' do
+      user = Fabricate(:user)
+      expect(user.settings).to be_kind_of Settings::ScopedSettings
+    end
+  end
+
   describe '#setting_default_privacy' do
     it 'returns default privacy setting if user has configured' do
       user = Fabricate(:user)
