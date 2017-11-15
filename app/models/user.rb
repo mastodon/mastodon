@@ -73,6 +73,10 @@ class User < ApplicationRecord
 
   has_many :session_activations, dependent: :destroy
 
+  delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
+           :reduce_motion, :system_font_ui, :noindex, :theme,
+           to: :settings, prefix: :setting, allow_nil: false
+
   def confirmed?
     confirmed_at.present?
   end
@@ -134,42 +138,6 @@ class User < ApplicationRecord
 
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
-  end
-
-  def setting_default_sensitive
-    settings.default_sensitive
-  end
-
-  def setting_unfollow_modal
-    settings.unfollow_modal
-  end
-
-  def setting_boost_modal
-    settings.boost_modal
-  end
-
-  def setting_delete_modal
-    settings.delete_modal
-  end
-
-  def setting_auto_play_gif
-    settings.auto_play_gif
-  end
-
-  def setting_reduce_motion
-    settings.reduce_motion
-  end
-
-  def setting_system_font_ui
-    settings.system_font_ui
-  end
-
-  def setting_noindex
-    settings.noindex
-  end
-
-  def setting_theme
-    settings.theme
   end
 
   def token_for_app(a)
