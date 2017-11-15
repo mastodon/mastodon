@@ -256,10 +256,6 @@ Rails.application.routes.draw do
       end
     end
 
-    namespace :v2 do
-      resources :mutes, only: [:index]
-    end
-
     namespace :web do
       resource :settings, only: [:update]
       resource :embed, only: [:create]
