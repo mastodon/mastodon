@@ -6,6 +6,121 @@ RSpec.describe StreamEntry, type: :model do
   let(:status)    { Fabricate(:status, account: alice) }
   let(:reblog)    { Fabricate(:status, account: bob, reblog: status) }
   let(:reply)     { Fabricate(:status, account: bob, thread: status) }
+  let(:stream_entry) { Fabricate(:stream_entry, activity: activity) }
+  let(:activity)     { reblog }
+
+  describe '#object_type' do
+    before do
+      allow(stream_entry).to receive(:orphaned?).and_return(orphaned)
+      allow(stream_entry).to receive(:targeted?).and_return(targeted)
+    end
+
+    subject { stream_entry.object_type }
+
+    context 'orphaned? is true' do
+      let(:orphaned) { true }
+      let(:targeted) { false }
+
+      it 'returns :activity' do
+        is_expected.to be :activity
+      end
+    end
+
+    context 'targeted? is true' do
+      let(:orphaned) { false }
+      let(:targeted) { true }
+
+      it 'returns :activity' do
+        is_expected.to be :activity
+      end
+    end
+
+    context 'orphaned? and targeted? are false' do
+      let(:orphaned) { false }
+      let(:targeted) { false }
+
+      context 'activity is reblog' do
+        let(:activity) { reblog }
+
+        it 'returns :note' do
+          is_expected.to be :note
+        end
+      end
+
+      context 'activity is reply' do
+        let(:activity) { reply }
+
+        it 'returns :comment' do
+          is_expected.to be :comment
+        end
+      end
+    end
+  end
+
+  describe '#verb' do
+    before do
+      allow(stream_entry).to receive(:orphaned?).and_return(orphaned)
+    end
+
+    subject { stream_entry.verb }
+
+    context 'orphaned? is true' do
+      let(:orphaned) { true }
+
+      it 'returns :delete' do
+        is_expected.to be :delete
+      end
+    end
+
+    context 'orphaned? is false' do
+      let(:orphaned) { false }
+
+      context 'activity is reblog' do
+        let(:activity) { reblog }
+
+        it 'returns :share' do
+          is_expected.to be :share
+        end
+      end
+
+      context 'activity is reply' do
+        let(:activity) { reply }
+
+        it 'returns :post' do
+          is_expected.to be :post
+        end
+      end
+    end
+  end
+
+  describe '#mentions' do
+    before do
+      allow(stream_entry).to receive(:orphaned?).and_return(orphaned)
+    end
+
+    subject { stream_entry.mentions }
+
+    context 'orphaned? is true' do
+      let(:orphaned) { true }
+
+      it 'returns []' do
+        is_expected.to eq []
+      end
+    end
+
+    context 'orphaned? is false' do
+      before do
+        reblog.mentions << Fabricate(:mention, account: alice)
+        reblog.mentions << Fabricate(:mention, account: bob)
+      end
+
+      let(:orphaned) { false }
+
+      it 'returns [Account] includes alice and bob' do
+        is_expected.to eq [alice, bob]
+      end
+    end
+  end
 
   describe '#targeted?' do
     it 'returns true for a reblog' do

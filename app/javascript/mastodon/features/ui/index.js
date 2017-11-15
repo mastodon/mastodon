@@ -39,14 +39,20 @@ import {
   PinnedStatuses,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
+import { me } from '../../initial_state';
+import { defineMessages, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 
+const messages = defineMessages({
+  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
+});
+
 const mapStateToProps = state => ({
-  me: state.getIn(['meta', 'me']),
   isComposing: state.getIn(['compose', 'is_composing']),
+  hasComposingText: state.getIn(['compose', 'text']) !== '',
 });
 
 const keyMap = {
@@ -77,6 +83,7 @@ const keyMap = {
 };
 
 @connect(mapStateToProps)
+@injectIntl
 @withRouter
 export default class UI extends React.Component {
 
@@ -88,14 +95,26 @@ export default class UI extends React.Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     isComposing: PropTypes.bool,
-    me: PropTypes.string,
+    hasComposingText: PropTypes.bool,
     location: PropTypes.object,
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
     width: window.innerWidth,
     draggingOver: false,
   };
+
+  handleBeforeUnload = (e) => {
+    const { intl, isComposing, hasComposingText } = this.props;
+
+    if (isComposing && hasComposingText) {
+      // Setting returnValue to any string causes confirmation dialog.
+      // Many browsers no longer display this text to users,
+      // but we set user-friendly message for other browsers, e.g. Edge.
+      e.returnValue = intl.formatMessage(messages.beforeUnload);
+    }
+  }
 
   handleResize = debounce(() => {
     // The cached heights are no longer accurate, invalidate
@@ -171,6 +190,7 @@ export default class UI extends React.Component {
   }
 
   componentWillMount () {
+    window.addEventListener('beforeunload', this.handleBeforeUnload, false);
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
@@ -212,6 +232,7 @@ export default class UI extends React.Component {
   }
 
   componentWillUnmount () {
+    window.removeEventListener('beforeunload', this.handleBeforeUnload);
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
@@ -311,7 +332,7 @@ export default class UI extends React.Component {
   }
 
   handleHotkeyGoToProfile = () => {
-    this.context.router.history.push(`/accounts/${this.props.me}`);
+    this.context.router.history.push(`/accounts/${me}`);
   }
 
   handleHotkeyGoToBlocked = () => {

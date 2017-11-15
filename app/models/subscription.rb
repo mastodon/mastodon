@@ -11,8 +11,8 @@
 #  updated_at                  :datetime         not null
 #  last_successful_delivery_at :datetime
 #  domain                      :string
-#  account_id                  :integer          not null
-#  id                          :integer          not null, primary key
+#  account_id                  :bigint           not null
+#  id                          :bigint           not null, primary key
 #
 
 class Subscription < ApplicationRecord

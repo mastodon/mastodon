@@ -177,27 +177,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#setting_auto_play_gif' do
-    it 'returns auto-play gif setting' do
+  describe 'settings' do
+    it 'is instance of Settings::ScopedSettings' do
       user = Fabricate(:user)
-      user.settings[:auto_play_gif] = false
-      expect(user.setting_auto_play_gif).to eq false
-    end
-  end
-  
-  describe '#setting_system_font_ui' do
-    it 'returns system font ui setting' do
-      user = Fabricate(:user)
-      user.settings[:system_font_ui] = false
-      expect(user.setting_system_font_ui).to eq false
-    end
-  end
-
-  describe '#setting_boost_modal' do
-    it 'returns boost modal setting' do
-      user = Fabricate(:user)
-      user.settings[:boost_modal] = false
-      expect(user.setting_boost_modal).to eq false
+      expect(user.settings).to be_kind_of Settings::ScopedSettings
     end
   end
 
@@ -216,22 +199,6 @@ RSpec.describe User, type: :model do
     it "returns 'public' if user has not configured default privacy setting and account is not locked" do
       user = Fabricate(:user, account: Fabricate(:account, locked: false))
       expect(user.setting_default_privacy).to eq 'public'
-    end
-  end
-
-  describe '#setting_unfollow_modal' do
-    it 'returns unfollow modal setting' do
-      user = Fabricate(:user)
-      user.settings[:unfollow_modal] = true
-      expect(user.setting_unfollow_modal).to eq true
-    end
-  end
-
-  describe '#setting_delete_modal' do
-    it 'returns delete modal setting' do
-      user = Fabricate(:user)
-      user.settings[:delete_modal] = false
-      expect(user.setting_delete_modal).to eq false
     end
   end
 

@@ -12,7 +12,9 @@
   = opengraph 'og:type', 'profile'
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
 
-- if show_landing_strip?
+- if @account.memorial?
+  .memoriam-strip= t('in_memoriam_html')
+- elsif show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @account }
 
 .h-feed
