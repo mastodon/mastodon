@@ -15,6 +15,8 @@ const messages = defineMessages({
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
+  mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
+  unmute_notifications: { id: 'account.unmute_notifications', defaultMessage: 'Unmute notifications from @{name}' },
 });
 
 @injectIntl
@@ -39,6 +41,14 @@ export default class Account extends ImmutablePureComponent {
 
   handleMute = () => {
     this.props.onMute(this.props.account);
+  }
+
+  handleMuteNotifications = () => {
+    this.props.onMuteNotifications(this.props.account, true);
+  }
+
+  handleUnmuteNotifications = () => {
+    this.props.onMuteNotifications(this.props.account, false);
   }
 
   render () {
@@ -70,7 +80,18 @@ export default class Account extends ImmutablePureComponent {
       } else if (blocking) {
         buttons = <IconButton active icon='unlock-alt' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (muting) {
-        buttons = <IconButton active icon='volume-up' title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />;
+        let hidingNotificationsButton;
+        if (muting.get('notifications')) {
+          hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username') })} onClick={this.handleUnmuteNotifications} />;
+        } else {
+          hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
+        }
+        buttons = (
+          <div>
+            <IconButton active icon='volume-up' title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />
+            {hidingNotificationsButton}
+          </div>
+        );
       } else {
         buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
       }

@@ -81,7 +81,7 @@ class NotifyService < BaseService
     blocked ||= from_self?                                       # Skip for interactions with self
     blocked ||= domain_blocking?                                 # Skip for domain blocked accounts
     blocked ||= @recipient.blocking?(@notification.from_account) # Skip for blocked accounts
-    blocked ||= @recipient.muting?(@notification.from_account)   # Skip for muted accounts
+    blocked ||= @recipient.muting_notifications?(@notification.from_account)
     blocked ||= hellbanned?                                      # Hellban
     blocked ||= optional_non_follower?                           # Options
     blocked ||= optional_non_following?                          # Options

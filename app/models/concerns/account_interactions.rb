@@ -17,7 +17,11 @@ module AccountInteractions
     end
 
     def muting_map(target_account_ids, account_id)
-      follow_mapping(Mute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+      Mute.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |mute, mapping|
+        mapping[mute.target_account_id] = {
+          notifications: mute.hide_notifications?,
+        }
+      end
     end
 
     def requested_map(target_account_ids, account_id)
@@ -70,8 +74,13 @@ module AccountInteractions
     block_relationships.find_or_create_by!(target_account: other_account)
   end
 
-  def mute!(other_account)
-    mute_relationships.find_or_create_by!(target_account: other_account)
+  def mute!(other_account, notifications: nil)
+    notifications = true if notifications.nil?
+    mute = mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
+    # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
+    if mute.hide_notifications? != notifications
+      mute.update!(hide_notifications: notifications)
+    end
   end
 
   def mute_conversation!(conversation)
@@ -125,6 +134,10 @@ module AccountInteractions
 
   def muting_conversation?(conversation)
     conversation_mutes.where(conversation: conversation).exists?
+  end
+
+  def muting_notifications?(other_account)
+    mute_relationships.where(target_account: other_account, hide_notifications: true).exists?
   end
 
   def requested?(other_account)

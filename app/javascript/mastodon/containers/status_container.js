@@ -14,11 +14,9 @@ import {
   pin,
   unpin,
 } from '../actions/interactions';
-import {
-  blockAccount,
-  muteAccount,
-} from '../actions/accounts';
+import { blockAccount } from '../actions/accounts';
 import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
+import { initMuteModal } from '../actions/mutes';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -28,7 +26,6 @@ const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
-  muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
 });
 
 const makeMapStateToProps = () => {
@@ -120,11 +117,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onMute (account) {
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.mute.message' defaultMessage='Are you sure you want to mute {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.muteConfirm),
-      onConfirm: () => dispatch(muteAccount(account.get('id'))),
-    }));
+    dispatch(initMuteModal(account));
   },
 
   onMuteConversation (status) {
