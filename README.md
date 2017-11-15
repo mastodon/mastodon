@@ -3,6 +3,9 @@
 ### Knzk.me is now Sponsored by Fastly!  
 ![fastly_logo](https://knzkdev.net/partners/fastly_logo.png "fastly_logo")  
 
+### Cloud Storage Services Provided By Wasabi!  
+![wasabi_primary_logo](https://knzkdev.net/partners/wasabi_logo.png "wasabi_primary_logo")  
+
 神崎丼で使用できる追加のAPIは[こちら](docs-knzk/API.md)
 
 ______
