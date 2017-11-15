@@ -1,0 +1,28 @@
+.card .name small,
+.button {
+  color: $ui-secondary-color;
+}
+
+.text-icon-button,
+.icon-button.inverted,
+.announcements li,
+.favourite-tags a,
+.favourite-tags__name,
+.autosuggest-account .display-name__account,
+.boost-modal__action-bar > div,
+.confirmation-modal__action-bar > div,
+.report-modal__action-bar > div,
+.search-results__hashtag,
+.status__content__spoiler-link,
+.autosuggest-textarea__textarea,
+.spoiler-input__input,
+.activity-stream .status.light .status__content {
+  color: $primary-text-color;
+}
+
+.autosuggest-textarea__suggestions,
+.status__content a,
+.reply-indicator__content a,
+.activity-stream .status.light .status__content a.status__content__spoiler-link {
+  color: lighten($classic-secondary-color, 10%);
+}
