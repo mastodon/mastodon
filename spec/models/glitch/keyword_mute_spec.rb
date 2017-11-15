@@ -4,8 +4,8 @@ RSpec.describe Glitch::KeywordMute, type: :model do
   let(:alice) { Fabricate(:account, username: 'alice').tap(&:save!) }
   let(:bob) { Fabricate(:account, username: 'bob').tap(&:save!) }
 
-  describe '.matcher_for' do
-    let(:matcher) { Glitch::KeywordMute.matcher_for(alice) }
+  describe '.text_matcher_for' do
+    let(:matcher) { Glitch::KeywordMute.text_matcher_for(alice.id) }
 
     describe 'with no mutes' do
       before do
