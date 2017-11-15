@@ -8,8 +8,8 @@
 #  thing_type :string
 #  created_at :datetime
 #  updated_at :datetime
-#  id         :integer          not null, primary key
-#  thing_id   :integer
+#  id         :bigint           not null, primary key
+#  thing_id   :bigint
 #
 
 class Setting < RailsSettings::Base

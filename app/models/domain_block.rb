@@ -8,7 +8,7 @@
 #  updated_at   :datetime         not null
 #  severity     :integer          default("silence")
 #  reject_media :boolean          default(FALSE), not null
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #
 
 class DomainBlock < ApplicationRecord

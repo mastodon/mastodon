@@ -4,7 +4,7 @@ if ENV['STATSD_ADDR'].present?
   host, port = ENV['STATSD_ADDR'].split(':')
 
   statsd = ::Statsd.new(host, port)
-  statsd.namespace = ['Mastodon', Rails.env].join('.')
+  statsd.namespace = ENV.fetch('STATSD_NAMESPACE') { ['Mastodon', Rails.env].join('.') }
 
   ::NSA.inform_statsd(statsd) do |informant|
     informant.collect(:action_controller, :web)
