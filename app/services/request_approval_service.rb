@@ -2,7 +2,7 @@
 
 class RequestApprovalService < BaseService
   def call(user)
-    return true if user.id.nil?
+    return if user.id.nil?
 
     if Setting.require_approval
       User.admins.each do |admin|
