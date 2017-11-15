@@ -8,6 +8,7 @@
 #  account_id        :integer          not null
 #  id                :integer          not null, primary key
 #  target_account_id :integer          not null
+#  show_reblogs      :boolean          default(TRUE), not null
 #
 
 class Follow < ApplicationRecord
