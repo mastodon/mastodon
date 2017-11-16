@@ -69,6 +69,36 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe '#hidden?' do
+    context 'if private_visibility?' do
+      it 'returns true' do
+        subject.visibility = :private
+        expect(subject.hidden?).to be true
+      end
+    end
+
+    context 'if direct_visibility?' do
+      it 'returns true' do
+        subject.visibility = :direct
+        expect(subject.hidden?).to be true
+      end
+    end
+
+    context 'if public_visibility?' do
+      it 'returns false' do
+        subject.visibility = :public
+        expect(subject.hidden?).to be false
+      end
+    end
+
+    context 'if unlisted_visibility?' do
+      it 'returns false' do
+        subject.visibility = :unlisted
+        expect(subject.hidden?).to be false
+      end
+    end
+  end
+
   describe '#content' do
     it 'returns the text of the status if it is not a reblog' do
       expect(subject.content).to eql subject.text
