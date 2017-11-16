@@ -59,7 +59,7 @@ class Glitch::KeywordMute < ApplicationRecord
 
   class TextMatcher < RegexpMatcher
     def self.cache_key(account_id)
-      format('keyword_mutes:regex:%s', account_id)
+      format('keyword_mutes:regex:text:%s', account_id)
     end
 
     def =~(str)
@@ -79,7 +79,7 @@ class Glitch::KeywordMute < ApplicationRecord
 
   class TagMatcher < RegexpMatcher
     def self.cache_key(account_id)
-      format('keyword_mutes:tag:%s', account_id)
+      format('keyword_mutes:regex:tag:%s', account_id)
     end
 
     def =~(tags)
