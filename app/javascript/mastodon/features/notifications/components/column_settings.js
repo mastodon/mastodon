@@ -37,8 +37,8 @@ export default class ColumnSettings extends React.PureComponent {
         </div>
 
         <div className='column-settings__section'>
-          <a href='/settings/preferences' className='text-btn column-header__setting-btn'>
-            <FormattedMessage id='notifications.column_settings.notify_block' defaultMessage='Notify Block Setting' />
+          <a href='/settings/notifications' className='text-btn column-header__setting-btn'>
+            <FormattedMessage id='notifications.column_settings.notify_block' defaultMessage='Notifications Block Setting' />
           </a>
         </div>
 
