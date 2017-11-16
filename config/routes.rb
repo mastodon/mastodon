@@ -133,7 +133,10 @@ Rails.application.routes.draw do
       member do
         post :subscribe
         post :unsubscribe
+        post :enable
+        post :disable
         post :redownload
+        post :memorialize
       end
 
       resource :reset, only: [:create]
@@ -141,6 +144,13 @@ Rails.application.routes.draw do
       resource :suspension, only: [:create, :destroy]
       resource :confirmation, only: [:create]
       resources :statuses, only: [:index, :create, :update, :destroy]
+
+      resource :role do
+        member do
+          post :promote
+          post :demote
+        end
+      end
     end
 
     resources :users, only: [] do

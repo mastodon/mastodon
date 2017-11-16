@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { Link } from 'react-router-dom';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
+import { me } from '../../../initial_state';
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
@@ -28,7 +29,6 @@ export default class ActionBar extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
-    me: PropTypes.string.isRequired,
     onFollow: PropTypes.func,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
@@ -47,7 +47,7 @@ export default class ActionBar extends React.PureComponent {
   }
 
   render () {
-    const { account, me, intl } = this.props;
+    const { account, intl } = this.props;
 
     let menu = [];
     let extraInfo = '';

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import Toggle from 'react-toggle';
 import Button from '../../../components/button';
 import { closeModal } from '../../../actions/modal';
 import { muteAccount } from '../../../actions/accounts';
@@ -80,12 +81,13 @@ export default class MuteModal extends React.PureComponent {
               values={{ name: <strong>@{account.get('acct')}</strong> }}
             />
           </p>
-          <p>
+          <div>
             <label htmlFor='mute-modal__hide-notifications-checkbox'>
               <FormattedMessage id='mute_modal.hide_notifications' defaultMessage='Hide notifications from this user?' />
-              <input id='mute-modal__hide-notifications-checkbox' type='checkbox' checked={notifications} onChange={this.toggleNotifications} />
+              {' '}
+              <Toggle id='mute-modal__hide-notifications-checkbox' checked={notifications} onChange={this.toggleNotifications} />
             </label>
-          </p>
+          </div>
         </div>
 
         <div className='mute-modal__action-bar'>

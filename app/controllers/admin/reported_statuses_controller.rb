@@ -2,19 +2,20 @@
 
 module Admin
   class ReportedStatusesController < BaseController
-    include Authorization
-
     before_action :set_report
     before_action :set_status, only: [:update, :destroy]
 
     def create
-      @form = Form::StatusBatch.new(form_status_batch_params)
-      flash[:alert] = t('admin.statuses.failed_to_execute') unless @form.save
+      authorize :status, :update?
+
+      @form         = Form::StatusBatch.new(form_status_batch_params)
+      flash[:alert] = I18n.t('admin.statuses.failed_to_execute') unless @form.save
 
       redirect_to admin_report_path(@report)
     end
 
     def update
+      authorize @status, :update?
       @status.update(status_params)
       redirect_to admin_report_path(@report)
     end

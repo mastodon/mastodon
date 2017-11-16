@@ -9,6 +9,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
+import { autoPlayGif } from '../initial_state';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -26,11 +27,9 @@ class Item extends React.PureComponent {
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    autoPlayGif: PropTypes.bool,
   };
 
   static defaultProps = {
-    autoPlayGif: false,
     standalone: false,
     index: 0,
     size: 1,
@@ -50,7 +49,7 @@ class Item extends React.PureComponent {
   }
 
   hoverToPlay () {
-    const { attachment, autoPlayGif } = this.props;
+    const { attachment } = this.props;
     return !autoPlayGif && attachment.get('type') === 'gifv';
   }
 
@@ -142,7 +141,7 @@ class Item extends React.PureComponent {
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
-      const autoPlay = !isIOS() && this.props.autoPlayGif;
+      const autoPlay = !isIOS() && autoPlayGif;
 
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
@@ -184,11 +183,9 @@ export default class MediaGallery extends React.PureComponent {
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    autoPlayGif: PropTypes.bool,
   };
 
   static defaultProps = {
-    autoPlayGif: false,
     standalone: false,
   };
 
@@ -264,9 +261,9 @@ export default class MediaGallery extends React.PureComponent {
       const size = media.take(4).size;
 
       if (this.isStandaloneEligible()) {
-        children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} autoPlayGif={this.props.autoPlayGif} />;
+        children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} />;
       } else {
-        children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
+        children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} />);
       }
     }
 

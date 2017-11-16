@@ -23,7 +23,6 @@ const mapStateToProps = state => ({
   preselectDate: state.getIn(['compose', 'preselectDate']),
   is_submitting: state.getIn(['compose', 'is_submitting']),
   is_uploading: state.getIn(['compose', 'is_uploading']),
-  me: state.getIn(['compose', 'me']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   settings: state.get('local_settings'),
   filesAttached: state.getIn(['compose', 'media_attachments']).size > 0,

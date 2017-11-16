@@ -9,6 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import RelativeTimestamp from '../../../mastodon/components/relative_timestamp';
 import IconButton from '../../../mastodon/components/icon_button';
 import DropdownMenuContainer from '../../../mastodon/containers/dropdown_menu_container';
+import { me } from '../../../mastodon/initial_state';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -50,7 +51,6 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onEmbed: PropTypes.func,
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
-    me: PropTypes.string,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -59,7 +59,6 @@ export default class StatusActionBar extends ImmutablePureComponent {
   // evaluate to false. See react-immutable-pure-component for usage.
   updateOnProps = [
     'status',
-    'me',
     'withDismiss',
   ]
 
@@ -119,7 +118,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, me, intl, withDismiss } = this.props;
+    const { status, intl, withDismiss } = this.props;
 
     const mutingConversation = status.get('muted');
     const anonymousAccess = !me;

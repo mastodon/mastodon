@@ -25,7 +25,6 @@ export default class DetailedStatus extends ImmutablePureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
-    autoPlayGif: PropTypes.bool,
   };
 
   handleAccountClick = (e) => {
@@ -76,7 +75,6 @@ export default class DetailedStatus extends ImmutablePureComponent {
             fullwidth={settings.getIn(['media', 'fullwidth'])}
             height={250}
             onOpenMedia={this.props.onOpenMedia}
-            autoPlayGif={this.props.autoPlayGif}
           />
         );
         mediaIcon = 'picture-o';

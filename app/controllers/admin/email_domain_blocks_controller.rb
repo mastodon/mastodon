@@ -5,14 +5,18 @@ module Admin
     before_action :set_email_domain_block, only: [:show, :destroy]
 
     def index
+      authorize :email_domain_block, :index?
       @email_domain_blocks = EmailDomainBlock.page(params[:page])
     end
 
     def new
+      authorize :email_domain_block, :create?
       @email_domain_block = EmailDomainBlock.new
     end
 
     def create
+      authorize :email_domain_block, :create?
+
       @email_domain_block = EmailDomainBlock.new(resource_params)
 
       if @email_domain_block.save
@@ -23,6 +27,7 @@ module Admin
     end
 
     def destroy
+      authorize @email_domain_block, :destroy?
       @email_domain_block.destroy
       redirect_to admin_email_domain_blocks_path, notice: I18n.t('admin.email_domain_blocks.destroyed_msg')
     end

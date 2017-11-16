@@ -140,12 +140,10 @@ Here are the props we pass to `<Status>`.
     return {
       status      : status,
       account     : account || ownProps.account,
-      me          : state.getIn(['meta', 'me']),
       settings    : state.get('local_settings'),
       prepend     : prepend || ownProps.prepend,
       reblogModal : state.getIn(['meta', 'boost_modal']),
       deleteModal : state.getIn(['meta', 'delete_modal']),
-      autoPlayGif : state.getIn(['meta', 'auto_play_gif']),
     };
   };
 

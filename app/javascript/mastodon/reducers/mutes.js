@@ -22,7 +22,7 @@ export default function mutes(state = initialState, action) {
       state.setIn(['new', 'notifications'], true);
     });
   case MUTES_TOGGLE_HIDE_NOTIFICATIONS:
-    return state.setIn(['new', 'notifications'], !state.getIn(['new', 'notifications']));
+    return state.updateIn(['new', 'notifications'], (old) => !old);
   default:
     return state;
   }

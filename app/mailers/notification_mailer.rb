@@ -7,6 +7,8 @@ class NotificationMailer < ApplicationMailer
     @me     = recipient
     @status = notification.target_status
 
+    return if @me.user.disabled?
+
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
       mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
@@ -17,6 +19,8 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
 
+    return if @me.user.disabled?
+
     locale_for_account(@me) do
       mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
     end
@@ -26,6 +30,8 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
     @status  = notification.target_status
+
+    return if @me.user.disabled?
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
@@ -38,6 +44,8 @@ class NotificationMailer < ApplicationMailer
     @account = notification.from_account
     @status  = notification.target_status
 
+    return if @me.user.disabled?
+
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
       mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
@@ -47,6 +55,8 @@ class NotificationMailer < ApplicationMailer
   def follow_request(recipient, notification)
     @me      = recipient
     @account = notification.from_account
+
+    return if @me.user.disabled?
 
     locale_for_account(@me) do
       mail to: @me.user.email, subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
@@ -59,15 +69,11 @@ class NotificationMailer < ApplicationMailer
     @notifications = Notification.where(account: @me, activity_type: 'Mention').where('created_at > ?', @since)
     @follows_since = Notification.where(account: @me, activity_type: 'Follow').where('created_at > ?', @since).count
 
-    return if @notifications.empty?
+    return if @me.user.disabled? || @notifications.empty?
 
     locale_for_account(@me) do
       mail to: @me.user.email,
-           subject: I18n.t(
-             :subject,
-             scope: [:notification_mailer, :digest],
-             count: @notifications.size
-           )
+           subject: I18n.t(:subject, scope: [:notification_mailer, :digest], count: @notifications.size)
     end
   end
 

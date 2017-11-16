@@ -51,6 +51,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import emojify from '../../../mastodon/features/emoji/emoji';
 import IconButton from '../../../mastodon/components/icon_button';
 import Avatar from '../../../mastodon/components/avatar';
+import { me } from '../../../mastodon/initial_state';
 
 //  Our imports  //
 import { processBio } from '../../util/bio_metadata';
@@ -88,7 +89,6 @@ export default class AccountHeader extends ImmutablePureComponent {
 
   static propTypes = {
     account  : ImmutablePropTypes.map,
-    me       : PropTypes.string.isRequired,
     onFollow : PropTypes.func.isRequired,
     intl     : PropTypes.object.isRequired,
   };
@@ -102,7 +102,7 @@ The `render()` function is used to render our component.
 */
 
   render () {
-    const { account, me, intl } = this.props;
+    const { account, intl } = this.props;
 
 /*
 

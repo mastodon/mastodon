@@ -61,7 +61,6 @@ const getCustomEmojis = createSelector([
 
 const mapStateToProps = state => ({
   custom_emojis: getCustomEmojis(state),
-  autoPlay: state.getIn(['meta', 'auto_play_gif']),
   skinTone: state.getIn(['settings', 'skinTone']),
   frequentlyUsedEmojis: getFrequentlyUsedEmojis(state),
 });

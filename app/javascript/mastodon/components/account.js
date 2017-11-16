@@ -7,6 +7,7 @@ import Permalink from './permalink';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { me } from '../initial_state';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -23,7 +24,6 @@ export default class Account extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
-    me: PropTypes.string.isRequired,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
@@ -52,7 +52,7 @@ export default class Account extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, me, intl, hidden } = this.props;
+    const { account, intl, hidden } = this.props;
 
     if (!account) {
       return <div />;
@@ -82,7 +82,7 @@ export default class Account extends ImmutablePureComponent {
       } else if (muting) {
         let hidingNotificationsButton;
         if (muting.get('notifications')) {
-          hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username')  })} onClick={this.handleUnmuteNotifications} />;
+          hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username') })} onClick={this.handleUnmuteNotifications} />;
         } else {
           hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
         }

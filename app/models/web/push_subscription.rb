@@ -3,7 +3,7 @@
 #
 # Table name: web_push_subscriptions
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  endpoint   :string           not null
 #  key_p256dh :string           not null
 #  key_auth   :string           not null

@@ -43,7 +43,7 @@ en:
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
     posts: Toots
-    posts_with_replies: Toots with replies
+    posts_with_replies: Toots and replies
     remote_follow: Remote follow
     reserved_username: The username is reserved
     roles:
@@ -59,13 +59,19 @@ en:
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
       are_you_sure: Are you sure?
+      by_domain: Domain
       confirm: Confirm
       confirmed: Confirmed
+      demote: Demote
+      disable: Disable
       disable_two_factor_authentication: Disable 2FA
+      disabled: Disabled
       display_name: Display name
       domain: Domain
       edit: Edit
       email: E-mail
+      enable: Enable
+      enabled: Enabled
       feed_url: Feed URL
       followers: Followers
       followers_url: Followers URL
@@ -77,7 +83,9 @@ en:
         local: Local
         remote: Remote
         title: Location
+      login_status: Login status
       media_attachments: Media attachments
+      memorialize: Turn into memoriam
       moderation:
         all: All
         silenced: Silenced
@@ -94,6 +102,7 @@ en:
       outbox_url: Outbox URL
       perform_full_suspension: Perform full suspension
       profile_url: Profile URL
+      promote: Promote
       protocol: Protocol
       public: Public
       push_subscription_expires: PuSH subscription expires
@@ -101,6 +110,11 @@ en:
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
+      role: Permissions
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        user: User
       salmon_url: Salmon URL
       search: Search
       shared_inbox_url: Shared Inbox URL
@@ -133,6 +147,7 @@ en:
       listed: Listed
       new:
         title: Add new custom emoji
+      overwrite: Overwrite
       shortcode: Shortcode
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
       title: Custom emojis
@@ -377,6 +392,7 @@ en:
       following: Following list
       muting: Muting list
     upload: Upload
+  in_memoriam_html: In Memoriam.
   keyword_mutes:
     add_keyword: Add keyword
     edit: Edit

@@ -3,7 +3,7 @@
 #
 # Table name: custom_emojis
 #
-#  id                 :integer          not null, primary key
+#  id                 :bigint           not null, primary key
 #  shortcode          :string           default(""), not null
 #  domain             :string
 #  image_file_name    :string
@@ -24,6 +24,8 @@ class CustomEmoji < ApplicationRecord
   SCAN_RE = /(?<=[^[:alnum:]:]|\n|^)
     :(#{SHORTCODE_RE_FRAGMENT}):
     (?=[^[:alnum:]:]|$)/x
+
+  has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
   has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }
 

@@ -65,6 +65,7 @@ export default class IconButton extends React.PureComponent {
       expanded,
       icon,
       inverted,
+      flip,
       overlay,
       pressed,
       tabIndex,
@@ -78,8 +79,8 @@ export default class IconButton extends React.PureComponent {
       overlayed: overlay,
     });
 
-    const flipDeg = this.props.flip ? -180 : -360;
-    const rotateDeg = this.props.active ? flipDeg : 0;
+    const flipDeg = flip ? -180 : -360;
+    const rotateDeg = active ? flipDeg : 0;
 
     const motionDefaultStyle = {
       rotate: rotateDeg,
@@ -92,6 +93,25 @@ export default class IconButton extends React.PureComponent {
     const motionStyle = {
       rotate: animate ? spring(rotateDeg, springOpts) : 0,
     };
+
+    if (!animate) {
+      // Perf optimization: avoid unnecessary <Motion> components unless
+      // we actually need to animate.
+      return (
+        <button
+          aria-label={title}
+          aria-pressed={pressed}
+          aria-expanded={expanded}
+          title={title}
+          className={classes}
+          onClick={this.handleClick}
+          style={style}
+          tabIndex={tabIndex}
+        >
+          <i className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
+        </button>
+      );
+    }
 
     return (
       <Motion defaultStyle={motionDefaultStyle} style={motionStyle}>

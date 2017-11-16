@@ -253,6 +253,15 @@
   width: 0;
   height: 0;
   position: absolute;
+
+  img,
+  svg {
+    margin: 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
 }
 
 .ellipsis {
@@ -555,6 +564,7 @@
   font-weight: 400;
   overflow: visible;
   white-space: pre-wrap;
+  padding-top: 5px;
 
   &.status__content--with-spoiler {
     white-space: normal;
@@ -565,8 +575,9 @@
   }
 
   .emojione {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    margin: -5px 0 0;
   }
 
   p {
@@ -671,7 +682,7 @@
     outline: 0;
     background: lighten($ui-base-color, 4%);
 
-    &.status-direct {
+    .status.status-direct {
       background: lighten($ui-base-color, 12%);
     }
 
@@ -689,6 +700,12 @@
   min-height: 48px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
+
+  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
+    // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
+    // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
+    padding-right: 26px; // 10px + 16px
+  }
 
   @keyframes fade {
     0% { opacity: 0; }
@@ -920,8 +937,9 @@
     line-height: 24px;
 
     .emojione {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
+      margin: -5px 0 0;
     }
   }
 
@@ -2908,7 +2926,7 @@ button.icon-button.active i.fa-retweet {
   color: $primary-text-color;
   position: absolute;
   top: 10px;
-  right: 10px;
+  left: 10px;
   opacity: 0.7;
   display: inline-block;
   vertical-align: top;
@@ -2923,7 +2941,7 @@ button.icon-button.active i.fa-retweet {
 .account--action-button {
   position: absolute;
   top: 10px;
-  left: 20px;
+  right: 20px;
 }
 
 .setting-toggle {
@@ -3971,6 +3989,14 @@ button.icon-button.active i.fa-retweet {
   @media screen and (min-width: 480px) {
     max-width: 380px;
   }
+}
+
+.mute-modal {
+  line-height: 24px;
+}
+
+.mute-modal .react-toggle {
+  vertical-align: middle;
 }
 
 .report-modal__statuses,
