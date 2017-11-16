@@ -1,0 +1,10 @@
+%tr
+  %td
+    = keyword_mute.keyword
+  %td
+    - if keyword_mute.whole_word
+      %i.fa.fa-check
+  %td
+    = table_link_to 'edit', t('keyword_mutes.edit'), edit_settings_keyword_mute_path(keyword_mute)
+  %td
+    = table_link_to 'times', t('keyword_mutes.remove'), settings_keyword_mute_path(keyword_mute), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

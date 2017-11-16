@@ -25,7 +25,7 @@ import { initReport } from '../../actions/reports';
 import { makeGetStatus } from '../../selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
 import ColumnBackButton from '../../components/column_back_button';
-import StatusContainer from '../../containers/status_container';
+import StatusContainer from '../../../glitch/components/status/container';
 import { openModal } from '../../actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -43,6 +43,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.params.statusId),
+    settings: state.get('local_settings'),
     ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
     descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
   });
@@ -62,6 +63,7 @@ export default class Status extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
+    settings: ImmutablePropTypes.map.isRequired,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
@@ -253,8 +255,10 @@ export default class Status extends ImmutablePureComponent {
     if (status && ancestorsIds && ancestorsIds.size > 0) {
       const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
 
-      element.scrollIntoView(true);
-      this._scrolledIntoView = true;
+      if (element) {
+        element.scrollIntoView(true);
+        this._scrolledIntoView = true;
+      }
     }
   }
 
@@ -268,7 +272,7 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { status, ancestorsIds, descendantsIds } = this.props;
+    const { status, settings, ancestorsIds, descendantsIds } = this.props;
     const { fullscreen } = this.state;
 
     if (status === null) {
@@ -310,6 +314,7 @@ export default class Status extends ImmutablePureComponent {
               <div className='focusable' tabIndex='0'>
                 <DetailedStatus
                   status={status}
+                  settings={settings}
                   onOpenVideo={this.handleOpenVideo}
                   onOpenMedia={this.handleOpenMedia}
                 />

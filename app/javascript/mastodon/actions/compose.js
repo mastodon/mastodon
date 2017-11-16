@@ -8,6 +8,7 @@ import {
   refreshHomeTimeline,
   refreshCommunityTimeline,
   refreshPublicTimeline,
+  refreshDirectTimeline,
 } from './timelines';
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
@@ -31,6 +32,7 @@ export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
 export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
+export const COMPOSE_ADVANCED_OPTIONS_CHANGE = 'COMPOSE_ADVANCED_OPTIONS_CHANGE';
 export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_SPOILERNESS_CHANGE = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
@@ -43,6 +45,8 @@ export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
 export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
+
+export const COMPOSE_DOODLE_SET        = 'COMPOSE_DOODLE_SET';
 
 export function changeCompose(text) {
   return {
@@ -91,14 +95,16 @@ export function mentionCompose(account, router) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
-    const status = getState().getIn(['compose', 'text'], '');
+    let status = getState().getIn(['compose', 'text'], '');
 
     if (!status || !status.length) {
       return;
     }
 
     dispatch(submitComposeRequest());
-
+    if (getState().getIn(['compose', 'advanced_options', 'do_not_federate'])) {
+      status = status + ' 👁️';
+    }
     api(getState).post('/api/v1/statuses', {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
@@ -128,6 +134,8 @@ export function submitCompose() {
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertOrRefresh('community', refreshCommunityTimeline);
         insertOrRefresh('public', refreshPublicTimeline);
+      } else if (response.data.visibility === 'direct') {
+        insertOrRefresh('direct', refreshDirectTimeline);
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -152,6 +160,13 @@ export function submitComposeFail(error) {
   return {
     type: COMPOSE_SUBMIT_FAIL,
     error: error,
+  };
+};
+
+export function doodleSet(options) {
+  return {
+    type: COMPOSE_DOODLE_SET,
+    options: options,
   };
 };
 
@@ -333,6 +348,13 @@ export function unmountCompose() {
     type: COMPOSE_UNMOUNT,
   };
 };
+
+export function toggleComposeAdvancedOption(option) {
+  return {
+    type: COMPOSE_ADVANCED_OPTIONS_CHANGE,
+    option: option,
+  };
+}
 
 export function changeComposeSensitivity() {
   return {

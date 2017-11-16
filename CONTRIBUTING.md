@@ -1,3 +1,36 @@
+#  Contributing to Mastodon Glitch Edition  #
+
+Thank you for your interest in contributing to the `glitch-soc` project!
+Here are some guidelines, and ways you can help.
+
+>   (This document is a bit of a work-in-progress, so please bear with us.
+>   If you don't see what you're looking for here, please don't hesitate to reach out!)
+
+##  Planning  ##
+
+Right now a lot of the planning for this project takes place in our development Discord, or through GitHub Issues and Projects.
+We're working on ways to improve the planning structure and better solicit feedback, and if you feel like you can help in this respect, feel free to give us a holler.
+
+##  Documentation  ##
+
+The documentation for this repository is available at [`glitch-soc/docs`](https://github.com/glitch-soc/docs) (online at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/)).
+Right now, we've mostly focused on the features that make this fork different from upstream in some manner.
+Adding screenshots, improving descriptions, and so forth are all ways to help contribute to the project even if you don't know any code.
+
+##  Frontend Development  ##
+
+Check out [the documentation here](https://glitch-soc.github.io/docs/contributing/frontend/) for more information.
+
+##  Backend Development  ##
+
+See the guidelines below.
+
+ - - -
+
+You should also try to follow the guidelines set out in the original `CONTRIBUTING.md` from `tootsuite/mastodon`, reproduced below.
+
+<blockquote>
+
 CONTRIBUTING
 ============
 
@@ -49,3 +82,5 @@ It is expected that you have a working development environment set up (see back-
 * If you are introducing new strings, they must be using localization methods
 
 If the JavaScript or CSS assets won't compile due to a syntax error, it's a good sign that the pull request isn't ready for submission yet.
+
+</blockquote>

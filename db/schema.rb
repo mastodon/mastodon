@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20171114080328) do
     t.datetime "updated_at", null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
+    t.boolean "show_reblogs", default: true, null: false
     t.index ["account_id", "target_account_id"], name: "index_follow_requests_on_account_id_and_target_account_id", unique: true
   end
 
@@ -155,7 +156,17 @@ ActiveRecord::Schema.define(version: 20171114080328) do
     t.datetime "updated_at", null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
+    t.boolean "show_reblogs", default: true, null: false
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true
+  end
+
+  create_table "glitch_keyword_mutes", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "keyword", null: false
+    t.boolean "whole_word", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_glitch_keyword_mutes_on_account_id"
   end
 
   create_table "imports", force: :cascade do |t|
@@ -201,6 +212,7 @@ ActiveRecord::Schema.define(version: 20171114080328) do
   create_table "mutes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "hide_notifications", default: true, null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
     t.boolean "hide_notifications", default: true, null: false
@@ -477,6 +489,7 @@ ActiveRecord::Schema.define(version: 20171114080328) do
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
+  add_foreign_key "glitch_keyword_mutes", "accounts", on_delete: :cascade
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "media_attachments", "accounts", name: "fk_96dd81e81b", on_delete: :nullify
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify

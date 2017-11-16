@@ -2,8 +2,15 @@ import detectPassiveEvents from 'detect-passive-events';
 
 const LAYOUT_BREAKPOINT = 630;
 
-export function isMobile(width) {
-  return width <= LAYOUT_BREAKPOINT;
+export function isMobile(width, columns) {
+  switch (columns) {
+  case 'multiple':
+    return false;
+  case 'single':
+    return true;
+  default:
+    return width <= LAYOUT_BREAKPOINT;
+  }
 };
 
 const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;

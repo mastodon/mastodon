@@ -1,5 +1,5 @@
 @mixin avatar-radius() {
-  border-radius: 4px;
+  border-radius: $ui-avatar-border-size;
   background: transparent no-repeat;
   background-position: 50%;
   background-clip: padding-box;
@@ -9,4 +9,34 @@
   width: $size;
   height: $size;
   background-size: $size $size;
+}
+
+@mixin single-column($media, $parent: '&') {
+  .auto-columns #{$parent} {
+    @media #{$media} {
+      @content;
+    }
+  }
+  .single-column #{$parent} {
+    @content;
+  }
+}
+
+@mixin limited-single-column($media, $parent: '&') {
+  .auto-columns #{$parent}, .single-column #{$parent} {
+    @media #{$media} {
+      @content;
+    }
+  }
+}
+
+@mixin multi-columns($media, $parent: '&') {
+  .auto-columns #{$parent} {
+    @media #{$media} {
+      @content;
+    }
+  }
+  .multi-columns #{$parent} {
+    @content;
+  }
 }

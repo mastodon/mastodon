@@ -1,0 +1,86 @@
+$doodleBg: #d9e1e8;
+.doodle-modal {
+  @extend .boost-modal;
+  width: unset;
+}
+
+.doodle-modal__container {
+  background: $doodleBg;
+  text-align: center;
+  line-height: 0; // remove weird gap under canvas
+  canvas {
+    border: 5px solid $doodleBg;
+  }
+}
+
+.doodle-modal__action-bar {
+  @extend .boost-modal__action-bar;
+
+  .filler {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .doodle-toolbar {
+    line-height: 1;
+
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    justify-content: space-around;
+
+    &.with-inputs {
+      label {
+        display: inline-block;
+        width: 70px;
+        text-align: right;
+        margin-right: 2px;
+      }
+
+      input[type="number"],input[type="text"] {
+        width: 40px;
+      }
+      span.val {
+        display: inline-block;
+        text-align: left;
+        width: 50px;
+      }
+    }
+  }
+
+  .doodle-palette {
+    padding-right: 0 !important;
+    border: 1px solid black;
+    line-height: .2rem;
+    flex-grow: 0;
+    background: white;
+
+    button {
+      appearance: none;
+      width: 1rem;
+      height: 1rem;
+      margin: 0; padding: 0;
+      text-align: center;
+      color: black;
+      text-shadow: 0 0 1px white;
+      cursor: pointer;
+      box-shadow: inset 0 0 1px rgba(white, .5);
+      border: 1px solid black;
+      outline-offset:-1px;
+
+      &.foreground {
+        outline: 1px dashed white;
+      }
+
+      &.background {
+        outline: 1px dashed red;
+      }
+
+      &.foreground.background {
+        outline: 1px dashed red;
+        border-color: white;
+      }
+    }
+  }
+}

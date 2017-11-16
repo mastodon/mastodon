@@ -9,6 +9,7 @@ const initialState = ImmutableMap({
   saved: true,
 
   onboarded: false,
+  layout: 'auto',
 
   skinTone: 1,
 
@@ -53,6 +54,12 @@ const initialState = ImmutableMap({
   }),
 
   public: ImmutableMap({
+    regex: ImmutableMap({
+      body: '',
+    }),
+  }),
+
+  direct: ImmutableMap({
     regex: ImmutableMap({
       body: '',
     }),

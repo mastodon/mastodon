@@ -13,6 +13,7 @@ export default class Column extends React.PureComponent {
     children: PropTypes.node,
     active: PropTypes.bool,
     hideHeadingOnMobile: PropTypes.bool,
+    name: PropTypes.string,
   };
 
   handleHeaderClick = () => {
@@ -47,7 +48,7 @@ export default class Column extends React.PureComponent {
   }
 
   render () {
-    const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
+    const { heading, icon, children, active, hideHeadingOnMobile, name } = this.props;
 
     const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
@@ -59,6 +60,7 @@ export default class Column extends React.PureComponent {
       <div
         ref={this.setRef}
         role='region'
+        data-column={name}
         aria-labelledby={columnHeaderId}
         className='column'
         onScroll={this.handleScroll}

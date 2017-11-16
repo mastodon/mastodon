@@ -154,6 +154,14 @@ class Status < ApplicationRecord
       where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
     end
 
+    def as_direct_timeline(account)
+      query = joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
+              .where("mentions.account_id = #{account.id} OR statuses.account_id = #{account.id}")
+              .where(visibility: [:direct])
+
+      apply_timeline_filters(query, account, false)
+    end
+
     def as_public_timeline(account = nil, local_only = false)
       query = timeline_scope(local_only).without_replies
 
@@ -259,6 +267,11 @@ class Status < ApplicationRecord
         excluding_silenced_accounts
       end
     end
+  end
+
+  def local_only?
+    # match both with and without U+FE0F (the emoji variation selector)
+    /👁\ufe0f?\z/.match?(content)
   end
 
   private

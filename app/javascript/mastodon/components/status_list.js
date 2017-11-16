@@ -1,7 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import StatusContainer from '../containers/status_container';
+import StatusContainer from '../../glitch/components/status/container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ScrollableList from './scrollable_list';
 

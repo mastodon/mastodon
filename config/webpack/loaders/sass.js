@@ -9,7 +9,7 @@ module.exports = {
       { loader: 'css-loader', options: { minimize: env.NODE_ENV === 'production' } },
       { loader: 'postcss-loader', options: { sourceMap: true } },
       'resolve-url-loader',
-      'sass-loader',
+      { loader: 'sass-loader', options: { includePaths: ['app/javascript'] } },
     ],
   }),
 };

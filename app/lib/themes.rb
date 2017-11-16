@@ -7,7 +7,14 @@ class Themes
   include Singleton
 
   def initialize
-    @conf = YAML.load_file(Rails.root.join('config', 'themes.yml'))
+    result = Hash.new
+    Dir.glob(Rails.root.join('app', 'javascript', 'themes', '*', 'theme.yml')) do |path|
+      data = YAML.load_file(path)
+      if data['pack'] && data['name']
+        result[data['name']] = data
+      end
+    end
+    @conf = result
   end
 
   def names

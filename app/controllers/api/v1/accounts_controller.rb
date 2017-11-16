@@ -13,9 +13,11 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def follow
-    FollowService.new.call(current_user.account, @account.acct)
+    reblogs_arg = { reblogs: params[:reblogs] }
+    
+    FollowService.new.call(current_user.account, @account.acct, reblogs_arg)
 
-    options = @account.locked? ? {} : { following_map: { @account.id => true }, requested_map: { @account.id => false } }
+    options = @account.locked? ? {} : { following_map: { @account.id => reblogs_arg }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(options)
   end

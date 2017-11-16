@@ -76,7 +76,7 @@ class UserSettingsDecorator
   def theme_preference
     settings['setting_theme']
   end
-
+  
   def boolean_cast_setting(key)
     settings[key] == '1'
   end

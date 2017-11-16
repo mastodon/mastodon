@@ -7,7 +7,8 @@ module.exports = {
   exclude: /node_modules/,
   loader: 'babel-loader',
   options: {
-    forceEnv: env,
+    forceEnv: process.env.NODE_ENV || 'development',
+    sourceRoot: 'app/javascript',
     cacheDirectory: env === 'development' ? false : resolve(__dirname, '..', '..', '..', 'tmp', 'cache', 'babel-loader'),
   },
 };

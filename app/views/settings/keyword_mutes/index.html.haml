@@ -1,0 +1,18 @@
+- content_for :page_title do
+  = t('settings.keyword_mutes')
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('keyword_mutes.keyword')
+        %th= t('keyword_mutes.match_whole_word')
+        %th
+        %th
+      %tbody
+        = render partial: 'keyword_mute', collection: @keyword_mutes, as: :keyword_mute
+
+= paginate @keyword_mutes
+.simple_form
+  = link_to t('keyword_mutes.add_keyword'), new_settings_keyword_mute_path, class: 'button'
+  = link_to t('keyword_mutes.remove_all'), destroy_all_settings_keyword_mutes_path, class: 'button negative', method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

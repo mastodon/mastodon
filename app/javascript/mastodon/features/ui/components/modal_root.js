@@ -7,11 +7,13 @@ import ActionsModal from './actions_modal';
 import MediaModal from './media_modal';
 import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
+import DoodleModal from './doodle_modal';
 import ConfirmationModal from './confirmation_modal';
 import {
   OnboardingModal,
   MuteModal,
   ReportModal,
+  SettingsModal,
   EmbedModal,
 } from '../../../features/ui/util/async-components';
 
@@ -20,9 +22,11 @@ const MODAL_COMPONENTS = {
   'ONBOARDING': OnboardingModal,
   'VIDEO': () => Promise.resolve({ default: VideoModal }),
   'BOOST': () => Promise.resolve({ default: BoostModal }),
+  'DOODLE': () => Promise.resolve({ default: DoodleModal }),
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
   'REPORT': ReportModal,
+  'SETTINGS': SettingsModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
 };
@@ -41,7 +45,7 @@ export default class ModalRoot extends React.PureComponent {
 
   handleKeyUp = (e) => {
     if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
-         && !!this.props.type) {
+         && !!this.props.type && !this.props.props.noEsc) {
       this.props.onClose();
     }
   }
@@ -86,7 +90,7 @@ export default class ModalRoot extends React.PureComponent {
   }
 
   renderLoading = modalId => () => {
-    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
+    return ['MEDIA', 'VIDEO', 'BOOST', 'DOODLE', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
   }
 
   renderError = (props) => {

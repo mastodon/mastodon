@@ -29,6 +29,11 @@ settings:
   import/ignore:
   - node_modules
   - \\.(css|scss|json)$
+  import/resolver:
+    node:
+      moduleDirectory:
+        - node_modules
+        - app/javascript
 
 rules:
   brace-style: warn

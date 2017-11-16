@@ -28,6 +28,11 @@ function main() {
       WebPushSubscription.register();
     }
     perf.stop('main()');
+
+    // remember the initial URL
+    if (window.history && typeof window._mastoInitialHistoryLen === 'undefined') {
+      window._mastoInitialHistoryLen = window.history.length;
+    }
   });
 }
 

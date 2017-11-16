@@ -1,3 +1,6 @@
+//  THIS FILE EXISTS FOR UPSTREAM COMPATIBILITY & SHOULDN'T BE USED !!
+//  SEE INSTEAD : glitch/components/status/container
+
 import React from 'react';
 import { connect } from 'react-redux';
 import Status from '../components/status';

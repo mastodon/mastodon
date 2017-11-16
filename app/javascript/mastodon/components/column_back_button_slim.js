@@ -9,8 +9,12 @@ export default class ColumnBackButtonSlim extends React.PureComponent {
   };
 
   handleClick = () => {
-    if (window.history && window.history.length === 1) this.context.router.history.push('/');
-    else this.context.router.history.goBack();
+    // if history is exhausted, or we would leave mastodon, just go to root.
+    if (window.history && (window.history.length === 1 || window.history.length === window._mastoInitialHistoryLen)) {
+      this.context.router.history.push('/');
+    } else {
+      this.context.router.history.goBack();
+    }
   }
 
   render () {

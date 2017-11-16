@@ -1,4 +1,5 @@
 import loadPolyfills from '../mastodon/load_polyfills';
+import { processBio } from '../glitch/util/bio_metadata';
 import ready from '../mastodon/ready';
 
 window.addEventListener('message', e => {
@@ -121,7 +122,8 @@ function main() {
     const noteCounter = document.querySelector('.note-counter');
 
     if (noteCounter) {
-      noteCounter.textContent = 160 - length(target.value);
+      const noteWithoutMetadata = processBio(target.value).text;
+      noteCounter.textContent = 500 - length(noteWithoutMetadata);
     }
   });
 

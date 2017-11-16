@@ -47,14 +47,14 @@ export default class FollowRequests extends ImmutablePureComponent {
 
     if (!accountIds) {
       return (
-        <Column>
+        <Column name='follow-requests'>
           <LoadingIndicator />
         </Column>
       );
     }
 
     return (
-      <Column icon='users' heading={intl.formatMessage(messages.heading)}>
+      <Column name='follow-requests' icon='users' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
         <ScrollContainer scrollKey='follow_requests'>

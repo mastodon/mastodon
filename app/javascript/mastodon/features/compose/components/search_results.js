@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
-import StatusContainer from '../../../containers/status_container';
+import StatusContainer from '../../../../glitch/components/status/container';
 import { Link } from 'react-router-dom';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 

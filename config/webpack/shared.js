@@ -1,7 +1,7 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
 const webpack = require('webpack');
-const { basename, dirname, join, relative, resolve, sep } = require('path');
+const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -26,10 +26,13 @@ module.exports = {
       localMap[basename(entry, extname(entry, extname(entry)))] = resolve(entry);
       return localMap;
     }, {}),
-    Object.keys(themes).reduce((themePaths, name) => {
-      themePaths[name] = resolve(join(settings.source_path, themes[name]));
-      return themePaths;
-    }, {})
+    Object.keys(themes).reduce(
+      (themePaths, name) => {
+        const themeData = themes[name];
+        themePaths[`themes/${name}`] = resolve(themeData.pack_directory, themeData.pack);
+        return themePaths;
+      }, {}
+    )
   ),
 
   output: {
@@ -52,25 +55,17 @@ module.exports = {
         resource.request = resource.request.replace(/^history/, 'history/es');
       }
     ),
-    new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[contenthash].css' : '[name].css'),
+    new ExtractTextPlugin({
+      filename: env.NODE_ENV === 'production' ? '[name]-[contenthash].css' : '[name].css',
+      allChunks: true,
+    }),
     new ManifestPlugin({
       publicPath: output.publicPath,
       writeToFileEmit: true,
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
-      minChunks: (module, count) => {
-        const reactIntlPathRegexp = new RegExp(`node_modules\\${sep}react-intl`);
-
-        if (module.resource && reactIntlPathRegexp.test(module.resource)) {
-          // skip react-intl because it's useless to put in the common chunk,
-          // e.g. because "shared" modules between zh-TW and zh-CN will never
-          // be loaded together
-          return false;
-        }
-
-        return count >= 2;
-      },
+      minChunks: Infinity, // It doesn't make sense to use common chunks with multiple frontend support.
     }),
   ],
 

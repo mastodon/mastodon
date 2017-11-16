@@ -27,7 +27,7 @@ class StreamEntry < ApplicationRecord
   scope :recent, -> { reorder(id: :desc) }
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES) }
 
-  delegate :target, :title, :content, :thread,
+  delegate :target, :title, :content, :thread, :local_only?,
            to: :status,
            allow_nil: true
 

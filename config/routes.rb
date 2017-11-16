@@ -66,6 +66,13 @@ Rails.application.routes.draw do
 
   namespace :settings do
     resource :profile, only: [:show, :update]
+
+    resources :keyword_mutes do
+      collection do
+        delete :destroy_all
+      end
+    end
+
     resource :preferences, only: [:show, :update]
     resource :notifications, only: [:show, :update]
     resource :import, only: [:show, :create]
@@ -203,6 +210,7 @@ Rails.application.routes.draw do
       end
 
       namespace :timelines do
+        resource :direct, only: :show, controller: :direct
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
@@ -216,7 +224,11 @@ Rails.application.routes.draw do
       resources :follows,    only: [:create]
       resources :media,      only: [:create, :update]
       resources :blocks,     only: [:index]
-      resources :mutes,      only: [:index]
+      resources :mutes,      only: [:index] do
+        collection do 
+          get 'details'
+        end
+      end
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
 
@@ -236,10 +248,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :notifications, only: [:index, :show] do
+      resources :notifications, only: [:index, :show, :destroy] do
         collection do
           post :clear
           post :dismiss
+          delete :destroy_multiple
         end
       end
 

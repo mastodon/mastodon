@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
+import { openModal } from '../../actions/modal';
+import { changeLocalSetting } from '../../../glitch/actions/local_settings';
 import { Link } from 'react-router-dom';
 import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';
@@ -19,7 +21,7 @@ const messages = defineMessages({
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
-  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
 });
 
@@ -46,6 +48,16 @@ export default class Compose extends React.PureComponent {
 
   componentWillUnmount () {
     this.props.dispatch(unmountCompose());
+  }
+
+  onLayoutClick = (e) => {
+    const layout = e.currentTarget.getAttribute('data-mastodon-layout');
+    this.props.dispatch(changeLocalSetting(['layout'], layout));
+    e.preventDefault();
+  }
+
+  openSettings = () => {
+    this.props.dispatch(openModal('SETTINGS', {}));
   }
 
   onFocus = () => {
@@ -78,11 +90,13 @@ export default class Compose extends React.PureComponent {
           {!columns.some(column => column.get('id') === 'PUBLIC') && (
             <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><i role='img' className='fa fa-fw fa-globe' /></Link>
           )}
-          <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><i role='img' className='fa fa-fw fa-cog' /></a>
+          <a onClick={this.openSettings} role='button' tabIndex='0' className='drawer__tab' title={intl.formatMessage(messages.settings)} aria-label={intl.formatMessage(messages.settings)}><i role='img' className='fa fa-fw fa-cogs' /></a>
           <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)}><i role='img' className='fa fa-fw fa-sign-out' /></a>
         </nav>
       );
     }
+
+
 
     return (
       <div className='drawer'>
@@ -91,7 +105,7 @@ export default class Compose extends React.PureComponent {
         <SearchContainer />
 
         <div className='drawer__pager'>
-          <div className='drawer__inner' onFocus={this.onFocus}>
+          <div className='drawer__inner scrollable optionally-scrollable' onFocus={this.onFocus}>
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer />
           </div>
@@ -104,6 +118,7 @@ export default class Compose extends React.PureComponent {
             }
           </Motion>
         </div>
+
       </div>
     );
   }

@@ -47,6 +47,13 @@
                 %p= t('about.closed_registrations')
               - else
                 = @instance_presenter.closed_registrations_message.html_safe
+
+            = simple_form_for(:user, html: { style: 'margin-left: -20px' }, url: session_path(:user)) do |f|
+              = f.input :email, autofocus: true, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
+              = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
+
+              .actions
+                = f.button :button, t('auth.login'), type: :submit
             = link_to t('about.find_another_instance'), 'https://joinmastodon.org/', class: 'button button-alternative button--block'
 
   .about-short
@@ -68,4 +75,8 @@
     .container
       %p
         = link_to t('about.source_code'), @instance_presenter.source_url
-        = " (#{@instance_presenter.version_number})"
+        - if @instance_presenter.commit_hash == ""
+          %strong= " (#{@instance_presenter.version_number})"
+        - else
+          %strong= " (#{@instance_presenter.version_number}, "
+          %strong= " #{@instance_presenter.commit_hash})"
