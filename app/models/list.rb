@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: lists
@@ -11,7 +12,9 @@
 
 class List < ApplicationRecord
   belongs_to :account
-  has_and_belongs_to_many :accounts
+
+  has_many :list_accounts, inverse_of: :list, dependent: :destroy
+  has_many :accounts, through: :list_accounts
 
   validates :title, presence: true
 end

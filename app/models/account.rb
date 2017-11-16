@@ -96,7 +96,8 @@ class Account < ApplicationRecord
   has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
 
   # Lists
-  has_and_belongs_to_many :lists
+  has_many :list_accounts, inverse_of: :account, dependent: :destroy
+  has_many :lists, through: :list_accounts
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }

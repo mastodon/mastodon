@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V1::Timelines::ListController < Api::BaseController
-  include Authorization
-
   before_action -> { doorkeeper_authorize! :read }
   before_action :require_user!
   before_action :set_list
@@ -11,8 +9,6 @@ class Api::V1::Timelines::ListController < Api::BaseController
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
-    authorize @list, :show?
-
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
            relationships: StatusRelationshipsPresenter.new(@statuses, current_user.account_id)
@@ -21,7 +17,7 @@ class Api::V1::Timelines::ListController < Api::BaseController
   private
 
   def set_list
-    @list = List.find(params[:id])
+    @list = List.where(account: current_account).find(params[:id])
   end
 
   def set_statuses

@@ -265,6 +265,8 @@ Rails.application.routes.draw do
           post :unmute
         end
       end
+
+      resources :lists, only: [:index, :create, :show, :update, :destroy]
     end
 
     namespace :web do
