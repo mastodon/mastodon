@@ -16,6 +16,17 @@ class StatusesTag < ApplicationRecord
       before = JSON.parse(redis.hget('trend_tag', 'before').presence || '{}')
       last = JSON.parse(redis.hget('trend_tag', 'last').presence || '{}')
       now = JSON.parse(aggregate_tags_in.to_json)
+
+      score = calc_score(before, last, now)
+      redis.hmset('trend_tag', 'updated_at', Time.now.utc.iso8601, 'score', score.to_json, 'last', now.to_json, 'before', last.to_json)
+
+      score_ex, level_l, trend_l = calc_score_experimental(before, last, now)
+      redis.hmset('trend_tag', 'score_ex', score_ex.to_json, 'level_L', level_l.to_json, 'trend_L', trend_l.to_json)
+    end
+
+    private
+
+    def calc_score(before, last, now)
       trend_score = {}
       tag_keys(before, last, now).each do |k|
         b = before[k].to_i # to_i converts nil to 0
@@ -24,14 +35,11 @@ class StatusesTag < ApplicationRecord
         tag = Tag.find(k.to_i)
         trend_score[tag[:name]] = score(now: n, last: l, before: b)
       end
-      redis.hmset('trend_tag', 'updated_at', Time.now.utc.iso8601, 'score', trend_score.to_json, 'last', now.to_json, 'before', last.to_json)
-      calc_trend_experimental(before, last, now)
+      trend_score
     end
 
-    private
-
     # Double Exponential Smoothing (experimental)
-    def calc_trend_experimental(before, last, now)
+    def calc_score_experimental(before, last, now)
       level_l = JSON.parse(redis.hget('trend_tag', 'level_L').presence || '{}')
       trend_l = JSON.parse(redis.hget('trend_tag', 'trend_L').presence || '{}')
       level_now = {}
@@ -48,7 +56,7 @@ class StatusesTag < ApplicationRecord
         trend_now[k] = st.round(3)
         trend_score_des[tag[:name]] = (sl + st).round(3)
       end
-      redis.hmset('trend_tag', 'score_ex', trend_score_des.to_json, 'level_L', level_now.to_json, 'trend_L', trend_now.to_json)
+      [trend_score_des, level_now, trend_now]
     end
 
     def tag_keys(*args)

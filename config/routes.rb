@@ -259,7 +259,7 @@ Rails.application.routes.draw do
       end
 
       resources :favourite_tags, only: [:index, :create, :destroy], param: :tag
-      resource :trend_tag, only: [:show]
+      resource :trend_tags, only: [:show]
     end
 
     namespace :web do
