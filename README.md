@@ -1,6 +1,6 @@
 # im@stodon
 
-[![Build Status](http://img.shields.io/travis/imas/mastodon.svg)][travis_imastodon]
+[![Build Status](https://img.shields.io/travis/imas/mastodon.svg)][travis_imastodon]
 
 [travis_imastodon]: https://travis-ci.org/imas/mastodon
 
