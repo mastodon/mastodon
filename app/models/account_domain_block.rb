@@ -6,8 +6,8 @@
 #  domain     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  account_id :integer
-#  id         :integer          not null, primary key
+#  account_id :bigint
+#  id         :bigint           not null, primary key
 #
 
 class AccountDomainBlock < ApplicationRecord

@@ -59,13 +59,19 @@ zh-CN:
       destroyed_msg: 管理记录删除成功！
     accounts:
       are_you_sure: 你确定吗？
+      by_domain: 域名
       confirm: 确认
       confirmed: 已确认
-      disable_two_factor_authentication: 停用两步认证
+      demote: 降任
+      disable: 停用
+      disable_two_factor_authentication: 停用双重认证
+      disabled: 已停用
       display_name: 昵称
       domain: 域名
       edit: 编辑
       email: 电子邮件地址
+      enable: 启用
+      enabled: 已启用
       feed_url: 订阅 URL
       followers: 关注者
       followers_url: 关注者（Followers）URL
@@ -77,7 +83,9 @@ zh-CN:
         local: 本地
         remote: 远程
         title: 位置
+      login_status: 登录状态
       media_attachments: 媒体文件
+      memorialize: 设置为追悼帐户
       moderation:
         all: 全部
         silenced: 已静音
@@ -94,6 +102,7 @@ zh-CN:
       outbox_url: 发件箱（Outbox）URL
       perform_full_suspension: 永久封禁
       profile_url: 个人资料页面 URL
+      promote: 升任
       protocol: 协议
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
@@ -101,6 +110,11 @@ zh-CN:
       reset: 重置
       reset_password: 重置密码
       resubscribe: 重新订阅
+      role: 用户组
+      roles:
+        admin: 管理员
+        moderator: 协管
+        user: 用户
       salmon_url: Salmon URL
       search: 搜索
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
@@ -130,18 +144,19 @@ zh-CN:
       enable: 启用
       enabled_msg: 表情启用成功
       image_hint: PNG 格式，最大 50KB
-      listed: 默认显示的表情
+      listed: 已显示
       new:
         title: 添加新的自定义表情
+      overwrite: 覆盖
       shortcode: 短代码
       shortcode_hint: 至少 2 个字符，只能使用字母、数字和下划线
       title: 自定义表情
-      unlisted: 默认隐藏的表情
+      unlisted: 已隐藏
       update_failed_msg: 表情更新失败！
       updated_msg: 表情更新成功！
       upload: 上传
     domain_blocks:
-      add_new: 添加
+      add_new: 添加新条目
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
@@ -149,7 +164,7 @@ zh-CN:
         create: 添加域名屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
         severity:
-          desc_html: 选择<strong>自动静音</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；选择<strong>无</strong>可以拒绝接收来自该域名的任何媒体文件。
+          desc_html: 选择<strong>自动静音</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。
           noop: 无
           silence: 自动静音
           suspend: 自动封禁
@@ -160,7 +175,7 @@ zh-CN:
         noop: 无
         silence: 自动静音
         suspend: 自动封禁
-      severity: 封禁级别
+      severity: 屏蔽级别
       show:
         affected_accounts: 将会影响到数据库中的 %{count} 个帐户
         retroactive:
@@ -177,7 +192,7 @@ zh-CN:
       destroyed_msg: 电子邮件域名屏蔽删除成功
       domain: 域名
       new:
-        create: 添加封禁
+        create: 添加屏蔽
         title: 添加电子邮件域名屏蔽
       title: 电子邮件域名屏蔽
     instances:
@@ -373,6 +388,7 @@ zh-CN:
       following: 关注列表
       muting: 静音列表
     upload: 上传
+  in_memoriam_html: 谨此悼念。
   landing_strip_html: "<strong>%{name}</strong> 是一位来自 %{link_to_root_path} 的用户。如果你想关注这个人或者与这个人互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。"
   landing_strip_signup_html: 还没有这种帐户？你可以<a href="%{sign_up_path}">在本站注册一个</a>。
   media_attachments:
@@ -492,7 +508,7 @@ zh-CN:
     notifications: 通知
     preferences: 首选项
     settings: 设置
-    two_factor_authentication: 两步认证
+    two_factor_authentication: 双重认证
     your_apps: 你的应用
   statuses:
     open_in_web: 在站内打开
@@ -589,16 +605,16 @@ zh-CN:
     default: Mastodon
   time:
     formats:
-      default: "%Y年%-m月%d日%H:%M"
+      default: "%Y年%-m月%d日 %H:%M"
   two_factor_authentication:
     code_hint: 输入你的认证器生成的代码以确认
-    description_html: 启用<strong>两步认证</strong>后，你需要输入手机认证器生成的代码才能登录
+    description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录
     disable: 停用
     enable: 启用
-    enabled: 两步认证已启用
-    enabled_success: 两步认证启用成功
+    enabled: 双重认证已启用
+    enabled_success: 双重认证启用成功
     generate_recovery_codes: 生成恢复代码
-    instructions_html: "<strong>请使用 Google 身份验证器或其他类似的 TOTP 两步验证手机应用扫描此处的二维码</strong>。启用两部验证后，你需要输入该应用生成的代码来登录你的帐户。"
+    instructions_html: "<strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
     lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
     manual_instructions: 如果你无法扫描二维码，请手动输入下列文本：
     recovery_codes: 备份恢复代码
@@ -608,5 +624,5 @@ zh-CN:
     wrong_code: 输入的认证码无效！请检查你设备上显示的时间是否正确，如果正确，你可能需要联系管理员以检查服务器的时间是否正确。
   users:
     invalid_email: 输入的电子邮件地址无效
-    invalid_otp_token: 输入的两步认证代码无效
+    invalid_otp_token: 输入的双重认证代码无效
     signed_in_as: 当前登录的帐户：

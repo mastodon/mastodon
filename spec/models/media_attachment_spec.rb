@@ -1,6 +1,83 @@
 require 'rails_helper'
 
 RSpec.describe MediaAttachment, type: :model do
+  describe 'local?' do
+    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
+
+    subject { media_attachment.local? }
+
+    context 'remote_url is blank' do
+      let(:remote_url) { '' }
+
+      it 'returns true' do
+        is_expected.to be true
+      end
+    end
+
+    context 'remote_url is present' do
+      let(:remote_url) { 'remote_url' }
+
+      it 'returns false' do
+        is_expected.to be false
+      end
+    end
+  end
+
+  describe 'needs_redownload?' do
+    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
+
+    subject { media_attachment.needs_redownload? }
+
+    context 'file is blank' do
+      let(:file) { nil }
+
+      context 'remote_url is blank' do
+        let(:remote_url) { '' }
+
+        it 'returns false' do
+          is_expected.to be false
+        end
+      end
+
+      context 'remote_url is present' do
+        let(:remote_url) { 'remote_url' }
+
+        it 'returns true' do
+          is_expected.to be true
+        end
+      end
+    end
+
+    context 'file is present' do
+      let(:file) { attachment_fixture('avatar.gif') }
+
+      context 'remote_url is blank' do
+        let(:remote_url) { '' }
+
+        it 'returns false' do
+          is_expected.to be false
+        end
+      end
+
+      context 'remote_url is present' do
+        let(:remote_url) { 'remote_url' }
+
+        it 'returns true' do
+          is_expected.to be false
+        end
+      end
+    end
+  end
+
+  describe '#to_param' do
+    let(:media_attachment) { Fabricate(:media_attachment) }
+    let(:shortcode)        { media_attachment.shortcode }
+
+    it 'returns shortcode' do
+      expect(media_attachment.to_param).to eq shortcode
+    end
+  end
+
   describe 'animated gif conversion' do
     let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('avatar.gif')) }
 

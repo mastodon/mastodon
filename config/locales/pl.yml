@@ -9,7 +9,7 @@ pl:
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
     description_headline: Czym jest %{domain}?
-    domain_count_after: instancji
+    domain_count_after: instancjami
     domain_count_before: Serwer połączony z
     extended_description_html: |
       <h3>Dobre miejsce na zasady użytkowania</h3>
@@ -62,11 +62,16 @@ pl:
       by_domain: Domena
       confirm: Potwierdź
       confirmed: Potwierdzono
+      demote: Degraduj
+      disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
+      disabled: Dezaktywowano
       display_name: Wyświetlana nazwa
       domain: Domena
       edit: Edytuj
       email: Adres e-mail
+      enable: Aktywuj
+      enabled: Aktywowano
       feed_url: Adres kanału
       followers: Śledzący
       followers_url: Adres śledzących
@@ -78,7 +83,9 @@ pl:
         local: Lokalne
         remote: Zdalne
         title: Położenie
+      login_status: Stan logowania
       media_attachments: Załączniki multimedialne
+      memorialize: Przełącz na „In Memoriam”
       moderation:
         all: Wszystkie
         silenced: Wyciszone
@@ -95,6 +102,7 @@ pl:
       outbox_url: Adres skrzynki nadawczej
       perform_full_suspension: Całkowicie zawieś
       profile_url: Adres profilu
+      promote: Podnieś uprawnienia
       protocol: Protokół
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
@@ -102,6 +110,11 @@ pl:
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
+      role: Uprawnienia
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        user: Użytkownik
       salmon_url: Adres Salmon
       search: Szukaj
       shared_inbox_url: Adres udostępnianej skrzynki
@@ -337,7 +350,7 @@ pl:
   errors:
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
     '404': Strona, którą próbujesz odwiedzić, nie istnieje.
-    '410': Strona, którą próbujesz odwiedzić, już nie istnieje.
+    '410': Strona, którą próbujesz odwiedzić, przestała istnieć.
     '422':
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
@@ -379,6 +392,7 @@ pl:
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
+  in_memoriam_html: Ku pamięci.
   landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
@@ -615,7 +629,7 @@ pl:
     manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
     recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
-    recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.
+    recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
     setup: Skonfiguruj
     wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
   users:

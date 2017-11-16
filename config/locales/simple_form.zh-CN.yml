@@ -8,13 +8,13 @@ zh-CN:
         display_name: 还能输入 <span class="name-counter">%{count}</span> 个字符
         header: 文件大小限制 2MB，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 700×335px
         locked: 你需要手动审核所有关注请求
-        note: 还能输入 <span class="name-counter">%{count}</span> 个字符
+        note: 还能输入 <span class="note-counter">%{count}</span> 个字符
         setting_noindex: 此设置会影响到你的公开个人资料以及嘟文页面
         setting_theme: 此设置会影响到你从任意设备登录时 Mastodon 的显示样式
       imports:
         data: 请上传从其他 Mastodon 实例导出的 CSV 文件
       sessions:
-        otp: 输入你手机上生成的两步验证码，或者任意一个恢复代码。
+        otp: 输入你手机上生成的双重认证码，或者任意一个恢复代码。
       user:
         filtered_languages: 勾选语言的嘟文将不会出现在你的公共时间轴上
     labels:
@@ -32,7 +32,7 @@ zh-CN:
         locked: 保护你的帐户（锁嘟）
         new_password: 新密码
         note: 简介
-        otp_attempt: 两步认证代码
+        otp_attempt: 双重认证代码
         password: 密码
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我

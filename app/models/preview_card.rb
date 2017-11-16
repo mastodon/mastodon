@@ -3,7 +3,7 @@
 #
 # Table name: preview_cards
 #
-#  id                 :integer          not null, primary key
+#  id                 :bigint           not null, primary key
 #  url                :string           default(""), not null
 #  title              :string           default(""), not null
 #  description        :string           default(""), not null

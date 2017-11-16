@@ -3,9 +3,9 @@
 #
 # Table name: status_pins
 #
-#  id         :integer          not null, primary key
-#  account_id :integer          not null
-#  status_id  :integer          not null
+#  id         :bigint           not null, primary key
+#  account_id :bigint           not null
+#  status_id  :bigint           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -7,10 +7,10 @@ import {
   unfollowAccount,
   blockAccount,
   unblockAccount,
-  muteAccount,
   unmuteAccount,
 } from '../../../actions/accounts';
 import { mentionCompose } from '../../../actions/compose';
+import { initMuteModal } from '../../../actions/mutes';
 import { initReport } from '../../../actions/reports';
 import { openModal } from '../../../actions/modal';
 import { blockDomain, unblockDomain } from '../../../actions/domain_blocks';
@@ -20,7 +20,6 @@ import { unfollowModal } from '../../../initial_state';
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
-  muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
 });
 
@@ -76,11 +75,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (account.getIn(['relationship', 'muting'])) {
       dispatch(unmuteAccount(account.get('id')));
     } else {
-      dispatch(openModal('CONFIRM', {
-        message: <FormattedMessage id='confirmations.mute.message' defaultMessage='Are you sure you want to mute {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-        confirm: intl.formatMessage(messages.muteConfirm),
-        onConfirm: () => dispatch(muteAccount(account.get('id'))),
-      }));
+      dispatch(initMuteModal(account));
     }
   },
 

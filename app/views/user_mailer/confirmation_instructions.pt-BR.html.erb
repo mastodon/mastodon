@@ -1,6 +1,6 @@
 <p>Boas vindas, <%= @resource.email %>!</p>
 
-<p>Você acabou de criar uma conta no <%= @instance %>.</p>
+<p>Você acabou de criar uma conta na instância <%= @instance %>.</p>
 
 <p>Para confirmar o seu cadastro, por favor clique no link a seguir: <br>
 <%= link_to 'Confirmar cadastro', confirmation_url(@resource, confirmation_token: @token) %>
@@ -9,4 +9,4 @@
 
 <p>Atenciosamente,<p>
 
-<p>A equipe do <%= @instance %></p>
+<p>A equipe da instância <%= @instance %></p>

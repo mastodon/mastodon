@@ -3,7 +3,7 @@
 #
 # Table name: custom_emojis
 #
-#  id                 :integer          not null, primary key
+#  id                 :bigint           not null, primary key
 #  shortcode          :string           default(""), not null
 #  domain             :string
 #  image_file_name    :string

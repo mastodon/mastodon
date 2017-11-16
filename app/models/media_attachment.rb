@@ -3,14 +3,14 @@
 #
 # Table name: media_attachments
 #
-#  id                :integer          not null, primary key
-#  status_id         :integer
+#  id                :bigint           not null, primary key
+#  status_id         :bigint
 #  file_file_name    :string
 #  file_content_type :string
 #  file_file_size    :integer
 #  file_updated_at   :datetime
 #  remote_url        :string           default(""), not null
-#  account_id        :integer
+#  account_id        :bigint
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  shortcode         :string

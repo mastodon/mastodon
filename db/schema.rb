@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107143624) do
+ActiveRecord::Schema.define(version: 20171114080328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,9 +126,10 @@ ActiveRecord::Schema.define(version: 20171107143624) do
   end
 
   create_table "email_domain_blocks", force: :cascade do |t|
-    t.string "domain", null: false
+    t.string "domain", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(version: 20171107143624) do
     t.datetime "updated_at", null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
+    t.boolean "hide_notifications", default: true, null: false
     t.index ["account_id", "target_account_id"], name: "index_mutes_on_account_id_and_target_account_id", unique: true
   end
 
@@ -437,6 +439,7 @@ ActiveRecord::Schema.define(version: 20171107143624) do
     t.string "filtered_languages", default: [], null: false, array: true
     t.bigint "account_id", null: false
     t.boolean "disabled", default: false, null: false
+    t.boolean "moderator", default: false, null: false
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
