@@ -266,7 +266,9 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :lists, only: [:index, :create, :show, :update, :destroy]
+      resources :lists, only: [:index, :create, :show, :update, :destroy] do
+        resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
+      end
     end
 
     namespace :web do
