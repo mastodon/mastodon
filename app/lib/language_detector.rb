@@ -42,7 +42,9 @@ class LanguageDetector
     new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
     new_text.gsub!(Account::MENTION_RE, '')
     new_text.gsub!(Tag::HASHTAG_RE, '')
+    new_text.gsub!(/:#{CustomEmoji::SHORTCODE_RE_FRAGMENT}:/, '')
     new_text.gsub!(/\s+/, ' ')
+    new_text
   end
 
   def new_scrubber
