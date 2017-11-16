@@ -23,28 +23,7 @@ class ActivityPub::Activity
     private
 
     def klass
-      case @json['type']
-      when 'Create'
-        ActivityPub::Activity::Create
-      when 'Announce'
-        ActivityPub::Activity::Announce
-      when 'Delete'
-        ActivityPub::Activity::Delete
-      when 'Follow'
-        ActivityPub::Activity::Follow
-      when 'Like'
-        ActivityPub::Activity::Like
-      when 'Block'
-        ActivityPub::Activity::Block
-      when 'Update'
-        ActivityPub::Activity::Update
-      when 'Undo'
-        ActivityPub::Activity::Undo
-      when 'Accept'
-        ActivityPub::Activity::Accept
-      when 'Reject'
-        ActivityPub::Activity::Reject
-      end
+      "ActivityPub::Activity::#{@json['type']}".constantize
     end
   end
 
