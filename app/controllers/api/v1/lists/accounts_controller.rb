@@ -5,8 +5,11 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   before_action :require_user!
   before_action :set_list
 
+  after_action :insert_pagination_headers, only: :show
+
   def show
-    render json: @list.accounts, each_serializer: REST::AccountSerializer
+    @accounts = @list.accounts.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
+    render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
   def create
@@ -40,5 +43,37 @@ class Api::V1::Lists::AccountsController < Api::BaseController
 
   def resource_params
     params.permit(account_ids: [])
+  end
+
+  def insert_pagination_headers
+    set_pagination_headers(next_path, prev_path)
+  end
+
+  def next_path
+    if records_continue?
+      api_v1_list_accounts_url pagination_params(max_id: pagination_max_id)
+    end
+  end
+
+  def prev_path
+    unless @accounts.empty?
+      api_v1_list_accounts_url pagination_params(since_id: pagination_since_id)
+    end
+  end
+
+  def pagination_max_id
+    @accounts.last.id
+  end
+
+  def pagination_since_id
+    @accounts.first.id
+  end
+
+  def records_continue?
+    @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+  end
+
+  def pagination_params(core_params)
+    params.permit(:limit).merge(core_params)
   end
 end

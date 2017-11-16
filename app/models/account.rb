@@ -53,6 +53,7 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
+  include Paginable
 
   enum protocol: [:ostatus, :activitypub]
 
