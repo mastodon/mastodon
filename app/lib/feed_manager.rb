@@ -174,19 +174,19 @@ class FeedManager
     text_matcher = Glitch::KeywordMute.text_matcher_for(receiver_id)
     tag_matcher  = Glitch::KeywordMute.tag_matcher_for(receiver_id)
 
-    should_filter   = text_matcher =~ status.text
-    should_filter ||= text_matcher =~ status.spoiler_text
-    should_filter ||= tag_matcher =~ status.tags
+    should_filter   = text_matcher.matches?(status.text)
+    should_filter ||= text_matcher.matches?(status.spoiler_text)
+    should_filter ||= tag_matcher.matches?(status.tags)
 
     if status.reblog?
       reblog = status.reblog
 
-      should_filter ||= text_matcher =~ reblog.text
-      should_filter ||= text_matcher =~ reblog.spoiler_text
-      should_filter ||= tag_matcher =~ status.tags
+      should_filter ||= text_matcher.matches?(reblog.text)
+      should_filter ||= text_matcher.matches?(reblog.spoiler_text)
+      should_filter ||= tag_matcher.matches?(status.tags)
     end
 
-    !!should_filter
+    should_filter
   end
 
   def filter_from_mentions?(status, receiver_id)

@@ -62,8 +62,8 @@ class Glitch::KeywordMute < ApplicationRecord
       format('keyword_mutes:regex:text:%s', account_id)
     end
 
-    def =~(str)
-      regex =~ str
+    def matches?(str)
+      !!(regex =~ str)
     end
 
     private
@@ -82,8 +82,8 @@ class Glitch::KeywordMute < ApplicationRecord
       format('keyword_mutes:regex:tag:%s', account_id)
     end
 
-    def =~(tags)
-      tags.pluck(:name).detect { |n| regex =~ n }
+    def matches?(tags)
+      tags.pluck(:name).any? { |n| regex =~ n }
     end
 
     private
