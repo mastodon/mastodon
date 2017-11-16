@@ -11,6 +11,8 @@
 #
 
 class List < ApplicationRecord
+  include Paginable
+
   belongs_to :account
 
   has_many :list_accounts, inverse_of: :list, dependent: :destroy
