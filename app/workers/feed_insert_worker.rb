@@ -35,7 +35,7 @@ class FeedInsertWorker
   def perform_push
     case @type
     when :home
-      FeedManager.instance.push(:home, @follower, @status)
+      FeedManager.instance.push_to_home(@follower, @status)
     when :list
       FeedManager.instance.push_to_list(@list, @status)
     end

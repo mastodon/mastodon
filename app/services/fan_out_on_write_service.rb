@@ -31,7 +31,7 @@ class FanOutOnWriteService < BaseService
 
   def deliver_to_self(status)
     Rails.logger.debug "Delivering status #{status.id} to author"
-    FeedManager.instance.push(:home, status.account, status)
+    FeedManager.instance.push_to_home(status.account, status)
   end
 
   def deliver_to_followers(status)
@@ -60,7 +60,7 @@ class FanOutOnWriteService < BaseService
     status.mentions.includes(:account).each do |mention|
       mentioned_account = mention.account
       next if !mentioned_account.local? || !mentioned_account.following?(status.account) || FeedManager.instance.filter?(:home, status, mention.account_id)
-      FeedManager.instance.push(:home, mentioned_account, status)
+      FeedManager.instance.push_to_home(mentioned_account, status)
     end
   end
 

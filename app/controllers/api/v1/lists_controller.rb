@@ -3,7 +3,9 @@
 class Api::V1::ListsController < Api::BaseController
   LISTS_LIMIT = 50
 
-  before_action -> { doorkeeper_authorize! :follow }
+  before_action -> { doorkeeper_authorize! :read },    only: [:index, :show]
+  before_action -> { doorkeeper_authorize! :write }, except: [:index, :show]
+
   before_action :require_user!
   before_action :set_list, except: [:index, :create]
 

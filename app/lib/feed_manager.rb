@@ -26,15 +26,15 @@ class FeedManager
     end
   end
 
-  def push(timeline_type, account, status)
-    return false unless add_to_feed(timeline_type, account.id, status)
-    trim(timeline_type, account.id)
-    PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}") if timeline_type != :home || push_update_required?("timeline:#{account.id}")
+  def push_to_home(account, status)
+    return false unless add_to_feed(:home, account.id, status)
+    trim(:home, account.id)
+    PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}") if push_update_required?("timeline:#{account.id}")
     true
   end
 
-  def unpush(timeline_type, account, status)
-    return false unless remove_from_feed(timeline_type, account.id, status)
+  def unpush_from_home(account, status)
+    return false unless remove_from_feed(:home, account.id, status)
     Redis.current.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
@@ -109,7 +109,7 @@ class FeedManager
     target_statuses     = Status.where(id: timeline_status_ids, account: target_account)
 
     target_statuses.each do |status|
-      unpush(:home, account, status)
+      unpush_from_home(account, status)
     end
   end
 

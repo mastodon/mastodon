@@ -80,7 +80,7 @@ class BatchedRemoveStatusService < BaseService
 
     recipients.each do |follower|
       statuses.each do |status|
-        FeedManager.instance.unpush(:home, follower, status)
+        FeedManager.instance.unpush_from_home(follower, status)
       end
     end
   end
