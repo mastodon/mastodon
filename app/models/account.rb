@@ -115,6 +115,8 @@ class Account < ApplicationRecord
            :current_sign_in_at,
            :confirmed?,
            :admin?,
+           :moderator?,
+           :staff?,
            :locale,
            to: :user,
            prefix: true,
