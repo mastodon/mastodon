@@ -56,7 +56,7 @@ const mapStateToProps = state => ({
   hasComposingText: state.getIn(['compose', 'text']) !== '',
   layout: state.getIn(['local_settings', 'layout']),
   isWide: state.getIn(['local_settings', 'stretch']),
-  navbarUnder: state.getIn(['local_settings', 'navbar_under'])
+  navbarUnder: state.getIn(['local_settings', 'navbar_under']),
 });
 
 const keyMap = {
