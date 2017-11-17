@@ -6,7 +6,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def show?
-    return false if local_only? && account.nil?
+    return false if local_only? && current_account.nil?
 
     if direct?
       owned? || record.mentions.where(account: current_account).exists?
