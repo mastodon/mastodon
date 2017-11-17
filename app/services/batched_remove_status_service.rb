@@ -30,6 +30,7 @@ class BatchedRemoveStatusService < BaseService
       account = account_statuses.first.account
 
       unpush_from_home_timelines(account, account_statuses)
+      unpush_from_list_timelines(account, account_statuses)
 
       if account.local?
         batch_stream_entries(account, account_statuses)
@@ -79,7 +80,15 @@ class BatchedRemoveStatusService < BaseService
 
     recipients.each do |follower|
       statuses.each do |status|
-        FeedManager.instance.unpush(:home, follower, status)
+        FeedManager.instance.unpush_from_home(follower, status)
+      end
+    end
+  end
+
+  def unpush_from_list_timelines(account, statuses)
+    account.lists.select(:id, :account_id).each do |list|
+      statuses.each do |status|
+        FeedManager.instance.unpush_from_list(list, status)
       end
     end
   end

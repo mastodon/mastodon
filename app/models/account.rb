@@ -3,7 +3,7 @@
 #
 # Table name: accounts
 #
-#  id                      :bigint           not null, primary key
+#  id                      :integer          not null, primary key
 #  username                :string           default(""), not null
 #  domain                  :string
 #  secret                  :string           default(""), not null
@@ -53,6 +53,7 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
+  include Paginable
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -94,6 +95,10 @@ class Account < ApplicationRecord
   # Moderation notes
   has_many :account_moderation_notes, dependent: :destroy
   has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
+
+  # Lists
+  has_many :list_accounts, inverse_of: :account, dependent: :destroy
+  has_many :lists, through: :list_accounts
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }

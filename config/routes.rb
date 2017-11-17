@@ -212,6 +212,7 @@ Rails.application.routes.draw do
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
+        resources :list, only: :show
       end
 
       resources :streaming, only: [:index]
@@ -269,6 +270,10 @@ Rails.application.routes.draw do
           post :mute
           post :unmute
         end
+      end
+
+      resources :lists, only: [:index, :create, :show, :update, :destroy] do
+        resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
     end
 

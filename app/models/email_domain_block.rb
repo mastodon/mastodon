@@ -3,7 +3,7 @@
 #
 # Table name: email_domain_blocks
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  domain     :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

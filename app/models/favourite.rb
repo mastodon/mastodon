@@ -3,11 +3,11 @@
 #
 # Table name: favourites
 #
+#  id         :integer          not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  account_id :bigint           not null
-#  id         :bigint           not null, primary key
-#  status_id  :bigint           not null
+#  account_id :integer          not null
+#  status_id  :integer          not null
 #
 
 class Favourite < ApplicationRecord
