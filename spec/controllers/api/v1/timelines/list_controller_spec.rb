@@ -24,8 +24,19 @@ describe Api::V1::Timelines::ListController do
 
       it 'returns http success' do
         get :show, params: { id: list.id }
-
         expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  context 'with the wrong user context' do
+    let(:other_user) { Fabricate(:user, account: Fabricate(:account, username: 'bob')) }
+    let(:token)      { Fabricate(:accessible_access_token, resource_owner_id: other_user.id, scopes: 'read') }
+
+    describe 'GET #show' do
+      it 'returns http not found' do
+        get :show, params: { id: list.id }
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
