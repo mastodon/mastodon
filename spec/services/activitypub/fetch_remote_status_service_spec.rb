@@ -27,7 +27,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
       it 'creates status' do
         status = sender.statuses.first
-        
+
         expect(status).to_not be_nil
         expect(status.text).to eq 'Lorem ipsum'
       end
