@@ -161,7 +161,13 @@ Rails.application.routes.draw do
     resources :account_moderation_notes, only: [:create, :destroy]
   end
 
-  get '/admin', to: redirect('/admin/settings/edit', status: 302)
+  authenticate :user, lambda { |u| u.admin? } do
+    get '/admin', to: redirect('/admin/settings/edit', status: 302)
+  end
+
+  authenticate :user, lambda { |u| u.moderator? } do
+    get '/admin', to: redirect('/admin/reports', status: 302)
+  end
 
   namespace :api do
     # PubSubHubbub outgoing subscriptions
