@@ -3,13 +3,13 @@
 #
 # Table name: notifications
 #
-#  id              :bigint           not null, primary key
-#  account_id      :bigint
-#  activity_id     :bigint
+#  id              :integer          not null, primary key
+#  activity_id     :integer
 #  activity_type   :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  from_account_id :bigint
+#  account_id      :integer
+#  from_account_id :integer
 #
 
 class Notification < ApplicationRecord

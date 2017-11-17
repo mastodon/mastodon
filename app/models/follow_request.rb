@@ -3,11 +3,11 @@
 #
 # Table name: follow_requests
 #
+#  id                :integer          not null, primary key
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  account_id        :bigint          not null
-#  id                :bigint          not null, primary key
-#  target_account_id :bigint          not null
+#  account_id        :integer          not null
+#  target_account_id :integer          not null
 #  show_reblogs      :boolean          default(TRUE), not null
 #
 
