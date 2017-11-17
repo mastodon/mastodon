@@ -47,8 +47,27 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#verb' do
-    it 'is always post' do
-      expect(subject.verb).to be :post
+    context 'if destroyed?' do
+      it 'returns :delete' do
+        subject.destroy!
+        expect(subject.verb).to be :delete
+      end
+    end
+
+    context 'unless destroyed?' do
+      context 'if reblog?' do
+        it 'returns :share' do
+          subject.reblog = other
+          expect(subject.verb).to be :share
+        end
+      end
+
+      context 'unless reblog?' do
+        it 'returns :post' do
+          subject.reblog = nil
+          expect(subject.verb).to be :post
+        end
+      end
     end
   end
 

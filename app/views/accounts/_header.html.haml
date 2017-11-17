@@ -30,8 +30,12 @@
 
     - if account.user_admin?
       .roles
-        .account-role
+        .account-role.admin
           = t 'accounts.roles.admin'
+    - elsif account.user_moderator?
+      .roles
+        .account-role.moderator
+          = t 'accounts.roles.moderator'
     .bio
       .account__header__content.p-note.emojify!=processed_bio[:text]
       - if processed_bio[:metadata].length > 0

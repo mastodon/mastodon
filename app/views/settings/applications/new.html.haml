@@ -3,6 +3,6 @@
 
 = simple_form_for @application, url: settings_applications_path do |f|
   = render 'fields', f: f
-  
+
   .actions
     = f.button :button, t('doorkeeper.applications.buttons.submit'), type: :submit

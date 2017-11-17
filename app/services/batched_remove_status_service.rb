@@ -26,7 +26,7 @@ class BatchedRemoveStatusService < BaseService
     statuses.each(&:destroy)
 
     # Batch by source account
-    statuses.group_by(&:account_id).each do |_, account_statuses|
+    statuses.group_by(&:account_id).each_value do |account_statuses|
       account = account_statuses.first.account
 
       unpush_from_home_timelines(account, account_statuses)
