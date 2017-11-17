@@ -5,7 +5,8 @@ module Extractor
 
   module_function
 
-  def extract_mentions_or_lists_with_indices(text) # :yields: username, list_slug, start, end
+  # :yields: username, list_slug, start, end
+  def extract_mentions_or_lists_with_indices(text)
     return [] unless text =~ Twitter::Regex[:at_signs]
 
     possible_entries = []
