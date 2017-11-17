@@ -542,8 +542,8 @@
   }
 
   &.admin {
-    color: $error-red;
-    background-color: rgba($error-red, 0.1);
-    border-color: rgba($error-red, 0.5);
+    color: lighten($error-red, 12%);
+    background-color: rgba(lighten($error-red, 12%), 0.1);
+    border-color: rgba(lighten($error-red, 12%), 0.5);
   }
 }
