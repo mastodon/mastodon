@@ -1,6 +1,6 @@
 // Common configuration for webpacker loaded from config/webpacker.yml
 
-const { dirname, join, resolve } = require('path');
+const { basename, dirname, join, resolve } = require('path');
 const { env } = require('process');
 const { safeLoad } = require('js-yaml');
 const { readFileSync } = require('fs');
@@ -18,8 +18,8 @@ for (let i = 0; i < themeFiles.length; i++) {
   if (!data.pack_directory) {
     data.pack_directory = dirname(themeFile);
   }
-  if (data.name && data.pack) {
-    themes[data.name] = data;
+  if (data.pack) {
+    themes[basename(dirname(themeFile))] = data;
   }
 }
 

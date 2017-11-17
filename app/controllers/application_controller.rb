@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_account
   helper_method :current_session
   helper_method :current_theme
+  helper_method :theme_data
   helper_method :single_user_mode?
 
   rescue_from ActionController::RoutingError, with: :not_found
@@ -86,6 +87,10 @@ class ApplicationController < ActionController::Base
   def current_theme
     return Setting.default_settings['theme'] unless Themes.instance.names.include? current_user&.setting_theme
     current_user.setting_theme
+  end
+
+  def theme_data
+    Themes.instance.get(current_theme)
   end
 
   def cache_collection(raw, klass)
