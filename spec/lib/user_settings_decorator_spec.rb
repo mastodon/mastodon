@@ -62,7 +62,7 @@ describe UserSettingsDecorator do
       settings.update(values)
       expect(user.settings['auto_play_gif']).to eq false
     end
-    
+
     it 'updates the user settings value for system font in UI' do
       values = { 'setting_system_font_ui' => '0' }
 
