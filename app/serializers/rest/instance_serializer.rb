@@ -4,7 +4,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :uri, :title, :description, :email,
-             :version, :urls, :stats, :thumbnail
+             :version, :urls, :stats, :thumbnail, :max_toot_chars
 
   def uri
     Rails.configuration.x.local_domain
@@ -28,6 +28,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def thumbnail
     full_asset_url(instance_presenter.thumbnail.file.url) if instance_presenter.thumbnail
+  end
+
+  def max_toot_chars
+    StatusLengthValidator::MAX_CHARS
   end
 
   def stats
