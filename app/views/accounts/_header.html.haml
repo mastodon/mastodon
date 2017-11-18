@@ -1,6 +1,6 @@
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
   .card__illustration
-    - unless account.memorial?
+    - unless account.memorial? || account.moved?
       - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
         .controls
           - if current_account.following?(account)
