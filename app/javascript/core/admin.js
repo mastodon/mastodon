@@ -1,3 +1,5 @@
+//  This file will be loaded on admin pages, regardless of theme.
+
 import { delegate } from 'rails-ujs';
 
 function handleDeleteStatus(event) {

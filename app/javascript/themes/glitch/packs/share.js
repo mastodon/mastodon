@@ -1,7 +1,5 @@
 import loadPolyfills from 'themes/glitch/util/load_polyfills';
 
-require.context('../images/', true);
-
 function loaded() {
   const ComposeContainer = require('themes/glitch/containers/compose_container').default;
   const React = require('react');

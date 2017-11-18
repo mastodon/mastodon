@@ -1,16 +1,23 @@
-#  (REQUIRED) The location of the pack file inside `pack_directory`.
-pack: index.js
+#  (REQUIRED) The location of the pack files.
+pack:
+  about: packs/about.js
+  admin: null
+  common: packs/common.js
+  embed: null
+  home: packs/home.js
+  public: packs/public.js
+  settings: null
+  share: packs/share.js
 
-#  (OPTIONAL) The directory which contains the pack file.
+#  (OPTIONAL) The directory which contains the pack files.
 #  Defaults to the theme directory (`app/javascript/themes/[theme]`),
-#  but in the case of the vanilla Mastodon theme the pack file is
-#  somewhere else.
+#  which should be sufficient for like 99% of use-cases lol.
 #    pack_directory: app/javascript/packs
 
 #  (OPTIONAL) Additional javascript resources to preload, for use with
 #  lazy-loaded components. It is **STRONGLY RECOMMENDED** that you
 #  derive these pathnames from `themes/[your-theme]` to ensure that
-#  they stay unique. (Of course, vanilla doesn't do this ^^;;)
+#  they stay unique.
 preload:
 - themes/glitch/async/getting_started
 - themes/glitch/async/compose

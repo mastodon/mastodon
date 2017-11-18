@@ -1,7 +1,5 @@
 import loadPolyfills from 'themes/glitch/util/load_polyfills';
 
-require.context('../images/', true);
-
 function loaded() {
   const TimelineContainer = require('themes/glitch/containers/timeline_container').default;
   const React             = require('react');
