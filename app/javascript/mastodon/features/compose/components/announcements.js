@@ -84,7 +84,7 @@ class Announcements extends React.PureComponent {
                 [code]コード[/code]<br />
                 [quote]引用[/quote]<br />
                 [faicon]coffee[/faicon]<br />
-                <a href={'http://fontawesome.io/icons/'} target={'_blank'}>アイコン一覧</a>
+                <a href='http://fontawesome.io/icons/' target='_blank'>アイコン一覧</a>
               </p>
             </div>
           </Collapsable>
