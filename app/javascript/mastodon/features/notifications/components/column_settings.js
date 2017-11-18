@@ -47,6 +47,17 @@ export default class ColumnSettings extends React.PureComponent {
           </div>
         </div>
 
+        <div role='group' aria-labelledby='notifications-profile_change'>
+          <span id='notifications-follow' className='column-settings__section'><FormattedMessage id='notifications.column_settings.profile_change' defaultMessage='Avatar/name change:' /></span>
+
+          <div className='column-settings__row'>
+            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'profile_change']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'profile_change']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
+            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'profile_change']} onChange={onChange} label={showStr} />
+            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'profile_change']} onChange={onChange} label={soundStr} />
+          </div>
+        </div>
+
         <div role='group' aria-labelledby='notifications-favourite'>
           <span id='notifications-favourite' className='column-settings__section'><FormattedMessage id='notifications.column_settings.favourite' defaultMessage='Favourites:' /></span>
 

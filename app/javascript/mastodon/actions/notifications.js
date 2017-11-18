@@ -46,6 +46,9 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       notification,
       account: notification.account,
       status: notification.status,
+      display_name: notification.display_name,
+      avatar: notification.avatar,
+      avatar_static: notification.avatar_static,
       meta: playSound ? { sound: 'boop' } : undefined,
     });
 

@@ -22,6 +22,7 @@ class Notification < ApplicationRecord
     follow:         'Follow',
     follow_request: 'FollowRequest',
     favourite:      'Favourite',
+    profile_change: 'ProfileChange',
   }.freeze
 
   STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
@@ -35,6 +36,7 @@ class Notification < ApplicationRecord
   belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id'
   belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id'
   belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id'
+  belongs_to :profile_change, foreign_type: 'ProfileChange', foreign_key: 'activity_id'
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
   validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
@@ -46,7 +48,7 @@ class Notification < ApplicationRecord
     where(activity_type: types)
   }
 
-  cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
+  cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account, profile_change: :account
 
   def type
     @type ||= TYPE_CLASS_MAP.invert[activity_type].to_sym
@@ -94,7 +96,7 @@ class Notification < ApplicationRecord
     return unless new_record?
 
     case activity_type
-    when 'Status', 'Follow', 'Favourite', 'FollowRequest'
+    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'ProfileChange'
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id

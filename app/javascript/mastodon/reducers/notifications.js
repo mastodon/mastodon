@@ -14,7 +14,9 @@ import {
   ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
 import { TIMELINE_DELETE } from '../actions/timelines';
+import emojify from '../features/emoji/emoji';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import escapeTextContentForBrowser from 'escape-html';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),
@@ -29,6 +31,10 @@ const notificationToMap = notification => ImmutableMap({
   id: notification.id,
   type: notification.type,
   account: notification.account.id,
+  avatar: notification.avatar,
+  avatar_static: notification.avatar_static,
+  display_name_html: emojify(escapeTextContentForBrowser(notification.display_name)),
+  acct: notification.account.acct,
   status: notification.status ? notification.status.id : null,
 });
 
