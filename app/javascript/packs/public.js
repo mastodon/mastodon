@@ -22,7 +22,7 @@ function main() {
   const { length } = require('stringz');
   const IntlRelativeFormat = require('intl-relativeformat').default;
   const { delegate } = require('rails-ujs');
-  const emojify = require('../themes/glitch/features/emoji/emoji').default;
+  const emojify = require('../themes/glitch/util/emoji').default;
   const { getLocale } = require('mastodon/locales');
   const { localeData } = getLocale();
   const VideoContainer = require('../themes/glitch/containers/video_container').default;
