@@ -19,6 +19,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
 import ComposeAttachOptions from '../../../../glitch/components/compose/attach_options/index';
+import initialState from '../../../initial_state';
+
+const maxChars = initialState.max_toot_chars;
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -205,7 +208,7 @@ export default class ComposeForm extends ImmutablePureComponent {
       }
     }
 
-    const submitDisabled = disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0);
+    const submitDisabled = disabled || this.props.is_uploading || length(text) > maxChars || (text.length !== 0 && text.trim().length === 0);
 
     return (
       <div className='compose-form'>
@@ -255,7 +258,7 @@ export default class ComposeForm extends ImmutablePureComponent {
         </div>
 
         <div className='compose-form__publish'>
-          <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
+          <div className='character-counter__wrapper'><CharacterCounter max={maxChars} text={text} /></div>
           <div className='compose-form__publish-button-wrapper'>
             {
               showSideArm ?
