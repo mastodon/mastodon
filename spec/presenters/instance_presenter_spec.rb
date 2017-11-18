@@ -33,15 +33,15 @@ describe InstancePresenter do
 
   context do
     around do |example|
-      open_registrations = Setting.open_registrations
+      registrations_status = Setting.registrations_status
       example.run
-      Setting.open_registrations = open_registrations
+      Setting.registrations_status = registrations_status
     end
 
-    it "delegates open_registrations to Setting" do
-      Setting.open_registrations = false
+    it "delegates registrations_status to Setting" do
+      Setting.registrations_status = 'closed'
 
-      expect(instance_presenter.open_registrations).to eq false
+      expect(instance_presenter.registrations_status).to eq 'closed'
     end
   end
 

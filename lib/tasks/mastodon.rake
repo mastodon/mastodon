@@ -193,12 +193,12 @@ namespace :mastodon do
   namespace :settings do
     desc 'Open registrations on this instance'
     task open_registrations: :environment do
-      Setting.open_registrations = true
+      Setting.registrations_status = 'open'
     end
 
     desc 'Close registrations on this instance'
     task close_registrations: :environment do
-      Setting.open_registrations = false
+      Setting.registrations_status = 'closed'
     end
   end
 

@@ -54,5 +54,11 @@ class Setting < RailsSettings::Base
       return {} unless RailsSettings::Default.enabled?
       RailsSettings::Default.instance
     end
+
+    def registrations_open?(key = nil)
+      return true if Setting.registrations_status == 'open'
+      return true if Setting.registrations_status == 'keyed' && key == Setting.registration_key
+      false
+    end
   end
 end

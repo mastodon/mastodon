@@ -14,7 +14,8 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
                                 site_description: 'something',
                                 version_number: '1.0',
                                 source_url: 'https://github.com/tootsuite/mastodon',
-                                open_registrations: false,
+                                registrations_status: 'closed',
+                                registrations_open?: false,
                                 thumbnail: nil,
                                 closed_registrations_message: 'yes')
     assign(:instance_presenter, instance_presenter)

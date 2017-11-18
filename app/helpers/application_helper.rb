@@ -13,10 +13,6 @@ module ApplicationHelper
     !user_signed_in? && !single_user_mode?
   end
 
-  def open_registrations?
-    Setting.open_registrations
-  end
-
   def open_deletion?
     Setting.open_deletion
   end

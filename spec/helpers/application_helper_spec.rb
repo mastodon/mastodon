@@ -58,24 +58,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'open_registrations?' do
-    it 'returns true when open for registrations' do
-      without_partial_double_verification do
-        expect(Setting).to receive(:open_registrations).and_return(true)
-      end
-
-      expect(helper.open_registrations?).to eq true
-    end
-
-    it 'returns false when closed for registrations' do
-      without_partial_double_verification do
-        expect(Setting).to receive(:open_registrations).and_return(false)
-      end
-
-      expect(helper.open_registrations?).to eq false
-    end
-  end
-
   describe 'show_landing_strip?', without_verify_partial_doubles: true do
     describe 'when signed in' do
       before do
