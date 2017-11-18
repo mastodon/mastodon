@@ -124,11 +124,11 @@ class ResolveRemoteAccountService < BaseService
   end
 
   def auto_suspend?
-    domain_block && domain_block.suspend?
+    domain_block&.suspend?
   end
 
   def auto_silence?
-    domain_block && domain_block.silence?
+    domain_block&.silence?
   end
 
   def domain_block

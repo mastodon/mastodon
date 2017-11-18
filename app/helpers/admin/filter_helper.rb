@@ -18,7 +18,7 @@ module Admin::FilterHelper
 
   def selected?(more_params)
     new_url = filtered_url_for(more_params)
-    filter_link_class(new_url) == 'selected' ? true : false
+    filter_link_class(new_url) == 'selected'
   end
 
   private
