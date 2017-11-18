@@ -10,6 +10,8 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
+  attribute :moved_to, if: :moved?
+
   class EndpointsSerializer < ActiveModel::Serializer
     include RoutingHelper
 
@@ -91,5 +93,13 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   def manually_approves_followers
     object.locked
+  end
+
+  def moved_to
+    ActivityPub::TagManager.instance.uri_for(object.moved_to_account)
+  end
+
+  def moved?
+    object.moved?
   end
 end
