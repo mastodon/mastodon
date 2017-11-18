@@ -9,6 +9,8 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved?
 
+  delegate :moved?, to: :object
+
   def id
     object.id.to_s
   end
@@ -35,9 +37,5 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def header_static
     full_asset_url(object.header_static_url)
-  end
-
-  def moved?
-    object.moved?
   end
 end
