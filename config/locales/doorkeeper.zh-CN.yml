@@ -77,10 +77,10 @@ zh-CN:
         title: 已授权的应用列表
     errors:
       messages:
-        access_denied: 用户或服务器拒绝了请求
+        access_denied: 资源所有者或服务器拒绝了请求
         credential_flow_not_configured: 由于 Doorkeeper.configure.resource_owner_from_credentials 尚未配置，应用验证授权流程失败。
         invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
-        invalid_grant: 授权方式无效，或者登录回调地址无效、过期或已被撤销
+        invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
         invalid_redirect_uri: 无效的登录回调地址
         invalid_request: 请求缺少必要的参数，或者参数值、格式不正确
         invalid_resource_owner: 资源所有者认证无效，或找不到所有者

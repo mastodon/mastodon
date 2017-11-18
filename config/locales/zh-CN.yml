@@ -1,7 +1,7 @@
 ---
 zh-CN:
   about:
-    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你在象毛世界中拥有一个帐户，就可以加入讨论。
+    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。
     about_mastodon_html: Mastodon（长毛象）是一个基于开放式网络协议和自由、开源软件建立的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本实例
     closed_registrations: 这个实例目前没有开放注册。不过，你可以前往其他实例注册一个帐户，同样可以加入到这个网络中哦！
@@ -40,14 +40,15 @@ zh-CN:
     following: 正在关注
     media: 媒体
     nothing_here: 这里神马都没有！
-    people_followed_by: 正关注
-    people_who_follow: 粉丝
+    people_followed_by: "%{name} 关注的人"
+    people_who_follow: 关注 %{name} 的人
     posts: 嘟文
     posts_with_replies: 嘟文和回复
     remote_follow: 跨站关注
     reserved_username: 此用户名已保留
     roles:
       admin: 管理员
+      moderator: 协管
     unfollow: 取消关注
   admin:
     account_moderation_notes:
@@ -88,7 +89,7 @@ zh-CN:
       memorialize: 设置为追悼帐户
       moderation:
         all: 全部
-        silenced: 已静音
+        silenced: 已隐藏
         suspended: 已封禁
         title: 帐户状态
       moderation_notes: 管理记录
@@ -122,11 +123,11 @@ zh-CN:
         created_reports: 这个帐户提交的举报
         report: 个举报
         targeted_reports: 针对这个帐户的举报
-      silence: 静音
+      silence: 隐藏
       statuses: 嘟文
       subscribe: 订阅
       title: 用户
-      undo_silenced: 解除静音
+      undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
       unsubscribe: 取消订阅
       username: 用户名
@@ -164,23 +165,23 @@ zh-CN:
         create: 添加域名屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
         severity:
-          desc_html: 选择<strong>自动静音</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。
+          desc_html: 选择<strong>自动隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。
           noop: 无
-          silence: 自动静音
+          silence: 自动隐藏
           suspend: 自动封禁
         title: 添加域名屏蔽
       reject_media: 拒绝接收媒体文件
       reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
       severities:
         noop: 无
-        silence: 自动静音
+        silence: 自动隐藏
         suspend: 自动封禁
       severity: 屏蔽级别
       show:
         affected_accounts: 将会影响到数据库中的 %{count} 个帐户
         retroactive:
-          silence: 对此域名的所有帐户取消静音
-          suspend: 对此域名的所有帐户取消封禁
+          silence: 对此域名的所有帐户解除隐藏
+          suspend: 对此域名的所有帐户解除封禁
         title: 撤销对 %{domain} 的域名屏蔽
         undo: 撤销
       title: 域名屏蔽
@@ -218,7 +219,7 @@ zh-CN:
       reported_account: 举报用户
       reported_by: 举报人
       resolved: 已处理
-      silence_account: 静音用户
+      silence_account: 隐藏用户
       status: 状态
       suspend_account: 封禁用户
       target: 被举报人
@@ -361,7 +362,7 @@ zh-CN:
     blocks: 屏蔽的用户
     csv: CSV
     follows: 关注的用户
-    mutes: 静音的用户
+    mutes: 隐藏的用户
     storage: 媒体文件存储
   followers:
     domain: 域名
@@ -386,10 +387,10 @@ zh-CN:
     types:
       blocking: 屏蔽列表
       following: 关注列表
-      muting: 静音列表
+      muting: 隐藏列表
     upload: 上传
   in_memoriam_html: 谨此悼念。
-  landing_strip_html: "<strong>%{name}</strong> 是一位来自 %{link_to_root_path} 的用户。如果你想关注这个人或者与这个人互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。"
+  landing_strip_html: "<strong>%{name}</strong> 是一位来自 %{link_to_root_path} 的用户。如果你想关注他们或者与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。"
   landing_strip_signup_html: 还没有这种帐户？你可以<a href="%{sign_up_path}">在本站注册一个</a>。
   media_attachments:
     validations:
