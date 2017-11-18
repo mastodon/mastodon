@@ -68,22 +68,24 @@ class Announcements extends React.PureComponent {
           <Collapsable isVisible={this.state.showId === 'introduction'} fullHeight={320} minHeight={20} >
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.welcome, { domain: document.title }))}<br />
-			  <br />
-				[spin]回転[/spin]<br />
-				[pulse]点滅[/pulse]<br />
-				[large=2x]倍角文字[/large]<br />
-				[flip=vertical]縦反転[/flip]<br />
-				[flip=horizontal]横反転[/flip]<br />
-				[b]太字[/b]<br />
-				[i]斜体[/i]<br />
-				[u]アンダーライン[/u]<br />
-				[s]取り消し線[/s]<br />
-				[size=5]サイズ変更[/size]<br />
-				[color=red]色変更01[/color]<br />
-				[colorhex=A55A4A]色変更02[/colorhex]<br />
-				[code]コード[/code]<br />
-				[quote]引用[/quote]<br />
-				</p>
+                <br />
+                [spin]回転[/spin]<br />
+                [pulse]点滅[/pulse]<br />
+                [large=2x]倍角文字[/large]<br />
+                [flip=vertical]縦反転[/flip]<br />
+                [flip=horizontal]横反転[/flip]<br />
+                [b]太字[/b]<br />
+                [i]斜体[/i]<br />
+                [u]アンダーライン[/u]<br />
+                [s]取り消し線[/s]<br />
+                [size=5]サイズ変更[/size]<br />
+                [color=red]色変更01[/color]<br />
+                [colorhex=A55A4A]色変更02[/colorhex]<br />
+                [code]コード[/code]<br />
+                [quote]引用[/quote]<br />
+                [faicon]coffee[/faicon]<br />
+                <a href={'http://fontawesome.io/icons/'} target={'_blank'}>アイコン一覧</a>
+              </p>
             </div>
           </Collapsable>
           <div className='announcements__icon'>

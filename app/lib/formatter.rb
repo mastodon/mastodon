@@ -308,14 +308,11 @@ class Formatter
           :quick_param_format_description => 'The size parameter \'%param%\' is incorrect',
           :param_tokens => [{:token => :colorcode}]},
         :faicon => {
-          :html_open => '<span class="fa fa-%icon%"><span class="faicon_FTL">%between%</span></span>', :html_close => '',
+          :html_open => '<span class="fa fa-%between%"><span class="faicon_FTL">%between%</span></span>', :html_close => '',
           :description => 'Use Font Awesome Icons',
-          :example => '[faicon=users]外部インスタンスでの表示[/faicon]',
-          :require_between => true,
-          :allow_quick_param => true, :allow_between_as_param => false,
-          :quick_param_format => /([0-9a-z\-]+)/,
-          :quick_param_format_description => 'The size parameter \'%param%\' is incorrect',
-          :param_tokens => [{:token => :icon}]},
+          :example => '[faicon]users[/faicon]',
+          :only_allow => [],
+          :require_between => true},
       }, :enable, :i, :b, :color, :quote, :code, :size, :u, :s, :spin, :pulse, :flip, :large, :colorhex, :faicon)
     rescue Exception => e
     end
