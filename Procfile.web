@@ -1,0 +1,2 @@
+web: bin/start-nginx bundle exec puma -C config/puma.rb -p 3000
+streaming: npm run start
