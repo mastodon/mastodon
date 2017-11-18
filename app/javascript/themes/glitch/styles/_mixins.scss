@@ -40,3 +40,12 @@
     @content;
   }
 }
+
+@mixin fullwidth-gallery {
+  &.full-width {
+    margin-left: -22px;
+    margin-right: -22px;
+    width: inherit;
+    height: 250px;
+  }
+}

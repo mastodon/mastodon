@@ -214,6 +214,7 @@ export default class MediaGallery extends React.PureComponent {
   render () {
     const { media, intl, sensitive, letterbox, fullwidth } = this.props;
     const { visible } = this.state;
+    const size = media.take(4).size;
 
     let children;
 
@@ -233,8 +234,6 @@ export default class MediaGallery extends React.PureComponent {
         </button>
       );
     } else {
-      const size = media.take(4).size;
-
       if (this.isStandaloneEligible()) {
         children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} />;
       } else {
@@ -243,7 +242,7 @@ export default class MediaGallery extends React.PureComponent {
     }
 
     return (
-      <div className={`media-gallery ${fullwidth ? 'full-width' : ''}`}>
+      <div className={`media-gallery size-${size} ${fullwidth ? 'full-width' : ''}`}>
         <div className={classNames('spoiler-button', { 'spoiler-button--visible': visible })}>
           <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
         </div>

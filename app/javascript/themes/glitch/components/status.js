@@ -228,6 +228,10 @@ export default class Status extends ImmutablePureComponent {
     this.props.onMoveDown(this.props.status.get('id'));
   }
 
+  handleRef = c => {
+    this.node = c;
+  }
+
   renderLoadingMediaGallery () {
     return <div className='media_gallery' style={{ height: '110px' }} />;
   }
@@ -238,6 +242,7 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     const {
+      handleRef,
       parseClick,
       setExpansion,
     } = this;
@@ -389,6 +394,7 @@ export default class Status extends ImmutablePureComponent {
             ),
           }}
           {...selectorAttribs}
+          ref={handleRef}
         >
           {prepend && account ? (
             <StatusPrepend

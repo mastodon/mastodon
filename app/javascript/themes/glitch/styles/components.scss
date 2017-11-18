@@ -1,13 +1,5 @@
 @import 'variables';
 
-@mixin fullwidth-gallery {
-  &.full-width {
-    margin-left: -22px;
-    margin-right: -22px;
-    width: inherit;
-  }
-}
-
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -2296,7 +2288,7 @@
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
+  background: url('~images/mastodon-getting-started.png') no-repeat 0 100%;
   flex: 1 0 auto;
 
   p {
@@ -2491,7 +2483,7 @@ button.icon-button.active i.fa-retweet {
   justify-content: center;
 
   & > div {
-    background: url('../images/mastodon-not-found.png') no-repeat center -50px;
+    background: url('~images/mastodon-not-found.png') no-repeat center -50px;
     padding-top: 210px;
     width: 100%;
   }
@@ -2828,6 +2820,7 @@ button.icon-button.active i.fa-retweet {
   z-index: 100;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
 
   .status__content > & {
     margin-top: 15px; // Add margin when used bare for NSFW video player
@@ -3539,7 +3532,7 @@ button.icon-button.active i.fa-retweet {
   img,
   canvas {
     display: block;
-    background: url('../images/void.png') repeat;
+    background: url('~images/void.png') repeat;
     object-fit: contain;
   }
 
@@ -3786,7 +3779,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal__page-one__elephant-friend {
-  background: url('../images/elephant-friend-1.png') no-repeat center center / contain;
+  background: url('~images/elephant-friend-1.png') no-repeat center center / contain;
   width: 155px;
   height: 193px;
   margin-right: 15px;
@@ -4196,10 +4189,12 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   background: $base-shadow-color;
   width: 100%;
+  height: 110px;
 
   .detailed-status & {
-    margin-left:-10px;
-    width: calc(100% + 22px);
+    margin-left: -12px;
+    width: calc(100% + 24px);
+    height: 250px;
   }
 
   @include fullwidth-gallery;
@@ -4331,7 +4326,17 @@ button.icon-button.active i.fa-retweet {
   overflow: hidden;
   position: relative;
   background: $base-shadow-color;
+  width: 100%;
   max-width: 100%;
+  height: 110px;
+
+  .detailed-status & {
+    margin-left: -12px;
+    width: calc(100% + 24px);
+    height: 250px;
+  }
+
+  @include fullwidth-gallery;
 
   video {
     height: 100%;
