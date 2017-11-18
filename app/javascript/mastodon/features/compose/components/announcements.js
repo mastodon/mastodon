@@ -65,7 +65,7 @@ class Announcements extends React.PureComponent {
     return (
       <ul className='announcements'>
         <li>
-          <Collapsable isVisible={this.state.showId === 'introduction'} fullHeight={320} minHeight={20} >
+          <Collapsable isVisible={this.state.showId === 'introduction'} fullHeight={350} minHeight={20} >
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.welcome, { domain: document.title }))}<br />
                 <br />
@@ -84,7 +84,7 @@ class Announcements extends React.PureComponent {
                 [code]コード[/code]<br />
                 [quote]引用[/quote]<br />
                 [faicon]coffee[/faicon]<br />
-                <a href='http://fontawesome.io/icons/' target='_blank'>アイコン一覧</a>
+                <a href='http://fontawesome.io/icons/' target='_blank'>faicon アイコン一覧</a>
               </p>
             </div>
           </Collapsable>
