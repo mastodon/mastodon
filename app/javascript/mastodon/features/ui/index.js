@@ -33,6 +33,7 @@ import {
   FollowRequests,
   GenericNotFound,
   FavouritedStatuses,
+  ListTimeline,
   Blocks,
   Mutes,
   PinnedStatuses,
@@ -372,6 +373,7 @@ export default class UI extends React.Component {
               <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
               <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
               <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
+              <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
 
               <WrappedRoute path='/notifications' component={Notifications} content={children} />
               <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
