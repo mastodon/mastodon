@@ -307,7 +307,15 @@ class Formatter
           :quick_param_format => /([0-9a-fA-F]{6})/,
           :quick_param_format_description => 'The size parameter \'%param%\' is incorrect',
           :param_tokens => [{:token => :colorcode}]},
-      }, :enable, :i, :b, :color, :quote, :code, :size, :u, :s, :spin, :pulse, :flip, :large, :colorhex)
+        :faicon => {
+          :html_open => '<span class="fa fa-%icon%">', :html_close => '</span>',
+          :description => 'Use Font Awesome Icons',
+          :example => '[faicon=users][/faicon]',
+          :allow_quick_param => true, :allow_between_as_param => false,
+          :quick_param_format => /([0-9a-z\-]+)/,
+          :quick_param_format_description => 'The size parameter \'%param%\' is incorrect',
+          :param_tokens => [{:token => :icon}]},
+      }, :enable, :i, :b, :color, :quote, :code, :size, :u, :s, :spin, :pulse, :flip, :large, :colorhex, :faicon)
     rescue Exception => e
     end
     html
