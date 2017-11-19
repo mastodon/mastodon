@@ -79,7 +79,7 @@ export default class PublicTimeline extends React.PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='federated'>
+      <Column ref={this.setRef}>
         <ColumnHeader
           icon='globe'
           active={hasUnread}

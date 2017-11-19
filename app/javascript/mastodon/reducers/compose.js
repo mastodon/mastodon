@@ -16,7 +16,6 @@ import {
   COMPOSE_SUGGESTIONS_CLEAR,
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
-  COMPOSE_ADVANCED_OPTIONS_CHANGE,
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
@@ -26,7 +25,6 @@ import {
   COMPOSE_UPLOAD_CHANGE_REQUEST,
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
   COMPOSE_UPLOAD_CHANGE_FAIL,
-  COMPOSE_DOODLE_SET,
   COMPOSE_RESET,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -37,9 +35,6 @@ import { me } from '../initial_state';
 
 const initialState = ImmutableMap({
   mounted: false,
-  advanced_options: ImmutableMap({
-    do_not_federate: false,
-  }),
   sensitive: false,
   spoiler: false,
   spoiler_text: '',
@@ -55,24 +50,10 @@ const initialState = ImmutableMap({
   media_attachments: ImmutableList(),
   suggestion_token: null,
   suggestions: ImmutableList(),
-  default_advanced_options: ImmutableMap({
-    do_not_federate: false,
-  }),
   default_privacy: 'public',
   default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
-  doodle: ImmutableMap({
-    fg: 'rgb(  0,    0,    0)',
-    bg: 'rgb(255,  255,  255)',
-    swapped: false,
-    mode: 'draw',
-    size: 'normal',
-    weight: 2,
-    opacity: 1,
-    adaptiveStroke: true,
-    smoothing: false,
-  }),
 });
 
 function statusToTextMentions(state, status) {
@@ -92,7 +73,6 @@ function clearAll(state) {
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
-    map.set('advanced_options', state.get('default_advanced_options'));
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
@@ -134,7 +114,7 @@ function removeMedia(state, mediaId) {
 
 const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${completion}\u200B${oldText.slice(position + token.length)}`);
+    map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
@@ -146,7 +126,7 @@ const insertEmoji = (state, position, emojiData) => {
   const emoji = emojiData.native;
 
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${emoji}\u200B${oldText.slice(position)}`);
+    map.update('text', oldText => `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`);
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
   });
@@ -184,11 +164,6 @@ export default function compose(state = initialState, action) {
     return state
       .set('mounted', false)
       .set('is_composing', false);
-  case COMPOSE_ADVANCED_OPTIONS_CHANGE:
-    return state
-      .set('advanced_options',
-        state.get('advanced_options').set(action.option, !state.getIn(['advanced_options', action.option])))
-      .set('idempotencyKey', uuid());
   case COMPOSE_SENSITIVITY_CHANGE:
     return state.withMutations(map => {
       if (!state.get('spoiler')) {
@@ -226,9 +201,6 @@ export default function compose(state = initialState, action) {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-      map.set('advanced_options', new ImmutableMap({
-        do_not_federate: /👁\ufe0f?<\/p>$/.test(action.status.get('content')),
-      }));
       map.set('focusDate', new Date());
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
@@ -249,7 +221,6 @@ export default function compose(state = initialState, action) {
       map.set('spoiler', false);
       map.set('spoiler_text', '');
       map.set('privacy', state.get('default_privacy'));
-      map.set('advanced_options', state.get('default_advanced_options'));
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUBMIT_REQUEST:
@@ -299,8 +270,6 @@ export default function compose(state = initialState, action) {
 
         return item;
       }));
-  case COMPOSE_DOODLE_SET:
-    return state.mergeIn(['doodle'], action.options);
   default:
     return state;
   }

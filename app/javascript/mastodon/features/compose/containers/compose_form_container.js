@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
-import { changeComposeVisibility, uploadCompose } from '../../../actions/compose';
+import { uploadCompose } from '../../../actions/compose';
 import {
   changeCompose,
   submitCompose,
@@ -15,7 +15,6 @@ const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
   suggestion_token: state.getIn(['compose', 'suggestion_token']),
   suggestions: state.getIn(['compose', 'suggestions']),
-  advanced_options: state.getIn(['compose', 'advanced_options']),
   spoiler: state.getIn(['compose', 'spoiler']),
   spoiler_text: state.getIn(['compose', 'spoiler_text']),
   privacy: state.getIn(['compose', 'privacy']),
@@ -24,18 +23,12 @@ const mapStateToProps = state => ({
   is_submitting: state.getIn(['compose', 'is_submitting']),
   is_uploading: state.getIn(['compose', 'is_uploading']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
-  settings: state.get('local_settings'),
-  filesAttached: state.getIn(['compose', 'media_attachments']).size > 0,
 });
 
 const mapDispatchToProps = (dispatch) => ({
 
   onChange (text) {
     dispatch(changeCompose(text));
-  },
-
-  onPrivacyChange (value) {
-    dispatch(changeComposeVisibility(value));
   },
 
   onSubmit () {

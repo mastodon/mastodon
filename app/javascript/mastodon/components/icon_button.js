@@ -20,10 +20,8 @@ export default class IconButton extends React.PureComponent {
     disabled: PropTypes.bool,
     inverted: PropTypes.bool,
     animate: PropTypes.bool,
-    flip: PropTypes.bool,
     overlay: PropTypes.bool,
     tabIndex: PropTypes.string,
-    label: PropTypes.string,
   };
 
   static defaultProps = {
@@ -44,18 +42,14 @@ export default class IconButton extends React.PureComponent {
   }
 
   render () {
-    let style = {
+    const style = {
       fontSize: `${this.props.size}px`,
+      width: `${this.props.size * 1.28571429}px`,
       height: `${this.props.size * 1.28571429}px`,
       lineHeight: `${this.props.size}px`,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
-    if (!this.props.label) {
-      style.width = `${this.props.size * 1.28571429}px`;
-    } else {
-      style.textAlign = 'left';
-    }
 
     const {
       active,
@@ -65,7 +59,6 @@ export default class IconButton extends React.PureComponent {
       expanded,
       icon,
       inverted,
-      flip,
       overlay,
       pressed,
       tabIndex,
@@ -78,21 +71,6 @@ export default class IconButton extends React.PureComponent {
       inverted,
       overlayed: overlay,
     });
-
-    const flipDeg = flip ? -180 : -360;
-    const rotateDeg = active ? flipDeg : 0;
-
-    const motionDefaultStyle = {
-      rotate: rotateDeg,
-    };
-
-    const springOpts = {
-      stiffness: this.props.flip ? 60 : 120,
-      damping: 7,
-    };
-    const motionStyle = {
-      rotate: animate ? spring(rotateDeg, springOpts) : 0,
-    };
 
     if (!animate) {
       // Perf optimization: avoid unnecessary <Motion> components unless
@@ -114,7 +92,7 @@ export default class IconButton extends React.PureComponent {
     }
 
     return (
-      <Motion defaultStyle={motionDefaultStyle} style={motionStyle}>
+      <Motion defaultStyle={{ rotate: active ? -360 : 0 }} style={{ rotate: animate ? spring(active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
         {({ rotate }) =>
           <button
             aria-label={title}
@@ -127,7 +105,6 @@ export default class IconButton extends React.PureComponent {
             tabIndex={tabIndex}
           >
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
-            {this.props.label}
           </button>
         }
       </Motion>

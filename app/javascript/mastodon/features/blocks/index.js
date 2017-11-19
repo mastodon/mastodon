@@ -54,7 +54,7 @@ export default class Blocks extends ImmutablePureComponent {
     }
 
     return (
-      <Column name='blocks' icon='ban' heading={intl.formatMessage(messages.heading)}>
+      <Column icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <ScrollContainer scrollKey='blocks'>
           <div className='scrollable' onScroll={this.handleScroll}>

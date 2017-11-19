@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-
-// Glitch imports
-import NotificationPurgeButtonsContainer from '../../glitch/components/column/notif_cleaning_widget/container';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
   hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
   moveLeft: { id: 'column_header.moveLeft_settings', defaultMessage: 'Move column to the left' },
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
-  enterNotifCleaning : { id: 'notification_purge.start', defaultMessage: 'Enter notification cleaning mode' },
 });
 
 @injectIntl
@@ -27,19 +22,14 @@ export default class ColumnHeader extends React.PureComponent {
     title: PropTypes.node.isRequired,
     icon: PropTypes.string.isRequired,
     active: PropTypes.bool,
-    localSettings : ImmutablePropTypes.map,
     multiColumn: PropTypes.bool,
     focusable: PropTypes.bool,
     showBackButton: PropTypes.bool,
-    notifCleaning: PropTypes.bool, // true only for the notification column
-    notifCleaningActive: PropTypes.bool,
-    onEnterCleaningMode: PropTypes.func,
     children: PropTypes.node,
     pinned: PropTypes.bool,
     onPin: PropTypes.func,
     onMove: PropTypes.func,
     onClick: PropTypes.func,
-    intl: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -49,7 +39,6 @@ export default class ColumnHeader extends React.PureComponent {
   state = {
     collapsed: true,
     animating: false,
-    animatingNCD: false,
   };
 
   handleToggleClick = (e) => {
@@ -70,32 +59,17 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   handleBackClick = () => {
-    // if history is exhausted, or we would leave mastodon, just go to root.
-    if (window.history && (window.history.length === 1 || window.history.length === window._mastoInitialHistoryLen)) {
-      this.context.router.history.push('/');
-    } else {
-      this.context.router.history.goBack();
-    }
+    if (window.history && window.history.length === 1) this.context.router.history.push('/');
+    else this.context.router.history.goBack();
   }
 
   handleTransitionEnd = () => {
     this.setState({ animating: false });
   }
 
-  handleTransitionEndNCD = () => {
-    this.setState({ animatingNCD: false });
-  }
-
-  onEnterCleaningMode = () => {
-    this.setState({ animatingNCD: true });
-    this.props.onEnterCleaningMode(!this.props.notifCleaningActive);
-  }
-
   render () {
-    const { intl, icon, active, children, pinned, onPin, multiColumn, focusable, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive } = this.props;
-    const { collapsed, animating, animatingNCD } = this.state;
-
-    let title = this.props.title;
+    const { title, icon, active, children, pinned, onPin, multiColumn, focusable, showBackButton, intl: { formatMessage } } = this.props;
+    const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
       'active': active,
@@ -114,19 +88,7 @@ export default class ColumnHeader extends React.PureComponent {
       'active': !collapsed,
     });
 
-    const notifCleaningButtonClassName = classNames('column-header__button', {
-      'active': notifCleaningActive,
-    });
-
-    const notifCleaningDrawerClassName = classNames('ncd column-header__collapsible', {
-      'collapsed': !notifCleaningActive,
-      'animating': animatingNCD,
-    });
-
     let extraContent, pinButton, moveButtons, backButton, collapseButton;
-
-    //*glitch
-    const msgEnterNotifCleaning = intl.formatMessage(messages.enterNotifCleaning);
 
     if (children) {
       extraContent = (
@@ -178,29 +140,12 @@ export default class ColumnHeader extends React.PureComponent {
           <span className='column-header__title'>
             {title}
           </span>
+
           <div className='column-header__buttons'>
             {backButton}
-            { notifCleaning ? (
-              <button
-                aria-label={msgEnterNotifCleaning}
-                title={msgEnterNotifCleaning}
-                onClick={this.onEnterCleaningMode}
-                className={notifCleaningButtonClassName}
-              >
-                <i className='fa fa-eraser' />
-              </button>
-            ) : null}
             {collapseButton}
           </div>
         </h1>
-
-        { notifCleaning ? (
-          <div className={notifCleaningDrawerClassName} onTransitionEnd={this.handleTransitionEndNCD}>
-            <div className='column-header__collapsible-inner nopad-drawer'>
-              {(notifCleaningActive || animatingNCD) ? (<NotificationPurgeButtonsContainer />) : null }
-            </div>
-          </div>
-        ) : null}
 
         <div className={collapsibleClassName} tabIndex={collapsed ? -1 : null} onTransitionEnd={this.handleTransitionEnd}>
           <div className='column-header__collapsible-inner'>

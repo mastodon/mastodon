@@ -105,13 +105,12 @@ export function fetchAccountFail(id, error) {
   };
 };
 
-export function followAccount(id, reblogs = true) {
+export function followAccount(id) {
   return (dispatch, getState) => {
-    const alreadyFollowing = getState().getIn(['relationships', id, 'following']);
     dispatch(followAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/follow`, { reblogs }).then(response => {
-      dispatch(followAccountSuccess(response.data, alreadyFollowing));
+    api(getState).post(`/api/v1/accounts/${id}/follow`).then(response => {
+      dispatch(followAccountSuccess(response.data));
     }).catch(error => {
       dispatch(followAccountFail(error));
     });
@@ -137,11 +136,10 @@ export function followAccountRequest(id) {
   };
 };
 
-export function followAccountSuccess(relationship, alreadyFollowing) {
+export function followAccountSuccess(relationship) {
   return {
     type: ACCOUNT_FOLLOW_SUCCESS,
     relationship,
-    alreadyFollowing,
   };
 };
 

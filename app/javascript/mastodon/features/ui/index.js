@@ -15,7 +15,6 @@ import { clearHeight } from '../../actions/height_cache';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
-import classNames from 'classnames';
 import {
   Compose,
   Status,
@@ -29,7 +28,6 @@ import {
   Following,
   Reblogs,
   Favourites,
-  DirectTimeline,
   HashtagTimeline,
   Notifications,
   FollowRequests,
@@ -45,7 +43,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
-import '../../../glitch/components/status';
+import '../../components/status';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -54,9 +52,6 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   isComposing: state.getIn(['compose', 'is_composing']),
   hasComposingText: state.getIn(['compose', 'text']) !== '',
-  layout: state.getIn(['local_settings', 'layout']),
-  isWide: state.getIn(['local_settings', 'stretch']),
-  navbarUnder: state.getIn(['local_settings', 'navbar_under']),
 });
 
 const keyMap = {
@@ -77,7 +72,6 @@ const keyMap = {
   goToNotifications: 'g n',
   goToLocal: 'g l',
   goToFederated: 'g t',
-  goToDirect: 'g d',
   goToStart: 'g s',
   goToFavourites: 'g f',
   goToPinned: 'g p',
@@ -98,10 +92,6 @@ export default class UI extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
-    layout: PropTypes.string,
-    isWide: PropTypes.bool,
-    systemFontUi: PropTypes.bool,
-    navbarUnder: PropTypes.bool,
     isComposing: PropTypes.bool,
     hasComposingText: PropTypes.bool,
     location: PropTypes.object,
@@ -224,7 +214,6 @@ export default class UI extends React.Component {
     if (nextProps.isComposing !== this.props.isComposing) {
       // Avoid expensive update just to toggle a class
       this.node.classList.toggle('is-composing', nextProps.isComposing);
-      this.node.classList.toggle('navbar-under', nextProps.navbarUnder);
 
       return false;
     }
@@ -324,10 +313,6 @@ export default class UI extends React.Component {
     this.context.router.history.push('/timelines/public');
   }
 
-  handleHotkeyGoToDirect = () => {
-    this.context.router.history.push('/timelines/direct');
-  }
-
   handleHotkeyGoToStart = () => {
     this.context.router.history.push('/getting-started');
   }
@@ -354,24 +339,7 @@ export default class UI extends React.Component {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children, layout, isWide, navbarUnder } = this.props;
-
-    const columnsClass = layout => {
-      switch (layout) {
-      case 'single':
-        return 'single-column';
-      case 'multiple':
-        return 'multi-columns';
-      default:
-        return 'auto-columns';
-      }
-    };
-
-    const className = classNames('ui', columnsClass(layout), {
-      'wide': isWide,
-      'system-font': this.props.systemFontUi,
-      'navbar-under': navbarUnder,
-    });
+    const { children } = this.props;
 
     const handlers = {
       new: this.handleHotkeyNew,
@@ -383,7 +351,6 @@ export default class UI extends React.Component {
       goToNotifications: this.handleHotkeyGoToNotifications,
       goToLocal: this.handleHotkeyGoToLocal,
       goToFederated: this.handleHotkeyGoToFederated,
-      goToDirect: this.handleHotkeyGoToDirect,
       goToStart: this.handleHotkeyGoToStart,
       goToFavourites: this.handleHotkeyGoToFavourites,
       goToPinned: this.handleHotkeyGoToPinned,
@@ -394,17 +361,16 @@ export default class UI extends React.Component {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
-        <div className={className} ref={this.setRef}>
-          {navbarUnder ? null : (<TabsBar />)}
+        <div className='ui' ref={this.setRef}>
+          <TabsBar />
 
-          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width, layout)}>
+          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width)}>
             <WrappedSwitch>
               <Redirect from='/' to='/getting-started' exact />
               <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
               <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
               <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
               <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
-              <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
               <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
 
               <WrappedRoute path='/notifications' component={Notifications} content={children} />
@@ -430,7 +396,6 @@ export default class UI extends React.Component {
           </ColumnsAreaContainer>
 
           <NotificationsContainer />
-          {navbarUnder ? (<TabsBar />) : null}
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />

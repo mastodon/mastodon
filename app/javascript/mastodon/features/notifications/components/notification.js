@@ -1,6 +1,3 @@
-//  THIS FILE EXISTS FOR UPSTREAM COMPATIBILITY & SHOULDN'T BE USED !!
-//  SEE INSTEAD : glitch/components/notification
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';

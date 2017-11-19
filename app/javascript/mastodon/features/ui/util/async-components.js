@@ -26,10 +26,6 @@ export function HashtagTimeline () {
   return import(/* webpackChunkName: "features/hashtag_timeline" */'../../hashtag_timeline');
 }
 
-export function DirectTimeline() {
-  return import(/* webpackChunkName: "features/direct_timeline" */'../../direct_timeline');
-}
-
 export function Status () {
   return import(/* webpackChunkName: "features/status" */'../../status');
 }
@@ -97,13 +93,6 @@ export function MuteModal () {
 export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
 }
-
-export function SettingsModal () {
-  return import(/* webpackChunkName: "modals/settings_modal" */'glitch/components/local_settings/container');
-}
-
-//  THESE AREN'T USED BY US; SEE `glitch/components/status` AND `mastodon/features/status`.  //
-//  IF MASTODON EVER CHANGES DETAILED STATUSES TO REQUIRE THEM, WE'LL NEED TO UPDATE THE URLS OR SOMETHING LOL.  //
 
 export function MediaGallery () {
   return import(/* webpackChunkName: "status/media_gallery" */'../../../components/media_gallery');

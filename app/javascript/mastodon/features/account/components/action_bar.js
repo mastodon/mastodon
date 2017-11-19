@@ -20,8 +20,6 @@ const messages = defineMessages({
   media: { id: 'account.media', defaultMessage: 'Media' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Hide everything from {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
-  hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
-  showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
 });
 
 @injectIntl
@@ -32,7 +30,6 @@ export default class ActionBar extends React.PureComponent {
     onFollow: PropTypes.func,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
-    onReblogToggle: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
@@ -63,15 +60,6 @@ export default class ActionBar extends React.PureComponent {
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
     } else {
-      const following = account.getIn(['relationship', 'following']);
-      if (following) {
-        if (following.get('reblogs')) {
-          menu.push({ text: intl.formatMessage(messages.hideReblogs, { name: account.get('username') }), action: this.props.onReblogToggle });
-        } else {
-          menu.push({ text: intl.formatMessage(messages.showReblogs, { name: account.get('username') }), action: this.props.onReblogToggle });
-        }
-      }
-
       if (account.getIn(['relationship', 'muting'])) {
         menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.props.onMute });
       } else {

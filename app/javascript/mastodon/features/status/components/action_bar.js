@@ -107,8 +107,8 @@ export default class ActionBar extends React.PureComponent {
     );
 
     let reblogIcon = 'retweet';
-    //if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
-    // else if (status.get('visibility') === 'private') reblogIcon = 'lock';
+    if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
+    else if (status.get('visibility') === 'private') reblogIcon = 'lock';
 
     let reblog_disabled = (status.get('visibility') === 'direct' || status.get('visibility') === 'private');
 

@@ -1,9 +1,9 @@
-import loadPolyfills from '../mastodon/load_polyfills';
+import loadPolyfills from 'themes/glitch/util/load_polyfills';
 
 require.context('../images/', true);
 
 function loaded() {
-  const ComposeContainer = require('../mastodon/containers/compose_container').default;
+  const ComposeContainer = require('themes/glitch/containers/compose_container').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
   const mountNode = document.getElementById('mastodon-compose');
@@ -15,7 +15,7 @@ function loaded() {
 }
 
 function main() {
-  const ready = require('../mastodon/ready').default;
+  const ready = require('themes/glitch/util/ready').default;
   ready(loaded);
 }
 

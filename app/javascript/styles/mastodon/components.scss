@@ -1,13 +1,4 @@
 @import 'variables';
-@import 'variables-glitch';
-
-@mixin fullwidth-gallery {
-  &.full-width {
-    margin-left: -22px;
-    margin-right: -22px;
-    width: inherit;
-  }
-}
 
 .app-body {
   -webkit-overflow-scrolling: touch;
@@ -311,6 +302,7 @@
   font-family: inherit;
   font-size: 14px;
   background: $simple-background-color;
+  border-radius: 0 0 4px;
 }
 
 .compose-form__buttons-wrapper {
@@ -329,11 +321,6 @@
     box-sizing: content-box;
     padding: 0 3px;
   }
-}
-
-.compose-form__buttons-separator {
-  border-left: 1px solid #c3c3c3;
-  margin: 0 3px;
 }
 
 .compose-form__upload-button-icon {
@@ -465,30 +452,12 @@
 
 .compose-form__publish {
   display: flex;
-  justify-content: flex-end;
   min-width: 0;
 }
 
 .compose-form__publish-button-wrapper {
   overflow: hidden;
   padding-top: 10px;
-  white-space: nowrap;
-  display: flex;
-
-  button {
-    text-overflow: unset;
-  }
-}
-
-.compose-form__publish__side-arm {
-  padding: 0 !important;
-  width: 36px;
-  text-align: center;
-  margin-right: 2px;
-}
-
-.compose-form__publish__primary {
-  padding: 0 10px !important;
 }
 
 .emojione {
@@ -542,27 +511,13 @@
   cursor: pointer;
 }
 
-.status-check-box {
-  .status__content,
-  .reply-indicator__content {
-    color: #3a3a3a;
-    a {
-      color: #005aa9;
-    }
-  }
-}
-
 .status__content,
 .reply-indicator__content {
-  position: relative;
-  margin: 10px 0;
-  padding: 0 12px;
   font-size: 15px;
   line-height: 20px;
-  color: $primary-text-color;
   word-wrap: break-word;
   font-weight: 400;
-  overflow: visible;
+  overflow: hidden;
   white-space: pre-wrap;
   padding-top: 5px;
 
@@ -615,10 +570,19 @@
     }
   }
 
-  .status__content__spoiler {
+  .status__content__spoiler-link {
+    background: lighten($ui-base-color, 30%);
+
+    &:hover {
+      background: lighten($ui-base-color, 33%);
+      text-decoration: none;
+    }
+  }
+
+  .status__content__text {
     display: none;
 
-    &.status__content__spoiler--visible {
+    &.status__content__text--visible {
       display: block;
     }
   }
@@ -627,54 +591,20 @@
 .status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
-  background: lighten($ui-base-color, 30%);
-  border: none;
+  background: transparent;
+  border: 0;
   color: lighten($ui-base-color, 8%);
   font-weight: 500;
   font-size: 11px;
-  padding: 0 5px;
+  padding: 0 6px;
   text-transform: uppercase;
   line-height: inherit;
   cursor: pointer;
-  vertical-align: bottom;
-
-  &:hover {
-    background: lighten($ui-base-color, 33%);
-    text-decoration: none;
-  }
-
-  .status__content__spoiler-icon {
-    display: inline-block;
-    margin: 0 0 0 5px;
-    border-left: 1px solid currentColor;
-    padding: 0 0 0 4px;
-    font-size: 16px;
-    vertical-align: -2px;
-  }
 }
 
 .status__prepend-icon-wrapper {
-  float: left;
-  margin: 0 10px 0 -58px;
-  width: 48px;
-  text-align: right;
-}
-
-.notif-cleaning {
-  .status, .notification-follow {
-    padding-right: ($dismiss-overlay-width + 0.5rem);
-  }
-}
-
-.notification-follow {
-  position: relative;
-
-  // same like Status
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-
-  .account {
-    border-bottom: 0 none;
-  }
+  left: -26px;
+  position: absolute;
 }
 
 .focusable {
@@ -695,8 +625,8 @@
 
 .status {
   padding: 8px 10px;
+  padding-left: 68px;
   position: relative;
-  height: auto;
   min-height: 48px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
@@ -763,41 +693,6 @@
       }
     }
   }
-
-  &.collapsed {
-    background-position: center;
-    background-size: cover;
-    user-select: none;
-
-    &.has-background::before {
-      display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-    	background-image: linear-gradient(to bottom, rgba($base-shadow-color, .75), rgba($base-shadow-color, .65) 24px, rgba($base-shadow-color, .8));
-      content: "";
-    }
-
-    .display-name:hover .display-name__html {
-      text-decoration: none;
-    }
-
-    .status__content {
-      height: 20px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      a:hover {
-        text-decoration: none;
-      }
-    }
-  }
-
-  .notification__message {
-    margin: -10px -10px 10px;
-  }
 }
 
 .notification-favourite {
@@ -811,39 +706,23 @@
 }
 
 .status__relative-time {
-  display: inline-block;
-  margin-left: auto;
-  padding-left: 18px;
-  width: 120px;
   color: $ui-base-lighter-color;
+  float: right;
   font-size: 14px;
-  text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .status__display-name {
-  margin: 0 auto 0 0;
   color: $ui-base-lighter-color;
-  overflow: hidden;
+}
+
+.status__info .status__display-name {
+  display: block;
+  max-width: 100%;
+  padding-right: 25px;
 }
 
 .status__info {
-  display: flex;
-  margin: 2px 0 5px;
   font-size: 15px;
-  line-height: 24px;
-}
-
-.status__info__icons {
-  flex: none;
-  position: relative;
-  color: lighten($ui-base-color, 26%);
-
-  .status__visibility-icon {
-    padding-left: 6px;
-  }
 }
 
 .status-check-box {
@@ -868,9 +747,10 @@
 }
 
 .status__prepend {
-  margin: -10px -10px 10px;
+  margin-left: 68px;
   color: $ui-base-lighter-color;
-  padding: 8px 10px 0 68px;
+  padding: 8px 0;
+  padding-bottom: 2px;
   font-size: 14px;
   position: relative;
 
@@ -888,36 +768,18 @@
 .status__action-bar {
   align-items: center;
   display: flex;
-  margin: 10px 4px 0;
+  margin-top: 5px;
 }
 
 .status__action-bar-button {
   float: left;
   margin-right: 18px;
-  flex: 0 0 auto;
 }
 
 .status__action-bar-dropdown {
   float: left;
   height: 23.15px;
   width: 23.15px;
-
-  // Dropdown style override for centering on the icon
-  .dropdown--active {
-    position: relative;
-
-    .dropdown__content.dropdown__right {
-      left: calc(50% + 3px);
-      right: initial;
-      transform: translate(-50%, 0);
-      top: 22px;
-    }
-
-    &::after {
-      right: 1px;
-      bottom: -2px;
-    }
-  }
 }
 
 .detailed-status__action-bar-dropdown {
@@ -1006,7 +868,8 @@
 
 .account__avatar-wrapper {
   float: left;
-  margin: 6px 16px 6px 6px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 .account__avatar {
@@ -1022,7 +885,6 @@
 }
 
 .account__avatar-overlay {
-  position: relative;
   @include avatar-size(48px);
 
   &-base {
@@ -1043,16 +905,13 @@
 
 .account__relationship {
   height: 18px;
-  padding: 12px 10px;
+  padding: 10px;
   white-space: nowrap;
 }
 
-.account__header__wrapper {
+.account__header {
   flex: 0 0 auto;
   background: lighten($ui-base-color, 4%);
-}
-
-.account__header {
   text-align: center;
   background-size: cover;
   background-position: center;
@@ -1144,59 +1003,6 @@
   }
 }
 
-.account__metadata {
-  width: 100%;
-  font-size: 15px;
-  line-height: 20px;
-  overflow: hidden;
-  border-collapse: collapse;
-
-  a {
-    text-decoration: none;
-
-    &:hover{
-      text-decoration: underline;
-    }
-  }
-
-  tr {
-    border-top: 1px solid lighten($ui-base-color, 8%);
-  }
-
-  th, td {
-    padding: 14px 20px;
-    vertical-align: middle;
-
-    & > div {
-      max-height: 40px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      text-overflow: ellipsis;
-    }
-  }
-
-  th {
-    color: $ui-primary-color;
-    background: lighten($ui-base-color, 13%);
-    font-variant: small-caps;
-    max-width: 120px;
-
-    a {
-      color: $primary-text-color;
-    }
-  }
-
-  td {
-    flex: auto;
-    color: $primary-text-color;
-    background: $ui-base-color;
-
-    a {
-      color: $ui-highlight-color;
-    }
-  }
-}
-
 .account__action-bar {
   border-top: 1px solid lighten($ui-base-color, 8%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -1258,11 +1064,12 @@
 }
 
 .account__header__avatar {
-  @include avatar-radius();
-  @include avatar-size(90px);
+  background-size: 90px 90px;
   display: block;
+  height: 90px;
   margin: 0 auto 10px;
   overflow: hidden;
+  width: 90px;
 }
 
 .account-authorize {
@@ -1299,6 +1106,15 @@
 .muted {
   .emojione {
     opacity: 0.5;
+  }
+}
+
+.status__display-name,
+.reply-indicator__display-name,
+.detailed-status__display-name,
+.account__display-name {
+  &:hover strong {
+    text-decoration: underline;
   }
 }
 
@@ -1339,9 +1155,10 @@
 }
 
 .status__avatar {
-  flex: none;
-  margin: 0 10px 0 0;
   height: 48px;
+  left: 10px;
+  position: absolute;
+  top: 10px;
   width: 48px;
 }
 
@@ -1355,7 +1172,7 @@
     color: $ui-base-lighter-color;
   }
 
-  .status__avatar, .emojione {
+  .status__avatar {
     opacity: 0.5;
   }
 
@@ -1371,7 +1188,9 @@
 }
 
 .notification__message {
-  padding: 8px 10px 0 68px;
+  margin-left: 68px;
+  padding: 8px 0;
+  padding-bottom: 0;
   cursor: default;
   color: $ui-primary-color;
   font-size: 15px;
@@ -1389,10 +1208,8 @@
 }
 
 .notification__favourite-icon-wrapper {
-  float: left;
-  margin: 0 10px 0 -58px;
-  width: 48px;
-  text-align: right;
+  left: -26px;
+  position: absolute;
 
   .star-icon {
     color: $gold-star;
@@ -1416,37 +1233,18 @@
 
 .display-name {
   display: block;
-  padding: 6px 0;
   max-width: 100%;
-  height: 36px;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-  strong {
-    display: block;
-    height: 18px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 18px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+.display-name__html {
+  font-weight: 500;
+}
 
-  span {
-    display: block;
-    height: 18px;
-    font-size: 15px;
-    line-height: 18px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  &:hover {
-    strong {
-      text-decoration: underline;
-    }
-  }
+.display-name__account {
+  font-size: 14px;
 }
 
 .status__relative-time,
@@ -1695,12 +1493,11 @@
   justify-content: flex-start;
   overflow-x: auto;
   position: relative;
-  padding: 10px;
 }
 
-@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
+@media screen and (min-width: 360px) {
   .columns-area {
-    padding: 0;
+    padding: 10px;
   }
 
   .react-swipeable-view-container .columns-area {
@@ -1730,13 +1527,6 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-
-  .wide & {
-    flex: auto;
-    min-width: 330px;
-    max-width: 400px;
-  }
 
   > .scrollable {
     background: $ui-base-color;
@@ -1757,13 +1547,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-
-  .wide & {
-    flex: 1 1 200px;
-    min-width: 300px;
-    max-width: 400px;
-  }
+  overflow-y: hidden;
 }
 
 .drawer__tab {
@@ -1775,8 +1559,6 @@
   text-align: center;
   font-size: 16px;
   border-bottom: 2px solid transparent;
-  outline: none;
-  cursor: pointer;
 }
 
 .column,
@@ -1785,45 +1567,42 @@
   overflow: hidden;
 }
 
-@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
+@media screen and (min-width: 360px) {
   .tabs-bar {
-    margin: 0;
+    margin: 10px;
+    margin-bottom: 0;
   }
 
   .search {
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
 }
 
-:root {  //  Overrides .wide stylings for mobile view
-  @include single-column('screen and (max-width: 630px)', $parent: null) {
-    .column,
-    .drawer {
-      flex: auto;
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-      padding: 0;
-    }
+@media screen and (max-width: 630px) {
+  .column,
+  .drawer {
+    width: 100%;
+    padding: 0;
+  }
 
-    .columns-area {
-      flex-direction: column;
-    }
+  .columns-area {
+    flex-direction: column;
+  }
 
-    .search__input,
-    .autosuggest-textarea__textarea {
-      font-size: 16px;
-    }
+  .search__input,
+  .autosuggest-textarea__textarea {
+    font-size: 16px;
   }
 }
 
-@include multi-columns('screen and (min-width: 631px)', $parent: null) {
+@media screen and (min-width: 631px) {
   .columns-area {
     padding: 0;
   }
 
   .column,
   .drawer {
+    flex: 0 0 auto;
     padding: 10px;
     padding-left: 5px;
     padding-right: 5px;
@@ -1849,25 +1628,28 @@
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;
-  flex: 1 1 auto;
+  flex-grow: 1;
   position: relative;
+  overflow: hidden;
+  display: flex;
 }
 
 .drawer__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
   background: lighten($ui-base-color, 13%);
   box-sizing: border-box;
   padding: 0;
-  position: absolute;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: auto;
   width: 100%;
+  height: 100%;
 
   &.darker {
-    position: absolute;
-    top: 0;
-    left: 0;
     background: $ui-base-color;
-    width: 100%;
-    height: 100%;
   }
 }
 
@@ -1900,8 +1682,6 @@
   background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
-  margin: 10px;
-  margin-bottom: 0;
 }
 
 .tabs-bar__link {
@@ -1929,7 +1709,7 @@
   &:hover,
   &:focus,
   &:active {
-    @include multi-columns('screen and (min-width: 631px)') {
+    @media screen and (min-width: 631px) {
       background: lighten($ui-base-color, 14%);
       transition: all 100ms linear;
     }
@@ -1941,7 +1721,7 @@
   }
 }
 
-@include limited-single-column('screen and (max-width: 600px)', $parent: null) {
+@media screen and (min-width: 600px) {
   .tabs-bar__link {
     span {
       display: inline;
@@ -1949,7 +1729,7 @@
   }
 }
 
-@include multi-columns('screen and (min-width: 631px)', $parent: null) {
+@media screen and (min-width: 631px) {
   .tabs-bar {
     display: none;
   }
@@ -2146,8 +1926,6 @@
   font-size: 16px;
   padding: 15px;
   text-decoration: none;
-  cursor: pointer;
-  outline: none;
 
   &:hover {
     background: lighten($ui-base-color, 11%);
@@ -2193,7 +1971,7 @@
     outline: 0;
   }
 
-  @include limited-single-column('screen and (max-width: 600px)') {
+  @media screen and (max-width: 600px) {
     font-size: 16px;
   }
 }
@@ -2209,7 +1987,7 @@
   padding-right: 10px + 22px;
   resize: none;
 
-  @include limited-single-column('screen and (max-width: 600px)') {
+  @media screen and (max-width: 600px) {
     height: 100px !important; // prevent auto-resize textarea
     resize: vertical;
   }
@@ -2327,7 +2105,7 @@
     border-bottom-color: $ui-highlight-color;
   }
 
-  @include limited-single-column('screen and (max-width: 600px)') {
+  @media screen and (max-width: 600px) {
     font-size: 16px;
   }
 
@@ -2574,88 +2352,6 @@ button.icon-button.active i.fa-retweet {
       background: lighten($ui-base-color, 8%);
     }
   }
-
-  // glitch - added focus ring for keyboard navigation
-  &:focus {
-    text-shadow: 0 0 4px darken($ui-highlight-color, 5%);
-  }
-}
-
-.scrollable > div > :first-child .notification__dismiss-overlay > .wrappy {
-  border-top: 1px solid $ui-base-color;
-}
-
-.notification__dismiss-overlay {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: -1px;
-  padding-left: 15px; // space for the box shadow to be visible
-
-  z-index: 999;
-  align-items: center;
-  justify-content: flex-end;
-  cursor: pointer;
-
-  display: flex;
-
-  .wrappy {
-    width: $dismiss-overlay-width;
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: lighten($ui-base-color, 8%);
-    border-left: 1px solid lighten($ui-base-color, 20%);
-    box-shadow: 0 0 5px black;
-    border-bottom: 1px solid $ui-base-color;
-  }
-
-  .ckbox {
-    border: 2px solid $ui-primary-color;
-    border-radius: 2px;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    color: $ui-primary-color;
-    text-shadow: 0 0 5px black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &:focus {
-    outline: 0 !important;
-
-    .ckbox {
-      box-shadow: 0 0 1px 1px $ui-highlight-color;
-    }
-  }
-}
-
-.column-header__notif-cleaning-buttons {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-around;
-
-  button {
-    @extend .column-header__button;
-    background: transparent;
-    text-align: center;
-    padding: 10px 0;
-    white-space: pre-wrap;
-  }
-
-  b {
-    font-weight: bold;
-  }
-}
-
-// The notifs drawer with no padding to have more space for the buttons
-.column-header__collapsible-inner.nopad-drawer {
-  padding: 0;
 }
 
 .column-header__collapsible {
@@ -2673,15 +2369,6 @@ button.icon-button.active i.fa-retweet {
 
   &.animating {
     overflow-y: hidden;
-  }
-
-  // notif cleaning drawer
-  &.ncd {
-    transition: none;
-    &.collapsed {
-      max-height: 0;
-      opacity: 0.7;
-    }
   }
 }
 
@@ -2823,18 +2510,12 @@ button.icon-button.active i.fa-retweet {
   border: 0;
   width: 100%;
   height: 100%;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
 
-  .status__content > & {
-    margin-top: 15px; // Add margin when used bare for NSFW video player
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($ui-primary-color, 8%);
   }
-
-  @include fullwidth-gallery;
 }
 
 .media-spoiler__warning {
@@ -3293,82 +2974,8 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.advanced-options-dropdown {
-  position: relative;
-}
-
-.advanced-options-dropdown__dropdown {
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 27px;
-  width: 210px;
-  background: $simple-background-color;
-  border-radius: 0 4px 4px;
-  z-index: 2;
-  overflow: hidden;
-}
-
-.advanced-options-dropdown__option {
-  color: $ui-base-color;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-
-  &:hover,
-  &.active {
-    background: $ui-highlight-color;
-    color: $primary-text-color;
-
-    .advanced-options-dropdown__option__content {
-      color: $primary-text-color;
-
-      strong {
-        color: $primary-text-color;
-      }
-    }
-  }
-
-  &.active:hover {
-    background: lighten($ui-highlight-color, 4%);
-  }
-}
-
-.advanced-options-dropdown__option__toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-}
-
-.advanced-options-dropdown__option__content {
-  flex: 1 1 auto;
-  color: darken($ui-primary-color, 24%);
-
-  strong {
-    font-weight: 500;
-    display: block;
-    color: $ui-base-color;
-  }
-}
-
-.advanced-options-dropdown.open {
-  .advanced-options-dropdown__value {
-    background: $simple-background-color;
-    border-radius: 4px 4px 0 0;
-    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
-  }
-
-  .advanced-options-dropdown__dropdown {
-    display: block;
-    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
-  }
-}
-
-
 .search {
   position: relative;
-  margin-bottom: 10px;
 }
 
 .search__input {
@@ -3399,7 +3006,7 @@ button.icon-button.active i.fa-retweet {
     background: lighten($ui-base-color, 4%);
   }
 
-  @include limited-single-column('screen and (max-width: 600px)') {
+  @media screen and (max-width: 600px) {
     font-size: 16px;
   }
 }
@@ -3457,10 +3064,6 @@ button.icon-button.active i.fa-retweet {
   padding: 15px 10px;
   font-size: 14px;
   font-weight: 500;
-}
-
-.search-results__section {
-  background: $ui-base-color;
 }
 
 .search-results__hashtag {
@@ -3925,7 +3528,17 @@ button.icon-button.active i.fa-retweet {
   flex-direction: column;
 
   .status__display-name {
-    display: flex;
+    display: block;
+    max-width: 100%;
+    padding-right: 25px;
+  }
+
+  .status__avatar {
+    height: 28px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    width: 48px;
   }
 }
 
@@ -4192,18 +3805,10 @@ button.icon-button.active i.fa-retweet {
 /* Media Gallery */
 .media-gallery {
   box-sizing: border-box;
-  margin-top: 15px;
+  margin-top: 8px;
   overflow: hidden;
   position: relative;
-  background: $base-shadow-color;
   width: 100%;
-
-  .detailed-status & {
-    margin-left:-10px;
-    width: calc(100% + 22px);
-  }
-
-  @include fullwidth-gallery;
 }
 
 .media-gallery__item {
@@ -4222,20 +3827,16 @@ button.icon-button.active i.fa-retweet {
 
 .media-gallery__item-thumbnail {
   cursor: zoom-in;
+  display: block;
   text-decoration: none;
-  width: 100%;
   height: 100%;
   line-height: 0;
-  display: flex;
 
+  &,
   img {
     width: 100%;
-    object-fit: contain;
-
-    &:not(.letterbox) {
-      height: 100%;
-      object-fit: cover;
-    }
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -4244,21 +3845,17 @@ button.icon-button.active i.fa-retweet {
   overflow: hidden;
   position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .media-gallery__item-gifv-thumbnail {
   cursor: zoom-in;
   height: 100%;
+  object-fit: cover;
   position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
   z-index: 1;
-  object-fit: contain;
-
-  &:not(.letterbox) {
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
 .media-gallery__item-thumbnail-label {
@@ -4271,28 +3868,22 @@ button.icon-button.active i.fa-retweet {
 
 /* Status Video Player */
 .status__video-player {
-  display: flex;
-  align-items: center;
-  background: $base-shadow-color;
+  background: $base-overlay-background;
   box-sizing: border-box;
   cursor: default; /* May not be needed */
-  margin-top: 15px;
+  margin-top: 8px;
   overflow: hidden;
   position: relative;
-  width: 100%;
-
-  @include fullwidth-gallery;
 }
 
 .status__video-player-video {
+  height: 100%;
+  object-fit: cover;
   position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   width: 100%;
   z-index: 1;
-
-  &:not(.letterbox) {
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
 .status__video-player-expand,
@@ -4514,12 +4105,8 @@ button.icon-button.active i.fa-retweet {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 8px;
   position: relative;
-  width: 100%;
-
-  @include fullwidth-gallery;
-
   border: 0;
   display: block;
 }
@@ -4726,42 +4313,6 @@ noscript {
       }
     }
   }
-
-  // fixes for the navbar-under mode
-  .is-composing.navbar-under {
-    .search {
-      margin-top: -20px;
-      margin-bottom: -20px;
-      .search__icon {
-        display: none;
-      }
-    }
-  }
-}
-
-// more fixes for the navbar-under mode
-@mixin fix-margins-for-navbar-under {
-  .tabs-bar {
-    margin-top: 0 !important;
-    margin-bottom: -6px !important;
-  }
-}
-
-.single-column.navbar-under {
-  @include fix-margins-for-navbar-under;
-}
-
-.auto-columns.navbar-under {
-  @media screen and (max-width: 360px) {
-    @include fix-margins-for-navbar-under;
-  }
-}
-
-.auto-columns.navbar-under .react-swipeable-view-container .columns-area,
-.single-column.navbar-under .react-swipeable-view-container .columns-area {
-  @media screen and (max-width: 360px) {
-    height: 100% !important;
-  }
 }
 
 .embed-modal {
@@ -4824,5 +4375,3 @@ noscript {
     }
   }
 }
-
-@import 'doodle';

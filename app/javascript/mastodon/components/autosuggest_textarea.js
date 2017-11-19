@@ -11,8 +11,8 @@ import classNames from 'classnames';
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
 
-  let left  = str.slice(0, caretPosition).search(/[^\s\u200B]+$/);
-  let right = str.slice(caretPosition).search(/[\s\u200B]/);
+  let left  = str.slice(0, caretPosition).search(/\S+$/);
+  let right = str.slice(caretPosition).search(/\s/);
 
   if (right < 0) {
     word = str.slice(left);

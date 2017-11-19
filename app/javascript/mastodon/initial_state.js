@@ -1,13 +1,5 @@
 const element = document.getElementById('initial-state');
-const initialState = element && function () {
-  const result = JSON.parse(element.textContent);
-  try {
-    result.local_settings = JSON.parse(localStorage.getItem('mastodon-settings'));
-  } catch (e) {
-    result.local_settings = {};
-  }
-  return result;
-}();
+const initialState = element && JSON.parse(element.textContent);
 
 const getMeta = (prop) => initialState && initialState.meta && initialState.meta[prop];
 

@@ -67,14 +67,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(mentionCompose(account, router));
   },
 
-  onReblogToggle (account) {
-    if (account.getIn(['relationship', 'following', 'reblogs'])) {
-      dispatch(followAccount(account.get('id'), false));
-    } else {
-      dispatch(followAccount(account.get('id'), true));
-    }
-  },
-
   onReport (account) {
     dispatch(initReport(account));
   },

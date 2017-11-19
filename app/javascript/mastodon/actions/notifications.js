@@ -6,17 +6,6 @@ import { defineMessages } from 'react-intl';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 
-// tracking the notif cleaning request
-export const NOTIFICATIONS_DELETE_MARKED_REQUEST = 'NOTIFICATIONS_DELETE_MARKED_REQUEST';
-export const NOTIFICATIONS_DELETE_MARKED_SUCCESS = 'NOTIFICATIONS_DELETE_MARKED_SUCCESS';
-export const NOTIFICATIONS_DELETE_MARKED_FAIL = 'NOTIFICATIONS_DELETE_MARKED_FAIL';
-export const NOTIFICATIONS_MARK_ALL_FOR_DELETE = 'NOTIFICATIONS_MARK_ALL_FOR_DELETE';
-export const NOTIFICATIONS_ENTER_CLEARING_MODE = 'NOTIFICATIONS_ENTER_CLEARING_MODE'; // arg: yes
-// Unmark notifications (when the cleaning mode is left)
-export const NOTIFICATIONS_UNMARK_ALL_FOR_DELETE = 'NOTIFICATIONS_UNMARK_ALL_FOR_DELETE';
-// Mark one for delete
-export const NOTIFICATION_MARK_FOR_DELETE = 'NOTIFICATION_MARK_FOR_DELETE';
-
 export const NOTIFICATIONS_REFRESH_REQUEST = 'NOTIFICATIONS_REFRESH_REQUEST';
 export const NOTIFICATIONS_REFRESH_SUCCESS = 'NOTIFICATIONS_REFRESH_SUCCESS';
 export const NOTIFICATIONS_REFRESH_FAIL    = 'NOTIFICATIONS_REFRESH_FAIL';
@@ -197,69 +186,5 @@ export function scrollTopNotifications(top) {
   return {
     type: NOTIFICATIONS_SCROLL_TOP,
     top,
-  };
-};
-
-export function deleteMarkedNotifications() {
-  return (dispatch, getState) => {
-    dispatch(deleteMarkedNotificationsRequest());
-
-    let ids = [];
-    getState().getIn(['notifications', 'items']).forEach((n) => {
-      if (n.get('markedForDelete')) {
-        ids.push(n.get('id'));
-      }
-    });
-
-    if (ids.length === 0) {
-      return;
-    }
-
-    api(getState).delete(`/api/v1/notifications/destroy_multiple?ids[]=${ids.join('&ids[]=')}`).then(() => {
-      dispatch(deleteMarkedNotificationsSuccess());
-    }).catch(error => {
-      console.error(error);
-      dispatch(deleteMarkedNotificationsFail(error));
-    });
-  };
-};
-
-export function enterNotificationClearingMode(yes) {
-  return {
-    type: NOTIFICATIONS_ENTER_CLEARING_MODE,
-    yes: yes,
-  };
-};
-
-export function markAllNotifications(yes) {
-  return {
-    type: NOTIFICATIONS_MARK_ALL_FOR_DELETE,
-    yes: yes, // true, false or null. null = invert
-  };
-};
-
-export function deleteMarkedNotificationsRequest() {
-  return {
-    type: NOTIFICATIONS_DELETE_MARKED_REQUEST,
-  };
-};
-
-export function deleteMarkedNotificationsFail() {
-  return {
-    type: NOTIFICATIONS_DELETE_MARKED_FAIL,
-  };
-};
-
-export function markNotificationForDelete(id, yes) {
-  return {
-    type: NOTIFICATION_MARK_FOR_DELETE,
-    id: id,
-    yes: yes,
-  };
-};
-
-export function deleteMarkedNotificationsSuccess() {
-  return {
-    type: NOTIFICATIONS_DELETE_MARKED_SUCCESS,
   };
 };

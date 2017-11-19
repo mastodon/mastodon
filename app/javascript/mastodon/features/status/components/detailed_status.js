@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
-import StatusContent from '../../../../glitch/components/status/content';
-import StatusGallery from '../../../../glitch/components/status/gallery';
-import StatusPlayer from '../../../../glitch/components/status/player';
+import StatusContent from '../../../components/status_content';
+import MediaGallery from '../../../components/media_gallery';
 import AttachmentList from '../../../components/attachment_list';
 import { Link } from 'react-router-dom';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-// import Video from '../../video';
-import VisibilityIcon from '../../../../glitch/components/status/visibility_icon';
+import Video from '../../video';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -22,7 +20,6 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
-    settings: ImmutablePropTypes.map.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
   };
@@ -36,16 +33,14 @@ export default class DetailedStatus extends ImmutablePureComponent {
     e.stopPropagation();
   }
 
-  // handleOpenVideo = startTime => {
-  //   this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
-  // }
+  handleOpenVideo = startTime => {
+    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
+  }
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
-    const { settings } = this.props;
 
     let media           = '';
-    let mediaIcon       = null;
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
@@ -54,32 +49,32 @@ export default class DetailedStatus extends ImmutablePureComponent {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        const video = status.getIn(['media_attachments', 0]);
+
         media = (
-          <StatusPlayer
+          <Video
+            preview={video.get('preview_url')}
+            src={video.get('url')}
+            width={300}
+            height={150}
+            onOpenVideo={this.handleOpenVideo}
             sensitive={status.get('sensitive')}
-            media={status.getIn(['media_attachments', 0])}
-            letterbox={settings.getIn(['media', 'letterbox'])}
-            fullwidth={settings.getIn(['media', 'fullwidth'])}
-            height={250}
-            onOpenVideo={this.props.onOpenVideo}
-            autoplay
           />
         );
-        mediaIcon = 'video-camera';
       } else {
         media = (
-          <StatusGallery
+          <MediaGallery
+            standalone
             sensitive={status.get('sensitive')}
             media={status.get('media_attachments')}
-            letterbox={settings.getIn(['media', 'letterbox'])}
-            fullwidth={settings.getIn(['media', 'fullwidth'])}
-            height={250}
+            height={300}
             onOpenMedia={this.props.onOpenMedia}
           />
         );
-        mediaIcon = 'picture-o';
       }
-    } else media = <CardContainer statusId={status.get('id')} />;
+    } else if (status.get('spoiler_text').length === 0) {
+      media = <CardContainer statusId={status.get('id')} />;
+    }
 
     if (status.get('application')) {
       applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
@@ -109,11 +104,9 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <DisplayName account={status.get('account')} />
         </a>
 
-        <StatusContent
-          status={status}
-          media={media}
-          mediaIcon={mediaIcon}
-        />
+        <StatusContent status={status} />
+
+        {media}
 
         <div className='detailed-status__meta'>
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
@@ -123,7 +116,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             <span className='detailed-status__favorites'>
               <FormattedNumber value={status.get('favourites_count')} />
             </span>
-          </Link> · <VisibilityIcon visibility={status.get('visibility')} />
+          </Link>
         </div>
       </div>
     );

@@ -59,7 +59,7 @@ export default class AccountTimeline extends ImmutablePureComponent {
     }
 
     return (
-      <Column name='account'>
+      <Column>
         <ColumnBackButton />
 
         <StatusList

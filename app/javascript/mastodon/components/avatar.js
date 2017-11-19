@@ -64,7 +64,6 @@ export default class Avatar extends React.PureComponent {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         style={style}
-        data-avatar-of={`@${account.get('acct')}`}
       />
     );
   }

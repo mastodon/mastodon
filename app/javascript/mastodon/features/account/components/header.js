@@ -1,6 +1,3 @@
-//  THIS FILE EXISTS FOR UPSTREAM COMPATIBILITY & SHOULDN'T BE USED !!
-//  SEE INSTEAD : glitch/components/account/header
-
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';

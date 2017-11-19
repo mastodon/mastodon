@@ -62,7 +62,7 @@ export default class HomeTimeline extends React.PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='home'>
+      <Column ref={this.setRef}>
         <ColumnHeader
           icon='home'
           active={hasUnread}

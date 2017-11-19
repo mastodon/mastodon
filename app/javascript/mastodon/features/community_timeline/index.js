@@ -79,7 +79,7 @@ export default class CommunityTimeline extends React.PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='local'>
+      <Column ref={this.setRef}>
         <ColumnHeader
           icon='users'
           active={hasUnread}

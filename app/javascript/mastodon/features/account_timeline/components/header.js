@@ -1,7 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import InnerHeader from '../../../../glitch/components/account/header';
+import InnerHeader from '../../account/components/header';
 import ActionBar from '../../account/components/action_bar';
 import MissingIndicator from '../../../components/missing_indicator';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -13,7 +13,6 @@ export default class Header extends ImmutablePureComponent {
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
-    onReblogToggle: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
@@ -38,10 +37,6 @@ export default class Header extends ImmutablePureComponent {
 
   handleReport = () => {
     this.props.onReport(this.props.account);
-  }
-
-  handleReblogToggle = () => {
-    this.props.onReblogToggle(this.props.account);
   }
 
   handleMute = () => {
@@ -82,7 +77,6 @@ export default class Header extends ImmutablePureComponent {
           account={account}
           onBlock={this.handleBlock}
           onMention={this.handleMention}
-          onReblogToggle={this.handleReblogToggle}
           onReport={this.handleReport}
           onMute={this.handleMute}
           onBlockDomain={this.handleBlockDomain}

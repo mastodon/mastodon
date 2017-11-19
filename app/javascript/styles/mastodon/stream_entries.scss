@@ -93,25 +93,28 @@
 
     .status__avatar {
       position: absolute;
-      @include avatar-size(48px);
-      margin-left: -62px;
+      left: 14px;
+      top: 14px;
+      width: 48px;
+      height: 48px;
 
       & > div {
-        @include avatar-size(48px);
+        width: 48px;
+        height: 48px;
       }
 
       img {
-        @include avatar-radius();
         display: block;
+        border-radius: 4px;
       }
     }
 
     .display-name {
       display: block;
       max-width: 100%;
-      //overflow: hidden;
-      //white-space: nowrap;
-      //text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
 
       strong {
         font-weight: 500;
@@ -177,11 +180,12 @@
     }
 
     .avatar {
-      @include avatar-size(48px);
+      width: 48px;
+      height: 48px;
 
       img {
-        @include avatar-radius();
         display: block;
+        border-radius: 4px;
       }
     }
 

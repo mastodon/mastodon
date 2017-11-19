@@ -1,6 +1,3 @@
-//  THIS FILE EXISTS FOR UPSTREAM COMPATIBILITY & SHOULDN'T BE USED !!
-//  SEE INSTEAD : glitch/components/status/action_bar
-
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';

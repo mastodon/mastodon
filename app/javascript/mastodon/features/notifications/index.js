@@ -4,13 +4,9 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import {
-  enterNotificationClearingMode,
-  expandNotifications,
-  scrollTopNotifications,
-} from '../../actions/notifications';
+import { expandNotifications, scrollTopNotifications } from '../../actions/notifications';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import NotificationContainer from '../../../glitch/components/notification/container';
+import NotificationContainer from './containers/notification_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
@@ -29,22 +25,12 @@ const getNotifications = createSelector([
 
 const mapStateToProps = state => ({
   notifications: getNotifications(state),
-  localSettings:  state.get('local_settings'),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
   isUnread: state.getIn(['notifications', 'unread']) > 0,
   hasMore: !!state.getIn(['notifications', 'next']),
-  notifCleaningActive: state.getIn(['notifications', 'cleaningMode']),
 });
 
-/* glitch */
-const mapDispatchToProps = dispatch => ({
-  onEnterCleaningMode(yes) {
-    dispatch(enterNotificationClearingMode(yes));
-  },
-  dispatch,
-});
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 @injectIntl
 export default class Notifications extends React.PureComponent {
 
@@ -58,9 +44,6 @@ export default class Notifications extends React.PureComponent {
     isUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
     hasMore: PropTypes.bool,
-    localSettings: ImmutablePropTypes.map,
-    notifCleaningActive: PropTypes.bool,
-    onEnterCleaningMode: PropTypes.func,
   };
 
   static defaultProps = {
@@ -163,11 +146,7 @@ export default class Notifications extends React.PureComponent {
     );
 
     return (
-      <Column
-        ref={this.setColumnRef}
-        name='notifications'
-        extraClasses={this.props.notifCleaningActive ? 'notif-cleaning' : null}
-      >
+      <Column ref={this.setColumnRef}>
         <ColumnHeader
           icon='bell'
           active={isUnread}
@@ -177,10 +156,6 @@ export default class Notifications extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-          localSettings={this.props.localSettings}
-          notifCleaning
-          notifCleaningActive={this.props.notifCleaningActive} // this is used to toggle the header text
-          onEnterCleaningMode={this.props.onEnterCleaningMode}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>

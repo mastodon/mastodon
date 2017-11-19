@@ -10,10 +10,7 @@ import ComposeForm from '../../compose/components/compose_form';
 import Search from '../../compose/components/search';
 import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
-import {
-  List as ImmutableList,
-  Map as ImmutableMap,
-} from 'immutable';
+import { List as ImmutableList } from 'immutable';
 import { me } from '../../../initial_state';
 
 const noop = () => { };
@@ -32,8 +29,8 @@ const PageOne = ({ acct, domain }) => (
     </div>
 
     <div>
-      <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to {domain}!' values={{ domain }} /></h1>
-      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='{domain} is an "instance" of Mastodon. Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.' values={{ domain }} /></p>
+      <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
+      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.' /></p>
       <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain, handle: <strong>@{acct}@{domain}</strong> }} /></p>
     </div>
   </div>
@@ -48,7 +45,7 @@ const PageTwo = ({ myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
       <div className='pseudo-drawer'>
-        <NavigationBar onClose={noop} account={myAccount} />
+        <NavigationBar account={myAccount} />
       </div>
       <ComposeForm
         text='Awoo! #introductions'
@@ -63,9 +60,7 @@ const PageTwo = ({ myAccount }) => (
         onClearSuggestions={noop}
         onFetchSuggestions={noop}
         onSuggestionSelected={noop}
-        onPrivacyChange={noop}
         showSearch
-        settings={ImmutableMap.of('side_arm', 'none')}
       />
     </div>
 
@@ -89,7 +84,7 @@ const PageThree = ({ myAccount }) => (
       />
 
       <div className='pseudo-drawer'>
-        <NavigationBar onClose={noop} account={myAccount} />
+        <NavigationBar account={myAccount} />
       </div>
     </div>
 
@@ -154,8 +149,8 @@ const PageSix = ({ admin, domain }) => {
     <div className='onboarding-modal__page onboarding-modal__page-six'>
       <h1><FormattedMessage id='onboarding.page_six.almost_done' defaultMessage='Almost done...' /></h1>
       {adminSection}
-      <p><FormattedMessage id='onboarding.page_six.github' defaultMessage='{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.' values={{ domain, fork: <a href='https://en.wikipedia.org/wiki/Fork_(software_development)' target='_blank' rel='noopener'>fork</a>, Mastodon: <a href='https://github.com/tootsuite/mastodon' target='_blank' rel='noopener'>Mastodon</a>, github: <a href='https://github.com/glitch-soc/mastodon' target='_blank' rel='noopener'>GitHub</a> }} /></p>
-      <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms.' values={{ domain, apps: <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='mobile apps' /></a> }} /></p>
+      <p><FormattedMessage id='onboarding.page_six.github' defaultMessage='Mastodon is free open-source software. You can report bugs, request features, or contribute to the code on {github}.' values={{ github: <a href='https://github.com/tootsuite/mastodon' target='_blank' rel='noopener'>GitHub</a> }} /></p>
+      <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms.' values={{ apps: <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='mobile apps' /></a> }} /></p>
       <p><em><FormattedMessage id='onboarding.page_six.appetoot' defaultMessage='Bon Appetoot!' /></em></p>
     </div>
   );

@@ -5,11 +5,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
+import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import Collapsable from '../../../components/collapsable';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
-import ComposeAdvancedOptionsContainer from '../../../../glitch/components/compose/advanced_options/container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import UploadFormContainer from '../containers/upload_form_container';
@@ -18,10 +18,6 @@ import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
-import ComposeAttachOptions from '../../../../glitch/components/compose/attach_options/index';
-import initialState from '../../../initial_state';
-
-const maxChars = initialState.max_toot_chars;
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -40,9 +36,6 @@ export default class ComposeForm extends ImmutablePureComponent {
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
     privacy: PropTypes.string,
-    advanced_options: ImmutablePropTypes.contains({
-      do_not_federate: PropTypes.bool,
-    }),
     spoiler_text: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
     preselectDate: PropTypes.instanceOf(Date),
@@ -52,13 +45,11 @@ export default class ComposeForm extends ImmutablePureComponent {
     onSubmit: PropTypes.func.isRequired,
     onClearSuggestions: PropTypes.func.isRequired,
     onFetchSuggestions: PropTypes.func.isRequired,
-    onPrivacyChange: PropTypes.func.isRequired,
     onSuggestionSelected: PropTypes.func.isRequired,
     onChangeSpoilerText: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
-    settings : ImmutablePropTypes.map.isRequired,
   };
 
   static defaultProps = {
@@ -73,11 +64,6 @@ export default class ComposeForm extends ImmutablePureComponent {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
-  }
-
-  handleSubmit2 = () => {
-    this.props.onPrivacyChange(this.props.settings.get('side_arm'));
-    this.handleSubmit();
   }
 
   handleSubmit = () => {
@@ -158,57 +144,15 @@ export default class ComposeForm extends ImmutablePureComponent {
   render () {
     const { intl, onPaste, showSearch } = this.props;
     const disabled = this.props.is_submitting;
-    const maybeEye = (this.props.advanced_options && this.props.advanced_options.do_not_federate) ? ' 👁️' : '';
-    const text     = [this.props.spoiler_text, countableText(this.props.text), maybeEye].join('');
-
-    const secondaryVisibility = this.props.settings.get('side_arm');
-    let showSideArm = secondaryVisibility !== 'none';
+    const text     = [this.props.spoiler_text, countableText(this.props.text)].join('');
 
     let publishText = '';
-    let publishText2 = '';
-    let title = '';
-    let title2 = '';
 
-    const privacyIcons = {
-      none: '',
-      public: 'globe',
-      unlisted: 'unlock-alt',
-      private: 'lock',
-      direct: 'envelope',
-    };
-
-    title = `${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${this.props.privacy}.short` })}`;
-
-    if (showSideArm) {
-      // Enhanced behavior with dual toot buttons
-      publishText = (
-        <span>
-          {
-            <i
-              className={`fa fa-${privacyIcons[this.props.privacy]}`}
-              style={{ paddingRight: '5px' }}
-            />
-          }{intl.formatMessage(messages.publish)}
-        </span>
-      );
-
-      title2 = `${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${secondaryVisibility}.short` })}`;
-      publishText2 = (
-        <i
-          className={`fa fa-${privacyIcons[secondaryVisibility]}`}
-          aria-label={title2}
-        />
-      );
+    if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
+      publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
-      // Original vanilla behavior - no icon if public or unlisted
-      if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
-        publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
-      } else {
-        publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
-      }
+      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
-
-    const submitDisabled = disabled || this.props.is_uploading || length(text) > maxChars || (text.length !== 0 && text.trim().length === 0);
 
     return (
       <div className='compose-form'>
@@ -248,35 +192,17 @@ export default class ComposeForm extends ImmutablePureComponent {
           <UploadFormContainer />
         </div>
 
-        <div className='compose-form__buttons'>
-          <ComposeAttachOptions />
-          <SensitiveButtonContainer />
-          <div className='compose-form__buttons-separator' />
-          <PrivacyDropdownContainer />
-          <SpoilerButtonContainer />
-          <ComposeAdvancedOptionsContainer />
-        </div>
+        <div className='compose-form__buttons-wrapper'>
+          <div className='compose-form__buttons'>
+            <UploadButtonContainer />
+            <PrivacyDropdownContainer />
+            <SensitiveButtonContainer />
+            <SpoilerButtonContainer />
+          </div>
 
-        <div className='compose-form__publish'>
-          <div className='character-counter__wrapper'><CharacterCounter max={maxChars} text={text} /></div>
-          <div className='compose-form__publish-button-wrapper'>
-            {
-              showSideArm ?
-                <Button
-                  className='compose-form__publish__side-arm'
-                  text={publishText2}
-                  title={title2}
-                  onClick={this.handleSubmit2}
-                  disabled={submitDisabled}
-                /> : ''
-            }
-            <Button
-              className='compose-form__publish__primary'
-              text={publishText}
-              title={title}
-              onClick={this.handleSubmit}
-              disabled={submitDisabled}
-            />
+          <div className='compose-form__publish'>
+            <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
       </div>
