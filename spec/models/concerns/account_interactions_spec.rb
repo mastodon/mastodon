@@ -12,9 +12,16 @@ describe AccountInteractions do
     subject { Account.following_map(target_account_ids, account_id) }
 
     context 'account with Follow' do
-      it 'returns { target_account_id => true }' do
-        Fabricate(:follow, account: account, target_account: target_account)
-        is_expected.to eq(target_account_id => true)
+      it 'returns { target_account_id => { reblogs: true } }' do
+        Fabricate(:follow, account: account, target_account: target_account, show_reblogs: true)
+        is_expected.to eq(target_account_id => { reblogs: true })
+      end
+    end
+
+    context 'account with Follow but with reblogs disabled' do
+      it 'returns { target_account_id => { reblogs: false } }' do
+        Fabricate(:follow, account: account, target_account: target_account, show_reblogs: false)
+        is_expected.to eq(target_account_id => { reblogs: false })
       end
     end
 
