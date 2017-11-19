@@ -6,23 +6,18 @@ RSpec.describe Notification, type: :model do
   end
 
   describe '#target_status' do
-    before do
-      allow(notification).to receive(:type).and_return(type)
-      allow(notification).to receive(:activity).and_return(activity)
-    end
-
-    let(:notification) { Fabricate(:notification) }
-    let(:status)       { instance_double('Status') }
-    let(:favourite)    { instance_double('Favourite') }
-    let(:mention)      { instance_double('Mention') }
+    let(:notification) { Fabricate(:notification, activity_type: type, activity: activity) }
+    let(:status)       { Fabricate(:status) }
+    let(:reblog)       { Fabricate(:status, reblog: status) }
+    let(:favourite)    { Fabricate(:favourite, status: status) }
+    let(:mention)      { Fabricate(:mention, status: status) }
 
     context 'type is :reblog' do
       let(:type)     { :reblog }
-      let(:activity) { status }
+      let(:activity) { reblog }
 
-      it 'calls activity.reblog' do
-        expect(activity).to receive(:reblog)
-        notification.target_status
+      it 'returns status' do
+        expect(notification.target_status).to eq status
       end
     end
 
@@ -30,9 +25,8 @@ RSpec.describe Notification, type: :model do
       let(:type)     { :favourite }
       let(:activity) { favourite }
 
-      it 'calls activity.status' do
-        expect(activity).to receive(:status)
-        notification.target_status
+      it 'returns status' do
+        expect(notification.target_status).to eq status
       end
     end
 
@@ -40,9 +34,8 @@ RSpec.describe Notification, type: :model do
       let(:type)     { :mention }
       let(:activity) { mention }
 
-      it 'calls activity.status' do
-        expect(activity).to receive(:status)
-        notification.target_status
+      it 'returns status' do
+        expect(notification.target_status).to eq status
       end
     end
   end

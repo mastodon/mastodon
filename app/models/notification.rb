@@ -24,7 +24,7 @@ class Notification < ApplicationRecord
     favourite:      'Favourite',
   }.freeze
 
-  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
+  STATUS_INCLUDES = [:account, :application, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :application, :media_attachments, :tags, mentions: :account]].freeze
 
   belongs_to :account
   belongs_to :from_account, class_name: 'Account'
@@ -55,9 +55,11 @@ class Notification < ApplicationRecord
   def target_status
     case type
     when :reblog
-      activity&.reblog
-    when :favourite, :mention
-      activity&.status
+      status&.reblog
+    when :favourite
+      favourite&.status
+    when :mention
+      mention&.status
     end
   end
 
