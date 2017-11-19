@@ -32,7 +32,7 @@ RUN apk -U upgrade \
     file \
     git \
     icu-libs \
-    imagemagick \
+    graphicsmagick \
     libidn \
     libpq \
     nodejs \

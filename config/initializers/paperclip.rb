@@ -1,5 +1,28 @@
 # frozen_string_literal: true
 
+# Monkey-patch Paperclip to use GraphicsMagick instead of ImageMagick
+# Inspired by https://github.com/thoughtbot/paperclip/issues/662#issuecomment-154091686
+module PaperclipGraphicsMagick
+  module Paperclip
+    module Helpers
+      Magick_commands = ['animate', 'compare', 'composite', 'conjure',
+                         'convert', 'display', 'identify', 'import', 'mogrify',
+                         'montage']
+
+      def run(cmd, arguments = "", interpolation_values = {}, local_options = {})
+        if Magick_commands.include?(cmd.to_s)
+          arguments.prepend(cmd + ' ')
+          cmd = 'gm'
+        end
+
+        super
+      end
+    end
+  end
+end
+
+Paperclip.extend PaperclipGraphicsMagick::Paperclip::Helpers
+
 Paperclip.options[:read_timeout] = 60
 
 Paperclip.interpolates :filename do |attachment, style|
