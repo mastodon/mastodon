@@ -39,6 +39,7 @@ pl:
     followers: Śledzących
     following: Śledzi
     media: Zawartość multimedialna
+    moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -244,6 +245,9 @@ pl:
         open:
           desc_html: Pozwól każdemu na założenie konta
           title: Otwarta rejestracja
+      show_staff_badge:
+        desc_html: Pokazuj odznakę uprawnień na stronie profilu użytkownika
+        title: Pokazuj odznakę administracji
       site_description:
         desc_html: Akapit wprowadzający, widoczny na stronie głównej i znacznikach meta. Możesz korzystać z tagów HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis instancji
@@ -611,8 +615,6 @@ pl:
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
-  themes:
-    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

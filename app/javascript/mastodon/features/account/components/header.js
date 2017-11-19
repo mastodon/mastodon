@@ -7,6 +7,7 @@ import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { autoPlayGif, me } from '../../../initial_state';
+import classNames from 'classnames';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -102,6 +103,10 @@ export default class Header extends ImmutablePureComponent {
       }
     }
 
+    if (account.get('moved')) {
+      actionBtn = '';
+    }
+
     if (account.get('locked')) {
       lockedIcon = <i className='fa fa-lock' />;
     }
@@ -110,7 +115,7 @@ export default class Header extends ImmutablePureComponent {
     const displayNameHtml = { __html: account.get('display_name_html') };
 
     return (
-      <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
+      <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${account.get('header')})` }}>
         <div>
           <Avatar account={account} />
 

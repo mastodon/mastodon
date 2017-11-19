@@ -39,6 +39,7 @@ en:
     followers: Followers
     following: Following
     media: Media
+    moved_html: "%{name} has moved to %{new_profile_link}:"
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
@@ -245,6 +246,9 @@ en:
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
+      show_staff_badge:
+        desc_html: Show a staff badge on a user page
+        title: Show staff badge
       site_description:
         desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description

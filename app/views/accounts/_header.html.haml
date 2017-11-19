@@ -1,7 +1,7 @@
 - processed_bio = FrontmatterHandler.instance.process_bio Formatter.instance.simplified_format account
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
   .card__illustration
-    - unless account.memorial?
+    - unless account.memorial? || account.moved?
       - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
         .controls
           - if current_account.following?(account)
@@ -27,15 +27,15 @@
       %small
         %span @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
-
-    - if account.user_admin?
-      .roles
-        .account-role.admin
-          = t 'accounts.roles.admin'
-    - elsif account.user_moderator?
-      .roles
-        .account-role.moderator
-          = t 'accounts.roles.moderator'
+    - if Setting.show_staff_badge
+      - if account.user_admin?
+        .roles
+          .account-role.admin
+            = t 'accounts.roles.admin'
+      - elsif account.user_moderator?
+        .roles
+          .account-role.moderator
+            = t 'accounts.roles.moderator'
     .bio
       .account__header__content.p-note.emojify!=processed_bio[:text]
       - if processed_bio[:metadata].length > 0
