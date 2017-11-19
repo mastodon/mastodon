@@ -1,0 +1,5 @@
+%li
+  %time= l action_log.created_at
+  %span.user= action_log.account.username
+  %span.action{ class: action_log.destructive? ? 'destructive' : '' }= action_log.action
+  %span.target= linkable_log_target action_log.target

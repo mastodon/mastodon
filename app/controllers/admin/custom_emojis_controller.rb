@@ -60,12 +60,14 @@ module Admin
     def enable
       authorize @custom_emoji, :enable?
       @custom_emoji.update!(disabled: false)
+      log_action :enable, @custom_emoji
       redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.enabled_msg')
     end
 
     def disable
       authorize @custom_emoji, :disable?
       @custom_emoji.update!(disabled: true)
+      log_action :disable, @custom_emoji
       redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.disabled_msg')
     end
 

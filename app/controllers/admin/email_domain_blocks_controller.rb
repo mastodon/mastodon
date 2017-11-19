@@ -28,7 +28,7 @@ module Admin
 
     def destroy
       authorize @email_domain_block, :destroy?
-      @email_domain_block.destroy
+      @email_domain_block.destroy!
       redirect_to admin_email_domain_blocks_path, notice: I18n.t('admin.email_domain_blocks.destroyed_msg')
     end
 

@@ -347,3 +347,39 @@
     }
   }
 }
+
+.logs {
+  list-style: none;
+  background: darken($ui-base-color, 12%);
+  border-radius: 4px;
+  font-family: 'mastodon-font-monospace', monospace;
+  font-size: 12px;
+  padding: 14px;
+  color: $ui-secondary-color;
+  line-height: 20px;
+
+  li {
+    line-height: 140%;
+  }
+
+  .user {
+    color: lighten($ui-highlight-color, 8%);
+    background: darken($ui-base-color, 4%);
+  }
+
+  .action {
+    background: darken($ui-base-color, 4%);
+    color: $success-green;
+
+    &.destructive {
+      color: $error-red;
+    }
+  }
+
+  .target {
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
