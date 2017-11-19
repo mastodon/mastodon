@@ -8,18 +8,23 @@ class HomeFeed < Feed
   end
 
   def get(limit, max_id = nil, since_id = nil)
-    if redis.exists("account:#{@account.id}:regeneration")
-      from_database(limit, max_id, since_id)
-    else
-      super
+    unless redis.exists("account:#{@account.id}:regeneration")
+      statuses = super
+      return statuses unless statuses.empty?
     end
+    from_database(limit, max_id, since_id)
   end
 
   private
 
   def from_database(limit, max_id, since_id)
-    Status.as_home_timeline(@account)
-          .paginate_by_max_id(limit, max_id, since_id)
-          .reject { |status| FeedManager.instance.filter?(:home, status, @account.id) }
+    loop do
+      statuses = Status.as_home_timeline(@account)
+                       .paginate_by_max_id(limit, max_id, since_id)
+      return statuses if statuses.empty?
+      max_id = statuses.last.id
+      statuses = statuses.reject { |status| FeedManager.instance.filter?(:home, status, @account.id) }
+      return statuses unless statuses.empty?
+    end
   end
 end
