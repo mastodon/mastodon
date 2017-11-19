@@ -13,6 +13,7 @@ module Admin
       closed_registrations_message
       open_deletion
       timeline_preview
+      show_staff_badge
       bootstrap_timeline_accounts
       thumbnail
     ).freeze
@@ -21,6 +22,7 @@ module Admin
       open_registrations
       open_deletion
       timeline_preview
+      show_staff_badge
     ).freeze
 
     UPLOAD_SETTINGS = %w(
