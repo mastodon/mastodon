@@ -43,6 +43,8 @@ import { HotKeys } from 'react-hotkeys';
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 
+import TutorialContainer from '../tutorial/containers/tutorial_container';
+
 const mapStateToProps = state => ({
   me: state.getIn(['meta', 'me']),
   isComposing: state.getIn(['compose', 'is_composing']),
@@ -377,6 +379,7 @@ export default class UI extends React.Component {
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
+          <TutorialContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
         </div>
       </HotKeys>
