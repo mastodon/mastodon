@@ -50,7 +50,6 @@ export default class StatusActionBar extends ImmutablePureComponent {
     me: PropTypes.string,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
-    tutorial: PropTypes.bool,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -62,9 +61,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
   ]
 
   handleReplyClick = () => {
-    if (!this.props.tutorial) {
-      this.props.onReply(this.props.status, this.context.router.history);
-    }
+    this.props.onReply(this.props.status, this.context.router.history);
   }
 
   handleShareClick = () => {
