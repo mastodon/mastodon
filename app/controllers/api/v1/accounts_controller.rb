@@ -14,7 +14,7 @@ class Api::V1::AccountsController < Api::BaseController
 
   def follow
     reblogs_arg = { reblogs: params[:reblogs] }
-    
+
     FollowService.new.call(current_user.account, @account.acct, reblogs_arg)
 
     options = @account.locked? ? {} : { following_map: { @account.id => reblogs_arg }, requested_map: { @account.id => false } }
