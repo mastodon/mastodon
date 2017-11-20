@@ -38,8 +38,6 @@ export default class ColumnsArea extends ImmutablePureComponent {
     columns: ImmutablePropTypes.list.isRequired,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
-    tutorial: PropTypes.bool,
-    closeTutorial: PropTypes.func,
   };
 
   state = {
@@ -62,9 +60,6 @@ export default class ColumnsArea extends ImmutablePureComponent {
     if (this.props.singleColumn !== nextProps.singleColumn && nextProps.singleColumn) {
       this.node.removeEventListener('wheel', this.handleWheel);
     }
-    if (this.props.singleColumn) {
-      this.props.closeTutorial();
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -81,12 +76,9 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
   }
 
-  handleChildrenContentChange(prevProps) {
-    if (!this.props.singleColumn && !this.props.tutorial) {
+  handleChildrenContentChange() {
+    if (!this.props.singleColumn) {
       this._interruptScrollAnimation = scrollRight(this.node, this.node.scrollWidth - window.innerWidth);
-    }
-    if (this.props.children !== prevProps.children && !this.props.singleColumn && !this.props.tutorial) {
-      scrollRight(this.node);
     }
   }
 
