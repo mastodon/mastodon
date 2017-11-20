@@ -15,19 +15,8 @@ RSpec.describe SuspendAccountService do
     let!(:passive_relationship) { Fabricate(:follow, target_account: account) }
     let!(:subscription) { Fabricate(:subscription, account: account) }
 
-    it 'deletes associated records' do
-      is_expected.to change {
-        [
-          account.statuses,
-          account.media_attachments,
-          account.stream_entries,
-          account.notifications,
-          account.favourites,
-          account.active_relationships,
-          account.passive_relationships,
-          account.subscriptions
-        ].map(&:count)
-      }.from([1, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
+    it 'soft-deletes associated statuses' do
+      is_expected.to change { account.statuses.count }.from(1).to(0)
     end
   end
 end

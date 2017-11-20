@@ -23,6 +23,7 @@
 #  account_id             :integer          not null
 #  application_id         :integer
 #  in_reply_to_account_id :integer
+#  deleted_at             :datetime
 #
 
 class Status < ApplicationRecord
@@ -30,6 +31,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
   include StatusThreadingConcern
+  include Paranoid
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
@@ -59,7 +61,7 @@ class Status < ApplicationRecord
   validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
 
-  default_scope { recent }
+  default_scope { without_deleted.recent }
 
   scope :recent, -> { reorder(id: :desc) }
   scope :remote, -> { where(local: false).or(where.not(uri: nil)) }

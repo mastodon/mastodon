@@ -28,10 +28,9 @@ RSpec.describe BlockDomainService do
       expect(Account.find_remote('badguy666', 'evil.org').suspended?).to be true
     end
 
-    it 'removes the remote accounts\'s statuses and media attachments' do
-      expect { bad_status1.reload }.to raise_exception ActiveRecord::RecordNotFound
-      expect { bad_status2.reload }.to raise_exception ActiveRecord::RecordNotFound
-      expect { bad_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
+    it 'removes the remote accounts\'s statuses' do
+      expect { Status.find(bad_status1.id) }.to raise_exception ActiveRecord::RecordNotFound
+      expect { Status.find(bad_status2.id) }.to raise_exception ActiveRecord::RecordNotFound
     end
   end
 
