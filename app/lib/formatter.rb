@@ -9,7 +9,7 @@ class Formatter
 
   include ActionView::Helpers::TextHelper
 
-  def format(status, options = {})
+  def format(status, custom_emojify: false)
     if status.reblog?
       prepend_reblog = status.reblog.account.acct
       status         = status.proper
@@ -20,9 +20,8 @@ class Formatter
     raw_content = status.text
 
     unless status.local?
-      html = reformat(raw_content)
-      html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
-      return html.html_safe # rubocop:disable Rails/OutputSafety
+      html, shortcodes = reformat(raw_content, status.account.domain, custom_emojify: custom_emojify)
+      return html.html_safe, shortcodes # rubocop:disable Rails/OutputSafety
     end
 
     linkable_accounts = status.mentions.map(&:account)
@@ -30,16 +29,38 @@ class Formatter
 
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
-    html = encode_and_link_urls(html, linkable_accounts)
-    html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
+    html, shortcodes = encode_and_link_urls(html, status.account.domain, linkable_accounts, custom_emojify: custom_emojify)
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
 
-    html.html_safe # rubocop:disable Rails/OutputSafety
+    [html.html_safe, shortcodes] # rubocop:disable Rails/OutputSafety
   end
 
-  def reformat(html)
-    sanitize(html, Sanitize::Config::MASTODON_STRICT)
+  def reformat(html, domain, custom_emojify: false)
+    sanitized_html = sanitize(html, Sanitize::Config::MASTODON_STRICT)
+    shortcodes_with_indices = Extractor.extract_shortcodes_with_indices(sanitized_html, html: true)
+    shortcodes = shortcodes_with_indices.map { |shortcode_with_indices| shortcode_with_indices[:shortcode] }.uniq
+
+    return sanitized_html, shortcodes unless custom_emojify
+
+    emoji_map = query_emoji_map(domain, shortcodes)
+
+    precedent_end_position = 0
+    emojified_sanitized_html = String.new
+
+    shortcodes_with_indices.each do |shortcode_with_indices|
+      shortcode = shortcode_with_indices[:shortcode]
+      indices = shortcode_with_indices[:indices]
+
+      emojified_sanitized_html += sanitized_html[precedent_end_position...indices.first]
+      emojified_sanitized_html += emoji_html(shortcode, emoji_map[shortcode])
+
+      precedent_end_position = indices.last
+    end
+
+    emojified_sanitized_html += sanitized_html[precedent_end_position...sanitized_html.size]
+
+    [emojified_sanitized_html, shortcodes]
   end
 
   def plaintext(status)
@@ -50,9 +71,9 @@ class Formatter
   end
 
   def simplified_format(account)
-    return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
+    return reformat(account.note, account.domain)[0].html_safe unless account.local? # rubocop:disable Rails/OutputSafety
 
-    html = encode_and_link_urls(account.note)
+    html, = encode_and_link_urls(account.note, account.domain)
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
 
@@ -64,8 +85,15 @@ class Formatter
   end
 
   def format_spoiler(status)
-    html = encode(status.spoiler_text)
-    html = encode_custom_emojis(html, status.emojis)
+    entities = Extractor.extract_shortcodes_with_indices(status.spoiler_text)
+    shortcodes = entities.pluck(:shortcode).uniq
+    emoji_map = query_emoji_map(status.account.domain, shortcodes)
+
+    html = rewrite(status.spoiler_text, entities) do |entity|
+      shortcode = entity[:shortcode]
+      emoji_html(shortcode, emoji_map[shortcode])
+    end
+
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
@@ -75,73 +103,25 @@ class Formatter
     HTMLEntities.new.encode(html)
   end
 
-  def encode_and_link_urls(html, accounts = nil)
+  def encode_and_link_urls(html, domain, accounts = nil, custom_emojify: false)
     entities = Extractor.extract_entities_with_indices(html, extract_url_without_protocol: false)
+    shortcodes = entities.pluck(:shortcode).select { |shortcode| shortcode }.uniq
+    emoji_map = query_emoji_map(domain, shortcodes) if custom_emojify
 
-    rewrite(html.dup, entities) do |entity|
+    rewritten = rewrite(html.dup, entities) do |entity|
       if entity[:url]
         link_to_url(entity)
       elsif entity[:hashtag]
         link_to_hashtag(entity)
       elsif entity[:screen_name]
         link_to_mention(entity, accounts)
-      end
-    end
-  end
-
-  def count_tag_nesting(tag)
-    if tag[1] == '/' then -1
-    elsif tag[-2] == '/' then 0
-    else 1
-    end
-  end
-
-  def encode_custom_emojis(html, emojis)
-    return html if emojis.empty?
-
-    emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
-
-    i                     = -1
-    tag_open_index        = nil
-    inside_shortname      = false
-    shortname_start_index = -1
-    invisible_depth       = 0
-
-    while i + 1 < html.size
-      i += 1
-
-      if invisible_depth.zero? && inside_shortname && html[i] == ':'
-        shortcode = html[shortname_start_index + 1..i - 1]
-        emoji     = emoji_map[shortcode]
-
-        if emoji
-          replacement = "<img draggable=\"false\" class=\"emojione\" alt=\":#{shortcode}:\" title=\":#{shortcode}:\" src=\"#{emoji}\" />"
-          before_html = shortname_start_index.positive? ? html[0..shortname_start_index - 1] : ''
-          html        = before_html + replacement + html[i + 1..-1]
-          i          += replacement.size - (shortcode.size + 2) - 1
-        else
-          i -= 1
-        end
-
-        inside_shortname = false
-      elsif tag_open_index && html[i] == '>'
-        tag = html[tag_open_index..i]
-        tag_open_index = nil
-        if invisible_depth.positive?
-          invisible_depth += count_tag_nesting(tag)
-        elsif tag == '<span class="invisible">'
-          invisible_depth = 1
-        end
-      elsif html[i] == '<'
-        tag_open_index   = i
-        inside_shortname = false
-      elsif !tag_open_index && html[i] == ':'
-        inside_shortname      = true
-        shortname_start_index = i
+      elsif entity[:shortcode]
+        shortcode = entity[:shortcode]
+        custom_emojify ? emoji_html(shortcode, emoji_map[shortcode]) : nil
       end
     end
 
-    html
+    [rewritten, shortcodes]
   end
 
   def rewrite(text, entities)
@@ -157,14 +137,31 @@ class Formatter
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
-      result << encode(chars[index...indices.first].join)
-      result << yield(entity)
+      entity_html = yield(entity)
+
+      if entity_html.nil?
+        result << encode(chars[index...indices.last].join)
+      else
+        result << encode(chars[index...indices.first].join)
+        result << entity_html
+      end
+
       indices.last
     end
 
     result << encode(chars[last_index..-1].join)
 
     result.flatten.join
+  end
+
+  def query_emoji_map(domain, shortcodes)
+    emojis = CustomEmoji.where(
+      shortcode: shortcodes,
+      domain: domain,
+      disabled: false
+    )
+
+    emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
   end
 
   def link_to_url(entity)
@@ -214,5 +211,9 @@ class Formatter
 
   def mention_html(account)
     "<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@<span>#{account.username}</span></a></span>"
+  end
+
+  def emoji_html(shortcode, src)
+    "<img draggable=\"false\" class=\"emojione\" alt=\":#{shortcode}:\" title=\":#{shortcode}:\" src=\"#{src}\" />"
   end
 end

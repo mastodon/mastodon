@@ -346,10 +346,12 @@ class OStatus::AtomSerializer
   end
 
   def serialize_status_attributes(entry, status)
+    formatted, shortcodes = Formatter.instance.format(status)
+
     append_element(entry, 'link', nil, rel: :alternate, type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(status)) if status.account.local?
 
     append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
-    append_element(entry, 'content', Formatter.instance.format(status).to_str, type: 'html', 'xml:lang': status.language)
+    append_element(entry, 'content', formatted.to_str, type: 'html', 'xml:lang': status.language)
 
     status.mentions.each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': OStatus::TagManager::TYPES[:person], href: OStatus::TagManager.instance.uri_for(mentioned.account))
@@ -369,7 +371,11 @@ class OStatus::AtomSerializer
 
     append_element(entry, 'mastodon:scope', status.visibility)
 
-    status.emojis.each do |emoji|
+    CustomEmoji.where(
+      shortcode: shortcodes,
+      domain: status.account.domain,
+      disabled: false
+    ).each do |emoji|
       append_element(entry, 'link', nil, rel: :emoji, href: full_asset_url(emoji.image.url), name: emoji.shortcode)
     end
   end

@@ -40,7 +40,15 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def content
-    Formatter.instance.format(object)
+    formatted[0]
+  end
+
+  def emojis
+    CustomEmoji.where(
+      shortcode: formatted[1],
+      domain: object.account.domain,
+      disabled: false
+    )
   end
 
   def url
@@ -118,5 +126,11 @@ class REST::StatusSerializer < ActiveModel::Serializer
     def url
       tag_url(object)
     end
+  end
+
+  private
+
+  def formatted
+    @formatted ||= Formatter.instance.format(object)
   end
 end

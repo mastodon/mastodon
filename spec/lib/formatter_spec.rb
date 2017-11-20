@@ -179,7 +179,7 @@ RSpec.describe Formatter do
         let(:status) { Fabricate(:status, reblog: reblog) }
 
         it 'returns original status with credit to its author' do
-          is_expected.to include 'RT <span class="h-card"><a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span> Hello world'
+          expect(subject[0]).to include 'RT <span class="h-card"><a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span> Hello world'
         end
       end
 
@@ -187,7 +187,7 @@ RSpec.describe Formatter do
         let(:status)  { Fabricate(:status, text: 'text', uri: nil) }
 
         it 'paragraphizes' do
-          is_expected.to eq '<p>text</p>'
+          expect(subject[0]).to eq '<p>text</p>'
         end
       end
 
@@ -195,7 +195,7 @@ RSpec.describe Formatter do
         let(:status)  { Fabricate(:status, text: "line\nfeed", uri: nil) }
 
         it 'removes line feeds' do
-          is_expected.not_to include "\n"
+          expect(subject[0]).not_to include "\n"
         end
       end
 
@@ -203,7 +203,7 @@ RSpec.describe Formatter do
         let(:status) { Fabricate(:status, mentions: [ Fabricate(:mention, account: local_account) ], text: '@alice') }
 
         it 'links' do
-          is_expected.to include '<a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
+          expect(subject[0]).to include '<a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
         end
       end
 
@@ -211,55 +211,33 @@ RSpec.describe Formatter do
         let(:status) { Fabricate(:status, text: '@alice', uri: nil) }
 
         it 'does not link' do
-          is_expected.to include '@alice'
+          expect(subject[0]).to include '@alice'
         end
       end
 
       context do
         subject do
           status = Fabricate(:status, text: text, uri: nil)
-          Formatter.instance.format(status)
+          Formatter.instance.format(status)[0]
         end
 
         include_examples 'encode and link URLs'
       end
 
-      context 'with custom_emojify option' do
-        let!(:emoji) { Fabricate(:custom_emoji) }
-        let(:status) { Fabricate(:status, account: local_account, text: text) }
+      context 'with emoji' do
+        let!(:emoji) { Fabricate(:custom_emoji, shortcode: 'coolcat') }
+        let(:status) { Fabricate(:status, account: local_account, text: ':coolcat:') }
 
-        subject { Formatter.instance.format(status, custom_emojify: true) }
-
-        context 'with emoji at the start' do
-          let(:text) { ':coolcat: Beep boop' }
-
-          it 'converts shortcode to image tag' do
-            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
-          end
+        it 'extracts shortcode' do
+          expect(Formatter.instance.format(status)[1]).to eq ['coolcat']
         end
 
-        context 'with emoji in the middle' do
-          let(:text) { 'Beep :coolcat: boop' }
-
-          it 'converts shortcode to image tag' do
-            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
-          end
+        it 'converts shortcode to image tag when custom_emojify keyword is true' do
+          expect(Formatter.instance.format(status, custom_emojify: true)[0]).to start_with '<p><img draggable="false" class="emojione" alt=":coolcat:" title=":coolcat:" src="https://cb6e6126.ngrok.io/system/custom_emojis/images/'
         end
 
-        context 'with concatenated emoji' do
-          let(:text) { ':coolcat::coolcat:' }
-
-          it 'does not touch the shortcodes' do
-            is_expected.to match(/:coolcat::coolcat:/)
-          end
-        end
-
-        context 'with emoji at the end' do
-          let(:text) { 'Beep boop :coolcat:' }
-
-          it 'converts shortcode to image tag' do
-            is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
-          end
+        it 'does not convert shortcode to image tag when custom_emojify keyword is false' do
+          expect(Formatter.instance.format(status, custom_emojify: false)[0]).to eq '<p>:coolcat:</p>'
         end
       end
     end
@@ -268,58 +246,34 @@ RSpec.describe Formatter do
       let(:status) { Fabricate(:status, account: remote_account, text: 'Beep boop') }
 
       it 'reformats' do
-        is_expected.to eq 'Beep boop'
+        expect(subject[0]).to eq 'Beep boop'
       end
 
-      context 'with custom_emojify option' do
-        let!(:emoji) { Fabricate(:custom_emoji, domain: remote_account.domain) }
-        let(:status) { Fabricate(:status, account: remote_account, text: text) }
+      context 'with emoji' do
+        let!(:emoji) { Fabricate(:custom_emoji, domain: remote_account.domain, shortcode: 'coolcat') }
+        let(:status) { Fabricate(:status, account: remote_account, text: ':coolcat:') }
 
-        subject { Formatter.instance.format(status, custom_emojify: true) }
-
-        context 'with emoji at the start' do
-          let(:text) { '<p>:coolcat: Beep boop<br />' }
-
-          it 'converts shortcode to image tag' do
-            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
-          end
+        it 'extracts shortcode' do
+          expect(Formatter.instance.format(status)[1]).to eq ['coolcat']
         end
 
-        context 'with emoji in the middle' do
-          let(:text) { '<p>Beep :coolcat: boop</p>' }
-
-          it 'converts shortcode to image tag' do
-            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
-          end
+        it 'converts shortcode to image tag when custom_emojify keyword is true' do
+          expect(Formatter.instance.format(status, custom_emojify: true)[0]).to start_with '<img draggable="false" class="emojione" alt=":coolcat:" title=":coolcat:" src="https://cb6e6126.ngrok.io/system/custom_emojis/images/'
         end
 
-        context 'with concatenated emoji' do
-          let(:text) { '<p>:coolcat::coolcat:</p>' }
-
-          it 'does not touch the shortcodes' do
-            is_expected.to match(/<p>:coolcat::coolcat:<\/p>/)
-          end
-        end
-
-        context 'with emoji at the end' do
-          let(:text) { '<p>Beep boop<br />:coolcat:</p>' }
-
-          it 'converts shortcode to image tag' do
-            is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
-          end
+        it 'does not convert shortcode to image tag when custom_emojify keyword is false' do
+          expect(Formatter.instance.format(status, custom_emojify: false)[0]).to eq ':coolcat:'
         end
       end
     end
   end
 
   describe '#reformat' do
-    subject { Formatter.instance.reformat(text) }
-
     context 'contains plain text' do
       let(:text) { 'Beep boop' }
 
       it 'contains plain text' do
-        is_expected.to include 'Beep boop'
+        expect(Formatter.instance.reformat(text, nil)[0]).to include 'Beep boop'
       end
     end
 
@@ -327,7 +281,24 @@ RSpec.describe Formatter do
       let(:text) { '<script>alert("Hello")</script>' }
 
       it 'strips scripts' do
-        is_expected.to_not include '<script>alert("Hello")</script>'
+        expect(Formatter.instance.reformat(text, nil)[0]).to_not include '<script>alert("Hello")</script>'
+      end
+    end
+
+    context 'contains shortcodes' do
+      let(:text) { ':coolcat:' }
+      let!(:custom_emoji) { Fabricate(:custom_emoji, shortcode: 'coolcat') }
+
+      it 'does not emojify when custom_emojify keyword parameter is false' do
+        expect(Formatter.instance.reformat(text, nil, custom_emojify: false)[0]).to eq ':coolcat:'
+      end
+
+      it 'emojifies when custom_emojify keyword parameter is true' do
+        expect(Formatter.instance.reformat(text, nil, custom_emojify: true)[0]).to start_with '<img draggable="false" class="emojione" alt=":coolcat:" title=":coolcat:" src="https://cb6e6126.ngrok.io/system/custom_emojis/images/'
+      end
+
+      it 'returns an array including shortcodes' do
+        expect(Formatter.instance.reformat(text, nil)[1]).to eq ['coolcat']
       end
     end
 
@@ -335,7 +306,7 @@ RSpec.describe Formatter do
       let(:text) { '<span class="status__content__spoiler-link">Show more</span>' }
 
       it 'strips malicious classes' do
-        is_expected.to_not include 'status__content__spoiler-link'
+        expect(Formatter.instance.reformat(text, nil)[0]).to_not include 'status__content__spoiler-link'
       end
     end
   end
@@ -414,6 +385,24 @@ RSpec.describe Formatter do
 
     it 'sanitizes' do
       is_expected.to eq 'alert("Hello")'
+    end
+  end
+
+  describe '#format_spoiler' do
+    it 'encodes with HTML entities' do
+      status = Fabricate(:status, spoiler_text: "'\"<>&")
+      formatted = Formatter.instance.format_spoiler(status)
+      expect(formatted).to eq '&apos;&quot;&lt;&gt;&amp;'
+    end
+
+    it 'emojifies' do
+      Fabricate(:custom_emoji, domain: nil, shortcode: 'coolcat')
+      account = Fabricate(:account, domain: nil)
+      status = Fabricate(:status, account: account, spoiler_text: ':coolcat:')
+
+      formatted = Formatter.instance.format_spoiler(status)
+
+      expect(formatted).to start_with '<img draggable="false" class="emojione" alt=":coolcat:" title=":coolcat:" src="https://cb6e6126.ngrok.io/system/custom_emojis/images/'
     end
   end
 end

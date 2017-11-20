@@ -23,7 +23,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def content
-    Formatter.instance.format(object)
+    formatted[0]
   end
 
   def in_reply_to
@@ -57,7 +57,13 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def virtual_tags
-    object.mentions + object.tags + object.emojis
+    object.mentions +
+      object.tags +
+      CustomEmoji.where(
+        shortcode: formatted[1],
+        domain: object.account.domain,
+        disabled: false
+      )
   end
 
   def atom_uri
@@ -143,5 +149,11 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer
+  end
+
+  private
+
+  def formatted
+    @formatted ||= Formatter.instance.format(object)
   end
 end
