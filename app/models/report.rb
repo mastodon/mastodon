@@ -25,7 +25,7 @@ class Report < ApplicationRecord
   validates :comment, length: { maximum: 1000 }
 
   def statuses
-    Status.where(id: status_ids).includes(:account, :media_attachments, :mentions)
+    Status.with_deleted.where(id: status_ids).includes(:account, :media_attachments, :mentions)
   end
 
   def media_attachments
