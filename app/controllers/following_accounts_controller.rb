@@ -7,7 +7,9 @@ class FollowingAccountsController < ApplicationController
     @follows = Follow.where(account: @account).recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:target_account)
 
     respond_to do |format|
-      format.html
+      format.html do
+        use_pack 'public'
+      end
 
       format.json do
         render json: collection_presenter,

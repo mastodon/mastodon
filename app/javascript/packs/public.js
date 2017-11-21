@@ -1,15 +1,14 @@
-import loadPolyfills from 'themes/glitch/util/load_polyfills';
-import { processBio } from 'themes/glitch/util/bio_metadata';
-import ready from 'themes/glitch/util/ready';
+import loadPolyfills from '../mastodon/load_polyfills';
+import ready from '../mastodon/ready';
 
 function main() {
   const IntlRelativeFormat = require('intl-relativeformat').default;
-  const emojify = require('themes/glitch/util/emoji').default;
-  const { getLocale } = require('locales');
+  const emojify = require('../mastodon/features/emoji/emoji').default;
+  const { getLocale } = require('../mastodon/locales');
   const { localeData } = getLocale();
-  const VideoContainer = require('themes/glitch/containers/video_container').default;
-  const MediaGalleryContainer = require('themes/glitch/containers/media_gallery_container').default;
-  const CardContainer = require('themes/glitch/containers/card_container').default;
+  const VideoContainer = require('../mastodon/containers/video_container').default;
+  const MediaGalleryContainer = require('../mastodon/containers/media_gallery_container').default;
+  const CardContainer = require('../mastodon/containers/card_container').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
 

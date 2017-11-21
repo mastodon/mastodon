@@ -2,11 +2,7 @@
 
 require 'sidekiq-bulk'
 
-class Settings::FollowerDomainsController < ApplicationController
-  layout 'admin'
-
-  before_action :authenticate_user!
-
+class Settings::FollowerDomainsController < Settings::BaseController
   def show
     @account = current_account
     @domains = current_account.followers.reorder('MIN(follows.id) DESC').group('accounts.domain').select('accounts.domain, count(accounts.id) as accounts_from_domain').page(params[:page]).per(10)

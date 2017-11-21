@@ -1,3 +1,8 @@
+//  win95 theme from cybrespace.
+
+//  Modified to inherit glitch styles (themes/glitch/styles/index.scss)
+//  instead of vanilla ones (./application.scss)
+
 $win95-bg: #bfbfbf;
 $win95-dark-grey: #404040;
 $win95-mid-grey: #808080;
@@ -17,7 +22,7 @@ $ui-highlight-color: $win95-window-header;
 }
 
 @mixin win95-outset() {
-  box-shadow: inset -1px -1px 0px #000000, 
+  box-shadow: inset -1px -1px 0px #000000,
               inset 1px 1px 0px #ffffff,
               inset -2px -2px 0px #808080,
               inset 2px 2px 0px #dfdfdf;
@@ -41,7 +46,7 @@ $ui-highlight-color: $win95-window-header;
 }
 
 @mixin win95-inset() {
-  box-shadow: inset 1px 1px 0px #000000, 
+  box-shadow: inset 1px 1px 0px #000000,
               inset -1px -1px 0px #ffffff,
               inset 2px 2px 0px #808080,
               inset -2px -2px 0px #dfdfdf;
@@ -51,7 +56,7 @@ $ui-highlight-color: $win95-window-header;
 
 
 @mixin win95-tab() {
-  box-shadow: inset -1px 0px 0px #000000, 
+  box-shadow: inset -1px 0px 0px #000000,
               inset 1px 0px 0px #ffffff,
               inset 0px 1px 0px #ffffff,
               inset 0px 2px 0px #dfdfdf,
@@ -71,7 +76,7 @@ $ui-highlight-color: $win95-window-header;
   src: url('../fonts/premillenium/MSSansSerif.ttf') format('truetype');
 }
 
-@import 'application';
+@import '../themes/glitch/styles/index';  //  Imports glitch themes
 
 /* borrowed from cybrespace style: wider columns and full column width images */
 
@@ -174,7 +179,7 @@ body.admin {
   font-size:0px;
   color:$win95-bg;
 
-  background-image: url("../images/start.png"); 
+  background-image: url("../images/start.png");
   background-repeat:no-repeat;
   background-position:8%;
   background-clip:padding-box;
@@ -336,7 +341,7 @@ body.admin {
   border-radius:0px;
   background-color:white;
   @include win95-border-inset();
-  
+
   width:12px;
   height:12px;
 }
@@ -515,9 +520,9 @@ body.admin {
   color:black;
   font-weight:bold;
 }
-.account__avatar, 
-.account__avatar-overlay-base, 
-.account__header__avatar, 
+.account__avatar,
+.account__avatar-overlay-base,
+.account__header__avatar,
 .account__avatar-overlay-overlay {
   @include win95-border-slight-inset();
   clip-path:none;
@@ -627,7 +632,7 @@ body.admin {
 }
 
 .status-card__description {
- color:black; 
+ color:black;
 }
 
 .account__display-name strong, .status__display-name strong {
@@ -710,8 +715,8 @@ body.admin {
   width:40px;
   font-size:0px;
   color:$win95-bg;
-  
-  background-image: url("../images/start.png"); 
+
+  background-image: url("../images/start.png");
   background-repeat:no-repeat;
   background-position:8%;
   background-clip:padding-box;
@@ -723,7 +728,7 @@ body.admin {
 }
 
 .drawer__header a:first-child:hover {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAIAAACpTQvdAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRBdXRob3IAAAiZS84oys9LzAEAC5oC6A7BY/IAAACWSURBVCiRhVJJDsQgDEuqOfRZ7a1P5gbP4uaJaEjTADMWQhHYjlk4p0wLnNdptdF4KvBUDyGzVwc2xO+uKtH+1o0ytEEmqFpuxlvFCGCxKbNIT56QCi2MzaA/2Mz+mERSOeqzJG2RUxkjdTabgPtFoZ1bZxcKvgPcLZVufAyR9Ni8v5dWDzfFx0giC1RvZFv6l35QQ/Mvv39XXgGzQpoAAAAASUVORK5CYII="); 
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAIAAACpTQvdAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRBdXRob3IAAAiZS84oys9LzAEAC5oC6A7BY/IAAACWSURBVCiRhVJJDsQgDEuqOfRZ7a1P5gbP4uaJaEjTADMWQhHYjlk4p0wLnNdptdF4KvBUDyGzVwc2xO+uKtH+1o0ytEEmqFpuxlvFCGCxKbNIT56QCi2MzaA/2Mz+mERSOeqzJG2RUxkjdTabgPtFoZ1bZxcKvgPcLZVufAyR9Ni8v5dWDzfFx0giC1RvZFv6l35QQ/Mvv39XXgGzQpoAAAAASUVORK5CYII=");
   background-repeat:no-repeat;
   background-position:8%;
   background-clip:padding-box;
@@ -732,7 +737,7 @@ body.admin {
 }
 
 .drawer__tab:first-child {
-  
+
 }
 
 .search {
@@ -844,7 +849,7 @@ body.admin {
   padding:4px 8px;
 }
 
-.privacy-dropdown.active 
+.privacy-dropdown.active
 .privacy-dropdown__value {
   background: $win95-bg;
   box-shadow:unset;
@@ -935,7 +940,7 @@ body.admin {
   background-color:$win95-bg;
   border:1px solid black;
   box-sizing:content-box;
-  
+
 }
 
 .emoji-dialog .emoji-search {
@@ -1010,8 +1015,8 @@ body.admin {
   width:60px;
   font-size:0px;
   color:$win95-bg;
-  
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAIAAACpTQvdAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRBdXRob3IAAAiZS84oys9LzAEAC5oC6A7BY/IAAACWSURBVCiRhVJJDsQgDEuqOfRZ7a1P5gbP4uaJaEjTADMWQhHYjlk4p0wLnNdptdF4KvBUDyGzVwc2xO+uKtH+1o0ytEEmqFpuxlvFCGCxKbNIT56QCi2MzaA/2Mz+mERSOeqzJG2RUxkjdTabgPtFoZ1bZxcKvgPcLZVufAyR9Ni8v5dWDzfFx0giC1RvZFv6l35QQ/Mvv39XXgGzQpoAAAAASUVORK5CYII="); 
+
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAIAAACpTQvdAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRBdXRob3IAAAiZS84oys9LzAEAC5oC6A7BY/IAAACWSURBVCiRhVJJDsQgDEuqOfRZ7a1P5gbP4uaJaEjTADMWQhHYjlk4p0wLnNdptdF4KvBUDyGzVwc2xO+uKtH+1o0ytEEmqFpuxlvFCGCxKbNIT56QCi2MzaA/2Mz+mERSOeqzJG2RUxkjdTabgPtFoZ1bZxcKvgPcLZVufAyR9Ni8v5dWDzfFx0giC1RvZFv6l35QQ/Mvv39XXgGzQpoAAAAASUVORK5CYII=");
   background-repeat:no-repeat;
   background-position:8%;
   background-clip:padding-box;
@@ -1049,40 +1054,40 @@ body.admin {
   }
 }
 
-.column-link[href="/web/timelines/public"] { 
-  background-image: url("../images/icon_public.png"); 
+.column-link[href="/web/timelines/public"] {
+  background-image: url("../images/icon_public.png");
   &:hover { background-image: url("../images/icon_public.png"); }
 }
-.column-link[href="/web/timelines/public/local"] { 
-  background-image: url("../images/icon_local.png"); 
+.column-link[href="/web/timelines/public/local"] {
+  background-image: url("../images/icon_local.png");
   &:hover { background-image: url("../images/icon_local.png"); }
 }
-.column-link[href="/web/pinned"] { 
-  background-image: url("../images/icon_pin.png"); 
+.column-link[href="/web/pinned"] {
+  background-image: url("../images/icon_pin.png");
   &:hover { background-image: url("../images/icon_pin.png"); }
 }
-.column-link[href="/web/favourites"] { 
-  background-image: url("../images/icon_likes.png"); 
+.column-link[href="/web/favourites"] {
+  background-image: url("../images/icon_likes.png");
   &:hover { background-image: url("../images/icon_likes.png"); }
 }
-.column-link[href="/web/blocks"] { 
-  background-image: url("../images/icon_blocks.png"); 
+.column-link[href="/web/blocks"] {
+  background-image: url("../images/icon_blocks.png");
   &:hover { background-image: url("../images/icon_blocks.png"); }
 }
-.column-link[href="/web/mutes"] { 
-  background-image: url("../images/icon_mutes.png"); 
+.column-link[href="/web/mutes"] {
+  background-image: url("../images/icon_mutes.png");
   &:hover { background-image: url("../images/icon_mutes.png"); }
 }
-.column-link[href="/settings/preferences"] { 
-  background-image: url("../images/icon_settings.png"); 
+.column-link[href="/settings/preferences"] {
+  background-image: url("../images/icon_settings.png");
   &:hover { background-image: url("../images/icon_settings.png"); }
 }
-.column-link[href="/about/more"] { 
-  background-image: url("../images/icon_about.png"); 
+.column-link[href="/about/more"] {
+  background-image: url("../images/icon_about.png");
   &:hover { background-image: url("../images/icon_about.png"); }
 }
-.column-link[href="/auth/sign_out"] { 
-  background-image: url("../images/icon_logout.png"); 
+.column-link[href="/auth/sign_out"] {
+  background-image: url("../images/icon_logout.png");
   &:hover { background-image: url("../images/icon_logout.png"); }
 }
 
@@ -1098,7 +1103,7 @@ body.admin {
   line-height:30px;
   padding-left:20px;
   padding-right:40px;
-  
+
   left:0px;
   bottom:-30px;
   display:block;
@@ -1106,9 +1111,9 @@ body.admin {
   background-color:#7f7f7f;
   width:200%;
   height:30px;
-  
+
   -ms-transform: rotate(-90deg);
-  
+
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin:top left;
@@ -1189,7 +1194,7 @@ body.admin {
   left:unset;
 }
 
-.dropdown > .icon-button, .detailed-status__button > .icon-button, 
+.dropdown > .icon-button, .detailed-status__button > .icon-button,
 .status__action-bar > .icon-button, .star-icon i {
     /* i don't know what's going on with the inline
        styles someone should look at the react code */
@@ -1239,8 +1244,8 @@ body.admin {
   background:$win95-bg;
 }
 
-.actions-modal::before, 
-.boost-modal::before, 
+.actions-modal::before,
+.boost-modal::before,
 .confirmation-modal::before,
 .report-modal::before {
   content: "Confirmation";
@@ -1278,8 +1283,8 @@ body.admin {
   .confirmation-modal__cancel-button {
     color:black;
 
-    &:active, 
-    &:focus, 
+    &:active,
+    &:focus,
     &:hover {
       color:black;
     }
@@ -1566,10 +1571,10 @@ a.table-action-link:hover,
   background-color:white;
 }
 
-.simple_form input[type=text], 
-.simple_form input[type=number], 
-.simple_form input[type=email], 
-.simple_form input[type=password], 
+.simple_form input[type=text],
+.simple_form input[type=number],
+.simple_form input[type=email],
+.simple_form input[type=password],
 .simple_form textarea {
   color:black;
   background-color:white;
@@ -1580,8 +1585,8 @@ a.table-action-link:hover,
   }
 }
 
-.simple_form button, 
-.simple_form .button, 
+.simple_form button,
+.simple_form .button,
 .simple_form .block-button
 {
   background: $win95-bg;
@@ -1608,8 +1613,8 @@ a.table-action-link:hover,
   }
 }
 
-.simple_form button.negative, 
-.simple_form .button.negative, 
+.simple_form button.negative,
+.simple_form .button.negative,
 .simple_form .block-button.negative
 {
   background: $win95-bg;
@@ -1631,8 +1636,8 @@ a.table-action-link:hover,
   border-right-color:#f5f5f5;
   width:12px;
   height:12px;
-  display:inline-block; 
-  vertical-align:middle; 
+  display:inline-block;
+  vertical-align:middle;
   margin-right:2px;
 }
 

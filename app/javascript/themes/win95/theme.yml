@@ -1,0 +1,23 @@
+#  win95 theme.
+
+#  Ported over from `cybrespace:mastodon/theme_win95`.
+#  <https://github.com/cybrespace/mastodon/tree/theme_win95>
+
+#  You can use this theme file as inspiration for porting over
+#  a preëxisting Mastodon theme.
+
+#  We only modify the `common` pack, which contains our styling.
+pack:
+  common:
+    filename: index.js
+    stylesheet: true
+  #  All unspecified packs will inherit from glitch.
+
+#  By default, the glitch preloads will also be used here. You can
+#  disable them by setting `preload` to `null`.
+
+#      preload:
+
+#  The `fallback` parameter tells us to use glitch files for everything
+#  we haven't specified.
+fallback: glitch

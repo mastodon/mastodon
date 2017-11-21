@@ -1,12 +1,23 @@
 #  (REQUIRED) The location of the pack files inside `pack_directory`.
 pack:
   about: about.js
-  admin: null
-  common: common.js
-  embed: null
-  home: application.js
+  admin:
+  auth:
+  common:
+    filename: common.js
+    stylesheet: true
+  embed: public.js
+  error:
+  home:
+    filename: application.js
+    preload:
+    - features/getting_started
+    - features/compose
+    - features/home_timeline
+    - features/notifications
+  modal:
   public: public.js
-  settings: null
+  settings:
   share: share.js
 
 #  (OPTIONAL) The directory which contains the pack files.
@@ -15,12 +26,8 @@ pack:
 #  somewhere else.
 pack_directory: app/javascript/packs
 
-#  (OPTIONAL) Additional javascript resources to preload, for use with
-#  lazy-loaded components. It is **STRONGLY RECOMMENDED** that you
-#  derive these pathnames from `themes/[your-theme]` to ensure that
-#  they stay unique. (Of course, vanilla doesn't do this ^^;;)
-preload:
-- features/getting_started
-- features/compose
-- features/home_timeline
-- features/notifications
+#  (OPTIONAL) By default the theme will fallback to the default theme
+#  if a particular pack is not provided. You can specify different
+#  fallbacks here, or disable fallback behaviours altogether by
+#  specifying a `null` value.
+fallback:

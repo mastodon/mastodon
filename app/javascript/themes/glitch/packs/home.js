@@ -1,7 +1,7 @@
-import loadPolyfills from './util/load_polyfills';
+import loadPolyfills from 'themes/glitch/util/load_polyfills';
 
 loadPolyfills().then(() => {
-  require('./util/main').default();
+  require('themes/glitch/util/main').default();
 }).catch(e => {
   console.error(e);
 });

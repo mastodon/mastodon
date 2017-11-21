@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 module Settings
-  class TwoFactorAuthenticationsController < ApplicationController
-    layout 'admin'
-
-    before_action :authenticate_user!
+  class TwoFactorAuthenticationsController < BaseController
     before_action :verify_otp_required, only: [:create]
 
     def show

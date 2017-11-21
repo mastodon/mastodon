@@ -12,14 +12,24 @@ const settings = safeLoad(readFileSync(configPath), 'utf8')[env.NODE_ENV];
 const themeFiles = glob.sync('app/javascript/themes/*/theme.yml');
 const themes = {};
 
+const core = function () {
+  const coreFile = resolve('app', 'javascript', 'core', 'theme.yml');
+  const data = safeLoad(readFileSync(coreFile), 'utf8');
+  if (!data.pack_directory) {
+    data.pack_directory = dirname(coreFile);
+  }
+  return data.pack ? data : {};
+}();
+
 for (let i = 0; i < themeFiles.length; i++) {
   const themeFile = themeFiles[i];
   const data = safeLoad(readFileSync(themeFile), 'utf8');
+  data.name = basename(dirname(themeFile));
   if (!data.pack_directory) {
     data.pack_directory = dirname(themeFile);
   }
   if (data.pack) {
-    themes[basename(dirname(themeFile))] = data;
+    themes[data.name] = data;
   }
 }
 
@@ -43,6 +53,7 @@ const output = {
 
 module.exports = {
   settings,
+  core,
   themes,
   env,
   loadersDir,

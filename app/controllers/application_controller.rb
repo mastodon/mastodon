@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_account
   helper_method :current_session
-  helper_method :current_theme
-  helper_method :theme_data
   helper_method :single_user_mode?
 
   rescue_from ActionController::RoutingError, with: :not_found
@@ -54,6 +52,69 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
+  def pack(data, pack_name)
+    return nil unless pack?(data, pack_name)
+    pack_data = {
+      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.get(current_theme) : Themes.instance.core, 'common'),
+      name: data['name'],
+      pack: pack_name,
+      preload: nil,
+      stylesheet: false
+    }
+    if data['pack'][pack_name].is_a?(Hash)
+      pack_data[:common] = nil if data['pack'][pack_name]['use_common'] == false
+      pack_data[:pack] = nil unless data['pack'][pack_name]['filename']
+      if data['pack'][pack_name]['preload']
+        pack_data[:preload] = [data['pack'][pack_name]['preload']] if data['pack'][pack_name]['preload'].is_a?(String)
+        pack_data[:preload] = data['pack'][pack_name]['preload'] if data['pack'][pack_name]['preload'].is_a?(Array)
+      end
+      pack_data[:stylesheet] = true if data['pack'][pack_name]['stylesheet']
+    end
+    pack_data
+  end
+
+  def pack?(data, pack_name)
+    if data['pack'].is_a?(Hash) && data['pack'].key?(pack_name)
+      return true if data['pack'][pack_name].is_a?(String) || data['pack'][pack_name].is_a?(Hash)
+    end
+    false
+  end
+
+  def nil_pack(data, pack_name)
+    {
+      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.get(current_theme) : Themes.instance.core, 'common'),
+      name: data['name'],
+      pack: nil,
+      preload: nil,
+      stylesheet: false
+    }
+  end
+
+  def resolve_pack(data, pack_name)
+    result = pack(data, pack_name)
+    unless result
+      if data['name'] && data.key?('fallback')
+        if data['fallback'].nil?
+          return nil_pack(data, pack_name)
+        elsif data['fallback'].is_a?(String) && Themes.instance.get(data['fallback'])
+          return resolve_pack(Themes.instance.get(data['fallback']), pack_name)
+        elsif data['fallback'].is_a?(Array)
+          data['fallback'].each do |fallback|
+            return resolve_pack(Themes.instance.get(fallback), pack_name) if Themes.instance.get(fallback)
+          end
+        end
+        return nil_pack(data, pack_name)
+      end
+      return data.key?('name') && data['name'] != default_theme ? resolve_pack(Themes.instance.get(default_theme), pack_name) : nil_pack(data, pack_name)
+    end
+    result
+  end
+
+  def use_pack(pack_name)
+    @core = resolve_pack(Themes.instance.core, pack_name)
+    @theme = resolve_pack(Themes.instance.get(current_theme), pack_name)
+  end
+
   protected
 
   def forbidden
@@ -84,13 +145,13 @@ class ApplicationController < ActionController::Base
     @current_session ||= SessionActivation.find_by(session_id: cookies.signed['_session_id'])
   end
 
-  def current_theme
-    return Setting.default_settings['theme'] unless Themes.instance.names.include? current_user&.setting_theme
-    current_user.setting_theme
+  def default_theme
+    Setting.default_settings['theme']
   end
 
-  def theme_data
-    Themes.instance.get(current_theme)
+  def current_theme
+    return default_theme unless Themes.instance.names.include? current_user&.setting_theme
+    current_user.setting_theme
   end
 
   def cache_collection(raw, klass)

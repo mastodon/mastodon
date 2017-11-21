@@ -6,33 +6,37 @@ const { sync } = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const extname = require('path-complete-extname');
-const { env, settings, themes, output, loadersDir } = require('./configuration.js');
+const { env, settings, core, themes, output, loadersDir } = require('./configuration.js');
 const localePackPaths = require('./generateLocalePacks');
 
-const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
-const entryPath = join(settings.source_path, settings.source_entry_path);
-const packPaths = sync(join(entryPath, extensionGlob));
+function reducePacks (data, into = {}) {
+  if (!data.pack) {
+    return into;
+  }
+  Object.keys(data.pack).reduce((map, entry) => {
+    const pack = data.pack[entry];
+    if (!pack) {
+      return map;
+    }
+    const packFile = typeof pack === 'string' ? pack : pack.filename;
+    if (packFile) {
+      map[data.name ? `themes/${data.name}/${entry}` : `core/${entry}`] = resolve(data.pack_directory, packFile);
+    }
+    return map;
+  }, into);
+  return into;
+}
 
 module.exports = {
   entry: Object.assign(
-    packPaths.reduce((map, entry) => {
-      const localMap = map;
-      const namespace = relative(join(entryPath), dirname(entry));
-      localMap[join(namespace, basename(entry, extname(entry)))] = resolve(entry);
-      return localMap;
-    }, {}),
+    { locales: resolve('app', 'javascript', 'locales') },
     localePackPaths.reduce((map, entry) => {
       const localMap = map;
       localMap[basename(entry, extname(entry, extname(entry)))] = resolve(entry);
       return localMap;
     }, {}),
-    Object.keys(themes).reduce(
-      (themePaths, name) => {
-        const themeData = themes[name];
-        themePaths[`themes/${name}`] = resolve(themeData.pack_directory, themeData.pack);
-        return themePaths;
-      }, {}
-    )
+    reducePacks(core),
+    Object.keys(themes).reduce((map, entry) => reducePacks(themes[entry], map), {})
   ),
 
   output: {
@@ -64,7 +68,7 @@ module.exports = {
       writeToFileEmit: true,
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
+      name: 'locales',
       minChunks: Infinity, // It doesn't make sense to use common chunks with multiple frontend support.
     }),
   ],

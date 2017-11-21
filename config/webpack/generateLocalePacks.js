@@ -57,7 +57,7 @@ Object.keys(glitchMessages).forEach(function (key) {
 //
 import messages from '../../app/javascript/mastodon/locales/${locale}.json';
 import localeData from ${JSON.stringify(localeDataPath)};
-import { setLocale } from '../../app/javascript/mastodon/locales';
+import { setLocale } from 'locales';
 ${glitchInject}
 setLocale({messages: mergedMessages, localeData: localeData});
 `;

@@ -1,0 +1,10 @@
+- if theme
+  - if theme[:pack] != 'common' && theme[:common]
+    = render partial: 'layouts/theme', object: theme[:common]
+  - if theme[:pack]
+    = javascript_pack_tag theme[:name] ? "themes/#{theme[:name]}/#{theme[:pack]}" : "core/#{theme[:pack]}", integrity: true, crossorigin: 'anonymous'
+    - if theme[:stylesheet]
+      = stylesheet_pack_tag theme[:name] ? "themes/#{theme[:name]}/#{theme[:pack]}" : "core/#{theme[:pack]}", integrity: true, media: 'all'
+    - if theme[:preload]
+      - theme[:preload].each do |link|
+        %link{ href: asset_pack_path("#{link}.js"), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/

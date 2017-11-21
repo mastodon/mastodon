@@ -4,6 +4,7 @@ class AuthorizeFollowsController < ApplicationController
   layout 'modal'
 
   before_action :authenticate_user!
+  before_action :set_pack
 
   def show
     @account = located_account || render(:error)
@@ -22,6 +23,10 @@ class AuthorizeFollowsController < ApplicationController
   end
 
   private
+
+  def set_pack
+    use_pack 'modal'
+  end
 
   def follow_attempt
     FollowService.new.call(current_account, acct_without_prefix)

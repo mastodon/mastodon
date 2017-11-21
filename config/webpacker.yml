@@ -2,7 +2,6 @@
 
 default: &default
   source_path: app/javascript
-  source_entry_path: packs
   public_output_path: packs
   cache_path: tmp/cache/webpacker
 
@@ -12,17 +11,6 @@ default: &default
 
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
-
-  extensions:
-    - .js
-    - .sass
-    - .scss
-    - .css
-    - .png
-    - .svg
-    - .gif
-    - .jpeg
-    - .jpg
 
 development:
   <<: *default

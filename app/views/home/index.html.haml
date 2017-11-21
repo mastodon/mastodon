@@ -1,12 +1,6 @@
 - content_for :header_tags do
-  - if theme_data['preload']
-    - theme_data['preload'].each do |link|
-      %link{ href: asset_pack_path("#{link}.js"), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
   %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
-
-  = javascript_pack_tag "themes/#{current_theme}", integrity: true, crossorigin: 'anonymous'
-  = stylesheet_pack_tag "themes/#{current_theme}", integrity: true, media: 'all'
 
 .app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
   %noscript

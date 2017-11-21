@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class AboutController < ApplicationController
+  before_action :set_pack
   before_action :set_body_classes
   before_action :set_instance_presenter, only: [:show, :more, :terms]
 
@@ -20,6 +21,10 @@ class AboutController < ApplicationController
   end
 
   helper_method :new_user
+
+  def set_pack
+    use_pack action_name == 'show' ? 'about' : 'common'
+  end
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new

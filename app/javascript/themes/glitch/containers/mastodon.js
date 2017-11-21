@@ -9,7 +9,7 @@ import UI from 'themes/glitch/features/ui';
 import { hydrateStore } from 'themes/glitch/actions/store';
 import { connectUserStream } from 'themes/glitch/actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { getLocale } from 'mastodon/locales';
+import { getLocale } from 'locales';
 import initialState from 'themes/glitch/util/initial_state';
 
 const { localeData, messages } = getLocale();
