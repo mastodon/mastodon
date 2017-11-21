@@ -34,6 +34,21 @@ namespace :mastodon do
     end
   end
 
+  desc 'Initialize a user\'s web settings, identified by the USERNAME environment variable'
+  task clear_settings: :environment do
+    include RoutingHelper
+    account_username = ENV.fetch('USERNAME')
+    user = User.joins(:account).where(accounts: { username: account_username })
+
+    if user.present?
+      Web::Setting.where(user: user).first_or_initialize(user: user)
+      Web::Setting.where(user: user).update(data: {})
+      puts "#{account_username}'s web settings is Initialized."
+    else
+      puts "User could not be found; please make sure an Account with the `#{account_username}` username exists."
+    end
+  end
+
   desc 'Add a user by providing their email, username and initial password.' \
        'The user will receive a confirmation email, then they must reset their password before logging in.'
   task add_user: :environment do
