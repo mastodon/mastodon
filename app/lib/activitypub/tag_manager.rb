@@ -28,6 +28,8 @@ class ActivityPub::TagManager
     return target.uri if target.respond_to?(:local?) && !target.local?
 
     case target.object_type
+    when :follow
+      account_follow_url(target.account.username, target)
     when :person
       account_url(target)
     when :note, :comment, :activity
