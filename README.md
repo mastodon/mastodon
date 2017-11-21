@@ -1,6 +1,6 @@
 ## [knzk.me](knzk.me)
 
-### Knzk.me is now Sponsored by Fastly!  
+### Knzk.me is now served by Fastly!  
 ![fastly_logo](https://knzkdev.net/partners/fastly_logo.png "fastly_logo")  
 
 ### Cloud Storage Services Provided By Wasabi!  
