@@ -74,6 +74,9 @@ class FetchLinkCardService < BaseService
 
     return false unless response.respond_to?(:type)
 
+    # The photo will change the URL. So, to avoid duplication of URLs, PreviewCard needs to be checked again.
+    @card = PreviewCard.find_by(url: response.url) || @card if response.type == 'photo'
+
     @card.type          = response.type
     @card.title         = response.respond_to?(:title)         ? response.title         : ''
     @card.author_name   = response.respond_to?(:author_name)   ? response.author_name   : ''
