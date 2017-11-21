@@ -145,7 +145,7 @@ ca:
       id: ID
       mark_as_resolved: Marca com a resolt
       nsfw:
-        'false': APTE 
+        'false': APTE
         'true': NO APTE (NSFW)
       report: 'Informe #%{id}'
       report_contents: Continguts
@@ -326,14 +326,14 @@ ca:
         one: "1 notificació nova des de la darrera visita \U0001F418"
         other: "%{count} notificacions noves des de la darrera visita \U0001F418"
     favourite:
-      body: '%{name} ha marcat com a favorit el teu estat:'
+      body: "%{name} ha marcat com a favorit el teu estat:"
       subject: "%{name} ha marcat com a favorit el teu estat"
     follow:
       body: "%{name} t'està seguint!"
       subject: "%{name} t'està seguint"
     follow_request:
       body: "%{name} ha sol·licitat seguir-te"
-      subject: "Seguidor pendent: %{name}"
+      subject: 'Seguidor pendent: %{name}'
     mention:
       body: "%{name} t'ha mencionat en:"
       subject: "%{name} t'ha mencionat"
@@ -363,20 +363,20 @@ ca:
     group:
       title: "%{count} notificacions"
     mention:
-      action_boost: "Retooteja"
-      action_expand: "Mostra'n més"
-      action_favourite: "Preferit"
+      action_boost: Retooteja
+      action_expand: Mostra'n més
+      action_favourite: Preferit
       title: "%{name} t'ha mencionat"
     reblog:
       title: "%{name} t'ha retootejat"
   remote_follow:
-    acct: "Escriu l'usuari@domini de la persona que vols seguir"
-    missing_resource: "No s'ha pogut trobar la URL de redirecció necessaria per al compte."
-    proceed: "Comença a seguir"
-    prompt: "Seguiràs a:"
+    acct: Escriu l'usuari@domini de la persona que vols seguir
+    missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte.
+    proceed: Comença a seguir
+    prompt: 'Seguiràs a:'
   sessions:
-    activity: "Última activitat"
-    browser: "Navegador"
+    activity: Última activitat
+    browser: Navegador
     browsers:
       alipay: Alipay
       blackberry: Blackberry
