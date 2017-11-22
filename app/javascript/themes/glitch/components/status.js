@@ -59,6 +59,7 @@ export default class Status extends ImmutablePureComponent {
     'muted',
     'collapse',
     'notification',
+    'hidden',
   ]
 
   updateOnStates = [
