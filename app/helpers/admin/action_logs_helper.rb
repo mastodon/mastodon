@@ -1,32 +1,40 @@
 # frozen_string_literal: true
 
 module Admin::ActionLogsHelper
+  def log_target(log)
+    if log.target
+      linkable_log_target(log.target)
+    else
+      log_target_from_history(log.target_type, log.recorded_changes)
+    end
+  end
+
   def linkable_log_target(record)
     case record.class.name
     when 'Account'
-      link_to "@#{record.acct}", admin_account_path(record.id)
+      link_to record.acct, admin_account_path(record.id)
     when 'User'
-      link_to "@#{record.account.acct}", admin_account_path(record.account_id)
+      link_to record.account.acct, admin_account_path(record.account_id)
     when 'CustomEmoji'
-      ":#{record.shortcode}:"
+      record.shortcode
     when 'Report'
       link_to "##{record.id}", admin_report_path(record)
     when 'DomainBlock', 'EmailDomainBlock'
       link_to record.domain, "https://#{record.domain}"
     when 'Status'
-      link_to ActivityPub::TagManager.instance.uri_for(record), TagManager.instance.url_for(record)
+      link_to record.account.acct, TagManager.instance.url_for(record)
     end
   end
 
   def log_target_from_history(type, attributes)
     case type
     when 'CustomEmoji'
-      ":#{attributes['shortcode']}:"
+      attributes['shortcode']
     when 'DomainBlock', 'EmailDomainBlock'
       link_to attributes['domain'], "https://#{attributes['domain']}"
     when 'Status'
       tmp_status = Status.new(attributes)
-      link_to ActivityPub::TagManager.instance.uri_for(tmp_status), TagManager.instance.url_for(tmp_status)
+      link_to tmp_status.account.acct, TagManager.instance.url_for(tmp_status)
     end
   end
 
@@ -51,5 +59,22 @@ module Admin::ActionLogsHelper
   def log_change(val)
     return content_tag(:span, val, class: 'diff-neutral') unless val.is_a?(Array)
     safe_join([content_tag(:span, val.first, class: 'diff-old'), content_tag(:span, val.last, class: 'diff-new')], '→')
+  end
+
+  def icon_for_log(log)
+    case log.target_type
+    when 'Account', 'User'
+      'user'
+    when 'CustomEmoji'
+      'smile-o'
+    when 'Report'
+      'flag'
+    when 'DomainBlock'
+      'lock'
+    when 'EmailDomainBlock'
+      'envelope'
+    when 'Status'
+      'paper-plane-o'
+    end
   end
 end

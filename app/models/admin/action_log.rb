@@ -25,20 +25,6 @@ class Admin::ActionLog < ApplicationRecord
     super.to_sym
   end
 
-  def decorative_action
-    if action == :create && %w(DomainBlock EmailDomainBlock).include?(target_type)
-      :block
-    elsif action == :destroy && %w(DomainBlock EmailDomainBlock).include?(target_type)
-      :unblock
-    else
-      action
-    end
-  end
-
-  def destructive?
-    [:silence, :disable, :suspend, :block].include?(decorative_action)
-  end
-
   before_validation :set_changes
 
   private

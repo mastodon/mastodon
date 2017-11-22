@@ -348,46 +348,70 @@
   }
 }
 
-.logs {
-  list-style: none;
-  background: darken($ui-base-color, 12%);
-  border-radius: 4px;
-  font-family: 'mastodon-font-monospace', monospace;
-  font-size: 12px;
-  padding: 14px;
-  color: $ui-secondary-color;
-  line-height: 20px;
-  height: 60vh;
-  overflow: auto;
+.spacer {
+  flex: 1 1 auto;
+}
 
-  li {
-    line-height: 140%;
+.log-entry {
+  margin-bottom: 8px;
+  line-height: 20px;
+
+  &__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background: $ui-base-color;
+    color: $ui-primary-color;
+    border-radius: 4px 4px 0 0;
+    font-size: 14px;
+  }
+
+  &__avatar {
+    margin-right: 10px;
+
+    .avatar {
+      display: block;
+      margin: 0;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .user {
-    color: lighten($ui-highlight-color, 8%);
-    background: darken($ui-base-color, 4%);
+  &__timestamp {
+    color: lighten($ui-base-color, 34%);
   }
 
-  .action {
-    background: darken($ui-base-color, 4%);
-    color: $success-green;
-
-    &.destructive {
-      color: $error-red;
-    }
-  }
-
-  .target {
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-  }
-
-  .extras {
+  &__extras {
+    background: lighten($ui-base-color, 6%);
+    border-radius: 0 0 4px 4px;
+    padding: 10px;
     color: $ui-primary-color;
+    font-family: 'mastodon-font-monospace', monospace;
+    font-size: 12px;
+    white-space: nowrap;
+    min-height: 20px;
+  }
+
+  &__icon {
+    font-size: 28px;
+    margin-right: 10px;
+    color: lighten($ui-base-color, 34%);
+  }
+
+  a,
+  .username,
+  .target {
+    color: $ui-secondary-color;
+    text-decoration: none;
+    font-weight: 500;
   }
 
   .diff-old {

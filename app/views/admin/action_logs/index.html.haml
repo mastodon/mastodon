@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('admin.action_logs.title')
 
-%ul.logs
+%ul
   = render @action_logs
 
 = paginate @action_logs

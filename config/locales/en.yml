@@ -134,6 +134,30 @@ en:
       username: Username
       web: Web
     action_logs:
+      actions:
+        confirm_user: "%{name} confirmed e-mail address of user %{target}"
+        create_custom_emoji: "%{name} uploaded new emoji %{target}"
+        create_domain_block: "%{name} blocked domain %{target}"
+        create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
+        demote_user: "%{name} demoted user %{target}"
+        destroy_domain_block: "%{name} unblocked domain %{target}"
+        destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
+        destroy_status: "%{name} removed status by %{target}"
+        disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
+        disable_custom_emoji: "%{name} disabled emoji %{target}"
+        disable_user: "%{name} disabled login for user %{target}"
+        dismiss_report: "%{name} dismissed report %{target}"
+        enable_custom_emoji: "%{name} enabled emoji %{target}"
+        enable_user: "%{name} enabled login for user %{target}"
+        memorialize_account: "%{name} turned %{target}'s account into a memoriam page"
+        promote_user: "%{name} promoted user %{target}"
+        reset_password_user: "%{name} reset password of user %{target}"
+        silence_account: "%{name} silenced %{target}'s account"
+        suspend_account: "%{name} suspended %{target}'s account"
+        unsilence_account: "%{name} unsilenced %{target}'s account"
+        unsuspend_account: "%{name} unsuspended %{target}'s account"
+        update_custom_emoji: "%{name} updated emoji %{target}"
+        update_status: "%{name} updated status by %{target}"
       title: Audit log
     custom_emojis:
       copied_msg: Successfully created local copy of the emoji
