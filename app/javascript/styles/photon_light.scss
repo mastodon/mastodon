@@ -1,0 +1,29 @@
+@import 'photon.scss';
+
+$color1: $photon_grey_10; // darkest
+$color2: lighten($photon_blue_50, 20%); // lightest
+$color3: lighten($photon_blue_50, 10%); // lighter
+$color4: $photon_blue_50; // vibrant
+$color5: $photon_grey_90; // white
+$color6: $photon_red_50; // error red
+$color7: $photon_green_50; // succ green
+$color8: $photon_white; // black
+
+// Avoid making text unreadable
+@function lighten ($color, $percentage) {
+    @return darken($color, $percentage);
+}
+
+$ui-base-color: $color1;
+$ui-secondary-color: $color2;
+$ui-primary-color: $color3;
+$ui-highlight-color: $color4;
+$base-border-color: $color5;
+$simple-background-color: $color5;
+$primary-text-color: $color5;
+$error-value-color: $color6;
+$valid-value-color: $color7;
+$base-shadow-color: $color8;
+$base-overlay-background: $color8;
+
+@import 'application';
