@@ -39,6 +39,7 @@ ja:
     followers: フォロワー
     following: フォロー中
     media: メディア
+    moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     nothing_here: 何もありません
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
@@ -245,6 +246,9 @@ ja:
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
+      show_staff_badge:
+        desc_html: ユーザーページにスタッフのバッジを表示します
+        title: スタッフバッジを表示する
       site_description:
         desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
