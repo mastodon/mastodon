@@ -117,4 +117,13 @@ describe InstancePresenter do
       expect(instance_presenter.domain_count).to eq(345)
     end
   end
+
+  describe '#thumbnail' do
+    it 'returns a thumbnail' do
+      thumbnail = Fabricate(:site_upload, var: 'thumbnail')
+      expect(instance_presenter.thumbnail).to eq thumbnail
+
+      Rails.cache.clear
+    end
+  end
 end
