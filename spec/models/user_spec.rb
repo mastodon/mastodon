@@ -15,38 +15,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'validations' do
-    it 'is invalid without an account' do
-      user = Fabricate.build(:user, account: nil)
-      user.valid?
-      expect(user).to model_have_error_on_field(:account)
-    end
-
-    it 'is invalid without a valid locale' do
-      user = Fabricate.build(:user, locale: 'toto')
-      user.valid?
-      expect(user).to model_have_error_on_field(:locale)
-    end
-
-    it 'is invalid without a valid email' do
-      user = Fabricate.build(:user, email: 'john@')
-      user.valid?
-      expect(user).to model_have_error_on_field(:email)
-    end
-
-    it 'is valid with an invalid e-mail that has already been saved' do
-      user = Fabricate.build(:user, email: 'invalid-email')
-      user.save(validate: false)
-      expect(user.valid?).to be true
-    end
-
-    it 'cleans out empty string from languages' do
-      user = Fabricate.build(:user, filtered_languages: [''])
-      user.valid?
-      expect(user.filtered_languages).to eq []
-    end
-  end
-
   describe 'scopes' do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
