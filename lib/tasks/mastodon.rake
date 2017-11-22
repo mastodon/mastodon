@@ -36,14 +36,16 @@ namespace :mastodon do
 
   desc 'Initialize a user\'s web settings, identified by the USERNAME environment variable'
   task clear_settings: :environment do
-    include RoutingHelper
     account_username = ENV.fetch('USERNAME')
-    user = User.joins(:account).where(accounts: { username: account_username })
+    account = Account.find_local!(account_username)
 
-    if user.present?
-      Web::Setting.where(user: user).first_or_initialize(user: user)
-      Web::Setting.where(user: user).update(data: {})
-      puts "#{account_username}'s web settings is Initialized."
+    if account
+      Web::Setting.where(user: account.user).first_or_initialize(user: account.user)
+      if Web::Setting.where(user: account.user).update(data: {})
+        puts "#{account_username}'s web settings is initialized."
+      else
+        puts "#{account_username}'s web settings cannot initialized. Please make sure the `#{account_username}`'s web settings exists."
+      end
     else
       puts "User could not be found; please make sure an Account with the `#{account_username}` username exists."
     end
