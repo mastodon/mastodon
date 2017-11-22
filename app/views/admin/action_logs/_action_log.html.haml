@@ -1,5 +1,10 @@
 %li
   %time= l action_log.created_at
   %span.user= action_log.account.username
-  %span.action{ class: action_log.destructive? ? 'destructive' : '' }= action_log.action
-  %span.target= linkable_log_target action_log.target
+  %span.action{ class: action_log.destructive? ? 'destructive' : '' }= action_log.decorative_action
+  %span.target
+    - if action_log.target
+      = linkable_log_target action_log.target
+    - else
+      = log_target_from_history action_log.target_type, action_log.recorded_changes
+  %span.extras= log_extra_attributes relevant_log_changes(action_log)

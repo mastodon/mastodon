@@ -3,16 +3,19 @@
 #
 # Table name: admin_action_logs
 #
-#  id          :integer          not null, primary key
-#  account_id  :integer
-#  action      :string           default(""), not null
-#  target_type :string
-#  target_id   :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id               :integer          not null, primary key
+#  account_id       :integer
+#  action           :string           default(""), not null
+#  target_type      :string
+#  target_id        :integer
+#  recorded_changes :text             default(""), not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class Admin::ActionLog < ApplicationRecord
+  serialize :recorded_changes
+
   belongs_to :account, required: true
   belongs_to :target, required: true, polymorphic: true
 
@@ -22,7 +25,30 @@ class Admin::ActionLog < ApplicationRecord
     super.to_sym
   end
 
+  def decorative_action
+    if action == :create && %w(DomainBlock EmailDomainBlock).include?(target_type)
+      :block
+    elsif action == :destroy && %w(DomainBlock EmailDomainBlock).include?(target_type)
+      :unblock
+    else
+      action
+    end
+  end
+
   def destructive?
-    [:silence, :disable, :suspend].include?(action)
+    [:silence, :disable, :suspend, :block].include?(decorative_action)
+  end
+
+  before_validation :set_changes
+
+  private
+
+  def set_changes
+    case action
+    when :destroy, :create
+      self.recorded_changes = target.attributes
+    when :update, :promote, :demote
+      self.recorded_changes = target.previous_changes
+    end
   end
 end

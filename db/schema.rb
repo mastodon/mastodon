@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20171119172437) do
     t.string "action", default: "", null: false
     t.string "target_type"
     t.bigint "target_id"
+    t.text "recorded_changes", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_admin_action_logs_on_account_id"

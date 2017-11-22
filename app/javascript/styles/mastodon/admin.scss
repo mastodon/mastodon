@@ -357,9 +357,12 @@
   padding: 14px;
   color: $ui-secondary-color;
   line-height: 20px;
+  height: 60vh;
+  overflow: auto;
 
   li {
     line-height: 140%;
+    white-space: nowrap;
   }
 
   .user {
@@ -381,5 +384,21 @@
       text-decoration: none;
       color: inherit;
     }
+  }
+
+  .extras {
+    color: $ui-primary-color;
+  }
+
+  .diff-old {
+    color: $error-red;
+  }
+
+  .diff-neutral {
+    color: $ui-secondary-color;
+  }
+
+  .diff-new {
+    color: $success-green;
   }
 }
