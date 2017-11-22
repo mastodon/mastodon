@@ -28,7 +28,7 @@ for (let i = 0; i < themeFiles.length; i++) {
   if (!data.pack_directory) {
     data.pack_directory = dirname(themeFile);
   }
-  if (data.pack) {
+  if (data.pack && typeof data.pack == 'object') {
     themes[data.name] = data;
   }
 }

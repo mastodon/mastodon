@@ -4,8 +4,7 @@
     %meta{ charset: 'utf-8' }/
     %meta{ name: 'robots', content: 'noindex' }/
 
-    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    = javascript_pack_tag 'embed', integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = render partial: 'layouts/theme', object: @core
     = render partial: 'layouts/theme', object: @theme
