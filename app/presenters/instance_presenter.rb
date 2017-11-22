@@ -12,6 +12,12 @@ class InstancePresenter
     to: Setting
   )
 
+  delegate(
+    :version_number,
+    :source_url,
+    to: 'Mastodon::Version'
+  )
+
   def contact_account
     Account.find_local(Setting.site_contact_username)
   end
@@ -26,14 +32,6 @@ class InstancePresenter
 
   def domain_count
     Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
-  end
-
-  def version_number
-    Mastodon::Version
-  end
-
-  def source_url
-    Mastodon::Version.source_url
   end
 
   def thumbnail
