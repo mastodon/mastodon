@@ -134,7 +134,7 @@ en:
       username: Username
       web: Web
     action_logs:
-      title: Logs
+      title: Audit log
     custom_emojis:
       copied_msg: Successfully created local copy of the emoji
       copy: Copy
@@ -189,7 +189,7 @@ en:
           suspend: Unsuspend all existing accounts from this domain
         title: Undo domain block for %{domain}
         undo: Undo
-      title: Domain Blocks
+      title: Domain blocks
       undo: Undo
     email_domain_blocks:
       add_new: Add new
@@ -200,13 +200,13 @@ en:
       new:
         create: Create block
         title: New email domain block
-      title: Email Domain Block
+      title: E-mail blacklist
     instances:
       account_count: Known accounts
       domain_name: Domain
       reset: Reset
       search: Search
-      title: Known Instances
+      title: Known instances
     reports:
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
@@ -267,7 +267,7 @@ en:
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
-      title: Site Settings
+      title: Site settings
     statuses:
       back_to_account: Back to account page
       batch:
@@ -406,6 +406,8 @@ en:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
+  moderation:
+    title: Moderation
   notification_mailer:
     digest:
       body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
