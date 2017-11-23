@@ -83,15 +83,21 @@ module Admin::ActionLogsHelper
     when :enable, :unsuspend, :unsilence, :confirm, :promote, :resolve
       'positive'
     when :create
-      %w[DomainBlock EmailDomainBlock].include?(log.target_type) ? 'negative' : 'positive'
+      opposite_verbs?(log) ? 'negative' : 'positive'
     when :update, :reset_password, :disable_2fa, :memorialize
       'neutral'
     when :demote, :silence, :disable, :suspend
       'negative'
     when :destroy
-      %w[DomainBlock EmailDomainBlock].include?(log.target_type) ? 'positive' : 'negative'
+      opposite_verbs?(log) ? 'positive' : 'negative'
     else
       ''
     end
+  end
+
+  private
+
+  def opposite_verbs?(log)
+    %w(DomainBlock EmailDomainBlock).include?(log.target_type)
   end
 end
