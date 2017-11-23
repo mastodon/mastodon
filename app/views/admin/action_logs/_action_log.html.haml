@@ -10,5 +10,6 @@
     .spacer
     .log-entry__icon
       = fa_icon icon_for_log(action_log)
+      .log-entry__icon__overlay{ class: class_for_log_icon(action_log) }
   .log-entry__extras
     = log_extra_attributes relevant_log_changes(action_log)

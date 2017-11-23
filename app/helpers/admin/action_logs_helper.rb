@@ -66,7 +66,7 @@ module Admin::ActionLogsHelper
     when 'Account', 'User'
       'user'
     when 'CustomEmoji'
-      'smile-o'
+      'file'
     when 'Report'
       'flag'
     when 'DomainBlock'
@@ -74,7 +74,24 @@ module Admin::ActionLogsHelper
     when 'EmailDomainBlock'
       'envelope'
     when 'Status'
-      'paper-plane-o'
+      'pencil'
+    end
+  end
+
+  def class_for_log_icon(log)
+    case log.action
+    when :enable, :unsuspend, :unsilence, :confirm, :promote, :dismiss
+      'positive'
+    when :create
+      %w[DomainBlock EmailDomainBlock].include?(log.target_type) ? 'negative' : 'positive'
+    when :update, :reset_password, :disable_2fa, :memorialize
+      'neutral'
+    when :demote, :silence, :disable, :suspend
+      'negative'
+    when :destroy
+      %w[DomainBlock EmailDomainBlock].include?(log.target_type) ? 'positive' : 'negative'
+    else
+      ''
     end
   end
 end

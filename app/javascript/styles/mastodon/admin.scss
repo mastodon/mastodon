@@ -365,6 +365,7 @@
     color: $ui-primary-color;
     border-radius: 4px 4px 0 0;
     font-size: 14px;
+    position: relative;
   }
 
   &__avatar {
@@ -404,6 +405,27 @@
     font-size: 28px;
     margin-right: 10px;
     color: lighten($ui-base-color, 34%);
+  }
+
+  &__icon__overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    &.positive {
+      background: $success-green;
+    }
+
+    &.negative {
+      background: $error-red;
+    }
+
+    &.neutral {
+      background: $ui-highlight-color;
+    }
   }
 
   a,
