@@ -80,7 +80,7 @@ module Admin::ActionLogsHelper
 
   def class_for_log_icon(log)
     case log.action
-    when :enable, :unsuspend, :unsilence, :confirm, :promote, :dismiss
+    when :enable, :unsuspend, :unsilence, :confirm, :promote, :resolve
       'positive'
     when :create
       %w[DomainBlock EmailDomainBlock].include?(log.target_type) ? 'negative' : 'positive'

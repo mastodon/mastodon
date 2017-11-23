@@ -26,13 +26,15 @@ module Admin
       case params[:outcome].to_s
       when 'resolve'
         @report.update!(action_taken_by_current_attributes)
-        log_action :dismiss, @report
+        log_action :resolve, @report
       when 'suspend'
         Admin::SuspensionWorker.perform_async(@report.target_account.id)
+        log_action :resolve, @report
         log_action :suspend, @report.target_account
         resolve_all_target_account_reports
       when 'silence'
         @report.target_account.update!(silenced: true)
+        log_action :resolve, @report
         log_action :silence, @report.target_account
         resolve_all_target_account_reports
       else
