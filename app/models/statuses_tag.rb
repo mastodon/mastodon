@@ -3,8 +3,8 @@
 #
 # Table name: statuses_tags
 #
-#  status_id  :integer          not null, primary key
-#  tag_id     :integer          not null
+#  status_id :integer          not null
+#  tag_id    :integer          not null
 #
 
 class StatusesTag < ApplicationRecord
