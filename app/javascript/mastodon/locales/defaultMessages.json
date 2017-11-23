@@ -29,6 +29,14 @@
       {
         "defaultMessage": "Unmute @{name}",
         "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Mute notifications from @{name}",
+        "id": "account.mute_notifications"
+      },
+      {
+        "defaultMessage": "Unmute notifications from @{name}",
+        "id": "account.unmute_notifications"
       }
     ],
     "path": "app/javascript/mastodon/components/account.json"
@@ -284,16 +292,8 @@
         "id": "confirmations.block.confirm"
       },
       {
-        "defaultMessage": "Mute",
-        "id": "confirmations.mute.confirm"
-      },
-      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
-      },
-      {
-        "defaultMessage": "Are you sure you want to mute {name}?",
-        "id": "confirmations.mute.message"
       }
     ],
     "path": "app/javascript/mastodon/containers/status_container.json"
@@ -310,16 +310,21 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{name} has moved to:",
+        "id": "account.moved_to"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_timeline/components/moved_note.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unfollow",
         "id": "confirmations.unfollow.confirm"
       },
       {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
-      },
-      {
-        "defaultMessage": "Mute",
-        "id": "confirmations.mute.confirm"
       },
       {
         "defaultMessage": "Hide entire domain",
@@ -332,10 +337,6 @@
       {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
-      },
-      {
-        "defaultMessage": "Are you sure you want to mute {name}?",
-        "id": "confirmations.mute.message"
       },
       {
         "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
@@ -1210,6 +1211,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Are you sure you want to mute {name}?",
+        "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Hide notifications from this user?",
+        "id": "mute_modal.hide_notifications"
+      },
+      {
+        "defaultMessage": "Cancel",
+        "id": "confirmation_modal.cancel"
+      },
+      {
+        "defaultMessage": "Mute",
+        "id": "confirmations.mute.confirm"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/mute_modal.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Home",
         "id": "column.home"
       },
@@ -1358,6 +1380,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/upload_area.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Your draft will be lost if you leave Mastodon.",
+        "id": "ui.beforeunload"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/index.json"
   },
   {
     "descriptors": [
