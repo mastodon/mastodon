@@ -34,7 +34,7 @@ module StatusThreadingConcern
         SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id
         FROM search_tree
         JOIN statuses ON statuses.id = search_tree.in_reply_to_id
-        WHERE NOT statuses.id = ANY(path)
+        WHERE NOT statuses.id = ANY(path) AND statuses.deleted_at IS NULL
       )
       SELECT id
       FROM search_tree
@@ -61,7 +61,7 @@ module StatusThreadingConcern
         SELECT statuses.id, path || statuses.id
         FROM search_tree
         JOIN statuses ON statuses.in_reply_to_id = search_tree.id
-        WHERE NOT statuses.id = ANY(path)
+        WHERE NOT statuses.id = ANY(path) AND statuses.deleted_at IS NULL
       )
       SELECT id
       FROM search_tree

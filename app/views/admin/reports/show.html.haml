@@ -32,17 +32,20 @@
         .media-spoiler-show-button.button= t('admin.statuses.media.show')
         .media-spoiler-hide-button.button= t('admin.statuses.media.hide')
     - @report.statuses.each do |status|
-      .report-status{ data: { id: status.id } }
+      .report-status{ class: status.destroyed? ? 'deleted' : '', data: { id: status.id } }
         .batch-checkbox
-          = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
+          = f.check_box :status_ids, { multiple: true, include_hidden: false, disabled: status.destroyed? }, status.id
         .activity-stream.activity-stream-headless
           .entry= render 'stream_entries/simple_status', status: status
         .report-status__actions
-          - unless status.media_attachments.empty?
-            = link_to admin_report_reported_status_path(@report, status, status: { sensitive: !status.sensitive }), method: :put, class: 'icon-button nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
-              = fa_icon status.sensitive? ? 'eye' : 'eye-slash'
-          = link_to admin_report_reported_status_path(@report, status), method: :delete, class: 'icon-button trash-button', title: t('admin.reports.delete'), data: { confirm: t('admin.reports.are_you_sure') }, remote: true do
-            = fa_icon 'trash'
+          - if status.destroyed?
+            .icon-button.trash-button.disabled= fa_icon 'trash'
+          - else
+            - unless status.media_attachments.empty?
+              = link_to admin_report_reported_status_path(@report, status, status: { sensitive: !status.sensitive }), method: :put, class: 'icon-button nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
+                = fa_icon status.sensitive? ? 'eye' : 'eye-slash'
+            = link_to admin_report_reported_status_path(@report, status), method: :delete, class: 'icon-button trash-button', title: t('admin.reports.delete'), data: { confirm: t('admin.reports.are_you_sure') }, remote: true do
+              = fa_icon 'trash'
 
 %hr/
 

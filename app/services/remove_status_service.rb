@@ -20,7 +20,7 @@ class RemoveStatusService < BaseService
     remove_from_hashtags
     remove_from_public
 
-    @status.destroy!
+    @status.soft_destroy!
 
     return unless @account.local?
 
