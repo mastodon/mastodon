@@ -49,6 +49,7 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana.
     roles:
       admin: Administrator
+      moderator: Moderator
     unfollow: Przestań śledzić
   admin:
     account_moderation_notes:
@@ -132,6 +133,32 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    action_logs:
+      actions:
+        confirm_user: "%{name} potwierdził adres e-mail użytkownika %{target}"
+        create_custom_emoji: "%{name} dodał nowe emoji %{target}"
+        create_domain_block: "%{name} zablokował domenę %{target}"
+        create_email_domain_block: "%{name} dodał domenę e-mail %{target} na czarną listę"
+        demote_user: "%{name} zdegradował użytkownika %{target}"
+        destroy_domain_block: "%{name} odblokował domenę %{target}"
+        destroy_email_domain_block: "%{name} usunął domenę e-mail %{target} z czarnej listy"
+        destroy_status: "%{name} usunął wpis użytkownika %{target}"
+        disable_2fa_user: "%{name} wyłączył uwierzytelnianie dwustopniowe użytkownikowi %{target}"
+        disable_custom_emoji: "%{name} wyłączył emoji %{target}"
+        disable_user: "%{name} zablokował możliwość logowania użytkownikowi %{target}"
+        enable_custom_emoji: "%{name} włączył emoji %{target}"
+        enable_user: "%{name} przywrócił możliwość logowania użytkownikowi %{target}"
+        memorialize_account: "%{name} nadał kontu %{target} status in memoriam"
+        promote_user: "%{name} podniósł uprawnienia użytkownikowi %{target}"
+        reset_password_user: "%{name} przywrócił hasło użytkownikowi %{target}"
+        resolve_report: "%{name} odrzucił zgłoszenie %{target}"
+        silence_account: "%{name} wyciszył konto %{target}"
+        suspend_account: "%{name} zawiesił konto %{target}"
+        unsilence_account: "%{name} cofnął wyciszenie konta %{target}"
+        unsuspend_account: "%{name} cofnął zawieszenie konta %{target}"
+        update_custom_emoji: "%{name} zaktualizował emoji %{target}"
+        update_status: "%{name} zaktualizował wpis użytkownika %{target}"
+      title: Dziennik działań administracyjnych
     custom_emojis:
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
@@ -148,6 +175,7 @@ pl:
       listed: Widoczne
       new:
         title: Dodaj nowe niestandardowe emoji
+      overwrite: Zastąp
       shortcode: Shortcode
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
@@ -403,6 +431,8 @@ pl:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
       too_many: Nie możesz załączyć więcej niż 4 plików
+  moderation:
+    title: Moderacja
   notification_mailer:
     digest:
       body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'

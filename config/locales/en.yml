@@ -133,6 +133,32 @@ en:
       unsubscribe: Unsubscribe
       username: Username
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} confirmed e-mail address of user %{target}"
+        create_custom_emoji: "%{name} uploaded new emoji %{target}"
+        create_domain_block: "%{name} blocked domain %{target}"
+        create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
+        demote_user: "%{name} demoted user %{target}"
+        destroy_domain_block: "%{name} unblocked domain %{target}"
+        destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
+        destroy_status: "%{name} removed status by %{target}"
+        disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
+        disable_custom_emoji: "%{name} disabled emoji %{target}"
+        disable_user: "%{name} disabled login for user %{target}"
+        enable_custom_emoji: "%{name} enabled emoji %{target}"
+        enable_user: "%{name} enabled login for user %{target}"
+        memorialize_account: "%{name} turned %{target}'s account into a memoriam page"
+        promote_user: "%{name} promoted user %{target}"
+        reset_password_user: "%{name} reset password of user %{target}"
+        resolve_report: "%{name} dismissed report %{target}"
+        silence_account: "%{name} silenced %{target}'s account"
+        suspend_account: "%{name} suspended %{target}'s account"
+        unsilence_account: "%{name} unsilenced %{target}'s account"
+        unsuspend_account: "%{name} unsuspended %{target}'s account"
+        update_custom_emoji: "%{name} updated emoji %{target}"
+        update_status: "%{name} updated status by %{target}"
+      title: Audit log
     custom_emojis:
       copied_msg: Successfully created local copy of the emoji
       copy: Copy
@@ -187,24 +213,24 @@ en:
           suspend: Unsuspend all existing accounts from this domain
         title: Undo domain block for %{domain}
         undo: Undo
-      title: Domain Blocks
+      title: Domain blocks
       undo: Undo
     email_domain_blocks:
       add_new: Add new
-      created_msg: Email domain block successfully created
+      created_msg: Successfully added e-mail domain to blacklist
       delete: Delete
-      destroyed_msg: Email domain block successfully deleted
+      destroyed_msg: Successfully deleted e-mail domain from blacklist
       domain: Domain
       new:
-        create: Create block
-        title: New email domain block
-      title: Email Domain Block
+        create: Add domain
+        title: New e-mail blacklist entry
+      title: E-mail blacklist
     instances:
       account_count: Known accounts
       domain_name: Domain
       reset: Reset
       search: Search
-      title: Known Instances
+      title: Known instances
     reports:
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
@@ -265,7 +291,7 @@ en:
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
-      title: Site Settings
+      title: Site settings
     statuses:
       back_to_account: Back to account page
       batch:
@@ -404,6 +430,8 @@ en:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
+  moderation:
+    title: Moderation
   notification_mailer:
     digest:
       body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
