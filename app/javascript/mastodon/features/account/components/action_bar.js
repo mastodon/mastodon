@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { Link } from 'react-router-dom';
-import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage, FormattedNumber, FormattedDate } from 'react-intl';
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
@@ -98,6 +98,17 @@ export default class ActionBar extends React.PureComponent {
       } else {
         menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.props.onBlockDomain });
       }
+    } else {
+      extraInfo = (
+        <div className='account__disclaimer'>
+          <FormattedMessage
+            id='account.joined_at'
+            defaultMessage='Joined at'
+          />
+          {': '}
+          <FormattedDate value={new Date(account.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
+        </div>
+      );
     }
 
     return (
