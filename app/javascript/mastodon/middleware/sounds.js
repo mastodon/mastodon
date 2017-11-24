@@ -34,6 +34,26 @@ export default function soundsMiddleware() {
         type: 'audio/mpeg',
       },
     ]),
+    favourite: createAudio([
+      {
+        src: '/sounds/favo.ogg',
+        type: 'audio/ogg',
+      },
+      {
+        src: '/sounds/favo.mp3',
+        type: 'audio/mpeg',
+      },
+    ]),
+    reblog: createAudio([
+      {
+        src: '/sounds/retweeted.ogg',
+        type: 'audio/ogg',
+      },
+      {
+        src: '/sounds/retweeted.mp3',
+        type: 'audio/mpeg',
+      },
+    ]),
   };
 
   return () => next => action => {
