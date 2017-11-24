@@ -1,0 +1,30 @@
+.announcements__item {
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+  background: $primary-text-color;
+  color: $ui-base-color;
+  box-shadow: 0 0 15px rgba(0,0,0,.2);
+  border-radius: 4px;
+  text-decoration: none;
+
+  &--clickable {
+    cursor: pointer;
+  }
+}
+
+.announcements__body {
+  flex: 1 1 auto;
+}
+
+.announcements__icon {
+  flex: 0 0 auto;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+
+  > img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
