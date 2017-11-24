@@ -135,28 +135,28 @@ ja:
       web: Web
     action_logs:
       actions:
-        confirm_user: "%{name} さんが %{target} さんのメールアドレスを承認しました"
-        create_custom_emoji: "%{name} さんが新規絵文字 %{target} をアップロードしました"
+        confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
-        create_email_domain_block: "%{name} さんがドメイン %{target} をメールドメインブロックしました"
-        demote_user: "%{name} さんが %{target} さんを削除しました"
-        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを解除しました"
-        destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールブラックリストから消去しました"
-        destroy_status: "%{name} さんが %{target} さんの投稿を消去しました"
+        create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
+        demote_user: "%{name} さんが %{target} さんを降格しました"
+        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
+        destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
         disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
-        disable_custom_emoji: "%{name} さんが絵文字 %{target} を無効化しました"
+        disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
         disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
-        enable_custom_emoji: "%{name} さんが絵文字 %{target} を有効化しました"
+        enable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
         enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
         memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
-        promote_user: "%{name} promoted user %{target}"
+        promote_user: "%{name} さんが %{target} さんを昇格しました"
         reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
-        resolve_report: "%{name} さんが通報 %{target} を却下しました"
+        resolve_report: "%{name} さんがレポート %{target} を却下しました"
         silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account: "%{name} さんが %{target} さんを停止しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
-        update_custom_emoji: "%{name} さんが絵文字 %{target} を更新しました"
+        update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんの投稿を更新しました"
       title: 操作履歴
     custom_emojis:
@@ -223,7 +223,7 @@ ja:
       domain: ドメイン
       new:
         create: ドメインを追加
-        title: 新規メールドメインブラックリスト項目
+        title: メールアドレス用ブラックリスト新規追加
       title: メールブラックリスト
     instances:
       account_count: 既知のアカウント数
