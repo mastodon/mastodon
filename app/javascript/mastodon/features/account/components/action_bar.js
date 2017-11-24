@@ -100,7 +100,7 @@ export default class ActionBar extends React.PureComponent {
       }
     } else {
       extraInfo = (
-        <div className='account__disclaimer'>
+        <div className='account__disclaimer joined_at'>
           <FormattedMessage
             id='account.joined_at'
             defaultMessage='Joined at'
