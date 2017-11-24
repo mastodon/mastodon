@@ -25,19 +25,19 @@ class Announcement extends React.PureComponent {
       );
     }
 
-    const href = item.get('href');
+    const url = item.get('url');
 
     const classname = classnames({
       'announcements__item': true,
-      'announcements__item--clickable': !!href,
+      'announcements__item--clickable': !!url,
     });
 
-    if (!href) {
+    if (!url) {
       return (<div className={classname}>{contents}</div>);
-    } else if (href.startsWith('/web/')) {
-      return (<Link to={item.get('href').slice(4)} className={classname}>{contents}</Link>);
+    } else if (url.startsWith('/web/')) {
+      return (<Link to={url.slice(4)} className={classname}>{contents}</Link>);
     } else {
-      return (<a href={item.get('url')} target='_blank' className={classname}>{contents}</a>);
+      return (<a href={url} target='_blank' className={classname}>{contents}</a>);
     }
   }
 
