@@ -175,7 +175,7 @@ class Status < ApplicationRecord
     end
 
     def reblogs_map(status_ids, account_id)
-      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
+      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).reorder(nil).map { |s| [s.reblog_of_id, true] }.to_h
     end
 
     def mutes_map(conversation_ids, account_id)
