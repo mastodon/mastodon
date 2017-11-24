@@ -47,8 +47,27 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#verb' do
-    it 'is always post' do
-      expect(subject.verb).to be :post
+    context 'if destroyed?' do
+      it 'returns :delete' do
+        subject.destroy!
+        expect(subject.verb).to be :delete
+      end
+    end
+
+    context 'unless destroyed?' do
+      context 'if reblog?' do
+        it 'returns :share' do
+          subject.reblog = other
+          expect(subject.verb).to be :share
+        end
+      end
+
+      context 'unless reblog?' do
+        it 'returns :post' do
+          subject.reblog = nil
+          expect(subject.verb).to be :post
+        end
+      end
     end
   end
 
@@ -64,8 +83,61 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#title' do
-    it 'is a shorter version of the content' do
-      expect(subject.title).to be_a String
+    # rubocop:disable Style/InterpolationCheck
+
+    let(:account) { subject.account }
+
+    context 'if destroyed?' do
+      it 'returns "#{account.acct} deleted status"' do
+        subject.destroy!
+        expect(subject.title).to eq "#{account.acct} deleted status"
+      end
+    end
+
+    context 'unless destroyed?' do
+      context 'if reblog?' do
+        it 'returns "#{account.acct} shared a status by #{reblog.account.acct}"' do
+          reblog = subject.reblog = other
+          expect(subject.title).to eq "#{account.acct} shared a status by #{reblog.account.acct}"
+        end
+      end
+
+      context 'unless reblog?' do
+        it 'returns "New status by #{account.acct}"' do
+          subject.reblog = nil
+          expect(subject.title).to eq "New status by #{account.acct}"
+        end
+      end
+    end
+  end
+
+  describe '#hidden?' do
+    context 'if private_visibility?' do
+      it 'returns true' do
+        subject.visibility = :private
+        expect(subject.hidden?).to be true
+      end
+    end
+
+    context 'if direct_visibility?' do
+      it 'returns true' do
+        subject.visibility = :direct
+        expect(subject.hidden?).to be true
+      end
+    end
+
+    context 'if public_visibility?' do
+      it 'returns false' do
+        subject.visibility = :public
+        expect(subject.hidden?).to be false
+      end
+    end
+
+    context 'if unlisted_visibility?' do
+      it 'returns false' do
+        subject.visibility = :unlisted
+        expect(subject.hidden?).to be false
+      end
     end
   end
 

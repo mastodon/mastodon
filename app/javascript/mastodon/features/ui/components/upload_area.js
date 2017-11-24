@@ -40,7 +40,7 @@ export default class UploadArea extends React.PureComponent {
         {({ backgroundOpacity, backgroundScale }) =>
           <div className='upload-area' style={{ visibility: active ? 'visible' : 'hidden', opacity: backgroundOpacity }}>
             <div className='upload-area__drop'>
-              <div className='upload-area__background' style={{ transform: `translateZ(0) scale(${backgroundScale})` }} />
+              <div className='upload-area__background' style={{ transform: `scale(${backgroundScale})` }} />
               <div className='upload-area__content'><FormattedMessage id='upload_area.title' defaultMessage='Drag & drop to upload' /></div>
             </div>
           </div>

@@ -59,13 +59,18 @@ oc:
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
       are_you_sure: Sètz segur ?
+      by_domain: Domeni
       confirm: Confirmar
       confirmed: Confirmat
+      disable: Desactivar
       disable_two_factor_authentication: Desactivar 2FA
+      disabled: Desactivat
       display_name: Escais-nom
       domain: Domeni
       edit: Modificar
       email: Corrièl
+      enable: Activar
+      enabled: Activat
       feed_url: Flux URL
       followers: Seguidors
       followers_url: URL dels seguidors
@@ -77,7 +82,9 @@ oc:
         local: Locals
         remote: Alonhats
         title: Emplaçament
+      login_status: Estat formulari de connexion
       media_attachments: Mèdias ajustats
+      memorialize: Passar en memorial
       moderation:
         all: Tot
         silenced: Rescondut
@@ -130,11 +137,16 @@ oc:
       enable: Activar
       enabled_msg: Aqueste emoji es ben activat
       image_hint: PNG cap a 50Ko
+      listed: Listat
       new:
         title: Ajustar un nòu emoji personal
+      overwrite: Remplaçar
       shortcode: Acorchi
       shortcode_hint: Almens 2 caractèrs, solament alfanumerics e jonhent bas
       title: Emojis personals
+      unlisted: Pas listat
+      update_failed_msg: Mesa a jorn de l’emoji fracasada
+      updated_msg: Emoji ben mes a jorn !
       upload: Enviar
     domain_blocks:
       add_new: N’ajustar un nòu
@@ -451,6 +463,7 @@ oc:
       following: Lista de mond que seguètz
       muting: Lista de mond que volètz pas legir
     upload: Importar
+  in_memoriam_html: En Memòria.
   landing_strip_html: "<strong>%{name}</strong> utiliza %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasque sul fediverse."
   landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
   media_attachments:
@@ -665,8 +678,6 @@ oc:
 
       <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
-  themes:
-    default: Mastodon
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M

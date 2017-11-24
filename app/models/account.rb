@@ -41,10 +41,12 @@
 #  shared_inbox_url        :string           default(""), not null
 #  followers_url           :string           default(""), not null
 #  protocol                :integer          default("ostatus"), not null
+#  memorial                :boolean          default(FALSE), not null
+#  moved_to_account_id     :integer
 #
 
 class Account < ApplicationRecord
-  MENTION_RE = /(?:^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  MENTION_RE = /(?<=^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
 
   include AccountAvatar
   include AccountFinderConcern
@@ -52,6 +54,7 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
+  include Paginable
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -94,6 +97,13 @@ class Account < ApplicationRecord
   has_many :account_moderation_notes, dependent: :destroy
   has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
 
+  # Lists
+  has_many :list_accounts, inverse_of: :account, dependent: :destroy
+  has_many :lists, through: :list_accounts
+
+  # Account migrations
+  belongs_to :moved_to_account, class_name: 'Account'
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where(followers_count: 0) }
@@ -114,6 +124,8 @@ class Account < ApplicationRecord
            :current_sign_in_at,
            :confirmed?,
            :admin?,
+           :moderator?,
+           :staff?,
            :locale,
            to: :user,
            prefix: true,
@@ -123,6 +135,10 @@ class Account < ApplicationRecord
 
   def local?
     domain.nil?
+  end
+
+  def moved?
+    moved_to_account_id.present?
   end
 
   def acct
@@ -148,6 +164,20 @@ class Account < ApplicationRecord
   def refresh!
     return if local?
     ResolveRemoteAccountService.new.call(acct)
+  end
+
+  def unsuspend!
+    transaction do
+      user&.enable! if local?
+      update!(suspended: false)
+    end
+  end
+
+  def memorialize!
+    transaction do
+      user&.disable! if local?
+      update!(memorial: true)
+    end
   end
 
   def keypair

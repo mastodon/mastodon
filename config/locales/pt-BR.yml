@@ -43,7 +43,7 @@ pt-BR:
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
     posts: Toots
-    posts_with_replies: Toots com respostas
+    posts_with_replies: Toots e respostas
     remote_follow: Siga remotamente
     reserved_username: Este usuário está reservado
     roles:
@@ -59,13 +59,19 @@ pt-BR:
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       are_you_sure: Você tem certeza?
+      by_domain: Domínio
       confirm: Confirmar
       confirmed: Confirmado
+      demote: Rebaixar
+      disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
+      disabled: Desativado
       display_name: Nome de exibição
       domain: Domínio
       edit: Editar
       email: E-mail
+      enable: Ativar
+      enabled: Ativado
       feed_url: URL do feed
       followers: Seguidores
       followers_url: URL de seguidores
@@ -77,7 +83,9 @@ pt-BR:
         local: Local
         remote: Remoto
         title: Localização
+      login_status: Status de login
       media_attachments: Mídia(s) anexada(s)
+      memorialize: Tornar um memorial
       moderation:
         all: Todos
         silenced: Silenciados
@@ -94,6 +102,7 @@ pt-BR:
       outbox_url: URL da Outbox
       perform_full_suspension: Efetue suspensão total
       profile_url: URL do perfil
+      promote: Promover
       protocol: Protocolo
       public: Público
       push_subscription_expires: Inscrição PuSH expira
@@ -101,6 +110,11 @@ pt-BR:
       reset: Anular
       reset_password: Modificar senha
       resubscribe: Reinscrever-se
+      role: Permissões
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        user: Usuário
       salmon_url: Salmon URL
       search: Pesquisar
       shared_inbox_url: URL da Inbox Compartilhada
@@ -130,11 +144,16 @@ pt-BR:
       enable: Habilitar
       enabled_msg: Emoji habilitado com sucesso!
       image_hint: PNG de até 50KB
+      listed: Listado
       new:
         title: Adicionar novo emoji customizado
+      overwrite: Sobrescrever
       shortcode: Atalho
       shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underscores
       title: Emojis customizados
+      unlisted: Não listado
+      update_failed_msg: Não foi possível atualizar esse emoji
+      updated_msg: Emoji atualizado com sucesso!
       upload: Enviar
     domain_blocks:
       add_new: Adicionar novo
@@ -373,6 +392,7 @@ pt-BR:
       following: Pessoas que você segue
       muting: Lista de silêncio
     upload: Enviar
+  in_memoriam_html: Em memória de
   landing_strip_html: "<strong>%{name}</strong> é um usuário no %{link_to_root_path}. Você pode segui-lo ou interagir com ele se você tiver uma conta em qualquer lugar no fediverso."
   landing_strip_signup_html: Se não, você pode <a href="%{sign_up_path}">se cadastrar aqui</a>.
   media_attachments:
@@ -587,8 +607,6 @@ pt-BR:
 
       <p>Originalmente adaptado da <a href="https://github.com/discourse/discourse">política de privacidade do Discourse</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
-  themes:
-    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

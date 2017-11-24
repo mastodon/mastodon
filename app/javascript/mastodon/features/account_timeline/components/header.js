@@ -5,12 +5,12 @@ import InnerHeader from '../../account/components/header';
 import ActionBar from '../../account/components/action_bar';
 import MissingIndicator from '../../../components/missing_indicator';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import MovedNote from './moved_note';
 
 export default class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
-    me: PropTypes.string.isRequired,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
@@ -61,7 +61,7 @@ export default class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, me } = this.props;
+    const { account } = this.props;
 
     if (account === null) {
       return <MissingIndicator />;
@@ -69,15 +69,15 @@ export default class Header extends ImmutablePureComponent {
 
     return (
       <div className='account-timeline__header'>
+        {account.get('moved') && <MovedNote from={account} to={account.get('moved')} />}
+
         <InnerHeader
           account={account}
-          me={me}
           onFollow={this.handleFollow}
         />
 
         <ActionBar
           account={account}
-          me={me}
           onBlock={this.handleBlock}
           onMention={this.handleMention}
           onReport={this.handleReport}

@@ -2,8 +2,9 @@
 
 class Form::StatusBatch
   include ActiveModel::Model
+  include AccountableConcern
 
-  attr_accessor :status_ids, :action
+  attr_accessor :status_ids, :action, :current_account
 
   ACTION_TYPE = %w(nsfw_on nsfw_off delete).freeze
 
@@ -20,11 +21,14 @@ class Form::StatusBatch
 
   def change_sensitive(sensitive)
     media_attached_status_ids = MediaAttachment.where(status_id: status_ids).pluck(:status_id)
+
     ApplicationRecord.transaction do
       Status.where(id: media_attached_status_ids).find_each do |status|
         status.update!(sensitive: sensitive)
+        log_action :update, status
       end
     end
+
     true
   rescue ActiveRecord::RecordInvalid
     false
@@ -33,7 +37,9 @@ class Form::StatusBatch
   def delete_statuses
     Status.where(id: status_ids).find_each do |status|
       RemovalWorker.perform_async(status.id)
+      log_action :destroy, status
     end
+
     true
   end
 end

@@ -1,39 +1,77 @@
 ---
 ru:
   about:
+    about_hashtag_html: Это публичные статусы, отмеченные хэштегом <strong>#%{hashtag}</strong>. Вы можете взаимодействовать с ними при наличии у Вас аккаунта в глобальной сети Mastodon.
     about_mastodon_html: Mastodon - это <em>свободная</em> социальная сеть с <em>открытым исходным кодом</em>. Как <em>децентрализованная</em> альтернатива коммерческим платформам, Mastodon предотвращает риск монополизации Вашего общения одной компанией. Выберите сервер, которому Вы доверяете &mdash; что бы Вы ни выбрали, Вы сможете общаться со всеми остальными. Любой может запустить свой собственный узел Mastodon и участвовать в <em>социальной сети</em> совершенно бесшовно.
     about_this: Об этом узле
     closed_registrations: В данный момент регистрация на этом узле закрыта.
     contact: Связаться
+    contact_missing: Не установлено
+    contact_unavailable: Недоступен
     description_headline: Что такое %{domain}?
     domain_count_after: другими узлами
     domain_count_before: Связан с
+    extended_description_html: |
+      <h3>Хорошее место для правил</h3>
+      <p>Расширенное описание еще не настроено.</p>
+    features:
+      humane_approach_body: Наученный ошибками других проектов, Mastodon направлен на выбор этичных решений в борьбе со злоупотреблениями возможностями социальных сетей.
+      humane_approach_title: Человечный подход
+      not_a_product_body: Mastodon -  не коммерческая сеть. Здесь нет рекламы, сбора данных, отгороженных мест. Здесь нет централизованного управления.
+      not_a_product_title: Вы - человек, а не продукт
+      real_conversation_body: С 500 символами в Вашем распоряжении и поддержкой предупреждений о содержании статусов Вы сможете выражать свои мысли так, как Вы этого хотите.
+      real_conversation_title: Создан для настоящего общения
+      within_reach_body: Различные приложения для iOS, Android и других платформ, написанные благодаря дружественной к разработчикам экосистеме API, позволят Вам держать связь с Вашими друзьями где угодно.
+      within_reach_title: Всегда под рукой
+    find_another_instance: Найти другой узел
+    generic_description: "%{domain} - один из серверов сети"
+    hosted_on: Mastodon размещен на %{domain}
+    learn_more: Узнать больше
     other_instances: Другие узлы
     source_code: Исходный код
     status_count_after: статусов
     status_count_before: Опубликовано
     user_count_after: пользователей
     user_count_before: Здесь живет
+    what_is_mastodon: Что такое Mastodon?
   accounts:
     follow: Подписаться
     followers: Подписчики
     following: Подписан(а)
+    media: Медиаконтент
     nothing_here: Здесь ничего нет!
     people_followed_by: Люди, на которых подписан(а) %{name}
     people_who_follow: Подписчики %{name}
     posts: Посты
+    posts_with_replies: Посты с ответами
     remote_follow: Подписаться на удаленном узле
+    reserved_username: Имя пользователя зарезервировано
+    roles:
+      admin: Администратор
     unfollow: Отписаться
   admin:
+    account_moderation_notes:
+      account: Модератор
+      create: Создать
+      created_at: Дата
+      created_msg: Заметка модератора успешно создана!
+      delete: Удалить
+      destroyed_msg: Заметка модератора успешно удалена!
     accounts:
       are_you_sure: Вы уверены?
+      confirm: Подтвердить
+      confirmed: Подтверждено
+      disable_two_factor_authentication: Отключить 2FA
       display_name: Отображаемое имя
       domain: Домен
       edit: Изменить
       email: E-mail
       feed_url: URL фида
       followers: Подписчики
+      followers_url: URL подписчиков
       follows: Подписки
+      inbox_url: URL входящих
+      ip: IP
       location:
         all: Все
         local: Локальные
@@ -45,6 +83,7 @@ ru:
         silenced: Заглушенные
         suspended: Заблокированные
         title: Модерация
+      moderation_notes: Заметки модератора
       most_recent_activity: Последняя активность
       most_recent_ip: Последний IP
       not_subscribed: Не подписаны
@@ -52,19 +91,51 @@ ru:
         alphabetic: По алфавиту
         most_recent: По дате
         title: Порядок
+      outbox_url: URL исходящих
       perform_full_suspension: Полная блокировка
       profile_url: URL профиля
+      protocol: Протокол
       public: Публичный
       push_subscription_expires: Подписка PuSH истекает
+      redownload: Обновить аватар
+      reset: Сбросить
       reset_password: Сбросить пароль
+      resubscribe: Переподписаться
       salmon_url: Salmon URL
+      search: Поиск
+      shared_inbox_url: URL общих входящих
+      show:
+        created_reports: Жалобы, отправленные этим аккаунтом
+        report: жалоба
+        targeted_reports: Жалобы на этот аккаунт
       silence: Глушение
       statuses: Статусы
+      subscribe: Подписаться
       title: Аккаунты
       undo_silenced: Снять глушение
       undo_suspension: Снять блокировку
+      unsubscribe: Отписаться
       username: Имя пользователя
       web: WWW
+    custom_emojis:
+      copied_msg: Локальная копия эмодзи успешно создана
+      copy: Скопироват
+      copy_failed_msg: Не удалось создать локальную копию эмодзи
+      created_msg: Эмодзи успешно создано!
+      delete: Удалить
+      destroyed_msg: Эмодзи успешно удалено!
+      disable: Отключить
+      disabled_msg: Эмодзи успешно отключено
+      emoji: Эмодзи
+      enable: Включить
+      enabled_msg: Эмодзи успешно включено
+      image_hint: PNG до 50KB
+      new:
+        title: Добавить новое эмодзи
+      shortcode: Шорткод
+      shortcode_hint: Как минимум 2 символа, только алфавитно-цифровые символы и подчеркивания
+      title: Собственные эмодзи
+      upload: Загрузить
     domain_blocks:
       add_new: Добавить новую
       created_msg: Блокировка домена обрабатывается
@@ -74,13 +145,15 @@ ru:
         create: Создать блокировку
         hint: Блокировка домена не предотвратит создание новых аккаунтов в базе данных, но ретроактивно и автоматически применит указанные методы модерации для этих аккаунтов.
         severity:
-          desc_html: "<strong>Глушение</strong> сделает статусы аккаунта невидимыми для всех, кроме их подписчиков. <strong>Блокировка</strong> удалит весь контент аккаунта, включая мультимедийные вложения и данные профиля."
+          desc_html: "<strong>Глушение</strong> сделает статусы аккаунта невидимыми для всех, кроме их подписчиков. <strong>Блокировка</strong> удалит весь контент аккаунта, включая мультимедийные вложения и данные профиля. Используйте <strong>Ничего</strong>, если хотите только запретить медиаконтент."
+          noop: Ничего
           silence: Глушение
           suspend: Блокировка
         title: Новая доменная блокировка
       reject_media: Запретить медиаконтент
       reject_media_hint: Удаляет локально хранимый медиаконтент и запрещает его загрузку в будущем. Не имеет значения в случае блокировки.
       severities:
+        noop: Ничего
         silence: Глушение
         suspend: Блокировка
       severity: Строгость
@@ -97,13 +170,34 @@ ru:
         undo: Отменить
       title: Доменные блокировки
       undo: Отемнить
+    email_domain_blocks:
+      add_new: Добавить новую
+      created_msg: Доменная блокировка еmail успешно создана
+      delete: Удалить
+      destroyed_msg: Доменная блокировка еmail успешно удалена
+      domain: Домен
+      new:
+        create: Создать блокировку
+        title: Новая доменная блокировка еmail
+      title: Доменная блокировка email
+    instances:
+      account_count: Известных аккаунтов
+      domain_name: Домен
+      reset: Сбросить
+      search: Поиск
+      title: Известные узлы
     reports:
+      action_taken_by: 'Действие предпринято:'
+      are_you_sure: Вы уверены?
       comment:
         label: Комментарий
         none: Нет
       delete: Удалить
       id: ID
       mark_as_resolved: Отметить как разрешенную
+      nsfw:
+        'false': Показать мультимедийные вложения
+        'true': Скрыть мультимедийные вложения
       report: 'Жалоба #%{id}'
       reported_account: Аккаунт нарушителя
       reported_by: Отправитель жалобы
@@ -116,6 +210,9 @@ ru:
       unresolved: Неразрешенные
       view: Просмотреть
     settings:
+      bootstrap_timeline_accounts:
+        desc_html: Разделяйте имена пользователей запятыми. Сработает только для локальных незакрытых аккаунтов. По умолчанию включены все локальные администраторы.
+        title: Подписки по умолчанию для новых пользователей
       contact_information:
         email: Введите публичный e-mail
         username: Введите имя пользователя
@@ -123,7 +220,11 @@ ru:
         closed_message:
           desc_html: Отображается на титульной странице, когда закрыта регистрация<br>Можно использовать HTML-теги
           title: Сообщение о закрытой регистрации
+        deletion:
+          desc_html: Позволяет всем удалять собственные аккаунты
+          title: Разрешить удаление аккаунтов
         open:
+          desc_html: Позволяет любому создавать аккаунт
           title: Открыть регистрацию
       site_description:
         desc_html: Отображается в качестве параграфа на титульной странице и используется в качестве мета-тега.<br>Можно использовать HTML-теги, в особенности <code>&lt;a&gt;</code> и <code>&lt;em&gt;</code>.
@@ -131,8 +232,32 @@ ru:
       site_description_extended:
         desc_html: Отображается на странице дополнительной информации<br>Можно использовать HTML-теги
         title: Расширенное описание сайта
+      site_terms:
+        desc_html: Вы можете добавить сюда собственную политику конфиденциальности, пользовательское соглашение и другие документы. Можно использовать теги HTML.
+        title: Условия использования
       site_title: Название сайта
+      thumbnail:
+        desc_html: Используется для предпросмотра с помощью OpenGraph и API. Рекомендуется разрешение 1200x630px
+        title: Картинка узла
+      timeline_preview:
+        desc_html: Показывать публичную ленту на целевой странице
+        title: Предпросмотр ленты
       title: Настройки сайта
+    statuses:
+      back_to_account: Назад к странице аккаунта
+      batch:
+        delete: Удалить
+        nsfw_off: Выключить NSFW
+        nsfw_on: Включить NSFW
+      execute: Выполнить
+      failed_to_execute: Не удалось выполнить
+      media:
+        hide: Скрыть медиаконтент
+        show: Показать медиаконтент
+        title: Медиаконтент
+      no_media: Без медиаконтента
+      title: Статусы аккаунта
+      with_media: С медиаконтентом
     subscriptions:
       callback_url: Callback URL
       confirmed: Подтверждено
@@ -141,18 +266,31 @@ ru:
       title: WebSub
       topic: Тема
     title: Администрирование
+  admin_mailer:
+    new_report:
+      body: "%{reporter} подал(а) жалобу на %{target}"
+      subject: Новая жалоба, узел %{instance} (#%{id})
   application_mailer:
+    salutation: "%{name},"
     settings: 'Изменить настройки e-mail: %{link}'
     signature: Уведомления Mastodon от %{instance}
     view: 'Просмотр:'
   applications:
+    created: Приложение успешно создано
+    destroyed: Приложение успешно удалено
     invalid_url: Введенный URL неверен
+    regenerate_token: Повторно сгенерировать токен доступа
+    token_regenerated: Токен доступа успешно сгенерирован
+    warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
+    your_token: Ваш токен доступа
   auth:
+    agreement_html: Создавая аккаунт, вы соглашаетесь с <a href="%{rules_path}">нашими правилами поведения</a> и <a href="%{terms_path}">политикой конфиденциальности</a>.
     change_password: Изменить пароль
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
     forgot_password: Забыли пароль?
+    invalid_reset_password_token: Токен сброса пароля неверен или устарел. Пожалуйста, запросите новый.
     login: Войти
     logout: Выйти
     register: Зарегистрироваться
@@ -162,6 +300,12 @@ ru:
   authorize_follow:
     error: К сожалению, при поиске удаленного аккаунта возникла ошибка
     follow: Подписаться
+    follow_request: 'Вы отправили запрос на подписку:'
+    following: 'Ура! Теперь Вы подписаны на:'
+    post_follow:
+      close: Или просто закрыть это окно.
+      return: Вернуться к профилю пользователя
+      web: Перейти к WWW
     title: Подписаться на %{acct}
   datetime:
     distance_in_words:
@@ -193,7 +337,10 @@ ru:
       content: Проверка безопасности не удалась. Возможно, Вы блокируете cookies?
       title: Проверка безопасности не удалась.
     '429': Слишком много запросов
-    noscript_html: Для работы с Mastodon, пожалуйста, включите JavaScript.
+    '500':
+      content: Приносим извинения, но на нашей стороне что-то пошло не так.
+      title: Страница неверна
+    noscript_html: Для работы с Mastodon, пожалуйста, включите JavaScript. Кроме того, вы можете использовать одно из <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">приложений</a> Mastodon для Вашей платформы.
   exports:
     blocks: Список блокировки
     csv: CSV
@@ -265,23 +412,30 @@ ru:
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: "%n %u"
         units:
-          billion: B
-          million: M
+          billion: млрд
+          million: млн
           quadrillion: Q
-          thousand: K
-          trillion: T
+          thousand: тыс
+          trillion: трлн
           unit: ''
   pagination:
     next: След
     prev: Пред
     truncate: "&hellip;"
+  preferences:
+    languages: Языки
+    other: Другое
+    publishing: Публикация
+    web: WWW
   push_notifications:
     favourite:
       title: Ваш статус понравился %{name}
     follow:
       title: "%{name} теперь подписан(а) на Вас"
+    group:
+      title: "%{count} уведомлений"
     mention:
       action_boost: Продвинуть
       action_expand: Развернуть
@@ -335,16 +489,24 @@ ru:
     authorized_apps: Авторизованные приложения
     back: Назад в Mastodon
     delete: Удаление аккаунта
+    development: Разработка
     edit_profile: Изменить профиль
     export: Экспорт данных
     followers: Авторизованные подписчики
     import: Импорт
+    notifications: Уведомления
     preferences: Настройки
     settings: Опции
     two_factor_authentication: Двухфакторная аутентификация
+    your_apps: Ваши приложения
   statuses:
     open_in_web: Открыть в WWW
     over_character_limit: превышен лимит символов (%{max})
+    pin_errors:
+      limit: Слишком много закрепленных статусов
+      ownership: Нельзя закрепить чужой статус
+      private: Нельзя закрепить непубличный статус
+      reblog: Нельзя закрепить продвинутый статус
     show_more: Подробнее
     visibilities:
       private: Для подписчиков
@@ -367,11 +529,13 @@ ru:
     description_html: При включении <strong>двухфакторной аутентификации</strong>, вход потребует от Вас использования Вашего телефона, который сгенерирует входные токены.
     disable: Отключить
     enable: Включить
+    enabled: Двухфакторная аутентификация включена
     enabled_success: Двухфакторная аутентификация успешно включена
     generate_recovery_codes: Сгенерировать коды восстановления
     instructions_html: "<strong>Отсканируйте этот QR-код с помощью Google Authenticator или другого подобного приложения на Вашем телефоне</strong>. С этого момента приложение будет генерировать токены, которые будет необходимо ввести для входа."
     lost_recovery_codes: Коды восстановления позволяют вернуть доступ к аккаунту в случае утери телефона. Если Вы потеряли Ваши коды восстановления, вы можете заново сгенерировать их здесь. Ваши старые коды восстановления будут аннулированы.
     manual_instructions: 'Если Вы не можете отсканировать QR-код и хотите ввести его вручную, секрет представлен здесь открытым текстом:'
+    recovery_codes: Коды восстановления
     recovery_codes_regenerated: Коды восстановления успешно сгенерированы
     recovery_instructions_html: В случае утери доступа к Вашему телефону Вы можете использовать один из кодов восстановления, указанных ниже, чтобы вернуть доступ к аккаунту. Держите коды восстановления в безопасности, например, распечатав их и храня с другими важными документами.
     setup: Настроить
@@ -379,3 +543,4 @@ ru:
   users:
     invalid_email: Введенный e-mail неверен
     invalid_otp_token: Введен неверный код
+    signed_in_as: 'Выполнен вход под именем:'

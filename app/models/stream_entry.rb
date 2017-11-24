@@ -3,13 +3,13 @@
 #
 # Table name: stream_entries
 #
+#  id            :integer          not null, primary key
 #  activity_id   :integer
 #  activity_type :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  hidden        :boolean          default(FALSE), not null
 #  account_id    :integer
-#  id            :integer          not null, primary key
 #
 
 class StreamEntry < ApplicationRecord
