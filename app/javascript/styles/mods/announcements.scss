@@ -1,3 +1,5 @@
+@import '../mastodon/variables';
+
 .announcements__item {
   display: flex;
   padding: 10px;
@@ -10,6 +12,7 @@
 
   &--clickable {
     cursor: pointer;
+    color: $ui-highlight-color;
   }
 }
 
