@@ -41,12 +41,25 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
     const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
 
+    // 通知の種類毎に音を変更する
+    let sound;
+    switch (notification.type) {
+    case 'favourite':
+      sound = { sound: 'favourite' };
+      break;
+    case 'reblog':
+      sound = { sound: 'reblog' };
+      break;
+    default:
+      sound = { sound: 'boop' };
+    }
+
     dispatch({
       type: NOTIFICATIONS_UPDATE,
       notification,
       account: notification.account,
       status: notification.status,
-      meta: playSound ? { sound: 'boop' } : undefined,
+      meta: playSound ? sound : undefined,
     });
 
     fetchRelatedRelationships(dispatch, [notification]);
