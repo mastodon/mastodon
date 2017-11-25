@@ -110,6 +110,7 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
+    resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
 
     resources :instances, only: [:index] do

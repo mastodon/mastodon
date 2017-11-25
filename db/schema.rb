@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118012443) do
+ActiveRecord::Schema.define(version: 20171122120436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,18 @@ ActiveRecord::Schema.define(version: 20171118012443) do
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url"
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true
+  end
+
+  create_table "admin_action_logs", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "action", default: "", null: false
+    t.string "target_type"
+    t.bigint "target_id"
+    t.text "recorded_changes", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_admin_action_logs_on_account_id"
+    t.index ["target_type", "target_id"], name: "index_admin_action_logs_on_target_type_and_target_id"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -385,6 +397,7 @@ ActiveRecord::Schema.define(version: 20171118012443) do
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
+    t.index ["account_id", "reblog_of_id"], name: "index_statuses_on_account_id_and_reblog_of_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id"
@@ -488,6 +501,7 @@ ActiveRecord::Schema.define(version: 20171118012443) do
   add_foreign_key "account_moderation_notes", "accounts"
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
+  add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade

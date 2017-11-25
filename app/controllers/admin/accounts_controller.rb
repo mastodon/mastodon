@@ -32,18 +32,21 @@ module Admin
     def memorialize
       authorize @account, :memorialize?
       @account.memorialize!
+      log_action :memorialize, @account
       redirect_to admin_account_path(@account.id)
     end
 
     def enable
       authorize @account.user, :enable?
       @account.user.enable!
+      log_action :enable, @account.user
       redirect_to admin_account_path(@account.id)
     end
 
     def disable
       authorize @account.user, :disable?
       @account.user.disable!
+      log_action :disable, @account.user
       redirect_to admin_account_path(@account.id)
     end
 
