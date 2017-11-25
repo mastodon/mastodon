@@ -29,7 +29,7 @@ SimpleNavigation::Configuration.run do |navigation|
       admin.item :email_domain_blocks, safe_join([fa_icon('envelope fw'), t('admin.email_domain_blocks.title')]), admin_email_domain_blocks_url, highlights_on: %r{/admin/email_domain_blocks}, if: -> { current_user.admin? }
     end
 
-    primary.item :admin, safe_join([fa_icon('cogs fw'), t('admin.title')]), edit_admin_settings_url, if: proc { current_user.staff? } do |admin|
+    primary.item :admin, safe_join([fa_icon('cogs fw'), t('admin.title')]), proc { current_user.admin? ? edit_admin_settings_url : admin_custom_emojis_url }, if: proc { current_user.staff? } do |admin|
       admin.item :settings, safe_join([fa_icon('cogs fw'), t('admin.settings.title')]), edit_admin_settings_url, if: -> { current_user.admin? }
       admin.item :custom_emojis, safe_join([fa_icon('smile-o fw'), t('admin.custom_emojis.title')]), admin_custom_emojis_url, highlights_on: %r{/admin/custom_emojis}
       admin.item :subscriptions, safe_join([fa_icon('paper-plane-o fw'), t('admin.subscriptions.title')]), admin_subscriptions_url, if: -> { current_user.admin? }
