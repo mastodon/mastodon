@@ -38,6 +38,10 @@ export function GettingStarted () {
   return import(/* webpackChunkName: "features/getting_started" */'../../getting_started');
 }
 
+export function KeyboardShortcuts () {
+  return import(/* webpackChunkName: "features/keyboard_shortcuts" */'../../keyboard_shortcuts');
+}
+
 export function PinnedStatuses () {
   return import(/* webpackChunkName: "features/pinned_statuses" */'../../pinned_statuses');
 }
