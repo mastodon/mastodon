@@ -133,6 +133,32 @@ ja:
       unsubscribe: 購読の解除
       username: ユーザー名
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
+        create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
+        create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
+        demote_user: "%{name} さんが %{target} さんを降格しました"
+        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
+        destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
+        disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
+        disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
+        disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
+        enable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
+        enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
+        memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
+        promote_user: "%{name} さんが %{target} さんを昇格しました"
+        reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
+        resolve_report: "%{name} さんがレポート %{target} を棄却しました"
+        silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
+        suspend_account: "%{name} さんが %{target} さんを停止しました"
+        unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
+        unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
+        update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        update_status: "%{name} さんが %{target} さんの投稿を更新しました"
+      title: 操作履歴
     custom_emojis:
       copied_msg: 絵文字のコピーをローカルに作成しました
       copy: コピー
@@ -191,14 +217,14 @@ ja:
       undo: 元に戻す
     email_domain_blocks:
       add_new: 新規追加
-      created_msg: 処理を完了しました
+      created_msg: ブラックリストに追加しました
       delete: 消去
-      destroyed_msg: 消去しました
+      destroyed_msg: ブラックリストから外しました
       domain: ドメイン
       new:
-        create: ブロックを作成
-        title: 新規メールドメインブロック
-      title: メールドメインブロック
+        create: ドメインを追加
+        title: メールアドレス用ブラックリスト新規追加
+      title: メールブラックリスト
     instances:
       account_count: 既知のアカウント数
       domain_name: ドメイン名
@@ -404,6 +430,8 @@ ja:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。
       too_many: 追加できるファイルは4つまでです。
+  moderation:
+    title: モデレーション
   notification_mailer:
     digest:
       body: "%{instance} での最後のログインからの出来事:"
