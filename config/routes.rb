@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
 
+  devise_scope :user do
+    get '/invite/:invite_code', to: 'auth/registrations#new', as: :invite
+  end
+
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',

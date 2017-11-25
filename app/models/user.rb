@@ -33,6 +33,7 @@
 #  account_id                :integer          not null
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
+#  invite_id                 :integer
 #
 
 class User < ApplicationRecord
@@ -47,12 +48,14 @@ class User < ApplicationRecord
          otp_number_of_backup_codes: 10
 
   belongs_to :account, inverse_of: :user, required: true
+  belongs_to :invite, counter_cache: :uses
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
+  validates_with InviteCodeValidator
 
   scope :recent, -> { order(id: :desc) }
   scope :admins, -> { where(admin: true) }
@@ -76,6 +79,8 @@ class User < ApplicationRecord
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme,
            to: :settings, prefix: :setting, allow_nil: false
+
+  attr_accessor :invite_code
 
   def confirmed?
     confirmed_at.present?
