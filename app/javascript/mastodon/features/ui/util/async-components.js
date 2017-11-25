@@ -30,6 +30,10 @@ export function ListTimeline () {
   return import(/* webpackChunkName: "features/list_timeline" */'../../list_timeline');
 }
 
+export function Lists () {
+  return import(/* webpackChunkName: "features/lists" */'../../lists');
+}
+
 export function Status () {
   return import(/* webpackChunkName: "features/status" */'../../status');
 }
