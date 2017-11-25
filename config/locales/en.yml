@@ -424,6 +424,22 @@ en:
       muting: Muting list
     upload: Upload
   in_memoriam_html: In Memoriam.
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '86400': 1 day
+    expires_in_prompt: Never
+    max_uses:
+      one: 1 use
+      other: "%{count} uses"
+    max_uses_prompt: No limit
+    prompt: Generate and share links with others to grant access to this instance
+    title: Invite people
+    uses: Uses
+    valid: Valid
   landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:

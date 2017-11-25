@@ -103,6 +103,7 @@ Rails.application.routes.draw do
   resources :media,  only: [:show]
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
+  resources :invites, only: [:index, :create]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 

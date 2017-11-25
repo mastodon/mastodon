@@ -1,0 +1,6 @@
+%tr
+  %td= t('invites.max_uses', count: invite.uses)
+  %td
+    - if invite.valid_for_use?
+      = fa_icon('check fw')
+  %td= table_link_to 'link', invite_url(invite_code: invite.code), invite_url(invite_code: invite.code)

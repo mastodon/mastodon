@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: invites
@@ -18,6 +19,13 @@ class Invite < ApplicationRecord
   has_many :users, inverse_of: :invite
 
   before_validation :set_code
+
+  attr_reader :expires_in
+
+  def expires_in=(interval)
+    self.expires_at = interval.to_i.seconds.from_now
+    @expires_in     = interval
+  end
 
   def valid_for_use?
     (max_uses.nil? || uses < max_uses) && (expires_at.nil? || expires_at <= Time.now.utc)
