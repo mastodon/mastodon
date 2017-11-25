@@ -1,6 +1,14 @@
 %tr
-  %td= t('invites.max_uses', count: invite.uses)
+  %td= invite.uses
   %td
-    - if invite.valid_for_use?
-      = fa_icon('check fw')
-  %td= table_link_to 'link', invite_url(invite_code: invite.code), invite_url(invite_code: invite.code)
+    - if invite.max_uses.nil?
+      ∞
+    - else
+      = invite.max_uses
+  %td
+    - if invite.expires_at.nil?
+      ∞
+    - else
+      = l invite.expires_at
+  %td= table_link_to 'link', public_invite_url(invite_code: invite.code), public_invite_url(invite_code: invite.code)
+  %td= table_link_to 'times', t('invites.delete'), invite_path(invite), method: :delete

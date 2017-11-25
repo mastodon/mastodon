@@ -22,6 +22,12 @@ class InvitesController < ApplicationController
     end
   end
 
+  def destroy
+    @invite = Invite.where(user: current_user).find(params[:id])
+    @invite.destroy!
+    redirect_to invites_path
+  end
+
   private
 
   def resource_params
