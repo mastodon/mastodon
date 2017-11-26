@@ -6,6 +6,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
+  hotkey: { id: 'keyboard_shortcuts.hotkey', defaultMessage: 'Hotkey' },
+  description: { id: 'keyboard_shortcuts.description', defaultMessage: 'Description' },
   reply: { id: 'keyboard_shortcuts.reply', defaultMessage: 'to reply' },
   mention: { id: 'keyboard_shortcuts.mention', defaultMessage: 'to mention author' },
   favourite: { id: 'keyboard_shortcuts.favourite', defaultMessage: 'to favourite' },
@@ -38,6 +40,9 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
       <Column icon='question' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
         <div className='keyboard-shortcuts scrollable optionally-scrollable'>
           <table>
+            <thead>
+              <tr><th>{intl.formatMessage(messages.hotkey)}</th><th>{intl.formatMessage(messages.description)}</th></tr>
+            </thead>
             <tbody>
               <tr><td><code>r</code></td><td>{intl.formatMessage(messages.reply)}</td></tr>
               <tr><td><code>m</code></td><td>{intl.formatMessage(messages.mention)}</td></tr>

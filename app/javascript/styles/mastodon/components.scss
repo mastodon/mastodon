@@ -2101,6 +2101,12 @@
 
 .keyboard-shortcuts {
   padding: 8px 0 0;
+  overflow: hidden;
+
+  thead {
+    position: absolute;
+    left: -9999px;
+  }
 
   td {
     padding: 0 10px 8px;
