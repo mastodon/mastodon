@@ -270,6 +270,9 @@ pl:
         deletion:
           desc_html: Pozwól każdemu na usunięcie konta
           title: Możliwość usunięcia
+        invites:
+          desc_html: Zaproszenia pozwalają użytkownikom na zarejestrowanie się, gdy rejestracja jest zablokowana
+          title: Możliwość tworzenia zaproszeń
         open:
           desc_html: Pozwól każdemu na założenie konta
           title: Otwarta rejestracja
@@ -425,6 +428,28 @@ pl:
       muting: Lista wyciszonych
     upload: Załaduj
   in_memoriam_html: Ku pamięci.
+  invites:
+    delete: Usuń
+    expires_in:
+      '1800': 30 minutach
+      '21600': 6 godzinach
+      '3600': godzinie
+      '43200': 12 godzinach
+      '86400': dobie
+    expires_in_prompt: Nigdy
+    generate: Wygeneruj
+    max_uses:
+      one: jedno użycie
+      few: "%{count} użycia"
+      many: "%{count} użyć"
+      other: "%{count} użyć"
+    max_uses_prompt: Bez ograniczenia
+    prompt: Wygeneruj i udostępnij innym odnośniki, aby pozwolić na rejestrację
+    table:
+      expires_at: Wygasa po
+      max_uses: Maksymalna liczba użyć
+      uses: Użycia
+    title: Zaproś użytkowników
   landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
