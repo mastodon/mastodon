@@ -42,7 +42,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def allowed_registrations?
-    Setting.open_registrations || (invite_code.present? && Invite.find_by(code: invite_code)&.valid_for_use?)
+    Setting.open_registrations || (Setting.invites && invite_code.present? && Invite.find_by(code: invite_code)&.valid_for_use?)
   end
 
   def invite_code

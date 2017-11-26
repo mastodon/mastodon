@@ -16,7 +16,7 @@ SimpleNavigation::Configuration.run do |navigation|
       settings.item :follower_domains, safe_join([fa_icon('users fw'), t('settings.followers')]), settings_follower_domains_url
     end
 
-    primary.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path
+    primary.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path, if: proc { Setting.invites }
 
     primary.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_url do |development|
       development.item :your_apps, safe_join([fa_icon('list fw'), t('settings.your_apps')]), settings_applications_url, highlights_on: %r{/settings/applications}

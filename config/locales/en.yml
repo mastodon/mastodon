@@ -269,6 +269,9 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
+        invites:
+          desc_html: Invitations allow people to sign up even when registrations are closed
+          title: Allow invitations
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
@@ -433,6 +436,7 @@ en:
       '43200': 12 hours
       '86400': 1 day
     expires_in_prompt: Never
+    generate: Generate
     max_uses:
       one: 1 use
       other: "%{count} uses"

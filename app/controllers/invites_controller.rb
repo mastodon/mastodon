@@ -3,6 +3,7 @@
 class InvitesController < ApplicationController
   layout 'admin'
 
+  before_action :check_invites_enabled
   before_action :authenticate_user!
 
   def index
@@ -32,5 +33,9 @@ class InvitesController < ApplicationController
 
   def resource_params
     params.require(:invite).permit(:max_uses, :expires_in)
+  end
+
+  def check_invites_enabled
+    redirect_to settings_preferences_path unless Setting.invites
   end
 end
