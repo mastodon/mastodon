@@ -55,7 +55,6 @@ class User < ApplicationRecord
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
-  validates_with InviteCodeValidator
 
   scope :recent, -> { order(id: :desc) }
   scope :admins, -> { where(admin: true) }
@@ -172,6 +171,11 @@ class User < ApplicationRecord
 
   def web_push_subscription(session)
     session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
+  end
+
+  def invite_code=(code)
+    self.invite  = Invite.find_by(code: code) unless code.blank?
+    @invite_code = code
   end
 
   protected

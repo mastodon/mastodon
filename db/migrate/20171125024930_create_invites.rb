@@ -6,7 +6,6 @@ class CreateInvites < ActiveRecord::Migration[5.1]
       t.datetime :expires_at, null: true, default: nil
       t.integer :max_uses, null: true, default: nil
       t.integer :uses, null: false, default: 0
-      t.bigint :default_follow_account_ids, array: true
 
       t.timestamps
     end

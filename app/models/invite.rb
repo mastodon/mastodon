@@ -3,15 +3,14 @@
 #
 # Table name: invites
 #
-#  id                         :integer          not null, primary key
-#  user_id                    :integer
-#  code                       :string           default(""), not null
-#  expires_at                 :datetime
-#  max_uses                   :integer
-#  uses                       :integer          default(0), not null
-#  default_follow_account_ids :integer          is an Array
-#  created_at                 :datetime         not null
-#  updated_at                 :datetime         not null
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  code       :string           default(""), not null
+#  expires_at :datetime
+#  max_uses   :integer
+#  uses       :integer          default(0), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Invite < ApplicationRecord
@@ -23,7 +22,7 @@ class Invite < ApplicationRecord
   attr_reader :expires_in
 
   def expires_in=(interval)
-    self.expires_at = interval.to_i.seconds.from_now
+    self.expires_at = interval.to_i.seconds.from_now unless interval.blank?
     @expires_in     = interval
   end
 

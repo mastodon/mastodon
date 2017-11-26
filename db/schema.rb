@@ -189,9 +189,9 @@ ActiveRecord::Schema.define(version: 20171125031751) do
     t.datetime "expires_at"
     t.integer "max_uses"
     t.integer "uses", default: 0, null: false
-    t.bigint "default_follow_account_ids", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_invites_on_code", unique: true
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
