@@ -86,6 +86,10 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     object.account.local?
   end
 
+  def license
+    'https://creativecommons.org/licenses/by/4.0/'
+  end
+
   class MediaAttachmentSerializer < ActiveModel::Serializer
     include RoutingHelper
 

@@ -3,7 +3,8 @@
 class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
-             :uri, :content, :url, :reblogs_count, :favourites_count
+             :uri, :content, :url, :reblogs_count, :favourites_count,
+             :license
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -88,6 +89,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def ordered_mentions
     object.mentions.to_a.sort_by(&:id)
+  end
+
+  def license
+    'https://creativecommons.org/licenses/by/4.0/'
   end
 
   class ApplicationSerializer < ActiveModel::Serializer

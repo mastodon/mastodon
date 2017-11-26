@@ -75,6 +75,9 @@ class OStatus::AtomSerializer
 
     entry << author(stream_entry.account) if root
 
+    append_element(entry, 'link', rel: :license, type: 'application/rdf+xml',
+                   href: 'https://creativecommons.org/licenses/by/4.0/')
+
     append_element(entry, 'activity:object-type', OStatus::TagManager::TYPES[stream_entry.object_type])
     append_element(entry, 'activity:verb', OStatus::TagManager::VERBS[stream_entry.verb])
 
