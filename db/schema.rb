@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122120436) do
+ActiveRecord::Schema.define(version: 20171125031751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,6 +181,18 @@ ActiveRecord::Schema.define(version: 20171122120436) do
     t.integer "data_file_size"
     t.datetime "data_updated_at"
     t.bigint "account_id", null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "code", default: "", null: false
+    t.datetime "expires_at"
+    t.integer "max_uses"
+    t.integer "uses", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_invites_on_code", unique: true
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "list_accounts", force: :cascade do |t|
@@ -473,6 +485,7 @@ ActiveRecord::Schema.define(version: 20171122120436) do
     t.bigint "account_id", null: false
     t.boolean "disabled", default: false, null: false
     t.boolean "moderator", default: false, null: false
+    t.bigint "invite_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -513,6 +526,7 @@ ActiveRecord::Schema.define(version: 20171122120436) do
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
+  add_foreign_key "invites", "users", on_delete: :cascade
   add_foreign_key "list_accounts", "accounts", on_delete: :cascade
   add_foreign_key "list_accounts", "follows", on_delete: :cascade
   add_foreign_key "list_accounts", "lists", on_delete: :cascade
@@ -546,5 +560,6 @@ ActiveRecord::Schema.define(version: 20171122120436) do
   add_foreign_key "stream_entries", "accounts", name: "fk_5659b17554", on_delete: :cascade
   add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
+  add_foreign_key "users", "invites", on_delete: :nullify
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
 end

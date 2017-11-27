@@ -33,6 +33,11 @@
   %hr/
 
   .fields-group
+    = f.input :min_invite_role, wrapper: :with_label, collection: %i(disabled user moderator admin), label: t('admin.settings.registrations.min_invite_role.title'), label_method: lambda { |role| role == :disabled ? t('admin.settings.registrations.min_invite_role.disabled') : t("admin.accounts.roles.#{role}") }, as: :radio_buttons, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+
+  %hr/
+
+  .fields-group
     = f.input :site_extended_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description_extended.title'), hint: t('admin.settings.site_description_extended.desc_html'), input_html: { rows: 8 }
     = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
 
