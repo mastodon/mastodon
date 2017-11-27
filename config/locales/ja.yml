@@ -231,6 +231,8 @@ ja:
       reset: リセット
       search: 検索
       title: 既知のインスタンス
+    invites:
+      title: 招待
     reports:
       action_taken_by: レポート処理者
       are_you_sure: 本当に実行しますか？
@@ -269,6 +271,9 @@ ja:
         deletion:
           desc_html: 誰でも自分のアカウントを削除できるようにします
           title: アカウント削除を受け付ける
+        min_invite_role:
+          disabled: 誰も許可しない
+          title: 招待の作成を許可
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
@@ -424,6 +429,25 @@ ja:
       muting: ミュートしたアカウントリスト
     upload: アップロード
   in_memoriam_html: 故人を偲んで
+  invites:
+    delete: 削除
+    expires_in:
+      '1800': 30 分
+      '21600': 6 時間
+      '3600': 1 時間
+      '43200': 12 時間
+      '86400': 1 日
+    expires_in_prompt: 無期限
+    generate: 作成
+    max_uses:
+      one: 1
+      other: "%{count}"
+    max_uses_prompt: 無制限
+    prompt: リンクを生成・共有してこのインスタンスへの新規登録を受け付けることができます。
+    table:
+      expires_at: 有効期限
+      uses: 使用
+    title: 新規ユーザーの招待
   landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
   landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
