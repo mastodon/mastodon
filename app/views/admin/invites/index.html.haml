@@ -1,19 +1,22 @@
 - content_for :page_title do
-  = t('invites.title')
+  = t('admin.invites.title')
 
 - if policy(:invite).create?
   %p= t('invites.prompt')
 
-  = render 'form'
+  = render 'invites/form'
 
   %hr/
 
 %table.table
   %thead
     %tr
+      %th
       %th= t('invites.table.uses')
       %th= t('invites.table.expires_at')
       %th
       %th
   %tbody
     = render @invites
+
+= paginate @invites

@@ -28,10 +28,12 @@
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
 
   .fields-group
-    = f.input :invites, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.invites.title'), hint: t('admin.settings.registrations.invites.desc_html')
+    = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
+
+  %hr/
 
   .fields-group
-    = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
+    = f.input :min_invite_role, wrapper: :with_label, collection: %i(disabled user moderator admin), label: t('admin.settings.registrations.min_invite_role.title'), label_method: lambda { |role| role == :disabled ? t('admin.settings.registrations.min_invite_role.disabled') : t("admin.accounts.roles.#{role}") }, as: :radio_buttons, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   %hr/
 

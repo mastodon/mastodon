@@ -16,7 +16,7 @@ module Admin
       show_staff_badge
       bootstrap_timeline_accounts
       thumbnail
-      invites
+      min_invite_role
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -24,7 +24,6 @@ module Admin
       open_deletion
       timeline_preview
       show_staff_badge
-      invites
     ).freeze
 
     UPLOAD_SETTINGS = %w(

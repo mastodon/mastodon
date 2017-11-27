@@ -99,6 +99,19 @@ class User < ApplicationRecord
     end
   end
 
+  def role?(role)
+    case role
+    when 'user'
+      true
+    when 'moderator'
+      staff?
+    when 'admin'
+      admin?
+    else
+      false
+    end
+  end
+
   def disable!
     update!(disabled: true,
             last_sign_in_at: current_sign_in_at,
