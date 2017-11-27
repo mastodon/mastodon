@@ -11,7 +11,6 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     notification: getNotification(state, props.notification, props.accountId),
-    settings: state.get('local_settings'),
     notifCleaning: state.getIn(['notifications', 'cleaningMode']),
   });
 

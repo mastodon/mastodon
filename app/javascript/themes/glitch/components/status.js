@@ -9,6 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from 'themes/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import NotificationOverlayContainer from 'themes/glitch/features/notifications/containers/overlay_container';
+import classNames from 'classnames';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -21,6 +22,7 @@ export default class Status extends ImmutablePureComponent {
   };
 
   static propTypes = {
+    containerId: PropTypes.string,
     id: PropTypes.string,
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.map,
@@ -188,7 +190,9 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleExpandedToggle = () => {
-    this.setExpansion(this.state.isExpanded || !this.props.status.get('spoiler') ? null : true);
+    if (this.props.status.get('spoiler_text')) {
+      this.setExpansion(this.state.isExpanded ? null : true);
+    }
   };
 
   handleOpenVideo = startTime => {
@@ -222,11 +226,11 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyMoveUp = () => {
-    this.props.onMoveUp(this.props.status.get('id'));
+    this.props.onMoveUp(this.props.containerId || this.props.id);
   }
 
   handleHotkeyMoveDown = () => {
-    this.props.onMoveDown(this.props.status.get('id'));
+    this.props.onMoveDown(this.props.containerId || this.props.id);
   }
 
   handleRef = c => {
@@ -371,31 +375,24 @@ export default class Status extends ImmutablePureComponent {
       openProfile: this.handleHotkeyOpenProfile,
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
+      toggleSpoiler: this.handleExpandedToggle,
     };
+
+    const computedClass = classNames('status', `status-${status.get('visibility')}`, {
+      collapsed: isExpanded === false,
+      'has-background': isExpanded === false && background,
+      'marked-for-delete': this.state.markedForDelete,
+      muted,
+    }, 'focusable');
 
     return (
       <HotKeys handlers={handlers}>
         <div
-          className={
-            `status${
-              muted ? ' muted' : ''
-            } status-${status.get('visibility')}${
-              isExpanded === false ? ' collapsed' : ''
-            }${
-              isExpanded === false && background ? ' has-background' : ''
-            }${
-              this.state.markedForDelete ? ' marked-for-delete' : ''
-            }`
-          }
-          style={{
-            backgroundImage: (
-              isExpanded === false && background ?
-              `url(${background})` :
-              'none'
-            ),
-          }}
+          className={computedClass}
+          style={isExpanded === false && background ? { backgroundImage: `url(${background})` } : null}
           {...selectorAttribs}
           ref={handleRef}
+          tabIndex='0'
         >
           {prepend && account ? (
             <StatusPrepend
