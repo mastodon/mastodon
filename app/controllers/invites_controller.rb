@@ -31,7 +31,7 @@ class InvitesController < ApplicationController
   def destroy
     @invite = Invite.where(user: current_user).find(params[:id])
     authorize @invite, :destroy?
-    @invite.destroy!
+    @invite.expire!
     redirect_to invites_path
   end
 

@@ -26,7 +26,7 @@ module Admin
     def destroy
       @invite = Invite.find(params[:id])
       authorize @invite, :destroy?
-      @invite.destroy!
+      @invite.expire!
       redirect_to admin_invites_path
     end
   end

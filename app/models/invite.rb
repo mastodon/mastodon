@@ -30,6 +30,10 @@ class Invite < ApplicationRecord
     (max_uses.nil? || uses < max_uses) && (expires_at.nil? || expires_at >= Time.now.utc)
   end
 
+  def expire!
+    touch(:expires_at)
+  end
+
   private
 
   def set_code
