@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
+    resource :migration, only: [:show, :update]
 
     resources :sessions, only: [:destroy]
   end
