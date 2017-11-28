@@ -347,6 +347,8 @@ ja:
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
     login: ログイン
     logout: ログアウト
+    migrate_account: 別のアカウントに引っ越す
+    migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
     register: 登録する
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
@@ -430,7 +432,8 @@ ja:
     upload: アップロード
   in_memoriam_html: 故人を偲んで
   invites:
-    delete: 削除
+    delete: 無効化
+    expired: 期限切れ
     expires_in:
       '1800': 30 分
       '21600': 6 時間
@@ -454,6 +457,11 @@ ja:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。
       too_many: 追加できるファイルは4つまでです。
+  migrations:
+    acct: 引っ越し先の ユーザー名@ドメイン
+    currently_redirecting: 'あなたのプロフィールは引っ越し先が設定されています:'
+    proceed: 保存
+    updated_msg: アカウントの引っ越し設定を更新しました
   moderation:
     title: モデレーション
   notification_mailer:
@@ -568,6 +576,7 @@ ja:
     export: データのエクスポート
     followers: 信頼済みのインスタンス
     import: データのインポート
+    migrate: アカウントの引っ越し
     notifications: 通知
     preferences: ユーザー設定
     settings: 設定
