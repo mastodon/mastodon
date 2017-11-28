@@ -18,7 +18,7 @@ class ProcessMentionsService < BaseService
       end
 
       if mentioned_account.nil?
-        username, domain  = match.first.split('@')
+        username, domain  = $1.split('@')
         mentioned_account = Account.find_remote(username, domain)
       end
 

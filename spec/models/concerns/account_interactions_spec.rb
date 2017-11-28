@@ -13,7 +13,7 @@ describe AccountInteractions do
 
     context 'account with Follow' do
       it 'returns { target_account_id => { reblogs: true } }' do
-        Fabricate(:follow, account: account, target_account: target_account, show_reblogs: true)
+        Fabricate(:follow, account: account, target_account: target_account)
         is_expected.to eq(target_account_id => { reblogs: true })
       end
     end
@@ -587,6 +587,43 @@ describe AccountInteractions do
 
       it 'does mute notifications' do
         expect(me.muting_notifications?(you)).to be true 
+      end
+    end
+  end
+
+  describe 'ignoring reblogs from an account' do
+    before do
+      @me = Fabricate(:account, username: 'Me')
+      @you = Fabricate(:account, username: 'You')
+    end
+
+    context 'with the reblogs option unspecified' do
+      before do
+        @me.follow!(@you)
+      end
+
+      it 'defaults to showing reblogs' do
+        expect(@me.muting_reblogs?(@you)).to be(false)
+      end
+    end
+
+    context 'with the reblogs option set to false' do
+      before do
+        @me.follow!(@you, reblogs: false)
+      end
+
+      it 'does mute reblogs' do
+        expect(@me.muting_reblogs?(@you)).to be(true)
+      end
+    end
+
+    context 'with the reblogs option set to true' do
+      before do
+        @me.follow!(@you, reblogs: true)
+      end
+
+      it 'does not mute reblogs' do
+        expect(@me.muting_reblogs?(@you)).to be(false)
       end
     end
   end
