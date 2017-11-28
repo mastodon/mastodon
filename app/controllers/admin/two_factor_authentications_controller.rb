@@ -7,6 +7,7 @@ module Admin
     def destroy
       authorize @user, :disable_2fa?
       @user.disable_two_factor!
+      log_action :disable_2fa, @user
       redirect_to admin_accounts_path
     end
 

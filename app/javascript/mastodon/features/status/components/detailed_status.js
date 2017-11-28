@@ -73,7 +73,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         );
       }
     } else if (status.get('spoiler_text').length === 0) {
-      media = <CardContainer statusId={status.get('id')} />;
+      media = <CardContainer onOpenMedia={this.props.onOpenMedia} statusId={status.get('id')} />;
     }
 
     if (status.get('application')) {

@@ -8,7 +8,7 @@
 
   = opengraph 'og:site_name', site_title
   = opengraph 'og:type', 'article'
-  = opengraph 'og:title', "#{@account.username} on #{site_hostname}"
+  = opengraph 'og:title', "#{@account.display_name.presence || @account.username} on #{site_hostname}"
   = opengraph 'og:url', account_stream_entry_url(@account, @stream_entry)
 
   = render 'stream_entries/og_description', activity: @stream_entry.activity

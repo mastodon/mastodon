@@ -39,6 +39,7 @@ zh-CN:
     followers: 关注者
     following: 正在关注
     media: 媒体
+    moved_html: "%{name} 已经迁移到 %{new_profile_link}："
     nothing_here: 这里神马都没有！
     people_followed_by: "%{name} 关注的人"
     people_who_follow: 关注 %{name} 的人
@@ -243,6 +244,9 @@ zh-CN:
         open:
           desc_html: 允许任何人建立一个帐户
           title: 开放注册
+      show_staff_badge:
+        desc_html: 在个人资料页上显示管理员标志
+        title: 显示管理员标志
       site_description:
         desc_html: 展示在首页以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
         title: 本站简介
