@@ -48,7 +48,7 @@ class User < ApplicationRecord
          otp_number_of_backup_codes: 10
 
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :confirmable, :pam_authenticatable
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
@@ -82,7 +82,22 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme,
            to: :settings, prefix: :setting, allow_nil: false
 
+
   attr_accessor :invite_code
+
+  def pam_on_filled_pw(attributes)
+    # block pam logins on traditional account
+    nil
+  end
+
+  def pam_setup(attributes)
+    self.confirmed_at = Time.now.utc
+    self.admin = false
+    self.save!(validations: false)
+    if !Account.create(username: attributes[:username], user: self)
+      self.destroy!
+    end
+  end
 
   def confirmed?
     confirmed_at.present?
@@ -206,6 +221,49 @@ class User < ApplicationRecord
   def invite_code=(code)
     self.invite  = Invite.find_by(code: code) unless code.blank?
     @invite_code = code
+  end
+
+  def send_reset_password_instructions
+    return false if password.blank?
+    super
+  end
+
+  def reset_password!(new_password, new_password_confirmation)
+    return false if password.blank?
+    super
+  end
+
+  def self.authenticate_with_pam(attributes={})
+    if attributes[:email].index('@')
+      resource = where(email: attributes[:email] ).first
+      if resource.blank?
+        resource = new(email: attributes[:email])
+        attributes[:username] = resource.get_pam_name
+        resource[:email] = Rpam2.getenv(::Devise::pam_default_service, attributes[:username], attributes[:password], "email", false)
+      else
+        attributes[:username] = resource.account.username
+      end
+    else
+      attributes[:username] = attributes[:email]
+      resource = where(account: { username: attributes[:email] }).first
+      if resource.blank?
+        resource = new
+        resource[:email] = Rpam2.getenv(::Devise::pam_default_service, attributes[:username], attributes[:password], "email", false)
+      end
+    end
+
+    # potential conflict detected
+    resource = resource.pam_on_filled_pw(attributes) unless resource.password.blank?
+
+    if resource && Rpam2.auth(::Devise::pam_default_service, attributes[:username], attributes[:password])
+      if resource.new_record?
+        resource.pam_setup(attributes)
+        resource.save!
+      end
+      return resource
+    else
+      return nil
+    end
   end
 
   protected

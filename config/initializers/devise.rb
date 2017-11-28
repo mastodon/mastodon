@@ -30,6 +30,11 @@ Warden::Manager.before_logout do |_, warden|
   warden.cookies.delete('_session_id')
 end
 
+module Devise
+  mattr_accessor :pam_authentication
+  @@pam_authentication = false
+end
+
 Devise.setup do |config|
   config.warden do |manager|
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
@@ -301,4 +306,11 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  config.usernamefield = nil
+  config.emailfield = "email"
+
+  # authentication with pam possible
+  #config.pam_authentication = true
+  # name of the pam service
+  config.pam_default_service = "rpam"
 end

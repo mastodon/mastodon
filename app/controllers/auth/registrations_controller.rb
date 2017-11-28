@@ -12,6 +12,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     not_found
   end
 
+  def account_update_params
+    return Object if current_user.password.blank?
+    devise_parameter_sanitizer.sanitize(:account_update)
+  end
+
   protected
 
   def build_resource(hash = nil)
