@@ -343,6 +343,8 @@ pl:
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
     login: Zaloguj się
     logout: Wyloguj się
+    migrate_account: Przenieś konto
+    migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">skonfigurować to tutaj</a>.
     register: Rejestracja
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
@@ -425,12 +427,37 @@ pl:
       muting: Lista wyciszonych
     upload: Załaduj
   in_memoriam_html: Ku pamięci.
+  invites:
+    delete: Usuń
+    expires_in:
+      '1800': 30 minutach
+      '21600': 6 godzinach
+      '3600': godzinie
+      '43200': 12 godzinach
+      '86400': dobie
+    expires_in_prompt: Nigdy
+    generate: Wygeneruj
+    max_uses:
+      few: "%{count} użycia"
+      many: "%{count} użyć"
+      one: jedno użycie
+      other: "%{count} użyć"
+    max_uses_prompt: Bez ograniczenia
+    prompt: Wygeneruj odnośniki i udostępnij je innym, aby pozwolić na rejestrację na instancji
+    table:
+      expires_at: Wygaśnie po
+      uses: Użycia
+    title: Zaproś użytkowników
   landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
       too_many: Nie możesz załączyć więcej niż 4 plików
+  migrations:
+    acct: nazwa@domena nowego konta
+    currently_redirecting: 'Obecnie Twoje konto przekierowuje do:'
+    proceed: Zapisz
   moderation:
     title: Moderacja
   notification_mailer:
@@ -549,6 +576,7 @@ pl:
     export: Eksportowanie danych
     followers: Autoryzowani śledzący
     import: Importowanie danych
+    migrate: Migracja konta
     notifications: Powiadomienia
     preferences: Preferencje
     settings: Ustawienia
