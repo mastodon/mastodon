@@ -74,8 +74,7 @@ module AccountInteractions
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
   end
 
-  def follow!(other_account, reblogs: nil)
-    reblogs = true if reblogs.nil?
+  def follow!(other_account, reblogs: true)
     rel = active_relationships.create_with(show_reblogs: reblogs).find_or_create_by!(target_account: other_account)
     rel.update!(show_reblogs: reblogs)
 
@@ -86,8 +85,7 @@ module AccountInteractions
     block_relationships.find_or_create_by!(target_account: other_account)
   end
 
-  def mute!(other_account, notifications: nil)
-    notifications = true if notifications.nil?
+  def mute!(other_account, notifications: true)
     mute = mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
     if mute.hide_notifications? != notifications

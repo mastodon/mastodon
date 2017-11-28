@@ -3,9 +3,7 @@ require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 class AddReblogsToFollows < ActiveRecord::Migration[5.1]
   include Mastodon::MigrationHelpers
 
-  safety_assured do
-    disable_ddl_transaction!
-  end
+  disable_ddl_transaction!
 
   def up
     safety_assured do
