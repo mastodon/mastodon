@@ -15,7 +15,7 @@ class Settings::MigrationsController < ApplicationController
     if @migration.valid?
       if current_account.moved_to_account_id != @migration.account&.id
         current_account.update!(moved_to_account: @migration.account)
-        ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
+        ActivityPub::UpdateDistributionWorker.perform_async(current_account.id)
       end
 
       redirect_to settings_migration_path
