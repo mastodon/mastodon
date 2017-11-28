@@ -1,3 +1,7 @@
+import {
+  ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS,
+} from '../actions/accounts';
 import { CONTEXT_FETCH_SUCCESS } from '../actions/statuses';
 import { TIMELINE_DELETE, TIMELINE_CONTEXT_UPDATE } from '../actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
@@ -31,6 +35,12 @@ const deleteFromContexts = (state, id) => {
   return state;
 };
 
+const filterContexts = (state, relationship) => {
+  return state.map(
+    statuses => statuses.filter(
+      status => status.get('account') !== relationship.id));
+};
+
 const updateContext = (state, status, references) => {
   return state.update('descendants', map => {
     references.forEach(parentId => {
@@ -49,6 +59,9 @@ const updateContext = (state, status, references) => {
 
 export default function contexts(state = initialState, action) {
   switch(action.type) {
+  case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
+    return filterContexts(state, action.relationship);
   case CONTEXT_FETCH_SUCCESS:
     return normalizeContext(state, action.id, action.ancestors, action.descendants);
   case TIMELINE_DELETE:

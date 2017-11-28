@@ -120,7 +120,7 @@ export default class ActionBar extends React.PureComponent {
         {shareButton}
 
         <div className='detailed-status__action-bar-dropdown'>
-          <DropdownMenuContainer size={18} icon='ellipsis-h' items={menu} direction='left' ariaLabel='More' />
+          <DropdownMenuContainer size={18} icon='ellipsis-h' items={menu} direction='left' title='More' />
         </div>
       </div>
     );

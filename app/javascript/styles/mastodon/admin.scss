@@ -448,3 +448,19 @@
     color: $success-green;
   }
 }
+
+.name-tag {
+  display: flex;
+  align-items: center;
+
+  .avatar {
+    display: block;
+    margin: 0;
+    margin-right: 5px;
+    border-radius: 50%;
+  }
+
+  .username {
+    font-weight: 500;
+  }
+}

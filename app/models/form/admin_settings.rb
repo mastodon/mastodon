@@ -28,8 +28,8 @@ class Form::AdminSettings
     :show_staff_badge=,
     :bootstrap_timeline_accounts,
     :bootstrap_timeline_accounts=,
-    :invites,
-    :invites=,
+    :min_invite_role,
+    :min_invite_role=,
     to: Setting
   )
 end

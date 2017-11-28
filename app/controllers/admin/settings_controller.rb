@@ -16,7 +16,7 @@ module Admin
       show_staff_badge
       bootstrap_timeline_accounts
       thumbnail
-      invites
+      min_invite_role
     ).freeze
 
     BOOLEAN_SETTINGS = %w(

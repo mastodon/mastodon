@@ -231,6 +231,8 @@ en:
       reset: Reset
       search: Search
       title: Known instances
+    invites:
+      title: Invites
     reports:
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
@@ -269,9 +271,9 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
-        invites:
-          desc_html: Invitations allow people to sign up even when registrations are closed
-          title: Allow invitations
+        min_invite_role:
+          disabled: No one
+          title: Allow invitations by
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
@@ -345,6 +347,8 @@ en:
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
     logout: Logout
+    migrate_account: Move to a different account
+    migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
     register: Sign up
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
@@ -444,7 +448,6 @@ en:
     prompt: Generate and share links with others to grant access to this instance
     table:
       expires_at: Expires
-      max_uses: Max number of uses
       uses: Uses
     title: Invite people
   landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
@@ -453,6 +456,10 @@ en:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
+  migrations:
+    acct: username@domain of the new account
+    currently_redirecting: 'Your profile is set to redirect to:'
+    proceed: Save
   moderation:
     title: Moderation
   notification_mailer:
@@ -567,6 +574,7 @@ en:
     export: Data export
     followers: Authorized followers
     import: Import
+    migrate: Account migration
     notifications: Notifications
     preferences: Preferences
     settings: Settings

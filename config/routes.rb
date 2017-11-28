@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
+    resource :migration, only: [:show, :update]
 
     resources :sessions, only: [:destroy]
   end
@@ -117,6 +118,7 @@ Rails.application.routes.draw do
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
+    resources :invites, only: [:index, :create, :destroy]
 
     resources :instances, only: [:index] do
       collection do
