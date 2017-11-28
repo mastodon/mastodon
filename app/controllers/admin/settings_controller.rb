@@ -24,6 +24,7 @@ module Admin
       open_deletion
       timeline_preview
       show_staff_badge
+      invites
     ).freeze
 
     UPLOAD_SETTINGS = %w(
