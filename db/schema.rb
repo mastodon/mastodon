@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 20171125190735) do
     t.datetime "updated_at", null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
+    t.boolean "show_reblogs", default: true, null: false
     t.index ["account_id", "target_account_id"], name: "index_follow_requests_on_account_id_and_target_account_id", unique: true
   end
 
@@ -168,6 +169,7 @@ ActiveRecord::Schema.define(version: 20171125190735) do
     t.datetime "updated_at", null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
+    t.boolean "show_reblogs", default: true, null: false
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true
   end
 
