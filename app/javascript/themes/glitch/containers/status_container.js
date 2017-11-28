@@ -45,6 +45,7 @@ const makeMapStateToProps = () => {
     }
 
     return {
+      containerId : props.containerId || props.id,  //  Should match reblogStatus's id for reblogs
       status      : status,
       account     : account || props.account,
       settings    : state.get('local_settings'),

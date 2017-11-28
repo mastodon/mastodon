@@ -41,7 +41,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
-    const { settings } = this.props;
+    const { expanded, setExpansion, settings } = this.props;
 
     let media           = '';
     let mediaIcon       = null;
@@ -109,6 +109,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
           status={status}
           media={media}
           mediaIcon={mediaIcon}
+          expanded={expanded}
+          setExpansion={setExpansion}
         />
 
         <div className='detailed-status__meta'>
