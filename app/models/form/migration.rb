@@ -5,8 +5,6 @@ class Form::Migration
 
   attr_accessor :acct, :account
 
-  validates :acct, presence: true
-
   def initialize(attrs = {})
     @account = attrs[:account]
     @acct    = attrs[:account].acct unless @account.nil?
@@ -22,6 +20,6 @@ class Form::Migration
   private
 
   def set_account
-    self.account = ResolveRemoteAccountService.new.call(acct) if account.nil? && acct.present?
+    self.account = (ResolveRemoteAccountService.new.call(acct) if account.nil? && acct.present?)
   end
 end
