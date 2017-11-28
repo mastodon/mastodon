@@ -2099,6 +2099,27 @@
   }
 }
 
+.keyboard-shortcuts {
+  padding: 8px 0 0;
+  overflow: hidden;
+
+  thead {
+    position: absolute;
+    left: -9999px;
+  }
+
+  td {
+    padding: 0 10px 8px;
+  }
+
+  code {
+    display: inline-block;
+    padding: 3px 5px;
+    background-color: lighten($ui-base-color, 8%);
+    border: 1px solid darken($ui-base-color, 4%);
+  }
+}
+
 .setting-text {
   color: $ui-primary-color;
   background: transparent;

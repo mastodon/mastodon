@@ -1,0 +1,17 @@
+- content_for :page_title do
+  = t('settings.migrate')
+
+= simple_form_for @migration, as: :migration, url: settings_migration_path, html: { method: :put } do |f|
+  - if @migration.account
+    %p.hint= t('migrations.currently_redirecting')
+
+    .fields-group
+      = render partial: 'authorize_follows/card', locals: { account: @migration.account }
+
+  = render 'shared/error_messages', object: @migration
+
+  .fields-group
+    = f.input :acct, placeholder: t('migrations.acct')
+
+  .actions
+    = f.button :button, t('migrations.proceed'), type: :submit, class: 'negative'

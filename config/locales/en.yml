@@ -347,6 +347,8 @@ en:
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     login: Log in
     logout: Logout
+    migrate_account: Move to a different account
+    migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
     register: Sign up
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
@@ -462,6 +464,10 @@ en:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
+  migrations:
+    acct: username@domain of the new account
+    currently_redirecting: 'Your profile is set to redirect to:'
+    proceed: Save
   moderation:
     title: Moderation
   notification_mailer:
@@ -577,6 +583,7 @@ en:
     followers: Authorized followers
     import: Import
     keyword_mutes: Muted keywords
+    migrate: Account migration
     notifications: Notifications
     preferences: Preferences
     settings: Settings
