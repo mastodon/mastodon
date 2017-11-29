@@ -42,7 +42,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   end
 
   def expected_type?
-    %w(Note Article).include? @json['type']
+    %w(Note Article Video Image).include? @json['type']
   end
 
   def needs_update(actor)

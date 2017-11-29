@@ -41,7 +41,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       url: object_url || @object['id'],
       account: @account,
       text: text_from_content || '',
-      language: language_from_content,
+      language: detected_language,
       spoiler_text: @object['summary'] || '',
       created_at: @options[:override_timestamps] ? nil : @object['published'],
       reply: @object['inReplyTo'].present?,
@@ -165,38 +165,75 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
+    return Formatter.instance.linkify([text_from_name, object_url].join(' ')) if converted_object_type?
+
     if @object['content'].present?
       @object['content']
-    elsif language_map?
+    elsif content_language_map?
       @object['contentMap'].values.first
     end
   end
 
-  def language_from_content
-    return LanguageDetector.instance.detect(text_from_content, @account) unless language_map?
-    @object['contentMap'].keys.first
+  def text_from_name
+    if @object['name'].present?
+      @object['name']
+    elsif name_language_map?
+      @object['nameMap'].values.first
+    end
+  end
+
+  def detected_language
+    if content_language_map?
+      @object['contentMap'].keys.first
+    elsif name_language_map?
+      @object['nameMap'].keys.first
+    elsif supported_object_type?
+      LanguageDetector.instance.detect(text_from_content, @account)
+    end
   end
 
   def object_url
     return if @object['url'].blank?
 
-    value = first_of_value(@object['url'])
+    # The url attribute can be a string, an array of strings, or an array of objects.
+    # The objects could include a mimeType. Not-included mimeType means it's text/html.
+    # We need to prefer text/html. So if the attribute has the fullest information,
+    # we've got to select an item that either has no mimeType or text/html mimeType
+    value = if @object['url'].is_a?(Array) && !@object['url'].first.is_a?(String)
+              @object['url'].find { |url| url['mimeType'].blank? || url['mimeType'] == 'text/html' }
+            elsif @object['url'].is_a?(Array)
+              @object['url'].first
+            else
+              @object['url']
+            end
 
-    return value if value.is_a?(String)
+    return value if value.nil? || value.is_a?(String)
 
     value['href']
   end
 
-  def language_map?
+  def content_language_map?
     @object['contentMap'].is_a?(Hash) && !@object['contentMap'].empty?
   end
 
+  def name_language_map?
+    @object['nameMap'].is_a?(Hash) && !@object['nameMap'].empty?
+  end
+
   def unsupported_object_type?
-    @object.is_a?(String) || !%w(Article Note).include?(@object['type'])
+    @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
   end
 
   def unsupported_media_type?(mime_type)
     mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
+  end
+
+  def supported_object_type?
+    %w(Article Note).include?(@object['type'])
+  end
+
+  def converted_object_type?
+    %w(Video Image).include?(@object['type'])
   end
 
   def skip_download?
