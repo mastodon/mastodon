@@ -7,12 +7,14 @@ module Admin
     def create
       authorize @account, :suspend?
       Admin::SuspensionWorker.perform_async(@account.id)
+      log_action :suspend, @account
       redirect_to admin_accounts_path
     end
 
     def destroy
       authorize @account, :unsuspend?
       @account.unsuspend!
+      log_action :unsuspend, @account
       redirect_to admin_accounts_path
     end
 

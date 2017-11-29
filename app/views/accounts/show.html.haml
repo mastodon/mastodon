@@ -14,6 +14,8 @@
 
 - if @account.memorial?
   .memoriam-strip= t('in_memoriam_html')
+- elsif @account.moved?
+  = render partial: 'moved_strip', locals: { account: @account }
 - elsif show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @account }
 

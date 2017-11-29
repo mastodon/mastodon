@@ -8,7 +8,7 @@ zh-CN:
     failure:
       already_authenticated: 你已经登录。
       inactive: 你还没有激活帐户。
-      invalid: " %{authentication_keys} 或密码错误。"
+      invalid: "%{authentication_keys}或密码错误。"
       last_attempt: 你还有最后一次尝试机会，再次失败你的帐户将被锁定。
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
@@ -53,10 +53,10 @@ zh-CN:
       unlocked: 你的帐户已成功解锁。登录以继续。
   errors:
     messages:
-      already_confirmed: 已经确认，请重新登录。
-      confirmation_period_expired: 注册帐户后须在 %{period}以内确认。请重新注册。
-      expired: 邮件确认已过期，请重新注册。
-      not_found: 找不到。
-      not_locked: 未锁定。
+      already_confirmed: 已经确认成功，请尝试登录
+      confirmation_period_expired: 必须在 %{period}以内确认。请重新发起请求
+      expired: 已过期。请重新发起请求
+      not_found: 找不到
+      not_locked: 未被锁定
       not_saved:
         other: 发生 %{count} 个错误，导致%{resource}保存失败：

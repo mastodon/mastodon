@@ -5,7 +5,11 @@ module AccountInteractions
 
   class_methods do
     def following_map(target_account_ids, account_id)
-      follow_mapping(Follow.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+      Follow.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow, mapping|
+        mapping[follow.target_account_id] = {
+          reblogs: follow.show_reblogs?,
+        }
+      end
     end
 
     def followed_by_map(target_account_ids, account_id)
@@ -25,7 +29,11 @@ module AccountInteractions
     end
 
     def requested_map(target_account_ids, account_id)
-      follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+      FollowRequest.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow_request, mapping|
+        mapping[follow_request.target_account_id] = {
+          reblogs: follow_request.show_reblogs?,
+        }
+      end
     end
 
     def domain_blocking_map(target_account_ids, account_id)
@@ -66,8 +74,12 @@ module AccountInteractions
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
   end
 
-  def follow!(other_account)
-    active_relationships.find_or_create_by!(target_account: other_account)
+  def follow!(other_account, reblogs: nil)
+    reblogs = true if reblogs.nil?
+    rel = active_relationships.create_with(show_reblogs: reblogs).find_or_create_by!(target_account: other_account)
+    rel.update!(show_reblogs: reblogs)
+
+    rel
   end
 
   def block!(other_account)
@@ -138,6 +150,10 @@ module AccountInteractions
 
   def muting_notifications?(other_account)
     mute_relationships.where(target_account: other_account, hide_notifications: true).exists?
+  end
+
+  def muting_reblogs?(other_account)
+    active_relationships.where(target_account: other_account, show_reblogs: false).exists?
   end
 
   def requested?(other_account)

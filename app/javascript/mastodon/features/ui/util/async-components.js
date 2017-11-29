@@ -26,12 +26,20 @@ export function HashtagTimeline () {
   return import(/* webpackChunkName: "features/hashtag_timeline" */'../../hashtag_timeline');
 }
 
+export function ListTimeline () {
+  return import(/* webpackChunkName: "features/list_timeline" */'../../list_timeline');
+}
+
 export function Status () {
   return import(/* webpackChunkName: "features/status" */'../../status');
 }
 
 export function GettingStarted () {
   return import(/* webpackChunkName: "features/getting_started" */'../../getting_started');
+}
+
+export function KeyboardShortcuts () {
+  return import(/* webpackChunkName: "features/keyboard_shortcuts" */'../../keyboard_shortcuts');
 }
 
 export function PinnedStatuses () {

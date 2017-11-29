@@ -7,6 +7,7 @@ module Admin
     def create
       authorize @user, :confirm?
       @user.confirm!
+      log_action :confirm, @user
       redirect_to admin_accounts_path
     end
 

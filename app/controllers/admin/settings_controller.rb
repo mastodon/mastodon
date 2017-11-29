@@ -13,14 +13,17 @@ module Admin
       closed_registrations_message
       open_deletion
       timeline_preview
+      show_staff_badge
       bootstrap_timeline_accounts
       thumbnail
+      min_invite_role
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
       open_registrations
       open_deletion
       timeline_preview
+      show_staff_badge
     ).freeze
 
     UPLOAD_SETTINGS = %w(

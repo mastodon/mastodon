@@ -273,4 +273,47 @@ RSpec.describe User, type: :model do
       expect(user.token_for_app(app)).to be_nil
     end
   end
+
+  describe '#role' do
+    it 'returns admin for admin' do
+      user = User.new(admin: true)
+      expect(user.role).to eq 'admin'
+    end
+
+    it 'returns moderator for moderator' do
+      user = User.new(moderator: true)
+      expect(user.role).to eq 'moderator'
+    end
+
+    it 'returns user otherwise' do
+      user = User.new
+      expect(user.role).to eq 'user'
+    end
+  end
+
+  describe '#role?' do
+    it 'returns false when invalid role requested' do
+      user = User.new(admin: true)
+      expect(user.role?('disabled')).to be false
+    end
+
+    it 'returns true when exact role match' do
+      user  = User.new
+      mod   = User.new(moderator: true)
+      admin = User.new(admin: true)
+
+      expect(user.role?('user')).to be true
+      expect(mod.role?('moderator')).to be true
+      expect(admin.role?('admin')).to be true
+    end
+
+    it 'returns true when role higher than needed' do
+      mod   = User.new(moderator: true)
+      admin = User.new(admin: true)
+
+      expect(mod.role?('user')).to be true
+      expect(admin.role?('user')).to be true
+      expect(admin.role?('moderator')).to be true
+    end
+  end
 end

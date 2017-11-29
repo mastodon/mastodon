@@ -7,6 +7,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
              :note, :url, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count
 
+  has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved?
+
+  delegate :moved?, to: :object
+
   def id
     object.id.to_s
   end

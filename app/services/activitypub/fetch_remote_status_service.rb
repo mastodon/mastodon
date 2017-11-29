@@ -18,7 +18,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     actor = ActivityPub::TagManager.instance.uri_to_resource(actor_id, Account)
     actor = ActivityPub::FetchRemoteAccountService.new.call(actor_id, id: true) if actor.nil? || needs_update(actor)
 
-    return if actor.suspended?
+    return if actor.nil? || actor.suspended?
 
     ActivityPub::Activity.factory(activity_json, actor).perform
   end
