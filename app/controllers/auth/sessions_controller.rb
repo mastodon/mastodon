@@ -12,7 +12,7 @@ class Auth::SessionsController < Devise::SessionsController
 
   def create
     super do |resource|
-      remember_me(resource)
+      remember_me(resource) if resource.password.present?
       flash.delete(:notice)
     end
   end

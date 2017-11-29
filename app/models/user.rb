@@ -91,11 +91,16 @@ class User < ApplicationRecord
   end
 
   def pam_setup(attributes)
+    _account = Account.new(username: attributes[:username])
+    _account.save!(validate: false)
+
+    self.email = "#{attributes[:username]}@#{get_suffix}" if self.email.nil? && get_suffix
     self.confirmed_at = Time.now.utc
     self.admin = false
-    self.save!(validations: false)
-    if !Account.create(username: attributes[:username], user: self)
-      self.destroy!
+    self.account = _account
+
+    if !self.save()
+      _account.destroy!
     end
   end
 
@@ -235,7 +240,7 @@ class User < ApplicationRecord
 
   def self.authenticate_with_pam(attributes={})
     if attributes[:email].index('@')
-      resource = where(email: attributes[:email] ).first
+      resource = find_by(email: attributes[:email])
       if resource.blank?
         resource = new(email: attributes[:email])
         attributes[:username] = resource.get_pam_name
@@ -245,7 +250,7 @@ class User < ApplicationRecord
       end
     else
       attributes[:username] = attributes[:email]
-      resource = where(account: { username: attributes[:email] }).first
+      resource = joins(:account).find_by(accounts: { username: attributes[:username] })
       if resource.blank?
         resource = new
         resource[:email] = Rpam2.getenv(::Devise::pam_default_service, attributes[:username], attributes[:password], "email", false)

@@ -308,6 +308,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   config.usernamefield = nil
   config.emailfield = "email"
+  config.pam_default_suffix = "pam"
 
   # authentication with pam possible
   #config.pam_authentication = true
