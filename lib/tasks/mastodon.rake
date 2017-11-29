@@ -40,11 +40,12 @@ namespace :mastodon do
     account = Account.find_local!(account_username)
 
     if account
-      Web::Setting.where(user: account.user).first_or_initialize(user: account.user)
-      if Web::Setting.where(user: account.user).update(data: {})
-        puts "#{account_username}'s web settings is initialized."
+      setting = Web::Setting.find_or_initialize_by(user: account.user)
+      setting.data = {}
+      if setting.save
+        puts "#{account_username}'s web settings have been initialized."
       else
-        puts "#{account_username}'s web settings cannot initialized. Please make sure the `#{account_username}`'s web settings exists."
+        puts "Could not initialize #{account_username}'s web settings. Please make sure the `#{account_username}`'s web settings exist."
       end
     else
       puts "User could not be found; please make sure an Account with the `#{account_username}` username exists."
