@@ -308,10 +308,11 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   config.usernamefield = nil
   config.emailfield = "email"
-  config.pam_default_suffix = "pam"
 
   # authentication with pam possible
   #config.pam_authentication = true
+  # suffix for email address generation (warning: without pam must provide email in the pam environment)
+  config.pam_default_suffix = "pam"
   # name of the pam service
   config.pam_default_service = "rpam"
 end
