@@ -45,6 +45,30 @@ describe('emoji', () => {
       expect(emojify('<p data-foo="\uD83D\uDC69\uD83D\uDC69\uD83D\uDC66"></p>')).toEqual('<p data-foo="\uD83D\uDC69\uD83D\uDC69\uD83D\uDC66"></p>');
     });
 
+    it('does custom emoji without surrounding characters', () => {
+      expect(emojify(':emojo:', { ':emojo:': { static_url: 'emojo.png' } })).toEqual('<img draggable="false" class="emojione" alt=":emojo:" title=":emojo:" src="emojo.png" />');
+    });
+
+    it('does custom emoji with surrounding HTML tags', () => {
+      expect(emojify('<p>:emojo:</p>', { ':emojo:': { static_url: 'emojo.png' } })).toEqual('<p><img draggable="false" class="emojione" alt=":emojo:" title=":emojo:" src="emojo.png" /></p>');
+    });
+
+    it('does custom emoji with surrounding spaces', () => {
+      expect(emojify(' :emojo: ', { ':emojo:': { static_url: 'emojo.png' } })).toEqual(' <img draggable="false" class="emojione" alt=":emojo:" title=":emojo:" src="emojo.png" /> ');
+    });
+
+    it('does custom emoji with preceeding :', () => {
+      expect(emojify(': :emojo:', { ':emojo:': { static_url: 'emojo.png' } })).toEqual(': <img draggable="false" class="emojione" alt=":emojo:" title=":emojo:" src="emojo.png" />');
+    });
+
+    it('does not custom emoji with non-space character immediately before', () => {
+      expect(emojify('emojo:emojo:', { ':emojo:': { static_url: 'emojo.png' } })).toEqual('emojo:emojo:');
+    });
+
+    it('does not custom emoji with non-space character immediately after', () => {
+      expect(emojify(':emojo:emojo', { ':emojo:': { static_url: 'emojo.png' } })).toEqual(':emojo:emojo');
+    });
+
     it('does multiple emoji properly (issue 5188)', () => {
       expect(emojify('👌🌈💕')).toEqual('<img draggable="false" class="emojione" alt="👌" title=":ok_hand:" src="/emoji/1f44c.svg" /><img draggable="false" class="emojione" alt="🌈" title=":rainbow:" src="/emoji/1f308.svg" /><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg" />');
       expect(emojify('👌 🌈 💕')).toEqual('<img draggable="false" class="emojione" alt="👌" title=":ok_hand:" src="/emoji/1f44c.svg" /> <img draggable="false" class="emojione" alt="🌈" title=":rainbow:" src="/emoji/1f308.svg" /> <img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg" />');

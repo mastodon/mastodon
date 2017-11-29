@@ -303,7 +303,7 @@ RSpec.describe ActivityPub::Activity::Create do
         status = sender.statuses.first
 
         expect(status).to_not be_nil
-        expect(status.emojis.map(&:shortcode)).to include('tinking')
+        expect(CustomEmoji.where(shortcode: 'tinking')).to exist
       end
     end
 

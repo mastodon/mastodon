@@ -21,9 +21,13 @@
 class CustomEmoji < ApplicationRecord
   SHORTCODE_RE_FRAGMENT = '[a-zA-Z0-9_]{2,}'
 
-  SCAN_RE = /(?<=[^[:alnum:]:]|\n|^)
+  HTML_SCAN_RE = /(?<=>|[[:space:]]|^)
     :(#{SHORTCODE_RE_FRAGMENT}):
-    (?=[^[:alnum:]:]|$)/x
+    (?=<|[[:space:]]|$)/x
+
+  RAW_SCAN_RE = /(?<=[[:space:]]|^)
+    :(#{SHORTCODE_RE_FRAGMENT}):
+    (?=[[:space:]]|$)/x
 
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
@@ -44,17 +48,5 @@ class CustomEmoji < ApplicationRecord
 
   def object_type
     :emoji
-  end
-
-  class << self
-    def from_text(text, domain)
-      return [] if text.blank?
-
-      shortcodes = text.scan(SCAN_RE).map(&:first).uniq
-
-      return [] if shortcodes.empty?
-
-      where(shortcode: shortcodes, domain: domain, disabled: false)
-    end
   end
 end

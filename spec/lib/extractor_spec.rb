@@ -69,11 +69,36 @@ describe Extractor do
     end
   end
 
-  describe 'extract_cashtags_with_indices' do
-    it 'returns []' do
-      text = '$cashtag'
-      extracted = Extractor.extract_cashtags_with_indices(text)
-      expect(extracted).to eq []
+  describe 'extract_shortcodes_with_indices' do
+    it 'returns shortcodes surrounded by HTML tag if it is in HTML' do
+      text = '<p>Hello :coolcat:</p>'
+      extracted = Extractor.extract_shortcodes_with_indices(text, html: true)
+      expect(extracted).to eq [
+        { shortcode: 'coolcat', indices: [ 9, 18 ] }
+      ]
+    end
+
+    it 'does not return shortcodes surrounded by HTML tag if it is not in HTML' do
+      text = '<p>Hello :coolcat:</p>'
+      extracted = Extractor.extract_shortcodes_with_indices(text, html: false)
+      expect(extracted).to be_empty
+    end
+
+    it 'returns shortcodes as an array' do
+      text = 'Hello :coolcat:'
+      extracted = Extractor.extract_shortcodes_with_indices(text)
+      expect(extracted).to eq [
+        { shortcode: 'coolcat', indices: [ 6, 15 ] }
+      ]
+    end
+
+    it 'yields shortcodes if a block is given' do
+      text = 'Hello :coolcat:'
+      Extractor.extract_mentions_or_lists_with_indices(text) do |shortcode, start_position, end_position|
+        expect(shortcode).to eq 'coolcat'
+        expect(start_position).to eq 6
+        expect(end_position).to eq 14
+      end
     end
   end
 end
