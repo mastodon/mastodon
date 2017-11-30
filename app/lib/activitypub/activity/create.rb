@@ -194,22 +194,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def object_url
     return if @object['url'].blank?
-
-    # The url attribute can be a string, an array of strings, or an array of objects.
-    # The objects could include a mimeType. Not-included mimeType means it's text/html.
-    # We need to prefer text/html. So if the attribute has the fullest information,
-    # we've got to select an item that either has no mimeType or text/html mimeType
-    value = if @object['url'].is_a?(Array) && !@object['url'].first.is_a?(String)
-              @object['url'].find { |url| url['mimeType'].blank? || url['mimeType'] == 'text/html' }
-            elsif @object['url'].is_a?(Array)
-              @object['url'].first
-            else
-              @object['url']
-            end
-
-    return value if value.nil? || value.is_a?(String)
-
-    value['href']
+    url_to_href(@object['url'], 'text/html')
   end
 
   def content_language_map?
