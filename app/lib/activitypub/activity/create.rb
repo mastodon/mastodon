@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
+  SUPPORTED_TYPES = %w(Article Note).freeze
+  CONVERTED_TYPES = %w(Image Video).freeze
+
   def perform
     return if delete_arrived_first?(object_uri) || unsupported_object_type?
 
@@ -165,7 +168,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
-    return Formatter.instance.linkify([text_from_name, object_url].join(' ')) if converted_object_type?
+    return Formatter.instance.linkify([text_from_name, object_url || @object['id']].join(' ')) if converted_object_type?
 
     if @object['content'].present?
       @object['content']
@@ -214,11 +217,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def supported_object_type?
-    %w(Article Note).include?(@object['type'])
+    SUPPORTED_TYPES.include?(@object['type'])
   end
 
   def converted_object_type?
-    %w(Video Image).include?(@object['type'])
+    CONVERTED_TYPES.include?(@object['type'])
   end
 
   def skip_download?
