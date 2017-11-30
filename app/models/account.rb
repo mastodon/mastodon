@@ -216,6 +216,10 @@ class Account < ApplicationRecord
     Rails.cache.fetch("exclude_domains_for:#{id}") { domain_blocks.pluck(:domain) }
   end
 
+  def preferred_inbox_url
+    shared_inbox_url.presence || inbox_url
+  end
+
   class << self
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
