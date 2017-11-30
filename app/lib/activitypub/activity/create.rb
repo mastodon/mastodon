@@ -210,7 +210,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def forward_for_reply
     return unless @json['signature'].present? && reply_to_local?
-    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id)
+    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
   end
 
   def lock_options
