@@ -30,13 +30,13 @@ RSpec.describe ActivityPub::Activity::Delete do
   context 'when the status has been reblogged' do
     describe '#perform' do
       subject { described_class.new(json, sender) }
-      let(:reblogger) { Fabricate(:account) }
-      let(:follower)  { Fabricate(:account, username: 'follower', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
+      let!(:reblogger) { Fabricate(:account) }
+      let!(:follower)  { Fabricate(:account, username: 'follower', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
+      let!(:reblog)    { Fabricate(:status, account: reblogger, reblog: status) }
 
       before do
         stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
         follower.follow!(reblogger)
-        Fabricate(:status, account: reblogger, reblog: status)
         subject.perform
       end
 
@@ -45,7 +45,6 @@ RSpec.describe ActivityPub::Activity::Delete do
       end
 
       it 'sends delete activity to followers of rebloggers' do
-        # one for Delete original post, and one for Undo reblog (normal delivery)
         expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
       end
     end
