@@ -31,10 +31,10 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      it 'returns JSON with following=true and requested=false' do
+      it 'returns JSON with following=truthy and requested=false' do
         json = body_as_json
 
-        expect(json[:following]).to be true
+        expect(json[:following]).to be_truthy
         expect(json[:requested]).to be false
       end
 
@@ -50,11 +50,11 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      it 'returns JSON with following=false and requested=true' do
+      it 'returns JSON with following=false and requested=truthy' do
         json = body_as_json
 
         expect(json[:following]).to be false
-        expect(json[:requested]).to be true
+        expect(json[:requested]).to be_truthy
       end
 
       it 'creates a follow request relation between user and target user' do
@@ -136,6 +136,35 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
     it 'creates a muting relation' do
       expect(user.account.muting?(other_account)).to be true
+    end
+
+    it 'mutes notifications' do
+      expect(user.account.muting_notifications?(other_account)).to be true
+    end
+  end
+
+  describe 'POST #mute with notifications set to false' do
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+    before do
+      user.account.follow!(other_account)
+      post :mute, params: {id: other_account.id, notifications: false }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'does not remove the following relation between user and target user' do
+      expect(user.account.following?(other_account)).to be true
+    end
+
+    it 'creates a muting relation' do
+      expect(user.account.muting?(other_account)).to be true
+    end
+
+    it 'does not mute notifications' do
+      expect(user.account.muting_notifications?(other_account)).to be false
     end
   end
 

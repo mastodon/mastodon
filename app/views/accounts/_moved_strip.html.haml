@@ -1,0 +1,17 @@
+- moved_to_account = account.moved_to_account
+
+.moved-strip
+  .moved-strip__message
+    = fa_icon 'suitcase'
+    = t('accounts.moved_html', name: content_tag(:strong, display_name(account), class: :emojify), new_profile_link: link_to(content_tag(:strong, safe_join(['@', content_tag(:span, moved_to_account.acct)])), TagManager.instance.url_for(moved_to_account), class: 'mention'))
+
+  .moved-strip__card
+    = link_to TagManager.instance.url_for(moved_to_account), class: 'detailed-status__display-name p-author h-card', target: '_blank', rel: 'noopener' do
+      .detailed-status__display-avatar
+        .account__avatar-overlay
+          .account__avatar-overlay-base{ style: "background-image: url('#{moved_to_account.avatar.url(:original)}')" }
+          .account__avatar-overlay-overlay{ style: "background-image: url('#{account.avatar.url(:original)}')" }
+
+      %span.display-name
+        %strong.emojify= display_name(moved_to_account)
+        %span @#{moved_to_account.acct}

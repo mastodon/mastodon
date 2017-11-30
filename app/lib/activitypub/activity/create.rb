@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
+  SUPPORTED_TYPES = %w(Article Note).freeze
+  CONVERTED_TYPES = %w(Image Video).freeze
+
   def perform
     return if delete_arrived_first?(object_uri) || unsupported_object_type?
 
@@ -41,7 +44,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       url: object_url || @object['id'],
       account: @account,
       text: text_from_content || '',
-      language: language_from_content,
+      language: detected_language,
       spoiler_text: @object['summary'] || '',
       created_at: @options[:override_timestamps] ? nil : @object['published'],
       reply: @object['inReplyTo'].present?,
@@ -53,9 +56,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_tags(status)
-    return unless @object['tag'].is_a?(Array)
+    return if @object['tag'].nil?
 
-    @object['tag'].each do |tag|
+    as_array(@object['tag']).each do |tag|
       case tag['type']
       when 'Hashtag'
         process_hashtag tag, status
@@ -103,9 +106,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_attachments(status)
-    return unless @object['attachment'].is_a?(Array)
+    return if @object['attachment'].nil?
 
-    @object['attachment'].each do |attachment|
+    as_array(@object['attachment']).each do |attachment|
       next if unsupported_media_type?(attachment['mediaType']) || attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s
@@ -165,38 +168,60 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
+    return Formatter.instance.linkify([text_from_name, object_url || @object['id']].join(' ')) if converted_object_type?
+
     if @object['content'].present?
       @object['content']
-    elsif language_map?
+    elsif content_language_map?
       @object['contentMap'].values.first
     end
   end
 
-  def language_from_content
-    return nil unless language_map?
-    @object['contentMap'].keys.first
+  def text_from_name
+    if @object['name'].present?
+      @object['name']
+    elsif name_language_map?
+      @object['nameMap'].values.first
+    end
+  end
+
+  def detected_language
+    if content_language_map?
+      @object['contentMap'].keys.first
+    elsif name_language_map?
+      @object['nameMap'].keys.first
+    elsif supported_object_type?
+      LanguageDetector.instance.detect(text_from_content, @account)
+    end
   end
 
   def object_url
     return if @object['url'].blank?
-
-    value = first_of_value(@object['url'])
-
-    return value if value.is_a?(String)
-
-    value['href']
+    url_to_href(@object['url'], 'text/html')
   end
 
-  def language_map?
+  def content_language_map?
     @object['contentMap'].is_a?(Hash) && !@object['contentMap'].empty?
   end
 
+  def name_language_map?
+    @object['nameMap'].is_a?(Hash) && !@object['nameMap'].empty?
+  end
+
   def unsupported_object_type?
-    @object.is_a?(String) || !%w(Article Note).include?(@object['type'])
+    @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
   end
 
   def unsupported_media_type?(mime_type)
     mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
+  end
+
+  def supported_object_type?
+    SUPPORTED_TYPES.include?(@object['type'])
+  end
+
+  def converted_object_type?
+    CONVERTED_TYPES.include?(@object['type'])
   end
 
   def skip_download?
@@ -210,7 +235,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def forward_for_reply
     return unless @json['signature'].present? && reply_to_local?
-    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id)
+    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
   end
 
   def lock_options

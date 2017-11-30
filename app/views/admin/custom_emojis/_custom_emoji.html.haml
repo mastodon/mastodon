@@ -1,6 +1,6 @@
 %tr
   %td
-    = image_tag custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:"
+    = custom_emoji_tag(custom_emoji)
   %td
     %samp= ":#{custom_emoji.shortcode}:"
   %td
@@ -9,8 +9,16 @@
     - else
       = custom_emoji.domain
   %td
-    - unless custom_emoji.local?
-      = table_link_to 'copy', t('admin.custom_emojis.copy'), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post
+    - if custom_emoji.local?
+      - if custom_emoji.visible_in_picker
+        = table_link_to 'eye', t('admin.custom_emojis.listed'), admin_custom_emoji_path(custom_emoji, custom_emoji: { visible_in_picker: false }), method: :patch
+      - else
+        = table_link_to 'eye-slash', t('admin.custom_emojis.unlisted'), admin_custom_emoji_path(custom_emoji, custom_emoji: { visible_in_picker: true }), method: :patch
+    - else
+      - if custom_emoji.local_counterpart.present?
+        = link_to safe_join([custom_emoji_tag(custom_emoji.local_counterpart), t('admin.custom_emojis.overwrite')]), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post, class: 'table-action-link'
+      - else
+        = table_link_to 'copy', t('admin.custom_emojis.copy'), copy_admin_custom_emoji_path(custom_emoji, page: params[:page]), method: :post
   %td
     - if custom_emoji.disabled?
       = table_link_to 'power-off', t('admin.custom_emojis.enable'), enable_admin_custom_emoji_path(custom_emoji), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }

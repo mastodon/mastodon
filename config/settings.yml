@@ -16,7 +16,9 @@ defaults: &defaults
   open_registrations: true
   closed_registrations_message: ''
   open_deletion: true
+  min_invite_role: 'admin'
   timeline_preview: true
+  show_staff_badge: true
   default_sensitive: false
   unfollow_modal: false
   boost_modal: false
@@ -36,6 +38,7 @@ defaults: &defaults
   interactions:
     must_be_follower: false
     must_be_following: false
+    must_be_following_dm: false
   reserved_usernames:
     - admin
     - support

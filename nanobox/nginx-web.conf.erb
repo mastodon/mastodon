@@ -42,7 +42,12 @@ http {
             try_files $uri @rails;
         }
 
-        location ~ ^/(assets|system/media_attachments/files|system/accounts/avatars) {
+        location /sw.js {
+            add_header Cache-Control "public, max-age=0";
+            try_files $uri @rails;
+        }
+
+        location ~ ^/(emoji|packs|system/media_attachments/files|system/accounts/avatars) {
             add_header Cache-Control "public, max-age=31536000, immutable";
             try_files $uri @rails;
         }

@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
 
+  devise_scope :user do
+    get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
+  end
+
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',
@@ -92,6 +96,7 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
+    resource :migration, only: [:show, :update]
 
     resources :sessions, only: [:destroy]
   end
@@ -99,6 +104,7 @@ Rails.application.routes.draw do
   resources :media,  only: [:show]
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
+  resources :invites, only: [:index, :create, :destroy]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
@@ -110,7 +116,9 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
+    resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
+    resources :invites, only: [:index, :create, :destroy]
 
     resources :instances, only: [:index] do
       collection do
@@ -126,7 +134,10 @@ Rails.application.routes.draw do
       member do
         post :subscribe
         post :unsubscribe
+        post :enable
+        post :disable
         post :redownload
+        post :memorialize
       end
 
       resource :reset, only: [:create]
@@ -134,13 +145,20 @@ Rails.application.routes.draw do
       resource :suspension, only: [:create, :destroy]
       resource :confirmation, only: [:create]
       resources :statuses, only: [:index, :create, :update, :destroy]
+
+      resource :role do
+        member do
+          post :promote
+          post :demote
+        end
+      end
     end
 
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
     end
 
-    resources :custom_emojis, only: [:index, :new, :create, :destroy] do
+    resources :custom_emojis, only: [:index, :new, :create, :update, :destroy] do
       member do
         post :copy
         post :enable
@@ -151,7 +169,13 @@ Rails.application.routes.draw do
     resources :account_moderation_notes, only: [:create, :destroy]
   end
 
-  get '/admin', to: redirect('/admin/settings/edit', status: 302)
+  authenticate :user, lambda { |u| u.admin? } do
+    get '/admin', to: redirect('/admin/settings/edit', status: 302)
+  end
+
+  authenticate :user, lambda { |u| u.moderator? } do
+    get '/admin', to: redirect('/admin/reports', status: 302)
+  end
 
   namespace :api do
     # PubSubHubbub outgoing subscriptions
@@ -196,6 +220,7 @@ Rails.application.routes.draw do
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
+        resources :list, only: :show
       end
 
       resources :streaming, only: [:index]
@@ -253,6 +278,10 @@ Rails.application.routes.draw do
           post :mute
           post :unmute
         end
+      end
+
+      resources :lists, only: [:index, :create, :show, :update, :destroy] do
+        resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
     end
 
