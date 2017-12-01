@@ -2,7 +2,7 @@
 
 class ProviderDiscovery < OEmbed::ProviderDiscovery
   class << self
-    def discover_provider(url, options = {})
+    def discover_provider(url, **options)
       res    = Request.new(:get, url).perform
       format = options[:format]
 
