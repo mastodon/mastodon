@@ -33,6 +33,7 @@
 #  account_id                :integer          not null
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
+#  invite_id                 :integer
 #
 
 class User < ApplicationRecord
@@ -47,6 +48,7 @@ class User < ApplicationRecord
          otp_number_of_backup_codes: 10
 
   belongs_to :account, inverse_of: :user, required: true
+  belongs_to :invite, counter_cache: :uses
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
@@ -77,6 +79,8 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme,
            to: :settings, prefix: :setting, allow_nil: false
 
+  attr_accessor :invite_code
+
   def confirmed?
     confirmed_at.present?
   end
@@ -92,6 +96,19 @@ class User < ApplicationRecord
       'moderator'
     else
       'user'
+    end
+  end
+
+  def role?(role)
+    case role
+    when 'user'
+      true
+    when 'moderator'
+      staff?
+    when 'admin'
+      admin?
+    else
+      false
     end
   end
 
@@ -167,6 +184,11 @@ class User < ApplicationRecord
 
   def web_push_subscription(session)
     session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
+  end
+
+  def invite_code=(code)
+    self.invite  = Invite.find_by(code: code) unless code.blank?
+    @invite_code = code
   end
 
   protected

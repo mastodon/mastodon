@@ -51,12 +51,7 @@ class Formatter
 
   def simplified_format(account)
     return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
-
-    html = encode_and_link_urls(account.note)
-    html = simple_format(html, {}, sanitize: false)
-    html = html.delete("\n")
-
-    html.html_safe # rubocop:disable Rails/OutputSafety
+    linkify(account.note)
   end
 
   def sanitize(html, config)
@@ -66,6 +61,14 @@ class Formatter
   def format_spoiler(status)
     html = encode(status.spoiler_text)
     html = encode_custom_emojis(html, status.emojis)
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def linkify(text)
+    html = encode_and_link_urls(text)
+    html = simple_format(html, {}, sanitize: false)
+    html = html.delete("\n")
+
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
