@@ -3,6 +3,8 @@
 const { length } = require('stringz');
 const { delegate } = require('rails-ujs');
 
+import { processBio } from 'themes/glitch/util/bio_metadata';
+
 delegate(document, '.account_display_name', 'input', ({ target }) => {
   const nameCounter = document.querySelector('.name-counter');
 
@@ -34,4 +36,8 @@ delegate(document, '#account_header', 'change', ({ target }) => {
   const url = file ? URL.createObjectURL(file) : header.dataset.originalSrc;
 
   header.style.backgroundImage = `url(${url})`;
+});
+
+delegate(document, '#user_setting_theme', 'change', ({ target }) => {
+  target.form.submit();
 });

@@ -1,7 +1,7 @@
 //  win95 theme from cybrespace.
 
-//  Modified to inherit glitch styles (themes/glitch/styles/index.scss)
-//  instead of vanilla ones (./application.scss)
+//  Modified by kibi! to use webpack package syntax for urls (eg,
+//  `url(~images/…)`) for easy importing into skins.
 
 $win95-bg: #bfbfbf;
 $win95-dark-grey: #404040;
@@ -73,10 +73,10 @@ $ui-highlight-color: $win95-window-header;
 
 @font-face {
   font-family:"premillenium";
-  src: url('../fonts/premillenium/MSSansSerif.ttf') format('truetype');
+  src: url('~fonts/premillenium/MSSansSerif.ttf') format('truetype');
 }
 
-@import '../themes/glitch/styles/index';  //  Imports glitch themes
+@import 'application';
 
 /* borrowed from cybrespace style: wider columns and full column width images */
 
@@ -179,7 +179,7 @@ body.admin {
   font-size:0px;
   color:$win95-bg;
 
-  background-image: url("../images/start.png");
+  background-image: url("~images/start.png");
   background-repeat:no-repeat;
   background-position:8%;
   background-clip:padding-box;
@@ -716,7 +716,7 @@ body.admin {
   font-size:0px;
   color:$win95-bg;
 
-  background-image: url("../images/start.png");
+  background-image: url("~images/start.png");
   background-repeat:no-repeat;
   background-position:8%;
   background-clip:padding-box;
@@ -1055,40 +1055,40 @@ body.admin {
 }
 
 .column-link[href="/web/timelines/public"] {
-  background-image: url("../images/icon_public.png");
-  &:hover { background-image: url("../images/icon_public.png"); }
+  background-image: url("~images/icon_public.png");
+  &:hover { background-image: url("~images/icon_public.png"); }
 }
 .column-link[href="/web/timelines/public/local"] {
-  background-image: url("../images/icon_local.png");
-  &:hover { background-image: url("../images/icon_local.png"); }
+  background-image: url("~images/icon_local.png");
+  &:hover { background-image: url("~images/icon_local.png"); }
 }
 .column-link[href="/web/pinned"] {
-  background-image: url("../images/icon_pin.png");
-  &:hover { background-image: url("../images/icon_pin.png"); }
+  background-image: url("~images/icon_pin.png");
+  &:hover { background-image: url("~images/icon_pin.png"); }
 }
 .column-link[href="/web/favourites"] {
-  background-image: url("../images/icon_likes.png");
-  &:hover { background-image: url("../images/icon_likes.png"); }
+  background-image: url("~images/icon_likes.png");
+  &:hover { background-image: url("~images/icon_likes.png"); }
 }
 .column-link[href="/web/blocks"] {
-  background-image: url("../images/icon_blocks.png");
-  &:hover { background-image: url("../images/icon_blocks.png"); }
+  background-image: url("~images/icon_blocks.png");
+  &:hover { background-image: url("~images/icon_blocks.png"); }
 }
 .column-link[href="/web/mutes"] {
-  background-image: url("../images/icon_mutes.png");
-  &:hover { background-image: url("../images/icon_mutes.png"); }
+  background-image: url("~images/icon_mutes.png");
+  &:hover { background-image: url("~images/icon_mutes.png"); }
 }
 .column-link[href="/settings/preferences"] {
-  background-image: url("../images/icon_settings.png");
-  &:hover { background-image: url("../images/icon_settings.png"); }
+  background-image: url("~images/icon_settings.png");
+  &:hover { background-image: url("~images/icon_settings.png"); }
 }
 .column-link[href="/about/more"] {
-  background-image: url("../images/icon_about.png");
-  &:hover { background-image: url("../images/icon_about.png"); }
+  background-image: url("~images/icon_about.png");
+  &:hover { background-image: url("~images/icon_about.png"); }
 }
 .column-link[href="/auth/sign_out"] {
-  background-image: url("../images/icon_logout.png");
-  &:hover { background-image: url("../images/icon_logout.png"); }
+  background-image: url("~images/icon_logout.png");
+  &:hover { background-image: url("~images/icon_logout.png"); }
 }
 
 .getting-started__footer {

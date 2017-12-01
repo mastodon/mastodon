@@ -1,7 +1,7 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
 const webpack = require('webpack');
-const { basename, dirname, join, relative, resolve } = require('path');
+const { basename, join, resolve } = require('path');
 const { sync } = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -24,6 +24,24 @@ function reducePacks (data, into = {}) {
     }
     return map;
   }, into);
+  if (data.name) {
+    Object.keys(data.skin).reduce((map, entry) => {
+      const skin = data.skin[entry];
+      const skinName = entry;
+      if (!skin) {
+        return map;
+      }
+      Object.keys(skin).reduce((map, entry) => {
+        const packFile = skin[entry];
+        if (!packFile) {
+          return map;
+        }
+        map[`skins/${data.name}/${skinName}/${entry}`] = resolve(packFile);
+        return map;
+      }, into);
+      return map;
+    }, into);
+  }
   return into;
 }
 

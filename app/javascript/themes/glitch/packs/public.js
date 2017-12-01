@@ -1,5 +1,4 @@
 import loadPolyfills from 'themes/glitch/util/load_polyfills';
-import { processBio } from 'themes/glitch/util/bio_metadata';
 import ready from 'themes/glitch/util/ready';
 
 function main() {

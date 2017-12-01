@@ -27,6 +27,7 @@ class UserSettingsDecorator
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
     user.settings['theme']               = theme_preference if change?('setting_theme')
+    user.settings['skin']                = skin_preference if change?('setting_skin')
   end
 
   def merged_notification_emails
@@ -76,7 +77,11 @@ class UserSettingsDecorator
   def theme_preference
     settings['setting_theme']
   end
-  
+
+  def skin_preference
+    settings['setting_skin']
+  end
+
   def boolean_cast_setting(key)
     settings[key] == '1'
   end

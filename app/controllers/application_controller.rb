@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_account
   helper_method :current_session
+  helper_method :current_theme
+  helper_method :current_skin
   helper_method :single_user_mode?
 
   rescue_from ActionController::RoutingError, with: :not_found
@@ -52,14 +54,14 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
-  def pack(data, pack_name)
+  def pack(data, pack_name, skin = 'default')
     return nil unless pack?(data, pack_name)
     pack_data = {
       common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.get(current_theme) : Themes.instance.core, 'common'),
       name: data['name'],
       pack: pack_name,
       preload: nil,
-      stylesheet: false
+      skin: nil,
     }
     if data['pack'][pack_name].is_a?(Hash)
       pack_data[:common] = nil if data['pack'][pack_name]['use_common'] == false
@@ -68,7 +70,11 @@ class ApplicationController < ActionController::Base
         pack_data[:preload] = [data['pack'][pack_name]['preload']] if data['pack'][pack_name]['preload'].is_a?(String)
         pack_data[:preload] = data['pack'][pack_name]['preload'] if data['pack'][pack_name]['preload'].is_a?(Array)
       end
-      pack_data[:stylesheet] = true if data['pack'][pack_name]['stylesheet']
+      if skin != 'default' && data['skin'][skin]
+        pack_data[:skin] = skin if data['skin'][skin].include?(pack_name)
+      else  #  default skin
+        pack_data[:skin] = 'default' if data['pack'][pack_name]['stylesheet']
+      end
     end
     pack_data
   end
@@ -80,39 +86,39 @@ class ApplicationController < ActionController::Base
     false
   end
 
-  def nil_pack(data, pack_name)
+  def nil_pack(data, pack_name, skin = 'default')
     {
-      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.get(current_theme) : Themes.instance.core, 'common'),
+      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.get(current_theme) : Themes.instance.core, 'common', skin),
       name: data['name'],
       pack: nil,
       preload: nil,
-      stylesheet: false
+      skin: nil,
     }
   end
 
-  def resolve_pack(data, pack_name)
-    result = pack(data, pack_name)
+  def resolve_pack(data, pack_name, skin = 'default')
+    result = pack(data, pack_name, skin)
     unless result
       if data['name'] && data.key?('fallback')
         if data['fallback'].nil?
-          return nil_pack(data, pack_name)
+          return nil_pack(data, pack_name, skin)
         elsif data['fallback'].is_a?(String) && Themes.instance.get(data['fallback'])
-          return resolve_pack(Themes.instance.get(data['fallback']), pack_name)
+          return resolve_pack(Themes.instance.get(data['fallback']), pack_name, skin)
         elsif data['fallback'].is_a?(Array)
           data['fallback'].each do |fallback|
-            return resolve_pack(Themes.instance.get(fallback), pack_name) if Themes.instance.get(fallback)
+            return resolve_pack(Themes.instance.get(fallback), pack_name, skin) if Themes.instance.get(fallback)
           end
         end
-        return nil_pack(data, pack_name)
+        return nil_pack(data, pack_name, skin)
       end
-      return data.key?('name') && data['name'] != default_theme ? resolve_pack(Themes.instance.get(default_theme), pack_name) : nil_pack(data, pack_name)
+      return data.key?('name') && data['name'] != default_theme ? resolve_pack(Themes.instance.get(default_theme), pack_name, skin) : nil_pack(data, pack_name, skin)
     end
     result
   end
 
   def use_pack(pack_name)
     @core = resolve_pack(Themes.instance.core, pack_name)
-    @theme = resolve_pack(Themes.instance.get(current_theme), pack_name)
+    @theme = resolve_pack(Themes.instance.get(current_theme), pack_name, current_skin)
   end
 
   protected
@@ -152,6 +158,15 @@ class ApplicationController < ActionController::Base
   def current_theme
     return default_theme unless Themes.instance.names.include? current_user&.setting_theme
     current_user.setting_theme
+  end
+
+  def default_skin
+    'default'
+  end
+
+  def current_skin
+    return default_skin unless Themes.instance.skins_for(current_theme).include? current_user&.setting_skin
+    current_user.setting_skin
   end
 
   def cache_collection(raw, klass)
