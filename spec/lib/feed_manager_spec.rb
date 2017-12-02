@@ -56,6 +56,13 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
       end
 
+      it 'returns true for reblog from account with reblogs disabled' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reblog = Fabricate(:status, reblog: status, account: alice)
+        bob.follow!(alice, reblogs: false)
+        expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
+      end
+
       it 'returns false for reply by followee to another followee' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
@@ -148,21 +155,11 @@ RSpec.describe FeedManager do
       account = Fabricate(:account)
       status = Fabricate(:status)
       members = FeedManager::MAX_ITEMS.times.map { |count| [count, count] }
-      Redis.current.zadd("feed:type:#{account.id}", members)
+      Redis.current.zadd("feed:home:#{account.id}", members)
 
-      FeedManager.instance.push('type', account, status)
+      FeedManager.instance.push_to_home(account, status)
 
-      expect(Redis.current.zcard("feed:type:#{account.id}")).to eq FeedManager::MAX_ITEMS
-    end
-
-    it 'sends push updates for non-home timelines' do
-      account = Fabricate(:account)
-      status = Fabricate(:status)
-      allow(Redis.current).to receive_messages(publish: nil)
-
-      FeedManager.instance.push('type', account, status)
-
-      expect(Redis.current).to have_received(:publish).with("timeline:#{account.id}", any_args).at_least(:once)
+      expect(Redis.current.zcard("feed:home:#{account.id}")).to eq FeedManager::MAX_ITEMS
     end
 
     context 'reblogs' do
@@ -171,7 +168,7 @@ RSpec.describe FeedManager do
         reblogged = Fabricate(:status)
         reblog = Fabricate(:status, reblog: reblogged)
 
-        expect(FeedManager.instance.push('type', account, reblog)).to be true
+        expect(FeedManager.instance.push_to_home(account, reblog)).to be true
       end
 
       it 'does not save a new reblog of a recent status' do
@@ -179,9 +176,9 @@ RSpec.describe FeedManager do
         reblogged = Fabricate(:status)
         reblog = Fabricate(:status, reblog: reblogged)
 
-        FeedManager.instance.push('type', account, reblogged)
+        FeedManager.instance.push_to_home(account, reblogged)
 
-        expect(FeedManager.instance.push('type', account, reblog)).to be false
+        expect(FeedManager.instance.push_to_home(account, reblog)).to be false
       end
 
       it 'saves a new reblog of an old status' do
@@ -189,14 +186,14 @@ RSpec.describe FeedManager do
         reblogged = Fabricate(:status)
         reblog = Fabricate(:status, reblog: reblogged)
 
-        FeedManager.instance.push('type', account, reblogged)
+        FeedManager.instance.push_to_home(account, reblogged)
 
         # Fill the feed with intervening statuses
         FeedManager::REBLOG_FALLOFF.times do
-          FeedManager.instance.push('type', account, Fabricate(:status))
+          FeedManager.instance.push_to_home(account, Fabricate(:status))
         end
 
-        expect(FeedManager.instance.push('type', account, reblog)).to be true
+        expect(FeedManager.instance.push_to_home(account, reblog)).to be true
       end
 
       it 'does not save a new reblog of a recently-reblogged status' do
@@ -205,10 +202,10 @@ RSpec.describe FeedManager do
         reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
-        FeedManager.instance.push('type', account, reblogs.first)
+        FeedManager.instance.push_to_home(account, reblogs.first)
 
         # The second reblog should be ignored
-        expect(FeedManager.instance.push('type', account, reblogs.last)).to be false
+        expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be false
       end
 
       it 'does not save a new reblog of a multiply-reblogged-then-unreblogged status' do
@@ -217,14 +214,14 @@ RSpec.describe FeedManager do
         reblogs = 3.times.map { Fabricate(:status, reblog: reblogged) }
 
         # Accept the reblogs
-        FeedManager.instance.push('type', account, reblogs[0])
-        FeedManager.instance.push('type', account, reblogs[1])
+        FeedManager.instance.push_to_home(account, reblogs[0])
+        FeedManager.instance.push_to_home(account, reblogs[1])
 
         # Unreblog the first one
-        FeedManager.instance.unpush('type', account, reblogs[0])
+        FeedManager.instance.unpush_from_home(account, reblogs[0])
 
         # The last reblog should still be ignored
-        expect(FeedManager.instance.push('type', account, reblogs.last)).to be false
+        expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be false
       end
 
       it 'saves a new reblog of a long-ago-reblogged status' do
@@ -233,15 +230,15 @@ RSpec.describe FeedManager do
         reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
-        FeedManager.instance.push('type', account, reblogs.first)
+        FeedManager.instance.push_to_home(account, reblogs.first)
 
         # Fill the feed with intervening statuses
         FeedManager::REBLOG_FALLOFF.times do
-          FeedManager.instance.push('type', account, Fabricate(:status))
+          FeedManager.instance.push_to_home(account, Fabricate(:status))
         end
 
         # The second reblog should also be accepted
-        expect(FeedManager.instance.push('type', account, reblogs.last)).to be true
+        expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be true
       end
     end
   end
@@ -253,11 +250,11 @@ RSpec.describe FeedManager do
       reblogged      = Fabricate(:status)
       status         = Fabricate(:status, reblog: reblogged)
       another_status = Fabricate(:status, reblog: reblogged)
-      reblogs_key    = FeedManager.instance.key('type', receiver.id, 'reblogs')
-      reblog_set_key = FeedManager.instance.key('type', receiver.id, "reblogs:#{reblogged.id}")
+      reblogs_key    = FeedManager.instance.key('home', receiver.id, 'reblogs')
+      reblog_set_key = FeedManager.instance.key('home', receiver.id, "reblogs:#{reblogged.id}")
 
-      FeedManager.instance.push('type', receiver, status)
-      FeedManager.instance.push('type', receiver, another_status)
+      FeedManager.instance.push_to_home(receiver, status)
+      FeedManager.instance.push_to_home(receiver, another_status)
 
       # We should have a tracking set and an entry in reblogs.
       expect(Redis.current.exists(reblog_set_key)).to be true
@@ -265,12 +262,12 @@ RSpec.describe FeedManager do
 
       # Push everything off the end of the feed.
       FeedManager::MAX_ITEMS.times do
-        FeedManager.instance.push('type', receiver, Fabricate(:status))
+        FeedManager.instance.push_to_home(receiver, Fabricate(:status))
       end
 
       # `trim` should be called automatically, but do it anyway, as
       # we're testing `trim`, not side effects of `push`.
-      FeedManager.instance.trim('type', receiver.id)
+      FeedManager.instance.trim('home', receiver.id)
 
       # We should not have any reblog tracking data.
       expect(Redis.current.exists(reblog_set_key)).to be false
@@ -285,32 +282,32 @@ RSpec.describe FeedManager do
       reblogged = Fabricate(:status)
       status    = Fabricate(:status, reblog: reblogged)
 
-      FeedManager.instance.push('type', receiver, reblogged)
-      FeedManager::REBLOG_FALLOFF.times { FeedManager.instance.push('type', receiver, Fabricate(:status)) }
-      FeedManager.instance.push('type', receiver, status)
+      FeedManager.instance.push_to_home(receiver, reblogged)
+      FeedManager::REBLOG_FALLOFF.times { FeedManager.instance.push_to_home(receiver, Fabricate(:status)) }
+      FeedManager.instance.push_to_home(receiver, status)
 
       # The reblogging status should show up under normal conditions.
-      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to include(status.id.to_s)
+      expect(Redis.current.zrange("feed:home:#{receiver.id}", 0, -1)).to include(status.id.to_s)
 
-      FeedManager.instance.unpush('type', receiver, status)
+      FeedManager.instance.unpush_from_home(receiver, status)
 
       # Restore original status
-      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to_not include(status.id.to_s)
-      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to include(reblogged.id.to_s)
+      expect(Redis.current.zrange("feed:home:#{receiver.id}", 0, -1)).to_not include(status.id.to_s)
+      expect(Redis.current.zrange("feed:home:#{receiver.id}", 0, -1)).to include(reblogged.id.to_s)
     end
 
     it 'removes a reblogged status if it was only reblogged once' do
       reblogged = Fabricate(:status)
       status    = Fabricate(:status, reblog: reblogged)
 
-      FeedManager.instance.push('type', receiver, status)
+      FeedManager.instance.push_to_home(receiver, status)
 
       # The reblogging status should show up under normal conditions.
-      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to eq [status.id.to_s]
+      expect(Redis.current.zrange("feed:home:#{receiver.id}", 0, -1)).to eq [status.id.to_s]
 
-      FeedManager.instance.unpush('type', receiver, status)
+      FeedManager.instance.unpush_from_home(receiver, status)
 
-      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to be_empty
+      expect(Redis.current.zrange("feed:home:#{receiver.id}", 0, -1)).to be_empty
     end
 
     it 'leaves a multiply-reblogged status if another reblog was in feed' do
@@ -318,26 +315,26 @@ RSpec.describe FeedManager do
       reblogs   = 3.times.map { Fabricate(:status, reblog: reblogged) }
 
       reblogs.each do |reblog|
-        FeedManager.instance.push('type', receiver, reblog)
+        FeedManager.instance.push_to_home(receiver, reblog)
       end
 
       # The reblogging status should show up under normal conditions.
-      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to eq [reblogs.first.id.to_s]
+      expect(Redis.current.zrange("feed:home:#{receiver.id}", 0, -1)).to eq [reblogs.first.id.to_s]
 
       reblogs[0...-1].each do |reblog|
-        FeedManager.instance.unpush('type', receiver, reblog)
+        FeedManager.instance.unpush_from_home(receiver, reblog)
       end
 
-      expect(Redis.current.zrange("feed:type:#{receiver.id}", 0, -1)).to eq [reblogs.last.id.to_s]
+      expect(Redis.current.zrange("feed:home:#{receiver.id}", 0, -1)).to eq [reblogs.last.id.to_s]
     end
 
     it 'sends push updates' do
       status  = Fabricate(:status)
 
-      FeedManager.instance.push('type', receiver, status)
+      FeedManager.instance.push_to_home(receiver, status)
 
       allow(Redis.current).to receive_messages(publish: nil)
-      FeedManager.instance.unpush('type', receiver, status)
+      FeedManager.instance.unpush_from_home(receiver, status)
 
       deletion = Oj.dump(event: :delete, payload: status.id.to_s)
       expect(Redis.current).to have_received(:publish).with("timeline:#{receiver.id}", deletion)

@@ -13,8 +13,20 @@ RSpec.describe FollowService do
         subject.call(sender, bob.acct)
       end
 
-      it 'creates a follow request' do
-        expect(FollowRequest.find_by(account: sender, target_account: bob)).to_not be_nil
+      it 'creates a follow request with reblogs' do
+        expect(FollowRequest.find_by(account: sender, target_account: bob, show_reblogs: true)).to_not be_nil
+      end
+    end
+
+    describe 'locked account, no reblogs' do
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, locked: true, username: 'bob')).account }
+
+      before do
+        subject.call(sender, bob.acct, reblogs: false)
+      end
+
+      it 'creates a follow request without reblogs' do
+        expect(FollowRequest.find_by(account: sender, target_account: bob, show_reblogs: false)).to_not be_nil
       end
     end
 
@@ -25,8 +37,22 @@ RSpec.describe FollowService do
         subject.call(sender, bob.acct)
       end
 
-      it 'creates a following relation' do
+      it 'creates a following relation with reblogs' do
         expect(sender.following?(bob)).to be true
+        expect(sender.muting_reblogs?(bob)).to be false
+      end
+    end
+
+    describe 'unlocked account, no reblogs' do
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+      before do
+        subject.call(sender, bob.acct, reblogs: false)
+      end
+
+      it 'creates a following relation without reblogs' do
+        expect(sender.following?(bob)).to be true
+        expect(sender.muting_reblogs?(bob)).to be true
       end
     end
 
@@ -40,6 +66,32 @@ RSpec.describe FollowService do
 
       it 'keeps a following relation' do
         expect(sender.following?(bob)).to be true
+      end
+    end
+
+    describe 'already followed account, turning reblogs off' do
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+      before do
+        sender.follow!(bob, reblogs: true)
+        subject.call(sender, bob.acct, reblogs: false)
+      end
+
+      it 'disables reblogs' do
+        expect(sender.muting_reblogs?(bob)).to be true
+      end
+    end
+
+    describe 'already followed account, turning reblogs on' do
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+      before do
+        sender.follow!(bob, reblogs: false)
+        subject.call(sender, bob.acct, reblogs: true)
+      end
+
+      it 'disables reblogs' do
+        expect(sender.muting_reblogs?(bob)).to be false
       end
     end
   end

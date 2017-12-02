@@ -104,7 +104,7 @@ class ApplicationController < ActionController::Base
     unless uncached_ids.empty?
       uncached = klass.where(id: uncached_ids).with_includes.map { |item| [item.id, item] }.to_h
 
-      uncached.values.each do |item|
+      uncached.each_value do |item|
         Rails.cache.write(item.cache_key, item)
       end
     end

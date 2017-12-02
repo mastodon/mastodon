@@ -4,14 +4,17 @@ ca:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Màxim 2MB. Serà escalat a 120x120px
+        digest: S'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
         display_name:
-          one: <span class="name-counter">1</span> character left
-          other: <span class="name-counter">%{count}</span> characters left
+          one: <span class="name-counter">1</span> càracter
+          other: <span class="name-counter">%{count}</span> càracters
         header: PNG, GIF o JPG. Màxim 2MB. Serà escalat a 700x335px
         locked: Requereix que aprovis manualment seguidors i les publicacions seran mostrades només als teus seguidors
         note:
-          one: <span class="note-counter">1</span> character left
-          other: <span class="note-counter">%{count}</span> characters left
+          one: <span class="note-counter">1</span> càracter left
+          other: <span class="note-counter">%{count}</span> càracters
+        setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
+        setting_theme: Afecta la manera en què Mastodon es veu quan està connectat des de qualsevol dispositiu.
       imports:
         data: Arxiu CSV exportat desde una altra instància de Mastodon
       sessions:
@@ -27,6 +30,7 @@ ca:
         data: Informació
         display_name: Mostrar nom
         email: Direcció de correu electrònic
+        filtered_languages: Idiomes filtrats
         header: Img. capçalera
         locale: Idioma
         locked: Fer privat aquest compte
@@ -37,13 +41,20 @@ ca:
         setting_auto_play_gif: Auto-reproducció de GIFs animats
         setting_boost_modal: Mostrar finestra de confirmació abans d'un Retoot
         setting_default_privacy: Privacitat de publicacions
+        setting_default_sensitive: Marca sempre els multimèdia com a sensibles
         setting_delete_modal: Mostrar finestra de confirmació abans d'esborrar un toot
+        setting_noindex: Desactivació de la indexació del motor de cerca
+        setting_reduce_motion: Redueix el moviment en animacions
+        setting_system_font_ui: Utilitzeu el tipus de lletra predeterminat del sistema
+        setting_theme: Tema del lloc
+        setting_unfollow_modal: Mostra el diàleg de confirmació abans de deixar de seguir a algú
         severity: Severitat
         type: Importar tipus
         username: Nom d´usuari
       interactions:
         must_be_follower: Bloquejar notificacions de persones que no et segueixen
         must_be_following: Bloquejar notificacions de persones que no segueixes
+        must_be_following_dm: Bloqueja missatges directes de persones que no segueixes
       notification_emails:
         digest: Enviar resum de correus electrònics
         favourite: Enviar correu electrònic quan algú marqui com a favorit en la teva publicació

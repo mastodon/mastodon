@@ -3,7 +3,7 @@
 #
 # Table name: accounts
 #
-#  id                      :bigint           not null, primary key
+#  id                      :integer          not null, primary key
 #  username                :string           default(""), not null
 #  domain                  :string
 #  secret                  :string           default(""), not null
@@ -42,6 +42,7 @@
 #  followers_url           :string           default(""), not null
 #  protocol                :integer          default("ostatus"), not null
 #  memorial                :boolean          default(FALSE), not null
+#  moved_to_account_id     :integer
 #
 
 class Account < ApplicationRecord
@@ -53,6 +54,7 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
+  include Paginable
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -95,6 +97,13 @@ class Account < ApplicationRecord
   has_many :account_moderation_notes, dependent: :destroy
   has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
 
+  # Lists
+  has_many :list_accounts, inverse_of: :account, dependent: :destroy
+  has_many :lists, through: :list_accounts
+
+  # Account migrations
+  belongs_to :moved_to_account, class_name: 'Account'
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where(followers_count: 0) }
@@ -115,6 +124,8 @@ class Account < ApplicationRecord
            :current_sign_in_at,
            :confirmed?,
            :admin?,
+           :moderator?,
+           :staff?,
            :locale,
            to: :user,
            prefix: true,
@@ -124,6 +135,10 @@ class Account < ApplicationRecord
 
   def local?
     domain.nil?
+  end
+
+  def moved?
+    moved_to_account_id.present?
   end
 
   def acct
@@ -197,6 +212,10 @@ class Account < ApplicationRecord
 
   def excluded_from_timeline_domains
     Rails.cache.fetch("exclude_domains_for:#{id}") { domain_blocks.pluck(:domain) }
+  end
+
+  def preferred_inbox_url
+    shared_inbox_url.presence || inbox_url
   end
 
   class << self

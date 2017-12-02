@@ -1,0 +1,21 @@
+%tr
+  %td
+    .name-tag
+      = image_tag invite.user.account.avatar.url(:original), alt: '', width: 16, height: 16, class: 'avatar'
+      %span.username= invite.user.account.username
+  %td
+    = invite.uses
+    = " / #{invite.max_uses}" unless invite.max_uses.nil?
+  %td
+    - if invite.expired?
+      = t('invites.expired')
+    - else
+      - if invite.expires_at.nil?
+        ∞
+      - else
+        %time.formatted{ datetime: invite.expires_at.iso8601, title: l(invite.expires_at) }
+          = l invite.expires_at
+  %td= table_link_to 'link', public_invite_url(invite_code: invite.code), public_invite_url(invite_code: invite.code)
+  %td
+    - if !invite.expired? && policy(invite).destroy?
+      = table_link_to 'times', t('invites.delete'), admin_invite_path(invite), method: :delete
