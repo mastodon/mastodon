@@ -3,6 +3,7 @@ import {
   LISTS_FETCH_SUCCESS,
   LIST_CREATE_SUCCESS,
   LIST_UPDATE_SUCCESS,
+  LIST_DELETE_SUCCESS,
 } from '../actions/lists';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
@@ -26,6 +27,8 @@ export default function lists(state = initialState, action) {
     return normalizeList(state, action.list);
   case LISTS_FETCH_SUCCESS:
     return normalizeLists(state, action.lists);
+  case LIST_DELETE_SUCCESS:
+    return state.delete(action.id);
   default:
     return state;
   }

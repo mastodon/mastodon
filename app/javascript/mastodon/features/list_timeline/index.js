@@ -6,10 +6,16 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connectListStream } from '../../actions/streaming';
 import { refreshListTimeline, expandListTimeline } from '../../actions/timelines';
-import { fetchList } from '../../actions/lists';
+import { fetchList, deleteList } from '../../actions/lists';
+import { openModal } from '../../actions/modal';
+
+const messages = defineMessages({
+  deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
+  deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },
+});
 
 const mapStateToProps = (state, props) => ({
   list: state.getIn(['lists', props.params.id]),
@@ -17,6 +23,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 @connect(mapStateToProps)
+@injectIntl
 export default class ListTimeline extends React.PureComponent {
 
   static propTypes = {
@@ -26,6 +33,7 @@ export default class ListTimeline extends React.PureComponent {
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
     list: ImmutablePropTypes.map,
+    intl: PropTypes.object.isRequired,
   };
 
   handlePin = () => {
@@ -73,6 +81,23 @@ export default class ListTimeline extends React.PureComponent {
     this.props.dispatch(expandListTimeline(id));
   }
 
+  handleDeleteClick = () => {
+    const { dispatch, columnId, intl } = this.props;
+    const { id } = this.props.params;
+
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.deleteMessage),
+      confirm: intl.formatMessage(messages.deleteConfirm),
+      onConfirm: () => {
+        dispatch(deleteList(id));
+
+        if (columnId) {
+          dispatch(removeColumn(columnId));
+        }
+      },
+    }));
+  }
+
   render () {
     const { hasUnread, columnId, multiColumn, list } = this.props;
     const { id } = this.props.params;
@@ -90,7 +115,13 @@ export default class ListTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-        />
+        >
+          <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
+            <i className='fa fa-trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+          </button>
+
+          <hr />
+        </ColumnHeader>
 
         <StatusListContainer
           trackScroll={!pinned}

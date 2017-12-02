@@ -19,6 +19,10 @@ export const LIST_UPDATE_REQUEST = 'LIST_UPDATE_REQUEST';
 export const LIST_UPDATE_SUCCESS = 'LIST_UPDATE_SUCCESS';
 export const LIST_UPDATE_FAIL    = 'LIST_UPDATE_FAIL';
 
+export const LIST_DELETE_REQUEST = 'LIST_DELETE_REQUEST';
+export const LIST_DELETE_SUCCESS = 'LIST_DELETE_SUCCESS';
+export const LIST_DELETE_FAIL    = 'LIST_DELETE_FAIL';
+
 export const fetchList = id => (dispatch, getState) => {
   if (getState().getIn(['lists', id])) {
     return;
@@ -107,9 +111,53 @@ export const createListFail = error => ({
 });
 
 export const updateList = (id, title) => (dispatch, getState) => {
-  // TODO
+  dispatch(updateListRequest(id));
+
+  api(getState).put(`/api/v1/lists/${id}`, { params: { title } })
+    .then(({ data }) => dispatch(updateListSuccess(data)))
+    .catch(err => dispatch(updateListFail(id, err)));
 };
+
+export const updateListRequest = id => ({
+  type: LIST_UPDATE_REQUEST,
+  id,
+});
+
+export const updateListSuccess = list => ({
+  type: LIST_UPDATE_SUCCESS,
+  list,
+});
+
+export const updateListFail = (id, error) => ({
+  type: LIST_UPDATE_FAIL,
+  id,
+  error,
+});
 
 export const resetListEditor = () => ({
   type: LIST_EDITOR_RESET,
+});
+
+export const deleteList = id => (dispatch, getState) => {
+  dispatch(deleteListRequest(id));
+
+  api(getState).delete(`/api/v1/lists/${id}`)
+    .then(() => dispatch(deleteListSuccess(id)))
+    .catch(err => dispatch(deleteListFail(id, err)));
+};
+
+export const deleteListRequest = id => ({
+  type: LIST_DELETE_REQUEST,
+  id,
+});
+
+export const deleteListSuccess = id => ({
+  type: LIST_DELETE_SUCCESS,
+  id,
+});
+
+export const deleteListFail = (id, error) => ({
+  type: LIST_DELETE_FAIL,
+  id,
+  error,
 });
