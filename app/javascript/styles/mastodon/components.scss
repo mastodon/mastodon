@@ -4424,3 +4424,26 @@ noscript {
     margin-bottom: 0;
   }
 }
+
+.column-inline-form {
+  padding: 7px 15px;
+  padding-right: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: lighten($ui-base-color, 4%);
+
+  label {
+    flex: 1 1 auto;
+
+    input {
+      width: 100%;
+      margin-bottom: 6px;
+    }
+  }
+
+  .icon-button {
+    flex: 0 0 auto;
+    margin-left: 5px;
+  }
+}

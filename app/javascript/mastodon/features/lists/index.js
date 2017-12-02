@@ -10,10 +10,10 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
+import NewListForm from './components/new_list_form';
 
 const messages = defineMessages({
   heading: { id: 'column.lists', defaultMessage: 'Lists' },
-  create: { id: 'lists.create', defaultMessage: 'Add new' },
   subheading: { id: 'lists.subheading', defaultMessage: 'Your lists' },
 });
 
@@ -51,9 +51,9 @@ export default class Lists extends ImmutablePureComponent {
       <Column icon='bars' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
-        <div className='scrollable'>
-          <ColumnLink to='/lists/new' icon='plus' text={intl.formatMessage(messages.create)} />
+        <NewListForm />
 
+        <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
 
           {lists.toList().map(list =>
