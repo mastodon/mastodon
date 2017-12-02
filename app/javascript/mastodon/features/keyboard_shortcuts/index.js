@@ -1,5 +1,6 @@
 import React from 'react';
 import Column from '../ui/components/column';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -20,7 +21,8 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
     const { intl } = this.props;
 
     return (
-      <Column icon='question' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
+      <Column icon='question' heading={intl.formatMessage(messages.heading)}>
+        <ColumnBackButtonSlim />
         <div className='keyboard-shortcuts scrollable optionally-scrollable'>
           <table>
             <thead>
