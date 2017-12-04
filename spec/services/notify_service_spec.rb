@@ -101,6 +101,26 @@ RSpec.describe NotifyService do
     end
   end
 
+  describe 'reblogs' do
+    let(:status)   { Fabricate(:status, account: Fabricate(:account)) }
+    let(:activity) { Fabricate(:status, account: sender, reblog: status) }
+
+    it 'shows reblogs by default' do
+      recipient.follow!(sender)
+      is_expected.to change(Notification, :count)
+    end
+
+    it 'shows reblogs when explicitly enabled' do
+      recipient.follow!(sender, reblogs: true)
+      is_expected.to change(Notification, :count)
+    end
+
+    it 'hides reblogs when disabled' do
+      recipient.follow!(sender, reblogs: false)
+      is_expected.to_not change(Notification, :count)
+    end
+  end
+
   context do
     let(:asshole)  { Fabricate(:account, username: 'asshole') }
     let(:reply_to) { Fabricate(:status, account: asshole) }

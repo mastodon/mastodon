@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = t('invites.title')
+
+- if policy(:invite).create?
+  %p= t('invites.prompt')
+
+  = render 'form'
+
+  %hr/
+
+%table.table
+  %thead
+    %tr
+      %th= t('invites.table.uses')
+      %th= t('invites.table.expires_at')
+      %th
+      %th
+  %tbody
+    = render @invites

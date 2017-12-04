@@ -7,7 +7,7 @@ module AccountInteractions
     def following_map(target_account_ids, account_id)
       Follow.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow, mapping|
         mapping[follow.target_account_id] = {
-          reblogs: follow.show_reblogs?
+          reblogs: follow.show_reblogs?,
         }
       end
     end
@@ -31,7 +31,7 @@ module AccountInteractions
     def requested_map(target_account_ids, account_id)
       FollowRequest.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow_request, mapping|
         mapping[follow_request.target_account_id] = {
-          reblogs: follow_request.show_reblogs?
+          reblogs: follow_request.show_reblogs?,
         }
       end
     end

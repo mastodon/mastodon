@@ -29,6 +29,14 @@
       {
         "defaultMessage": "Unmute @{name}",
         "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Mute notifications from @{name}",
+        "id": "account.mute_notifications"
+      },
+      {
+        "defaultMessage": "Unmute notifications from @{name}",
+        "id": "account.unmute_notifications"
       }
     ],
     "path": "app/javascript/mastodon/components/account.json"
@@ -284,16 +292,8 @@
         "id": "confirmations.block.confirm"
       },
       {
-        "defaultMessage": "Mute",
-        "id": "confirmations.mute.confirm"
-      },
-      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
-      },
-      {
-        "defaultMessage": "Are you sure you want to mute {name}?",
-        "id": "confirmations.mute.message"
       }
     ],
     "path": "app/javascript/mastodon/containers/status_container.json"
@@ -310,16 +310,21 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{name} has moved to:",
+        "id": "account.moved_to"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_timeline/components/moved_note.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unfollow",
         "id": "confirmations.unfollow.confirm"
       },
       {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
-      },
-      {
-        "defaultMessage": "Mute",
-        "id": "confirmations.mute.confirm"
       },
       {
         "defaultMessage": "Hide entire domain",
@@ -332,10 +337,6 @@
       {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
-      },
-      {
-        "defaultMessage": "Are you sure you want to mute {name}?",
-        "id": "confirmations.mute.message"
       },
       {
         "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
@@ -397,6 +398,14 @@
       {
         "defaultMessage": "Unhide {domain}",
         "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "Hide boosts from @{name}",
+        "id": "account.hide_reblogs"
+      },
+      {
+        "defaultMessage": "Show boosts from @{name}",
+        "id": "account.show_reblogs"
       },
       {
         "defaultMessage": "Information below may reflect the user's profile incompletely.",
@@ -849,6 +858,10 @@
         "id": "navigation_bar.pins"
       },
       {
+        "defaultMessage": "Keyboard shortcuts",
+        "id": "navigation_bar.keyboard_shortcuts"
+      },
+      {
         "defaultMessage": "FAQ",
         "id": "getting_started.faq"
       },
@@ -921,6 +934,88 @@
       }
     ],
     "path": "app/javascript/mastodon/features/home_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Keyboard Shortcuts",
+        "id": "keyboard_shortcuts.heading"
+      },
+      {
+        "defaultMessage": "Hotkey",
+        "id": "keyboard_shortcuts.hotkey"
+      },
+      {
+        "defaultMessage": "Description",
+        "id": "keyboard_shortcuts.description"
+      },
+      {
+        "defaultMessage": "to reply",
+        "id": "keyboard_shortcuts.reply"
+      },
+      {
+        "defaultMessage": "to mention author",
+        "id": "keyboard_shortcuts.mention"
+      },
+      {
+        "defaultMessage": "to favourite",
+        "id": "keyboard_shortcuts.favourite"
+      },
+      {
+        "defaultMessage": "to boost",
+        "id": "keyboard_shortcuts.boost"
+      },
+      {
+        "defaultMessage": "to open status",
+        "id": "keyboard_shortcuts.enter"
+      },
+      {
+        "defaultMessage": "to move up in the list",
+        "id": "keyboard_shortcuts.up"
+      },
+      {
+        "defaultMessage": "to move down in the list",
+        "id": "keyboard_shortcuts.down"
+      },
+      {
+        "defaultMessage": "to focus a status in one of the columns",
+        "id": "keyboard_shortcuts.column"
+      },
+      {
+        "defaultMessage": "to focus the compose textarea",
+        "id": "keyboard_shortcuts.compose"
+      },
+      {
+        "defaultMessage": "to start a brand new toot",
+        "id": "keyboard_shortcuts.toot"
+      },
+      {
+        "defaultMessage": "to navigate back",
+        "id": "keyboard_shortcuts.back"
+      },
+      {
+        "defaultMessage": "to focus search",
+        "id": "keyboard_shortcuts.search"
+      },
+      {
+        "defaultMessage": "to un-focus compose textarea/search",
+        "id": "keyboard_shortcuts.unfocus"
+      },
+      {
+        "defaultMessage": "to display this legend",
+        "id": "keyboard_shortcuts.legend"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/keyboard_shortcuts/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "There is nothing in this list yet.",
+        "id": "empty_column.list"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_timeline/index.json"
   },
   {
     "descriptors": [
@@ -1210,6 +1305,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Are you sure you want to mute {name}?",
+        "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Hide notifications from this user?",
+        "id": "mute_modal.hide_notifications"
+      },
+      {
+        "defaultMessage": "Cancel",
+        "id": "confirmation_modal.cancel"
+      },
+      {
+        "defaultMessage": "Mute",
+        "id": "confirmations.mute.confirm"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/mute_modal.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Home",
         "id": "column.home"
       },
@@ -1358,6 +1474,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/upload_area.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Your draft will be lost if you leave Mastodon.",
+        "id": "ui.beforeunload"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/index.json"
   },
   {
     "descriptors": [

@@ -59,6 +59,11 @@ const normalizeAccount = (state, account) => {
   account.display_name_html = emojify(escapeTextContentForBrowser(displayName));
   account.note_emojified = emojify(account.note);
 
+  if (account.moved) {
+    state = normalizeAccount(state, account.moved);
+    account.moved = account.moved.id;
+  }
+
   return state.set(account.id, fromJS(account));
 };
 

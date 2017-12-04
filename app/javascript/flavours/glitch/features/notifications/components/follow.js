@@ -14,6 +14,7 @@ import NotificationOverlayContainer from '../containers/overlay_container';
 export default class NotificationFollow extends ImmutablePureComponent {
 
   static propTypes = {
+    hidden: PropTypes.bool,
     id: PropTypes.string.isRequired,
     account: ImmutablePropTypes.map.isRequired,
     notification: ImmutablePropTypes.map.isRequired,
@@ -57,7 +58,7 @@ export default class NotificationFollow extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, notification } = this.props;
+    const { account, notification, hidden } = this.props;
 
     //  Links to the display name.
     const displayName = account.get('display_name_html') || account.get('username');
@@ -87,7 +88,7 @@ export default class NotificationFollow extends ImmutablePureComponent {
             />
           </div>
 
-          <AccountContainer id={account.get('id')} withNote={false} />
+          <AccountContainer hidden={hidden} id={account.get('id')} withNote={false} />
           <NotificationOverlayContainer notification={notification} />
         </div>
       </HotKeys>

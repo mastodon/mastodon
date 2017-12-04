@@ -84,6 +84,7 @@ const keyMap = {
   goToProfile: 'g u',
   goToBlocked: 'g b',
   goToMuted: 'g m',
+  toggleSpoiler: 'x',
 };
 
 @connect(mapStateToProps)

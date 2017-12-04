@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
 
+  devise_scope :user do
+    get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
+  end
+
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',
@@ -99,6 +103,7 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
+    resource :migration, only: [:show, :update]
 
     resources :sessions, only: [:destroy]
   end
@@ -106,6 +111,7 @@ Rails.application.routes.draw do
   resources :media,  only: [:show]
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
+  resources :invites, only: [:index, :create, :destroy]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
@@ -117,7 +123,9 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
+    resources :action_logs, only: [:index]
     resource :settings, only: [:edit, :update]
+    resources :invites, only: [:index, :create, :destroy]
 
     resources :instances, only: [:index] do
       collection do

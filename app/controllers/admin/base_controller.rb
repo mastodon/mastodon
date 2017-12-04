@@ -3,6 +3,7 @@
 module Admin
   class BaseController < ApplicationController
     include Authorization
+    include AccountableConcern
 
     layout 'admin'
 

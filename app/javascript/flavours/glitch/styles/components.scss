@@ -1058,6 +1058,14 @@
     color: $ui-secondary-color;
   }
 
+  .account__avatar {
+    @include avatar-radius();
+    @include avatar-size(90px);
+    display: block;
+    margin: 0 auto 10px;
+    overflow: hidden;
+  }
+
   .account__header__display-name {
     color: $primary-text-color;
     display: inline-block;
@@ -1246,14 +1254,6 @@
   abbr {
     color: $ui-base-lighter-color;
   }
-}
-
-.account__header__avatar {
-  @include avatar-radius();
-  @include avatar-size(90px);
-  display: block;
-  margin: 0 auto 10px;
-  overflow: hidden;
 }
 
 .account-authorize {

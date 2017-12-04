@@ -1,5 +1,3 @@
-@import 'variables';
-
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -916,6 +914,18 @@
   background-size: cover;
   background-position: center;
   position: relative;
+
+  &.inactive {
+    opacity: 0.5;
+
+    .account__header__avatar {
+      filter: grayscale(100%);
+    }
+
+    .account__header__username {
+      color: $ui-primary-color;
+    }
+  }
 
   & > div {
     background: rgba(lighten($ui-base-color, 4%), 0.9);
@@ -2087,6 +2097,27 @@
   }
 }
 
+.keyboard-shortcuts {
+  padding: 8px 0 0;
+  overflow: hidden;
+
+  thead {
+    position: absolute;
+    left: -9999px;
+  }
+
+  td {
+    padding: 0 10px 8px;
+  }
+
+  code {
+    display: inline-block;
+    padding: 3px 5px;
+    background-color: lighten($ui-base-color, 8%);
+    border: 1px solid darken($ui-base-color, 4%);
+  }
+}
+
 .setting-text {
   color: $ui-primary-color;
   background: transparent;
@@ -2170,15 +2201,12 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status-card-photo {
+  cursor: zoom-in;
   display: block;
   text-decoration: none;
-
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0;
-  }
+  width: 100%;
+  height: auto;
+  margin: 0;
 }
 
 .status-card-video {
@@ -4373,5 +4401,42 @@ noscript {
       overflow: hidden;
       border: 0;
     }
+  }
+}
+
+.account__moved-note {
+  padding: 14px 10px;
+  padding-bottom: 16px;
+  background: lighten($ui-base-color, 4%);
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &__message {
+    position: relative;
+    margin-left: 58px;
+    color: $ui-base-lighter-color;
+    padding: 8px 0;
+    padding-top: 0;
+    padding-bottom: 4px;
+    font-size: 14px;
+
+    > span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__icon-wrapper {
+    left: -26px;
+    position: absolute;
+  }
+
+  .detailed-status__display-avatar {
+    position: relative;
+  }
+
+  .detailed-status__display-name {
+    margin-bottom: 0;
   }
 }

@@ -21,3 +21,8 @@
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
+
+%hr/
+
+%h6= t('auth.migrate_account')
+%p.muted-hint= t('auth.migrate_account_html', path: settings_migration_path)

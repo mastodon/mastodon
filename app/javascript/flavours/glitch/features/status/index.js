@@ -71,6 +71,7 @@ export default class Status extends ImmutablePureComponent {
 
   state = {
     fullscreen: false,
+    isExpanded: null,
   };
 
   componentWillMount () {
@@ -87,6 +88,12 @@ export default class Status extends ImmutablePureComponent {
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
     }
   }
+
+  handleExpandedToggle = () => {
+    if (this.props.status.get('spoiler_text')) {
+      this.setExpansion(this.state.isExpanded ? null : true);
+    }
+  };
 
   handleFavouriteClick = (status) => {
     if (status.get('favourited')) {
@@ -241,6 +248,10 @@ export default class Status extends ImmutablePureComponent {
     ));
   }
 
+  setExpansion = value => {
+    this.setState({ isExpanded: value ? true : null });
+  }
+
   setRef = c => {
     this.node = c;
   }
@@ -272,8 +283,9 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
+    const { setExpansion } = this;
     const { status, settings, ancestorsIds, descendantsIds } = this.props;
-    const { fullscreen } = this.state;
+    const { fullscreen, isExpanded } = this.state;
 
     if (status === null) {
       return (
@@ -300,6 +312,7 @@ export default class Status extends ImmutablePureComponent {
       boost: this.handleHotkeyBoost,
       mention: this.handleHotkeyMention,
       openProfile: this.handleHotkeyOpenProfile,
+      toggleSpoiler: this.handleExpandedToggle,
     };
 
     return (
@@ -317,6 +330,8 @@ export default class Status extends ImmutablePureComponent {
                   settings={settings}
                   onOpenVideo={this.handleOpenVideo}
                   onOpenMedia={this.handleOpenMedia}
+                  expanded={isExpanded}
+                  setExpansion={setExpansion}
                 />
 
                 <ActionBar

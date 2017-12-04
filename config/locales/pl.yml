@@ -39,6 +39,7 @@ pl:
     followers: Śledzących
     following: Śledzi
     media: Zawartość multimedialna
+    moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -48,6 +49,7 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana.
     roles:
       admin: Administrator
+      moderator: Moderator
     unfollow: Przestań śledzić
   admin:
     account_moderation_notes:
@@ -131,6 +133,32 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    action_logs:
+      actions:
+        confirm_user: "%{name} potwierdził adres e-mail użytkownika %{target}"
+        create_custom_emoji: "%{name} dodał nowe emoji %{target}"
+        create_domain_block: "%{name} zablokował domenę %{target}"
+        create_email_domain_block: "%{name} dodał domenę e-mail %{target} na czarną listę"
+        demote_user: "%{name} zdegradował użytkownika %{target}"
+        destroy_domain_block: "%{name} odblokował domenę %{target}"
+        destroy_email_domain_block: "%{name} usunął domenę e-mail %{target} z czarnej listy"
+        destroy_status: "%{name} usunął wpis użytkownika %{target}"
+        disable_2fa_user: "%{name} wyłączył uwierzytelnianie dwustopniowe użytkownikowi %{target}"
+        disable_custom_emoji: "%{name} wyłączył emoji %{target}"
+        disable_user: "%{name} zablokował możliwość logowania użytkownikowi %{target}"
+        enable_custom_emoji: "%{name} włączył emoji %{target}"
+        enable_user: "%{name} przywrócił możliwość logowania użytkownikowi %{target}"
+        memorialize_account: "%{name} nadał kontu %{target} status in memoriam"
+        promote_user: "%{name} podniósł uprawnienia użytkownikowi %{target}"
+        reset_password_user: "%{name} przywrócił hasło użytkownikowi %{target}"
+        resolve_report: "%{name} odrzucił zgłoszenie %{target}"
+        silence_account: "%{name} wyciszył konto %{target}"
+        suspend_account: "%{name} zawiesił konto %{target}"
+        unsilence_account: "%{name} cofnął wyciszenie konta %{target}"
+        unsuspend_account: "%{name} cofnął zawieszenie konta %{target}"
+        update_custom_emoji: "%{name} zaktualizował emoji %{target}"
+        update_status: "%{name} zaktualizował wpis użytkownika %{target}"
+      title: Dziennik działań administracyjnych
     custom_emojis:
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
@@ -147,6 +175,7 @@ pl:
       listed: Widoczne
       new:
         title: Dodaj nowe niestandardowe emoji
+      overwrite: Zastąp
       shortcode: Shortcode
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
@@ -203,6 +232,13 @@ pl:
       reset: Przywróć
       search: Szukaj
       title: Znane instancje
+    invites:
+      filter:
+        all: Wszystkie
+        available: Dostępne
+        expired: Wygasłe
+        title: Filtruj
+      title: Zaproszenia
     reports:
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
@@ -244,6 +280,9 @@ pl:
         open:
           desc_html: Pozwól każdemu na założenie konta
           title: Otwarta rejestracja
+      show_staff_badge:
+        desc_html: Pokazuj odznakę uprawnień na stronie profilu użytkownika
+        title: Pokazuj odznakę administracji
       site_description:
         desc_html: Akapit wprowadzający, widoczny na stronie głównej i znacznikach meta. Możesz korzystać z tagów HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis instancji
@@ -311,6 +350,8 @@ pl:
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
     login: Zaloguj się
     logout: Wyloguj się
+    migrate_account: Przenieś konto
+    migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">skonfigurować to tutaj</a>.
     register: Rejestracja
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
@@ -393,12 +434,48 @@ pl:
       muting: Lista wyciszonych
     upload: Załaduj
   in_memoriam_html: Ku pamięci.
+  invites:
+    delete: Wygaś
+    expired: Wygasły
+    expires_in:
+      '1800': 30 minutach
+      '21600': 6 godzinach
+      '3600': godzinie
+      '43200': 12 godzinach
+      '86400': dobie
+    expires_in_prompt: Nigdy
+    generate: Wygeneruj
+    max_uses:
+      few: "%{count} użycia"
+      many: "%{count} użyć"
+      one: jedno użycie
+      other: "%{count} użyć"
+    max_uses_prompt: Bez ograniczenia
+    prompt: Wygeneruj odnośniki i udostępnij je innym, aby pozwolić na rejestrację na instancji
+    table:
+      expires_at: Wygaśnie po
+      uses: Użycia
+    title: Zaproś użytkowników
+  keyword_mutes:
+    add_keyword: Dodaj słowo kluczowe
+    edit: Edytuj
+    edit_keyword: Edytuj słowo kluczowe
+    keyword: Słowo kluczowe
+    match_whole_word: Uwzględniaj całe słowo
+    remove: Usuń
+    remove_all: Usuń wszystkie
   landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
       too_many: Nie możesz załączyć więcej niż 4 plików
+  migrations:
+    acct: nazwa@domena nowego konta
+    currently_redirecting: 'Obecnie Twoje konto przekierowuje do:'
+    proceed: Zapisz
+  moderation:
+    title: Moderacja
   notification_mailer:
     digest:
       body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'
@@ -515,6 +592,7 @@ pl:
     export: Eksportowanie danych
     followers: Autoryzowani śledzący
     import: Importowanie danych
+    migrate: Migracja konta
     notifications: Powiadomienia
     preferences: Preferencje
     settings: Ustawienia
@@ -611,8 +689,6 @@ pl:
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
-  themes:
-    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

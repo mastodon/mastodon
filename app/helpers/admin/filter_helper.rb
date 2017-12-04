@@ -3,8 +3,9 @@
 module Admin::FilterHelper
   ACCOUNT_FILTERS = %i(local remote by_domain silenced suspended recent username display_name email ip).freeze
   REPORT_FILTERS = %i(resolved account_id target_account_id).freeze
+  INVITE_FILTER = %i(available expired).freeze
 
-  FILTERS = ACCOUNT_FILTERS + REPORT_FILTERS
+  FILTERS = ACCOUNT_FILTERS + REPORT_FILTERS + INVITE_FILTER
 
   def filter_link_to(text, link_to_params, link_class_params = link_to_params)
     new_url = filtered_url_for(link_to_params)
