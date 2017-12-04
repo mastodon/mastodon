@@ -26,7 +26,7 @@
   %h4= t 'preferences.web'
 
   .fields-group
-    - if Themes.instance.names.size > 1
+    - if Themes.instance.flavours.size > 1
       = f.input :setting_flavour, collection: Themes.instance.flavours, label_method: lambda { |flavour| I18n.t("themes.#{flavour}", default: flavour) }, wrapper: :with_label, include_blank: false
       = f.input :setting_skin, collection: Themes.instance.skins_for(current_theme), label_method: lambda { |skin| I18n.t("themes.#{current_theme}.skins.#{skin}", default: skin) }, wrapper: :with_label, include_blank: false
 
