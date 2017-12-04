@@ -1,6 +1,6 @@
 import WebSocketClient from 'websocket.js';
 
-export function connectStream(path, pollingRefresh = null, callbacks = () => ({ onConnect() {}, onDisconnect() {}, onReceive() {} })) {
+export function connectStream(path, pollingRefresh = null, callbacks = (dispatch, getState) => ({ onConnect() {}, onDisconnect() {}, onReceive() {} })) {
   return (dispatch, getState) => {
     const streamingAPIBaseURL = getState().getIn(['meta', 'streaming_api_base_url']);
     const accessToken = getState().getIn(['meta', 'access_token']);
