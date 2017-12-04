@@ -1960,7 +1960,8 @@
 }
 
 .autosuggest-textarea,
-.spoiler-input {
+.spoiler-input,
+.list-editor__search {
   position: relative;
 }
 
@@ -2341,6 +2342,10 @@ button.icon-button.active i.fa-retweet {
   display: flex;
   margin: -15px;
   margin-left: 0;
+}
+
+.column-header__links .text-btn {
+  margin-right: 10px;
 }
 
 .column-header__button {
@@ -2998,7 +3003,8 @@ button.icon-button.active i.fa-retweet {
   position: relative;
 }
 
-.search__input {
+.search__input,
+.list-editor__search input {
   outline: 0;
   box-sizing: border-box;
   display: block;
@@ -4453,5 +4459,35 @@ noscript {
   .icon-button {
     flex: 0 0 auto;
     margin-left: 5px;
+  }
+}
+
+.list-editor {
+  background: $ui-base-color;
+  flex-direction: column;
+  border-radius: 8px;
+
+  h4 {
+    padding: 15px 0;
+    background: lighten($ui-base-color, 4%);
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+  }
+
+  &__accounts {
+    height: 50vh;
+    overflow-y: auto;
+  }
+
+  .account__display-name {
+    &:hover strong {
+      text-decoration: none;
+    }
+  }
+
+  .account__avatar {
+    cursor: default;
   }
 }

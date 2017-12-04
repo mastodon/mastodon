@@ -1,4 +1,4 @@
-import api from '../api';
+import api, { getLinks } from '../api';
 
 export const LIST_FETCH_REQUEST = 'LIST_FETCH_REQUEST';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
@@ -10,6 +10,7 @@ export const LISTS_FETCH_FAIL    = 'LISTS_FETCH_FAIL';
 
 export const LIST_EDITOR_TITLE_CHANGE = 'LIST_EDITOR_TITLE_CHANGE';
 export const LIST_EDITOR_RESET        = 'LIST_EDITOR_RESET';
+export const LIST_EDITOR_SETUP        = 'LIST_EDITOR_SETUP';
 
 export const LIST_CREATE_REQUEST = 'LIST_CREATE_REQUEST';
 export const LIST_CREATE_SUCCESS = 'LIST_CREATE_SUCCESS';
@@ -22,6 +23,24 @@ export const LIST_UPDATE_FAIL    = 'LIST_UPDATE_FAIL';
 export const LIST_DELETE_REQUEST = 'LIST_DELETE_REQUEST';
 export const LIST_DELETE_SUCCESS = 'LIST_DELETE_SUCCESS';
 export const LIST_DELETE_FAIL    = 'LIST_DELETE_FAIL';
+
+export const LIST_ACCOUNTS_FETCH_REQUEST = 'LIST_ACCOUNTS_FETCH_REQUEST';
+export const LIST_ACCOUNTS_FETCH_SUCCESS = 'LIST_ACCOUNTS_FETCH_SUCCESS';
+export const LIST_ACCOUNTS_FETCH_FAIL    = 'LIST_ACCOUNTS_FETCH_FAIL';
+
+export const LIST_ACCOUNTS_EXPAND_REQUEST = 'LIST_ACCOUNTS_EXPAND_REQUEST';
+export const LIST_ACCOUNTS_EXPAND_SUCCESS = 'LIST_ACCOUNTS_EXPAND_SUCCESS';
+export const LIST_ACCOUNTS_EXPAND_FAIL    = 'LIST_ACCOUNTS_EXPAND_FAIL';
+
+export const LIST_EDITOR_SUGGESTIONS_READY = 'LIST_EDITOR_SUGGESTIONS_READY';
+
+export const LIST_EDITOR_ADD_REQUEST = 'LIST_EDITOR_ADD_REQUEST';
+export const LIST_EDITOR_ADD_SUCCESS = 'LIST_EDITOR_ADD_SUCCESS';
+export const LIST_EDITOR_ADD_FAIL    = 'LIST_EDITOR_ADD_FAIL';
+
+export const LIST_EDITOR_REMOVE_REQUEST = 'LIST_EDITOR_REMOVE_REQUEST';
+export const LIST_EDITOR_REMOVE_SUCCESS = 'LIST_EDITOR_REMOVE_SUCCESS';
+export const LIST_EDITOR_REMOVE_FAIL    = 'LIST_EDITOR_REMOVE_FAIL';
 
 export const fetchList = id => (dispatch, getState) => {
   if (getState().getIn(['lists', id])) {
@@ -81,6 +100,15 @@ export const submitListEditor = () => (dispatch, getState) => {
   } else {
     dispatch(updateList(listId, title));
   }
+};
+
+export const setupListEditor = listId => (dispatch, getState) => {
+  dispatch({
+    type: LIST_EDITOR_SETUP,
+    list: getState().getIn(['lists', listId]),
+  });
+
+  dispatch(fetchListAccounts(listId));
 };
 
 export const changeListEditorTitle = value => ({
@@ -159,5 +187,105 @@ export const deleteListSuccess = id => ({
 export const deleteListFail = (id, error) => ({
   type: LIST_DELETE_FAIL,
   id,
+  error,
+});
+
+export const fetchListAccounts = listId => (dispatch, getState) => {
+  dispatch(fetchListAccountsRequest(listId));
+
+  api(getState).get(`/api/v1/lists/${listId}/accounts`).then(response => {
+    const next = getLinks(response).refs.find(link => link.rel === 'next');
+    dispatch(fetchListAccountsSuccess(listId, response.data, next ? next.uri : null));
+  }).catch(err => dispatch(fetchListAccountsFail(listId, err)));
+};
+
+export const fetchListAccountsRequest = id => ({
+  type: LIST_ACCOUNTS_FETCH_REQUEST,
+  id,
+});
+
+export const fetchListAccountsSuccess = (id, accounts, next) => ({
+  type: LIST_ACCOUNTS_FETCH_SUCCESS,
+  id,
+  accounts,
+  next,
+});
+
+export const fetchListAccountsFail = (id, error) => ({
+  type: LIST_ACCOUNTS_FETCH_FAIL,
+  id,
+  error,
+});
+
+export const fetchListSuggestions = q => (dispatch, getState) => {
+  api(getState).get('/api/v1/accounts/search', { params: { q, resolve: false, limit: 4, only_follows: true } })
+    .then(({ data }) => dispatch(fetchListSuggestionsReady(q, data)));
+};
+
+export const fetchListSuggestionsReady = (query, accounts) => ({
+  type: LIST_EDITOR_SUGGESTIONS_READY,
+  query,
+  accounts,
+});
+
+export const addToListEditor = accountId => (dispatch, getState) => {
+  dispatch(addToList(getState().getIn(['listEditor', 'listId']), accountId));
+};
+
+export const addToList = (listId, accountId) => (dispatch, getState) => {
+  dispatch(addToListRequest(listId, accountId));
+
+  api(getState).post(`/api/v1/lists/${listId}/accounts`, { account_ids: [accountId] })
+    .then(() => dispatch(addToListSuccess(listId, accountId)))
+    .catch(err => dispatch(addToListFail(listId, accountId, err)));
+};
+
+export const addToListRequest = (listId, accountId) => ({
+  type: LIST_EDITOR_ADD_REQUEST,
+  listId,
+  accountId,
+});
+
+export const addToListSuccess = (listId, accountId) => ({
+  type: LIST_EDITOR_ADD_SUCCESS,
+  listId,
+  accountId,
+});
+
+export const addToListFail = (listId, accountId, error) => ({
+  type: LIST_EDITOR_ADD_FAIL,
+  listId,
+  accountId,
+  error,
+});
+
+export const removeFromListEditor = accountId => (dispatch, getState) => {
+  dispatch(removeFromList(getState().getIn(['listEditor', 'listId']), accountId));
+};
+
+export const removeFromList = (listId, accountId) => (dispatch, getState) => {
+  dispatch(removeFromListRequest(listId, accountId));
+
+  api(getState).delete(`/api/v1/lists/${listId}/accounts`, { params: { account_ids: [accountId] } })
+    .then(() => dispatch(removeFromListSuccess(listId, accountId)))
+    .catch(err => dispatch(removeFromListFail(listId, accountId, err)));
+};
+
+export const removeFromListRequest = (listId, accountId) => ({
+  type: LIST_EDITOR_REMOVE_REQUEST,
+  listId,
+  accountId,
+});
+
+export const removeFromListSuccess = (listId, accountId) => ({
+  type: LIST_EDITOR_REMOVE_SUCCESS,
+  listId,
+  accountId,
+});
+
+export const removeFromListFail = (listId, accountId, error) => ({
+  type: LIST_EDITOR_REMOVE_FAIL,
+  listId,
+  accountId,
   error,
 });

@@ -81,6 +81,10 @@ export default class ListTimeline extends React.PureComponent {
     this.props.dispatch(expandListTimeline(id));
   }
 
+  handleEditClick = () => {
+    this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id }));
+  }
+
   handleDeleteClick = () => {
     const { dispatch, columnId, intl } = this.props;
     const { id } = this.props.params;
@@ -116,9 +120,15 @@ export default class ListTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
-            <i className='fa fa-trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
-          </button>
+          <div className='column-header__links'>
+            <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleEditClick}>
+              <i className='fa fa-pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
+            </button>
+
+            <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
+              <i className='fa fa-trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+            </button>
+          </div>
 
           <hr />
         </ColumnHeader>
