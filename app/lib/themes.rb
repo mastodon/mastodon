@@ -32,7 +32,7 @@ class Themes
           Dir.glob(File.join(path, '*.{css,scss}')) do |sheet|
             pack.push(File.basename(sheet, File.extname(sheet)))
           end
-        elsif ext.match?(/^\.s?css$/i)
+        elsif ext.match(/^\.s?css$/i)
           skin = File.basename(path, ext)
           pack = ['common']
         end
