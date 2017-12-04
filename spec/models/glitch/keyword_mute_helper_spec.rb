@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Glitch::FilterHelper do
+RSpec.describe Glitch::KeywordMuteHelper do
   describe '#matches?' do
     let(:alice) { Fabricate(:account, username: 'alice').tap(&:save!) }
-    let(:helper) { Glitch::FilterHelper.new(alice) }
+    let(:helper) { Glitch::KeywordMuteHelper.new(alice) }
 
     it 'ignores names of HTML tags in status text' do
       status = Fabricate(:status, text: '<addr>uh example</addr>')

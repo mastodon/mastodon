@@ -1,6 +1,6 @@
 require 'htmlentities'
 
-class Glitch::FilterHelper
+class Glitch::KeywordMuteHelper
   include ActionView::Helpers::SanitizeHelper
 
   attr_reader :text_matcher
@@ -26,6 +26,6 @@ class Glitch::FilterHelper
   end
 
   def prepare_text(text)
-    entity_decoder.decode(strip_tags(text))
+    entity_decoder.decode(strip_tags(text)).tap { |x| puts x }
   end
 end

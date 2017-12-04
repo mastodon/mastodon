@@ -178,7 +178,7 @@ class FeedManager
   end
 
   def keyword_filter?(status, receiver_id)
-    Glitch::FilterHelper.new(receiver_id).matches?(status)
+    Glitch::KeywordMuteHelper.new(receiver_id).matches?(status)
   end
 
   def filter_from_mentions?(status, receiver_id)
