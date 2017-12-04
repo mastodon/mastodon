@@ -1,0 +1,34 @@
+#  (REQUIRED) The location of the pack files.
+pack:
+  about: packs/about.js
+  admin:
+  auth:
+  common:
+    filename: packs/common.js
+    stylesheet: true
+  embed: packs/public.js
+  error:
+  home:
+    filename: packs/home.js
+    preload:
+    - flavours/glitch/async/getting_started
+    - flavours/glitch/async/compose
+    - flavours/glitch/async/home_timeline
+    - flavours/glitch/async/notifications
+    stylesheet: true
+  modal:
+  public: packs/public.js
+  settings:
+  share: packs/share.js
+
+#  (OPTIONAL) The directory which contains the pack files.
+#  Defaults to the theme directory (`app/javascript/themes/[theme]`),
+#  which should be sufficient for like 99% of use-cases lol.
+
+#      pack_directory: app/javascript/packs
+
+#  (OPTIONAL) By default the theme will fallback to the default theme
+#  if a particular pack is not provided. You can specify different
+#  fallbacks here, or disable fallback behaviours altogether by
+#  specifying a `null` value.
+fallback:

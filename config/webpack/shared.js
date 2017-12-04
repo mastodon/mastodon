@@ -6,7 +6,7 @@ const { sync } = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const extname = require('path-complete-extname');
-const { env, settings, core, themes, output, loadersDir } = require('./configuration.js');
+const { env, settings, core, flavours, output, loadersDir } = require('./configuration.js');
 const localePackPaths = require('./generateLocalePacks');
 
 function reducePacks (data, into = {}) {
@@ -20,7 +20,7 @@ function reducePacks (data, into = {}) {
     }
     const packFile = typeof pack === 'string' ? pack : pack.filename;
     if (packFile) {
-      map[data.name ? `themes/${data.name}/${entry}` : `core/${entry}`] = resolve(data.pack_directory, packFile);
+      map[data.name ? `flavours/${data.name}/${entry}` : `core/${entry}`] = resolve(data.pack_directory, packFile);
     }
     return map;
   }, into);
@@ -54,7 +54,7 @@ module.exports = {
       return localMap;
     }, {}),
     reducePacks(core),
-    Object.keys(themes).reduce((map, entry) => reducePacks(themes[entry], map), {})
+    Object.keys(flavours).reduce((map, entry) => reducePacks(flavours[entry], map), {})
   ),
 
   output: {

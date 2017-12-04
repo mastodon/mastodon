@@ -12,7 +12,7 @@ class Themes
     core['pack'] = Hash.new unless core['pack']
 
     result = Hash.new
-    Dir.glob(Rails.root.join('app', 'javascript', 'themes', '*', 'theme.yml')) do |path|
+    Dir.glob(Rails.root.join('app', 'javascript', 'flavours', '*', 'theme.yml')) do |path|
       data = YAML.load_file(path)
       name = File.basename(File.dirname(path))
       if data['pack']
@@ -51,11 +51,11 @@ class Themes
     @core
   end
 
-  def get(name)
+  def flavour(name)
     @conf[name]
   end
 
-  def names
+  def flavours
     @conf.keys
   end
 

@@ -3,7 +3,7 @@
 const { length } = require('stringz');
 const { delegate } = require('rails-ujs');
 
-import { processBio } from 'themes/glitch/util/bio_metadata';
+import { processBio } from 'flavours/glitch/util/bio_metadata';
 
 delegate(document, '.account_display_name', 'input', ({ target }) => {
   const nameCounter = document.querySelector('.name-counter');

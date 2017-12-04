@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_account
   helper_method :current_session
-  helper_method :current_theme
+  helper_method :current_flavour
   helper_method :current_skin
   helper_method :single_user_mode?
 
@@ -57,8 +57,8 @@ class ApplicationController < ActionController::Base
   def pack(data, pack_name, skin = 'default')
     return nil unless pack?(data, pack_name)
     pack_data = {
-      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.get(current_theme) : Themes.instance.core, 'common'),
-      name: data['name'],
+      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.flavour(current_flavour) : Themes.instance.core, 'common'),
+      flavour: data['name'],
       pack: pack_name,
       preload: nil,
       skin: nil,
@@ -88,8 +88,8 @@ class ApplicationController < ActionController::Base
 
   def nil_pack(data, pack_name, skin = 'default')
     {
-      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.get(current_theme) : Themes.instance.core, 'common', skin),
-      name: data['name'],
+      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.flavour(current_flavour) : Themes.instance.core, 'common', skin),
+      flavour: data['name'],
       pack: nil,
       preload: nil,
       skin: nil,
@@ -102,23 +102,23 @@ class ApplicationController < ActionController::Base
       if data['name'] && data.key?('fallback')
         if data['fallback'].nil?
           return nil_pack(data, pack_name, skin)
-        elsif data['fallback'].is_a?(String) && Themes.instance.get(data['fallback'])
-          return resolve_pack(Themes.instance.get(data['fallback']), pack_name, skin)
+        elsif data['fallback'].is_a?(String) && Themes.instance.flavour(data['fallback'])
+          return resolve_pack(Themes.instance.flavour(data['fallback']), pack_name, skin)
         elsif data['fallback'].is_a?(Array)
           data['fallback'].each do |fallback|
-            return resolve_pack(Themes.instance.get(fallback), pack_name, skin) if Themes.instance.get(fallback)
+            return resolve_pack(Themes.instance.flavour(fallback), pack_name, skin) if Themes.instance.flavour(fallback)
           end
         end
         return nil_pack(data, pack_name, skin)
       end
-      return data.key?('name') && data['name'] != default_theme ? resolve_pack(Themes.instance.get(default_theme), pack_name, skin) : nil_pack(data, pack_name, skin)
+      return data.key?('name') && data['name'] != Setting.default_settings['flavour'] ? resolve_pack(Themes.instance.flavour(Setting.default_settings['flavour']), pack_name, skin) : nil_pack(data, pack_name, skin)
     end
     result
   end
 
   def use_pack(pack_name)
     @core = resolve_pack(Themes.instance.core, pack_name)
-    @theme = resolve_pack(Themes.instance.get(current_theme), pack_name, current_skin)
+    @theme = resolve_pack(Themes.instance.flavour(current_flavour), pack_name, current_skin)
   end
 
   protected
@@ -151,21 +151,13 @@ class ApplicationController < ActionController::Base
     @current_session ||= SessionActivation.find_by(session_id: cookies.signed['_session_id'])
   end
 
-  def default_theme
-    Setting.default_settings['theme']
-  end
-
-  def current_theme
-    return default_theme unless Themes.instance.names.include? current_user&.setting_theme
-    current_user.setting_theme
-  end
-
-  def default_skin
-    'default'
+  def current_flavour
+    return Setting.default_settings['flavour'] unless Themes.instance.flavours.include? current_user&.setting_flavour
+    current_user.setting_flavour
   end
 
   def current_skin
-    return default_skin unless Themes.instance.skins_for(current_theme).include? current_user&.setting_skin
+    return 'default' unless Themes.instance.skins_for(current_flavour).include? current_user&.setting_skin
     current_user.setting_skin
   end
 

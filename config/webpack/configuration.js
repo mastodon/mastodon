@@ -9,9 +9,9 @@ const glob = require('glob');
 const configPath = resolve('config', 'webpacker.yml');
 const loadersDir = join(__dirname, 'loaders');
 const settings = safeLoad(readFileSync(configPath), 'utf8')[env.NODE_ENV];
-const themeFiles = glob.sync('app/javascript/themes/*/theme.yml');
+const flavourFiles = glob.sync('app/javascript/flavours/*/theme.yml');
 const skinFiles = glob.sync('app/javascript/skins/*/*');
-const themes = {};
+const flavours = {};
 
 const core = function () {
   const coreFile = resolve('app', 'javascript', 'core', 'theme.yml');
@@ -22,16 +22,16 @@ const core = function () {
   return data.pack ? data : {};
 }();
 
-for (let i = 0; i < themeFiles.length; i++) {
-  const themeFile = themeFiles[i];
-  const data = safeLoad(readFileSync(themeFile), 'utf8');
-  data.name = basename(dirname(themeFile));
+for (let i = 0; i < flavourFiles.length; i++) {
+  const flavourFile = flavourFiles[i];
+  const data = safeLoad(readFileSync(flavourFile), 'utf8');
+  data.name = basename(dirname(flavourFile));
   data.skin = {};
   if (!data.pack_directory) {
-    data.pack_directory = dirname(themeFile);
+    data.pack_directory = dirname(flavourFile);
   }
   if (data.pack && typeof data.pack === 'object') {
-    themes[data.name] = data;
+    flavours[data.name] = data;
   }
 }
 
@@ -39,10 +39,10 @@ for (let i = 0; i < skinFiles.length; i++) {
   const skinFile = skinFiles[i];
   let skin = basename(skinFile);
   const name = basename(dirname(skinFile));
-  if (!themes[name]) {
+  if (!flavours[name]) {
     continue;
   }
-  const data = themes[name].skin;
+  const data = flavours[name].skin;
   if (lstatSync(skinFile).isDirectory()) {
     data[skin] = {};
     const skinPacks = glob.sync(skinFile, '*.{css,scss}');
@@ -76,7 +76,7 @@ const output = {
 module.exports = {
   settings,
   core,
-  themes,
+  flavours,
   env,
   loadersDir,
   output,
