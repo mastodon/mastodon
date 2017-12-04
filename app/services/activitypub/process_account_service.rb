@@ -107,12 +107,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def url
     return if @json['url'].blank?
-
-    value = first_of_value(@json['url'])
-
-    return value if value.is_a?(String)
-
-    value['href']
+    url_to_href(@json['url'], 'text/html')
   end
 
   def outbox_total_items

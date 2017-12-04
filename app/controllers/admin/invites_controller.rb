@@ -5,7 +5,7 @@ module Admin
     def index
       authorize :invite, :index?
 
-      @invites = Invite.includes(user: :account).page(params[:page])
+      @invites = filtered_invites.includes(user: :account).page(params[:page])
       @invite  = Invite.new
     end
 
@@ -28,6 +28,20 @@ module Admin
       authorize @invite, :destroy?
       @invite.expire!
       redirect_to admin_invites_path
+    end
+
+    private
+
+    def resource_params
+      params.require(:invite).permit(:max_uses, :expires_in)
+    end
+
+    def filtered_invites
+      InviteFilter.new(filter_params).results
+    end
+
+    def filter_params
+      params.permit(:available, :expired)
     end
   end
 end
