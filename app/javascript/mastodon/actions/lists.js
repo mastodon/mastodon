@@ -218,7 +218,14 @@ export const fetchListAccountsFail = (id, error) => ({
 });
 
 export const fetchListSuggestions = q => (dispatch, getState) => {
-  api(getState).get('/api/v1/accounts/search', { params: { q, resolve: false, limit: 4, only_follows: true } })
+  const params = {
+    q,
+    resolve: false,
+    limit: 4,
+    following: true,
+  };
+
+  api(getState).get('/api/v1/accounts/search', { params })
     .then(({ data }) => dispatch(fetchListSuggestionsReady(q, data)));
 };
 
