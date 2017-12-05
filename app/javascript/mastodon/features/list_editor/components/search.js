@@ -6,7 +6,7 @@ import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } fro
 import classNames from 'classnames';
 
 const messages = defineMessages({
-  search: { id: 'lists.search', defaultMessage: 'Search among follows' },
+  search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
 });
 
 const mapStateToProps = state => ({

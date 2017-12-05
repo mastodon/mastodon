@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api';
+import api from '../api';
 
 export const LIST_FETCH_REQUEST = 'LIST_FETCH_REQUEST';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
