@@ -28,7 +28,7 @@ class List < ApplicationRecord
     reblog_key       = FeedManager.instance.key(:list, id, 'reblogs')
     reblogged_id_set = Redis.current.zrange(reblog_key, 0, -1)
 
-    redis.pipelined do
+    Redis.current.pipelined do
       Redis.current.del(FeedManager.instance.key(:list, id))
       Redis.current.del(reblog_key)
 
