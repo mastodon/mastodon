@@ -277,23 +277,46 @@ class Account < ApplicationRecord
       find_by_sql([sql, limit])
     end
 
-    def advanced_search_for(terms, account, limit = 10)
+    def advanced_search_for(terms, account, limit = 10, following = false)
       textsearch, query = generate_query_for_search(terms)
 
-      sql = <<-SQL.squish
-        SELECT
-          accounts.*,
-          (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
-        FROM accounts
-        LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
-        WHERE #{query} @@ #{textsearch}
-          AND accounts.suspended = false
-        GROUP BY accounts.id
-        ORDER BY rank DESC
-        LIMIT ?
-      SQL
+      if following
+        sql = <<-SQL.squish
+          WITH first_degree AS (
+            SELECT target_account_id
+            FROM follows
+            WHERE account_id = ?
+          )
+          SELECT
+            accounts.*,
+            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+          FROM accounts
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          WHERE accounts.id IN (SELECT * FROM first_degree)
+            AND #{query} @@ #{textsearch}
+            AND accounts.suspended = false
+          GROUP BY accounts.id
+          ORDER BY rank DESC
+          LIMIT ?
+        SQL
 
-      find_by_sql([sql, account.id, account.id, limit])
+        find_by_sql([sql, account.id, account.id, account.id, limit])
+      else
+        sql = <<-SQL.squish
+          SELECT
+            accounts.*,
+            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+          FROM accounts
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          WHERE #{query} @@ #{textsearch}
+            AND accounts.suspended = false
+          GROUP BY accounts.id
+          ORDER BY rank DESC
+          LIMIT ?
+        SQL
+
+        find_by_sql([sql, account.id, account.id, limit])
+      end
     end
 
     private
