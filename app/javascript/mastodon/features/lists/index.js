@@ -18,7 +18,13 @@ const messages = defineMessages({
   subheading: { id: 'lists.subheading', defaultMessage: 'Your lists' },
 });
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title'))));
+const getOrderedLists = createSelector([state => state.get('lists')], lists => {
+  if (!lists) {
+    return lists;
+  }
+
+  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+});
 
 const mapStateToProps = state => ({
   lists: getOrderedLists(state),
@@ -31,7 +37,7 @@ export default class Lists extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    lists: ImmutablePropTypes.map,
+    lists: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
   };
 

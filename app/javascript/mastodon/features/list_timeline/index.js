@@ -38,7 +38,7 @@ export default class ListTimeline extends React.PureComponent {
     columnId: PropTypes.string,
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
-    list: ImmutablePropTypes.map,
+    list: PropTypes.oneOfType([ImmutablePropTypes.map, PropTypes.bool]),
     intl: PropTypes.object.isRequired,
   };
 
