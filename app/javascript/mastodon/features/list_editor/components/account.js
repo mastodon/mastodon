@@ -18,8 +18,9 @@ const messages = defineMessages({
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
-  const mapStateToProps = (state, { accountId }) => ({
+  const mapStateToProps = (state, { accountId, added }) => ({
     account: getAccount(state, accountId),
+    added: typeof added === 'undefined' ? state.getIn(['listEditor', 'accounts', 'items']).includes(accountId) : added,
   });
 
   return mapStateToProps;

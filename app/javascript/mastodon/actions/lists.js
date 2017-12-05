@@ -28,10 +28,6 @@ export const LIST_ACCOUNTS_FETCH_REQUEST = 'LIST_ACCOUNTS_FETCH_REQUEST';
 export const LIST_ACCOUNTS_FETCH_SUCCESS = 'LIST_ACCOUNTS_FETCH_SUCCESS';
 export const LIST_ACCOUNTS_FETCH_FAIL    = 'LIST_ACCOUNTS_FETCH_FAIL';
 
-export const LIST_ACCOUNTS_EXPAND_REQUEST = 'LIST_ACCOUNTS_EXPAND_REQUEST';
-export const LIST_ACCOUNTS_EXPAND_SUCCESS = 'LIST_ACCOUNTS_EXPAND_SUCCESS';
-export const LIST_ACCOUNTS_EXPAND_FAIL    = 'LIST_ACCOUNTS_EXPAND_FAIL';
-
 export const LIST_EDITOR_SUGGESTIONS_CHANGE = 'LIST_EDITOR_SUGGESTIONS_CHANGE';
 export const LIST_EDITOR_SUGGESTIONS_READY  = 'LIST_EDITOR_SUGGESTIONS_READY';
 export const LIST_EDITOR_SUGGESTIONS_CLEAR  = 'LIST_EDITOR_SUGGESTIONS_CLEAR';
@@ -195,10 +191,9 @@ export const deleteListFail = (id, error) => ({
 export const fetchListAccounts = listId => (dispatch, getState) => {
   dispatch(fetchListAccountsRequest(listId));
 
-  api(getState).get(`/api/v1/lists/${listId}/accounts`).then(response => {
-    const next = getLinks(response).refs.find(link => link.rel === 'next');
-    dispatch(fetchListAccountsSuccess(listId, response.data, next ? next.uri : null));
-  }).catch(err => dispatch(fetchListAccountsFail(listId, err)));
+  api(getState).get(`/api/v1/lists/${listId}/accounts`, { params: { limit: 0 } })
+    .then(({ data }) => dispatch(fetchListAccountsSuccess(listId, data)))
+    .catch(err => dispatch(fetchListAccountsFail(listId, err)));
 };
 
 export const fetchListAccountsRequest = id => ({

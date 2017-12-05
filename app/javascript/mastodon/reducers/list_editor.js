@@ -25,7 +25,6 @@ const initialState = ImmutableMap({
   title: '',
 
   accounts: ImmutableMap({
-    next: null,
     items: ImmutableList(),
     loaded: false,
     isLoading: false,
@@ -69,7 +68,6 @@ export default function listEditorReducer(state = initialState, action) {
     return state.update('accounts', accounts => accounts.withMutations(map => {
       map.set('isLoading', false);
       map.set('loaded', true);
-      map.set('next', action.next);
       map.set('items', ImmutableList(action.accounts.map(item => item.id)));
     }));
   case LIST_EDITOR_SUGGESTIONS_CHANGE:
