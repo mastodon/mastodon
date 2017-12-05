@@ -19,7 +19,7 @@ class Subscription < ApplicationRecord
   MIN_EXPIRATION = 1.day.to_i
   MAX_EXPIRATION = 30.days.to_i
 
-  belongs_to :account, required: true
+  belongs_to :account
 
   validates :callback_url, presence: true
   validates :callback_url, uniqueness: { scope: :account_id }

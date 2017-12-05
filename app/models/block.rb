@@ -13,8 +13,8 @@
 class Block < ApplicationRecord
   include Paginable
 
-  belongs_to :account, required: true
-  belongs_to :target_account, class_name: 'Account', required: true
+  belongs_to :account
+  belongs_to :target_account, class_name: 'Account'
 
   validates :account_id, uniqueness: { scope: :target_account_id }
 
