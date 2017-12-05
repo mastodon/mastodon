@@ -18,8 +18,8 @@ class Api::V1::Accounts::SearchController < Api::BaseController
       params[:q],
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
       current_account,
-      resolve: truthy_param(:resolve),
-      following: truthy_param(:following),
+      resolve: truthy_param?(:resolve),
+      following: truthy_param?(:following),
     )
   end
 

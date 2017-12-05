@@ -3,6 +3,9 @@ import {
   LIST_CREATE_REQUEST,
   LIST_CREATE_FAIL,
   LIST_CREATE_SUCCESS,
+  LIST_UPDATE_REQUEST,
+  LIST_UPDATE_FAIL,
+  LIST_UPDATE_SUCCESS,
   LIST_EDITOR_RESET,
   LIST_EDITOR_SETUP,
   LIST_EDITOR_TITLE_CHANGE,
@@ -10,6 +13,8 @@ import {
   LIST_ACCOUNTS_FETCH_SUCCESS,
   LIST_ACCOUNTS_FETCH_FAIL,
   LIST_EDITOR_SUGGESTIONS_READY,
+  LIST_EDITOR_SUGGESTIONS_CLEAR,
+  LIST_EDITOR_SUGGESTIONS_CHANGE,
   LIST_EDITOR_ADD_SUCCESS,
   LIST_EDITOR_REMOVE_SUCCESS,
 } from '../actions/lists';
@@ -26,7 +31,10 @@ const initialState = ImmutableMap({
     isLoading: false,
   }),
 
-  suggestions: ImmutableList(),
+  suggestions: ImmutableMap({
+    value: '',
+    items: ImmutableList(),
+  }),
 });
 
 export default function listEditorReducer(state = initialState, action) {
@@ -42,10 +50,13 @@ export default function listEditorReducer(state = initialState, action) {
   case LIST_EDITOR_TITLE_CHANGE:
     return state.set('title', action.value);
   case LIST_CREATE_REQUEST:
+  case LIST_UPDATE_REQUEST:
     return state.set('isSubmitting', true);
   case LIST_CREATE_FAIL:
+  case LIST_UPDATE_FAIL:
     return state.set('isSubmitting', false);
   case LIST_CREATE_SUCCESS:
+  case LIST_UPDATE_SUCCESS:
     return state.withMutations(map => {
       map.set('isSubmitting', false);
       map.set('listId', action.list.id);
@@ -61,8 +72,15 @@ export default function listEditorReducer(state = initialState, action) {
       map.set('next', action.next);
       map.set('items', ImmutableList(action.accounts.map(item => item.id)));
     }));
+  case LIST_EDITOR_SUGGESTIONS_CHANGE:
+    return state.setIn(['suggestions', 'value'], action.value);
   case LIST_EDITOR_SUGGESTIONS_READY:
-    return state.set('suggestions', ImmutableList(action.accounts.map(item => item.id)));
+    return state.setIn(['suggestions', 'items'], ImmutableList(action.accounts.map(item => item.id)));
+  case LIST_EDITOR_SUGGESTIONS_CLEAR:
+    return state.update('suggestions', suggestions => suggestions.withMutations(map => {
+      map.set('items', ImmutableList());
+      map.set('value', '');
+    }));
   case LIST_EDITOR_ADD_SUCCESS:
     return state.updateIn(['accounts', 'items'], list => list.unshift(action.accountId));
   case LIST_EDITOR_REMOVE_SUCCESS:

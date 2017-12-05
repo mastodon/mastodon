@@ -32,7 +32,9 @@ export const LIST_ACCOUNTS_EXPAND_REQUEST = 'LIST_ACCOUNTS_EXPAND_REQUEST';
 export const LIST_ACCOUNTS_EXPAND_SUCCESS = 'LIST_ACCOUNTS_EXPAND_SUCCESS';
 export const LIST_ACCOUNTS_EXPAND_FAIL    = 'LIST_ACCOUNTS_EXPAND_FAIL';
 
-export const LIST_EDITOR_SUGGESTIONS_READY = 'LIST_EDITOR_SUGGESTIONS_READY';
+export const LIST_EDITOR_SUGGESTIONS_CHANGE = 'LIST_EDITOR_SUGGESTIONS_CHANGE';
+export const LIST_EDITOR_SUGGESTIONS_READY  = 'LIST_EDITOR_SUGGESTIONS_READY';
+export const LIST_EDITOR_SUGGESTIONS_CLEAR  = 'LIST_EDITOR_SUGGESTIONS_CLEAR';
 
 export const LIST_EDITOR_ADD_REQUEST = 'LIST_EDITOR_ADD_REQUEST';
 export const LIST_EDITOR_ADD_SUCCESS = 'LIST_EDITOR_ADD_SUCCESS';
@@ -141,7 +143,7 @@ export const createListFail = error => ({
 export const updateList = (id, title) => (dispatch, getState) => {
   dispatch(updateListRequest(id));
 
-  api(getState).put(`/api/v1/lists/${id}`, { params: { title } })
+  api(getState).put(`/api/v1/lists/${id}`, { title })
     .then(({ data }) => dispatch(updateListSuccess(data)))
     .catch(err => dispatch(updateListFail(id, err)));
 };
@@ -233,6 +235,15 @@ export const fetchListSuggestionsReady = (query, accounts) => ({
   type: LIST_EDITOR_SUGGESTIONS_READY,
   query,
   accounts,
+});
+
+export const clearListSuggestions = () => ({
+  type: LIST_EDITOR_SUGGESTIONS_CLEAR,
+});
+
+export const changeListSuggestions = value => ({
+  type: LIST_EDITOR_SUGGESTIONS_CHANGE,
+  value,
 });
 
 export const addToListEditor = accountId => (dispatch, getState) => {
