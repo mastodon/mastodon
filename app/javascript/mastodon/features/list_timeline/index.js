@@ -11,6 +11,8 @@ import { connectListStream } from '../../actions/streaming';
 import { refreshListTimeline, expandListTimeline } from '../../actions/timelines';
 import { fetchList, deleteList } from '../../actions/lists';
 import { openModal } from '../../actions/modal';
+import MissingIndicator from '../../components/missing_indicator';
+import LoadingIndicator from '../../components/loading_indicator';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -25,6 +27,10 @@ const mapStateToProps = (state, props) => ({
 @connect(mapStateToProps)
 @injectIntl
 export default class ListTimeline extends React.PureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -43,6 +49,7 @@ export default class ListTimeline extends React.PureComponent {
       dispatch(removeColumn(columnId));
     } else {
       dispatch(addColumn('LIST', { id: this.props.params.id }));
+      this.context.router.history.push('/');
     }
   }
 
@@ -95,8 +102,10 @@ export default class ListTimeline extends React.PureComponent {
       onConfirm: () => {
         dispatch(deleteList(id));
 
-        if (columnId) {
+        if (!!columnId) {
           dispatch(removeColumn(columnId));
+        } else {
+          this.context.router.history.push('/lists');
         }
       },
     }));
@@ -107,6 +116,20 @@ export default class ListTimeline extends React.PureComponent {
     const { id } = this.props.params;
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
+
+    if (typeof list === 'undefined') {
+      return (
+        <Column>
+          <LoadingIndicator />
+        </Column>
+      );
+    } else if (list === false) {
+      return (
+        <Column>
+          <MissingIndicator />
+        </Column>
+      );
+    }
 
     return (
       <Column ref={this.setRef}>

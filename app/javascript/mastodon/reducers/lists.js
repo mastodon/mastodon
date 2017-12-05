@@ -1,5 +1,6 @@
 import {
   LIST_FETCH_SUCCESS,
+  LIST_FETCH_FAIL,
   LISTS_FETCH_SUCCESS,
   LIST_CREATE_SUCCESS,
   LIST_UPDATE_SUCCESS,
@@ -28,7 +29,8 @@ export default function lists(state = initialState, action) {
   case LISTS_FETCH_SUCCESS:
     return normalizeLists(state, action.lists);
   case LIST_DELETE_SUCCESS:
-    return state.delete(action.id);
+  case LIST_FETCH_FAIL:
+    return state.set(action.id, false);
   default:
     return state;
   }

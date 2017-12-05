@@ -49,7 +49,7 @@ export const fetchList = id => (dispatch, getState) => {
 
   api(getState).get(`/api/v1/lists/${id}`)
     .then(({ data }) => dispatch(fetchListSuccess(data)))
-    .catch(err => dispatch(fetchListFail(err)));
+    .catch(err => dispatch(fetchListFail(id, err)));
 };
 
 export const fetchListRequest = id => ({
@@ -62,8 +62,9 @@ export const fetchListSuccess = list => ({
   list,
 });
 
-export const fetchListFail = error => ({
+export const fetchListFail = (id, error) => ({
   type: LIST_FETCH_FAIL,
+  id,
   error,
 });
 
@@ -89,14 +90,14 @@ export const fetchListsFail = error => ({
   error,
 });
 
-export const submitListEditor = () => (dispatch, getState) => {
+export const submitListEditor = shouldReset => (dispatch, getState) => {
   const listId = getState().getIn(['listEditor', 'listId']);
   const title  = getState().getIn(['listEditor', 'title']);
 
   if (listId === null) {
-    dispatch(createList(title));
+    dispatch(createList(title, shouldReset));
   } else {
-    dispatch(updateList(listId, title));
+    dispatch(updateList(listId, title, shouldReset));
   }
 };
 
@@ -114,12 +115,16 @@ export const changeListEditorTitle = value => ({
   value,
 });
 
-export const createList = title => (dispatch, getState) => {
+export const createList = (title, shouldReset) => (dispatch, getState) => {
   dispatch(createListRequest());
 
-  api(getState).post('/api/v1/lists', { title })
-    .then(({ data }) => dispatch(createListSuccess(data)))
-    .catch(err => dispatch(createListFail(err)));
+  api(getState).post('/api/v1/lists', { title }).then(({ data }) => {
+    dispatch(createListSuccess(data));
+
+    if (shouldReset) {
+      dispatch(resetListEditor());
+    }
+  }).catch(err => dispatch(createListFail(err)));
 };
 
 export const createListRequest = () => ({
@@ -136,12 +141,16 @@ export const createListFail = error => ({
   error,
 });
 
-export const updateList = (id, title) => (dispatch, getState) => {
+export const updateList = (id, title, shouldReset) => (dispatch, getState) => {
   dispatch(updateListRequest(id));
 
-  api(getState).put(`/api/v1/lists/${id}`, { title })
-    .then(({ data }) => dispatch(updateListSuccess(data)))
-    .catch(err => dispatch(updateListFail(id, err)));
+  api(getState).put(`/api/v1/lists/${id}`, { title }).then(({ data }) => {
+    dispatch(updateListSuccess(data));
+
+    if (shouldReset) {
+      dispatch(resetListEditor());
+    }
+  }).catch(err => dispatch(updateListFail(id, err)));
 };
 
 export const updateListRequest = id => ({

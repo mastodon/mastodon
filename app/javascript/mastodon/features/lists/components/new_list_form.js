@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeListEditorTitle, submitListEditor, resetListEditor } from '../../../actions/lists';
+import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
 import IconButton from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 
@@ -17,10 +17,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onChange: value => dispatch(changeListEditorTitle(value)),
-  onSubmit: () => {
-    dispatch(submitListEditor());
-    dispatch(resetListEditor());
-  },
+  onSubmit: () => dispatch(submitListEditor(true)),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
