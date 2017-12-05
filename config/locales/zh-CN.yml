@@ -116,7 +116,7 @@ zh-CN:
       roles:
         admin: 管理员
         moderator: 协管
-        user: 用户
+        user: 普通用户
       salmon_url: Salmon URL
       search: 搜索
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
@@ -133,6 +133,32 @@ zh-CN:
       unsubscribe: 取消订阅
       username: 用户名
       web: 站内页面
+    action_logs:
+      actions:
+        confirm_user: "%{name} 确认了用户 %{target} 的电子邮件地址"
+        create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
+        create_domain_block: "%{name} 屏蔽了域名 %{target}"
+        create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
+        demote_user: "%{name} 对用户 %{target} 进行了降任操作"
+        destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
+        destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
+        destroy_status: "%{name} 删除了 %{target} 的嘟文"
+        disable_2fa_user: "%{name} 停用了用户 %{target} 的双重认证"
+        disable_custom_emoji: "%{name} 停用了自定义表情 %{target}"
+        disable_user: "%{name} 将用户 %{target} 设置为禁止登录"
+        enable_custom_emoji: "%{name} 启用了自定义表情 %{target}"
+        enable_user: "%{name} 将用户 %{target} 设置为允许登录"
+        memorialize_account: "%{name} 将 %{target} 的帐户设置为追悼帐户"
+        promote_user: "%{name} 对用户 %{target} 进行了升任操作"
+        reset_password_user: "%{name} 重置了用户 %{target} 的密码"
+        resolve_report: "%{name} 处理了举报 %{target}"
+        silence_account: "%{name} 隐藏了用户 %{target}"
+        suspend_account: "%{name} 封禁了用户 %{target}"
+        unsilence_account: "%{name} 解除了用户 %{target} 的隐藏状态"
+        unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
+        update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
+        update_status: "%{name} 刷新了 %{target} 的嘟文"
+      title: 管理日志
     custom_emojis:
       copied_msg: 成功将表情复制到本地
       copy: 复制
@@ -156,14 +182,14 @@ zh-CN:
       unlisted: 已隐藏
       update_failed_msg: 表情更新失败！
       updated_msg: 表情更新成功！
-      upload: 上传
+      upload: 上传新表情
     domain_blocks:
       add_new: 添加新条目
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
       new:
-        create: 添加域名屏蔽
+        create: 添加屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
         severity:
           desc_html: 选择<strong>自动隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。
@@ -194,7 +220,7 @@ zh-CN:
       destroyed_msg: 电子邮件域名屏蔽删除成功
       domain: 域名
       new:
-        create: 添加屏蔽
+        create: 添加域名
         title: 添加电子邮件域名屏蔽
       title: 电子邮件域名屏蔽
     instances:
@@ -203,6 +229,13 @@ zh-CN:
       reset: 重置
       search: 搜索
       title: 已知实例
+    invites:
+      filter:
+        all: 全部
+        available: 可用
+        expired: 已失效
+        title: 筛选
+      title: 邀请用户
     reports:
       action_taken_by: 操作执行者
       are_you_sure: 你确定吗？
@@ -241,6 +274,9 @@ zh-CN:
         deletion:
           desc_html: 允许所有人删除自己的帐户
           title: 开放删除帐户权限
+        min_invite_role:
+          disabled: 没有人
+          title: 允许发送邀请的用户组
         open:
           desc_html: 允许任何人建立一个帐户
           title: 开放注册
@@ -314,6 +350,8 @@ zh-CN:
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
     login: 登录
     logout: 登出
+    migrate_account: 迁移到另一个帐户
+    migrate_account_html: 如果你希望引导其他人关注另一个帐户，请<a href="%{path}">点击这里设置</a>。
     register: 注册
     resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
@@ -394,12 +432,37 @@ zh-CN:
       muting: 隐藏列表
     upload: 上传
   in_memoriam_html: 谨此悼念。
+  invites:
+    delete: 停用
+    expired: 已失效
+    expires_in:
+      '1800': 30 分钟后
+      '21600': 6 小时后
+      '3600': 1 小时后
+      '43200': 12 小时后
+      '86400': 1 天后
+    expires_in_prompt: 永不过期
+    generate: 生成邀请链接
+    max_uses: "%{count} 次"
+    max_uses_prompt: 无限制
+    prompt: 生成可供分享的链接以便邀请他人注册本实例
+    table:
+      expires_at: 失效时间
+      uses: 已使用次数
+    title: 邀请用户
   landing_strip_html: "<strong>%{name}</strong> 是一位来自 %{link_to_root_path} 的用户。如果你想关注他们或者与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。"
   landing_strip_signup_html: 还没有这种帐户？你可以<a href="%{sign_up_path}">在本站注册一个</a>。
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
       too_many: 最多只能添加 4 张图片
+  migrations:
+    acct: 新帐户的 用户名@域名
+    currently_redirecting: 目前你的个人资料页显示的新帐户是：
+    proceed: 保存
+    updated_msg: 帐户迁移设置更新成功！
+  moderation:
+    title: 管理
   notification_mailer:
     digest:
       body: 自从你最后一次（时间是%{since}）登录 %{instance} 以来，你错过了这些嘟嘟滴滴：
@@ -510,6 +573,7 @@ zh-CN:
     export: 导出
     followers: 授权的关注者
     import: 导入
+    migrate: 帐户迁移
     notifications: 通知
     preferences: 首选项
     settings: 设置
