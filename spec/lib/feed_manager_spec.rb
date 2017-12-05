@@ -56,6 +56,13 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
       end
 
+      it 'returns true for reblog from account with reblogs disabled' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reblog = Fabricate(:status, reblog: status, account: alice)
+        bob.follow!(alice, reblogs: false)
+        expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
+      end
+
       it 'returns false for reply by followee to another followee' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)

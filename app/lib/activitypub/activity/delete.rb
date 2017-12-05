@@ -30,8 +30,11 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   def forward_for_reblogs(status)
     return if @json['signature'].blank?
 
-    ActivityPub::RawDistributionWorker.push_bulk(status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)) do |account_id|
-      [payload, account_id]
+    rebloggers_ids = status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
+    inboxes        = Account.where(id: ::Follow.where(target_account_id: rebloggers_ids).select(:account_id)).inboxes - [@account.preferred_inbox_url]
+
+    ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
+      [payload, rebloggers_ids.first, inbox_url]
     end
   end
 

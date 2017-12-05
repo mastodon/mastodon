@@ -1,5 +1,3 @@
-@import 'variables';
-
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -2099,6 +2097,27 @@
   }
 }
 
+.keyboard-shortcuts {
+  padding: 8px 0 0;
+  overflow: hidden;
+
+  thead {
+    position: absolute;
+    left: -9999px;
+  }
+
+  td {
+    padding: 0 10px 8px;
+  }
+
+  code {
+    display: inline-block;
+    padding: 3px 5px;
+    background-color: lighten($ui-base-color, 8%);
+    border: 1px solid darken($ui-base-color, 4%);
+  }
+}
+
 .setting-text {
   color: $ui-primary-color;
   background: transparent;
@@ -2182,15 +2201,12 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status-card-photo {
+  cursor: zoom-in;
   display: block;
   text-decoration: none;
-
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0;
-  }
+  width: 100%;
+  height: auto;
+  margin: 0;
 }
 
 .status-card-video {
