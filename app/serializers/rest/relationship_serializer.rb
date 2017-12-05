@@ -14,7 +14,8 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
 
   def showing_reblogs
     instance_options[:relationships].following.dig(object.id, :reblogs) ||
-    instance_options[:relationships].requested.dig(object.id, :reblogs) || false
+      instance_options[:relationships].requested.dig(object.id, :reblogs) ||
+      false
   end
 
   def followed_by
