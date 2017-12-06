@@ -58,12 +58,16 @@ class AccountSearchService < BaseService
     @_domain_is_local ||= TagManager.instance.local_domain?(query_domain)
   end
 
+  def search_from
+    options[:following] && account ? account.following : Account
+  end
+
   def exact_match
     @_exact_match ||= begin
       if domain_is_local?
-        Account.find_local(query_username)
+        search_from.find_local(query_username)
       else
-        Account.find_remote(query_username, query_domain)
+        search_from.find_remote(query_username, query_domain)
       end
     end
   end
