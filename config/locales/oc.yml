@@ -39,11 +39,12 @@ oc:
     followers: Seguidors
     following: Abonaments
     media: Mèdias
+    moved_html: "%{name} a mudat a %{new_profile_link} :"
     nothing_here: I a pas res aquí !
     people_followed_by: Lo mond que %{name} sèc
     people_who_follow: Lo mond que sègon %{name}
     posts: Tuts
-    posts_with_replies: Tuts amb responsas
+    posts_with_replies: Tuts e responsas
     remote_follow: Sègre a distància
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
@@ -101,6 +102,7 @@ oc:
       outbox_url: URL Outbox
       perform_full_suspension: Botar en tren la suspension complèta
       profile_url: URL del perfil
+      promote: Promòure
       protocol: Protocòl
       public: Public
       push_subscription_expires: Fin de l’abonament PuSH
@@ -108,6 +110,11 @@ oc:
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
+      role: Permissions
+      roles:
+        admin: Admin
+        moderator: Mod
+        user: Uitlizaire
       salmon_url: URL Salmon
       search: Cercar
       shared_inbox_url: URL de recepcion partejada
@@ -237,6 +244,9 @@ oc:
         open:
           desc_html: Autorizar lo monde a se marcar
           title: Inscripcions
+      show_staff_badge:
+        desc_html: Mostrar lo badge Personal sus la pagina de perfil
+        title: Mostrar lo badge personal
       site_description:
         desc_html: Afichada jos la forma de paragraf sus la pagina d’acuèlh e utilizada coma balisa meta.<br> Podètz utilizar de balisas HTML, coma <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descripcion del site
@@ -272,6 +282,7 @@ oc:
     subscriptions:
       callback_url: URL de rapèl
       confirmed: Confirmat
+      demote: Retrogradar
       expires_in: S’acaba dins
       last_delivery: Darrièra distribucion
       title: WebSub
