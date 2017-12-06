@@ -6,6 +6,7 @@ class InvitesController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
+  before_action :set_pack
 
   def index
     authorize :invite, :create?
@@ -36,6 +37,10 @@ class InvitesController < ApplicationController
   end
 
   private
+
+  def set_pack
+    use_pack 'settings'
+  end
 
   def resource_params
     params.require(:invite).permit(:max_uses, :expires_in)
