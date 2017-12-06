@@ -31,10 +31,10 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      it 'returns JSON with following=truthy and requested=false' do
+      it 'returns JSON with following=true and requested=false' do
         json = body_as_json
 
-        expect(json[:following]).to be_truthy
+        expect(json[:following]).to be true
         expect(json[:requested]).to be false
       end
 
@@ -50,11 +50,11 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      it 'returns JSON with following=false and requested=truthy' do
+      it 'returns JSON with following=false and requested=true' do
         json = body_as_json
 
         expect(json[:following]).to be false
-        expect(json[:requested]).to be_truthy
+        expect(json[:requested]).to be true
       end
 
       it 'creates a follow request relation between user and target user' do
