@@ -131,6 +131,32 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} confirmèt l’adreça a %{target}"
+        create_custom_emoji: "%{name} mandèt un nòu emoji %{target}"
+        create_domain_block: "%{name} bloquèt lo domeni %{target}"
+        create_email_domain_block: "%{name} botèt a la lista nègra lo domeni de corrièl %{target}"
+        demote_user: "%{name} retragradèt l‘utilizaire %{target}"
+        destroy_domain_block: "%{name} desbloquèt lo domeni %{target}"
+        destroy_email_domain_block: "%{name} botèt a la lista blanca lo domeni de corrièl %{target}"
+        destroy_status: "%{name} levèt l‘estatut a %{target}"
+        disable_2fa_user: "%{name} desactivèt l’autentificacion en dos temps per %{target}"
+        disable_custom_emoji: "%{name} desactivèt l‘emoji %{target}"
+        disable_user: "%{name} desactivèt la connexion per %{target}"
+        enable_custom_emoji: "%{name} activèt l‘emoji %{target}"
+        enable_user: "%{name} activèt la connexion per %{target}"
+        memorialize_account: "%{name} transformèt en memorial la pagina de perfil a %{target}"
+        promote_user: "%{name} promoguèt %{target}"
+        reset_password_user: "%{name} reïnicializèt lo senhal a %{target}"
+        resolve_report: "%{name} anullèt lo rapòrt de %{target}"
+        silence_account: "%{name} metèt en silenci lo compte a %{target}"
+        suspend_account: "%{name} susprenguèt lo compte a %{target}"
+        unsilence_account: "%{name} levèt lo silenci del compte a %{target}"
+        unsuspend_account: "%{name} restabliguèt lo compte a %{target}"
+        update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
+        update_status: "%{name} metèt a jorn l’estatut a %{target}"
+      title: Audit log 
     custom_emojis:
       copied_msg: Còpia locala de l’emoji ben creada
       copy: Copiar
@@ -203,6 +229,8 @@ oc:
       reset: Reïnicializar
       search: Cercar
       title: Instàncias conegudas
+    invites:
+      title: Covits
     reports:
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
