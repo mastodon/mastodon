@@ -38,6 +38,7 @@ import {
   Blocks,
   Mutes,
   PinnedStatuses,
+  Lists,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me } from '../../initial_state';
@@ -404,6 +405,7 @@ export default class UI extends React.Component {
               <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
               <WrappedRoute path='/blocks' component={Blocks} content={children} />
               <WrappedRoute path='/mutes' component={Mutes} content={children} />
+              <WrappedRoute path='/lists' component={Lists} content={children} />
 
               <WrappedRoute component={GenericNotFound} content={children} />
             </WrappedSwitch>

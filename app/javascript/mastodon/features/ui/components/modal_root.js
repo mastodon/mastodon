@@ -13,6 +13,7 @@ import {
   MuteModal,
   ReportModal,
   EmbedModal,
+  ListEditor,
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -25,6 +26,7 @@ const MODAL_COMPONENTS = {
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
+  'LIST_EDITOR': ListEditor,
 };
 
 export default class ModalRoot extends React.PureComponent {
