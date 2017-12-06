@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
   def pack(data, pack_name, skin = 'default')
     return nil unless pack?(data, pack_name)
     pack_data = {
-      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.flavour(current_flavour) : Themes.instance.core, 'common'),
+      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.flavour(current_flavour) : Themes.instance.core, 'common', skin),
       flavour: data['name'],
       pack: pack_name,
       preload: nil,
