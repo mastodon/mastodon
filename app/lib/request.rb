@@ -5,7 +5,7 @@ class Request
 
   include RoutingHelper
 
-  def initialize(verb, url, options = {})
+  def initialize(verb, url, **options)
     @verb    = verb
     @url     = Addressable::URI.parse(url).normalize
     @options = options

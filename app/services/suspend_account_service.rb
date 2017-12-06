@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SuspendAccountService < BaseService
-  def call(account, options = {})
+  def call(account, **options)
     @account = account
     @options = options
 

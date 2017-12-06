@@ -17,6 +17,9 @@ class Invite < ApplicationRecord
   belongs_to :user, required: true
   has_many :users, inverse_of: :invite
 
+  scope :available, -> { where(expires_at: nil).or(where('expires_at >= ?', Time.now.utc)) }
+  scope :expired, -> { where.not(expires_at: nil).where('expires_at < ?', Time.now.utc) }
+
   before_validation :set_code
 
   attr_reader :expires_in

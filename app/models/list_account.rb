@@ -14,6 +14,8 @@ class ListAccount < ApplicationRecord
   belongs_to :account, required: true
   belongs_to :follow, required: true
 
+  validates :account_id, uniqueness: { scope: :list_id }
+
   before_validation :set_follow
 
   private

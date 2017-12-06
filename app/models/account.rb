@@ -184,6 +184,21 @@ class Account < ApplicationRecord
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
+  def magic_key
+    modulus, exponent = [keypair.public_key.n, keypair.public_key.e].map do |component|
+      result = []
+
+      until component.zero?
+        result << [component % 256].pack('C')
+        component >>= 8
+      end
+
+      result.reverse.join
+    end
+
+    (['RSA'] + [modulus, exponent].map { |n| Base64.urlsafe_encode64(n) }).join('.')
+  end
+
   def subscription(webhook_url)
     @subscription ||= OStatus2::Subscription.new(remote_url, secret: secret, webhook: webhook_url, hub: hub_url)
   end
@@ -277,23 +292,46 @@ class Account < ApplicationRecord
       find_by_sql([sql, limit])
     end
 
-    def advanced_search_for(terms, account, limit = 10)
+    def advanced_search_for(terms, account, limit = 10, following = false)
       textsearch, query = generate_query_for_search(terms)
 
-      sql = <<-SQL.squish
-        SELECT
-          accounts.*,
-          (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
-        FROM accounts
-        LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
-        WHERE #{query} @@ #{textsearch}
-          AND accounts.suspended = false
-        GROUP BY accounts.id
-        ORDER BY rank DESC
-        LIMIT ?
-      SQL
+      if following
+        sql = <<-SQL.squish
+          WITH first_degree AS (
+            SELECT target_account_id
+            FROM follows
+            WHERE account_id = ?
+          )
+          SELECT
+            accounts.*,
+            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+          FROM accounts
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          WHERE accounts.id IN (SELECT * FROM first_degree)
+            AND #{query} @@ #{textsearch}
+            AND accounts.suspended = false
+          GROUP BY accounts.id
+          ORDER BY rank DESC
+          LIMIT ?
+        SQL
 
-      find_by_sql([sql, account.id, account.id, limit])
+        find_by_sql([sql, account.id, account.id, account.id, limit])
+      else
+        sql = <<-SQL.squish
+          SELECT
+            accounts.*,
+            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+          FROM accounts
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          WHERE #{query} @@ #{textsearch}
+            AND accounts.suspended = false
+          GROUP BY accounts.id
+          ORDER BY rank DESC
+          LIMIT ?
+        SQL
+
+        find_by_sql([sql, account.id, account.id, limit])
+      end
     end
 
     private

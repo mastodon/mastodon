@@ -5,7 +5,7 @@ class UserMailer < Devise::Mailer
 
   helper :instance
 
-  def confirmation_instructions(user, token, _opts = {})
+  def confirmation_instructions(user, token, **)
     @resource = user
     @token    = token
     @instance = Rails.configuration.x.local_domain
@@ -17,7 +17,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def reset_password_instructions(user, token, _opts = {})
+  def reset_password_instructions(user, token, **)
     @resource = user
     @token    = token
     @instance = Rails.configuration.x.local_domain
@@ -29,7 +29,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def password_change(user, _opts = {})
+  def password_change(user, **)
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
