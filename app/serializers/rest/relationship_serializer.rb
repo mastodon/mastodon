@@ -13,8 +13,8 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
   end
 
   def showing_reblogs
-    instance_options[:relationships].following[object.id].try(:reblogs) ||
-      instance_options[:relationships].requested[object.id].try(:reblogs) ||
+    (instance_options[:relationships].following[object.id] || {})[:reblogs] ||
+      (instance_options[:relationships].requested[object.id] || {})[:reblogs] ||
       false
   end
 
@@ -31,7 +31,7 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
   end
 
   def muting_notifications
-    instance_options[:relationships].muting[object.id].try(:notifications) || false
+    (instance_options[:relationships].muting[object.id] || {})[:notifications] || false
   end
 
   def requested
