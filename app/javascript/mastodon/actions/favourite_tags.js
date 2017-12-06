@@ -11,6 +11,25 @@ export function refreshFavouriteTags() {
   };
 }
 
+export function addFavouriteTags(tag, visibility) {
+  return (dispatch, getState) => {
+    api(getState).post('/api/v1/favourite_tags', {
+      tag: tag,
+      visibility: visibility,
+    }).then(() => {
+      dispatch(refreshFavouriteTags());
+    });
+  };
+}
+
+export function removeFavouriteTags(tag) {
+  return (dispatch, getState) => {
+    api(getState).delete(`/api/v1/favourite_tags/${tag}`).then(() => {
+      dispatch(refreshFavouriteTags());
+    });
+  };
+}
+
 export function lockTagCompose(tag, visibility) {
   return {
     type: COMPOSE_LOCK_TAG,

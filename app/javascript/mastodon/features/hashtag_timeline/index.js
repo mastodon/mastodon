@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StatusListContainer from '../ui/containers/status_list_container';
+import StatusListContainer from './containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
+import ColumnSettingsContainer from './containers/column_settings_container';
 import {
   refreshHashtagTimeline,
   expandHashtagTimeline,
@@ -14,6 +15,7 @@ import { connectHashtagStream } from '../../actions/streaming';
 
 const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
+  isLocal: state.getIn(['settings', 'tag', `${props.params.id}`, 'shows', 'local'], false),
 });
 
 @connect(mapStateToProps)
@@ -25,6 +27,7 @@ export default class HashtagTimeline extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    isLocal: PropTypes.bool,
   };
 
   handlePin = () => {
@@ -46,8 +49,8 @@ export default class HashtagTimeline extends React.PureComponent {
     this.column.scrollTop();
   }
 
-  _subscribe (dispatch, id) {
-    this.disconnect = dispatch(connectHashtagStream(id));
+  _subscribe (dispatch, id, isLocal) {
+    this.disconnect = dispatch(connectHashtagStream(id, isLocal));
   }
 
   _unsubscribe () {
@@ -58,18 +61,18 @@ export default class HashtagTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    const { dispatch } = this.props;
+    const { dispatch, isLocal } = this.props;
     const { id } = this.props.params;
 
-    dispatch(refreshHashtagTimeline(id));
-    this._subscribe(dispatch, id);
+    dispatch(refreshHashtagTimeline(id, isLocal));
+    this._subscribe(dispatch, id, isLocal);
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.params.id !== this.props.params.id) {
-      this.props.dispatch(refreshHashtagTimeline(nextProps.params.id));
+    if (nextProps.params.id !== this.props.params.id || nextProps.isLocal !== this.props.isLocal) {
+      this.props.dispatch(refreshHashtagTimeline(nextProps.params.id, nextProps.isLocal));
       this._unsubscribe();
-      this._subscribe(this.props.dispatch, nextProps.params.id);
+      this._subscribe(this.props.dispatch, nextProps.params.id, nextProps.isLocal);
     }
   }
 
@@ -82,7 +85,7 @@ export default class HashtagTimeline extends React.PureComponent {
   }
 
   handleLoadMore = () => {
-    this.props.dispatch(expandHashtagTimeline(this.props.params.id));
+    this.props.dispatch(expandHashtagTimeline(this.props.params.id, this.props.isLocal));
   }
 
   render () {
@@ -102,9 +105,14 @@ export default class HashtagTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           showBackButton
-        />
+        >
+          <ColumnSettingsContainer
+            tag={id}
+          />
+        </ColumnHeader>
 
         <StatusListContainer
+          tag={id}
           trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
           timelineId={`hashtag:${id}`}

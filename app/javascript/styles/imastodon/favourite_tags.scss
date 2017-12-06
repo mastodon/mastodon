@@ -60,3 +60,23 @@
   width: 14px;
   text-align: center;
 }
+
+.favourite-tags__add-button-in-column {
+  margin-bottom: 5px;
+  background-color: $ui-highlight-color;
+
+  &:focus,
+  &:hover {
+    background-color: lighten($ui-highlight-color, 5%);
+  }
+}
+
+.favourite-tags__remove-button-in-column {
+  margin-bottom: 5px;
+  background-color: $error-value-color;
+
+  &:focus,
+  &:hover {
+    background-color: lighten($error-value-color, 5%);
+  }
+}

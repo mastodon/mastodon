@@ -117,7 +117,7 @@ export const refreshPublicTimeline       = () => refreshTimeline('public', '/api
 export const refreshCommunityTimeline    = () => refreshTimeline('community', '/api/v1/timelines/public', { local: true });
 export const refreshAccountTimeline      = accountId => refreshTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
 export const refreshAccountMediaTimeline = accountId => refreshTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
-export const refreshHashtagTimeline      = hashtag => refreshTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
+export const refreshHashtagTimeline      = (hashtag, isLocal) => refreshTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}${isLocal ? '?local=true' : ''}`);
 
 export function refreshTimelineFail(timeline, error, skipLoading) {
   return {
@@ -157,7 +157,7 @@ export const expandPublicTimeline       = () => expandTimeline('public', '/api/v
 export const expandCommunityTimeline    = () => expandTimeline('community', '/api/v1/timelines/public', { local: true });
 export const expandAccountTimeline      = accountId => expandTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
 export const expandAccountMediaTimeline = accountId => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
-export const expandHashtagTimeline      = hashtag => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
+export const expandHashtagTimeline      = (hashtag, isLocal) => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}${isLocal ? '?local=true' : ''}`);
 
 export function expandTimelineRequest(timeline) {
   return {
