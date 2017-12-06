@@ -2,7 +2,7 @@
 
 class Settings::DeletesController < Settings::BaseController
 
-  before_action :check_enabled_deletion
+  prepend_before_action :check_enabled_deletion
 
   def show
     @confirmation = Form::DeleteConfirmation.new
