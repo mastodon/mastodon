@@ -14,6 +14,7 @@ class StreamEntriesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        use_pack 'public'
         @ancestors   = @stream_entry.activity.reply? ? cache_collection(@stream_entry.activity.ancestors(current_account), Status) : []
         @descendants = cache_collection(@stream_entry.activity.descendants(current_account), Status)
       end

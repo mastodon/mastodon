@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::PreferencesController < ApplicationController
-  layout 'admin'
-
-  before_action :authenticate_user!
-
+class Settings::PreferencesController < Settings::BaseController
   def show; end
 
   def update
@@ -42,7 +38,8 @@ class Settings::PreferencesController < ApplicationController
       :setting_reduce_motion,
       :setting_system_font_ui,
       :setting_noindex,
-      :setting_theme,
+      :setting_flavour,
+      :setting_skin,
       notification_emails: %i(follow follow_request reblog favourite mention digest),
       interactions: %i(must_be_follower must_be_following)
     )

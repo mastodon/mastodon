@@ -18,15 +18,15 @@
         = ' - '
       = title
 
-    = stylesheet_pack_tag 'common', media: 'all'
-    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
-    - if controller_name != 'home'
-      = stylesheet_pack_tag 'application', integrity: true, media: 'all'
-
     = yield :header_tags
+
+    -#  These must come after :header_tags to ensure our initial state has been defined.
+    = render partial: 'layouts/theme', object: @core
+    = render partial: 'layouts/theme', object: @theme
 
   - body_classes ||= @body_classes || ''
   - body_classes += ' system-font' if current_account&.user&.setting_system_font_ui

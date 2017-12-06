@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-class Settings::ProfilesController < ApplicationController
+class Settings::ProfilesController < Settings::BaseController
   include ObfuscateFilename
 
-  layout 'admin'
-
-  before_action :authenticate_user!
   before_action :set_account
 
   obfuscate_filename [:account, :avatar]

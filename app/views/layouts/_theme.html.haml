@@ -1,0 +1,13 @@
+- if theme
+  - if theme[:pack] != 'common' && theme[:common]
+    = render partial: 'layouts/theme', object: theme[:common]
+  - if theme[:pack]
+    = javascript_pack_tag theme[:flavour] ? "flavours/#{theme[:flavour]}/#{theme[:pack]}" : "core/#{theme[:pack]}", integrity: true, crossorigin: 'anonymous'
+    - if theme[:skin]
+      - if !theme[:flavour] || theme[:skin] == 'default'
+        = stylesheet_pack_tag theme[:flavour] ? "flavours/#{theme[:flavour]}/#{theme[:pack]}" : "core/#{theme[:pack]}", integrity: true, media: 'all'
+      - else
+        = stylesheet_pack_tag "skins/#{theme[:flavour]}/#{theme[:skin]}/#{theme[:pack]}"
+    - if theme[:preload]
+      - theme[:preload].each do |link|
+        %link{ href: asset_pack_path("#{link}.js"), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/

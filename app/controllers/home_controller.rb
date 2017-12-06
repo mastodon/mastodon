@@ -2,6 +2,7 @@
 
 class HomeController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_pack
   before_action :set_initial_state_json
 
   def index
@@ -35,6 +36,10 @@ class HomeController < ApplicationController
     end
 
     redirect_to(default_redirect_path)
+  end
+
+  def set_pack
+    use_pack 'home'
   end
 
   def set_initial_state_json

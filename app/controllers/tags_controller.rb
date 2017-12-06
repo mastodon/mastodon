@@ -9,6 +9,7 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       format.html do
+        use_pack 'about'
         serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
         @initial_state_json   = serializable_resource.to_json
       end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+#  Intentionally does not inherit from BaseController
 class Settings::SessionsController < ApplicationController
   before_action :set_session, only: :destroy
 

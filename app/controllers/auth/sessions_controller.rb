@@ -9,6 +9,7 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :check_suspension, only: [:destroy]
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
   before_action :set_instance_presenter, only: [:new]
+  before_action :set_pack
 
   def create
     super do |resource|
@@ -84,6 +85,10 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   private
+
+  def set_pack
+    use_pack 'auth'
+  end
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new

@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-class Settings::DeletesController < ApplicationController
-  layout 'admin'
+class Settings::DeletesController < Settings::BaseController
 
-  before_action :check_enabled_deletion
-  before_action :authenticate_user!
+  prepend_before_action :check_enabled_deletion
 
   def show
     @confirmation = Form::DeleteConfirmation.new

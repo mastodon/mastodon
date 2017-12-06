@@ -1,9 +1,7 @@
-import loadPolyfills from 'themes/glitch/util/load_polyfills';
-
-require.context('../images/', true);
+import loadPolyfills from '../mastodon/load_polyfills';
 
 function loaded() {
-  const TimelineContainer = require('themes/glitch/containers/timeline_container').default;
+  const TimelineContainer = require('../mastodon/containers/timeline_container').default;
   const React             = require('react');
   const ReactDOM          = require('react-dom');
   const mountNode         = document.getElementById('mastodon-timeline');
@@ -15,7 +13,7 @@ function loaded() {
 }
 
 function main() {
-  const ready = require('themes/glitch/util/ready').default;
+  const ready = require('../mastodon/ready').default;
   ready(loaded);
 }
 

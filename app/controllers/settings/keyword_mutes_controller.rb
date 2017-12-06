@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::KeywordMutesController < ApplicationController
-  layout 'admin'
-
-  before_action :authenticate_user!
+class Settings::KeywordMutesController < Settings::BaseController
   before_action :load_keyword_mute, only: [:edit, :update, :destroy]
 
   def index

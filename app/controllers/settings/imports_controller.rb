@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::ImportsController < ApplicationController
-  layout 'admin'
-
-  before_action :authenticate_user!
+class Settings::ImportsController < Settings::BaseController
   before_action :set_account
 
   def show

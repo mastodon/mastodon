@@ -5,8 +5,13 @@ module Admin
     include Authorization
     include AccountableConcern
 
-    before_action :require_staff!
-
     layout 'admin'
+
+    before_action :require_staff!
+    before_action :set_pack
+
+    def set_pack
+      use_pack 'admin'
+    end
   end
 end

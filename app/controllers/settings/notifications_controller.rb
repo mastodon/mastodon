@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::NotificationsController < ApplicationController
-  layout 'admin'
-
-  before_action :authenticate_user!
-
+class Settings::NotificationsController < Settings::BaseController
   def show; end
 
   def update
