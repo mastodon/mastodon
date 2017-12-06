@@ -13,7 +13,7 @@ module Admin::FilterHelper
     link_to text, new_url, class: filter_link_class(new_class)
   end
 
-  def table_link_to(icon, text, path, options = {})
+  def table_link_to(icon, text, path, **options)
     link_to safe_join([fa_icon(icon), text]), path, options.merge(class: 'table-action-link')
   end
 

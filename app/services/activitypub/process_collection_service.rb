@@ -3,7 +3,7 @@
 class ActivityPub::ProcessCollectionService < BaseService
   include JsonLdHelper
 
-  def call(body, account, options = {})
+  def call(body, account, **options)
     @account = account
     @json    = Oj.load(body, mode: :strict)
     @options = options
