@@ -68,7 +68,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onReblogToggle (account) {
-    if (account.getIn(['relationship', 'show_reblogs'])) {
+    if (account.getIn(['relationship', 'showing_reblogs'])) {
       dispatch(followAccount(account.get('id'), false));
     } else {
       dispatch(followAccount(account.get('id'), true));
