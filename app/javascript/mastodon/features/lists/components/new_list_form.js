@@ -36,10 +36,9 @@ export default class NewListForm extends React.PureComponent {
     this.props.onChange(e.target.value);
   }
 
-  handleKeyUp = e => {
-    if (e.keyCode === 13) {
-      this.props.onSubmit();
-    }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit();
   }
 
   handleClick = () => {
@@ -53,7 +52,7 @@ export default class NewListForm extends React.PureComponent {
     const title = intl.formatMessage(messages.title);
 
     return (
-      <div className='column-inline-form'>
+      <form className='column-inline-form' onSubmit={this.handleSubmit}>
         <label>
           <span style={{ display: 'none' }}>{label}</span>
 
@@ -62,7 +61,6 @@ export default class NewListForm extends React.PureComponent {
             value={value}
             disabled={disabled}
             onChange={this.handleChange}
-            onKeyUp={this.handleKeyUp}
             placeholder={label}
           />
         </label>
@@ -73,7 +71,7 @@ export default class NewListForm extends React.PureComponent {
           title={title}
           onClick={this.handleClick}
         />
-      </div>
+      </form>
     );
   }
 
