@@ -14,8 +14,35 @@ pt:
     status_count_before: Que fizeram
     user_count_after: utilizadores
     user_count_before: Casa para
-    about_hashtag_html: Esses são toots públicos marcados com <strong>#%{hashtag}</strong>.
-      Você pode interagir com eles se tem uma conta em qualquer lugar do Fediverso.
+    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>.
+      Podes interagir com eles se tiveres uma conta Mastodon.
+    contact_missing: Não definido
+    contact_unavailable: N/A
+    extended_description_html: '<h3>Um bom lugar para regras</h3>
+
+      <p>A descrição da instância ainda não foi feita.</p>
+
+      '
+    features:
+      humane_approach_body: Aprendendo com erros de outras redes sociais, Mastodon
+        tem como objetivo fazer decisões éticas de design para combater o utilização
+        errada de redes sociais.
+      humane_approach_title: Uma abordagem mais humana
+      not_a_product_body: Mastodon não é uma rede comercial. Sem publicidade, sem
+        recolha de dados ou portas fechadas. Não existe uma autoridade central.
+      not_a_product_title: Tu és uma pessoa, não um produto
+      real_conversation_body: Com 500 caracteres à sua disposição e suporte para conteúdo
+        granular e avisos de conteúdo, podes te expressar da forma que desejares.
+      real_conversation_title: Feito para conversas reais
+      within_reach_body: Várias aplicações para iOS, Android e outras plataformas
+        graças a um ecossistema de API amigável para desenvolvedores, permitem-te
+        que te mantenhas em contacto com os teus amigos em qualquer lugar.
+      within_reach_title: Sempre ao teu alcance
+    find_another_instance: Encontra outra instância
+    generic_description: '%{domain} é um servidor na rede'
+    hosted_on: Mastodon em %{domain}
+    learn_more: Saber mais
+    what_is_mastodon: O que é o Mastodon?
   accounts:
     follow: Seguir
     followers: Seguidores
@@ -26,6 +53,13 @@ pt:
     posts: Posts
     remote_follow: Seguir remotamente
     unfollow: Deixar de seguir
+    media: Media
+    moved_html: '%{name} mudou-se para %{new_profile_link}:'
+    posts_with_replies: Posts e Respostas
+    reserved_username: Este nome de utilizadores é reservado
+    roles:
+      admin: Administrador
+      moderator: Moderador
   admin:
     accounts:
       are_you_sure: Tens a certeza?
@@ -69,6 +103,10 @@ pt:
       undo_suspension: Desfazer supensão
       username: Usuário
       web: Web
+      by_domain: Domínio
+      disable: Desativar
+      disable_two_factor_authentication: Desativar 2FA
+      disabled: Desativado
     domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio do domínio está a ser processado
@@ -155,6 +193,13 @@ pt:
       title: WebSub
       topic: Tópico
     title: Administração
+    account_moderation_notes:
+      account: Moderador
+      create: Criar
+      created_at: Data
+      created_msg: Nota de moderação criada com sucesso!
+      delete: Eliminar
+      destroyed_msg: Nota de moderação excluída com sucesso!
   application_mailer:
     settings: 'Alterar preferências de email: %{link}'
     signature: notificações Mastodon do %{instance}
