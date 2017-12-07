@@ -57,6 +57,12 @@ code {
   strong {
     font-weight: 500;
   }
+  
+  @each $lang in $cjk-langs {
+    strong:lang(#{$lang}) {
+      font-weight: 600;
+    }
+  }
 
   .label_input {
     display: flex;
@@ -474,6 +480,12 @@ code {
 
     strong {
       font-weight: 500;
+    }
+    
+    @each $lang in $cjk-langs {
+      strong:lang(#{$lang}) {
+        font-weight: 600;
+      }
     }
   }
 }
