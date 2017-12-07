@@ -35,7 +35,7 @@ he:
         scopes: יש להפריד תחומים בעזרת רווחים. נה להשאיר ריק על מנת להשתמש בתחום ברירת
           המחדל.
       index:
-        callback_url: Callback URL
+        callback_url: כתובת גישה חוזרת (Callback URL)
         name: שם
         new: ישום חדש
         title: ישומך
@@ -48,7 +48,7 @@ he:
       show:
         actions: פעולות
         application_id: זהות ישום
-        callback_urls: Callback URLs
+        callback_urls: כתובות לקריאה חוזרת (Callback URLs)
         scopes: תחומים
         secret: סוד
         title: 'ישום: %{name}'
@@ -63,7 +63,7 @@ he:
         prompt: ישום %{client_name} מבקש גישה לחשבונך
         title: נדרשת הרשאה
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: יש להעתיק את קוד ההרשאה הזה ולהדביקו ביישום שביקש אותו.
     authorized_applications:
       buttons:
         revoke: ביטול
@@ -88,7 +88,7 @@ he:
         invalid_request: הבקשה חסרה פרמטר נדרש, מכילה פרמטר עם ערך שאיננו נתמך, או
           שתצורתה שגויה.
         invalid_resource_owner: הרשאות בעלי המשאב שהוזנו אינן חוקיות, או שלא ניתן
-          למצוא את בעלי המשאב.
+          למצוא את בעלי המשאב
         invalid_scope: התחום המבוקש אינו חוקי, אינו ידוע, או שתצורותו שגויה.
         invalid_token:
           expired: פג תוקף אסימון הגישה
@@ -117,7 +117,7 @@ he:
       admin:
         nav:
           applications: ישומים
-          oauth2_provider: OAuth2 Provider
+          oauth2_provider: ספק OAuth2
       application:
         title: נדרשת הרשאת OAuth
     scopes:
