@@ -326,5 +326,17 @@ namespace :mastodon do
         end
       end
     end
+
+    desc 'Migrate photo preview cards made before 2.1'
+    task migrate_photo_preview_cards: :environment do
+      status_ids = Status.joins(:preview_cards)
+                         .where(preview_cards: { embed_url: '', type: :photo })
+                         .reorder(nil)
+                         .group(:id)
+                         .pluck(:id)
+
+      PreviewCard.where(embed_url: '', type: :photo).delete_all
+      LinkCrawlWorker.push_bulk status_ids
+    end
   end
 end
