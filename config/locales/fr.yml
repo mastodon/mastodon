@@ -320,7 +320,7 @@ fr:
     salutation: '%{name},'
     settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
-    view: 'Voir :'
+    view: 'Voir :'
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
@@ -455,8 +455,8 @@ fr:
   notification_mailer:
     digest:
       body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite
-        (%{}) :'
-      mention: '%{name} vous a mentionné⋅e'
+        le %{since} :'
+      mention: '%{name} vous a mentionné⋅e dans :'
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
         other: Vous avez %{count} nouveaux⋅elles abonné⋅e⋅s ! Incroyable !
@@ -464,7 +464,7 @@ fr:
         one: Une nouvelle notification depuis votre dernière visite 🐘
         other: '%{count} nouvelles notifications depuis votre dernière visite 🐘'
     favourite:
-      body: '%{name} a ajouté votre post à ses favoris :'
+      body: '%{name} a ajouté votre post à ses favoris :'
       subject: '%{name} a ajouté votre post à ses favoris'
     follow:
       body: '%{name} vous suit !'
@@ -473,10 +473,10 @@ fr:
       body: '%{name} a demandé à vous suivre'
       subject: 'Abonné⋅es en attente : %{name}'
     mention:
-      body: '%{name} vous a mentionné⋅e dans :'
+      body: '%{name} vous a mentionné⋅e dans :'
       subject: '%{name} vous a mentionné·e'
     reblog:
-      body: '%{name} a partagé votre statut :'
+      body: '%{name} a partagé votre statut :'
       subject: '%{name} a partagé votre statut'
   number:
     human:
@@ -516,7 +516,7 @@ fr:
     acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅rice
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     proceed: Continuez pour suivre
-    prompt: 'Vous allez suivre :'
+    prompt: 'Vous allez suivre :'
   sessions:
     activity: Dernière activité
     browser: Navigateur
@@ -691,7 +691,7 @@ fr:
       de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de
       récupération seront invalidés.
     manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l’entrer
-      manuellement, voici le secret en clair :'
+      manuellement, voici le secret en clair :'
     recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez
@@ -704,4 +704,4 @@ fr:
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
-    signed_in_as: 'Connecté·e en tant que :'
+    signed_in_as: 'Connecté·e en tant que :'
