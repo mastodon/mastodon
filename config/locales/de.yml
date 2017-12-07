@@ -145,6 +145,7 @@ de:
         admin: Administrator
         moderator: Moderator
         user: Nutzer
+      by_domain: Domain
     custom_emojis:
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
@@ -306,6 +307,14 @@ de:
       title: WebSub
       topic: Thema
     title: Administration
+    action_logs:
+      actions:
+        confirm_user: '%{name} hat die E-Mail-Adresse von %{target} bestätigt'
+        create_custom_emoji: '%{name} hat neues Emoji %{target} hochgeladen'
+        create_domain_block: '%{name} hat die Domain %{target} blockiert'
+        create_email_domain_block: '%{name} hat die E-Mail-Domain %{target} geblacklistet'
+        destroy_domain_block: '%{name} hat die Domain %{target} entblockt'
+        destroy_status: '%{name} hat Status von %{target} entfernt'
   admin_mailer:
     new_report:
       body: '%{reporter} hat %{target} gemeldet'
