@@ -1,4 +1,3 @@
----
 es:
   simple_form:
     hints:
@@ -8,17 +7,24 @@ es:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
         header: PNG, GIF o JPG. Máximo 2MB. Será escalado a 700x335px
-        locked: Requiere que manualmente apruebes seguidores y las publicaciones serán mostradas solamente a tus seguidores
+        locked: Requiere que manualmente apruebes seguidores y las publicaciones serán
+          mostradas solamente a tus seguidores
         note:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
         setting_noindex: Afecta a tu perfil público y páginas de estado
+        digest: Enviado tras un largo periodo de inactividad, con un resumen de las
+          menciones que has recibido durante tu ausencia
+        setting_theme: Afecta al aspecto de Mastodon cuando te identificas desde cualquier
+          dispositivo.
       imports:
         data: Archivo CSV exportado desde otra instancia de Mastodon
       sessions:
-        otp: Ingresa el código de autenticación de dos factores de tu teléfono o usa uno de tus códigos de recuperación.
+        otp: Ingresa el código de autenticación de dos factores de tu teléfono o usa
+          uno de tus códigos de recuperación.
       user:
-        filtered_languages: Los lenguajes seleccionados serán removidos de tus líneas de tiempo públicas.
+        filtered_languages: Los lenguajes seleccionados serán removidos de tus líneas
+          de tiempo públicas.
     labels:
       defaults:
         avatar: Avatar
@@ -40,9 +46,22 @@ es:
         severity: Severidad
         type: Importar tipo
         username: Nombre de usuario
+        expires_in: Expirar tras
+        filtered_languages: Idiomas filtrados
+        max_uses: Máx. número de usos
+        setting_auto_play_gif: Auto-reproduccir GIFs animados
+        setting_default_sensitive: Marcar siempre imágenes como sensibles
+        setting_delete_modal: Mostrar diálogo de confirmación antes de borrar un toot
+        setting_noindex: Excluirse del indexado de motores de búsqueda
+        setting_reduce_motion: Reducir el movimiento de las animaciones
+        setting_system_font_ui: Utilizar la tipografía por defecto del sistema
+        setting_theme: Tema del sitio
+        setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de
+          seguir a alguien
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
+        must_be_following_dm: Bloquear mensajes directos de la gente que no sigues
       notification_emails:
         digest: Enviar resumen de correos electrónicos
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación
@@ -52,6 +71,6 @@ es:
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
     'no': 'No'
     required:
-      mark: "*"
+      mark: '*'
       text: necesario
     'yes': Sí
