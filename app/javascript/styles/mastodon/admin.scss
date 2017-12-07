@@ -121,6 +121,12 @@
       strong {
         color: $primary-text-color;
         font-weight: 500;
+
+        @each $lang in $cjk-langs {
+          &:lang(#{$lang}) {
+            font-weight: 700;
+          }
+        }
       }
     }
 
@@ -222,6 +228,12 @@
       font-weight: 500;
       text-transform: uppercase;
       font-size: 12px;
+
+      @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
     }
 
     a {
@@ -265,6 +277,12 @@
     font-size: 14px;
     line-height: 18px;
     color: $ui-secondary-color;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   .account-card {
