@@ -63,7 +63,9 @@ nl:
     reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
       admin: Beheerder
+      moderator: Mod
     unfollow: Ontvolgen
+    moved_html: '%{name} is verhuisd naar %{new_profile_link}:'
   admin:
     account_moderation_notes:
       account: Moderator
@@ -132,6 +134,20 @@ nl:
       unsubscribe: Opzeggen
       username: Gebruikersnaam
       web: Webapp
+      by_domain: Domein
+      demote: Degraderen
+      disable: Uitschakelen
+      disabled: Uitgeschakeld
+      enable: Inschakelen
+      enabled: Ingeschakeld
+      login_status: Aanmeld status
+      memorialize: Verander in memoriam
+      promote: Promoten
+      role: Permissies
+      roles:
+        admin: Beheerder
+        moderator: Moderateur
+        user: Persoon
     custom_emojis:
       copied_msg: Lokale kopie van emoji maken geslaagd
       copy: Kopiëren
@@ -294,6 +310,25 @@ nl:
       title: WebSub
       topic: Account
     title: Beheer
+    action_logs:
+      actions:
+        confirm_user: '%{name} bevestigd e-mailadres van persoon %{target}'
+        create_custom_emoji: '%{name} heeft de nieuwe emoji %{target} geupload'
+        create_domain_block: '%{name} heeft domein %{target} geblokkeerd'
+        create_email_domain_block: '%{name} heeft e-maildomein %{target} geblacklist'
+        demote_user: '%{name} heeft persoon %{target} gedegradeerd'
+        destroy_domain_block: '%{name} heeft domein %{target} vrijgegeven'
+        destroy_email_domain_block: '%{name} heeft e-maildomein %{target} gewhitelist'
+        destroy_status: '%{name} heeft status van %{target} verwijderd'
+        disable_2fa_user: '%{name} heeft tweefactor voorwaarden van persoon %{target}
+          uitgeschakeld'
+        disable_custom_emoji: '%{name} heeft emoji %{target} uitgeschakeld'
+        disable_user: '%{name} heeft de login van persoon %{target} uitgeschakeld'
+        enable_custom_emoji: '%{name} heeft emoji %{target} ingeschakeld'
+        enable_user: '%{name} heeft de login voor persoon %{target} ingeschakeld'
+        memorialize_account: '%{name} heeft %{target}''s account gewijzigd in een
+          memoriam pagina'
+        promote_user: '%{name} heeft persoon %{target} gepromoveerd'
   admin_mailer:
     new_report:
       body: '%{reporter} heeft %{target} gerapporteerd'
