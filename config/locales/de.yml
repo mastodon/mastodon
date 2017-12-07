@@ -315,6 +315,20 @@ de:
         create_email_domain_block: '%{name} hat die E-Mail-Domain %{target} geblacklistet'
         destroy_domain_block: '%{name} hat die Domain %{target} entblockt'
         destroy_status: '%{name} hat Status von %{target} entfernt'
+        enable_custom_emoji: '%{name} hat das %{target} Emoji aktiviert'
+        enable_user: '%{name} hat die Anmeldung für den Benutzer %{target} aktiviert'
+        memorialize_account: '%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt'
+        reset_password_user: '%{name} hat das Passwort für den Benutzer %{target}
+          zurückgesetzt'
+        resolve_report: '%{name} hat die Meldung %{target} abgelehnt'
+        silence_account: '%{name} hat %{target}s Account stummgeschaltet'
+        suspend_account: '%{name} hat %{target}s Account gesperrt'
+        unsilence_account: '%{name} hat die Stummschaltung von %{target}s Account
+          aufgehoben'
+        unsuspend_account: '%{name} hat die Sperrung von %{target}s Account aufgehoben'
+        update_custom_emoji: '%{name} hat das %{target} Emoji aktualisiert'
+        update_status: '%{name} hat den Status von %{target} aktualisiert'
+      title: Überprüfungsprotokoll
   admin_mailer:
     new_report:
       body: '%{reporter} hat %{target} gemeldet'
