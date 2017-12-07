@@ -320,6 +320,18 @@ pt-BR:
         destroy_email_domain_block: '%{name} retirou o domínio de e-mail %{target}
           da lista negra'
         destroy_status: '%{name} removeu postagem feita por %{target}'
+        disable_2fa_user: '%{name} desabilitou a exigência de autenticação em dois
+          passos para o usuário %{target}'
+        disable_custom_emoji: '%{name} desabilitou o emoji %{target}'
+        disable_user: '%{name} desabilitou o acesso para o usuário %{target}'
+        enable_custom_emoji: '%{name} habilitou o emoji %{target}'
+        enable_user: '%{name} habilitou o acesso para o usuário %{target}'
+        memorialize_account: '%{name} transformou a conta de %{target} em um memorial'
+        promote_user: '%{name} promoveu o usuário %{target}'
+        reset_password_user: '%{name} redefiniu a senha do usuário %{target}'
+        resolve_report: '%{name} dispensou o relatório %{target}'
+        silence_account: '%{name} silenciou a conta de %{target}'
+        suspend_account: '%{name} suspendeu a conta de %{target}'
   admin_mailer:
     new_report:
       body: '%{reporter} reportou %{target}'
