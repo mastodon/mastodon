@@ -1,4 +1,3 @@
----
 ar:
   activerecord:
     attributes:
@@ -30,7 +29,7 @@ ar:
         error: عفوا ! تحقق من خُلوّ الاستمارة من الأخطاء من فضلك
       help:
         native_redirect_uri: إستخدم %{native_redirect_uri} للاختبار و التجريب محليا
-        redirect_uri: إستخدم خطا واحدا لكل رابط.
+        redirect_uri: إستخدم خطا واحدا لكل رابط
         scopes: Separate scopes with spaces. Leave blank to use the default scopes.
       index:
         callback_url: رابط رد النداء
@@ -54,10 +53,10 @@ ar:
         title: حدث هناك خطأ
       new:
         able_to: يُخوَّل لهذا التطبيق القيام بـ
-        prompt: طلبَ تطبيق %{client_name} تصريحا لاستعمال حسابك.
+        prompt: طلبَ تطبيق %{client_name} تصريحا لاستعمال حسابك
         title: إذن بالتصريح
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: قم بنسخ رمز المصادقة و إلصاقه على التطبيق.
     authorized_applications:
       buttons:
         revoke: إبطال التصريح
@@ -66,26 +65,35 @@ ar:
       index:
         application: التطبيق
         created_at: صُرّح له في
-        date_format: "%d-%m-%Y %H:%M:%S"
+        date_format: '%d-%m-%Y %H:%M:%S'
         scopes: Scopes
         title: تطبيقاتك المرخص لها
     errors:
       messages:
         access_denied: The resource owner or authorization server denied the request.
-        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
-        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
-        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
+        credential_flow_not_configured: Resource Owner Password Credentials flow failed
+          due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Client authentication failed due to unknown client, no client
+          authentication included, or unsupported authentication method.
+        invalid_grant: The provided authorization grant is invalid, expired, revoked,
+          does not match the redirection URI used in the authorization request, or
+          was issued to another client.
         invalid_redirect_uri: The redirect uri included is not valid.
-        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
-        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
+        invalid_request: The request is missing a required parameter, includes an
+          unsupported parameter value, or is otherwise malformed.
+        invalid_resource_owner: The provided resource owner credentials are not valid,
+          or resource owner cannot be found
         invalid_scope: The requested scope is invalid, unknown, or malformed.
         invalid_token:
           expired: إنتهت فترة صلاحيته رمز المصادقة
           revoked: تم إبطال رمز المصادقة
           unknown: رمز المصادقة غير صالح
-        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
-        server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
-        temporarily_unavailable: تعذر على خادم التفويض معالجة الطلب و ذلك بسبب زيادة مؤقتة في التحميل أو عملية صيانة مبرمجة على الخادم.
+        resource_owner_authenticator_not_configured: Resource Owner find failed due
+          to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        server_error: The authorization server encountered an unexpected condition
+          which prevented it from fulfilling the request.
+        temporarily_unavailable: تعذر على خادم التفويض معالجة الطلب و ذلك بسبب زيادة
+          مؤقتة في التحميل أو عملية صيانة مبرمجة على الخادم.
         unauthorized_client: لا يصرح للعميل بتنفيذ هذا الطلب باستخدام هذه الطريقة.
         unsupported_grant_type: هذا النوع من منح التصريح غير معتمد في خادم الترخيص.
         unsupported_response_type: لا يدعم خادم التصريح هذا النوع من الإجابات و الردود.
