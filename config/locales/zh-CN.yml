@@ -2,10 +2,10 @@
 zh-CN:
   about:
     about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。
-    about_mastodon_html: Mastodon（长毛象）是一个基于开放式网络协议和自由、开源软件建立的社交网络，有着类似于电子邮件的分布式设计。
+    about_mastodon_html: Mastodon（长毛象）是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本实例
     closed_registrations: 这个实例目前没有开放注册。不过，你可以前往其他实例注册一个帐户，同样可以加入到这个网络中哦！
-    contact: 联络
+    contact: 联系方式
     contact_missing: 未设定
     contact_unavailable: 未公开
     description_headline: 关于 %{domain}
@@ -46,7 +46,7 @@ zh-CN:
     posts: 嘟文
     posts_with_replies: 嘟文和回复
     remote_follow: 跨站关注
-    reserved_username: 此用户名已保留
+    reserved_username: 此用户名已被保留
     roles:
       admin: 管理员
       moderator: 协管
@@ -56,9 +56,9 @@ zh-CN:
       account: 管理员
       create: 新建
       created_at: 日期
-      created_msg: 管理记录建立成功！
+      created_msg: 管理备忘建立成功！
       delete: 删除
-      destroyed_msg: 管理记录删除成功！
+      destroyed_msg: 管理备忘删除成功！
     accounts:
       are_you_sure: 你确定吗？
       by_domain: 域名
@@ -93,7 +93,7 @@ zh-CN:
         silenced: 已隐藏
         suspended: 已封禁
         title: 帐户状态
-      moderation_notes: 管理记录
+      moderation_notes: 管理备忘
       most_recent_activity: 最后一次活跃的时间
       most_recent_ip: 最后一次活跃的 IP 地址
       not_subscribed: 未订阅
@@ -158,7 +158,7 @@ zh-CN:
         unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
         update_status: "%{name} 刷新了 %{target} 的嘟文"
-      title: 管理日志
+      title: 运营日志
     custom_emojis:
       copied_msg: 成功将表情复制到本地
       copy: 复制
@@ -386,7 +386,7 @@ zh-CN:
     description_html: 继续操作将会<strong>永久地、不可撤销地</strong>删除你帐户中的内容，并冻结你的帐户。你的用户名将会被保留，以防有人冒用你的身份。
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
-    warning_html: 我们只能保证本实例上的内容已经被彻底删除。对于已经被广泛传播的内容，它们在本实例以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器上的数据亦无法删除。
+    warning_html: 我们只能保证本实例上的内容将会被彻底删除。对于已经被广泛传播的内容，它们在本实例以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器上的数据亦无法删除。
     warning_title: 关于已传播的内容的警告
   errors:
     '403': 无权查看
@@ -445,7 +445,7 @@ zh-CN:
     generate: 生成邀请链接
     max_uses: "%{count} 次"
     max_uses_prompt: 无限制
-    prompt: 生成可供分享的链接以便邀请他人注册本实例
+    prompt: 生成可供分享的链接以便邀请他人在本实例注册
     table:
       expires_at: 失效时间
       uses: 已使用次数
@@ -462,7 +462,7 @@ zh-CN:
     proceed: 保存
     updated_msg: 帐户迁移设置更新成功！
   moderation:
-    title: 管理
+    title: 运营
   notification_mailer:
     digest:
       body: 自从你最后一次（时间是%{since}）登录 %{instance} 以来，你错过了这些嘟嘟滴滴：
@@ -571,7 +571,7 @@ zh-CN:
     development: 开发
     edit_profile: 更改个人信息
     export: 导出
-    followers: 授权的关注者
+    followers: 已授权的关注者
     import: 导入
     migrate: 帐户迁移
     notifications: 通知
