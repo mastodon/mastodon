@@ -1,29 +1,38 @@
----
 es:
   about:
-    about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
+    about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código
+      abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales,
+      que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera
+      puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
     about_this: Acerca de esta instancia
     closed_registrations: Los registros están actualmente cerrados en esta instancia.
     contact: Contacto
     contact_missing: No especificado
     contact_unavailable: N/A
-    description_headline: "¿Qué es %{domain}?"
+    description_headline: ¿Qué es %{domain}?
     domain_count_after: otras instancias
     domain_count_before: Conectado a
-    extended_description_html: |
-      <h3>Un buen lugar para las reglas</h3>
+    extended_description_html: '<h3>Un buen lugar para las reglas</h3>
+
       <p>La descripción extendida no se ha colocado aún.</p>
+
+      '
     features:
-      humane_approach_body: Aprendiendo de los errores de otras redes, Mastodon apunta a las decisiones de diseño ético para combatir el desuso de las redes sociales.
+      humane_approach_body: Aprendiendo de los errores de otras redes, Mastodon apunta
+        a las decisiones de diseño ético para combatir el desuso de las redes sociales.
       humane_approach_title: Una misión más humana
-      not_a_product_body: Mastodon no es una red comercial. Nada de publicidad, nada de minado de datos, nada de jardines murados. No hay ninguna autoridad central.
+      not_a_product_body: Mastodon no es una red comercial. Nada de publicidad, nada
+        de minado de datos, nada de jardines murados. No hay ninguna autoridad central.
       not_a_product_title: Eres una persona, no un producto
-      real_conversation_body: Con 500 caracteres a tu disposición y soporte para contenido granular y advertencias de contenido, puedes expresarte como quieras.
+      real_conversation_body: Con 500 caracteres a tu disposición y soporte para contenido
+        granular y advertencias de contenido, puedes expresarte como quieras.
       real_conversation_title: Hecho para verdaderas conversaciones
-      within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas gracias a un ecosistema de APIs amigable al desarrollador para permitirte estar con tus amigos donde sea.
+      within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas
+        gracias a un ecosistema de APIs amigable al desarrollador para permitirte
+        estar con tus amigos donde sea.
       within_reach_title: Always within reach
     find_another_instance: Busca otra instancia
-    generic_description: "%{domain} es un servidor en la red"
+    generic_description: '%{domain} es un servidor en la red'
     hosted_on: Mastodon hosteado en %{domain}
     learn_more: Aprende más
     other_instances: Otras instancias
@@ -32,13 +41,13 @@ es:
     status_count_before: Qué han escrito
     user_count_after: usuarios registrados
     user_count_before: Tenemos
-    what_is_mastodon: "¿Qué es Mastodon?"
+    what_is_mastodon: ¿Qué es Mastodon?
   accounts:
     follow: Seguir
     followers: Seguidores
     following: Siguiendo
     media: Media
-    nothing_here: "¡No hay nada aquí!"
+    nothing_here: ¡No hay nada aquí!
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
     posts: Toots
@@ -48,9 +57,10 @@ es:
     roles:
       admin: Administrador
     unfollow: Dejar de seguir
+    moved_html: '%{name} se ha trasladado a %{new_profile_link}:'
   admin:
     accounts:
-      are_you_sure: "¿Estás seguro?"
+      are_you_sure: ¿Estás seguro?
       confirm: Confirmar
       confirmed: Confirmado
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -115,15 +125,21 @@ es:
       domain: Dominio
       new:
         create: Crear bloque
-        hint: El bloque de dominio no prevendrá la creación de entradas de cuenta en la base de datos, pero aplicará retroactiva y automáticamente métodos de moderación específica en dichas cuentas.
+        hint: El bloque de dominio no prevendrá la creación de entradas de cuenta
+          en la base de datos, pero aplicará retroactiva y automáticamente métodos
+          de moderación específica en dichas cuentas.
         severity:
-          desc_html: "<strong>Silenciar</strong> hará los posts de la cuenta invisibles a cualquiera que no lo esté siguiendo. <strong>Suspender</strong> eliminará todo el contenido, media, y datos del perfil. Usa <strong>Ninguno</strong> si solo quieres rechazar archivos multimedia."
+          desc_html: <strong>Silenciar</strong> hará los posts de la cuenta invisibles
+            a cualquiera que no lo esté siguiendo. <strong>Suspender</strong> eliminará
+            todo el contenido, media, y datos del perfil. Usa <strong>Ninguno</strong>
+            si solo quieres rechazar archivos multimedia.
           noop: Ninguno
           silence: Silenciar
           suspend: Suspender
         title: Nuevo bloque de dominio
       reject_media: Rechazar archivos multimedia
-      reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
+      reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar
+        cualquiera en el futuro. Irrelevante para suspensiones
       severities:
         noop: Ninguno
         silence: Silenciar
@@ -132,7 +148,7 @@ es:
       show:
         affected_accounts:
           one: Una cuenta en la base de datos afectada
-          other: "%{count} cuentas en la base de datos afectadas"
+          other: '%{count} cuentas en la base de datos afectadas'
         retroactive:
           silence: Des-silenciar todas las cuentas existentes de este dominio
           suspend: Des-suspender todas las cuentas existentes de este dominio
@@ -148,7 +164,7 @@ es:
       title: Instancias conocidas
     reports:
       action_taken_by: Acción tomada por
-      are_you_sure: "¿Estás seguro?"
+      are_you_sure: ¿Estás seguro?
       comment:
         label: Comentario
         none: Ninguno
@@ -172,14 +188,17 @@ es:
       view: Ver
     settings:
       bootstrap_timeline_accounts:
-        desc_html: Separa nombres de usuarios múltiples con coma. Solo funcionará con cuentas desbloqueadas. Si está vacío, el predeterminado son todos los administradores locales
+        desc_html: Separa nombres de usuarios múltiples con coma. Solo funcionará
+          con cuentas desbloqueadas. Si está vacío, el predeterminado son todos los
+          administradores locales
         title: Seguimientos predeterminados para usuarios nuevos
       contact_information:
         email: Correo de trabajo
         username: Nombre de usuario
       registrations:
         closed_message:
-          desc_html: Se muestra en la portada cuando los registros están cerrados. Puedes usar tags HTML
+          desc_html: Se muestra en la portada cuando los registros están cerrados.
+            Puedes usar tags HTML
           title: Mensaje de registro cerrado
         deletion:
           desc_html: Permite a cualquiera a eliminar su cuenta
@@ -188,13 +207,16 @@ es:
           desc_html: Permite a cualquiera a registrar una cuenta
           title: Registro abierto
       site_description:
-        desc_html: Párrafo introductorio en la portada y en meta tags. Puedes usar tags HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
+        desc_html: Párrafo introductorio en la portada y en meta tags. Puedes usar
+          tags HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
         title: Descripción de instancia
       site_description_extended:
-        desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que estén impuestas aparte en tu instancia. Puedes usar tags HTML
+        desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras
+          cosas que estén impuestas aparte en tu instancia. Puedes usar tags HTML
         title: Información extendida personalizada
       site_terms:
-        desc_html: Puedes escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Puedes usar tags HTML
+        desc_html: Puedes escribir tus propias políticas de privacidad, términos de
+          servicio u otras legalidades. Puedes usar tags HTML
         title: Términos de servicio personalizados
       site_title: Nombre de instancia
       thumbnail:
@@ -227,9 +249,11 @@ es:
       title: WebSub
       topic: Tópico
     title: Administración
+    account_moderation_notes:
+      created_at: Fecha
   admin_mailer:
     new_report:
-      body: "%{reporter} ha reportado a %{target}"
+      body: '%{reporter} ha reportado a %{target}'
       subject: Nuevo reporte para la %{instance} (#%{id})
   application_mailer:
     settings: 'Cambiar preferencias de correo: %{link}'
@@ -244,12 +268,16 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
-    agreement_html: Al registrarte aceptas <a href="%{rules_path}">nuestros y términos y condiciones del servicio</a> y <a href="%{terms_path}">nuestras políticas de privacidda</a>.
+    agreement_html: Al registrarte aceptas <a href="%{rules_path}">nuestros y términos
+      y condiciones del servicio</a> y <a href="%{terms_path}">nuestras políticas
+      de privacidda</a>.
     change_password: Cambiar contraseña
-    delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
-    didnt_get_confirmation: "¿No recibió el correo de confirmación?"
-    forgot_password: "¿Olvidaste tu contraseña?"
-    invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
+    delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder
+      aquí</a>. Será pedido de una confirmación.
+    didnt_get_confirmation: ¿No recibió el correo de confirmación?
+    forgot_password: ¿Olvidaste tu contraseña?
+    invalid_reset_password_token: El token de reinicio de contraseña es inválido o
+      expiró. Por favor pide uno nuevo.
     login: Iniciar sesión
     logout: Cerrar sesión
     register: Registrarse
@@ -260,7 +288,7 @@ es:
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Tienes una solicitud de seguimiento de:'
-    following: "¡Éxito! Ahora estás siguiendo a:"
+    following: '¡Éxito! Ahora estás siguiendo a:'
     post_follow:
       close: O, puedes simplemente cerrar esta ventana.
       return: Regresar al perfil del usuario
@@ -268,25 +296,30 @@ es:
     title: Seguir a %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}m"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
+      about_x_hours: '%{count}h'
+      about_x_months: '%{count}m'
+      about_x_years: '%{count}y'
+      almost_x_years: '%{count}y'
       half_a_minute: Justo ahora
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: '%{count}m'
       less_than_x_seconds: Justo ahora
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}m"
-      x_seconds: "%{count}s"
+      over_x_years: '%{count}y'
+      x_days: '%{count}d'
+      x_minutes: '%{count}m'
+      x_months: '%{count}m'
+      x_seconds: '%{count}s'
   deletes:
-    bad_password_msg: "¡Buen intento, hackers! Contraseña incorrecta"
+    bad_password_msg: ¡Buen intento, hackers! Contraseña incorrecta
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
-    description_html: Esto removerá el contenido de tu cuenta y la desactivará <strong>permanente e irrevesiblemente</strong>. Tu nombre de usuario quedará reservado para prevenir futuros robos de identidad.
+    description_html: Esto removerá el contenido de tu cuenta y la desactivará <strong>permanente
+      e irrevesiblemente</strong>. Tu nombre de usuario quedará reservado para prevenir
+      futuros robos de identidad.
     proceed: Eliminar cuenta
     success_msg: Tu cuenta se eliminó con éxito
-    warning_html: Se garantiza únicamente la eliminación del contenido de esta instancia. El contenido que se haya compartido extensamente dejará sus huellas. Los servidores fuera de línea y los que se hayan desuscrito de tus actualizaciones ya no actualizarán sus bases de datos.
+    warning_html: Se garantiza únicamente la eliminación del contenido de esta instancia.
+      El contenido que se haya compartido extensamente dejará sus huellas. Los servidores
+      fuera de línea y los que se hayan desuscrito de tus actualizaciones ya no actualizarán
+      sus bases de datos.
     warning_title: Disponibilidad diseminada del contenido
   errors:
     '403': No tienes permiso para acceder a esta página.
@@ -296,7 +329,9 @@ es:
       content: Verificación de seguridad fallida. ¿Estás bloqueando algunas cookies?
       title: Verificación de seguridad fallida
     '429': Asfixiado
-    noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">aplicaciones nativas</a> para Mastodon para tu plataforma.
+    noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript.
+      Alternativamente, prueba alguna de las <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">aplicaciones
+      nativas</a> para Mastodon para tu plataforma.
   exports:
     blocks: Personas que has bloqueado
     csv: CSV
@@ -304,66 +339,79 @@ es:
     storage: Almacenamiento
   followers:
     domain: Dominio
-    explanation_html: Si deseas asegurar la privacidad de tus estados, tienes que cuidarte de quién te sigue. <strong>Tus estados privados son enviados a todas las instancias de tus seguidores</strong>. Puede que desees revisarlas, y remover seguidores si no confías en tu privacidad para ser respetado por el staff o software de esas instancias.
+    explanation_html: Si deseas asegurar la privacidad de tus estados, tienes que
+      cuidarte de quién te sigue. <strong>Tus estados privados son enviados a todas
+      las instancias de tus seguidores</strong>. Puede que desees revisarlas, y remover
+      seguidores si no confías en tu privacidad para ser respetado por el staff o
+      software de esas instancias.
     followers_count: Número de seguidores
     lock_link: Bloquear tu cuenta
     purge: Remover de los seguidores
     success:
       one: En el proceso de bloquear suavemente usuarios de un solo dominio...
       other: En el proceso de bloquear suavemente usuarios de %{count} dominios...
-    true_privacy_html: Por favor ten en cuenta que <strong>la verdadera privacidad se consigue con encriptación de punto a punto</strong>.
-    unlocked_warning_html: Todos pueden seguirte  para ver tus estados privados inmediatamente. %{lock_link} para poder chequear y rechazar seguidores.
+    true_privacy_html: Por favor ten en cuenta que <strong>la verdadera privacidad
+      se consigue con encriptación de punto a punto</strong>.
+    unlocked_warning_html: Todos pueden seguirte  para ver tus estados privados inmediatamente.
+      %{lock_link} para poder chequear y rechazar seguidores.
     unlocked_warning_title: Tu cuenta no está bloqueada
   generic:
-    changes_saved_msg: "¡Cambios guardados con éxito!"
+    changes_saved_msg: ¡Cambios guardados con éxito!
     powered_by: gracias a %{link}
     save_changes: Guardar cambios
     validation_errors:
-      one: "¡Algo no está bien! Por favor, revisa el error"
-      other: "¡Algo no está bien! Por favor, revise %{count} errores más abajo"
+      one: ¡Algo no está bien! Por favor, revisa el error
+      other: ¡Algo no está bien! Por favor, revise %{count} errores más abajo
   imports:
-    preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
+    preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo
+      o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra
+      instancia.
     success: Sus datos se han cargado correctamente y serán procesados en brevedad
     types:
       blocking: Lista de bloqueados
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Cargar
-  landing_strip_html: "<strong>%{name}</strong> es un usuario en %{link_to_root_path}. Puedes seguirlo(a) o interactuar con el o ella si tienes una cuenta en cualquier parte del fediverse."
-  landing_strip_signup_html: Si no tienes una, puedes <a href="%{sign_up_path}">registrarte aquí</a>.
+  landing_strip_html: <strong>%{name}</strong> es un usuario en %{link_to_root_path}.
+    Puedes seguirlo(a) o interactuar con el o ella si tienes una cuenta en cualquier
+    parte del fediverse.
+  landing_strip_signup_html: Si no tienes una, puedes <a href="%{sign_up_path}">registrarte
+    aquí</a>.
   media_attachments:
     validations:
-      images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      images_and_video: No se puede adjuntar un video a un estado que ya contenga
+        imágenes
       too_many: No se pueden adjuntar más de 4 archivos
   notification_mailer:
     digest:
-      body: 'Un resumen de lo que te perdiste en %{instance} desde tu última visita el %{since}:'
-      mention: "%{name} te ha mencionado en:"
+      body: 'Un resumen de lo que te perdiste en %{instance} desde tu última visita
+        el %{since}:'
+      mention: '%{name} te ha mencionado en:'
       new_followers_summary:
-        one: "¡Hurra! Alguien más te ha comenzado a seguir"
-        other: "¡Genial! Te han seguido %{count} nuevas personas"
+        one: ¡Hurra! Alguien más te ha comenzado a seguir
+        other: ¡Genial! Te han seguido %{count} nuevas personas
       subject:
-        one: "1 nueva notificación desde tu última visita \U0001F418"
-        other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
+        one: 1 nueva notificación desde tu última visita 🐘
+        other: '%{count} nuevas notificaciones desde tu última visita 🐘'
     favourite:
       body: 'Tu estado fue marcado como favorito por %{name}:'
-      subject: "%{name} marcó como favorito tu estado"
+      subject: '%{name} marcó como favorito tu estado'
     follow:
-      body: "¡%{name} te está siguiendo!"
-      subject: "%{name} te está siguiendo"
+      body: ¡%{name} te está siguiendo!
+      subject: '%{name} te está siguiendo'
     follow_request:
-      body: "%{name} ha solicitado seguirte"
+      body: '%{name} ha solicitado seguirte'
       subject: 'Seguidor pendiente: %{name}'
     mention:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
     reblog:
-      body: "%{name} ha retooteado tu estado"
-      subject: "%{name} ha retooteado tu estado"
+      body: '%{name} ha retooteado tu estado'
+      subject: '%{name} ha retooteado tu estado'
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -374,24 +422,25 @@ es:
   pagination:
     next: Próximo
     prev: Anterior
-    truncate: "&hellip;"
+    truncate: '&hellip;'
   push_notifications:
     favourite:
-      title: "%A {name} le gustó tu estado"
+      title: '%A {name} le gustó tu estado'
     follow:
-      title: "%{name} te ha empezado a seguir"
+      title: '%{name} te ha empezado a seguir'
     group:
-      title: "%{count} notificaciones"
+      title: '%{count} notificaciones'
     mention:
       action_boost: Boost
       action_expand: Mostrar más
       action_favourite: Me Gusta
-      title: "%{name} te mencionó"
+      title: '%{name} te mencionó'
     reblog:
-      title: "%{name} boosteó tu estado"
+      title: '%{name} boosteó tu estado'
   remote_follow:
     acct: Ingesa el usuario@dominio de la persona que quieres seguir
-    missing_resource: No se pudo encontrar la URL de redirección necesaria para su cuenta.
+    missing_resource: No se pudo encontrar la URL de redirección necesaria para su
+      cuenta.
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
   sessions:
@@ -414,8 +463,9 @@ es:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Sesión actual
-    description: "%{browser} en %{platform}"
-    explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodon.
+    description: '%{browser} en %{platform}'
+    explanation: Estos son los navegadores web conectados actualmente en tu cuenta
+      de Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -458,98 +508,115 @@ es:
       public: Público
       public_long: Todos pueden ver
       unlisted: Público, pero no mostrar en la historia federada
-      unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
+      unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo
+        públicas
   stream_entries:
     click_to_show: Click para mostrar
     pinned: Toot fijado
     reblogged: retooteado
     sensitive_content: Contenido sensible
   terms:
-    body_html: |
-      <h2>Políticas de privacidad</h2>
-
-      <h3 id="collect">¿Qué información recolectamos?</h3>
-
-      <p>Recolectamos información tuya cuando te registras en nuestro sitio y adquirimos datos cuando participas en el foro leyendo, escribiendo, y evaluando el contenido compartido aquí.</p>
-
-      <p>Cuando te registras en nuestro sitio, puede que se te pida tu nombre y dirección de correo electrónico. De todas formas, puedes visitar nuestro sitio sin registrarte. Tu dirección de correo electrónico será verificada por un e-mail conteniendo un enlace único. Si ese enlace es visitado, sabemos que tú controlas esa dirección.</p>
-
-      <p>Cuando te registras y posteas, grabamos la IP de la que se origina esa acción. También puede que retengamos logs del servidor, que incluyen la dirección IP de todos los pedidos a nuestro servidor.</p>
-
-      <h3 id="use">¿Para qué usamos tu información?</h3>
-
-      <p>Toda la información que recolectamos de ti puede usarse en una de las siguientes maneras:</p>
-
-      <ul>
-        <li>Para personalizar tu experiencia &mdash; tu información nos ayuda a responder mejor tus necesidades individuales.</li>
-        <li>Para mejorar nuestro sitio &mdash; nos esforzamos continuamente en mejorar nuestras ofertas del sitio basándonos en la información y apoyo que recibimos de ti.</li>
-        <li>Para mejorar el servicio al cliente &mdash; tu información nos ayuda a responder más efectivamente al servicio al cliente y otras necesidades.</li>
-        <li>Para enviar e-mails periódicos &mdash; la dirección de e-mail que provees puede usarse para enviarte información, notificaciones que pides sobre cambios en tópicos o en respuesta a tu nombre de usuario, responder consultas, y/u otros pedidos o preguntas.</li>
-      </ul>
-
-      <h3 id="protect">¿Cómo protegemos tu información?</h3>
-
-      <p>Implementamos una variedad de medidas de seguridad para mantener a salvo tu información personal cuando entras, publicas, o accesas a ella.</p>
-
-      <h3 id="data-retention">¿Cuáles son sus políticas de retención de datos?</h3>
-
-      <p>Haremos un gran esfuerzo en:</p>
-
-      <ul>
-        <li>Retener logs del servidor conteniendo la dirección IP de todos los pedidos a este servidor en no más de 90 días.</li>
-        <li>Retener las direcciones IP asociadas con usuarios registrados y sus posts no más de 5 años.</li>
-      </ul>
-
-      <h3 id="cookies"¿Usamos cookies?</h3>
-
-      <p>Sí. Las cookies son pequeños archivos que un sitio web o su proveedor de servicio transfieren al disco duro de tu computadora a través de tu navegador web (si se le permite). Estas cookies permiten al sitio reconocer tu navegador y, si y tienes una cuenta registrada, asociarlo con ella.</p>
-
-      <p>Usamos cookies para entender y guardar tus preferencias para futuras visitas y agregar datos compilados sobre el tráfico del sitio e interacción para que podamos ofrecer una mejor experiencia y herramientas en el futuro. Puede que contratemos con proveedores de servicio de tercera mano para que nos asistan en el mejor entendimiento de nuestros visitantes del sitio. A estos proveedores de servicio no se les permite usar la información recolectada a nuestras espaldas excepto para ayudarnos a conducir y mejorar nuestro trabajo.</p>
-
-      <h3 id="disclose">¿Revelamos alguna información a terceras manos?</h3>
-
-      <p>No vendemos, intercambiamos, ni de ninguna otra manera transferimos tu información personal identificable a terceras partes. Esto no incluye las terceras manos que nos asisten en operar nuestro sitio, conducción o trabajo, o en servirte, tanto como que éstas acepten en mantener esta información confidencial. Puede que también liberemos tu información cuando creamos que es apropiado para cumplir con la ley, enforzar nuestras políticas del sitio, o proteger la nuestra u otros derechos, propiedad, o seguridad. De todas formas, la información del visitante autorizado no-personal puede proveerse a otras partes por marketing, publicidad, u otros usos.</p>
-
-      <h3 id="third-party">Enlaces de terceras partes</h3>
-
-      <p>Ocasionalmente, a nuestra discreción, puede que incluyamos u ofrezcamos productos de terceras partes o servicios en nuestro sitio. Estas terceras partes tienen políticas de privacidad separadas e independientes. Por lo tanto no tenemos responsabilidad u obligación por el contenido y actividades de estos sitios enlazados. Sin embargo, buscamos proteger la integridad de nuestro sitio y dar la bienvenida a cualquier ayuda sobre estos sitios.</p>
-
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance (Cumplimiento de la Ley de la Protección Privada en Línea del Niño)</h3>
-
-      <p>Nuestro sitio y todos nuestros productos y servicios están dirigidos a gente que tiene al menos 13 años de edad. Si el servidor está alojado en EE.UU, y tienes menos de 13 años, no uses este sitio por los requerimientos del COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>).</p>
-
-      <h3 id="online">Solo Políticas de Privacidad en Línea</h3>
-
-      <p>Estas políticas de privacidad aplican únicamente a la información recolectada a través de nuestro sitio y no a información recolectada <i>offline</i>.</p>
-
-      <h3 id="consent">Tu Consentimiento</h3>
-
-      <p>Al usar nuestro sitio, estás consentido a nuestras políticas de privacidad del sitio.</p>
-
-      <h3 id="changes">Cambios a nuestras Políticas de Privacidad</h3>
-
-      <p>Si decidimos cambiar nuestras políticas de privacidad, las publicaremos en esta página.</p>
-
-      <p>Este documento está publicado bajo la licencia CC-BY-SA. Última vez actualizado el 31 de Mayo del 2013.</p>
-
-      <p>Adaptado originalmente del <a href="https://github.com/discourse/discourse">discurso de las políticas de privacidad</a>.</p>
+    body_html: "<h2>Políticas de privacidad</h2>\n\n<h3 id=\"collect\">¿Qué información\
+      \ recolectamos?</h3>\n\n<p>Recolectamos información tuya cuando te registras\
+      \ en nuestro sitio y adquirimos datos cuando participas en el foro leyendo,\
+      \ escribiendo, y evaluando el contenido compartido aquí.</p>\n\n<p>Cuando te\
+      \ registras en nuestro sitio, puede que se te pida tu nombre y dirección de\
+      \ correo electrónico. De todas formas, puedes visitar nuestro sitio sin registrarte.\
+      \ Tu dirección de correo electrónico será verificada por un e-mail conteniendo\
+      \ un enlace único. Si ese enlace es visitado, sabemos que tú controlas esa dirección.</p>\n\
+      \n<p>Cuando te registras y posteas, grabamos la IP de la que se origina esa\
+      \ acción. También puede que retengamos logs del servidor, que incluyen la dirección\
+      \ IP de todos los pedidos a nuestro servidor.</p>\n\n<h3 id=\"use\">¿Para qué\
+      \ usamos tu información?</h3>\n\n<p>Toda la información que recolectamos de\
+      \ ti puede usarse en una de las siguientes maneras:</p>\n\n<ul>\n  <li>Para\
+      \ personalizar tu experiencia &mdash; tu información nos ayuda a responder mejor\
+      \ tus necesidades individuales.</li>\n  <li>Para mejorar nuestro sitio &mdash;\
+      \ nos esforzamos continuamente en mejorar nuestras ofertas del sitio basándonos\
+      \ en la información y apoyo que recibimos de ti.</li>\n  <li>Para mejorar el\
+      \ servicio al cliente &mdash; tu información nos ayuda a responder más efectivamente\
+      \ al servicio al cliente y otras necesidades.</li>\n  <li>Para enviar e-mails\
+      \ periódicos &mdash; la dirección de e-mail que provees puede usarse para enviarte\
+      \ información, notificaciones que pides sobre cambios en tópicos o en respuesta\
+      \ a tu nombre de usuario, responder consultas, y/u otros pedidos o preguntas.</li>\n\
+      </ul>\n\n<h3 id=\"protect\">¿Cómo protegemos tu información?</h3>\n\n<p>Implementamos\
+      \ una variedad de medidas de seguridad para mantener a salvo tu información\
+      \ personal cuando entras, publicas, o accesas a ella.</p>\n\n<h3 id=\"data-retention\"\
+      >¿Cuáles son sus políticas de retención de datos?</h3>\n\n<p>Haremos un gran\
+      \ esfuerzo en:</p>\n\n<ul>\n  <li>Retener logs del servidor conteniendo la dirección\
+      \ IP de todos los pedidos a este servidor en no más de 90 días.</li>\n  <li>Retener\
+      \ las direcciones IP asociadas con usuarios registrados y sus posts no más de\
+      \ 5 años.</li>\n</ul>\n\n<h3 id=\"cookies\"¿Usamos cookies?</h3>\n\n<p>Sí. Las\
+      \ cookies son pequeños archivos que un sitio web o su proveedor de servicio\
+      \ transfieren al disco duro de tu computadora a través de tu navegador web (si\
+      \ se le permite). Estas cookies permiten al sitio reconocer tu navegador y,\
+      \ si y tienes una cuenta registrada, asociarlo con ella.</p>\n\n<p>Usamos cookies\
+      \ para entender y guardar tus preferencias para futuras visitas y agregar datos\
+      \ compilados sobre el tráfico del sitio e interacción para que podamos ofrecer\
+      \ una mejor experiencia y herramientas en el futuro. Puede que contratemos con\
+      \ proveedores de servicio de tercera mano para que nos asistan en el mejor entendimiento\
+      \ de nuestros visitantes del sitio. A estos proveedores de servicio no se les\
+      \ permite usar la información recolectada a nuestras espaldas excepto para ayudarnos\
+      \ a conducir y mejorar nuestro trabajo.</p>\n\n<h3 id=\"disclose\">¿Revelamos\
+      \ alguna información a terceras manos?</h3>\n\n<p>No vendemos, intercambiamos,\
+      \ ni de ninguna otra manera transferimos tu información personal identificable\
+      \ a terceras partes. Esto no incluye las terceras manos que nos asisten en operar\
+      \ nuestro sitio, conducción o trabajo, o en servirte, tanto como que éstas acepten\
+      \ en mantener esta información confidencial. Puede que también liberemos tu\
+      \ información cuando creamos que es apropiado para cumplir con la ley, enforzar\
+      \ nuestras políticas del sitio, o proteger la nuestra u otros derechos, propiedad,\
+      \ o seguridad. De todas formas, la información del visitante autorizado no-personal\
+      \ puede proveerse a otras partes por marketing, publicidad, u otros usos.</p>\n\
+      \n<h3 id=\"third-party\">Enlaces de terceras partes</h3>\n\n<p>Ocasionalmente,\
+      \ a nuestra discreción, puede que incluyamos u ofrezcamos productos de terceras\
+      \ partes o servicios en nuestro sitio. Estas terceras partes tienen políticas\
+      \ de privacidad separadas e independientes. Por lo tanto no tenemos responsabilidad\
+      \ u obligación por el contenido y actividades de estos sitios enlazados. Sin\
+      \ embargo, buscamos proteger la integridad de nuestro sitio y dar la bienvenida\
+      \ a cualquier ayuda sobre estos sitios.</p>\n\n<h3 id=\"coppa\">Children's Online\
+      \ Privacy Protection Act Compliance (Cumplimiento de la Ley de la Protección\
+      \ Privada en Línea del Niño)</h3>\n\n<p>Nuestro sitio y todos nuestros productos\
+      \ y servicios están dirigidos a gente que tiene al menos 13 años de edad. Si\
+      \ el servidor está alojado en EE.UU, y tienes menos de 13 años, no uses este\
+      \ sitio por los requerimientos del COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
+      >Children's Online Privacy Protection Act</a>).</p>\n\n<h3 id=\"online\">Solo\
+      \ Políticas de Privacidad en Línea</h3>\n\n<p>Estas políticas de privacidad\
+      \ aplican únicamente a la información recolectada a través de nuestro sitio\
+      \ y no a información recolectada <i>offline</i>.</p>\n\n<h3 id=\"consent\">Tu\
+      \ Consentimiento</h3>\n\n<p>Al usar nuestro sitio, estás consentido a nuestras\
+      \ políticas de privacidad del sitio.</p>\n\n<h3 id=\"changes\">Cambios a nuestras\
+      \ Políticas de Privacidad</h3>\n\n<p>Si decidimos cambiar nuestras políticas\
+      \ de privacidad, las publicaremos en esta página.</p>\n\n<p>Este documento está\
+      \ publicado bajo la licencia CC-BY-SA. Última vez actualizado el 31 de Mayo\
+      \ del 2013.</p>\n\n<p>Adaptado originalmente del <a href=\"https://github.com/discourse/discourse\"\
+      >discurso de las políticas de privacidad</a>.</p>\n"
     title: Términos del Servicio y Políticas de Privacidad de %{instance}
   time:
     formats:
-      default: "%d de %b del %Y, %H:%M"
+      default: '%d de %b del %Y, %H:%M'
   two_factor_authentication:
-    code_hint: Ingresa el código generado por tu aplicación de autenticación para confirmar
-    description_html: Si habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
+    code_hint: Ingresa el código generado por tu aplicación de autenticación para
+      confirmar
+    description_html: Si habilitas la <strong>autenticación de dos factores</strong>,
+      se requerirá estar en posesión de su teléfono, lo que generará tokens para que
+      usted pueda iniciar sesión.
     disable: Deshabilitar
     enable: Habilitar
     enabled_success: Verificación de dos factores activada exitosamente
     generate_recovery_codes: generar códigos de recuperación
-    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
-    lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
+    instructions_html: <strong>Escanea este código QR desde Google Authenticator o
+      una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación
+      va a generar tokens que tienes que ingresar cuando quieras iniciar sesión.
+    lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a
+      tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación,
+      puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
-    recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
+    recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de
+      los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos
+      a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos
+      importantes.
     setup: Configurar
-    wrong_code: "¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?"
+    wrong_code: ¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor
+      están correctos?
   users:
     invalid_email: La dirección de correo es incorrecta
     invalid_otp_token: Código de dos factores incorrecto
