@@ -56,7 +56,7 @@ code {
 
   strong {
     font-weight: 500;
-	
+
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
@@ -401,7 +401,7 @@ code {
 
   strong {
     font-weight: 500;
-	
+
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
@@ -442,7 +442,7 @@ code {
   strong {
     color: $ui-secondary-color;
     font-weight: 500;
-	
+
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
@@ -492,7 +492,7 @@ code {
 
     strong {
       font-weight: 500;
-	  
+
       @each $lang in $cjk-langs {
         &:lang(#{$lang}) {
           font-weight: 700;
