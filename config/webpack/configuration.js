@@ -45,7 +45,7 @@ for (let i = 0; i < skinFiles.length; i++) {
   const data = flavours[name].skin;
   if (lstatSync(skinFile).isDirectory()) {
     data[skin] = {};
-    const skinPacks = glob.sync(skinFile, '*.{css,scss}');
+    const skinPacks = glob.sync(resolve(skinFile, '*.{css,scss}'));
     for (let j = 0; j < skinPacks.length; j++) {
       const pack = skinPacks[i];
       data[skin][basename(pack, extname(pack))] = pack;
