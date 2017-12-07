@@ -3,9 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-//  Stylesheet imports
-import './style.scss';
-
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 export default class LocalSettingsPage extends React.PureComponent {

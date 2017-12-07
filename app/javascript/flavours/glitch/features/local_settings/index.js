@@ -10,9 +10,6 @@ import LocalSettingsNavigation from './navigation';
 import { closeModal } from 'flavours/glitch/actions/modal';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 
-//  Stylesheet imports
-import './style.scss';
-
 const mapStateToProps = state => ({
   settings: state.get('local_settings'),
 });

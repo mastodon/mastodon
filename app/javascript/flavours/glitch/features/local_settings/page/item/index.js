@@ -3,9 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-//  Stylesheet imports
-import './style.scss';
-
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 export default class LocalSettingsPageItem extends React.PureComponent {

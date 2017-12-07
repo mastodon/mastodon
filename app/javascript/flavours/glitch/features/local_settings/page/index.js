@@ -7,9 +7,6 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 //  Our imports
 import LocalSettingsPageItem from './item';
 
-//  Stylesheet imports
-import './style.scss';
-
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({

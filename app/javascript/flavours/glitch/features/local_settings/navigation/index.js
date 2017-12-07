@@ -6,9 +6,6 @@ import { injectIntl, defineMessages } from 'react-intl';
 //  Our imports
 import LocalSettingsNavigationItem from './item';
 
-//  Stylesheet imports
-import './style.scss';
-
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({
