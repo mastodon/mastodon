@@ -14,16 +14,6 @@
 #  web_push_subscription_id :integer
 #
 
-#  id              :bigint           not null, primary key
-#  user_id         :bigint           not null
-#  session_id      :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  user_agent      :string           default(""), not null
-#  ip              :inet
-#  access_token_id :bigint
-#
-
 class SessionActivation < ApplicationRecord
   belongs_to :user, inverse_of: :session_activations, required: true
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', dependent: :destroy
