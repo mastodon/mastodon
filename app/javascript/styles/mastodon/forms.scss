@@ -56,11 +56,11 @@ code {
 
   strong {
     font-weight: 500;
-  }
-  
-  @each $lang in $cjk-langs {
-    strong:lang(#{$lang}) {
-      font-weight: 600;
+	
+	@each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
     }
   }
 
@@ -401,6 +401,12 @@ code {
 
   strong {
     font-weight: 500;
+	
+	@each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   @media screen and (max-width: 740px) and (min-width: 441px) {
@@ -436,6 +442,12 @@ code {
   strong {
     color: $ui-secondary-color;
     font-weight: 500;
+	
+	@each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   @media screen and (max-width: 740px) and (min-width: 441px) {
@@ -480,11 +492,11 @@ code {
 
     strong {
       font-weight: 500;
-    }
-    
-    @each $lang in $cjk-langs {
-      strong:lang(#{$lang}) {
-        font-weight: 600;
+	  
+	  @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
       }
     }
   }
@@ -518,6 +530,12 @@ code {
       display: block;
       margin-bottom: 5px;
 
+	  @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
+	  
       .fa {
         font-weight: 400;
       }
