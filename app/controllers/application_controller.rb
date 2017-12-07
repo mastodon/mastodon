@@ -103,15 +103,15 @@ class ApplicationController < ActionController::Base
         if data['fallback'].nil?
           return nil_pack(data, pack_name, skin)
         elsif data['fallback'].is_a?(String) && Themes.instance.flavour(data['fallback'])
-          return resolve_pack(Themes.instance.flavour(data['fallback']), pack_name, skin)
+          return resolve_pack(Themes.instance.flavour(data['fallback']), pack_name)
         elsif data['fallback'].is_a?(Array)
           data['fallback'].each do |fallback|
-            return resolve_pack(Themes.instance.flavour(fallback), pack_name, skin) if Themes.instance.flavour(fallback)
+            return resolve_pack(Themes.instance.flavour(fallback), pack_name) if Themes.instance.flavour(fallback)
           end
         end
         return nil_pack(data, pack_name, skin)
       end
-      return data.key?('name') && data['name'] != Setting.default_settings['flavour'] ? resolve_pack(Themes.instance.flavour(Setting.default_settings['flavour']), pack_name, skin) : nil_pack(data, pack_name, skin)
+      return data.key?('name') && data['name'] != Setting.default_settings['flavour'] ? resolve_pack(Themes.instance.flavour(Setting.default_settings['flavour']), pack_name) : nil_pack(data, pack_name, skin)
     end
     result
   end
