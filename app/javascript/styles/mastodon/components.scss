@@ -306,12 +306,6 @@
   font-family: inherit;
   font-size: 14px;
   background: $simple-background-color;
-  border-radius: 0 0 4px;
-}
-
-.compose-form__buttons-wrapper {
-  display: flex;
-  justify-content: space-between;
 }
 
 .compose-form__buttons {
@@ -451,6 +445,7 @@
 
 .compose-form__publish {
   display: flex;
+  justify-content: flex-end;
   min-width: 0;
 }
 
@@ -2071,7 +2066,7 @@
 
 .character-counter__wrapper {
   line-height: 36px;
-  margin: 0 16px 0 8px;
+  margin: 0 16px 0 0;
   padding-top: 10px;
 }
 
