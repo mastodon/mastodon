@@ -107,6 +107,30 @@ pt:
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
       disabled: Desativado
+      demote: Rebaixar
+      enable: Ativar
+      enabled: Ativado
+      followers_url: URL dos seguidores
+      inbox_url: URL da caixa de entrada
+      ip: IP
+      login_status: Estado de início de sessão
+      moderation_notes: Notas de moderação
+      promote: Promover
+      protocol: Protocolo
+      redownload: Atualizar avatar
+      reset: Restaurar
+      resubscribe: Reinscrever
+      role: Permissões
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        user: Utilizador
+      search: Pesquisar
+      shared_inbox_url: URL da caixa de entrada compartilhada
+      show:
+        created_reports: Relatórios gerados por esta conta
+        report: relatórios
+        targeted_reports: Relatórios feitos sobre esta conta
     domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio do domínio está a ser processado
@@ -200,6 +224,15 @@ pt:
       created_msg: Nota de moderação criada com sucesso!
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
+    action_logs:
+      actions:
+        confirm_user: '%{name} confirmou o endereço de e-mail do utilizador %{target}'
+        create_custom_emoji: '%{name} enviado emoji novo %{target}'
+        create_domain_block: '%{name} bloqueou o domínio %{target}'
+        create_email_domain_block: '%{name} adicionou na lista negra o domínio de
+          correio electrónico %{target}'
+        demote_user: '%{name} rebaixou o utilizador %{target}'
+        destroy_domain_block: '%{name} desbloqueou o domínio %{target}'
   application_mailer:
     settings: 'Alterar preferências de email: %{link}'
     signature: notificações Mastodon do %{instance}
