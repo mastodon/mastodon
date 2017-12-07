@@ -141,6 +141,11 @@ fr:
       enable: Activer
       enabled: Activé
       login_status: Statut de connexion
+      promote: Promouvoir
+      roles:
+        admin: Administrateur
+        moderator: Modérateur
+        user: Utilisateur
     custom_emojis:
       copied_msg: Copie locale de l’émoji créée avec succès !
       copy: Copier
@@ -181,7 +186,7 @@ fr:
         title: Nouveau blocage de domaine
       reject_media: Fichiers média rejetés
       reject_media_hint: Supprime localement les fichiers média stockés et refuse
-        d’en télécharger ultérieurement. Ne concerne pas les suspensions.
+        d’en télécharger ultérieurement. Ne concerne pas les suspensions
       severities:
         noop: Aucune
         silence: Masquer
@@ -304,6 +309,9 @@ fr:
       title: WebSub
       topic: Sujet
     title: Administration
+    action_logs:
+      actions:
+        confirm_user: '%{name} adresse e-mail confirmée de l''utilisateur %{target}'
   admin_mailer:
     new_report:
       body: '%{reporter} a signalé %{target}'
@@ -369,7 +377,7 @@ fr:
     confirm_password: Entrez votre mot de passe pour vérifier votre identité
     description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente
       et irréversible</strong>. Votre nom d’utilisateur⋅ice restera réservé afin d’éviter
-      la confusion
+      la confusion.
     proceed: Supprimer compte
     success_msg: Votre compte a été supprimé avec succès
     warning_html: Seule la suppression du contenu depuis cette instance est garantie.
@@ -384,12 +392,14 @@ fr:
     '422':
       content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
       title: Vérification de sécurité échouée
-    '429': Trop de requêtes émises dans un délai donné.
+    '429': Trop de requêtes émises dans un délai donné
     '500':
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre
         côté.
       title: Cette page n’est pas correcte
-    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript
+    noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez
+      l'une des <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">applications
+      natives</a> pour Mastodon pour votre plate-forme.
   exports:
     blocks: Vous bloquez
     csv: CSV
@@ -419,8 +429,8 @@ fr:
     powered_by: propulsé par %{link}
     save_changes: Enregistrer les modifications
     validation_errors:
-      one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous.
-      other: Certaines choses ne vont pas ! Vérifiez les erreurs ci-dessous.
+      one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
+      other: Certaines choses ne vont pas ! Vérifiez les %{count} erreurs ci-dessous
   imports:
     preface: Vous pouvez importer certaines données comme les personnes que vous suivez
       ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur
