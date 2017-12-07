@@ -63,9 +63,8 @@ export default class ActionBar extends React.PureComponent {
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
     } else {
-      const following = account.getIn(['relationship', 'following']);
-      if (following) {
-        if (following.get('reblogs')) {
+      if (account.getIn(['relationship', 'following'])) {
+        if (account.getIn(['relationship', 'showing_reblogs'])) {
           menu.push({ text: intl.formatMessage(messages.hideReblogs, { name: account.get('username') }), action: this.props.onReblogToggle });
         } else {
           menu.push({ text: intl.formatMessage(messages.showReblogs, { name: account.get('username') }), action: this.props.onReblogToggle });
