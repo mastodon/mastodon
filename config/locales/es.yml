@@ -30,7 +30,7 @@ es:
       within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas
         gracias a un ecosistema de APIs amigable al desarrollador para permitirte
         estar con tus amigos donde sea.
-      within_reach_title: Always within reach
+      within_reach_title: Siempre al alcance
     find_another_instance: Busca otra instancia
     generic_description: '%{domain} es un servidor en la red'
     hosted_on: Mastodon hosteado en %{domain}
@@ -206,9 +206,9 @@ es:
       view: Ver
     settings:
       bootstrap_timeline_accounts:
-        desc_html: Separa nombres de usuarios múltiples con coma. Solo funcionará
-          con cuentas desbloqueadas. Si está vacío, el predeterminado son todos los
-          administradores locales
+        desc_html: Separa con comas los nombres de usuario. Solo funcionará para cuentas
+          locales desbloqueadas. Si se deja vacío, se tomará como valor por defecto
+          a todos los administradores locales.
         title: Seguimientos predeterminados para usuarios nuevos
       contact_information:
         email: Correo de trabajo
@@ -498,8 +498,8 @@ es:
         el %{since}:'
       mention: '%{name} te ha mencionado en:'
       new_followers_summary:
-        one: ¡Hurra! Alguien más te ha comenzado a seguir
-        other: ¡Genial! Te han seguido %{count} nuevas personas
+        one: ¡Hurra! ¡Tienes un nuevo seguidor!
+        other: ¡Genial! ¡Tienes %{count} nuevos seguidores!
       subject:
         one: 1 nueva notificación desde tu última visita 🐘
         other: '%{count} nuevas notificaciones desde tu última visita 🐘'
@@ -516,7 +516,7 @@ es:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
     reblog:
-      body: '%{name} ha retooteado tu estado'
+      body: '%{name} ha retooteado tu estado:'
       subject: '%{name} ha retooteado tu estado'
   number:
     human:
@@ -541,7 +541,7 @@ es:
     group:
       title: '%{count} notificaciones'
     mention:
-      action_boost: Boost
+      action_boost: Retoot
       action_expand: Mostrar más
       action_favourite: Me Gusta
       title: '%{name} te mencionó'
@@ -549,8 +549,8 @@ es:
       title: '%{name} boosteó tu estado'
   remote_follow:
     acct: Ingesa el usuario@dominio de la persona que quieres seguir
-    missing_resource: No se pudo encontrar la URL de redirección necesaria para su
-      cuenta.
+    missing_resource: No se pudo encontrar la URL de redirección requerida para tu
+      cuenta
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
   sessions:
@@ -590,7 +590,7 @@ es:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: Revoke
+    revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
   settings:
