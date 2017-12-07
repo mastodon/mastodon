@@ -41,7 +41,7 @@
   strong {
     font-weight: 500;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }

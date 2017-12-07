@@ -382,7 +382,7 @@
         font-size: 32px;
         line-height: 48px;
 		
-		@each $lang in $cjk-langs {
+        @each $lang in $cjk-langs {
           &:lang(#{$lang}) {
             font-weight: 700;
           }

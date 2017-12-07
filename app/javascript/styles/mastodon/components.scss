@@ -281,7 +281,7 @@
     color: darken($ui-secondary-color, 65%);
     font-weight: 500;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
@@ -966,7 +966,7 @@
   strong {
     font-weight: 500;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
@@ -1073,7 +1073,7 @@
     font-weight: 500;
     color: $primary-text-color;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
@@ -2999,7 +2999,7 @@ button.icon-button.active i.fa-retweet {
     display: block;
     color: $ui-base-color;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
@@ -3439,7 +3439,7 @@ button.icon-button.active i.fa-retweet {
       font-size: 14px;
       padding: 3px 6px;
 	  
-	  @each $lang in $cjk-langs {
+      @each $lang in $cjk-langs {
         &:lang(#{$lang}) {
           font-weight: 700;
         }
@@ -3775,7 +3775,7 @@ button.icon-button.active i.fa-retweet {
   strong {
     font-weight: 500;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }

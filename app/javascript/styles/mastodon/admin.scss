@@ -122,7 +122,7 @@
         color: $primary-text-color;
         font-weight: 500;
 		
-		@each $lang in $cjk-langs {
+        @each $lang in $cjk-langs {
           &:lang(#{$lang}) {
             font-weight: 700;
           }
@@ -229,7 +229,7 @@
       text-transform: uppercase;
       font-size: 12px;
 	  
-	  @each $lang in $cjk-langs {
+      @each $lang in $cjk-langs {
         &:lang(#{$lang}) {
           font-weight: 700;
         }
@@ -278,7 +278,7 @@
     line-height: 18px;
     color: $ui-secondary-color;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }

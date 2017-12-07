@@ -57,7 +57,7 @@ code {
   strong {
     font-weight: 500;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
@@ -402,7 +402,7 @@ code {
   strong {
     font-weight: 500;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
@@ -443,7 +443,7 @@ code {
     color: $ui-secondary-color;
     font-weight: 500;
 	
-	@each $lang in $cjk-langs {
+    @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
@@ -493,7 +493,7 @@ code {
     strong {
       font-weight: 500;
 	  
-	  @each $lang in $cjk-langs {
+      @each $lang in $cjk-langs {
         &:lang(#{$lang}) {
           font-weight: 700;
         }
@@ -530,7 +530,7 @@ code {
       display: block;
       margin-bottom: 5px;
 
-	  @each $lang in $cjk-langs {
+      @each $lang in $cjk-langs {
         &:lang(#{$lang}) {
           font-weight: 700;
         }
