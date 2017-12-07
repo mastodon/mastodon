@@ -519,6 +519,10 @@
   overflow: hidden;
   white-space: pre-wrap;
 
+  &:focus {
+    outline: 0;
+  }
+
   &.status__content--with-spoiler {
     white-space: normal;
 
