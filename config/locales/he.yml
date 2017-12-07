@@ -29,20 +29,21 @@ he:
     features:
       humane_approach_body: מתוך למידה מכשלים של רשתות אחרות, מסטודון מכוונת להחלטות
         תכנוניות אתיות שנאבקות בשימוש לרעה של מדיה חברתית.
-      humane_approach_title: גישה הומאנית יותר.
+      humane_approach_title: גישה הומאנית יותר
       not_a_product_body: מסטודון איננה רשת מסחרית. אין פרסום, אין כריית מידע, אין
         גנים סגורים. אין סמכות מרכזית.
-      not_a_product_title: את/ה אדם, לא מוצר
-      real_conversation_body: עם 500 תווים לרשותך, ואפשרויות מדויקות לאזהרות תוכן
-        והסתרת מדיה, יש לך את החופש להתבטא איך שמתאים לך.
+      not_a_product_title: את(ה) אדם, לא מוצר
+      real_conversation_body: עם 500 תווים לרשותך, ואפשרויות פרטניות לאזהרות תוכן
+        והסתרת מדיה, יש לך את החופש להתבטא כרצונך.
       real_conversation_title: בנוי לשיחות אמתיות
       within_reach_body: שלל אפליקציות עבור iOS, אנדרואיד ופלטפורמות אחרות שיאפשרו
-        לך לשמור על קשר עם חברים בכל מקום, תודות לאקוסיסטם API ידידותי למפתחים.
+        לך לשמור על קשר עם חברים בכל מקום, תודות למערכת מנשקי תוכנה ידידותיים למפתחים.
       within_reach_title: תמיד במרחק נגיעה
     find_another_instance: לאיתור שרת אחר
     generic_description: '%{domain} הוא שרת אחד בתוך הרשת'
     hosted_on: מסטודון שיושב בכתובת %{domain}
     learn_more: מידע נוסף
+    what_is_mastodon: מה זה מסטודון?
   accounts:
     follow: לעקוב
     followers: עוקבים
@@ -53,10 +54,17 @@ he:
     posts: הודעות
     remote_follow: מעקב מרחוק
     unfollow: הפסקת מעקב
+    media: מדיה
+    moved_html: '%{name} עבר(ה) אל %{new_profile_link}:'
+    posts_with_replies: חצרוצים ותגובות
+    reserved_username: שם המשתמש שמור
+    roles:
+      admin: מנהל
+      moderator: מנחה
   admin:
     accounts:
       are_you_sure: בטוח?
-      confirm: אשר
+      confirm: אישור
       confirmed: אושר
       disable_two_factor_authentication: ביטול הזדהות דו-שלבית
       display_name: שם לתצוגה
@@ -104,6 +112,30 @@ he:
       undo_suspension: ביטול השעייה
       username: שם משתמש
       web: רשת
+      by_domain: שם מתחם
+      demote: הורדה בדרגה
+      disable: לחסום
+      disabled: נחסם
+      enable: לאפשר
+      enabled: מאופשר
+      followers_url: כתובת עוקבים
+      inbox_url: כתובת תיבה נכנסת
+      login_status: מצב חיבור
+      memorialize: הפוך לדף זכרון
+      moderation_notes: הודעות מנחה
+      outbox_url: כתובת תיבת דואר יוצא
+      promote: להעלות בדרגה
+      protocol: פרטיכל
+      redownload: לקריאה מחדש של האווטאר
+      resubscribe: להרשם מחדש
+      role: הרשאות
+      roles:
+        admin: מנהל מערכת
+        moderator: מנחה דיונים
+        user: משתמש(ת)
+      shared_inbox_url: תיבה משותפת לדואר נכנס
+      subscribe: הרשמה
+      unsubscribe: הפסקת הרשמה
     domain_blocks:
       add_new: הוספת חדש
       created_msg: חסימת שרת בתהליך
@@ -116,13 +148,13 @@ he:
         severity:
           desc_html: <strong>השתקה</strong> תחביא הודעות מחשבון זה לכל מי שלא עוקב
             אחריו. <strong>השעייה</strong> תסיר מהשרת את כל התוכן, מדיה ותכונות הפרופיל
-            שמקושרות לחשבון זה.
+            שמקושרות לחשבון זה. <strong>כלום</strong> כדי לחסום קבצי מדיה בלבד.
           silence: השתקה
           suspend: השעייה
         title: חסימת שרת חדשה
       reject_media: חסימת קבצי מדיה
       reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים
-        בעתיד. לא רלוונטי להשעיות.
+        בעתיד. לא רלוונטי להשעיות
       severities:
         silence: השתקה
         suspend: השעייה
@@ -176,8 +208,8 @@ he:
         open:
           title: הרשמה פתוחה
       site_description:
-        desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא.<br>ניתן להשתמש בתגיות
-          HTML, ובמיוחד ב־<code>&lt;a&gt;</code> ו־<code>&lt;em&gt;</code>.
+        desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא. ניתן להשתמש בתגיות HTML,
+          ובמיוחד ב־<code> &lt; a&gt; </code> ו־<code> &lt; em&gt; </code> .
         title: תיאור האתר
       site_description_extended:
         desc_html: מוצג על עמוד המידע הנוסף<br>ניתן להשתמש בתגיות HTML
@@ -189,9 +221,27 @@ he:
       confirmed: מאושר
       expires_in: פג תוקף ב-
       last_delivery: משלוח אחרון
-      title: WebSub
+      title: מנוי WebSub
       topic: נושא
     title: ניהול
+    account_moderation_notes:
+      account: מנחה דיון
+      create: ליצור
+      created_at: תאריך
+      created_msg: הודעת מנחה נוצרה בהצלחה!
+      delete: למחוק
+      destroyed_msg: הודעת מנחה נמחקה בהצלחה!
+    action_logs:
+      actions:
+        confirm_user: יש אישור מאת %{name} על כתובת הדוא"ל של %{target}
+        create_custom_emoji: '%{name} תרמה/תרם אמוג''י חדש %{target}'
+        create_domain_block: '%{name} חסמה/חסם את שם המתחם %{target}'
+        create_email_domain_block: מתחם דוא"ל %{target} הוסף לרשימה השחורה ע"י %{name}
+        demote_user: '%{name} הורד(ה) בדרגה ע"י %{target}'
+        destroy_domain_block: החסימה על מתחם %{target} הוסרה ע"י %{name}
+        destroy_email_domain_block: מתחם דוא"ל %{target} הוכנס לרשימה הלבנה ע"י %{name}
+        destroy_status: ההודעה של  %{target} הוסרה ע"י %{name}
+        disable_2fa_user: אימות דו שלבי של  %{target} הוסר ע"י %{name}
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
     signature: התראות מסטודון מקהילת %{instance}
@@ -372,9 +422,9 @@ he:
       ידנית, להלן סוד כמוס בלתי מוצפן:'
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה
-      על מנת לאחזר גישה לחשבונך בכל עת. נא לשמור על קודי הגישה במקום בטוח )לדוגמא
-      על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול
-      סיסמאות וסודות(
+      על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>.
+      לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית
+      לניהול סיסמאות וסודות.
     setup: הכנה
     wrong_code: הקוד שהוזן שגוי! האם הזמן בשרת והזמן במכשירך נכונים?
   users:
