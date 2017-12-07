@@ -5,7 +5,7 @@ module ApplicationHelper
     current_page?(path) ? 'active' : ''
   end
 
-  def active_link_to(label, path, options = {})
+  def active_link_to(label, path, **options)
     link_to label, path, options.merge(class: active_nav_class(path))
   end
 

@@ -95,6 +95,11 @@
   padding: 0 6px 6px;
   background: $simple-background-color;
   will-change: transform;
+
+  &::-webkit-scrollbar-track:hover,
+  &::-webkit-scrollbar-track:active {
+    background-color: rgba($base-overlay-background, 0.3);
+  }
 }
 
 .emoji-mart-search {

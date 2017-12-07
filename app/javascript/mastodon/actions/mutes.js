@@ -1,6 +1,6 @@
 import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
-import { openModal } from '../../mastodon/actions/modal';
+import { openModal } from './modal';
 
 export const MUTES_FETCH_REQUEST = 'MUTES_FETCH_REQUEST';
 export const MUTES_FETCH_SUCCESS = 'MUTES_FETCH_SUCCESS';

@@ -63,7 +63,7 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def digest(recipient, opts = {})
+  def digest(recipient, **opts)
     @me            = recipient
     @since         = opts[:since] || @me.user.last_emailed_at || @me.user.current_sign_in_at
     @notifications = Notification.where(account: @me, activity_type: 'Mention').where('created_at > ?', @since)

@@ -232,6 +232,13 @@ pl:
       reset: Przywróć
       search: Szukaj
       title: Znane instancje
+    invites:
+      filter:
+        all: Wszystkie
+        available: Dostępne
+        expired: Wygasłe
+        title: Filtruj
+      title: Zaproszenia
     reports:
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
@@ -270,6 +277,9 @@ pl:
         deletion:
           desc_html: Pozwól każdemu na usunięcie konta
           title: Możliwość usunięcia
+        min_invite_role:
+          disabled: Nikt
+          title: Kto może zapraszać użytkowników
         open:
           desc_html: Pozwól każdemu na założenie konta
           title: Otwarta rejestracja
@@ -428,7 +438,8 @@ pl:
     upload: Załaduj
   in_memoriam_html: Ku pamięci.
   invites:
-    delete: Usuń
+    delete: Wygaś
+    expired: Wygasły
     expires_in:
       '1800': 30 minutach
       '21600': 6 godzinach
