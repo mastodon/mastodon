@@ -1,18 +1,18 @@
+---
 he:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן ל-120x120px
+        digest: נשלח לאחר תקופה ארוכה של אי-פעילות עם סיכום איזכורים שקיבלת בהעדרך
         display_name:
           one: נותרה אות<span class="name-counter">אחת</span>
           other: נותרו<span class="name-counter">%{count}</span> אותיות
         header: PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן 700x335px
-        locked: מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא
-          אם יצוין אחרת
+        locked: מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת
         note:
           one: נותרה אות<span class="note-counter">אחת</span>
           other: נותרו <span class="note-counter">%{count}</span> אותיות
-        digest: נשלח לאחר תקופה ארוכה של אי-פעילות עם סיכום איזכורים שקיבלת בהעדרך
         setting_noindex: משפיע על הפרופיל הציבורי שלך ועמודי ההודעות
         setting_theme: משפיע על המראה של מסטודון בעת החיבור המזוהה מכל מכשיר שהוא.
       imports:
@@ -30,9 +30,12 @@ he:
         data: מידע
         display_name: שם להצגה
         email: כתובת דוא"ל
+        expires_in: תפוגה לאחר
+        filtered_languages: שפות מסוננות
         header: ראשה
         locale: שפה
         locked: הפוך חשבון לפרטי
+        max_uses: מספר מרבי של שימושים
         new_password: סיסמא חדשה
         note: אודות
         otp_attempt: קוד אימות דו-שלבי
@@ -40,12 +43,6 @@ he:
         setting_auto_play_gif: ניגון אוטומטי של גיפים
         setting_boost_modal: הצגת דיאלוג אישור לפני הדהוד
         setting_default_privacy: פרטיות ההודעות
-        severity: חומרה
-        type: סוג יבוא
-        username: שם משתמש
-        expires_in: תפוגה לאחר
-        filtered_languages: שפות מסוננות
-        max_uses: מספר מרבי של שימושים
         setting_default_sensitive: תמיד לתת סימון "רגיש" למדיה
         setting_delete_modal: להראות תיבת אישור לפני מחיקת חיצרוץ
         setting_noindex: לבקש הסתרה ממנועי חיפוש
@@ -53,6 +50,9 @@ he:
         setting_system_font_ui: להשתמש בגופן ברירת המחדל של המערכת
         setting_theme: ערכת העיצוב של האתר
         setting_unfollow_modal: להראות תיבת אישור לפני הפסקת מעקב אחרי אחרים
+        severity: חומרה
+        type: סוג יבוא
+        username: שם משתמש
       interactions:
         must_be_follower: חסימת התראות משאינם עוקבים
         must_be_following: חסימת התראות משאינם נעקבים
@@ -66,6 +66,6 @@ he:
         reblog: שליחת דוא"ל כשמהדהדים חצרוץ שלך
     'no': לא
     required:
-      mark: '*'
+      mark: "*"
       text: שדה חובה
     'yes': כן
