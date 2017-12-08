@@ -170,7 +170,7 @@ fr:
       upload: Téléverser
       listed: Listé
       overwrite: Réécrire
-      unlisted: Délisté
+      unlisted: Masqué
       update_failed_msg: N'a pas pu mettre à jour cet emoji
       updated_msg: Emoji mis à jour avec succès !
     domain_blocks:
@@ -327,28 +327,30 @@ fr:
         confirm_user: '%{name} adresse e-mail confirmée de l''utilisateur %{target}'
         create_custom_emoji: '%{name} a importé de nouveaux emoji %{target}'
         create_domain_block: '%{name} a bloqué le domaine %{target}'
-        create_email_domain_block: '%{name} a blacklisté le domaine de l''e-mail %{target}'
+        create_email_domain_block: '%{name} a blacklisté les addresses e-mail provenants
+          du domaine %{target}'
         destroy_domain_block: '%{name} a débloqué le domaine %{target}'
-        destroy_email_domain_block: '%{name} a mis le domaine de l''e-mail %{target}
-          sur liste blanche'
-        destroy_status: '%{name} a enlevé le statut de %{target}'
+        destroy_email_domain_block: '%{name} a mis les adresses e-mail du domaine
+          %{target} sur liste blanche'
+        destroy_status: '%{name} a supprimé un pouet de %{target}'
         disable_2fa_user: '%{name} a désactivé l''authentification à deux facteurs
           pour l''utilisateur %{target}'
         disable_custom_emoji: '%{name} a désactivé l''emoji %{target}'
-        disable_user: '%{name} a désactivé le login pour l''utilisateur %{target}'
+        disable_user: '%{name} a désactivé la connexion pour l''utilisateur %{target}'
         enable_custom_emoji: '%{name} a activé l''emoji %{target}'
-        enable_user: '%{name} a activé le login pour l''utilisateur %{target}'
+        enable_user: '%{name} a activé la connexion pour l''utilisateur %{target}'
         memorialize_account: '%{name} a transformé le compte de %{target} en une page
           de mémorial'
         promote_user: '%{name} a promu l''utilisateur %{target}'
         reset_password_user: '%{name} a réinitialisé le mot de passe de %{target}'
-        resolve_report: '%{name} n''a pas pris en compte la dénonciation de %{target}'
-        silence_account: '%{name} a mis le compte %{target} en mode silence'
+        resolve_report: '%{name} a rejeté le rapport de %{target}'
+        silence_account: '%{name} a silencé le compte %{target}'
         suspend_account: '%{name} a suspendu le compte %{target}'
-        unsilence_account: '%{name} a mis fin au mode silence de %{target}'
-        unsuspend_account: '%{name} a réactivé le compte de %{target}'
+        unsilence_account: '%{name} a mis fin au silence de %{target}'
+        unsuspend_account: '%{name} a annulé la suspension de %{target}'
         update_custom_emoji: '%{name} a mis à jour l''emoji %{target}'
         update_status: '%{name} a mis à jour le statut de %{target}'
+        demote_user: '%{name} a rétrogradé %{target}'
       title: Journal d'audit
     invites:
       filter:
@@ -775,7 +777,7 @@ fr:
     table:
       expires_at: Expire
       uses: Utilise
-    title: Personnes invitées
+    title: Inviter des gens
   migrations:
     acct: utilisateur@domaine du nouveau compte
     currently_redirecting: 'Votre profile va être redirigé vers :'
