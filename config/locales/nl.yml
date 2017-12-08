@@ -201,7 +201,7 @@ nl:
           other: '%{count} accounts in de database aangepast'
         retroactive:
           silence: Alle genegeerde accounts van dit domein niet meer negeren
-          suspend: Alle opgeschorste accounts van dit domein niet meer opschorten
+          suspend: Alle opgeschorte accounts van dit domein niet meer opschorten
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
       title: Domeinblokkades
@@ -331,6 +331,11 @@ nl:
         promote_user: '%{name} heeft persoon %{target} gepromoveerd'
         reset_password_user: '%{name} heeft het wachtwoord van gebruiker %{target}
           opnieuw ingesteld'
+        resolve_report: Gerapporteerde toots van %{target} zijn door %{name} verworpen
+        silence_account: Account %{target} is door %{name} genegeerd
+        suspend_account: Account %{target} is door %{name} opgeschort
+        unsilence_account: Negeren van account %{target} is door %{name} opgeheven
+        unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
   admin_mailer:
     new_report:
       body: '%{reporter} heeft %{target} gerapporteerd'
