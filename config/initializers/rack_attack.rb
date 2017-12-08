@@ -2,20 +2,13 @@
 
 class Rack::Attack
   class Request
-    def authorization
-      get_header('HTTP_AUTHORIZATION')   ||
-      get_header('X-HTTP_AUTHORIZATION') ||
-      get_header('X_HTTP_AUTHORIZATION') ||
-      get_header('REDIRECT_X_HTTP_AUTHORIZATION')
-    end
-
-    def parameters
-      params
-    end
-
     def authenticated_token
       return @token if defined?(@token)
-      @token = Doorkeeper::OAuth::Token.authenticate(self, *Doorkeeper.configuration.access_token_methods)
+
+      @token = Doorkeeper::OAuth::Token.authenticate(
+        Doorkeeper::Grape::AuthorizationDecorator.new(self),
+        *Doorkeeper.configuration.access_token_methods
+      )
     end
 
     def authenticated_user_id
