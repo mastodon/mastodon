@@ -280,6 +280,12 @@
   strong {
     color: darken($ui-secondary-color, 65%);
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   a {
@@ -512,6 +518,10 @@
   font-weight: 400;
   overflow: hidden;
   white-space: pre-wrap;
+
+  &:focus {
+    outline: 0;
+  }
 
   &.status__content--with-spoiler {
     white-space: normal;
@@ -959,6 +969,12 @@
 
   strong {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   a {
@@ -1060,6 +1076,12 @@
     font-size: 15px;
     font-weight: 500;
     color: $primary-text-color;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   abbr {
@@ -2980,6 +3002,12 @@ button.icon-button.active i.fa-retweet {
     font-weight: 500;
     display: block;
     color: $ui-base-color;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 }
 
@@ -3414,6 +3442,12 @@ button.icon-button.active i.fa-retweet {
       border-radius: 4px;
       font-size: 14px;
       padding: 3px 6px;
+
+      @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
     }
   }
 }
@@ -3744,6 +3778,12 @@ button.icon-button.active i.fa-retweet {
 
   strong {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 }
 

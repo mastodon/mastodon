@@ -1,52 +1,98 @@
 ---
 pt:
   about:
-    about_mastodon_html: Mastodon é uma rede social <em>grátis e em código aberto</em>. Uma alternativa <em>descentralizada</em> às plataformas comerciais, que evita o risco de uma única empresa monopolizar a tua comunicação. Escolhe um servidor que confies, não importa qual, pois vais poder comunicar com todos os outros. Qualquer um pode criar uma instância Mastodon e participar nesta <em>rede social</em>.
+    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
+    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
     about_this: Sobre esta instância
     closed_registrations: Novos registos estão fechados nesta instância.
     contact: Contacto
+    contact_missing: Não definido
+    contact_unavailable: N/A
     description_headline: O que é o %{domain}?
     domain_count_after: outras instâncias
     domain_count_before: Ligado a
+    extended_description_html: |
+      <h3>Um bom lugar para regras</h3>
+      <p>A descrição da instância ainda não foi feita.</p>
+    features:
+      humane_approach_body: Aprendendo com erros de outras redes sociais, Mastodon tem como objetivo fazer decisões éticas de design para combater o utilização errada de redes sociais.
+      humane_approach_title: Uma abordagem mais humana
+      not_a_product_body: Mastodon não é uma rede comercial. Sem publicidade, sem recolha de dados ou portas fechadas. Não existe uma autoridade central.
+      not_a_product_title: Tu és uma pessoa, não um produto
+      real_conversation_body: Com 500 caracteres à sua disposição e suporte para conteúdo granular e avisos de conteúdo, podes te expressar da forma que desejares.
+      real_conversation_title: Feito para conversas reais
+      within_reach_body: Várias aplicações para iOS, Android e outras plataformas graças a um ecossistema de API amigável para desenvolvedores, permitem-te que te mantenhas em contacto com os teus amigos em qualquer lugar.
+      within_reach_title: Sempre ao teu alcance
+    find_another_instance: Encontra outra instância
+    generic_description: "%{domain} é um servidor na rede"
+    hosted_on: Mastodon em %{domain}
+    learn_more: Saber mais
     other_instances: Outras instâncias
     source_code: Código fonte
     status_count_after: publicações
     status_count_before: Que fizeram
     user_count_after: utilizadores
     user_count_before: Casa para
+    what_is_mastodon: O que é o Mastodon?
   accounts:
     follow: Seguir
     followers: Seguidores
     following: A seguir
+    media: Media
+    moved_html: "%{name} mudou-se para %{new_profile_link}:"
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas seguidas por %{name}
     people_who_follow: Pessoas que seguem %{name}
     posts: Posts
+    posts_with_replies: Posts e Respostas
     remote_follow: Seguir remotamente
+    reserved_username: Este nome de utilizadores é reservado
+    roles:
+      admin: Administrador
+      moderator: Moderador
     unfollow: Deixar de seguir
   admin:
+    account_moderation_notes:
+      account: Moderador
+      create: Criar
+      created_at: Data
+      created_msg: Nota de moderação criada com sucesso!
+      delete: Eliminar
+      destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       are_you_sure: Tens a certeza?
+      by_domain: Domínio
       confirm: Confirme
       confirmed: Confirmado
+      demote: Rebaixar
+      disable: Desativar
+      disable_two_factor_authentication: Desativar 2FA
+      disabled: Desativado
       display_name: Nome a mostrar
       domain: Domínio
       edit: Editar
       email: E-mail
+      enable: Ativar
+      enabled: Ativado
       feed_url: URL do Feed
       followers: Seguidores
+      followers_url: URL dos seguidores
       follows: A seguir
+      inbox_url: URL da caixa de entrada
+      ip: IP
       location:
         all: Todos
         local: Local
         remote: Remoto
         title: Local
+      login_status: Estado de início de sessão
       media_attachments: Media anexa
       moderation:
         all: Todos
         silenced: Silenciados
         suspended: Supensos
         title: Moderação
+      moderation_notes: Notas de moderação
       most_recent_activity: Actividade mais recente
       most_recent_ip: IP mais recente
       not_subscribed: Não inscrito
@@ -56,10 +102,26 @@ pt:
         title: Ordem
       perform_full_suspension: Fazer suspensão completa
       profile_url: URL do perfil
+      promote: Promover
+      protocol: Protocolo
       public: Público
       push_subscription_expires: PuSH subscription expires
+      redownload: Atualizar avatar
+      reset: Restaurar
       reset_password: Reset palavra-passe
+      resubscribe: Reinscrever
+      role: Permissões
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        user: Utilizador
       salmon_url: Salmon URL
+      search: Pesquisar
+      shared_inbox_url: URL da caixa de entrada compartilhada
+      show:
+        created_reports: Relatórios gerados por esta conta
+        report: relatórios
+        targeted_reports: Relatórios feitos sobre esta conta
       silence: Silêncio
       statuses: Status
       title: Contas
@@ -67,6 +129,14 @@ pt:
       undo_suspension: Desfazer supensão
       username: Usuário
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
+        create_custom_emoji: "%{name} enviado emoji novo %{target}"
+        create_domain_block: "%{name} bloqueou o domínio %{target}"
+        create_email_domain_block: "%{name} adicionou na lista negra o domínio de correio electrónico %{target}"
+        demote_user: "%{name} rebaixou o utilizador %{target}"
+        destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
     domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio do domínio está a ser processado

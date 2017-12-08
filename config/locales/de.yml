@@ -39,6 +39,7 @@ de:
     followers: Folgende
     following: Folgt
     media: Medien
+    moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
@@ -48,6 +49,7 @@ de:
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Admin
+      moderator: Mod
     unfollow: Entfolgen
   admin:
     account_moderation_notes:
@@ -59,15 +61,21 @@ de:
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       are_you_sure: Bist du sicher?
+      by_domain: Domain
       confirm: Bestätigen
       confirmed: Bestätigt
+      demote: Degradieren
+      disable: Ausschalten
       disable_two_factor_authentication: 2FA abschalten
+      disabled: Ausgeschaltet
       display_name: Anzeigename
       domain: Domain
       edit: Bearbeiten
       email: E-Mail
+      enable: Freischalten
+      enabled: Freigegeben
       feed_url: Feed-URL
-      followers: Folgende
+      followers: Folger
       followers_url: Followers URL
       follows: Folgt
       inbox_url: Inbox URL
@@ -77,7 +85,9 @@ de:
         local: Lokal
         remote: Entfernt
         title: Ort
+      login_status: Loginstatus
       media_attachments: Medienanhänge
+      memorialize: In Gedenkmal verwandeln
       moderation:
         all: Alle
         silenced: Stummgeschaltet
@@ -94,6 +104,7 @@ de:
       outbox_url: Outbox URL
       perform_full_suspension: Vollständige Sperre durchführen
       profile_url: Profil-URL
+      promote: Befördern
       protocol: Protokoll
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
@@ -101,6 +112,11 @@ de:
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
+      role: Berechtigungen
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        user: Nutzer
       salmon_url: Salmon-URL
       search: Suche
       shared_inbox_url: Shared Inbox URL
@@ -117,6 +133,29 @@ de:
       unsubscribe: Abbestellen
       username: Profilname
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
+        create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
+        create_domain_block: "%{name} hat die Domain %{target} blockiert"
+        create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
+        demote_user: "%{name} stufte Benutzer %{target} herunter"
+        destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
+        destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
+        destroy_status: "%{name} hat Status von %{target} entfernt"
+        disable_custom_emoji: "%{name} hat Emoji %{target} deaktiviert"
+        enable_custom_emoji: "%{name} hat das %{target} Emoji aktiviert"
+        enable_user: "%{name} hat die Anmeldung für den Benutzer %{target} aktiviert"
+        memorialize_account: "%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt"
+        reset_password_user: "%{name} hat das Passwort für den Benutzer %{target} zurückgesetzt"
+        resolve_report: "%{name} hat die Meldung %{target} abgelehnt"
+        silence_account: "%{name} hat %{target}s Account stummgeschaltet"
+        suspend_account: "%{name} hat %{target}s Account gesperrt"
+        unsilence_account: "%{name} hat die Stummschaltung von %{target}s Account aufgehoben"
+        unsuspend_account: "%{name} hat die Sperrung von %{target}s Account aufgehoben"
+        update_custom_emoji: "%{name} hat das %{target} Emoji aktualisiert"
+        update_status: "%{name} hat den Status von %{target} aktualisiert"
+      title: Überprüfungsprotokoll
     custom_emojis:
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
