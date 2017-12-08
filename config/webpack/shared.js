@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const extname = require('path-complete-extname');
 const { env, settings, core, flavours, output, loadersDir } = require('./configuration.js');
-const localePackPaths = require('./generateLocalePacks');
+const localePacks = require('./generateLocalePacks');
 
 function reducePacks (data, into = {}) {
   if (!data.pack) {
@@ -48,11 +48,7 @@ function reducePacks (data, into = {}) {
 module.exports = {
   entry: Object.assign(
     { locales: resolve('app', 'javascript', 'locales') },
-    localePackPaths.reduce((map, entry) => {
-      const localMap = map;
-      localMap[basename(entry, extname(entry, extname(entry)))] = resolve(entry);
-      return localMap;
-    }, {}),
+    localePacks,
     reducePacks(core),
     Object.keys(flavours).reduce((map, entry) => reducePacks(flavours[entry], map), {})
   ),

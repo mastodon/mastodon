@@ -62,6 +62,7 @@ class ApplicationController < ActionController::Base
       pack: pack_name,
       preload: nil,
       skin: nil,
+      supported_locales: data['locales'],
     }
     if data['pack'][pack_name].is_a?(Hash)
       pack_data[:common] = nil if data['pack'][pack_name]['use_common'] == false
@@ -93,6 +94,7 @@ class ApplicationController < ActionController::Base
       pack: nil,
       preload: nil,
       skin: nil,
+      supported_locales: data['locales'],
     }
   end
 
