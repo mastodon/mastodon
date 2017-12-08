@@ -77,7 +77,7 @@ pt-BR:
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
-      disabled: Desativado
+      disabled: Desativada
       display_name: Nome de exibição
       domain: Domínio
       edit: Editar
@@ -138,7 +138,7 @@ pt-BR:
       statuses: Postagens
       subscribe: Inscrever-se
       title: Contas
-      undo_silenced: Retirar silêncio
+      undo_silenced: Desativar silêncio
       undo_suspension: Retirar suspensão
       unsubscribe: Desinscrever-se
       username: Nome de usuário
@@ -199,7 +199,7 @@ pt-BR:
           one: Uma conta no banco de dados foi afetada
           other: '%{count} contas no banco de dados foram afetadas'
         retroactive:
-          silence: Retirar silêncio de todas as contas existentes neste domínio
+          silence: Desativar silêncio de todas as contas existentes desse domínio
           suspend: Retirar suspensão de todas as contas neste domínio
         title: Retirar bloqueio de domínio de %{domain}
         undo: Retirar
@@ -212,7 +212,7 @@ pt-BR:
       destroyed_msg: Bloqueio de domínio de e-mail excluído com sucesso
       domain: Domínio
       new:
-        create: Criar bloqueio
+        create: Adicionar domínio
         title: Novo bloqueio de domínio de e-mail
       title: Bloqueio de Domínio de E-mail
     instances:
@@ -265,6 +265,9 @@ pt-BR:
         open:
           desc_html: Permitir que qualquer um crie uma conta
           title: Cadastro aberto
+        min_invite_role:
+          disabled: Ninguém
+          title: Permitir convites de
       site_description:
         desc_html: Parágrafo introdutório na página inicial e em meta tags. Você pode
           usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
@@ -280,7 +283,7 @@ pt-BR:
       site_title: Nome da instância
       thumbnail:
         desc_html: Usada para prévias via OpenGraph e API. Recomenda-se 1200x630px
-        title: Thumbnail da instância
+        title: Miniatura da instância
       timeline_preview:
         desc_html: Exibir a timeline pública na página inicial
         title: Prévia da timeline
@@ -332,6 +335,18 @@ pt-BR:
         resolve_report: '%{name} dispensou o relatório %{target}'
         silence_account: '%{name} silenciou a conta de %{target}'
         suspend_account: '%{name} suspendeu a conta de %{target}'
+        unsilence_account: '%{name} desativou o silêncio de %{target}'
+        unsuspend_account: '%{name} desativou a suspensão de  %{target}'
+        update_custom_emoji: '%{name} atualizou o emoji %{target}'
+        update_status: '%{name} atualizou o estado de %{target}'
+      title: Auditar relatório
+    invites:
+      filter:
+        all: Todos
+        available: Disponíveis
+        expired: Expirados
+        title: Filtro
+      title: Convites
   admin_mailer:
     new_report:
       body: '%{reporter} reportou %{target}'
@@ -364,8 +379,11 @@ pt-BR:
     logout: Sair
     register: Cadastrar-se
     resend_confirmation: Reenviar instruções de confirmação
-    reset_password: Modificar senha
+    reset_password: Redefinir senha
     set_new_password: Definir uma nova senha
+    migrate_account: Mudar para uma conta diferente
+    migrate_account_html: Se você quer redirecionar essa conta para uma outra você
+      pode <a href="%{path}">configura isso aqui</a>.
   authorize_follow:
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
@@ -409,7 +427,7 @@ pt-BR:
     '410': A página pela qual você está procurando não existe mais.
     '422':
       content: A verificação de segurança falhou. Você desativou o uso de cookies?
-      title: Falha na verificação de segurança
+      title: Verificação de segurança falhou
     '429': Muitas requisições
     '500':
       content: Desculpe, algo deu errado.
@@ -546,7 +564,7 @@ pt-BR:
       generic: Navegador desconhecido
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
+      nokia: Navegador Nokia S40 Ovi
       opera: Opera
       phantom_js: PhantomJS
       qq: QQ Browser
@@ -588,6 +606,7 @@ pt-BR:
     settings: Configurações
     two_factor_authentication: Autenticação em dois passos
     your_apps: Seus aplicativos
+    migrate: Migração de conta
   statuses:
     open_in_web: Abrir na web
     over_character_limit: limite de caracteres de %{max} excedido
@@ -718,3 +737,31 @@ pt-BR:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
     signed_in_as: 'Acesso como:'
+  invites:
+    delete: Desativar
+    expired: Expirados
+    expires_in:
+      '1800': 30 minutos
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '86400': 1 dia
+    expires_in_prompt: Nunca
+    generate: Gerar
+    max_uses:
+      one: 1 uso
+      other: '%{count} usos'
+    max_uses_prompt: Sem limite
+    prompt: Gerar e compartilha links com outras pessoas para permitir acesso a essa
+      instância
+    table:
+      expires_at: Expira em
+      uses: Usos
+    title: Convidar pessoas
+  migrations:
+    acct: username@domain da nova conta
+    currently_redirecting: 'Seu perfil está configurado para redirecionar para:'
+    proceed: Salvar
+    updated_msg: As configurações de migração da sua conta foram atualizadas com sucesso!
+  moderation:
+    title: Moderação
