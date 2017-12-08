@@ -10,6 +10,10 @@ export const FAVOURITED_STATUSES_EXPAND_FAIL    = 'FAVOURITED_STATUSES_EXPAND_FA
 
 export function fetchFavouritedStatuses() {
   return (dispatch, getState) => {
+    if (getState().getIn(['status_lists', 'favourites', 'isLoading'])) {
+      return;
+    }
+
     dispatch(fetchFavouritedStatusesRequest());
 
     api(getState).get('/api/v1/favourites').then(response => {
@@ -46,7 +50,7 @@ export function expandFavouritedStatuses() {
   return (dispatch, getState) => {
     const url = getState().getIn(['status_lists', 'favourites', 'next'], null);
 
-    if (url === null) {
+    if (url === null || getState().getIn(['status_lists', 'favourites', 'isLoading'])) {
       return;
     }
 
