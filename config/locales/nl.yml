@@ -167,6 +167,11 @@ nl:
       shortcode_hint: Tenminste 2 tekens (alleen alfanumeriek en underscores)
       title: Lokale emoji’s
       upload: Uploaden
+      listed: Weergegeven
+      overwrite: Overschrijven
+      unlisted: Niet weergegeven
+      update_failed_msg: Deze emoji kon niet worden bijgewerkt
+      updated_msg: Bijwerken van emoji is geslaagd!
     domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
@@ -189,7 +194,7 @@ nl:
         title: Nieuwe domeinblokkade
       reject_media: Mediabestanden verwerpen
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze
-        in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen.
+        in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       severities:
         noop: Geen
         silence: Negeren
@@ -265,9 +270,12 @@ nl:
         open:
           desc_html: Toestaan dat iedereen een account kan registereren
           title: Open registratie
+        min_invite_role:
+          disabled: Niemand
+          title: Uitnodigingen toestaan door
       site_description:
         desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als
-          meta-tag in de paginabron.<br>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code>
+          meta-tag in de paginabron.<br/>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code>
           en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodon-server
       site_description_extended:
@@ -276,17 +284,20 @@ nl:
         title: Uitgebreide omschrijving Mastodon-server
       site_terms:
         desc_html: Je kan hier jouw eigen privacybeleid, gebruikersvoorwaarden en
-          ander juridisch jargon kwijt. Je kan HTML gebruiken.
+          ander juridisch jargon kwijt. Je kan HTML gebruiken
         title: Aangepaste gebruikersvoorwaarden
       site_title: Naam Mastodon-server
       thumbnail:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px
-          aanbevolen.
+          aanbevolen
         title: Thumbnail Mastodon-server
       timeline_preview:
         desc_html: Toon de openbare tijdlijn op de startpagina
         title: Voorbeeld tijdlijn
       title: Server-instellingen
+      show_staff_badge:
+        desc_html: Medewerkersbadge op profielpagina tonen
+        title: Medewerkersbadge tonen
     statuses:
       back_to_account: Terug naar accountpagina
       batch:
@@ -319,23 +330,33 @@ nl:
         demote_user: '%{name} heeft persoon %{target} gedegradeerd'
         destroy_domain_block: '%{name} heeft domein %{target} vrijgegeven'
         destroy_email_domain_block: '%{name} heeft e-maildomein %{target} gewhitelist'
-        destroy_status: '%{name} heeft status van %{target} verwijderd'
-        disable_2fa_user: '%{name} heeft tweefactor voorwaarden van persoon %{target}
-          uitgeschakeld'
-        disable_custom_emoji: '%{name} heeft emoji %{target} uitgeschakeld'
-        disable_user: '%{name} heeft de login van persoon %{target} uitgeschakeld'
-        enable_custom_emoji: '%{name} heeft emoji %{target} ingeschakeld'
-        enable_user: '%{name} heeft de login voor persoon %{target} ingeschakeld'
-        memorialize_account: '%{name} heeft %{target}''s account gewijzigd in een
-          memoriam pagina'
-        promote_user: '%{name} heeft persoon %{target} gepromoveerd'
-        reset_password_user: '%{name} heeft het wachtwoord van gebruiker %{target}
-          opnieuw ingesteld'
+        destroy_status: Toot van %{target} is door %{name} verwijderd
+        disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name}
+          uitgeschakeld
+        disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
+        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
+        enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
+        enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
+        memorialize_account: Account %{target} is door %{name} in een in-memoriampagina
+          veranderd
+        promote_user: Gebruiker %{target} is door %{name} gepromoveerd
+        reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw
+          ingesteld
         resolve_report: Gerapporteerde toots van %{target} zijn door %{name} verworpen
         silence_account: Account %{target} is door %{name} genegeerd
         suspend_account: Account %{target} is door %{name} opgeschort
         unsilence_account: Negeren van account %{target} is door %{name} opgeheven
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
+        update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
+        update_status: De toots van %{target} zijn door %{name} bijgewerkt
+      title: Auditlog
+    invites:
+      filter:
+        all: Alles
+        available: Beschikbaar
+        expired: Verlopen
+        title: Filter
+      title: Uitnodigingen
   admin_mailer:
     new_report:
       body: '%{reporter} heeft %{target} gerapporteerd'
@@ -370,6 +391,9 @@ nl:
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen
     set_new_password: Nieuw wachtwoord instellen
+    migrate_account: Naar een andere account verhuizen
+    migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen,
+      kun je <a href="%{path}">dit hier instellen</a>.
   authorize_follow:
     error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
     follow: Volgen
@@ -415,7 +439,7 @@ nl:
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
       title: Veiligheidsverificatie mislukt
-    '429': Te veel verbindingsaanvragen.
+    '429': Te veel verbindingsaanvragen
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
@@ -510,7 +534,7 @@ nl:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: ' '
   pagination:
     next: Volgende
     prev: Vorige
@@ -593,6 +617,7 @@ nl:
     settings: Instellingen
     two_factor_authentication: Tweestapsverificatie
     your_apps: Jouw toepassingen
+    migrate: Accountmigratie
   statuses:
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
@@ -709,9 +734,9 @@ nl:
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon,
       kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen
-      tot jouw account. Zorg ervoor dat je de herstelcodes op een veilige plek bewaard.
-      (Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten
-      bewaren.)
+      tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige
+      plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere
+      belangrijke documenten bewaren.
     setup: Instellen
     wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server
       en die van jouw apparaat?
@@ -719,3 +744,34 @@ nl:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
     signed_in_as: 'Ingelogd als:'
+  in_memoriam_html: In memoriam.
+  invites:
+    delete: Deactiveren
+    expired: Verlopen
+    expires_in:
+      '1800': 30 minuten
+      '21600': 6 uur
+      '3600': 1 uur
+      '43200': 12 uur
+      '86400': 1 dag
+    expires_in_prompt: Nooit
+    generate: Genereren
+    max_uses:
+      one: 1 keer
+      other: '%{count} keer'
+    max_uses_prompt: Onbeperkt
+    prompt: Genereer en deel speciale links om mensen toegang tot deze Mastodon-server
+      te geven
+    table:
+      expires_at: Verloopt op
+      uses: Aantal keer te gebruiken
+    title: Mensen uitnodigen
+  migrations:
+    acct: gebruikersnaam@domein van het nieuwe account
+    currently_redirecting: 'Jouw profiel wordt nu doorverwezen naar:'
+    proceed: Opslaan
+    updated_msg: Jouw accountmigratie-instelling is succesvol bijgewerkt!
+  moderation:
+    title: Moderatie
+  themes:
+    default: Mastodon
