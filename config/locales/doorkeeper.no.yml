@@ -1,10 +1,10 @@
----
 'no':
   activerecord:
     attributes:
       doorkeeper/application:
         name: Navn
         redirect_uri: Omdirigerings-URI
+        website: Applikasjonsnettside
     errors:
       models:
         doorkeeper/application:
@@ -31,12 +31,16 @@
       help:
         native_redirect_uri: Bruk %{native_redirect_uri} for lokale tester
         redirect_uri: Bruk én linje per URI
-        scopes: Adskill omfang med mellomrom. La det være blankt for å bruke standard omfang.
+        scopes: Adskill omfang med mellomrom. La det være blankt for å bruke standard
+          omfang.
       index:
         callback_url: Callback-URL
         name: Navn
         new: Ny applikasjon
         title: Dine applikasjoner
+        application: Applikasjon
+        delete: Fjern
+        show: Vis
       new:
         title: Nye applikasjoner
       show:
@@ -57,7 +61,7 @@
         prompt: Applikasjon %{client_name} spør om tilgang til din konto
         title: Autorisasjon påkrevd
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Kopier denne koden og lim den inn i programmet.
     authorized_applications:
       buttons:
         revoke: Opphev
@@ -66,29 +70,41 @@
       index:
         application: Applikasjon
         created_at: Autorisert
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: '%Y-%m-%d %H:%M:%S'
         scopes: Omfang
         title: Dine autoriserte applikasjoner
     errors:
       messages:
         access_denied: Ressurseieren eller autoriseringstjeneren avviste forespørslen.
-        credential_flow_not_configured: Ressurseiers passordflyt feilet fordi Doorkeeper.configure.resource_owner_from_credentials ikke var konfigurert.
-        invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
-        invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
+        credential_flow_not_configured: Ressurseiers passordflyt feilet fordi Doorkeeper.configure.resource_owner_from_credentials
+          ikke var konfigurert.
+        invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen
+          autentisering inkludert, eller autentiseringsmetode er ikke støttet.
+        invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens
+          med omdirigerings-URIen eller var utstedt til en annen klient.
         invalid_redirect_uri: Den inkluderte omdirigerings-URLen er ikke gyldig.
-        invalid_request: Forespørslen mangler en eller flere parametere, inkluderte en parameter som ikke støttes eller har feil struktur.
-        invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så kan ikke eieren finnes.
-        invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
+        invalid_request: Forespørslen mangler en eller flere parametere, inkluderte
+          en parameter som ikke støttes eller har feil struktur.
+        invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så
+          er det ikke mulig å finne eieren
+        invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil
+          struktur.
         invalid_token:
           expired: Tilgangsbeviset har utløpt
           revoked: Tilgangsbeviset har blitt opphevet
           unknown: Tilgangsbeviset er ugyldig
-        resource_owner_authenticator_not_configured: Ressurseier kunne ikke finnes fordi Doorkeeper.configure.resource_owner_authenticator ikke er konfigurert.
-        server_error: Autoriseringstjeneren støtte på en uventet hendelse som hindret den i å svare på forespørslen.
-        temporarily_unavailable: Autoriseringstjeneren kan ikke håndtere forespørslen grunnet en midlertidig overbelastning eller tjenervedlikehold.
-        unauthorized_client: Klienten har ikke autorisasjon for å utføre denne forespørslen med denne metoden.
-        unsupported_grant_type: Autorisasjonstildelingstypen er ikke støttet av denne autoriseringstjeneren.
-        unsupported_response_type: Autorisasjonsserveren støtter ikke denne typen av forespørsler.
+        resource_owner_authenticator_not_configured: Ressurseier kunne ikke finnes
+          fordi Doorkeeper.configure.resource_owner_authenticator ikke er konfigurert.
+        server_error: Autoriseringstjeneren støtte på en uventet hendelse som hindret
+          den i å svare på forespørslen.
+        temporarily_unavailable: Autoriseringstjeneren kan ikke håndtere forespørslen
+          grunnet en midlertidig overbelastning eller tjenervedlikehold.
+        unauthorized_client: Klienten har ikke autorisasjon for å utføre denne forespørslen
+          med denne metoden.
+        unsupported_grant_type: Autorisasjonstildelingstypen er ikke støttet av denne
+          autoriseringstjeneren.
+        unsupported_response_type: Autorisasjonsserveren støtter ikke denne typen
+          av forespørsler.
     flash:
       applications:
         create:
