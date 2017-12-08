@@ -1,11 +1,10 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
 const webpack = require('webpack');
-const { basename, join, resolve } = require('path');
+const { join, resolve } = require('path');
 const { sync } = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const extname = require('path-complete-extname');
 const { env, settings, core, flavours, output, loadersDir } = require('./configuration.js');
 const localePacks = require('./generateLocalePacks');
 
