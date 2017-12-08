@@ -55,6 +55,7 @@ ar:
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
     set_new_password: تعيين كلمة مرور جديدة
+    delete_account: حذف حساب
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: إتبع
@@ -186,7 +187,8 @@ ar:
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually,
       here is the plain-text secret:'
     setup: تنشيط
-    wrong_code: الرمز الذي أدخلته غير صالح. تحقق من صحة الوقت على الخادم و الجهاز.
+    wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز
+      ؟
     enabled: نظام المصادقة بخطوتين مُفعَّل
     generate_recovery_codes: توليد رموز الإسترجاع
     recovery_codes: النسخ الإحتياطي لرموز الإسترجاع
@@ -215,3 +217,18 @@ ar:
       order:
         title: الترتيب
       profile_url: رابط الملف الشخصي
+    custom_emojis:
+      delete: حذف
+    email_domain_blocks:
+      delete: حذف
+    reports:
+      delete: حذف
+    settings:
+      registrations:
+        deletion:
+          desc_html: السماح لأي مستخدم إغلاق حسابه
+    statuses:
+      batch:
+        delete: حذف
+  deletes:
+    proceed: حذف حساب
