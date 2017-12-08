@@ -39,6 +39,7 @@ nl:
     followers: Volgers
     following: Volgend
     media: Media
+    moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgt
     people_who_follow: Mensen die %{name} volgen
@@ -48,6 +49,7 @@ nl:
     reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
       admin: Beheerder
+      moderator: Mod
     unfollow: Ontvolgen
   admin:
     account_moderation_notes:
@@ -59,13 +61,19 @@ nl:
       destroyed_msg: Verwijderen van opmerking voor moderatoren geslaagd!
     accounts:
       are_you_sure: Weet je het zeker?
+      by_domain: Domein
       confirm: Bevestigen
       confirmed: Bevestigd
+      demote: Degraderen
+      disable: Uitschakelen
       disable_two_factor_authentication: 2FA uitschakelen
+      disabled: Uitgeschakeld
       display_name: Weergavenaam
       domain: Domein
       edit: Bewerken
       email: E-mail
+      enable: Inschakelen
+      enabled: Ingeschakeld
       feed_url: Feed-URL
       followers: Volgers
       followers_url: Volgers-URL
@@ -77,7 +85,9 @@ nl:
         local: Lokaal
         remote: Extern
         title: Locatie
+      login_status: Aanmeld status
       media_attachments: Media-bijlagen
+      memorialize: Verander in memoriam
       moderation:
         all: Alles
         silenced: Genegeerd
@@ -94,6 +104,7 @@ nl:
       outbox_url: Outbox-URL
       perform_full_suspension: Volledig opschorten
       profile_url: Profiel-URL
+      promote: Promoten
       protocol: Protocol
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
@@ -101,6 +112,11 @@ nl:
       reset: Opnieuw
       reset_password: Wachtwoord opnieuw instellen
       resubscribe: Opnieuw abonneren
+      role: Permissies
+      roles:
+        admin: Beheerder
+        moderator: Moderateur
+        user: Persoon
       salmon_url: Salmon-URL
       search: Zoeken
       shared_inbox_url: Gedeelde inbox-URL
@@ -117,6 +133,24 @@ nl:
       unsubscribe: Opzeggen
       username: Gebruikersnaam
       web: Webapp
+    action_logs:
+      actions:
+        confirm_user: "%{name} bevestigd e-mailadres van persoon %{target}"
+        create_custom_emoji: "%{name} heeft de nieuwe emoji %{target} geupload"
+        create_domain_block: "%{name} heeft domein %{target} geblokkeerd"
+        create_email_domain_block: "%{name} heeft e-maildomein %{target} geblacklist"
+        demote_user: "%{name} heeft persoon %{target} gedegradeerd"
+        destroy_domain_block: "%{name} heeft domein %{target} vrijgegeven"
+        destroy_email_domain_block: "%{name} heeft e-maildomein %{target} gewhitelist"
+        destroy_status: "%{name} heeft status van %{target} verwijderd"
+        disable_2fa_user: "%{name} heeft tweefactor voorwaarden van persoon %{target} uitgeschakeld"
+        disable_custom_emoji: "%{name} heeft emoji %{target} uitgeschakeld"
+        disable_user: "%{name} heeft de login van persoon %{target} uitgeschakeld"
+        enable_custom_emoji: "%{name} heeft emoji %{target} ingeschakeld"
+        enable_user: "%{name} heeft de login voor persoon %{target} ingeschakeld"
+        memorialize_account: "%{name} heeft %{target}'s account gewijzigd in een memoriam pagina"
+        promote_user: "%{name} heeft persoon %{target} gepromoveerd"
+        reset_password_user: "%{name} heeft het wachtwoord van gebruiker %{target} opnieuw ingesteld"
     custom_emojis:
       copied_msg: Lokale kopie van emoji maken geslaagd
       copy: Kopiëren
@@ -156,7 +190,7 @@ nl:
         noop: Geen
         silence: Negeren
         suspend: Opschorten
-      severity: Zwaarte
+      severity: Strengheid
       show:
         affected_accounts:
           one: Eén account in de database aangepast
