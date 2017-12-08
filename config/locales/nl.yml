@@ -94,7 +94,7 @@ nl:
         local: Lokaal
         remote: Extern
         title: Locatie
-      media_attachments: Media-bijlagen
+      media_attachments: Mediabijlagen
       moderation:
         all: Alles
         silenced: Genegeerd
@@ -140,14 +140,14 @@ nl:
       disabled: Uitgeschakeld
       enable: Inschakelen
       enabled: Ingeschakeld
-      login_status: Aanmeld status
-      memorialize: Verander in memoriam
+      login_status: Aanmeldstatus
+      memorialize: Verander naar in memoriam
       promote: Promoten
       role: Permissies
       roles:
         admin: Beheerder
-        moderator: Moderateur
-        user: Persoon
+        moderator: Moderator
+        user: Gebruiker
     custom_emojis:
       copied_msg: Lokale kopie van emoji maken geslaagd
       copy: Kopiëren
@@ -199,7 +199,7 @@ nl:
         noop: Geen
         silence: Negeren
         suspend: Opschorten
-      severity: Strengheid
+      severity: Zwaarte
       show:
         affected_accounts:
           one: Eén account in de database aangepast
@@ -323,13 +323,15 @@ nl:
     title: Beheer
     action_logs:
       actions:
-        confirm_user: '%{name} bevestigd e-mailadres van persoon %{target}'
-        create_custom_emoji: '%{name} heeft de nieuwe emoji %{target} geupload'
-        create_domain_block: '%{name} heeft domein %{target} geblokkeerd'
-        create_email_domain_block: '%{name} heeft e-maildomein %{target} geblacklist'
-        demote_user: '%{name} heeft persoon %{target} gedegradeerd'
-        destroy_domain_block: '%{name} heeft domein %{target} vrijgegeven'
-        destroy_email_domain_block: '%{name} heeft e-maildomein %{target} gewhitelist'
+        confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
+        create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
+        create_domain_block: Domein %{target} is door %{name} geblokkeerd
+        create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte
+          lijst geplaatst
+        demote_user: Gebruiker %{target} is door %{name} gedegradeerd
+        destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
+        destroy_email_domain_block: E-maildomein %{target} is door %{name} op de whitelist
+          geplaatst
         destroy_status: Toot van %{target} is door %{name} verwijderd
         disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name}
           uitgeschakeld
