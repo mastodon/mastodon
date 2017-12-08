@@ -131,9 +131,9 @@ pt-BR:
       search: Pesquisar
       shared_inbox_url: URL da Inbox Compartilhada
       show:
-        created_reports: Relatórios criados por esta conta
+        created_reports: Denúncias criadas por esta conta
         report: relatórios
-        targeted_reports: Relatórios feitos sobre esta conta
+        targeted_reports: Denúncias feitas sobre esta conta
       silence: Silêncio
       statuses: Postagens
       subscribe: Inscrever-se
@@ -233,10 +233,10 @@ pt-BR:
       nsfw:
         'false': Mostrar mídias anexadas
         'true': Esconder mídias anexadas
-      report: 'Reportar #%{id}'
+      report: 'Denúncia #%{id}'
       report_contents: Conteúdos
-      reported_account: Conta reportada
-      reported_by: Reportada por
+      reported_account: Conta denunciada
+      reported_by: Denunciada por
       resolved: Resolvido
       silence_account: Silenciar conta
       status: Status
@@ -332,7 +332,7 @@ pt-BR:
         memorialize_account: '%{name} transformou a conta de %{target} em um memorial'
         promote_user: '%{name} promoveu o usuário %{target}'
         reset_password_user: '%{name} redefiniu a senha do usuário %{target}'
-        resolve_report: '%{name} dispensou o relatório %{target}'
+        resolve_report: '%{name} dispensou a denúncia %{target}'
         silence_account: '%{name} silenciou a conta de %{target}'
         suspend_account: '%{name} suspendeu a conta de %{target}'
         unsilence_account: '%{name} desativou o silêncio de %{target}'
@@ -349,7 +349,7 @@ pt-BR:
       title: Convites
   admin_mailer:
     new_report:
-      body: '%{reporter} reportou %{target}'
+      body: '%{reporter} denunciou %{target}'
       subject: Nova denúncia sobre %{instance} (#%{id})
   application_mailer:
     salutation: '%{name},'
