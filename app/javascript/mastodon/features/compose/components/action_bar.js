@@ -17,8 +17,8 @@ const messages = defineMessages({
   filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
 });
 
-@injectIntl
-export default class ActionBar extends React.PureComponent {
+export default @injectIntl
+class ActionBar extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
