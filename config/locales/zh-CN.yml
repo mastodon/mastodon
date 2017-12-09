@@ -325,13 +325,13 @@ zh-CN:
     title: 管理
   admin_mailer:
     new_report:
-      body: "%{reporter} 举报了 %{target}"
-      subject: 来自 %{instance} 的新举报（#%{id}）
+      body: "%{reporter} 举报了用户 %{target}。"
+      subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
-    salutation: "%{name}，"
-    settings: 更改电子邮件首选项：%{link}
-    signature: 来自 %{instance} 的 Mastodon 通知
-    view: 查看：
+    salutation: "%{name}："
+    settings: 使用此链接更改你的电子邮件首选项：%{link}
+    signature: 这是一封来自 %{instance} 的 Mastodon 电子邮件通知。
+    view: 点此链接查看详情：
   applications:
     created: 应用创建成功
     destroyed: 应用删除成功
@@ -399,7 +399,7 @@ zh-CN:
     '500':
       content: 抱歉，我们这里出错了。
       title: 这个页面不正确
-    noscript_html: 请启用 JavaScript 以便使用 Mastodon 网页版应用。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 应用</a>。
+    noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 应用</a>。
   exports:
     blocks: 屏蔽的用户
     csv: CSV
@@ -445,13 +445,16 @@ zh-CN:
     generate: 生成邀请链接
     max_uses: "%{count} 次"
     max_uses_prompt: 无限制
-    prompt: 生成可供分享的链接以便邀请他人在本实例注册
+    prompt: 生成分享链接，邀请他人在本实例注册
     table:
       expires_at: 失效时间
       uses: 已使用次数
     title: 邀请用户
   landing_strip_html: "<strong>%{name}</strong> 是一位来自 %{link_to_root_path} 的用户。如果你想关注他们或者与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。"
   landing_strip_signup_html: 还没有这种帐户？你可以<a href="%{sign_up_path}">在本站注册一个</a>。
+  lists:
+    errors:
+      limit: 你所建立的列表数量已经达到上限
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
@@ -478,8 +481,8 @@ zh-CN:
       body: "%{name} 关注了你！"
       subject: "%{name} 关注了你"
     follow_request:
-      body: "%{name} 请求关注你"
-      subject: 待审核的关注者：%{name}
+      body: "%{name} 向你发送了关注请求！"
+      subject: 来自 %{name} 的关注请求
     mention:
       body: "%{name} 在嘟文中提到了你："
       subject: "%{name} 提到了你"
@@ -583,7 +586,7 @@ zh-CN:
     open_in_web: 在站内打开
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
-      limit: 置顶的嘟文条数超出限制
+      limit: 你所置顶的嘟文数量已经达到上限
       ownership: 不能置顶他人的嘟文
       private: 不能置顶非公开的嘟文
       reblog: 不能置顶转嘟
@@ -674,7 +677,7 @@ zh-CN:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 输入你的认证器生成的代码以确认
+    code_hint: 输入认证器生成的代码以确认操作
     description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录
     disable: 停用
     enable: 启用
@@ -688,7 +691,7 @@ zh-CN:
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     setup: 设置
-    wrong_code: 输入的认证码无效！请检查你设备上显示的时间是否正确，如果正确，你可能需要联系管理员以检查服务器的时间是否正确。
+    wrong_code: 输入的认证码无效！请核对一下你的设备显示的时间，如果正确，你可能需要联系一下实例的管理员，让他们校准服务器的时间。
   users:
     invalid_email: 输入的电子邮件地址无效
     invalid_otp_token: 输入的双重认证代码无效
