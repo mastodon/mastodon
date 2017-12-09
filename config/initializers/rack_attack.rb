@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'doorkeeper/grape/authorization_decorator'
+
 class Rack::Attack
   class Request
     def authenticated_token
