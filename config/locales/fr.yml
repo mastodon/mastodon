@@ -138,26 +138,6 @@ fr:
         confirm_user: "%{name} adresse e-mail confirmée de l'utilisateur %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux emoji %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
-<<<<<<< HEAD
-        create_email_domain_block: "%{name} a mis les adresses e-mail du domaine %{target} sur liste noire"
-        demote_user: "%{name} a rétrogradé %{target}"
-        destroy_domain_block: "%{name} a débloqué le domaine %{target}"
-        destroy_email_domain_block: "%{name} a mis les adresses e-mail du domaine %{target} sur liste blanche"
-        destroy_status: "%{name} a supprimé un pouet de %{target}"
-        disable_2fa_user: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur %{target}"
-        disable_custom_emoji: "%{name} a désactivé l'emoji %{target}"
-        disable_user: "%{name} a désactivé la connexion pour l'utilisateur %{target}"
-        enable_custom_emoji: "%{name} a activé l'emoji %{target}"
-        enable_user: "%{name} a activé la connexion pour l'utilisateur %{target}"
-        memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
-        promote_user: "%{name} a promu l'utilisateur %{target}"
-        reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
-        resolve_report: "%{name} a rejeté le rapport de %{target}"
-        silence_account: "%{name} a silencé le compte %{target}"
-        suspend_account: "%{name} a suspendu le compte %{target}"
-        unsilence_account: "%{name} a mis fin au silence de %{target}"
-        unsuspend_account: "%{name} a annulé la suspension de %{target}"
-=======
         create_email_domain_block: "%{name} a blacklisté le domaine de l'e-mail %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block: "%{name} a mis le domaine de l'e-mail %{target} sur liste blanche"
@@ -175,7 +155,6 @@ fr:
         suspend_account: "%{name} a suspendu le compte %{target}"
         unsilence_account: "%{name} a mis fin au mode silence de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
->>>>>>> master
         update_custom_emoji: "%{name} a mis à jour l'emoji %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
       title: Journal d'audit
@@ -199,11 +178,7 @@ fr:
       shortcode: Raccourci
       shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques ou des tirets bas
       title: Émoji personnalisés
-<<<<<<< HEAD
-      unlisted: Masqué
-=======
       unlisted: Délisté
->>>>>>> master
       update_failed_msg: N'a pas pu mettre à jour cet emoji
       updated_msg: Emoji mis à jour avec succès !
       upload: Téléverser
