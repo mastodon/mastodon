@@ -86,7 +86,7 @@ class User < ApplicationRecord
   attr_accessor :invite_code
 
   def pam_on_filled_pw(_)
-    # block pam logins on traditional account
+    # block pam login tries on traditional account
     nil
   end
 
@@ -236,7 +236,7 @@ class User < ApplicationRecord
     super
   end
 
-  def self.authenticate_with_pam( attributes={} )
+  def self.authenticate_with_pam(attributes = {})
     if attributes[:email].index('@')
       resource = find_by(email: attributes[:email])
       if resource.blank?
@@ -258,7 +258,7 @@ class User < ApplicationRecord
     # potential conflict detected
     resource = resource.pam_on_filled_pw(attributes) unless resource.password.blank?
 
-    if resource && Rpam2.auth(::Devise::pam_default_service, attributes[:username], attributes[:password])
+    if resource && Rpam2.auth(::Devise.pam_default_service, attributes[:username], attributes[:password])
       if resource.new_record?
         resource.pam_setup(attributes)
         resource.save!
