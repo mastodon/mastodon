@@ -48,6 +48,23 @@ describe Api::Web::PushSubscriptionsController do
       expect(push_subscription['key_p256dh']).to eq(create_payload[:subscription][:keys][:p256dh])
       expect(push_subscription['key_auth']).to eq(create_payload[:subscription][:keys][:auth])
     end
+
+    context 'with initial data' do
+      it 'saves alert settings' do
+        sign_in(user)
+
+        stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
+
+        post :create, format: :json, params: create_payload.merge(alerts_payload)
+
+        push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+
+        expect(push_subscription.data['follow']).to eq(alerts_payload[:data][:follow])
+        expect(push_subscription.data['favourite']).to eq(alerts_payload[:data][:favourite])
+        expect(push_subscription.data['reblog']).to eq(alerts_payload[:data][:reblog])
+        expect(push_subscription.data['mention']).to eq(alerts_payload[:data][:mention])
+      end
+    end
   end
 
   describe 'PUT #update' do
