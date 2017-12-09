@@ -205,7 +205,7 @@ export default class Status extends ImmutablePureComponent {
     this.props.onReply(this.props.status, this.context.router.history);
   }
 
-  handleHotkeyFavourite = e => {
+  handleHotkeyFavourite = (e) => {
     this.props.onFavourite(this.props.status, e);
   }
 

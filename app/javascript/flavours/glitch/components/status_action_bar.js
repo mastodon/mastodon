@@ -71,8 +71,8 @@ export default class StatusActionBar extends ImmutablePureComponent {
     });
   }
 
-  handleFavouriteClick = () => {
-    this.props.onFavourite(this.props.status);
+  handleFavouriteClick = (e) => {
+    this.props.onFavourite(this.props.status, e);
   }
 
   handleReblogClick = (e) => {

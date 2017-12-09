@@ -10,11 +10,11 @@ import DisplayName from 'flavours/glitch/components/display_name';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  reblog: { id: 'status.favourite', defaultMessage: 'Favourite' },
+  favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
 });
 
 @injectIntl
-export default class BoostModal extends ImmutablePureComponent {
+export default class FavouriteModal extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -22,7 +22,7 @@ export default class BoostModal extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
-    onReblog: PropTypes.func.isRequired,
+    onFavourite: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -75,7 +75,7 @@ export default class BoostModal extends ImmutablePureComponent {
 
         <div className='favourite-modal__action-bar'>
           <div><FormattedMessage id='favourite_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <i className='fa fa-star' /></span> }} /></div>
-          <Button text={intl.formatMessage(messages.reblog)} onClick={this.handleReblog} ref={this.setRef} />
+          <Button text={intl.formatMessage(messages.favourite)} onClick={this.handleFavourite} ref={this.setRef} />
         </div>
       </div>
     );

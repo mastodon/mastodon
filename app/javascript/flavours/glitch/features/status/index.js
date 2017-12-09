@@ -103,7 +103,7 @@ export default class Status extends ImmutablePureComponent {
     if (status.get('favourited')) {
       this.props.dispatch(unfavourite(status));
     } else {
-      if (e.shiftKey || !favoriteModal) {
+      if (e.shiftKey || !favouriteModal) {
         this.handleModalFavourite(status);
       } else {
         this.props.dispatch(openModal('FAVOURITE', { status, onFavourite: this.handleModalFavourite }));
