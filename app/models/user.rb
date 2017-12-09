@@ -85,23 +85,21 @@ class User < ApplicationRecord
 
   attr_accessor :invite_code
 
-  def pam_on_filled_pw(attributes)
+  def pam_on_filled_pw(_)
     # block pam logins on traditional account
     nil
   end
 
   def pam_setup(attributes)
-    _account = Account.new(username: attributes[:username])
-    _account.save!(validate: false)
+    acc = Account.new(username: attributes[:username])
+    acc.save!(validate: false)
 
-    self.email = "#{attributes[:username]}@#{get_suffix}" if self.email.nil? && get_suffix
+    self.email = "#{attributes[:username]}@#{get_suffix}" if email.nil? && get_suffix
     self.confirmed_at = Time.now.utc
     self.admin = false
-    self.account = _account
+    self.account = acc
 
-    if !self.save()
-      _account.destroy!
-    end
+    acc.destroy! unless save
   end
 
   def confirmed?
@@ -238,13 +236,13 @@ class User < ApplicationRecord
     super
   end
 
-  def self.authenticate_with_pam(attributes={})
+  def self.authenticate_with_pam( attributes={} )
     if attributes[:email].index('@')
       resource = find_by(email: attributes[:email])
       if resource.blank?
         resource = new(email: attributes[:email])
         attributes[:username] = resource.get_pam_name
-        resource[:email] = Rpam2.getenv(::Devise::pam_default_service, attributes[:username], attributes[:password], "email", false)
+        resource[:email] = Rpam2.getenv(::Devise.pam_default_service, attributes[:username], attributes[:password], 'email', false)
       else
         attributes[:username] = resource.account.username
       end
@@ -253,7 +251,7 @@ class User < ApplicationRecord
       resource = joins(:account).find_by(accounts: { username: attributes[:username] })
       if resource.blank?
         resource = new
-        resource[:email] = Rpam2.getenv(::Devise::pam_default_service, attributes[:username], attributes[:password], "email", false)
+        resource[:email] = Rpam2.getenv(::Devise.pam_default_service, attributes[:username], attributes[:password], 'email', false)
       end
     end
 
