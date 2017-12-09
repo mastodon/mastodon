@@ -64,7 +64,7 @@ export default class Announcements extends React.PureComponent {
   updateAnnouncements = (items) => {
     const validItems = unexpired(items, Date.now());
     this.setState({ items: validItems });
-    const timeout = validItems.isEmpty() ? ONE_DAY : new Date(validItems.get(0, 'expire')).getTime() - Date.now();
+    const timeout = validItems.isEmpty() ? ONE_DAY : new Date(validItems.get(0).get('expire')).getTime() - Date.now();
     this.timer = setTimeout(this.refresh, timeout);
   }
 
