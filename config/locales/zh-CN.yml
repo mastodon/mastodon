@@ -452,6 +452,9 @@ zh-CN:
     title: 邀请用户
   landing_strip_html: "<strong>%{name}</strong> 是一位来自 %{link_to_root_path} 的用户。如果你想关注他们或者与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。"
   landing_strip_signup_html: 还没有这种帐户？你可以<a href="%{sign_up_path}">在本站注册一个</a>。
+  lists:
+    errors:
+      limit: 你所建立的列表数量已经达到上限
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
@@ -583,7 +586,7 @@ zh-CN:
     open_in_web: 在站内打开
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
-      limit: 置顶的嘟文条数超出限制
+      limit: 你所置顶的嘟文数量已经达到上限
       ownership: 不能置顶他人的嘟文
       private: 不能置顶非公开的嘟文
       reblog: 不能置顶转嘟
