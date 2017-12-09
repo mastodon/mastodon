@@ -119,7 +119,7 @@ export const refreshDirectTimeline       = () => refreshTimeline('direct', '/api
 export const refreshAccountTimeline      = accountId => refreshTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
 export const refreshAccountMediaTimeline = accountId => refreshTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
 export const refreshHashtagTimeline      = hashtag => refreshTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
-export const refreshListTimeline         = id => refreshTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`)
+export const refreshListTimeline         = id => refreshTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
 
 export function refreshTimelineFail(timeline, error, skipLoading) {
   return {
