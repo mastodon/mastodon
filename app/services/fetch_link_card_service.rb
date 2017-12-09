@@ -38,7 +38,7 @@ class FetchLinkCardService < BaseService
     @card ||= PreviewCard.new(url: @url)
     res     = Request.new(:head, @url).perform
 
-    return if res.code != 200 || res.mime_type != 'text/html'
+    return if res.code != 405 && (res.code != 200 || res.mime_type != 'text/html')
 
     attempt_oembed || attempt_opengraph
   end
