@@ -399,7 +399,7 @@ zh-CN:
     '500':
       content: 抱歉，我们这里出错了。
       title: 这个页面不正确
-    noscript_html: 请启用 JavaScript 以便使用 Mastodon 网页版应用。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 应用</a>。
+    noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 应用</a>。
   exports:
     blocks: 屏蔽的用户
     csv: CSV
@@ -445,7 +445,7 @@ zh-CN:
     generate: 生成邀请链接
     max_uses: "%{count} 次"
     max_uses_prompt: 无限制
-    prompt: 生成可供分享的链接以便邀请他人在本实例注册
+    prompt: 生成分享链接，邀请他人在本实例注册
     table:
       expires_at: 失效时间
       uses: 已使用次数
@@ -674,7 +674,7 @@ zh-CN:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 输入你的认证器生成的代码以确认
+    code_hint: 输入认证器生成的代码以确认操作
     description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录
     disable: 停用
     enable: 启用
@@ -688,7 +688,7 @@ zh-CN:
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     setup: 设置
-    wrong_code: 输入的认证码无效！请检查你设备上显示的时间是否正确，如果正确，你可能需要联系管理员以检查服务器的时间是否正确。
+    wrong_code: 输入的认证码无效！请核对一下你的设备显示的时间，如果正确，你可能需要联系一下实例的管理员，让他们校准服务器的时间。
   users:
     invalid_email: 输入的电子邮件地址无效
     invalid_otp_token: 输入的双重认证代码无效
