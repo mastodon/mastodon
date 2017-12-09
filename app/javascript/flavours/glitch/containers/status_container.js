@@ -93,7 +93,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       }
     }
   },
-  
+
   onPin (status) {
     if (status.get('pinned')) {
       dispatch(unpin(status));

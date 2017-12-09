@@ -55,7 +55,7 @@ export default class ActionsModal extends ImmutablePureComponent {
             <DisplayName account={this.props.status.get('account')} />
           </a>
         </div>
-        
+
         <div className='favourite-modal__status-header'>
           <div className='favourite-modal__status-time'>
             <a href={this.props.status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
@@ -73,7 +73,7 @@ export default class ActionsModal extends ImmutablePureComponent {
         </div>
 
         <StatusContent status={this.props.status} />
-      </div>      
+      </div>
     );
 
     return (
