@@ -32,7 +32,7 @@ class MediaAttachment < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
 
-  IMAGE_STYLES = { original: '1280x1280>', small: '400x400>' }.freeze
+  IMAGE_STYLES = { original: '1920x1920>', small: '400x400>' }.freeze
   VIDEO_STYLES = {
     small: {
       convert_options: {
@@ -56,7 +56,7 @@ class MediaAttachment < ApplicationRecord
   include Remotable
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
-  validates_attachment_size :file, less_than: 8.megabytes
+  validates_attachment_size :file, less_than: 24.megabytes
 
   validates :account, presence: true
   validates :description, length: { maximum: 420 }, if: :local?
