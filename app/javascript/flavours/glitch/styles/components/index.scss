@@ -4878,8 +4878,12 @@ noscript {
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  width: 40vh;
+  width: 380px;
   overflow: hidden;
+
+  @media screen and (max-width: 420px) {
+    width: 90%;
+  }
 
   h4 {
     padding: 15px 0;
