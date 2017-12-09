@@ -21,7 +21,7 @@ class UserSettingsDecorator
     user.settings['default_sensitive']   = default_sensitive_preference if change?('setting_default_sensitive')
     user.settings['unfollow_modal']      = unfollow_modal_preference if change?('setting_unfollow_modal')
     user.settings['boost_modal']         = boost_modal_preference if change?('setting_boost_modal')
-    user.settings['favourite_modal']         = boost_modal_preference if change?('setting_boost_modal')
+    user.settings['favourite_modal']         = favourite_modal_preference if change?('setting_favourite_modal')
     user.settings['delete_modal']        = delete_modal_preference if change?('setting_delete_modal')
     user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
     user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
