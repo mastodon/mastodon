@@ -11,7 +11,7 @@ import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
-import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses } from 'flavours/glitch/util/async-components';
+import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, ListTimeline } from 'flavours/glitch/util/async-components';
 
 import detectPassiveEvents from 'detect-passive-events';
 import { scrollRight } from 'flavours/glitch/util/scroll';
@@ -25,6 +25,7 @@ const componentMap = {
   'HASHTAG': HashtagTimeline,
   'DIRECT': DirectTimeline,
   'FAVOURITES': FavouritedStatuses,
+  'LIST': ListTimeline,
 };
 
 @component => injectIntl(component, { withRef: true })

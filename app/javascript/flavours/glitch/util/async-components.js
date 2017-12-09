@@ -26,6 +26,10 @@ export function HashtagTimeline () {
   return import(/* webpackChunkName: "flavours/glitch/async/hashtag_timeline" */'flavours/glitch/features/hashtag_timeline');
 }
 
+export function ListTimeline () {
+  return import(/* webpackChunkName: "features/list_timeline" */'flavours/glitch/features/list_timeline');
+}
+
 export function DirectTimeline() {
   return import(/* webpackChunkName: "flavours/glitch/async/direct_timeline" */'flavours/glitch/features/direct_timeline');
 }
