@@ -55,9 +55,25 @@ export default class ActionsModal extends ImmutablePureComponent {
             <DisplayName account={this.props.status.get('account')} />
           </a>
         </div>
+        
+        <div className='favourite-modal__status-header'>
+          <div className='favourite-modal__status-time'>
+            <a href={this.props.status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
+              <RelativeTimestamp timestamp={this.props.status.get('created_at')} />
+            </a>
+          </div>
+
+          <a href={this.props.status.getIn(['account', 'url'])} className='status__display-name'>
+            <div className='status__avatar'>
+              <Avatar account={this.props.status.get('account')} size={48} />
+            </div>
+
+            <DisplayName account={this.props.status.get('account')} />
+          </a>
+        </div>
 
         <StatusContent status={this.props.status} />
-      </div>
+      </div>      
     );
 
     return (
