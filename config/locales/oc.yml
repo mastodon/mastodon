@@ -49,6 +49,7 @@ oc:
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
       admin: Admin
+      moderator: Mod
     unfollow: Quitar de sègre
   admin:
     account_moderation_notes:
@@ -314,7 +315,7 @@ oc:
         show: Mostrar mèdia
         title: Mèdia
       no_media: Cap mèdia
-      title: Estatuts del compteAccount statuses
+      title: Estatuts del compte
       with_media: Amb mèdia
     subscriptions:
       callback_url: URL de rapèl
@@ -351,8 +352,8 @@ oc:
     invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
     login: Se connectar
     logout: Se desconnectar
-    migrate_account: Mudar a un compte different
- +    migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
+    migrate_account: Mudar endacòm mai
+    migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
     register: Se marcar
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
