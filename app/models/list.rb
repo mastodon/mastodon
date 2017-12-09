@@ -13,12 +13,18 @@
 class List < ApplicationRecord
   include Paginable
 
+  PER_ACCOUNT_LIMIT = 50
+
   belongs_to :account
 
   has_many :list_accounts, inverse_of: :list, dependent: :destroy
   has_many :accounts, through: :list_accounts
 
   validates :title, presence: true
+
+  validates_each :account_id, on: :create do |record, _attr, value|
+    record.errors.add(:base, I18n.t('lists.errors.limit')) if List.where(account_id: value).count >= PER_ACCOUNT_LIMIT
+  end
 
   before_destroy :clean_feed_manager
 
