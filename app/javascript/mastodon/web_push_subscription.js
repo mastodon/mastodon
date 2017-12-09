@@ -98,7 +98,7 @@ export function register () {
         if (!(subscription instanceof PushSubscription)) {
           store.dispatch(setSubscription(subscription));
           if (me) {
-            pushNotificationsSetting.setf(me, { alerts: subscription.alerts });
+            pushNotificationsSetting.set(me, { alerts: subscription.alerts });
           }
         }
       })
