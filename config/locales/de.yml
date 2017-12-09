@@ -165,6 +165,7 @@ de:
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
       upload: Hochladen
+      updated_msg: Emoji erfolgreich aktualisiert!
     domain_blocks:
       add_new: Neu hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
@@ -263,6 +264,8 @@ de:
         open:
           desc_html: Allen erlauben, ein Konto zu erstellen
           title: Registrierung öffnen
+        min_invite_role:
+          disabled: Niemand
       site_description:
         desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt.
           Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
@@ -332,6 +335,13 @@ de:
         destroy_email_domain_block: '%{name} hat die E-Mail-Domain %{target} gewhitelistet'
         disable_custom_emoji: '%{name} hat Emoji %{target} deaktiviert'
       title: Überprüfungsprotokoll
+    invites:
+      filter:
+        all: Alle
+        available: Verfügbar
+        expired: Ausgelaufen
+        title: Filter
+      title: Einladungen
   admin_mailer:
     new_report:
       body: '%{reporter} hat %{target} gemeldet'
@@ -647,3 +657,22 @@ de:
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
     signed_in_as: 'Angemeldet als:'
+  invites:
+    delete: Deaktivieren
+    expires_in:
+      '1800': 30 Minuten
+      '21600': 6 Stunden
+      '3600': 1 Stunde
+      '43200': 12 Stunden
+      '86400': 1 Tag
+    expires_in_prompt: Nie
+    generate: Generieren
+    max_uses:
+      one: 1 mal verwendet
+      other: '%{count} mal verwendet'
+    max_uses_prompt: Kein Limit
+  migrations:
+    acct: benutzername@domain des neuen Accounts
+    proceed: Speichern
+  moderation:
+    title: Moderation
