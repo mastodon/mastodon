@@ -57,6 +57,19 @@ ar:
       order:
         title: الترتيب
       profile_url: رابط الملف الشخصي
+    custom_emojis:
+      delete: حذف
+    email_domain_blocks:
+      delete: حذف
+    reports:
+      delete: حذف
+    settings:
+      registrations:
+        deletion:
+          desc_html: السماح لأي مستخدم إغلاق حسابه
+    statuses:
+      batch:
+        delete: حذف
   application_mailer:
     settings: 'تغيير تفضيلات البريد الإلكتروني : %{link}'
     signature: إشعارات ماستدون من %{instance}
@@ -65,6 +78,7 @@ ar:
     invalid_url: إن الرابط المقدم غير صالح
   auth:
     change_password: الهوية
+    delete_account: حذف حساب
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
     forgot_password: نسيت كلمة المرور ؟
     login: تسجيل الدخول
@@ -91,6 +105,8 @@ ar:
       x_minutes: "%{count}د"
       x_months: "%{count} شه"
       x_seconds: "%{count}ث"
+  deletes:
+    proceed: حذف حساب
   exports:
     blocks: قمت بحظر
     csv: CSV
@@ -197,7 +213,7 @@ ar:
     recovery_codes: النسخ الإحتياطي لرموز الإسترجاع
     recovery_codes_regenerated: تم إعادة توليد رموز الإسترجاع الإحتياطية بنجاح
     setup: تنشيط
-    wrong_code: الرمز الذي أدخلته غير صالح. تحقق من صحة الوقت على الخادم و الجهاز.
+    wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز ؟
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: الرمز الثنائي غير صالح
