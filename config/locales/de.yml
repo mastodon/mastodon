@@ -1,43 +1,30 @@
+---
 de:
   about:
-    about_hashtag_html: Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong>
-      getaggt wurden. Wenn du ein Konto irgendwo im Fediversum besitzt, kannst du
-      mit ihnen interagieren.
-    about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen
-      Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie
-      E-Mail!).
+    about_hashtag_html: Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du ein Konto irgendwo im Fediversum besitzt, kannst du mit ihnen interagieren.
+    about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diese Instanz
-    closed_registrations: Die Registrierung auf dieser Instanz ist momentan geschlossen.
-      Aber du kannst dein Konto auch auf einer anderen Instanz erstellen! Von dort
-      hast du genauso Zugriff auf das Mastodon-Netzwerk.
+    closed_registrations: Die Registrierung auf dieser Instanz ist momentan geschlossen. Aber du kannst dein Konto auch auf einer anderen Instanz erstellen! Von dort hast du genauso Zugriff auf das Mastodon-Netzwerk.
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: N/A
     description_headline: Was ist %{domain}?
     domain_count_after: anderen Instanzen
     domain_count_before: Vernetzt mit
-    extended_description_html: '<h3>Ein guter Platz für Regeln</h3>
-
+    extended_description_html: |
+      <h3>Ein guter Platz für Regeln</h3>
       <p>Die erweiterte Beschreibung wurde noch nicht aufgesetzt.</p>
-
-      '
     features:
-      humane_approach_body: Mastodon hat von den Fehlern anderer Netzwerke gelernt
-        und wurde mit dem Augenmerk darauf entwickelt, den Missbrauch sozialer Medien
-        zu bekämpfen.
+      humane_approach_body: Mastodon hat von den Fehlern anderer Netzwerke gelernt und wurde mit dem Augenmerk darauf entwickelt, den Missbrauch sozialer Medien zu bekämpfen.
       humane_approach_title: Ein menschlicherer Ansatz
-      not_a_product_body: Mastodon ist kein kommerzielles Netzwerk. Keine Werbung,
-        kein Abgraben deiner Daten, keine geschlossene Plattform. Es gibt keine Zentrale.
+      not_a_product_body: Mastodon ist kein kommerzielles Netzwerk. Keine Werbung, kein Abgraben deiner Daten, keine geschlossene Plattform. Es gibt keine Zentrale.
       not_a_product_title: Du bist ein Mensch und keine Ware
-      real_conversation_body: Mit 500 Zeichen pro Beitrag und der Ermöglichung präziser
-        Inhalts- und Bilderwarnungen kannst du dich so ausdrücken, wie du es möchtest.
+      real_conversation_body: Mit 500 Zeichen pro Beitrag und der Ermöglichung präziser Inhalts- und Bilderwarnungen kannst du dich so ausdrücken, wie du es möchtest.
       real_conversation_title: Für das echte Gespräch gemacht
-      within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen
-        erlauben dir dank unserem blühenden API-Ökosystem, dich von überall auf dem
-        Laufenden zu halten.
+      within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen erlauben dir dank unserem blühenden API-Ökosystem, dich von überall auf dem Laufenden zu halten.
       within_reach_title: Immer für dich da
     find_another_instance: Eine andere Instanz finden
-    generic_description: '%{domain} ist ein Server im Netzwerk'
+    generic_description: "%{domain} ist ein Server im Netzwerk"
     hosted_on: Mastodon, beherbergt auf %{domain}
     learn_more: Mehr erfahren
     other_instances: Andere Instanzen
@@ -52,6 +39,7 @@ de:
     followers: Folgende
     following: Folgt
     media: Medien
+    moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
@@ -63,7 +51,6 @@ de:
       admin: Admin
       moderator: Moderator
     unfollow: Entfolgen
-    moved_html: '%{name} ist auf %{new_profile_link} umgezogen:'
   admin:
     account_moderation_notes:
       account: Moderator*in
@@ -74,13 +61,19 @@ de:
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       are_you_sure: Bist du sicher?
+      by_domain: Domain
       confirm: Bestätigen
       confirmed: Bestätigt
+      demote: Degradieren
+      disable: Ausschalten
       disable_two_factor_authentication: 2FA abschalten
+      disabled: Ausgeschaltet
       display_name: Anzeigename
       domain: Domain
       edit: Bearbeiten
       email: E-Mail
+      enable: Freischalten
+      enabled: Freigegeben
       feed_url: Feed-URL
       followers: Folger
       followers_url: Followers URL
@@ -92,7 +85,9 @@ de:
         local: Lokal
         remote: Entfernt
         title: Ort
+      login_status: Loginstatus
       media_attachments: Medienanhänge
+      memorialize: In Gedenkmal verwandeln
       moderation:
         all: Alle
         silenced: Stummgeschaltet
@@ -109,6 +104,7 @@ de:
       outbox_url: Outbox URL
       perform_full_suspension: Vollständige Sperre durchführen
       profile_url: Profil-URL
+      promote: Befördern
       protocol: Protokoll
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
@@ -116,6 +112,11 @@ de:
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
+      role: Berechtigungen
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        user: Nutzer
       salmon_url: Salmon-URL
       search: Suche
       shared_inbox_url: Shared Inbox URL
@@ -132,20 +133,29 @@ de:
       unsubscribe: Abbestellen
       username: Profilname
       web: Web
-      enabled: Freigegeben
-      demote: Degradieren
-      disable: Ausschalten
-      disabled: Ausgeschaltet
-      enable: Freischalten
-      login_status: Loginstatus
-      memorialize: In Gedenkmal verwandeln
-      promote: Befördern
-      role: Berechtigungen
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        user: Nutzer
-      by_domain: Domain
+    action_logs:
+      actions:
+        confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
+        create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
+        create_domain_block: "%{name} hat die Domain %{target} blockiert"
+        create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
+        demote_user: "%{name} stufte Benutzer %{target} herunter"
+        destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
+        destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
+        destroy_status: "%{name} hat Status von %{target} entfernt"
+        disable_custom_emoji: "%{name} hat Emoji %{target} deaktiviert"
+        enable_custom_emoji: "%{name} hat das %{target} Emoji aktiviert"
+        enable_user: "%{name} hat die Anmeldung für den Benutzer %{target} aktiviert"
+        memorialize_account: "%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt"
+        reset_password_user: "%{name} hat das Passwort für den Benutzer %{target} zurückgesetzt"
+        resolve_report: "%{name} hat die Meldung %{target} abgelehnt"
+        silence_account: "%{name} hat %{target}s Account stummgeschaltet"
+        suspend_account: "%{name} hat %{target}s Account gesperrt"
+        unsilence_account: "%{name} hat die Stummschaltung von %{target}s Account aufgehoben"
+        unsuspend_account: "%{name} hat die Sperrung von %{target}s Account aufgehoben"
+        update_custom_emoji: "%{name} hat das %{target} Emoji aktualisiert"
+        update_status: "%{name} hat den Status von %{target} aktualisiert"
+      title: Überprüfungsprotokoll
     custom_emojis:
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
@@ -164,8 +174,8 @@ de:
       shortcode: Shortcode
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
-      upload: Hochladen
       updated_msg: Emoji erfolgreich aktualisiert!
+      upload: Hochladen
     domain_blocks:
       add_new: Neu hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
@@ -173,21 +183,15 @@ de:
       domain: Domain
       new:
         create: Blockade einrichten
-        hint: Die Domain-Blockade wird nicht verhindern, dass Konteneinträge in der
-          Datenbank erstellt werden. Aber es werden rückwirkend und automatisch alle
-          Moderationsmethoden auf diese Konten angewendet.
+        hint: Die Domain-Blockade wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden. Aber es werden rückwirkend und automatisch alle Moderationsmethoden auf diese Konten angewendet.
         severity:
-          desc_html: <strong>Stummschaltung</strong> wird die Beiträge dieses Kontos
-            für alle, die ihm nicht folgen, unsichtbar machen. Eine <strong>Sperre</strong>
-            wird alle Beiträge, Medien und Profildaten dieses Kontos entfernen. Verwende
-            <strong>Kein,</strong> um nur Mediendateien abzulehnen.
+          desc_html: "<strong>Stummschaltung</strong> wird die Beiträge dieses Kontos für alle, die ihm nicht folgen, unsichtbar machen. Eine <strong>Sperre</strong> wird alle Beiträge, Medien und Profildaten dieses Kontos entfernen. Verwende <strong>Kein,</strong> um nur Mediendateien abzulehnen."
           noop: Kein
           silence: Stummschaltung
           suspend: Sperre
         title: Neue Domain-Blockade
       reject_media: Mediendateien ablehnen
-      reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert
-        deren künftiges Herunterladen. Für Sperren irrelevant
+      reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       severities:
         noop: Kein
         silence: Stummschaltung
@@ -196,7 +200,7 @@ de:
       show:
         affected_accounts:
           one: Ein Konto in der Datenbank betroffen
-          other: '%{count} Konten in der Datenbank betroffen'
+          other: "%{count} Konten in der Datenbank betroffen"
         retroactive:
           silence: Alle existierenden Konten dieser Domain nicht mehr stummschalten
           suspend: Alle existierenden Konten dieser Domain entsperren
@@ -220,6 +224,13 @@ de:
       reset: Zurücksetzen
       search: Suchen
       title: Bekannte Instanzen
+    invites:
+      filter:
+        all: Alle
+        available: Verfügbar
+        expired: Ausgelaufen
+        title: Filter
+      title: Einladungen
     reports:
       action_taken_by: Maßnahme ergriffen durch
       are_you_sure: Bist du dir sicher?
@@ -246,42 +257,35 @@ de:
       view: Ansehen
     settings:
       bootstrap_timeline_accounts:
-        desc_html: Mehrere Profilnamen durch Kommata trennen. Funktioniert nur mit
-          lokalen und nicht gesperrten Konten. Standardwert bei freigelassenem Feld
-          sind alle lokalen Admins.
+        desc_html: Mehrere Profilnamen durch Kommata trennen. Funktioniert nur mit lokalen und nicht gesperrten Konten. Standardwert bei freigelassenem Feld sind alle lokalen Admins.
         title: Konten, denen Neu-Angemeldete automatisch folgen
       contact_information:
         email: Öffentliche E-Mail-Adresse
         username: Profilname für die Kontaktaufnahme
       registrations:
         closed_message:
-          desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen
-            ist. Du kannst HTML-Tags benutzen
+          desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist. Du kannst HTML-Tags benutzen
           title: Nachricht über geschlossene Registrierung
         deletion:
           desc_html: Allen erlauben, ihr Konto eigenmächtig zu löschen
           title: Kontolöschung erlauben
+        min_invite_role:
+          disabled: Niemand
         open:
           desc_html: Allen erlauben, ein Konto zu erstellen
           title: Registrierung öffnen
-        min_invite_role:
-          disabled: Niemand
       site_description:
-        desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt.
-          Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
+        desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Beschreibung der Instanz
       site_description_extended:
-        desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres
-          an, was deine Instanz auszeichnet. Du kannst HTML-Tags benutzen
+        desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres an, was deine Instanz auszeichnet. Du kannst HTML-Tags benutzen
         title: Erweiterte Beschreibung der Instanz
       site_terms:
-        desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung
-          und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags benutzen
+        desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags benutzen
         title: Eigene Geschäftsbedingungen
       site_title: Name der Instanz
       thumbnail:
-        desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630
-          px wird empfohlen
+        desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630 px wird empfohlen
         title: Instanz-Thumbnail
       timeline_preview:
         desc_html: Auf der Frontseite die öffentliche Zeitleiste anzeigen
@@ -310,44 +314,12 @@ de:
       title: WebSub
       topic: Thema
     title: Administration
-    action_logs:
-      actions:
-        confirm_user: '%{name} hat die E-Mail-Adresse von %{target} bestätigt'
-        create_custom_emoji: '%{name} hat neues Emoji %{target} hochgeladen'
-        create_domain_block: '%{name} hat die Domain %{target} blockiert'
-        create_email_domain_block: '%{name} hat die E-Mail-Domain %{target} geblacklistet'
-        destroy_domain_block: '%{name} hat die Domain %{target} entblockt'
-        destroy_status: '%{name} hat Status von %{target} entfernt'
-        enable_custom_emoji: '%{name} hat das %{target} Emoji aktiviert'
-        enable_user: '%{name} hat die Anmeldung für den Benutzer %{target} aktiviert'
-        memorialize_account: '%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt'
-        reset_password_user: '%{name} hat das Passwort für den Benutzer %{target}
-          zurückgesetzt'
-        resolve_report: '%{name} hat die Meldung %{target} abgelehnt'
-        silence_account: '%{name} hat %{target}s Account stummgeschaltet'
-        suspend_account: '%{name} hat %{target}s Account gesperrt'
-        unsilence_account: '%{name} hat die Stummschaltung von %{target}s Account
-          aufgehoben'
-        unsuspend_account: '%{name} hat die Sperrung von %{target}s Account aufgehoben'
-        update_custom_emoji: '%{name} hat das %{target} Emoji aktualisiert'
-        update_status: '%{name} hat den Status von %{target} aktualisiert'
-        demote_user: '%{name} stufte Benutzer %{target} herunter'
-        destroy_email_domain_block: '%{name} hat die E-Mail-Domain %{target} gewhitelistet'
-        disable_custom_emoji: '%{name} hat Emoji %{target} deaktiviert'
-      title: Überprüfungsprotokoll
-    invites:
-      filter:
-        all: Alle
-        available: Verfügbar
-        expired: Ausgelaufen
-        title: Filter
-      title: Einladungen
   admin_mailer:
     new_report:
-      body: '%{reporter} hat %{target} gemeldet'
+      body: "%{reporter} hat %{target} gemeldet"
       subject: Neue Meldung auf %{instance} (#%{id})
   application_mailer:
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     signature: Mastodon-Benachrichtigungen von %{instance}
     view: 'Ansehen:'
@@ -360,16 +332,13 @@ de:
     warning: Sei mit diesen Daten sehr vorsichtig! Teile sie niemandem mit.
     your_token: Dein Zugangs-Token
   auth:
-    agreement_html: Indem du dich registrierst, erklärst du dich mit unseren <a href="%{rules_path}">Geschäftsbedingungen</a>
-      und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
+    agreement_html: Indem du dich registrierst, erklärst du dich mit unseren <a href="%{rules_path}">Geschäftsbedingungen</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
     change_password: Sicherheit
     delete_account: Konto löschen
-    delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier
-      damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
+    delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
     forgot_password: Passwort vergessen?
-    invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig
-      oder abgelaufen. Bitte fordere ein neues an.
+    invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
     login: Anmelden
     logout: Abmelden
     register: Registrieren
@@ -385,33 +354,28 @@ de:
       close: Oder du schließt einfach dieses Fenster.
       return: Zurück zum Profil dieses Wesens
       web: Das Web öffnen
-    title: '%{acct} folgen'
+    title: "%{acct} folgen"
   datetime:
     distance_in_words:
-      about_x_hours: '%{count}h'
-      about_x_months: '%{count}mo'
-      about_x_years: '%{count}y'
-      almost_x_years: '%{count}y'
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
       half_a_minute: Gerade eben
-      less_than_x_minutes: '%{count}m'
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Gerade eben
-      over_x_years: '%{count}y'
-      x_days: '%{count}d'
-      x_minutes: '%{count}m'
-      x_months: '%{count}mo'
-      x_seconds: '%{count}s'
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Falsches Passwort
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
-    description_html: Hiermit wird <strong>dauerhaft und unwiederbringlich</strong>
-      der Inhalt deines Kontos gelöscht und dein Konto deaktiviert. Dein Profilname
-      wird reserviert, um künftige Imitationen zu verhindern.
+    description_html: Hiermit wird <strong>dauerhaft und unwiederbringlich</strong> der Inhalt deines Kontos gelöscht und dein Konto deaktiviert. Dein Profilname wird reserviert, um künftige Imitationen zu verhindern.
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
-    warning_html: Wir können nur dafür garantieren, dass die Inhalte auf dieser einen
-      Instanz gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich,
-      dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen
-      von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
+    warning_html: Wir können nur dafür garantieren, dass die Inhalte auf dieser einen Instanz gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
     warning_title: Verfügbarkeit verstreuter Inhalte
   errors:
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
@@ -424,9 +388,7 @@ de:
     '500':
       content: Bitte verzeih, etwas ist bei uns schief gegangen.
       title: Diese Seite ist kaputt
-    noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden.
-      Alternativ kannst du auch eine der <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativen
-      Mastodon-Anwendungen</a> für deine Plattform probieren.
+    noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   exports:
     blocks: Du hast blockiert
     csv: CSV
@@ -435,23 +397,15 @@ de:
     storage: Medienspeicher
   followers:
     domain: Instanz
-    explanation_html: Wenn du sicherstellen willst, dass deine Beiträge privat sind,
-      musst du wissen, wer dir folgt. <strong>Deine privaten Beiträge werden an alle
-      Instanzen weitergegeben, auf denen Menschen registriert sind, die dir folgen.</strong>
-      Wenn du den Betreibenden einer Instanz misstraust und du befürchtest, dass sie
-      deine Privatsphäre missachten könnten, kannst du sie hier entfernen.
+    explanation_html: Wenn du sicherstellen willst, dass deine Beiträge privat sind, musst du wissen, wer dir folgt. <strong>Deine privaten Beiträge werden an alle Instanzen weitergegeben, auf denen Menschen registriert sind, die dir folgen.</strong> Wenn du den Betreibenden einer Instanz misstraust und du befürchtest, dass sie deine Privatsphäre missachten könnten, kannst du sie hier entfernen.
     followers_count: Zahl der Folgenden
     lock_link: dein Konto sperrst
     purge: Von der Liste deiner Folgenden löschen
     success:
       one: Folgende von einer Domain werden soft-geblockt …
       other: Folgende von %{count} Domains werden soft-geblockt …
-    true_privacy_html: Bitte beachte, dass <strong>wirklicher Schutz deiner Privatsphäre
-      nur durch Ende-zu-Ende-Verschlüsselung erreicht werden kann.</strong>.
-    unlocked_warning_html: Wer dir folgen will, kann dies jederzeit ohne deine vorige
-      Einverständnis tun und erhält damit automatisch Zugriff auf deine privaten Beiträge.
-      Wenn du %{lock_link}, kannst du vorab entscheiden, wer dir folgen darf und wer
-      nicht.
+    true_privacy_html: Bitte beachte, dass <strong>wirklicher Schutz deiner Privatsphäre nur durch Ende-zu-Ende-Verschlüsselung erreicht werden kann.</strong>.
+    unlocked_warning_html: Wer dir folgen will, kann dies jederzeit ohne deine vorige Einverständnis tun und erhält damit automatisch Zugriff auf deine privaten Beiträge. Wenn du %{lock_link}, kannst du vorab entscheiden, wer dir folgen darf und wer nicht.
     unlocked_warning_title: Dein Konto ist nicht gesperrt
   generic:
     changes_saved_msg: Änderungen gespeichert!
@@ -461,55 +415,67 @@ de:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
   imports:
-    preface: Daten, die du aus einer anderen Instanz exportiert hast, kannst du hier
-      importieren. Beispielsweise die Liste derjenigen, denen du folgst oder die du
-      blockiert hast.
+    preface: Daten, die du aus einer anderen Instanz exportiert hast, kannst du hier importieren. Beispielsweise die Liste derjenigen, denen du folgst oder die du blockiert hast.
     success: Deine Daten wurden erfolgreich hochgeladen und werden in Kürze verarbeitet
     types:
       blocking: Blockierliste
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
-  landing_strip_html: <strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}.
-    Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum
-    hast.
-  landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier
-    anmelden</a>.
+  invites:
+    delete: Deaktivieren
+    expires_in:
+      '1800': 30 Minuten
+      '21600': 6 Stunden
+      '3600': 1 Stunde
+      '43200': 12 Stunden
+      '86400': 1 Tag
+    expires_in_prompt: Nie
+    generate: Generieren
+    max_uses:
+      one: 1 mal verwendet
+      other: "%{count} mal verwendet"
+    max_uses_prompt: Kein Limit
+  landing_strip_html: "<strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}. Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum hast."
+  landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   media_attachments:
     validations:
-      images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält,
-        angehängt werden
+      images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
       too_many: Es können nicht mehr als 4 Bilder angehängt werden
+  migrations:
+    acct: benutzername@domain des neuen Accounts
+    proceed: Speichern
+  moderation:
+    title: Moderation
   notification_mailer:
     digest:
-      body: 'Hier ist eine kurze Zusammenfasung dessen, was du auf %{instance} seit
-        deinem letzten Besuch am %{since} verpasst hast:'
-      mention: '%{name} hat dich erwähnt:'
+      body: 'Hier ist eine kurze Zusammenfasung dessen, was du auf %{instance} seit deinem letzten Besuch am %{since} verpasst hast:'
+      mention: "%{name} hat dich erwähnt:"
       new_followers_summary:
         one: Ein weiteres Wesen folgt dir nun! Juhu!
-        other: '%{count} weitere Wesen folgen dir nun! Großartig!'
+        other: "%{count} weitere Wesen folgen dir nun! Großartig!"
       subject:
-        one: 1 neue Mitteilung seit deinem letzten Besuch 🐘
-        other: '%{count} neue Mitteilungen seit deinem letzten Besuch 🐘'
+        one: "1 neue Mitteilung seit deinem letzten Besuch \U0001F418"
+        other: "%{count} neue Mitteilungen seit deinem letzten Besuch \U0001F418"
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
-      subject: '%{name} hat deinen Beitrag favorisiert'
+      subject: "%{name} hat deinen Beitrag favorisiert"
     follow:
-      body: '%{name} folgt dir jetzt!'
-      subject: '%{name} folgt dir jetzt'
+      body: "%{name} folgt dir jetzt!"
+      subject: "%{name} folgt dir jetzt"
     follow_request:
-      body: '%{name} möchte dir folgen:'
-      subject: '%{name} möchte dir folgen'
+      body: "%{name} möchte dir folgen:"
+      subject: "%{name} möchte dir folgen"
     mention:
-      body: '%{name} hat dich erwähnt:'
-      subject: '%{name} hat dich erwähnt'
+      body: "%{name} hat dich erwähnt:"
+      subject: "%{name} hat dich erwähnt"
     reblog:
-      body: '%{name} hat deinen Beitrag geteilt:'
-      subject: '%{name} hat deinen Beitrag geteilt'
+      body: "%{name} hat deinen Beitrag geteilt:"
+      subject: "%{name} hat deinen Beitrag geteilt"
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -520,7 +486,7 @@ de:
   pagination:
     next: Vorwärts
     prev: Zurück
-    truncate: '&hellip;'
+    truncate: "&hellip;"
   preferences:
     languages: Sprachen
     other: Weiteres
@@ -528,22 +494,21 @@ de:
     web: Web
   push_notifications:
     favourite:
-      title: '%{name} hat deinen Beitrag favorisiert'
+      title: "%{name} hat deinen Beitrag favorisiert"
     follow:
-      title: '%{name} folgt dir nun'
+      title: "%{name} folgt dir nun"
     group:
-      title: '%{count} Benachrichtigungen'
+      title: "%{count} Benachrichtigungen"
     mention:
       action_boost: Teilen
       action_expand: Mehr anzeigen
       action_favourite: Favorisieren
-      title: '%{name} hat dich erwähnt'
+      title: "%{name} hat dich erwähnt"
     reblog:
-      title: '%{name} hat deinen Beitrag geteilt'
+      title: "%{name} hat deinen Beitrag geteilt"
   remote_follow:
     acct: Profilname@Domain, von wo aus du dieser Person folgen möchtest
-    missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht
-      gefunden werden
+    missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
   sessions:
@@ -566,9 +531,8 @@ de:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Aktuelle Sitzung
-    description: '%{browser} auf %{platform}'
-    explanation: Dies sind die Webbrowser, die derzeit in dein Mastodon-Konto eingeloggt
-      sind.
+    description: "%{browser} auf %{platform}"
+    explanation: Dies sind die Webbrowser, die derzeit in dein Mastodon-Konto eingeloggt sind.
     ip: IP-Adresse
     platforms:
       adobe_air: Adobe Air
@@ -623,56 +587,24 @@ de:
     sensitive_content: Heikle Inhalte
   time:
     formats:
-      default: '%d.%m.%Y %H:%M'
+      default: "%d.%m.%Y %H:%M"
   two_factor_authentication:
-    code_hint: Gib zur Bestätigung den Code ein, den deine Authenticator-App generiert
-      hat
-    description_html: Wenn du <strong>Zwei-Faktor-Authentisierung (2FA)</strong> aktivierst,
-      wirst du dein Telefon zum Anmelden benötigen. Darauf werden Tokens erzeugt,
-      die du bei der Anmeldung eingeben musst.
+    code_hint: Gib zur Bestätigung den Code ein, den deine Authenticator-App generiert hat
+    description_html: Wenn du <strong>Zwei-Faktor-Authentisierung (2FA)</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen. Darauf werden Tokens erzeugt, die du bei der Anmeldung eingeben musst.
     disable: Deaktivieren
     enable: Aktivieren
     enabled: Zwei-Faktor-Authentisierung ist aktiviert
     enabled_success: Zwei-Faktor-Authentisierung erfolgreich aktiviert
     generate_recovery_codes: Wiederherstellungscodes generieren
-    instructions_html: <strong>Lies diesen QR-Code mit Google Authenticator oder einer
-      ähnlichen TOTP-App auf deinem Telefon ein.</strong> Von nun an wird diese App
-      Tokens generieren, die du beim Anmelden eingeben musst.
-    lost_recovery_codes: Wiederherstellungscodes erlauben dir, wieder den Zugang zu
-      deinem Konto zu erlangen, falls du dein Telefon verlieren solltest. Wenn du
-      deine Wiederherstellungscodes verloren hast, kannst du sie hier neu generieren.
-      Deine alten Wiederherstellungscodes werden damit ungültig gemacht.
-    manual_instructions: 'Wenn du den QR-Code nicht einlesen kannst und ihn manuell
-      eingeben musst, ist hier das Klartext-Geheimnis:'
+    instructions_html: "<strong>Lies diesen QR-Code mit Google Authenticator oder einer ähnlichen TOTP-App auf deinem Telefon ein.</strong> Von nun an wird diese App Tokens generieren, die du beim Anmelden eingeben musst."
+    lost_recovery_codes: Wiederherstellungscodes erlauben dir, wieder den Zugang zu deinem Konto zu erlangen, falls du dein Telefon verlieren solltest. Wenn du deine Wiederherstellungscodes verloren hast, kannst du sie hier neu generieren. Deine alten Wiederherstellungscodes werden damit ungültig gemacht.
+    manual_instructions: 'Wenn du den QR-Code nicht einlesen kannst und ihn manuell eingeben musst, ist hier das Klartext-Geheimnis:'
     recovery_codes: Wiederherstellungs-Codes sichern
     recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu generiert
-    recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest,
-      kannst du einen untenstehenden Wiederherstellungscodes benutzen, um wieder auf
-      dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes
-      gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen
-      wichtigen Dokumenten aufbewahren.
+    recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscodes benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Stimmen Serverzeit und Gerätezeit?
   users:
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
     signed_in_as: 'Angemeldet als:'
-  invites:
-    delete: Deaktivieren
-    expires_in:
-      '1800': 30 Minuten
-      '21600': 6 Stunden
-      '3600': 1 Stunde
-      '43200': 12 Stunden
-      '86400': 1 Tag
-    expires_in_prompt: Nie
-    generate: Generieren
-    max_uses:
-      one: 1 mal verwendet
-      other: '%{count} mal verwendet'
-    max_uses_prompt: Kein Limit
-  migrations:
-    acct: benutzername@domain des neuen Accounts
-    proceed: Speichern
-  moderation:
-    title: Moderation

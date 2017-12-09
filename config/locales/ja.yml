@@ -1,3 +1,4 @@
+---
 ja:
   about:
     about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
@@ -7,14 +8,12 @@ ja:
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
-    description_headline: '%{domain} とは？'
+    description_headline: "%{domain} とは？"
     domain_count_after: 個のインスタンス
     domain_count_before: 接続中
-    extended_description_html: '<h3>ルールを書くのに適した場所</h3>
-
+    extended_description_html: |
+      <h3>ルールを書くのに適した場所</h3>
       <p>詳細説明が設定されていません。</p>
-
-      '
     features:
       humane_approach_body: 他の SNS の失敗から学び、Mastodon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指しています。
       humane_approach_title: より思いやりのある設計
@@ -25,7 +24,7 @@ ja:
       within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
       within_reach_title: いつでも身近に
     find_another_instance: 他のインスタンスを探す
-    generic_description: '%{domain} は、Mastodon インスタンスの一つです'
+    generic_description: "%{domain} は、Mastodon インスタンスの一つです"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     other_instances: 他のインスタンス
@@ -40,10 +39,10 @@ ja:
     followers: フォロワー
     following: フォロー中
     media: メディア
-    moved_html: '%{name} さんは引っ越しました %{new_profile_link}:'
+    moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     nothing_here: 何もありません！
-    people_followed_by: '%{name} さんがフォロー中のアカウント'
-    people_who_follow: '%{name} さんをフォロー中のアカウント'
+    people_followed_by: "%{name} さんがフォロー中のアカウント"
+    people_who_follow: "%{name} さんをフォロー中のアカウント"
     posts: トゥート
     posts_with_replies: トゥートと返信
     remote_follow: リモートフォロー
@@ -136,29 +135,29 @@ ja:
       web: Web
     action_logs:
       actions:
-        confirm_user: '%{name} さんが %{target} さんのメールアドレスを確認済みにしました'
-        create_custom_emoji: '%{name} さんがカスタム絵文字 %{target} を追加しました'
-        create_domain_block: '%{name} さんがドメイン %{target} をブロックしました'
-        create_email_domain_block: '%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました'
-        demote_user: '%{name} さんが %{target} さんを降格しました'
-        destroy_domain_block: '%{name} さんがドメイン %{target} のブロックを外しました'
-        destroy_email_domain_block: '%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました'
-        destroy_status: '%{name} さんが %{target} さんの投稿を削除しました'
-        disable_2fa_user: '%{name} さんが %{target} さんの二段階認証を無効化しました'
-        disable_custom_emoji: '%{name} さんがカスタム絵文字 %{target} を無効化しました'
-        disable_user: '%{name} さんが %{target} さんのログインを無効化しました'
-        enable_custom_emoji: '%{name} さんがカスタム絵文字 %{target} を有効化しました'
-        enable_user: '%{name} さんが %{target} さんのログインを有効化しました'
-        memorialize_account: '%{name} さんが %{target} さんを追悼アカウントページに登録しました'
-        promote_user: '%{name} さんが %{target} さんを昇格しました'
-        reset_password_user: '%{name} さんが %{target} さんのパスワードをリセットしました'
-        resolve_report: '%{name} さんがレポート %{target} を棄却しました'
-        silence_account: '%{name} さんが %{target} さんをサイレンスにしました'
-        suspend_account: '%{name} さんが %{target} さんを停止しました'
-        unsilence_account: '%{name} さんが %{target} さんのサイレンスを解除しました'
-        unsuspend_account: '%{name} さんが %{target} さんの停止を解除しました'
-        update_custom_emoji: '%{name} さんがカスタム絵文字 %{target} を更新しました'
-        update_status: '%{name} さんが %{target} さんの投稿を更新しました'
+        confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
+        create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
+        create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
+        demote_user: "%{name} さんが %{target} さんを降格しました"
+        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
+        destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
+        disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
+        disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
+        disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
+        enable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
+        enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
+        memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
+        promote_user: "%{name} さんが %{target} さんを昇格しました"
+        reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
+        resolve_report: "%{name} さんがレポート %{target} を棄却しました"
+        silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
+        suspend_account: "%{name} さんが %{target} さんを停止しました"
+        unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
+        unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
+        update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        update_status: "%{name} さんが %{target} さんの投稿を更新しました"
       title: 操作履歴
     custom_emojis:
       copied_msg: 絵文字のコピーをローカルに作成しました
@@ -193,7 +192,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: <strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。
+          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
           noop: なし
           silence: サイレンス
           suspend: 停止
@@ -212,7 +211,7 @@ ja:
         retroactive:
           silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
-        title: '%{domain}のドメインブロックを戻す'
+        title: "%{domain}のドメインブロックを戻す"
         undo: 元に戻す
       title: ドメインブロック
       undo: 元に戻す
@@ -287,8 +286,7 @@ ja:
         desc_html: ユーザーページにスタッフのバッジを表示します
         title: スタッフバッジを表示する
       site_description:
-        desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code>
-          と <code>&lt;em&gt;</code>が使えます。
+        desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
       site_description_extended:
         desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます。
@@ -329,10 +327,10 @@ ja:
     title: 管理
   admin_mailer:
     new_report:
-      body: '%{reporter} が %{target} を通報しました'
-      subject: '%{instance} の新しい通報 (#%{id})'
+      body: "%{reporter} が %{target} を通報しました"
+      subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
-    salutation: '%{name} さん'
+    salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
     signature: Mastodon %{instance} インスタンスからの通知
     view: リンク
@@ -345,8 +343,7 @@ ja:
     warning: このデータは気をつけて取り扱ってください。不特定多数の人と共有しないでください！
     your_token: アクセストークン
   auth:
-    agreement_html: 登録すると <a href="%{rules_path}">利用規約</a> と <a href="%{terms_path}">プライバシーポリシー</a>
-      に同意したことになります。
+    agreement_html: 登録すると <a href="%{rules_path}">利用規約</a> と <a href="%{terms_path}">プライバシーポリシー</a> に同意したことになります。
     change_password: セキュリティ
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
@@ -370,21 +367,21 @@ ja:
       close: またはこのウィンドウを閉じます
       return: ユーザーのプロフィールに戻る
       web: Web を開く
-    title: '%{acct} をフォロー'
+    title: "%{acct} をフォロー"
   datetime:
     distance_in_words:
-      about_x_hours: '%{count}時間'
-      about_x_months: '%{count}月'
-      about_x_years: '%{count}年'
-      almost_x_years: '%{count}年'
+      about_x_hours: "%{count}時間"
+      about_x_months: "%{count}月"
+      about_x_years: "%{count}年"
+      almost_x_years: "%{count}年"
       half_a_minute: 今
-      less_than_x_minutes: '%{count}分'
+      less_than_x_minutes: "%{count}分"
       less_than_x_seconds: 今
-      over_x_years: '%{count}年'
-      x_days: '%{count}日'
-      x_minutes: '%{count}分'
-      x_months: '%{count}月'
-      x_seconds: '%{count}秒'
+      over_x_years: "%{count}年"
+      x_days: "%{count}日"
+      x_minutes: "%{count}分"
+      x_months: "%{count}月"
+      x_seconds: "%{count}秒"
   deletes:
     bad_password_msg: パスワードが違います
     confirm_password: 本人確認のため、現在のパスワードを入力してください。
@@ -404,8 +401,7 @@ ja:
     '500':
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
-    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a
-      href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
+    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
     blocks: ブロック
     csv: CSV
@@ -414,15 +410,14 @@ ja:
     storage: メディア
   followers:
     domain: ドメイン
-    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。
-      フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
+    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
     followers_count: フォロワー数
     lock_link: 非公開アカウント
     purge: フォロワーから削除する
     success:
       one: 1個のドメインからソフトブロックするフォロワーを処理中...
-      other: '%{count} 個のドメインからソフトブロックするフォロワーを処理中...'
-    true_privacy_html: <strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。
+      other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
+    true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
     unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
     unlocked_warning_title: このアカウントは非公開アカウントに設定されていません。
   generic:
@@ -454,14 +449,14 @@ ja:
     generate: 作成
     max_uses:
       one: '1'
-      other: '%{count}'
+      other: "%{count}"
     max_uses_prompt: 無制限
     prompt: リンクを生成・共有してこのインスタンスへの新規登録を受け付けることができます。
     table:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
-  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。
+  landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
   landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
@@ -476,33 +471,33 @@ ja:
     title: モデレーション
   notification_mailer:
     digest:
-      body: '%{instance} での最後のログインからの出来事:'
-      mention: '%{name} さんがあなたに返信しました:'
+      body: "%{instance} での最後のログインからの出来事:"
+      mention: "%{name} さんがあなたに返信しました:"
       new_followers_summary:
         one: 新たなフォロワーを獲得しました！
-        other: '%{count} 人の新たなフォロワーを獲得しました！'
+        other: "%{count} 人の新たなフォロワーを獲得しました！"
       subject:
-        one: 新しい1件の通知 🐘
-        other: 新しい%{count}件の通知 🐘
+        one: "新しい1件の通知 \U0001F418"
+        other: "新しい%{count}件の通知 \U0001F418"
     favourite:
-      body: '%{name} さんにお気に入り登録された、あなたのトゥートがあります:'
-      subject: '%{name} さんにお気に入りに登録されました'
+      body: "%{name} さんにお気に入り登録された、あなたのトゥートがあります:"
+      subject: "%{name} さんにお気に入りに登録されました"
     follow:
-      body: '%{name} さんにフォローされています'
-      subject: '%{name} さんにフォローされています'
+      body: "%{name} さんにフォローされています"
+      subject: "%{name} さんにフォローされています"
     follow_request:
-      body: '%{name} さんがあなたにフォローをリクエストしました'
-      subject: '%{name} さんからのフォローリクエスト'
+      body: "%{name} さんがあなたにフォローをリクエストしました"
+      subject: "%{name} さんからのフォローリクエスト"
     mention:
-      body: '%{name} さんから返信がありました:'
-      subject: '%{name} さんに返信されました'
+      body: "%{name} さんから返信がありました:"
+      subject: "%{name} さんに返信されました"
     reblog:
-      body: '%{name} さんにブーストされた、あなたのトゥートがあります:'
-      subject: '%{name} さんにブーストされました'
+      body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
+      subject: "%{name} さんにブーストされました"
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -513,7 +508,7 @@ ja:
   pagination:
     next: 次
     prev: 前
-    truncate: '&hellip;'
+    truncate: "&hellip;"
   preferences:
     languages: 言語
     other: その他
@@ -523,14 +518,14 @@ ja:
     favourite:
       title: あなたのトゥートが %{name} さんにお気に入り登録されました
     follow:
-      title: '%{name} さんにフォローされました'
+      title: "%{name} さんにフォローされました"
     group:
-      title: '%{count} 件の通知'
+      title: "%{count} 件の通知"
     mention:
       action_boost: ブースト
       action_expand: もっと見る
       action_favourite: お気に入り
-      title: '%{name} さんから返信がありました'
+      title: "%{name} さんから返信がありました"
     reblog:
       title: あなたのトゥートが %{name} さんにブーストされました
   remote_follow:
@@ -558,7 +553,7 @@ ja:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: 現在のセッション
-    description: '%{browser} on %{platform}'
+    description: "%{browser} on %{platform}"
     explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
     ip: IP
     platforms:
@@ -614,43 +609,87 @@ ja:
     reblogged: さんにブーストされました
     sensitive_content: 閲覧注意
   terms:
-    body_html: "<h2>プライバシーポリシー</h2>\n\n<h3 id=\"collect\">どのような情報を収集するのですか？</h3>\n\
-      \n<p>あなたがこのサイトに登録すると、ここで共有された情報を読んだり、書いたり、評価したりして、フォーラムでの情報を集める事ができます。</p>\n\
-      \n<p>このサイトに登録する際には、名前とメールアドレスの入力を求めることがあります。ただし、登録をすることなくこのサイトを利用することも可能です。あなたのメールアドレスは、固有のリンクを含んだメールで確認されます。そのリンクにアクセスした場合にメールアドレスを制御することとなります。</p>\n\
-      \n<p>アカウントを登録し、投稿を行った際にはその投稿が行われたIPアドレスを記録します。また、このサーバーに対する全てのリクエストはIPアドレスを含むサーバーログとして保管されます。</p>\n\
-      \n<h3 id=\"use\">自分の情報を何に使うのですか？</h3>\n\n<p>このサイトで収集された情報は、次のいくつかの方法で使用されます:</p>\n\
-      \n<ul>\n  <li>パーソナライズ・エクスペリエンス &mdash; あなたの情報は、あなたや他のユーザーのニーズに対応するために役立ちます。</li>\n\
-      \  <li>サイトの改善・最適化 &mdash; このサービスはあなたから受け取った情報やフィードバックに基づいて提供されるサイトの改善を行いつづけます。</li>\n\
-      \  <li>サービスの向上 &mdash; あなたの情報は、ユーザーからの要求やサポートへより効果的に対応するために役立ちます。</li>\n  <li>定期メールの送信\
-      \ &mdash; メールアドレスは、情報の送信、トピックの変更やユーザー名に関係するお知らせ、お問い合わせに関する返答、その他のリクエストや質問に関してお知らせするために使用されます。</li>\n\
-      </ul>\n\n<h3 id=\"protect\">自分の情報はどのように保護されるのですか？</h3>\n\n<p>このサービスはあなたの個人情報の入力、送信、またはアクセスに際してあなたの個人情報の安全性を維持するために様々なセキュリティ手段をとっています。</p>\n\
-      \n<h3 id=\"data-retention\">データ保持のポリシーはどのようになっていますか？</h3>\n\n<p>このサービスはデータ保持に関して次のことを行うよう努めます。:</p>\n\
-      \n<ul>\n  <li>このサーバーへのすべての要求に対して、IPアドレスを含むサーバーログを90日以内に渡って保持します。</li>\n  <li>登録されたユーザーとその投稿に関連付けされたIPアドレスを5年以内に渡って保持します。</li>\n\
-      </ul>\n\n<h3 id=\"cookies\">クッキーを使用していますか？</h3>\n\n<p>はい。クッキーはあなたがウェブブラウザ上で許可した場合にコンピュータのストレージに転送される小さなファイルです。これらのクッキーを使用すると、サイトでブラウザが識別され、登録済みのアカウントを持っている場合は登録済みのアカウントに関連付けがされます。</p>\n\
-      \n<p>クッキーを使用して、今後再度閲覧された場合に前回のデータから設定を呼び出したり、今後の改善のためにサイトのトラフィックやサイトの相互作用に関する集計データを作成します。このサービスは、サイトを訪れた方との理解を深めるために、第三者のサービス提供者と契約することがあります。これらのサービス提供者というものは、このサービスでの業務を行ったり、改善するためにこのサービスの代わって収集された情報を使用することはできません。</p>\n\
-      \n<h3 id=\"disclose\">このサイトは外部に何らかの情報を開示していますか？</h3>\n\n<p>私たちは、個人を特定出来る情報を外部へ販売、取引、または他の方法で渡すことはありません。これには、このサイトを操作したり、業務を行ったり、サービスを提供するのに役立つ信頼できる第三者は含まれません。法令遵守、サイトポリシーの施行、このサービスや他の人の権利、財産または安全の保護のために適切であると判断した場合に、あなたの情報を公開する場合があります。ただし、マーケティングや広告、その他の目的で匿名での訪問者情報を他者へ提供することができます。</p>\n\
-      \n<h3 id=\"third-party\">サードパーティのリンク</h3>\n\n<p>必要に応じて、このサービスの方針にもとづいてこのサイトや第三者のサービスを提供することがあります。これらの第三者のサイトには、個別の独立したプライバシーポリシーがあります。従って、これらのリンク先のサイトに関するコンテンツや活動にかんしては一切責任を負いません。ですが、サイトの完全性やこれらのサイトに関するフィードバックは非常に重要なものであると認識しております。</p>\n\
-      \n<h3 id=\"coppa\">子供のオンライン・プライバシー保護法</h3>\n\n<p>このサイト、製品、サービスはすべて13歳以上の人を対象としております。このサーバーが米国にあり、13歳未満の場合はCOPPA\
-      \ (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
-      >Children's Online Privacy Protection Act</a>) にもとづいてこのサイトを使用しないでください。</p>\n\
-      \n<h3 id=\"online\">オンライン限定のプライバシーポリシー</h3>\n\n<p>このオンライン・プライバシーポリシーは、このサイトを通じて収集された情報のみに適用され、オフラインで収集される情報には適用されません。</p>\n\
-      \n<h3 id=\"consent\">あなたの同意</h3>\n\n<p>このサービスを使用することにより、このサイトのプライバシーポリシーに同意するものとします。</p>\n\
-      \n<h3 id=\"changes\">プライバシーポリシーの変更</h3>\n\n<p>プライバシーポリシーを変更する場合は、このページへ変更内容を掲載します。</p>\n\
-      \n<p>この文章のライセンスはCC-BY-SAです。このページは2017年5月6日が最終更新です。</p>\n\n<p>オリジナルの出典 <a href=\"\
-      https://github.com/discourse/discourse\">Discourse privacy policy</a>.</p>\n"
-    title: '%{instance} 利用規約・プライバシーポリシー'
+    body_html: |
+      <h2>プライバシーポリシー</h2>
+
+      <h3 id="collect">どのような情報を収集するのですか？</h3>
+
+      <p>あなたがこのサイトに登録すると、ここで共有された情報を読んだり、書いたり、評価したりして、フォーラムでの情報を集める事ができます。</p>
+
+      <p>このサイトに登録する際には、名前とメールアドレスの入力を求めることがあります。ただし、登録をすることなくこのサイトを利用することも可能です。あなたのメールアドレスは、固有のリンクを含んだメールで確認されます。そのリンクにアクセスした場合にメールアドレスを制御することとなります。</p>
+
+      <p>アカウントを登録し、投稿を行った際にはその投稿が行われたIPアドレスを記録します。また、このサーバーに対する全てのリクエストはIPアドレスを含むサーバーログとして保管されます。</p>
+
+      <h3 id="use">自分の情報を何に使うのですか？</h3>
+
+      <p>このサイトで収集された情報は、次のいくつかの方法で使用されます:</p>
+
+      <ul>
+        <li>パーソナライズ・エクスペリエンス &mdash; あなたの情報は、あなたや他のユーザーのニーズに対応するために役立ちます。</li>
+        <li>サイトの改善・最適化 &mdash; このサービスはあなたから受け取った情報やフィードバックに基づいて提供されるサイトの改善を行いつづけます。</li>
+        <li>サービスの向上 &mdash; あなたの情報は、ユーザーからの要求やサポートへより効果的に対応するために役立ちます。</li>
+        <li>定期メールの送信 &mdash; メールアドレスは、情報の送信、トピックの変更やユーザー名に関係するお知らせ、お問い合わせに関する返答、その他のリクエストや質問に関してお知らせするために使用されます。</li>
+      </ul>
+
+      <h3 id="protect">自分の情報はどのように保護されるのですか？</h3>
+
+      <p>このサービスはあなたの個人情報の入力、送信、またはアクセスに際してあなたの個人情報の安全性を維持するために様々なセキュリティ手段をとっています。</p>
+
+      <h3 id="data-retention">データ保持のポリシーはどのようになっていますか？</h3>
+
+      <p>このサービスはデータ保持に関して次のことを行うよう努めます。:</p>
+
+      <ul>
+        <li>このサーバーへのすべての要求に対して、IPアドレスを含むサーバーログを90日以内に渡って保持します。</li>
+        <li>登録されたユーザーとその投稿に関連付けされたIPアドレスを5年以内に渡って保持します。</li>
+      </ul>
+
+      <h3 id="cookies">クッキーを使用していますか？</h3>
+
+      <p>はい。クッキーはあなたがウェブブラウザ上で許可した場合にコンピュータのストレージに転送される小さなファイルです。これらのクッキーを使用すると、サイトでブラウザが識別され、登録済みのアカウントを持っている場合は登録済みのアカウントに関連付けがされます。</p>
+
+      <p>クッキーを使用して、今後再度閲覧された場合に前回のデータから設定を呼び出したり、今後の改善のためにサイトのトラフィックやサイトの相互作用に関する集計データを作成します。このサービスは、サイトを訪れた方との理解を深めるために、第三者のサービス提供者と契約することがあります。これらのサービス提供者というものは、このサービスでの業務を行ったり、改善するためにこのサービスの代わって収集された情報を使用することはできません。</p>
+
+      <h3 id="disclose">このサイトは外部に何らかの情報を開示していますか？</h3>
+
+      <p>私たちは、個人を特定出来る情報を外部へ販売、取引、または他の方法で渡すことはありません。これには、このサイトを操作したり、業務を行ったり、サービスを提供するのに役立つ信頼できる第三者は含まれません。法令遵守、サイトポリシーの施行、このサービスや他の人の権利、財産または安全の保護のために適切であると判断した場合に、あなたの情報を公開する場合があります。ただし、マーケティングや広告、その他の目的で匿名での訪問者情報を他者へ提供することができます。</p>
+
+      <h3 id="third-party">サードパーティのリンク</h3>
+
+      <p>必要に応じて、このサービスの方針にもとづいてこのサイトや第三者のサービスを提供することがあります。これらの第三者のサイトには、個別の独立したプライバシーポリシーがあります。従って、これらのリンク先のサイトに関するコンテンツや活動にかんしては一切責任を負いません。ですが、サイトの完全性やこれらのサイトに関するフィードバックは非常に重要なものであると認識しております。</p>
+
+      <h3 id="coppa">子供のオンライン・プライバシー保護法</h3>
+
+      <p>このサイト、製品、サービスはすべて13歳以上の人を対象としております。このサーバーが米国にあり、13歳未満の場合はCOPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) にもとづいてこのサイトを使用しないでください。</p>
+
+      <h3 id="online">オンライン限定のプライバシーポリシー</h3>
+
+      <p>このオンライン・プライバシーポリシーは、このサイトを通じて収集された情報のみに適用され、オフラインで収集される情報には適用されません。</p>
+
+      <h3 id="consent">あなたの同意</h3>
+
+      <p>このサービスを使用することにより、このサイトのプライバシーポリシーに同意するものとします。</p>
+
+      <h3 id="changes">プライバシーポリシーの変更</h3>
+
+      <p>プライバシーポリシーを変更する場合は、このページへ変更内容を掲載します。</p>
+
+      <p>この文章のライセンスはCC-BY-SAです。このページは2017年5月6日が最終更新です。</p>
+
+      <p>オリジナルの出典 <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "%{instance} 利用規約・プライバシーポリシー"
   time:
     formats:
-      default: '%Y年%m月%d日 %H:%M'
+      default: "%Y年%m月%d日 %H:%M"
   two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください。
-    description_html: <strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。
+    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
     generate_recovery_codes: リカバリーコードを生成
-    instructions_html: <strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。
+    instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
     lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     recovery_codes: リカバリーコード

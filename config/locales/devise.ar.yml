@@ -1,10 +1,13 @@
+---
 ar:
   devise:
+    confirmations:
+      confirmed: تم التحقق من عنوان بريدك الإلكتروني بنجاح.
     failure:
-      inactive: لم يتم تنشيط حسابك بعد.
-      locked: إن حسابك مقفل.
       already_authenticated: لقد تم تسجيل دخولك من قبل.
+      inactive: لم يتم تنشيط حسابك بعد.
       last_attempt: بإمكانك إعادة المحاولة مرة واحدة قبل أن يتم قفل حسابك.
+      locked: إن حسابك مقفل.
       unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المواصلة.
     mailer:
       password_change:
@@ -17,15 +20,13 @@ ar:
       updated: تم تغيير كلمة المرور بنجاح. أنت مسجل الآن.
       updated_not_active: تم تغيير كلمة المرور بنجاح.
     registrations:
+      destroyed: إلى اللقاء ! لقد تم إلغاء حسابك. نتمنى أن نراك مجددا.
       signed_up: أهلا وسهلا ! تم تسجيل دخولك بنجاح.
       updated: تم تحديث حسابك بنجاح.
-      destroyed: إلى اللقاء ! لقد تم إلغاء حسابك. نتمنى أن نراك مجددا.
     sessions:
       already_signed_out: تم تسجيل خروجك بنجاح.
       signed_in: تم تسجيل دخولك بنجاح.
       signed_out: تم تسجيل خروجك بنجاح.
-    confirmations:
-      confirmed: تم التحقق من عنوان بريدك الإلكتروني بنجاح.
   errors:
     messages:
       not_found: لا يوجد

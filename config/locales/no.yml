@@ -1,37 +1,29 @@
+---
 'no':
   about:
-    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>.
-      Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan
-      det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon.
-      Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere
-      med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale
-      nettverket.
+    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
+    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
     closed_registrations: Registreringer er for øyeblikket lukket på denne instansen.
     contact: Kontakt
+    contact_missing: Ikke innstilt
+    contact_unavailable: Ikke tilgjengelig
     description_headline: Hva er %{domain}?
     domain_count_after: andre instanser
     domain_count_before: Koblet til
+    extended_description_html: |
+      <h3>En god plassering for regler</h3>
+      <p>En utvidet beskrivelse er ikke satt opp ennå.</p>
+    features:
+      humane_approach_title: En mer menneskelig tilnærming
+      not_a_product_body: Mastodon er ikke et kommerst nettverk. Ingen reklame, ingen datainnsamling, ingen innhegnede hager. Det finnes ingen sentral myndighet.
+      not_a_product_title: Du er en person, ikke et produkt
     other_instances: Andre instanser
     source_code: Kildekode
     status_count_after: statuser
     status_count_before: Som skrev
     user_count_after: brukere
     user_count_before: Her bor
-    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>.
-      Du kan interagere med dem om du har en konto et sted i fediverset.
-    contact_missing: Ikke innstilt
-    contact_unavailable: Ikke tilgjengelig
-    extended_description_html: '<h3>En god plassering for regler</h3>
-
-      <p>En utvidet beskrivelse er ikke satt opp ennå.</p>
-
-      '
-    features:
-      humane_approach_title: En mer menneskelig tilnærming
-      not_a_product_body: Mastodon er ikke et kommerst nettverk. Ingen reklame, ingen
-        datainnsamling, ingen innhegnede hager. Det finnes ingen sentral myndighet.
-      not_a_product_title: Du er en person, ikke et produkt
   accounts:
     follow: Følg
     followers: Følgere
@@ -97,20 +89,14 @@
       domain: Domene
       new:
         create: Lag blokkering
-        hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i
-          databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder
-          på de kontoene.
+        hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: <strong>Målbind</strong> gjør kontoens poster usynlige for alle
-            som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media
-            og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil
-            fjerne mediafiler.
+          desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
           silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
       reject_media: Avvis mediefiler
-      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned
-        i fremtiden. Irrelevant for utvisninger
+      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       severities:
         silence: Målbind
         suspend: Utvis
@@ -118,7 +104,7 @@
       show:
         affected_accounts:
           one: En konto i databasen påvirket
-          other: '%{count} kontoer i databasen påvirket'
+          other: "%{count} kontoer i databasen påvirket"
         retroactive:
           silence: Avmålbind alle eksisterende kontoer fre dette domenet
           suspend: Avutvis alle eksisterende kontoer fra dette domenet
@@ -155,14 +141,12 @@
         username: Skriv brukernavn
       registrations:
         closed_message:
-          desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke
-            HTML-tagger
+          desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
           title: Melding for lukket registrering
         open:
           title: Åpen registrering
       site_description:
-        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du
-          kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
+        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Nettstedsbeskrivelse
       site_description_extended:
         desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
@@ -194,24 +178,23 @@
     reset_password: Nullstill passord
     set_new_password: Sett nytt passord
   authorize_follow:
-    error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en
-      annen instans
+    error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
     follow: Følg
     title: Følg %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count} timer'
-      about_x_months: '%{count} mnd'
-      about_x_years: '%{count} år'
-      almost_x_years: '%{count} år'
+      about_x_hours: "%{count} timer"
+      about_x_months: "%{count} mnd"
+      about_x_years: "%{count} år"
+      almost_x_years: "%{count} år"
       half_a_minute: Nettopp
-      less_than_x_minutes: '%{count} min'
+      less_than_x_minutes: "%{count} min"
       less_than_x_seconds: Nettopp
-      over_x_years: '%{count} år'
-      x_days: '%{count} dager'
-      x_minutes: '%{count} min'
-      x_months: '%{count} mnd'
-      x_seconds: '%{count} sek'
+      over_x_years: "%{count} år"
+      x_days: "%{count} dager"
+      x_minutes: "%{count} min"
+      x_months: "%{count} mnd"
+      x_seconds: "%{count} sek"
   errors:
     '403': Du har ikke tillatelse til å vise denne siden.
     '404': Siden du leter etter finnes ikke.
@@ -228,11 +211,7 @@
     storage: Medialagring
   followers:
     domain: Domene
-    explanation_html: Hvis du vil styre hvem som ser statusene dine, må du være klar
-      over hvem som følger deg. <strong>Dine private statuser leveres til alle instanser
-      der du har følgere</strong>. Du bør kanskje se over dem, og fjerne følgere hvis
-      du ikke stoler på at ditt privatliv vil bli respektert av staben eller programvaren
-      på de instansene.
+    explanation_html: Hvis du vil styre hvem som ser statusene dine, må du være klar over hvem som følger deg. <strong>Dine private statuser leveres til alle instanser der du har følgere</strong>. Du bør kanskje se over dem, og fjerne følgere hvis du ikke stoler på at ditt privatliv vil bli respektert av staben eller programvaren på de instansene.
     followers_count: Antall følgere
     lock_link: Lås kontoen din
     purge: Fjern fra følgere
@@ -240,8 +219,7 @@
       one: I ferd med å mykblokkere følgere fra ett domene...
       other: I ferd med å mykblokkere følgere fra %{count} domener...
     true_privacy_html: Merk deg at <strong>virkelig privatliv kun kan oppnås med ende-til-ende-kryptering</strong>.
-    unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser.
-      %{lock_link} for å kunne se over og avvise følgere.
+    unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser. %{lock_link} for å kunne se over og avvise følgere.
     unlocked_warning_title: Din konto er ikke låst
   generic:
     changes_saved_msg: Vellykket lagring av endringer!
@@ -251,54 +229,48 @@
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
-    preface: Du kan importere data om brukere du følger eller blokkerer til kontoen
-      din på denne instansen med eksportfiler fra andre instanser.
+    preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
     types:
       blocking: Blokkeringsliste
       following: Følgeliste
       muting: Dempeliste
     upload: Opplastning
-  landing_strip_html: <strong>%{name}</strong> er en bruker på %{link_to_root_path}.
-    Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst
-    i fediverset.
-  landing_strip_signup_html: Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere
-    deg her</a>.
+  landing_strip_html: "<strong>%{name}</strong> er en bruker på %{link_to_root_path}. Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst i fediverset."
+  landing_strip_signup_html: Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
   media_attachments:
     validations:
-      images_and_video: Kan ikke legge ved video på en status som allerede inneholder
-        bilder
+      images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
       too_many: Kan ikke legge ved mer enn 4 filer
   notification_mailer:
     digest:
-      body: 'Her er en kort oppsummering av hva du har gått glipp av på %{instance}
-        siden du logget deg inn sist den %{since}:'
-      mention: '%{name} nevnte deg i:'
+      body: 'Her er en kort oppsummering av hva du har gått glipp av på %{instance} siden du logget deg inn sist den %{since}:'
+      mention: "%{name} nevnte deg i:"
       new_followers_summary:
         one: Du har fått en ny følger. Jippi!
         other: Du har fått %{count} nye følgere! Imponerende!
       subject:
-        one: 1 ny hendelse siden ditt siste besøk 🐘
-        other: '%{count} nye hendelser siden ditt siste besøk 🐘'
+        one: "1 ny hendelse siden ditt siste besøk \U0001F418"
+        other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
     favourite:
       body: 'Statusen din ble likt av %{name}:'
-      subject: '%{name} likte statusen din'
+      subject: "%{name} likte statusen din"
     follow:
-      body: '%{name} følger deg!'
-      subject: '%{name} følger deg'
+      body: "%{name} følger deg!"
+      subject: "%{name} følger deg"
     follow_request:
-      body: '%{name} har bedt om lov til å følge deg'
+      body: "%{name} har bedt om lov til å følge deg"
       subject: 'Ventende følginger: %{name}'
     mention:
       body: 'Du ble nevnt av %{name} i:'
       subject: Du ble nevnt av %{name}
     reblog:
       body: 'Din status ble fremhevd av %{name}:'
-      subject: '%{name} fremhevde din status'
+      subject: "%{name} fremhevde din status"
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -309,7 +281,7 @@
   pagination:
     next: Neste
     prev: Forrige
-    truncate: '&hellip;'
+    truncate: "&hellip;"
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
@@ -341,105 +313,92 @@
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
   terms:
-    body_html: "<h2>Personvernserklæring</h2>\n\n<h3 id='collect'>Hvilke opplysninger\
-      \ samler vi?</h3>\n\n<p>Vi samler opplysninger fra deg når du registrerer deg\
-      \ på nettstedet vårt, og vi samler data når du deltar på forumet ved å lese,\
-      \ skrive og evaluere innholdet som deles her.</p>\n\n<p>Når du registrerer deg\
-      \ på nettstedet vårt, kan du bli bedt om å oppgi navnet og e-postadressen din.\
-      \ Imidlertid kan du besøke nettstedet vårt uten å registrere deg. E-postadressen\
-      \ din vil bli bekreftet med en e-post som inneholder en unik lenke. Hvis siden\
-      \ den lenker til, blir besøkt, vet vi at du har kontroll over e-postadressen.</p>\n\
-      \n<p>Når du registrerer deg og skriver innlegg, registrerer vi IP-adressen som\
-      \ innlegget stammer fra. Vi kan også oppbevare logger som inkluderer IP-adressen\
-      \ til alle forespørslene sendt til tjeneren vår.</p>\n\n<h3 id='use'>Hva bruker\
-      \ vi opplysningene dine til?</h3>\n\n<p>Alle opplysningene vi samler fra deg,\
-      \ kan bli brukt på en av følgende måter:</p>\n\n<ul>\n  <li>For å gjøre opplevelsen\
-      \ din mer personlig. Opplysningene dine hjelper oss å svare bedre på dine individuelle\
-      \ behov.</li>\n  <li>For å forbedre nettstedet vårt. Vi jobber konstant for\
-      \ å forbedre nettstedets tilbud basert på opplysningene og tilbakemeldingene\
-      \ vi mottar fra deg.</li>\n  <li>For å forbedre vår kundeservice. Dine opplysninger\
-      \ hjelper oss å svare mer effektivt på dine forespørsler sendt til kundeservice\
-      \ eller behov om støtte.</li>\n  <li>For å sende periodiske e-poster. E-postadressen\
-      \ du oppgir, kan bli brukt til å sende deg informasjon, påminnelser som du ber\
-      \ om ved endringer av emner eller ved svar til brukernavnet ditt, til henvendelser,\
-      \ og/eller andre forspørsler eller andre spørsmål.</li>\n</ul>\n\n<h3 id='protect'>Hvordan\
-      \ sikrer vi opplysningene?</h3>\n\n<p>Vi gjennomfører flere sikkerhetstiltak\
-      \ for å holde personopplysningene dine sikre når du skriver inn, lagrer eller\
-      \ henter dem.</p>\n\n<h3 id='data-retention'>Hva er retningslinjene deres for\
-      \ lagring av data?</h3>\n\n<p>Vi vil forsøke i god tro å:</p>\n\n<ul>\n  <li>Ikke\
-      \ oppbevare tjener-logger som inneholder IP-adressen til alle forespørslene\
-      \ til denne tjeneren i lenger enn i 90 dager.</li>\n  <li>Ikke oppbevare IP-adressene\
-      \ forbundet med registrerte brukere og deres innlegg lenger enn i 5 år.</li>\n\
-      </ul>\n\n<h3 id='cookies'>Bruker vi informasjonskapsler?</h3>\n\n<p>Ja. Informasjonskapsler\
-      \ er små filer som et nettsted eller dets tjenesteleverandør overfører til harddisken\
-      \ på datamaskinen din gjennom nettleseren din (dersom du tillater det). Disse\
-      \ informasjonskapslene gjør det mulig for nettstedet å gjenkjenne nettleseren\
-      \ din og, dersom du har en konto, knytte nettleseren til den.</p>\n\n<p>Vi bruker\
-      \ informasjonskapsler for å forstå og lagre preferansene dine for fremtidige\
-      \ besøk og for å samle aggregatdata om trafikk på og samhandling med nettstedet\
-      \ slik at vi kan tilby bedre opplevelser og verktøy på nettstedet i fremtiden.\
-      \ Vi kan inngå avtaler med tredjeparts tjenesteleverandører for å bistå oss\
-      \ i å forstå besøkerne våres bedre. Disse tjenesteleverandørene har ikke lov\
-      \ til å bruke opplysningene samlet på våres vegne unntatt til å hjelpe oss å\
-      \ gjennomføre og forbedre anliggendet vårt.</p>\n\n<h3 id='disclose'>Gir vi\
-      \ noen opplysninger videre til andre parter?</h3>\n\n<p>Vi verken selger, handler\
-      \ med eller overfører på noen annen måte til andre parter dine identifiserbare\
-      \ personopplysninger. Dette inkluderer ikke tredjeparter som har vår tillit\
-      \ og bistår oss i å drive nettstedet, utføre våre anliggender eller yter tjenester\
-      \ til deg, så lenge disse partene samtykker til å behandle disse opplysningene\
-      \ fortrolig. Vi kan også frigi opplysningene dine dersom vi tror at å frigi\
-      \ dem er hensiktsmessig for å overholde loven, håndheve nettstedet retningslinjer\
-      \ eller beskytte våre og andres rettigheter. Imidlertid kan opplysninger som\
-      \ ikke er personlig identifiserbare, bli delt med andre parter for markedsføring,\
-      \ reklame eller annet bruk.</p>\n\n<h3 id='third-party'>Tredjeparts lenker</h3>\n\
-      \n<p>Av og til, etter skjønn, kan vil inkludere eller tilby tredjeparts produkter\
-      \ eller tjenester på nettstedet vårt. Disse tredjeparts nettstedene har separate\
-      \ og selvstendige personvernerklæringer. Vi bærer derfor intet ansvar eller\
-      \ forpliktelser for innholdet eller aktivitetene til disse nettstedene det lenkes\
-      \ til. Ikke mindre prøver vi å bevare vår eget nettsteds integritet og ønsker\
-      \ enhver tilbakemelding om disse nettstedene velkomne.</p>\n\n<h3 id='coppa'>Overensstemmelse\
-      \ med Children's Online Privacy Protection Act</h3>\n\n<p>Nettstedet er rettet\
-      \ mot folk som er minst 13 år gamle. Dersom denne tjeneren er i USA, og du er\
-      \ under 13 år i henhold til kravene i  COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
-      >Children&#39;s Online Privacy Protection Act</a>), ikke bruk dette nettstedet.</p>\n\
-      \n<h3 id='online'>Personvernerklæring bare for nettet</h3>\n\n<p>Denne nett-personvernerklæringen\
-      \ gjelder bare for informasjon samlet gjennom nettstedet vårt og ikke for opplysninger\
-      \ samlet når en er frakoblet.</p>\n\n<h3 id='consent'>Ditt samtykke</h3>\n\n\
-      <p>Ved å bruke dette nettstedet samtykker du til nettstedets personvernerklæring.</p>\n\
-      \n<h3 id='changes'>Endringer i vår personvernerklæring</h3>\n\n<p>Dersom vi\
-      \ beslutter å endre personvernerklæringen vår, vil vi publisere disse endringene\
-      \ på denne siden.</p>\n\n<p>Dette dokumentet er lisensiert under CC-BY-SA. De\
-      \ ble sist oppdatert 12. april 2017.</p>\n\n<p>Dokumentet er en adoptert og\
-      \ endret versjon fra <a href=\"https://github.com/discourse/discourse\">Discourse\
-      \ privacy policy</a>.</p>\n"
-    title: '%{instance} Personvern og villkår for bruk av nettstedet'
+    body_html: |
+      <h2>Personvernserklæring</h2>
+
+      <h3 id='collect'>Hvilke opplysninger samler vi?</h3>
+
+      <p>Vi samler opplysninger fra deg når du registrerer deg på nettstedet vårt, og vi samler data når du deltar på forumet ved å lese, skrive og evaluere innholdet som deles her.</p>
+
+      <p>Når du registrerer deg på nettstedet vårt, kan du bli bedt om å oppgi navnet og e-postadressen din. Imidlertid kan du besøke nettstedet vårt uten å registrere deg. E-postadressen din vil bli bekreftet med en e-post som inneholder en unik lenke. Hvis siden den lenker til, blir besøkt, vet vi at du har kontroll over e-postadressen.</p>
+
+      <p>Når du registrerer deg og skriver innlegg, registrerer vi IP-adressen som innlegget stammer fra. Vi kan også oppbevare logger som inkluderer IP-adressen til alle forespørslene sendt til tjeneren vår.</p>
+
+      <h3 id='use'>Hva bruker vi opplysningene dine til?</h3>
+
+      <p>Alle opplysningene vi samler fra deg, kan bli brukt på en av følgende måter:</p>
+
+      <ul>
+        <li>For å gjøre opplevelsen din mer personlig. Opplysningene dine hjelper oss å svare bedre på dine individuelle behov.</li>
+        <li>For å forbedre nettstedet vårt. Vi jobber konstant for å forbedre nettstedets tilbud basert på opplysningene og tilbakemeldingene vi mottar fra deg.</li>
+        <li>For å forbedre vår kundeservice. Dine opplysninger hjelper oss å svare mer effektivt på dine forespørsler sendt til kundeservice eller behov om støtte.</li>
+        <li>For å sende periodiske e-poster. E-postadressen du oppgir, kan bli brukt til å sende deg informasjon, påminnelser som du ber om ved endringer av emner eller ved svar til brukernavnet ditt, til henvendelser, og/eller andre forspørsler eller andre spørsmål.</li>
+      </ul>
+
+      <h3 id='protect'>Hvordan sikrer vi opplysningene?</h3>
+
+      <p>Vi gjennomfører flere sikkerhetstiltak for å holde personopplysningene dine sikre når du skriver inn, lagrer eller henter dem.</p>
+
+      <h3 id='data-retention'>Hva er retningslinjene deres for lagring av data?</h3>
+
+      <p>Vi vil forsøke i god tro å:</p>
+
+      <ul>
+        <li>Ikke oppbevare tjener-logger som inneholder IP-adressen til alle forespørslene til denne tjeneren i lenger enn i 90 dager.</li>
+        <li>Ikke oppbevare IP-adressene forbundet med registrerte brukere og deres innlegg lenger enn i 5 år.</li>
+      </ul>
+
+      <h3 id='cookies'>Bruker vi informasjonskapsler?</h3>
+
+      <p>Ja. Informasjonskapsler er små filer som et nettsted eller dets tjenesteleverandør overfører til harddisken på datamaskinen din gjennom nettleseren din (dersom du tillater det). Disse informasjonskapslene gjør det mulig for nettstedet å gjenkjenne nettleseren din og, dersom du har en konto, knytte nettleseren til den.</p>
+
+      <p>Vi bruker informasjonskapsler for å forstå og lagre preferansene dine for fremtidige besøk og for å samle aggregatdata om trafikk på og samhandling med nettstedet slik at vi kan tilby bedre opplevelser og verktøy på nettstedet i fremtiden. Vi kan inngå avtaler med tredjeparts tjenesteleverandører for å bistå oss i å forstå besøkerne våres bedre. Disse tjenesteleverandørene har ikke lov til å bruke opplysningene samlet på våres vegne unntatt til å hjelpe oss å gjennomføre og forbedre anliggendet vårt.</p>
+
+      <h3 id='disclose'>Gir vi noen opplysninger videre til andre parter?</h3>
+
+      <p>Vi verken selger, handler med eller overfører på noen annen måte til andre parter dine identifiserbare personopplysninger. Dette inkluderer ikke tredjeparter som har vår tillit og bistår oss i å drive nettstedet, utføre våre anliggender eller yter tjenester til deg, så lenge disse partene samtykker til å behandle disse opplysningene fortrolig. Vi kan også frigi opplysningene dine dersom vi tror at å frigi dem er hensiktsmessig for å overholde loven, håndheve nettstedet retningslinjer eller beskytte våre og andres rettigheter. Imidlertid kan opplysninger som ikke er personlig identifiserbare, bli delt med andre parter for markedsføring, reklame eller annet bruk.</p>
+
+      <h3 id='third-party'>Tredjeparts lenker</h3>
+
+      <p>Av og til, etter skjønn, kan vil inkludere eller tilby tredjeparts produkter eller tjenester på nettstedet vårt. Disse tredjeparts nettstedene har separate og selvstendige personvernerklæringer. Vi bærer derfor intet ansvar eller forpliktelser for innholdet eller aktivitetene til disse nettstedene det lenkes til. Ikke mindre prøver vi å bevare vår eget nettsteds integritet og ønsker enhver tilbakemelding om disse nettstedene velkomne.</p>
+
+      <h3 id='coppa'>Overensstemmelse med Children's Online Privacy Protection Act</h3>
+
+      <p>Nettstedet er rettet mot folk som er minst 13 år gamle. Dersom denne tjeneren er i USA, og du er under 13 år i henhold til kravene i  COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children&#39;s Online Privacy Protection Act</a>), ikke bruk dette nettstedet.</p>
+
+      <h3 id='online'>Personvernerklæring bare for nettet</h3>
+
+      <p>Denne nett-personvernerklæringen gjelder bare for informasjon samlet gjennom nettstedet vårt og ikke for opplysninger samlet når en er frakoblet.</p>
+
+      <h3 id='consent'>Ditt samtykke</h3>
+
+      <p>Ved å bruke dette nettstedet samtykker du til nettstedets personvernerklæring.</p>
+
+      <h3 id='changes'>Endringer i vår personvernerklæring</h3>
+
+      <p>Dersom vi beslutter å endre personvernerklæringen vår, vil vi publisere disse endringene på denne siden.</p>
+
+      <p>Dette dokumentet er lisensiert under CC-BY-SA. De ble sist oppdatert 12. april 2017.</p>
+
+      <p>Dokumentet er en adoptert og endret versjon fra <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "%{instance} Personvern og villkår for bruk av nettstedet"
   time:
     formats:
-      default: '%-d. %b %Y, %H:%M'
+      default: "%-d. %b %Y, %H:%M"
   two_factor_authentication:
     code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
-    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du
-      ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
+    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
     disable: Skru av
     enable: Skru på
     enabled_success: Aktivering av tofaktorautentisering vellykket
     generate_recovery_codes: Generér gjenopprettingskoder
-    instructions_html: <strong>Scan denne QR-koden med Google Authenticator eller
-      en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen
-      generere koder for deg som skal brukes under innlogging.
-    lost_recovery_codes: Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto
-      hvis du mister din telefon. Hvis du har mistet gjenopprettingskodene, kan du
-      regenerere dem her. Dine gamle gjenopprettingskoder vil bli ugyldige.
-    manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende
-      kode manuelt:'
+    instructions_html: "<strong>Scan denne QR-koden med Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging."
+    lost_recovery_codes: Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto hvis du mister din telefon. Hvis du har mistet gjenopprettingskodene, kan du regenerere dem her. Dine gamle gjenopprettingskoder vil bli ugyldige.
+    manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende kode manuelt:'
     recovery_codes_regenerated: Generering av gjenopprettingskoder vellykket
-    recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan
-      du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til
-      din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel
-      ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
+    recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
     setup: Sett opp
-    wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med
-      enhetens tid?
+    wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   users:
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
