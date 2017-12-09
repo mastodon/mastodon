@@ -59,6 +59,15 @@ export default class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.navbar_under' defaultMessage='Navbar at the bottom (Mobile only)' />
         </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['favourite_modal']}
+          id='mastodon-settings--favourite_modal'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.favourite_modal' defaultMessage='Show confirmation dialog before favouriting' />
+        </LocalSettingsPageItem>
+
         <section>
           <h2><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box options' /></h2>
           <LocalSettingsPageItem

@@ -9,6 +9,7 @@ const initialState = ImmutableMap({
   layout    : 'auto',
   stretch   : true,
   navbar_under : false,
+  favourite_modal : false,
   side_arm  : 'none',
   collapsed : ImmutableMap({
     enabled     : true,
