@@ -54,6 +54,17 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       return [emojisList['-1']];
     }
 
+    if (value.match(/^[a-z]_/i)) {
+      const regExp = new RegExp(`^${value}`, 'i');
+      const matches = Object.keys(emojisList).map((emoji_id) => {
+        if (regexp.test(emoji_id)) {
+          return emojisList[emoji_id];
+        }
+      }).filter((a) => a);
+
+      return matches.slice(0, maxResults);
+    }
+
     let values = value.toLowerCase().split(/[\s|,|\-|_]+/),
       allResults = [];
 
