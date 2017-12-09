@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setSettingsToLocalStorage } from '../web_push_subscription';
+import { pushNotificationsSetting } from '../settings';
 
 export const SET_BROWSER_SUPPORT = 'PUSH_NOTIFICATIONS_SET_BROWSER_SUPPORT';
 export const SET_SUBSCRIPTION = 'PUSH_NOTIFICATIONS_SET_SUBSCRIPTION';
@@ -50,7 +50,7 @@ export function saveSettings() {
     }).then(() => {
       const me = getState().getIn(['meta', 'me']);
       if (me) {
-        setSettingsToLocalStorage(me, data);
+        pushNotificationsSetting.set(me, data);
       }
     });
   };
