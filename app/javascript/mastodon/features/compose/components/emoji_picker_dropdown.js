@@ -354,7 +354,7 @@ export default class EmojiPickerDropdown extends React.PureComponent {
           <img
             className={classNames('emojione', { 'pulse-loading': active && loading })}
             alt='🙂'
-            src={`${assetHost}/emoji/1f602.svg`}
+            src={`${assetHost}/system/emoji-button.png`}
           />
         </div>
 
