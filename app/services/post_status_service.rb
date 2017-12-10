@@ -40,8 +40,9 @@ class PostStatusService < BaseService
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
     DistributionWorker.perform_async(status.id)
 
-    # match both with and without U+FE0F (the emoji variation selector)
-    unless /👁\ufe0f?\z/.match?(status.content)
+    status.local_only = status.marked_local_only?
+
+    unless status.local_only
       Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
       ActivityPub::DistributionWorker.perform_async(status.id)
       ActivityPub::ReplyDistributionWorker.perform_async(status.id) if status.reply? && status.thread.account.local?
