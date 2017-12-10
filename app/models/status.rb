@@ -260,7 +260,7 @@ class Status < ApplicationRecord
     end
 
     def filter_timeline_default(query)
-      query.excluding_silenced_accounts
+      query.not_local_only.excluding_silenced_accounts
     end
 
     def account_silencing_filter(account)
