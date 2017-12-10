@@ -34,7 +34,7 @@ const messages = {
   'status.collapse': 'Collapse',
   'status.uncollapse': 'Uncollapse',
 
-  "favourite_modal.combo": "You can press {combo} to skip this next time",
+  'favourite_modal.combo': 'You can press {combo} to skip this next time',
 
   'home.column_settings.show_direct': 'Show DMs',
 
