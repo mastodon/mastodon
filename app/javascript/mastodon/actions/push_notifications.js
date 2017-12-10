@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { pushNotificationsSetting } from '../settings';
 
 export const SET_BROWSER_SUPPORT = 'PUSH_NOTIFICATIONS_SET_BROWSER_SUPPORT';
 export const SET_SUBSCRIPTION = 'PUSH_NOTIFICATIONS_SET_SUBSCRIPTION';
@@ -42,11 +43,15 @@ export function saveSettings() {
     const state = getState().get('push_notifications');
     const subscription = state.get('subscription');
     const alerts = state.get('alerts');
+    const data = { alerts };
 
     axios.put(`/api/web/push_subscriptions/${subscription.get('id')}`, {
-      data: {
-        alerts,
-      },
+      data,
+    }).then(() => {
+      const me = getState().getIn(['meta', 'me']);
+      if (me) {
+        pushNotificationsSetting.set(me, data);
+      }
     });
   };
 }

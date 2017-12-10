@@ -44,7 +44,8 @@ module RateLimitHeaders
   end
 
   def api_throttle_data
-    request.env['rack.attack.throttle_data']['api']
+    request.env['rack.attack.throttle_data']['throttle_authenticated_api'] ||
+      request.env['rack.attack.throttle_data']['throttle_unauthenticated_api']
   end
 
   def request_time

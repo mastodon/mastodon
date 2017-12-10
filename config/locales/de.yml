@@ -49,7 +49,7 @@ de:
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Admin
-      moderator: Mod
+      moderator: Moderator
     unfollow: Entfolgen
   admin:
     account_moderation_notes:
@@ -174,6 +174,7 @@ de:
       shortcode: Shortcode
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
+      updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     domain_blocks:
       add_new: Neu hinzufügen
@@ -223,6 +224,13 @@ de:
       reset: Zurücksetzen
       search: Suchen
       title: Bekannte Instanzen
+    invites:
+      filter:
+        all: Alle
+        available: Verfügbar
+        expired: Ausgelaufen
+        title: Filter
+      title: Einladungen
     reports:
       action_taken_by: Maßnahme ergriffen durch
       are_you_sure: Bist du dir sicher?
@@ -261,6 +269,8 @@ de:
         deletion:
           desc_html: Allen erlauben, ihr Konto eigenmächtig zu löschen
           title: Kontolöschung erlauben
+        min_invite_role:
+          disabled: Niemand
         open:
           desc_html: Allen erlauben, ein Konto zu erstellen
           title: Registrierung öffnen
@@ -412,12 +422,31 @@ de:
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
+  invites:
+    delete: Deaktivieren
+    expires_in:
+      '1800': 30 Minuten
+      '21600': 6 Stunden
+      '3600': 1 Stunde
+      '43200': 12 Stunden
+      '86400': 1 Tag
+    expires_in_prompt: Nie
+    generate: Generieren
+    max_uses:
+      one: 1 mal verwendet
+      other: "%{count} mal verwendet"
+    max_uses_prompt: Kein Limit
   landing_strip_html: "<strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}. Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum hast."
   landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
       too_many: Es können nicht mehr als 4 Bilder angehängt werden
+  migrations:
+    acct: benutzername@domain des neuen Accounts
+    proceed: Speichern
+  moderation:
+    title: Moderation
   notification_mailer:
     digest:
       body: 'Hier ist eine kurze Zusammenfasung dessen, was du auf %{instance} seit deinem letzten Besuch am %{since} verpasst hast:'

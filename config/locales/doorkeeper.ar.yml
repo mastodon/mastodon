@@ -5,6 +5,8 @@ ar:
       doorkeeper/application:
         name: التسمية
         redirect_uri: Redirect URI
+        scopes: المجالات
+        website: تطبيق الويب
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@ ar:
         redirect_uri: إستخدم خطا واحدا لكل رابط
         scopes: Separate scopes with spaces. Leave blank to use the default scopes.
       index:
+        application: تطبيق
         callback_url: رابط رد النداء
+        delete: حذف
         name: التسمية
         new: تطبيق جديد
+        scopes: المجالات
+        show: عرض
         title: تطبيقاتك
       new:
         title: تطبيق جديد
@@ -43,7 +49,7 @@ ar:
         actions: Actions
         application_id: معرف التطبيق
         callback_urls: روابط رد النداء
-        scopes: Scopes
+        scopes: المجالات
         secret: السر
         title: 'تطبيق : %{name}'
     authorizations:
@@ -67,7 +73,7 @@ ar:
         application: التطبيق
         created_at: صُرّح له في
         date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Scopes
+        scopes: المجالات
         title: تطبيقاتك المرخص لها
     errors:
       messages:
