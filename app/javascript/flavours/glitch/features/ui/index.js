@@ -57,7 +57,6 @@ const mapStateToProps = state => ({
   layout: state.getIn(['local_settings', 'layout']),
   isWide: state.getIn(['local_settings', 'stretch']),
   navbarUnder: state.getIn(['local_settings', 'navbar_under']),
-  favouriteModal: state.getIn(['local_settings', 'favourite_modal']),
 });
 
 const keyMap = {
@@ -104,7 +103,6 @@ export default class UI extends React.Component {
     isWide: PropTypes.bool,
     systemFontUi: PropTypes.bool,
     navbarUnder: PropTypes.bool,
-    favouriteModal: PropTypes.bool,
     isComposing: PropTypes.bool,
     hasComposingText: PropTypes.bool,
     location: PropTypes.object,
