@@ -63,7 +63,7 @@ namespace :db do
 
   task :define_timestamp_id do
     each_schema_load_environment do
-      Mastodon::Snowflake.define_timestamp_id
+      Mastodon::Snowflake.define_timestamp_id 'timestamp_id'
     end
   end
 

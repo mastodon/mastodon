@@ -4,25 +4,11 @@ module Mastodon::Snowflake
   DEFAULT_REGEX = /timestamp_id\('(?<seq_prefix>\w+)'/
 
   class Callbacks
-    def self.around_create(record)
+    def self.before_create(record)
       now = Time.now.utc
 
-      if record.created_at.nil? || record.created_at >= now || record.created_at == record.updated_at
-        yield
-      else
-        record.id = Mastodon::Snowflake.id_at(record.created_at)
-        tries     = 0
-
-        begin
-          yield
-        rescue ActiveRecord::RecordNotUnique
-          raise if tries > 100
-
-          tries     += 1
-          record.id += rand(100)
-
-          retry
-        end
+      if record.created_at.present? && record.created_at < now && record.created_at != record.updated_at
+        record.id = Mastodon::Snowflake.id_at(record.created_at, record.class.table_name)
       end
     end
   end
@@ -61,11 +47,9 @@ module Mastodon::Snowflake
     # external users cannot derive the sequence base given the
     # timestamp and table name, which would allow them to
     # compute the table ID sequence number.
-    def define_timestamp_id
-      return if already_defined?
-
+    def define_timestamp_id(name)
       connection.execute(<<~SQL)
-        CREATE OR REPLACE FUNCTION timestamp_id(table_name text)
+        CREATE OR REPLACE FUNCTION #{name}(table_name text, timestamp_for_id timestamp with time zone)
         RETURNS bigint AS
         $$
           DECLARE
@@ -75,7 +59,7 @@ module Mastodon::Snowflake
           BEGIN
             time_part := (
               -- Get the time in milliseconds
-              ((date_part('epoch', now()) * 1000))::bigint
+              ((date_part('epoch', timestamp_for_id) * 1000))::bigint
               -- And shift it over two bytes
               << 16);
 
@@ -85,7 +69,7 @@ module Mastodon::Snowflake
               substr(
                 -- Of the MD5 hash of the data we documented
                 md5(table_name ||
-                  '#{SecureRandom.hex(16)}' ||
+                  '#{old_salt || SecureRandom.hex(16)}' ||
                   time_part::text
                 ),
                 1, 4
@@ -97,7 +81,7 @@ module Mastodon::Snowflake
             -- it to the last two bytes
             tail := (
               (sequence_base + nextval(table_name || '_id_seq'))
-              & 65535);
+              & 32767);
 
             -- Return the time part and the sequence part. OR appears
             -- faster here than addition, but they're equivalent:
@@ -138,21 +122,17 @@ module Mastodon::Snowflake
       end
     end
 
-    def id_at(timestamp)
-      id  = timestamp.to_i * 1000 + rand(1000)
-      id  = id << 16
-      id += rand(2**16)
-      id
+    def id_at(timestamp, table_name)
+      id = connection.select_value 'SELECT timestamp_id($1, $2)',
+                                   nil,
+                                   [[nil, table_name], [nil, timestamp]]
+      id | 32_768
     end
 
     private
 
-    def already_defined?
-      connection.execute(<<~SQL).values.first.first
-        SELECT EXISTS(
-          SELECT * FROM pg_proc WHERE proname = 'timestamp_id'
-        );
-      SQL
+    def old_salt
+      connection.select_value "SELECT substring(prosrc, '([0-9a-z]{16})') from pg_proc WHERE proname='timestamp_id'"
     end
 
     def connection
