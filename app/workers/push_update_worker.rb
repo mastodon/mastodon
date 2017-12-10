@@ -6,10 +6,14 @@ class PushUpdateWorker
   def perform(account_id, status_id, timeline_id = nil)
     account     = Account.find(account_id)
     status      = Status.find(status_id)
-    message     = InlineRenderer.render(status, account, :status)
     timeline_id = "timeline:#{account.id}" if timeline_id.nil?
 
-    Redis.current.publish(timeline_id, Oj.dump(event: :update, payload: message, queued_at: (Time.now.to_f * 1000.0).to_i))
+    Redis.current.publish(timeline_id, Oj.dump(ActiveModelSerializers::SerializableResource.new(
+      status,
+      serializer: Streaming::UpdateSerializer,
+      scope: account.user,
+      scope_name: :current_user
+    ).as_json))
   rescue ActiveRecord::RecordNotFound
     true
   end

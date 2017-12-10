@@ -30,6 +30,8 @@ class FetchLinkCardService < BaseService
   rescue HTTP::Error, Addressable::URI::InvalidURIError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
+  ensure
+    distribute
   end
 
   private
@@ -45,6 +47,22 @@ class FetchLinkCardService < BaseService
 
   def attach_card
     @status.preview_cards << @card
+  end
+
+  def distribute
+    ids = nil
+    key = "preview_card_fetch:#{@status.id}:queue"
+
+    Redis.current.pipelined do
+      Redis.current.del "preview_card_fetch:#{@status.id}:present"
+
+      ids = Redis.current.smembers(key)
+      Redis.current.del key
+    end
+
+    Status.where(id: ids.value).each do |status|
+      FanOutPreviewCardOnWriteService.new.call status
+    end
   end
 
   def parse_urls

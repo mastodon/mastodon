@@ -284,10 +284,9 @@ const startWorker = (workerId) => {
       const transmit = () => {
         const now            = new Date().getTime();
         const delta          = now - queued_at;
-        const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
-        log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
-        output(event, encodedPayload);
+        log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} Delay: ${delta}ms`);
+        output(event, payload);
       };
 
       if (notificationOnly && event !== 'notification') {
@@ -357,7 +356,7 @@ const startWorker = (workerId) => {
 
     return (event, payload) => {
       res.write(`event: ${event}\n`);
-      res.write(`data: ${payload}\n\n`);
+      res.write(`data: ${typeof payload === 'object' ? JSON.stringify(payload) : payload}\n\n`);
     };
   };
 

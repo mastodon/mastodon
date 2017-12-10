@@ -619,4 +619,11 @@ RSpec.describe Status, type: :model do
       expect(status.uri).to start_with('https://')
     end
   end
+
+  describe 'after_id_creation' do
+    it 'sets preview card fetch' do
+      status = Status.create(account: alice, text: 'foo')
+      expect(Redis.current.exists("preview_card_fetch:#{status.id}:present")).to eq true
+    end
+  end
 end

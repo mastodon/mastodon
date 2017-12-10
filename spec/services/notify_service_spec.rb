@@ -149,4 +149,15 @@ RSpec.describe NotifyService do
       end
     end
   end
+
+  describe 'Redis' do
+    it 'publishes a notification' do
+      expect(Redis.current).to receive(:publish) do |key, message|
+        expect(key).to eq "timeline:#{recipient.id}"
+        expect(message).to be_a String
+      end
+
+      subject.call
+    end
+  end
 end

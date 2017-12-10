@@ -3,12 +3,31 @@
 module Mastodon::Snowflake
   DEFAULT_REGEX = /timestamp_id\('(?<seq_prefix>\w+)'/
 
+  module Concern
+    extend ActiveSupport::Concern
+
+    included do
+      around_create Mastodon::Snowflake::Callbacks
+      define_model_callbacks :id_creation, only: :after
+    end
+  end
+
   class Callbacks
-    def self.before_create(record)
+    def self.around_create(record)
       now = Time.now.utc
 
-      if record.created_at.present? && record.created_at < now && record.created_at != record.updated_at
-        record.id = Mastodon::Snowflake.id_at(record.class.table_name, record.created_at)
+      if record.created_at.nil? || record.created_at >= now || record.created_at == record.updated_at
+        ApplicationRecord.transaction do
+          record.run_callbacks :id_creation do
+            yield
+          end
+        end
+      else
+        record.run_callbacks :id_creation do
+          record.id = Mastodon::Snowflake.id_at(record.class.table_name, record.created_at)
+        end
+
+        yield
       end
     end
   end
