@@ -43,6 +43,10 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from 'flavours/glitch/actions/favourites';
+import {
+  LIST_ACCOUNTS_FETCH_SUCCESS,
+  LIST_EDITOR_SUGGESTIONS_READY,
+} from 'flavours/glitch/actions/lists';
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import emojify from 'flavours/glitch/util/emoji';
 import { Map as ImmutableMap, fromJS } from 'immutable';
@@ -110,6 +114,8 @@ export default function accounts(state = initialState, action) {
   case BLOCKS_EXPAND_SUCCESS:
   case MUTES_FETCH_SUCCESS:
   case MUTES_EXPAND_SUCCESS:
+  case LIST_ACCOUNTS_FETCH_SUCCESS:
+  case LIST_EDITOR_SUGGESTIONS_READY:
     return action.accounts ? normalizeAccounts(state, action.accounts) : state;
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:

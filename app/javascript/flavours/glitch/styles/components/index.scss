@@ -2542,6 +2542,10 @@ button.icon-button.active i.fa-retweet {
   margin-left: 0;
 }
 
+.column-header__links .text-btn {
+  margin-right: 10px;
+}
+
 .column-header__button {
   background: lighten($ui-base-color, 4%);
   border: 0;
@@ -2662,6 +2666,14 @@ button.icon-button.active i.fa-retweet {
 
   &.animating {
     overflow-y: hidden;
+  }
+
+  hr {
+    height: 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid lighten($ui-base-color, 12%);
+    margin: 10px 0;
   }
 
   // notif cleaning drawer
@@ -4824,6 +4836,98 @@ noscript {
       overflow: hidden;
       border: 0;
     }
+  }
+}
+
+
+.column-inline-form {
+  padding: 7px 15px;
+  padding-right: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: lighten($ui-base-color, 4%);
+
+  label {
+    flex: 1 1 auto;
+
+    input {
+      width: 100%;
+      margin-bottom: 6px;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  .icon-button {
+    flex: 0 0 auto;
+    margin-left: 5px;
+  }
+}
+
+.drawer__backdrop {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($base-overlay-background, 0.5);
+}
+
+.list-editor {
+  background: $ui-base-color;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  width: 380px;
+  overflow: hidden;
+
+  @media screen and (max-width: 420px) {
+    width: 90%;
+  }
+
+  h4 {
+    padding: 15px 0;
+    background: lighten($ui-base-color, 13%);
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .drawer__pager {
+    height: 50vh;
+  }
+
+  .drawer__inner {
+    border-radius: 0 0 8px 8px;
+
+    &.backdrop {
+      width: calc(100% - 60px);
+      box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+      border-radius: 0 0 0 8px;
+    }
+  }
+
+  &__accounts {
+    overflow-y: auto;
+  }
+
+  .account__display-name {
+    &:hover strong {
+      text-decoration: none;
+    }
+  }
+
+  .account__avatar {
+    cursor: default;
+  }
+
+  .search {
+    margin-bottom: 0;
   }
 }
 
