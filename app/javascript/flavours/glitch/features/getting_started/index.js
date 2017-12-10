@@ -29,6 +29,8 @@ const messages = defineMessages({
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   show_me_around: { id: 'getting_started.onboarding', defaultMessage: 'Show me around' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
 });
 
 const mapStateToProps = state => ({
@@ -87,6 +89,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     navItems = navItems.concat([
       <ColumnLink key='5' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
       <ColumnLink key='6' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
+      <ColumnLink key='10' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />,
     ]);
 
     if (myAccount.get('locked')) {

@@ -30,6 +30,9 @@ for (let i = 0; i < flavourFiles.length; i++) {
   if (!data.pack_directory) {
     data.pack_directory = dirname(flavourFile);
   }
+  if (data.locales) {
+    data.locales = join(dirname(flavourFile), data.locales);
+  }
   if (data.pack && typeof data.pack === 'object') {
     flavours[data.name] = data;
   }
@@ -45,7 +48,7 @@ for (let i = 0; i < skinFiles.length; i++) {
   const data = flavours[name].skin;
   if (lstatSync(skinFile).isDirectory()) {
     data[skin] = {};
-    const skinPacks = glob.sync(resolve(skinFile, '*.{css,scss}'));
+    const skinPacks = glob.sync(join(skinFile, '*.{css,scss}'));
     for (let j = 0; j < skinPacks.length; j++) {
       const pack = skinPacks[i];
       data[skin][basename(pack, extname(pack))] = pack;

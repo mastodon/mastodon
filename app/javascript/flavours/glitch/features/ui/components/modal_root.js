@@ -16,6 +16,7 @@ import {
   ReportModal,
   SettingsModal,
   EmbedModal,
+  ListEditor,
 } from 'flavours/glitch/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -31,6 +32,7 @@ const MODAL_COMPONENTS = {
   'SETTINGS': SettingsModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
+  'LIST_EDITOR': ListEditor,
 };
 
 export default class ModalRoot extends React.PureComponent {
