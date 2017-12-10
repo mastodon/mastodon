@@ -4,25 +4,11 @@ module Mastodon::Snowflake
   DEFAULT_REGEX = /timestamp_id\('(?<seq_prefix>\w+)'/
 
   class Callbacks
-    def self.around_create(record)
+    def self.before_create(record)
       now = Time.now.utc
 
-      if record.created_at.nil? || record.created_at >= now || record.created_at == record.updated_at
-        yield
-      else
-        record.id = Mastodon::Snowflake.id_at(record.created_at)
-        tries     = 0
-
-        begin
-          yield
-        rescue ActiveRecord::RecordNotUnique
-          raise if tries > 100
-
-          tries     += 1
-          record.id += rand(100)
-
-          retry
-        end
+      if record.created_at.present? && record.created_at < now && record.created_at != record.updated_at
+        record.id = Mastodon::Snowflake.id_at(record.class.table_name, record.created_at)
       end
     end
   end
@@ -138,10 +124,12 @@ module Mastodon::Snowflake
       end
     end
 
-    def id_at(timestamp)
-      id  = timestamp.to_i * 1000 + rand(1000)
+    def id_at(table_name, timestamp)
+      sequence_base = SecureRandom.random_number(65536)
+
+      id  = timestamp.to_i * 1000
       id  = id << 16
-      id += rand(2**16)
+      id |= (sequence_base + ApplicationRecord.connection.select_value("SELECT nextval('#{table_name}_id_seq')")) & 65535
       id
     end
 
