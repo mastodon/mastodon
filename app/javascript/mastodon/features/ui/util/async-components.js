@@ -106,8 +106,8 @@ export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
 }
 
-export function MediaGallery () {
-  return import(/* webpackChunkName: "status/media_gallery" */'../../../components/media_gallery');
+export function StatusMediaGalleryContainer () {
+  return import(/* webpackChunkName: "status/media_gallery" */'../../../containers/status_media_gallery_container');
 }
 
 export function Video () {
