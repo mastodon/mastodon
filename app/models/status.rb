@@ -23,6 +23,7 @@
 #  account_id             :integer          not null
 #  application_id         :integer
 #  in_reply_to_account_id :integer
+#  local_only             :boolean
 #
 
 class Status < ApplicationRecord
