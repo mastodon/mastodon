@@ -45,7 +45,7 @@ const messages = {
   'notification_purge.btn_all': 'すべて\n選択',
   'notification_purge.btn_none': '選択\n解除',
   'notification_purge.btn_invert': '選択を\n反転',
-  'notification_purge.btn_apply': '選択したものを\n削除'
+  'notification_purge.btn_apply': '選択したものを\n削除',
 };
 
 export default Object.assign({}, inherited, messages);
