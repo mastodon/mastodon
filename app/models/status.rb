@@ -141,6 +141,8 @@ class Status < ApplicationRecord
 
   around_create Mastodon::Snowflake::Callbacks
 
+  before_create :set_locality
+
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
   before_validation :set_visibility
@@ -300,6 +302,12 @@ class Status < ApplicationRecord
 
   def set_sensitivity
     self.sensitive = sensitive || spoiler_text.present?
+  end
+
+  def set_locality
+    if account.domain.nil?
+      self.local_only = marked_local_only?
+    end
   end
 
   def set_conversation
