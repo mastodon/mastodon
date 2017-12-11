@@ -40,7 +40,7 @@ class PostStatusService < BaseService
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
     DistributionWorker.perform_async(status.id)
 
-    unless status.local_only
+    unless status.local_only?
       Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
       ActivityPub::DistributionWorker.perform_async(status.id)
       ActivityPub::ReplyDistributionWorker.perform_async(status.id) if status.reply? && status.thread.account.local?
