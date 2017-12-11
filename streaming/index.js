@@ -239,7 +239,7 @@ const startWorker = (workerId) => {
 
   const wsVerifyClient = (info, cb) => {
     const location = url.parse(info.req.url, true);
-    const auth_required = !PUBLIC_STREAMS.some(stream => stream === location.query.stream);
+    const authRequired = !PUBLIC_STREAMS.some(stream => stream === location.query.stream);
 
     accountFromRequest(info.req, err => {
       if (!err) {
@@ -248,7 +248,7 @@ const startWorker = (workerId) => {
         log.error(info.req.requestId, err.toString());
         cb(false, 401, 'Unauthorized');
       }
-    }, auth_required);
+    }, authRequired);
   };
 
   const PUBLIC_ENDPOINTS = [
@@ -264,8 +264,8 @@ const startWorker = (workerId) => {
       return;
     }
 
-    const auth_required = PUBLIC_ENDPOINTS.some(endpoint => endpoint === req.path);
-    accountFromRequest(req, next, auth_required);
+    const authRequired = !PUBLIC_ENDPOINTS.some(endpoint => endpoint === req.path);
+    accountFromRequest(req, next, authRequired);
   };
 
   const errorMiddleware = (err, req, res, {}) => {
@@ -337,7 +337,7 @@ const startWorker = (workerId) => {
             return;
           }
 
-          if (req.accountId != null) {
+          if (!req.accountId) {
             const queries = [
               client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
             ];
