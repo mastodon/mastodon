@@ -411,8 +411,10 @@ const startWorker = (workerId) => {
 
   // Setup stream end for WebSockets
   const streamWsEnd = (req, ws, closeHandler = false) => (id, listener) => {
+    const accountId = req.accountId || '(anonymous user)';
+
     ws.on('close', () => {
-      log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
+      log.verbose(req.requestId, `Ending stream for ${accountId}`);
       unsubscribe(id, listener);
       if (closeHandler) {
         closeHandler();
@@ -420,7 +422,7 @@ const startWorker = (workerId) => {
     });
 
     ws.on('error', () => {
-      log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
+      log.verbose(req.requestId, `Ending stream for ${accountId}`);
       unsubscribe(id, listener);
       if (closeHandler) {
         closeHandler();
