@@ -37,7 +37,3 @@ delegate(document, '#account_header', 'change', ({ target }) => {
 
   header.style.backgroundImage = `url(${url})`;
 });
-
-delegate(document, '#user_setting_flavour, #user_setting_skin', 'change', ({ target }) => {
-  target.form.submit();
-});

@@ -102,6 +102,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :flavours, only: [:index, :show, :update], param: :flavour
+
     resource :delete, only: [:show, :destroy]
     resource :migration, only: [:show, :update]
 
@@ -240,7 +242,7 @@ Rails.application.routes.draw do
       resources :media,      only: [:create, :update]
       resources :blocks,     only: [:index]
       resources :mutes,      only: [:index] do
-        collection do 
+        collection do
           get 'details'
         end
       end

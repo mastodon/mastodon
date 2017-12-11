@@ -26,10 +26,6 @@
   %h4= t 'preferences.web'
 
   .fields-group
-    - if Themes.instance.flavours.size > 1
-      = f.input :setting_flavour, collection: Themes.instance.flavours, label_method: lambda { |flavour| I18n.t("flavours.#{flavour}", default: flavour) }, wrapper: :with_label, include_blank: false
-      = f.input :setting_skin, collection: Themes.instance.skins_for(current_flavour), label_method: lambda { |skin| I18n.t("skins.#{current_flavour}.#{skin}", default: skin) }, wrapper: :with_label, include_blank: false
-
     = f.input :setting_unfollow_modal, as: :boolean, wrapper: :with_label
     = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label
     = f.input :setting_favourite_modal, as: :boolean, wrapper: :with_label
