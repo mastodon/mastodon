@@ -48,8 +48,8 @@ export default class ActionBar extends React.PureComponent {
     this.props.onReblog(this.props.status, e);
   }
 
-  handleFavouriteClick = () => {
-    this.props.onFavourite(this.props.status);
+  handleFavouriteClick = (e) => {
+    this.props.onFavourite(this.props.status, e);
   }
 
   handleDeleteClick = () => {

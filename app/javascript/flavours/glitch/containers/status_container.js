@@ -20,7 +20,7 @@ import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { boostModal, deleteModal } from 'flavours/glitch/util/initial_state';
+import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -78,11 +78,19 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onFavourite (status) {
+  onModalFavourite (status) {
+    dispatch(favourite(status));
+  },
+
+  onFavourite (status, e) {
     if (status.get('favourited')) {
       dispatch(unfavourite(status));
     } else {
-      dispatch(favourite(status));
+      if (e.shiftKey || !favouriteModal) {
+        this.onModalFavourite(status);
+      } else {
+        dispatch(openModal('FAVOURITE', { status, onFavourite: this.onModalFavourite }));
+      }
     }
   },
 

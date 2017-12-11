@@ -30,7 +30,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
-import { boostModal, deleteModal } from 'flavours/glitch/util/initial_state';
+import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from 'flavours/glitch/util/fullscreen';
 
 const messages = defineMessages({
@@ -95,11 +95,19 @@ export default class Status extends ImmutablePureComponent {
     }
   };
 
-  handleFavouriteClick = (status) => {
+  handleModalFavourite = (status) => {
+    this.props.dispatch(favourite(status));
+  }
+
+  handleFavouriteClick = (status, e) => {
     if (status.get('favourited')) {
       this.props.dispatch(unfavourite(status));
     } else {
-      this.props.dispatch(favourite(status));
+      if (e.shiftKey || !favouriteModal) {
+        this.handleModalFavourite(status);
+      } else {
+        this.props.dispatch(openModal('FAVOURITE', { status, onFavourite: this.handleModalFavourite }));
+      }
     }
   }
 
