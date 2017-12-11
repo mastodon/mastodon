@@ -208,17 +208,21 @@ const startWorker = (workerId) => {
     });
   };
 
-  const accountFromRequest = (req, next) => {
+  const accountFromRequest = (req, next, required = true) => {
     const authorization = req.headers.authorization;
     const location = url.parse(req.url, true);
     const accessToken = location.query.access_token;
 
     if (!authorization && !accessToken) {
-      const err = new Error('Missing access token');
-      err.statusCode = 401;
+      if (required) {
+        const err = new Error('Missing access token');
+        err.statusCode = 401;
 
-      next(err);
-      return;
+        next(err);
+        return;
+      } else {
+        next();
+      }
     }
 
     const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
@@ -226,19 +230,17 @@ const startWorker = (workerId) => {
     accountFromToken(token, req, next);
   };
 
+  const PUBLIC_STREAMS = [
+    'public',
+    'public:local',
+    'hashtag',
+    'hashtag:local',
+  ];
+
   const wsVerifyClient = (info, cb) => {
-    const PUBLIC_STREAMS = [
-      'public',
-      'public:local',
-      'hashtag',
-      'hashtag:local',
-    ];
 
     const location = url.parse(info.req.url, true);
-    if (PUBLIC_STREAMS.some(stream => stream === location.query.stream)) {
-      cb(true, undefined, undefined);
-      return;
-    }
+    const auth_required = !PUBLIC_STREAMS.some(stream => stream === location.query.stream);
 
     accountFromRequest(info.req, err => {
       if (!err) {
@@ -247,28 +249,24 @@ const startWorker = (workerId) => {
         log.error(info.req.requestId, err.toString());
         cb(false, 401, 'Unauthorized');
       }
-    });
+    }, auth_required);
   };
 
-  const authenticationMiddleware = (req, res, next) => {
-    const PUBLIC_ENDPOINTS = [
-      '/api/v1/streaming/public',
-      '/api/v1/streaming/public/local',
-      '/api/v1/streaming/hashtag',
-      '/api/v1/streaming/hashtag/local',
-    ];
+  const PUBLIC_ENDPOINTS = [
+    '/api/v1/streaming/public',
+    '/api/v1/streaming/public/local',
+    '/api/v1/streaming/hashtag',
+    '/api/v1/streaming/hashtag/local',
+  ];
 
+  const authenticationMiddleware = (req, res, next) => {
     if (req.method === 'OPTIONS') {
       next();
       return;
     }
 
-    if (PUBLIC_ENDPOINTS.some(endpoint => endpoint === req.path)) {
-      next();
-      return;
-    }
-
-    accountFromRequest(req, next);
+    const auth_required = PUBLIC_ENDPOINTS.some(endpoint => endpoint === req.path);
+    accountFromRequest(req, next, auth_required);
   };
 
   const errorMiddleware = (err, req, res, {}) => {
@@ -300,8 +298,10 @@ const startWorker = (workerId) => {
   };
 
   const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false, notificationOnly = false) => {
+    const accountId = req.accountId || '(anonymous user)';
+
     const streamType = notificationOnly ? ' (notification)' : '';
-    log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}${streamType}`);
+    log.verbose(req.requestId, `Starting stream from ${id} for ${accountId}${streamType}`);
 
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message);
@@ -311,7 +311,7 @@ const startWorker = (workerId) => {
         const delta          = now - queued_at;
         const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
-        log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
+        log.silly(req.requestId, `Transmitting for ${accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
         output(event, encodedPayload);
       };
 
@@ -338,26 +338,30 @@ const startWorker = (workerId) => {
             return;
           }
 
-          const queries = [
-            client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
-          ];
+          if (req.accountId != null) {
+            const queries = [
+              client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
+            ];
 
-          if (accountDomain) {
-            queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
-          }
-
-          Promise.all(queries).then(values => {
-            done();
-
-            if (values[0].rows.length > 0 || (values.length > 1 && values[1].rows.length > 0)) {
-              return;
+            if (accountDomain) {
+              queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
             }
 
+            Promise.all(queries).then(values => {
+              done();
+
+              if (values[0].rows.length > 0 || (values.length > 1 && values[1].rows.length > 0)) {
+                return;
+              }
+
+              transmit();
+            }).catch(err => {
+              done();
+              log.error(err);
+            });
+          } else {
             transmit();
-          }).catch(err => {
-            done();
-            log.error(err);
-          });
+          }
         });
       } else {
         transmit();
