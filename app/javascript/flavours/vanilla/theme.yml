@@ -20,13 +20,17 @@ pack:
   settings:
   share: share.js
 
+#  (OPTIONAL) The directory which contains localization files for
+#  the flavour, relative to this directory.
+locales: ../../mastodon/locales
+
 #  (OPTIONAL) The directory which contains the pack files.
-#  Defaults to the theme directory (`app/javascript/themes/[theme]`),
-#  but in the case of the vanilla Mastodon theme the pack files are
+#  Defaults to this directory (`app/javascript/flavour/[flavour]`),
+#  but in the case of the vanilla Mastodon flavour the pack files are
 #  somewhere else.
 pack_directory: app/javascript/packs
 
-#  (OPTIONAL) By default the theme will fallback to the default theme
+#  (OPTIONAL) By default the theme will fallback to the default flavour
 #  if a particular pack is not provided. You can specify different
 #  fallbacks here, or disable fallback behaviours altogether by
 #  specifying a `null` value.

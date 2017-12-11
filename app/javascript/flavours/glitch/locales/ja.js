@@ -1,4 +1,6 @@
-{
+import inherited from 'mastodon/locales/ja.json';
+
+const messages = {
   "getting_started.open_source_notice": "Glitchsocは{Mastodon}によるフリーなオープンソースソフトウェアです。誰でもGitHub（{github}）から開発に參加したり、問題を報告したりできます。",
   "layout.auto": "自動",
   "layout.current_is": "あなたの現在のレイアウト:",
@@ -44,4 +46,6 @@
   "notification_purge.btn_none": "選択\n解除",
   "notification_purge.btn_invert": "選択を\n反転",
   "notification_purge.btn_apply": "選択したものを\n削除"
-}
+};
+
+export default Object.assign({}, inherited, messages);
