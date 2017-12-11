@@ -238,7 +238,6 @@ const startWorker = (workerId) => {
   ];
 
   const wsVerifyClient = (info, cb) => {
-
     const location = url.parse(info.req.url, true);
     const auth_required = !PUBLIC_STREAMS.some(stream => stream === location.query.stream);
 
