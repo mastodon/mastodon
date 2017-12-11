@@ -1,4 +1,3 @@
----
 pt:
   simple_form:
     hints:
@@ -6,12 +5,16 @@ pt:
         avatar: PNG, GIF ou JPG. No máximo 2MB. Vai ser reduzido para 120x120px
         display_name: No máximo 30 caracteres
         header: PNG, GIF or JPG. No máximo 2MB. Vai ser reduzido para 700x335px
-        locked: Requer que manualmente aproves seguidores e torna o default dos teus posts para privados (apenas seguidores)
+        locked: Requer que manualmente aproves seguidores e torna o default dos teus
+          posts para privados (apenas seguidores)
         note: No máximo 160 caracteres
+        digest: Enviado após um longo período de inatividade com um resumo das menções
+          que recebeste na tua ausência
       imports:
         data: Ficheiro CSV exportado de outra instância do Mastodon
       sessions:
-        otp: Insere o código o código de autenticação de dois fatores do teu telefone ou utiliza um código de recuperação de acesso.
+        otp: Insere o código o código de autenticação de dois fatores do teu telefone
+          ou utiliza um código de recuperação de acesso.
     labels:
       defaults:
         avatar: Imagem de Perfil
@@ -31,7 +34,7 @@ pt:
         setting_boost_modal: Pedir confirmação antes de partilhar um post
         setting_default_privacy: Privacidade padrão de posts
         setting_reduce_motion: Reduzir movimento em animações
-        severity: Severity
+        severity: Gravidade
         type: Import type
         username: Utilizador
       interactions:
@@ -45,6 +48,6 @@ pt:
         reblog: Enviar email quando alguém partilhar um post teu
     'no': Não
     required:
-      mark: "*"
+      mark: '*'
       text: necessário
     'yes': Sim
