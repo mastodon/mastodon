@@ -26,6 +26,12 @@ pack:
 #  language tags and whose default exports are a messages object.
 locales: locales
 
+#  (OPTIONAL) A file to use as the preview screenshot for the flavour,
+#  or an array thereof. These filenames must be unique across all
+#  images (regardless of path), so it's a good idea to namespace them
+#  to your theme. It's up to you to let webpack know to compile them.
+screenshot: glitch-preview.jpg
+
 #  (OPTIONAL) The directory which contains the pack files.
 #  Defaults to the theme directory (`app/javascript/themes/[theme]`),
 #  which should be sufficient for like 99% of use-cases lol.

@@ -4,6 +4,9 @@
 = simple_form_for current_user, url: settings_flavour_path(@selected), html: { method: :put } do |f|
   = render 'shared/error_messages', object: current_user
 
+  - Themes.instance.flavour(@selected)['screenshot'].each do |screen|
+    %img.flavour-screen{ width: 700, src: asset_pack_path(screen) }
+
   .flavour-description
     = t "flavours.#{@selected}.description", default: ''
 
