@@ -227,6 +227,19 @@ const startWorker = (workerId) => {
   };
 
   const wsVerifyClient = (info, cb) => {
+    const PUBLIC_STREAMS = [
+      'public',
+      'public:local',
+      'hashtag',
+      'hashtag:local',
+    ];
+
+    const location = url.parse(info.req.url, true);
+    if (PUBLIC_STREAMS.some(stream => stream === location.query.stream)) {
+      cb(true, undefined, undefined);
+      return;
+    }
+
     accountFromRequest(info.req, err => {
       if (!err) {
         cb(true, undefined, undefined);
@@ -238,7 +251,19 @@ const startWorker = (workerId) => {
   };
 
   const authenticationMiddleware = (req, res, next) => {
+    const PUBLIC_ENDPOINTS = [
+      '/api/v1/streaming/public',
+      '/api/v1/streaming/public/local',
+      '/api/v1/streaming/hashtag',
+      '/api/v1/streaming/hashtag/local',
+    ];
+
     if (req.method === 'OPTIONS') {
+      next();
+      return;
+    }
+
+    if (PUBLIC_ENDPOINTS.some(endpoint => endpoint === req.path)) {
       next();
       return;
     }
