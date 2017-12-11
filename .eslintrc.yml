@@ -44,7 +44,7 @@ rules:
   - last
   consistent-return: error
   dot-notation: error
-  eqeqeq: error
+  eqeqeq: [ error, always, { null: ignore } ]
   indent:
   - warn
   - 2
