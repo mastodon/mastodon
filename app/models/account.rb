@@ -285,6 +285,7 @@ class Account < ApplicationRecord
         FROM accounts
         WHERE #{query} @@ #{textsearch}
           AND accounts.suspended = false
+          AND accounts.moved_to_account_id IS NULL
         ORDER BY rank DESC
         LIMIT ?
       SQL
@@ -310,6 +311,7 @@ class Account < ApplicationRecord
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND #{query} @@ #{textsearch}
             AND accounts.suspended = false
+            AND accounts.moved_to_account_id IS NULL
           GROUP BY accounts.id
           ORDER BY rank DESC
           LIMIT ?
@@ -325,6 +327,7 @@ class Account < ApplicationRecord
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
           WHERE #{query} @@ #{textsearch}
             AND accounts.suspended = false
+            AND accounts.moved_to_account_id IS NULL
           GROUP BY accounts.id
           ORDER BY rank DESC
           LIMIT ?
