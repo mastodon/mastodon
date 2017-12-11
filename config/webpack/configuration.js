@@ -50,7 +50,7 @@ for (let i = 0; i < skinFiles.length; i++) {
     data[skin] = {};
     const skinPacks = glob.sync(join(skinFile, '*.{css,scss}'));
     for (let j = 0; j < skinPacks.length; j++) {
-      const pack = skinPacks[i];
+      const pack = skinPacks[j];
       data[skin][basename(pack, extname(pack))] = pack;
     }
   } else if ((skin = skin.match(/^(.*)\.s?css$/i))) {
