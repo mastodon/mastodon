@@ -442,7 +442,7 @@ const startWorker = (workerId) => {
   };
 
   app.use(setRequestId);
-  app.use(setRemoteAddress)
+  app.use(setRemoteAddress);
   app.use(allowCrossDomain);
   app.use(authenticationMiddleware);
   app.use(errorMiddleware);
