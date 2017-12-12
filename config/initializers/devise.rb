@@ -33,6 +33,11 @@ end
 module Devise
   mattr_accessor :pam_authentication
   @@pam_authentication = false
+  class Strategies::PamAuthenticatable
+    def valid?
+      super && ::Devise.pam_authentication
+    end
+  end
 end
 
 Devise.setup do |config|

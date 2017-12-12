@@ -82,7 +82,6 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme,
            to: :settings, prefix: :setting, allow_nil: false
 
-
   attr_accessor :invite_code
 
   def pam_on_filled_pw(_)
