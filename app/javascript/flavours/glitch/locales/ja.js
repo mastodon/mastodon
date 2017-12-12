@@ -37,6 +37,10 @@ const messages = {
   'status.collapse': '折りたたむ',
   'status.uncollapse': '折りたたみを解除',
 
+  'favourite_modal.combo': '次からは {combo} を押せば、これをスキップできます。',
+
+  'home.column_settings.show_direct': 'DMを表示',
+
   'notification.markForDeletion': '選択',
   'notifications.clear': '通知を全てクリアする',
   'notifications.marked_clear_confirmation': '削除した全ての通知を完全に削除してもよろしいですか？',
