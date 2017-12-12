@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
@@ -9,7 +8,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
-import { createSelector } from 'reselect';
+import { openModal } from 'flavours/glitch/actions/modal';
 
 const messages = defineMessages({
   heading: { id: 'column.heading', defaultMessage: 'Misc' },
@@ -29,6 +28,7 @@ export default class gettingStartedMisc extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   openOnboardingModal = (e) => {
