@@ -97,6 +97,8 @@ const startWorker = (workerId) => {
   };
 
   const app    = express();
+  app.set('trusted proxy', process.env.TRUSTED_PROXY_IP || 'loopback,uniquelocal');
+
   const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)));
   const server = http.createServer(app);
   const redisNamespace = process.env.REDIS_NAMESPACE || null;
@@ -177,6 +179,12 @@ const startWorker = (workerId) => {
     next();
   };
 
+  const setRemoteAddress = (req, res, next) => {
+    req.remoteAddress = req.connection.remoteAddress;
+
+    next();
+  };
+
   const accountFromToken = (token, req, next) => {
     pgPool.connect((err, client, done) => {
       if (err) {
@@ -222,6 +230,7 @@ const startWorker = (workerId) => {
         return;
       } else {
         next();
+        return;
       }
     }
 
@@ -297,7 +306,7 @@ const startWorker = (workerId) => {
   };
 
   const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false, notificationOnly = false) => {
-    const accountId = req.accountId || '(anonymous user)';
+    const accountId = req.accountId || req.remoteAddress;
 
     const streamType = notificationOnly ? ' (notification)' : '';
     log.verbose(req.requestId, `Starting stream from ${id} for ${accountId}${streamType}`);
@@ -373,13 +382,15 @@ const startWorker = (workerId) => {
 
   // Setup stream output to HTTP
   const streamToHttp = (req, res) => {
+    const accountId = req.accountId || req.remoteAddress;
+
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Transfer-Encoding', 'chunked');
 
     const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
 
     req.on('close', () => {
-      log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
+      log.verbose(req.requestId, `Ending stream for ${accountId}`);
       clearInterval(heartbeat);
     });
 
@@ -411,7 +422,7 @@ const startWorker = (workerId) => {
 
   // Setup stream end for WebSockets
   const streamWsEnd = (req, ws, closeHandler = false) => (id, listener) => {
-    const accountId = req.accountId || '(anonymous user)';
+    const accountId = req.accountId || req.remoteAddress;
 
     ws.on('close', () => {
       log.verbose(req.requestId, `Ending stream for ${accountId}`);
@@ -431,6 +442,7 @@ const startWorker = (workerId) => {
   };
 
   app.use(setRequestId);
+  app.use(setRemoteAddress)
   app.use(allowCrossDomain);
   app.use(authenticationMiddleware);
   app.use(errorMiddleware);
@@ -481,6 +493,7 @@ const startWorker = (workerId) => {
     const req      = ws.upgradeReq;
     const location = url.parse(req.url, true);
     req.requestId  = uuid.v4();
+    req.remoteAddress = ws._socket.remoteAddress;
 
     ws.isAlive = true;
 
