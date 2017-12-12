@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129172043) do
+ActiveRecord::Schema.define(version: 20171212195226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,14 +202,12 @@ ActiveRecord::Schema.define(version: 20171129172043) do
     t.bigint "account_id", null: false
     t.bigint "follow_id", null: false
     t.index ["account_id", "list_id"], name: "index_list_accounts_on_account_id_and_list_id", unique: true
-    t.index ["account_id"], name: "index_list_accounts_on_account_id"
     t.index ["follow_id"], name: "index_list_accounts_on_follow_id"
     t.index ["list_id", "account_id"], name: "index_list_accounts_on_list_id_and_account_id"
-    t.index ["list_id"], name: "index_list_accounts_on_list_id"
   end
 
   create_table "lists", force: :cascade do |t|
-    t.bigint "account_id"
+    t.bigint "account_id", null: false
     t.string "title", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -325,6 +323,7 @@ ActiveRecord::Schema.define(version: 20171129172043) do
     t.integer "height", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "embed_url", default: "", null: false
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 

@@ -277,6 +277,9 @@ pl:
         deletion:
           desc_html: Pozwól każdemu na usunięcie konta
           title: Możliwość usunięcia
+        min_invite_role:
+          disabled: Nikt
+          title: Kto może zapraszać użytkowników
         open:
           desc_html: Pozwól każdemu na założenie konta
           title: Otwarta rejestracja
@@ -466,6 +469,7 @@ pl:
     acct: nazwa@domena nowego konta
     currently_redirecting: 'Obecnie Twoje konto przekierowuje do:'
     proceed: Zapisz
+    updated_msg: Pomyślnie zaktualizowano ustawienia i migracji Twojego konta!
   moderation:
     title: Moderacja
   notification_mailer:
@@ -681,6 +685,8 @@ pl:
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

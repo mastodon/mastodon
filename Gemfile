@@ -14,7 +14,7 @@ gem 'pg', '~> 0.20'
 gem 'pghero', '~> 1.7'
 gem 'dotenv-rails', '~> 2.2'
 
-gem 'fog-aws', '~> 1.4', require: false
+gem 'aws-sdk', '~> 2.10', require: false
 gem 'fog-core', '~> 1.45'
 gem 'fog-local', '~> 0.4', require: false
 gem 'fog-openstack', '~> 0.1', require: false
@@ -49,7 +49,6 @@ gem 'oj', '~> 3.3'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.8'
 gem 'pundit', '~> 1.1'
-gem 'rabl', '~> 0.13'
 gem 'rack-attack', '~> 5.0'
 gem 'rack-cors', '~> 0.4', require: 'rack/cors'
 gem 'rack-timeout', '~> 0.4'

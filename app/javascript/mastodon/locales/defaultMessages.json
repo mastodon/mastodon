@@ -858,6 +858,10 @@
         "id": "navigation_bar.pins"
       },
       {
+        "defaultMessage": "Lists",
+        "id": "navigation_bar.lists"
+      },
+      {
         "defaultMessage": "Keyboard shortcuts",
         "id": "navigation_bar.keyboard_shortcuts"
       },
@@ -1011,11 +1015,75 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Remove from list",
+        "id": "lists.account.remove"
+      },
+      {
+        "defaultMessage": "Add to list",
+        "id": "lists.account.add"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_editor/components/account.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Search among people you follow",
+        "id": "lists.search"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_editor/components/search.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Are you sure you want to permanently delete this list?",
+        "id": "confirmations.delete_list.message"
+      },
+      {
+        "defaultMessage": "Delete",
+        "id": "confirmations.delete_list.confirm"
+      },
+      {
+        "defaultMessage": "Edit list",
+        "id": "lists.edit"
+      },
+      {
+        "defaultMessage": "Delete list",
+        "id": "lists.delete"
+      },
+      {
         "defaultMessage": "There is nothing in this list yet.",
         "id": "empty_column.list"
       }
     ],
     "path": "app/javascript/mastodon/features/list_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "New list title",
+        "id": "lists.new.title_placeholder"
+      },
+      {
+        "defaultMessage": "Add list",
+        "id": "lists.new.create"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/lists/components/new_list_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Lists",
+        "id": "column.lists"
+      },
+      {
+        "defaultMessage": "Your lists",
+        "id": "lists.subheading"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/lists/index.json"
   },
   {
     "descriptors": [

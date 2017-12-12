@@ -9,7 +9,7 @@ class Formatter
 
   include ActionView::Helpers::TextHelper
 
-  def format(status, options = {})
+  def format(status, **options)
     if status.reblog?
       prepend_reblog = status.reblog.account.acct
       status         = status.proper

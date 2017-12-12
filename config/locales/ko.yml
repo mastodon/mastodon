@@ -39,6 +39,7 @@ ko:
     followers: 팔로워
     following: 팔로잉
     media: 미디어
+    moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
     nothing_here: 아무 것도 없습니다.
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
@@ -48,6 +49,7 @@ ko:
     reserved_username: 이 아이디는 예약되어 있습니다.
     roles:
       admin: Admin
+      moderator: 모드
     unfollow: 팔로우 해제
   admin:
     account_moderation_notes:
@@ -59,13 +61,18 @@ ko:
       destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다.
     accounts:
       are_you_sure: 정말로 실행하시겠습니까?
+      by_domain: 도메인
       confirm: 확인
       confirmed: 확인됨
+      disable: 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
+      disabled: 비활성화된
       display_name: 이름
       domain: 도메인
       edit: 편집
       email: E-mail
+      enable: 활성화
+      enabled: 활성화된
       feed_url: 피드 URL
       followers: 팔로워 수
       followers_url: 팔로워 URL
@@ -77,6 +84,7 @@ ko:
         local: 로컬
         remote: 리모트
         title: 위치
+      login_status: 로그인 상태
       media_attachments: 첨부된 미디어
       moderation:
         all: 전체
@@ -101,6 +109,10 @@ ko:
       reset: 초기화
       reset_password: 비밀번호 초기화
       resubscribe: 다시 구독
+      role: 권한
+      roles:
+        admin: 관리자
+        user: 사용자
       salmon_url: Salmon URL
       search: 검색
       shared_inbox_url: 공유된 inbox URL
