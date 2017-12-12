@@ -74,7 +74,7 @@ class Auth::SessionsController < Devise::SessionsController
   def authenticate_with_two_factor_via_otp(user)
     if valid_otp_attempt?(user)
       session.delete(:otp_user_id)
-      remember_me(user)
+      remember_me(user) if user.password.present?
       sign_in(user)
     else
       flash.now[:alert] = I18n.t('users.invalid_otp_token')
