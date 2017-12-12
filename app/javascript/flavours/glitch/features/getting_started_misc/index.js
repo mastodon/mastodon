@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
 import { defineMessages, injectIntl } from 'react-intl';
