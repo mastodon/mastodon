@@ -136,7 +136,7 @@ class Status < ApplicationRecord
 
   after_create_commit :store_uri, if: :local?
 
-  around_create Mastodon::Snowflake::Callbacks
+  before_create Mastodon::Snowflake::Callbacks
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
