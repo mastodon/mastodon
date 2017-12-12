@@ -87,6 +87,7 @@ class FetchLinkCardService < BaseService
     when 'link'
       @card.image = URI.parse(response.thumbnail_url) if response.respond_to?(:thumbnail_url)
     when 'photo'
+      return false unless response.respond_to?(:url)
       @card.embed_url = response.url
       @card.width     = response.width.presence  || 0
       @card.height    = response.height.presence || 0
