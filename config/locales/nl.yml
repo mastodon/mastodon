@@ -85,9 +85,9 @@ nl:
         local: Lokaal
         remote: Extern
         title: Locatie
-      login_status: Aanmeld status
-      media_attachments: Media-bijlagen
-      memorialize: Verander in memoriam
+      login_status: Aanmeldstatus
+      media_attachments: Mediabijlagen
+      memorialize: Verander naar in memoriam
       moderation:
         all: Alles
         silenced: Genegeerd
@@ -115,8 +115,8 @@ nl:
       role: Permissies
       roles:
         admin: Beheerder
-        moderator: Moderateur
-        user: Persoon
+        moderator: Moderator
+        user: Gebruiker
       salmon_url: Salmon-URL
       search: Zoeken
       shared_inbox_url: Gedeelde inbox-URL
@@ -135,22 +135,30 @@ nl:
       web: Webapp
     action_logs:
       actions:
-        confirm_user: "%{name} bevestigd e-mailadres van persoon %{target}"
-        create_custom_emoji: "%{name} heeft de nieuwe emoji %{target} geupload"
-        create_domain_block: "%{name} heeft domein %{target} geblokkeerd"
-        create_email_domain_block: "%{name} heeft e-maildomein %{target} geblacklist"
-        demote_user: "%{name} heeft persoon %{target} gedegradeerd"
-        destroy_domain_block: "%{name} heeft domein %{target} vrijgegeven"
-        destroy_email_domain_block: "%{name} heeft e-maildomein %{target} gewhitelist"
-        destroy_status: "%{name} heeft status van %{target} verwijderd"
-        disable_2fa_user: "%{name} heeft tweefactor voorwaarden van persoon %{target} uitgeschakeld"
-        disable_custom_emoji: "%{name} heeft emoji %{target} uitgeschakeld"
-        disable_user: "%{name} heeft de login van persoon %{target} uitgeschakeld"
-        enable_custom_emoji: "%{name} heeft emoji %{target} ingeschakeld"
-        enable_user: "%{name} heeft de login voor persoon %{target} ingeschakeld"
-        memorialize_account: "%{name} heeft %{target}'s account gewijzigd in een memoriam pagina"
-        promote_user: "%{name} heeft persoon %{target} gepromoveerd"
-        reset_password_user: "%{name} heeft het wachtwoord van gebruiker %{target} opnieuw ingesteld"
+        confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
+        create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
+        create_domain_block: Domein %{target} is door %{name} geblokkeerd
+        create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
+        demote_user: Gebruiker %{target} is door %{name} gedegradeerd
+        destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
+        destroy_email_domain_block: E-maildomein %{target} is door %{name} op de whitelist geplaatst
+        destroy_status: Toot van %{target} is door %{name} verwijderd
+        disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
+        disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
+        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
+        enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
+        enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
+        memorialize_account: Account %{target} is door %{name} in een in-memoriampagina veranderd
+        promote_user: Gebruiker %{target} is door %{name} gepromoveerd
+        reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
+        resolve_report: Gerapporteerde toots van %{target} zijn door %{name} verworpen
+        silence_account: Account %{target} is door %{name} genegeerd
+        suspend_account: Account %{target} is door %{name} opgeschort
+        unsilence_account: Negeren van account %{target} is door %{name} opgeheven
+        unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
+        update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
+        update_status: De toots van %{target} zijn door %{name} bijgewerkt
+      title: Auditlog
     custom_emojis:
       copied_msg: Lokale kopie van emoji maken geslaagd
       copy: Kopiëren
@@ -164,11 +172,16 @@ nl:
       enable: Inschakelen
       enabled_msg: Inschakelen van deze emoji geslaagd
       image_hint: PNG van max. 50KB
+      listed: Weergegeven
       new:
         title: Lokale emoji toevoegen
+      overwrite: Overschrijven
       shortcode: Shortcode
       shortcode_hint: Tenminste 2 tekens (alleen alfanumeriek en underscores)
       title: Lokale emoji’s
+      unlisted: Niet weergegeven
+      update_failed_msg: Deze emoji kon niet worden bijgewerkt
+      updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
     domain_blocks:
       add_new: Nieuwe toevoegen
@@ -185,7 +198,7 @@ nl:
           suspend: Opschorten
         title: Nieuwe domeinblokkade
       reject_media: Mediabestanden verwerpen
-      reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen.
+      reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       severities:
         noop: Geen
         silence: Negeren
@@ -197,7 +210,7 @@ nl:
           other: "%{count} accounts in de database aangepast"
         retroactive:
           silence: Alle genegeerde accounts van dit domein niet meer negeren
-          suspend: Alle opgeschorste accounts van dit domein niet meer opschorten
+          suspend: Alle opgeschorte accounts van dit domein niet meer opschorten
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
       title: Domeinblokkades
@@ -218,6 +231,13 @@ nl:
       reset: Opnieuw
       search: Zoeken
       title: Bekende servers
+    invites:
+      filter:
+        all: Alles
+        available: Beschikbaar
+        expired: Verlopen
+        title: Filter
+      title: Uitnodigingen
     reports:
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
@@ -256,21 +276,27 @@ nl:
         deletion:
           desc_html: Toestaan dat iedereen hun eigen account kan verwijderen
           title: Verwijderen account toestaan
+        min_invite_role:
+          disabled: Niemand
+          title: Uitnodigingen toestaan door
         open:
           desc_html: Toestaan dat iedereen een account kan registereren
           title: Open registratie
+      show_staff_badge:
+        desc_html: Medewerkersbadge op profielpagina tonen
+        title: Medewerkersbadge tonen
       site_description:
-        desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
+        desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br/>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodon-server
       site_description_extended:
         desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodon-server
       site_terms:
-        desc_html: Je kan hier jouw eigen privacybeleid, gebruikersvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken.
+        desc_html: Je kan hier jouw eigen privacybeleid, gebruikersvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
         title: Aangepaste gebruikersvoorwaarden
       site_title: Naam Mastodon-server
       thumbnail:
-        desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen.
+        desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
         title: Thumbnail Mastodon-server
       timeline_preview:
         desc_html: Toon de openbare tijdlijn op de startpagina
@@ -326,6 +352,8 @@ nl:
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
     login: Aanmelden
     logout: Afmelden
+    migrate_account: Naar een andere account verhuizen
+    migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
     register: Registreren
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen
@@ -369,7 +397,7 @@ nl:
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
       title: Veiligheidsverificatie mislukt
-    '429': Te veel verbindingsaanvragen.
+    '429': Te veel verbindingsaanvragen
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
@@ -407,12 +435,40 @@ nl:
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
+  in_memoriam_html: In memoriam.
+  invites:
+    delete: Deactiveren
+    expired: Verlopen
+    expires_in:
+      '1800': 30 minuten
+      '21600': 6 uur
+      '3600': 1 uur
+      '43200': 12 uur
+      '86400': 1 dag
+    expires_in_prompt: Nooit
+    generate: Genereren
+    max_uses:
+      one: 1 keer
+      other: "%{count} keer"
+    max_uses_prompt: Onbeperkt
+    prompt: Genereer en deel speciale links om mensen toegang tot deze Mastodon-server te geven
+    table:
+      expires_at: Verloopt op
+      uses: Aantal keer te gebruiken
+    title: Mensen uitnodigen
   landing_strip_html: "<strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je op Mastodon (of ergens anders in de fediverse) een account hebt."
   landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier registreren</a>.
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een toot met afbeeldingen worden gekoppeld
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
+  migrations:
+    acct: gebruikersnaam@domein van het nieuwe account
+    currently_redirecting: 'Jouw profiel wordt nu doorverwezen naar:'
+    proceed: Opslaan
+    updated_msg: Jouw accountmigratie-instelling is succesvol bijgewerkt!
+  moderation:
+    title: Moderatie
   notification_mailer:
     digest:
       body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:'
@@ -448,7 +504,7 @@ nl:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: " "
   pagination:
     next: Volgende
     prev: Vorige
@@ -525,6 +581,7 @@ nl:
     export: Exporteren
     followers: Geautoriseerde volgers
     import: Importeren
+    migrate: Accountmigratie
     notifications: Meldingen
     preferences: Voorkeuren
     settings: Instellingen
@@ -621,6 +678,8 @@ nl:
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %B %Y om %H:%M"
@@ -637,7 +696,7 @@ nl:
     manual_instructions: Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
-    recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. Zorg ervoor dat je de herstelcodes op een veilige plek bewaard. (Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.)
+    recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
     setup: Instellen
     wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
   users:
