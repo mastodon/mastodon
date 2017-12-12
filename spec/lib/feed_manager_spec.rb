@@ -243,6 +243,90 @@ RSpec.describe FeedManager do
     end
   end
 
+  describe '#can_push_preview_card_to_home?' do
+    it 'returns false if it is not subscribed' do
+      account = Fabricate(:account, id: 1)
+      status = Fabricate(:status)
+
+      expect(FeedManager.instance.can_push_preview_card_to_home?(account, status)).to eq false
+    end
+
+    context 'if it is a reblog' do
+      it 'returns false if the original status or another reblog is within REBLOG_FALLOFF statuses from the top' do
+        account = Fabricate(:account, id: 1)
+        reblog = Fabricate(:status, reblog: nil)
+        status = Fabricate(:status, reblog: reblog)
+        Redis.current.set "subscribed:timeline:1:preview_card", '1'
+        Redis.current.zadd "feed:home:1", reblog.id, reblog.id
+
+        expect(FeedManager.instance.can_push_preview_card_to_home?(account, status)).to eq false
+      end
+
+      it 'returns false if another reblog of the same status was already in the REBLOG_FALLOFF most recent statuses' do
+        account = Fabricate(:account, id: 1)
+        reblog = Fabricate(:status, reblog: nil)
+        in_reblog_falloff = Fabricate(:status, reblog: reblog)
+        status = Fabricate(:status, reblog: reblog)
+        Redis.current.set "subscribed:timeline:1:preview_card", '1'
+        Redis.current.zadd "feed:home:1:reblogs", in_reblog_falloff.id, reblog.id
+
+        expect(FeedManager.instance.can_push_preview_card_to_home?(account, status)).to eq false
+      end
+    end
+
+    context 'if it is not a reblog' do
+      it 'returns true' do
+        account = Fabricate(:account, id: 1)
+        status = Fabricate(:status, reblog: nil)
+        Redis.current.set "subscribed:timeline:1:preview_card", '1'
+
+        expect(FeedManager.instance.can_push_preview_card_to_home?(account, status)).to eq true
+      end
+    end
+  end
+
+  describe '#can_push_preview_card_to_list?' do
+    it 'returns false if it is not subscribed' do
+      list = Fabricate(:list, id: 1)
+      status = Fabricate(:status)
+
+      expect(FeedManager.instance.can_push_preview_card_to_list?(list, status)).to eq false
+    end
+
+    context 'if it is a reblog' do
+      it 'returns false if the original status or another reblog is within REBLOG_FALLOFF statuses from the top' do
+        list = Fabricate(:list, id: 1)
+        reblog = Fabricate(:status, reblog: nil)
+        status = Fabricate(:status, reblog: reblog)
+        Redis.current.set "subscribed:timeline:list:1:preview_card", '1'
+        Redis.current.zadd "feed:list:1", reblog.id, reblog.id
+
+        expect(FeedManager.instance.can_push_preview_card_to_list?(list, status)).to eq false
+      end
+
+      it 'returns false if another reblog of the same status was already in the REBLOG_FALLOFF most recent statuses' do
+        list = Fabricate(:list, id: 1)
+        reblog = Fabricate(:status, reblog: nil)
+        in_reblog_falloff = Fabricate(:status, reblog: reblog)
+        status = Fabricate(:status, reblog: reblog)
+        Redis.current.set "subscribed:timeline:list:1:preview_card", '1'
+        Redis.current.zadd "feed:list:1:reblogs", in_reblog_falloff.id, reblog.id
+
+        expect(FeedManager.instance.can_push_preview_card_to_list?(list, status)).to eq false
+      end
+    end
+
+    context 'if it is not a reblog' do
+      it 'returns true' do
+        list = Fabricate(:list, id: 1)
+        status = Fabricate(:status, reblog: nil)
+        Redis.current.set "subscribed:timeline:list:1:preview_card", '1'
+
+        expect(FeedManager.instance.can_push_preview_card_to_list?(list, status)).to eq true
+      end
+    end
+  end
+
   describe '#trim' do
     let(:receiver) { Fabricate(:account) }
 

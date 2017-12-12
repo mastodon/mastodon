@@ -33,9 +33,14 @@ class FeedManager
     true
   end
 
+  def can_push_preview_card_to_home?(account, status)
+    return push_update_required?("timeline:#{account.id}:preview_card") &&
+           can_add_to_feed?(:home, account.id, status)
+  end
+
   def unpush_from_home(account, status)
     return false unless remove_from_feed(:home, account.id, status)
-    Redis.current.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    Redis.current.publish("timeline:#{account.id}", Oj.dump(ActiveModelSerializers::SerializableResource.new(status, serializer: Streaming::DeleteSerializer).as_json))
     true
   end
 
@@ -44,6 +49,11 @@ class FeedManager
     trim(:list, list.id)
     PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}") if push_update_required?("timeline:list:#{list.id}")
     true
+  end
+
+  def can_push_preview_card_to_list?(list, status)
+    return push_update_required?("timeline:list:#{list.id}:preview_card") &&
+           can_add_to_feed?(:list, list.id, status)
   end
 
   def unpush_from_list(list, status)
@@ -224,6 +234,23 @@ class FeedManager
     end
 
     true
+  end
+
+  def can_add_to_feed?(timeline_type, account_id, status)
+    timeline_key = key(timeline_type, account_id)
+    reblog_key   = key(timeline_type, account_id, 'reblogs')
+
+    if status.reblog?
+      # If the original status or a reblog of it is within
+      # REBLOG_FALLOFF statuses from the top, do not re-insert it into
+      # the feed
+      rank = redis.zrevrank(timeline_key, status.reblog_of_id)
+
+      (rank.nil? || rank >= FeedManager::REBLOG_FALLOFF) &&
+        redis.zrevrank(reblog_key, status.reblog_of_id).nil?
+    else
+      true
+    end
   end
 
   # Removes an individual status from a feed, correctly handling cases

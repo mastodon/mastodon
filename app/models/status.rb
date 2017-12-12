@@ -29,6 +29,7 @@ class Status < ApplicationRecord
   include Paginable
   include Streamable
   include Cacheable
+  include Mastodon::Snowflake::Concern
   include StatusThreadingConcern
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
@@ -135,8 +136,7 @@ class Status < ApplicationRecord
   end
 
   after_create_commit :store_uri, if: :local?
-
-  around_create Mastodon::Snowflake::Callbacks
+  after_id_creation :set_preview_card_fetch
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
@@ -265,6 +265,10 @@ class Status < ApplicationRecord
 
   def store_uri
     update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
+  end
+
+  def set_preview_card_fetch
+    Redis.current.set "preview_card_fetch:#{id}:present", 'true'
   end
 
   def prepare_contents

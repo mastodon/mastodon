@@ -17,14 +17,16 @@ class FanOutOnWriteService < BaseService
       deliver_to_lists(status)
     end
 
-    return if status.account.silenced? || !status.public_visibility? || status.reblog?
+    if !status.account.silenced? && status.public_visibility? && !status.reblog?
+      render_anonymous_payload(status)
+      deliver_to_hashtags(status)
 
-    render_anonymous_payload(status)
-    deliver_to_hashtags(status)
+      if !status.reply? || status.in_reply_to_account_id == status.account_id
+        deliver_to_public(status)
+      end
+    end
 
-    return if status.reply? && status.in_reply_to_account_id != status.account_id
-
-    deliver_to_public(status)
+    deliver_preview_card(status)
   end
 
   private
@@ -65,8 +67,12 @@ class FanOutOnWriteService < BaseService
   end
 
   def render_anonymous_payload(status)
-    @payload = InlineRenderer.render(status, nil, :status)
-    @payload = Oj.dump(event: :update, payload: @payload)
+    @payload = Oj.dump(ActiveModelSerializers::SerializableResource.new(
+      status,
+      serializer: Streaming::UpdateSerializer,
+      scope: nil,
+      scope_name: :current_user
+    ).as_json)
   end
 
   def deliver_to_hashtags(status)
@@ -83,5 +89,21 @@ class FanOutOnWriteService < BaseService
 
     Redis.current.publish('timeline:public', @payload)
     Redis.current.publish('timeline:public:local', @payload) if status.local?
+  end
+
+  def deliver_preview_card(status)
+    owner_id = status.reblog? ? status.reblog_of_id : status.id
+    present_key = "preview_card_fetch:#{owner_id}:present"
+    queue_key = "preview_card_fetch:#{owner_id}:queue"
+
+    queued = Redis.current.watch present_key do
+      next unless Redis.current.exists present_key
+
+      Redis.current.multi do |multi|
+        multi.sadd queue_key, status.id
+      end
+    end
+
+    FanOutPreviewCardOnWriteService.new.call status if queued.nil?
   end
 end

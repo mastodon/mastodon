@@ -102,7 +102,12 @@ class NotifyService < BaseService
   def create_notification
     @notification.save!
     return unless @notification.browserable?
-    Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(ActiveModelSerializers::SerializableResource.new(
+      @notification,
+      scope: @recipient.user,
+      scope_name: :current_user,
+      serializer: Streaming::NotificationSerializer
+    ).as_json))
     send_push_notifications
   end
 
