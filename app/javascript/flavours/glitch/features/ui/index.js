@@ -40,6 +40,7 @@ import {
   Mutes,
   PinnedStatuses,
   Lists,
+  GettingStartedMisc,
 } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me } from 'flavours/glitch/util/initial_state';
@@ -428,6 +429,7 @@ export default class UI extends React.Component {
               <WrappedRoute path='/blocks' component={Blocks} content={children} />
               <WrappedRoute path='/mutes' component={Mutes} content={children} />
               <WrappedRoute path='/lists' component={Lists} content={children} />
+              <WrappedRoute path='/getting-started-misc' component={GettingStartedMisc} content={children} />
 
               <WrappedRoute component={GenericNotFound} content={children} />
             </WrappedSwitch>

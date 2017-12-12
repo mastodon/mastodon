@@ -125,3 +125,7 @@ export function Video () {
 export function EmbedModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/embed_modal" */'flavours/glitch/features/ui/components/embed_modal');
 }
+
+export function GettingStartedMisc () {
+  return import(/* webpackChunkName: "flavours/glitch/async/getting_started_misc" */'flavours/glitch/features/getting_started_misc');
+}
