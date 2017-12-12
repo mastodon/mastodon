@@ -20,6 +20,7 @@ gem 'fog-local', '~> 0.4', require: false
 gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder', '~> 0.6'
+gem 'posix-spawn'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.5'
