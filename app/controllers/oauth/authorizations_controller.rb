@@ -16,6 +16,6 @@ class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
   end
 
   def set_pack
-    use_pack 'settings'
+    use_pack 'auth'
   end
 end
