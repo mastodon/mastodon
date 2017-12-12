@@ -9,6 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
 import { openModal } from 'flavours/glitch/actions/modal';
+import { connect } from 'react-redux';
 
 const messages = defineMessages({
   heading: { id: 'column.heading', defaultMessage: 'Misc' },
@@ -23,6 +24,7 @@ const messages = defineMessages({
   keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
 });
 
+@connect()
 @injectIntl
 export default class gettingStartedMisc extends ImmutablePureComponent {
 
