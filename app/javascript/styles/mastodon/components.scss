@@ -604,8 +604,9 @@
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 400;
-  overflow: visible;
+  overflow: hidden;
   white-space: pre-wrap;
+  padding-top: 2px;
 
   &:focus {
     outline: 0;
@@ -858,7 +859,7 @@
 .status__action-bar {
   align-items: center;
   display: flex;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .status__action-bar-button {
