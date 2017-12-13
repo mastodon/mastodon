@@ -368,6 +368,7 @@ const startWorker = (workerId) => {
               log.error(err);
             });
           } else {
+            done();
             transmit();
           }
         });
