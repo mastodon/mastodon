@@ -114,8 +114,9 @@ oc:
       resubscribe: Se tornar abonar
       role: Permissions
       roles:
-        admin: Admin
-        moderator: Mod
+        admin: Administrator
+        moderator: Moderator
+        staff: Personnal
         user: Uitlizaire
       salmon_url: URL Salmon
       search: Cercar
@@ -160,6 +161,7 @@ oc:
         update_status: "%{name} metèt a jorn l’estatut a %{target}"
       title: Audit log
     custom_emojis:
+      by_domain: Domeni
       copied_msg: Còpia locala de l’emoji ben creada
       copy: Copiar
       copy_failed_msg: Fracàs de la còpia locala de l’emoji
