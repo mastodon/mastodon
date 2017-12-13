@@ -4,7 +4,7 @@ class AccountSearchService < BaseService
   attr_reader :query, :limit, :options, :account
 
   def call(query, limit, account = nil, options = {})
-    @query   = query
+    @query   = query.strip
     @limit   = limit
     @options = options
     @account = account
