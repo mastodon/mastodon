@@ -62,7 +62,13 @@ export function connectStream(path, pollingRefresh = null, callbacks = () => ({ 
 
 
 export default function getStream(streamingAPIBaseURL, accessToken, stream, { connected, received, disconnected, reconnected }) {
-  const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?access_token=${accessToken}&stream=${stream}`);
+  const params = [ `stream=${stream}` ];
+
+  if (accessToken !== null) {
+    params.push(`access_token=${accessToken}`);
+  }
+
+  const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`);
 
   ws.onopen      = connected;
   ws.onmessage   = e => received(JSON.parse(e.data));
