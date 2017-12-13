@@ -116,6 +116,7 @@ zh-CN:
       roles:
         admin: 管理员
         moderator: 协管
+        staff: 工作人员
         user: 普通用户
       salmon_url: Salmon URL
       search: 搜索
@@ -160,6 +161,7 @@ zh-CN:
         update_status: "%{name} 刷新了 %{target} 的嘟文"
       title: 运营日志
     custom_emojis:
+      by_domain: 域名
       copied_msg: 成功将表情复制到本地
       copy: 复制
       copy_failed_msg: 无法将表情复制到本地
@@ -281,8 +283,8 @@ zh-CN:
           desc_html: 允许任何人建立一个帐户
           title: 开放注册
       show_staff_badge:
-        desc_html: 在个人资料页上显示管理员标志
-        title: 显示管理员标志
+        desc_html: 在个人资料页上显示工作人员标志
+        title: 显示工作人员标志
       site_description:
         desc_html: 展示在首页以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
         title: 本站简介
@@ -341,7 +343,7 @@ zh-CN:
     warning: 一定小心，千万不要把它分享给任何人！
     your_token: 你的访问令牌
   auth:
-    agreement_html: 注册即表示你同意<a href="%{rules_path}">我们的使用条款</a>和<a href="%{terms_path}">隐私权政策</a>。
+    agreement_html: 注册即表示你同意遵守<a href="%{rules_path}">本实例的相关规定</a>和<a href="%{terms_path}">我们的使用条款</a>。
     change_password: 帐户安全
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
@@ -368,18 +370,18 @@ zh-CN:
     title: 关注 %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count} 时"
-      about_x_months: "%{count} 个月"
-      about_x_years: "%{count} 年"
-      almost_x_years: "%{count} 年"
+      about_x_hours: "%{count}时"
+      about_x_months: "%{count}个月"
+      about_x_years: "%{count}年"
+      almost_x_years: "%{count}年"
       half_a_minute: 刚刚
-      less_than_x_minutes: "%{count} 分"
+      less_than_x_minutes: "%{count}分"
       less_than_x_seconds: 刚刚
-      over_x_years: "%{count} 年"
-      x_days: "%{count} 天"
-      x_minutes: "%{count} 分"
-      x_months: "%{count} 个月"
-      x_seconds: "%{count} 秒"
+      over_x_years: "%{count}年"
+      x_days: "%{count}天"
+      x_minutes: "%{count}分"
+      x_months: "%{count}个月"
+      x_seconds: "%{count}秒"
   deletes:
     bad_password_msg: 想得美，黑客！密码输入错误
     confirm_password: 输入你当前的密码来验证身份
@@ -591,6 +593,7 @@ zh-CN:
       private: 不能置顶非公开的嘟文
       reblog: 不能置顶转嘟
     show_more: 显示更多
+    title: "%{name}：“%{quote}”"
     visibilities:
       private: 仅关注者
       private_long: 只有关注你的用户能看到

@@ -114,8 +114,9 @@ oc:
       resubscribe: Se tornar abonar
       role: Permissions
       roles:
-        admin: Admin
-        moderator: Mod
+        admin: Administrator
+        moderator: Moderator
+        staff: Personnal
         user: Uitlizaire
       salmon_url: URL Salmon
       search: Cercar
@@ -160,6 +161,7 @@ oc:
         update_status: "%{name} metèt a jorn l’estatut a %{target}"
       title: Audit log
     custom_emojis:
+      by_domain: Domeni
       copied_msg: Còpia locala de l’emoji ben creada
       copy: Copiar
       copy_failed_msg: Fracàs de la còpia locala de l’emoji
@@ -343,7 +345,7 @@ oc:
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
-    agreement_html: En vos marcar acceptatz <a href="%{rules_path}">nòstres tèrmes de servici</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
+    agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas de l’instància</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
     change_password: Seguretat
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
@@ -677,6 +679,7 @@ oc:
       private: Se pòt pas penjar los tuts pas publics
       reblog: Se pòt pas penjar un tut partejat
     show_more: Ne veire mai
+    title: '%{name} : "%{quote}"'
     visibilities:
       private: Seguidors solament
       private_long: Mostrar pas qu’als seguidors

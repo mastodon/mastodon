@@ -282,6 +282,9 @@ pt-BR:
         open:
           desc_html: Permitir que qualquer um crie uma conta
           title: Cadastro aberto
+      show_staff_badge:
+        desc_html: Mostrar uma insígnia de equipe na página de usuário
+        title: Mostrar insígnia de equipe
       site_description:
         desc_html: Parágrafo introdutório na página inicial e em meta tags. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição da instância
@@ -350,7 +353,7 @@ pt-BR:
     login: Entrar
     logout: Sair
     migrate_account: Mudar para uma conta diferente
-    migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configura isso aqui</a>.
+    migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     register: Cadastrar-se
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
@@ -455,6 +458,9 @@ pt-BR:
     title: Convidar pessoas
   landing_strip_html: "<strong>%{name}</strong> é um usuário no %{link_to_root_path}. Você pode segui-lo ou interagir com ele se você tiver uma conta em qualquer lugar no fediverso."
   landing_strip_signup_html: Se não, você pode <a href="%{sign_up_path}">se cadastrar aqui</a>.
+  lists:
+    errors:
+      limit: Você alcançou o número máximo de listas
   media_attachments:
     validations:
       images_and_video: Não é possível anexar um vídeo a uma postagem que já contém imagens
