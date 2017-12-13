@@ -76,6 +76,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     const { intl, myAccount, columns, multiColumn, lists } = this.props;
 
     let navItems = [];
+    let listItems = [];
 
     if (multiColumn) {
       if (!columns.find(item => item.get('id') === 'HOME')) {
@@ -103,8 +104,15 @@ export default class GettingStarted extends ImmutablePureComponent {
       navItems.push(<ColumnLink key='5' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
     }
 
-    navItems = navItems.concat([
-      <ColumnLink key='6' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />,
+    navItems.push(<ColumnLink key='6' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
+
+    listItems = listItems.concat([
+      <div>
+        <ColumnLink key='7' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+        {lists.map(list =>
+          <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
+        )}
+      </div>
     ]);
 
     return (
@@ -114,10 +122,7 @@ export default class GettingStarted extends ImmutablePureComponent {
             <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
             {navItems}
             <ColumnSubheading text={intl.formatMessage(messages.lists_subheading)} />
-            <ColumnLink key='7' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
-            {lists.map(list =>
-              <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
-            )}
+            {listItems}
             <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
             <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
             <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={this.openSettings} />
