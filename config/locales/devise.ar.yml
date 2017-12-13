@@ -1,3 +1,4 @@
+---
 ar:
   devise:
     confirmations:
@@ -7,17 +8,17 @@ ar:
       inactive: لم يتم تنشيط حسابك بعد.
       last_attempt: بإمكانك إعادة المحاولة مرة واحدة قبل أن يتم قفل حسابك.
       locked: إن حسابك مقفل.
-      unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المواصلة.
       unauthenticated: يجب عليك تسجيل الدخول أو إنشاء حساب قبل المواصلة.
+      unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المواصلة.
     mailer:
+      confirmation_instructions:
+        subject: 'ماستدون : تعليمات التأكيد لمثيل الخادوم  %{instance}'
       password_change:
         subject: 'ماستدون : تم تغيير كلمة المرور'
       reset_password_instructions:
         subject: 'ماستدون : تعليمات إستعادة كلمة المرور'
       unlock_instructions:
         subject: 'ماستدون : تعليمات فك القفل'
-      confirmation_instructions:
-        subject: 'ماستدون : تعليمات التأكيد لمثيل الخادوم  %{instance}'
     passwords:
       updated: تم تغيير كلمة المرور بنجاح. أنت مسجل الآن.
       updated_not_active: تم تغيير كلمة المرور بنجاح.

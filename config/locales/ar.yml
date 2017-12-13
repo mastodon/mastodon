@@ -1,10 +1,7 @@
+---
 ar:
   about:
-    about_mastodon_html: ماستدون شبكة إجتماعية <em>حرة و مفتوحة المصدر</em>. هو بديل
-      <em>لامركزي</em> لمنصات تجارية ، يمكنك من تجنب احتكار شركة واحدة للإتصالات الخاصة
-      بك. يمكنك اختيار أي خادم تثق فيه. أيهما تختار، يمكنك التفاعل مع أي شخص آخر على
-      الشبكة. يمكن لأي شخص تنصيب و تشغيل خادم ماستدون خاص به والمشاركة في <em>الشبكات
-      الاجتماعية</em> بكل شفافية.
+    about_mastodon_html: ماستدون شبكة إجتماعية <em>حرة و مفتوحة المصدر</em>. هو بديل <em>لامركزي</em> لمنصات تجارية ، يمكنك من تجنب احتكار شركة واحدة للإتصالات الخاصة بك. يمكنك اختيار أي خادم تثق فيه. أيهما تختار، يمكنك التفاعل مع أي شخص آخر على الشبكة. يمكن لأي شخص تنصيب و تشغيل خادم ماستدون خاص به والمشاركة في <em>الشبكات الاجتماعية</em> بكل شفافية.
     about_this: عن مثيل الخادوم هذا
     closed_registrations: التسجيلات في مثيل الخادوم هذا مُغلقة حاليًا.
     contact: للتواصل معنا
@@ -70,58 +67,58 @@ ar:
       username: إسم المستخدم
       web: الويب
     custom_emojis:
-      delete: حذف
       copy: نسخ
+      delete: حذف
       emoji: إيموجي
       enable: تفعيل
       upload: رفع
+    domain_blocks:
+      domain: النطاق
+      show:
+        undo: إلغاء
+      undo: إلغاء
     email_domain_blocks:
       delete: حذف
       domain: النطاق
       new:
         create: إضافة نطاق
+    instances:
+      domain_name: النطاق
+      search: البحث
     reports:
-      delete: حذف
       are_you_sure: هل أنت متأكد ؟
       comment:
         label: تعليق
+      delete: حذف
       report_contents: المحتويات
       reported_by: أبلغ عنه من طرف
       status: الحالة
       title: التقارير
       view: عرض
     settings:
+      contact_information:
+        email: البريد الإلكتروني المهني
       registrations:
         deletion:
           desc_html: السماح لأي مستخدم إغلاق حسابه
         open:
           title: فتح التسجيل
-      contact_information:
-        email: البريد الإلكتروني المهني
       site_terms:
         title: شروط الخدمة المخصصة
       site_title: إسم مثيل الخادم
       title: إعدادات الموقع
     statuses:
+      back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
-      back_to_account: العودة إلى صفحة الحساب
       media:
         title: الوسائط
-    domain_blocks:
-      domain: النطاق
-      show:
-        undo: إلغاء
-      undo: إلغاء
-    instances:
-      domain_name: النطاق
-      search: البحث
     title: الإدارة
   application_mailer:
+    salutation: "%{name},"
     settings: 'تغيير تفضيلات البريد الإلكتروني : %{link}'
     signature: إشعارات ماستدون من %{instance}
     view: 'View:'
-    salutation: '%{name},'
   applications:
     invalid_url: إن الرابط المقدم غير صالح
   auth:
@@ -131,38 +128,41 @@ ar:
     forgot_password: نسيت كلمة المرور ؟
     login: تسجيل الدخول
     logout: خروج
+    migrate_account: الإنتقال إلى حساب آخر
     register: إنشاء حساب
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
     set_new_password: تعيين كلمة مرور جديدة
-    migrate_account: الإنتقال إلى حساب آخر
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: إتبع
     title: إتباع %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count}سا'
-      about_x_months: '%{count} شهر'
-      about_x_years: '%{count} سنة'
-      almost_x_years: '%{count} سنوات'
+      about_x_hours: "%{count}سا"
+      about_x_months: "%{count} شهر"
+      about_x_years: "%{count} سنة"
+      almost_x_years: "%{count} سنوات"
       half_a_minute: الآن
-      less_than_x_minutes: '%{count} د'
+      less_than_x_minutes: "%{count} د"
       less_than_x_seconds: الآن
-      over_x_years: '%{count} سنين'
-      x_days: '%{count} أيام'
-      x_minutes: '%{count}د'
-      x_months: '%{count} شه'
-      x_seconds: '%{count}ث'
+      over_x_years: "%{count} سنين"
+      x_days: "%{count} أيام"
+      x_minutes: "%{count}د"
+      x_months: "%{count} شه"
+      x_seconds: "%{count}ث"
   deletes:
-    proceed: حذف حساب
     bad_password_msg: محاولة جيدة يا هاكرز ! كلمة السر خاطئة
+    proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
   exports:
     blocks: قمت بحظر
     csv: CSV
     follows: أنت تتبع
     storage: ذاكرة التخزين
+  followers:
+    domain: النطاق
+    followers_count: عدد المتابِعين
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
     powered_by: مدعوم بـ %{link}
@@ -171,53 +171,52 @@ ar:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
-    preface: You can import certain data like all the people you are following or
-      blocking into your account on this instance, from files created by an export
-      on another instance.
+    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
     types:
       blocking: قائمة المحظورين
       following: قائمة المستخدمين المتبوعين
     upload: تحميل
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}.
-    You can follow them or interact with them if you have an account anywhere in the
-    fediverse..
-  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign
-    up here</a>.
+  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.."
+  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  lists:
+    errors:
+      limit: لقد بلغت الحد الأقصى للقوائم
   media_attachments:
     validations:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
       too_many: لا يمكن إرفاق أكثر من 4 ملفات
+  migrations:
+    acct: username@domain للحساب الجديد
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your
-        last visit on %{since}:'
-      mention: '%{name} أشار إليك في :'
+      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      mention: "%{name} أشار إليك في :"
       new_followers_summary:
         one: لقد حصلت على متابع جديد !
         other: لقد تحصلت على %{count} متتبعين جدد ! رائع !
       subject:
-        one: إشعار واحد منذ زيارتك الأخيرة 🐘
-        other: '%{count} إشعارات جديدة منذ زيارتك الأخيرة 🐘'
+        one: "إشعار واحد منذ زيارتك الأخيرة \U0001F418"
+        other: "%{count} إشعارات جديدة منذ زيارتك الأخيرة \U0001F418"
     favourite:
       body: 'أُعجب %{name} بمنشورك :'
-      subject: '%{name} favourited your status'
+      subject: "%{name} favourited your status"
     follow:
-      body: '%{name} من متتبعيك الآن !'
-      subject: '%{name} من متتبعيك الآن'
+      body: "%{name} من متتبعيك الآن !"
+      subject: "%{name} من متتبعيك الآن"
     follow_request:
-      body: '%{name} has requested to follow you'
+      body: "%{name} has requested to follow you"
       subject: 'Pending follower: %{name}'
     mention:
       body: 'You were mentioned by %{name} in:'
       subject: لقد قام %{name} بذِكرك
     reblog:
       body: 'Your status was boosted by %{name}:'
-      subject: '%{name} boosted your status'
+      subject: "%{name} boosted your status"
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -228,6 +227,10 @@ ar:
   pagination:
     next: التالي
     prev: السابق
+  preferences:
+    languages: اللغات
+    other: إعدادات أخرى
+    publishing: النشر
   remote_follow:
     acct: قم بإدخال عنوان حسابك username@domain الذي من خلاله تود المتابعة
     missing_resource: Could not find the required redirect URL for your account
@@ -238,11 +241,11 @@ ar:
     back: عودة إلى ماستدون
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
+    followers: المتابِعون المُرَخّصون
     import: إستيراد
     preferences: التفضيلات
     settings: الإعدادات
     two_factor_authentication: اثبات هويّة مزدوج
-    followers: المتابِعون المُرَخّصون
   statuses:
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
@@ -257,39 +260,21 @@ ar:
     sensitive_content: محتوى حساس
   time:
     formats:
-      default: '%b %d, %Y, %H:%M'
+      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Enter the code generated by your authenticator app to confirm
-    description_html: If you enable <strong>two-factor authentication</strong>, logging
-      in will require you to be in possession of your phone, which will generate tokens
-      for you to enter.
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     disable: تعطيل
     enable: تفعيل
     enabled: نظام المصادقة بخطوتين مُفعَّل
     enabled_success: تم تفعيل إثبات الهوية المزدوج بنجاح
     generate_recovery_codes: توليد رموز الإسترجاع
-    instructions_html: <strong>Scan this QR code into Google Authenticator or a similiar
-      TOTP app on your phone</strong>. From now on, that app will generate tokens
-      that you will have to enter when logging in.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually,
-      here is the plain-text secret:'
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes: النسخ الإحتياطي لرموز الإسترجاع
     recovery_codes_regenerated: تم إعادة توليد رموز الإسترجاع الإحتياطية بنجاح
     setup: تنشيط
-    wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز
-      ؟
+    wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز ؟
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: الرمز الثنائي غير صالح
-  followers:
-    domain: النطاق
-    followers_count: عدد المتابِعين
-  lists:
-    errors:
-      limit: لقد بلغت الحد الأقصى للقوائم
-  migrations:
-    acct: username@domain للحساب الجديد
-  preferences:
-    languages: اللغات
-    other: إعدادات أخرى
-    publishing: النشر
