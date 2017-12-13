@@ -57,20 +57,65 @@ ar:
       order:
         title: الترتيب
       profile_url: رابط الملف الشخصي
+      role: التصريحات
+      roles:
+        admin: مدير
+        user: مستخدِم
+      search: البحث
+      statuses: المنشورات
+      title: الحسابات
+      username: إسم المستخدم
+      web: الويب
     custom_emojis:
+      copy: نسخ
       delete: حذف
+      emoji: إيموجي
+      enable: تفعيل
+      upload: رفع
+    domain_blocks:
+      domain: النطاق
+      show:
+        undo: إلغاء
+      undo: إلغاء
     email_domain_blocks:
       delete: حذف
+      domain: النطاق
+      new:
+        create: إضافة نطاق
+    instances:
+      domain_name: النطاق
+      search: البحث
     reports:
+      are_you_sure: هل أنت متأكد ؟
+      comment:
+        label: تعليق
       delete: حذف
+      report_contents: المحتويات
+      reported_by: أبلغ عنه من طرف
+      status: الحالة
+      title: التقارير
+      view: عرض
     settings:
+      contact_information:
+        email: البريد الإلكتروني المهني
       registrations:
         deletion:
           desc_html: السماح لأي مستخدم إغلاق حسابه
+        open:
+          title: فتح التسجيل
+      site_terms:
+        title: شروط الخدمة المخصصة
+      site_title: إسم مثيل الخادم
+      title: إعدادات الموقع
     statuses:
+      back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
+      media:
+        title: الوسائط
+    title: الإدارة
   application_mailer:
+    salutation: "%{name},"
     settings: 'تغيير تفضيلات البريد الإلكتروني : %{link}'
     signature: إشعارات ماستدون من %{instance}
     view: 'View:'
@@ -83,6 +128,7 @@ ar:
     forgot_password: نسيت كلمة المرور ؟
     login: تسجيل الدخول
     logout: خروج
+    migrate_account: الإنتقال إلى حساب آخر
     register: إنشاء حساب
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
@@ -106,15 +152,20 @@ ar:
       x_months: "%{count} شه"
       x_seconds: "%{count}ث"
   deletes:
+    bad_password_msg: محاولة جيدة يا هاكرز ! كلمة السر خاطئة
     proceed: حذف حساب
+    success_msg: تم حذف حسابك بنجاح
   exports:
     blocks: قمت بحظر
     csv: CSV
     follows: أنت تتبع
     storage: ذاكرة التخزين
+  followers:
+    domain: النطاق
+    followers_count: عدد المتابِعين
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
-    powered_by: powered by %{link}
+    powered_by: مدعوم بـ %{link}
     save_changes: حفظ التغييرات
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
@@ -128,14 +179,19 @@ ar:
     upload: تحميل
   landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  lists:
+    errors:
+      limit: لقد بلغت الحد الأقصى للقوائم
   media_attachments:
     validations:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
       too_many: لا يمكن إرفاق أكثر من 4 ملفات
+  migrations:
+    acct: username@domain للحساب الجديد
   notification_mailer:
     digest:
       body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
-      mention: "%{name} mentioned you in:"
+      mention: "%{name} أشار إليك في :"
       new_followers_summary:
         one: لقد حصلت على متابع جديد !
         other: لقد تحصلت على %{count} متتبعين جدد ! رائع !
@@ -143,11 +199,11 @@ ar:
         one: "إشعار واحد منذ زيارتك الأخيرة \U0001F418"
         other: "%{count} إشعارات جديدة منذ زيارتك الأخيرة \U0001F418"
     favourite:
-      body: أُعجب %{name} بمنشورك
+      body: 'أُعجب %{name} بمنشورك :'
       subject: "%{name} favourited your status"
     follow:
       body: "%{name} من متتبعيك الآن !"
-      subject: "%{name} من متتبعيك الآن !"
+      subject: "%{name} من متتبعيك الآن"
     follow_request:
       body: "%{name} has requested to follow you"
       subject: 'Pending follower: %{name}'
@@ -171,16 +227,21 @@ ar:
   pagination:
     next: التالي
     prev: السابق
+  preferences:
+    languages: اللغات
+    other: إعدادات أخرى
+    publishing: النشر
   remote_follow:
-    acct: Enter your username@domain you want to follow from
+    acct: قم بإدخال عنوان حسابك username@domain الذي من خلاله تود المتابعة
     missing_resource: Could not find the required redirect URL for your account
-    proceed: Proceed to follow
+    proceed: أكمل المتابعة
     prompt: 'إنك  بصدد متابعة :'
   settings:
     authorized_apps: التطبيقات المرخص لها
     back: عودة إلى ماستدون
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
+    followers: المتابِعون المُرَخّصون
     import: إستيراد
     preferences: التفضيلات
     settings: الإعدادات
