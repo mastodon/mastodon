@@ -22,7 +22,7 @@ class FollowService < BaseService
     elsif source_account.requested?(target_account)
       # This isn't managed by a method in AccountInteractions, so we modify it
       # ourselves if necessary.
-      req = follow_requests.find_by(target_account: other_account)
+      req = source_account.follow_requests.find_by(target_account: target_account)
       req.update!(show_reblogs: reblogs)
       return
     end
