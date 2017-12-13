@@ -27,6 +27,8 @@ const componentMap = {
   'LIST': ListTimeline,
 };
 
+const isRtlLayout = document.getElementsByTagName('body')[0].classList.contains('rtl');
+
 @component => injectIntl(component, { withRef: true })
 export default class ColumnsArea extends ImmutablePureComponent {
 
@@ -79,7 +81,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   handleChildrenContentChange() {
     if (!this.props.singleColumn) {
-      this._interruptScrollAnimation = scrollRight(this.node, this.node.scrollWidth - window.innerWidth);
+      const modifier = isRtlLayout ? -1 : 1;
+      this._interruptScrollAnimation = scrollRight(this.node, (this.node.scrollWidth - window.innerWidth) * modifier);
     }
   }
 
