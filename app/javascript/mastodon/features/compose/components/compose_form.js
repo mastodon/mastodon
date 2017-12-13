@@ -156,6 +156,8 @@ export default class ComposeForm extends ImmutablePureComponent {
 
     return (
       <div className='compose-form'>
+        <WarningContainer />   
+
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
           <div className='spoiler-input'>
             <label>
@@ -164,8 +166,6 @@ export default class ComposeForm extends ImmutablePureComponent {
             </label>
           </div>
         </Collapsable>
-
-        <WarningContainer />
 
         <ReplyIndicatorContainer />
 
