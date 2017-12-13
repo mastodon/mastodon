@@ -42,6 +42,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, props) => ({
+    card: state.getIn(['cards', props.params.statusId]),
     status: getStatus(state, props.params.statusId),
     ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
     descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
@@ -268,7 +269,7 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { status, ancestorsIds, descendantsIds } = this.props;
+    const { card, status, ancestorsIds, descendantsIds } = this.props;
     const { fullscreen } = this.state;
 
     if (status === null) {
@@ -309,6 +310,7 @@ export default class Status extends ImmutablePureComponent {
             <HotKeys handlers={handlers}>
               <div className='focusable' tabIndex='0'>
                 <DetailedStatus
+                  card={card}
                   status={status}
                   onOpenVideo={this.handleOpenVideo}
                   onOpenMedia={this.handleOpenMedia}

@@ -9,7 +9,7 @@ import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { MediaGallery, Video } from '../features/ui/util/async-components';
+import { StatusMediaGalleryContainer, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 
@@ -190,8 +190,12 @@ export default class Status extends ImmutablePureComponent {
         );
       } else {
         media = (
-          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />}
+          <Bundle fetchComponent={StatusMediaGalleryContainer} loading={this.renderLoadingMediaGallery} >
+            {Component => <Component
+              id={status.get('id')}
+              height={110}
+              onOpenMedia={this.props.onOpenMedia}
+            />}
           </Bundle>
         );
       }
