@@ -34,7 +34,7 @@ export default class gettingStartedMisc extends ImmutablePureComponent {
   openOnboardingModal = (e) => {
     e.preventDefault();
     this.props.dispatch(openModal('ONBOARDING'));
-   }
+  }
 
   render () {
     const { intl } = this.props;

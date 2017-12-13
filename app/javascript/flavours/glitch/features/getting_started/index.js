@@ -112,7 +112,7 @@ export default class GettingStarted extends ImmutablePureComponent {
         {lists.map(list =>
           <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
         )}
-      </div>
+      </div>,
     ]);
 
     return (
