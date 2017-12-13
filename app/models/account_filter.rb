@@ -45,6 +45,8 @@ class AccountFilter
       else
         Account.default_scoped
       end
+    when 'staff'
+      accounts_with_users.merge User.staff
     else
       raise "Unknown filter: #{key}"
     end
