@@ -11,9 +11,9 @@
 
   %p.hint= t('.severity.desc_html')
 
-  = f.input :reject_media, as: :boolean, wrapper: :with_label, label: t('admin.domain_blocks.reject_media'), hint: t('admin.domain_blocks.reject_media_hint')
+  = f.input :image_severity, collection: [:reject_media, :sensitive], wrapper: :with_label, include_blank: true, label_method: lambda { |type| t(".image_severity.#{type}") }
 
-  = f.input :sensitive, as: :boolean, wrapper: :with_label, label: t('admin.domain_blocks.sensitive'), hint: t('admin.domain_blocks.sensitive_hint')
+  %p.hint= t('.image_severity.desc_html')
 
   .actions
     = f.button :button, t('.create'), type: :submit

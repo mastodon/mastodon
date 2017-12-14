@@ -28,6 +28,27 @@ class DomainBlock < ApplicationRecord
 
   before_validation :normalize_domain
 
+  def image_severity
+    return :reject_media if reject_media?
+    return :sensitive if sensitive?
+
+    nil
+  end
+
+  def image_severity=(type)
+    case type.to_sym
+    when :reject_media
+      self.reject_media = true
+      self.sensitive    = false
+    when :sensitive
+      self.reject_media = false
+      self.sensitive    = true
+    else
+      self.reject_media = false
+      self.sensitive    = false
+    end
+  end
+
   private
 
   def normalize_domain

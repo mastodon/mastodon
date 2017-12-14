@@ -193,16 +193,18 @@ en:
       new:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        image_severity:
+          desc_html: "<strong>Reject</strong> will removes locally stored media files and refuses to download any in the future. <strong>Sensitive</strong> will mark media as sensitive. Irrelevant for suspensions"
+          reject_media: Reject
+          sensitive: Sensitive
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject or sensitive media files."
           noop: None
           silence: Silence
           suspend: Suspend
         title: New domain block
       reject_media: Reject media files
-      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       sensitive: Sensitive media files
-      sensitive_hint: Mark all media files as sensitive
       severities:
         noop: None
         silence: Silence
