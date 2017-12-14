@@ -1,3 +1,4 @@
+---
 nl:
   about:
     about_hashtag_html: Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
@@ -10,7 +11,9 @@ nl:
     description_headline: Wat is %{domain}?
     domain_count_after: andere servers
     domain_count_before: Verbonden met
-    extended_description_html: '<h3>Een goede plek voor richtlijnen</h3> <p>De uitgebreide omschrijving is nog niet ingevuld.</p>'
+    extended_description_html:  |
+      <h3>Een goede plek voor richtlijnen</h3>
+      <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
     features:
       humane_approach_body: Na van de fouten van andere netwerken te hebben geleerd, tracht Mastodon ethische ontwerpkeuzes te maken om misbruik van social media te voorkomen.
       humane_approach_title: Een meer menselijke aanpak
@@ -612,7 +615,7 @@ nl:
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
   terms:
-    body_html:  |
+    body_html: |
       <h2>Privacy Policy</h2>
 
       <h3 id="collect">What information do we collect?</h3>
