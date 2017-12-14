@@ -116,6 +116,7 @@ nl:
       roles:
         admin: Beheerder
         moderator: Moderator
+        staff: Medewerkers
         user: Gebruiker
       salmon_url: Salmon-URL
       search: Zoeken
@@ -141,7 +142,7 @@ nl:
         create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
         demote_user: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
-        destroy_email_domain_block: E-maildomein %{target} is door %{name} op de whitelist geplaatst
+        destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte lijst geplaatst
         destroy_status: Toot van %{target} is door %{name} verwijderd
         disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
         disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
@@ -160,6 +161,7 @@ nl:
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
       title: Auditlog
     custom_emojis:
+      by_domain: Domein
       copied_msg: Lokale kopie van emoji maken geslaagd
       copy: Kopiëren
       copy_failed_msg: Kan geen lokale kopie van deze emoji maken
@@ -343,7 +345,7 @@ nl:
     warning: Wees voorzichtig met deze gegevens. Deel het nooit met iemand anders!
     your_token: Jouw toegangscode
   auth:
-    agreement_html: Wanneer je op registreren klikt ga je akkoord met <a href="%{rules_path}">onze gebruikersvoorwaarden</a> en <a href="%{terms_path}">ons privacybeleid</a>.
+    agreement_html: Wanneer je op registreren klikt ga je akkoord met het opvolgen van <a href="%{rules_path}">de regels van deze server</a> en <a href="%{terms_path}">onze gebruikersvoorwaarden</a>.
     change_password: Beveiliging
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
@@ -599,6 +601,7 @@ nl:
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
     show_more: Meer tonen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
       private_long: Alleen aan volgers tonen
