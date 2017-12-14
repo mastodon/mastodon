@@ -208,6 +208,8 @@ pt:
       account_count: Contas conhecidas
       domain_name: Domínio
       title: Instâncias conhecidas
+      reset: Restaurar
+      search: Pesquisar
     reports:
       comment:
         label: Comentário
@@ -226,6 +228,9 @@ pt:
       title: Denúncias
       unresolved: Por resolver
       view: Ver
+      action_taken_by: Ação tomada por
+      are_you_sure: Tens a certeza?
+      report_contents: Conteúdos
     settings:
       contact_information:
         email: Inserir um endereço de email para tornar público
@@ -283,6 +288,19 @@ pt:
       add_new: Adicionar novo
       created_msg: Bloqueio de domínio de email criado com sucesso
       delete: Eliminar
+      destroyed_msg: Bloqueio de domínio de email excluído com sucesso
+      domain: Domínio
+      new:
+        create: Adicionar domínio
+        title: Novo bloqueio de domínio de email
+      title: Bloqueio de Domínio de Email
+    invites:
+      filter:
+        all: Todos
+        available: Disponíveis
+        expired: Expirados
+        title: Filtro
+      title: Convites
   application_mailer:
     settings: 'Alterar preferências de email: %{link}'
     signature: notificações Mastodon do %{instance}
