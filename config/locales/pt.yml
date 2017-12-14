@@ -140,6 +140,8 @@ pt:
       username: Usuário
       web: Web
       outbox_url: URL da caixa de saída
+      subscribe: Inscrever-se
+      unsubscribe: Cancelar inscrição
     action_logs:
       actions:
         confirm_user: '%{name} confirmou o endereço de e-mail do utilizador %{target}'
@@ -149,6 +151,20 @@ pt:
           correio electrónico %{target}'
         demote_user: '%{name} rebaixou o utilizador %{target}'
         destroy_domain_block: '%{name} desbloqueou o domínio %{target}'
+        destroy_email_domain_block: '%{name} adicionou na lista branca o domínio de
+          correio electrónico %{target}'
+        disable_custom_emoji: '%{name} desabilitou o emoji %{target}'
+        enable_custom_emoji: '%{name} habilitou o emoji %{target}'
+        promote_user: '%{name} promoveu o utilizador %{target}'
+        reset_password_user: '%{name} restabeleceu a palavra-passe do utilizador %{target'
+        resolve_report: '%{name} recusou o relatório %{target}'
+        silence_account: '%{name} silenciou a conta de %{target}'
+        suspend_account: '%{name} suspendeu a conta de %{target}'
+        unsilence_account: '%{name} desativou o silêncio de %{target}'
+        unsuspend_account: '%{name} desativou a suspensão de  %{target}'
+        update_custom_emoji: '%{name} atualizou o emoji %{target}'
+        update_status: '%{name} atualizou o estado de %{target}'
+      title: Registo de auditoria
     domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio do domínio está a ser processado
@@ -167,6 +183,7 @@ pt:
             de media.
           silence: Silenciar
           suspend: Suspender
+          noop: Nenhum
         title: Novo bloqueio de domínio
       reject_media: Rejeitar ficheiros de media
       reject_media_hint: Remove localmente arquivos armazenados e rejeita fazer guardar
@@ -174,6 +191,7 @@ pt:
       severities:
         silence: Silenciar
         suspend: Suspender
+        noop: Nenhum
       severity: Severidade
       show:
         affected_accounts:
@@ -236,6 +254,35 @@ pt:
       title: WebSub
       topic: Tópico
     title: Administração
+    custom_emojis:
+      by_domain: Domínio
+      copied_msg: Cópia local do emoji criada com sucesso
+      copy: Copiar
+      copy_failed_msg: Não foi possível criar uma cópia local deste emoji
+      created_msg: Emoji criado com sucesso!
+      delete: Apagar
+      destroyed_msg: Emoji destruído com sucesso!
+      disable: Desativar
+      disabled_msg: Desativado com sucesso este emoji
+      emoji: Emoji
+      enable: Ativar
+      enabled_msg: Ativado com sucesso este emoji
+      image_hint: PNG de até 50KB
+      listed: Listado
+      new:
+        title: Adicionar novo emoji customizado
+      overwrite: Sobrescrever
+      shortcode: Código de atalho
+      shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underscores
+      title: Emojis customizados
+      unlisted: Não listado
+      update_failed_msg: Não foi possível atualizar esse emoji
+      updated_msg: Emoji atualizado com sucesso!
+      upload: Enviar
+    email_domain_blocks:
+      add_new: Adicionar novo
+      created_msg: Bloqueio de domínio de email criado com sucesso
+      delete: Eliminar
   application_mailer:
     settings: 'Alterar preferências de email: %{link}'
     signature: notificações Mastodon do %{instance}
@@ -324,8 +371,8 @@ pt:
     code_hint: Entre o código gerado pelo seu aplicativo para confirmar
     description_html: Se você habilitar <strong>autenticação two-factor </strong>,
       quando logar será necessário o seu telefone que vai gerar os tokens usado.
-    disable: Disabilitar
-    enable: Habilitar
+    disable: Desativar
+    enable: Ativar
     enabled_success: Autenticador Two-factor habilitador com sucesso
     generate_recovery_codes: Gerar códigos para recuperar conta
     instructions_html: <strong>Scaneie este código QR no seu Google Authenticator
