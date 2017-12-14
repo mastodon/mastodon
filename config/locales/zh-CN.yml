@@ -286,7 +286,7 @@ zh-CN:
         desc_html: 在个人资料页上显示管理人员标志
         title: 显示管理人员标志
       site_description:
-        desc_html: 在首页展示以及出现在 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
+        desc_html: 用于首页展示以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
         title: 本站简介
       site_description_extended:
         desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
@@ -385,22 +385,22 @@ zh-CN:
   deletes:
     bad_password_msg: 想得美，黑客！密码输入错误
     confirm_password: 输入你当前的密码来验证身份
-    description_html: 继续操作将会<strong>永久地、不可撤销地</strong>删除你帐户中的内容，同时冻结你的帐户。你的用户名将会被保留，以防有人冒用你的身份。
+    description_html: 继续操作将会<strong>永久地、不可撤销地</strong>删除帐户中的所有内容，然后冻结帐户。你的用户名将会被保留，以防有人冒用你的身份。
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
-    warning_html: 我们只能保证本实例上的内容将会被彻底删除。对于已经被广泛传播的内容，它们在本实例以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器上的数据亦无法删除。
+    warning_html: 我们只能保证本实例上的内容将会被彻底删除。对于已经被广泛传播的内容，它们在本实例以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器所存储的数据亦无法删除。
     warning_title: 关于已传播的内容的警告
   errors:
-    '403': 无权查看
-    '404': 找不到页面
-    '410': 内容已被删除
+    '403': 你没有访问这个页面的权限。
+    '404': 无法找到你所要访问的页面。
+    '410': 你所要访问的页面已被删除。
     '422':
       content: 无法确认登录信息。你是不是屏蔽了 Cookie？
       title: 无法确认登录信息
-    '429': 被限制
+    '429': 请求被限制
     '500':
-      content: 抱歉，我们这里出错了。
-      title: 这个页面不正确
+      content: 抱歉，我们的服务器出错了。
+      title: 这个页面出错了
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 应用</a>。
   exports:
     blocks: 屏蔽的用户
