@@ -62,7 +62,7 @@ fa:
     reserved_username: این نام کاربری در دسترس نیست
     roles:
       admin: مدیر
-      moderator: مدیر
+      moderator: ناظم
     unfollow: پایان پیگیری
     moved_html: '%{name} حساب خود را به %{new_profile_link} منتقل کرده است:'
   admin:
@@ -167,6 +167,12 @@ fa:
       shortcode_hint: دست‌کم ۲ نویسه و تنها شامل حروف، اعداد و زیرخط
       title: شکلک‌های سفارشی
       upload: بارگذاری
+      by_domain: دامین
+      listed: فهرست‌شده
+      overwrite: بازنویسی
+      unlisted: فهرست‌نشده
+      update_failed_msg: این شکلک نتوانست به‌روز شود
+      updated_msg: شکلک با موفقیت به‌روز شد!
     domain_blocks:
       add_new: افزودن تازه
       created_msg: مسدودکردن دامین در حال انجام است
@@ -180,7 +186,8 @@ fa:
         severity:
           desc_html: <strong>بی‌صداکردن</strong> یک حساب نوشته‌های آن را برای همه
             (به جز پیگیرانش) ناپدید می‌کند. <strong>معلق‌کردن</strong> حساب همهٔ نوشته‌ها،
-            تصویرها، و اطلاعات حساب را پاک می‌کند.
+            تصویرها، و اطلاعات حساب را پاک می‌کند. اگر فقط می‌خواهید جلوی تصویرها
+            و ویدیوها را بگیرید <strong>هیچ</strong> را برگزینید.
           noop: هیچ
           silence: بی‌صداکردن
           suspend: معلق‌کردن
@@ -264,9 +271,13 @@ fa:
         open:
           desc_html: همه بتوانند حساب باز کنند
           title: امکان ثبت نام
+        min_invite_role:
+          disabled: هیچ کس
+          title: اجازهٔ دعوت به
       site_description:
-        desc_html: روی صفحهٔ اصلی نمایش می‌یابد و همچنین به عنوان تگ‌های HTML.<br>می‌توانید
-          HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
+        desc_html: معرفی کوتاهی که روی صفحهٔ اصلی و همچنین به عنوان فرادادهٔ صفحه‌ها
+          نمایش می‌یابد. می‌توانید HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و
+          <code>&lt;em&gt;</code>.
         title: دربارهٔ سایت
       site_description_extended:
         desc_html: جای خوبی برای نوشتن سیاست‌های کاربری، قانون‌ها، راهنماها، و هر
@@ -285,6 +296,9 @@ fa:
         desc_html: نوشته‌های عمومی این سرور را در صفحهٔ آغازین نشان دهید
         title: پیش‌نمایش نوشته‌ها
       title: تنظیمات سایت
+      show_staff_badge:
+        desc_html: نمایش علامت همکار روی صفحهٔ کاربر
+        title: نمایش علامت همکار
     statuses:
       back_to_account: بازگشت به صفحهٔ حساب
       batch:
@@ -314,7 +328,7 @@ fa:
         create_custom_emoji: '%{name} شکلک تازهٔ %{target} را بارگذاشت'
         create_domain_block: '%{name} دامین %{target} را مسدود کرد'
         create_email_domain_block: '%{name} دامین ایمیل %{target} را مسدود کرد'
-        demote_user: '%{name} مقام کاربر %{target} را پایین آورد'
+        demote_user: '%{name} مقام کاربر %{target} را تنزل داد'
         destroy_domain_block: '%{name} دامین %{target} را باز کرد'
         destroy_email_domain_block: '%{name} دامین ایمیل %{target} را باز کرد'
         destroy_status: '%{name} نوشته‌ای از %{target} را پاک کرد'
@@ -333,12 +347,22 @@ fa:
         suspend_account: '%{name} حساب کاربر %{target} را تعلیق کرد'
         unsilence_account: '%{name} حساب کاربر %{target} را روشن (باصدا) کرد'
         unsuspend_account: '%{name} حساب کاربر %{target} را از تعلیق خارج کرد'
+        update_custom_emoji: '%{name} شکلک %{target} را به‌روز کرد'
+        update_status: '%{name} نوشتهٔ %{target} را به‌روز کرد'
+      title: سیاههٔ بازرسی
+    invites:
+      filter:
+        all: همه
+        available: در دسترس
+        expired: منقضی‌شده
+        title: فیلتر
+      title: دعوت‌ها
   admin_mailer:
     new_report:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
       subject: گزارش تازه‌ای برای %{instance} (#%{id})
   application_mailer:
-    salutation: '%{name},'
+    salutation: '%{name}،'
     settings: 'تغییر تنظیمات ایمیل: %{link}'
     signature: اعلان‌های ماستدون از %{instance}
     view: 'نمایش:'
@@ -351,22 +375,25 @@ fa:
     warning: خیلی مواظب این اطلاعات باشید و آن را به هیچ کس ندهید!
     your_token: کد دسترسی شما
   auth:
-    agreement_html: پیش از عضو شدن باید <a href="%{rules_path}">شرایط استفاده</a>
-      و <a href="%{terms_path}">سیاست رازداری</a> ما را بپذیرید.
+    agreement_html: پیش از عضو شدن باید <a href="%{rules_path}">قوانین این سرور</a>
+      و <a href="%{terms_path}">شرایط استفادهٔ</a> ما را بپذیرید.
     change_password: امنیت
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a>
       پیش بروید. از شما درخواست تأیید خواهد شد.
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
     forgot_password: رمزتان را گم کرده‌اید؟
-    invalid_reset_password_token: Password reset token is invalid or expired. Please
-      request a new one.
+    invalid_reset_password_token: کد بازنشانی رمز نامعتبر یا منقضی شده است. لطفاً
+      کد دیگری درخواست کنید.
     login: ورود
     logout: خروج
     register: عضو شوید
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
     reset_password: بازنشانی رمز
     set_new_password: تعیین رمز تازه
+    migrate_account: نقل مکان به یک حساب دیگر
+    migrate_account_html: اگر می‌خواهید این حساب را به حساب دیگری منتقل کنید، <a href="%{path}">این‌جا
+      را کلیک کنید</a>.
   authorize_follow:
     error: متأسفانه حین یافتن آن حساب خطایی رخ داد
     follow: پی بگیرید
@@ -416,7 +443,8 @@ fa:
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
     noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال
-      کنید. یا به جایش می‌توانید یک اپ ماستدون را به‌کار ببرید.
+      کنید. یا به جایش می‌توانید <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">یک
+      اپ ماستدون</a> را به‌کار ببرید.
   exports:
     blocks: حساب‌های مسدودشده
     csv: CSV
@@ -586,11 +614,12 @@ fa:
     settings: تنظیمات
     two_factor_authentication: ورود دومرحله‌ای
     your_apps: برنامهٔ شما
+    migrate: انتقال حساب
   statuses:
     open_in_web: بازکردن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
     pin_errors:
-      limit: نوشته‌های ثابت بیش از حد
+      limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
       private: نوشته‌های غیرعمومی را نمی‌توان ثابت کرد
       reblog: بازبوق‌ها را نمی‌توان ثابت کرد
@@ -602,6 +631,7 @@ fa:
       public_long: همه می‌توانند ببینند
       unlisted: فهرست‌نشده
       unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نمی‌یابد
+    title: '%{name}: "%{quote}"'
   stream_entries:
     click_to_show: برای نمایش کلیک کنید
     pinned: نوشته‌های ثابت
@@ -682,7 +712,7 @@ fa:
   two_factor_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود
-      به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد
+      به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد.
     disable: غیرفعال‌کردن
     enable: فعال‌کردن
     enabled: ورود دومرحله‌ای فعال است
@@ -699,8 +729,8 @@ fa:
     recovery_codes: پشتیبان‌گیری از کدهای بازیابی
     recovery_codes_regenerated: کدهای بازیابی با موفقیت ساخته شدند
     recovery_instructions_html: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای
-      بازیابی زیر کنترل حساب خود را به دست بگیرید. این کدها را در جای امنی نگه دارید،
-      مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید
+      بازیابی زیر کنترل حساب خود را به دست بگیرید. <strong>این کدها را در جای امنی
+      نگه دارید.</strong> مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید
     setup: راه اندازی
     wrong_code: کدی که وارد کردید نامعتبر بود! آیا ساعت سرور و ساعت دستگاه شما درست
       تنظیم شده‌اند؟
@@ -708,3 +738,37 @@ fa:
     invalid_email: نشانی ایمیل نامعتبر است
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     signed_in_as: 'واردشده به نام:'
+  in_memoriam_html: به یادبود.
+  invites:
+    delete: غیرفعال‌سازی
+    expired: منقضی‌شده
+    expires_in:
+      '1800': ۳۰ دقیقه
+      '21600': ۶ ساعت
+      '3600': ۱ ساعت
+      '43200': ۱۲ ساعت
+      '86400': ۱ روز
+    expires_in_prompt: هیچ وقت
+    generate: ساختن
+    max_uses:
+      one: ۱ بار
+      other: '%{count} بار'
+    max_uses_prompt: نامحدود
+    prompt: با ساختن و اشتراک‌گذاری یک پیوند، اجازهٔ دسترسی به این سرور را به دیگران
+      بدهید
+    table:
+      expires_at: تاریخ انقضا
+      uses: استفاده‌ها
+    title: دعوت دیگران
+  lists:
+    errors:
+      limit: از این بیشتر نمی‌شود فهرست داشت
+  migrations:
+    acct: username@domain حساب تازه
+    currently_redirecting: 'نمایهٔ شما منتقل می‌شود به:'
+    proceed: ذخیره
+    updated_msg: تنظیمات نقل مکان حساب شما با موفقیت به‌روز شد!
+  moderation:
+    title: مدیریت
+  themes:
+    default: ماستدون
