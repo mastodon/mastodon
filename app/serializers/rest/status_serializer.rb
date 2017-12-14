@@ -31,6 +31,12 @@ class REST::StatusSerializer < ActiveModel::Serializer
     object.in_reply_to_account_id&.to_s
   end
 
+  def sensitive
+    return true if !object.local? && DomainBlock.find_by(domain: object.account.domain)&.sensitive?
+
+    object.sensitive
+  end
+
   def current_user?
     !current_user.nil?
   end

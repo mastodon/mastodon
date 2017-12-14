@@ -9,6 +9,7 @@
 #  updated_at   :datetime         not null
 #  severity     :integer          default("silence")
 #  reject_media :boolean          default(FALSE), not null
+#  sensitive    :boolean          default(FALSE), not null
 #
 
 class DomainBlock < ApplicationRecord

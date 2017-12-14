@@ -5,6 +5,9 @@
     = t("admin.domain_blocks.severities.#{domain_block.severity}")
   %td.reject_media
     - if domain_block.reject_media? || domain_block.suspend?
-      %i.fa.fa-check
+      = fa_icon('check')
+  %td.sensitive
+    - if domain_block.sensitive?
+      = fa_icon('check')
   %td
     = table_link_to 'undo', t('admin.domain_blocks.undo'), admin_domain_block_path(domain_block)
