@@ -116,8 +116,8 @@ nl:
       roles:
         admin: Beheerder
         moderator: Moderator
-        user: Gebruiker
         staff: Medewerkers
+        user: Gebruiker
       salmon_url: Salmon-URL
       search: Zoeken
       shared_inbox_url: Gedeelde inbox-URL
@@ -161,6 +161,7 @@ nl:
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
       title: Auditlog
     custom_emojis:
+      by_domain: Domein
       copied_msg: Lokale kopie van emoji maken geslaagd
       copy: Kopiëren
       copy_failed_msg: Kan geen lokale kopie van deze emoji maken
@@ -183,8 +184,7 @@ nl:
       unlisted: Niet weergegeven
       update_failed_msg: Deze emoji kon niet worden bijgewerkt
       updated_msg: Bijwerken van emoji is geslaagd!
-      upload: Uploaden
-      by_domain: Domein
+      upload: Uploaden      
     domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
@@ -252,7 +252,7 @@ nl:
       nsfw:
         'false': Media tonen
         'true': Media verbergen
-      report: "Gerapporteerde toot #%{id}"
+      report: 'Gerapporteerde toot #%{id}'
       report_contents: Inhoud
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
@@ -469,35 +469,35 @@ nl:
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:
     acct: gebruikersnaam@domein van het nieuwe account
-    currently_redirecting: "Jouw profiel wordt nu doorverwezen naar:"
+    currently_redirecting: 'Jouw profiel wordt nu doorverwezen naar:'
     proceed: Opslaan
     updated_msg: Jouw accountmigratie-instelling is succesvol bijgewerkt!
   moderation:
     title: Moderatie
   notification_mailer:
     digest:
-      body: "Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:"
+      body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:'
       mention: "%{name} vermeldde jou in:"
       new_followers_summary:
         one: Jij hebt een nieuwe volger! Hoera!
         other: Jij hebt %{count} nieuwe volgers! Prachtig!
       subject:
-        one: 1 nieuwe melding sinds jouw laatste bezoek 🐘
-        other: "%{count} nieuwe meldingen sinds jouw laatste bezoek 🐘"
+        one: "1 nieuwe melding sinds jouw laatste bezoek \U0001F418"
+        other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"
     favourite:
-      body: "Jouw toot werd door %{name} als favoriet gemarkeerd:"
+      body: 'Jouw toot werd door %{name} als favoriet gemarkeerd:'
       subject: "%{name} markeerde jouw toot als favoriet"
     follow:
       body: "%{name} volgt jou nu!"
       subject: "%{name} volgt jou nu"
     follow_request:
       body: "%{name} wil jou graag volgen"
-      subject: "Volgen in afwachting: %{name}"
+      subject: 'Volgen in afwachting: %{name}'
     mention:
-      body: "Jij bent door %{name} vermeld in:"
+      body: 'Jij bent door %{name} vermeld in:'
       subject: Jij bent vermeld door %{name}
     reblog:
-      body: "Jouw toot werd door %{name} geboost:"
+      body: 'Jouw toot werd door %{name} geboost:'
       subject: "%{name} boostte jouw toot"
   number:
     human:
@@ -537,7 +537,7 @@ nl:
     acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     proceed: Ga door om te volgen
-    prompt: "Jij gaat volgen:"
+    prompt: 'Jij gaat volgen:'
   sessions:
     activity: Laatst actief
     browser: Webbrowser
@@ -601,6 +601,7 @@ nl:
       private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
     show_more: Meer tonen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
       private_long: Alleen aan volgers tonen
@@ -608,7 +609,6 @@ nl:
       public_long: Aan iedereen tonen, ook op openbare tijdlijnen
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
-    title: '%{name}: "%{quote}"'
   stream_entries:
     click_to_show: Klik om te tonen
     pinned: Vastgemaakte toot
@@ -697,7 +697,7 @@ nl:
     enabled: Tweestapsverificatie is ingeschakeld
     enabled_success: Inschakelen tweestapsverificatie geslaagd
     generate_recovery_codes: Herstelcodes genereren
-    instructions_html: <strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren.
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
     manual_instructions: Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.
     recovery_codes: Herstelcodes back-uppen
@@ -708,4 +708,4 @@ nl:
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
-    signed_in_as: "Ingelogd als:"
+    signed_in_as: 'Ingelogd als:'
