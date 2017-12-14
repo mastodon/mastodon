@@ -146,6 +146,8 @@ fa:
         moderator: ناظم
         staff: کارمند
         user: کاربر
+      demote: تنزل‌دادن
+      promote: ترفیع‌دادن
     custom_emojis:
       copied_msg: نسخهٔ محلی شکلک با موفقیت ساخته شد
       copy: نسخه‌برداری
@@ -316,6 +318,21 @@ fa:
         destroy_domain_block: '%{name} دامین %{target} را باز کرد'
         destroy_email_domain_block: '%{name} دامین ایمیل %{target} را باز کرد'
         destroy_status: '%{name} نوشته‌ای از %{target} را پاک کرد'
+        disable_2fa_user: '%{name} اجبار ورود دومرحله‌ای را برای کاربر %{target} غیرفعال
+          کرد'
+        disable_custom_emoji: '%{name} شکلک %{target} را غیرفعال کرد'
+        disable_user: '%{name} ورود را برای کاربر %{target} غیرفعال کرد'
+        enable_custom_emoji: '%{name} شکلک %{target} را فعال کرد'
+        enable_user: '%{name} ورود را برای کاربر %{target} فعال کرد'
+        memorialize_account: '%{name} حساب کاربر %{target} را تبدیل به صفحهٔ یادمان
+          کرد'
+        promote_user: '%{name} کاربر %{target} را ترفیع داد'
+        reset_password_user: '%{name} رمز کاربر %{target} را بازنشاند'
+        resolve_report: '%{name} گزارش %{target} را نادیده گرفت'
+        silence_account: '%{name} حساب کاربر %{target} را خاموش (بی‌صدا) کرد'
+        suspend_account: '%{name} حساب کاربر %{target} را تعلیق کرد'
+        unsilence_account: '%{name} حساب کاربر %{target} را روشن (باصدا) کرد'
+        unsuspend_account: '%{name} حساب کاربر %{target} را از تعلیق خارج کرد'
   admin_mailer:
     new_report:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
