@@ -276,7 +276,11 @@ class Status < ApplicationRecord
 
   def marked_local_only?
     # match both with and without U+FE0F (the emoji variation selector)
-    /👁\ufe0f?\z/.match?(content)
+    /#{local_only_emoji}\ufe0f?\z/.match?(content)
+  end
+
+  def local_only_emoji
+    '👁'
   end
 
   private
@@ -305,7 +309,7 @@ class Status < ApplicationRecord
   end
 
   def set_locality
-    if account.domain.nil?
+    if account.domain.nil? && !attribute_changed?(:local_only)
       self.local_only = marked_local_only?
     end
   end
