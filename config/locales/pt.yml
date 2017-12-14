@@ -124,6 +124,7 @@ pt:
         admin: Administrador
         moderator: Moderador
         user: Utilizador
+        staff: Equipa
       salmon_url: URL Salmon
       search: Pesquisar
       shared_inbox_url: URL da caixa de entrada compartilhada
@@ -138,6 +139,7 @@ pt:
       undo_suspension: Desfazer supensão
       username: Usuário
       web: Web
+      outbox_url: URL da caixa de saída
     action_logs:
       actions:
         confirm_user: '%{name} confirmou o endereço de e-mail do utilizador %{target}'
@@ -160,13 +162,13 @@ pt:
         severity:
           desc_html: <strong>Silenciar</strong> irá fazer com que os posts dessas
             contas sejam invisíveis para todos que não a seguem. <strong>Supender</strong>
-            irá eliminar todo o conteúdo guardado dessa conta, mídia e informação
+            irá eliminar todo o conteúdo guardado dessa conta, media e informação
             de perfil.Usa <strong>Nenhum</strong> se  apenas desejas rejeitar arquivos
-            de mídia.
+            de media.
           silence: Silenciar
           suspend: Suspender
         title: Novo bloqueio de domínio
-      reject_media: Rejeitar ficheiros de mídia
+      reject_media: Rejeitar ficheiros de media
       reject_media_hint: Remove localmente arquivos armazenados e rejeita fazer guardar
         novos no futuro. Irrelevante na suspensão
       severities:
