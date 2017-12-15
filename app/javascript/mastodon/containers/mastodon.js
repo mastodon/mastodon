@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import { supportsNotifications } from '../agent';
+import { supportsDesktopNotifications } from '../agent';
 import configureStore from '../store/configureStore';
 import { showOnboardingOnce } from '../actions/onboarding';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -31,7 +31,7 @@ export default class Mastodon extends React.PureComponent {
 
     // Desktop notifications
     // Ask after 1 minute
-    if (supportsNotifications() && Notification.permission === 'default') {
+    if (supportsDesktopNotifications() && Notification.permission === 'default') {
       window.setTimeout(() => Notification.requestPermission(), 60 * 1000);
     }
 
