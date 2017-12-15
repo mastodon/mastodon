@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { debounce } from 'lodash';
-import { isUserTouching } from '../../../is_mobile';
+import { isUserTouching } from '../../../agent';
 
 export const links = [
   <NavLink className='tabs-bar__link primary' to='/statuses/new' data-preview-title-id='tabs_bar.compose' data-preview-icon='pencil' ><i className='fa fa-fw fa-pencil' /><FormattedMessage id='tabs_bar.compose' defaultMessage='Compose' /></NavLink>,

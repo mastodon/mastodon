@@ -6,7 +6,7 @@ import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { isMobile } from '../../is_mobile';
+import { isMobile } from '../../agent';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose } from '../../actions/compose';
 import { refreshHomeTimeline } from '../../actions/timelines';

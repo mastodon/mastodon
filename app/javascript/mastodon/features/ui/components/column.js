@@ -3,7 +3,7 @@ import ColumnHeader from './column_header';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import { scrollTop } from '../../../scroll';
-import { isMobile } from '../../../is_mobile';
+import { isMobile } from '../../../agent';
 
 export default class Column extends React.PureComponent {
 
