@@ -27,7 +27,7 @@ const messages = {
   'settings.image_backgrounds_users': '折りたまれたトゥートの背景を変更する',
   'settings.media': 'メディア',
   'settings.media_letterbox': 'メディアをレターボックス式で表示',
-  'settings.media_fullwidth': '全幅メディアプリビュー',
+  'settings.media_fullwidth': '全幅メディアプレビュー',
   'settings.preferences': 'ユーザー設定',
   'settings.wide_view': 'ワイドビュー(Desktopレイアウトのみ)',
   'settings.navbar_under': 'ナビを画面下部に移動させる(Mobileレイアウトのみ)',
