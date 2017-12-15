@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
 import ClearColumnButton from './clear_column_button';
 import SettingToggle from './setting_toggle';
+import { supportsPushNotifications } from '../../../agent';
 
 export default class ColumnSettings extends React.PureComponent {
 
@@ -26,7 +27,7 @@ export default class ColumnSettings extends React.PureComponent {
     const showStr  = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
     const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
 
-    const showPushSettings = pushSettings.get('browserSupport') && pushSettings.get('isSubscribed');
+    const showPushSettings = supportsPushNotifications() && pushSettings.get('isSubscribed');
     const pushStr = showPushSettings && <FormattedMessage id='notifications.column_settings.push' defaultMessage='Push notifications' />;
     const pushMeta = showPushSettings && <FormattedMessage id='notifications.column_settings.push_meta' defaultMessage='This device' />;
 
