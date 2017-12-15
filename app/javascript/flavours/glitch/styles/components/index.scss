@@ -2286,7 +2286,6 @@
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('~images/mastodon-getting-started.png') no-repeat 0 100%;
   flex: 1 0 auto;
 
   p {
@@ -3913,6 +3912,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .boost-modal,
+.favourite-modal,
 .confirmation-modal,
 .report-modal,
 .actions-modal,
@@ -3944,7 +3944,8 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.boost-modal__container {
+.boost-modal__container,
+.favourite-modal__container{
   overflow-x: scroll;
   padding: 10px;
 
@@ -3955,6 +3956,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .boost-modal__action-bar,
+.favourite-modal__action-bar,
 .confirmation-modal__action-bar,
 .mute-modal__action-bar,
 .report-modal__action-bar {
@@ -3976,11 +3978,13 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.boost-modal__status-header {
+.boost-modal__status-header,
+.favourite-modal__status-header {
   font-size: 15px;
 }
 
-.boost-modal__status-time {
+.boost-modal__status-time,
+.favourite-modal__status-time {
   float: right;
   font-size: 14px;
 }

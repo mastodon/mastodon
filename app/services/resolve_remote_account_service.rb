@@ -44,7 +44,7 @@ class ResolveRemoteAccountService < BaseService
       if lock.acquired?
         @account = Account.find_remote(@username, @domain)
 
-        if activitypub_ready?
+        if activitypub_ready? || @account&.activitypub?
           handle_activitypub
         else
           handle_ostatus

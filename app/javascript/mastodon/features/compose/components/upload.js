@@ -62,7 +62,7 @@ export default class Upload extends ImmutablePureComponent {
   render () {
     const { intl, media } = this.props;
     const active          = this.state.hovered || this.state.focused;
-    const description     = this.state.dirtyDescription || media.get('description') || '';
+    const description     = this.state.dirtyDescription || (this.state.dirtyDescription !== '' && media.get('description')) || '';
 
     return (
       <div className='compose-form__upload' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>

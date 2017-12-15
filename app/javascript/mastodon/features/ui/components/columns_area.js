@@ -53,7 +53,10 @@ export default class ColumnsArea extends ImmutablePureComponent {
     if (!this.props.singleColumn) {
       this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
     }
-    this.lastIndex = getIndex(this.context.router.history.location.pathname);
+
+    this.lastIndex   = getIndex(this.context.router.history.location.pathname);
+    this.isRtlLayout = document.getElementsByTagName('body')[0].classList.contains('rtl');
+
     this.setState({ shouldAnimate: true });
   }
 
@@ -79,7 +82,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   handleChildrenContentChange() {
     if (!this.props.singleColumn) {
-      this._interruptScrollAnimation = scrollRight(this.node, this.node.scrollWidth - window.innerWidth);
+      const modifier = this.isRtlLayout ? -1 : 1;
+      this._interruptScrollAnimation = scrollRight(this.node, (this.node.scrollWidth - window.innerWidth) * modifier);
     }
   }
 
