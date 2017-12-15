@@ -165,6 +165,10 @@ pt:
         unsuspend_account: '%{name} desativou a suspensão de  %{target}'
         update_custom_emoji: '%{name} atualizou o emoji %{target}'
         update_status: '%{name} atualizou o estado de %{target}'
+        disable_2fa_user: '%{name} desactivou o requerimento de autenticação em dois
+          passos para o utilizador %{target}'
+        disable_user: '%{name} desativou o acesso para o utilizador %{target}'
+        enable_user: '%{name} ativou o acesso para o utilizador %{target}'
       title: Registo de auditoria
     domain_blocks:
       add_new: Adicionar novo
@@ -366,11 +370,14 @@ pt:
     authorized_apps: Aplicativos autorizados
     back: Voltar ao Mastodon
     edit_profile: Editar perfil
-    export: Importar dados
+    export: Exportar dados
     import: Importar
     preferences: Preferências
     settings: Settings
-    two_factor_authentication: Autenticação Two-factor
+    two_factor_authentication: Autenticação em dois passos
+    delete: Eliminação da conta
+    development: Desenvolvimento
+    followers: Seguidores autorizados
   statuses:
     open_in_web: Abrir no browser
     over_character_limit: limite de caracter excedeu %{max}
@@ -410,3 +417,42 @@ pt:
       expires_at: Expira
       uses: Usos
     title: Convidar pessoas
+  sessions:
+    activity: Última atividade
+    browser: Navegador
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Navegador desconhecido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Navegador Nokia S40 Ovi
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Sessão atual
+    description: '%{browser} em %{platform}'
+    explanation: Estes são os navegadores que estão conectados com a tua conta do
+      Mastodon.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: Plataforma desconhecida
+      windows: Windows
+      windows_mobile: Windows Mobile
+    revoke: Revogar
+    revoke_success: Sessão revogada com sucesso
+    title: Sessões
