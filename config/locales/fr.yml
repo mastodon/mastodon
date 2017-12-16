@@ -116,6 +116,7 @@ fr:
       roles:
         admin: Administrateur
         moderator: Modérateur
+        staff: Personnel
         user: Utilisateur
       salmon_url: URL Salmon
       search: Rechercher
@@ -135,12 +136,13 @@ fr:
       web: Web
     action_logs:
       actions:
-        confirm_user: "%{name} adresse e-mail confirmée de l'utilisateur %{target}"
+        confirm_user: "%{name} adresse courriel confirmée de l'utilisateur %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux emoji %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
-        create_email_domain_block: "%{name} a blacklisté le domaine de l'e-mail %{target}"
+        create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
+        demote_user: "%{name} a rétrogradé l'utilisateur %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
-        destroy_email_domain_block: "%{name} a mis le domaine de l'e-mail %{target} sur liste blanche"
+        destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
         disable_2fa_user: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur %{target}"
         disable_custom_emoji: "%{name} a désactivé l'emoji %{target}"
@@ -159,6 +161,7 @@ fr:
         update_status: "%{name} a mis à jour le statut de %{target}"
       title: Journal d'audit
     custom_emojis:
+      by_domain: Domaine
       copied_msg: Copie locale de l’émoji créée avec succès !
       copy: Copier
       copy_failed_msg: Impossible de faire une copie locale de cet émoji
@@ -191,7 +194,7 @@ fr:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
-          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
+          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucun</strong> si vous voulez simplement rejeter les fichiers multimédia."
           noop: Aucune
           silence: Masqué
           suspend: Suspendre
@@ -285,7 +288,7 @@ fr:
         desc_html: Montrer un badge de responsable sur une page utilisateur
         title: Montrer un badge de responsable
       site_description:
-        desc_html: Affichée sous la forme d’un paragraphe sur la page d’accueil et utilisée comme balise meta.<br/>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Paragraphe introductif sur la page d'accueil et dans les balises meta. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du site
       site_description_extended:
         desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
@@ -457,6 +460,9 @@ fr:
     title: Inviter des gens
   landing_strip_html: <strong>%{name}</strong> utilise %{link_to_root_path}. Vous pouvez læ suivre et interagir si vous possédez un compte quelque part dans le "fediverse".
   landing_strip_signup_html: Si ce n’est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
+  lists:
+    errors:
+      limit: Vous avez atteint le nombre maximum de listes
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
@@ -590,11 +596,12 @@ fr:
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
     pin_errors:
-      limit: Trop de pouets épinglés
+      limit: Vous avez déjà épinglé le nombre maximum de pouets
       ownership: Vous ne pouvez pas épingler un statut ne vous appartenant pas
       private: Les statuts non-publics ne peuvent pas être épinglés
       reblog: Un partage ne peut pas être épinglé
     show_more: Afficher plus
+    title: '%{name} : "%{quote}"'
     visibilities:
       private: Abonné⋅e⋅s uniquement
       private_long: Seul⋅e⋅s vos abonné⋅e⋅s verront vos statuts
@@ -695,7 +702,7 @@ fr:
     manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l’entrer manuellement, voici le secret en clair :'
     recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
-    recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour récupérer l’accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     setup: Installer
     wrong_code: Les codes entrés sont incorrects ! L’heure du serveur et celle de votre appareil sont-elles correctes ?
   users:

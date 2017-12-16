@@ -346,7 +346,7 @@ const startWorker = (workerId) => {
             return;
           }
 
-          if (!req.accountId) {
+          if (req.accountId) {
             const queries = [
               client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
             ];
@@ -368,6 +368,7 @@ const startWorker = (workerId) => {
               log.error(err);
             });
           } else {
+            done();
             transmit();
           }
         });

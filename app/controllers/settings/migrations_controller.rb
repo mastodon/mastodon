@@ -28,6 +28,7 @@ class Settings::MigrationsController < ApplicationController
   end
 
   def migration_account_changed?
-    current_account.moved_to_account_id != @migration.account&.id
+    current_account.moved_to_account_id != @migration.account&.id &&
+      current_account.id != @migration.account&.id
   end
 end
