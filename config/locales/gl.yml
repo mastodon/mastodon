@@ -1,1 +1,159 @@
-{}
+gl:
+  about:
+    about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>.
+      Pode interactuar con elas si ten unha conta nalgures do fediverso.
+    about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web
+      abertos e libres, software de código aberto. É descentralizada como o correo
+      electrónico.
+    about_this: Sobre
+    closed_registrations: O rexistro en esta instancia está pechado en este intre.
+      Porén! Pode atopar unha instancia diferente para obter unha conta e ter acceso
+      exactamente a misma rede desde alí.
+    contact: Contacto
+    contact_missing: Non establecido
+    contact_unavailable: N/A
+    description_headline: Qué é %{domain}?
+    domain_count_after: outras instancias
+    domain_count_before: Conectada a
+    extended_description_html: '<h3>Un bo lugar para regras</h3>
+
+      <p>A descrición extendida aínda non se proporcionou.</p>
+
+      '
+    features:
+      humane_approach_body: Aprendendo dos erros de outras redes, Mastodon intenta
+        tomar decisións éticas de deseño para loitar contra os usos incorrectos da
+        rede.
+      humane_approach_title: Unha aproximación máis humana
+      not_a_product_body: Mastodon non é unha rede comercial. Sen anuncios, sen minería
+        de datos, sen xardíns privados. Non hai autoridade centralizada.
+      not_a_product_title: Vostede é unha persona, non un producto
+      real_conversation_body: Con 500 caracteres a súa disposición e soporte para
+        contido ao por menor e avisos sobre o contido, pode expresarse vostede do
+        xeito que queira.
+      real_conversation_title: Construído para conversacións reais
+      within_reach_body: Existen múltiples aplicativos para iOS, Android e outras
+        plataformas grazas a un entorno API amigable para o desenvolvedor que lle
+        permite estar ao tanto cos seus amigos en calquer lugar.
+      within_reach_title: Sempre en contacto
+    find_another_instance: Atope outra instancia
+    generic_description: '%{domain} é un servidor na rede'
+    hosted_on: Mastodon aloxado en %{domain}
+    learn_more: Coñeza máis
+    other_instances: Listado de instancias
+    source_code: Código fonte
+    status_count_after: estados
+    status_count_before: Quen escribeu
+    user_count_after: usuarias
+    user_count_before: Inicio de
+    what_is_mastodon: Qué é Mastodon?
+  accounts:
+    follow: Seguir
+    followers: Seguidoras
+    following: Seguindo
+    media: Medios
+    moved_html: '%{name} mudouse a %{new_profile_link}:'
+    nothing_here: Nada por aquí!
+    people_followed_by: Personas que segue %{name}
+    people_who_follow: Personas que seguen a %{name}
+    posts: Toots
+    posts_with_replies: Toots e respostas
+    remote_follow: Seguimento remoto
+    reserved_username: O nome de usuaria está reservado
+    roles:
+      admin: Admin
+      moderator: Mod
+    unfollow: Deixar de seguir
+  admin:
+    account_moderation_notes:
+      account: Moderador
+      create: Crear
+      created_at: Data
+      created_msg: Nota a moderación creada con éxito!
+      delete: Eliminar
+      destroyed_msg: Nota a moderación destruída con éxito!
+    accounts:
+      are_you_sure: Está segura?
+      by_domain: Dominio
+      confirm: Confirmar
+      confirmed: Confirmado
+      disable: Deshabilitar
+      disable_two_factor_authentication: Deshabilitar 2FA
+      disabled: Deshabilitado
+      display_name: Mostrar nome
+      domain: Dominio
+      edit: Editar
+      email: E-mail
+      enable: Habilitar
+      enabled: Habilitado
+      feed_url: URL fonte
+      followers: Seguidoras
+      followers_url: URL das seguidoras
+      follows: Segue
+      inbox_url: URL da Caixa de entrada
+      ip: IP
+      location:
+        all: Todo
+        local: Local
+        remote: Remoto
+        title: Lugar
+      login_status: Estado da conexión
+      media_attachments: Anexos de medios
+      moderation:
+        all: Todo
+        silenced: Acalado
+        suspended: Suspendido
+        title: Moderación
+      moderation_notes: Notas de moderación
+      most_recent_activity: Actividade máis recente
+      most_recent_ip: IP máis recente
+      not_subscribed: Non suscrita
+      order:
+        alphabetic: Alfabética
+        most_recent: Máis recente
+        title: Orde
+      outbox_url: URL caixa de saída
+      perform_full_suspension: Suspender completamente
+      profile_url: URL do perfil
+      promote: Promocionar
+      protocol: Protocolo
+      public: Público
+      redownload: Actualizar avatar
+      reset: Restablecer
+      reset_password: Restablecer contrasinal
+      resubscribe: Voltar a suscribir
+      role: Permisos
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        staff: Membresía
+        user: Usuaria
+      salmon_url: URL Salmon
+      search: Busca
+      shared_inbox_url: URL da caixa de entrada compartida
+      show:
+        created_reports: Informes creados por esta conta
+        report: informar
+        targeted_reports: Informes feitos sobre esta conta
+      silence: Acalar
+      statuses: Estados
+      subscribe: Subscribir
+      title: Contas
+      undo_silenced: Desfacer acalar
+      undo_suspension: Desfacer suspensión
+      unsubscribe: Non subscribir
+      username: Nome de usuaria
+      web: Web
+    action_logs:
+      actions:
+        confirm_user: '%{name} comfirmou o enderezo de correo da usuaria %{target}'
+        create_custom_emoji: '%{name} subeu un novo emoji %{target}'
+        create_domain_block: '%{name} bloqueou o dominio %{target}'
+        create_email_domain_block: '%{name} engadeu a lista negra o dominio de correo
+          %{target}'
+        destroy_domain_block: '%{name} desbloqueou o dominio %{target}'
+        destroy_email_domain_block: '%{name} meteu na lista blanca de correo o dominio
+          %{target}'
+        destroy_status: '%{name} eliminou o estado de %{target}'
+        disable_2fa_user: '%{name} deshabilitou o requerimento 2FA para usuaria %{target}'
+        disable_custom_emoji: '%{name} deshabilitou emoji %{target}'
