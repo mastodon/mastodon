@@ -33,7 +33,7 @@ module Mastodon
     end
 
     def source_base_url
-      'https://github.com/kedamaDQ/mastodon'
+      'https://github.com/kedamaDQ/mastodon/tree/foresdon-v2.1.0'
     end
 
     # specify git tag or commit hash here
