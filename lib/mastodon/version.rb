@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def flags
-      ''
+      '+a434d9c'
     end
 
     def to_a
