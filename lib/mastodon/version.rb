@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def pre
-      'rc3'
+      nil
     end
 
     def flags

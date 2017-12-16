@@ -7,9 +7,9 @@ body.rtl {
     margin-left: 5px;
   }
 
-  .character-counter__wrapper {
-    margin-right: 8px;
-    margin-left: 16px;
+  .compose-form .compose-form__buttons-wrapper .character-counter__wrapper {
+    margin-right: 0;
+    margin-left: 4px;
   }
 
   .navigation-bar__profile {
@@ -30,6 +30,22 @@ body.rtl {
   .column-header__buttons {
     left: 0;
     right: auto;
+    margin-left: -15px;
+    margin-right: 0;
+  }
+
+  .column-inline-form .icon-button {
+    margin-left: 0;
+    margin-right: 5px;
+  }
+
+  .column-header__links .text-btn {
+    margin-left: 10px;
+    margin-right: 0;
+  }
+
+  .account__avatar-wrapper {
+    float: right;
   }
 
   .column-header__back-button {
@@ -39,10 +55,6 @@ body.rtl {
 
   .column-header__setting-arrows {
     float: left;
-  }
-
-  .compose-form__modifiers {
-    border-radius: 0 0 0 4px;
   }
 
   .setting-toggle {

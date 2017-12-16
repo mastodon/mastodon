@@ -269,6 +269,7 @@ Rails.application.routes.draw do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'
+        resources :lists, only: :index, controller: 'accounts/lists'
 
         member do
           post :follow

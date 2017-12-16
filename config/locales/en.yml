@@ -116,6 +116,7 @@ en:
       roles:
         admin: Administrator
         moderator: Moderator
+        staff: Staff
         user: User
       salmon_url: Salmon URL
       search: Search
@@ -160,6 +161,7 @@ en:
         update_status: "%{name} updated status by %{target}"
       title: Audit log
     custom_emojis:
+      by_domain: Domain
       copied_msg: Successfully created local copy of the emoji
       copy: Copy
       copy_failed_msg: Could not make a local copy of that emoji
@@ -343,7 +345,7 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
+    agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Security
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -588,7 +590,7 @@ en:
     notifications: Notifications
     preferences: Preferences
     settings: Settings
-    two_factor_authentication: Two-factor Authentication
+    two_factor_authentication: Two-factor Auth
     your_apps: Your applications
   statuses:
     open_in_web: Open in web
@@ -599,6 +601,7 @@ en:
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
     show_more: Show more
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Followers-only
       private_long: Only show to followers
