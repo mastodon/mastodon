@@ -3,13 +3,14 @@
 #
 # Table name: web_push_subscriptions
 #
-#  id         :integer          not null, primary key
-#  endpoint   :string           not null
-#  key_p256dh :string           not null
-#  key_auth   :string           not null
-#  data       :json
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  endpoint        :string           not null
+#  key_p256dh      :string           not null
+#  key_auth        :string           not null
+#  data            :json
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  desktop_enabled :boolean          default(TRUE), not null
 #
 
 require 'webpush'

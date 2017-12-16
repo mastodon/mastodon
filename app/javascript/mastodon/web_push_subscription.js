@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { supportsPushNotifications } from './agent';
+import { supportsDesktopNotifications, supportsPushNotifications } from './agent';
 import { store } from './containers/mastodon';
 import { setSubscription, clearSubscription } from './actions/push_notifications';
 import { pushNotificationsSetting } from './settings';
@@ -38,7 +38,10 @@ const unsubscribe = ({ registration, subscription }) =>
   subscription ? subscription.unsubscribe().then(() => registration) : registration;
 
 const sendSubscriptionToBackend = (subscription) => {
-  const params = { subscription };
+  const params = {
+    desktop_enabled: supportsDesktopNotifications(),
+    subscription,
+  };
 
   const me = store.getState().getIn(['meta', 'me']);
   if (me) {

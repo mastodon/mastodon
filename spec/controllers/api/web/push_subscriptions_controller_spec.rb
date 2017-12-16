@@ -9,6 +9,7 @@ describe Api::Web::PushSubscriptionsController do
 
   let(:create_payload) do
     {
+      desktop_enabled: false,
       subscription: {
         endpoint: 'https://fcm.googleapis.com/fcm/send/fiuH06a27qE:APA91bHnSiGcLwdaxdyqVXNDR9w1NlztsHb6lyt5WDKOC_Z_Q8BlFxQoR8tWFSXUIDdkyw0EdvxTu63iqamSaqVSevW5LfoFwojws8XYDXv_NRRLH6vo2CdgiN4jgHv5VLt2A8ah6lUX',
         keys: {
@@ -33,6 +34,14 @@ describe Api::Web::PushSubscriptionsController do
   end
 
   describe 'POST #create' do
+    it 'requires desktop_enabled parameter' do
+      sign_in(user)
+      stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
+      create_payload.delete :desktop_enabled
+
+      expect{ post :create, format: :json, params: create_payload }.to raise_error ActionController::ParameterMissing
+    end
+
     it 'saves push subscriptions' do
       sign_in(user)
 
@@ -42,11 +51,76 @@ describe Api::Web::PushSubscriptionsController do
 
       user.reload
 
-      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+      push_subscription = Web::PushSubscription.find_by(desktop_enabled: false, endpoint: create_payload[:subscription][:endpoint])
 
       expect(push_subscription['endpoint']).to eq(create_payload[:subscription][:endpoint])
       expect(push_subscription['key_p256dh']).to eq(create_payload[:subscription][:keys][:p256dh])
       expect(push_subscription['key_auth']).to eq(create_payload[:subscription][:keys][:auth])
+    end
+
+    context 'without initial data' do
+      shared_examples 'desktop notification settings reflection' do
+        it 'make alert settings those corresponding to desktop notification settings by default' do
+          Fabricate('Web::Setting', user: user, data: {
+            'notifications' => {
+              'alerts' => {
+                'follow' => true,
+                'favourite' => false,
+                'reblog' => true,
+                'mention' => false,
+              },
+            },
+          })
+
+          sign_in(user)
+
+          stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
+
+          post :create, format: :json, params: create_payload
+
+          user.reload
+
+          push_subscription = Web::PushSubscription.find_by(desktop_enabled: false, endpoint: create_payload[:subscription][:endpoint])
+
+          expect(push_subscription.data['alerts']).to eq({
+            'follow' => true,
+            'favourite' => false,
+            'reblog' => true,
+            'mention' => false,
+          })
+        end
+      end
+
+      context 'mobile' do
+        before { request.headers['User-Agent'] = 'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0' }
+        include_examples 'desktop notification settings reflection'
+      end
+
+      context 'tablet' do
+        before { request.headers['User-Agent'] = 'Mozilla/5.0 (Android; Tablet; rv:14.0) Gecko/14.0 Firefox/14.0' }
+        include_examples 'desktop notification settings reflection'
+      end
+
+      context 'desktop' do
+        it 'make alert settings false by default' do
+          sign_in(user)
+
+          stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
+
+          post :create, format: :json, params: create_payload
+
+          user.reload
+
+          push_subscription = Web::PushSubscription.find_by(desktop_enabled: false, endpoint: create_payload[:subscription][:endpoint])
+
+          expect(push_subscription.data['alerts']).to eq({
+            'follow' => false,
+            'favourite' => false,
+            'reblog' => false,
+            'mention' => false,
+          })
+        end
+      end
     end
 
     context 'with initial data' do

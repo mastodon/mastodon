@@ -6,6 +6,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   before_action :require_user!
 
   def create
+    params.require(:desktop_enabled)
     params.require(:subscription).require(:endpoint)
     params.require(:subscription).require(:keys).require([:auth, :p256dh])
 
@@ -21,16 +22,17 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
 
     data = {
       alerts: {
-        follow: alerts_enabled,
-        favourite: alerts_enabled,
-        reblog: alerts_enabled,
-        mention: alerts_enabled,
+        follow: current_user.web_setting&.data&.dig('notifications', 'alerts', 'follow') == true && alerts_enabled,
+        favourite: current_user.web_setting&.data&.dig('notifications', 'alerts', 'favourite') == true && alerts_enabled,
+        reblog: current_user.web_setting&.data&.dig('notifications', 'alerts', 'reblog') == true && alerts_enabled,
+        mention: current_user.web_setting&.data&.dig('notifications', 'alerts', 'mention') == true && alerts_enabled,
       },
     }
 
     data.deep_merge!(params[:data]) if params[:data]
 
     web_subscription = ::Web::PushSubscription.create!(
+      desktop_enabled: params[:desktop_enabled],
       endpoint: params[:subscription][:endpoint],
       key_p256dh: params[:subscription][:keys][:p256dh],
       key_auth: params[:subscription][:keys][:auth],

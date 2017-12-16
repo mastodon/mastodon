@@ -54,16 +54,20 @@ export default class ColumnSettings extends React.PureComponent {
           },
         ].map(({ key, label }, index) => {
           const labelId = `notifications-${index}`;
+          const desktopSettingKey = ['alerts', key];
+          const pushSettingKey = ['alerts', key];
+          const showSettingKey = ['shows', key];
+          const soundSettingkey = ['sounds', key];
 
           return (
             <div key={index} role='group' aria-labelledby={labelId}>
               <span id={labelId} className='column-settings__section'>{label}</span>
 
               <div className='column-settings__row'>
-                {showDesktopSettings && <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', key]} onChange={onChange} label={alertStr} />}
-                {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', key]} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-                <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', key]} onChange={onChange} label={showStr} />
-                <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', key]} onChange={onChange} label={soundStr} />
+                {showDesktopSettings && <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={desktopSettingKey} onChange={onChange} label={alertStr} />}
+                {showPushSettings && <SettingToggle disabled={showDesktopSettings && !settings.getIn(desktopSettingKey)} sub={showDesktopSettings} prefix='notifications_push' settings={pushSettings} settingKey={pushSettingKey} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
+                <SettingToggle prefix='notifications' settings={settings} settingKey={showSettingKey} onChange={onChange} label={showStr} />
+                <SettingToggle prefix='notifications' settings={settings} settingKey={soundSettingkey} onChange={onChange} label={soundStr} />
               </div>
             </div>
           );

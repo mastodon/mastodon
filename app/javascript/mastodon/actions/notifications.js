@@ -39,6 +39,7 @@ const unescapeHTML = (html) => {
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
     const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
+    const showPushAlert = getState().getIn(['push_notifications', 'alerts', notification.type]);
     const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
 
     dispatch({
@@ -52,7 +53,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     fetchRelatedRelationships(dispatch, [notification]);
 
     // Desktop notifications
-    if (typeof window.Notification !== 'undefined' && showAlert) {
+    if (typeof window.Notification !== 'undefined' && showAlert && !showPushAlert) {
       const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
       const body  = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
 

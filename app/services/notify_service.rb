@@ -111,7 +111,9 @@ class NotifyService < BaseService
     # a favourite and creating a notification are not wrapped in a transaction.
     return if @notification.activity.nil?
 
-    sessions_with_subscriptions = @recipient.user.session_activations.where.not(web_push_subscription: nil)
+    sessions_with_subscriptions = @recipient.user.session_activations.includes(:web_push_subscription).references(:web_push_subscription)
+    sessions_with_subscriptions = sessions_with_subscriptions.where(web_push_subscriptions: { desktop_enabled: false }) unless web_alerts_enabled?
+
     sessions_with_subscriptions_ids = sessions_with_subscriptions.select { |session| session.web_push_subscription.pushable? @notification }.map(&:id)
 
     WebPushNotificationWorker.push_bulk(sessions_with_subscriptions_ids) do |session_activation_id|
@@ -121,6 +123,10 @@ class NotifyService < BaseService
 
   def send_email
     NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later
+  end
+
+  def web_alerts_enabled?
+    @recipient.user.web_setting&.data&.dig('notifications', 'alerts', @notification.type.to_s) == true
   end
 
   def email_enabled?

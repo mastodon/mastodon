@@ -51,6 +51,7 @@ class User < ApplicationRecord
   belongs_to :invite, counter_cache: :uses
   accepts_nested_attributes_for :account
 
+  has_one :web_setting, class_name: 'Web::Setting', dependent: :delete, inverse_of: :user
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
