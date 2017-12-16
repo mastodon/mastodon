@@ -31,7 +31,7 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   end
 
   def account_home_feed
-    Feed.new(:home, current_account)
+    HomeFeed.new(current_account)
   end
 
   def insert_pagination_headers

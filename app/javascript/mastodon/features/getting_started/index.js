@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { me } from '../../initial_state';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -25,10 +26,12 @@ const messages = defineMessages({
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   faq: { id: 'navigation_bar.faq', defaultMessage: 'FAQ(Only available in Japanese)' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
 });
 
 const mapStateToProps = state => ({
-  me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
+  myAccount: state.getIn(['accounts', me]),
   columns: state.getIn(['settings', 'columns']),
   github_url: state.getIn(['meta', 'github_url']),
   github_name: state.getIn(['meta', 'github_name']),
@@ -40,7 +43,7 @@ export default class GettingStarted extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    me: ImmutablePropTypes.map.isRequired,
+    myAccount: ImmutablePropTypes.map.isRequired,
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
     github_url: PropTypes.string.isRequired,
@@ -48,7 +51,7 @@ export default class GettingStarted extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, me, columns, multiColumn, github_url, github_name } = this.props;
+    const { intl, myAccount, columns, multiColumn, github_url, github_name } = this.props;
 
     let navItems = [];
 
@@ -73,15 +76,17 @@ export default class GettingStarted extends ImmutablePureComponent {
     navItems = navItems.concat([
       <ColumnLink key='4' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
       <ColumnLink key='5' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
+      <ColumnLink key='9' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />,
     ]);
 
-    if (me.get('locked')) {
+    if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
     }
 
     navItems = navItems.concat([
       <ColumnLink key='7' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
       <ColumnLink key='8' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
+      <ColumnLink key='10' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' hideOnMobile />,
     ]);
 
     return (

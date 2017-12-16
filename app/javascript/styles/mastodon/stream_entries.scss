@@ -119,6 +119,12 @@
       strong {
         font-weight: 500;
         color: $ui-base-color;
+
+        @each $lang in $cjk-langs {
+          &:lang(#{$lang}) {
+            font-weight: 700;
+          }
+        }
       }
 
       span {
@@ -170,6 +176,12 @@
         strong {
           font-weight: 500;
           color: $ui-base-color;
+
+          @each $lang in $cjk-langs {
+            &:lang(#{$lang}) {
+              font-weight: 700;
+            }
+          }
         }
 
         span {

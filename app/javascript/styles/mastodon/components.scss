@@ -1,5 +1,3 @@
-@import 'variables';
-
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -244,6 +242,15 @@
   width: 0;
   height: 0;
   position: absolute;
+
+  img,
+  svg {
+    margin: 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
 }
 
 .ellipsis {
@@ -258,197 +265,286 @@
 
 .compose-form {
   padding: 10px;
-}
 
-.compose-form__warning {
-  color: darken($ui-secondary-color, 65%);
-  margin-bottom: 15px;
-  background: $ui-primary-color;
-  box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
-  padding: 8px 10px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 400;
-
-  strong {
+  .compose-form__warning {
     color: darken($ui-secondary-color, 65%);
-    font-weight: 500;
-  }
+    margin-bottom: 15px;
+    background: $ui-primary-color;
+    box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 400;
 
-  a {
-    color: darken($ui-primary-color, 33%);
-    font-weight: 500;
-    text-decoration: underline;
-
-    &:hover,
-    &:active,
-    &:focus {
-      text-decoration: none;
-    }
-  }
-}
-
-.compose-form__modifiers {
-  color: $ui-base-color;
-  font-family: inherit;
-  font-size: 14px;
-  background: $simple-background-color;
-  border-radius: 0 0 4px;
-}
-
-.compose-form__buttons-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
-.compose-form__buttons {
-  padding: 10px;
-  background: darken($simple-background-color, 8%);
-  box-shadow: inset 0 5px 5px rgba($base-shadow-color, 0.05);
-  border-radius: 0 0 4px 4px;
-  display: flex;
-
-  .icon-button {
-    box-sizing: content-box;
-    padding: 0 3px;
-  }
-}
-
-.compose-form__upload-button-icon {
-  line-height: 27px;
-}
-
-.compose-form__sensitive-button {
-  display: none;
-
-  &.compose-form__sensitive-button--visible {
-    display: block;
-  }
-
-  .compose-form__sensitive-button__icon {
-    line-height: 27px;
-  }
-}
-
-.compose-form__upload-wrapper {
-  overflow: hidden;
-}
-
-.compose-form__uploads-wrapper {
-  display: flex;
-  flex-direction: row;
-  padding: 5px;
-  flex-wrap: wrap;
-}
-
-.compose-form__upload {
-  flex: 1 1 0;
-  min-width: 40%;
-  margin: 5px;
-
-  &-description {
-    position: absolute;
-    z-index: 2;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    box-sizing: border-box;
-    background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
-    padding: 10px;
-    opacity: 0;
-    transition: opacity .1s ease;
-
-    input {
-      background: transparent;
-      color: $ui-secondary-color;
-      border: 0;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      font-family: inherit;
-      font-size: 14px;
+    strong {
+      color: darken($ui-secondary-color, 65%);
       font-weight: 500;
 
+      @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
+    }
+
+    a {
+      color: darken($ui-primary-color, 33%);
+      font-weight: 500;
+      text-decoration: underline;
+
+      &:hover,
+      &:active,
       &:focus {
-        color: $white;
-      }
-
-      &::placeholder {
-        opacity: 0.54;
-        color: $ui-secondary-color;
+        text-decoration: none;
       }
     }
+  }
 
-    &.active {
-      opacity: 1;
+  .compose-form__autosuggest-wrapper {
+    position: relative;
+
+    .emoji-picker-dropdown {
+      position: absolute;
+      right: 5px;
+      top: 5px;
     }
   }
 
-  .icon-button {
-    mix-blend-mode: difference;
-  }
-}
-
-.compose-form__upload-thumbnail {
-  border-radius: 4px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100px;
-  width: 100%;
-}
-
-.compose-form__label {
-  display: block;
-  line-height: 24px;
-  vertical-align: middle;
-
-  &.with-border {
-    border-top: 1px solid $ui-base-color;
-    padding-top: 10px;
+  .autosuggest-textarea,
+  .spoiler-input {
+    position: relative;
   }
 
-  .compose-form__label__text {
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 14px;
-    margin-left: 8px;
-    color: $ui-primary-color;
+  .autosuggest-textarea__textarea,
+  .spoiler-input__input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    color: $ui-base-color;
+    background: $simple-background-color;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+
+    &:focus {
+      outline: 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      font-size: 16px;
+    }
   }
-}
 
-.compose-form__textarea,
-.follow-form__input {
-  background: $simple-background-color;
-
-  &:disabled {
-    background: $ui-secondary-color;
+  .spoiler-input__input {
+    border-radius: 4px;
   }
-}
 
-.compose-form__autosuggest-wrapper {
-  position: relative;
+  .autosuggest-textarea__textarea {
+    min-height: 100px;
+    border-radius: 4px 4px 0 0;
+    padding-bottom: 0;
+    padding-right: 10px + 22px;
+    resize: none;
 
-  .emoji-picker-dropdown {
+    @media screen and (max-width: 600px) {
+      height: 100px !important; // prevent auto-resize textarea
+      resize: vertical;
+    }
+  }
+
+  .autosuggest-textarea__suggestions {
+    box-sizing: border-box;
+    display: none;
     position: absolute;
-    right: 5px;
-    top: 5px;
+    top: 100%;
+    width: 100%;
+    z-index: 99;
+    box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+    background: $ui-secondary-color;
+    border-radius: 0 0 4px 4px;
+    color: $ui-base-color;
+    font-size: 14px;
+    padding: 6px;
 
-    ::-webkit-scrollbar-track:hover,
-    ::-webkit-scrollbar-track:active {
-      background-color: rgba($base-overlay-background, 0.3);
+    &.autosuggest-textarea__suggestions--visible {
+      display: block;
     }
   }
-}
 
-.compose-form__publish {
-  display: flex;
-  min-width: 0;
-}
+  .autosuggest-textarea__suggestions__item {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
 
-.compose-form__publish-button-wrapper {
-  overflow: hidden;
-  padding-top: 10px;
+    &:hover,
+    &:focus,
+    &:active,
+    &.selected {
+      background: darken($ui-secondary-color, 10%);
+    }
+  }
+
+  .autosuggest-account,
+  .autosuggest-emoji {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 18px;
+    font-size: 14px;
+  }
+
+  .autosuggest-account-icon,
+  .autosuggest-emoji img {
+    display: block;
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .autosuggest-account .display-name__account {
+    color: lighten($ui-base-color, 36%);
+  }
+
+  .compose-form__modifiers {
+    color: $ui-base-color;
+    font-family: inherit;
+    font-size: 14px;
+    background: $simple-background-color;
+
+    .compose-form__upload-wrapper {
+      overflow: hidden;
+    }
+
+    .compose-form__uploads-wrapper {
+      display: flex;
+      flex-direction: row;
+      padding: 5px;
+      flex-wrap: wrap;
+    }
+
+    .compose-form__upload {
+      flex: 1 1 0;
+      min-width: 40%;
+      margin: 5px;
+
+      &-description {
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
+        background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+        padding: 10px;
+        opacity: 0;
+        transition: opacity .1s ease;
+
+        input {
+          background: transparent;
+          color: $ui-secondary-color;
+          border: 0;
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          font-family: inherit;
+          font-size: 14px;
+          font-weight: 500;
+
+          &:focus {
+            color: $white;
+          }
+
+          &::placeholder {
+            opacity: 0.54;
+            color: $ui-secondary-color;
+          }
+        }
+
+        &.active {
+          opacity: 1;
+        }
+      }
+
+      .icon-button {
+        mix-blend-mode: difference;
+      }
+    }
+
+    .compose-form__upload-thumbnail {
+      border-radius: 4px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100px;
+      width: 100%;
+    }
+  }
+
+  .compose-form__buttons-wrapper {
+    padding: 10px;
+    background: darken($simple-background-color, 8%);
+    border-radius: 0 0 4px 4px;
+    display: flex;
+    justify-content: space-between;
+
+    .compose-form__buttons {
+      display: flex;
+
+      .compose-form__upload-button-icon {
+        line-height: 27px;
+      }
+
+      .compose-form__sensitive-button {
+        display: none;
+
+        &.compose-form__sensitive-button--visible {
+          display: block;
+        }
+
+        .compose-form__sensitive-button__icon {
+          line-height: 27px;
+        }
+      }
+    }
+
+    .icon-button {
+      box-sizing: content-box;
+      padding: 0 3px;
+    }
+
+    .character-counter__wrapper {
+      align-self: center;
+      margin-right: 4px;
+
+      .character-counter {
+        cursor: default;
+        font-family: 'mastodon-font-sans-serif', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: lighten($ui-base-color, 12%);
+
+        &.character-counter--over {
+          color: $warning-red;
+        }
+      }
+    }
+  }
+
+  .compose-form__publish {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 0;
+
+    .compose-form__publish-button-wrapper {
+      overflow: hidden;
+      padding-top: 10px;
+    }
+  }
 }
 
 .emojione {
@@ -510,6 +606,11 @@
   font-weight: 400;
   overflow: hidden;
   white-space: pre-wrap;
+  padding-top: 2px;
+
+  &:focus {
+    outline: 0;
+  }
 
   &.status__content--with-spoiler {
     white-space: normal;
@@ -520,8 +621,9 @@
   }
 
   .emojione {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0;
   }
 
   p {
@@ -601,8 +703,12 @@
     outline: 0;
     background: lighten($ui-base-color, 4%);
 
-    &.status-direct {
+    .status.status-direct {
       background: lighten($ui-base-color, 12%);
+
+      &.muted {
+        background: transparent;
+      }
     }
 
     .detailed-status,
@@ -619,6 +725,12 @@
   min-height: 48px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
+
+  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
+    // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
+    // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
+    padding-right: 26px; // 10px + 16px
+  }
 
   @keyframes fade {
     0% { opacity: 0; }
@@ -751,7 +863,7 @@
 .status__action-bar {
   align-items: center;
   display: flex;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .status__action-bar-button {
@@ -782,8 +894,9 @@
     line-height: 24px;
 
     .emojione {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
+      margin: -1px 0 0;
     }
   }
 
@@ -888,6 +1001,7 @@
 .account__relationship {
   height: 18px;
   padding: 10px;
+  white-space: nowrap;
 }
 
 .account__header {
@@ -897,6 +1011,18 @@
   background-size: cover;
   background-position: center;
   position: relative;
+
+  &.inactive {
+    opacity: 0.5;
+
+    .account__header__avatar {
+      filter: grayscale(100%);
+    }
+
+    .account__header__username {
+      color: $ui-primary-color;
+    }
+  }
 
   & > div {
     background: rgba(lighten($ui-base-color, 4%), 0.9);
@@ -936,6 +1062,12 @@
 
   strong {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   a {
@@ -1037,6 +1169,12 @@
     font-size: 15px;
     font-weight: 500;
     color: $primary-text-color;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   abbr {
@@ -1928,121 +2066,6 @@
   cursor: default;
 }
 
-.autosuggest-textarea,
-.spoiler-input {
-  position: relative;
-}
-
-.autosuggest-textarea__textarea,
-.spoiler-input__input {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-  color: $ui-base-color;
-  background: $simple-background-color;
-  padding: 10px;
-  font-family: inherit;
-  font-size: 14px;
-  resize: vertical;
-  border: 0;
-  outline: 0;
-
-  &:focus {
-    outline: 0;
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 16px;
-  }
-}
-
-.spoiler-input__input {
-  border-radius: 4px;
-}
-
-.autosuggest-textarea__textarea {
-  min-height: 100px;
-  border-radius: 4px 4px 0 0;
-  padding-bottom: 0;
-  padding-right: 10px + 22px;
-  resize: none;
-
-  @media screen and (max-width: 600px) {
-    height: 100px !important; // prevent auto-resize textarea
-    resize: vertical;
-  }
-}
-
-.autosuggest-textarea__suggestions {
-  box-sizing: border-box;
-  display: none;
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  z-index: 99;
-  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
-  background: $ui-secondary-color;
-  border-radius: 0 0 4px 4px;
-  color: $ui-base-color;
-  font-size: 14px;
-  padding: 6px;
-
-  &.autosuggest-textarea__suggestions--visible {
-    display: block;
-  }
-}
-
-.autosuggest-textarea__suggestions__item {
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-
-  &:hover,
-  &:focus,
-  &:active,
-  &.selected {
-    background: darken($ui-secondary-color, 10%);
-  }
-}
-
-.autosuggest-account,
-.autosuggest-emoji {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  line-height: 18px;
-  font-size: 14px;
-}
-
-.autosuggest-account-icon,
-.autosuggest-emoji img {
-  display: block;
-  margin-right: 8px;
-  width: 16px;
-  height: 16px;
-}
-
-.autosuggest-account .display-name__account {
-  color: lighten($ui-base-color, 36%);
-}
-
-.character-counter__wrapper {
-  line-height: 36px;
-  margin: 0 16px 0 8px;
-  padding-top: 10px;
-}
-
-.character-counter {
-  cursor: default;
-  font-size: 16px;
-}
-
-.character-counter--over {
-  color: $warning-red;
-}
-
 .getting-started__wrapper {
   position: relative;
   overflow-y: auto;
@@ -2065,6 +2088,27 @@
 
   a {
     color: $ui-base-lighter-color;
+  }
+}
+
+.keyboard-shortcuts {
+  padding: 8px 0 0;
+  overflow: hidden;
+
+  thead {
+    position: absolute;
+    left: -9999px;
+  }
+
+  td {
+    padding: 0 10px 8px;
+  }
+
+  code {
+    display: inline-block;
+    padding: 3px 5px;
+    background-color: lighten($ui-base-color, 8%);
+    border: 1px solid darken($ui-base-color, 4%);
   }
 }
 
@@ -2151,15 +2195,12 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status-card-photo {
+  cursor: zoom-in;
   display: block;
   text-decoration: none;
-
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0;
-  }
+  width: 100%;
+  height: auto;
+  margin: 0;
 }
 
 .status-card-video {
@@ -2210,14 +2251,19 @@ button.icon-button.active i.fa-retweet {
   .status-card__image-image {
     border-radius: 4px 4px 0 0;
   }
+
+  .status-card__title {
+    white-space: inherit;
+  }
 }
 
 .status-card__image-image {
   border-radius: 4px 0 0 4px;
   display: block;
-  height: auto;
   margin: 0;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .load-more {
@@ -2280,6 +2326,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header {
+  display: flex;
   padding: 15px;
   font-size: 16px;
   background: lighten($ui-base-color, 4%);
@@ -2305,12 +2352,14 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header__buttons {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  display: flex;
   height: 48px;
+  display: flex;
+  margin: -15px;
+  margin-left: 0;
+}
+
+.column-header__links .text-btn {
+  margin-right: 10px;
 }
 
 .column-header__button {
@@ -2352,6 +2401,14 @@ button.icon-button.active i.fa-retweet {
   &.animating {
     overflow-y: hidden;
   }
+
+  hr {
+    height: 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid lighten($ui-base-color, 12%);
+    margin: 10px 0;
+  }
 }
 
 .column-header__collapsible-inner {
@@ -2376,6 +2433,14 @@ button.icon-button.active i.fa-retweet {
       padding-right: 0;
     }
   }
+}
+
+.column-header__title {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
 }
 
 .text-btn {
@@ -2581,7 +2646,7 @@ button.icon-button.active i.fa-retweet {
   color: $primary-text-color;
   position: absolute;
   top: 10px;
-  right: 10px;
+  left: 10px;
   opacity: 0.7;
   display: inline-block;
   vertical-align: top;
@@ -2596,7 +2661,7 @@ button.icon-button.active i.fa-retweet {
 .account--action-button {
   position: absolute;
   top: 10px;
-  left: 20px;
+  right: 20px;
 }
 
 .setting-toggle {
@@ -2920,6 +2985,12 @@ button.icon-button.active i.fa-retweet {
     font-weight: 500;
     display: block;
     color: $ui-base-color;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 }
 
@@ -3008,21 +3079,21 @@ button.icon-button.active i.fa-retweet {
   }
 
   .fa-search {
-    transform: translateZ(0) rotate(90deg);
+    transform: rotate(90deg);
 
     &.active {
       pointer-events: none;
-      transform: translateZ(0) rotate(0deg);
+      transform: rotate(0deg);
     }
   }
 
   .fa-times-circle {
     top: 11px;
-    transform: translateZ(0) rotate(0deg);
+    transform: rotate(0deg);
     cursor: pointer;
 
     &.active {
-      transform: translateZ(0) rotate(90deg);
+      transform: rotate(90deg);
     }
 
     &:hover {
@@ -3067,7 +3138,6 @@ button.icon-button.active i.fa-retweet {
   right: 0;
   bottom: 0;
   background: rgba($base-overlay-background, 0.7);
-  transform: translateZ(0);
 }
 
 .modal-root__container {
@@ -3355,6 +3425,12 @@ button.icon-button.active i.fa-retweet {
       border-radius: 4px;
       font-size: 14px;
       padding: 3px 6px;
+
+      @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
     }
   }
 }
@@ -3491,7 +3567,8 @@ button.icon-button.active i.fa-retweet {
 .boost-modal,
 .confirmation-modal,
 .report-modal,
-.actions-modal {
+.actions-modal,
+.mute-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $ui-base-color;
   border-radius: 8px;
@@ -3541,6 +3618,7 @@ button.icon-button.active i.fa-retweet {
 
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
+.mute-modal__action-bar,
 .report-modal__action-bar {
   display: flex;
   justify-content: space-between;
@@ -3575,6 +3653,14 @@ button.icon-button.active i.fa-retweet {
   @media screen and (min-width: 480px) {
     max-width: 380px;
   }
+}
+
+.mute-modal {
+  line-height: 24px;
+}
+
+.mute-modal .react-toggle {
+  vertical-align: middle;
 }
 
 .report-modal__statuses,
@@ -3649,8 +3735,10 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.confirmation-modal__action-bar {
-  .confirmation-modal__cancel-button {
+.confirmation-modal__action-bar,
+.mute-modal__action-bar {
+  .confirmation-modal__cancel-button,
+  .mute-modal__cancel-button {
     background-color: transparent;
     color: darken($ui-secondary-color, 34%);
     font-size: 14px;
@@ -3665,6 +3753,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal__container,
+.mute-modal__container,
 .report-modal__target {
   padding: 30px;
   font-size: 16px;
@@ -3672,6 +3761,12 @@ button.icon-button.active i.fa-retweet {
 
   strong {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 }
 
@@ -3886,6 +3981,7 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   background: $base-shadow-color;
   max-width: 100%;
+  border-radius: 4px;
 
   video {
     height: 100%;
@@ -3920,8 +4016,8 @@ button.icon-button.active i.fa-retweet {
     left: 0;
     right: 0;
     box-sizing: border-box;
-    background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 60%, transparent);
-    padding: 0 10px;
+    background: linear-gradient(0deg, rgba($base-shadow-color, 0.85) 0, rgba($base-shadow-color, 0.45) 60%, transparent);
+    padding: 0 15px;
     opacity: 0;
     transition: opacity .1s ease;
 
@@ -3974,38 +4070,65 @@ button.icon-button.active i.fa-retweet {
     }
   }
 
-  &__buttons {
+  &__buttons-bar {
+    display: flex;
+    justify-content: space-between;
     padding-bottom: 10px;
+  }
+
+  &__buttons {
     font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &.left {
-      float: left;
-
       button {
-        padding-right: 10px;
+        padding-left: 0;
       }
     }
 
     &.right {
-      float: right;
-
       button {
-        padding-left: 10px;
+        padding-right: 0;
       }
     }
 
     button {
       background: transparent;
-      padding: 0;
+      padding: 2px 10px;
+      font-size: 16px;
       border: 0;
-      color: $white;
+      color: rgba($white, 0.75);
 
       &:active,
       &:hover,
       &:focus {
-        color: $ui-highlight-color;
+        color: $white;
       }
     }
+  }
+
+  &__time-sep,
+  &__time-total,
+  &__time-current {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__time-current {
+    color: $white;
+    margin-left: 10px;
+  }
+
+  &__time-sep {
+    display: inline-block;
+    margin: 0 6px;
+  }
+
+  &__time-sep,
+  &__time-total {
+    color: $white;
   }
 
   &__seek {
@@ -4017,6 +4140,7 @@ button.icon-button.active i.fa-retweet {
       content: "";
       width: 100%;
       background: rgba($white, 0.35);
+      border-radius: 4px;
       display: block;
       position: absolute;
       height: 4px;
@@ -4028,8 +4152,9 @@ button.icon-button.active i.fa-retweet {
       display: block;
       position: absolute;
       height: 4px;
+      border-radius: 4px;
       top: 10px;
-      background: $ui-highlight-color;
+      background: lighten($ui-highlight-color, 8%);
     }
 
     &__buffer {
@@ -4046,7 +4171,8 @@ button.icon-button.active i.fa-retweet {
       top: 6px;
       margin-left: -6px;
       transition: opacity .1s ease;
-      background: $ui-highlight-color;
+      background: lighten($ui-highlight-color, 8%);
+      box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
       pointer-events: none;
 
       &.active {
@@ -4057,6 +4183,16 @@ button.icon-button.active i.fa-retweet {
     &:hover {
       .video-player__seek__handle {
         opacity: 1;
+      }
+    }
+  }
+
+  &.detailed,
+  &.fullscreen {
+    .video-player__buttons {
+      button {
+        padding-top: 10px;
+        padding-bottom: 10px;
       }
     }
   }
@@ -4335,5 +4471,133 @@ noscript {
       overflow: hidden;
       border: 0;
     }
+  }
+}
+
+.account__moved-note {
+  padding: 14px 10px;
+  padding-bottom: 16px;
+  background: lighten($ui-base-color, 4%);
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &__message {
+    position: relative;
+    margin-left: 58px;
+    color: $ui-base-lighter-color;
+    padding: 8px 0;
+    padding-top: 0;
+    padding-bottom: 4px;
+    font-size: 14px;
+
+    > span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__icon-wrapper {
+    left: -26px;
+    position: absolute;
+  }
+
+  .detailed-status__display-avatar {
+    position: relative;
+  }
+
+  .detailed-status__display-name {
+    margin-bottom: 0;
+  }
+}
+
+.column-inline-form {
+  padding: 7px 15px;
+  padding-right: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: lighten($ui-base-color, 4%);
+
+  label {
+    flex: 1 1 auto;
+
+    input {
+      width: 100%;
+      margin-bottom: 6px;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  .icon-button {
+    flex: 0 0 auto;
+    margin-left: 5px;
+  }
+}
+
+.drawer__backdrop {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($base-overlay-background, 0.5);
+}
+
+.list-editor {
+  background: $ui-base-color;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  width: 380px;
+  overflow: hidden;
+
+  @media screen and (max-width: 420px) {
+    width: 90%;
+  }
+
+  h4 {
+    padding: 15px 0;
+    background: lighten($ui-base-color, 13%);
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .drawer__pager {
+    height: 50vh;
+  }
+
+  .drawer__inner {
+    border-radius: 0 0 8px 8px;
+
+    &.backdrop {
+      width: calc(100% - 60px);
+      box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+      border-radius: 0 0 0 8px;
+    }
+  }
+
+  &__accounts {
+    overflow-y: auto;
+  }
+
+  .account__display-name {
+    &:hover strong {
+      text-decoration: none;
+    }
+  }
+
+  .account__avatar {
+    cursor: default;
+  }
+
+  .search {
+    margin-bottom: 0;
   }
 }

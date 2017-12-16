@@ -99,9 +99,10 @@ export default function notifications(state = initialState, action) {
   switch(action.type) {
   case NOTIFICATIONS_REFRESH_REQUEST:
   case NOTIFICATIONS_EXPAND_REQUEST:
+    return state.set('isLoading', true);
   case NOTIFICATIONS_REFRESH_FAIL:
   case NOTIFICATIONS_EXPAND_FAIL:
-    return state.set('isLoading', true);
+    return state.set('isLoading', false);
   case NOTIFICATIONS_SCROLL_TOP:
     return updateTop(state, action.top);
   case NOTIFICATIONS_UPDATE:

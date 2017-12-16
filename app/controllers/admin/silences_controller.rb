@@ -5,12 +5,16 @@ module Admin
     before_action :set_account
 
     def create
-      @account.update(silenced: true)
+      authorize @account, :silence?
+      @account.update!(silenced: true)
+      log_action :silence, @account
       redirect_to admin_accounts_path
     end
 
     def destroy
-      @account.update(silenced: false)
+      authorize @account, :unsilence?
+      @account.update!(silenced: false)
+      log_action :unsilence, @account
       redirect_to admin_accounts_path
     end
 

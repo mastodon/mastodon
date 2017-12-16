@@ -14,8 +14,10 @@ gem 'pg', '~> 0.20'
 gem 'pghero', '~> 1.7'
 gem 'dotenv-rails', '~> 2.2'
 
-gem 'aws-sdk', '~> 2.9'
-gem 'fog-openstack', '~> 0.1'
+gem 'aws-sdk', '~> 2.10', require: false
+gem 'fog-core', '~> 1.45'
+gem 'fog-local', '~> 0.4', require: false
+gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder', '~> 0.6'
 
@@ -38,16 +40,15 @@ gem 'http', '~> 2.2'
 gem 'http_accept_language', '~> 2.1'
 gem 'httplog', '~> 0.99'
 gem 'idn-ruby', require: 'idn'
-gem 'kaminari', '~> 1.0'
+gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.1'
-gem 'nokogiri', '~> 1.7'
+gem 'nokogiri', '~> 1.8'
 gem 'nsa', '~> 0.2'
-gem 'oj', '~> 3.0'
+gem 'oj', '~> 3.3'
 gem 'ostatus2', '~> 2.0'
-gem 'ox', '~> 2.5'
+gem 'ox', '~> 2.8'
 gem 'pundit', '~> 1.1'
-gem 'rabl', '~> 0.13'
 gem 'rack-attack', '~> 5.0'
 gem 'rack-cors', '~> 0.4', require: 'rack/cors'
 gem 'rack-timeout', '~> 0.4'
@@ -75,15 +76,15 @@ gem 'json-ld-preloaded', '~> 2.2.1'
 gem 'rdf-normalize', '~> 0.3.1'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.16'
+  gem 'fabrication', '~> 2.18'
   gem 'fuubar', '~> 2.2'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 3.6'
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :test do
-  gem 'capybara', '~> 2.14'
+  gem 'capybara', '~> 2.15'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.7'
   gem 'microformats', '~> 4.0'
@@ -91,13 +92,13 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.14', require: false
   gem 'webmock', '~> 3.0'
-  gem 'parallel_tests', '~> 2.14'
+  gem 'parallel_tests', '~> 2.17'
 end
 
 group :development do
   gem 'active_record_query_trace', '~> 1.5'
   gem 'annotate', '~> 2.7'
-  gem 'better_errors', '~> 2.1'
+  gem 'better_errors', '~> 2.4'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 5.5'
   gem 'letter_opener', '~> 1.4'
@@ -105,15 +106,15 @@ group :development do
   gem 'rubocop', require: false
   gem 'brakeman', '~> 4.0', require: false
   gem 'bundler-audit', '~> 0.6', require: false
-  gem 'scss_lint', '~> 0.53', require: false
+  gem 'scss_lint', '~> 0.55', require: false
 
-  gem 'capistrano', '~> 3.8'
-  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano', '~> 3.10'
+  gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
 end
 
 group :production do
-  gem 'lograge', '~> 0.5'
+  gem 'lograge', '~> 0.7'
   gem 'redis-rails', '~> 5.0'
 end

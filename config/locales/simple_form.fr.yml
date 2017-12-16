@@ -30,10 +30,12 @@ fr:
         data: Données
         display_name: Nom public
         email: Adresse courriel
+        expires_in: Expire après
         filtered_languages: Langues filtrées
         header: Image d’en-tête
         locale: Langue
         locked: Verrouiller le compte
+        max_uses: Nombre maximum d'utilisations
         new_password: Nouveau mot de passe
         note: Présentation
         otp_attempt: Code d’identification à deux facteurs
@@ -54,6 +56,7 @@ fr:
       interactions:
         must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Masquer les notifications des personnes que vous ne suivez pas
+        must_be_following_dm: Bloquer les messages directs des personnes que vous ne suivez pas
       notification_emails:
         digest: Envoyer des courriels récapitulatifs
         favourite: Envoyer un courriel lorsque quelqu’un ajoute mes statuts à ses favoris

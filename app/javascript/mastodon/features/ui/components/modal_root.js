@@ -10,8 +10,10 @@ import BoostModal from './boost_modal';
 import ConfirmationModal from './confirmation_modal';
 import {
   OnboardingModal,
+  MuteModal,
   ReportModal,
   EmbedModal,
+  ListEditor,
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -20,9 +22,11 @@ const MODAL_COMPONENTS = {
   'VIDEO': () => Promise.resolve({ default: VideoModal }),
   'BOOST': () => Promise.resolve({ default: BoostModal }),
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
+  'MUTE': MuteModal,
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
+  'LIST_EDITOR': ListEditor,
 };
 
 export default class ModalRoot extends React.PureComponent {
