@@ -14,7 +14,7 @@ nl:
           one: <span class="note-counter">1</span> teken over
           other: <span class="note-counter">%{count}</span> tekens over
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
-        setting_theme: Heeft invloed op hoe Mastodon eruitziet op elk apparaat waarmee je inlogt.
+        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
       imports:
         data: CSV-bestand dat op een andere Mastodon-server werd geëxporteerd
       sessions:
@@ -48,22 +48,22 @@ nl:
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
-        setting_theme: Site thema
+        setting_theme: Thema website
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
-        severity: Strengheid
+        severity: Zwaarte
         type: Importtype
         username: gebruikersnaam
       interactions:
-        must_be_follower: Blokkeer meldingen van mensen die jou niet volgen
-        must_be_following: Blokkeer meldingen van mensen die jij niet volgt
-        must_be_following_dm: Blokkeer directe berichten van mensen die jij niet volgt
+        must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
+        must_be_following: Meldingen van mensen die jij niet volgt blokkeren
+        must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
       notification_emails:
-        digest: Verstuur periodiek e-mails met een samenvatting
-        favourite: Verstuur een e-mail wanneer iemand jouw toot als favoriet markeert
-        follow: Verstuur een e-mail wanneer iemand jou volgt
-        follow_request: Verstuur een e-mail wanneer iemand jou wilt volgen
-        mention: Verstuur een e-mail wanneer iemand jou vermeld
-        reblog: Verstuur een e-mail wanneer iemand jouw toot heeft geboost
+        digest: Periodiek e-mails met een samenvatting versturen
+        favourite: Een e-mail versturen wanneer iemand jouw toot als favoriet markeert
+        follow: Een e-mail versturen wanneer iemand jou volgt
+        follow_request: Een e-mail versturen wanneer iemand jou wilt volgen
+        mention: Een e-mail versturen wanneer iemand jou vermeld
+        reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
     'no': Nee
     required:
       mark: "*"

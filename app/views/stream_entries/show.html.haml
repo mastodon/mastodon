@@ -1,3 +1,6 @@
+- content_for :page_title do
+  = t('statuses.title', name: display_name(@account), quote: truncate(@stream_entry.activity.text, length: 50, omission: '…'))
+
 - content_for :header_tags do
   - if @account.user&.setting_noindex
     %meta{ name: 'robots', content: 'noindex' }/

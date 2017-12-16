@@ -8,8 +8,11 @@ ar:
       inactive: لم يتم تنشيط حسابك بعد.
       last_attempt: بإمكانك إعادة المحاولة مرة واحدة قبل أن يتم قفل حسابك.
       locked: إن حسابك مقفل.
+      unauthenticated: يجب عليك تسجيل الدخول أو إنشاء حساب قبل المواصلة.
       unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المواصلة.
     mailer:
+      confirmation_instructions:
+        subject: 'ماستدون : تعليمات التأكيد لمثيل الخادوم  %{instance}'
       password_change:
         subject: 'ماستدون : تم تغيير كلمة المرور'
       reset_password_instructions:

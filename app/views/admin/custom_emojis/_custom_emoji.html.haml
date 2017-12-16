@@ -7,7 +7,7 @@
     - if custom_emoji.local?
       = t('admin.accounts.location.local')
     - else
-      = custom_emoji.domain
+      = link_to custom_emoji.domain, admin_custom_emojis_path(by_domain: custom_emoji.domain)
   %td
     - if custom_emoji.local?
       - if custom_emoji.visible_in_picker

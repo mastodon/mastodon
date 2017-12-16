@@ -34,7 +34,7 @@ describe ApplicationController do
       let(:start_time) { DateTime.new(2017, 1, 1, 12, 0, 0).utc }
 
       before do
-        request.env['rack.attack.throttle_data'] = { 'api' => { limit: 100, count: 20, period: 10 } }
+        request.env['rack.attack.throttle_data'] = { 'throttle_authenticated_api' => { limit: 100, count: 20, period: 10 } }
         travel_to start_time do
           get 'show'
         end

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { store } from './containers/mastodon';
 import { setBrowserSupport, setSubscription, clearSubscription } from './actions/push_notifications';
+import { pushNotificationsSetting } from './settings';
 
 // Taken from https://www.npmjs.com/package/web-push
 const urlBase64ToUint8Array = (base64String) => {
@@ -40,7 +41,7 @@ const sendSubscriptionToBackend = (subscription) => {
 
   const me = store.getState().getIn(['meta', 'me']);
   if (me) {
-    const data = getSettingsFromLocalStorage(me);
+    const data = pushNotificationsSetting.get(me);
     if (data) {
       params.data = data;
     }
@@ -52,16 +53,14 @@ const sendSubscriptionToBackend = (subscription) => {
 // Last one checks for payload support: https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/#no-payload
 const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window && 'getKey' in PushSubscription.prototype);
 
-const SUBSCRIPTION_DATA_STORAGE_KEY = 'mastodon_push_notification_data';
-
 export function register () {
   store.dispatch(setBrowserSupport(supportsPushNotifications));
   const me = store.getState().getIn(['meta', 'me']);
 
-  if (me && !getSettingsFromLocalStorage(me)) {
+  if (me && !pushNotificationsSetting.get(me)) {
     const alerts = store.getState().getIn(['push_notifications', 'alerts']);
     if (alerts) {
-      setSettingsToLocalStorage(me, { alerts: alerts });
+      pushNotificationsSetting.set(me, { alerts: alerts });
     }
   }
 
@@ -99,7 +98,7 @@ export function register () {
         if (!(subscription instanceof PushSubscription)) {
           store.dispatch(setSubscription(subscription));
           if (me) {
-            setSettingsToLocalStorage(me, { alerts: subscription.alerts });
+            pushNotificationsSetting.set(me, { alerts: subscription.alerts });
           }
         }
       })
@@ -113,7 +112,7 @@ export function register () {
         // Clear alerts and hide UI settings
         store.dispatch(clearSubscription());
         if (me) {
-          removeSettingsFromLocalStorage(me);
+          pushNotificationsSetting.remove(me);
         }
 
         try {
@@ -127,22 +126,4 @@ export function register () {
   } else {
     console.warn('Your browser does not support Web Push Notifications.');
   }
-}
-
-export function setSettingsToLocalStorage(id, data) {
-  try {
-    localStorage.setItem(`${SUBSCRIPTION_DATA_STORAGE_KEY}_${id}`, JSON.stringify(data));
-  } catch (e) {}
-}
-
-export function getSettingsFromLocalStorage(id) {
-  try {
-    return JSON.parse(localStorage.getItem(`${SUBSCRIPTION_DATA_STORAGE_KEY}_${id}`));
-  } catch (e) {}
-
-  return null;
-}
-
-export function removeSettingsFromLocalStorage(id) {
-  localStorage.removeItem(`${SUBSCRIPTION_DATA_STORAGE_KEY}_${id}`);
 }
