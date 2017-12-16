@@ -16,7 +16,7 @@ services:
   web:
     image: us.gcr.io/centi-gitlab/catgram:latest
     env_file: .env.development
-    command: /mastodon/web_boot_dev.sh web
+    command: /mastodon/boot_dev.sh web
     volumes:
     - ".:/mastodon"
     ports:
@@ -29,7 +29,7 @@ services:
   streaming:
     image: us.gcr.io/centi-gitlab/catgram:latest
     env_file: .env.development
-    command: /mastodon/web_boot_dev.sh streaming
+    command: /mastodon/boot_dev.sh streaming
     volumes:
     - ".:/mastodon"
     ports:
@@ -41,7 +41,7 @@ services:
   sidekiq:
     image: us.gcr.io/centi-gitlab/catgram:latest
     env_file: .env.development
-    command: /mastodon/web_boot_dev.sh sidekiq
+    command: /mastodon/boot_dev.sh sidekiq
     
     volumes:
     - ".:/mastodon"

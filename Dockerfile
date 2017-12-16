@@ -69,4 +69,4 @@ RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-in
 
 COPY . /mastodon
 
-RUN chmod +x /mastodon/web_boot.sh
+RUN chmod +x /mastodon/boot.sh
