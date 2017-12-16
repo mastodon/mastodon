@@ -1,10 +1,10 @@
+---
 sk:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 120x120px
-        digest: Sumár príspevkov ktoré ste dostali v dobe svojej neprítomnosti ak
-          ste sa dlhší čas neprihlásili
+        digest: Sumár príspevkov ktoré ste dostali v dobe svojej neprítomnosti ak ste sa dlhší čas neprihlásili
         display_name:
           one: Ostáva vám <span class="name-counter">1</span> znak
           other: Ostáva vám <span class="name-counter">%{count}</span> znakov
@@ -14,15 +14,13 @@ sk:
           one: Ostáva vám <span class="note-counter">1</span> znak
           other: Ostáva vám <span class="note-counter">%{count}</span>znakov
         setting_noindex: Vaše príspevky a profil sa nebude dať nájsť vyhľadávaním
-        setting_theme: Ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého
-          zariadenia.
+        setting_theme: Ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého zariadenia.
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
         otp: Vložte 2FA kód z telefónu alebo použite jeden z vašich obnovovacích kódov.
       user:
-        filtered_languages: Zaškrtnuté jazyky vám nebudú zobrazené vo verejnej časovej
-          osi
+        filtered_languages: Zaškrtnuté jazyky vám nebudú zobrazené vo verejnej časovej osi
     labels:
       defaults:
         avatar: Avatar
@@ -48,8 +46,7 @@ sk:
         setting_noindex: Nezaradzovať vaše príspevky do indexácie pre vyhľadávanie
         setting_system_font_ui: Použiť štandardný systémový font
         setting_theme: Vzhľad
-        setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania
-          iného používateľa
+        setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania iného používateľa
         severity: Závažnosť
         type: Typ importu
         username: Používateľské meno
@@ -65,6 +62,6 @@ sk:
         reblog: Poslať email ak niekto re-tootne váš príspevok
     'no': Nie
     required:
-      mark: '*'
+      mark: "*"
       text: povinné
     'yes': Áno
