@@ -21,7 +21,7 @@ class ReblogService < BaseService
 
     DistributionWorker.perform_async(reblog.id)
 
-    unless /👁$/.match?(reblogged_status.content)
+    unless reblogged_status.local_only?
       Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)
       ActivityPub::DistributionWorker.perform_async(reblog.id)
     end

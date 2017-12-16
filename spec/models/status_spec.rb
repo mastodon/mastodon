@@ -197,6 +197,43 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe 'on create' do
+    let(:local_account) { Fabricate(:account, username: 'local', domain: nil) }
+    let(:remote_account) { Fabricate(:account, username: 'remote', domain: 'example.com') }
+
+    subject { Status.new }
+
+    describe 'on a status that ends with the local-only emoji' do
+      before do
+        subject.text = 'A toot ' + subject.local_only_emoji
+      end
+
+      context 'if the status originates from this instance' do
+        before do
+          subject.account = local_account
+        end
+
+        it 'is marked local-only' do
+          subject.save!
+
+          expect(subject).to be_local_only
+        end
+      end
+
+      context 'if the status is remote' do
+        before do
+          subject.account = remote_account
+        end
+
+        it 'is not marked local-only' do
+          subject.save!
+
+          expect(subject).to_not be_local_only
+        end
+      end
+    end
+  end
+
   describe '.mutes_map' do
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
@@ -549,6 +586,32 @@ RSpec.describe Status, type: :model do
         end
       end
     end
+
+    context 'with local-only statuses' do
+      let(:status) { Fabricate(:status, local_only: true) }
+
+      subject { Status.as_public_timeline(viewer) }
+
+      context 'without a viewer' do
+        let(:viewer) { nil }
+
+        it 'excludes local-only statuses' do
+          expect(subject).to_not include(status)
+        end
+      end
+
+      context 'with a viewer' do
+        let(:viewer) { Fabricate(:account, username: 'viewer') }
+
+        it 'includes local-only statuses' do
+          expect(subject).to include(status)
+        end
+      end
+
+      # TODO: What happens if the viewer is remote?
+      # Can the viewer be remote?
+      # What prevents the viewer from being remote?
+    end
   end
 
   describe '.as_tag_timeline' do
@@ -569,6 +632,27 @@ RSpec.describe Status, type: :model do
 
       results = Status.as_tag_timeline(tag)
       expect(results).to include(status)
+    end
+
+    context 'on a local-only status' do
+      let(:tag) { Fabricate(:tag) }
+      let(:status) { Fabricate(:status, local_only: true, tags: [tag]) }
+
+      context 'without a viewer' do
+        let(:viewer) { nil }
+
+        it 'filters the local-only status out of the result set' do
+          expect(Status.as_tag_timeline(tag, viewer)).not_to include(status)
+        end
+      end
+
+      context 'with a viewer' do
+        let(:viewer) { Fabricate(:account, username: 'viewer', domain: nil) }
+
+        it 'keeps the local-only status in the result set' do
+          expect(Status.as_tag_timeline(tag, viewer)).to include(status)
+        end
+      end
     end
   end
 
