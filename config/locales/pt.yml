@@ -114,7 +114,7 @@ pt:
       promote: Promover
       protocol: Protocolo
       public: Público
-      push_subscription_expires: PuSH subscription expires
+      push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar avatar
       reset: Restaurar
       reset_password: Reset palavra-passe
@@ -169,6 +169,7 @@ pt:
           passos para o utilizador %{target}'
         disable_user: '%{name} desativou o acesso para o utilizador %{target}'
         enable_user: '%{name} ativou o acesso para o utilizador %{target}'
+        memorialize_account: '%{name} transformou a conta de %{target} em um memorial'
       title: Registo de auditoria
     domain_blocks:
       add_new: Adicionar novo
@@ -247,6 +248,12 @@ pt:
           title: Mensagem de registos encerrados
         open:
           title: Aceitar novos registos
+          desc_html: Permitir que qualquer um crie uma conta
+        deletion:
+          desc_html: Permite a qualquer um apagar a conta
+        min_invite_role:
+          disabled: Ninguém
+          title: Permitir convites de
       site_description:
         desc_html: Mostrar como parágrafo na página inicial e usado como meta tag.Podes
           usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
@@ -256,6 +263,21 @@ pt:
         title: Página de mais informações
       site_title: Título do site
       title: Preferências do site
+      bootstrap_timeline_accounts:
+        title: Seguidores predefinidos para novas contas
+      show_staff_badge:
+        desc_html: Mostrar um crachá da equipa na página de utilizador
+        title: Mostrar crachá da equipa
+      site_terms:
+        desc_html: Podes escrever a tua própria política de privacidade, termos de
+          serviço, entre outras coisas. Podes usar tags HTML
+        title: Termos de serviço customizados
+      thumbnail:
+        desc_html: Usada para visualizações via OpenGraph e API. Recomenda-se 1200x630px
+        title: Miniatura da instância
+      timeline_preview:
+        desc_html: Exibir a linha temporal pública na página inicial
+        title: Visualização da linha temporal
     subscriptions:
       callback_url: URL de Callback
       confirmed: Confirmado
@@ -306,12 +328,33 @@ pt:
         expired: Expirados
         title: Filtro
       title: Convites
+    statuses:
+      back_to_account: Voltar para página da conta
+      batch:
+        delete: Eliminar
+        nsfw_off: NSFW OFF
+        nsfw_on: NSFW ON
+      execute: Executar
+      failed_to_execute: Falhou ao executar
+      media:
+        hide: Esconder média
+        show: Mostrar média
+        title: Média
+      no_media: Não há média
+      title: Estado das contas
+      with_media: Com média
   application_mailer:
     settings: 'Alterar preferências de email: %{link}'
     signature: notificações Mastodon do %{instance}
     view: 'Ver:'
+    salutation: '%{name},'
   applications:
     invalid_url: O URL é inválido
+    created: Aplicação criada com sucesso
+    destroyed: Aplicação eliminada com sucesso
+    regenerate_token: Regenerar token de acesso
+    token_regenerated: Token de acesso regenerado com sucesso
+    your_token: O teu token de acesso
   auth:
     change_password: Alterar palavra-passe
     didnt_get_confirmation: Não recebeu o email de confirmação?
@@ -321,6 +364,15 @@ pt:
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Criar nova palavra-passe
     set_new_password: Editar palavra-passe
+    delete_account: Eliminar conta
+    delete_account_html: Se desejas eliminar a conta, podes <a href="%{path}">continua
+      aqui</a>. Uma confirmação será pedida.
+    invalid_reset_password_token: Token de modificação da palavra-passe é inválido
+      ou expirou. Por favor, solicita um novo.
+    logout: Sair
+    migrate_account: Mudar para uma conta diferente
+    migrate_account_html: Se desejas redirecionar esta conta para uma outra podes<a
+      href="%{path}">configurar isso aqui</a>.
   generic:
     changes_saved_msg: Alteraçes guardadas!
     powered_by: fornecido por %{link}
@@ -395,11 +447,11 @@ pt:
       default: '%b %d, %Y, %H:%M'
   two_factor_authentication:
     code_hint: Entre o código gerado pelo seu aplicativo para confirmar
-    description_html: Se você habilitar <strong>autenticação two-factor </strong>,
-      quando logar será necessário o seu telefone que vai gerar os tokens usado.
+    description_html: Se ativar a <strong>autenticação em dois passos</strong>, quando
+      logar será necessário o seu telefone que vai gerar os tokens para validação.
     disable: Desativar
     enable: Ativar
-    enabled_success: Autenticador Two-factor habilitador com sucesso
+    enabled_success: Autenticação em dois passos ativada com sucesso
     generate_recovery_codes: Gerar códigos para recuperar conta
     instructions_html: <strong>Scaneie este código QR no seu Google Authenticator
       ou aplicativo similar no seu telefone</strong>. A partir de agora seu aplicativo
@@ -410,6 +462,7 @@ pt:
     manual_instructions: 'Se você não puder scanear o código QR e precisa digita-los
       manualmente, aqui está o segredo em texto.:'
     recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
+    enabled: A autenticação em dois passos está ativada
   invites:
     prompt: Gerar e compartilha links com outras pessoas para permitir acesso a essa
       instância
@@ -456,3 +509,45 @@ pt:
     revoke: Revogar
     revoke_success: Sessão revogada com sucesso
     title: Sessões
+  admin_mailer:
+    new_report:
+      body: '%{reporter} relatou %{target}'
+      subject: Novo relatório sobre %{instance} (#%{id})
+  authorize_follow:
+    error: Infelizmente, ocorreu um erro ao buscar a conta remota
+    follow: Seguir
+    follow_request: 'Enviaste uma solicitação de seguidor para:'
+    following: 'Sucesso! Agora estás a seguir a:'
+    post_follow:
+      close: Ou podes simplesmente fechar esta janela.
+      return: Voltar ao perfil do utilizador
+    title: Seguir %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: '%{count}h'
+      about_x_months: '%{count} meses'
+      about_x_years: '%{count} anos'
+      almost_x_years: '%{count} anos'
+      half_a_minute: Justo agora
+      less_than_x_minutes: '%{count} meses'
+      less_than_x_seconds: Justo agora
+      over_x_years: '%{count} anos'
+      x_days: '%{count} dias'
+      x_minutes: '%{count} minutos'
+      x_months: '%{count} meses'
+      x_seconds: '%{count} segundos'
+  deletes:
+    bad_password_msg: Boa tentativa, hackers! Palavra-passe incorreta
+    confirm_password: Introduz a palavra-passe atual para verificar a tua identidade
+    description_html: Isto vai <strong>permanente e irreversivelmente</strong> remover
+      conteúdo da tua conta e desativá-la. O teu nome de utilizador permanecerá reservado
+      para prevenir futuros roubos de identidade.
+    proceed: Eliminar conta
+    success_msg: A tua conta foi eliminada com sucesso
+    warning_title: Disponibilidade de conteúdo disseminado
+  errors:
+    '403': Não tens a permissão necessária para ver esta página.
+    '404': A página que estás a procurar não existe.
+    '410': A página que estás a procurar não existe mais.
+  users:
+    invalid_otp_token: Código de autenticação inválido
