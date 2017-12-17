@@ -39,6 +39,7 @@ pt-BR:
     followers: Seguidores
     following: Seguindo
     media: Mídia
+    moved_html: "%{name} se mudou para %{new_profile_link}:"
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
@@ -48,6 +49,7 @@ pt-BR:
     reserved_username: Este usuário está reservado
     roles:
       admin: Administrador
+      moderator: Moderador
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
@@ -65,7 +67,7 @@ pt-BR:
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
-      disabled: Desativado
+      disabled: Desativada
       display_name: Nome de exibição
       domain: Domínio
       edit: Editar
@@ -76,7 +78,7 @@ pt-BR:
       followers: Seguidores
       followers_url: URL de seguidores
       follows: Segue
-      inbox_url: Inbox URL
+      inbox_url: URL da caixa de entrada
       ip: IP
       location:
         all: Todos
@@ -115,34 +117,60 @@ pt-BR:
         admin: Administrador
         moderator: Moderador
         user: Usuário
-      salmon_url: Salmon URL
+      salmon_url: URL Salmon
       search: Pesquisar
       shared_inbox_url: URL da Inbox Compartilhada
       show:
-        created_reports: Relatórios criados por esta conta
+        created_reports: Denúncias criadas por esta conta
         report: relatórios
-        targeted_reports: Relatórios feitos sobre esta conta
+        targeted_reports: Denúncias feitas sobre esta conta
       silence: Silêncio
       statuses: Postagens
       subscribe: Inscrever-se
       title: Contas
-      undo_silenced: Retirar silêncio
+      undo_silenced: Desativar silêncio
       undo_suspension: Retirar suspensão
       unsubscribe: Desinscrever-se
       username: Nome de usuário
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
+        create_custom_emoji: "%{name} enviou o emoji novo %{target}"
+        create_domain_block: "%{name} bloqueou o domínio %{target}"
+        create_email_domain_block: "%{name} colocou o domínio de e-mail %{target} na lista negra"
+        demote_user: "%{name} rebaixou o usuário %{target}"
+        destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
+        destroy_email_domain_block: "%{name} retirou o domínio de e-mail %{target} da lista negra"
+        destroy_status: "%{name} removeu postagem feita por %{target}"
+        disable_2fa_user: "%{name} desabilitou a exigência de autenticação em dois passos para o usuário %{target}"
+        disable_custom_emoji: "%{name} desabilitou o emoji %{target}"
+        disable_user: "%{name} desabilitou o acesso para o usuário %{target}"
+        enable_custom_emoji: "%{name} habilitou o emoji %{target}"
+        enable_user: "%{name} habilitou o acesso para o usuário %{target}"
+        memorialize_account: "%{name} transformou a conta de %{target} em um memorial"
+        promote_user: "%{name} promoveu o usuário %{target}"
+        reset_password_user: "%{name} redefiniu a senha do usuário %{target}"
+        resolve_report: "%{name} dispensou a denúncia %{target}"
+        silence_account: "%{name} silenciou a conta de %{target}"
+        suspend_account: "%{name} suspendeu a conta de %{target}"
+        unsilence_account: "%{name} desativou o silêncio de %{target}"
+        unsuspend_account: "%{name} desativou a suspensão de  %{target}"
+        update_custom_emoji: "%{name} atualizou o emoji %{target}"
+        update_status: "%{name} atualizou o estado de %{target}"
+      title: Auditar relatório
     custom_emojis:
-      copied_msg: Cópia local do emoji criada com sucesso!
+      copied_msg: Cópia local do emoji criada com sucesso
       copy: Copiar
       copy_failed_msg: Não foi possível criar uma cópia local deste emoji
       created_msg: Emoji criado com sucesso!
       delete: Excluir
       destroyed_msg: Emoji deletado com sucesso!
       disable: Desabilitar
-      disabled_msg: Emoji desabilitado com sucesso!
+      disabled_msg: Emoji desabilitado com sucesso
       emoji: Emoji
       enable: Habilitar
-      enabled_msg: Emoji habilitado com sucesso!
+      enabled_msg: Emoji habilitado com sucesso
       image_hint: PNG de até 50KB
       listed: Listado
       new:
@@ -170,7 +198,7 @@ pt-BR:
           suspend: Suspensão
         title: Novo bloqueio de domínio
       reject_media: Rejeitar arquivos de mídia
-      reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para suspensões.
+      reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para suspensões
       severities:
         noop: Nenhum
         silence: Silêncio
@@ -181,7 +209,7 @@ pt-BR:
           one: Uma conta no banco de dados foi afetada
           other: "%{count} contas no banco de dados foram afetadas"
         retroactive:
-          silence: Retirar silêncio de todas as contas existentes neste domínio
+          silence: Desativar silêncio de todas as contas existentes desse domínio
           suspend: Retirar suspensão de todas as contas neste domínio
         title: Retirar bloqueio de domínio de %{domain}
         undo: Retirar
@@ -194,7 +222,7 @@ pt-BR:
       destroyed_msg: Bloqueio de domínio de e-mail excluído com sucesso
       domain: Domínio
       new:
-        create: Criar bloqueio
+        create: Adicionar domínio
         title: Novo bloqueio de domínio de e-mail
       title: Bloqueio de Domínio de E-mail
     instances:
@@ -203,6 +231,13 @@ pt-BR:
       reset: Resetar
       search: Buscar
       title: Instâncias conhecidas
+    invites:
+      filter:
+        all: Todos
+        available: Disponíveis
+        expired: Expirados
+        title: Filtro
+      title: Convites
     reports:
       action_taken_by: Ação realizada por
       are_you_sure: Você tem certeza?
@@ -215,10 +250,10 @@ pt-BR:
       nsfw:
         'false': Mostrar mídias anexadas
         'true': Esconder mídias anexadas
-      report: 'Reportar #%{id}'
+      report: 'Denúncia #%{id}'
       report_contents: Conteúdos
-      reported_account: Conta reportada
-      reported_by: Reportada por
+      reported_account: Conta denunciada
+      reported_by: Denunciada por
       resolved: Resolvido
       silence_account: Silenciar conta
       status: Status
@@ -236,27 +271,33 @@ pt-BR:
         username: Contate usuário
       registrations:
         closed_message:
-          desc_html: Exibido na página inicial quando cadastros estão fechados. Você pode usar tags HTML.
+          desc_html: Exibido na página inicial quando cadastros estão fechados. Você pode usar tags HTML
           title: Mensagem de cadastros fechados
         deletion:
           desc_html: Permitir que qualquer um delete a sua conta
           title: Exclusão aberta de contas
+        min_invite_role:
+          disabled: Ninguém
+          title: Permitir convites de
         open:
           desc_html: Permitir que qualquer um crie uma conta
           title: Cadastro aberto
+      show_staff_badge:
+        desc_html: Mostrar uma insígnia de equipe na página de usuário
+        title: Mostrar insígnia de equipe
       site_description:
         desc_html: Parágrafo introdutório na página inicial e em meta tags. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição da instância
       site_description_extended:
-        desc_html: Um ótimo lugar para seu código de conduta, regras, diretrizes e outras coisas para diferenciar a sua instância. Você pode usar tags HTML.
+        desc_html: Um ótimo lugar para seu código de conduta, regras, diretrizes e outras coisas para diferenciar a sua instância. Você pode usar tags HTML
         title: Informação estendida customizada
       site_terms:
-        desc_html: Você pode escrever a sua própria política de privacidade, termos de serviço, entre outras coisas.Você pode usar tags HTML.
+        desc_html: Você pode escrever a sua própria política de privacidade, termos de serviço, entre outras coisas. Você pode usar tags HTML
         title: Termos de serviço customizados
       site_title: Nome da instância
       thumbnail:
         desc_html: Usada para prévias via OpenGraph e API. Recomenda-se 1200x630px
-        title: Thumbnail da instância
+        title: Miniatura da instância
       timeline_preview:
         desc_html: Exibir a timeline pública na página inicial
         title: Prévia da timeline
@@ -277,7 +318,7 @@ pt-BR:
       title: Postagens da conta
       with_media: Com mídia
     subscriptions:
-      callback_url: Callback URL
+      callback_url: URL de Callback
       confirmed: Confirmado
       expires_in: Expira em
       last_delivery: Última entrega
@@ -286,7 +327,7 @@ pt-BR:
     title: Administração
   admin_mailer:
     new_report:
-      body: "%{reporter} reportou %{target}"
+      body: "%{reporter} denunciou %{target}"
       subject: Nova denúncia sobre %{instance} (#%{id})
   application_mailer:
     salutation: "%{name},"
@@ -311,12 +352,14 @@ pt-BR:
     invalid_reset_password_token: Token de modificação de senha é inválido ou expirou. Por favor, requisite um novo.
     login: Entrar
     logout: Sair
+    migrate_account: Mudar para uma conta diferente
+    migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     register: Cadastrar-se
     resend_confirmation: Reenviar instruções de confirmação
-    reset_password: Modificar senha
+    reset_password: Redefinir senha
     set_new_password: Definir uma nova senha
   authorize_follow:
-    error: Infelizmente, ocorreu um erro quando visualizando a conta remota.
+    error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
     follow_request: 'Você mandou uma solicitação de seguidor para:'
     following: 'Sucesso! Você agora está seguindo:'
@@ -340,7 +383,7 @@ pt-BR:
       x_months: "%{count} meses"
       x_seconds: "%{count} segundos"
   deletes:
-    bad_password_msg: Boa tentativa, hackers! Senha incorreta.
+    bad_password_msg: Boa tentativa, hackers! Senha incorreta
     confirm_password: Insira a sua senha atual para verificar a sua identidade
     description_html: Isto vai <strong>permanente e irreversivelmente</strong> remover conteúdo de sua conta e desativá-la. O seu nome de usuário permanecerá reservado para previnir futuros roubos de identidade.
     proceed: Excluir conta
@@ -353,7 +396,7 @@ pt-BR:
     '410': A página pela qual você está procurando não existe mais.
     '422':
       content: A verificação de segurança falhou. Você desativou o uso de cookies?
-      title: Falha na verificação de segurança
+      title: Verificação de segurança falhou
     '429': Muitas requisições
     '500':
       content: Desculpe, algo deu errado.
@@ -379,7 +422,7 @@ pt-BR:
     unlocked_warning_title: A sua conta não está trancada
   generic:
     changes_saved_msg: Mudanças salvas com sucesso!
-    powered_by: powered by %{link}
+    powered_by: graças a tecnologia de %{link}
     save_changes: Salvar mudanças
     validation_errors:
       one: Algo não está certo! Por favor, reveja o erro abaixo
@@ -392,13 +435,43 @@ pt-BR:
       following: Pessoas que você segue
       muting: Lista de silêncio
     upload: Enviar
-  in_memoriam_html: Em memória de
+  in_memoriam_html: Em memória.
+  invites:
+    delete: Desativar
+    expired: Expirados
+    expires_in:
+      '1800': 30 minutos
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '86400': 1 dia
+    expires_in_prompt: Nunca
+    generate: Gerar
+    max_uses:
+      one: 1 uso
+      other: "%{count} usos"
+    max_uses_prompt: Sem limite
+    prompt: Gerar e compartilha links com outras pessoas para permitir acesso a essa instância
+    table:
+      expires_at: Expira em
+      uses: Usos
+    title: Convidar pessoas
   landing_strip_html: "<strong>%{name}</strong> é um usuário no %{link_to_root_path}. Você pode segui-lo ou interagir com ele se você tiver uma conta em qualquer lugar no fediverso."
   landing_strip_signup_html: Se não, você pode <a href="%{sign_up_path}">se cadastrar aqui</a>.
+  lists:
+    errors:
+      limit: Você alcançou o número máximo de listas
   media_attachments:
     validations:
-      images_and_video: Não é possível anexar um vídeo a uma postagem que já contém imagens.
-      too_many: Não é possível anexar mais de quatro imagens.
+      images_and_video: Não é possível anexar um vídeo a uma postagem que já contém imagens
+      too_many: Não é possível anexar mais de 4 imagens
+  migrations:
+    acct: username@domain da nova conta
+    currently_redirecting: 'Seu perfil está configurado para redirecionar para:'
+    proceed: Salvar
+    updated_msg: As configurações de migração da sua conta foram atualizadas com sucesso!
+  moderation:
+    title: Moderação
   notification_mailer:
     digest:
       body: 'Aqui está um resumo do que você perdeu no %{instance} desde o seu último acesso em %{since}:'
@@ -417,7 +490,7 @@ pt-BR:
       subject: "%{name} está te seguindo"
     follow_request:
       body: "%{name} requisitou autorização para te seguir"
-      subject: 'Pending follower: %{name}'
+      subject: 'Seguidor pendente: %{name}'
     mention:
       body: 'Você foi mencionado por %{name} em:'
       subject: Você foi mencionado por %{name}
@@ -472,10 +545,10 @@ pt-BR:
       chrome: Chrome
       edge: Microsoft Edge
       firefox: Firefox
-      generic: Unknown browser
+      generic: Navegador desconhecido
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
+      nokia: Navegador Nokia S40 Ovi
       opera: Opera
       phantom_js: PhantomJS
       qq: QQ Browser
@@ -511,6 +584,7 @@ pt-BR:
     export: Exportar dados
     followers: Seguidores autorizados
     import: Importar
+    migrate: Migração de conta
     notifications: Notificações
     preferences: Preferências
     settings: Configurações
@@ -607,6 +681,8 @@ pt-BR:
 
       <p>Originalmente adaptado da <a href="https://github.com/discourse/discourse">política de privacidade do Discourse</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

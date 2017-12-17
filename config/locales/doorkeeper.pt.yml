@@ -3,8 +3,10 @@ pt:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nome
-        redirect_uri: Redirect URI
+        name: Nome da Aplicação
+        redirect_uri: URL de redirecionamento
+        scopes: Scopes
+        website: Site da Aplicação
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,12 @@ pt:
         redirect_uri: Utiliza uma linha por URI
         scopes: Separate scopes with spaces. Leave blank to use the default scopes.
       index:
+        application: Aplicações
         callback_url: Callback URL
+        delete: Eliminar
         name: Nome
         new: Nova Aplicação
+        show: Mostrar
         title: As tuas aplicações
       new:
         title: Nova aplicação
@@ -57,7 +62,7 @@ pt:
         prompt: Aplicação %{client_name} pede acesso à tua conta
         title: Autorização é necessária
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Copiar o código desta autorização e colar na aplicação.
     authorized_applications:
       buttons:
         revoke: Revogar

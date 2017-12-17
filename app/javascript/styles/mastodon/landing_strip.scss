@@ -12,6 +12,12 @@
   strong,
   a {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   a {
@@ -46,6 +52,12 @@
   strong,
   a {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   a {

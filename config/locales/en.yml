@@ -116,6 +116,7 @@ en:
       roles:
         admin: Administrator
         moderator: Moderator
+        staff: Staff
         user: User
       salmon_url: Salmon URL
       search: Search
@@ -160,6 +161,7 @@ en:
         update_status: "%{name} updated status by %{target}"
       title: Audit log
     custom_emojis:
+      by_domain: Domain
       copied_msg: Successfully created local copy of the emoji
       copy: Copy
       copy_failed_msg: Could not make a local copy of that emoji
@@ -343,7 +345,7 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
+    agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Security
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -458,6 +460,9 @@ en:
     title: Invite people
   landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  lists:
+    errors:
+      limit: You have reached the maximum amount of lists
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
@@ -585,17 +590,18 @@ en:
     notifications: Notifications
     preferences: Preferences
     settings: Settings
-    two_factor_authentication: Two-factor Authentication
+    two_factor_authentication: Two-factor Auth
     your_apps: Your applications
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
-      limit: Too many toots pinned
+      limit: You have already pinned the maximum number of toots
       ownership: Someone else's toot cannot be pinned
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
     show_more: Show more
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Followers-only
       private_long: Only show to followers

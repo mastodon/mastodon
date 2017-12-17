@@ -461,6 +461,9 @@ pl:
     title: Zaproś użytkowników
   landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  lists:
+    errors:
+      limit: Przekroczyłeś maksymalną liczbę utworzonych list
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
@@ -469,6 +472,7 @@ pl:
     acct: nazwa@domena nowego konta
     currently_redirecting: 'Obecnie Twoje konto przekierowuje do:'
     proceed: Zapisz
+    updated_msg: Pomyślnie zaktualizowano ustawienia i migracji Twojego konta!
   moderation:
     title: Moderacja
   notification_mailer:
@@ -597,7 +601,7 @@ pl:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
-      limit: Nie możesz przypiąć więcej wpisów
+      limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
@@ -684,6 +688,8 @@ pl:
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

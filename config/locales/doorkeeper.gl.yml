@@ -1,0 +1,33 @@
+gl:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nome do aplicativo
+        redirect_uri: URI a redireccionar
+        website: Sitio web do aplicativo
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: non pode conter un fragmento.
+              invalid_uri: debe ser un URI válido.
+              relative_uri: debe ser un URI absoluto.
+              secured_uri: debe ser un URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Cancelar
+        destroy: Destruír
+        edit: Editar
+        submit: Enviar
+      confirmations:
+        destroy: Está segura?
+      edit:
+        title: Editar aplicativo
+      form:
+        error: Eeeeepa! Comprobe os posibles erros no formulario
+      help:
+        native_redirect_uri: Utilice %{native_redirect_uri} para probas locais
+        redirect_uri: Utilice unha liña por URI

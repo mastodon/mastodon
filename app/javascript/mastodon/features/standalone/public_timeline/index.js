@@ -11,6 +11,7 @@ import {
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 import { defineMessages, injectIntl } from 'react-intl';
+import { connectPublicStream } from '../../../actions/streaming';
 
 const messages = defineMessages({
   public: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
@@ -45,17 +46,13 @@ export default class PublicTimeline extends React.PureComponent {
 
     dispatch(refreshCommunityTimeline());
     dispatch(refreshPublicTimeline());
-
-    this.polling = setInterval(() => {
-      dispatch(refreshCommunityTimeline());
-      dispatch(refreshPublicTimeline());
-    }, 3000);
+    this.disconnect = dispatch(connectPublicStream());
   }
 
   componentWillUnmount () {
-    if (typeof this.polling !== 'undefined') {
-      clearInterval(this.polling);
-      this.polling = null;
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
   }
 

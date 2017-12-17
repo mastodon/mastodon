@@ -24,7 +24,7 @@ ja:
       within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
       within_reach_title: いつでも身近に
     find_another_instance: 他のインスタンスを探す
-    generic_description: "%{domain} は、Mastodon インスタンスの一つです。"
+    generic_description: "%{domain} は、Mastodon インスタンスの一つです"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     other_instances: 他のインスタンス
@@ -40,13 +40,13 @@ ja:
     following: フォロー中
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
-    nothing_here: 何もありません
+    nothing_here: 何もありません！
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
     posts: トゥート
     posts_with_replies: トゥートと返信
     remote_follow: リモートフォロー
-    reserved_username: このユーザー名は予約されています。
+    reserved_username: このユーザー名は予約されています
     roles:
       admin: Admin
       moderator: Mod
@@ -56,9 +56,9 @@ ja:
       account: モデレータ
       create: 書き込む
       created_at: 日付
-      created_msg: モデレーションメモを書き込みました
+      created_msg: モデレーションメモを書き込みました！
       delete: 削除
-      destroyed_msg: モデレーションメモを削除しました
+      destroyed_msg: モデレーションメモを削除しました！
     accounts:
       are_you_sure: 本当に実行しますか？
       by_domain: ドメイン
@@ -151,7 +151,7 @@ ja:
         memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
         promote_user: "%{name} さんが %{target} さんを昇格しました"
         reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
-        resolve_report: "%{name} さんがレポート %{target} を棄却しました"
+        resolve_report: "%{name} さんがレポート %{target} を解決済みにしました"
         silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account: "%{name} さんが %{target} さんを停止しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
@@ -163,25 +163,25 @@ ja:
       copied_msg: 絵文字のコピーをローカルに作成しました
       copy: コピー
       copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
-      created_msg: 絵文字の追加に成功しました
+      created_msg: 絵文字の追加に成功しました！
       delete: 削除
-      destroyed_msg: 絵文字の削除に成功しました
+      destroyed_msg: 絵文字の削除に成功しました！
       disable: 無効化
       disabled_msg: 絵文字を無効化しました
       emoji: 絵文字
       enable: 有効化
       enabled_msg: 絵文字を有効化しました
-      image_hint: 50KBまでのPNG画像を利用できます。
+      image_hint: 50KBまでのPNG画像を利用できます
       listed: 収載
       new:
         title: 新規カスタム絵文字の追加
       overwrite: 上書き
       shortcode: ショートコード
-      shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます。
+      shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます
       title: カスタム絵文字
       unlisted: 未収載
       update_failed_msg: 絵文字を更新できませんでした
-      updated_msg: 絵文字の更新に成功しました
+      updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
     domain_blocks:
       add_new: 新規追加
@@ -192,13 +192,13 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルの拒否は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
       reject_media: メディアファイルを拒否
-      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です。
+      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       severities:
         noop: なし
         silence: サイレンス
@@ -271,7 +271,7 @@ ja:
         username: 連絡先のユーザー名
       registrations:
         closed_message:
-          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます。
+          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
           title: 新規登録停止時のメッセージ
         deletion:
           desc_html: 誰でも自分のアカウントを削除できるようにします
@@ -289,14 +289,14 @@ ja:
         desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
       site_description_extended:
-        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます。
+        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
         title: カスタム詳細説明
       site_terms:
-        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます。
+        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
         title: カスタム利用規約
       site_title: インスタンスの名前
       thumbnail:
-        desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です。
+        desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
         title: インスタンスのサムネイル
       timeline_preview:
         desc_html: ランディングページに公開タイムラインを表示します
@@ -333,7 +333,7 @@ ja:
     salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
     signature: Mastodon %{instance} インスタンスからの通知
-    view: リンク
+    view: 'リンク:'
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
@@ -359,12 +359,12 @@ ja:
     reset_password: パスワードを再発行
     set_new_password: 新しいパスワード
   authorize_follow:
-    error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました。
+    error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
     follow: フォロー
     follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
     following: '成功！ あなたは現在以下のアカウントをフォローしています:'
     post_follow:
-      close: またはこのウィンドウを閉じます
+      close: またはこのウィンドウを閉じます。
       return: ユーザーのプロフィールに戻る
       web: Web を開く
     title: "%{acct} をフォロー"
@@ -384,7 +384,7 @@ ja:
       x_seconds: "%{count}秒"
   deletes:
     bad_password_msg: パスワードが違います
-    confirm_password: 本人確認のため、現在のパスワードを入力してください。
+    confirm_password: 本人確認のため、現在のパスワードを入力してください
     description_html: あなたのアカウントに含まれるコンテンツは全て削除され、アカウントは無効化されます。これは恒久的なもので、<strong>取り消すことはできません</strong>。なりすましを防ぐために、同じユーザー名で再度登録することはできなくなります。
     proceed: アカウントを削除する
     success_msg: アカウントは正常に削除されました
@@ -397,7 +397,7 @@ ja:
     '422':
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
-    '429': リクエストの制限に達しました。
+    '429': リクエストの制限に達しました
     '500':
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
@@ -419,23 +419,23 @@ ja:
       other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
     true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
     unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
-    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません。
+    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません
   generic:
-    changes_saved_msg: 正常に変更されました
+    changes_saved_msg: 正常に変更されました！
     powered_by: powered by %{link}
     save_changes: 変更を保存
     validation_errors:
-      one: エラーが発生しました。以下のエラーを確認してください。
-      other: エラーが発生しました。以下の%{count}個のエラーを確認してください。
+      one: エラーが発生しました！ 以下のエラーを確認してください
+      other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   imports:
     preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
-    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください。
+    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
       blocking: ブロックしたアカウントリスト
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  in_memoriam_html: 故人を偲んで
+  in_memoriam_html: 故人を偲んで。
   invites:
     delete: 無効化
     expired: 期限切れ
@@ -451,22 +451,25 @@ ja:
       one: '1'
       other: "%{count}"
     max_uses_prompt: 無制限
-    prompt: リンクを生成・共有してこのインスタンスへの新規登録を受け付けることができます。
+    prompt: リンクを生成・共有してこのインスタンスへの新規登録を受け付けることができます
     table:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
   landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
   landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  lists:
+    errors:
+      limit: リストの上限に達しました
   media_attachments:
     validations:
-      images_and_video: 既に画像が追加されているため、動画を追加することはできません。
-      too_many: 追加できるファイルは4つまでです。
+      images_and_video: 既に画像が追加されているため、動画を追加することはできません
+      too_many: 追加できるファイルは4つまでです
   migrations:
     acct: 引っ越し先の ユーザー名@ドメイン
     currently_redirecting: 'あなたのプロフィールは引っ越し先が設定されています:'
     proceed: 保存
-    updated_msg: アカウントの引っ越し設定を更新しました
+    updated_msg: アカウントの引っ越し設定を更新しました！
   moderation:
     title: モデレーション
   notification_mailer:
@@ -483,7 +486,7 @@ ja:
       body: "%{name} さんにお気に入り登録された、あなたのトゥートがあります:"
       subject: "%{name} さんにお気に入りに登録されました"
     follow:
-      body: "%{name} さんにフォローされています"
+      body: "%{name} さんにフォローされています！"
       subject: "%{name} さんにフォローされています"
     follow_request:
       body: "%{name} さんがあなたにフォローをリクエストしました"
@@ -591,7 +594,7 @@ ja:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      limit: 固定されているトゥートが多すぎます
+      limit: 固定されているトゥートの上限に達しました
       ownership: 他人のトゥートを固定することはできません
       private: 非公開のトゥートを固定することはできません
       reblog: ブーストされたトゥートを固定することはできません
@@ -682,7 +685,7 @@ ja:
     formats:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 確認するには認証アプリで表示されたコードを入力してください。
+    code_hint: 確認するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効
@@ -693,7 +696,7 @@ ja:
     lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     recovery_codes: リカバリーコード
-    recovery_codes_regenerated: リカバリーコードが再生成されました。
+    recovery_codes_regenerated: リカバリーコードが再生成されました
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     setup: 初期設定
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
