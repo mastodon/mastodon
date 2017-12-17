@@ -3,7 +3,7 @@
 class REST::CustomEmojiSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :shortcode, :url, :static_url
+  attributes :shortcode, :url, :static_url, :visible_in_picker
 
   def url
     full_asset_url(object.image.url)

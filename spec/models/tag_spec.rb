@@ -35,6 +35,13 @@ RSpec.describe Tag, type: :model do
     end
   end
 
+  describe '#to_param' do
+    it 'returns name' do
+      tag = Fabricate(:tag, name: 'foo')
+      expect(tag.to_param).to eq 'foo'
+    end
+  end
+
   describe '.search_for' do
     it 'finds tag records with matching names' do
       tag = Fabricate(:tag, name: "match")

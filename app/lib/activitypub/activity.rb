@@ -3,7 +3,7 @@
 class ActivityPub::Activity
   include JsonLdHelper
 
-  def initialize(json, account, options = {})
+  def initialize(json, account, **options)
     @json    = json
     @account = account
     @object  = @json['object']
@@ -15,7 +15,7 @@ class ActivityPub::Activity
   end
 
   class << self
-    def factory(json, account, options = {})
+    def factory(json, account, **options)
       @json = json
       klass&.new(json, account, options)
     end

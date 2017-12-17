@@ -8,7 +8,7 @@ import {
   fetchFollowing,
   expandFollowing,
 } from '../../actions/accounts';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import HeaderContainer from '../account_timeline/containers/header_container';

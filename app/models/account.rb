@@ -41,10 +41,12 @@
 #  shared_inbox_url        :string           default(""), not null
 #  followers_url           :string           default(""), not null
 #  protocol                :integer          default("ostatus"), not null
+#  memorial                :boolean          default(FALSE), not null
+#  moved_to_account_id     :integer
 #
 
 class Account < ApplicationRecord
-  MENTION_RE = /(?:^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  MENTION_RE = /(?<=^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
 
   include AccountAvatar
   include AccountFinderConcern
@@ -52,6 +54,7 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
+  include Paginable
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -94,6 +97,13 @@ class Account < ApplicationRecord
   has_many :account_moderation_notes, dependent: :destroy
   has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
 
+  # Lists
+  has_many :list_accounts, inverse_of: :account, dependent: :destroy
+  has_many :lists, through: :list_accounts
+
+  # Account migrations
+  belongs_to :moved_to_account, class_name: 'Account'
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where(followers_count: 0) }
@@ -114,6 +124,8 @@ class Account < ApplicationRecord
            :current_sign_in_at,
            :confirmed?,
            :admin?,
+           :moderator?,
+           :staff?,
            :locale,
            to: :user,
            prefix: true,
@@ -123,6 +135,10 @@ class Account < ApplicationRecord
 
   def local?
     domain.nil?
+  end
+
+  def moved?
+    moved_to_account_id.present?
   end
 
   def acct
@@ -150,8 +166,37 @@ class Account < ApplicationRecord
     ResolveRemoteAccountService.new.call(acct)
   end
 
+  def unsuspend!
+    transaction do
+      user&.enable! if local?
+      update!(suspended: false)
+    end
+  end
+
+  def memorialize!
+    transaction do
+      user&.disable! if local?
+      update!(memorial: true)
+    end
+  end
+
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
+  end
+
+  def magic_key
+    modulus, exponent = [keypair.public_key.n, keypair.public_key.e].map do |component|
+      result = []
+
+      until component.zero?
+        result << [component % 256].pack('C')
+        component >>= 8
+      end
+
+      result.reverse.join
+    end
+
+    (['RSA'] + [modulus, exponent].map { |n| Base64.urlsafe_encode64(n) }).join('.')
   end
 
   def subscription(webhook_url)
@@ -182,6 +227,10 @@ class Account < ApplicationRecord
 
   def excluded_from_timeline_domains
     Rails.cache.fetch("exclude_domains_for:#{id}") { domain_blocks.pluck(:domain) }
+  end
+
+  def preferred_inbox_url
+    shared_inbox_url.presence || inbox_url
   end
 
   class << self
@@ -236,6 +285,7 @@ class Account < ApplicationRecord
         FROM accounts
         WHERE #{query} @@ #{textsearch}
           AND accounts.suspended = false
+          AND accounts.moved_to_account_id IS NULL
         ORDER BY rank DESC
         LIMIT ?
       SQL
@@ -243,23 +293,48 @@ class Account < ApplicationRecord
       find_by_sql([sql, limit])
     end
 
-    def advanced_search_for(terms, account, limit = 10)
+    def advanced_search_for(terms, account, limit = 10, following = false)
       textsearch, query = generate_query_for_search(terms)
 
-      sql = <<-SQL.squish
-        SELECT
-          accounts.*,
-          (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
-        FROM accounts
-        LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
-        WHERE #{query} @@ #{textsearch}
-          AND accounts.suspended = false
-        GROUP BY accounts.id
-        ORDER BY rank DESC
-        LIMIT ?
-      SQL
+      if following
+        sql = <<-SQL.squish
+          WITH first_degree AS (
+            SELECT target_account_id
+            FROM follows
+            WHERE account_id = ?
+          )
+          SELECT
+            accounts.*,
+            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+          FROM accounts
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          WHERE accounts.id IN (SELECT * FROM first_degree)
+            AND #{query} @@ #{textsearch}
+            AND accounts.suspended = false
+            AND accounts.moved_to_account_id IS NULL
+          GROUP BY accounts.id
+          ORDER BY rank DESC
+          LIMIT ?
+        SQL
 
-      find_by_sql([sql, account.id, account.id, limit])
+        find_by_sql([sql, account.id, account.id, account.id, limit])
+      else
+        sql = <<-SQL.squish
+          SELECT
+            accounts.*,
+            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+          FROM accounts
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          WHERE #{query} @@ #{textsearch}
+            AND accounts.suspended = false
+            AND accounts.moved_to_account_id IS NULL
+          GROUP BY accounts.id
+          ORDER BY rank DESC
+          LIMIT ?
+        SQL
+
+        find_by_sql([sql, account.id, account.id, limit])
+      end
     end
 
     private

@@ -13,7 +13,7 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @return [Status]
-  def call(account, text, in_reply_to = nil, options = {})
+  def call(account, text, in_reply_to = nil, **options)
     if options[:idempotency].present?
       existing_id = redis.get("idempotency:status:#{account.id}:#{options[:idempotency]}")
       return Status.find(existing_id) if existing_id
@@ -70,11 +70,11 @@ class PostStatusService < BaseService
   end
 
   def process_mentions_service
-    @process_mentions_service ||= ProcessMentionsService.new
+    ProcessMentionsService.new
   end
 
   def process_hashtags_service
-    @process_hashtags_service ||= ProcessHashtagsService.new
+    ProcessHashtagsService.new
   end
 
   def redis

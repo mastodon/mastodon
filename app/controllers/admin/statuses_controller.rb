@@ -2,8 +2,6 @@
 
 module Admin
   class StatusesController < BaseController
-    include Authorization
-
     helper_method :current_params
 
     before_action :set_account
@@ -12,31 +10,39 @@ module Admin
     PER_PAGE = 20
 
     def index
+      authorize :status, :index?
+
       @statuses = @account.statuses
+
       if params[:media]
         account_media_status_ids = @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
         @statuses.merge!(Status.where(id: account_media_status_ids))
       end
-      @statuses = @statuses.preload(:media_attachments, :mentions).page(params[:page]).per(PER_PAGE)
 
-      @form = Form::StatusBatch.new
+      @statuses = @statuses.preload(:media_attachments, :mentions).page(params[:page]).per(PER_PAGE)
+      @form     = Form::StatusBatch.new
     end
 
     def create
-      @form = Form::StatusBatch.new(form_status_batch_params)
-      flash[:alert] = t('admin.statuses.failed_to_execute') unless @form.save
+      authorize :status, :update?
+
+      @form         = Form::StatusBatch.new(form_status_batch_params.merge(current_account: current_account))
+      flash[:alert] = I18n.t('admin.statuses.failed_to_execute') unless @form.save
 
       redirect_to admin_account_statuses_path(@account.id, current_params)
     end
 
     def update
-      @status.update(status_params)
+      authorize @status, :update?
+      @status.update!(status_params)
+      log_action :update, @status
       redirect_to admin_account_statuses_path(@account.id, current_params)
     end
 
     def destroy
       authorize @status, :destroy?
       RemovalWorker.perform_async(@status.id)
+      log_action :destroy, @status
       render json: @status
     end
 
@@ -60,6 +66,7 @@ module Admin
 
     def current_params
       page = (params[:page] || 1).to_i
+
       {
         media: params[:media],
         page: page > 1 && page,

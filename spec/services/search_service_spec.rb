@@ -68,7 +68,7 @@ describe SearchService do
           allow(AccountSearchService).to receive(:new).and_return(service)
 
           results = subject.call(query, 10)
-          expect(service).to have_received(:call).with(query, 10, false, nil)
+          expect(service).to have_received(:call).with(query, 10, nil, resolve: false)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end

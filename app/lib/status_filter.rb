@@ -35,7 +35,7 @@ class StatusFilter
   end
 
   def silenced_account?
-    status_account_silenced? && !account_following_status_account?
+    !account&.silenced? && status_account_silenced? && !account_following_status_account?
   end
 
   def status_account_silenced?

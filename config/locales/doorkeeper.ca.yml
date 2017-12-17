@@ -3,91 +3,98 @@ ca:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nombre
+        name: Nom de l'aplicació
         redirect_uri: URI per a redirecció
+        scopes: Àmbits
+        website: Lloc web de l'aplicació
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               fragment_present: no pot contenir un fragment.
-              invalid_uri: ha de ser una URI válid.
-              relative_uri: ha de ser una URI absoluta.
-              secured_uri: ha de ser una URI HTTPS/SSL.
+              invalid_uri: ha de ser un URI válid.
+              relative_uri: ha de ser un URI absoluta.
+              secured_uri: ha de ser un URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
-        authorize: Autoritzar
-        cancel: Cancel⋅lar
-        destroy: Destruir
-        edit: Editar
-        submit: Enviar
+        authorize: Autoritza
+        cancel: Cancel⋅la
+        destroy: Destrueix
+        edit: Edita
+        submit: Envia
       confirmations:
-        destroy: Està segur?
+        destroy: Estàs segur?
       edit:
-        title: Editar aplicació
+        title: Edita l'aplicació
       form:
-        error: Uuups! Comprovi el formulari
+        error: Ep! Comprova el formulari
       help:
-        native_redirect_uri: Utilitzi %{native_redirect_uri} per a proves locals
-        redirect_uri: Utilitzi una línia per URI
-        scopes: Separi els àmbits amb espais. Deixa-ho en blanc per utilitzar els àmbits per defecte.
+        native_redirect_uri: Utilitza %{native_redirect_uri} per a proves locals
+        redirect_uri: Utilitza una línia per URI
+        scopes: Separa els àmbits amb espais. Deixa-ho en blanc per a utilitzar els àmbits per defecte.
       index:
-        callback_url: Callback URL
+        application: Aplicació
+        callback_url: URL de retorn
+        delete: Suprimeix
         name: Nom
-        new: Nova aplicació
+        new: Aplicació nova
+        scopes: Àmbits
+        show: Mostra
         title: Les teves aplicacions
       new:
-        title: Nova aplicació
+        title: Aplicació nova
       show:
         actions: Accions
-        application_id: Id de la aplicació
-        callback_urls: Callback urls
+        application_id: Id de l'aplicació
+        callback_urls: Callback URL
         scopes: Àmbits
         secret: Secret
         title: 'Aplicació: %{name}'
     authorizations:
       buttons:
-        authorize: Autoritzar
-        deny: Desautoritzar
+        authorize: Autoritza
+        deny: Desautoritza
       error:
-        title: Ha ocorregut un error
+        title: S'a produit un error
       new:
         able_to: Serà capaç de
-        prompt: La aplicació %{client_name} sol⋅licita tenir accés al teu compte
-        title: Es requereix autorizació
+        prompt: L'aplicació %{client_name} sol⋅licita tenir accés al teu compte
+        title: Cal autorizació
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Copia aquest coddi d'autorització i enganxa'l en l'aplicació.
     authorized_applications:
       buttons:
-        revoke: Revocar
+        revoke: Revoca
       confirmations:
-        revoke: Està segur?
+        revoke: Estàs segur?
       index:
         application: Aplicació
         created_at: Creat el
         date_format: "%A-%m-%d %H:%M:%S"
+        scopes: Àmbits
         title: Les teves aplicacions autoritzades
     errors:
       messages:
         access_denied: El propietari del recurs o servidor de autorizació ha denegat la petició.
         credential_flow_not_configured: Les credencials de contrasenya del propietari del recurs han fallat degut a que Doorkeeper.configure.resource_owner_from_credentials està sense configurar.
-        invalid_client: La autentificación del cliente falló debido o a que es un cliente desconocido o no está incluída la autentificación del cliente o el método de autentificación no está confirmado.
-        invalid_grant: La concesión de autorización ofrecida es inválida, venció, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
-        invalid_redirect_uri: La URI de redirección incluida no es válida.
-        invalid_request: En la petición falta un parámetro necesario o incluye un valor de parámetro no soportado o tiene otro tipo de formato incorrecto.
-        invalid_resource_owner: Las credenciales del propietario del recurso proporcionado no son válidas, o el propietario del recurso no puede ser encontrado.
-        invalid_scope: El ámbito pedido es inválido, desconocido o erróneo.
+        invalid_client: La autentificació del client falló perquè és un client desconegut o no està inclòs l'autentificació del client o el mètode d'autenticació no està confirmat.
+        invalid_grant: La concessió d'autorizació oferida és invàlida, ha vençut, s'ha revocat, no coincideix amb l'URI de redirecció utilizada en la petició d'autorizació, o fou emesa per a un altre client.
+        invalid_redirect_uri: L'URI de redirecció inclòs no és vàlid.
+        invalid_request: En la petició manca un paràmetre necessari o inclou un valor de paràmetre no suportat o te un altre tipus de format incorrecte.
+        invalid_resource_owner: Les credencials del propietari del recurs proporcionat no son vàlides, o el propietari del recurs no pot ser trobat
+        invalid_scope: L'àmbit demanat és invàlid, desconegut o erroni.
         invalid_token:
-          expired: El identificador de acceso finalizó.
-          revoked: El identificador de acceso fue revocado.
-          unknown: El identificador de acceso es inválido.
-        resource_owner_authenticator_not_configured: El propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_authenticator está sin configurar.
-        server_error: El servidor de la autorización entontró una condición inesperada que le impidió cumplir con la solicitud.
-        temporarily_unavailable: El servidor de la autorización es actualmente incapaz de manejar la petición debido a una sobrecarga temporal o un trabajo de mantenimiento del servidor.
-        unauthorized_client: El cliente no está autorizado a realizar esta petición utilizando este método.
-        unsupported_grant_type: El tipo de concesión de autorización no está soportado por el servidor de autorización.
-        unsupported_response_type: El servidor de autorización no soporta este tipo de respuesta.
+          expired: L'identificador d'accés ha caducat
+          revoked: L'identificador d'accés fou revocat
+          unknown: L'identificador d'accés és invàlid
+        resource_owner_authenticator_not_configured: El propietari del recurs ha fallat perquè Doorkeeper.configure.resource_owner_authenticator està sense configurar.
+        server_error: El servidor de l'autorizació ha trobat unca condició inesperada que ha impedit complir la sol·licitud.
+        temporarily_unavailable: El servidor de l'autorizació és actualment incapaç de gestionar la petició degut a una sobrecàrrega temporal o una tasca de manteniment del servidor.
+        unauthorized_client: El client no està autoritzat a fer aquesta petició utilitzant aquest mètode.
+        unsupported_grant_type: El tipus de concessió d'autorització no està suportat pel servidor d'autorizació.
+        unsupported_response_type: El servidor d'autorizació no suporta aquest tipus de resposta.
     flash:
       applications:
         create:
@@ -107,6 +114,6 @@ ca:
       application:
         title: OAuth autorització requerida
     scopes:
-      follow: seguir, bloquejar, desbloquejar i deixar de seguir comptes
+      follow: seguir, blocar, desblocar i deixar de seguir comptes
       read: llegir les dades del teu compte
       write: publicar en el teu nom
