@@ -10,7 +10,7 @@ class Announcement extends React.PureComponent {
 
   static propTypes = {
     item: ImmutablePropTypes.map,
-  }
+  };
 
   render() {
     const { item } = this.props;
@@ -50,7 +50,7 @@ export default class Announcements extends React.PureComponent {
 
   state = {
     items: Immutable.List(),
-  }
+  };
 
   constructor () {
     super();
@@ -66,14 +66,14 @@ export default class Announcements extends React.PureComponent {
     this.setState({ items: validItems });
     const timeout = validItems.isEmpty() ? ONE_DAY : new Date(validItems.get(0).get('expire')).getTime() - Date.now();
     this.timer = setTimeout(this.refresh, timeout);
-  }
+  };
 
   cancelPolling = () => {
     if (this.timer !== null) {
       clearTimeout(this.timer);
       this.timer = null;
     }
-  }
+  };
 
   refresh = () => {
     this.timer = null;
@@ -81,7 +81,7 @@ export default class Announcements extends React.PureComponent {
     axios.get('https://mikutter.hachune.net/notification.json?platform=mastodon')
       .then(resp => this.updateAnnouncements(Immutable.fromJS(resp.data) || Immutable.List()))
       .catch(err => console.warn(err));
-  }
+  };
 
   render() {
     const { items } = this.state;
