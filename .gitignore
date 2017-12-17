@@ -37,6 +37,7 @@ config/deploy/*
 # Ignore IDE files
 .vscode/
 .idea/
+*.code-workspace
 
 # Ignore postgres + redis volume optionally created by docker-compose
 postgres
