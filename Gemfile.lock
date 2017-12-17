@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/getqujing/prome.git
+  revision: d43a79e3e6d6be60ae73e737b7586dc97c4cb63e
+  specs:
+    prome (0.1.0)
+      prometheus-client (= 0.6.0)
+      rails (> 5.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -326,6 +334,8 @@ GEM
       activerecord
     pkg-config (1.2.8)
     powerpack (0.1.1)
+    prometheus-client (0.6.0)
+      quantile (~> 0.2.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -335,6 +345,7 @@ GEM
     puma (3.11.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
+    quantile (0.2.0)
     rack (2.0.3)
     rack-attack (5.0.1)
       rack
@@ -602,6 +613,7 @@ DEPENDENCIES
   pg (~> 0.20)
   pghero (~> 1.7)
   pkg-config (~> 1.2)
+  prome!
   pry-rails (~> 0.3)
   puma (~> 3.10)
   pundit (~> 1.1)

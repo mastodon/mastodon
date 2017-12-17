@@ -2,12 +2,14 @@
 
 require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
+require 'prome/web'
 
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
+  mount Prome::Web, at: '/metrics'
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq
     mount PgHero::Engine, at: 'pghero', as: :pghero
