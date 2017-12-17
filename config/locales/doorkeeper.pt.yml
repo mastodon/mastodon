@@ -4,7 +4,7 @@ pt:
       doorkeeper/application:
         name: Nome da Aplicação
         redirect_uri: URL de redirecionamento
-        scopes: Âmbitos
+        scopes: Autorizações
         website: Site da Aplicação
     errors:
       models:
@@ -32,7 +32,8 @@ pt:
       help:
         native_redirect_uri: Usa %{native_redirect_uri} para testes locais
         redirect_uri: Utiliza uma linha por URI
-        scopes: Separe âmbitos com espaços. Deixe em branco para usar âmbitos predefinidos.
+        scopes: Separa autorizações com espaços. Deixa em branco para usar autorizações
+          predefinidas.
       index:
         application: Aplicações
         callback_url: URL de retorno
@@ -41,14 +42,14 @@ pt:
         new: Nova Aplicação
         show: Mostrar
         title: As tuas aplicações
-        scopes: Âmbitos
+        scopes: Autorizações
       new:
         title: Nova aplicação
       show:
         actions: Ações
         application_id: Id de Aplicação
         callback_urls: Callback urls
-        scopes: Âmbitos
+        scopes: Autorizações
         secret: Segredo
         title: 'Aplicação: %{name}'
     authorizations:
@@ -73,7 +74,7 @@ pt:
         created_at: Criada em
         date_format: '%Y-%m-%d %H:%M:%S'
         title: As tuas aplicações autorizadas
-        scopes: Âmbitos
+        scopes: Autorizações
     errors:
       messages:
         access_denied: O proprietário do recurso ou servidor de autorização negou
@@ -132,4 +133,4 @@ pt:
     scopes:
       follow: siga, bloqueie, desbloqueie, e deixa de seguir contas
       read: tenha acesso aos dados da tua conta
-      write: públique por ti
+      write: publique por ti
