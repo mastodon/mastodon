@@ -66,31 +66,18 @@ class ActivityPub::Activity
     Redis.current
   end
 
-  def distribute(status)
+  def distribute(status, audience = nil)
     crawl_links(status)
 
     # Only continue if the status is supposed to have
     # arrived in real-time
     return unless @options[:override_timestamps]
 
-    notify_about_reblog(status) if reblog_of_local_account?(status)
-    notify_about_mentions(status)
-    distribute_to_followers(status)
+    distribute_to_locals(status, audience)
   end
 
   def reblog_of_local_account?(status)
     status.reblog? && status.reblog.account.local?
-  end
-
-  def notify_about_reblog(status)
-    NotifyService.new.call(status.reblog.account, status)
-  end
-
-  def notify_about_mentions(status)
-    status.mentions.includes(:account).each do |mention|
-      next unless mention.account.local? && audience_includes?(mention.account)
-      NotifyService.new.call(mention.account, mention)
-    end
   end
 
   def crawl_links(status)
@@ -98,8 +85,8 @@ class ActivityPub::Activity
     LinkCrawlWorker.perform_async(status.id)
   end
 
-  def distribute_to_followers(status)
-    ::DistributionWorker.perform_async(status.id)
+  def distribute_to_locals(status, audience)
+    ::DistributionWorker.perform_async(status.id, audience)
   end
 
   def delete_arrived_first?(uri)

@@ -14,6 +14,8 @@ class REST::StatusSerializer < ActiveModel::Serializer
   belongs_to :application
   belongs_to :account, serializer: REST::AccountSerializer
 
+  has_one :card, serializer: REST::PreviewCardSerializer
+
   has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
   has_many :mentions
   has_many :tags
@@ -84,6 +86,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
       current_user.account_id == object.account_id &&
       !object.reblog? &&
       %w(public unlisted).include?(object.visibility)
+  end
+
+  def card
+    object.preview_cards.first
   end
 
   class ApplicationSerializer < ActiveModel::Serializer

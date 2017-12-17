@@ -4,10 +4,10 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   def perform
     if redis.exists("delete_upon_arrival:#{@account.id}:#{id}")
       Rails.logger.debug "Delete for status #{id} was queued, ignoring"
-      return [nil, false]
+      return
     end
 
-    return [nil, false] if @account.suspended?
+    return if @account.suspended?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -18,7 +18,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
       end
     end
 
-    [@status, true]
+    @status
   end
 
   def process_status

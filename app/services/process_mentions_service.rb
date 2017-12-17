@@ -30,7 +30,7 @@ class ProcessMentionsService < BaseService
 
     status.save!
 
-    status.mentions.includes(:account).each do |mention|
+    status.mentions.includes(:account).references(:account).merge(Account.remote).each do |mention|
       create_notification(status, mention)
     end
   end
@@ -40,9 +40,7 @@ class ProcessMentionsService < BaseService
   def create_notification(status, mention)
     mentioned_account = mention.account
 
-    if mentioned_account.local?
-      NotifyService.new.call(mentioned_account, mention)
-    elsif mentioned_account.ostatus? && !status.stream_entry.hidden?
+    if mentioned_account.ostatus? && !status.stream_entry.hidden?
       NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, mentioned_account.id)
     elsif mentioned_account.activitypub?
       ActivityPub::DeliveryWorker.perform_async(build_json(mention.status), mention.status.account_id, mentioned_account.inbox_url)

@@ -350,5 +350,24 @@ RSpec.describe ActivityPub::Activity::Create do
         expect(status).to_not be_nil
       end
     end
+
+    context 'with override_timestamps option' do
+      let(:object_json) do
+        {
+          id: 'bar',
+          type: 'Note',
+          content: 'Lorem ipsum',
+          to: 'https://www.w3.org/ns/activitystreams#Public',
+        }
+      end
+
+      around { |example| Sidekiq::Testing.fake! { example.run } }
+      subject { described_class.new(json, sender, override_timestamps: true) }
+
+      it 'enqueues DistributionWorker' do
+        status = sender.statuses.first
+        expect(DistributionWorker).to have_enqueued_sidekiq_job status.id, ['https://www.w3.org/ns/activitystreams#Public']
+      end
+    end
   end
 end

@@ -30,7 +30,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
 
     resolve_thread(@status)
-    distribute(@status)
+    distribute(@status, [@object['to'], @object['cc']].compact.flatten)
     forward_for_reply if @status.public_visibility? || @status.unlisted_visibility?
   end
 
@@ -160,11 +160,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     else
       :direct
     end
-  end
-
-  def audience_includes?(account)
-    uri = ActivityPub::TagManager.instance.uri_for(account)
-    equals_or_includes?(@object['to'], uri) || equals_or_includes?(@object['cc'], uri)
   end
 
   def replied_to_status

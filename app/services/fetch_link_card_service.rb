@@ -30,6 +30,11 @@ class FetchLinkCardService < BaseService
   rescue HTTP::Error, Addressable::URI::InvalidURIError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
+  ensure
+    Redis.current.pipelined do
+      Redis.current.del "preview_card_fetch:#{@status.id}:pending"
+      Redis.current.publish "preview_card_fetch:#{@status.id}:progress", '1'
+    end
   end
 
   private

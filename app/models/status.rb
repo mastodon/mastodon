@@ -137,6 +137,7 @@ class Status < ApplicationRecord
   after_create_commit :store_uri, if: :local?
 
   around_create Mastodon::Snowflake::Callbacks
+  around_create :set_preview_card_fetch_in_transaction
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
@@ -265,6 +266,13 @@ class Status < ApplicationRecord
 
   def store_uri
     update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
+  end
+
+  def set_preview_card_fetch_in_transaction
+    ApplicationRecord.transaction do
+      yield
+      Redis.current.set "preview_card_fetch:#{id}:pending", '1'
+    end
   end
 
   def prepare_contents
