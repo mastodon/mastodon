@@ -7,7 +7,7 @@
     = ff.input :name, placeholder: t('favourite_tags.name_of_tag')
   = f.input :visibility,
     label: t('simple_form.labels.defaults.setting_default_privacy'),
-    collection: Status.visibilities.keys - ['direct'],
+    collection: Status.visibilities.keys[0..1],
     wrapper: :with_label,
     include_blank: false,
     label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), content_tag(:span, I18n.t("statuses.visibilities.#{visibility}_long"), class: 'hint')]) },
