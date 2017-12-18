@@ -48,7 +48,7 @@ const makeMapStateToProps = () => {
   });
 
   return mapStateToProps;
-}
+};
 
 @injectIntl
 @connect(makeMapStateToProps)
