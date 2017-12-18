@@ -2,7 +2,7 @@
 
 MODE=$1
 
-bundle install --without="" \
+bundle install --without="" --no-deployment --path=vendor/bundle \
  && yarn --pure-lockfile
 
 
