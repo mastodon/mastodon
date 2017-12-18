@@ -14,7 +14,7 @@ services:
     - /var/data/docker-data/catgram-redis:/data
 
   web:
-    image: us.gcr.io/centi-gitlab/catgram:latest
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     env_file: .env.development
     command: /mastodon/boot_dev.sh web
     volumes:
@@ -27,7 +27,7 @@ services:
       - redis
 
   streaming:
-    image: us.gcr.io/centi-gitlab/catgram:latest
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     env_file: .env.development
     command: /mastodon/boot_dev.sh streaming
     volumes:
@@ -39,7 +39,7 @@ services:
       - redis
 
   sidekiq:
-    image: us.gcr.io/centi-gitlab/catgram:latest
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     env_file: .env.development
     command: /mastodon/boot_dev.sh sidekiq
     

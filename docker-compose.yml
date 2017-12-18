@@ -13,7 +13,7 @@ services:
 
   web:
     build: .
-    image: us.gcr.io/centi-gitlab/catgram
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
     command: /mastodon/web_boot.sh
@@ -25,7 +25,7 @@ services:
 
   streaming:
     build: .
-    image: us.gcr.io/centi-gitlab/catgram
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
     command: npm run start
@@ -37,7 +37,7 @@ services:
 
   sidekiq:
     build: .
-    image: us.gcr.io/centi-gitlab/catgram
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
