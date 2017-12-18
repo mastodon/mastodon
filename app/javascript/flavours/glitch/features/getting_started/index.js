@@ -32,22 +32,26 @@ const messages = defineMessages({
   misc: { id: 'navigation_bar.misc', defaultMessage: 'Misc' },
 });
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => {
-  if (!lists) {
-    return lists;
-  }
+const makeMapStateToProps = () => {
+  const getOrderedLists = createSelector([state => state.get('lists')], lists => {
+    if (!lists) {
+      return lists;
+    }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
-});
+    return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  });
 
-const mapStateToProps = state => ({
-  myAccount: state.getIn(['accounts', me]),
-  columns: state.getIn(['settings', 'columns']),
-  lists: getOrderedLists(state),
-});
+  const mapStateToProps = state => ({
+    lists: getOrderedLists(state),
+    myAccount: state.getIn(['accounts', me]),
+    columns: state.getIn(['settings', 'columns']),
+  });
 
-@connect(mapStateToProps)
+  return mapStateToProps;
+}
+
 @injectIntl
+@connect(makeMapStateToProps)
 export default class GettingStarted extends ImmutablePureComponent {
 
   static propTypes = {
