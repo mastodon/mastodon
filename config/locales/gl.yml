@@ -144,6 +144,7 @@ gl:
       unsubscribe: Non subscribir
       username: Nome de usuaria
       web: Web
+      demote: Degradar
     action_logs:
       actions:
         confirm_user: '%{name} comfirmou o enderezo de correo da usuaria %{target}'
@@ -157,3 +158,124 @@ gl:
         destroy_status: '%{name} eliminou o estado de %{target}'
         disable_2fa_user: '%{name} deshabilitou o requerimento 2FA para usuaria %{target}'
         disable_custom_emoji: '%{name} deshabilitou emoji %{target}'
+        demote_user: '%{name} degradou a usuaria %{target}'
+        disable_user: '%{name} deshabilitou a conexión para a usuaria  %{target}'
+        enable_custom_emoji: '%{name} habilitou emoji %{target}'
+        enable_user: '%{name} habilitou a conexión para a usuaria %{target}'
+        memorialize_account: '%{name} converteu a conta de  %{target} nunha páxina
+          para a lembranza'
+        promote_user: '%{name} promoveu a usuaria %{target}'
+        reset_password_user: '%{name} restableceu o contrasinal da usuaria %{target}'
+        resolve_report: '%{name} rexeitou o informe %{target}'
+        silence_account: '%{name} acalou a conta de %{target}'
+        suspend_account: '%{name} suspendeu a conta de %{target}'
+        unsilence_account: '%{name} deulle voz a conta de %{target}'
+        unsuspend_account: '%{name} activou a conta de %{target}'
+        update_custom_emoji: '%{name} actualizou emoji %{target}'
+        update_status: '%{name} actualizou un estado de %{target}'
+      title: Rexistro de auditoría
+    custom_emojis:
+      by_domain: Dominio
+      copied_msg: Creouse con éxito unha copia local dos emoji
+      copy: Copiar
+      copy_failed_msg: Non se puido facer copia local de ese emoji
+      created_msg: Creou o emoji con satisfactoriamente!
+      delete: Eliminar
+      destroyed_msg: Emojo destruído satisfactoriamente!
+      disable: Deshabilitar
+      disabled_msg: Deshabilitouse correctamente ese emoji
+      emoji: Emoji
+      enable: Habilitar
+      enabled_msg: Habilitouse correctamente ese emoji
+      image_hint: PNG ate 50KB
+      listed: Listado
+      new:
+        title: Engadir novo emoji personalizado
+      overwrite: Sobrescribir
+      shortcode: Código corto
+      shortcode_hint: Cando menos 2 caracteres, só caracteres alfanuméricos e subliñados
+      title: Emojis personalizados
+      unlisted: Non listado
+      update_failed_msg: Non se puido actualizar ese emoji
+      updated_msg: Actualizouse correctamente o emoji!
+      upload: Subir
+    domain_blocks:
+      add_new: Engadir novo
+      created_msg: Estase a procesar o bloqueo do dominio
+      destroyed_msg: Desfixose a acción de bloqueo de dominio
+      domain: Dominio
+      new:
+        create: Crear bloque
+        hint: O bloqueo do dominio non previrá a creación de entradas de contas na
+          base de datos, pero aplicará de xeito retroactivo e automático regras específicas
+          de moderación sobre esas contas.
+        severity:
+          desc_html: <strong>Silenciar</strong> fará invisibles as mensaxes das contas
+            para calquera que non os siga. <strong>Suspender</strong> eliminará todo
+            o contido das contas, ficheiros de medios, e datos de perfil. Utilice
+            <strong>Ningún</strong> si só quere rexeitar ficheiros de medios.
+          noop: Ningún
+          silence: Silenciar
+          suspend: Suspender
+        title: Novo bloqueo de dominio
+      reject_media: Rexeitar ficheiros de medios
+      reject_media_hint: Eliminar ficheiros de medios almacenados localmente e rexeita
+        descargalos no futuro. Irrelevante para as suspensións
+      severities:
+        noop: Ningún
+        silence: Silenciar
+        suspend: Suspender
+      severity: Severidade
+      show:
+        affected_accounts:
+          one: Afectoulle a unha conta na base de datos
+          other: Afectoulle a %{count} contas na base de datos
+        retroactive:
+          silence: Non silenciar todas as contas existentes de este dominio
+          suspend: Non suspender todas as contas existentes de este dominio
+        title: Desfacer o bloqueo de dominio para %{domain}
+        undo: Desfacer
+      title: Bloqueos de domino
+      undo: Desfacer
+    email_domain_blocks:
+      add_new: Engadir novo
+      created_msg: Engadeuse correctamente o dominio de email a lista negra
+      delete: Eliminar
+      destroyed_msg: Eliminouse correctamente o dominio de e-mail da lista negra
+      domain: Dominio
+      new:
+        create: Engadir dominio
+        title: Nova entrada la lista negra de e-mail
+      title: Lista negra de E-mail
+    instances:
+      account_count: Contas coñecidas
+      domain_name: Dominio
+      reset: Restablecer
+      search: Buscar
+      title: Instancias coñecidas
+    invites:
+      filter:
+        all: Todo
+        available: Dispoñible
+        expired: Cadudado
+        title: Filtro
+      title: Convida
+    reports:
+      action_taken_by: Acción tomada por
+      are_you_sure: Está segura?
+      comment:
+        label: Comentario
+        none: Nada
+      delete: Eliminar
+      id: ID
+      mark_as_resolved: Marcar como resolto
+      nsfw:
+        'false': Non agochar anexos de medios
+        'true': Agochar anexos de medios
+      report: 'Informe #%{id}'
+      report_contents: Contidos
+      reported_account: Conta reportada
+      reported_by: Reportada por
+      resolved: Resolto
+      silence_account: Acalar conta
+      status: Estado
