@@ -50,6 +50,14 @@ const messages = {
   'notification_purge.btn_none': '選択\n解除',
   'notification_purge.btn_invert': '選択を\n反転',
   'notification_purge.btn_apply': '選択したものを\n削除',
+
+  'compose.attach.upload': 'ファイルをアップロード',
+  'compose.attach.doodle': '落書きをする',
+  'compose.attach': 'アタッチ...',
+
+  'advanced-options.local-only.short': 'ローカル限定',
+  'advanced-options.local-only.long': '他のインスタンスには投稿されません',
+  'advanced_options.icon_title': '高度な設定',
 };
 
 export default Object.assign({}, inherited, messages);
