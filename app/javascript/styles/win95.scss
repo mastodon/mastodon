@@ -214,6 +214,7 @@ body.admin {
   border-bottom-width:0px;
   color:white;
   font-weight:bold;
+  align-items:baseline;
 }
 
 .column-header__wrapper.active {
@@ -232,6 +233,11 @@ body.admin {
   color:white;
 }
 
+.column-header__buttons {
+  max-height: 20px;
+  margin-right:0px;
+}
+
 .column-header__button {
   background: $win95-bg;
   color: black;
@@ -241,6 +247,10 @@ body.admin {
   padding:0px 2px;
   margin-top:2px;
   @include win95-outset()
+
+  &:hover {
+    color: black;
+  }
 }
 
 .column-header__button.active, .column-header__button.active:hover {
@@ -301,6 +311,13 @@ body.admin {
   border-radius:4px;
   margin-bottom:8px;
   padding:4px;
+}
+
+.column-inline-form {
+  background-color: $win95-bg;
+  @include win95-border-outset();
+  border-bottom-width:0px;
+  border-top-width:0px;
 }
 
 .column-settings__section {
@@ -815,12 +832,13 @@ body.admin {
   font-weight:bold;
 }
 
-.autosuggest-textarea__textarea, .spoiler-input__input {
+.compose-form .autosuggest-textarea__textarea, 
+.compose-form .spoiler-input__input {
   border-radius:0px;
   @include win95-border-slight-inset();
 }
 
-.autosuggest-textarea__textarea {
+.compose-form .autosuggest-textarea__textarea {
   border-bottom:0px;
 }
 
@@ -835,13 +853,30 @@ body.admin {
   border-right:1px inset $win95-bg;
 }
 
+.compose-form .compose-form__buttons-wrapper {
+  background-color: $win95-bg;
+  border:2px groove $win95-bg;
+  margin-top:4px;
+  padding:4px 8px;
+}
+
 .compose-form__buttons {
   background-color:$win95-bg;
   border-radius:0px;
   box-shadow:unset;
-  border:2px groove $win95-bg;
-  margin-top:4px;
-  padding:4px 8px;
+}
+
+.compose-form__buttons-separator {
+  border-left: 2px groove $win95-bg;
+}
+
+.privacy-dropdown.active .privacy-dropdown__value.active,
+.advanced-options-dropdown.open .advanced-options-dropdown__value {
+  background: $win95-bg;
+}
+
+.privacy-dropdown.active .privacy-dropdown__value.active .icon-button {
+  color: $win95-dark-grey;
 }
 
 .privacy-dropdown.active 
@@ -855,7 +890,11 @@ body.admin {
   background:$win95-window-header;
 }
 
-.privacy-dropdown.active .privacy-dropdown__dropdown {
+.privacy-dropdown__dropdown,
+.privacy-dropdown.active .privacy-dropdown__dropdown,
+.advanced-options-dropdown__dropdown,
+.advanced-options-dropdown.open .advanced-options-dropdown__dropdown
+{
   box-shadow:unset;
   color:black;
   @include win95-outset()
@@ -1021,31 +1060,43 @@ body.admin {
 .column-subheading {
   background-color:$win95-bg;
   color:black;
-  font-size:0px;
   border-bottom: 2px groove $win95-bg;
-  padding:0px;
-  margin:0px;
+  text-transform: none;
+  font-size: 16px;
 }
 
 .column-link {
   background-color:transparent;
-  background-size:32px 32px;
-  background-repeat:no-repeat;
-  background-position: 36px 50%;
   color:black;
-  padding-left:40px;
-
   &:hover {
     background-color: $win95-window-header;
+    color:white;
+  }
+}
+
+.getting-started__wrapper {
+  .column-subheading {
+    font-size:0px;
+    margin:0px;
+    padding:0px;
+  }
+
+  .column-link {
     background-size:32px 32px;
     background-repeat:no-repeat;
     background-position: 36px 50%;
-    color:white;
-  }
+    padding-left:40px;
 
-  i {
-    font-size: 0px;
-    width:32px;
+    &:hover {
+      background-size:32px 32px;
+      background-repeat:no-repeat;
+      background-position: 36px 50%;
+    }
+
+    i {
+      font-size: 0px;
+      width:32px;
+    }
   }
 }
 
@@ -1064,6 +1115,18 @@ body.admin {
 .column-link[href="/web/favourites"] { 
   background-image: url("../images/icon_likes.png"); 
   &:hover { background-image: url("../images/icon_likes.png"); }
+}
+.column-link[href="/web/lists"] { 
+  background-image: url("../images/icon_lists.png"); 
+  &:hover { background-image: url("../images/icon_lists.png"); }
+}
+.column-link[href="/web/follow_requests"] { 
+  background-image: url("../images/icon_follow_requests.png"); 
+  &:hover { background-image: url("../images/icon_follow_requests.png"); }
+}
+.column-link[href="/web/keyboard-shortcuts"] { 
+  background-image: url("../images/icon_keyboard_shortcuts.png"); 
+  &:hover { background-image: url("../images/icon_keyboard_shortcuts.png"); }
 }
 .column-link[href="/web/blocks"] { 
   background-image: url("../images/icon_blocks.png"); 
@@ -1125,6 +1188,23 @@ body.admin {
 
 .account__header .account__header__content {
   color:white;
+}
+
+.account-authorize__wrapper {
+  border: 2px groove $win95-bg;
+  margin: 2px;
+  padding:2px;
+}
+
+.account--panel {
+  background-color: $win95-bg;
+  border:0px;
+  border-top: 2px groove $win95-bg;
+}
+
+.account-authorize .account__header__content {
+  color:black;
+  margin:10px;
 }
 
 .account__action-bar__tab > span {
