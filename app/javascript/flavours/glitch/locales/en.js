@@ -47,6 +47,14 @@ const messages = {
   'notification_purge.btn_none': 'Select\nnone',
   'notification_purge.btn_invert': 'Invert\nselection',
   'notification_purge.btn_apply': 'Clear\nselected',
+
+  'compose.attach.upload': 'Upload a file',
+  'compose.attach.doodle': 'Draw something',
+  'compose.attach': 'Attach...',
+
+  'advanced-options.local-only.short': 'Local-only',
+  'advanced-options.local-only.long': 'Do not post to other instances',
+  'advanced_options.icon_title': 'Advanced options',
 };
 
 export default Object.assign({}, inherited, messages);
