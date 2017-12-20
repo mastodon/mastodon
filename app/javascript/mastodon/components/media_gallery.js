@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { is } from 'immutable';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { isIOS } from '../is_mobile';
+import { isIOS } from '../agent';
 import classNames from 'classnames';
 import { autoPlayGif } from '../initial_state';
 

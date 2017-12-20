@@ -1,7 +1,7 @@
 import { openModal, closeModal } from '../actions/modal';
 import { connect } from 'react-redux';
 import DropdownMenu from '../components/dropdown_menu';
-import { isUserTouching } from '../is_mobile';
+import { isUserTouching } from '../agent';
 
 const mapStateToProps = state => ({
   isModalOpen: state.get('modal').modalType === 'ACTIONS',
