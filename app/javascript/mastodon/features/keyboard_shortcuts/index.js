@@ -33,59 +33,59 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
             </thead>
             <tbody>
               <tr>
-                <td><code>r</code></td>
+                <td><kbd>r</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.reply' defaultMessage='to reply' /></td>
               </tr>
               <tr>
-                <td><code>m</code></td>
+                <td><kbd>m</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.mention' defaultMessage='to mention author' /></td>
               </tr>
               <tr>
-                <td><code>f</code></td>
+                <td><kbd>f</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.favourite' defaultMessage='to favourite' /></td>
               </tr>
               <tr>
-                <td><code>b</code></td>
+                <td><kbd>b</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.boost' defaultMessage='to boost' /></td>
               </tr>
               <tr>
-                <td><code>enter</code></td>
+                <td><kbd>enter</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
               </tr>
               <tr>
-                <td><code>up</code></td>
+                <td><kbd>up</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
               </tr>
               <tr>
-                <td><code>down</code></td>
+                <td><kbd>down</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.down' defaultMessage='to move down in the list' /></td>
               </tr>
               <tr>
-                <td><code>1</code>-<code>9</code></td>
+                <td><kbd>1</kbd>-<kbd>9</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.column' defaultMessage='to focus a status in one of the columns' /></td>
               </tr>
               <tr>
-                <td><code>n</code></td>
+                <td><kbd>n</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.compose' defaultMessage='to focus the compose textarea' /></td>
               </tr>
               <tr>
-                <td><code>alt</code>+<code>n</code></td>
+                <td><kbd>alt</kbd>+<kbd>n</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.toot' defaultMessage='to start a brand new toot' /></td>
               </tr>
               <tr>
-                <td><code>backspace</code></td>
+                <td><kbd>backspace</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.back' defaultMessage='to navigate back' /></td>
               </tr>
               <tr>
-                <td><code>s</code></td>
+                <td><kbd>s</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.search' defaultMessage='to focus search' /></td>
               </tr>
               <tr>
-                <td><code>esc</code></td>
+                <td><kbd>esc</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.unfocus' defaultMessage='to un-focus compose textarea/search' /></td>
               </tr>
               <tr>
-                <td><code>?</code></td>
+                <td><kbd>?</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.legend' defaultMessage='to display this legend' /></td>
               </tr>
             </tbody>
