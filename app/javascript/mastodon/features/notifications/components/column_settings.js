@@ -40,10 +40,10 @@ export default class ColumnSettings extends React.PureComponent {
           <span id='notifications-follow' className='column-settings__section'><FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' /></span>
 
           <div className='column-settings__row'>
-            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'follow']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'follow']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'follow']} onChange={onChange} label={showStr} />
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'follow']} onChange={onChange} label={soundStr} />
+            <SettingToggle prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'follow']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'follow']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['shows', 'follow']} onChange={onChange} label={showStr} />
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'follow']} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -51,10 +51,10 @@ export default class ColumnSettings extends React.PureComponent {
           <span id='notifications-favourite' className='column-settings__section'><FormattedMessage id='notifications.column_settings.favourite' defaultMessage='Favourites:' /></span>
 
           <div className='column-settings__row'>
-            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'favourite']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'favourite']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'favourite']} onChange={onChange} label={showStr} />
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'favourite']} onChange={onChange} label={soundStr} />
+            <SettingToggle prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'favourite']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'favourite']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['shows', 'favourite']} onChange={onChange} label={showStr} />
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'favourite']} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -62,10 +62,10 @@ export default class ColumnSettings extends React.PureComponent {
           <span id='notifications-mention' className='column-settings__section'><FormattedMessage id='notifications.column_settings.mention' defaultMessage='Mentions:' /></span>
 
           <div className='column-settings__row'>
-            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'mention']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'mention']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'mention']} onChange={onChange} label={showStr} />
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'mention']} onChange={onChange} label={soundStr} />
+            <SettingToggle prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'mention']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'mention']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['shows', 'mention']} onChange={onChange} label={showStr} />
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'mention']} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -73,10 +73,10 @@ export default class ColumnSettings extends React.PureComponent {
           <span id='notifications-reblog' className='column-settings__section'><FormattedMessage id='notifications.column_settings.reblog' defaultMessage='Boosts:' /></span>
 
           <div className='column-settings__row'>
-            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'reblog']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'reblog']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'reblog']} onChange={onChange} label={showStr} />
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'reblog']} onChange={onChange} label={soundStr} />
+            <SettingToggle prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'reblog']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'reblog']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['shows', 'reblog']} onChange={onChange} label={showStr} />
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'reblog']} onChange={onChange} label={soundStr} />
           </div>
         </div>
       </div>
