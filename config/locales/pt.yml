@@ -377,7 +377,7 @@ pt:
     agreement_html: Registando-te concordas em seguir <a href="%{rules_path}">as regras
       da instância</a> e <a href="%{terms_path}">os nossos termos de serviço</a>.
   generic:
-    changes_saved_msg: Alteraçes guardadas!
+    changes_saved_msg: Alterações guardadas!
     powered_by: fornecido por %{link}
     save_changes: Guardar alterações
     validation_errors:
@@ -401,6 +401,19 @@ pt:
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
       subject: '%{name} partilhou o teu post'
+    digest:
+      body: 'Aqui tens um breve resumo do que tens perdido em %{instance} desde o  último
+        acesso em %{since}:'
+      mention: '%{name} mencionou-te em:'
+      new_followers_summary:
+        one: Boa! Tens um novo seguidor!
+        other: Tens %{count} novos seguidores! Fantástico!
+      subject:
+        one: 1 nova notificação desde o último acesso 🐘
+        other: '%{count} novas notificações desde o  último acesso 🐘'
+    follow_request:
+      body: '%{name} solicitou autorização para te seguir'
+      subject: 'Seguidor pendente: %{name}'
   number:
     human:
       decimal_units:
@@ -467,12 +480,26 @@ pt:
     recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
     enabled: A autenticação em dois passos está ativada
   invites:
-    prompt: Gerar e compartilha links com outras pessoas para permitir acesso a essa
+    prompt: Gerar e partilhar ligações com outras pessoas para permitir acesso a essa
       instância
     table:
       expires_at: Expira
       uses: Usos
     title: Convidar pessoas
+    delete: Desativar
+    expired: Expirados
+    expires_in:
+      '1800': 30 minutos
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '86400': 1 dia
+    expires_in_prompt: Nunca
+    generate: Gerar
+    max_uses:
+      one: 1 uso
+      other: '%{count} usos'
+    max_uses_prompt: Sem limite
   sessions:
     activity: Última atividade
     browser: Navegador
@@ -552,5 +579,78 @@ pt:
     '403': Não tens a permissão necessária para ver esta página.
     '404': A página que estás a procurar não existe.
     '410': A página que estás a procurar não existe mais.
+    '422':
+      content: "A verificação de segurança falhou. \nDesativaste o uso de cookies?"
+      title: A verificação de segurança falhou
+    '500':
+      content: Desculpe, mas algo correu mal.
+      title: Esta página não está correta
+    noscript_html: Para usar o aplicativo web do Mastodon, por favor ativa o JavaScript.
+      Alternativamente, experimenta um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps
+      nativos</a> para o Mastodon na sua plataforma.
   users:
     invalid_otp_token: Código de autenticação inválido
+  exports:
+    blocks: Bloqueaste
+    csv: CSV
+    follows: Segues
+    mutes: Tens em silêncio
+    storage: Armazenamento de média
+  followers:
+    domain: Domínio
+    explanation_html: Se  queres garantir a privacidade das tuas publicações, deves
+      ficar atento a quem te está a seguir.<strong>As tuas publicações privadas são
+      enviadas para todas as instâncias nas que tens seguidores</strong>. Convém revisá-las
+      e remover seguidores se achares que a tua privacidade não será respeitada pela
+      equipa ou software destas instâncias.
+    followers_count: Número de seguidores
+    lock_link: Bloquear a tua conta
+    purge: Eliminar dos seguidores
+    success:
+      one: No processo de bloqueio suave de seguidores de outro domínio...
+      other: No processo de bloqueio suave de seguidores de outros %{count} domínios...
+    true_privacy_html: Por favor leva em conta que <strong>a verdadeira privacidade
+      só pode ser alcançada através de encriptação ponto-a-ponto</strong>.
+    unlocked_warning_html: Qualquer pessoa pode seguir-te e ver as tuas publicações
+      privadas. %{lock_link} para ser capaz de revisar e rejeitar seguidores.
+    unlocked_warning_title: A tua conta não está bloqueada
+  imports:
+    preface: Podes importar dados que tenhas exportado de outra instância, como a
+      lista de pessoas que segues ou bloqueadas.
+    success: Os teus dados foram enviados com sucesso e serão processados em breve
+    types:
+      blocking: Lista de bloqueio
+      muting: Lista de utilizadores silenciados
+    upload: Enviar
+  in_memoriam_html: Em memória.
+  media_attachments:
+    validations:
+      images_and_video: Não é possível anexar um vídeo a uma publicação que já contém
+        imagens
+      too_many: Não é possível anexar mais de 4 arquivos
+  migrations:
+    acct: username@domain da nova conta
+    currently_redirecting: 'O teu perfil está configurado para redirecionar para:'
+    proceed: Salvar
+    updated_msg: As configurações de migração da tua conta foram atualizadas com sucesso!
+  moderation:
+    title: Moderação
+  preferences:
+    languages: Idiomas
+    other: Outro
+    publishing: Publicação
+    web: Web
+  push_notifications:
+    favourite:
+      title: '%{name} adicionou o teu post aos favoritos'
+    follow:
+      title: '%{name} começou a seguir-te'
+    group:
+      title: '%{count} notificações'
+    mention:
+      action_boost: Partilhar
+      action_expand: Mostrar mais
+      action_favourite: Adicionar aos favoritos
+      title: '%{name} mencionou-te'
+    reblog:
+      title: '%{name} partilhou o teu post'
