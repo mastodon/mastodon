@@ -149,4 +149,31 @@ RSpec.describe NotifyService do
       end
     end
   end
+
+  describe 'web push' do
+    context 'when pushable and desktop alerts are disabled by the agent' do
+      let(:web_push_subscription) { Fabricate(:web_push_subscription, desktop_enabled: false, data: { alerts: { follow: true } }) }
+      let!(:session_activation) { Fabricate(:session_activation, user: user, web_push_subscription: web_push_subscription) }
+
+      it 'pushes' do
+        Sidekiq::Testing.fake! do
+          subject.call
+          expect(WebPushNotificationWorker).to have_enqueued_sidekiq_job session_activation.id, recipient.notifications.find_by!(from_account: sender, activity: activity).id
+        end
+      end
+    end
+
+    context 'when pushable and desktop alerts are enabled' do
+      let(:web_push_subscription) { Fabricate(:web_push_subscription, desktop_enabled: true, data: { alerts: { follow: true } }) }
+      let!(:session_activation) { Fabricate(:session_activation, user: user, web_push_subscription: web_push_subscription) }
+      let!(:web_setting) { Fabricate('Web::Setting', user: user, data: { notifications: { alerts: { follow: true } } }) }
+
+      it 'pushes' do
+        Sidekiq::Testing.fake! do
+          subject.call
+          expect(WebPushNotificationWorker).to have_enqueued_sidekiq_job session_activation.id, recipient.notifications.find_by!(from_account: sender, activity: activity).id
+        end
+      end
+    end
+  end
 end

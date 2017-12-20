@@ -1,17 +1,9 @@
 import axios from 'axios';
 import { pushNotificationsSetting } from '../settings';
 
-export const SET_BROWSER_SUPPORT = 'PUSH_NOTIFICATIONS_SET_BROWSER_SUPPORT';
 export const SET_SUBSCRIPTION = 'PUSH_NOTIFICATIONS_SET_SUBSCRIPTION';
 export const CLEAR_SUBSCRIPTION = 'PUSH_NOTIFICATIONS_CLEAR_SUBSCRIPTION';
 export const ALERTS_CHANGE = 'PUSH_NOTIFICATIONS_ALERTS_CHANGE';
-
-export function setBrowserSupport (value) {
-  return {
-    type: SET_BROWSER_SUPPORT,
-    value,
-  };
-}
 
 export function setSubscription (subscription) {
   return {

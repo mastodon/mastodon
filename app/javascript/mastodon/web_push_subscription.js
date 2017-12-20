@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { supportsDesktopNotifications, supportsPushNotifications } from './agent';
 import { store } from './containers/mastodon';
-import { setBrowserSupport, setSubscription, clearSubscription } from './actions/push_notifications';
+import { setSubscription, clearSubscription } from './actions/push_notifications';
 import { pushNotificationsSetting } from './settings';
 
 // Taken from https://www.npmjs.com/package/web-push
@@ -37,7 +38,10 @@ const unsubscribe = ({ registration, subscription }) =>
   subscription ? subscription.unsubscribe().then(() => registration) : registration;
 
 const sendSubscriptionToBackend = (subscription) => {
-  const params = { subscription };
+  const params = {
+    desktop_enabled: supportsDesktopNotifications(),
+    subscription,
+  };
 
   const me = store.getState().getIn(['meta', 'me']);
   if (me) {
@@ -50,11 +54,7 @@ const sendSubscriptionToBackend = (subscription) => {
   return axios.post('/api/web/push_subscriptions', params).then(response => response.data);
 };
 
-// Last one checks for payload support: https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/#no-payload
-const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window && 'getKey' in PushSubscription.prototype);
-
 export function register () {
-  store.dispatch(setBrowserSupport(supportsPushNotifications));
   const me = store.getState().getIn(['meta', 'me']);
 
   if (me && !pushNotificationsSetting.get(me)) {
@@ -64,7 +64,7 @@ export function register () {
     }
   }
 
-  if (supportsPushNotifications) {
+  if (supportsPushNotifications()) {
     if (!getApplicationServerKey()) {
       console.error('The VAPID public key is not set. You will not be able to receive Web Push Notifications.');
       return;

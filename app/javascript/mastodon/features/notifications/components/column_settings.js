@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
 import ClearColumnButton from './clear_column_button';
 import SettingToggle from './setting_toggle';
+import { supportsDesktopNotifications, supportsPushNotifications } from '../../../agent';
 
 export default class ColumnSettings extends React.PureComponent {
 
@@ -26,7 +27,8 @@ export default class ColumnSettings extends React.PureComponent {
     const showStr  = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
     const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
 
-    const showPushSettings = pushSettings.get('browserSupport') && pushSettings.get('isSubscribed');
+    const showDesktopSettings = supportsDesktopNotifications();
+    const showPushSettings = supportsPushNotifications() && pushSettings.get('isSubscribed');
     const pushStr = showPushSettings && <FormattedMessage id='notifications.column_settings.push' defaultMessage='Push notifications' />;
     const pushMeta = showPushSettings && <FormattedMessage id='notifications.column_settings.push_meta' defaultMessage='This device' />;
 
@@ -36,49 +38,40 @@ export default class ColumnSettings extends React.PureComponent {
           <ClearColumnButton onClick={onClear} />
         </div>
 
-        <div role='group' aria-labelledby='notifications-follow'>
-          <span id='notifications-follow' className='column-settings__section'><FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' /></span>
+        {[
+          {
+            key: 'follow',
+            label: <FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' />,
+          }, {
+            key: 'favourite',
+            label: <FormattedMessage id='notifications.column_settings.favourite' defaultMessage='Favourites:' />,
+          }, {
+            key: 'mention',
+            label: <FormattedMessage id='notifications.column_settings.mention' defaultMessage='Mentions:' />,
+          }, {
+            key: 'reblog',
+            label: <FormattedMessage id='notifications.column_settings.reblog' defaultMessage='Boosts:' />,
+          },
+        ].map(({ key, label }, index) => {
+          const labelId = `notifications-${index}`;
+          const desktopSettingKey = ['alerts', key];
+          const pushSettingKey = ['alerts', key];
+          const showSettingKey = ['shows', key];
+          const soundSettingkey = ['sounds', key];
 
-          <div className='column-settings__row'>
-            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'follow']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'follow']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'follow']} onChange={onChange} label={showStr} />
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'follow']} onChange={onChange} label={soundStr} />
-          </div>
-        </div>
+          return (
+            <div key={index} role='group' aria-labelledby={labelId}>
+              <span id={labelId} className='column-settings__section'>{label}</span>
 
-        <div role='group' aria-labelledby='notifications-favourite'>
-          <span id='notifications-favourite' className='column-settings__section'><FormattedMessage id='notifications.column_settings.favourite' defaultMessage='Favourites:' /></span>
-
-          <div className='column-settings__row'>
-            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'favourite']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'favourite']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'favourite']} onChange={onChange} label={showStr} />
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'favourite']} onChange={onChange} label={soundStr} />
-          </div>
-        </div>
-
-        <div role='group' aria-labelledby='notifications-mention'>
-          <span id='notifications-mention' className='column-settings__section'><FormattedMessage id='notifications.column_settings.mention' defaultMessage='Mentions:' /></span>
-
-          <div className='column-settings__row'>
-            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'mention']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'mention']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'mention']} onChange={onChange} label={showStr} />
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'mention']} onChange={onChange} label={soundStr} />
-          </div>
-        </div>
-
-        <div role='group' aria-labelledby='notifications-reblog'>
-          <span id='notifications-reblog' className='column-settings__section'><FormattedMessage id='notifications.column_settings.reblog' defaultMessage='Boosts:' /></span>
-
-          <div className='column-settings__row'>
-            <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={['alerts', 'reblog']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingKey={['alerts', 'reblog']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'reblog']} onChange={onChange} label={showStr} />
-            <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'reblog']} onChange={onChange} label={soundStr} />
-          </div>
-        </div>
+              <div className='column-settings__row'>
+                {showDesktopSettings && <SettingToggle prefix='notifications_desktop' settings={settings} settingKey={desktopSettingKey} onChange={onChange} label={alertStr} />}
+                {showPushSettings && <SettingToggle disabled={showDesktopSettings && !settings.getIn(desktopSettingKey)} sub={showDesktopSettings} prefix='notifications_push' settings={pushSettings} settingKey={pushSettingKey} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
+                <SettingToggle prefix='notifications' settings={settings} settingKey={showSettingKey} onChange={onChange} label={showStr} />
+                <SettingToggle prefix='notifications' settings={settings} settingKey={soundSettingkey} onChange={onChange} label={soundStr} />
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   }

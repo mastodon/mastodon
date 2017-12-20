@@ -338,5 +338,32 @@ namespace :mastodon do
       PreviewCard.where(embed_url: '', type: :photo).delete_all
       LinkCrawlWorker.push_bulk status_ids
     end
+
+    desc 'Migrate web settings made before 2.2'
+    task migrate_web_settings: :environment do
+      Web::PushSubscription.eager_load(session_activation: { user: :web_setting }).find_each do |subscription|
+        web_setting = subscription.session_activation.user.web_setting
+        notification = web_setting.data['notification']
+        alerts = nil
+
+        if notification.is_a? Hash
+          alerts = notification['alerts']
+          unless alerts.is_a? Hash
+            alerts = {}
+            notification['alerts'] = alerts
+          end
+        else
+          alerts = {}
+          notification = { 'alerts' => alerts }
+          web_setting.data = notification
+        end
+
+        subscription['alerts']&.each do |key, value|
+          alerts[key] = value if value
+        end
+
+        subscription.session_activation.user.web_setting.save!
+      end
+    end
   end
 end
