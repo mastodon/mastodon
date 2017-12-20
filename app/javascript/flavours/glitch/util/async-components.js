@@ -50,6 +50,10 @@ export function GettingStarted () {
   return import(/* webpackChunkName: "flavours/glitch/async/getting_started" */'flavours/glitch/features/getting_started');
 }
 
+export function KeyboardShortcuts () {
+  return import(/* webpackChunkName: "features/keyboard_shortcuts" */'flavours/glitch/features/keyboard_shortcuts');
+}
+
 export function PinnedStatuses () {
   return import(/* webpackChunkName: "flavours/glitch/async/pinned_statuses" */'flavours/glitch/features/pinned_statuses');
 }

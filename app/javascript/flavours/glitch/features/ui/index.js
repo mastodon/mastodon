@@ -20,6 +20,7 @@ import {
   Compose,
   Status,
   GettingStarted,
+  KeyboardShortcuts,
   PublicTimeline,
   CommunityTimeline,
   AccountTimeline,
@@ -63,6 +64,7 @@ const mapStateToProps = state => ({
 });
 
 const keyMap = {
+  help: '?',
   new: 'n',
   search: 's',
   forceNew: 'option+n',
@@ -312,6 +314,14 @@ export default class UI extends React.Component {
     this.hotkeys = c;
   }
 
+  handleHotkeyToggleHelp = () => {
+    if (this.props.location.pathname === '/keyboard-shortcuts') {
+      this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/keyboard-shortcuts');
+    }
+  }
+
   handleHotkeyGoToHome = () => {
     this.context.router.history.push('/timelines/home');
   }
@@ -378,6 +388,7 @@ export default class UI extends React.Component {
     });
 
     const handlers = {
+      help: this.handleHotkeyToggleHelp,
       new: this.handleHotkeyNew,
       search: this.handleHotkeySearch,
       forceNew: this.handleHotkeyForceNew,
@@ -405,6 +416,7 @@ export default class UI extends React.Component {
             <WrappedSwitch>
               <Redirect from='/' to='/getting-started' exact />
               <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+              <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
               <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
               <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
               <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />

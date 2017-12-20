@@ -45,10 +45,11 @@ export default class gettingStartedMisc extends ImmutablePureComponent {
 
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
-          <ColumnLink key='22' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
-          <ColumnLink key='23' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
-          <ColumnLink key='19' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
-          <ColumnLink key='20' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+          <ColumnLink key='19' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
+          <ColumnLink key='20' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
+          <ColumnLink key='21' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
+          <ColumnLink key='22' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+          <ColumnLink key='23' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
           <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
           <ColumnLink icon='hand-o-right' text={intl.formatMessage(messages.show_me_around)} onClick={this.openOnboardingModal} />
         </div>
