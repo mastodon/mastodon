@@ -2,11 +2,7 @@
 
 module Settings
   module TwoFactorAuthentication
-    class RecoveryCodesController < ApplicationController
-      layout 'admin'
-
-      before_action :authenticate_user!
-
+    class RecoveryCodesController < BaseController
       def create
         @recovery_codes = current_user.generate_otp_backup_codes!
         current_user.save!
