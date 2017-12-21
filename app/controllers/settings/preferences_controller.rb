@@ -33,6 +33,7 @@ class Settings::PreferencesController < ApplicationController
 
   def user_settings_params
     params.require(:user).permit(
+      :setting_default_license,
       :setting_default_privacy,
       :setting_default_sensitive,
       :setting_unfollow_modal,
