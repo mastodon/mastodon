@@ -50,6 +50,10 @@ export function GettingStarted () {
   return import(/* webpackChunkName: "flavours/glitch/async/getting_started" */'flavours/glitch/features/getting_started');
 }
 
+export function KeyboardShortcuts () {
+  return import(/* webpackChunkName: "features/keyboard_shortcuts" */'flavours/glitch/features/keyboard_shortcuts');
+}
+
 export function PinnedStatuses () {
   return import(/* webpackChunkName: "flavours/glitch/async/pinned_statuses" */'flavours/glitch/features/pinned_statuses');
 }
@@ -124,4 +128,8 @@ export function Video () {
 
 export function EmbedModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/embed_modal" */'flavours/glitch/features/ui/components/embed_modal');
+}
+
+export function GettingStartedMisc () {
+  return import(/* webpackChunkName: "flavours/glitch/async/getting_started_misc" */'flavours/glitch/features/getting_started_misc');
 }

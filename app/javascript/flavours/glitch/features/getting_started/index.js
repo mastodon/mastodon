@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from 'flavours/glitch/util/initial_state';
+import { createSelector } from 'reselect';
+import { fetchLists } from 'flavours/glitch/actions/lists';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -23,23 +25,33 @@ const messages = defineMessages({
   settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
-  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
-  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
-  show_me_around: { id: 'getting_started.onboarding', defaultMessage: 'Show me around' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  lists_subheading: { id: 'column_subheading.lists', defaultMessage: 'Lists' },
+  misc: { id: 'navigation_bar.misc', defaultMessage: 'Misc' },
 });
 
-const mapStateToProps = state => ({
-  myAccount: state.getIn(['accounts', me]),
-  columns: state.getIn(['settings', 'columns']),
-});
+const makeMapStateToProps = () => {
+  const getOrderedLists = createSelector([state => state.get('lists')], lists => {
+    if (!lists) {
+      return lists;
+    }
 
-@connect(mapStateToProps)
+    return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  });
+
+  const mapStateToProps = state => ({
+    lists: getOrderedLists(state),
+    myAccount: state.getIn(['accounts', me]),
+    columns: state.getIn(['settings', 'columns']),
+  });
+
+  return mapStateToProps;
+};
+
 @injectIntl
+@connect(makeMapStateToProps)
 export default class GettingStarted extends ImmutablePureComponent {
 
   static propTypes = {
@@ -48,6 +60,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
+    lists: ImmutablePropTypes.list,
   };
 
   openSettings = () => {
@@ -59,10 +72,15 @@ export default class GettingStarted extends ImmutablePureComponent {
     this.props.dispatch(openModal('ONBOARDING'));
   }
 
+  componentWillMount () {
+    this.props.dispatch(fetchLists());
+  }
+
   render () {
-    const { intl, myAccount, columns, multiColumn } = this.props;
+    const { intl, myAccount, columns, multiColumn, lists } = this.props;
 
     let navItems = [];
+    let listItems = [];
 
     if (multiColumn) {
       if (!columns.find(item => item.get('id') === 'HOME')) {
@@ -86,19 +104,19 @@ export default class GettingStarted extends ImmutablePureComponent {
       navItems.push(<ColumnLink key='4' icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />);
     }
 
-    navItems = navItems.concat([
-      <ColumnLink key='5' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
-      <ColumnLink key='6' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
-      <ColumnLink key='10' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />,
-    ]);
-
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key='7' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key='5' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
     }
 
-    navItems = navItems.concat([
-      <ColumnLink key='8' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
-      <ColumnLink key='9' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
+    navItems.push(<ColumnLink key='6' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
+
+    listItems = listItems.concat([
+      <div>
+        <ColumnLink key='7' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+        {lists.map(list =>
+          <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
+        )}
+      </div>,
     ]);
 
     return (
@@ -107,9 +125,9 @@ export default class GettingStarted extends ImmutablePureComponent {
           <div className='getting-started__wrapper'>
             <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
             {navItems}
+            <ColumnSubheading text={intl.formatMessage(messages.lists_subheading)} />
+            {listItems}
             <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-            <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
-            <ColumnLink icon='hand-o-right' text={intl.formatMessage(messages.show_me_around)} onClick={this.openOnboardingModal} />
             <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
             <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={this.openSettings} />
             <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
