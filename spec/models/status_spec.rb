@@ -625,6 +625,23 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe '#license_url' do
+    it 'produces the URL for a known license' do
+      status = Fabricate.build(:status, license: 'Attribution-NoDerivs (CC BY-ND)')
+      expect(status.license_url).to eq('https://creativecommons.org/licenses/by-nd/4.0/')
+    end
+
+    it 'produces nil for an unknown license' do
+      status = Fabricate.build(:status, license: 'cheese')
+      expect(status.license_url).to be_nil
+    end
+
+    it 'produces nil for an empty license' do
+      status = Fabricate.build(:status, license: nil)
+      expect(status.license_url).to be_nil
+    end
+  end
+
   describe 'before_validation' do
     it 'sets account being replied to correctly over intermediary nodes' do
       first_status = Fabricate(:status, account: bob)
@@ -650,6 +667,34 @@ RSpec.describe Status, type: :model do
     it 'sets `local` to false for status by remote account' do
       alice.update(domain: 'example.com')
       expect(Status.create(account: alice, text: 'foo').local).to be false
+    end
+
+    it 'sets the license based on the user' do
+      user = Fabricate(:user)
+      user.settings['default_license'] = 'Attribution'
+      account = Fabricate(:account, user: user)
+
+      status = Status.create(account: account)
+
+      expect(status.license).to eq("Attribution")
+    end
+
+    it 'understands a user without a license' do
+      user = Fabricate(:user)
+      user.settings['default_license'] = nil
+      account = Fabricate(:account, user: user)
+
+      status = Status.create(account: account)
+
+      expect(status.license).to eq(nil)
+    end
+
+    it 'understands an account without a user' do
+      account = Fabricate(:account, user: nil)
+
+      status = Status.create(account: account)
+
+      expect(status.license).to eq(nil)
     end
   end
 

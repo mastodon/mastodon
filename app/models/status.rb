@@ -371,6 +371,6 @@ class Status < ApplicationRecord
   end
 
   def set_license
-    self.license = account.user.setting_default_license
+    self.license ||= account.user&.setting_default_license
   end
 end

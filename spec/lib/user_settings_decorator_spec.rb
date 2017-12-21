@@ -21,6 +21,13 @@ describe UserSettingsDecorator do
       expect(user.settings['interactions']['must_be_follower']).to eq false
     end
 
+    it 'updates the user settings value for license' do
+      values = { 'setting_default_license' => 'Attribution' }
+
+      settings.update(values)
+      expect(user.settings['default_license']).to eq 'Attribution'
+    end
+
     it 'updates the user settings value for privacy' do
       values = { 'setting_default_privacy' => 'public' }
 

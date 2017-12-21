@@ -377,6 +377,32 @@ RSpec.describe OStatus::AtomSerializer do
         end
       end
 
+      it 'appends link element for license if we know the license URL' do
+        status = Fabricate(:status, license: 'Attribution (CC BY)')
+
+        entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
+
+        license_link = entry.nodes.detect do |node|
+          node.name == 'link' && node[:rel] == 'license'
+        end
+
+        expect(license_link).to be
+        expect(license_link[:type]).to eq('application/rdf+xml')
+        expect(license_link[:href]).to eq('https://creativecommons.org/licenses/by/4.0/')
+      end
+
+      it 'does not append the link element for the license if we do not know the license URL' do
+        status = Fabricate(:status, license: nil)
+
+        entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
+
+        license_link = entry.nodes.detect do |node|
+          node.name == 'link' && node[:rel] == 'license'
+        end
+
+        expect(license_link).not_to be
+      end
+
       it 'appends category elements for tags' do
         tag = Fabricate(:tag, name: 'tag')
         status = Fabricate(:status, tags: [ tag ])
