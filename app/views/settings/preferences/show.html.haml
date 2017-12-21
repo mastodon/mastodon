@@ -21,7 +21,7 @@
 
     = f.input :setting_default_sensitive, as: :boolean, wrapper: :with_label
 
-    = f.input :setting_default_license, collection: Setting::LICENSES, wrapper: :with_label
+    = f.input :setting_default_license, collection: Status::LICENSE_URLS.keys, wrapper: :with_label
 
   %h4= t 'preferences.other'
 

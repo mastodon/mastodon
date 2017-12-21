@@ -15,15 +15,6 @@
 class Setting < RailsSettings::Base
   source Rails.root.join('config', 'settings.yml')
 
-  LICENSES = [
-    "Attribution (CC BY)",
-    "Attribution-ShareAlike (CC BY-SA)",
-    "Attribution-NoDerivs (CC BY-ND)",
-    "Attribution-NonCommercial (CC BY-NC)",
-    "Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)",
-    "Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)",
-  ]
-
   def to_param
     var
   end

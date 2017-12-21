@@ -92,7 +92,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def license
-    'https://creativecommons.org/licenses/by/4.0/'
+    object.license_url
   end
 
   class ApplicationSerializer < ActiveModel::Serializer

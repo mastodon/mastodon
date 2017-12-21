@@ -5,7 +5,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
-             :conversation
+             :conversation, :license
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -87,7 +87,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def license
-    'https://creativecommons.org/licenses/by/4.0/'
+    object.license_url
   end
 
   class MediaAttachmentSerializer < ActiveModel::Serializer

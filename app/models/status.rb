@@ -37,6 +37,15 @@ class Status < ApplicationRecord
 
   update_index('statuses#status', :proper) if Chewy.enabled?
 
+  LICENSE_URLS = {
+    "Attribution (CC BY)" => "https://creativecommons.org/licenses/by/4.0/",
+    "Attribution-ShareAlike (CC BY-SA)" => "https://creativecommons.org/licenses/by-sa/4.0/",
+    "Attribution-NoDerivs (CC BY-ND)" => "https://creativecommons.org/licenses/by-nd/4.0/",
+    "Attribution-NonCommercial (CC BY-NC)" => "https://creativecommons.org/licenses/by-nc/4.0/",
+    "Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)" => "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)" => "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+  }
+
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
@@ -178,6 +187,7 @@ class Status < ApplicationRecord
   before_validation :set_conversation
   before_validation :set_sensitivity
   before_validation :set_local
+  before_validation :set_license
 
   class << self
     def not_in_filtered_languages(account)
@@ -303,6 +313,10 @@ class Status < ApplicationRecord
     end
   end
 
+  def license_url
+    LICENSE_URLS[license]
+  end
+
   private
 
   def store_uri
@@ -354,5 +368,9 @@ class Status < ApplicationRecord
   def update_statistics
     return unless public_visibility? || unlisted_visibility?
     ActivityTracker.increment('activity:statuses:local')
+  end
+
+  def set_license
+    self.license = account.user.setting_default_license
   end
 end
