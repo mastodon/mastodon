@@ -441,11 +441,14 @@ pt:
     export: Exportar dados
     import: Importar
     preferences: Preferências
-    settings: Settings
+    settings: Configurações
     two_factor_authentication: Autenticação em dois passos
     delete: Eliminação da conta
     development: Desenvolvimento
     followers: Seguidores autorizados
+    migrate: Migração de conta
+    notifications: Notificações
+    your_apps: As tuas aplicações
   statuses:
     open_in_web: Abrir no browser
     over_character_limit: limite de caracter excedeu %{max}
@@ -454,6 +457,9 @@ pt:
       private: Mostrar apenas para seguidores
       public: Público
       unlisted: Público, mas não mostre no timeline público
+      private_long: Mostrar apenas para seguidores
+      public_long: Todos podem ver
+    title: '%{name}: "%{quote}"'
   stream_entries:
     click_to_show: Clique pra mostrar
     reblogged: boosted
@@ -536,6 +542,7 @@ pt:
       other: Plataforma desconhecida
       windows: Windows
       windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revogar
     revoke_success: Sessão revogada com sucesso
     title: Sessões
@@ -575,6 +582,11 @@ pt:
     proceed: Eliminar conta
     success_msg: A tua conta foi eliminada com sucesso
     warning_title: Disponibilidade de conteúdo disseminado
+    warning_html: 'Apenas a eliminação de conteúdo desta instância é garantido.
+
+      Conteúdo que tenha sido partilhado com outras instâncias muito provavelmente
+      deixará pegadas. Servidores offline e servidores que se desinscreveram das tuas
+      atualizações não  atualizarão as suas bases de dados.'
   errors:
     '403': Não tens a permissão necessária para ver esta página.
     '404': A página que estás a procurar não existe.
@@ -621,6 +633,7 @@ pt:
     types:
       blocking: Lista de bloqueio
       muting: Lista de utilizadores silenciados
+      following: Lista de pessoas que estás a seguir
     upload: Enviar
   in_memoriam_html: Em memória.
   media_attachments:
