@@ -352,8 +352,7 @@ class OStatus::AtomSerializer
     append_element(entry, 'link', nil, rel: :alternate, type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(status)) if status.account.local?
 
     if status.license_url
-      append_element(entry, 'link', rel: :license, type: 'application/rdf+xml',
-                     href: status.license_url)
+      append_element(entry, 'link', rel: :license, type: 'application/rdf+xml', href: status.license_url)
     end
 
     append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
