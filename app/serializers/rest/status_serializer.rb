@@ -4,7 +4,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :content, :url, :reblogs_count, :favourites_count,
-             :license
+             :license, :license_url
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -92,7 +92,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def license
-    object.license_url
+    I18n.t(
+      Status::LICENSE_URLS[object.license_url],
+      scope: 'simple_form.options.user.setting_default_license'
+    )
   end
 
   class ApplicationSerializer < ActiveModel::Serializer

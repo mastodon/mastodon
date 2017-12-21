@@ -39,6 +39,9 @@
       - else
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
       ·
+    - if status.license_url
+      = link_to status.license, status.license_url, class: 'detailed-status__license', target: '_blank', rel: 'noopener'
+      ·
     - if status.direct_visibility?
       %span<
         = fa_icon('envelope')

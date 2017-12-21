@@ -1276,6 +1276,7 @@ a .account__avatar {
 .status__relative-time,
 .detailed-status__display-name,
 .detailed-status__datetime,
+.detailed-status__license,
 .detailed-status__application,
 .account__display-name {
   text-decoration: none;
@@ -1310,6 +1311,7 @@ a.account__display-name {
 }
 
 .detailed-status__application,
+.detailed-status__license,
 .detailed-status__datetime {
   color: inherit;
 }
@@ -1433,6 +1435,7 @@ a.account__display-name {
 }
 
 .status__relative-time,
+.detailed-status__license,
 .detailed-status__datetime {
   &:hover {
     text-decoration: underline;

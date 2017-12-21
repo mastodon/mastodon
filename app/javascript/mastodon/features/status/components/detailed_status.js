@@ -49,6 +49,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
+    let licenseLink = '';
 
     if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
@@ -103,6 +104,10 @@ export default class DetailedStatus extends ImmutablePureComponent {
       </Link>);
     }
 
+    if (status.get('license_url')) {
+      licenseLink = <span> · <a className='detailed-status__license' href={status.get('license_url')} target='_blank' rel='noopener'>{status.get('license')}</a></span>;
+    }
+
     return (
       <div className='detailed-status'>
         <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
@@ -117,7 +122,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <div className='detailed-status__meta'>
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
             <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
-          </a>{applicationLink} · {reblogLink} · <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
+          </a>{applicationLink} {licenseLink} · {reblogLink} · <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
             <i className='fa fa-star' />
             <span className='detailed-status__favorites'>
               <FormattedNumber value={status.get('favourites_count')} />
