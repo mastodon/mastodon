@@ -20,8 +20,6 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_many :tags
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
-  delegate :license_url, to: :object
-
   def id
     object.id.to_s
   end
