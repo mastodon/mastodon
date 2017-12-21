@@ -9,6 +9,7 @@ module Settings
 
     def show
       @confirmation = Form::TwoFactorConfirmation.new
+      @recovery_confirmation = Form::RecoveryCodeConfirmation.new
     end
 
     def create
@@ -25,6 +26,7 @@ module Settings
       else
         flash.now[:alert] = I18n.t('two_factor_authentication.wrong_code')
         @confirmation = Form::TwoFactorConfirmation.new
+        @recovery_confirmation = Form::RecoveryCodeConfirmation.new
         render :show
       end
     end

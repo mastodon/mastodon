@@ -20,9 +20,13 @@
   %h6= t('two_factor_authentication.recovery_codes')
   %p.muted-hint
     = t('two_factor_authentication.lost_recovery_codes')
-    = link_to t('two_factor_authentication.generate_recovery_codes'),
-      settings_two_factor_authentication_recovery_codes_path,
-      data: { method: :post }
+
+  = simple_form_for @recovery_confirmation, url: settings_two_factor_authentication_recovery_codes_path, method: :post do |f|
+
+    = f.input :password, hint: t('two_factor_authentication.confirm_password'), placeholder: t('simple_form.labels.defaults.password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
+
+    .actions
+      = f.button :button, t('two_factor_authentication.generate_recovery_codes'), type: :submit
 
 - else
   .simple_form
