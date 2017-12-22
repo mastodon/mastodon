@@ -338,5 +338,30 @@ namespace :mastodon do
       PreviewCard.where(embed_url: '', type: :photo).delete_all
       LinkCrawlWorker.push_bulk status_ids
     end
+
+    desc 'Check every known remote account and delete those that no longer exist in origin'
+    task purge_removed_accounts: :environment do
+      Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
+        begin
+          res = Request.new(:head, account.uri).perform
+        rescue
+          # This could happen due to network timeout, DNS timeout, wrong SSL cert, etc,
+          # which should probably not lead to perceiving the account as deleted, so
+          # just skip till next time
+          next
+        end
+
+        if [404, 410].include?(res.code)
+          puts "It seems like #{account.acct} no longer exists. Purge the account from the database? [Y/n]: "
+          confirm = STDIN.gets.chomp
+
+          if confirm.casecmp('n').zero?
+            next
+          else
+            account.destroy
+          end
+        end
+      end
+    end
   end
 end
