@@ -316,21 +316,14 @@ export function readyComposeSuggestionsAccounts(token, accounts) {
 
 export function selectComposeSuggestion(position, token, suggestion) {
   return (dispatch, getState) => {
-    let completion, startPosition;
-
-    if (typeof suggestion === 'object' && suggestion.id) {
-      completion    = suggestion.native || suggestion.colons;
-      startPosition = position - 1;
-
-      dispatch(useEmoji(suggestion));
-    } else {
-      completion    = getState().getIn(['accounts', suggestion, 'acct']);
-      startPosition = position;
-    }
+    const completion = typeof suggestion === 'object' && suggestion.id ? (
+      dispatch(useEmoji(suggestion)),
+      suggestion.native || suggestion.colons
+    ) : '@' + getState().getIn(['accounts', suggestion, 'acct']);
 
     dispatch({
       type: COMPOSE_SUGGESTION_SELECT,
-      position: startPosition,
+      position,
       token,
       completion,
     });

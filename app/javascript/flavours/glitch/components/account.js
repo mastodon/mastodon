@@ -30,6 +30,7 @@ export default class Account extends ImmutablePureComponent {
     onMuteNotifications: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
+    small: PropTypes.bool,
   };
 
   handleFollow = () => {
@@ -53,7 +54,12 @@ export default class Account extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, hidden } = this.props;
+    const {
+      account,
+      hidden,
+      intl,
+      small,
+    } = this.props;
 
     if (!account) {
       return <div />;
@@ -70,7 +76,7 @@ export default class Account extends ImmutablePureComponent {
 
     let buttons;
 
-    if (account.get('id') !== me && account.get('relationship', null) !== null) {
+    if (account.get('id') !== me && !small && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);
@@ -98,17 +104,23 @@ export default class Account extends ImmutablePureComponent {
       }
     }
 
-    return (
+    return small ? (
+      <div className='account small'>
+        <div className='account__avatar-wrapper'><Avatar account={account} size={18} /></div>
+        <DisplayName account={account} />
+      </div>
+    ) : (
       <div className='account'>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' href={account.get('url')} to={`/accounts/${account.get('id')}`}>
             <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
             <DisplayName account={account} />
           </Permalink>
-
-          <div className='account__relationship'>
-            {buttons}
-          </div>
+          {buttons ?
+            <div className='account__relationship'>
+              {buttons}
+            </div>
+          : null}
         </div>
       </div>
     );
