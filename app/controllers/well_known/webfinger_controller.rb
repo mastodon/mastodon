@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WellKnown
-  class WebfingerController < ApplicationController
+  class WebfingerController < ActionController::Base
     include RoutingHelper
 
     def show
@@ -16,6 +16,8 @@ module WellKnown
           render content_type: 'application/xrd+xml'
         end
       end
+
+      expires_in(3.days, public: true)
     rescue ActiveRecord::RecordNotFound
       head 404
     end
