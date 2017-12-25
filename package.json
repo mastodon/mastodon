@@ -1,6 +1,9 @@
 {
   "name": "mastodon",
   "license": "AGPL-3.0",
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
     "postversion": "git push --tags",
     "build:development": "cross-env RAILS_ENV=development ./bin/webpack",
