@@ -23,11 +23,11 @@ export function clearSubscription () {
   };
 }
 
-export function setAlerts (key, value) {
+export function setAlerts (path, value) {
   return dispatch => {
     dispatch({
       type: SET_ALERTS,
-      key,
+      path,
       value,
     });
   };

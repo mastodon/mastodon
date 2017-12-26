@@ -44,7 +44,7 @@ export default function push_subscriptions(state = initialState, action) {
   case CLEAR_SUBSCRIPTION:
     return initialState;
   case SET_ALERTS:
-    return state.setIn(action.key, action.value);
+    return state.setIn(action.path, action.value);
   default:
     return state;
   }
