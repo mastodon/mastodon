@@ -1758,7 +1758,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: lighten($ui-base-color, 13%);
+  background: lighten($ui-base-color, 13%) url('../images/wave-drawer.png') no-repeat bottom / 100% auto;
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -1770,6 +1770,11 @@
 
   &.darker {
     background: $ui-base-color;
+  }
+
+  > .mastodon {
+    background: url('../images/mastodon-drawer.png') no-repeat left bottom / contain;
+    flex: 1;
   }
 }
 
@@ -2072,15 +2077,8 @@
   overflow-y: auto;
 }
 
-.getting-started__footer {
-  display: flex;
-  flex-direction: column;
-}
-
 .getting-started {
-  box-sizing: border-box;
-  padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
+  background: $ui-base-color;
   flex: 1 0 auto;
 
   p {
