@@ -6,24 +6,24 @@ export default class SettingText extends React.PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
-    settingKey: PropTypes.array.isRequired,
+    settingPath: PropTypes.array.isRequired,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
   };
 
   handleChange = (e) => {
-    this.props.onChange(this.props.settingKey, e.target.value);
+    this.props.onChange(this.props.settingPath, e.target.value);
   }
 
   render () {
-    const { settings, settingKey, label } = this.props;
+    const { settings, settingPath, label } = this.props;
 
     return (
       <label>
         <span style={{ display: 'none' }}>{label}</span>
         <input
           className='setting-text'
-          value={settings.getIn(settingKey)}
+          value={settings.getIn(settingPath)}
           onChange={this.handleChange}
           placeholder={label}
         />
