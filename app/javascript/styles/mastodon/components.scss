@@ -2072,14 +2072,18 @@
   cursor: default;
 }
 
-.getting-started__wrapper {
+.navigation__wrapper {
   position: relative;
   overflow-y: auto;
 }
 
-.getting-started {
+.navigation__footer {
   background: $ui-base-color;
   flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 
   p {
     color: $ui-secondary-color;
@@ -2088,6 +2092,10 @@
   a {
     color: $ui-base-lighter-color;
   }
+}
+
+.getting-started__question {
+  border-top: $ui-base-color solid;
 }
 
 .keyboard-shortcuts {
