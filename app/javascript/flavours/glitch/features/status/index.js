@@ -20,9 +20,9 @@ import {
   replyCompose,
   mentionCompose,
 } from 'flavours/glitch/actions/compose';
-import { blockAccount } from '../../actions/accounts';
-import { muteStatus, unmuteStatus, deleteStatus } from '../../actions/statuses';
-import { initMuteModal } from '../../actions/mutes';
+import { blockAccount } from 'flavours/glitch/actions/accounts';
+import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/statuses';
+import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { makeGetStatus } from 'flavours/glitch/selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
