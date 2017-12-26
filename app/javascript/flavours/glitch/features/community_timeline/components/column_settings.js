@@ -26,7 +26,7 @@ export default class ColumnSettings extends React.PureComponent {
         <span className='column-settings__section'><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></span>
 
         <div className='column-settings__row'>
-          <SettingText settings={settings} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
+          <SettingText settings={settings} settingPath={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
         </div>
       </div>
     );
