@@ -674,6 +674,10 @@
 
     .status.status-direct {
       background: lighten($ui-base-color, 12%);
+
+      &.muted {
+        background: transparent;
+      }
     }
 
     .detailed-status,
