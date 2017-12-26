@@ -20,14 +20,16 @@ import {
   replyCompose,
   mentionCompose,
 } from 'flavours/glitch/actions/compose';
-import { deleteStatus } from 'flavours/glitch/actions/statuses';
+import { blockAccount } from 'flavours/glitch/actions/accounts';
+import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/statuses';
+import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { makeGetStatus } from 'flavours/glitch/selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
 import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import StatusContainer from 'flavours/glitch/containers/status_container';
 import { openModal } from 'flavours/glitch/actions/modal';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
@@ -36,6 +38,7 @@ import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
+  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
 });
 
 const makeMapStateToProps = () => {
@@ -163,6 +166,28 @@ export default class Status extends ImmutablePureComponent {
 
   handleOpenVideo = (media, time) => {
     this.props.dispatch(openModal('VIDEO', { media, time }));
+  }
+
+  handleMuteClick = (account) => {
+    this.props.dispatch(initMuteModal(account));
+  }
+
+  handleConversationMuteClick = (status) => {
+    if (status.get('muted')) {
+      this.props.dispatch(unmuteStatus(status.get('id')));
+    } else {
+      this.props.dispatch(muteStatus(status.get('id')));
+    }
+  }
+
+  handleBlockClick = (account) => {
+    const { dispatch, intl } = this.props;
+
+    dispatch(openModal('CONFIRM', {
+      message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+      confirm: intl.formatMessage(messages.blockConfirm),
+      onConfirm: () => dispatch(blockAccount(account.get('id'))),
+    }));
   }
 
   handleReport = (status) => {
@@ -349,6 +374,9 @@ export default class Status extends ImmutablePureComponent {
                   onReblog={this.handleReblogClick}
                   onDelete={this.handleDeleteClick}
                   onMention={this.handleMentionClick}
+                  onMute={this.handleMuteClick}
+                  onMuteConversation={this.handleConversationMuteClick}
+                  onBlock={this.handleBlockClick}
                   onReport={this.handleReport}
                   onPin={this.handlePin}
                   onEmbed={this.handleEmbed}
