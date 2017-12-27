@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 module WellKnown
-  class WebfingerController < ApplicationController
+  class WebfingerController < ActionController::Base
     include RoutingHelper
+
+    before_action { response.headers['Vary'] = 'Accept' }
 
     def show
       @account = Account.find_local!(username_from_resource)
@@ -16,6 +18,8 @@ module WellKnown
           render content_type: 'application/xrd+xml'
         end
       end
+
+      expires_in(3.days, public: true)
     rescue ActiveRecord::RecordNotFound
       head 404
     end
