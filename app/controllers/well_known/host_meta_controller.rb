@@ -4,6 +4,8 @@ module WellKnown
   class HostMetaController < ActionController::Base
     include RoutingHelper
 
+    before_action { response.headers['Vary'] = 'Accept' }
+
     def show
       @webfinger_template = "#{webfinger_url}?resource={uri}"
 

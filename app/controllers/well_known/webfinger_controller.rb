@@ -4,6 +4,8 @@ module WellKnown
   class WebfingerController < ActionController::Base
     include RoutingHelper
 
+    before_action { response.headers['Vary'] = 'Accept' }
+
     def show
       @account = Account.find_local!(username_from_resource)
 
