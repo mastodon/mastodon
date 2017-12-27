@@ -14,7 +14,7 @@ export function assignHandlers (target, handlers) {
 //  This function only returns the component if the result of calling
 //  `test` with `data` is `true`.  Useful with funciton binding.
 export function conditionalRender (test, data, component) {
-  return test ? component : null;
+  return test(data) ? component : null;
 }
 
 //  This object provides props to make the component not visible.

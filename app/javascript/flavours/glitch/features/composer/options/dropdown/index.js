@@ -70,7 +70,7 @@ const handlers = {
     //  dropdown.
     if (onModalClose && isUserTouching()) {
       if (open) {
-        onModalClose()
+        onModalClose();
       } else if (onChange && onModalOpen) {
         onModalOpen({
           actions: items.map(

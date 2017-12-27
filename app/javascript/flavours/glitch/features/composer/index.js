@@ -2,9 +2,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
 //  Actions.
 import {
@@ -43,7 +40,7 @@ import { countableText } from 'flavours/glitch/util/counter';
 import { me } from 'flavours/glitch/util/initial_state';
 import { isMobile } from 'flavours/glitch/util/is_mobile';
 import { assignHandlers } from 'flavours/glitch/util/react_helpers';
-import { mergeProps } from 'flavours/glitch/util/redux_helpers';
+import { wrap } from 'flavours/glitch/util/redux_helpers';
 
 //  State mapping.
 function mapStateToProps (state) {
@@ -204,9 +201,7 @@ const handlers = {
 };
 
 //  The component.
-@injectIntl
-@connect(mapStateToProps, mapDispatchToProps, mergeProps)
-export default class Composer extends React.Component {
+class Composer extends React.Component {
 
   //  Constructor.
   constructor (props) {
@@ -408,7 +403,7 @@ export default class Composer extends React.Component {
 //  Context
 Composer.contextTypes = {
   history: PropTypes.object,
-}
+};
 
 //  Props.
 Composer.propTypes = {
@@ -438,3 +433,7 @@ Composer.propTypes = {
     text: PropTypes.string,
   }).isRequired,
 };
+
+//  Connecting and export.
+export { Composer as WrappedComponent };
+export default wrap(Composer, mapStateToProps, mapDispatchToProps, true);
