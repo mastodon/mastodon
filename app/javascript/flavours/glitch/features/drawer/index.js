@@ -143,6 +143,12 @@ Drawer.propTypes = {
   }).isRequired,
 };
 
+//  Default props.
+Drawer.defaultProps = {
+  dispatch: {},
+  state: {},
+};
+
 //  Connecting and export.
 export { Drawer as WrappedComponent };
 export default wrap(Drawer, mapStateToProps, mapDispatchToProps, true);

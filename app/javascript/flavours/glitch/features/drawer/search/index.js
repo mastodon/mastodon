@@ -109,7 +109,7 @@ export default class DrawerSearch extends React.PureComponent {
           <input
             type='text'
             placeholder={intl.formatMessage(messages.placeholder)}
-            value={value}
+            value={value || ''}
             onChange={change}
             onKeyUp={keyUp}
             onFocus={focus}
@@ -129,7 +129,7 @@ export default class DrawerSearch extends React.PureComponent {
 
         <Overlay
           placement='bottom'
-          show={expanded && !value.length && !submitted}
+          show={expanded && !(value || '').length && !submitted}
           target={this}
         ><DrawerSearchPopout /></Overlay>
       </div>

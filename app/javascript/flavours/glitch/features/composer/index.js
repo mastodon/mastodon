@@ -434,6 +434,12 @@ Composer.propTypes = {
   }).isRequired,
 };
 
+//  Default props.
+Composer.defaultProps = {
+  dispatch: {},
+  state: {},
+};
+
 //  Connecting and export.
 export { Composer as WrappedComponent };
 export default wrap(Composer, mapStateToProps, mapDispatchToProps, true);
