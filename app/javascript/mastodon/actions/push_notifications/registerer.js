@@ -51,7 +51,7 @@ const sendSubscriptionToBackend = (subscription, me) => {
 // Last one checks for payload support: https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/#no-payload
 const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window && 'getKey' in PushSubscription.prototype);
 
-export default function register () {
+export function register () {
   return (dispatch, getState) => {
     dispatch(setBrowserSupport(supportsPushNotifications));
     const me = getState().getIn(['meta', 'me']);
