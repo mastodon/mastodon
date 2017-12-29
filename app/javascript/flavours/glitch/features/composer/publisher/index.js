@@ -49,6 +49,7 @@ export default function ComposerPublisher ({
       <span class='count'>{diff}</span>
       {sideArm && sideArm !== 'none' ? (
         <Button
+          className='side_arm'
           text={
             <span>
               <Icon
@@ -67,7 +68,7 @@ export default function ComposerPublisher ({
         />
       ) : null}
       <Button
-        className='compose-form__publish__primary'
+        className='primary'
         text={function () {
           switch (true) {
           case !!sideArm && sideArm !== 'none':

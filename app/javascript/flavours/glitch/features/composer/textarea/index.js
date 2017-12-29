@@ -246,12 +246,13 @@ export default class ComposerTextarea extends React.Component {
 
     //  The result.
     return (
-      <div className='autosuggest-textarea'>
+      <div className='composer--textarea'>
         <label>
           <span {...hiddenComponent}><FormattedMessage {...messages.placeholder} /></span>
           <Textarea
             aria-autocomplete='list'
             autoFocus={autoFocus}
+            className='textarea'
             disabled={disabled}
             inputRef={refTextarea}
             onBlur={blur}

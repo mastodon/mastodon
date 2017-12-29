@@ -139,6 +139,7 @@ export default class ComposerUploadFormItem extends React.PureComponent {
               }}
             >
               <IconButton
+                className='close'
                 icon='times'
                 onClick={remove}
                 size={36}

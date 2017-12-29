@@ -70,24 +70,31 @@ export default class ComposerReply extends React.PureComponent {
       <article className='composer--reply'>
         <header>
           <IconButton
+            className='cancel'
             icon='times'
             onClick={click}
             title={intl.formatMessage(messages.cancel)}
           />
           {account ? (
             <a
+              className='account'
               href={account.get('url')}
               onClick={clickAccount}
             >
               <Avatar
                 account={account}
+                className='avatar'
                 size={24}
               />
-              <DisplayName account={account} />
+              <DisplayName
+                account={account}
+                className='display_name'
+              />
             </a>
           ) : null}
         </header>
         <div
+          className='content'
           dangerouslySetInnerHTML={{ __html: content || '' }}
           style={{ direction: isRtl(content) ? 'rtl' : 'ltr' }}
         />

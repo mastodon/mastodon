@@ -50,10 +50,10 @@ export default class ComposerTextareaSuggestionsItem extends React.Component {
     //  The result.
     return (
       <div
-        role='button'
-        tabIndex='0'
         className={computedClass}
         onMouseDown={click}
+        role='button'
+        tabIndex='0'
       >
         { //  If the suggestion is an object, then we render an emoji.
           //  Otherwise, we render an account.

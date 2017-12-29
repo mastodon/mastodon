@@ -21,7 +21,6 @@ import {
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
-  COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
   COMPOSE_UPLOAD_CHANGE_REQUEST,
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
@@ -219,8 +218,6 @@ export default function compose(state = initialState, action) {
     return state
       .set('text', action.text)
       .set('idempotencyKey', uuid());
-  case COMPOSE_COMPOSING_CHANGE:
-    return state.set('is_composing', action.value);
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));

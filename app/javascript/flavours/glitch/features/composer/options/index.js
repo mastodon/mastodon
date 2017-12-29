@@ -236,7 +236,12 @@ export default class ComposerOptions extends React.PureComponent {
           }}
         >
           {({ scale }) => (
-            <div style={{ transform: `scale(${scale})` }}>
+            <div
+              style={{
+                display: hasMedia ? null : 'none',
+                transform: `scale(${scale})`,
+              }}
+            >
               <IconButton
                 active={sensitive}
                 className='sensitive'

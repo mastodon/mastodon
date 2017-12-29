@@ -1,5 +1,4 @@
 //  Package imports.
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -14,10 +13,13 @@ export default function ComposerTextareaSuggestions ({
   suggestions,
   value,
 }) {
-  const computedClass = classNames('comoser--textarea--suggestions', { hidden: hidden || suggestions.isEmpty() });
 
+  //  The result.
   return (
-    <div className={computedClass}>
+    <div
+      className='composer--textarea--suggestions'
+      hidden={hidden || suggestions.isEmpty()}
+    >
       {!hidden ? suggestions.map(
         (suggestion, index) => (
           <ComposerTextareaSuggestionsItem

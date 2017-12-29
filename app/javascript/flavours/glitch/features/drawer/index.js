@@ -4,7 +4,6 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 //  Actions.
-import { changeComposing } from 'flavours/glitch/actions/compose';
 import { openModal } from 'flavours/glitch/actions/modal';
 import {
   changeSearch,
@@ -14,8 +13,9 @@ import {
 } from 'flavours/glitch/actions/search';
 
 //  Components.
+import Composer from 'flavours/glitch/features/composer';
+import DrawerAccount from './account';
 import DrawerHeader from './header';
-import DrawerPager from './pager';
 import DrawerResults from './results';
 import DrawerSearch from './search';
 
@@ -27,7 +27,6 @@ import { wrap } from 'flavours/glitch/util/redux_helpers';
 const mapStateToProps = state => ({
   account: state.getIn(['accounts', me]),
   columns: state.getIn(['settings', 'columns']),
-  isComposing: state.getIn(['compose', 'is_composing']),
   results: state.getIn(['search', 'results']),
   searchHidden: state.getIn(['search', 'hidden']),
   searchValue: state.getIn(['search', 'value']),
@@ -38,12 +37,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   change (value) {
     dispatch(changeSearch(value));
-  },
-  changeComposingOff () {
-    dispatch(changeComposing(false));
-  },
-  changeComposingOn () {
-    dispatch(changeComposing(true));
   },
   clear () {
     dispatch(clearSearch());
@@ -72,8 +65,6 @@ class Drawer extends React.Component {
     const {
       dispatch: {
         change,
-        changeComposingOff,
-        changeComposingOn,
         clear,
         openSettings,
         show,
@@ -84,7 +75,6 @@ class Drawer extends React.Component {
       state: {
         account,
         columns,
-        isComposing,
         results,
         searchHidden,
         searchValue,
@@ -111,16 +101,14 @@ class Drawer extends React.Component {
           submitted={submitted}
           value={searchValue}
         />
-        <DrawerPager
-          account={account}
-          active={isComposing}
-          onBlur={changeComposingOff}
-          onFocus={changeComposingOn}
-        />
-        <DrawerResults
-          results={results}
-          visible={submitted && !searchHidden}
-        />
+        <div className='contents'>
+          <DrawerAccount account={account} />
+          <Composer />
+          <DrawerResults
+            results={results}
+            visible={submitted && !searchHidden}
+          />
+        </div>
       </div>
     );
   }
@@ -135,7 +123,6 @@ Drawer.propTypes = {
   state: PropTypes.shape({
     account: ImmutablePropTypes.map,
     columns: ImmutablePropTypes.list,
-    isComposing: PropTypes.bool,
     results: ImmutablePropTypes.map,
     searchHidden: PropTypes.bool,
     searchValue: PropTypes.string,

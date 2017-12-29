@@ -22,7 +22,7 @@ const messages = defineMessages({
 });
 
 //  The component.
-export default function DrawerPagerAccount ({ account }) {
+export default function DrawerAccount ({ account }) {
 
   //  We need an account to render.
   if (!account) {
@@ -67,4 +67,4 @@ export default function DrawerPagerAccount ({ account }) {
   );
 }
 
-DrawerPagerAccount.propTypes = { account: ImmutablePropTypes.map };
+DrawerAccount.propTypes = { account: ImmutablePropTypes.map };

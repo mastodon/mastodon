@@ -7,12 +7,10 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import classNames from 'classnames';
 import Permalink from 'flavours/glitch/components/permalink';
 import { WrappedComponent as RawComposer } from 'flavours/glitch/features/composer';
-import DrawerPagerAccount from 'flavours/glitch/features/drawer/pager/account';
+import DrawerAccount from 'flavours/glitch/features/drawer/account';
 import DrawerSearch from 'flavours/glitch/features/drawer/search';
 import ColumnHeader from './column_header';
 import { me } from 'flavours/glitch/util/initial_state';
-
-const noop = () => { };
 
 const messages = defineMessages({
   home_title: { id: 'column.home', defaultMessage: 'Home' },
@@ -49,7 +47,7 @@ const PageTwo = ({ intl, myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
       <div className='pseudo-drawer'>
-        <DrawerPagerAccount account={myAccount} />
+        <DrawerAccount account={myAccount} />
         <RawComposer
           intl={intl}
           state={composerState}
@@ -72,7 +70,7 @@ const PageThree = ({ intl, myAccount }) => (
       <DrawerSearch intl={intl} />
 
       <div className='pseudo-drawer'>
-        <DrawerPagerAccount account={myAccount} />
+        <DrawerAccount account={myAccount} />
       </div>
     </div>
 
