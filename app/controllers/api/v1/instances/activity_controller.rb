@@ -15,8 +15,9 @@ class Api::V1::Instances::ActivityController < Api::BaseController
     weeks = []
 
     12.times do |i|
-      week    = i.weeks.ago.to_date
-      week_id = week.cweek
+      day     = i.weeks.ago.to_date
+      week_id = day.cweek
+      week    = Date.commercial(day.cwyear, week_id)
 
       weeks << {
         week: week.to_time.to_i.to_s,
