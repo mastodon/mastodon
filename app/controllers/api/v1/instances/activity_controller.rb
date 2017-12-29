@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Instances::ActivityController < Api::BaseController
+  before_action :require_enabled_api!
+
   respond_to :json
 
   def show
@@ -18,12 +20,16 @@ class Api::V1::Instances::ActivityController < Api::BaseController
 
       weeks << {
         week: week.to_time.to_i.to_s,
-        statuses: Redis.current.get("activity:statuses:local:#{week_id}"),
+        statuses: Redis.current.get("activity:statuses:local:#{week_id}") || 0,
         logins: Redis.current.pfcount("activity:logins:#{week_id}"),
-        registrations: Redis.current.get("activity:accounts:local:#{week_id}"),
+        registrations: Redis.current.get("activity:accounts:local:#{week_id}") || 0,
       }
     end
 
     weeks
+  end
+
+  def require_enabled_api!
+    head 404 unless Setting.activity_api_enabled
   end
 end

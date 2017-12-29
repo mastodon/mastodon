@@ -123,11 +123,15 @@ class User < ApplicationRecord
   end
 
   def confirm
+    return if confirmed?
+
     super
     update_statistics!
   end
 
   def confirm!
+    return if confirmed?
+
     skip_confirmation!
     save!
     update_statistics!

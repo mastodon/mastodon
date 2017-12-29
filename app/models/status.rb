@@ -311,6 +311,7 @@ class Status < ApplicationRecord
   end
 
   def update_statistics
+    return unless public_visibility? || unlisted_visibility?
     ActivityTracker.increment('activity:statuses:local')
   end
 end
