@@ -122,9 +122,15 @@ class User < ApplicationRecord
     update!(disabled: false)
   end
 
+  def confirm
+    super
+    update_statistics!
+  end
+
   def confirm!
     skip_confirmation!
     save!
+    update_statistics!
   end
 
   def promote!
@@ -201,5 +207,10 @@ class User < ApplicationRecord
 
   def sanitize_languages
     filtered_languages.reject!(&:blank?)
+  end
+
+  def update_statistics!
+    BootstrapTimelineWorker.perform_async(account_id)
+    ActivityTracker.increment('activity:accounts:local')
   end
 end

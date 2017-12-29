@@ -243,6 +243,7 @@ Rails.application.routes.draw do
 
       resource :instance, only: [:show] do
         resources :peers, only: [:index], controller: 'instances/peers'
+        resource :activity, only: [:show], controller: 'instances/activity'
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]
