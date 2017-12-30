@@ -196,4 +196,13 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def render_cached_json(cache_key, **options)
+    data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
+      yield.to_json
+    end
+
+    expires_in options[:expires_in], public: true
+    render json: data
+  end
 end

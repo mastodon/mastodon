@@ -17,6 +17,7 @@ module UserTrackingConcern
 
     # Mark as signed-in today
     current_user.update_tracked_fields!(request)
+    ActivityTracker.record('activity:logins', current_user.id)
 
     # Regenerate feed if needed
     regenerate_feed! if user_needs_feed_update?
