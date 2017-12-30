@@ -3,7 +3,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ColumnSettings from '../components/column_settings';
 import { changeSetting } from 'flavours/glitch/actions/settings';
 import { clearNotifications } from 'flavours/glitch/actions/notifications';
-import { changeAlerts as changePushNotifications, saveSettings } from 'flavours/glitch/actions/push_notifications';
+import { changeAlerts as changePushNotifications } from 'flavours/glitch/actions/push_notifications';
 import { openModal } from 'flavours/glitch/actions/modal';
 
 const messages = defineMessages({
