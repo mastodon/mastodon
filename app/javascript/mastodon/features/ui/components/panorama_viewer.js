@@ -58,6 +58,13 @@ export default class PanoramaViewer extends React.PureComponent {
     }
 
     if (this.mouseDown) this.onMouseUp();
+    if (this.touchDown) this.onTouchEnd();
+  }
+
+  applyPointerDelta (dx, dy) {
+    let x = this.state.x + PAN_SPEED * dx / this.props.width / this.state.zoom;
+    let y = this.state.y + PAN_SPEED * dy / this.props.height / this.state.zoom;
+    this.setState({ x, y });
   }
 
   onMouseDown = e => {
@@ -69,12 +76,9 @@ export default class PanoramaViewer extends React.PureComponent {
   }
 
   onMouseMove = e => {
-    if (!this.mouseDown) return;
     let deltaX = e.clientX - this.lastMousePos[0];
     let deltaY = e.clientY - this.lastMousePos[1];
-    let x = this.state.x + PAN_SPEED * deltaX / this.props.width / this.state.zoom;
-    let y = this.state.y + PAN_SPEED * deltaY / this.props.height / this.state.zoom;
-    this.setState({ x, y });
+    this.applyPointerDelta(deltaX, deltaY);
     this.lastMousePos = [e.clientX, e.clientY];
   }
 
@@ -83,6 +87,34 @@ export default class PanoramaViewer extends React.PureComponent {
 
     window.removeEventListener('mousemove', this.onMouseMove);
     window.removeEventListener('mouseup', this.onMouseUp);
+  }
+
+  onTouchStart = e => {
+    e.preventDefault();
+
+    this.lastTouchPos = [e.touches[0].clientX, e.touches[0].clientY];
+    this.touchDown = true;
+
+    window.addEventListener('touchmove', this.onTouchMove);
+    window.addEventListener('touchend', this.onTouchEnd);
+  }
+
+  onTouchMove = e => {
+    e.preventDefault();
+
+    let deltaX = e.touches[0].clientX - this.lastTouchPos[0];
+    let deltaY = e.touches[0].clientY - this.lastTouchPos[1];
+    let x = this.state.x + PAN_SPEED * deltaX / this.props.width / this.state.zoom;
+    let y = this.state.y + PAN_SPEED * deltaY / this.props.height / this.state.zoom;
+    this.setState({ x, y });
+    this.lastTouchPos = [e.touches[0].clientX, e.touches[0].clientY];
+  }
+
+  onTouchEnd = () => {
+    this.touchDown = false;
+
+    window.removeEventListener('touchmove', this.onTouchMove);
+    window.removeEventListener('touchend', this.onTouchEnd);
   }
 
   onWheel = e => {
@@ -122,6 +154,7 @@ export default class PanoramaViewer extends React.PureComponent {
           ref={this.setCanvasRef}
 
           onMouseDown={this.onMouseDown}
+          onTouchStart={this.onTouchStart}
           onWheel={this.onWheel}
         />
         <Motion
