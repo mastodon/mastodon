@@ -80,9 +80,14 @@ const handlers = {
             }) => ({
               ...rest,
               active: value && name === value,
+              name,
               onClick (e) {
                 e.preventDefault();  //  Prevents focus from changing
                 onModalClose();
+                onChange(name);
+              },
+              onPassiveClick (e) {
+                e.preventDefault();  //  Prevents focus from changing
                 onChange(name);
               },
             })
@@ -191,7 +196,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           >
             {({ opacity, scaleX, scaleY }) => (
               <div
-                className='dropdown'
+                className='composer--options--dropdown__dropdown'
                 ref={this.setRef}
                 style={{
                   opacity: opacity,

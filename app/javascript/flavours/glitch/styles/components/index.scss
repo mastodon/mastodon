@@ -2784,156 +2784,6 @@
   filter: none;
 }
 
-.privacy-dropdown__dropdown {
-  position: absolute;
-  background: $simple-background-color;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  border-radius: 4px;
-  margin-left: 40px;
-  overflow: hidden;
-  transform-origin: 50% 0;
-}
-
-.privacy-dropdown__option {
-  color: $ui-base-color;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-
-  &:hover,
-  &.active {
-    background: $ui-highlight-color;
-    color: $primary-text-color;
-
-    .privacy-dropdown__option__content {
-      color: $primary-text-color;
-
-      strong {
-        color: $primary-text-color;
-      }
-    }
-  }
-
-  &.active:hover {
-    background: lighten($ui-highlight-color, 4%);
-  }
-}
-
-.privacy-dropdown__option__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-}
-
-.privacy-dropdown__option__content {
-  flex: 1 1 auto;
-  color: darken($ui-primary-color, 24%);
-
-  strong {
-    font-weight: 500;
-    display: block;
-    color: $ui-base-color;
-  }
-}
-
-.privacy-dropdown.active {
-  .privacy-dropdown__value {
-    background: $simple-background-color;
-    border-radius: 4px 4px 0 0;
-    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
-
-    .icon-button {
-      transition: none;
-    }
-
-    &.active {
-      background: $ui-highlight-color;
-
-      .icon-button {
-        color: $primary-text-color;
-      }
-    }
-  }
-
-  .privacy-dropdown__dropdown {
-    display: block;
-    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
-  }
-}
-
-.advanced-options-dropdown {
-  position: relative;
-}
-
-.advanced-options-dropdown__dropdown {
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 27px;
-  width: 210px;
-  background: $simple-background-color;
-  border-radius: 0 4px 4px;
-  z-index: 2;
-  overflow: hidden;
-}
-
-.advanced-options-dropdown__option {
-  color: $ui-base-color;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-
-  &:hover,
-  &.active {
-    background: $ui-highlight-color;
-    color: $primary-text-color;
-
-    .advanced-options-dropdown__option__content {
-      color: $primary-text-color;
-
-      strong {
-        color: $primary-text-color;
-      }
-    }
-  }
-
-  &.active:hover {
-    background: lighten($ui-highlight-color, 4%);
-  }
-}
-
-.advanced-options-dropdown__option__toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-}
-
-.advanced-options-dropdown__option__content {
-  flex: 1 1 auto;
-  color: darken($ui-primary-color, 24%);
-
-  strong {
-    font-weight: 500;
-    display: block;
-    color: $ui-base-color;
-  }
-}
-
-.advanced-options-dropdown.open {
-  .advanced-options-dropdown__value {
-    background: $simple-background-color;
-    border-radius: 4px 4px 0 0;
-    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
-  }
-
-  .advanced-options-dropdown__dropdown {
-    display: block;
-    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
-  }
-}
-
 .modal-root {
   transition: opacity 0.3s linear;
   will-change: opacity;
@@ -3488,7 +3338,7 @@
   max-height: 80vh;
   max-width: 80vw;
 
-  .actions-modal__item-label {
+  strong {
     font-weight: 500;
   }
 
@@ -3501,31 +3351,24 @@
     }
 
     li:not(:empty) {
-      a {
+      & > .link {
         color: $ui-base-color;
         display: flex;
         padding: 12px 16px;
         font-size: 15px;
         align-items: center;
         text-decoration: none;
-
-        &,
-        button {
-          transition: none;
-        }
+        transition: none;
 
         &.active,
         &:hover,
         &:active,
         &:focus {
-          &,
-          button {
-            background: $ui-highlight-color;
-            color: $primary-text-color;
-          }
+          background: $ui-highlight-color;
+          color: $primary-text-color;
         }
 
-        button:first-child {
+        & > .icon {
           margin-right: 10px;
         }
       }

@@ -91,6 +91,7 @@ export default class ComposerOptionsDropdownItem extends React.PureComponent {
           case !!icon:
             return (
               <Icon
+                className='icon'
                 fullwidth
                 icon={icon}
               />
@@ -100,11 +101,11 @@ export default class ComposerOptionsDropdownItem extends React.PureComponent {
           }
         }()}
         {meta ? (
-          <div>
+          <div className='content'>
             <strong>{text}</strong>
             {meta}
           </div>
-        ) : <div>{text}</div>}
+        ) : <div className='content'>{text}</div>}
       </div>
     );
   }
