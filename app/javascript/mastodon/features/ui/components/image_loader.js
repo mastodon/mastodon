@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PanoramaViewer from './panorama_viewer';
 
 export default class ImageLoader extends React.PureComponent {
 
@@ -20,6 +21,7 @@ export default class ImageLoader extends React.PureComponent {
 
   state = {
     loading: true,
+    panorama: false,
     error: false,
   }
 
@@ -95,6 +97,7 @@ export default class ImageLoader extends React.PureComponent {
     };
     const handleLoad = () => {
       removeEventListeners();
+      this.image = image;
       resolve();
     };
     image.addEventListener('error', handleError);
@@ -117,9 +120,13 @@ export default class ImageLoader extends React.PureComponent {
     this.canvas = c;
   }
 
+  togglePanorama = () => {
+    this.setState({ panorama: !this.state.panorama });
+  }
+
   render () {
     const { alt, src, width, height } = this.props;
-    const { loading } = this.state;
+    const { loading, panorama } = this.state;
 
     const className = classNames('image-loader', {
       'image-loader--loading': loading,
@@ -135,8 +142,25 @@ export default class ImageLoader extends React.PureComponent {
           ref={this.setCanvasRef}
           style={{ opacity: loading ? 1 : 0 }}
         />
+        <button
+          onClick={this.togglePanorama}
+          aria-label='Panorama'
+          title='Panorama'
+          className='image-loader__panorama-button icon-button'
+          tabIndex='0'
+        >
+          <i className='fa fa-globe' />
+        </button>
 
-        {!loading && (
+        {!loading && panorama ? (
+          <PanoramaViewer
+            alt={alt}
+            className='image-loader__panorama'
+            image={this.image}
+            width={width}
+            height={height}
+          />
+        ) : (
           <img
             alt={alt}
             className='image-loader__img'
