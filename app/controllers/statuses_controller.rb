@@ -28,7 +28,10 @@ class StatusesController < ApplicationController
                content_type: 'application/activity+json'
 
         # Allow HTTP caching for 3 minutes if the status is public
-        expires_in(3.minutes, public: true) unless @stream_entry.hidden?
+        unless @stream_entry.hidden?
+          request.session_options[:skip] = true
+          expires_in(3.minutes, public: true)
+        end
       end
     end
   end
