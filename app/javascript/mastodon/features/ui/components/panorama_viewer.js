@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Motion from '../util/optional_motion';
-import spring from 'react-motion/lib/spring';
 import { mat4 } from 'gl-matrix';
 
 const MAX_ZOOM = 50;
-const INITIAL_ZOOM = 0.8;
+const DEFAULT_INITIAL_ZOOM = 0.8;
 const MIN_ZOOM = 0.4;
 const WHEEL_ZOOM_SPEED = 0.01;
 const PAN_SPEED = 2;
@@ -18,18 +16,17 @@ export default class PanoramaViewer extends React.PureComponent {
     image: PropTypes.object.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
+    panoramaData: PropTypes.object.isRequired,
     alt: PropTypes.string,
     className: PropTypes.string,
+    sphere: PropTypes.number,
   }
 
   state = {
     x: 0,
     y: 0,
-    zoom: INITIAL_ZOOM,
-    sphere: true,
+    zoom: this.props.panoramaData.initialFOV ? 1 / this.props.panoramaData.initialFOV : DEFAULT_INITIAL_ZOOM,
   }
-
-  sphere = 0
 
   get webGLContext() {
     if (!this.canvas) return null;
@@ -64,6 +61,8 @@ export default class PanoramaViewer extends React.PureComponent {
   applyPointerDelta (dx, dy) {
     let x = this.state.x + PAN_SPEED * dx / this.props.width / this.state.zoom;
     let y = this.state.y + PAN_SPEED * dy / this.props.height / this.state.zoom;
+    x = x % (2 * Math.PI);
+    y = Math.max(-Math.PI / 2, Math.min(y, Math.PI / 2));
     this.setState({ x, y });
   }
 
@@ -157,16 +156,6 @@ export default class PanoramaViewer extends React.PureComponent {
           onTouchStart={this.onTouchStart}
           onWheel={this.onWheel}
         />
-        <Motion
-          defaultStyle={{ sphere: 0 }}
-          style={{ sphere: spring(+this.state.sphere) }}
-        >
-          {({ sphere }) => {
-            this.sphere = sphere;
-            this.draw();
-            return '';
-          }}
-        </Motion>
       </div>
     );
   }
@@ -195,9 +184,9 @@ void main() {
 precision highp float;
 varying vec4 ray;
 varying vec2 pos;
-uniform vec2 aspect;
 uniform sampler2D texture;
 uniform float sphere;
+uniform vec4 crop;
 const float PI = 3.14159265358979323846264;
 void main() {
   float r = inversesqrt(ray.x * ray.x + ray.y * ray.y + ray.z * ray.z);
@@ -206,12 +195,19 @@ void main() {
   float s = 0.5 + 0.5 * theta / PI;
   float t = 1. - phi / PI;
 
-  vec2 tex_pos = mix(vec2(1, -1) * pos / 2. + vec2(.5), vec2(s, 1. - t), sphere);
-  gl_FragColor = texture2D(texture, tex_pos);
+  vec2 tex_pos = vec2(s, 1. - t);
+  tex_pos -= crop.xy;
+  tex_pos /= crop.zw;
+  tex_pos = mix(vec2(1, -1) * pos / 2. + vec2(.5), tex_pos, sphere);
+  if (tex_pos.x < 0. || tex_pos.y < 0. || tex_pos.x > 1. || tex_pos.y > 1.) {
+    gl_FragColor = vec4(0);
+  } else {
+    gl_FragColor = texture2D(texture, tex_pos);
+  }
 }
     `);
 
-    let buffer = gl.createBuffer();
+    const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
       1, 1,
@@ -222,16 +218,28 @@ void main() {
 
     gl.useProgram(shader);
 
-    let shaderAttribPosition = gl.getAttribLocation(shader, 'position');
-    let shaderUniformTexture = gl.getUniformLocation(shader, 'texture');
+    const shaderAttribPosition = gl.getAttribLocation(shader, 'position');
+    const shaderUniformTexture = gl.getUniformLocation(shader, 'texture');
+    const shaderUniformCrop = gl.getUniformLocation(shader, 'crop');
     this.shaderUniformInvProj = gl.getUniformLocation(shader, 'invProj');
     this.shaderUniformSphere = gl.getUniformLocation(shader, 'sphere');
 
-    let aspect = this.props.image.width / this.props.image.height;
-    let aspectWidth = aspect < 1 ? 1 : aspect;
-    let aspectHeight = aspect > 1 ? 1 : aspect;
+    const {
+      fullWidth,
+      fullHeight,
+      croppedLeft,
+      croppedTop,
+      croppedWidth,
+      croppedHeight,
+    } = this.props.panoramaData;
 
-    gl.uniform2f(gl.getUniformLocation(shader, 'aspect'), aspectWidth, aspectHeight);
+    gl.uniform4f(
+      shaderUniformCrop,
+      croppedLeft / fullWidth,
+      croppedTop / fullHeight,
+      croppedWidth / fullWidth,
+      croppedHeight / fullHeight
+    );
 
     gl.activeTexture(gl.TEXTURE0);
     gl.uniform1i(shaderUniformTexture, 0);
@@ -239,7 +247,7 @@ void main() {
     gl.vertexAttribPointer(shaderAttribPosition, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(shaderAttribPosition);
 
-    let texture = gl.createTexture();
+    const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
 
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.props.image);
@@ -263,7 +271,7 @@ void main() {
     mat4.rotateY(projection, projection, -x);
     mat4.invert(projection, projection);
 
-    gl.uniform1f(this.shaderUniformSphere, this.sphere);
+    gl.uniform1f(this.shaderUniformSphere, this.props.sphere);
     gl.uniformMatrix4fv(this.shaderUniformInvProj, false, projection);
   }
 
@@ -327,4 +335,107 @@ void main() {
     gl.viewport(0, 0, width, height);
   }
 
+}
+
+// following three functions adapted from https://github.com/exif-js/exif-js/blob/a0f8a5147500dbd29a9a6db81451526f34226584/exif.js
+export function getPanoramaData (imageSource) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', () => {
+      if (xhr.status === 200) {
+        resolve(readXMP(xhr.response));
+      } else {
+        reject();
+      }
+    });
+
+    xhr.responseType = 'arraybuffer';
+    xhr.open('GET', imageSource);
+    xhr.send();
+  });
+}
+
+function stringFromDataView (buffer, start, length) {
+  let string = '';
+
+  for (let offset = start; offset < start + length; offset++) {
+    string += String.fromCharCode(buffer.getUint8(offset));
+  }
+
+  return string;
+}
+
+function readXMP (buffer) {
+  const dataView = new DataView(buffer);
+
+  if ((dataView.getUint8(0) !== 0xFF) || (dataView.getUint8(1) !== 0xD8)) {
+    // invalid jpeg
+    return null;
+  }
+
+  const length = buffer.byteLength;
+  let offset = 2;
+
+  const h = 'h'.charCodeAt(0);
+
+  while (offset < length - 4) {
+    if (dataView.getUint8(offset) === h && stringFromDataView(dataView, offset, 4) === 'http') {
+      const startOffset = offset - 1;
+      const sectionLength = dataView.getUint16(offset - 2) - 1;
+      let xmpString = stringFromDataView(dataView, startOffset, sectionLength);
+      const xmpEndIndex = xmpString.indexOf('xmpmeta>') + 8;
+      xmpString = xmpString.substring(xmpString.indexOf('<x:xmpmeta'), xmpEndIndex);
+
+      const xmpIndex = xmpString.indexOf('x:xmpmeta') + 10;
+
+      //Many custom written programs embed xmp/xml without any namespace. Following are some of them.
+      //Without these namespaces, XML is thought to be invalid by parsers
+      xmpString = xmpString.slice(0, xmpIndex)
+        + 'xmlns:Iptc4xmpCore="http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/" '
+        + 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+        + 'xmlns:tiff="http://ns.adobe.com/tiff/1.0/" '
+        + 'xmlns:plus="http://schemas.android.com/apk/lib/com.google.android.gms.plus" '
+        + 'xmlns:ext="http://www.gettyimages.com/xsltExtension/1.0" '
+        + 'xmlns:exif="http://ns.adobe.com/exif/1.0/" '
+        + 'xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#" '
+        + 'xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#" '
+        + 'xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/" '
+        + 'xmlns:xapGImg="http://ns.adobe.com/xap/1.0/g/img/" '
+        + 'xmlns:Iptc4xmpExt="http://iptc.org/std/Iptc4xmpExt/2008-02-29/" '
+        + xmpString.slice(xmpIndex);
+
+      const dom = new DOMParser().parseFromString(xmpString, 'text/xml');
+
+      const description = dom.querySelector('Description');
+
+      const usePano = description.getAttribute('GPano:UsePanoramaViewer') !== 'False';
+
+      const projection = description.getAttribute('GPano:ProjectionType');
+      if (projection && projection !== 'equirectangular') return null;
+
+      let initialFOV = description.getAttribute('GPano:InitialHorizontalFOVDegrees');
+      if (initialFOV !== null) {
+        initialFOV = +initialFOV / 180 * Math.PI;
+      }
+
+      const data = {
+        fullWidth: +description.getAttribute('GPano:FullPanoWidthPixels'),
+        fullHeight: +description.getAttribute('GPano:FullPanoHeightPixels'),
+        croppedWidth: +description.getAttribute('GPano:CroppedAreaImageWidthPixels'),
+        croppedHeight: +description.getAttribute('GPano:CroppedAreaImageHeightPixels'),
+        croppedLeft: +description.getAttribute('GPano:CroppedAreaLeftPixels'),
+        croppedTop: +description.getAttribute('GPano:CroppedAreaTopPixels'),
+        enabledInitially: usePano,
+        initialFOV: initialFOV,
+      };
+
+      for (let key in data) if (Number.isNaN(data[key])) return null;
+
+      return data;
+    } else {
+      offset++;
+    }
+  }
+
+  return null;
 }

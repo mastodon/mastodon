@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import PanoramaViewer from './panorama_viewer';
+import Motion from '../util/optional_motion';
+import spring from 'react-motion/lib/spring';
+import PanoramaViewer, { getPanoramaData } from './panorama_viewer';
 
 export default class ImageLoader extends React.PureComponent {
 
@@ -21,6 +23,7 @@ export default class ImageLoader extends React.PureComponent {
 
   state = {
     loading: true,
+    panoramaData: null,
     panorama: false,
     error: false,
   }
@@ -55,6 +58,7 @@ export default class ImageLoader extends React.PureComponent {
       .then(() => {
         this.setState({ loading: false, error: false });
         this.clearPreviewCanvas();
+        this.checkForPanorama();
       })
       .catch(() => this.setState({ loading: false, error: true }));
   }
@@ -116,6 +120,17 @@ export default class ImageLoader extends React.PureComponent {
     return typeof width === 'number' && typeof height === 'number';
   }
 
+  checkForPanorama () {
+    getPanoramaData(this.props.src).then(result => {
+      if (result) {
+        this.setState({
+          panoramaData: result,
+          panorama: result.enabledInitially,
+        });
+      }
+    }).catch(() => {});
+  }
+
   setCanvasRef = c => {
     this.canvas = c;
   }
@@ -126,7 +141,7 @@ export default class ImageLoader extends React.PureComponent {
 
   render () {
     const { alt, src, width, height } = this.props;
-    const { loading, panorama } = this.state;
+    const { loading, panorama, panoramaData } = this.state;
 
     const className = classNames('image-loader', {
       'image-loader--loading': loading,
@@ -142,32 +157,46 @@ export default class ImageLoader extends React.PureComponent {
           ref={this.setCanvasRef}
           style={{ opacity: loading ? 1 : 0 }}
         />
-        <button
-          onClick={this.togglePanorama}
-          aria-label='Panorama'
-          title='Panorama'
-          className='image-loader__panorama-button icon-button'
-          tabIndex='0'
-        >
-          <i className='fa fa-globe' />
-        </button>
 
-        {!loading && panorama ? (
-          <PanoramaViewer
-            alt={alt}
-            className='image-loader__panorama'
-            image={this.image}
-            width={width}
-            height={height}
-          />
-        ) : (
-          <img
-            alt={alt}
-            className='image-loader__img'
-            src={src}
-            width={width}
-            height={height}
-          />
+        {!loading && panoramaData && (
+          <button
+            onClick={this.togglePanorama}
+            aria-label='Toggle Panorama'
+            title='Toggle Panorama'
+            className='image-loader__panorama-button icon-button'
+            tabIndex='0'
+          >
+            <i className={panorama ? 'fa fa-picture-o' : 'fa fa-globe'} />
+          </button>
+        )}
+
+        {!loading && (
+          <Motion
+            defaultStyle={{ sphere: 0 }}
+            style={{ sphere: spring(+panorama) }}
+          >
+            {({ sphere }) => {
+              return sphere ? (
+                <PanoramaViewer
+                  alt={alt}
+                  className='image-loader__panorama'
+                  image={this.image}
+                  width={width}
+                  height={height}
+                  panoramaData={panoramaData}
+                  sphere={sphere}
+                />
+              ) : (
+                <img
+                  alt={alt}
+                  className='image-loader__img'
+                  src={src}
+                  width={width}
+                  height={height}
+                />
+              );
+            }}
+          </Motion>
         )}
       </div>
     );
