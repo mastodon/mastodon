@@ -6,17 +6,17 @@ sr:
         avatar: PNG, GIF или JPG. Највише 2MB. Биће смањена на 120x120px
         digest: Послато после дужег периода неактивности са прегледом свих битних ствари које сте добили док сте били одсутни
         display_name:
-          one: <span class="name-counter">1</span> карактер преостао
           few: <span class="name-counter">%{count}</span> карактера преостала
-          other: <span class="name-counter">%{count}</span> карактера преостало
           many: <span class="name-counter">%{count}</span> карактера преостало
+          one: <span class="name-counter">1</span> карактер преостао
+          other: <span class="name-counter">%{count}</span> карактера преостало
         header: PNG, GIF или JPG. Највише 2MB. Биће смањена на 700x335px
         locked: Захтева да појединачно одобрите пратиоце
         note:
-          one: <span class="note-counter">1</span> карактер преостао
           few: <span class="note-counter">%{count}</span> карактера преостал
-          other: <span class="note-counter">%{count}</span> карактера преостало
           many: <span class="note-counter">%{count}</span> карактера преостало
+          one: <span class="note-counter">1</span> карактер преостао
+          other: <span class="note-counter">%{count}</span> карактера преостало
         setting_noindex: Утиче на Ваш јавни профил и статусне стране
         setting_theme: Утиче како ће Мастодонт изгледати када сте пријављени са било ког уређаја.
       imports:
@@ -68,8 +68,8 @@ sr:
         follow_request: Шаљи е-пошту када неко затражи да Вас запрати
         mention: Шаљи е-пошту када Вас неко помене
         reblog: Шаљи е-пошту када неко погура Ваш статус
-    'no': 'Не'
+    'no': Не
     required:
       mark: "*"
       text: обавезно
-    'yes': 'Да'
+    'yes': Да
