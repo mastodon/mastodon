@@ -1,4 +1,4 @@
-import { register as registerPushNotifications } from './actions/push_notifications';
+import * as registerPushNotifications from './actions/push_notifications';
 import { default as Mastodon, store } from './containers/mastodon';
 import React from 'react';
 import ReactDOM from 'react-dom';

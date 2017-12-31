@@ -138,6 +138,7 @@ class Status < ApplicationRecord
   end
 
   after_create_commit :store_uri, if: :local?
+  after_create_commit :update_statistics, if: :local?
 
   around_create Mastodon::Snowflake::Callbacks
 
@@ -335,5 +336,10 @@ class Status < ApplicationRecord
 
   def set_local
     self.local = account.local?
+  end
+
+  def update_statistics
+    return unless public_visibility? || unlisted_visibility?
+    ActivityTracker.increment('activity:statuses:local')
   end
 end
