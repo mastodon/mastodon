@@ -57,6 +57,7 @@ module Mastodon
       :'pt-BR',
       :ru,
       :sk,
+      :sr,
       :sv,
       :th,
       :tr,
