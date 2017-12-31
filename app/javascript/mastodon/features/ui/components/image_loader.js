@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Motion from '../util/optional_motion';
 import spring from 'react-motion/lib/spring';
-import PanoramaViewer, { getPanoramaData } from './panorama_viewer';
+import getPanoramaData from '../util/get_panorama_data';
+import { PanoramaViewer as PanoramaViewerAsync } from '../util/async-components';
+
+let PanoramaViewer; // async
 
 export default class ImageLoader extends React.PureComponent {
 
@@ -23,6 +26,7 @@ export default class ImageLoader extends React.PureComponent {
 
   state = {
     loading: true,
+    canShowPanorama: false,
     panoramaData: null,
     panorama: false,
     error: false,
@@ -126,7 +130,15 @@ export default class ImageLoader extends React.PureComponent {
         this.setState({
           panoramaData: result,
           panorama: result.enabledInitially,
+          canShowPanorama: !!PanoramaViewer,
         });
+
+        if (!PanoramaViewer) {
+          PanoramaViewerAsync().then(module => {
+            PanoramaViewer = module.default;
+            this.setState({ canShowPanorama: true });
+          }).catch(() => {});
+        }
       }
     }).catch(() => {});
   }
@@ -141,7 +153,7 @@ export default class ImageLoader extends React.PureComponent {
 
   render () {
     const { alt, src, width, height } = this.props;
-    const { loading, panorama, panoramaData } = this.state;
+    const { loading, panorama, panoramaData, canShowPanorama } = this.state;
 
     const className = classNames('image-loader', {
       'image-loader--loading': loading,
@@ -158,7 +170,7 @@ export default class ImageLoader extends React.PureComponent {
           style={{ opacity: loading ? 1 : 0 }}
         />
 
-        {!loading && panoramaData && (
+        {!loading && panoramaData && canShowPanorama && (
           <button
             onClick={this.togglePanorama}
             aria-label='Toggle Panorama'
@@ -173,7 +185,7 @@ export default class ImageLoader extends React.PureComponent {
         {!loading && (
           <Motion
             defaultStyle={{ sphere: 0 }}
-            style={{ sphere: spring(+panorama) }}
+            style={{ sphere: spring(+(panorama && canShowPanorama)) }}
           >
             {({ sphere }) => {
               return sphere ? (
