@@ -17,14 +17,13 @@ export default class PanoramaViewer extends React.PureComponent {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     panoramaData: PropTypes.object.isRequired,
-    alt: PropTypes.string,
     className: PropTypes.string,
     sphere: PropTypes.number,
   }
 
   state = {
-    x: 0,
-    y: 0,
+    yaw: 0,
+    pitch: 0,
     zoom: this.props.panoramaData.initialFOV ? 1 / this.props.panoramaData.initialFOV : DEFAULT_INITIAL_ZOOM,
   }
 
@@ -59,11 +58,11 @@ export default class PanoramaViewer extends React.PureComponent {
   }
 
   applyPointerDelta (dx, dy) {
-    let x = this.state.x + PAN_SPEED * dx / this.props.width / this.state.zoom;
-    let y = this.state.y + PAN_SPEED * dy / this.props.height / this.state.zoom;
-    x = x % (2 * Math.PI);
-    y = Math.max(-Math.PI / 2, Math.min(y, Math.PI / 2));
-    this.setState({ x, y });
+    let yaw = this.state.yaw + PAN_SPEED * dx / this.props.width / this.state.zoom;
+    let pitch = this.state.pitch + PAN_SPEED * dy / this.props.height / this.state.zoom;
+    yaw = yaw % (2 * Math.PI);
+    pitch = Math.max(-Math.PI / 2, Math.min(pitch, Math.PI / 2));
+    this.setState({ yaw, pitch });
   }
 
   onMouseDown = e => {
@@ -103,9 +102,7 @@ export default class PanoramaViewer extends React.PureComponent {
 
     let deltaX = e.touches[0].clientX - this.lastTouchPos[0];
     let deltaY = e.touches[0].clientY - this.lastTouchPos[1];
-    let x = this.state.x + PAN_SPEED * deltaX / this.props.width / this.state.zoom;
-    let y = this.state.y + PAN_SPEED * deltaY / this.props.height / this.state.zoom;
-    this.setState({ x, y });
+    this.applyPointerDelta(deltaX, deltaY);
     this.lastTouchPos = [e.touches[0].clientX, e.touches[0].clientY];
   }
 
@@ -170,7 +167,7 @@ export default class PanoramaViewer extends React.PureComponent {
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    let shader = this.compileShader(`
+    const shader = this.compileShader(`
 precision mediump float;
 attribute vec2 position;
 uniform mat4 invProj;
@@ -256,10 +253,10 @@ void main() {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 
-    this.drawOffset(0, 0);
+    this.draw();
   }
 
-  updateProjection (x, y) {
+  updateProjection (yaw, pitch) {
     const gl = this.webGLContext;
     if (!gl) return;
 
@@ -267,30 +264,20 @@ void main() {
     const fov = 1 / this.state.zoom;
     const aspect = this.props.width / this.props.height;
     mat4.perspective(projection, fov, aspect, -1, 1);
-    mat4.rotateX(projection, projection, -y);
-    mat4.rotateY(projection, projection, -x);
+    mat4.rotateX(projection, projection, -pitch);
+    mat4.rotateY(projection, projection, -yaw);
     mat4.invert(projection, projection);
 
-    gl.uniform1f(this.shaderUniformSphere, this.props.sphere);
+    gl.uniform1f(this.shaderUniformSphere, this.props.sphere || 0);
     gl.uniformMatrix4fv(this.shaderUniformInvProj, false, projection);
   }
 
-  drawBuffer () {
-    const gl = this.webGLContext;
-    if (!gl) return;
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-  }
-
-  drawOffset (x, y) {
-    const gl = this.webGLContext;
-    if (!gl) return;
-
-    this.updateProjection(x, y);
-    this.drawBuffer();
-  }
-
   draw () {
-    this.drawOffset(this.state.x, this.state.y);
+    const gl = this.webGLContext;
+    if (!gl) return;
+
+    this.updateProjection(this.state.yaw, this.state.pitch);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
 
   compileShader (vertex, fragment) {
@@ -319,8 +306,9 @@ void main() {
     gl.linkProgram(shader);
 
     if (!gl.getProgramParameter(shader, gl.LINK_STATUS)) {
+      let error = gl.getProgramInfoLog(shader);
       gl.deleteProgram(shader);
-      throw new Error(gl.getProgramInfoLog(shader));
+      throw new Error(error);
     }
 
     return shader;
