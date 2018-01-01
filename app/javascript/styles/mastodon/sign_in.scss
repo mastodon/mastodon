@@ -1,0 +1,12 @@
+.sign-in__alternative {
+  background: $ui-secondary-color;
+  color: $ui-base-color;
+  margin-top: 30px;
+
+  &:focus,
+  &:hover,
+  &:active {
+    background: $ui-highlight-color;
+    color: $ui-secondary-color;
+  }
+}

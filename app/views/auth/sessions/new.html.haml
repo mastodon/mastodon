@@ -12,3 +12,8 @@
     = f.button :button, t('auth.login'), type: :submit
 
 .form-footer= render 'auth/shared/links'
+
+- if @alternative_href.present? && @alternative_label.present?
+  .actions
+    %a.button.sign-in__alternative{ href: @alternative_href }
+      = @alternative_label

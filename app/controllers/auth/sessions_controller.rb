@@ -8,6 +8,7 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :check_suspension, only: [:destroy]
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
+  before_action :set_alternative, only: [:new]
   before_action :set_instance_presenter, only: [:new]
 
   def create
@@ -84,6 +85,43 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   private
+
+  def set_alternative
+    last_url = stored_location_for(:user)
+    return if last_url.nil?
+
+    parsed_last_url = Addressable::URI.parse(last_url)
+    params = Rails.application.routes.recognize_path(parsed_last_url.path)
+    return if params[:action] != 'show' || parsed_last_url.query_values['web'].present?
+
+    case params[:controller]
+    when 'authorize_follows'
+      acct = parsed_last_url.query_values['acct']
+      parsed_acct = Addressable::URI.parse(acct)
+      uri = parsed_acct
+
+      unless parsed_acct.path && %w(http https).include?(parsed_acct.scheme)
+        uri = 'acct:' + uri
+      end
+
+      @alternative_href = Addressable::URI.new(
+        scheme: 'web+mastodon',
+        host: 'follow',
+        query_values: { uri: uri }
+      )
+
+      @alternative_label = I18n.t('auth.follow_on_another_instance')
+
+    when 'shares'
+      @alternative_href = Addressable::URI.new(
+        scheme: 'web+mastodon',
+        host: 'share',
+        query_values: { text: parsed_last_url.query_values['text'] }
+      ).to_s
+
+      @alternative_label = I18n.t('auth.share_on_another_instance')
+    end
+  end
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new

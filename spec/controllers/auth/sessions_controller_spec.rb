@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Auth::SessionsController, type: :controller do
+  include Capybara::DSL
   render_views
 
   describe 'GET #new' do
@@ -13,6 +14,30 @@ RSpec.describe Auth::SessionsController, type: :controller do
     it 'returns http success' do
       get :new
       expect(response).to have_http_status(:success)
+    end
+
+    it 'does not show a link to share on another instance if web+mastodon is used' do
+      controller.store_location_for :user, '/share?text=Text.&web=true'
+      get :new
+      expect(Capybara.string(response.body)).not_to have_link 'Share on another instance', href: 'web+mastodon://share?text=Text.'
+    end
+
+    it 'does not show a link to follow in another instance if web+mastodon is used' do
+      controller.store_location_for :user, '/authorize_follow?acct=username@example.com&web=true'
+      get :new
+      expect(Capybara.string(response.body)).not_to have_link 'Follow on another instance', href: 'web+mastodon://follow?uri=acct%3Ausername%40example.com'
+    end
+
+    it 'shows a link to share on another instance if the last location indicates an intent to share' do
+      controller.store_location_for :user, '/share?text=Text.'
+      get :new
+      expect(Capybara.string(response.body)).to have_link 'Share on another instance', href: 'web+mastodon://share?text=Text.'
+    end
+
+    it 'shows a link to follow in another instance if the last location indicates an intent to follow' do
+      controller.store_location_for :user, '/authorize_follow?acct=username@example.com'
+      get :new
+      expect(Capybara.string(response.body)).to have_link 'Follow on another instance', href: 'web+mastodon://follow?uri=acct%3Ausername%40example.com'
     end
   end
 
