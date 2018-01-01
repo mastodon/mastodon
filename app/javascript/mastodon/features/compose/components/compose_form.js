@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import CharacterCounter from './character_counter';
 import Button from '../../../components/button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -50,6 +51,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
+    showShare: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -142,7 +144,7 @@ export default class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste, showSearch } = this.props;
+    const { intl, onPaste, showSearch, showShare } = this.props;
     const disabled = this.props.is_submitting;
     const text     = [this.props.spoiler_text, countableText(this.props.text)].join('');
 
@@ -203,7 +205,22 @@ export default class ComposeForm extends ImmutablePureComponent {
         </div>
 
         <div className='compose-form__publish'>
-          <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block /></div>
+          {showShare && (
+            <div className='compose-form__share-button-wrapper'>
+              <a
+                className='button button--block'
+                href={`web+mastodon://share?text=${encodeURIComponent(this.props.text)}`}
+              >
+                <FormattedMessage
+                  id='compose_form.share'
+                  defaultMessage='Compose on another instance'
+                />
+              </a>
+            </div>
+          )}
+          <div className='compose-form__publish-button-wrapper'>
+            <Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block />
+          </div>
         </div>
       </div>
     );

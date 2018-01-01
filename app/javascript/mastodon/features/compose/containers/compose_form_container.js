@@ -12,6 +12,7 @@ import {
 } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
+  showShare: state.getIn(['compose', 'share']),
   text: state.getIn(['compose', 'text']),
   suggestion_token: state.getIn(['compose', 'suggestion_token']),
   suggestions: state.getIn(['compose', 'suggestions']),

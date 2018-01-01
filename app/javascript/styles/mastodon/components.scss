@@ -538,12 +538,30 @@
 
   .compose-form__publish {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
     min-width: 0;
 
-    .compose-form__publish-button-wrapper {
+    .compose-form__publish-button-wrapper,
+    .compose-form__share-button-wrapper {
       overflow: hidden;
-      padding-top: 10px;
+      padding: 10px 10px 0 0;
+      position: relative;
+      right: -10px;
+    }
+
+    .compose-form__share-button-wrapper {
+      > a {
+        background: $ui-secondary-color;
+        color: $ui-base-color;
+
+        &:focus,
+        &:hover,
+        &:active {
+          background: $ui-highlight-color;
+          color: $ui-secondary-color;
+        }
+      }
     }
   }
 }

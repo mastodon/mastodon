@@ -41,7 +41,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_sensitive] = object.current_account.user.setting_default_sensitive
     end
 
-    store[:text] = object.text if object.text
+    store.merge!(object.compose) if object.compose
 
     store
   end
