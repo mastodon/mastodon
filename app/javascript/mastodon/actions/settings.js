@@ -4,11 +4,11 @@ import { debounce } from 'lodash';
 export const SETTING_CHANGE = 'SETTING_CHANGE';
 export const SETTING_SAVE   = 'SETTING_SAVE';
 
-export function changeSetting(key, value) {
+export function changeSetting(path, value) {
   return dispatch => {
     dispatch({
       type: SETTING_CHANGE,
-      key,
+      path,
       value,
     });
 
@@ -21,7 +21,7 @@ const debouncedSave = debounce((dispatch, getState) => {
     return;
   }
 
-  const data = getState().get('settings').filter((_, key) => key !== 'saved').toJS();
+  const data = getState().get('settings').filter((_, path) => path !== 'saved').toJS();
 
   axios.put('/api/web/settings', { data }).then(() => dispatch({ type: SETTING_SAVE }));
 }, 5000, { trailing: true });

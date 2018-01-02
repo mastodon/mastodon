@@ -18,11 +18,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
-  onChange (key, checked) {
-    if (key[0] === 'push') {
-      dispatch(changePushNotifications(key.slice(1), checked));
+  onChange (path, checked) {
+    if (path[0] === 'push') {
+      dispatch(changePushNotifications(path.slice(1), checked));
     } else {
-      dispatch(changeSetting(['notifications', ...key], checked));
+      dispatch(changeSetting(['notifications', ...path], checked));
     }
   },
 
