@@ -6,7 +6,7 @@ class Sanitize
 
     CLASS_WHITELIST_TRANSFORMER = lambda do |env|
       node = env[:node]
-      class_list = node['class']&.split(' ')
+      class_list = node['class']&.split(/[\t\n\f\r ]/)
 
       return unless class_list
 
