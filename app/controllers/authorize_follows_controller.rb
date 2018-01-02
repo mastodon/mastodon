@@ -5,6 +5,7 @@ class AuthorizeFollowsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_pack
+  before_action :set_body_classes
 
   def show
     @account = located_account || render(:error)
@@ -62,5 +63,9 @@ class AuthorizeFollowsController < ApplicationController
 
   def acct_params
     params.fetch(:acct, '')
+  end
+
+  def set_body_classes
+    @body_classes = 'modal-layout'
   end
 end
