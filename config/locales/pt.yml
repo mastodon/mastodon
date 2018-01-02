@@ -5,7 +5,9 @@ pt:
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos
       da web e software livre e gratuito. É descentralizado como e-mail.
     about_this: Sobre esta instância
-    closed_registrations: Novos registos estão fechados nesta instância.
+    closed_registrations: Novos registos estão fechados nesta instância. No entanto!
+      Podes procurar uma instância diferente na qual criar uma conta e obter acesso
+      à mesma rede desde lá.
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
@@ -459,7 +461,11 @@ pt:
       unlisted: Público, mas não mostre no timeline público
       private_long: Mostrar apenas para seguidores
       public_long: Todos podem ver
+      unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
     title: '%{name}: "%{quote}"'
+    pin_errors:
+      ownership: Posts de outras pessoas não podem ser fixados
+      private: Post não-público não pode ser fixado
   stream_entries:
     click_to_show: Clique pra mostrar
     reblogged: boosted
@@ -486,6 +492,10 @@ pt:
       manualmente, aqui está o segredo em texto.:'
     recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
     enabled: A autenticação em dois passos está ativada
+    recovery_codes: Cópia de segurança dos códigos de recuperação
+    setup: Configurar
+    wrong_code: O código inserido é invalido! O horário do servidor e o horário do
+      seu aparelho estão corretos?
   invites:
     prompt: Gerar e partilhar ligações com outras pessoas para permitir acesso a essa
       instância
@@ -603,6 +613,8 @@ pt:
       nativos</a> para o Mastodon na sua plataforma.
   users:
     invalid_otp_token: Código de autenticação inválido
+    invalid_email: O endereço de e-mail é inválido
+    signed_in_as: 'Registado como:'
   exports:
     blocks: Bloqueaste
     csv: CSV
@@ -670,5 +682,79 @@ pt:
       title: '%{name} partilhou o teu post'
   terms:
     title: '%{instance} Termos de Serviço e Política de Privacidade'
+    body_html: "<h2>Política de privacidade</h2>\n\n<h3 id=\"collect\">Quais são as\
+      \ informações que recolhemos?</h3>\n\n<p>Recolhemos informações quando te registas\
+      \ no nosso site e capturamos dados quando participas do fórum lendo, escrevendo\
+      \ e analisando o conteúdo aqui partilhado.</p>\n\n<p>Quando te registas no nosso\
+      \ site, será requisitado que você ceda seu nome e endereço de e-mail. Você pode,\
+      \ porém, visitar nosso site sem se cadastrar. Seu endereço de e-mail será verificado\
+      \ por uma mensagem contendo um link único. Se este link for visitado, saberemos\
+      \ que você controla este endereço de e-mail.</p>\n\n<p>Quando registrado e postando,\
+      \ nós gravamos o endereço de IP de onde a postagem se originou. Nós também podemos\
+      \ reter logs de serviores que incluem o endereço de IP em cada requisição para\
+      \ o nosso servidor.</p>\n\n<h3 id=\"use\">Para que usamos essas informações?</h3>\n\
+      \n<p>Quaisquer das informações que coletamos podem ser usadas das seguintes\
+      \ formas:</p>\n\n<ul>\n  <li>Para personalizar a sua experiência &mdash; suas\
+      \ informações nos ajudam a nos adequar melhor às suas necessidades individuais.</li>\n\
+      \  <li>Para melhorar nosso site &mdash; nós continuamente nos esforçamos para\
+      \ aprimorar nosso site baseados na informação e no feedback que recebemos de\
+      \ você.</li>\n  <li>Para aprimorar o serviço ao consumidor &mdash; suas informações\
+      \ nos ajudam a responder efetivamente às suas requisições e solicitações por\
+      \ suporte.</li>\n  <li>Para mandar e-mails periódicos &mdash; O endereço de\
+      \ e-mail que você forneceu pode ser usado para lhe enviar informações, notificações\
+      \ que você requisitar sobre mudanças a determinados tópicos ou menções ao seu\
+      \ nome de usuário, responder requisições e/ou solicitações e perguntas.</li>\n\
+      </ul>\n\n<h3 id=\"protect\">Como protegemos as suas informações?</h3>\n\n<p>Nós\
+      \ implementamos uma variedade de medidas de segurança para manter a segurança\
+      \ de suas informações pessoais quando você insere, submete ou acessa as suas\
+      \ informações pessoais.</p>\n\n<h3 id=\"data-retention\">Qual a sua política\
+      \ de retenção de dados?</h3>\n\n<p>Faremos esforços de boa fé para:</p>\n\n\
+      <ul>\n  <li>Reter logs de servidor contendo o endereço IP de todas as requisições\
+      \ a este servidor por não mais que 90 dias.</li>\n  <li>Reter os endereços IP\
+      \ associados a usuários cadastrados e suas postagens por não mais que 5 anos.</li>\n\
+      </ul>\n\n<h3 id=\"cookies\">Nós usamos cookies?</h3>\n\n<p>Sim. Cookies são\
+      \ pequenos arquivos que um site ou o provedor de serviço transfere para o armazenamento\
+      \ interno de seu computador através de seu navegador (se você permitir). Estes\
+      \ cookies habilitam o site para reconhecer o seu navegador e, se você ter um\
+      \ cadastro, associá-lo a esta conta.</p>\n\n<p>Nós usamos cookies para entender\
+      \ e salvar as suas preferências para futuras visitas e compilar dados agregados\
+      \ sobre o tráfego do site para que possamos oferecer melhores experiências e\
+      \ ferramentas no futuro. Nós podemos contratar serviços de terceiros para nos\
+      \ auxiliar a entender melhor nossos visitantes. Estes provedores de serviço\
+      \ não são autoriza usar as informações coletadas em nosso nome exceto para nos\
+      \ ajudar a conduzir e aprimorar nosso funcionamento.</p>\n\n<h3 id=\"disclose\"\
+      >Nós revelamos informações para terceiros?</h3>\n\n<p>Nós não vendemos, tocamos\
+      \ ou transferimos para terceiros informações pessoais que te identificam. Isso\
+      \ não inclui partes em que confiamos para nos ajudar a operar nosso site, conduzir\
+      \ nosso funcionamento ou servir você desde que estes terceiros concordem em\
+      \ manter essas informações em segredo. Nós também podemos prover as suas informações\
+      \ para obedecer ordens judiciais, reforçar nossas políticas ou proteger nossos\
+      \ direitos ou de outrem, propriedades ou segurança. Entretanto, informações\
+      \ pessoais não identificáveis podem ser enviadas para outras partes para marketing,\
+      \ propaganda e outros usos.</p>\n\n<h3 id=\"third-party\">Links de terceiros</h3>\n\
+      \n<p>Ocasionalmente, à nossa discrição, podemos icluir ou oferecer produtos\
+      \ ou serviços de terceiros em nosso site. Estes terceiros têm políticas de privacidade\
+      \ separadas e independentes. Nós, portanto, não nos responsabilizamos pelo conteúdo\
+      \ e atividades destes sites de terceiros. Occasionally, at our discretion, we\
+      \ may include or offer third party products or services on our site. Não obstante,\
+      \ nós procuramos proteger a integridade de nosso site e todo feedback sobre\
+      \ estes sites de terceiros é bem-vindo.</p>\n\n<h3 id=\"coppa\">Obediência ao\
+      \ Ato de Proteção da Privacidade Online de Crianças</h3>\n\n<p>Nosso site, produtos\
+      \ e serviços são todos direcionados a pessoas que têm pelo menos 13 anos de\
+      \ idade. Se este servidor estiver nos EUA, e você tiver menos de 13 anos, pelos\
+      \ requerimentos da COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
+      >Children's Online Privacy Protection Act</a>) não use este site.</p>\n\n<h3\
+      \ id=\"online\">Política de Apenas Privacidade Online</h3>\n\n<p>Esta política\
+      \ de privacidade online se aplica somente a informações coletadas por nosso\
+      \ site e não a informações coletadas offline.</p>\n\n<h3 id=\"consent\">Seu\
+      \ Consentimento</h3>\n\n<p>Usando o nosso site, você concorda com a nossa política\
+      \ de privacidade.</p>\n\n<h3 id=\"changes\">Mudanças em nossa Política de Privacidade</h3>\n\
+      \n<p>Se decidirmos mudar a nossa política de privacidade, publicaremos as mudanças\
+      \ nesta página.</p>\n\n<p>Este documento é CC-BY-SA. A sua última atualização\
+      \ aconteceu em 31 de maio de 2013.</p>\n\n<p>Originalmente adaptado da <a href=\"\
+      https://github.com/discourse/discourse\">política de privacidade do Discourse</a>.</p>\n"
   themes:
     default: Mastodon
+  lists:
+    errors:
+      limit: Número máximo de listas alcançado
