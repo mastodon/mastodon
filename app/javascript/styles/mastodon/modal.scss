@@ -1,5 +1,5 @@
 .modal-layout {
-  background: $ui-base-color url('../images/wave-modal.png') repeat-x bottom fixed;
+  background: $ui-base-color url('~images/wave-modal.png') repeat-x bottom fixed;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -15,6 +15,6 @@
   > * {
     flex: 1;
     max-height: 235px;
-    background: url('../images/mastodon-ui.png') no-repeat left bottom / contain;
+    background: url('~images/mastodon-ui.png') no-repeat left bottom / contain;
   }
 }
