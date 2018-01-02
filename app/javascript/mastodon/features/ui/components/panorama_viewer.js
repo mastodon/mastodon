@@ -22,8 +22,8 @@ export default class PanoramaViewer extends React.PureComponent {
   }
 
   state = {
-    yaw: 0,
-    pitch: 0,
+    yaw: this.props.panoramaData.initialYaw || 0,
+    pitch: this.props.panoramaData.initialPitch || 0,
     zoom: this.props.panoramaData.initialFOV ? 1 / this.props.panoramaData.initialFOV : DEFAULT_INITIAL_ZOOM,
   }
 

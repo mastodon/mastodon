@@ -26,6 +26,23 @@ function stringFromDataView (buffer, start, length) {
   return string;
 }
 
+const GPANO_NS = 'http://ns.google.com/photos/1.0/panorama/';
+
+function getNSAttributeOrChild (node, ns, name) {
+  if (node.hasAttributeNS(ns, name)) {
+    return node.getAttributeNS(ns, name);
+  } else {
+    let child = node.querySelector(name);
+    if (child) return child.textContent;
+  }
+  return null;
+}
+
+function convertOptionalToRadians (value) {
+  if (value !== null) return +value / 180 * Math.PI;
+  return null;
+}
+
 function readXMP (buffer) {
   const dataView = new DataView(buffer);
 
@@ -49,8 +66,8 @@ function readXMP (buffer) {
 
       const xmpIndex = xmpString.indexOf('x:xmpmeta') + 10;
 
-      //Many custom written programs embed xmp/xml without any namespace. Following are some of them.
-      //Without these namespaces, XML is thought to be invalid by parsers
+      // Many custom written programs embed xmp/xml without any namespace. Following are some of them.
+      // Without these namespaces, XML is thought to be invalid by parsers
       xmpString = xmpString.slice(0, xmpIndex)
         + 'xmlns:Iptc4xmpCore="http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/" '
         + 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
@@ -63,36 +80,44 @@ function readXMP (buffer) {
         + 'xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/" '
         + 'xmlns:xapGImg="http://ns.adobe.com/xap/1.0/g/img/" '
         + 'xmlns:Iptc4xmpExt="http://iptc.org/std/Iptc4xmpExt/2008-02-29/" '
+        + 'xmlns:GPano="http://ns.google.com/photos/1.0/panorama/" '
         + xmpString.slice(xmpIndex);
 
       const dom = new DOMParser().parseFromString(xmpString, 'text/xml');
 
-      const description = dom.querySelector('Description');
+      const descriptions = dom.querySelectorAll('Description');
 
-      const usePano = description.getAttribute('GPano:UsePanoramaViewer') !== 'False';
+      for (let i = 0; i < descriptions.length; i++) {
+        const description = descriptions[i];
 
-      const projection = description.getAttribute('GPano:ProjectionType');
-      if (projection && projection !== 'equirectangular') return null;
+        const usePano = getNSAttributeOrChild(description, GPANO_NS, 'UsePanoramaViewer') !== 'False';
 
-      let initialFOV = description.getAttribute('GPano:InitialHorizontalFOVDegrees');
-      if (initialFOV !== null) {
-        initialFOV = +initialFOV / 180 * Math.PI;
+        const projection = getNSAttributeOrChild(description, GPANO_NS, 'ProjectionType');
+        if (projection !== 'equirectangular') continue;
+
+        let initialFOV = convertOptionalToRadians(getNSAttributeOrChild(description, GPANO_NS, 'InitialHorizontalFOVDegrees'));
+        let initialYaw = convertOptionalToRadians(getNSAttributeOrChild(description, GPANO_NS, 'InitialViewHeadingDegrees'));
+        let initialPitch = convertOptionalToRadians(getNSAttributeOrChild(description, GPANO_NS, 'InitialViewPitchDegrees'));
+
+        const data = {
+          fullWidth: parseInt(getNSAttributeOrChild(description, GPANO_NS, 'FullPanoWidthPixels'), 10),
+          fullHeight: parseInt(getNSAttributeOrChild(description, GPANO_NS, 'FullPanoHeightPixels'), 10),
+          croppedWidth: parseInt(getNSAttributeOrChild(description, GPANO_NS, 'CroppedAreaImageWidthPixels'), 10),
+          croppedHeight: parseInt(getNSAttributeOrChild(description, GPANO_NS, 'CroppedAreaImageHeightPixels'), 10),
+          croppedLeft: parseInt(getNSAttributeOrChild(description, GPANO_NS, 'CroppedAreaLeftPixels'), 10),
+          croppedTop: parseInt(getNSAttributeOrChild(description, GPANO_NS, 'CroppedAreaTopPixels'), 10),
+          enabledInitially: usePano,
+          initialFOV,
+          initialYaw,
+          initialPitch,
+        };
+
+        for (let key in data) if (Number.isNaN(data[key])) continue;
+
+        return data;
       }
 
-      const data = {
-        fullWidth: +description.getAttribute('GPano:FullPanoWidthPixels'),
-        fullHeight: +description.getAttribute('GPano:FullPanoHeightPixels'),
-        croppedWidth: +description.getAttribute('GPano:CroppedAreaImageWidthPixels'),
-        croppedHeight: +description.getAttribute('GPano:CroppedAreaImageHeightPixels'),
-        croppedLeft: +description.getAttribute('GPano:CroppedAreaLeftPixels'),
-        croppedTop: +description.getAttribute('GPano:CroppedAreaTopPixels'),
-        enabledInitially: usePano,
-        initialFOV: initialFOV,
-      };
-
-      for (let key in data) if (Number.isNaN(data[key])) return null;
-
-      return data;
+      return null;
     } else {
       offset++;
     }
