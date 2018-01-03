@@ -265,12 +265,18 @@ oc:
       unresolved: Pas resolguts
       view: Veire
     settings:
+      activity_api_enabled:
+        desc_html: Nombre d’estatuts publicats, utilizaires actius e novèlas inscripcions en rapòrt setmanièr
+        title: Publica las estatisticas totalas de l’activitat dels utilizaires
       bootstrap_timeline_accounts:
         desc_html: Separatz los noms d’utilizaire amb de virgula. Pas que los comptes locals e pas clavats foncionaràn. Se lo camp es void los admins seràn selecionats.
-        title: Per defaut los nouvenguts sègon
+        title: Per defaut los nòuvenguts sègon
       contact_information:
         email: Picatz una adreça de corrièl
         username: Picatz un nom d’utilizaire
+      peers_api_enabled:
+        desc_html: Noms de domeni qu’aquesta instància a trobats pel fediverse
+        title: Publica la lista de las instàncias conegudas
       registrations:
         closed_message:
           desc_html: Afichat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz utilizar de balisas HTML

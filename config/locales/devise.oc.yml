@@ -18,8 +18,12 @@ oc:
     mailer:
       confirmation_instructions:
         subject: Mercés de confirmar vòstra inscripcion sus %{instance}
+      email_changed:
+        subject: 'Mastodon : corrièl cambiat'
       password_change:
         subject: Mastodon : senhal cambiat
+      reconfirmation_instructions:
+        subject: 'Mastodon : Confirmatz l’adreça per %{instance}'
       reset_password_instructions:
         subject: Mastodon : instruccions per reïnicializar lo senhal
       unlock_instructions:
