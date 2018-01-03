@@ -2,7 +2,8 @@ import React from 'react';
 import Column from '../ui/components/column';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import NavigationFooter from '../../components/navigation_footer';
+import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -23,10 +24,9 @@ const messages = defineMessages({
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
-  keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
+  info: { id: 'navigation_bar.info', defaultMessage: 'Information' },
 });
 
 const mapStateToProps = state => ({
@@ -83,33 +83,17 @@ export default class GettingStarted extends ImmutablePureComponent {
       <ColumnLink key='9' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
     );
 
-    if (multiColumn) {
-      navItems.push(<ColumnLink key='10' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />);
-    }
-
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
-        <div className='getting-started__wrapper'>
-          <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
-          {navItems}
-          <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-          <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
-          <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
-          <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
+        <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
+        <div className='navigation__wrapper'>{navItems}</div>
+        <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
+        <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
+        <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
+        <div className='getting-started__question'>
+          <ColumnLink icon='question' text={intl.formatMessage(messages.info)} to='/info' />
         </div>
-
-        <div className='static-content getting-started'>
-          <p>
-            <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
-          </p>
-          <p>
-            <FormattedMessage
-              id='getting_started.open_source_notice'
-              defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-              values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
-            />
-          </p>
-        </div>
+        <NavigationFooter />
       </Column>
     );
   }

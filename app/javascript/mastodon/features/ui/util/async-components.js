@@ -42,6 +42,10 @@ export function GettingStarted () {
   return import(/* webpackChunkName: "features/getting_started" */'../../getting_started');
 }
 
+export function Information () {
+  return import(/* webpackChunkName: "features/information" */'../../information');
+}
+
 export function KeyboardShortcuts () {
   return import(/* webpackChunkName: "features/keyboard_shortcuts" */'../../keyboard_shortcuts');
 }

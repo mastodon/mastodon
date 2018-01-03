@@ -19,6 +19,7 @@ import {
   Compose,
   Status,
   GettingStarted,
+  Information,
   KeyboardShortcuts,
   PublicTimeline,
   CommunityTimeline,
@@ -381,6 +382,7 @@ export default class UI extends React.Component {
             <WrappedSwitch>
               <Redirect from='/' to='/getting-started' exact />
               <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+              <WrappedRoute path='/info' component={Information} content={children} />
               <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
               <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
               <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
