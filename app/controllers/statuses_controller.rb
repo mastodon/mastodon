@@ -10,6 +10,7 @@ class StatusesController < ApplicationController
   before_action :set_link_headers
   before_action :check_account_suspension
   before_action :redirect_to_original, only: [:show]
+  before_action { response.headers['Vary'] = 'Accept' }
 
   def show
     respond_to do |format|
@@ -26,6 +27,12 @@ class StatusesController < ApplicationController
                serializer: ActivityPub::NoteSerializer,
                adapter: ActivityPub::Adapter,
                content_type: 'application/activity+json'
+
+        # Allow HTTP caching for 3 minutes if the status is public
+        unless @stream_entry.hidden?
+          request.session_options[:skip] = true
+          expires_in(3.minutes, public: true)
+        end
       end
     end
   end

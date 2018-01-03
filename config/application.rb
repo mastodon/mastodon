@@ -58,6 +58,7 @@ module Mastodon
       :ru,
       :sk,
       :sr,
+      :'sr-Latn',
       :sv,
       :th,
       :tr,

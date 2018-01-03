@@ -15,9 +15,9 @@ export {
   register,
 };
 
-export function changeAlerts(key, value) {
+export function changeAlerts(path, value) {
   return dispatch => {
-    dispatch(setAlerts(key, value));
+    dispatch(setAlerts(path, value));
     dispatch(saveSettings());
   };
 }
