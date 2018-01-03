@@ -17,9 +17,7 @@ class BatchedRemoveStatusService < BaseService
 
     @stream_entry_batches  = []
     @salmon_batches        = []
-    @activity_json_batches = []
     @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id.to_s)] }.to_h
-    @activity_json         = {}
     @activity_xml          = {}
 
     # Ensure that rendered XML reflects destroyed state
@@ -32,10 +30,7 @@ class BatchedRemoveStatusService < BaseService
       unpush_from_home_timelines(account, account_statuses)
       unpush_from_list_timelines(account, account_statuses)
 
-      if account.local?
-        batch_stream_entries(account, account_statuses)
-        batch_activity_json(account, account_statuses)
-      end
+      batch_stream_entries(account, account_statuses) if account.local?
     end
 
     # Cannot be batched
@@ -46,7 +41,6 @@ class BatchedRemoveStatusService < BaseService
 
     Pubsubhubbub::RawDistributionWorker.push_bulk(@stream_entry_batches) { |batch| batch }
     NotificationWorker.push_bulk(@salmon_batches) { |batch| batch }
-    ActivityPub::DeliveryWorker.push_bulk(@activity_json_batches) { |batch| batch }
   end
 
   private
@@ -54,22 +48,6 @@ class BatchedRemoveStatusService < BaseService
   def batch_stream_entries(account, statuses)
     statuses.each do |status|
       @stream_entry_batches << [build_xml(status.stream_entry), account.id]
-    end
-  end
-
-  def batch_activity_json(account, statuses)
-    account.followers.inboxes.each do |inbox_url|
-      statuses.each do |status|
-        @activity_json_batches << [build_json(status), account.id, inbox_url]
-      end
-    end
-
-    statuses.each do |status|
-      other_recipients = (status.mentions + status.reblogs).map(&:account).reject(&:local?).select(&:activitypub?).uniq(&:id)
-
-      other_recipients.each do |target_account|
-        @activity_json_batches << [build_json(status), account.id, target_account.inbox_url]
-      end
     end
   end
 
@@ -123,23 +101,9 @@ class BatchedRemoveStatusService < BaseService
     Redis.current
   end
 
-  def build_json(status)
-    return @activity_json[status.id] if @activity_json.key?(status.id)
-
-    @activity_json[status.id] = sign_json(status, ActiveModelSerializers::SerializableResource.new(
-      status,
-      serializer: status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer,
-      adapter: ActivityPub::Adapter
-    ).as_json)
-  end
-
   def build_xml(stream_entry)
     return @activity_xml[stream_entry.id] if @activity_xml.key?(stream_entry.id)
 
     @activity_xml[stream_entry.id] = stream_entry_to_xml(stream_entry)
-  end
-
-  def sign_json(status, json)
-    Oj.dump(ActivityPub::LinkedDataSignature.new(json).sign!(status.account))
   end
 end
