@@ -265,12 +265,18 @@ ja:
       unresolved: 未解決
       view: 表示
     settings:
+      activity_api_enabled:
+        desc_html: ローカルに投稿されたトゥート数、アクティブなユーザー数、週ごとの新規登録者数
+        title: ユーザーアクティビティに関する統計を公開する
       bootstrap_timeline_accounts:
         desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
         title: 新規ユーザーが自動フォローするアカウント
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先のユーザー名
+      peers_api_enabled:
+        desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
+        title: 接続しているインスタンスのリストを公開する
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
