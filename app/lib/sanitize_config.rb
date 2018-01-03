@@ -6,14 +6,14 @@ class Sanitize
 
     CLASS_WHITELIST_TRANSFORMER = lambda do |env|
       node = env[:node]
-      class_list = node['class']&.split(' ')
+      class_list = node['class']&.split(/[\t\n\f\r ]/)
 
       return unless class_list
 
       class_list.keep_if do |e|
-        return true if e =~ /^(h|p|u|dt|e)-/ # microformats classes
-        return true if e =~ /^(mention|hashtag)$/ # semantic classes
-        return true if e =~ /^(ellipsis|invisible)$/ # link formatting classes
+        next true if e =~ /^(h|p|u|dt|e)-/ # microformats classes
+        next true if e =~ /^(mention|hashtag)$/ # semantic classes
+        next true if e =~ /^(ellipsis|invisible)$/ # link formatting classes
       end
 
       node['class'] = class_list.join(' ')
