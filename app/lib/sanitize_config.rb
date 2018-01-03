@@ -11,9 +11,9 @@ class Sanitize
       return unless class_list
 
       class_list.keep_if do |e|
-        return true if e =~ /^(h|p|u|dt|e)-/ # microformats classes
-        return true if e =~ /^(mention|hashtag)$/ # semantic classes
-        return true if e =~ /^(ellipsis|invisible)$/ # link formatting classes
+        next true if e =~ /^(h|p|u|dt|e)-/ # microformats classes
+        next true if e =~ /^(mention|hashtag)$/ # semantic classes
+        next true if e =~ /^(ellipsis|invisible)$/ # link formatting classes
       end
 
       node['class'] = class_list.join(' ')
