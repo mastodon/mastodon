@@ -6,8 +6,8 @@ export function assignHandlers (target, handlers) {
 
   //  We just bind each handler to the `target`.
   const handle = target.handlers = {};
-  handlers.keys().forEach(
-    key => handle.key = key.bind(target)
+  Object.keys(handlers).forEach(
+    key => handle[key] = handlers[key].bind(target)
   );
 }
 

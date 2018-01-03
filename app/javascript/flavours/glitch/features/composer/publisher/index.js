@@ -46,10 +46,13 @@ export default function ComposerPublisher ({
   //  The result.
   return (
     <div className={computedClass}>
-      <span class='count'>{diff}</span>
+      <span className='count'>{diff}</span>
       {sideArm && sideArm !== 'none' ? (
         <Button
           className='side_arm'
+          disabled={disabled || diff < 0}
+          onClick={onSecondarySubmit}
+          style={{ padding: null }}
           text={
             <span>
               <Icon
@@ -63,8 +66,6 @@ export default function ComposerPublisher ({
             </span>
           }
           title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${sideArm}.short` })}`}
-          onClick={onSecondarySubmit}
-          disabled={disabled || diff < 0}
         />
       ) : null}
       <Button

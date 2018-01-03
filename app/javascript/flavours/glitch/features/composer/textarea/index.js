@@ -31,14 +31,14 @@ const messages = defineMessages({
 const handlers = {
 
   //  When blurring the textarea, suggestions are hidden.
-  blur () {
+  handleBlur () {
     this.setState({ suggestionsHidden: true });
   },
 
   //  When the contents of the textarea change, we have to pull up new
   //  autosuggest suggestions if applicable, and also change the value
   //  of the textarea in our store.
-  change ({
+  handleChange ({
     target: {
       selectionStart,
       value,
@@ -91,7 +91,7 @@ const handlers = {
   },
 
   //  Handles a click on an autosuggestion.
-  clickSuggestion (index) {
+  handleClickSuggestion (index) {
     const { textarea } = this;
     const {
       onSuggestionSelected,
@@ -107,7 +107,7 @@ const handlers = {
 
   //  Handles a keypress.  If the autosuggestions are visible, we need
   //  to allow keypresses to navigate and sleect them.
-  keyDown (e) {
+  handleKeyDown (e) {
     const {
       disabled,
       onSubmit,
@@ -165,7 +165,7 @@ const handlers = {
 
   //  When the escape key is released, we either close the suggestions
   //  window or focus the UI.
-  keyUp ({ key }) {
+  handleKeyUp ({ key }) {
     const { suggestionsHidden } = this.state;
     if (key === 'Escape') {
       if (!suggestionsHidden) {
@@ -177,7 +177,7 @@ const handlers = {
   },
 
   //  Handles the pasting of images into the composer.
-  paste (e) {
+  handlePaste (e) {
     const { onPaste } = this.props;
     let d;
     if (onPaste && (d = e.clipboardData) && (d = d.files).length === 1) {
@@ -187,7 +187,7 @@ const handlers = {
   },
 
   //  Saves a reference to the textarea.
-  refTextarea (textarea) {
+  handleRefTextarea (textarea) {
     this.textarea = textarea;
   },
 };
@@ -223,13 +223,13 @@ export default class ComposerTextarea extends React.Component {
   //  Rendering.
   render () {
     const {
-      blur,
-      change,
-      clickSuggestion,
-      keyDown,
-      keyUp,
-      paste,
-      refTextarea,
+      handleBlur,
+      handleChange,
+      handleClickSuggestion,
+      handleKeyDown,
+      handleKeyUp,
+      handlePaste,
+      handleRefTextarea,
     } = this.handlers;
     const {
       autoFocus,
@@ -254,12 +254,12 @@ export default class ComposerTextarea extends React.Component {
             autoFocus={autoFocus}
             className='textarea'
             disabled={disabled}
-            inputRef={refTextarea}
-            onBlur={blur}
-            onChange={change}
-            onKeyDown={keyDown}
-            onKeyUp={keyUp}
-            onPaste={paste}
+            inputRef={handleRefTextarea}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
+            onPaste={handlePaste}
             placeholder={intl.formatMessage(messages.placeholder)}
             value={value}
             style={{ direction: isRtl(value) ? 'rtl' : 'ltr' }}
@@ -268,7 +268,7 @@ export default class ComposerTextarea extends React.Component {
         <EmojiPicker onPickEmoji={onPickEmoji} />
         <ComposerTextareaSuggestions
           hidden={suggestionsHidden}
-          onSuggestionClick={clickSuggestion}
+          onSuggestionClick={handleClickSuggestion}
           suggestions={suggestions}
           value={selectedSuggestion}
         />

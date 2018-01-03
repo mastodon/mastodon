@@ -31,7 +31,7 @@ const messages = defineMessages({
 const handlers = {
 
   //  On blur, we save the description for the media item.
-  blur () {
+  handleBlur () {
     const {
       id,
       onChangeDescription,
@@ -48,27 +48,27 @@ const handlers = {
 
   //  When the value of our description changes, we store it in the
   //  temp value `dirtyDescription` in our state.
-  change ({ target: { value } }) {
+  handleChange ({ target: { value } }) {
     this.setState({ dirtyDescription: value });
   },
 
   //  Records focus on the media item.
-  focus () {
+  handleFocus () {
     this.setState({ focused: true });
   },
 
   //  Records the start of a hover over the media item.
-  mouseEnter () {
+  handleMouseEnter () {
     this.setState({ hovered: true });
   },
 
   //  Records the end of a hover over the media item.
-  mouseLeave () {
+  handleMouseLeave () {
     this.setState({ hovered: false });
   },
 
   //  Removes the media item.
-  remove () {
+  handleRemove () {
     const {
       id,
       onRemove,
@@ -85,7 +85,7 @@ export default class ComposerUploadFormItem extends React.PureComponent {
   //  Constructor.
   constructor (props) {
     super(props);
-    assignHandlers(handlers);
+    assignHandlers(this, handlers);
     this.state = {
       hovered: false,
       focused: false,
@@ -96,12 +96,12 @@ export default class ComposerUploadFormItem extends React.PureComponent {
   //  Rendering.
   render () {
     const {
-      blur,
-      change,
-      focus,
-      mouseEnter,
-      mouseLeave,
-      remove,
+      handleBlur,
+      handleChange,
+      handleFocus,
+      handleMouseEnter,
+      handleMouseLeave,
+      handleRemove,
     } = this.handlers;
     const {
       description,
@@ -119,8 +119,8 @@ export default class ComposerUploadFormItem extends React.PureComponent {
     return (
       <div
         className={computedClass}
-        onMouseEnter={mouseEnter}
-        onMouseLeave={mouseLeave}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <Motion
           defaultStyle={{ scale: 0.8 }}
@@ -141,7 +141,7 @@ export default class ComposerUploadFormItem extends React.PureComponent {
               <IconButton
                 className='close'
                 icon='times'
-                onClick={remove}
+                onClick={handleRemove}
                 size={36}
                 title={intl.formatMessage(messages.undo)}
               />
@@ -149,9 +149,9 @@ export default class ComposerUploadFormItem extends React.PureComponent {
                 <span style={{ display: 'none' }}><FormattedMessage {...messages.description} /></span>
                 <input
                   maxLength={420}
-                  onBlur={blur}
-                  onChange={change}
-                  onFocus={focus}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
                   placeholder={intl.formatMessage(messages.description)}
                   type='text'
                   value={dirtyDescription || description || ''}
@@ -169,7 +169,7 @@ export default class ComposerUploadFormItem extends React.PureComponent {
 //  Props.
 ComposerUploadFormItem.propTypes = {
   description: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.string,
   intl: PropTypes.object.isRequired,
   onChangeDescription: PropTypes.func,
   onRemove: PropTypes.func,

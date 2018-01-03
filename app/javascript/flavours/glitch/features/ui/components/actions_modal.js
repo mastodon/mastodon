@@ -50,7 +50,7 @@ export default class ActionsModal extends ImmutablePureComponent {
         <Link
           className={classNames('link', { active })}
           href={href}
-          onClick={onClick}
+          onClick={on !== null && typeof on !== 'undefined' && onPassiveClick || onClick}
           role={onClick ? 'button' : null}
         >
           {function () {

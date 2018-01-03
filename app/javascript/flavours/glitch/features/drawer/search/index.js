@@ -30,18 +30,18 @@ const messages = defineMessages({
 //  Handlers.
 const handlers = {
 
-  blur () {
+  handleBlur () {
     this.setState({ expanded: false });
   },
 
-  change ({ target: { value } }) {
+  handleChange ({ target: { value } }) {
     const { onChange } = this.props;
     if (onChange) {
       onChange(value);
     }
   },
 
-  clear (e) {
+  handleClear (e) {
     const {
       onClear,
       submitted,
@@ -53,7 +53,7 @@ const handlers = {
     }
   },
 
-  focus () {
+  handleFocus () {
     const { onShow } = this.props;
     this.setState({ expanded: true });
     if (onShow) {
@@ -61,7 +61,7 @@ const handlers = {
     }
   },
 
-  keyUp (e) {
+  handleKeyUp (e) {
     const { onSubmit } = this.props;
     switch (e.key) {
     case 'Enter':
@@ -78,19 +78,21 @@ const handlers = {
 //  The component.
 export default class DrawerSearch extends React.PureComponent {
 
+  //  Constructor.
   constructor (props) {
     super(props);
     assignHandlers(this, handlers);
     this.state = { expanded: false };
   }
 
+  //  Rendering.
   render () {
     const {
-      blur,
-      change,
-      clear,
-      focus,
-      keyUp,
+      handleBlur,
+      handleChange,
+      handleClear,
+      handleFocus,
+      handleKeyUp,
     } = this.handlers;
     const {
       intl,
@@ -110,23 +112,22 @@ export default class DrawerSearch extends React.PureComponent {
             type='text'
             placeholder={intl.formatMessage(messages.placeholder)}
             value={value || ''}
-            onChange={change}
-            onKeyUp={keyUp}
-            onFocus={focus}
-            onBlur={blur}
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
         </label>
         <div
           aria-label={intl.formatMessage(messages.placeholder)}
           className='icon'
-          onClick={clear}
+          onClick={handleClear}
           role='button'
           tabIndex='0'
         >
           <Icon icon='search' />
           <Icon icon='fa-times-circle' />
         </div>
-
         <Overlay
           placement='bottom'
           show={expanded && !(value || '').length && !submitted}
@@ -138,6 +139,7 @@ export default class DrawerSearch extends React.PureComponent {
 
 }
 
+//  Props.
 DrawerSearch.propTypes = {
   value: PropTypes.string,
   submitted: PropTypes.bool,

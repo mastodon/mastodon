@@ -2,108 +2,120 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import spring from 'react-motion/lib/spring';
 import Overlay from 'react-overlays/lib/Overlay';
 
 //  Components.
 import IconButton from 'flavours/glitch/components/icon_button';
-import ComposerOptionsDropdownItem from './item';
+import ComposerOptionsDropdownContent from './content';
 
 //  Utils.
-import { withPassive } from 'flavours/glitch/util/dom_helpers';
 import { isUserTouching } from 'flavours/glitch/util/is_mobile';
-import Motion from 'flavours/glitch/util/optional_motion';
 import { assignHandlers } from 'flavours/glitch/util/react_helpers';
-
-//  We'll use this to define our various transitions.
-const springMotion = spring(1, {
-  damping: 35,
-  stiffness: 400,
-});
 
 //  Handlers.
 const handlers = {
 
   //  Closes the dropdown.
-  close () {
+  handleClose () {
     this.setState({ open: false });
-  },
-
-  //  When the document is clicked elsewhere, we close the dropdown.
-  documentClick ({ target }) {
-    const { node } = this;
-    const { onClose } = this.props;
-    if (onClose && node && !node.contains(target)) {
-      onClose();
-    }
   },
 
   //  The enter key toggles the dropdown's open state, and the escape
   //  key closes it.
-  keyDown ({ key }) {
+  handleKeyDown ({ key }) {
     const {
-      close,
-      toggle,
+      handleClose,
+      handleToggle,
     } = this.handlers;
     switch (key) {
     case 'Enter':
-      toggle();
+      handleToggle();
       break;
     case 'Escape':
-      close();
+      handleClose();
       break;
     }
   },
 
-  //  Toggles opening and closing the dropdown.
-  toggle () {
+  //  Creates an action modal object.
+  handleMakeModal () {
+    const component = this;
     const {
       items,
       onChange,
-      onModalClose,
       onModalOpen,
+      onModalClose,
       value,
     } = this.props;
+
+    //  Required props.
+    if (!(onChange && onModalOpen && onModalClose && items)) {
+      return null;
+    }
+
+    //  The object.
+    return {
+      actions: items.map(
+        ({
+          name,
+          ...rest
+        }) => ({
+          ...rest,
+          active: value && name === value,
+          name,
+          onClick (e) {
+            e.preventDefault();  //  Prevents focus from changing
+            onModalClose();
+            onChange(name);
+          },
+          onPassiveClick (e) {
+            e.preventDefault();  //  Prevents focus from changing
+            onChange(name);
+            component.setState({ needsModalUpdate: true });
+          },
+        })
+      ),
+    };
+  },
+
+  //  Toggles opening and closing the dropdown.
+  handleToggle () {
+    const { handleMakeModal } = this.handlers;
+    const { onModalOpen } = this.props;
     const { open } = this.state;
 
     //  If this is a touch device, we open a modal instead of the
     //  dropdown.
-    if (onModalClose && isUserTouching()) {
-      if (open) {
-        onModalClose();
-      } else if (onChange && onModalOpen) {
-        onModalOpen({
-          actions: items.map(
-            ({
-              name,
-              ...rest
-            }) => ({
-              ...rest,
-              active: value && name === value,
-              name,
-              onClick (e) {
-                e.preventDefault();  //  Prevents focus from changing
-                onModalClose();
-                onChange(name);
-              },
-              onPassiveClick (e) {
-                e.preventDefault();  //  Prevents focus from changing
-                onChange(name);
-              },
-            })
-          ),
-        });
+    if (isUserTouching()) {
+
+      //  This gets the modal to open.
+      const modal = handleMakeModal();
+
+      //  If we can, we then open the modal.
+      if (modal && onModalOpen) {
+        onModalOpen(modal);
+        return;
       }
+    }
 
     //  Otherwise, we just set our state to open.
-    } else {
-      this.setState({ open: !open });
-    }
+    this.setState({ open: !open });
   },
 
-  //  Stores our node in `this.node`.
-  ref (node) {
-    this.node = node;
+  //  If our modal is open and our props update, we need to also update
+  //  the modal.
+  handleUpdate () {
+    const { handleMakeModal } = this.handlers;
+    const { onModalOpen } = this.props;
+    const { needsModalUpdate } = this.state;
+
+    //  Gets our modal object.
+    const modal = handleMakeModal();
+
+    //  Reopens the modal with the new object.
+    if (needsModalUpdate && modal && onModalOpen) {
+      onModalOpen(modal);
+    }
   },
 };
 
@@ -114,33 +126,31 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
   constructor (props) {
     super(props);
     assignHandlers(this, handlers);
-    this.state = { open: false };
-
-    //  Instance variables.
-    this.node = null;
+    this.state = {
+      needsModalUpdate: false,
+      open: false,
+    };
   }
 
-  //  On mounting, we add our listeners.
-  componentDidMount () {
-    const { documentClick } = this.handlers;
-    document.addEventListener('click', documentClick, false);
-    document.addEventListener('touchend', documentClick, withPassive);
-  }
-
-  //  On unmounting, we remove our listeners.
-  componentWillUnmount () {
-    const { documentClick } = this.handlers;
-    document.removeEventListener('click', documentClick, false);
-    document.removeEventListener('touchend', documentClick, withPassive);
+  //  Updates our modal as necessary.
+  componentDidUpdate (prevProps) {
+    const { handleUpdate } = this.handlers;
+    const { items } = this.props;
+    const { needsModalUpdate } = this.state;
+    if (needsModalUpdate && items.find(
+      (item, i) => item.on !== prevProps.items[i].on
+    )) {
+      handleUpdate();
+      this.setState({ needsModalUpdate: false });
+    }
   }
 
   //  Rendering.
   render () {
     const {
-      close,
-      keyDown,
-      ref,
-      toggle,
+      handleClose,
+      handleKeyDown,
+      handleToggle,
     } = this.handlers;
     const {
       active,
@@ -154,22 +164,21 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     const { open } = this.state;
     const computedClass = classNames('composer--options--dropdown', {
       active,
-      open: open || active,
+      open,
     });
 
     //  The result.
     return (
       <div
         className={computedClass}
-        onKeyDown={keyDown}
-        ref={ref}
+        onKeyDown={handleKeyDown}
       >
         <IconButton
           active={open || active}
           className='value'
           disabled={disabled}
           icon={icon}
-          onClick={toggle}
+          onClick={handleToggle}
           size={18}
           style={{
             height: null,
@@ -178,49 +187,17 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           title={title}
         />
         <Overlay
+          containerPadding={20}
           placement='bottom'
           show={open}
           target={this}
         >
-          <Motion
-            defaultStyle={{
-              opacity: 0,
-              scaleX: 0.85,
-              scaleY: 0.75,
-            }}
-            style={{
-              opacity: springMotion,
-              scaleX: springMotion,
-              scaleY: springMotion,
-            }}
-          >
-            {({ opacity, scaleX, scaleY }) => (
-              <div
-                className='composer--options--dropdown__dropdown'
-                ref={this.setRef}
-                style={{
-                  opacity: opacity,
-                  transform: `scale(${scaleX}, ${scaleY})`,
-                }}
-              >
-                {items.map(
-                  ({
-                    name,
-                    ...rest
-                  }) => (
-                    <ComposerOptionsDropdownItem
-                      active={name === value}
-                      key={name}
-                      name={name}
-                      onChange={onChange}
-                      onClose={close}
-                      options={rest}
-                    />
-                  )
-                )}
-              </div>
-            )}
-          </Motion>
+          <ComposerOptionsDropdownContent
+            items={items}
+            onChange={onChange}
+            onClose={handleClose}
+            value={value}
+          />
         </Overlay>
       </div>
     );

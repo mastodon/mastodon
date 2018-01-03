@@ -34,23 +34,13 @@ const mapStateToProps = state => ({
 });
 
 //  Dispatch mapping.
-const mapDispatchToProps = dispatch => ({
-  change (value) {
-    dispatch(changeSearch(value));
-  },
-  clear () {
-    dispatch(clearSearch());
-  },
-  show () {
-    dispatch(showSearch());
-  },
-  submit () {
-    dispatch(submitSearch());
-  },
-  openSettings () {
-    dispatch(openModal('SETTINGS', {}));
-  },
-});
+const mapDispatchToProps = {
+  onChange: changeSearch,
+  onClear: clearSearch,
+  onShow: showSearch,
+  onSubmit: submitSearch,
+  onOpenSettings: openModal.bind(null, 'SETTINGS', {}),
+};
 
 //  The component.
 class Drawer extends React.Component {
@@ -63,23 +53,19 @@ class Drawer extends React.Component {
   //  Rendering.
   render () {
     const {
-      dispatch: {
-        change,
-        clear,
-        openSettings,
-        show,
-        submit,
-      },
+      account,
+      columns,
       intl,
       multiColumn,
-      state: {
-        account,
-        columns,
-        results,
-        searchHidden,
-        searchValue,
-        submitted,
-      },
+      onChange,
+      onClear,
+      onOpenSettings,
+      onShow,
+      onSubmit,
+      results,
+      searchHidden,
+      searchValue,
+      submitted,
     } = this.props;
 
     //  The result.
@@ -89,15 +75,15 @@ class Drawer extends React.Component {
           <DrawerHeader
             columns={columns}
             intl={intl}
-            onSettingsClick={openSettings}
+            onSettingsClick={onOpenSettings}
           />
         ) : null}
         <DrawerSearch
           intl={intl}
-          onChange={change}
-          onClear={clear}
-          onShow={show}
-          onSubmit={submit}
+          onChange={onChange}
+          onClear={onClear}
+          onShow={onShow}
+          onSubmit={onSubmit}
           submitted={submitted}
           value={searchValue}
         />
@@ -117,23 +103,23 @@ class Drawer extends React.Component {
 
 //  Props.
 Drawer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
   multiColumn: PropTypes.bool,
-  state: PropTypes.shape({
-    account: ImmutablePropTypes.map,
-    columns: ImmutablePropTypes.list,
-    results: ImmutablePropTypes.map,
-    searchHidden: PropTypes.bool,
-    searchValue: PropTypes.string,
-    submitted: PropTypes.bool,
-  }).isRequired,
-};
 
-//  Default props.
-Drawer.defaultProps = {
-  dispatch: {},
-  state: {},
+  //  State props.
+  account: ImmutablePropTypes.map,
+  columns: ImmutablePropTypes.list,
+  results: ImmutablePropTypes.map,
+  searchHidden: PropTypes.bool,
+  searchValue: PropTypes.string,
+  submitted: PropTypes.bool,
+
+  //  Dispatch props.
+  onChange: PropTypes.func,
+  onClear: PropTypes.func,
+  onShow: PropTypes.func,
+  onSubmit: PropTypes.func,
+  onOpenSettings: PropTypes.func,
 };
 
 //  Connecting and export.

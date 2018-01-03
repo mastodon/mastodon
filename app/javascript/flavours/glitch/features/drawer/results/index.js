@@ -25,7 +25,7 @@ const messages = defineMessages({
 });
 
 //  The component.
-export default function DrawerPager ({
+export default function DrawerResults ({
   results,
   visible,
 }) {
@@ -33,6 +33,7 @@ export default function DrawerPager ({
   const statuses = results ? results.get('statuses') : null;
   const hashtags = results ? results.get('hashtags') : null;
 
+  //  This gets the total number of items.
   const count = [accounts, statuses, hashtags].reduce(function (size, item) {
     if (item && item.size) {
       return size + item.size;
@@ -108,7 +109,8 @@ export default function DrawerPager ({
   );
 }
 
-DrawerPager.propTypes = {
+//  Props.
+DrawerResults.propTypes = {
   results: ImmutablePropTypes.map,
   visible: PropTypes.bool,
 };

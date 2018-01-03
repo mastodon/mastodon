@@ -27,7 +27,7 @@ export default function DrawerAccount ({ account }) {
   //  We need an account to render.
   if (!account) {
     return (
-      <div className='drawer--pager--account'>
+      <div className='drawer--account'>
         <a
           className='edit'
           href='/settings/profile'
@@ -40,7 +40,7 @@ export default function DrawerAccount ({ account }) {
 
   //  The result.
   return (
-    <div className='drawer--pager--account'>
+    <div className='drawer--account'>
       <Permalink
         className='avatar'
         href={account.get('url')}
@@ -67,4 +67,5 @@ export default function DrawerAccount ({ account }) {
   );
 }
 
+//  Props.
 DrawerAccount.propTypes = { account: ImmutablePropTypes.map };

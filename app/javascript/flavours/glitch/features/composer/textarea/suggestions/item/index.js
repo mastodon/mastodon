@@ -17,7 +17,7 @@ const assetHost = ((process || {}).env || {}).CDN_HOST || '';
 const handlers = {
 
   //  Handles a click on a suggestion.
-  click (e) {
+  handleClick (e) {
     const {
       index,
       onClick,
@@ -40,7 +40,7 @@ export default class ComposerTextareaSuggestionsItem extends React.Component {
 
   //  Rendering.
   render () {
-    const { click } = this.handlers;
+    const { handleClick } = this.handlers;
     const {
       selected,
       suggestion,
@@ -51,7 +51,7 @@ export default class ComposerTextareaSuggestionsItem extends React.Component {
     return (
       <div
         className={computedClass}
-        onMouseDown={click}
+        onMouseDown={handleClick}
         role='button'
         tabIndex='0'
       >

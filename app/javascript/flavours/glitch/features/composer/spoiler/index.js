@@ -24,7 +24,7 @@ const messages = defineMessages({
 const handlers = {
 
   //  Handles a keypress.
-  keyDown ({
+  handleKeyDown ({
     ctrlKey,
     keyCode,
     metaKey,
@@ -49,7 +49,7 @@ export default class ComposerSpoiler extends React.PureComponent {
 
   //  Rendering.
   render () {
-    const { keyDown } = this.handlers;
+    const { handleKeyDown } = this.handlers;
     const {
       hidden,
       intl,
@@ -70,7 +70,7 @@ export default class ComposerSpoiler extends React.PureComponent {
           <input
             id='glitch.composer.spoiler.input'
             onChange={onChange}
-            onKeyDown={keyDown}
+            onKeyDown={handleKeyDown}
             placeholder={intl.formatMessage(messages.placeholder)}
             type='text'
             value={text}

@@ -25,7 +25,7 @@ const messages = defineMessages({
 const handlers = {
 
   //  Handles a click on the "close" button.
-  click () {
+  handleClick () {
     const { onCancel } = this.props;
     if (onCancel) {
       onCancel();
@@ -33,7 +33,7 @@ const handlers = {
   },
 
   //  Handles a click on the status's account.
-  clickAccount () {
+  handleClickAccount () {
     const {
       account,
       history,
@@ -56,8 +56,8 @@ export default class ComposerReply extends React.PureComponent {
   //  Rendering.
   render () {
     const {
-      click,
-      clickAccount,
+      handleClick,
+      handleClickAccount,
     } = this.handlers;
     const {
       account,
@@ -72,14 +72,14 @@ export default class ComposerReply extends React.PureComponent {
           <IconButton
             className='cancel'
             icon='times'
-            onClick={click}
+            onClick={handleClick}
             title={intl.formatMessage(messages.cancel)}
           />
           {account ? (
             <a
               className='account'
               href={account.get('url')}
-              onClick={clickAccount}
+              onClick={handleClickAccount}
             >
               <Avatar
                 account={account}

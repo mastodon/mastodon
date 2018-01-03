@@ -51,7 +51,7 @@ export default function DrawerHeader ({
 }) {
 
   //  Only renders the component if the column isn't being shown.
-  const renderForColumn = conditionalRender.bind(
+  const renderForColumn = conditionalRender.bind(null,
     columnId => !columns || !columns.some(
       column => column.get('id') === columnId
     )
@@ -110,6 +110,7 @@ export default function DrawerHeader ({
   );
 }
 
+//  Props.
 DrawerHeader.propTypes = {
   columns: ImmutablePropTypes.list,
   intl: PropTypes.object,

@@ -1,22 +1,24 @@
 .composer { padding: 10px }
 
 .composer--spoiler {
-  display: block;
-  box-sizing: border-box;
-  margin: 0;
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  width: 100%;
-  outline: 0;
-  color: $ui-base-color;
-  background: $simple-background-color;
-  font-size: 14px;
-  font-family: inherit;
-  resize: vertical;
+  input {
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    outline: 0;
+    color: $ui-base-color;
+    background: $simple-background-color;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
 
-  &:focus { outline: 0 }
-  @include single-column('screen and (max-width: 630px)') { font-size: 16px }
+    &:focus { outline: 0 }
+    @include single-column('screen and (max-width: 630px)') { font-size: 16px }
+  }
 }
 
 .composer--warning {
@@ -116,33 +118,33 @@
 }
 
 .composer--textarea {
-  background: $simple-background-color;
   position: relative;
 
-  &:disabled { background: $ui-secondary-color }
+  & > label {
+    .textarea {
+      display: block;
+      box-sizing: border-box;
+      margin: 0;
+      border: none;
+      border-radius: 4px 4px 0 0;
+      padding: 10px 32px 0 10px;
+      width: 100%;
+      min-height: 100px;
+      outline: 0;
+      color: $ui-base-color;
+      background: $simple-background-color;
+      font-size: 14px;
+      font-family: inherit;
+      resize: none;
 
-  & > .textarea {
-    display: block;
-    box-sizing: border-box;
-    margin: 0;
-    border: none;
-    border-radius: 4px 4px 0 0;
-    padding: 10px 32px 0 10px;
-    width: 100%;
-    min-height: 100px;
-    outline: 0;
-    color: $ui-base-color;
-    background: $simple-background-color;
-    font-size: 14px;
-    font-family: inherit;
-    resize: none;
+      &:disabled { background: $ui-secondary-color }
+      &:focus { outline: 0 }
+      @include single-column('screen and (max-width: 630px)') { font-size: 16px }
 
-    &:focus { outline: 0 }
-    @include single-column('screen and (max-width: 630px)') { font-size: 16px }
-
-    @include limited-single-column('screen and (max-width: 600px)') {
-      height: 100px !important; // prevent auto-resize textarea
-      resize: vertical;
+      @include limited-single-column('screen and (max-width: 600px)') {
+        height: 100px !important; // prevent auto-resize textarea
+        resize: vertical;
+      }
     }
   }
 }
@@ -192,15 +194,18 @@
 }
 
 .composer--upload_form {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   padding: 5px;
   color: $ui-base-color;
   background: $simple-background-color;
   font-size: 14px;
-  font-family: inherit;
-  overflow: hidden;
+
+  & > .content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: inherit;
+    overflow: hidden;
+  }
 }
 
 .composer--upload_form--item {
@@ -254,17 +259,61 @@
   }
 }
 
+.composer--upload_form--progress {
+  display: flex;
+  padding: 10px;
+  color: $ui-base-lighter-color;
+  overflow: hidden;
+
+  & > .fa {
+    font-size: 34px;
+    margin-right: 10px;
+  }
+
+  & > .message {
+    flex: 1 1 auto;
+
+    & > span {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    & > .backdrop {
+      position: relative;
+      margin-top: 5px;
+      border-radius: 6px;
+      width: 100%;
+      height: 6px;
+      background: $ui-base-lighter-color;
+
+      & > .tracker {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 6px;
+        border-radius: 6px;
+        background: $ui-highlight-color;
+      }
+    }
+  }
+}
+
 .composer--options {
   padding: 10px;
   background: darken($simple-background-color, 8%);
   box-shadow: inset 0 5px 5px rgba($base-shadow-color, 0.05);
   border-radius: 0 0 4px 4px;
+  height: 27px;
 
   & > * {
     display: inline-block;
     box-sizing: content-box;
     padding: 0 3px;
+    height: 27px;
     line-height: 27px;
+    vertical-align: bottom;
   }
 
   & > hr {
@@ -274,26 +323,26 @@
     border-style: none none none solid;
     border-color: transparent transparent transparent darken($simple-background-color, 24%);
     padding: 0;
+    width: 0;
+    height: 27px;
     background: transparent;
   }
 }
 
 .composer--options--dropdown {
-  & > .value { transition: none }
-
-  &.active {
+  &.open {
     & > .value {
       border-radius: 4px 4px 0 0;
       box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
       color: $primary-text-color;
       background: $ui-highlight-color;
+      transition: none;
     }
   }
 }
 
-.composer--options--dropdown__dropdown {
+.composer--options--dropdown--content {
   position: absolute;
-  margin-left: 40px;
   border-radius: 4px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
   background: $simple-background-color;
@@ -301,11 +350,12 @@
   transform-origin: 50% 0;
 }
 
-.composer--options--dropdown--item {
-  color: $ui-base-color;
-  padding: 10px;
-  cursor: pointer;
+.composer--options--dropdown--content--item {
   display: flex;
+  align-items: center;
+  padding: 10px;
+  color: $ui-base-color;
+  cursor: pointer;
 
   & > .content {
     flex: 1 1 auto;
@@ -344,7 +394,6 @@
   & > .count {
     display: inline-block;
     margin: 0 16px 0 8px;
-    padding-top: 10px;
     font-size: 16px;
     line-height: 36px;
   }

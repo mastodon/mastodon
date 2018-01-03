@@ -95,7 +95,7 @@ const messages = defineMessages({
 const handlers = {
 
   //  Handles file selection.
-  changeFiles ({ target: { files } }) {
+  handleChangeFiles ({ target: { files } }) {
     const { onUpload } = this.props;
     if (files.length && onUpload) {
       onUpload(files);
@@ -103,7 +103,7 @@ const handlers = {
   },
 
   //  Handles attachment clicks.
-  clickAttach (name) {
+  handleClickAttach (name) {
     const { fileElement } = this;
     const { onDoodleOpen } = this.props;
 
@@ -123,7 +123,7 @@ const handlers = {
   },
 
   //  Handles a ref to the file input.
-  refFileElement (fileElement) {
+  handleRefFileElement (fileElement) {
     this.fileElement = fileElement;
   },
 };
@@ -143,9 +143,9 @@ export default class ComposerOptions extends React.PureComponent {
   //  Rendering.
   render () {
     const {
-      changeFiles,
-      clickAttach,
-      refFileElement,
+      handleChangeFiles,
+      handleClickAttach,
+      handleRefFileElement,
     } = this.handlers;
     const {
       acceptContentTypes,
@@ -159,6 +159,7 @@ export default class ComposerOptions extends React.PureComponent {
       onModalClose,
       onModalOpen,
       onToggleAdvancedOption,
+      onToggleSpoiler,
       privacy,
       resetFileKey,
       sensitive,
@@ -201,8 +202,8 @@ export default class ComposerOptions extends React.PureComponent {
           accept={acceptContentTypes}
           disabled={disabled || full}
           key={resetFileKey}
-          onChange={changeFiles}
-          ref={refFileElement}
+          onChange={handleChangeFiles}
+          ref={handleRefFileElement}
           type='file'
           {...hiddenComponent}
         />
@@ -221,10 +222,10 @@ export default class ComposerOptions extends React.PureComponent {
               text: <FormattedMessage {...messages.doodle} />,
             },
           ]}
-          onChange={clickAttach}
+          onChange={handleClickAttach}
           onModalClose={onModalClose}
           onModalOpen={onModalOpen}
-          title={messages.attach}
+          title={intl.formatMessage(messages.attach)}
         />
         <Motion
           defaultStyle={{ scale: 0.87 }}
@@ -279,6 +280,7 @@ export default class ComposerOptions extends React.PureComponent {
           active={spoiler}
           ariaControls='glitch.composer.spoiler.input'
           label='CW'
+          onClick={onToggleSpoiler}
           title={intl.formatMessage(messages.spoiler)}
         />
         <Dropdown
@@ -318,9 +320,10 @@ ComposerOptions.propTypes = {
   onModalClose: PropTypes.func,
   onModalOpen: PropTypes.func,
   onToggleAdvancedOption: PropTypes.func,
+  onToggleSpoiler: PropTypes.func,
   onUpload: PropTypes.func,
   privacy: PropTypes.string,
-  resetFileKey: PropTypes.string,
+  resetFileKey: PropTypes.number,
   sensitive: PropTypes.bool,
   spoiler: PropTypes.bool,
 };

@@ -18,9 +18,9 @@ export default function ComposerTextareaSuggestions ({
   return (
     <div
       className='composer--textarea--suggestions'
-      hidden={hidden || suggestions.isEmpty()}
+      hidden={hidden || !suggestions || suggestions.isEmpty()}
     >
-      {!hidden ? suggestions.map(
+      {!hidden && suggestions ? suggestions.map(
         (suggestion, index) => (
           <ComposerTextareaSuggestionsItem
             index={index}
@@ -39,5 +39,5 @@ ComposerTextareaSuggestions.propTypes = {
   hidden: PropTypes.bool,
   onSuggestionClick: PropTypes.func,
   suggestions: ImmutablePropTypes.list,
-  value: PropTypes.string,
+  value: PropTypes.number,
 };

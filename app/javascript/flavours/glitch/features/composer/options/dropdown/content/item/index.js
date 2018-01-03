@@ -14,7 +14,7 @@ import { assignHandlers } from 'flavours/glitch/util/react_helpers';
 const handlers = {
 
   //  This function activates the dropdown item.
-  activate (e) {
+  handleActivate (e) {
     const {
       name,
       onChange,
@@ -35,11 +35,10 @@ const handlers = {
       onChange(name);
     }
   },
-
 };
 
 //  The component.
-export default class ComposerOptionsDropdownItem extends React.PureComponent {
+export default class ComposerOptionsDropdownContentItem extends React.PureComponent {
 
   //  Constructor.
   constructor (props) {
@@ -49,7 +48,7 @@ export default class ComposerOptionsDropdownItem extends React.PureComponent {
 
   //  Rendering.
   render () {
-    const { activate } = this.handlers;
+    const { handleActivate } = this.handlers;
     const {
       active,
       options: {
@@ -59,7 +58,7 @@ export default class ComposerOptionsDropdownItem extends React.PureComponent {
         text,
       },
     } = this.props;
-    const computedClass = classNames('composer--options--dropdown_item', {
+    const computedClass = classNames('composer--options--dropdown--content--item', {
       active,
       lengthy: meta,
       'toggled-off': !on && on !== null && typeof on !== 'undefined',
@@ -71,8 +70,8 @@ export default class ComposerOptionsDropdownItem extends React.PureComponent {
     return (
       <div
         className={computedClass}
-        onClick={activate}
-        onKeyDown={activate}
+        onClick={handleActivate}
+        onKeyDown={handleActivate}
         role='button'
         tabIndex='0'
       >
@@ -85,7 +84,7 @@ export default class ComposerOptionsDropdownItem extends React.PureComponent {
             return (
               <Toggle
                 checked={on}
-                onChange={activate}
+                onChange={handleActivate}
               />
             );
           case !!icon:
@@ -113,7 +112,7 @@ export default class ComposerOptionsDropdownItem extends React.PureComponent {
 };
 
 //  Props.
-ComposerOptionsDropdownItem.propTypes = {
+ComposerOptionsDropdownContentItem.propTypes = {
   active: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func,

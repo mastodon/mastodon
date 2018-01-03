@@ -47,7 +47,6 @@ const initialState = ImmutableMap({
   focusDate: null,
   preselectDate: null,
   in_reply_to: null,
-  is_composing: false,
   is_submitting: false,
   is_uploading: false,
   progress: 0,
@@ -180,9 +179,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:
-    return state
-      .set('mounted', false)
-      .set('is_composing', false);
+    return state.set('mounted', false)
   case COMPOSE_ADVANCED_OPTIONS_CHANGE:
     return state
       .set('advanced_options',

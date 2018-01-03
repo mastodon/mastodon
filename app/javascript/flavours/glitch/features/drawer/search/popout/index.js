@@ -34,9 +34,13 @@ const messages = defineMessages({
   },
 });
 
+//  The spring used by our motion.
 const motionSpring = spring(1, { damping: 35, stiffness: 400 });
 
+//  The component.
 export default function DrawerSearchPopout ({ style }) {
+
+  //  The result.
   return (
     <Motion
       defaultStyle={{

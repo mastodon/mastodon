@@ -134,11 +134,12 @@ export default class Dropdown extends React.PureComponent {
       this.props.onModalOpen({
         status,
         actions: items.map(
-          (item, i) => ({
+          (item, i) => item ? {
             ...item,
             name: `${item.text}-${i}`,
             onClick: this.handleItemClick.bind(i),
-          }),
+          } : null
+        ),
       });
 
       return;

@@ -10,45 +10,44 @@ import ComposerUploadFormProgress from './progress';
 
 //  The component.
 export default function ComposerUploadForm ({
-  active,
   intl,
   media,
   onChangeDescription,
   onRemove,
   progress,
+  uploading,
 }) {
-  const computedClass = classNames('composer--upload_form', { uploading: active });
-
-  //  We need `media` in order to be able to render.
-  if (!media) {
-    return null;
-  }
+  const computedClass = classNames('composer--upload_form', { uploading });
 
   //  The result.
   return (
     <div className={computedClass}>
-      {active ? <ComposerUploadFormProgress progress={progress} /> : null}
-      {media.map(item => (
-        <ComposerUploadFormItem
-          description={item.get('description')}
-          key={item.get('id')}
-          id={item.get('id')}
-          intl={intl}
-          preview={item.get('preview_url')}
-          onChangeDescription={onChangeDescription}
-          onRemove={onRemove}
-        />
-      ))}
+      {uploading ? <ComposerUploadFormProgress progress={progress} /> : null}
+      {media ? (
+        <div className='content'>
+          {media.map(item => (
+            <ComposerUploadFormItem
+              description={item.get('description')}
+              key={item.get('id')}
+              id={item.get('id')}
+              intl={intl}
+              preview={item.get('preview_url')}
+              onChangeDescription={onChangeDescription}
+              onRemove={onRemove}
+            />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
 
 //  Props.
 ComposerUploadForm.propTypes = {
-  active: PropTypes.bool,
   intl: PropTypes.object.isRequired,
   media: ImmutablePropTypes.list,
   onChangeDescription: PropTypes.func,
   onRemove: PropTypes.func,
   progress: PropTypes.number,
+  uploading: PropTypes.bool,
 };

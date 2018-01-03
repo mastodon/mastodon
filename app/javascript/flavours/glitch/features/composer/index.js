@@ -52,6 +52,7 @@ function mapStateToProps (state) {
     focusDate: state.getIn(['compose', 'focusDate']),
     isSubmitting: state.getIn(['compose', 'is_submitting']),
     isUploading: state.getIn(['compose', 'is_uploading']),
+    layout: state.getIn(['local_settings', 'layout']),
     media: state.getIn(['compose', 'media_attachments']),
     preselectDate: state.getIn(['compose', 'preselectDate']),
     privacy: state.getIn(['compose', 'privacy']),
@@ -71,132 +72,96 @@ function mapStateToProps (state) {
 };
 
 //  Dispatch mapping.
-const mapDispatchToProps = dispatch => ({
-  cancelReply () {
-    dispatch(cancelReplyCompose());
-  },
-  changeDescription (mediaId, description) {
-    dispatch(changeUploadCompose(mediaId, description));
-  },
-  changeSensitivity () {
-    dispatch(changeComposeSensitivity());
-  },
-  changeSpoilerText (checked) {
-    dispatch(changeComposeSpoilerText(checked));
-  },
-  changeSpoilerness () {
-    dispatch(changeComposeSpoilerness());
-  },
-  changeText (text) {
-    dispatch(changeCompose(text));
-  },
-  changeVisibility (value) {
-    dispatch(changeComposeVisibility(value));
-  },
-  clearSuggestions () {
-    dispatch(clearComposeSuggestions());
-  },
-  closeModal () {
-    dispatch(closeModal());
-  },
-  fetchSuggestions (token) {
-    dispatch(fetchComposeSuggestions(token));
-  },
-  insertEmoji (position, data) {
-    dispatch(insertEmojiCompose(position, data));
-  },
-  openActionsModal (data) {
-    dispatch(openModal('ACTIONS', data));
-  },
-  openDoodleModal () {
-    dispatch(openModal('DOODLE', { noEsc: true }));
-  },
-  selectSuggestion (position, token, accountId) {
-    dispatch(selectComposeSuggestion(position, token, accountId));
-  },
-  submit () {
-    dispatch(submitCompose());
-  },
-  toggleAdvancedOption (option) {
-    dispatch(toggleComposeAdvancedOption(option));
-  },
-  undoUpload (mediaId) {
-    dispatch(undoUploadCompose(mediaId));
-  },
-  upload (files) {
-    dispatch(uploadCompose(files));
-  },
-});
+const mapDispatchToProps = {
+  onCancelReply: cancelReplyCompose,
+  onChangeDescription: changeUploadCompose,
+  onChangeSensitivity: changeComposeSensitivity,
+  onChangeSpoilerText: changeComposeSpoilerText,
+  onChangeSpoilerness: changeComposeSpoilerness,
+  onChangeText: changeCompose,
+  onChangeVisibility: changeComposeVisibility,
+  onClearSuggestions: clearComposeSuggestions,
+  onCloseModal: closeModal,
+  onFetchSuggestions: fetchComposeSuggestions,
+  onInsertEmoji: insertEmojiCompose,
+  onOpenActionsModal: openModal.bind(null, 'ACTIONS'),
+  onOpenDoodleModal: openModal.bind(null, 'DOODLE', { noEsc: true }),
+  onSelectSuggestion: selectComposeSuggestion,
+  onSubmit: submitCompose,
+  onToggleAdvancedOption: toggleComposeAdvancedOption,
+  onUndoUpload: undoUploadCompose,
+  onUpload: uploadCompose,
+};
 
 //  Handlers.
 const handlers = {
 
   //  Changes the text value of the spoiler.
-  changeSpoiler ({ target: { value } }) {
-    const { dispatch: { changeSpoilerText } } = this.props;
-    if (changeSpoilerText) {
-      changeSpoilerText(value);
+  handleChangeSpoiler ({ target: { value } }) {
+    const { onChangeSpoilerText } = this.props;
+    if (onChangeSpoilerText) {
+      onChangeSpoilerText(value);
     }
   },
 
   //  Inserts an emoji at the caret.
-  emoji (data) {
+  handleEmoji (data) {
     const { textarea: { selectionStart } } = this;
-    const { dispatch: { insertEmoji } } = this.props;
+    const { onInsertEmoji } = this.props;
     this.caretPos = selectionStart + data.native.length + 1;
-    if (insertEmoji) {
-      insertEmoji(selectionStart, data);
+    if (onInsertEmoji) {
+      onInsertEmoji(selectionStart, data);
     }
   },
 
   //  Handles the secondary submit button.
-  secondarySubmit () {
-    const { submit } = this.handlers;
+  handleSecondarySubmit () {
+    const { handleSubmit } = this.handlers;
     const {
-      dispatch: { changeVisibility },
-      side_arm,
+      onChangeVisibility,
+      sideArm,
     } = this.props;
-    if (changeVisibility) {
-      changeVisibility(side_arm);
+    if (sideArm !== 'none' && onChangeVisibility) {
+      onChangeVisibility(sideArm);
     }
-    submit();
+    handleSubmit();
   },
 
   //  Selects a suggestion from the autofill.
-  select (tokenStart, token, value) {
-    const { dispatch: { selectSuggestion } } = this.props;
+  handleSelect (tokenStart, token, value) {
+    const { onSelectSuggestion } = this.props;
     this.caretPos = null;
-    if (selectSuggestion) {
-      selectSuggestion(tokenStart, token, value);
+    if (onSelectSuggestion) {
+      onSelectSuggestion(tokenStart, token, value);
     }
   },
 
   //  Submits the status.
-  submit () {
+  handleSubmit () {
     const { textarea: { value } } = this;
     const {
-      dispatch: {
-        changeText,
-        submit,
-      },
-      state: { text },
+      onChangeText,
+      onSubmit,
+      text,
     } = this.props;
 
     //  If something changes inside the textarea, then we update the
     //  state before submitting.
-    if (changeText && text !== value) {
-      changeText(value);
+    if (onChangeText && text !== value) {
+      onChangeText(value);
     }
 
     //  Submits the status.
-    if (submit) {
-      submit();
+    if (onSubmit) {
+      onSubmit();
     }
   },
 
   //  Sets a reference to the textarea.
-  refTextarea ({ textarea }) {
-    this.textarea = textarea;
+  handleRefTextarea (textareaComponent) {
+    if (textareaComponent) {
+      this.textarea = textareaComponent.textarea;
+    }
   },
 };
 
@@ -216,10 +181,10 @@ class Composer extends React.Component {
   //  If this is the update where we've finished uploading,
   //  save the last caret position so we can restore it below!
   componentWillReceiveProps (nextProps) {
-    const { textarea: { selectionStart } } = this;
-    const { state: { isUploading } } = this.props;
-    if (isUploading && !nextProps.state.isUploading) {
-      this.caretPos = selectionStart;
+    const { textarea } = this;
+    const { isUploading } = this.props;
+    if (textarea && isUploading && !nextProps.isUploading) {
+      this.caretPos = textarea.selectionStart;
     }
   }
 
@@ -239,20 +204,18 @@ class Composer extends React.Component {
       textarea,
     } = this;
     const {
-      state: {
-        focusDate,
-        isUploading,
-        isSubmitting,
-        preselectDate,
-        text,
-      },
+      focusDate,
+      isUploading,
+      isSubmitting,
+      preselectDate,
+      text,
     } = this.props;
     let selectionEnd, selectionStart;
 
     //  Caret/selection handling.
-    if (focusDate !== prevProps.state.focusDate || (prevProps.state.isUploading && !isUploading && !isNaN(caretPos) && caretPos !== null)) {
+    if (focusDate !== prevProps.focusDate || (prevProps.isUploading && !isUploading && !isNaN(caretPos) && caretPos !== null)) {
       switch (true) {
-      case preselectDate !== prevProps.state.preselectDate:
+      case preselectDate !== prevProps.preselectDate:
         selectionStart = text.search(/\s/) + 1;
         selectionEnd = text.length;
         break;
@@ -262,71 +225,71 @@ class Composer extends React.Component {
       default:
         selectionStart = selectionEnd = text.length;
       }
-      textarea.setSelectionRange(selectionStart, selectionEnd);
-      textarea.focus();
+      if (textarea) {
+        textarea.setSelectionRange(selectionStart, selectionEnd);
+        textarea.focus();
+      }
 
     //  Refocuses the textarea after submitting.
-    } else if (prevProps.state.isSubmitting && !isSubmitting) {
+    } else if (textarea && prevProps.isSubmitting && !isSubmitting) {
       textarea.focus();
     }
   }
 
   render () {
     const {
-      changeSpoiler,
-      emoji,
-      secondarySubmit,
-      select,
-      submit,
-      refTextarea,
+      handleChangeSpoiler,
+      handleEmoji,
+      handleSecondarySubmit,
+      handleSelect,
+      handleSubmit,
+      handleRefTextarea,
     } = this.handlers;
     const { history } = this.context;
     const {
-      dispatch: {
-        cancelReply,
-        changeDescription,
-        changeSensitivity,
-        changeText,
-        changeVisibility,
-        clearSuggestions,
-        closeModal,
-        fetchSuggestions,
-        openActionsModal,
-        openDoodleModal,
-        toggleAdvancedOption,
-        undoUpload,
-        upload,
-      },
+      acceptContentTypes,
+      amUnlocked,
+      doNotFederate,
       intl,
-      state: {
-        acceptContentTypes,
-        amUnlocked,
-        doNotFederate,
-        isSubmitting,
-        isUploading,
-        media,
-        privacy,
-        progress,
-        replyAccount,
-        replyContent,
-        resetFileKey,
-        sensitive,
-        showSearch,
-        sideArm,
-        spoiler,
-        spoilerText,
-        suggestions,
-        text,
-      },
+      isSubmitting,
+      isUploading,
+      layout,
+      media,
+      onCancelReply,
+      onChangeDescription,
+      onChangeSensitivity,
+      onChangeSpoilerness,
+      onChangeText,
+      onChangeVisibility,
+      onClearSuggestions,
+      onCloseModal,
+      onFetchSuggestions,
+      onOpenActionsModal,
+      onOpenDoodleModal,
+      onToggleAdvancedOption,
+      onUndoUpload,
+      onUpload,
+      privacy,
+      progress,
+      replyAccount,
+      replyContent,
+      resetFileKey,
+      sensitive,
+      showSearch,
+      sideArm,
+      spoiler,
+      spoilerText,
+      suggestions,
+      text,
     } = this.props;
 
     return (
-      <div className='compose'>
+      <div className='composer'>
         <ComposerSpoiler
           hidden={!spoiler}
           intl={intl}
-          onChange={changeSpoiler}
-          onSubmit={submit}
+          onChange={handleChangeSpoiler}
+          onSubmit={handleSubmit}
           text={spoilerText}
         />
         {privacy === 'private' && amUnlocked ? <ComposerWarning /> : null}
@@ -336,32 +299,32 @@ class Composer extends React.Component {
             content={replyContent}
             history={history}
             intl={intl}
-            onCancel={cancelReply}
+            onCancel={onCancelReply}
           />
         ) : null}
         <ComposerTextarea
-          autoFocus={!showSearch && !isMobile(window.innerWidth)}
+          autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
           disabled={isSubmitting}
           intl={intl}
-          onChange={changeText}
-          onPaste={upload}
-          onPickEmoji={emoji}
-          onSubmit={submit}
-          onSuggestionsClearRequested={clearSuggestions}
-          onSuggestionsFetchRequested={fetchSuggestions}
-          onSuggestionSelected={select}
-          ref={refTextarea}
+          onChange={onChangeText}
+          onPaste={onUpload}
+          onPickEmoji={handleEmoji}
+          onSubmit={handleSubmit}
+          onSuggestionsClearRequested={onClearSuggestions}
+          onSuggestionsFetchRequested={onFetchSuggestions}
+          onSuggestionSelected={handleSelect}
+          ref={handleRefTextarea}
           suggestions={suggestions}
           value={text}
         />
-        {media && media.size ? (
+        {isUploading || media && media.size ? (
           <ComposerUploadForm
-            active={isUploading}
             intl={intl}
             media={media}
-            onChangeDescription={changeDescription}
-            onRemove={undoUpload}
+            onChangeDescription={onChangeDescription}
+            onRemove={onUndoUpload}
             progress={progress}
+            uploading={isUploading}
           />
         ) : null}
         <ComposerOptions
@@ -373,13 +336,14 @@ class Composer extends React.Component {
           )}
           hasMedia={!!media.size}
           intl={intl}
-          onChangeSensitivity={changeSensitivity}
-          onChangeVisibility={changeVisibility}
-          onDoodleOpen={openDoodleModal}
-          onModalClose={closeModal}
-          onModalOpen={openActionsModal}
-          onToggleAdvancedOption={toggleAdvancedOption}
-          onUpload={upload}
+          onChangeSensitivity={onChangeSensitivity}
+          onChangeVisibility={onChangeVisibility}
+          onDoodleOpen={onOpenDoodleModal}
+          onModalClose={onCloseModal}
+          onModalOpen={onOpenActionsModal}
+          onToggleAdvancedOption={onToggleAdvancedOption}
+          onToggleSpoiler={onChangeSpoilerness}
+          onUpload={onUpload}
           privacy={privacy}
           resetFileKey={resetFileKey}
           sensitive={sensitive}
@@ -387,10 +351,10 @@ class Composer extends React.Component {
         />
         <ComposerPublisher
           countText={`${spoilerText}${countableText(text)}${doNotFederate ? ' 👁️' : ''}`}
-          disabled={isSubmitting || isUploading || text.length && text.trim().length === 0}
+          disabled={isSubmitting || isUploading || !!text.length && !text.trim().length}
           intl={intl}
-          onSecondarySubmit={secondarySubmit}
-          onSubmit={submit}
+          onSecondarySubmit={handleSecondarySubmit}
+          onSubmit={handleSubmit}
           privacy={privacy}
           sideArm={sideArm}
         />
@@ -407,37 +371,51 @@ Composer.contextTypes = {
 
 //  Props.
 Composer.propTypes = {
-  dispatch: PropTypes.objectOf(PropTypes.func).isRequired,
   intl: PropTypes.object.isRequired,
-  state: PropTypes.shape({
-    acceptContentTypes: PropTypes.string,
-    amUnlocked: PropTypes.bool,
-    doNotFederate: PropTypes.bool,
-    focusDate: PropTypes.instanceOf(Date),
-    isSubmitting: PropTypes.bool,
-    isUploading: PropTypes.bool,
-    media: PropTypes.list,
-    preselectDate: PropTypes.instanceOf(Date),
-    privacy: PropTypes.string,
-    progress: PropTypes.number,
-    replyAccount: ImmutablePropTypes.map,
-    replyContent: PropTypes.string,
-    resetFileKey: PropTypes.string,
-    sideArm: PropTypes.string,
-    sensitive: PropTypes.bool,
-    showSearch: PropTypes.bool,
-    spoiler: PropTypes.bool,
-    spoilerText: PropTypes.string,
-    suggestionToken: PropTypes.string,
-    suggestions: ImmutablePropTypes.list,
-    text: PropTypes.string,
-  }).isRequired,
-};
 
-//  Default props.
-Composer.defaultProps = {
-  dispatch: {},
-  state: {},
+  //  State props.
+  acceptContentTypes: PropTypes.string,
+  amUnlocked: PropTypes.bool,
+  doNotFederate: PropTypes.bool,
+  focusDate: PropTypes.instanceOf(Date),
+  isSubmitting: PropTypes.bool,
+  isUploading: PropTypes.bool,
+  layout: PropTypes.string,
+  media: ImmutablePropTypes.list,
+  preselectDate: PropTypes.instanceOf(Date),
+  privacy: PropTypes.string,
+  progress: PropTypes.number,
+  replyAccount: ImmutablePropTypes.map,
+  replyContent: PropTypes.string,
+  resetFileKey: PropTypes.number,
+  sideArm: PropTypes.string,
+  sensitive: PropTypes.bool,
+  showSearch: PropTypes.bool,
+  spoiler: PropTypes.bool,
+  spoilerText: PropTypes.string,
+  suggestionToken: PropTypes.string,
+  suggestions: ImmutablePropTypes.list,
+  text: PropTypes.string,
+
+  //  Dispatch props.
+  onCancelReply: PropTypes.func,
+  onChangeDescription: PropTypes.func,
+  onChangeSensitivity: PropTypes.func,
+  onChangeSpoilerText: PropTypes.func,
+  onChangeSpoilerness: PropTypes.func,
+  onChangeText: PropTypes.func,
+  onChangeVisibility: PropTypes.func,
+  onClearSuggestions: PropTypes.func,
+  onCloseModal: PropTypes.func,
+  onFetchSuggestions: PropTypes.func,
+  onInsertEmoji: PropTypes.func,
+  onOpenActionsModal: PropTypes.func,
+  onOpenDoodleModal: PropTypes.func,
+  onSelectSuggestion: PropTypes.func,
+  onSubmit: PropTypes.func,
+  onToggleAdvancedOption: PropTypes.func,
+  onUndoUpload: PropTypes.func,
+  onUpload: PropTypes.func,
 };
 
 //  Connecting and export.

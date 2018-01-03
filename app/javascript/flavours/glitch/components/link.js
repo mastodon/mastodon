@@ -45,7 +45,7 @@ export default class Link extends React.PureComponent {
       title,
       ...rest
     } = this.props;
-    const computedClass = classNames('link', className, role);
+    const computedClass = classNames('link', className, `role-${role}`);
 
     //  We assume that our `onClick` is a routing function and give it
     //  the qualities of a link even if no `href` is provided. However,
