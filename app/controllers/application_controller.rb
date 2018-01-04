@@ -124,6 +124,7 @@ class ApplicationController < ActionController::Base
 
   def render_cached_json(cache_key, **options)
     options[:expires_in] ||= 3.minutes
+    options[:public]     ||= true
     cache_key              = cache_key.join(':') if cache_key.is_a?(Enumerable)
     content_type           = options.delete(:content_type) || 'application/json'
 
@@ -131,7 +132,7 @@ class ApplicationController < ActionController::Base
       yield.to_json
     end
 
-    expires_in options[:expires_in], public: true
+    expires_in options[:expires_in], public: options[:public]
     render json: data, content_type: content_type
   end
 
