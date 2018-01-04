@@ -28,11 +28,15 @@ const messages = {
   'settings.media': 'Zawartość multimedialna',
   'settings.media_letterbox': 'Letterbox media',
   'settings.media_fullwidth': 'Podgląd zawartości multimedialnej o pełnej szerokości',
-  'settings.preferences': 'Preferencje użyytkownika',
+  'settings.preferences': 'Preferencje użytkownika',
   'settings.wide_view': 'Szeroki widok (tylko w trybie desktopowym)',
   'settings.navbar_under': 'Pasek nawigacji na dole (tylko w trybie mobilnym)',
   'status.collapse': 'Zwiń',
   'status.uncollapse': 'Rozwiń',
+
+  'favourite_modal.combo': 'Możesz nacisnąć {combo}, aby pominąć to następnym razem',
+
+'home.column_settings.show_direct': 'Pokaż wiadomości bezpośrednie',
 
   'notification.markForDeletion': 'Oznacz do usunięcia',
   'notifications.clear': 'Wyczyść wszystkie powiadomienia',
@@ -43,6 +47,14 @@ const messages = {
   'notification_purge.btn_none': 'Odznacz\nwszystkie',
   'notification_purge.btn_invert': 'Odwróć\nzaznaczenie',
   'notification_purge.btn_apply': 'Usuń\nzaznaczone',
+
+  'compose.attach.upload': 'Wyślij plik',
+  'compose.attach.doodle': 'Narysuj coś',
+  'compose.attach': 'Załącz coś',
+
+  'advanced-options.local-only.short': 'Tylko lokalnie',
+  'advanced-options.local-only.long': 'Nie wysyłaj na inne instancje',
+  'advanced_options.icon_title': 'Ustawienia zaawansowane',
 };
 
 export default Object.assign({}, inherited, messages);
