@@ -126,18 +126,18 @@ class User < ApplicationRecord
   end
 
   def confirm
-    return if confirmed?
+    new_user = !confirmed?
 
     super
-    update_statistics!
+    update_statistics! if new_user
   end
 
   def confirm!
-    return if confirmed?
+    new_user = !confirmed?
 
     skip_confirmation!
     save!
-    update_statistics!
+    update_statistics! if new_user
   end
 
   def promote!
