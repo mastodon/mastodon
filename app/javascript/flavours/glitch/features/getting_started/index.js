@@ -111,10 +111,10 @@ export default class GettingStarted extends ImmutablePureComponent {
     navItems.push(<ColumnLink key='6' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
 
     listItems = listItems.concat([
-      <div>
-        <ColumnLink key='7' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+      <div key='7'>
+        <ColumnLink key='8' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
         {lists.map(list =>
-          <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
+          <ColumnLink key={(8 + Number(list.get('id'))).toString()} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
         )}
       </div>,
     ]);
