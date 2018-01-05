@@ -130,8 +130,8 @@ export default class ColumnHeader extends React.PureComponent {
 
     return (
       <div className={wrapperClassName}>
-        <h1>
-          <button  className={buttonClassName} onClick={this.handleTitleClick}>
+        <h1 className={buttonClassName}>
+          <button onClick={this.handleTitleClick}>
             <i className={`fa fa-fw fa-${icon} column-header__icon`} />
             <span className='column-header__title'>
               {title}
