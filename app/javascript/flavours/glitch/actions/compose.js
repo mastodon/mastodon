@@ -38,7 +38,6 @@ export const COMPOSE_SPOILERNESS_CHANGE = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
-export const COMPOSE_COMPOSING_CHANGE = 'COMPOSE_COMPOSING_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
@@ -316,21 +315,14 @@ export function readyComposeSuggestionsAccounts(token, accounts) {
 
 export function selectComposeSuggestion(position, token, suggestion) {
   return (dispatch, getState) => {
-    let completion, startPosition;
-
-    if (typeof suggestion === 'object' && suggestion.id) {
-      completion    = suggestion.native || suggestion.colons;
-      startPosition = position - 1;
-
-      dispatch(useEmoji(suggestion));
-    } else {
-      completion    = getState().getIn(['accounts', suggestion, 'acct']);
-      startPosition = position;
-    }
+    const completion = typeof suggestion === 'object' && suggestion.id ? (
+      dispatch(useEmoji(suggestion)),
+      suggestion.native || suggestion.colons
+    ) : '@' + getState().getIn(['accounts', suggestion, 'acct']);
 
     dispatch({
       type: COMPOSE_SUGGESTION_SELECT,
-      position: startPosition,
+      position,
       token,
       completion,
     });
@@ -389,10 +381,3 @@ export function insertEmojiCompose(position, emoji) {
     emoji,
   };
 };
-
-export function changeComposing(value) {
-  return {
-    type: COMPOSE_COMPOSING_CHANGE,
-    value,
-  };
-}

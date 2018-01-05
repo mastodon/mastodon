@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -7,6 +8,7 @@ export default class Avatar extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
+    className: PropTypes.string,
     size: PropTypes.number.isRequired,
     style: PropTypes.object,
     inline: PropTypes.bool,
@@ -34,17 +36,19 @@ export default class Avatar extends React.PureComponent {
   }
 
   render () {
-    const { account, size, animate, inline } = this.props;
+    const {
+      account,
+      animate,
+      className,
+      inline,
+      size,
+    } = this.props;
     const { hovering } = this.state;
 
     const src = account.get('avatar');
     const staticSrc = account.get('avatar_static');
 
-    let className = 'account__avatar';
-
-    if (inline) {
-      className = className + ' account__avatar-inline';
-    }
+    const computedClass = classNames('account__avatar', { 'account__avatar-inline': inline }, className);
 
     const style = {
       ...this.props.style,
@@ -61,7 +65,7 @@ export default class Avatar extends React.PureComponent {
 
     return (
       <div
-        className={className}
+        className={computedClass}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         style={style}

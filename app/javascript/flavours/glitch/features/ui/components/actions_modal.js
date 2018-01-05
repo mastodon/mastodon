@@ -6,15 +6,26 @@ import StatusContent from 'flavours/glitch/components/status_content';
 import Avatar from 'flavours/glitch/components/avatar';
 import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import DisplayName from 'flavours/glitch/components/display_name';
-import IconButton from 'flavours/glitch/components/icon_button';
 import classNames from 'classnames';
+import Icon from 'flavours/glitch/components/icon';
+import Link from 'flavours/glitch/components/link';
+import Toggle from 'react-toggle';
 
 export default class ActionsModal extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map,
-    actions: PropTypes.array,
-    onClick: PropTypes.func,
+    actions: PropTypes.arrayOf(PropTypes.shape({
+      active: PropTypes.bool,
+      href: PropTypes.string,
+      icon: PropTypes.string,
+      meta: PropTypes.node,
+      name: PropTypes.string,
+      on: PropTypes.bool,
+      onClick: PropTypes.func,
+      onPassiveClick: PropTypes.func,
+      text: PropTypes.node,
+    })),
   };
 
   renderAction = (action, i) => {
@@ -22,17 +33,57 @@ export default class ActionsModal extends ImmutablePureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { icon = null, text, meta = null, active = false, href = '#' } = action;
+    const {
+      active,
+      href,
+      icon,
+      meta,
+      name,
+      on,
+      onClick,
+      onPassiveClick,
+      text,
+    } = action;
 
     return (
-      <li key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' onClick={this.props.onClick} data-index={i} className={classNames({ active })}>
-          {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex='-1' />}
-          <div>
-            <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
-            <div>{meta}</div>
-          </div>
-        </a>
+      <li key={name || i}>
+        <Link
+          className={classNames('link', { active })}
+          href={href}
+          onClick={on !== null && typeof on !== 'undefined' && onPassiveClick || onClick}
+          role={onClick ? 'button' : null}
+        >
+          {function () {
+
+            //  We render a `<Toggle>` if we were provided an `on`
+            //  property, and otherwise show an `<Icon>` if available.
+            switch (true) {
+            case on !== null && typeof on !== 'undefined':
+              return (
+                <Toggle
+                  checked={on}
+                  onChange={onPassiveClick || onClick}
+                />
+              );
+            case !!icon:
+              return (
+                <Icon
+                  className='icon'
+                  fullwidth
+                  icon={icon}
+                />
+              );
+            default:
+              return null;
+            }
+          }()}
+          {meta ? (
+            <div>
+              <strong>{text}</strong>
+              {meta}
+            </div>
+          ) : <div>{text}</div>}
+        </Link>
       </li>
     );
   }

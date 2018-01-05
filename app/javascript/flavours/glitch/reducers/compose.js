@@ -21,7 +21,6 @@ import {
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
-  COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
   COMPOSE_UPLOAD_CHANGE_REQUEST,
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
@@ -48,7 +47,6 @@ const initialState = ImmutableMap({
   focusDate: null,
   preselectDate: null,
   in_reply_to: null,
-  is_composing: false,
   is_submitting: false,
   is_uploading: false,
   progress: 0,
@@ -134,7 +132,7 @@ function removeMedia(state, mediaId) {
 
 const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${completion}\u200B${oldText.slice(position + token.length)}`);
+    map.update('text', oldText => `${oldText.slice(0, position)}${completion}${completion[0] === ':' ? '\u200B' : ' '}${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
@@ -181,9 +179,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:
-    return state
-      .set('mounted', false)
-      .set('is_composing', false);
+    return state.set('mounted', false);
   case COMPOSE_ADVANCED_OPTIONS_CHANGE:
     return state
       .set('advanced_options',
@@ -219,8 +215,6 @@ export default function compose(state = initialState, action) {
     return state
       .set('text', action.text)
       .set('idempotencyKey', uuid());
-  case COMPOSE_COMPOSING_CHANGE:
-    return state.set('is_composing', action.value);
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));

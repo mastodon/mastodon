@@ -2,8 +2,8 @@ export function EmojiPicker () {
   return import(/* webpackChunkName: "flavours/glitch/async/emoji_picker" */'flavours/glitch/util/emoji/emoji_picker');
 }
 
-export function Compose () {
-  return import(/* webpackChunkName: "flavours/glitch/async/compose" */'flavours/glitch/features/compose');
+export function Drawer () {
+  return import(/* webpackChunkName: "flavours/glitch/async/drawer" */'flavours/glitch/features/drawer');
 }
 
 export function Notifications () {

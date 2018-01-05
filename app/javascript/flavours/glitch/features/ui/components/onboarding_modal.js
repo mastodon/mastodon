@@ -6,17 +6,11 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ReactSwipeableViews from 'react-swipeable-views';
 import classNames from 'classnames';
 import Permalink from 'flavours/glitch/components/permalink';
-import ComposeForm from 'flavours/glitch/features/compose/components/compose_form';
-import Search from 'flavours/glitch/features/compose/components/search';
-import NavigationBar from 'flavours/glitch/features/compose/components/navigation_bar';
+import { WrappedComponent as RawComposer } from 'flavours/glitch/features/composer';
+import DrawerAccount from 'flavours/glitch/features/drawer/account';
+import DrawerSearch from 'flavours/glitch/features/drawer/search';
 import ColumnHeader from './column_header';
-import {
-  List as ImmutableList,
-  Map as ImmutableMap,
-} from 'immutable';
 import { me } from 'flavours/glitch/util/initial_state';
-
-const noop = () => { };
 
 const messages = defineMessages({
   home_title: { id: 'column.home', defaultMessage: 'Home' },
@@ -44,29 +38,21 @@ PageOne.propTypes = {
   domain: PropTypes.string.isRequired,
 };
 
-const PageTwo = ({ myAccount }) => (
+const composerState = {
+  showSearch: true,
+  text: 'Awoo! #introductions',
+};
+
+const PageTwo = ({ intl, myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
       <div className='pseudo-drawer'>
-        <NavigationBar onClose={noop} account={myAccount} />
+        <DrawerAccount account={myAccount} />
+        <RawComposer
+          intl={intl}
+          state={composerState}
+        />
       </div>
-      <ComposeForm
-        text='Awoo! #introductions'
-        suggestions={ImmutableList()}
-        mentionedDomains={[]}
-        spoiler={false}
-        onChange={noop}
-        onSubmit={noop}
-        onPaste={noop}
-        onPickEmoji={noop}
-        onChangeSpoilerText={noop}
-        onClearSuggestions={noop}
-        onFetchSuggestions={noop}
-        onSuggestionSelected={noop}
-        onPrivacyChange={noop}
-        showSearch
-        settings={ImmutableMap.of('side_arm', 'none')}
-      />
     </div>
 
     <p><FormattedMessage id='onboarding.page_two.compose' defaultMessage='Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.' /></p>
@@ -74,22 +60,17 @@ const PageTwo = ({ myAccount }) => (
 );
 
 PageTwo.propTypes = {
+  intl: PropTypes.object.isRequired,
   myAccount: ImmutablePropTypes.map.isRequired,
 };
 
-const PageThree = ({ myAccount }) => (
+const PageThree = ({ intl, myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
     <div className='figure non-interactive'>
-      <Search
-        value=''
-        onChange={noop}
-        onSubmit={noop}
-        onClear={noop}
-        onShow={noop}
-      />
+      <DrawerSearch intl={intl} />
 
       <div className='pseudo-drawer'>
-        <NavigationBar onClose={noop} account={myAccount} />
+        <DrawerAccount account={myAccount} />
       </div>
     </div>
 
@@ -99,6 +80,7 @@ const PageThree = ({ myAccount }) => (
 );
 
 PageThree.propTypes = {
+  intl: PropTypes.object.isRequired,
   myAccount: ImmutablePropTypes.map.isRequired,
 };
 
@@ -192,8 +174,8 @@ export default class OnboardingModal extends React.PureComponent {
     const { myAccount, admin, domain, intl } = this.props;
     this.pages = [
       <PageOne acct={myAccount.get('acct')} domain={domain} />,
-      <PageTwo myAccount={myAccount} />,
-      <PageThree myAccount={myAccount} />,
+      <PageTwo myAccount={myAccount} intl={intl} />,
+      <PageThree myAccount={myAccount} intl={intl} />,
       <PageFour domain={domain} intl={intl} />,
       <PageSix admin={admin} domain={domain} />,
     ];

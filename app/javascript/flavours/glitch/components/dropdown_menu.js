@@ -133,8 +133,13 @@ export default class Dropdown extends React.PureComponent {
 
       this.props.onModalOpen({
         status,
-        actions: items,
-        onClick: this.handleItemClick,
+        actions: items.map(
+          (item, i) => item ? {
+            ...item,
+            name: `${item.text}-${i}`,
+            onClick: this.handleItemClick.bind(i),
+          } : null
+        ),
       });
 
       return;
@@ -162,8 +167,7 @@ export default class Dropdown extends React.PureComponent {
     }
   }
 
-  handleItemClick = e => {
-    const i = Number(e.currentTarget.getAttribute('data-index'));
+  handleItemClick = (i, e) => {
     const { action, to } = this.props.items[i];
 
     this.handleClose();
