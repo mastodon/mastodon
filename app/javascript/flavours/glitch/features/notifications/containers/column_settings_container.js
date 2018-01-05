@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
 import ColumnSettings from '../components/column_settings';
-import { changeSetting, saveSettings } from 'flavours/glitch/actions/settings';
+import { changeSetting } from 'flavours/glitch/actions/settings';
 import { clearNotifications } from 'flavours/glitch/actions/notifications';
-import { changeAlerts as changePushNotifications, saveSettings as savePushNotificationSettings } from 'flavours/glitch/actions/push_notifications';
+import { changeAlerts as changePushNotifications } from 'flavours/glitch/actions/push_notifications';
 import { openModal } from 'flavours/glitch/actions/modal';
 
 const messages = defineMessages({
@@ -24,11 +24,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else {
       dispatch(changeSetting(['notifications', ...key], checked));
     }
-  },
-
-  onSave () {
-    dispatch(saveSettings());
-    dispatch(savePushNotificationSettings());
   },
 
   onClear () {
