@@ -1,6 +1,6 @@
 <p>Bonjorn <%= @resource.unconfirmed_email %> !</p>
 
-<p>Avètz demandar a cambiar vòstra adreça de corrièl qu’utilizatz per <%= @instance %>.</p>
+<p>Avètz demandat a cambiar vòstra adreça de corrièl qu’utilizatz per <%= @instance %>.</p>
 
 <p>Per confirmar vòstra novèla adreça, mercés de clicar lo ligam seguent :<br>
 <%= link_to 'Confirmar mon adreça', confirmation_url(@resource, confirmation_token: @token) %></p>
