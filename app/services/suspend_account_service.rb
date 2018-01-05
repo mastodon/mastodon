@@ -22,6 +22,8 @@ class SuspendAccountService < BaseService
   end
 
   def purge_content!
+    ActivityPub::RawDistributionWorker.perform_async(delete_actor_json, @account.id) if @account.local?
+
     @account.statuses.reorder(nil).find_in_batches do |statuses|
       BatchedRemoveStatusService.new.call(statuses)
     end
@@ -53,5 +55,15 @@ class SuspendAccountService < BaseService
 
   def destroy_all(association)
     association.in_batches.destroy_all
+  end
+
+  def delete_actor_json
+    payload = ActiveModelSerializers::SerializableResource.new(
+      @account,
+      serializer: ActivityPub::DeleteActorSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json
+
+    Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account))
   end
 end

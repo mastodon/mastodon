@@ -299,13 +299,11 @@ GEM
       sidekiq (>= 3.5.0)
       statsd-ruby (~> 1.2.0)
     oj (3.3.9)
-    openssl (2.0.6)
     orm_adapter (0.5.0)
-    ostatus2 (2.0.1)
+    ostatus2 (2.0.2)
       addressable (~> 2.4)
       http (~> 2.0)
       nokogiri (~> 1.6)
-      openssl (~> 2.0)
     ox (2.8.2)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -561,7 +559,7 @@ DEPENDENCIES
   charlock_holmes (~> 0.7.5)
   cld3 (~> 3.2.0)
   climate_control (~> 0.2)
-  devise (~> 4.2)
+  devise (~> 4.3)
   devise-two-factor (~> 3.0)
   doorkeeper (~> 4.2)
   dotenv-rails (~> 2.2)
@@ -621,6 +619,7 @@ DEPENDENCIES
   rspec-sidekiq (~> 3.0)
   rubocop
   ruby-oembed (~> 0.12)
+  ruby-progressbar (~> 1.4)
   sanitize (~> 4.4)
   scss_lint (~> 0.55)
   sidekiq (~> 5.0)
@@ -643,4 +642,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

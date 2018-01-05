@@ -28,6 +28,8 @@ class ActivityPub::TagManager
     return target.uri if target.respond_to?(:local?) && !target.local?
 
     case target.object_type
+    when :follow
+      account_follow_url(target.account.username, target)
     when :person
       account_url(target)
     when :note, :comment, :activity
@@ -97,6 +99,12 @@ class ActivityPub::TagManager
       case klass.name
       when 'Account'
         klass.find_local(uri_to_local_id(uri, :username))
+      when 'FollowRequest'
+        params = Rails.application.routes.recognize_path(uri)
+        klass.joins(:account).find_by!(
+          accounts: { domain: nil, username: params[:account_username] },
+          id: params[:id]
+        )
       else
         StatusFinder.new(uri).status
       end

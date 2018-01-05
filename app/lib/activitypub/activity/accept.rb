@@ -2,16 +2,18 @@
 
 class ActivityPub::Activity::Accept < ActivityPub::Activity
   def perform
-    case @object['type']
-    when 'Follow'
-      accept_follow
+    if @object.respond_to?(:[]) &&
+       @object['type'] == 'Follow' && @object['actor'].present?
+      accept_follow_from @object['actor']
+    else
+      accept_follow_object @object
     end
   end
 
   private
 
-  def accept_follow
-    target_account = account_from_uri(target_uri)
+  def accept_follow_from(actor)
+    target_account = account_from_uri(value_or_id(actor))
 
     return if target_account.nil? || !target_account.local?
 
@@ -19,7 +21,8 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
     follow_request&.authorize!
   end
 
-  def target_uri
-    @target_uri ||= value_or_id(@object['actor'])
+  def accept_follow_object(object)
+    follow_request = ActivityPub::TagManager.instance.uri_to_resource(value_or_id(object), FollowRequest)
+    follow_request&.authorize!
   end
 end

@@ -53,7 +53,7 @@ export default class GettingStarted extends ImmutablePureComponent {
   render () {
     const { intl, myAccount, columns, multiColumn, github_url, github_name } = this.props;
 
-    let navItems = [];
+    const navItems = [];
 
     if (multiColumn) {
       if (!columns.find(item => item.get('id') === 'HOME')) {
@@ -73,21 +73,20 @@ export default class GettingStarted extends ImmutablePureComponent {
       }
     }
 
-    navItems = navItems.concat([
+    navItems.push(
       <ColumnLink key='4' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
-      <ColumnLink key='5' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
-      <ColumnLink key='9' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />,
-    ]);
+      <ColumnLink key='5' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+    );
 
     if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
     }
 
-    navItems = navItems.concat([
-      <ColumnLink key='7' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
-      <ColumnLink key='8' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
-      <ColumnLink key='10' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' hideOnMobile />,
-    ]);
+    if (multiColumn) {
+      navItems.push(<ColumnLink key='7' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />);
+    }
+
+    navItems.push(<ColumnLink key='8' icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />);
 
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>

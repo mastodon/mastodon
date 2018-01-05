@@ -34,7 +34,7 @@ module Admin::ActionLogsHelper
       link_to attributes['domain'], "https://#{attributes['domain']}"
     when 'Status'
       tmp_status = Status.new(attributes)
-      link_to tmp_status.account.acct, TagManager.instance.url_for(tmp_status)
+      link_to tmp_status.account&.acct || "##{tmp_status.account_id}", TagManager.instance.url_for(tmp_status)
     end
   end
 

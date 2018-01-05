@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212195226) do
+ActiveRecord::Schema.define(version: 20171226094803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -268,8 +268,8 @@ ActiveRecord::Schema.define(version: 20171212195226) do
     t.bigint "account_id"
     t.bigint "from_account_id"
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
+    t.index ["account_id", "id"], name: "index_notifications_on_account_id_and_id", order: { id: :desc }
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
-    t.index ["id", "account_id", "activity_type"], name: "index_notifications_on_id_and_account_id_and_activity_type", order: { id: :desc }
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|

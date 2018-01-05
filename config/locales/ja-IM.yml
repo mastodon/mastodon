@@ -116,6 +116,7 @@ ja-IM:
       roles:
         admin: 管理者
         moderator: モデレーター
+        staff: スタッフ
         user: ユーザー
       salmon_url: Salmon URL
       search: 検索
@@ -160,6 +161,7 @@ ja-IM:
         update_status: "%{name} さんが %{target} さんのあふぅを更新しました"
       title: 操作履歴
     custom_emojis:
+      by_domain: ドメイン
       copied_msg: 絵文字のコピーをローカルに作成しました
       copy: コピー
       copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
@@ -192,7 +194,7 @@ ja-IM:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのあふぅをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのあふぅをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルの拒否は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
@@ -263,6 +265,9 @@ ja-IM:
       unresolved: 未解決
       view: 表示
     settings:
+      activity_api_enabled:
+        desc_html: ローカルに投稿されたあふぅ数、アクティブなユーザー数、週ごとの新規登録者数
+        title: ユーザーアクティビティに関する統計を公開する
       admin_announcement:
         desc_html: トップページの投稿メニューの上に管理者メッセージが表示されます。<br>HTMLタグが利用可能です。
         title: 管理者からのメッセージ
@@ -272,6 +277,9 @@ ja-IM:
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先のユーザー名
+      peers_api_enabled:
+        desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
+        title: 接続しているインスタンスのリストを公開する
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -431,8 +439,8 @@ ja-IM:
     powered_by: powered by %{link}
     save_changes: 変更を保存
     validation_errors:
-      one: エラーが発生しました。以下のエラーを確認してください
-      other: エラーが発生しました。以下の%{count}個のエラーを確認してください
+      one: エラーが発生しました！ 以下のエラーを確認してください
+      other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   imports:
     preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
@@ -492,10 +500,10 @@ ja-IM:
       body: 'あなたのあふぅが %{name} さんの頭にティンときたようです:'
       subject: "%{name} さんがあなたのあふぅにティンときたようです"
     follow:
-      body: "%{name} さんにフォローされています"
+      body: "%{name} さんにフォローされています！"
       subject: "%{name} さんにフォローされています"
     follow_request:
-      body: "%{name} さんがあなたにフォローをリクエストしました。"
+      body: "%{name} さんがあなたにフォローをリクエストしました"
       subject: "%{name} さんからのフォローリクエスト"
     mention:
       body: "%{name} さんからReあふぅがありました:"

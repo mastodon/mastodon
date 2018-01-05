@@ -6,7 +6,10 @@
       = link_to account.domain, admin_accounts_path(by_domain: account.domain)
   %td
     - if account.local?
-      = t("admin.accounts.roles.#{account.user&.role}")
+      - if account.user.nil?
+        = t("admin.accounts.moderation.suspended")
+      - else
+        = t("admin.accounts.roles.#{account.user.role}")
     - else
       = account.protocol.humanize
   %td
