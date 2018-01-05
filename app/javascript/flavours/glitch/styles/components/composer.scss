@@ -180,15 +180,15 @@
   &:hover,
   &:focus,
   &:active,
-  &.active { background: darken($ui-secondary-color, 10%) }
+  &.selected { background: darken($ui-secondary-color, 10%) }
 
   & > .emoji {
     img {
       display: block;
       float: left;
       margin-right: 8px;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
     }
   }
 }

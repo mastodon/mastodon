@@ -7,7 +7,7 @@ import React from 'react';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 
 //  Utils.
-import { unicodeMapping } from 'flavours/glitch/util/emoji/emoji_unicode_mapping_light';
+import { unicodeMapping } from 'flavours/glitch/util/emoji';
 import { assignHandlers } from 'flavours/glitch/util/react_helpers';
 
 //  Gets our asset host from the environment, if available.

@@ -32,7 +32,7 @@ const handlers = {
 
   //  When blurring the textarea, suggestions are hidden.
   handleBlur () {
-    this.setState({ suggestionsHidden: true });
+    //this.setState({ suggestionsHidden: true });
   },
 
   //  When the contents of the textarea change, we have to pull up new

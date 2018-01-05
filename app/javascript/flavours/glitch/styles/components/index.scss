@@ -754,6 +754,37 @@
     text-decoration: none;
     font-size: 14px;
   }
+
+  &.small {
+    border: none;
+    padding: 0;
+
+    & > .account__avatar-wrapper { margin: 0 8px 0 0 }
+
+    & > .display-name {
+      display: block;
+      padding: 0;
+      height: auto;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+
+      & > strong {
+        display: inline;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      & > span {
+        display: inline;
+        color: lighten($ui-base-color, 36%);
+        font-size: inherit;
+        line-height: inherit;
+
+        &::before { content: " " }
+      }
+    }
+  }
 }
 
 .account__wrapper {

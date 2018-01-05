@@ -179,7 +179,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:
-    return state.set('mounted', false)
+    return state.set('mounted', false);
   case COMPOSE_ADVANCED_OPTIONS_CHANGE:
     return state
       .set('advanced_options',
