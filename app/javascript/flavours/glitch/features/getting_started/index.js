@@ -114,7 +114,7 @@ export default class GettingStarted extends ImmutablePureComponent {
       <div>
         <ColumnLink key='7' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
         {lists.map(list =>
-          <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
+          <ColumnLink key={(7 + Number(list.get('id'))).toString()} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
         )}
       </div>,
     ]);
