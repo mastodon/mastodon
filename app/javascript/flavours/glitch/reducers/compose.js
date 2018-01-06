@@ -298,7 +298,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_CHANGE_REQUEST:
     return state.set('is_submitting', true);
   case COMPOSE_SUBMIT_SUCCESS:
-    return action.status && state.get('advanced_options', 'threaded_mode') ? continueThread(state, action.status) : clearAll(state);
+    return action.status && state.getIn(['advanced_options', 'threaded_mode']) ? continueThread(state, action.status) : clearAll(state);
   case COMPOSE_SUBMIT_FAIL:
   case COMPOSE_UPLOAD_CHANGE_FAIL:
     return state.set('is_submitting', false);
