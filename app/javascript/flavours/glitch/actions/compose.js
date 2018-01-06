@@ -61,7 +61,7 @@ export function replyCompose(status, router) {
       status: status,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
+    if (router && !getState().getIn(['compose', 'mounted'])) {
       router.push('/statuses/new');
     }
   };
@@ -117,6 +117,11 @@ export function submitCompose() {
       },
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
+
+      //  If the response has no data then we can't do anything else.
+      if (!response.data) {
+        return;
+      }
 
       // To make the app more responsive, immediately get the status into the columns
 
@@ -341,10 +346,11 @@ export function unmountCompose() {
   };
 };
 
-export function toggleComposeAdvancedOption(option) {
+export function changeComposeAdvancedOption(option, value) {
   return {
+    option,
     type: COMPOSE_ADVANCED_OPTIONS_CHANGE,
-    option: option,
+    value,
   };
 }
 

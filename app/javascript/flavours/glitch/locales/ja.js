@@ -55,8 +55,8 @@ const messages = {
   'compose.attach.doodle': '落書きをする',
   'compose.attach': 'アタッチ...',
 
-  'advanced-options.local-only.short': 'ローカル限定',
-  'advanced-options.local-only.long': '他のインスタンスには投稿されません',
+  'advanced_options.local-only.short': 'ローカル限定',
+  'advanced_options.local-only.long': '他のインスタンスには投稿されません',
   'advanced_options.icon_title': '高度な設定',
 };
 

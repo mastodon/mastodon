@@ -33,11 +33,13 @@ import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from 'flavours/glitch/util/uuid';
 import { me } from 'flavours/glitch/util/initial_state';
+import { overwrite } from 'flavours/glitch/util/js_helpers';
 
 const initialState = ImmutableMap({
   mounted: false,
   advanced_options: ImmutableMap({
     do_not_federate: false,
+    threaded_mode: false,
   }),
   sensitive: false,
   spoiler: false,
@@ -55,6 +57,7 @@ const initialState = ImmutableMap({
   suggestions: ImmutableList(),
   default_advanced_options: ImmutableMap({
     do_not_federate: false,
+    threaded_mode: null,  //  Do not reset
   }),
   default_privacy: 'public',
   default_sensitive: false,
@@ -83,6 +86,20 @@ function statusToTextMentions(state, status) {
   return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
 };
 
+function apiStatusToTextMentions (state, status) {
+  let set = ImmutableOrderedSet([]);
+
+  if (status.account.id !== me) {
+    set = set.add(`@${status.account.acct} `);
+  }
+
+  return set.union(status.mentions.filter(
+    mention => mention.id !== me
+  ).map(
+    mention => `@${mention.acct} `
+  )).join('');
+}
+
 function clearAll(state) {
   return state.withMutations(map => {
     map.set('text', '');
@@ -90,13 +107,41 @@ function clearAll(state) {
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
-    map.set('advanced_options', state.get('default_advanced_options'));
+    map.update(
+      'advanced_options',
+      map => map.mergeWith(overwrite, state.get('default_advanced_options'))
+    );
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
     map.set('idempotencyKey', uuid());
   });
 };
+
+function continueThread (state, status) {
+  return state.withMutations(function (map) {
+    map.set('text', apiStatusToTextMentions(state, status));
+    if (status.spoiler_text) {
+      map.set('spoiler', true);
+      map.set('spoiler_text', status.spoiler_text);
+    } else {
+      map.set('spoiler', false);
+      map.set('spoiler_text', '');
+    }
+    map.set('is_submitting', false);
+    map.set('in_reply_to', status.id);
+    map.update(
+      'advanced_options',
+      map => map.merge(new ImmutableMap({ do_not_federate: /👁\ufe0f?\u200b?(?:<\/p>)?$/.test(status.content) }))
+    );
+    map.set('privacy', privacyPreference(status.visibility, state.get('default_privacy')));
+    map.set('sensitive', false);
+    map.update('media_attachments', list => list.clear());
+    map.set('idempotencyKey', uuid());
+    map.set('focusDate', new Date());
+    map.set('preselectDate', new Date());
+  });
+}
 
 function appendMedia(state, media) {
   const prevSize = state.get('media_attachments').size;
@@ -182,8 +227,7 @@ export default function compose(state = initialState, action) {
     return state.set('mounted', false);
   case COMPOSE_ADVANCED_OPTIONS_CHANGE:
     return state
-      .set('advanced_options',
-        state.get('advanced_options').set(action.option, !state.getIn(['advanced_options', action.option])))
+      .set('advanced_options', state.get('advanced_options').set(action.option, !!overwrite(!state.getIn(['advanced_options', action.option]), action.value)))
       .set('idempotencyKey', uuid());
   case COMPOSE_SENSITIVITY_CHANGE:
     return state.withMutations(map => {
@@ -220,9 +264,10 @@ export default function compose(state = initialState, action) {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-      map.set('advanced_options', new ImmutableMap({
-        do_not_federate: /👁\ufe0f?<\/p>$/.test(action.status.get('content')),
-      }));
+      map.update(
+        'advanced_options',
+        map => map.merge(new ImmutableMap({ do_not_federate: /👁\ufe0f?\u200b?(?:<\/p>)?$/.test(action.status.get('content')) }))
+      );
       map.set('focusDate', new Date());
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
@@ -243,14 +288,17 @@ export default function compose(state = initialState, action) {
       map.set('spoiler', false);
       map.set('spoiler_text', '');
       map.set('privacy', state.get('default_privacy'));
-      map.set('advanced_options', state.get('default_advanced_options'));
+      map.update(
+        'advanced_options',
+        map => map.mergeWith(overwrite, state.get('default_advanced_options'))
+      );
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUBMIT_REQUEST:
   case COMPOSE_UPLOAD_CHANGE_REQUEST:
     return state.set('is_submitting', true);
   case COMPOSE_SUBMIT_SUCCESS:
-    return clearAll(state);
+    return action.status && state.get('advanced_options', 'threaded_mode') ? continueThread(state, action.status) : clearAll(state);
   case COMPOSE_SUBMIT_FAIL:
   case COMPOSE_UPLOAD_CHANGE_FAIL:
     return state.set('is_submitting', false);

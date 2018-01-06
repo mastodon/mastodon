@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import {
   cancelReplyCompose,
   changeCompose,
+  changeComposeAdvancedOption,
   changeComposeSensitivity,
   changeComposeSpoilerText,
   changeComposeSpoilerness,
@@ -18,7 +19,6 @@ import {
   mountCompose,
   selectComposeSuggestion,
   submitCompose,
-  toggleComposeAdvancedOption,
   undoUploadCompose,
   unmountCompose,
   uploadCompose,
@@ -49,8 +49,8 @@ function mapStateToProps (state) {
   const inReplyTo = state.getIn(['compose', 'in_reply_to']);
   return {
     acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']).toArray().join(','),
+    advancedOptions: state.getIn(['compose', 'advanced_options']),
     amUnlocked: !state.getIn(['accounts', me, 'locked']),
-    doNotFederate: state.getIn(['compose', 'advanced_options', 'do_not_federate']),
     focusDate: state.getIn(['compose', 'focusDate']),
     isSubmitting: state.getIn(['compose', 'is_submitting']),
     isUploading: state.getIn(['compose', 'is_uploading']),
@@ -76,6 +76,7 @@ function mapStateToProps (state) {
 //  Dispatch mapping.
 const mapDispatchToProps = {
   onCancelReply: cancelReplyCompose,
+  onChangeAdvancedOption: changeComposeAdvancedOption,
   onChangeDescription: changeUploadCompose,
   onChangeSensitivity: changeComposeSensitivity,
   onChangeSpoilerText: changeComposeSpoilerText,
@@ -91,7 +92,6 @@ const mapDispatchToProps = {
   onOpenDoodleModal: openModal.bind(null, 'DOODLE', { noEsc: true }),
   onSelectSuggestion: selectComposeSuggestion,
   onSubmit: submitCompose,
-  onToggleAdvancedOption: toggleComposeAdvancedOption,
   onUndoUpload: undoUploadCompose,
   onUnmount: unmountCompose,
   onUpload: uploadCompose,
@@ -267,14 +267,15 @@ class Composer extends React.Component {
     } = this.handlers;
     const {
       acceptContentTypes,
+      advancedOptions,
       amUnlocked,
-      doNotFederate,
       intl,
       isSubmitting,
       isUploading,
       layout,
       media,
       onCancelReply,
+      onChangeAdvancedOption,
       onChangeDescription,
       onChangeSensitivity,
       onChangeSpoilerness,
@@ -285,7 +286,6 @@ class Composer extends React.Component {
       onFetchSuggestions,
       onOpenActionsModal,
       onOpenDoodleModal,
-      onToggleAdvancedOption,
       onUndoUpload,
       onUpload,
       privacy,
@@ -321,6 +321,7 @@ class Composer extends React.Component {
           />
         ) : null}
         <ComposerTextarea
+          advancedOptions={advancedOptions}
           autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
           disabled={isSubmitting}
           intl={intl}
@@ -347,19 +348,19 @@ class Composer extends React.Component {
         ) : null}
         <ComposerOptions
           acceptContentTypes={acceptContentTypes}
+          advancedOptions={advancedOptions}
           disabled={isSubmitting}
-          doNotFederate={doNotFederate}
           full={media.size >= 4 || media.some(
             item => item.get('type') === 'video'
           )}
           hasMedia={!!media.size}
           intl={intl}
+          onChangeAdvancedOption={onChangeAdvancedOption}
           onChangeSensitivity={onChangeSensitivity}
           onChangeVisibility={onChangeVisibility}
           onDoodleOpen={onOpenDoodleModal}
           onModalClose={onCloseModal}
           onModalOpen={onOpenActionsModal}
-          onToggleAdvancedOption={onToggleAdvancedOption}
           onToggleSpoiler={onChangeSpoilerness}
           onUpload={onUpload}
           privacy={privacy}
@@ -368,7 +369,7 @@ class Composer extends React.Component {
           spoiler={spoiler}
         />
         <ComposerPublisher
-          countText={`${spoilerText}${countableText(text)}${doNotFederate ? ' 👁️' : ''}`}
+          countText={`${spoilerText}${countableText(text)}${advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`}
           disabled={isSubmitting || isUploading || !!text.length && !text.trim().length}
           intl={intl}
           onSecondarySubmit={handleSecondarySubmit}
@@ -388,8 +389,8 @@ Composer.propTypes = {
 
   //  State props.
   acceptContentTypes: PropTypes.string,
+  advancedOptions: ImmutablePropTypes.map,
   amUnlocked: PropTypes.bool,
-  doNotFederate: PropTypes.bool,
   focusDate: PropTypes.instanceOf(Date),
   isSubmitting: PropTypes.bool,
   isUploading: PropTypes.bool,
@@ -412,6 +413,7 @@ Composer.propTypes = {
 
   //  Dispatch props.
   onCancelReply: PropTypes.func,
+  onChangeAdvancedOption: PropTypes.func,
   onChangeDescription: PropTypes.func,
   onChangeSensitivity: PropTypes.func,
   onChangeSpoilerText: PropTypes.func,
@@ -427,7 +429,6 @@ Composer.propTypes = {
   onOpenDoodleModal: PropTypes.func,
   onSelectSuggestion: PropTypes.func,
   onSubmit: PropTypes.func,
-  onToggleAdvancedOption: PropTypes.func,
   onUndoUpload: PropTypes.func,
   onUnmount: PropTypes.func,
   onUpload: PropTypes.func,

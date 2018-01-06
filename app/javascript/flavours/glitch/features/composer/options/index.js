@@ -1,6 +1,7 @@
 //  Package imports.
 import PropTypes from 'prop-types';
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import {
   FormattedMessage,
   defineMessages,
@@ -47,11 +48,11 @@ const messages = defineMessages({
   },
   local_only_long: {
     defaultMessage: 'Do not post to other instances',
-    id: 'advanced-options.local-only.long',
+    id: 'advanced_options.local-only.long',
   },
   local_only_short: {
     defaultMessage: 'Local-only',
-    id: 'advanced-options.local-only.short',
+    id: 'advanced_options.local-only.short',
   },
   private_long: {
     defaultMessage: 'Post to followers only',
@@ -76,6 +77,14 @@ const messages = defineMessages({
   spoiler: {
     defaultMessage: 'Hide text behind warning',
     id: 'compose_form.spoiler',
+  },
+  threaded_mode_long: {
+    defaultMessage: 'Automatically opens a reply on posting',
+    id: 'advanced_options.threaded_mode.long',
+  },
+  threaded_mode_short: {
+    defaultMessage: 'Threaded mode',
+    id: 'advanced_options.threaded_mode.short',
   },
   unlisted_long: {
     defaultMessage: 'Do not show in public timelines',
@@ -149,16 +158,16 @@ export default class ComposerOptions extends React.PureComponent {
     } = this.handlers;
     const {
       acceptContentTypes,
+      advancedOptions,
       disabled,
-      doNotFederate,
       full,
       hasMedia,
       intl,
+      onChangeAdvancedOption,
       onChangeSensitivity,
       onChangeVisibility,
       onModalClose,
       onModalOpen,
-      onToggleAdvancedOption,
       onToggleSpoiler,
       privacy,
       resetFileKey,
@@ -283,23 +292,31 @@ export default class ComposerOptions extends React.PureComponent {
           onClick={onToggleSpoiler}
           title={intl.formatMessage(messages.spoiler)}
         />
-        <Dropdown
-          active={doNotFederate}
-          disabled={disabled}
-          icon='home'
-          items={[
-            {
-              meta: <FormattedMessage {...messages.local_only_long} />,
-              name: 'do_not_federate',
-              on: doNotFederate,
-              text: <FormattedMessage {...messages.local_only_short} />,
-            },
-          ]}
-          onChange={onToggleAdvancedOption}
-          onModalClose={onModalClose}
-          onModalOpen={onModalOpen}
-          title={intl.formatMessage(messages.advanced_options_icon_title)}
-        />
+        {advancedOptions ? (
+          <Dropdown
+            active={advancedOptions.some(value => !!value)}
+            disabled={disabled}
+            icon='ellipsis-h'
+            items={[
+              {
+                meta: <FormattedMessage {...messages.local_only_long} />,
+                name: 'do_not_federate',
+                on: advancedOptions.get('do_not_federate'),
+                text: <FormattedMessage {...messages.local_only_short} />,
+              },
+              {
+                meta: <FormattedMessage {...messages.threaded_mode_long} />,
+                name: 'threaded_mode',
+                on: advancedOptions.get('threaded_mode'),
+                text: <FormattedMessage {...messages.threaded_mode_short} />,
+              },
+            ]}
+            onChange={onChangeAdvancedOption}
+            onModalClose={onModalClose}
+            onModalOpen={onModalOpen}
+            title={intl.formatMessage(messages.advanced_options_icon_title)}
+          />
+        ) : null}
       </div>
     );
   }
@@ -309,17 +326,17 @@ export default class ComposerOptions extends React.PureComponent {
 //  Props.
 ComposerOptions.propTypes = {
   acceptContentTypes: PropTypes.string,
+  advancedOptions: ImmutablePropTypes.map,
   disabled: PropTypes.bool,
-  doNotFederate: PropTypes.bool,
   full: PropTypes.bool,
   hasMedia: PropTypes.bool,
   intl: PropTypes.object.isRequired,
+  onChangeAdvancedOption: PropTypes.func,
   onChangeSensitivity: PropTypes.func,
   onChangeVisibility: PropTypes.func,
   onDoodleOpen: PropTypes.func,
   onModalClose: PropTypes.func,
   onModalOpen: PropTypes.func,
-  onToggleAdvancedOption: PropTypes.func,
   onToggleSpoiler: PropTypes.func,
   onUpload: PropTypes.func,
   privacy: PropTypes.string,
