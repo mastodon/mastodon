@@ -57,7 +57,11 @@ const messages = {
 
   'advanced_options.local-only.short': 'ローカル限定',
   'advanced_options.local-only.long': '他のインスタンスには投稿されません',
+  'advanced_options.local-only.tooltip': 'この投稿はローカル限定投稿です',
   'advanced_options.icon_title': '高度な設定',
+  'advanced_options.threaded_mode.short': 'スレッドモード',
+  'advanced_options.threaded_mode.long': '投稿時に自動的に返信するように設定します',
+  'advanced_options.threaded_mode.tooltip': 'スレッドモードを有効にする',
 };
 
 export default Object.assign({}, inherited, messages);
