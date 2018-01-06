@@ -32,7 +32,7 @@ const handlers = {
 
   //  When blurring the textarea, suggestions are hidden.
   handleBlur () {
-    //this.setState({ suggestionsHidden: true });
+    this.setState({ suggestionsHidden: true });
   },
 
   //  When the contents of the textarea change, we have to pull up new
@@ -57,7 +57,7 @@ const handlers = {
     const right = value.slice(selectionStart).search(/[\s\u200B]/);
     const token = function () {
       switch (true) {
-      case left < 0 || /[@:]/.test(!value[left]):
+      case left < 0 || !/[@:]/.test(value[left]):
         return null;
       case right < 0:
         return value.slice(left);

@@ -52,22 +52,7 @@
     margin-bottom: 5px;
     overflow: hidden;
 
-    & > .account {
-      & > .avatar {
-        float: left;
-        margin-right: 5px;
-      }
-
-      & > .display_name {
-        color: $ui-base-color;
-        display: block;
-        padding-right: 25px;
-        max-width: 100%;
-        line-height: 24px;
-        text-decoration: none;
-        overflow: hidden;
-      }
-    }
+    & > .account.small { color: $ui-base-color }
 
     & > .cancel {
       float: right;
@@ -87,33 +72,33 @@
     overflow: visible;
     white-space: pre-wrap;
     padding-top: 5px;
+
+    p {
+      margin-bottom: 20px;
+
+      &:last-child { margin-bottom: 0 }
+    }
+
+    a {
+      color: lighten($ui-base-color, 20%);
+      text-decoration: none;
+
+      &:hover { text-decoration: underline }
+
+      &.mention {
+        &:hover {
+          text-decoration: none;
+
+          span { text-decoration: underline }
+        }
+      }
+    }
   }
 
   .emojione {
     width: 20px;
     height: 20px;
     margin: -5px 0 0;
-  }
-
-  p {
-    margin-bottom: 20px;
-
-    &:last-child { margin-bottom: 0 }
-  }
-
-  a {
-    color: lighten($ui-base-color, 20%);
-    text-decoration: none;
-
-    &:hover { text-decoration: underline }
-
-    &.mention {
-      &:hover {
-        text-decoration: none;
-
-        span { text-decoration: underline }
-      }
-    }
   }
 }
 
@@ -175,6 +160,7 @@
   padding: 10px;
   font-size: 14px;
   line-height: 18px;
+  overflow: hidden;
   cursor: pointer;
 
   &:hover,
@@ -189,6 +175,12 @@
       margin-right: 8px;
       width: 18px;
       height: 18px;
+    }
+  }
+
+  & > .account.small {
+    .display-name {
+      & > span { color: lighten($ui-base-color, 36%) }
     }
   }
 }

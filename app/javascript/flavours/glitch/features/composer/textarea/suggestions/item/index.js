@@ -24,8 +24,15 @@ const handlers = {
     } = this.props;
     if (onClick) {
       e.preventDefault();
+      e.stopPropagation();  //  Prevents following account links
       onClick(index);
     }
+  },
+
+  //  This prevents the focus from changing, which would mess with
+  //  our suggestion code.
+  handleMouseDown (e) {
+    e.preventDefault();
   },
 };
 
@@ -40,7 +47,10 @@ export default class ComposerTextareaSuggestionsItem extends React.Component {
 
   //  Rendering.
   render () {
-    const { handleClick } = this.handlers;
+    const {
+      handleMouseDown,
+      handleClick,
+    } = this.handlers;
     const {
       selected,
       suggestion,
@@ -51,7 +61,8 @@ export default class ComposerTextareaSuggestionsItem extends React.Component {
     return (
       <div
         className={computedClass}
-        onMouseDown={handleClick}
+        onMouseDown={handleMouseDown}
+        onClickCapture={handleClick}  //  Jumps in front of contents
         role='button'
         tabIndex='0'
       >

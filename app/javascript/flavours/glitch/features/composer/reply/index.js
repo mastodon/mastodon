@@ -1,12 +1,10 @@
 //  Package imports.
 import PropTypes from 'prop-types';
 import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages } from 'react-intl';
 
 //  Components.
-import Avatar from 'flavours/glitch/components/avatar';
-import DisplayName from 'flavours/glitch/components/display_name';
+import AccountContainer from 'flavours/glitch/containers/account_container';
 import IconButton from 'flavours/glitch/components/icon_button';
 
 //  Utils.
@@ -31,17 +29,6 @@ const handlers = {
       onCancel();
     }
   },
-
-  //  Handles a click on the status's account.
-  handleClickAccount () {
-    const {
-      account,
-      history,
-    } = this.props;
-    if (history) {
-      history.push(`/accounts/${account.get('id')}`);
-    }
-  },
 };
 
 //  The component.
@@ -55,10 +42,7 @@ export default class ComposerReply extends React.PureComponent {
 
   //  Rendering.
   render () {
-    const {
-      handleClick,
-      handleClickAccount,
-    } = this.handlers;
+    const { handleClick } = this.handlers;
     const {
       account,
       content,
@@ -76,21 +60,10 @@ export default class ComposerReply extends React.PureComponent {
             title={intl.formatMessage(messages.cancel)}
           />
           {account ? (
-            <a
-              className='account'
-              href={account.get('url')}
-              onClick={handleClickAccount}
-            >
-              <Avatar
-                account={account}
-                className='avatar'
-                size={24}
-              />
-              <DisplayName
-                account={account}
-                className='display_name'
-              />
-            </a>
+            <AccountContainer
+              id={account}
+              small
+            />
           ) : null}
         </header>
         <div
@@ -105,9 +78,8 @@ export default class ComposerReply extends React.PureComponent {
 }
 
 ComposerReply.propTypes = {
-  account: ImmutablePropTypes.map,
+  account: PropTypes.string,
   content: PropTypes.string,
-  history: PropTypes.object,
   intl: PropTypes.object.isRequired,
   onCancel: PropTypes.func,
 };

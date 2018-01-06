@@ -105,10 +105,22 @@ export default class Account extends ImmutablePureComponent {
     }
 
     return small ? (
-      <div className='account small'>
-        <div className='account__avatar-wrapper'><Avatar account={account} size={18} /></div>
-        <DisplayName account={account} />
-      </div>
+      <Permalink
+        className='account small'
+        href={account.get('url')}
+        to={`/accounts/${account.get('id')}`}
+      >
+        <div className='account__avatar-wrapper'>
+          <Avatar
+            account={account}
+            size={24}
+          />
+        </div>
+        <DisplayName
+          account={account}
+          inline
+        />
+      </Permalink>
     ) : (
       <div className='account'>
         <div className='account__wrapper'>

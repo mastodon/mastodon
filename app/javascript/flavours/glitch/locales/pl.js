@@ -36,7 +36,7 @@ const messages = {
 
   'favourite_modal.combo': 'Możesz nacisnąć {combo}, aby pominąć to następnym razem',
 
-'home.column_settings.show_direct': 'Pokaż wiadomości bezpośrednie',
+  'home.column_settings.show_direct': 'Pokaż wiadomości bezpośrednie',
 
   'notification.markForDeletion': 'Oznacz do usunięcia',
   'notifications.clear': 'Wyczyść wszystkie powiadomienia',

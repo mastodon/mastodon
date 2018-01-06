@@ -59,7 +59,7 @@ function mapStateToProps (state) {
     preselectDate: state.getIn(['compose', 'preselectDate']),
     privacy: state.getIn(['compose', 'privacy']),
     progress: state.getIn(['compose', 'progress']),
-    replyAccount: inReplyTo ? state.getIn(['accounts', state.getIn(['statuses', inReplyTo, 'account'])]) : null,
+    replyAccount: inReplyTo ? state.getIn(['statuses', inReplyTo, 'account']) : null,
     replyContent: inReplyTo ? state.getIn(['statuses', inReplyTo, 'contentHtml']) : null,
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
     sideArm: state.getIn(['local_settings', 'side_arm']),
@@ -265,7 +265,6 @@ class Composer extends React.Component {
       handleSubmit,
       handleRefTextarea,
     } = this.handlers;
-    const { history } = this.context;
     const {
       acceptContentTypes,
       amUnlocked,
@@ -317,7 +316,6 @@ class Composer extends React.Component {
           <ComposerReply
             account={replyAccount}
             content={replyContent}
-            history={history}
             intl={intl}
             onCancel={onCancelReply}
           />
@@ -384,11 +382,6 @@ class Composer extends React.Component {
 
 }
 
-//  Context
-Composer.contextTypes = {
-  history: PropTypes.object,
-};
-
 //  Props.
 Composer.propTypes = {
   intl: PropTypes.object.isRequired,
@@ -405,7 +398,7 @@ Composer.propTypes = {
   preselectDate: PropTypes.instanceOf(Date),
   privacy: PropTypes.string,
   progress: PropTypes.number,
-  replyAccount: ImmutablePropTypes.map,
+  replyAccount: PropTypes.string,
   replyContent: PropTypes.string,
   resetFileKey: PropTypes.number,
   sideArm: PropTypes.string,
