@@ -15,10 +15,12 @@ import {
   clearComposeSuggestions,
   fetchComposeSuggestions,
   insertEmojiCompose,
+  mountCompose,
   selectComposeSuggestion,
   submitCompose,
   toggleComposeAdvancedOption,
   undoUploadCompose,
+  unmountCompose,
   uploadCompose,
 } from 'flavours/glitch/actions/compose';
 import {
@@ -84,12 +86,14 @@ const mapDispatchToProps = {
   onCloseModal: closeModal,
   onFetchSuggestions: fetchComposeSuggestions,
   onInsertEmoji: insertEmojiCompose,
+  onMount: mountCompose,
   onOpenActionsModal: openModal.bind(null, 'ACTIONS'),
   onOpenDoodleModal: openModal.bind(null, 'DOODLE', { noEsc: true }),
   onSelectSuggestion: selectComposeSuggestion,
   onSubmit: submitCompose,
   onToggleAdvancedOption: toggleComposeAdvancedOption,
   onUndoUpload: undoUploadCompose,
+  onUnmount: unmountCompose,
   onUpload: uploadCompose,
 };
 
@@ -185,6 +189,22 @@ class Composer extends React.Component {
     const { isUploading } = this.props;
     if (textarea && isUploading && !nextProps.isUploading) {
       this.caretPos = textarea.selectionStart;
+    }
+  }
+
+  //  Tells our state the composer has been mounted.
+  componentDidMount () {
+    const { onMount } = this.props;
+    if (onMount) {
+      onMount();
+    }
+  }
+
+  //  Tells our state the composer has been unmounted.
+  componentWillUnmount () {
+    const { onUnmount } = this.props;
+    if (onUnmount) {
+      onUnmount();
     }
   }
 
@@ -409,12 +429,14 @@ Composer.propTypes = {
   onCloseModal: PropTypes.func,
   onFetchSuggestions: PropTypes.func,
   onInsertEmoji: PropTypes.func,
+  onMount: PropTypes.func,
   onOpenActionsModal: PropTypes.func,
   onOpenDoodleModal: PropTypes.func,
   onSelectSuggestion: PropTypes.func,
   onSubmit: PropTypes.func,
   onToggleAdvancedOption: PropTypes.func,
   onUndoUpload: PropTypes.func,
+  onUnmount: PropTypes.func,
   onUpload: PropTypes.func,
 };
 
