@@ -398,10 +398,12 @@
     }
   }
 
+  &__content {
+    max-width: calc(100% - 90px);
+  }
+
   &__title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
   }
 
   &__timestamp {
@@ -415,7 +417,7 @@
     color: $ui-primary-color;
     font-family: 'mastodon-font-monospace', monospace;
     font-size: 12px;
-    white-space: nowrap;
+    word-wrap: break-word;
     min-height: 20px;
   }
 

@@ -46,6 +46,8 @@ class FetchAtomService < BaseService
       json = body_to_json(@response.to_s)
       if supported_context?(json) && json['type'] == 'Person' && json['inbox'].present?
         [json['id'], { prefetched_body: @response.to_s, id: true }, :activitypub]
+      elsif supported_context?(json) && json['type'] == 'Note'
+        [json['id'], { prefetched_body: @response.to_s, id: true }, :activitypub]
       else
         @unsupported_activity = true
         nil
