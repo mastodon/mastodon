@@ -134,6 +134,27 @@
   }
 }
 
+.composer--textarea--icons {
+  display: block;
+  position: absolute;
+  top: 29px;
+  right: 5px;
+  bottom: 5px;
+  overflow: hidden;
+
+  & > .textarea_icon {
+    display: block;
+    margin: 2px 0 0 2px;
+    width: 24px;
+    height: 24px;
+    color: darken($ui-primary-color, 24%);
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    opacity: .8;
+  }
+}
+
 .composer--textarea--suggestions {
   display: block;
   position: absolute;

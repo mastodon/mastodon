@@ -52,9 +52,13 @@ const messages = {
   'compose.attach.doodle': 'Draw something',
   'compose.attach': 'Attach...',
 
-  'advanced-options.local-only.short': 'Local-only',
-  'advanced-options.local-only.long': 'Do not post to other instances',
+  'advanced_options.local-only.short': 'Local-only',
+  'advanced_options.local-only.long': 'Do not post to other instances',
+  'advanced_options.local-only.tooltip': 'This post is local-only',
   'advanced_options.icon_title': 'Advanced options',
+  'advanced_options.threaded_mode.short': 'Threaded mode',
+  'advanced_options.threaded_mode.long': 'Automatically opens a reply on posting',
+  'advanced_options.threaded_mode.tooltip': 'Threaded mode enabled',
 };
 
 export default Object.assign({}, inherited, messages);

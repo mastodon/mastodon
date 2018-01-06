@@ -10,6 +10,7 @@ import Textarea from 'react-textarea-autosize';
 
 //  Components.
 import EmojiPicker from 'flavours/glitch/features/emoji_picker';
+import ComposerTextareaIcons from './icons';
 import ComposerTextareaSuggestions from './suggestions';
 
 //  Utils.
@@ -232,6 +233,7 @@ export default class ComposerTextarea extends React.Component {
       handleRefTextarea,
     } = this.handlers;
     const {
+      advancedOptions,
       autoFocus,
       disabled,
       intl,
@@ -249,6 +251,10 @@ export default class ComposerTextarea extends React.Component {
       <div className='composer--textarea'>
         <label>
           <span {...hiddenComponent}><FormattedMessage {...messages.placeholder} /></span>
+          <ComposerTextareaIcons
+            advancedOptions={advancedOptions}
+            intl={intl}
+          />
           <Textarea
             aria-autocomplete='list'
             autoFocus={autoFocus}
@@ -280,6 +286,7 @@ export default class ComposerTextarea extends React.Component {
 
 //  Props.
 ComposerTextarea.propTypes = {
+  advancedOptions: ImmutablePropTypes.map,
   autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
   intl: PropTypes.object.isRequired,
