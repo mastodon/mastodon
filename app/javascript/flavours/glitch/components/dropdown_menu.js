@@ -137,7 +137,7 @@ export default class Dropdown extends React.PureComponent {
           (item, i) => item ? {
             ...item,
             name: `${item.text}-${i}`,
-            onClick: this.handleItemClick.bind(i),
+            onClick: this.handleItemClick.bind(this, i),
           } : null
         ),
       });

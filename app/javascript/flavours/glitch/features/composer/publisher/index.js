@@ -85,6 +85,7 @@ export default function ComposerPublisher ({
                     unlisted: 'unlock-alt',
                   }[privacy]}
                 />
+                {' '}
                 <FormattedMessage {...messages.publish} />
               </span>
             );
