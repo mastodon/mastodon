@@ -128,6 +128,11 @@ const handlers = {
       return;
     }
 
+    //  We submit the status on control/meta + enter.
+    if (onSubmit && e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+      onSubmit();
+    }
+
     //  Switches over the pressed key.
     switch(e.key) {
 
@@ -156,11 +161,6 @@ const handlers = {
         onSuggestionSelected(tokenStart, lastToken, suggestions.get(selectedSuggestion));
       }
       return;
-    }
-
-    //  We submit the status on control/meta + enter.
-    if (onSubmit && e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
-      onSubmit();
     }
   },
 
