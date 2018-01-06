@@ -48,7 +48,6 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onEmbed: PropTypes.func,
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
-    withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -56,7 +55,6 @@ export default class StatusActionBar extends ImmutablePureComponent {
   // evaluate to false. See react-immutable-pure-component for usage.
   updateOnProps = [
     'status',
-    'withDismiss',
   ]
 
   handleReplyClick = () => {
@@ -115,7 +113,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, intl, withDismiss } = this.props;
+    const { status, intl } = this.props;
 
     const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
@@ -134,10 +132,8 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
     menu.push(null);
 
-    if (status.getIn(['account', 'id']) === me || withDismiss) {
-      menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
-      menu.push(null);
-    }
+    menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+    menu.push(null);
 
     if (status.getIn(['account', 'id']) === me) {
       if (publicStatus) {

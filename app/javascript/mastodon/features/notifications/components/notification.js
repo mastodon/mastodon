@@ -87,7 +87,6 @@ export default class Notification extends ImmutablePureComponent {
     return (
       <StatusContainer
         id={notification.get('status')}
-        withDismiss
         hidden={this.props.hidden}
         onMoveDown={this.handleMoveDown}
         onMoveUp={this.handleMoveUp}
@@ -106,7 +105,7 @@ export default class Notification extends ImmutablePureComponent {
             <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
           </div>
 
-          <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={!!this.props.hidden} />
+          <StatusContainer id={notification.get('status')} account={notification.get('account')} muted hidden={!!this.props.hidden} />
         </div>
       </HotKeys>
     );
@@ -123,7 +122,7 @@ export default class Notification extends ImmutablePureComponent {
             <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
           </div>
 
-          <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss hidden={this.props.hidden} />
+          <StatusContainer id={notification.get('status')} account={notification.get('account')} muted hidden={this.props.hidden} />
         </div>
       </HotKeys>
     );
