@@ -16,12 +16,16 @@ class InstancePresenter
     Account.find_local(Setting.site_contact_username)
   end
 
+  def week_id
+    0.weeks.ago.to_date.cweek
+  end
+  
   def user_count
-    Rails.cache.fetch('user_count') { User.confirmed.count }
+    Redis.current.pfcount("activity:logins:#{week_id}")
   end
 
   def status_count
-    Rails.cache.fetch('local_status_count') { Account.local.sum(:statuses_count) }
+    Redis.current.get("activity:statuses:local:#{week_id}")
   end
 
   def domain_count
