@@ -42,56 +42,61 @@ export default function DrawerSearchPopout ({ style }) {
 
   //  The result.
   return (
-    <Motion
-      defaultStyle={{
-        opacity: 0,
-        scaleX: 0.85,
-        scaleY: 0.75,
-      }}
+    <div
+      className='drawer--search--popout'
       style={{
-        opacity: motionSpring,
-        scaleX: motionSpring,
-        scaleY: motionSpring,
+        ...style,
+        position: 'absolute',
+        width: 285,
       }}
     >
-      {({ opacity, scaleX, scaleY }) => (
-        <div
-          className='drawer--search--popout'
-          style={{
-            ...style,
-            position: 'absolute',
-            width: 285,
-            opacity: opacity,
-            transform: `scale(${scaleX}, ${scaleY})`,
-          }}
-        >
-          <h4><FormattedMessage {...messages.format} /></h4>
-          <ul>
-            <li>
-              <em>#example</em>
-              {' '}
-              <FormattedMessage {...messages.hashtag} />
-            </li>
-            <li>
-              <em>@username@domain</em>
-              {' '}
-              <FormattedMessage {...messages.user} />
-            </li>
-            <li>
-              <em>URL</em>
-              {' '}
-              <FormattedMessage {...messages.user} />
-            </li>
-            <li>
-              <em>URL</em>
-              {' '}
-              <FormattedMessage {...messages.status} />
-            </li>
-          </ul>
-          <FormattedMessage {...messages.text} />
-        </div>
-      )}
-    </Motion>
+      <Motion
+        defaultStyle={{
+          opacity: 0,
+          scaleX: 0.85,
+          scaleY: 0.75,
+        }}
+        style={{
+          opacity: motionSpring,
+          scaleX: motionSpring,
+          scaleY: motionSpring,
+        }}
+      >
+        {({ opacity, scaleX, scaleY }) => (
+          <div
+            style={{
+              opacity: opacity,
+              transform: `scale(${scaleX}, ${scaleY})`,
+            }}
+          >
+            <h4><FormattedMessage {...messages.format} /></h4>
+            <ul>
+              <li>
+                <em>#example</em>
+                {' '}
+                <FormattedMessage {...messages.hashtag} />
+              </li>
+              <li>
+                <em>@username@domain</em>
+                {' '}
+                <FormattedMessage {...messages.user} />
+              </li>
+              <li>
+                <em>URL</em>
+                {' '}
+                <FormattedMessage {...messages.user} />
+              </li>
+              <li>
+                <em>URL</em>
+                {' '}
+                <FormattedMessage {...messages.status} />
+              </li>
+            </ul>
+            <FormattedMessage {...messages.text} />
+          </div>
+        )}
+      </Motion>
+    </div>
   );
 }
 

@@ -45,10 +45,10 @@ const handlers = {
     const {
       onClear,
       submitted,
-      value: { length },
+      value,
     } = this.props;
     e.preventDefault();  //  Prevents focus change ??
-    if (onClear && (submitted || length)) {
+    if (onClear && (submitted || value && value.length)) {
       onClear();
     }
   },
@@ -100,7 +100,8 @@ export default class DrawerSearch extends React.PureComponent {
       value,
     } = this.props;
     const { expanded } = this.state;
-    const computedClass = classNames('drawer--search', { active: value.length || submitted });
+    const active = value && value.length || submitted;
+    const computedClass = classNames('drawer--search', { active });
 
     return (
       <div className={computedClass}>
@@ -126,11 +127,11 @@ export default class DrawerSearch extends React.PureComponent {
           tabIndex='0'
         >
           <Icon icon='search' />
-          <Icon icon='fa-times-circle' />
+          <Icon icon='times-circle' />
         </div>
         <Overlay
           placement='bottom'
-          show={expanded && !(value || '').length && !submitted}
+          show={expanded && !active}
           target={this}
         ><DrawerSearchPopout /></Overlay>
       </div>

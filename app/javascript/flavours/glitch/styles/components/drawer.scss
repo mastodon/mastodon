@@ -114,19 +114,27 @@
   }
 
   & > .icon {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    color: $ui-secondary-color;
+    font-size: 18px;
+    line-height: 18px;
+    z-index: 2;
+
     .fa {
       display: inline-block;
       position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 18px;
-      height: 18px;
-      color: $ui-secondary-color;
-      font-size: 18px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       opacity: 0;
       cursor: default;
       pointer-events: none;
-      z-index: 2;
       transition: all 100ms linear;
     }
 
@@ -136,14 +144,15 @@
     }
 
     .fa-times-circle {
-      top: 11px;
       transform: rotate(-90deg);
       cursor: pointer;
 
       &:hover { color: $primary-text-color }
     }
+  }
 
-    &.active {
+  &.active {
+    & > .icon {
       .fa-search {
         opacity: 0;
         transform: rotate(90deg);
@@ -155,6 +164,32 @@
         transform: rotate(0deg);
       }
     }
+  }
+}
+
+.drawer--search--popout {
+  box-sizing: border-box;
+  margin-top: 10px;
+  border-radius: 4px;
+  padding: 10px 14px 14px 14px;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  color: $ui-primary-color;
+  background: $simple-background-color;
+
+  h4 {
+    margin-bottom: 10px;
+    color: $ui-primary-color;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  ul { margin-bottom: 10px }
+  li { padding: 4px 0 }
+
+  em {
+    color: $ui-base-color;
+    font-weight: 500;
   }
 }
 
