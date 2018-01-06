@@ -121,4 +121,26 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def render_cached_json(cache_key, **options)
+    options[:expires_in] ||= 3.minutes
+    options[:public]     ||= true
+    cache_key              = cache_key.join(':') if cache_key.is_a?(Enumerable)
+    content_type           = options.delete(:content_type) || 'application/json'
+
+    data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
+      yield.to_json
+    end
+
+    expires_in options[:expires_in], public: options[:public]
+    render json: data, content_type: content_type
+  end
+
+  def set_cache_headers
+    response.headers['Vary'] = 'Accept'
+  end
+
+  def skip_session!
+    request.session_options[:skip] = true
+  end
 end

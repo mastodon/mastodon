@@ -54,7 +54,8 @@ Rails.application.routes.draw do
 
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
-    resource :follow, only: [:create], controller: :account_follow
+    resources :follows, only: [:show], module: :activitypub
+    resource :follow, only: [:create], controller: :account_follow, as: :follows
     resource :unfollow, only: [:create], controller: :account_unfollow
     resource :outbox, only: [:show], module: :activitypub
     resource :inbox, only: [:create], module: :activitypub
@@ -241,7 +242,11 @@ Rails.application.routes.draw do
 
       resources :apps, only: [:create]
 
-      resource :instance,      only: [:show]
+      resource :instance, only: [:show] do
+        resources :peers, only: [:index], controller: 'instances/peers'
+        resource :activity, only: [:show], controller: 'instances/activity'
+      end
+
       resource :domain_blocks, only: [:show, :create, :destroy]
 
       resources :follow_requests, only: [:index] do

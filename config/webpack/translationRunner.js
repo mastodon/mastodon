@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { default: manageTranslations } = require('react-intl-translations-manager');
 
-const RFC5646_REGEXP = /^[a-z]{2,3}(?:|-[A-Z]+)$/;
+const RFC5646_REGEXP = /^[a-z]{2,3}(?:-(?:x|[A-Za-z]{2,4}))*$/;
 
 const rootDirectory = path.resolve(__dirname, '..', '..');
 const translationsDirectory = path.resolve(rootDirectory, 'app', 'javascript', 'mastodon', 'locales');

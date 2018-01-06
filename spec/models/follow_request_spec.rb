@@ -27,4 +27,12 @@ RSpec.describe FollowRequest, type: :model do
       expect(follow_request.account.muting_reblogs?(target)).to be true
     end
   end
+
+  describe '#object_type' do
+    let(:follow_request) { Fabricate(:follow_request) }
+
+    it 'equals to :follow' do
+      expect(follow_request.object_type).to eq :follow
+    end
+  end
 end
