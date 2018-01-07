@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
-  SUPPORTED_TYPES = %w(Article Note).freeze
-  CONVERTED_TYPES = %w(Image Video).freeze
+  SUPPORTED_TYPES = %w(Note).freeze
+  CONVERTED_TYPES = %w(Image Video Article).freeze
 
   def perform
     return if delete_arrived_first?(object_uri) || unsupported_object_type?
