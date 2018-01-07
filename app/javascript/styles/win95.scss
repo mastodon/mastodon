@@ -184,6 +184,21 @@ body.admin {
 .drawer .drawer__inner {
   overflow: visible;
   height:inherit;
+  background:$win95-bg;
+}
+
+.drawer:after {
+    display:block;
+    content: " ";
+
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    width:132px;
+    height:117px;
+    background-image:url("../images/clippy_wave.gif"), url("../images/clippy_frame.png");
+    background-repeat:no-repeat;
+    background-position: 4px 20px, 0px 0px;
 }
 
 .drawer__pager {
@@ -1180,6 +1195,10 @@ body.admin {
 .getting-started__wrapper {
   @include win95-border-outset()
   background-color:$win95-bg;
+}
+
+.column .static-content.getting-started {
+    display:none;
 }
 
 .account__header {
