@@ -199,10 +199,16 @@ body.admin {
     background-image:url("../images/clippy_wave.gif"), url("../images/clippy_frame.png");
     background-repeat:no-repeat;
     background-position: 4px 20px, 0px 0px;
+    z-index:0;
 }
 
 .drawer__pager {
   overflow-y:auto;
+  z-index:1;
+}
+
+.privacy-dropdown__dropdown {
+  z-index:2;
 }
 
 .column {
