@@ -192,6 +192,7 @@ class ApplicationController < ActionController::Base
       format.any  { head code }
       format.html do
         set_locale
+        use_pack 'error'
         render "errors/#{code}", layout: 'error', status: code
       end
     end
