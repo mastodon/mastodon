@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   private
 
   def https_enabled?
-    Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'
+    Rails.env.production?
   end
 
   def store_current_location
