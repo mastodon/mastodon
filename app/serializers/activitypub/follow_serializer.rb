@@ -22,6 +22,6 @@ class ActivityPub::FollowSerializer < ActiveModel::Serializer
   end
 
   def dereferencable?
-    object.respond_to?(:object_type)
+    object.respond_to?(:object_type) && object.account.local?
   end
 end
