@@ -989,6 +989,10 @@ body.admin {
   display:none;
 }
 
+.emoji-picker-dropdown__menu {
+  z-index:2;
+}
+
 .emoji-dialog.with-search {
   box-shadow:unset;
   border-radius:0px;
@@ -1204,7 +1208,11 @@ body.admin {
 }
 
 .column .static-content.getting-started {
-    display:none;
+  display:none;
+}
+
+.keyboard-shortcuts kbd {
+  background-color: $win95-bg;
 }
 
 .account__header {
