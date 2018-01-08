@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import classNames from 'classnames';
 
 //  Actions.
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -68,6 +69,12 @@ class Drawer extends React.Component {
       submitted,
     } = this.props;
 
+    let choices = ['mbstobon-bg-1', 'mbstobon-bg-2', 'mbstobon-bg-3'];
+    let glitchyFriendDecision = choices[Math.floor(Math.random() * choices.length)];
+    let drawerAttrs = {
+      className: classNames('contents', glitchyFriendDecision)
+    };
+
     //  The result.
     return (
       <div className='drawer'>
@@ -87,7 +94,7 @@ class Drawer extends React.Component {
           submitted={submitted}
           value={searchValue}
         />
-        <div className='contents'>
+        <div {...drawerAttrs}>
           <DrawerAccount account={account} />
           <Composer />
           <DrawerResults

@@ -49,6 +49,12 @@
     overflow-y: auto;
     contain: strict;
   }
+
+  @for $i from 1 through 3 {
+    .mbstobon-bg-#{$i} {
+      background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
+    }
+  }
 }
 
 .drawer--header {
