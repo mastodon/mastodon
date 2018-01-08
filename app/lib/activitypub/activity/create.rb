@@ -255,10 +255,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def invalid_origin?(url)
     return true if unsupported_uri_scheme?(url)
 
-    needle   = Addressable::URI.parse(url)
-    haystack = Addressable::URI.parse(@account.uri)
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@account.uri).host
 
-    !haystack.host.casecmp(needle.host).zero?
+    !haystack.casecmp(needle).zero?
   end
 
   def reply_to_local?

@@ -118,10 +118,10 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def mismatching_origin?(url)
-    needle   = Addressable::URI.parse(url)
-    haystack = Addressable::URI.parse(@uri)
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@uri).host
 
-    !haystack.host.casecmp(needle.host).zero?
+    !haystack.casecmp(needle).zero?
   end
 
   def outbox_total_items
