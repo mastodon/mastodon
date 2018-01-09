@@ -6,8 +6,8 @@ class Api::BaseController < ApplicationController
 
   include RateLimitHeaders
 
-  skip_before_action :verify_authenticity_token
   skip_before_action :store_current_location
+  protect_from_forgery with: :null_session
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
