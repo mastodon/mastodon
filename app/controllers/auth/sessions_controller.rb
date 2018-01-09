@@ -12,7 +12,7 @@ class Auth::SessionsController < Devise::SessionsController
 
   def create
     super do |resource|
-      remember_me(resource) if resource.password.present?
+      remember_me(resource)
       flash.delete(:notice)
     end
   end
@@ -74,7 +74,7 @@ class Auth::SessionsController < Devise::SessionsController
   def authenticate_with_two_factor_via_otp(user)
     if valid_otp_attempt?(user)
       session.delete(:otp_user_id)
-      remember_me(user) if user.password.present?
+      remember_me(user)
       sign_in(user)
     else
       flash.now[:alert] = I18n.t('users.invalid_otp_token')
