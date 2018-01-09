@@ -34,6 +34,8 @@ const messages = {
   'status.collapse': 'Collapse',
   'status.uncollapse': 'Uncollapse',
 
+  'media_gallery.sensitive': 'Sensitive',
+
   'favourite_modal.combo': 'You can press {combo} to skip this next time',
 
   'home.column_settings.show_direct': 'Show DMs',
