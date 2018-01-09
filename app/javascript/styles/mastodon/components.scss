@@ -214,6 +214,7 @@
 
 .dropdown-menu {
   position: absolute;
+  transform-origin: 50% 0;
 }
 
 .dropdown--active .icon-button {
@@ -1757,7 +1758,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: lighten($ui-base-color, 13%);
+  background: lighten($ui-base-color, 13%) url('../images/wave-drawer.png') no-repeat bottom / 100% auto;
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -1769,6 +1770,11 @@
 
   &.darker {
     background: $ui-base-color;
+  }
+
+  > .mastodon {
+    background: url('../images/mastodon-ui.png') no-repeat left bottom / contain;
+    flex: 1;
   }
 }
 
@@ -2066,20 +2072,18 @@
   cursor: default;
 }
 
+.getting-started__wrapper,
+.getting_started {
+  background: $ui-base-color;
+}
+
 .getting-started__wrapper {
   position: relative;
   overflow-y: auto;
 }
 
-.getting-started__footer {
-  display: flex;
-  flex-direction: column;
-}
-
 .getting-started {
-  box-sizing: border-box;
-  padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
+  background: $ui-base-color;
   flex: 1 0 auto;
 
   p {
@@ -2104,7 +2108,7 @@
     padding: 0 10px 8px;
   }
 
-  code {
+  kbd {
     display: inline-block;
     padding: 3px 5px;
     background-color: lighten($ui-base-color, 8%);
@@ -2148,7 +2152,8 @@
 
 @import 'boost';
 
-button.icon-button i.fa-retweet {
+.no-reduce-motion button.icon-button i.fa-retweet {
+
   background-position: 0 0;
   height: 19px;
   transition: background-position 0.9s steps(10);
@@ -2159,11 +2164,21 @@ button.icon-button i.fa-retweet {
   &::before {
     display: none !important;
   }
+
 }
 
-button.icon-button.active i.fa-retweet {
+.no-reduce-motion button.icon-button.active i.fa-retweet {
   transition-duration: 0.9s;
   background-position: 0 100%;
+}
+
+.reduce-motion button.icon-button i.fa-retweet {
+  color: $ui-base-lighter-color;
+  transition: color 100ms ease-in;
+}
+
+.reduce-motion button.icon-button.active i.fa-retweet {
+  color: $ui-highlight-color;
 }
 
 .status-card {
@@ -2943,6 +2958,7 @@ button.icon-button.active i.fa-retweet {
   border-radius: 4px;
   margin-left: 40px;
   overflow: hidden;
+  transform-origin: 50% 0;
 }
 
 .privacy-dropdown__option {

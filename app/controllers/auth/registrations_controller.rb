@@ -37,6 +37,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     new_user_session_path
   end
 
+  def after_update_path_for(_resource)
+    edit_user_registration_path
+  end
+
   def check_enabled_registrations
     redirect_to root_path if single_user_mode? || !allowed_registrations?
   end
