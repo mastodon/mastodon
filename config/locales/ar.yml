@@ -1,7 +1,10 @@
----
 ar:
   about:
-    about_mastodon_html: ماستدون شبكة إجتماعية <em>حرة و مفتوحة المصدر</em>. هو بديل <em>لامركزي</em> لمنصات تجارية ، يمكنك من تجنب احتكار شركة واحدة للإتصالات الخاصة بك. يمكنك اختيار أي خادم تثق فيه. أيهما تختار، يمكنك التفاعل مع أي شخص آخر على الشبكة. يمكن لأي شخص تنصيب و تشغيل خادم ماستدون خاص به والمشاركة في <em>الشبكات الاجتماعية</em> بكل شفافية.
+    about_mastodon_html: ماستدون شبكة إجتماعية <em>حرة و مفتوحة المصدر</em>. هو بديل
+      <em>لامركزي</em> لمنصات تجارية ، يمكنك من تجنب احتكار شركة واحدة للإتصالات الخاصة
+      بك. يمكنك اختيار أي خادم تثق فيه. أيهما تختار، يمكنك التفاعل مع أي شخص آخر على
+      الشبكة. يمكن لأي شخص تنصيب و تشغيل خادم ماستدون خاص به والمشاركة في <em>الشبكات
+      الاجتماعية</em> بكل شفافية.
     about_this: عن مثيل الخادوم هذا
     closed_registrations: التسجيلات في مثيل الخادوم هذا مُغلقة حاليًا.
     contact: للتواصل معنا
@@ -11,6 +14,8 @@ ar:
     domain_count_before: متصل بـ
     features:
       not_a_product_title: إنك إنسان و لست سلعة
+      humane_approach_title: أسلوب يعيد الإعتبار للإنسان
+      real_conversation_title: مبني لتحقيق تواصل حقيقي
     find_another_instance: إبحث عن مثيل خادوم آخر
     hosted_on: ماستدون مُستضاف على %{domain}
     learn_more: تعلم المزيد
@@ -21,6 +26,8 @@ ar:
     user_count_after: مستخدم
     user_count_before: يستضيف
     what_is_mastodon: ما هو ماستدون ؟
+    contact_missing: غير محدد
+    generic_description: '%{domain} هو سيرفر من بين سيرفرات الشبكة'
   accounts:
     follow: إتبع
     followers: متابِعون
@@ -35,11 +42,13 @@ ar:
     reserved_username: إسم المستخدم محجوز
     roles:
       admin: المدير
+      moderator: مُشرِف
     unfollow: إلغاء المتابعة
   admin:
     account_moderation_notes:
       created_at: التاريخ
       delete: حذف
+      account: مُشرِف
     accounts:
       are_you_sure: متأكد ؟
       by_domain: النطاق
@@ -56,16 +65,30 @@ ar:
       media_attachments: الوسائط المرفقة
       order:
         title: الترتيب
+        most_recent: الأحدث
       profile_url: رابط الملف الشخصي
       role: التصريحات
       roles:
         admin: مدير
         user: مستخدِم
+        moderator: مشرف
+        staff: الفريق
       search: البحث
       statuses: المنشورات
       title: الحسابات
       username: إسم المستخدم
       web: الويب
+      confirmed: مؤكَّد
+      disable: تعطيل
+      disable_two_factor_authentication: تعطيل 2FA
+      disabled: معطَّل
+      location:
+        all: الكل
+        title: الموقع
+      moderation:
+        all: الكل
+      most_recent_ip: أحدث عنوان إيبي
+      protocol: البروتوكول
     custom_emojis:
       copy: نسخ
       delete: حذف
@@ -114,13 +137,18 @@ ar:
       media:
         title: الوسائط
     title: الإدارة
+    subscriptions:
+      confirmed: مؤكَّد
+      topic: الموضوع
   application_mailer:
-    salutation: "%{name},"
+    salutation: '%{name}،'
     settings: 'تغيير تفضيلات البريد الإلكتروني : %{link}'
     signature: إشعارات ماستدون من %{instance}
     view: 'View:'
   applications:
     invalid_url: إن الرابط المقدم غير صالح
+    created: تم إنشاء التطبيق بنجاح
+    destroyed: تم حذف التطبيق بنجاح
   auth:
     change_password: الهوية
     delete_account: حذف حساب
@@ -134,27 +162,31 @@ ar:
     reset_password: إعادة تعيين كلمة المرور
     set_new_password: تعيين كلمة مرور جديدة
   authorize_follow:
-    error: Unfortunately, there was an error looking up the remote account
+    error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
     follow: إتبع
     title: إتباع %{acct}
+    follow_request: 'لقد قمت بإرسال طلب متابعة إلى :'
+    post_follow:
+      web: واصل إلى الويب
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}سا"
-      about_x_months: "%{count} شهر"
-      about_x_years: "%{count} سنة"
-      almost_x_years: "%{count} سنوات"
+      about_x_hours: '%{count}سا'
+      about_x_months: '%{count} شهر'
+      about_x_years: '%{count} سنة'
+      almost_x_years: '%{count} سنوات'
       half_a_minute: الآن
-      less_than_x_minutes: "%{count} د"
+      less_than_x_minutes: '%{count} د'
       less_than_x_seconds: الآن
-      over_x_years: "%{count} سنين"
-      x_days: "%{count} أيام"
-      x_minutes: "%{count}د"
-      x_months: "%{count} شه"
-      x_seconds: "%{count}ث"
+      over_x_years: '%{count} سنين'
+      x_days: '%{count} أيام'
+      x_minutes: '%{count}د'
+      x_months: '%{count} شه'
+      x_seconds: '%{count}ث'
   deletes:
     bad_password_msg: محاولة جيدة يا هاكرز ! كلمة السر خاطئة
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
+    confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
   exports:
     blocks: قمت بحظر
     csv: CSV
@@ -163,22 +195,29 @@ ar:
   followers:
     domain: النطاق
     followers_count: عدد المتابِعين
+    purge: تنحية من بين متابعيك
+    unlocked_warning_title: إنّ حسابك غير مقفل
   generic:
     changes_saved_msg: تم حفظ التعديلات بنجاح !
     powered_by: مدعوم بـ %{link}
     save_changes: حفظ التغييرات
     validation_errors:
-      one: Something isn't quite right yet! Please review the error below
-      other: Something isn't quite right yet! Please review %{count} errors below
+      one: لا يزال هناك خلل ما إلى حد الآن. يُرجى إعادة النظر في الخطأ أسفله
+      other: هناك شيء ليس على ما يرام ! رجاءًا تحقق من الأخطاء الـ %{count} أسفله
   imports:
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    preface: You can import certain data like all the people you are following or
+      blocking into your account on this instance, from files created by an export
+      on another instance.
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
     types:
       blocking: قائمة المحظورين
       following: قائمة المستخدمين المتبوعين
     upload: تحميل
-  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.."
-  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}.
+    You can follow them or interact with them if you have an account anywhere in the
+    fediverse..
+  landing_strip_signup_html: إن كنت لا تملك واحدا، يمكنك <a href="%{sign_up_path}">التسجيل
+    مِن هنا</a>.
   lists:
     errors:
       limit: لقد بلغت الحد الأقصى للقوائم
@@ -188,35 +227,38 @@ ar:
       too_many: لا يمكن إرفاق أكثر من 4 ملفات
   migrations:
     acct: username@domain للحساب الجديد
+    currently_redirecting: 'تم تحويل رابط ملفك الشخصي إلى :'
+    proceed: حفظ
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
-      mention: "%{name} أشار إليك في :"
+      body: 'هذه هي الأخبار المختصرة التي قد فاتتك على %{instance}وذلك منذ آخر زيارة
+        لك في  %{since} :'
+      mention: '%{name} أشار إليك في :'
       new_followers_summary:
         one: لقد حصلت على متابع جديد !
         other: لقد تحصلت على %{count} متتبعين جدد ! رائع !
       subject:
-        one: "إشعار واحد منذ زيارتك الأخيرة \U0001F418"
-        other: "%{count} إشعارات جديدة منذ زيارتك الأخيرة \U0001F418"
+        one: إشعار واحد منذ زيارتك الأخيرة 🐘
+        other: '%{count} إشعارات جديدة منذ زيارتك الأخيرة 🐘'
     favourite:
       body: 'أُعجب %{name} بمنشورك :'
-      subject: "%{name} favourited your status"
+      subject: أُعجِب %{name} بمنشورك
     follow:
-      body: "%{name} من متتبعيك الآن !"
-      subject: "%{name} من متتبعيك الآن"
+      body: '%{name} من متتبعيك الآن !'
+      subject: '%{name} من متتبعيك الآن'
     follow_request:
-      body: "%{name} has requested to follow you"
-      subject: 'Pending follower: %{name}'
+      body: طلب %{name} متابعتك
+      subject: 'متابع مُعلّق : %{name}'
     mention:
-      body: 'You were mentioned by %{name} in:'
+      body: 'أشار إليك %{name} في :'
       subject: لقد قام %{name} بذِكرك
     reblog:
-      body: 'Your status was boosted by %{name}:'
-      subject: "%{name} boosted your status"
+      body: 'قام %{name} بترقية منشورك :'
+      subject: قام %{name} بترقية منشورك
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -227,13 +269,15 @@ ar:
   pagination:
     next: التالي
     prev: السابق
+    truncate: '&hellip;'
   preferences:
     languages: اللغات
     other: إعدادات أخرى
     publishing: النشر
+    web: الويب
   remote_follow:
     acct: قم بإدخال عنوان حسابك username@domain الذي من خلاله تود المتابعة
-    missing_resource: Could not find the required redirect URL for your account
+    missing_resource: تعذر العثور على رابط التحويل المطلوب الخاص بحسابك
     proceed: أكمل المتابعة
     prompt: 'إنك  بصدد متابعة :'
   settings:
@@ -245,7 +289,10 @@ ar:
     import: إستيراد
     preferences: التفضيلات
     settings: الإعدادات
-    two_factor_authentication: اثبات هويّة مزدوج
+    two_factor_authentication: إثبات الهويّة المزدوج
+    development: التطوير
+    notifications: الإخطارات
+    your_apps: تطبيقاتك
   statuses:
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
@@ -254,27 +301,95 @@ ar:
       private: إعرض فقط لمتتبعيك
       public: للعامة
       unlisted: Public, but do not display on the public timeline
+      private_long: إعرضه لمتتبعيك فقط
+      public_long: يمكن للجميع رؤيته
+    pin_errors:
+      ownership: لا يمكن تدبيس تبويق نشره شخص آخر
+    title: '%{name} : "%{quote}"'
   stream_entries:
     click_to_show: إضغط للعرض
     reblogged: رقى
     sensitive_content: محتوى حساس
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: '%b %d, %Y, %H:%M'
   two_factor_authentication:
-    code_hint: Enter the code generated by your authenticator app to confirm
-    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    code_hint: قم بإدخال الرمز المُوَلّد عبر تطبيق المصادقة للتأكيد
+    description_html: في حال تفعيل <strong>المصادقة بخطوتين </strong>، فتسجيل الدخول
+      يتتطلب منك أن يكون بحوزتك هاتفك النقال قصد توليد الرمز الذي سيتم إدخاله.
     disable: تعطيل
     enable: تفعيل
     enabled: نظام المصادقة بخطوتين مُفعَّل
     enabled_success: تم تفعيل إثبات الهوية المزدوج بنجاح
     generate_recovery_codes: توليد رموز الإسترجاع
-    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    instructions_html: <strong>قم بمسح رمز الكيو آر عبر Google Authenticator أو أي
+      تطبيق TOTP على جهازك</strong>. من الآن فصاعدا سوف يقوم ذاك التطبيق بتوليد رموز
+      يجب عليك إدخالها عند تسجيل الدخول.
+    manual_instructions: 'في حالة تعذّر مسح رمز الكيو آر أو طُلب منك إدخال يدوي، يُمْكِنك
+      إدخال هذا النص السري على التطبيق :'
     recovery_codes: النسخ الإحتياطي لرموز الإسترجاع
     recovery_codes_regenerated: تم إعادة توليد رموز الإسترجاع الإحتياطية بنجاح
     setup: تنشيط
-    wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز ؟
+    wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز
+      ؟
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: الرمز الثنائي غير صالح
+  errors:
+    '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
+    '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
+    '410': إنّ الصفحة التي تبحث عنها لم تعد موجودة.
+    '500':
+      title: هذه الصفحة خاطئة
+  invites:
+    delete: تعطيل
+    expires_in:
+      '1800': 30 دقيقة
+      '21600': 6 ساعات
+      '3600': ساعة
+      '43200': 12 ساعة
+      '86400': يوم واحد
+  push_notifications:
+    favourite:
+      title: أعجب %{name} بمنشورك
+    follow:
+      title: '%{name} من متتبعيك الآن'
+    group:
+      title: '%{count} إخطارات'
+    mention:
+      action_boost: ترقية
+      action_expand: عرض المزيد
+      title: أشار إليك %{name}
+    reblog:
+      title: قام %{name} بترقية منشورك
+  sessions:
+    activity: آخر نشاط
+    browser: المتصفح
+    browsers:
+      alipay: أليباي
+      blackberry: بلاك بيري
+      chrome: كروم
+      edge: مايكروسوفت إيدج
+      firefox: فايرفكس
+      generic: متصفح مجهول
+      ie: إنترنت إكسبلورر
+      opera: أوبرا
+      qq: متصفح كيوكيو
+      safari: سفاري
+    current_session: الجلسة الحالية
+    description: '%{browser} على %{platform}'
+    ip: عنوان الإيبي
+    platforms:
+      android: أندرويد
+      blackberry: بلاك بيري
+      chrome_os: نظام كروم أواس
+      firefox_os: نظام فايرفكس أواس
+      linux: لينكس
+      mac: ماك
+      other: نظام مجهول
+      windows: ويندوز
+    title: الجلسات
+  terms:
+    title: شروط الخدمة وسياسة الخصوصية على %{instance}
+  themes:
+    default: ماستدون
