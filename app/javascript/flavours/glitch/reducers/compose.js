@@ -134,7 +134,7 @@ function continueThread (state, status) {
       'advanced_options',
       map => map.merge(new ImmutableMap({ do_not_federate: /👁\ufe0f?\u200b?(?:<\/p>)?$/.test(status.content) }))
     );
-    map.set('privacy', privacyPreference(status.visibility, state.get('default_privacy')));
+    map.set('privacy', status.visibility);
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
     map.set('idempotencyKey', uuid());
