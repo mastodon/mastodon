@@ -1,3 +1,4 @@
+---
 pt:
   activerecord:
     attributes:
@@ -32,17 +33,16 @@ pt:
       help:
         native_redirect_uri: Usa %{native_redirect_uri} para testes locais
         redirect_uri: Utiliza uma linha por URI
-        scopes: Separa autorizações com espaços. Deixa em branco para usar autorizações
-          predefinidas.
+        scopes: Separa autorizações com espaços. Deixa em branco para usar autorizações predefinidas.
       index:
         application: Aplicações
         callback_url: URL de retorno
         delete: Eliminar
         name: Nome
         new: Nova Aplicação
+        scopes: Autorizações
         show: Mostrar
         title: As tuas aplicações
-        scopes: Autorizações
       new:
         title: Nova aplicação
       show:
@@ -72,46 +72,31 @@ pt:
       index:
         application: Aplicação
         created_at: Criada em
-        date_format: '%Y-%m-%d %H:%M:%S'
-        title: As tuas aplicações autorizadas
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Autorizações
+        title: As tuas aplicações autorizadas
     errors:
       messages:
-        access_denied: O proprietário do recurso ou servidor de autorização negou
-          o pedido.
-        credential_flow_not_configured: 'As credenciais da palavra-passe do proprietário
-          do recurso falhou devido a que
-
-          Doorkeeper.configure.resource_owner_from_credentials não foram configuradas.'
-        invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido,
-          nenhum cliente de autenticação incluído ou método de autenticação não suportado.
-        invalid_grant: A concessão de autorização fornecida é inválida, expirou, foi
-          revogada, não corresponde à URI de redirecionamento usada no pedido de autorização
-          ou foi emitida para outro cliente.
+        access_denied: O proprietário do recurso ou servidor de autorização negou o pedido.
+        credential_flow_not_configured: |-
+          As credenciais da palavra-passe do proprietário do recurso falhou devido a que
+          Doorkeeper.configure.resource_owner_from_credentials não foram configuradas.
+        invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação incluído ou método de autenticação não suportado.
+        invalid_grant: A concessão de autorização fornecida é inválida, expirou, foi revogada, não corresponde à URI de redirecionamento usada no pedido de autorização ou foi emitida para outro cliente.
         invalid_redirect_uri: A URI de redirecionamento incluída não é válida.
-        invalid_request: A solicitação não possui um parâmetro requerido, inclui um
-          valor  não suportado ou tem outro tipo de formato incorreto.
-        invalid_resource_owner: As credenciais do proprietário do recurso não são
-          válidas ou o proprietário do recurso não pode ser encontrado
-        invalid_scope: O âmbito solicitado é inválido, desconhecido ou tem um formato
-          incorreto.
+        invalid_request: A solicitação não possui um parâmetro requerido, inclui um valor  não suportado ou tem outro tipo de formato incorreto.
+        invalid_resource_owner: As credenciais do proprietário do recurso não são válidas ou o proprietário do recurso não pode ser encontrado
+        invalid_scope: O âmbito solicitado é inválido, desconhecido ou tem um formato incorreto.
         invalid_token:
           expired: O token de acesso expirou
           revoked: O token de acesso foi revogado
           unknown: O token de acesso é inválido
-        resource_owner_authenticator_not_configured: A procura pelo proprietário do
-          recurso falhou porque Doorkeeper.configure.resource_owner_authenticator
-          não foi configurado.
-        server_error: O servidor de autorização encontrou uma condição inesperada
-          que impediu o cumprimento do pedido .
-        temporarily_unavailable: O servidor de autorização não é capaz de lidar com
-          o pedido devido a uma sobrecarga ou mantenimento do servidor.
-        unauthorized_client: O cliente não está autorizado a realizar esta solicitação
-          usando este método.
-        unsupported_grant_type: O tipo de concessão de autorização não é suportado
-          pelo servidor de autorização.
-        unsupported_response_type: O servidor de autorização não suporta este tipo
-          de resposta.
+        resource_owner_authenticator_not_configured: A procura pelo proprietário do recurso falhou porque Doorkeeper.configure.resource_owner_authenticator não foi configurado.
+        server_error: O servidor de autorização encontrou uma condição inesperada que impediu o cumprimento do pedido .
+        temporarily_unavailable: O servidor de autorização não é capaz de lidar com o pedido devido a uma sobrecarga ou mantenimento do servidor.
+        unauthorized_client: O cliente não está autorizado a realizar esta solicitação usando este método.
+        unsupported_grant_type: O tipo de concessão de autorização não é suportado pelo servidor de autorização.
+        unsupported_response_type: O servidor de autorização não suporta este tipo de resposta.
     flash:
       applications:
         create:
