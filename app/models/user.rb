@@ -255,7 +255,7 @@ class User < ApplicationRecord
     end
 
     # potential conflict detected
-    resource = resource.pam_on_filled_pw(attributes) unless resource.password.blank?
+    resource = resource.pam_on_filled_pw(attributes) if resource.password.present?
 
     if resource && Rpam2.auth(::Devise.pam_default_service, attributes[:username], attributes[:password])
       if resource.new_record?
