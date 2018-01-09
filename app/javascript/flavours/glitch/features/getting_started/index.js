@@ -79,8 +79,8 @@ export default class GettingStarted extends ImmutablePureComponent {
   render () {
     const { intl, myAccount, columns, multiColumn, lists } = this.props;
 
-    let navItems = [];
-    let listItems = [];
+    const navItems = [];
+    const listItems = [];
 
     if (multiColumn) {
       if (!columns.find(item => item.get('id') === 'HOME')) {
