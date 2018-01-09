@@ -34,6 +34,7 @@
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :integer
+#  remember_token            :string
 #
 
 class User < ApplicationRecord
