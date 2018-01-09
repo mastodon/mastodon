@@ -8,8 +8,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 
-  onChange (key, checked) {
-    dispatch(changeSetting(['home', ...key], checked));
+  onChange (path, checked) {
+    dispatch(changeSetting(['home', ...path], checked));
   },
 
   onSave () {
