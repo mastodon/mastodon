@@ -49,7 +49,7 @@ class User < ApplicationRecord
          otp_number_of_backup_codes: 10
 
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :pam_authenticatable
+         :confirmable
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
@@ -224,6 +224,10 @@ class User < ApplicationRecord
   def invite_code=(code)
     self.invite  = Invite.find_by(code: code) unless code.blank?
     @invite_code = code
+  end
+
+  def password_required?
+    !Devise.pam_authentication
   end
 
   def send_reset_password_instructions
