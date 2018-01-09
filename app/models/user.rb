@@ -226,12 +226,12 @@ class User < ApplicationRecord
   end
 
   def send_reset_password_instructions
-    return false if password.blank?
+    return false if password.blank? && Devise.pam_authentication
     super
   end
 
   def reset_password!(new_password, new_password_confirmation)
-    return false if password.blank?
+    return false if password.blank? && Devise.pam_authentication
     super
   end
 

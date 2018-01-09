@@ -13,8 +13,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    return Object if current_user.password.blank?
-    devise_parameter_sanitizer.sanitize(:account_update)
+    ret = devise_parameter_sanitizer.sanitize(:account_update)
+    ret.permit(:account_update, except: [:password, :password_confirmation, :current_password]) if current_user.password.blank? && use_pam?
+    ret
   end
 
   protected
