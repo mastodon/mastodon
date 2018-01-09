@@ -12,8 +12,9 @@
 
   %hr/
 
-  .fields-group
-    = f.input :setting_skin, collection: Themes.instance.skins_for(@selected), label_method: lambda { |skin| I18n.t("skins.#{@selected}.#{skin}", default: skin) }, wrapper: :with_label, include_blank: false
+  - if Themes.instance.skins_for(@selected).length > 1
+    .fields-group
+      = f.input :setting_skin, collection: Themes.instance.skins_for(@selected), label_method: lambda { |skin| I18n.t("skins.#{@selected}.#{skin}", default: skin) }, wrapper: :with_label, include_blank: false
 
   .actions
     = f.button :button, t('generic.use_this'), type: :submit
