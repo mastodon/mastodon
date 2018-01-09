@@ -1,10 +1,10 @@
+---
 gl:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF ou JPG. Como moito 2MB. Será reducida ate 120x120px
-        digest: Enviar despois de un período longo de inactividade con un resumo das
-          mencións que recibeu na súa ausencia
+        digest: Enviar despois de un período longo de inactividade con un resumo das mencións que recibeu na súa ausencia
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
@@ -14,16 +14,13 @@ gl:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
-        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando
-          está conectada.
+        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
-        otp: Introduza o código de Doble-Factor desde o seu teléfono ou utilice un
-          dos seus códigos de recuperación.
+        otp: Introduza o código de Doble-Factor desde o seu teléfono ou utilice un dos seus códigos de recuperación.
       user:
-        filtered_languages: Os idiomas marcados filtraranse das liñas temporais públicas
-          para vostede
+        filtered_languages: Os idiomas marcados filtraranse das liñas temporais públicas para vostede
     labels:
       defaults:
         avatar: Avatar
@@ -62,14 +59,13 @@ gl:
         must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
       notification_emails:
         digest: Enviar correos con resumos
-        favourite: Enviar un correo cando alguén marca como favorita unha das súas
-          publicacións
+        favourite: Enviar un correo cando alguén marca como favorita unha das súas publicacións
         follow: Enviar un correo cando alguén a segue
         follow_request: Enviar un correo cando alguén solicita seguila
         mention: Enviar un correo cando alguén a menciona
         reblog: Enviar un correo cando alguén promociona a súa mensaxe
     'no': Non
     required:
-      mark: '*'
+      mark: "*"
       text: requerido
     'yes': Si
