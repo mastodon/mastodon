@@ -19,7 +19,7 @@ const messages = defineMessages({
   },
   toggle: {
     defaultMessage: 'Click to view',
-    id: 'status.sensitive_toggle'
+    id: 'status.sensitive_toggle',
   },
   toggle_visible: {
     defaultMessage: 'Toggle visibility',
