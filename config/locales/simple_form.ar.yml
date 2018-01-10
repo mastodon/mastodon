@@ -7,6 +7,7 @@ ar:
         digest: يُرسَل بعد مضيّ مدة طويلة من خمول نشاطك يحوي على تلخيص للتبويقات التي ذُكر حسابك فيها أثناء غيابك
         display_name:
           one: <span class="name-counter">1</span> حرف متبقي
+          other: <span class="name-counter">%{count}</span> حرف متبقي
         header: PNG, GIF or JPG. على الأكثر 2 ميغابيت . سوف يتم تصغيرها إلى 700x335px
         locked: يتطلب منك الموافقة يدويا على كل طلب للإشتراك بحسابك و منشوراتك تعرض لمتابعيك فقط دون غيرهم
         note: <span class="note-counter">%{count}</span> أحرف متبقية
@@ -16,6 +17,8 @@ ar:
         data: ملف CSV تم تصديره من خادوم مثيل  آخر لماستدون
       sessions:
         otp: أدخل الرمز الثنائي من هاتفك أو استخدم أحد رموز الاسترداد.
+      user:
+        filtered_languages: سوف لن تَظهَر التبويقات المُحرَّرَة باللغات المُحدّدة أدناه على خيوطك العمومية
     labels:
       defaults:
         avatar: الصورة الرمزية
@@ -25,6 +28,8 @@ ar:
         data: البيانات
         display_name: الاسم الذي يتم عرضه
         email: عنوان البريد الإلكتروني
+        expires_in: مدة نهاية الصلاحية
+        filtered_languages: اللغات المصفاة
         header: رأس الصفحة
         locale: اللغة
         locked: إجعل حسابك خاصًا
@@ -33,17 +38,23 @@ ar:
         note: السيرة الذاتية
         otp_attempt: الرمز الثنائي
         password: كلمة المرور
-        setting_auto_play_gif: تشغيل صور جيف المتحركة تلقائي
+        setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
         setting_boost_modal: إظهار مربع حوار التأكيد قبل القيام بالترقية
         setting_default_privacy: خصوصية المنشور
         setting_default_sensitive: دائما تحديد الوسائط كحساسة
+        setting_delete_modal: إظهار مربع حوار للتأكيد قبل حذف أي تبويق
         setting_noindex: منع محركات البحث من فهرسة ملفي الشخصي
+        setting_reduce_motion: تخفيض عدد الصور في الوسائط المتحركة
+        setting_system_font_ui: إستخدام الخط الإفتراضي للنظام
+        setting_theme: سمة الموقع
+        setting_unfollow_modal: إظهار مربع حوار للتأكيد قبل إلغاء متابعة أي حساب
         severity: الشدة
         type: نوع الإستيراد
         username: اسم المستخدم
       interactions:
         must_be_follower: حظر اشعارات الأشخاص الذين لا يتبعونك
         must_be_following: حظر اشعارات الأشخاص الذين لا تتبعهم
+        must_be_following_dm: حظر التبويقات المباشرة القادمة من الحسابات التي لا تتبعها
       notification_emails:
         digest: إرسال رسائل بريد إلكتروني ملخصة
         favourite: إبعث بريداً إلكترونياً عندما يعجب احدهم بمنشورك

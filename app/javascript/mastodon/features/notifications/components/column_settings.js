@@ -14,8 +14,8 @@ export default class ColumnSettings extends React.PureComponent {
     onClear: PropTypes.func.isRequired,
   };
 
-  onPushChange = (key, checked) => {
-    this.props.onChange(['push', ...key], checked);
+  onPushChange = (path, checked) => {
+    this.props.onChange(['push', ...path], checked);
   }
 
   render () {

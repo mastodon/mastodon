@@ -6,7 +6,7 @@ class ActivityPub::ProcessAccountService < BaseService
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json)
-    return if json['inbox'].blank?
+    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id'])
 
     @json        = json
     @uri         = @json['id']
@@ -74,7 +74,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
-    @account.moved_to_account  = moved_account         if @json['movedTo'].present?
+    @account.moved_to_account  = @json['movedTo'].present? ? moved_account : nil
   end
 
   def after_protocol_change!
@@ -107,7 +107,21 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def url
     return if @json['url'].blank?
-    url_to_href(@json['url'], 'text/html')
+
+    url_candidate = url_to_href(@json['url'], 'text/html')
+
+    if unsupported_uri_scheme?(url_candidate) || mismatching_origin?(url_candidate)
+      nil
+    else
+      url_candidate
+    end
+  end
+
+  def mismatching_origin?(url)
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@uri).host
+
+    !haystack.casecmp(needle).zero?
   end
 
   def outbox_total_items

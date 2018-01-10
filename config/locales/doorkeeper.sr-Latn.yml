@@ -1,0 +1,119 @@
+---
+sr-Latn:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Ime aplikacije
+        redirect_uri: Adresa za preusmeravanje
+        scopes: Opseg važenja
+        website: Veb sajt aplikacije
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ne može da sadrži fragment.
+              invalid_uri: mora biti ispravan URI.
+              relative_uri: mora biti apsolutni URI.
+              secured_uri: mora biti HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizuj
+        cancel: Poništi
+        destroy: Uništi
+        edit: Izmeni
+        submit: Pošalji
+      confirmations:
+        destroy: Da li ste sigurni?
+      edit:
+        title: Izmeni aplikaciju
+      form:
+        error: Ops! Proverite formular za eventualne greške
+      help:
+        native_redirect_uri: Koristite %{native_redirect_uri} za lokalno testiranje
+        redirect_uri: Koristite jednu liniju po URI-ju
+        scopes: Odvojite opsege važenja sa belinama. Ostavite prazno za podrazumevane opsege važenja.
+      index:
+        application: Aplikacija
+        callback_url: Adresa za povratni poziv
+        delete: Obriši
+        name: Ime
+        new: Nova aplikacija
+        scopes: Opsezi važenja
+        show: Prikaži
+        title: Vaše aplikacije
+      new:
+        title: Nova aplikacija
+      show:
+        actions: Akcije
+        application_id: Klijentski ključ
+        callback_urls: Adrese za povratne pozive
+        scopes: Opseg važenja
+        secret: Klijentska tajna
+        title: 'Aplikacija: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizuj se
+        deny: Odbij
+      error:
+        title: Dogodila se greška
+      new:
+        able_to: Biće u mogućnosti da
+        prompt: Aplikacija %{client_name} zahteva pristup Vašem nalogu
+        title: Potrebna autorizacija
+      show:
+        title: Kopirajte ovaj autorizacioni kod i nalepite ga u aplikaciju.
+    authorized_applications:
+      buttons:
+        revoke: Opozovi
+      confirmations:
+        revoke: Da li ste sigurni?
+      index:
+        application: Aplikacija
+        created_at: Autorizovana
+        date_format: "%d.%m.%Y %H:%M:%S"
+        scopes: Opsezi važenja
+        title: Vaše autorizovane aplikacije
+    errors:
+      messages:
+        access_denied: Vlasnik resursa ili autorizacioni server su odbili zahtev.
+        credential_flow_not_configured: Tok Resource Owner Password Credentials nije uspeo pošto je Doorkeeper.configure.resource_owner_from_credentials neiskonfigurisan.
+        invalid_client: Klijentska identifikacija nije uspela zbog nepoznatog klijenta, zato što klijent nije uključio identifikaciju ili zato što je iskorišćen nepodržani identifikacioni metod.
+        invalid_grant: Zadata identifikaciona dozvola je neispravna, istekla, opozvana, ne poklapa se sa adresom preusmeravanja ili je izdata nekog drugom klijentu.
+        invalid_redirect_uri: Uključena adresa preusmeravanja nije ispravna.
+        invalid_request: Obavezni parametar fali u zahtevu, zahtev uključuje nepodržanu vrednost parametra ili je parametar na neki drugi način pogrešan.
+        invalid_resource_owner: Zadati kredencijali vlasnika resursa nisu ispravni ili vlasnik resursa ne može biti nađen
+        invalid_scope: Zahtevani opseg važenja nije ispravan, nepoznat je ili je na neki drugi način pogrešan.
+        invalid_token:
+          expired: Pristupni token je istekao
+          revoked: Pristupni token je opozvan
+          unknown: Pristupni token nije ispravan
+        resource_owner_authenticator_not_configured: Greška u pronalaženju vlasnika resursa pošto Doorkeeper.configure.resource_owner_authenticator nije konfigurisan.
+        server_error: Identifikacioni server je naišao na neočekivanu situaciju zbog koje nije ispunio upućeni zahtev.
+        temporarily_unavailable: Identifikacioni server trenutno ne može da obradi zahtev jer je privremeno preopterećen ili je u režimu održavanja.
+        unauthorized_client: Klijent nije ovlašćen da izvrši ovaj zahtev ovim metodom.
+        unsupported_grant_type: Tip autorizacione dozvole nije podržan od strane autorizacionog servera.
+        unsupported_response_type: Autorizacioni server ne podržava ovaj tip odgovora.
+    flash:
+      applications:
+        create:
+          notice: Aplikacija napravljena.
+        destroy:
+          notice: Aplikacija obrisana.
+        update:
+          notice: Aplikacija ažurirana.
+      authorized_applications:
+        destroy:
+          notice: Aplikacija opozvana.
+    layouts:
+      admin:
+        nav:
+          applications: Aplikacije
+          oauth2_provider: OAuth2 provajder
+      application:
+        title: OAuth autorizacija potrebna
+    scopes:
+      follow: prati, blokira, odblokira i otprati naloge
+      read: čita podatke Vašeg naloga
+      write: objavljuje statuse u Vaše ime
