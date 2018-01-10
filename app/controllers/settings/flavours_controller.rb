@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class Settings::FlavoursController < Settings::BaseController
-
   def index
     redirect_to action: 'show', flavour: current_flavour
   end
 
   def show
-    unless Themes.instance.flavours.include?(params[:flavour]) or params[:flavour] == current_flavour
+    unless Themes.instance.flavours.include?(params[:flavour]) || (params[:flavour] == current_flavour)
       redirect_to action: 'show', flavour: current_flavour
     end
 
@@ -28,7 +27,6 @@ class Settings::FlavoursController < Settings::BaseController
 
   def user_settings_params
     { setting_flavour: params.require(:flavour),
-      setting_skin: params.dig(:user, :setting_skin)
-    }.with_indifferent_access
+      setting_skin: params.dig(:user, :setting_skin) }.with_indifferent_access
   end
 end
