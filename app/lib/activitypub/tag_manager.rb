@@ -67,6 +67,8 @@ class ActivityPub::TagManager
   def cc(status)
     cc = []
 
+    cc << uri_for(status.reblog.account) if status.reblog?
+
     case status.visibility
     when 'public'
       cc << account_followers_url(status.account)

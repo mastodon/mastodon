@@ -30,6 +30,7 @@ module SettingsHelper
     ru: 'Русский',
     sk: 'Slovensky',
     sr: 'Српски',
+    'sr-Latn': 'Srpski (latinica)',
     sv: 'Svenska',
     th: 'ภาษาไทย',
     tr: 'Türkçe',

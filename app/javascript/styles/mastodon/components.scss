@@ -1773,7 +1773,7 @@
   }
 
   > .mastodon {
-    background: url('../images/mastodon-drawer.png') no-repeat left bottom / contain;
+    background: url('../images/mastodon-ui.png') no-repeat left bottom / contain;
     flex: 1;
   }
 }
@@ -2070,6 +2070,11 @@
   font-weight: 500;
   text-transform: uppercase;
   cursor: default;
+}
+
+.getting-started__wrapper,
+.getting_started {
+  background: $ui-base-color;
 }
 
 .getting-started__wrapper {

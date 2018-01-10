@@ -41,11 +41,14 @@ class User < ApplicationRecord
 
   ACTIVE_DURATION = 14.days
 
-  devise :registerable, :recoverable,
-         :rememberable, :trackable, :validatable, :confirmable,
-         :two_factor_authenticatable, :two_factor_backupable,
-         otp_secret_encryption_key: ENV['OTP_SECRET'],
+  devise :two_factor_authenticatable,
+         otp_secret_encryption_key: ENV['OTP_SECRET']
+
+  devise :two_factor_backupable,
          otp_number_of_backup_codes: 10
+
+  devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   belongs_to :account, inverse_of: :user, required: true
   belongs_to :invite, counter_cache: :uses
@@ -123,18 +126,18 @@ class User < ApplicationRecord
   end
 
   def confirm
-    return if confirmed?
+    new_user = !confirmed?
 
     super
-    update_statistics!
+    update_statistics! if new_user
   end
 
   def confirm!
-    return if confirmed?
+    new_user = !confirmed?
 
     skip_confirmation!
     save!
-    update_statistics!
+    update_statistics! if new_user
   end
 
   def promote!

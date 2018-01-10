@@ -11,7 +11,7 @@ pt:
       imports:
         data: Ficheiro CSV exportado de outra instância do Mastodon
       sessions:
-        otp: Insere o código o código de autenticação de dois fatores do teu telefone ou utiliza um código de recuperação de acesso.
+        otp: Insere o código de autenticação em dois passos do teu telefone ou utiliza um código de recuperação de acesso.
     labels:
       defaults:
         avatar: Imagem de Perfil
@@ -26,10 +26,11 @@ pt:
         locked: Tornar conta privada
         new_password: Nova palavra-passe
         note: Biografia
-        otp_attempt: Código de autenticação de dois fatores
+        otp_attempt: Código de autenticação em dois passos
         password: Palavra-passe
         setting_boost_modal: Pedir confirmação antes de partilhar um post
         setting_default_privacy: Privacidade padrão de posts
+        setting_default_sensitive: Marcar sempre media como sensível
         setting_reduce_motion: Reduzir movimento em animações
         severity: Severity
         type: Import type
@@ -41,6 +42,7 @@ pt:
         digest: Enviar um email da actividade nesta instância
         favourite: Enviar email quando alguém adiciona um post teu aos favoritos
         follow: Enviar email quando alguém te segue
+        follow_request: Enviar um email quando alguém solicitar ser o teu seguidor
         mention: Enviar email quando alguém te menciona
         reblog: Enviar email quando alguém partilhar um post teu
     'no': Não
