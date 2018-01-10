@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::OutboxesController < Api::BaseController
+class ActivityPub::OutboxesController < ActivityPub::BaseController
   before_action :set_account
 
   def show
