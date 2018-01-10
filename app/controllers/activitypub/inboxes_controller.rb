@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::InboxesController < Api::BaseController
+class ActivityPub::InboxesController < ActivityPub::BaseController
   include SignatureVerification
 
   before_action :set_account
