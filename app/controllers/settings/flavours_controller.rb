@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class Settings::FlavoursController < Settings::BaseController
-
   def index
     redirect_to action: 'show', flavour: current_flavour
   end
 
   def show
-    unless Themes.instance.flavours.include?(params[:flavour]) or params[:flavour] == current_flavour
+    unless Themes.instance.flavours.include?(params[:flavour]) || (params[:flavour] == current_flavour)
       redirect_to action: 'show', flavour: current_flavour
     end
 
@@ -16,7 +15,7 @@ class Settings::FlavoursController < Settings::BaseController
   end
 
   def update
-    user_settings.update(user_settings_params(params[:flavour]).to_h)
+    user_settings.update(user_settings_params)
     redirect_to action: 'show', flavour: params[:flavour]
   end
 
@@ -26,10 +25,8 @@ class Settings::FlavoursController < Settings::BaseController
     UserSettingsDecorator.new(current_user)
   end
 
-  def user_settings_params(flavour)
-    params.require(:user).merge({ setting_flavour: flavour }).permit(
-      :setting_flavour,
-      :setting_skin
-    )
+  def user_settings_params
+    { setting_flavour: params.require(:flavour),
+      setting_skin: params.dig(:user, :setting_skin) }.with_indifferent_access
   end
 end
