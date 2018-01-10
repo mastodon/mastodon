@@ -27,6 +27,7 @@ export default class Account extends ImmutablePureComponent {
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
+    onMuteNotifications: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
   };
