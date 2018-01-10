@@ -27,15 +27,15 @@ export function HashtagTimeline () {
 }
 
 export function ListTimeline () {
-  return import(/* webpackChunkName: "features/list_timeline" */'flavours/glitch/features/list_timeline');
+  return import(/* webpackChunkName: "flavours/glitch/async/list_timeline" */'flavours/glitch/features/list_timeline');
 }
 
 export function Lists () {
-  return import(/* webpackChunkName: "features/lists" */'flavours/glitch/features/lists');
+  return import(/* webpackChunkName: "flavours/glitch/async/lists" */'flavours/glitch/features/lists');
 }
 
 export function ListEditor () {
-  return import(/* webpackChunkName: "features/list_editor" */'flavours/glitch/features/list_editor');
+  return import(/* webpackChunkName: "flavours/glitch/async/list_editor" */'flavours/glitch/features/list_editor');
 }
 
 export function DirectTimeline() {
@@ -51,7 +51,7 @@ export function GettingStarted () {
 }
 
 export function KeyboardShortcuts () {
-  return import(/* webpackChunkName: "features/keyboard_shortcuts" */'flavours/glitch/features/keyboard_shortcuts');
+  return import(/* webpackChunkName: "flavours/glitch/async/keyboard_shortcuts" */'flavours/glitch/features/keyboard_shortcuts');
 }
 
 export function PinnedStatuses () {
