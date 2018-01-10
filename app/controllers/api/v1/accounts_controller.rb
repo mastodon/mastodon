@@ -51,7 +51,7 @@ class Api::V1::AccountsController < Api::BaseController
     @account = Account.find(params[:id])
   end
 
-  def relationships(options = {})
+  def relationships(**options)
     AccountRelationshipsPresenter.new([@account.id], current_user.account_id, options)
   end
 end

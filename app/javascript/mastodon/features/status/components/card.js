@@ -43,7 +43,7 @@ export default class Card extends React.PureComponent {
       Immutable.fromJS([
         {
           type: 'image',
-          url: card.get('url'),
+          url: card.get('embed_url'),
           description: card.get('title'),
           meta: {
             original: {
@@ -59,6 +59,8 @@ export default class Card extends React.PureComponent {
 
   renderLink () {
     const { card, maxDescription } = this.props;
+    const { width }  = this.state;
+    const horizontal = card.get('width') > card.get('height') && (card.get('width') + 100 >= width);
 
     let image    = '';
     let provider = card.get('provider_name');
@@ -75,17 +77,15 @@ export default class Card extends React.PureComponent {
       provider = decodeIDNA(getHostname(card.get('url')));
     }
 
-    const className = classnames('status-card', {
-      'horizontal': card.get('width') > card.get('height'),
-    });
+    const className = classnames('status-card', { horizontal });
 
     return (
-      <a href={card.get('url')} className={className} target='_blank' rel='noopener'>
+      <a href={card.get('url')} className={className} target='_blank' rel='noopener' ref={this.setRef}>
         {image}
 
         <div className='status-card__content'>
           <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
-          <p className='status-card__description'>{(card.get('description') || '').substring(0, maxDescription)}</p>
+          {!horizontal && <p className='status-card__description'>{(card.get('description') || '').substring(0, maxDescription)}</p>}
           <span className='status-card__host'>{provider}</span>
         </div>
       </a>
@@ -101,7 +101,7 @@ export default class Card extends React.PureComponent {
         onClick={this.handlePhotoClick}
         role='button'
         tabIndex='0'
-        src={card.get('url')}
+        src={card.get('embed_url')}
         alt={card.get('title')}
         width={card.get('width')}
         height={card.get('height')}

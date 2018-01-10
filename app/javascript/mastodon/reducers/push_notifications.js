@@ -1,5 +1,5 @@
 import { STORE_HYDRATE } from '../actions/store';
-import { SET_BROWSER_SUPPORT, SET_SUBSCRIPTION, CLEAR_SUBSCRIPTION, ALERTS_CHANGE } from '../actions/push_notifications';
+import { SET_BROWSER_SUPPORT, SET_SUBSCRIPTION, CLEAR_SUBSCRIPTION, SET_ALERTS } from '../actions/push_notifications';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
@@ -43,8 +43,8 @@ export default function push_subscriptions(state = initialState, action) {
     return state.set('browserSupport', action.value);
   case CLEAR_SUBSCRIPTION:
     return initialState;
-  case ALERTS_CHANGE:
-    return state.setIn(action.key, action.value);
+  case SET_ALERTS:
+    return state.setIn(action.path, action.value);
   default:
     return state;
   }

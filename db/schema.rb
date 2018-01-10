@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129172043) do
+ActiveRecord::Schema.define(version: 20180106000232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,14 +202,12 @@ ActiveRecord::Schema.define(version: 20171129172043) do
     t.bigint "account_id", null: false
     t.bigint "follow_id", null: false
     t.index ["account_id", "list_id"], name: "index_list_accounts_on_account_id_and_list_id", unique: true
-    t.index ["account_id"], name: "index_list_accounts_on_account_id"
     t.index ["follow_id"], name: "index_list_accounts_on_follow_id"
     t.index ["list_id", "account_id"], name: "index_list_accounts_on_list_id_and_account_id"
-    t.index ["list_id"], name: "index_list_accounts_on_list_id"
   end
 
   create_table "lists", force: :cascade do |t|
-    t.bigint "account_id"
+    t.bigint "account_id", null: false
     t.string "title", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -261,8 +259,8 @@ ActiveRecord::Schema.define(version: 20171129172043) do
     t.bigint "account_id"
     t.bigint "from_account_id"
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
+    t.index ["account_id", "id"], name: "index_notifications_on_account_id_and_id", order: { id: :desc }
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
-    t.index ["id", "account_id", "activity_type"], name: "index_notifications_on_id_and_account_id_and_activity_type", order: { id: :desc }
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -325,6 +323,7 @@ ActiveRecord::Schema.define(version: 20171129172043) do
     t.integer "height", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "embed_url", default: "", null: false
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
@@ -410,7 +409,7 @@ ActiveRecord::Schema.define(version: 20171129172043) do
     t.bigint "account_id", null: false
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
-    t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
+    t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20180106", order: { id: :desc }
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"

@@ -10,7 +10,7 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   after_action :insert_pagination_headers, only: :show
 
   def show
-    @accounts = @list.accounts.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
+    @accounts = load_accounts
     render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
@@ -35,6 +35,14 @@ class Api::V1::Lists::AccountsController < Api::BaseController
     @list = List.where(account: current_account).find(params[:list_id])
   end
 
+  def load_accounts
+    if unlimited?
+      @list.accounts.all
+    else
+      @list.accounts.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
+    end
+  end
+
   def list_accounts
     Account.find(account_ids)
   end
@@ -52,12 +60,16 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   end
 
   def next_path
+    return if unlimited?
+
     if records_continue?
       api_v1_list_accounts_url pagination_params(max_id: pagination_max_id)
     end
   end
 
   def prev_path
+    return if unlimited?
+
     unless @accounts.empty?
       api_v1_list_accounts_url pagination_params(since_id: pagination_since_id)
     end
@@ -77,5 +89,9 @@ class Api::V1::Lists::AccountsController < Api::BaseController
 
   def pagination_params(core_params)
     params.permit(:limit).merge(core_params)
+  end
+
+  def unlimited?
+    params[:limit] == '0'
   end
 end

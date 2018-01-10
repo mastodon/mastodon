@@ -104,7 +104,7 @@
     - else
       = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button' if can?(:suspend, @account)
 
-- unless @account.local?
+- if !@account.local? && @account.hub_url.present?
   %hr
   %h3 OStatus
 
@@ -132,6 +132,7 @@
       - if @account.subscribed?
         = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative' if can?(:unsubscribe, @account)
 
+- if !@account.local? && @account.inbox_url.present?
   %hr
   %h3 ActivityPub
 

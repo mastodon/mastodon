@@ -16,7 +16,7 @@ zh-CN:
       sessions:
         otp: 输入你手机上生成的双重认证码，或者任意一个恢复代码。
       user:
-        filtered_languages: 勾选语言的嘟文将不会出现在你的公共时间轴上
+        filtered_languages: 被勾选语言的嘟文将不会出现在你的公共时间轴上
     labels:
       defaults:
         avatar: 头像
@@ -26,10 +26,12 @@ zh-CN:
         data: 数据文件
         display_name: 昵称
         email: 电子邮件地址
+        expires_in: 失效时间
         filtered_languages: 语言过滤
         header: 个人资料页横幅图片
         locale: 语言
         locked: 保护你的帐户（锁嘟）
+        max_uses: 最大使用次数
         new_password: 新密码
         note: 简介
         otp_attempt: 双重认证代码
@@ -48,16 +50,16 @@ zh-CN:
         type: 导入数据类型
         username: 用户名
       interactions:
-        must_be_follower: 屏蔽来自未关注你的用户的通知
-        must_be_following: 屏蔽来自你未关注的用户的通知
-        must_be_following_dm: 屏蔽来自你未关注的用户的私信
+        must_be_follower: 屏蔽来自未关注我的用户的通知
+        must_be_following: 屏蔽来自我未关注的用户的通知
+        must_be_following_dm: 屏蔽来自我未关注的用户的私信
       notification_emails:
         digest: 发送摘要邮件
-        favourite: 当有用户收藏了你的嘟文时，发送电子邮件提醒我
-        follow: 当有用户关注你时，发送电子邮件提醒我
-        follow_request: 当有用户向你发送关注请求时，发送电子邮件提醒我
-        mention: 当有用户在嘟文中提及你时，发送电子邮件提醒我
-        reblog: 当有用户转嘟了你的嘟文时，发送电子邮件提醒我
+        favourite: 当有用户收藏了我的嘟文时，发送电子邮件提醒我
+        follow: 当有用户关注我时，发送电子邮件提醒我
+        follow_request: 当有用户向我发送关注请求时，发送电子邮件提醒我
+        mention: 当有用户在嘟文中提及我时，发送电子邮件提醒我
+        reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
     'no': 否
     required:
       mark: "*"

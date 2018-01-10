@@ -116,6 +116,7 @@ pl:
       roles:
         admin: Administrator
         moderator: Moderator
+        staff: Ekipa
         user: Użytkownik
       salmon_url: Adres Salmon
       search: Szukaj
@@ -160,6 +161,7 @@ pl:
         update_status: "%{name} zaktualizował wpis użytkownika %{target}"
       title: Dziennik działań administracyjnych
     custom_emojis:
+      by_domain: Domeny
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
       copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
@@ -264,12 +266,18 @@ pl:
       unresolved: Nierozwiązane
       view: Wyświetl
     settings:
+      activity_api_enabled:
+        desc_html: Liczy publikowane lokalnie wpisy, aktywnych użytkowników i nowe rejestracje w ciągu danego tygodnia
+        title: Publikuj zbiorowe statystyki o aktywności użytkowników
       bootstrap_timeline_accounts:
         desc_html: Oddzielaj nazwy użytkowników przecinkami. Działa tylko dla niezablokowanych kont w obrębie instancji. Jeżeli puste, zostaną użyte konta administratorów instancji.
         title: Domyślnie obserwowani użytkownicy
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
+      peers_api_enabled:
+        desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
+        title: Publikuj listę znanych instancji
       registrations:
         closed_message:
           desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji nie jest dostępna. Możesz korzystać z tagów HTML
@@ -277,6 +285,9 @@ pl:
         deletion:
           desc_html: Pozwól każdemu na usunięcie konta
           title: Możliwość usunięcia
+        min_invite_role:
+          disabled: Nikt
+          title: Kto może zapraszać użytkowników
         open:
           desc_html: Pozwól każdemu na założenie konta
           title: Otwarta rejestracja
@@ -341,7 +352,7 @@ pl:
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
     your_token: Twój token dostępu
   auth:
-    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">naszymi zasadami użytkowania</a> i <a href="%{terms_path}">polityką prywatności</a>.
+    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
     change_password: Bezpieczeństwo
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -458,6 +469,9 @@ pl:
     title: Zaproś użytkowników
   landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  lists:
+    errors:
+      limit: Przekroczyłeś maksymalną liczbę utworzonych list
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
@@ -466,6 +480,7 @@ pl:
     acct: nazwa@domena nowego konta
     currently_redirecting: 'Obecnie Twoje konto przekierowuje do:'
     proceed: Zapisz
+    updated_msg: Pomyślnie zaktualizowano ustawienia migracji Twojego konta!
   moderation:
     title: Moderacja
   notification_mailer:
@@ -594,11 +609,12 @@ pl:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
-      limit: Nie możesz przypiąć więcej wpisów
+      limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
     show_more: Pokaż więcej
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą
@@ -681,6 +697,8 @@ pl:
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

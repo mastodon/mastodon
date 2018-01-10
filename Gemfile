@@ -14,7 +14,7 @@ gem 'pg', '~> 0.20'
 gem 'pghero', '~> 1.7'
 gem 'dotenv-rails', '~> 2.2'
 
-gem 'fog-aws', '~> 1.4', require: false
+gem 'aws-sdk', '~> 2.10', require: false
 gem 'fog-core', '~> 1.45'
 gem 'fog-local', '~> 0.4', require: false
 gem 'fog-openstack', '~> 0.1', require: false
@@ -28,7 +28,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.5'
 gem 'iso-639'
 gem 'cld3', '~> 3.2.0'
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.3'
 gem 'devise-two-factor', '~> 3.0'
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'
@@ -49,7 +49,6 @@ gem 'oj', '~> 3.3'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.8'
 gem 'pundit', '~> 1.1'
-gem 'rabl', '~> 0.13'
 gem 'rack-attack', '~> 5.0'
 gem 'rack-cors', '~> 0.4', require: 'rack/cors'
 gem 'rack-timeout', '~> 0.4'
@@ -59,6 +58,7 @@ gem 'redis', '~> 3.3', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 0.10'
 gem 'ruby-oembed', '~> 0.12', require: 'oembed'
+gem 'ruby-progressbar', '~> 1.4'
 gem 'sanitize', '~> 4.4'
 gem 'sidekiq', '~> 5.0'
 gem 'sidekiq-scheduler', '~> 2.1'

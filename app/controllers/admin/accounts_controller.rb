@@ -89,7 +89,8 @@ module Admin
         :username,
         :display_name,
         :email,
-        :ip
+        :ip,
+        :staff
       )
     end
   end

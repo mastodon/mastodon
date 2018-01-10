@@ -400,6 +400,14 @@
         "id": "account.unblock_domain"
       },
       {
+        "defaultMessage": "Hide boosts from @{name}",
+        "id": "account.hide_reblogs"
+      },
+      {
+        "defaultMessage": "Show boosts from @{name}",
+        "id": "account.show_reblogs"
+      },
+      {
         "defaultMessage": "Information below may reflect the user's profile incompletely.",
         "id": "account.disclaimer_full"
       },
@@ -719,6 +727,10 @@
       {
         "defaultMessage": "locked",
         "id": "compose_form.lock_disclaimer.lock"
+      },
+      {
+        "defaultMessage": "This toot won't be listed under any hashtag as it is unlisted. Only public toots can be searched by hashtag.",
+        "id": "compose_form.hashtag_warning"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/warning_container.json"
@@ -865,6 +877,14 @@
       {
         "defaultMessage": "Pinned toots",
         "id": "navigation_bar.pins"
+      },
+      {
+        "defaultMessage": "Lists",
+        "id": "navigation_bar.lists"
+      },
+      {
+        "defaultMessage": "Keyboard shortcuts",
+        "id": "navigation_bar.keyboard_shortcuts"
       },
       {
         "defaultMessage": "FAQ",
@@ -1016,11 +1036,75 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "There is nothing in this list yet.",
+        "defaultMessage": "Remove from list",
+        "id": "lists.account.remove"
+      },
+      {
+        "defaultMessage": "Add to list",
+        "id": "lists.account.add"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_editor/components/account.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Search among people you follow",
+        "id": "lists.search"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/list_editor/components/search.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Are you sure you want to permanently delete this list?",
+        "id": "confirmations.delete_list.message"
+      },
+      {
+        "defaultMessage": "Delete",
+        "id": "confirmations.delete_list.confirm"
+      },
+      {
+        "defaultMessage": "Edit list",
+        "id": "lists.edit"
+      },
+      {
+        "defaultMessage": "Delete list",
+        "id": "lists.delete"
+      },
+      {
+        "defaultMessage": "There is nothing in this list yet. When members of this list post new statuses, they will appear here.",
         "id": "empty_column.list"
       }
     ],
     "path": "app/javascript/mastodon/features/list_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "New list title",
+        "id": "lists.new.title_placeholder"
+      },
+      {
+        "defaultMessage": "Add list",
+        "id": "lists.new.create"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/lists/components/new_list_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Lists",
+        "id": "column.lists"
+      },
+      {
+        "defaultMessage": "Your lists",
+        "id": "lists.subheading"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/lists/index.json"
   },
   {
     "descriptors": [
@@ -1182,6 +1266,22 @@
         "id": "status.favourite"
       },
       {
+        "defaultMessage": "Mute @{name}",
+        "id": "status.mute"
+      },
+      {
+        "defaultMessage": "Mute conversation",
+        "id": "status.mute_conversation"
+      },
+      {
+        "defaultMessage": "Unmute conversation",
+        "id": "status.unmute_conversation"
+      },
+      {
+        "defaultMessage": "Block @{name}",
+        "id": "status.block"
+      },
+      {
         "defaultMessage": "Report @{name}",
         "id": "status.report"
       },
@@ -1213,6 +1313,14 @@
       {
         "defaultMessage": "Are you sure you want to delete this status?",
         "id": "confirmations.delete.message"
+      },
+      {
+        "defaultMessage": "Block",
+        "id": "confirmations.block.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to block {name}?",
+        "id": "confirmations.block.message"
       }
     ],
     "path": "app/javascript/mastodon/features/status/index.json"

@@ -39,6 +39,7 @@ de:
     followers: Folgende
     following: Folgt
     media: Medien
+    moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
@@ -48,6 +49,7 @@ de:
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Admin
+      moderator: Moderator
     unfollow: Entfolgen
   admin:
     account_moderation_notes:
@@ -59,15 +61,21 @@ de:
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       are_you_sure: Bist du sicher?
+      by_domain: Domain
       confirm: Bestätigen
       confirmed: Bestätigt
+      demote: Degradieren
+      disable: Ausschalten
       disable_two_factor_authentication: 2FA abschalten
+      disabled: Ausgeschaltet
       display_name: Anzeigename
       domain: Domain
       edit: Bearbeiten
       email: E-Mail
+      enable: Freischalten
+      enabled: Freigegeben
       feed_url: Feed-URL
-      followers: Folgende
+      followers: Folger
       followers_url: Followers URL
       follows: Folgt
       inbox_url: Inbox URL
@@ -77,7 +85,9 @@ de:
         local: Lokal
         remote: Entfernt
         title: Ort
+      login_status: Loginstatus
       media_attachments: Medienanhänge
+      memorialize: In Gedenkmal verwandeln
       moderation:
         all: Alle
         silenced: Stummgeschaltet
@@ -94,6 +104,7 @@ de:
       outbox_url: Outbox URL
       perform_full_suspension: Vollständige Sperre durchführen
       profile_url: Profil-URL
+      promote: Befördern
       protocol: Protokoll
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
@@ -101,6 +112,11 @@ de:
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
+      role: Berechtigungen
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        user: Nutzer
       salmon_url: Salmon-URL
       search: Suche
       shared_inbox_url: Shared Inbox URL
@@ -117,6 +133,29 @@ de:
       unsubscribe: Abbestellen
       username: Profilname
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
+        create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
+        create_domain_block: "%{name} hat die Domain %{target} blockiert"
+        create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
+        demote_user: "%{name} stufte Benutzer %{target} herunter"
+        destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
+        destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
+        destroy_status: "%{name} hat Status von %{target} entfernt"
+        disable_custom_emoji: "%{name} hat Emoji %{target} deaktiviert"
+        enable_custom_emoji: "%{name} hat das %{target} Emoji aktiviert"
+        enable_user: "%{name} hat die Anmeldung für den Benutzer %{target} aktiviert"
+        memorialize_account: "%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt"
+        reset_password_user: "%{name} hat das Passwort für den Benutzer %{target} zurückgesetzt"
+        resolve_report: "%{name} hat die Meldung %{target} abgelehnt"
+        silence_account: "%{name} hat %{target}s Account stummgeschaltet"
+        suspend_account: "%{name} hat %{target}s Account gesperrt"
+        unsilence_account: "%{name} hat die Stummschaltung von %{target}s Account aufgehoben"
+        unsuspend_account: "%{name} hat die Sperrung von %{target}s Account aufgehoben"
+        update_custom_emoji: "%{name} hat das %{target} Emoji aktualisiert"
+        update_status: "%{name} hat den Status von %{target} aktualisiert"
+      title: Überprüfungsprotokoll
     custom_emojis:
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
@@ -135,6 +174,7 @@ de:
       shortcode: Shortcode
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
+      updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     domain_blocks:
       add_new: Neu hinzufügen
@@ -184,6 +224,13 @@ de:
       reset: Zurücksetzen
       search: Suchen
       title: Bekannte Instanzen
+    invites:
+      filter:
+        all: Alle
+        available: Verfügbar
+        expired: Ausgelaufen
+        title: Filter
+      title: Einladungen
     reports:
       action_taken_by: Maßnahme ergriffen durch
       are_you_sure: Bist du dir sicher?
@@ -222,6 +269,8 @@ de:
         deletion:
           desc_html: Allen erlauben, ihr Konto eigenmächtig zu löschen
           title: Kontolöschung erlauben
+        min_invite_role:
+          disabled: Niemand
         open:
           desc_html: Allen erlauben, ein Konto zu erstellen
           title: Registrierung öffnen
@@ -373,12 +422,31 @@ de:
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
+  invites:
+    delete: Deaktivieren
+    expires_in:
+      '1800': 30 Minuten
+      '21600': 6 Stunden
+      '3600': 1 Stunde
+      '43200': 12 Stunden
+      '86400': 1 Tag
+    expires_in_prompt: Nie
+    generate: Generieren
+    max_uses:
+      one: 1 mal verwendet
+      other: "%{count} mal verwendet"
+    max_uses_prompt: Kein Limit
   landing_strip_html: "<strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}. Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum hast."
   landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
       too_many: Es können nicht mehr als 4 Bilder angehängt werden
+  migrations:
+    acct: benutzername@domain des neuen Accounts
+    proceed: Speichern
+  moderation:
+    title: Moderation
   notification_mailer:
     digest:
       body: 'Hier ist eine kurze Zusammenfasung dessen, was du auf %{instance} seit deinem letzten Besuch am %{since} verpasst hast:'

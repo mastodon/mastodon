@@ -18,8 +18,12 @@ en:
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Confirmation instructions for %{instance}'
+      email_changed:
+        subject: 'Mastodon: Email changed'
       password_change:
         subject: 'Mastodon: Password changed'
+      reconfirmation_instructions:
+        subject: 'Mastodon: Confirm email for %{instance}'
       reset_password_instructions:
         subject: 'Mastodon: Reset password instructions'
       unlock_instructions:

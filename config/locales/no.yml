@@ -1,13 +1,23 @@
 ---
 'no':
   about:
+    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
     closed_registrations: Registreringer er for øyeblikket lukket på denne instansen.
     contact: Kontakt
+    contact_missing: Ikke innstilt
+    contact_unavailable: Ikke tilgjengelig
     description_headline: Hva er %{domain}?
     domain_count_after: andre instanser
     domain_count_before: Koblet til
+    extended_description_html: |
+      <h3>En god plassering for regler</h3>
+      <p>En utvidet beskrivelse er ikke satt opp ennå.</p>
+    features:
+      humane_approach_title: En mer menneskelig tilnærming
+      not_a_product_body: Mastodon er ikke et kommerst nettverk. Ingen reklame, ingen datainnsamling, ingen innhegnede hager. Det finnes ingen sentral myndighet.
+      not_a_product_title: Du er en person, ikke et produkt
     other_instances: Andre instanser
     source_code: Kildekode
     status_count_after: statuser
@@ -29,7 +39,7 @@
       are_you_sure: Er du sikker?
       confirm: Bekreft
       confirmed: Bekreftet
-      disable_two_factor_authentication: Disable 2FA
+      disable_two_factor_authentication: Skru av 2FA
       display_name: Visningsnavn
       domain: Domene
       edit: Redigér
@@ -81,12 +91,12 @@
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: "<strong>Målbind</strong> vil gjøre kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</storng> fjerner alt innhold, media og profildata fra kontoen."
+          desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
           silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
       reject_media: Avvis mediefiler
-      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger.
+      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       severities:
         silence: Målbind
         suspend: Utvis
@@ -136,7 +146,7 @@
         open:
           title: Åpen registrering
       site_description:
-        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg.<br> Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
+        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Nettstedsbeskrivelse
       site_description_extended:
         desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
@@ -168,7 +178,7 @@
     reset_password: Nullstill passord
     set_new_password: Sett nytt passord
   authorize_follow:
-    error: Uheldigvis så skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans.
+    error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
     follow: Følg
     title: Følg %{acct}
   datetime:
@@ -191,8 +201,8 @@
     '410': Siden du leter etter finnes ikke lenger.
     '422':
       content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
-      title: Sikkerhetsverifisering feilet.
-    '429': Throttled
+      title: Sikkerhetsverifisering feilet
+    '429': Overfyllt
   exports:
     blocks: Du blokkerer
     csv: CSV
@@ -208,7 +218,7 @@
     success:
       one: I ferd med å mykblokkere følgere fra ett domene...
       other: I ferd med å mykblokkere følgere fra %{count} domener...
-    true_privacy_html: Vennligst forstå at <strong>virkelig privatliv kun kan oppnås med ende-til-ende-kryptering.</strong>
+    true_privacy_html: Merk deg at <strong>virkelig privatliv kun kan oppnås med ende-til-ende-kryptering</strong>.
     unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser. %{lock_link} for å kunne se over og avvise følgere.
     unlocked_warning_title: Din konto er ikke låst
   generic:
@@ -220,7 +230,7 @@
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
     preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
-    success: Din data ble mottatt og vil bli behandlet så fort som mulig.
+    success: Dine data ble mottatt og vil bli behandlet så fort som mulig
     types:
       blocking: Blokkeringsliste
       following: Følgeliste
@@ -243,8 +253,8 @@
         one: "1 ny hendelse siden ditt siste besøk \U0001F418"
         other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
     favourite:
-      body: Din status ble likt av %{name}
-      subject: "%{name} likte din status."
+      body: 'Statusen din ble likt av %{name}:'
+      subject: "%{name} likte statusen din"
     follow:
       body: "%{name} følger deg!"
       subject: "%{name} følger deg"
@@ -382,11 +392,11 @@
     enable: Skru på
     enabled_success: Aktivering av tofaktorautentisering vellykket
     generate_recovery_codes: Generér gjenopprettingskoder
-    instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
+    instructions_html: "<strong>Scan denne QR-koden med Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging."
     lost_recovery_codes: Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto hvis du mister din telefon. Hvis du har mistet gjenopprettingskodene, kan du regenerere dem her. Dine gamle gjenopprettingskoder vil bli ugyldige.
     manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende kode manuelt:'
     recovery_codes_regenerated: Generering av gjenopprettingskoder vellykket
-    recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. Oppbevar gjenopprettingskodene sikkert, for eksempel ved å skrive dem ut og lagre dem sammen med andre viktige dokumenter.
+    recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
     setup: Sett opp
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   users:

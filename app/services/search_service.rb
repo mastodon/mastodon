@@ -10,7 +10,7 @@ class SearchService < BaseService
       if url_query?
         results.merge!(remote_resource_results) unless remote_resource.nil?
       elsif query.present?
-        results[:accounts] = AccountSearchService.new.call(query, limit, resolve, account)
+        results[:accounts] = AccountSearchService.new.call(query, limit, account, resolve: resolve)
         results[:hashtags] = Tag.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@')
       end
     end

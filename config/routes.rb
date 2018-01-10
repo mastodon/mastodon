@@ -242,7 +242,11 @@ Rails.application.routes.draw do
 
       resources :apps, only: [:create]
 
-      resource :instance,      only: [:show]
+      resource :instance, only: [:show] do
+        resources :peers, only: [:index], controller: 'instances/peers'
+        resource :activity, only: [:show], controller: 'instances/activity'
+      end
+
       resource :domain_blocks, only: [:show, :create, :destroy]
 
       resources :follow_requests, only: [:index] do
@@ -270,6 +274,7 @@ Rails.application.routes.draw do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'
+        resources :lists, only: :index, controller: 'accounts/lists'
 
         member do
           post :follow

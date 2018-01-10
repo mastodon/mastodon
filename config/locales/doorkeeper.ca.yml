@@ -3,8 +3,10 @@ ca:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nom
+        name: Nom de l'aplicació
         redirect_uri: URI per a redirecció
+        scopes: Àmbits
+        website: Lloc web de l'aplicació
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@ ca:
         redirect_uri: Utilitza una línia per URI
         scopes: Separa els àmbits amb espais. Deixa-ho en blanc per a utilitzar els àmbits per defecte.
       index:
-        callback_url: Callback URL
+        application: Aplicació
+        callback_url: URL de retorn
+        delete: Suprimeix
         name: Nom
         new: Aplicació nova
+        scopes: Àmbits
+        show: Mostra
         title: Les teves aplicacions
       new:
         title: Aplicació nova
@@ -67,6 +73,7 @@ ca:
         application: Aplicació
         created_at: Creat el
         date_format: "%A-%m-%d %H:%M:%S"
+        scopes: Àmbits
         title: Les teves aplicacions autoritzades
     errors:
       messages:
@@ -76,12 +83,12 @@ ca:
         invalid_grant: La concessió d'autorizació oferida és invàlida, ha vençut, s'ha revocat, no coincideix amb l'URI de redirecció utilizada en la petició d'autorizació, o fou emesa per a un altre client.
         invalid_redirect_uri: L'URI de redirecció inclòs no és vàlid.
         invalid_request: En la petició manca un paràmetre necessari o inclou un valor de paràmetre no suportat o te un altre tipus de format incorrecte.
-        invalid_resource_owner: Les credencials del propietari del recurso proporcionat no son vàlides, o el propietari del recurs no pot ser trobat.
+        invalid_resource_owner: Les credencials del propietari del recurs proporcionat no son vàlides, o el propietari del recurs no pot ser trobat
         invalid_scope: L'àmbit demanat és invàlid, desconegut o erroni.
         invalid_token:
-          expired: L'identificador d'accés ha caducat.
-          revoked: L'identificador d'accés fou revocat.
-          unknown: L'identificador d'accés és invàlid.
+          expired: L'identificador d'accés ha caducat
+          revoked: L'identificador d'accés fou revocat
+          unknown: L'identificador d'accés és invàlid
         resource_owner_authenticator_not_configured: El propietari del recurs ha fallat perquè Doorkeeper.configure.resource_owner_authenticator està sense configurar.
         server_error: El servidor de l'autorizació ha trobat unca condició inesperada que ha impedit complir la sol·licitud.
         temporarily_unavailable: El servidor de l'autorizació és actualment incapaç de gestionar la petició degut a una sobrecàrrega temporal o una tasca de manteniment del servidor.

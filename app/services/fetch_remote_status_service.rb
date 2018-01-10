@@ -40,6 +40,6 @@ class FetchRemoteStatusService < BaseService
   end
 
   def confirmed_domain?(domain, account)
-    account.domain.nil? || domain.casecmp(account.domain).zero? || domain.casecmp(Addressable::URI.parse(account.remote_url || account.uri).normalized_host).zero?
+    account.domain.nil? || domain.casecmp(account.domain).zero? || domain.casecmp(Addressable::URI.parse(account.remote_url.presence || account.uri).normalized_host).zero?
   end
 end
