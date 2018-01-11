@@ -80,7 +80,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     if (myAccount.get('locked')) {
       let update = () => {
         return api(getState).get('/api/v1/follow_requests').then(res => res.data.length);
-      }
+      };
       let badge = <Badge update={update} />;
       navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' badge={badge} />);
     }

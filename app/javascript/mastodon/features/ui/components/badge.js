@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 export default class Badge extends React.Component {
+
   static propTypes = {
     text: PropTypes.string,
     update: PropTypes.func,
@@ -39,4 +39,5 @@ export default class Badge extends React.Component {
       </span>
     );
   }
+
 };
