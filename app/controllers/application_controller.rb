@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   private
 
   def https_enabled?
-    Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'
+    Rails.env.production?
   end
 
   def store_current_location
@@ -124,15 +124,15 @@ class ApplicationController < ActionController::Base
 
   def render_cached_json(cache_key, **options)
     options[:expires_in] ||= 3.minutes
-    options[:public]     ||= true
     cache_key              = cache_key.join(':') if cache_key.is_a?(Enumerable)
+    cache_public           = options.key?(:public) ? options.delete(:public) : true
     content_type           = options.delete(:content_type) || 'application/json'
 
     data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
       yield.to_json
     end
 
-    expires_in options[:expires_in], public: options[:public]
+    expires_in options[:expires_in], public: cache_public
     render json: data, content_type: content_type
   end
 
