@@ -2044,6 +2044,19 @@
   border-color: $ui-highlight-color;
 }
 
+.badge {
+  background: $ui-highlight-color;
+  color: $primary-text-color;
+  display: inline-block;
+  min-width: 10px;
+  padding: 4px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 10px;
+  line-height: 1;
+  font-size: .7em;
+}
+
 .column-link {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
