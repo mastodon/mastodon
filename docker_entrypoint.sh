@@ -11,4 +11,4 @@ echo "Updating permissions..."
 find /mastodon -path /mastodon/public/system -prune -o -not -user mastodon -not -group mastodon -print0 | xargs -0 chown -f mastodon:mastodon
 
 echo "Executing process..."
-exec su-exec mastodon:mastodon /sbin/tini -- "$@"
+LD_PRELOAD=/lib/stack-fix.so exec su-exec mastodon:mastodon /sbin/tini -- "$@"
