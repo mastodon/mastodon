@@ -48,8 +48,8 @@ ko:
     remote_follow: 리모트 팔로우
     reserved_username: 이 아이디는 예약되어 있습니다.
     roles:
-      admin: Admin
-      moderator: 모드
+      admin: 관리자
+      moderator: 모더레이터
     unfollow: 팔로우 해제
   admin:
     account_moderation_notes:
@@ -105,7 +105,7 @@ ko:
       perform_full_suspension: 완전히 정지시키기
       profile_url: 프로필 URL
       promote: 모더레이터로 승급
-      protocol: Protocol
+      protocol: 프로토콜
       public: 전체 공개
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 아바타 업데이트
@@ -133,7 +133,7 @@ ko:
       undo_suspension: 정지 해제
       unsubscribe: 구독 해제
       username: 아이디
-      web: Web
+      web: 웹
     action_logs:
       actions:
         confirm_user: "%{name}이 %{target}의 이메일 주소를 컨펌했습니다"
@@ -547,38 +547,38 @@ ko:
     activity: 마지막 활동
     browser: 브라우저
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      firefox: Firefox
+      alipay: 알리페이
+      blackberry: 블랙베리
+      chrome: 크롬
+      edge: 엣지
+      firefox: 파이어폭스
       generic: 알 수 없는 브라우저
-      ie: Internet Explorer
+      ie: IE
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
+      nokia: 노키아 S40 Ovi 브라우저
+      opera: 오페라
       phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
+      qq: QQ 브라우저
+      safari: 사파리
       uc_browser: UCBrowser
-      weibo: Weibo
+      weibo: 웨이보
     current_session: 현재 세션
-    description: "%{browser} on %{platform}"
+    description: "%{platform}의 %{browser}"
     explanation: 내 Mastodon 계정에 현재 로그인 중인 웹 브라우저 목록입니다.
     ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
+      adobe_air: 어도비 에어
+      android: 안드로이드
+      blackberry: 블랙베리
+      chrome_os: 크롬OS
+      firefox_os: 파이어폭스OS
       ios: iOS
-      linux: Linux
-      mac: Mac
+      linux: 리눅스
+      mac: 맥
       other: 알 수 없는 플랫폼
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
+      windows: 윈도우즈
+      windows_mobile: 윈도우즈 모바일
+      windows_phone: 윈도우즈 폰
     revoke: 삭제
     revoke_success: 세션이 삭제되었습니다.
     title: 세션
