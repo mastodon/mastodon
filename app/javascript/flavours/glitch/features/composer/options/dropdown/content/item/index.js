@@ -104,7 +104,10 @@ export default class ComposerOptionsDropdownContentItem extends React.PureCompon
             <strong>{text}</strong>
             {meta}
           </div>
-        ) : <div className='content'>{text}</div>}
+        ) :
+          <div className='content'>
+            <strong>{text}</strong>
+          </div>}
       </div>
     );
   }
