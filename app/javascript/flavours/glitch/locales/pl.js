@@ -34,6 +34,8 @@ const messages = {
   'status.collapse': 'Zwiń',
   'status.uncollapse': 'Rozwiń',
 
+  'media_gallery.sensitive': 'Zawartość wrażliwa',
+
   'favourite_modal.combo': 'Możesz nacisnąć {combo}, aby pominąć to następnym razem',
 
   'home.column_settings.show_direct': 'Pokaż wiadomości bezpośrednie',
@@ -52,9 +54,13 @@ const messages = {
   'compose.attach.doodle': 'Narysuj coś',
   'compose.attach': 'Załącz coś',
 
-  'advanced-options.local-only.short': 'Tylko lokalnie',
-  'advanced-options.local-only.long': 'Nie wysyłaj na inne instancje',
+  'advanced_options.local-only.short': 'Tylko lokalnie',
+  'advanced_options.local-only.long': 'Nie wysyłaj na inne instancje',
+  'advanced_options.local-only.tooltip': 'Ten wpis jest widoczny tylko lokalnie',
   'advanced_options.icon_title': 'Ustawienia zaawansowane',
+  'advanced_options.threaded_mode.short': 'Tryb wątków',
+  'advanced_options.threaded_mode.long': 'Przechodzi do tworzenia odpowiedzi po publikacji wpisu',
+  'advanced_options.threaded_mode.tooltip': 'Włączono tryb wątków',
 };
 
 export default Object.assign({}, inherited, messages);
