@@ -154,65 +154,77 @@
   position: absolute;
 }
 
-.status__video-player {
-  display: flex;
-  align-items: center;
-  background: $base-shadow-color;
-  box-sizing: border-box;
-  cursor: default; /* May not be needed */
-  margin-top: 8px;
-  overflow: hidden;
+.media-modal {
+  max-width: 80vw;
+  max-height: 80vh;
   position: relative;
 
-  @include fullwidth-gallery;
-}
+  .extended-video-player,
+  img,
+  canvas,
+  video {
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    margin: auto;
+  }
 
-.status__video-player-video {
-  height: 100%;
-  object-fit: cover;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  z-index: 1;
+  .extended-video-player,
+  video {
+    display: flex;
+    width: 80vw;
+    height: 80vh;
+  }
 
-  &:not(.letterbox) {
-    height: 100%;
-    object-fit: cover;
+  img,
+  canvas {
+    display: block;
+    background: url('~images/void.png') repeat;
+    object-fit: contain;
+  }
+
+  .react-swipeable-view-container {
+    max-width: 80vw;
   }
 }
 
-.status__video-player-expand,
-.status__video-player-mute {
-  color: $primary-text-color;
-  opacity: 0.8;
+.media-modal__content {
+  background: $base-overlay-background;
+}
+
+.media-modal__pagination {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: -40px;
+}
+
+.media-modal__page-dot {
+  display: inline-block;
+}
+
+.media-modal__button {
+  background-color: $white;
+  height: 12px;
+  width: 12px;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 0;
+  border: 0;
+  font-size: 0;
+}
+
+.media-modal__button--active {
+  background-color: $ui-highlight-color;
+}
+
+.media-modal__close {
   position: absolute;
   right: 4px;
-  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
-}
-
-.status__video-player-spoiler {
-  display: none;
-  color: $primary-text-color;
-  left: 4px;
-  position: absolute;
-  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
   top: 4px;
   z-index: 100;
-
-  &.status__video-player-spoiler--visible {
-    display: block;
-  }
-}
-
-.status__video-player-expand {
-  bottom: 4px;
-  z-index: 100;
-}
-
-.status__video-player-mute {
-  top: 4px;
-  z-index: 5;
 }
 
 .video-player {
