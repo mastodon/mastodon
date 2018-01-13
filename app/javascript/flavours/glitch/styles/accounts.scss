@@ -68,7 +68,7 @@
     font-weight: 500;
     position: relative;
     z-index: 2;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
 
@@ -83,16 +83,20 @@
   }
 
   .avatar {
-    @include avatar-size(120px);
+    width: 120px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
+    @include avatar-size(120px);
 
     img {
+      width: 120px;
+      height: 120px;
+      display: block;
+      border-radius: 120px;
+      box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
       @include avatar-radius();
       @include avatar-size(120px);
-      display: block;
-      box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
     }
   }
 
@@ -123,7 +127,7 @@
   }
 
   .roles {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     padding: 0 15px;
   }
 
@@ -203,51 +207,8 @@
     font-size: 14px;
     line-height: 18px;
     padding: 0 15px;
+    text-align: center;
     color: $ui-secondary-color;
-  }
-
-  .metadata {
-    $meta-table-border: darken($classic-highlight-color, 20%);//#174f77;
-
-    border-collapse: collapse;
-    padding: 0;
-    margin: 15px -15px -10px -15px;
-    border: 0 none;
-    border-top: 1px solid $meta-table-border;
-    border-bottom: 1px solid $meta-table-border;
-
-    td, th {
-      padding: 10px;
-      border: 0 none;
-      border-bottom: 1px solid $meta-table-border;
-      vertical-align: middle;
-    }
-
-    tr:last-child {
-      td, th {
-        border-bottom: 0 none;
-      }
-    }
-
-    td {
-      color: $ui-primary-color;
-      width:100%; // makes it stretch
-      padding-left: 0;
-    }
-
-    th {
-      padding-left: 15px;
-      font-weight: bold;
-      text-align: left;
-      width: 94px;
-      color: $ui-secondary-color;
-      background: darken($ui-base-color, 8%);
-      //background: #131415;
-    }
-
-    a {
-      color: $classic-highlight-color;
-    }
   }
 
   @media screen and (max-width: 480px) {
@@ -260,7 +221,7 @@
     .name,
     .roles {
       text-align: center;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
     }
 
     .bio {
@@ -407,14 +368,19 @@
     }
 
     .avatar {
+      width: 80px;
+      height: 80px;
       @include avatar-size(80px);
 
       img {
         display: block;
-        @include avatar-radius();
-        @include avatar-size(80px);
+        width: 80px;
+        height: 80px;
+        border-radius: 80px;
         border: 2px solid $simple-background-color;
         background: $simple-background-color;
+        @include avatar-radius();
+        @include avatar-size(80px);
       }
     }
 
@@ -492,14 +458,17 @@
     }
 
     & > div {
-      @include avatar-size(48px);
       float: left;
       margin-right: 10px;
+      width: 48px;
+      height: 48px;
+      @include avatar-size(48px);
     }
 
     .avatar {
-      @include avatar-radius();
       display: block;
+      border-radius: 4px;
+      @include avatar-radius();
     }
 
     .display-name {
@@ -513,6 +482,12 @@
       strong {
         font-weight: 500;
         color: $ui-base-color;
+
+        @each $lang in $cjk-langs {
+          &:lang(#{$lang}) {
+            font-weight: 700;
+          }
+        }
       }
 
       span {
@@ -587,3 +562,5 @@
     border-color: rgba(lighten($error-red, 12%), 0.5);
   }
 }
+
+@import 'metadata';

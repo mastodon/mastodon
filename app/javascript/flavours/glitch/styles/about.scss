@@ -19,7 +19,7 @@
     display: inline;
     margin: 0;
     padding: 0;
-    font-weight: 500;
+    font-weight: 700;
     background: transparent;
     font-family: inherit;
     font-size: inherit;
@@ -424,14 +424,19 @@
       text-align: center;
 
       .avatar {
-        @include avatar-size(80px);
+        width: 80px;
+        height: 80px;
         margin: 0 auto;
         margin-bottom: 15px;
+        @include avatar-size(80px);
 
         img {
+          display: block;
+          width: 80px;
+          height: 80px;
+          border-radius: 48px;
           @include avatar-radius();
           @include avatar-size(80px);
-          display: block;
         }
       }
 
