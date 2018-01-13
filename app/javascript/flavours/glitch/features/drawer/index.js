@@ -94,9 +94,12 @@ class Drawer extends React.Component {
           submitted={submitted}
           value={searchValue}
         />
-        <div {...drawerAttrs}>
+        <div className='contents'>
           <DrawerAccount account={account} />
-          <Composer />
+          <div className='drawer__inner'>
+            <Composer />
+            {multiColumn && <div className="mastodon mbstobon-bg-1" />}
+          </div>
           <DrawerResults
             results={results}
             visible={submitted && !searchHidden}

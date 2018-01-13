@@ -50,9 +50,27 @@
     contain: strict;
   }
 
-  @for $i from 1 through 3 {
-    .mbstobon-bg-#{$i} {
-      background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
+  .drawer__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+
+    .mastodon {
+      flex: 1;
+
+      @for $i from 1 through 3 {
+        &.mbstobon-bg-#{$i} {
+          background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
+        }
+      }
     }
   }
 }
