@@ -392,6 +392,7 @@
 }
 
 .boost-modal,
+.favourite-modal,
 .confirmation-modal,
 .report-modal,
 .actions-modal,
@@ -406,9 +407,7 @@
   flex-direction: column;
 
   .status__display-name {
-    display: block;
-    max-width: 100%;
-    padding-right: 25px;
+    display: flex;
   }
 
   .status__avatar {
@@ -433,7 +432,8 @@
   }
 }
 
-.boost-modal__container {
+.boost-modal__container,
+.favourite-modal__container {
   overflow-x: scroll;
   padding: 10px;
 
@@ -444,6 +444,7 @@
 }
 
 .boost-modal__action-bar,
+.favourite-modal__action-bar,
 .confirmation-modal__action-bar,
 .mute-modal__action-bar,
 .report-modal__action-bar {
@@ -465,11 +466,13 @@
   }
 }
 
-.boost-modal__status-header {
+.boost-modal__status-header,
+.favourite-modal__status-header {
   font-size: 15px;
 }
 
-.boost-modal__status-time {
+.boost-modal__status-time,
+.favourite-modal__status-time {
   float: right;
   font-size: 14px;
 }
@@ -512,6 +515,11 @@
   .status {
     overflow-y: auto;
     max-height: 300px;
+  }
+
+  strong {
+    display: block;
+    font-weight: 500;
   }
 
   max-height: 80vh;

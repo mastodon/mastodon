@@ -304,10 +304,63 @@
 
 .display-name {
   display: block;
+  padding: 6px 0;
   max-width: 100%;
+  height: 36px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  strong {
+    display: block;
+    height: 18px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  span {
+    display: block;
+    height: 18px;
+    font-size: 15px;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    strong {
+      text-decoration: underline;
+    }
+  }
+
+  &.inline {
+    padding: 0;
+    height: 18px;
+    font-size: 15px;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    strong {
+      display: inline;
+      height: auto;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    span {
+      display: inline;
+      height: auto;
+      font-size: inherit;
+      line-height: inherit;
+    }
+  }
 }
 
 .display-name__html {
@@ -1127,6 +1180,25 @@
   }
 }
 
+.column {
+  width: 330px;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .wide & {
+    flex: auto;
+    min-width: 330px;
+    max-width: 400px;
+  }
+
+  > .scrollable {
+    background: $ui-base-color;
+  }
+}
+
 .column-header__buttons {
   height: 48px;
   display: flex;
@@ -1159,6 +1231,88 @@
       background: lighten($ui-base-color, 8%);
     }
   }
+
+  // glitch - added focus ring for keyboard navigation
+  &:focus {
+    text-shadow: 0 0 4px darken($ui-highlight-color, 5%);
+  }
+}
+
+.scrollable > div > :first-child .notification__dismiss-overlay > .wrappy {
+  border-top: 1px solid $ui-base-color;
+}
+
+.notification__dismiss-overlay {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: -1px;
+  padding-left: 15px; // space for the box shadow to be visible
+
+  z-index: 999;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+
+  display: flex;
+
+  .wrappy {
+    width: $dismiss-overlay-width;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: lighten($ui-base-color, 8%);
+    border-left: 1px solid lighten($ui-base-color, 20%);
+    box-shadow: 0 0 5px black;
+    border-bottom: 1px solid $ui-base-color;
+  }
+
+  .ckbox {
+    border: 2px solid $ui-primary-color;
+    border-radius: 2px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: $ui-primary-color;
+    text-shadow: 0 0 5px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:focus {
+    outline: 0 !important;
+
+    .ckbox {
+      box-shadow: 0 0 1px 1px $ui-highlight-color;
+    }
+  }
+}
+
+.column-header__notif-cleaning-buttons {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+
+  button {
+    @extend .column-header__button;
+    background: transparent;
+    text-align: center;
+    padding: 10px 0;
+    white-space: pre-wrap;
+  }
+
+  b {
+    font-weight: bold;
+  }
+}
+
+// The notifs drawer with no padding to have more space for the buttons
+.column-header__collapsible-inner.nopad-drawer {
+  padding: 0;
 }
 
 .column-header__collapsible {
@@ -1184,6 +1338,15 @@
     border: 0;
     border-top: 1px solid lighten($ui-base-color, 12%);
     margin: 10px 0;
+  }
+
+  // notif cleaning drawer
+  &.ncd {
+    transition: none;
+    &.collapsed {
+      max-height: 0;
+      opacity: 0.7;
+    }
   }
 }
 
@@ -1772,4 +1935,3 @@ noscript {
 @import 'list';
 @import 'emoji_picker';
 @import 'local_settings';
-@import 'glitch';
