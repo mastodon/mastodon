@@ -314,4 +314,5 @@ export default class Video extends React.PureComponent {
       </div>
     );
   }
+
 }
