@@ -83,4 +83,28 @@ describe UserMailer, type: :mailer do
     include_examples 'localized subject',
                      'devise.mailer.email_changed.subject'
   end
+
+  describe 'recovery_codes_regenerated' do
+    let(:mail) { UserMailer.recovery_codes_regenerated(receiver) }
+
+    it 'renders recovery code notification' do
+      receiver.update!(locale: nil)
+      expect(mail.body.encoded).to include receiver.email
+    end
+
+    include_examples 'localized subject',
+                     'devise.mailer.recovery_codes_regenerated.subject'
+  end
+
+  describe 'two_factor_disabled' do
+    let(:mail) { UserMailer.two_factor_disabled(receiver) }
+
+    it 'renders two-factor disabled notification' do
+      receiver.update!(locale: nil)
+      expect(mail.body.encoded).to include receiver.email
+    end
+
+    include_examples 'localized subject',
+                     'devise.mailer.two_factor_disabled.subject'
+  end
 end

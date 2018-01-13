@@ -3,5 +3,5 @@
 class Form::RecoveryCodeConfirmation
   include ActiveModel::Model
 
-  attr_accessor :password
+  attr_accessor :password, :code
 end

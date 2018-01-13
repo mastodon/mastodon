@@ -10,6 +10,7 @@
   %hr/
 
   = simple_form_for @confirmation, url: settings_two_factor_authentication_path, method: :delete do |f|
+    = f.input :password, hint: t('two_factor_authentication.confirm_password'), placeholder: t('simple_form.labels.defaults.password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
     = f.input :code, hint: t('two_factor_authentication.code_hint'), placeholder: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }
 
     .actions
@@ -22,8 +23,8 @@
     = t('two_factor_authentication.lost_recovery_codes')
 
   = simple_form_for @recovery_confirmation, url: settings_two_factor_authentication_recovery_codes_path, method: :post do |f|
-
     = f.input :password, hint: t('two_factor_authentication.confirm_password'), placeholder: t('simple_form.labels.defaults.password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
+    = f.input :code, hint: t('two_factor_authentication.code_hint'), placeholder: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }
 
     .actions
       = f.button :button, t('two_factor_authentication.generate_recovery_codes'), type: :submit

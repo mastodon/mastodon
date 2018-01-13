@@ -84,28 +84,63 @@ describe Settings::TwoFactorAuthenticationsController do
         sign_in user, scope: :user
       end
 
-      it 'turns off otp requirement with correct code' do
+      it 'turns off otp requirement with correct password and code' do
+        expect_any_instance_of(User).to receive(:valid_password?) do |value, arg|
+          expect(value).to eq user
+          expect(arg).to eq '123456789'
+          true
+        end
+
         expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, arg|
           expect(value).to eq user
           expect(arg).to eq '123456'
           true
         end
 
-        post :destroy, params: { form_two_factor_confirmation: { code: '123456' } }
+        expect_any_instance_of(UserMailer).to receive(:two_factor_disabled) do |_, arg|
+          expect(arg).to eq user
+        end
+
+        post :destroy, params: { form_two_factor_confirmation: { password: '123456789', code: '123456' } }
 
         expect(response).to redirect_to(settings_two_factor_authentication_path)
         user.reload
         expect(user.otp_required_for_login).to eq(false)
       end
 
+      it 'does not turn off otp if password is incorrect' do
+        expect_any_instance_of(User).to receive(:valid_password?) do |value, arg|
+          expect(value).to eq user
+          expect(arg).to eq 'hunter2'
+          false
+        end
+
+        expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, arg|
+          expect(value).to eq user
+          expect(arg).to eq '123456'
+          true
+        end
+
+        post :destroy, params: { form_two_factor_confirmation: { password: 'hunter2', code: '123456' } }
+
+        user.reload
+        expect(user.otp_required_for_login).to eq(true)
+      end
+
       it 'does not turn off otp if code is incorrect' do
+        expect_any_instance_of(User).to receive(:valid_password?) do |value, arg|
+          expect(value).to eq user
+          expect(arg).to eq '123456789'
+          true
+        end
+
         expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, arg|
           expect(value).to eq user
           expect(arg).to eq '057772'
           false
         end
 
-        post :destroy, params: { form_two_factor_confirmation: { code: '057772' } }
+        post :destroy, params: { form_two_factor_confirmation: { password: '123456789', code: '057772' } }
 
         user.reload
         expect(user.otp_required_for_login).to eq(true)

@@ -3,5 +3,5 @@
 class Form::TwoFactorConfirmation
   include ActiveModel::Model
 
-  attr_accessor :code
+  attr_accessor :password, :code
 end

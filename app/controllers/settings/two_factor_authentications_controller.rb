@@ -19,12 +19,14 @@ module Settings
     end
 
     def destroy
-      if acceptable_code?
+      valid_password = current_user.valid_password?(confirmation_params[:password])
+      if acceptable_code? && valid_password
         current_user.otp_required_for_login = false
         current_user.save!
+        UserMailer.two_factor_disabled(current_user).deliver_later
         redirect_to settings_two_factor_authentication_path
       else
-        flash.now[:alert] = I18n.t('two_factor_authentication.wrong_code')
+        flash.now[:alert] = I18n.t(valid_password ? 'two_factor_authentication.wrong_code' : 'two_factor_authentication.bad_password_msg')
         @confirmation = Form::TwoFactorConfirmation.new
         @recovery_confirmation = Form::RecoveryCodeConfirmation.new
         render :show
@@ -34,7 +36,7 @@ module Settings
     private
 
     def confirmation_params
-      params.require(:form_two_factor_confirmation).permit(:code)
+      params.require(:form_two_factor_confirmation).permit(:password, :code)
     end
 
     def verify_otp_required
