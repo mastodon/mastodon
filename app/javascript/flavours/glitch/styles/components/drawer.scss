@@ -256,3 +256,52 @@
     }
   }
 }
+
+.drawer__pager {
+  box-sizing: border-box;
+  padding: 0;
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.drawer__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: lighten($ui-base-color, 13%) url('~images/wave-drawer.png') no-repeat bottom / 100% auto;
+  box-sizing: border-box;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+
+  &.darker {
+    background: $ui-base-color;
+  }
+
+  > .mastodon {
+    background: url('~images/mastodon-ui.png') no-repeat left bottom / contain;
+    flex: 1;
+  }
+}
+
+.pseudo-drawer {
+  background: lighten($ui-base-color, 13%);
+  font-size: 13px;
+  text-align: left;
+}
+
+.drawer__backdrop {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($base-overlay-background, 0.5);
+}
