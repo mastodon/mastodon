@@ -2,7 +2,9 @@
 
 class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
+
   helper :instance
+  helper :mailer
 
   protected
 
