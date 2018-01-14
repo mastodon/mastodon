@@ -38,11 +38,6 @@ PageOne.propTypes = {
   domain: PropTypes.string.isRequired,
 };
 
-const composerState = {
-  showSearch: true,
-  text: 'Awoo! #introductions',
-};
-
 const PageTwo = ({ intl, myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
@@ -50,7 +45,9 @@ const PageTwo = ({ intl, myAccount }) => (
         <DrawerAccount account={myAccount} />
         <RawComposer
           intl={intl}
-          state={composerState}
+          privacy='public'
+          showSearch
+          text='Awoo! #introductions'
         />
       </div>
     </div>

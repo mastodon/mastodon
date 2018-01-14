@@ -350,10 +350,10 @@ class Composer extends React.Component {
           acceptContentTypes={acceptContentTypes}
           advancedOptions={advancedOptions}
           disabled={isSubmitting}
-          full={media.size >= 4 || media.some(
+          full={media ? media.size >= 4 || media.some(
             item => item.get('type') === 'video'
-          )}
-          hasMedia={!!media.size}
+          ) : false}
+          hasMedia={media && !!media.size}
           intl={intl}
           onChangeAdvancedOption={onChangeAdvancedOption}
           onChangeSensitivity={onChangeSensitivity}
@@ -369,7 +369,7 @@ class Composer extends React.Component {
           spoiler={spoiler}
         />
         <ComposerPublisher
-          countText={`${spoilerText}${countableText(text)}${advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`}
+          countText={`${spoilerText}${countableText(text)}${advancedOptions && advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`}
           disabled={isSubmitting || isUploading || !!text.length && !text.trim().length}
           intl={intl}
           onSecondarySubmit={handleSecondarySubmit}

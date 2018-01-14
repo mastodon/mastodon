@@ -292,31 +292,29 @@ export default class ComposerOptions extends React.PureComponent {
           onClick={onToggleSpoiler}
           title={intl.formatMessage(messages.spoiler)}
         />
-        {advancedOptions ? (
-          <Dropdown
-            active={advancedOptions.some(value => !!value)}
-            disabled={disabled}
-            icon='ellipsis-h'
-            items={[
-              {
-                meta: <FormattedMessage {...messages.local_only_long} />,
-                name: 'do_not_federate',
-                on: advancedOptions.get('do_not_federate'),
-                text: <FormattedMessage {...messages.local_only_short} />,
-              },
-              {
-                meta: <FormattedMessage {...messages.threaded_mode_long} />,
-                name: 'threaded_mode',
-                on: advancedOptions.get('threaded_mode'),
-                text: <FormattedMessage {...messages.threaded_mode_short} />,
-              },
-            ]}
-            onChange={onChangeAdvancedOption}
-            onModalClose={onModalClose}
-            onModalOpen={onModalOpen}
-            title={intl.formatMessage(messages.advanced_options_icon_title)}
-          />
-        ) : null}
+        <Dropdown
+          active={advancedOptions && advancedOptions.some(value => !!value)}
+          disabled={disabled}
+          icon='ellipsis-h'
+          items={advancedOptions ? [
+            {
+              meta: <FormattedMessage {...messages.local_only_long} />,
+              name: 'do_not_federate',
+              on: advancedOptions.get('do_not_federate'),
+              text: <FormattedMessage {...messages.local_only_short} />,
+            },
+            {
+              meta: <FormattedMessage {...messages.threaded_mode_long} />,
+              name: 'threaded_mode',
+              on: advancedOptions.get('threaded_mode'),
+              text: <FormattedMessage {...messages.threaded_mode_short} />,
+            },
+          ] : null}
+          onChange={onChangeAdvancedOption}
+          onModalClose={onModalClose}
+          onModalOpen={onModalOpen}
+          title={intl.formatMessage(messages.advanced_options_icon_title)}
+        />
       </div>
     );
   }

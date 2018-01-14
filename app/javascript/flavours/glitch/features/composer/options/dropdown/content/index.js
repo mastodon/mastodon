@@ -96,7 +96,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
               transform: `scale(${scaleX}, ${scaleY})`,
             }}
           >
-            {items.map(
+            {items ? items.map(
               ({
                 name,
                 ...rest
@@ -110,7 +110,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
                   options={rest}
                 />
               )
-            )}
+            ) : null}
           </div>
         )}
       </Motion>
@@ -127,7 +127,7 @@ ComposerOptionsDropdownContent.propTypes = {
     name: PropTypes.string.isRequired,
     on: PropTypes.bool,
     text: PropTypes.node,
-  })).isRequired,
+  })),
   onChange: PropTypes.func,
   onClose: PropTypes.func,
   style: PropTypes.object,
