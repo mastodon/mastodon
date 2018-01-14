@@ -52,6 +52,7 @@
 
   .drawer__inner {
     position: absolute;
+    background: lighten($ui-base-color, 13%) url('~flavours/glitch/images/wave-drawer.png') no-repeat bottom / 100% auto;
     top: 0;
     left: 0;
     box-sizing: border-box;
@@ -69,6 +70,7 @@
       @for $i from 0 through 2 {
         &.mbstobon-#{$i} {
           background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
+          filter: saturate(80%) contrast(50%) brightness(50%);
         }
       }
     }
