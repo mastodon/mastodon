@@ -49,6 +49,44 @@
     overflow-y: auto;
     contain: strict;
   }
+
+  .drawer--inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+
+    .mastodon {
+      flex: 1;
+      border: none;
+      cursor: inherit;
+    }
+  }
+
+  @for $i from 0 through 3 {
+    .drawer--inner.mbstobon-#{$i} {
+      @if $i == 3 {
+        background: lighten($ui-base-color, 13%) url('~flavours/glitch/images/wave-drawer.png') no-repeat bottom / 100% auto;
+      } @else {
+        background: lighten($ui-base-color, 13%) url('~flavours/glitch/images/wave-drawer-glitched.png') no-repeat bottom / 100% auto;
+      }
+
+      .mastodon {
+        background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
+
+        @if $i != 3 {
+          filter: contrast(50%) brightness(50%);
+        }
+      }
+    }
+  }
 }
 
 .drawer--header {
