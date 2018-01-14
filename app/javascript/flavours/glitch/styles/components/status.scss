@@ -237,41 +237,41 @@
         }
       }
     }
+  }
 
-    &.collapsed {
-      background-position: center;
-      background-size: cover;
-      user-select: none;
-  
-      &.has-background::before {
-        display: block;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background-image: linear-gradient(to bottom, rgba($base-shadow-color, .75), rgba($base-shadow-color, .65) 24px, rgba($base-shadow-color, .8));
-        content: "";
-      }
-  
-      .display-name:hover .display-name__html {
+  &.collapsed {
+    background-position: center;
+    background-size: cover;
+    user-select: none;
+
+    &.has-background::before {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-image: linear-gradient(to bottom, rgba($base-shadow-color, .75), rgba($base-shadow-color, .65) 24px, rgba($base-shadow-color, .8));
+      content: "";
+    }
+
+    .display-name:hover .display-name__html {
+      text-decoration: none;
+    }
+
+    .status__content {
+      height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      a:hover {
         text-decoration: none;
       }
-  
-      .status__content {
-        height: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-  
-        a:hover {
-          text-decoration: none;
-        }
-      }
     }
+  }
 
-    .notification__message {
-      margin: -10px -10px 10px;
-    }
+  .notification__message {
+    margin: -10px -10px 10px;
   }
 }
 
