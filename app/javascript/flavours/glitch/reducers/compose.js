@@ -2,6 +2,7 @@ import {
   COMPOSE_MOUNT,
   COMPOSE_UNMOUNT,
   COMPOSE_CHANGE,
+  COMPOSE_CYCLE_ELEFRIEND,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
   COMPOSE_MENTION,
@@ -35,6 +36,8 @@ import uuid from 'flavours/glitch/util/uuid';
 import { me } from 'flavours/glitch/util/initial_state';
 import { overwrite } from 'flavours/glitch/util/js_helpers';
 
+const totalElefriends = 3;
+
 const initialState = ImmutableMap({
   mounted: false,
   advanced_options: ImmutableMap({
@@ -42,6 +45,7 @@ const initialState = ImmutableMap({
     threaded_mode: false,
   }),
   sensitive: false,
+  elefriend: Math.floor(Math.random() * totalElefriends),
   spoiler: false,
   spoiler_text: '',
   privacy: null,
@@ -259,6 +263,9 @@ export default function compose(state = initialState, action) {
     return state
       .set('text', action.text)
       .set('idempotencyKey', uuid());
+  case COMPOSE_CYCLE_ELEFRIEND:
+    return state
+      .set('elefriend', (state.get('elefriend') + 1) % totalElefriends);
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));

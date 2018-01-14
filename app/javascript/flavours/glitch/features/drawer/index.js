@@ -28,6 +28,7 @@ import { wrap } from 'flavours/glitch/util/redux_helpers';
 const mapStateToProps = state => ({
   account: state.getIn(['accounts', me]),
   columns: state.getIn(['settings', 'columns']),
+  elefriend: state.getIn(['compose', 'elefriend']),
   results: state.getIn(['search', 'results']),
   searchHidden: state.getIn(['search', 'hidden']),
   searchValue: state.getIn(['search', 'value']),
@@ -56,6 +57,7 @@ class Drawer extends React.Component {
     const {
       account,
       columns,
+      elefriend,
       intl,
       multiColumn,
       onChange,
@@ -69,10 +71,8 @@ class Drawer extends React.Component {
       submitted,
     } = this.props;
 
-    let choices = ['mbstobon-bg-1', 'mbstobon-bg-2', 'mbstobon-bg-3'];
-    let glitchyFriendDecision = choices[Math.floor(Math.random() * choices.length)];
-    let drawerAttrs = {
-      className: classNames('contents', glitchyFriendDecision)
+    let elefriendAttrs = {
+      className: classNames('mastodon', 'mbstobon-' + elefriend),
     };
 
     //  The result.
@@ -98,7 +98,7 @@ class Drawer extends React.Component {
           <DrawerAccount account={account} />
           <div className='drawer__inner'>
             <Composer />
-            {multiColumn && <div className="mastodon mbstobon-bg-1" />}
+            {multiColumn && <div {...elefriendAttrs} />}
           </div>
           <DrawerResults
             results={results}
@@ -120,6 +120,7 @@ Drawer.propTypes = {
   account: ImmutablePropTypes.map,
   columns: ImmutablePropTypes.list,
   results: ImmutablePropTypes.map,
+  elefriend: PropTypes.number,
   searchHidden: PropTypes.bool,
   searchValue: PropTypes.string,
   submitted: PropTypes.bool,

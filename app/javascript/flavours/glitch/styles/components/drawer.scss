@@ -66,8 +66,8 @@
     .mastodon {
       flex: 1;
 
-      @for $i from 1 through 3 {
-        &.mbstobon-bg-#{$i} {
+      @for $i from 0 through 2 {
+        &.mbstobon-#{$i} {
           background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
         }
       }
