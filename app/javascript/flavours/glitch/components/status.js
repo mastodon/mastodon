@@ -121,15 +121,15 @@ export default class Status extends ImmutablePureComponent {
 
     if (function () {
       switch (true) {
-      case collapse:
-      case autoCollapseSettings.get('all'):
-      case autoCollapseSettings.get('notifications') && muted:
+      case !!collapse:
+      case !!autoCollapseSettings.get('all'):
+      case autoCollapseSettings.get('notifications') && !!muted:
       case autoCollapseSettings.get('lengthy') && node.clientHeight > (
         status.get('media_attachments').size && !muted ? 650 : 400
       ):
       case autoCollapseSettings.get('reblogs') && prepend === 'reblogged_by':
       case autoCollapseSettings.get('replies') && status.get('in_reply_to_id', null) !== null:
-      case autoCollapseSettings.get('media') && !(status.get('spoiler_text').length) && status.get('media_attachments').size:
+      case autoCollapseSettings.get('media') && !(status.get('spoiler_text').length) && !!status.get('media_attachments').size:
         return true;
       default:
         return false;
