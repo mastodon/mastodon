@@ -178,14 +178,16 @@ export default class Status extends ImmutablePureComponent {
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
-            {Component => <Component
-              preview={video.get('preview_url')}
-              src={video.get('url')}
-              width={239}
-              height={110}
-              sensitive={status.get('sensitive')}
-              onOpenVideo={this.handleOpenVideo}
-            />}
+            {Component => (
+              <Component
+                preview={video.get('preview_url')}
+                src={video.get('url')}
+                width={239}
+                height={110}
+                sensitive={status.get('sensitive')}
+                onOpenVideo={this.handleOpenVideo}
+              />
+            )}
           </Bundle>
         );
       } else {

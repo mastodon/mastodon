@@ -72,7 +72,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
       <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
         {({ opacity, scaleX, scaleY }) => (
           <div className='privacy-dropdown__dropdown' style={{ ...style, opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }} ref={this.setRef}>
-            {items.map(item =>
+            {items.map(item => (
               <div role='button' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })}>
                 <div className='privacy-dropdown__option__icon'>
                   <i className={`fa fa-fw fa-${item.icon}`} />
@@ -83,7 +83,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
                   {item.meta}
                 </div>
               </div>
-            )}
+            ))}
           </div>
         )}
       </Motion>

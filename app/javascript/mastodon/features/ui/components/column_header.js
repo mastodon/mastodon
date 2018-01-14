@@ -25,7 +25,7 @@ export default class ColumnHeader extends React.PureComponent {
     }
 
     return (
-      <div role='heading' tabIndex='0' className={`column-header ${active ? 'active' : ''}`} onClick={this.handleClick} id={columnHeaderId || null}>
+      <div role='button heading' tabIndex='0' className={`column-header ${active ? 'active' : ''}`} onClick={this.handleClick} id={columnHeaderId || null}>
         {icon}
         {type}
       </div>
