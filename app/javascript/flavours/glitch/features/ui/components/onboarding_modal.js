@@ -46,7 +46,6 @@ const PageTwo = ({ intl, myAccount }) => (
         <RawComposer
           intl={intl}
           privacy='public'
-          showSearch
           text='Awoo! #introductions'
         />
       </div>
