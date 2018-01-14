@@ -2303,7 +2303,8 @@
   }
 }
 
-.missing-indicator {
+.missing-indicator,
+.regeneration-indicator {
   text-align: center;
   font-size: 16px;
   font-weight: 500;
@@ -2319,6 +2320,41 @@
     background: url('../images/mastodon-not-found.png') no-repeat center -50px;
     padding-top: 210px;
     width: 100%;
+  }
+}
+
+.regeneration-indicator {
+  padding: 20px;
+
+  & > div {
+    background: transparent;
+    padding-top: 0;
+  }
+
+  &__figure {
+    background: url('../images/working.svg') no-repeat 0 0;
+    width: 147px;
+    height: 160px;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__label {
+    margin-top: 200px;
+
+    strong {
+      display: block;
+      margin-bottom: 10px;
+      color: lighten($ui-base-color, 34%);
+    }
+
+    span {
+      font-size: 15px;
+      font-weight: 400;
+    }
   }
 }
 
@@ -2548,6 +2584,34 @@
   100% {
     width: 42px;
     height: 42px;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@keyframes loader-figure-large {
+  0% {
+    width: 0;
+    height: 0;
+    background-color: lighten($ui-base-color, 26%);
+  }
+
+  29% {
+    background-color: lighten($ui-base-color, 26%);
+  }
+
+  30% {
+    width: 180px;
+    height: 180px;
+    background-color: transparent;
+    border-width: 90px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 180px;
+    height: 180px;
     border-width: 0;
     opacity: 0;
     background-color: transparent;
