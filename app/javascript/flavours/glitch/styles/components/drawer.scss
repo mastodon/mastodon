@@ -50,9 +50,8 @@
     contain: strict;
   }
 
-  .drawer__inner {
+  .drawer--inner {
     position: absolute;
-    background: lighten($ui-base-color, 13%) url('~flavours/glitch/images/wave-drawer.png') no-repeat bottom / 100% auto;
     top: 0;
     left: 0;
     box-sizing: border-box;
@@ -66,11 +65,22 @@
 
     .mastodon {
       flex: 1;
+    }
+  }
 
-      @for $i from 0 through 2 {
-        &.mbstobon-#{$i} {
-          background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
-          filter: saturate(80%) contrast(50%) brightness(50%);
+  @for $i from 0 through 3 {
+    .drawer--inner.mbstobon-#{$i} {
+      @if $i == 3 {
+        background: lighten($ui-base-color, 13%) url('~flavours/glitch/images/wave-drawer.png') no-repeat bottom / 100% auto;
+      } @else {
+        background: lighten($ui-base-color, 13%) url('~flavours/glitch/images/wave-drawer-glitched.png') no-repeat bottom / 100% auto;
+      }
+
+      .mastodon {
+        background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
+
+        @if $i != 3 {
+          filter: contrast(50%) brightness(50%);
         }
       }
     }

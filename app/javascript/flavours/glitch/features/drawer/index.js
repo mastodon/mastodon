@@ -74,9 +74,8 @@ class Drawer extends React.Component {
       submitted,
     } = this.props;
 
-    let elefriendAttrs = {
-      className: classNames('mastodon', 'mbstobon-' + elefriend),
-      onClick: onClickElefriend,
+    let innerDrawerAttrs = {
+      className: classNames('drawer--inner', 'mbstobon-' + elefriend),
     };
 
     //  The result.
@@ -100,9 +99,9 @@ class Drawer extends React.Component {
         />
         <div className='contents'>
           <DrawerAccount account={account} />
-          <div className='drawer__inner'>
+          <div {...innerDrawerAttrs}>
             <Composer />
-            {multiColumn && <div {...elefriendAttrs} />}
+            {multiColumn && <div className='mastodon' onClick={onClickElefriend} role='button' />}
           </div>
           <DrawerResults
             results={results}

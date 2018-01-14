@@ -38,6 +38,10 @@ import { overwrite } from 'flavours/glitch/util/js_helpers';
 
 const totalElefriends = 3;
 
+// ~4% chance you'll end up with an unexpected friend
+// glitch-soc/mastodon repo created_at date: 2017-04-20T21:55:28Z
+const glitchProbability = 1 - 0.0420215528;
+
 const initialState = ImmutableMap({
   mounted: false,
   advanced_options: ImmutableMap({
@@ -45,7 +49,7 @@ const initialState = ImmutableMap({
     threaded_mode: false,
   }),
   sensitive: false,
-  elefriend: Math.floor(Math.random() * totalElefriends),
+  elefriend: Math.random() < glitchProbability ? Math.floor(Math.random() * totalElefriends) : totalElefriends,
   spoiler: false,
   spoiler_text: '',
   privacy: null,
