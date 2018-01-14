@@ -1,0 +1,503 @@
+.column__wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.column-icon {
+  background: lighten($ui-base-color, 4%);
+  color: $ui-primary-color;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+  position: absolute;
+  right: 0;
+  top: -48px;
+  z-index: 3;
+
+  &:hover {
+    color: lighten($ui-primary-color, 7%);
+  }
+}
+
+.columns-area {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow-x: auto;
+  position: relative;
+}
+
+@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
+  .columns-area {
+    padding: 10px;
+  }
+
+  .react-swipeable-view-container .columns-area {
+    height: calc(100% - 20px) !important;
+  }
+}
+
+.react-swipeable-view-container {
+  &,
+  .columns-area,
+  .column {
+    height: 100%;
+  }
+}
+
+.react-swipeable-view-container > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.column {
+  width: 330px;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  > .scrollable {
+    background: $ui-base-color;
+  }
+}
+
+.ui {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: darken($ui-base-color, 7%);
+}
+
+.column {
+  overflow: hidden;
+}
+
+@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
+  .tabs-bar {
+    margin: 0;
+  }
+}
+
+:root {  //  Overrides .wide stylings for mobile view
+  @include single-column('screen and (max-width: 630px)', $parent: null) {
+    .column {
+      flex: auto;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      padding: 0;
+    }
+
+    .columns-area {
+      flex-direction: column;
+    }
+
+    .search__input,
+    .autosuggest-textarea__textarea {
+      font-size: 16px;
+    }
+  }
+}
+
+@include multi-columns('screen and (min-width: 631px)', $parent: null) {
+  .columns-area {
+    padding: 0;
+  }
+
+  .column {
+    flex: 0 0 auto;
+    padding: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    &:first-child {
+      padding-left: 10px;
+    }
+
+    &:last-child {
+      padding-right: 10px;
+    }
+  }
+
+  .columns-area > div {
+    .column {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+}
+
+.column-back-button {
+  background: lighten($ui-base-color, 4%);
+  color: $ui-highlight-color;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  border: 0;
+  text-align: unset;
+  padding: 15px;
+  margin: 0;
+  z-index: 3;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.column-header__back-button {
+  background: lighten($ui-base-color, 4%);
+  border: 0;
+  font-family: inherit;
+  color: $ui-highlight-color;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 0 5px 0 0;
+  z-index: 3;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:last-child {
+    padding: 0 15px 0 0;
+  }
+}
+
+.column-back-button__icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.column-back-button--slim {
+  position: relative;
+}
+
+.column-back-button--slim-button {
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 15px;
+  position: absolute;
+  right: 0;
+  top: -48px;
+}
+
+.column-link {
+  background: lighten($ui-base-color, 8%);
+  color: $primary-text-color;
+  display: block;
+  font-size: 16px;
+  padding: 15px;
+  text-decoration: none;
+
+  &:hover {
+    background: lighten($ui-base-color, 11%);
+  }
+}
+
+.column-link__icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.column-subheading {
+  background: $ui-base-color;
+  color: $ui-base-lighter-color;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: default;
+}
+
+.column-header__wrapper {
+  position: relative;
+  flex: 0 0 auto;
+
+  &.active {
+    &::before {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 35px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 60%;
+      pointer-events: none;
+      height: 28px;
+      z-index: 1;
+      background: radial-gradient(ellipse, rgba($ui-highlight-color, 0.23) 0%, rgba($ui-highlight-color, 0) 60%);
+    }
+  }
+}
+
+.column-header {
+  display: flex;
+  padding: 15px;
+  font-size: 16px;
+  background: lighten($ui-base-color, 4%);
+  flex: 0 0 auto;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  outline: 0;
+
+  &.active {
+    box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
+
+    .column-header__icon {
+      color: $ui-highlight-color;
+      text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
+    }
+  }
+
+  &:focus,
+  &:active {
+    outline: 0;
+  }
+}
+
+.column {
+  width: 330px;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .wide & {
+    flex: auto;
+    min-width: 330px;
+    max-width: 400px;
+  }
+
+  > .scrollable {
+    background: $ui-base-color;
+  }
+}
+
+.column-header__buttons {
+  height: 48px;
+  display: flex;
+  margin: -15px;
+  margin-left: 0;
+}
+
+.column-header__links .text-btn {
+  margin-right: 10px;
+}
+
+.column-header__button {
+  background: lighten($ui-base-color, 4%);
+  border: 0;
+  color: $ui-primary-color;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 15px;
+
+  &:hover {
+    color: lighten($ui-primary-color, 7%);
+  }
+
+  &.active {
+    color: $primary-text-color;
+    background: lighten($ui-base-color, 8%);
+
+    &:hover {
+      color: $primary-text-color;
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+
+  // glitch - added focus ring for keyboard navigation
+  &:focus {
+    text-shadow: 0 0 4px darken($ui-highlight-color, 5%);
+  }
+}
+
+.column-header__notif-cleaning-buttons {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+
+  button {
+    @extend .column-header__button;
+    background: transparent;
+    text-align: center;
+    padding: 10px 0;
+    white-space: pre-wrap;
+  }
+
+  b {
+    font-weight: bold;
+  }
+}
+
+// The notifs drawer with no padding to have more space for the buttons
+.column-header__collapsible-inner.nopad-drawer {
+  padding: 0;
+}
+
+.column-header__collapsible {
+  max-height: 70vh;
+  overflow: hidden;
+  overflow-y: auto;
+  color: $ui-primary-color;
+  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  opacity: 1;
+
+  &.collapsed {
+    max-height: 0;
+    opacity: 0.5;
+  }
+
+  &.animating {
+    overflow-y: hidden;
+  }
+
+  hr {
+    height: 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid lighten($ui-base-color, 12%);
+    margin: 10px 0;
+  }
+
+  // notif cleaning drawer
+  &.ncd {
+    transition: none;
+    &.collapsed {
+      max-height: 0;
+      opacity: 0.7;
+    }
+  }
+}
+
+.column-header__collapsible-inner {
+  background: lighten($ui-base-color, 8%);
+  padding: 15px;
+}
+
+.column-header__setting-btn {
+  &:hover {
+    color: lighten($ui-primary-color, 4%);
+    text-decoration: underline;
+  }
+}
+
+.column-header__setting-arrows {
+  float: right;
+
+  .column-header__setting-btn {
+    padding: 0 10px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.column-header__title {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.column-header__icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.empty-column-indicator,
+.error-column {
+  color: lighten($ui-base-color, 20%);
+  background: $ui-base-color;
+  text-align: center;
+  padding: 20px;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: default;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
+
+  a {
+    color: $ui-highlight-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.error-column {
+  flex-direction: column;
+}
+
+// more fixes for the navbar-under mode
+@mixin fix-margins-for-navbar-under {
+  .tabs-bar {
+    margin-top: 0 !important;
+    margin-bottom: -6px !important;
+  }
+}
+
+.single-column.navbar-under {
+  @include fix-margins-for-navbar-under;
+}
+
+.auto-columns.navbar-under {
+  @media screen and (max-width: 360px) {
+    @include fix-margins-for-navbar-under;
+  }
+}
+
+.auto-columns.navbar-under .react-swipeable-view-container .columns-area,
+.single-column.navbar-under .react-swipeable-view-container .columns-area {
+  @media screen and (max-width: 360px) {
+    height: 100% !important;
+  }
+}
+
+.column-inline-form {
+  padding: 7px 15px;
+  padding-right: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: lighten($ui-base-color, 4%);
+
+  label {
+    flex: 1 1 auto;
+
+    input {
+      width: 100%;
+      margin-bottom: 6px;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  .icon-button {
+    flex: 0 0 auto;
+    margin-left: 5px;
+  }
+}

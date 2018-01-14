@@ -93,16 +93,22 @@
 
     .status__avatar {
       position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 48px;
+      height: 48px;
       @include avatar-size(48px);
-      margin-left: -62px;
 
       & > div {
+        width: 48px;
+        height: 48px;
         @include avatar-size(48px);
       }
 
       img {
-        @include avatar-radius();
         display: block;
+        border-radius: 4px;
+        @include avatar-radius();
       }
     }
 
@@ -116,6 +122,12 @@
       strong {
         font-weight: 500;
         color: $ui-base-color;
+
+        @each $lang in $cjk-langs {
+          &:lang(#{$lang}) {
+            font-weight: 700;
+          }
+        }
       }
 
       span {
@@ -167,6 +179,12 @@
         strong {
           font-weight: 500;
           color: $ui-base-color;
+
+          @each $lang in $cjk-langs {
+            &:lang(#{$lang}) {
+              font-weight: 700;
+            }
+          }
         }
 
         span {
@@ -177,11 +195,14 @@
     }
 
     .avatar {
+      width: 48px;
+      height: 48px;
       @include avatar-size(48px);
 
       img {
-        @include avatar-radius();
         display: block;
+        border-radius: 4px;
+        @include avatar-radius();
       }
     }
 

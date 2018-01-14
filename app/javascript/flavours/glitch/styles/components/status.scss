@@ -1,0 +1,715 @@
+.status__content--with-action {
+  cursor: pointer;
+}
+
+.status__content {
+  position: relative;
+  margin: 10px 0;
+  padding: 0 12px;
+  font-size: 15px;
+  line-height: 20px;
+  color: $primary-text-color;
+  word-wrap: break-word;
+  font-weight: 400;
+  overflow: visible;
+  white-space: pre-wrap;
+  padding-top: 5px;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &.status__content--with-spoiler {
+    white-space: normal;
+
+    .status__content__text {
+      white-space: pre-wrap;
+    }
+  }
+
+  .emojione {
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0;
+  }
+
+  p {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $ui-secondary-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+
+      .fa {
+        color: lighten($ui-base-color, 40%);
+      }
+    }
+
+    &.mention {
+      &:hover {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .fa {
+      color: lighten($ui-base-color, 30%);
+    }
+  }
+
+  .status__content__spoiler {
+    background: lighten($ui-base-color, 30%);
+  
+    &:hover {
+      background: lighten($ui-base-color, 33%);
+      text-decoration: none;
+    }
+  }
+
+  .status__content__spoiler-link {
+    background: lighten($ui-base-color, 30%);
+
+    &:hover {
+      background: lighten($ui-base-color, 33%);
+      text-decoration: none;
+    }
+  }
+
+  .status__content__text {
+    display: none;
+
+    &.status__content__spoiler--visible {
+      display: block;
+    }
+  }
+}
+
+.status__content__spoiler-link {
+  display: inline-block;
+  border-radius: 2px;
+  background: lighten($ui-base-color, 30%);
+  border: none;
+  color: lighten($ui-base-color, 8%);
+  font-weight: 500;
+  font-size: 11px;
+  padding: 0 5px;
+  text-transform: uppercase;
+  line-height: inherit;
+  cursor: pointer;
+  vertical-align: bottom;
+
+  &:hover {
+    background: lighten($ui-base-color, 33%);
+    text-decoration: none;
+  }
+
+  .status__content__spoiler-icon {
+    display: inline-block;
+    margin: 0 0 0 5px;
+    border-left: 1px solid currentColor;
+    padding: 0 0 0 4px;
+    font-size: 16px;
+    vertical-align: -2px;
+  }
+}
+
+.notif-cleaning {
+  .status, .notification-follow {
+    padding-right: ($dismiss-overlay-width + 0.5rem);
+  }
+}
+
+.status__prepend-icon-wrapper {
+  float: left;
+  margin: 0 10px 0 -58px;
+  width: 48px;
+  text-align: right;
+}
+
+.notification-follow {
+  position: relative;
+
+  // same like Status
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  .account {
+    border-bottom: 0 none;
+  }
+}
+
+.focusable {
+  &:focus {
+    outline: 0;
+    background: lighten($ui-base-color, 4%);
+
+    .status.status-direct {
+      background: lighten($ui-base-color, 12%);
+
+      &.muted {
+        background: transparent;
+      }
+    }
+
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+}
+
+.status {
+  padding: 8px 10px;
+  position: relative;
+  height: auto;
+  min-height: 48px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  cursor: default;
+
+  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
+    // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
+    // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
+    padding-right: 26px; // 10px + 16px
+  }
+
+  @keyframes fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  opacity: 1;
+  animation: fade 150ms linear;
+
+  .video-player {
+    margin-top: 8px;
+  }
+
+  &.status-direct {
+    background: lighten($ui-base-color, 8%);
+
+    .icon-button.disabled {
+      color: lighten($ui-base-color, 16%);
+    }
+  }
+
+  &.light {
+    .status__relative-time {
+      color: $ui-primary-color;
+    }
+
+    .status__display-name {
+      color: $ui-base-color;
+    }
+
+    .display-name {
+      strong {
+        color: $ui-base-color;
+      }
+
+      span {
+        color: $ui-primary-color;
+      }
+    }
+
+    .status__content {
+      color: $ui-base-color;
+
+      a {
+        color: $ui-highlight-color;
+      }
+
+      a.status__content__spoiler-link {
+        color: $primary-text-color;
+        background: $ui-primary-color;
+
+        &:hover {
+          background: lighten($ui-primary-color, 8%);
+        }
+      }
+    }
+  }
+
+  &.collapsed {
+    background-position: center;
+    background-size: cover;
+    user-select: none;
+
+    &.has-background::before {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-image: linear-gradient(to bottom, rgba($base-shadow-color, .75), rgba($base-shadow-color, .65) 24px, rgba($base-shadow-color, .8));
+      content: "";
+    }
+
+    .display-name:hover .display-name__html {
+      text-decoration: none;
+    }
+
+    .status__content {
+      height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .notification__message {
+    margin: -10px -10px 10px;
+  }
+}
+
+.notification-favourite {
+  .status.status-direct {
+    background: transparent;
+
+    .icon-button.disabled {
+      color: lighten($ui-base-color, 13%);
+    }
+  }
+}
+
+.status__relative-time {
+  display: inline-block;
+  margin-left: auto;
+  padding-left: 18px;
+  width: 120px;
+  color: $ui-base-lighter-color;
+  font-size: 14px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status__display-name {
+  margin: 0 auto 0 0;
+  color: $ui-base-lighter-color;
+  overflow: hidden;
+}
+
+.status__info .status__display-name {
+  display: block;
+  max-width: 100%;
+  padding-right: 25px;
+}
+
+.status__info {
+  display: flex;
+  margin: 2px 0 5px;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.status__info__icons {
+  flex: none;
+  position: relative;
+  color: lighten($ui-base-color, 26%);
+
+  .status__visibility-icon {
+    padding-left: 6px;
+  }
+}
+
+.status-check-box {
+  border-bottom: 1px solid $ui-secondary-color;
+  display: flex;
+
+  .status__content {
+    flex: 1 1 auto;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    .status__content {
+      color: #3a3a3a;
+      a {
+        color: #005aa9;
+      }
+    }
+  }
+}
+
+.status-check-box-toggle {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  padding: 10px;
+}
+
+.status__prepend {
+  margin: -10px -10px 10px;
+  color: $ui-base-lighter-color;
+  padding: 8px 10px 0 68px;
+  font-size: 14px;
+  position: relative;
+
+  .status__display-name strong {
+    color: $ui-base-lighter-color;
+  }
+
+  > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.status__action-bar {
+  align-items: center;
+  display: flex;
+  margin-top: 8px;
+}
+
+.status__action-bar-button {
+  float: left;
+  margin-right: 18px;
+}
+
+.status__action-bar-dropdown {
+  float: left;
+  height: 23.15px;
+  width: 23.15px;
+}
+
+.detailed-status__action-bar-dropdown {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.detailed-status {
+  background: lighten($ui-base-color, 4%);
+  padding: 14px 10px;
+
+  .status__content {
+    font-size: 19px;
+    line-height: 24px;
+
+    .emojione {
+      width: 24px;
+      height: 24px;
+      margin: -1px 0 0;
+    }
+  }
+
+  .video-player {
+    margin-top: 8px;
+  }
+}
+
+.detailed-status__meta {
+  margin-top: 15px;
+  color: $ui-base-lighter-color;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.detailed-status__action-bar {
+  background: lighten($ui-base-color, 4%);
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+}
+
+.detailed-status__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.detailed-status__favorites,
+.detailed-status__reblogs {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+.status__display-name,
+.status__relative-time,
+.detailed-status__display-name,
+.detailed-status__datetime,
+.detailed-status__application,
+.account__display-name {
+  text-decoration: none;
+}
+
+.status__display-name,
+.account__display-name {
+  strong {
+    color: $primary-text-color;
+  }
+}
+
+.muted {
+  .emojione {
+    opacity: 0.5;
+  }
+}
+
+.status__display-name,
+.reply-indicator__display-name,
+.detailed-status__display-name,
+.account__display-name {
+  &:hover strong {
+    text-decoration: underline;
+  }
+}
+
+.account__display-name strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detailed-status__application,
+.detailed-status__datetime {
+  color: inherit;
+}
+
+.detailed-status__display-name {
+  color: $ui-secondary-color;
+  display: block;
+  line-height: 24px;
+  margin-bottom: 15px;
+  overflow: hidden;
+
+  strong,
+  span {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  strong {
+    font-size: 16px;
+    color: $primary-text-color;
+  }
+}
+
+.detailed-status__display-avatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.status__avatar {
+  flex: none;
+  margin: 0 10px 0 0;
+  height: 48px;
+  width: 48px;
+}
+
+.muted {
+  .status__content p,
+  .status__content a {
+    color: $ui-base-lighter-color;
+  }
+
+  .status__display-name strong {
+    color: $ui-base-lighter-color;
+  }
+
+  .status__avatar {
+    opacity: 0.5;
+  }
+
+  a.status__content__spoiler-link {
+    background: $ui-base-lighter-color;
+    color: lighten($ui-base-color, 4%);
+
+    &:hover {
+      background: lighten($ui-base-color, 29%);
+      text-decoration: none;
+    }
+  }
+}
+
+.status__relative-time,
+.detailed-status__datetime {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.status-card {
+  display: flex;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-radius: 4px;
+  color: $ui-base-lighter-color;
+  margin-top: 14px;
+  text-decoration: none;
+  overflow: hidden;
+
+  &:hover {
+    background: lighten($ui-base-color, 8%);
+  }
+}
+
+.status-card-video,
+.status-card-rich,
+.status-card-photo {
+  margin-top: 14px;
+  overflow: hidden;
+
+  iframe {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.status-card-photo {
+  cursor: zoom-in;
+  display: block;
+  text-decoration: none;
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+.status-card-video {
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.status-card__title {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: $ui-primary-color;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-card__content {
+  flex: 1 1 auto;
+  overflow: hidden;
+  padding: 14px 14px 14px 8px;
+}
+
+.status-card__description {
+  color: $ui-primary-color;
+}
+
+.status-card__host {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.status-card__image {
+  flex: 0 0 100px;
+  background: lighten($ui-base-color, 8%);
+}
+
+.status-card.horizontal {
+  display: block;
+
+  .status-card__image {
+    width: 100%;
+  }
+
+  .status-card__image-image {
+    border-radius: 4px 4px 0 0;
+  }
+
+  .status-card__title {
+    white-space: inherit;
+  }
+}
+
+.status-card__image-image {
+  border-radius: 4px 0 0 4px;
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status__video-player {
+  display: flex;
+  align-items: center;
+  background: $base-shadow-color;
+  box-sizing: border-box;
+  cursor: default; /* May not be needed */
+  margin-top: 8px;
+  overflow: hidden;
+  position: relative;
+
+  @include fullwidth-gallery;
+}
+
+.status__video-player-video {
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 1;
+
+  &:not(.letterbox) {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.status__video-player-expand,
+.status__video-player-mute {
+  color: $primary-text-color;
+  opacity: 0.8;
+  position: absolute;
+  right: 4px;
+  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
+}
+
+.status__video-player-spoiler {
+  display: none;
+  color: $primary-text-color;
+  left: 4px;
+  position: absolute;
+  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
+  top: 4px;
+  z-index: 100;
+
+  &.status__video-player-spoiler--visible {
+    display: block;
+  }
+}
+
+.status__video-player-expand {
+  bottom: 4px;
+  z-index: 100;
+}
+
+.status__video-player-mute {
+  top: 4px;
+  z-index: 5;
+}

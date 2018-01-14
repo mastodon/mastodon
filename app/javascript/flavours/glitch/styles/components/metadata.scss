@@ -1,0 +1,52 @@
+.account__metadata {
+  width: 100%;
+  font-size: 15px;
+  line-height: 20px;
+  overflow: hidden;
+  border-collapse: collapse;
+
+  a {
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  tr {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+    text-align: center;
+  }
+
+  th, td {
+    padding: 14px 20px;
+    vertical-align: middle;
+
+    & > div {
+      max-height: 40px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  th {
+    color: $ui-primary-color;
+    background: lighten($ui-base-color, 13%);
+    max-width: 120px;
+
+    a {
+      color: $primary-text-color;
+    }
+  }
+
+  td {
+    flex: auto;
+    color: $primary-text-color;
+    background: $ui-base-color;
+
+    a {
+      color: $ui-highlight-color;
+    }
+  }
+}
