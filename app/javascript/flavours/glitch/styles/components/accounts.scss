@@ -48,6 +48,7 @@
 }
 
 .account__avatar-overlay {
+  position: relative;
   @include avatar-size(48px);
 
   &-base {
@@ -288,9 +289,8 @@
 }
 
 .notification__message {
-  margin-left: 68px;
-  padding: 8px 0;
-  padding-bottom: 0;
+  margin-left: 42px;
+  padding: 8px 0 0 26px;
   cursor: default;
   color: $ui-primary-color;
   font-size: 15px;
