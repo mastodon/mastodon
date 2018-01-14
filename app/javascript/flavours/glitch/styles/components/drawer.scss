@@ -40,7 +40,9 @@
   .react-swipeable-view-container & { height: 100% }
 
   & > .contents {
+    display: flex;
     position: relative;
+    flex-direction: column;
     padding: 0;
     width: 100%;
     height: 100%;
@@ -48,22 +50,8 @@
     overflow-x: hidden;
     overflow-y: auto;
     contain: strict;
-  }
 
-  .drawer--inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    overflow-y: auto;
-    width: 100%;
-    height: 100%;
-
-    .mastodon {
+    & > .mastodon {
       flex: 1;
       border: none;
       cursor: inherit;
@@ -71,14 +59,14 @@
   }
 
   @for $i from 0 through 3 {
-    .drawer--inner.mbstobon-#{$i} {
+    &.mbstobon-#{$i} > .contents {
       @if $i == 3 {
-        background: lighten($ui-base-color, 13%) url('~flavours/glitch/images/wave-drawer.png') no-repeat bottom / 100% auto;
+        background: url('~flavours/glitch/images/wave-drawer.png') no-repeat bottom / 100% auto, lighten($ui-base-color, 13%);
       } @else {
-        background: lighten($ui-base-color, 13%) url('~flavours/glitch/images/wave-drawer-glitched.png') no-repeat bottom / 100% auto;
+        background: url('~flavours/glitch/images/wave-drawer-glitched.png') no-repeat bottom / 100% auto, lighten($ui-base-color, 13%);
       }
 
-      .mastodon {
+      & > .mastodon {
         background: url("~flavours/glitch/images/mbstobon-ui-#{$i}.png") no-repeat left bottom / contain;
 
         @if $i != 3 {

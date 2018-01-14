@@ -12,19 +12,10 @@
   word-wrap: break-word;
   font-weight: 400;
   overflow: visible;
-  white-space: pre-wrap;
   padding-top: 5px;
 
   &:focus {
     outline: 0;
-  }
-
-  &.status__content--with-spoiler {
-    white-space: normal;
-
-    .status__content__text {
-      white-space: pre-wrap;
-    }
   }
 
   .emojione {
@@ -35,6 +26,7 @@
 
   p {
     margin-bottom: 20px;
+    white-space: pre-wrap;
 
     &:last-child {
       margin-bottom: 0;
@@ -69,11 +61,10 @@
   }
 
   .status__content__spoiler {
-    background: lighten($ui-base-color, 30%);
-  
-    &:hover {
-      background: lighten($ui-base-color, 33%);
-      text-decoration: none;
+    display: none;
+
+    &.status__content__spoiler--visible {
+      display: block;
     }
   }
 
@@ -83,14 +74,6 @@
     &:hover {
       background: lighten($ui-base-color, 33%);
       text-decoration: none;
-    }
-  }
-
-  .status__content__text {
-    display: none;
-
-    &.status__content__spoiler--visible {
-      display: block;
     }
   }
 }

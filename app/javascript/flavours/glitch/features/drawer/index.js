@@ -73,14 +73,11 @@ class Drawer extends React.Component {
       searchValue,
       submitted,
     } = this.props;
-
-    let innerDrawerAttrs = {
-      className: classNames('drawer--inner', 'mbstobon-' + elefriend),
-    };
+    const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
 
     //  The result.
     return (
-      <div className='drawer'>
+      <div className={computedClass}>
         {multiColumn ? (
           <DrawerHeader
             columns={columns}
@@ -99,10 +96,8 @@ class Drawer extends React.Component {
         />
         <div className='contents'>
           <DrawerAccount account={account} />
-          <div {...innerDrawerAttrs}>
-            <Composer />
-            {multiColumn && <button className='mastodon' onClick={onClickElefriend} />}
-          </div>
+          <Composer />
+          {multiColumn && <button className='mastodon' onClick={onClickElefriend} />}
           <DrawerResults
             results={results}
             visible={submitted && !searchHidden}
