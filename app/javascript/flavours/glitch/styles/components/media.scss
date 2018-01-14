@@ -84,8 +84,9 @@
   height: 100%;
 
   .detailed-status & {
-    width: 100%;
-    height: 100%;
+    margin-left: -22px;
+    width: calc(100% + 44px);
+    height: 250px;
   }
 
   @include fullwidth-gallery;
