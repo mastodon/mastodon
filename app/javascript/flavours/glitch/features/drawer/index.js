@@ -101,7 +101,7 @@ class Drawer extends React.Component {
           <DrawerAccount account={account} />
           <div {...innerDrawerAttrs}>
             <Composer />
-            {multiColumn && <div className='mastodon' onClick={onClickElefriend} role='button' />}
+            {multiColumn && <button className='mastodon' onClick={onClickElefriend}/>}
           </div>
           <DrawerResults
             results={results}
