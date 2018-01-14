@@ -12,6 +12,7 @@ import {
   showSearch,
   submitSearch,
 } from 'flavours/glitch/actions/search';
+import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 
 //  Components.
 import Composer from 'flavours/glitch/features/composer';
@@ -39,6 +40,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   onChange: changeSearch,
   onClear: clearSearch,
+  onClickElefriend: cycleElefriendCompose,
   onShow: showSearch,
   onSubmit: submitSearch,
   onOpenSettings: openModal.bind(null, 'SETTINGS', {}),
@@ -62,6 +64,7 @@ class Drawer extends React.Component {
       multiColumn,
       onChange,
       onClear,
+      onClickElefriend,
       onOpenSettings,
       onShow,
       onSubmit,
@@ -73,6 +76,7 @@ class Drawer extends React.Component {
 
     let elefriendAttrs = {
       className: classNames('mastodon', 'mbstobon-' + elefriend),
+      onClick: onClickElefriend,
     };
 
     //  The result.
@@ -128,6 +132,7 @@ Drawer.propTypes = {
   //  Dispatch props.
   onChange: PropTypes.func,
   onClear: PropTypes.func,
+  onClickElefriend: PropTypes.func,
   onShow: PropTypes.func,
   onSubmit: PropTypes.func,
   onOpenSettings: PropTypes.func,
