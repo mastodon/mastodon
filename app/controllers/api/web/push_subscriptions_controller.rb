@@ -4,6 +4,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   respond_to :json
 
   before_action :require_user!
+  protect_from_forgery with: :exception
 
   def create
     params.require(:subscription).require(:endpoint)
