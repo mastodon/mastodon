@@ -2626,6 +2626,10 @@ a.account__display-name {
   overflow-x: auto;
   position: relative;
 
+  &.unscrollable {
+    overflow-x: hidden;
+  }
+
   &__panels {
     display: flex;
     justify-content: center;

@@ -58,6 +58,7 @@ const TabsBarPortal = () => {
 export default class ColumnsArea extends ImmutablePureComponent {
   static propTypes = {
     columns: ImmutablePropTypes.list.isRequired,
+    isModalOpen: PropTypes.bool.isRequired,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
     openSettings: PropTypes.func,
@@ -145,7 +146,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   render () {
-    const { columns, children, singleColumn, openSettings } = this.props;
+    const { columns, children, singleColumn, isModalOpen, openSettings } = this.props;
     const { renderComposePanel } = this.state;
 
     if (singleColumn) {
@@ -172,7 +173,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
 
     return (
-      <div className='columns-area' ref={this.setRef}>
+      <div className={`columns-area ${ isModalOpen ? 'unscrollable' : '' }`} ref={this.setRef}>
         {columns.map(column => {
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
           const other  = params && params.other ? params.other : {};
