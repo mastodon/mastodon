@@ -103,7 +103,7 @@ export default class Header extends ImmutablePureComponent {
       }
     }
 
-    if (account.get('moved')) {
+    if (account.get('moved') && !account.getIn(['relationship', 'following'])) {
       actionBtn = '';
     }
 
