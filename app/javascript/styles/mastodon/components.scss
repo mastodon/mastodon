@@ -1613,6 +1613,10 @@
   justify-content: flex-start;
   overflow-x: auto;
   position: relative;
+
+  &.unscrollable {
+    overflow-x: hidden;
+  }
 }
 
 @media screen and (min-width: 360px) {
