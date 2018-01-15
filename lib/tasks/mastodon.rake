@@ -171,11 +171,10 @@ namespace :mastodon do
   end
 
   namespace :emails do
-    desc 'Send out digest e-mails'
+    desc 'Send out digest e-mails (deprecated)'
     task digest: :environment do
-      User.confirmed.joins(:account).where(accounts: { silenced: false, suspended: false }).where('current_sign_in_at < ?', 20.days.ago).find_each do |user|
-        DigestMailerWorker.perform_async(user.id)
-      end
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
   end
 
