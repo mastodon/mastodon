@@ -39,12 +39,12 @@ class Status < ApplicationRecord
   update_index('statuses#status', :proper) if Chewy.enabled?
 
   LICENSE_URLS = {
-    'https://creativecommons.org/licenses/by/4.0/' => :'BY',
-    'https://creativecommons.org/licenses/by-sa/4.0/' => :'BY-SA',
-    'https://creativecommons.org/licenses/by-nd/4.0/' => :'BY-ND',
-    'https://creativecommons.org/licenses/by-nc/4.0/' => :'BY-NC',
-    'https://creativecommons.org/licenses/by-nc-sa/4.0/' => :'BY-NC-SA',
-    'https://creativecommons.org/licenses/by-nc-nd/4.0/' => :'BY-NC-ND',
+    'https://creativecommons.org/licenses/by/4.0/' => 'BY',
+    'https://creativecommons.org/licenses/by-sa/4.0/' => 'BY-SA',
+    'https://creativecommons.org/licenses/by-nd/4.0/' => 'BY-ND',
+    'https://creativecommons.org/licenses/by-nc/4.0/' => 'BY-NC',
+    'https://creativecommons.org/licenses/by-nc-sa/4.0/' => 'BY-NC-SA',
+    'https://creativecommons.org/licenses/by-nc-nd/4.0/' => 'BY-NC-ND',
   }.freeze
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
