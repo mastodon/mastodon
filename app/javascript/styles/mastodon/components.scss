@@ -2303,7 +2303,6 @@
   }
 }
 
-.missing-indicator,
 .regeneration-indicator {
   text-align: center;
   font-size: 16px;
@@ -2315,31 +2314,31 @@
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
-
-  & > div {
-    background: url('../images/mastodon-not-found.png') no-repeat center -50px;
-    padding-top: 210px;
-    width: 100%;
-  }
-}
-
-.regeneration-indicator {
   padding: 20px;
 
   & > div {
+    width: 100%;
     background: transparent;
     padding-top: 0;
   }
 
   &__figure {
-    background: url('../images/working.svg') no-repeat 0 0;
-    width: 147px;
+    background: url('../images/elephant_ui_working.svg') no-repeat center 0;
+    width: 100%;
     height: 160px;
     background-size: contain;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  &.missing-indicator {
+    padding-top: 20px + 48px;
+
+    .regeneration-indicator__figure {
+      background-image: url('../images/elephant_ui_disappointed.svg');
+    }
   }
 
   &__label {
@@ -2590,34 +2589,6 @@
   }
 }
 
-@keyframes loader-figure-large {
-  0% {
-    width: 0;
-    height: 0;
-    background-color: lighten($ui-base-color, 26%);
-  }
-
-  29% {
-    background-color: lighten($ui-base-color, 26%);
-  }
-
-  30% {
-    width: 180px;
-    height: 180px;
-    background-color: transparent;
-    border-width: 90px;
-    opacity: 1;
-  }
-
-  100% {
-    width: 180px;
-    height: 180px;
-    border-width: 0;
-    opacity: 0;
-    background-color: transparent;
-  }
-}
-
 @keyframes loader-label {
   0% { opacity: 0.25; }
   30% { opacity: 1; }
@@ -2813,7 +2784,6 @@
 @keyframes heartbeat {
   from {
     transform: scale(1);
-    transform-origin: center center;
     animation-timing-function: ease-out;
   }
 
@@ -2839,6 +2809,7 @@
 }
 
 .pulse-loading {
+  transform-origin: center center;
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
