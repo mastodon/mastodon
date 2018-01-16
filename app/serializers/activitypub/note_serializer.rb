@@ -5,7 +5,9 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
-             :conversation, :license
+             :conversation
+
+  attribute :license_url, key: :license
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -84,10 +86,6 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
   def local?
     object.account.local?
-  end
-
-  def license
-    object.license_url
   end
 
   class MediaAttachmentSerializer < ActiveModel::Serializer

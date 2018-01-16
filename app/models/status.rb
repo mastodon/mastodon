@@ -40,7 +40,7 @@ class Status < ApplicationRecord
   LICENSE_URLS = {
     'Attribution (CC BY)' => 'https://creativecommons.org/licenses/by/4.0/',
     'Attribution-ShareAlike (CC BY-SA)' => 'https://creativecommons.org/licenses/by-sa/4.0/',
-    'Attribution-NoDerivs (CC BY-ND)' => 'https://creativecommons.org/licenses/by-nd/4.0/',
+    'Attribution-NoDerivatives (CC BY-ND)' => 'https://creativecommons.org/licenses/by-nd/4.0/',
     'Attribution-NonCommercial (CC BY-NC)' => 'https://creativecommons.org/licenses/by-nc/4.0/',
     'Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)' => 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
     'Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)' => 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
