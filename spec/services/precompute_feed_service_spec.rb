@@ -16,7 +16,7 @@ RSpec.describe PrecomputeFeedService do
 
       subject.call(account)
 
-      expect(Redis.current.zscore(FeedManager.instance.key(:home, account.id), reblog.id)).to eq status.id.to_f
+      expect(Redis.current.zscore(FeedManager.instance.key(:home, account.id), reblog.id)).to be_within(0.1).of(status.id.to_f)
     end
 
     it 'does not raise an error even if it could not find any status' do
