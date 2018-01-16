@@ -1,3 +1,5 @@
+- i ||= 0
+
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
     %tr
@@ -6,7 +8,7 @@
           %table.content-section{ cellspacing: 0, cellpadding: 0 }
             %tbody
               %tr
-                %td.content-cell.content-start
+                %td.content-cell{ class: i.zero? ? 'content-start' : nil }
                   .email-row
                     .col-6
                       %table.column{ cellspacing: 0, cellpadding: 0 }
@@ -25,24 +27,4 @@
                               = Formatter.instance.format(status)
 
                               %p.status-footer
-                                = l(status.created_at)
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.content-start.border-top
-                  %table.column{ cellspacing: 0, cellpadding: 0 }
-                    %tbody
-                      %tr
-                        %td.column-cell.button-cell
-                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                            %tbody
-                              %tr
-                                %td.button-primary
-                                  = link_to web_url("statuses/#{status.id}") do
-                                    %span= t 'application_mailer.view_status'
+                                = link_to l(status.created_at), web_url("statuses/#{status.id}")

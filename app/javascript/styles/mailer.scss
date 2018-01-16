@@ -265,6 +265,18 @@ h3 {
   padding-top: 20px;
 }
 
+.hero-with-button {
+  h1 {
+    margin-bottom: 4px;
+  }
+
+  p.lead {
+    margin-bottom: 32px;
+  }
+
+  padding-bottom: 16px;
+}
+
 .header {
   border-radius: 5px 5px 0 0;
   background-color: darken($ui-base-color, 8%);
@@ -439,6 +451,10 @@ h3 {
       color: lighten($ui-base-color, 26%);
       font-size: 14px;
       margin-bottom: 0;
+
+      a {
+        color: lighten($ui-base-color, 26%);
+      }
     }
   }
 }
