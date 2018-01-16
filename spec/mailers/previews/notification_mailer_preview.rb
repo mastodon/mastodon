@@ -13,6 +13,12 @@ class NotificationMailerPreview < ActionMailer::Preview
     NotificationMailer.follow(f.target_account, Notification.find_by(activity: f))
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/follow_request
+  def follow_request
+    f = Follow.last
+    NotificationMailer.follow_request(f.target_account, Notification.find_by(activity: f))
+  end
+
   # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/favourite
   def favourite
     f = Favourite.last
