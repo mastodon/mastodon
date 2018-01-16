@@ -343,6 +343,7 @@ en:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
+    view_status: View status
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
@@ -494,18 +495,24 @@ en:
     favourite:
       body: 'Your status was favourited by %{name}:'
       subject: "%{name} favourited your status"
+      title: New favourite
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
+      title: New follower
     follow_request:
+      action: Manage follow requests
       body: "%{name} has requested to follow you"
       subject: 'Pending follower: %{name}'
+      title: New follow request
     mention:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
+      title: New mention
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+      title: New boost
   number:
     human:
       decimal_units:
