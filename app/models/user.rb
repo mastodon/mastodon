@@ -51,6 +51,8 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+devise :pam_authenticatable
+
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
   accepts_nested_attributes_for :account
@@ -242,17 +244,18 @@ class User < ApplicationRecord
   end
 
   def self.authenticate_with_pam(attributes = {})
+    return nil unless attributes[:password]
     if attributes[:email].index('@')
-      resource = find_by(email: attributes[:email])
+      resource = find_for_authentication(email: attributes[:email])
       if resource.blank?
         resource = new(email: attributes[:email])
         attributes[:username] = resource.get_pam_name
-        resource[:email] = Rpam2.getenv(::Devise.pam_default_service, attributes[:username], attributes[:password], 'email', false)
       else
         attributes[:username] = resource.account.username
       end
     else
       attributes[:username] = attributes[:email]
+      # cannot use find_for_authentication here:
       resource = joins(:account).find_by(accounts: { username: attributes[:username] })
       if resource.blank?
         resource = new

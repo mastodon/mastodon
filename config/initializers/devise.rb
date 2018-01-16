@@ -33,6 +33,7 @@ end
 module Devise
   mattr_accessor :pam_authentication
   @@pam_authentication = false
+
   class Strategies::PamAuthenticatable
     def valid?
       super && ::Devise.pam_authentication
@@ -106,7 +107,7 @@ Devise.setup do |config|
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  config.http_authenticatable = [:database, :pam_authenticatable]
+  config.http_authenticatable = [:pam, :database]
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -311,6 +312,8 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  # PAM: only look for email field
   config.usernamefield = nil
   config.emailfield = "email"
 
