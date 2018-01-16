@@ -336,6 +336,7 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}。"
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
+    notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
     settings: 使用此链接更改你的电子邮件首选项：%{link}
     signature: 这是一封来自 %{instance} 的 Mastodon 电子邮件通知。
