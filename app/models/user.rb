@@ -244,7 +244,7 @@ devise :pam_authenticatable
   end
 
   def self.authenticate_with_pam(attributes = {})
-    return nil unless attributes[:password]
+    return nil unless attributes[:password] && Devise.pam_authentication
     if attributes[:email].index('@')
       resource = find_for_authentication(email: attributes[:email])
       if resource.blank?
