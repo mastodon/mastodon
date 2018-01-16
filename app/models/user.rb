@@ -227,7 +227,8 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    !Devise.pam_authentication
+    return false if Devise.pam_authentication
+    super
   end
 
   def send_reset_password_instructions
