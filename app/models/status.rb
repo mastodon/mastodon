@@ -23,6 +23,7 @@
 #  account_id             :bigint(8)        not null
 #  application_id         :bigint(8)
 #  in_reply_to_account_id :bigint(8)
+#  license_url            :text
 #
 
 class Status < ApplicationRecord
@@ -38,12 +39,12 @@ class Status < ApplicationRecord
   update_index('statuses#status', :proper) if Chewy.enabled?
 
   LICENSE_URLS = {
-    'Attribution (CC BY)' => 'https://creativecommons.org/licenses/by/4.0/',
-    'Attribution-ShareAlike (CC BY-SA)' => 'https://creativecommons.org/licenses/by-sa/4.0/',
-    'Attribution-NoDerivatives (CC BY-ND)' => 'https://creativecommons.org/licenses/by-nd/4.0/',
-    'Attribution-NonCommercial (CC BY-NC)' => 'https://creativecommons.org/licenses/by-nc/4.0/',
-    'Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)' => 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
-    'Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)' => 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+    'https://creativecommons.org/licenses/by/4.0/' => :'BY',
+    'https://creativecommons.org/licenses/by-sa/4.0/' => :'BY-SA',
+    'https://creativecommons.org/licenses/by-nd/4.0/' => :'BY-ND',
+    'https://creativecommons.org/licenses/by-nc/4.0/' => :'BY-NC',
+    'https://creativecommons.org/licenses/by-nc-sa/4.0/' => :'BY-NC-SA',
+    'https://creativecommons.org/licenses/by-nc-nd/4.0/' => :'BY-NC-ND',
   }.freeze
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
@@ -187,7 +188,7 @@ class Status < ApplicationRecord
   before_validation :set_conversation
   before_validation :set_sensitivity
   before_validation :set_local
-  before_validation :set_license
+  before_validation :set_license_url
 
   class << self
     def not_in_filtered_languages(account)
@@ -313,10 +314,6 @@ class Status < ApplicationRecord
     end
   end
 
-  def license_url
-    LICENSE_URLS[license]
-  end
-
   private
 
   def store_uri
@@ -370,7 +367,7 @@ class Status < ApplicationRecord
     ActivityTracker.increment('activity:statuses:local')
   end
 
-  def set_license
-    self.license ||= account.user&.setting_default_license
+  def set_license_url
+    self.license_url ||= account.user&.setting_default_license
   end
 end

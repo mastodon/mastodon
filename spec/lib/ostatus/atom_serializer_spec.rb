@@ -378,7 +378,7 @@ RSpec.describe OStatus::AtomSerializer do
       end
 
       it 'appends link element for license if we know the license URL' do
-        status = Fabricate(:status, license: 'Attribution (CC BY)')
+        status = Fabricate(:status, license_url: 'https://creativecommons.org/licenses/by/4.0/')
 
         entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
 
@@ -392,7 +392,7 @@ RSpec.describe OStatus::AtomSerializer do
       end
 
       it 'does not append the link element for the license if we do not know the license URL' do
-        status = Fabricate(:status, license: nil)
+        status = Fabricate(:status, license_url: nil)
 
         entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
 

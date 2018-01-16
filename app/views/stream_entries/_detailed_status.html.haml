@@ -40,7 +40,8 @@
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
       ·
     - if status.license_url
-      = link_to status.license, status.license_url, class: 'detailed-status__license', target: '_blank', rel: 'noopener'
+      = link_to t(Status::LICENSE_URLS[status.license_url], scope: 'simple_form.options.user.setting_default_license'),
+        status.license_url, class: 'detailed-status__license', target: '_blank', rel: 'noopener'
       ·
     - if status.direct_visibility?
       %span<
