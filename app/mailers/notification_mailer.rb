@@ -3,6 +3,8 @@
 class NotificationMailer < ApplicationMailer
   helper :stream_entries
 
+  add_template_helper RoutingHelper
+
   def mention(recipient, notification)
     @me     = recipient
     @status = notification.target_status
