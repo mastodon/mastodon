@@ -300,7 +300,7 @@ h3 {
 .footer {
   .column-cell,
   p {
-    color: lighten($ui-base-color, 26%);
+    color: lighten($ui-base-color, 34%);
   }
 
   p {
@@ -313,7 +313,7 @@ h3 {
   }
 
   a {
-    color: lighten($ui-base-color, 26%);
+    color: lighten($ui-base-color, 34%);
     text-decoration: underline;
   }
 
@@ -363,7 +363,7 @@ h3 {
 }
 
 .button-primary {
-  background-color: $ui-highlight-color;
+  background-color: darken($ui-highlight-color, 3%);
 }
 
 .text-center {
