@@ -338,6 +338,7 @@ en:
       body: "%{reporter} has reported %{target}"
       subject: New report for %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Change e-mail preferences
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
@@ -552,12 +553,14 @@ en:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Unknown browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari

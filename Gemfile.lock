@@ -122,6 +122,8 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.3)
+    css_parser (1.6.0)
+      addressable
     debug_inspector (0.0.3)
     devise (4.3.0)
       bcrypt (~> 3.0)
@@ -324,6 +326,13 @@ GEM
       activerecord
     pkg-config (1.2.8)
     powerpack (0.1.1)
+    premailer (1.11.1)
+      addressable
+      css_parser (>= 1.6.0)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.10.1)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -600,6 +609,7 @@ DEPENDENCIES
   pg (~> 0.20)
   pghero (~> 1.7)
   pkg-config (~> 1.2)
+  premailer-rails
   pry-rails (~> 0.3)
   puma (~> 3.10)
   pundit (~> 1.1)
