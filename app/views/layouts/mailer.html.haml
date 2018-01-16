@@ -24,7 +24,7 @@
                               %tr
                                 %td.column-cell
                                   = link_to root_url do
-                                    = image_tag asset_pack_path('logo_full.svg'), height: 34, class: 'logo'
+                                    = image_tag full_pack_url('logo_full.svg'), alt: 'Mastodon', height: 34, class: 'logo'
 
     = yield
 
@@ -52,4 +52,4 @@
                             %tbody
                               %td.column-cell.text-right
                                 = link_to root_url do
-                                  = image_tag asset_pack_path('logo_transparent.svg'), height: 24
+                                  = image_tag full_pack_url('logo_transparent.svg'), alt: 'Mastodon', height: 24
