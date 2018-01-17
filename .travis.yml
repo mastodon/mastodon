@@ -9,6 +9,9 @@ cache:
   - tmp/cache/babel-loader
 dist: trusty
 sudo: required
+branches:
+  only:
+  - master
 
 notifications:
   email: false
