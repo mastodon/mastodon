@@ -1,4 +1,3 @@
----
 ja:
   devise:
     confirmations:
@@ -8,29 +7,47 @@ ja:
     failure:
       already_authenticated: 既にログイン済みです。
       inactive: あなたのアカウントはまだ有効化されていません。
-      invalid: "%{authentication_keys}かパスワードが誤っています。"
+      invalid: '%{authentication_keys}かパスワードが誤っています。'
       last_attempt: あと1回失敗するとアカウントがロックされます。
       locked: アカウントはロックされました。
-      not_found_in_database: "%{authentication_keys}かパスワードが誤っています。"
+      not_found_in_database: '%{authentication_keys}かパスワードが誤っています。'
       timeout: セッションの有効期限が切れました。続行するには再度ログインしてください。
       unauthenticated: 続行するにはログインするか、アカウントを作成してください。
       unconfirmed: 続行するにはメールアドレスを確認する必要があります。
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: メールアドレスの確認'
+        action: メールアドレスの確認
+        explanation: このメールアドレスで%{host}にアカウントを作成しました。有効にするまであと一歩です。もし心当たりがない場合、申し訳ありませんがこのメールを無視してください。
+        extra_html: また <a href="%{terms_path}">インスタンスのルール</a> と <a href="%{policy_path}">利用規約</a>
+          もお読みください。
+        title: メールアドレスの確認
       email_changed:
         subject: 'Mastodon: メールアドレスの変更'
+        explanation: 'アカウントのメールアドレスは以下のように変更されます:'
+        extra: メールアドレスの変更を行っていない場合、他の誰かがあなたのアカウントにアクセスした可能性があります。すぐにパスワードを変更するか、アカウントがロックされている場合はインスタンス管理者に連絡してください。
+        title: 新しいメールアドレス
       password_change:
         subject: 'Mastodon: パスワードが変更されました'
+        explanation: パスワードが変更されました。
+        extra: パスワードの変更を行っていない場合、他の誰かがあなたのアカウントにアクセスした可能性があります。すぐにパスワードを変更するか、アカウントがロックされている場合はインスタンス管理者に連絡してください。
+        title: パスワードの変更
       reconfirmation_instructions:
         subject: 'Mastodon: %{instance}のメールを確認する'
+        extra: この変更に心当たりがない場合、このメールを無視してください。上記リンク先にアクセスするまでアカウントのメールアドレスは変更されません。
+        title: メールアドレスの確認
+        explanation: メールアドレスを変更するため新しいアドレスを確認してください。
       reset_password_instructions:
         subject: 'Mastodon: パスワード再発行'
+        action: パスワードの変更
+        explanation: あなたのアカウントに対しパスワードの再発行が要求されました。
+        extra: この要求に心当たりがない場合、このメールを無視してください。上記リンク先にアクセスし新しいものを作成するまでパスワードは変更されません。
+        title: パスワード再発行
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
     omniauth_callbacks:
-      failure: "%{reason}によって%{kind}からのアクセスを認証できませんでした。"
-      success: "%{kind}からのアクセスは正常に認証されました。"
+      failure: '%{reason}によって%{kind}からのアクセスを認証できませんでした。'
+      success: '%{kind}からのアクセスは正常に認証されました。'
     passwords:
       no_token: パスワード再発行のメール以外からこのページにアクセスすることはできません。 パスワード再発行のメールからアクセスしたのにもかかわらずこのメッセージが表示される場合は、アクセスしたURLが間違っていないか確認してください。
       send_instructions: パスワード再発行の方法が記載されたメールが間もなく送信されます。
@@ -56,10 +73,10 @@ ja:
   errors:
     messages:
       already_confirmed: は確認されました。ログインを試してください
-      confirmation_period_expired: "%{period}以内に確認が必要です。再度試してください"
+      confirmation_period_expired: '%{period}以内に確認が必要です。再度試してください'
       expired: は期限切れです。再度試してください
       not_found: 見つかりません
       not_locked: ロックされていません
       not_saved:
         one: エラーが発生したため、%{resource}の保存に失敗しました。
-        other: "%{count}個のエラーが発生したため、%{resource}の保存に失敗しました:"
+        other: '%{count}個のエラーが発生したため、%{resource}の保存に失敗しました:'

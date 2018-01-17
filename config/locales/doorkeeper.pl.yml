@@ -1,4 +1,3 @@
----
 pl:
   activerecord:
     attributes:
@@ -33,7 +32,8 @@ pl:
       help:
         native_redirect_uri: Użyj %{native_redirect_uri} do lokalnych testów
         redirect_uri: Jeden adres na linię tekstu
-        scopes: Rozdziel zakresy (scopes) spacjami. Zostaw puste, aby użyć domyślnych zakresów.
+        scopes: Rozdziel zakresy (scopes) spacjami. Zostaw puste, aby użyć domyślnych
+          zakresów.
       index:
         application: Aplikacja
         callback_url: URL wywołania zwrotnego (callback)
@@ -72,29 +72,43 @@ pl:
       index:
         application: Aplikacja
         created_at: Autoryzowana
-        date_format: "%d.%m.%Y %H:%M:%S"
+        date_format: '%d.%m.%Y %H:%M:%S'
         scopes: Zakresy
         title: Twoje autoryzowane aplikacje
     errors:
       messages:
         access_denied: Właściciel zasobu lub serwer autoryzujący odrzuciły żądanie.
-        credential_flow_not_configured: Ścieżka "Resource Owner Password Credentials" zakończyła się błędem, ponieważ Doorkeeper.configure.resource_owner_from_credentials nie został skonfigurowany.
-        invalid_client: Autoryzacja klienta nie powiodła się z powodu nieznanego klienta, braku uwierzytelnienia klienta, lub niewspieranej metody uwierzytelniania.
-        invalid_grant: Grant uwierzytelnienia jest niepoprawny, przeterminowany, unieważniony, nie pasuje do URI przekierowwania użytego w żądaniu uwierzytelnienia, lub został wystawiony przez innego klienta.
+        credential_flow_not_configured: Ścieżka "Resource Owner Password Credentials"
+          zakończyła się błędem, ponieważ Doorkeeper.configure.resource_owner_from_credentials
+          nie został skonfigurowany.
+        invalid_client: Autoryzacja klienta nie powiodła się z powodu nieznanego klienta,
+          braku uwierzytelnienia klienta, lub niewspieranej metody uwierzytelniania.
+        invalid_grant: Grant uwierzytelnienia jest niepoprawny, przeterminowany, unieważniony,
+          nie pasuje do URI przekierowwania użytego w żądaniu uwierzytelnienia, lub
+          został wystawiony przez innego klienta.
         invalid_redirect_uri: URI przekierowania jest nieprawidłowy.
-        invalid_request: 'Żądanie jest nieprawidłowe: brakujący parametr, niewspierana wartość parametru, lub inny błąd.'
-        invalid_resource_owner: Dostarczone dane uwierzytelniające właściciela zasobu są niepoprawne, lub właściciel zasobu nie może zostać znaleziony.
+        invalid_request: 'Żądanie jest nieprawidłowe: brakujący parametr, niewspierana
+          wartość parametru, lub inny błąd.'
+        invalid_resource_owner: Dostarczone dane uwierzytelniające właściciela zasobu
+          są niepoprawne, lub właściciel zasobu nie może zostać znaleziony
         invalid_scope: Zakres żądania jest niepoprawny, nieznany, lub błędnie zbudowany.
         invalid_token:
           expired: Token dostępowy wygasł
           revoked: Token dostępowy został unieważniony
           unknown: Token dostępowy jest błędny
-        resource_owner_authenticator_not_configured: Wyszukiwanie właściciela zasobu nie powiodło się, ponieważ Doorkeeper.configure.resource_owner_authenticator nie został skonfigurowany.
-        server_error: Serwer uwierzytelniający napotkał nieoczekiwand warunki, które uniemożliwiły obsłużenie żądania.
-        temporarily_unavailable: Serwer uwierzytelniający nie jest obecnie w stanie obsłużyć żądania z powodu tymczasowego przeciążenia lub prac konserwacyjnych.
-        unauthorized_client: Klient nie jest uprawniony do wykonania tego żądania przy pomocy tej metody.
-        unsupported_grant_type: Ten typ grantu uwierzytelniającego nie jest wspierany przez serwer uwierzytelniający.
-        unsupported_response_type: Serwer uwierzytelniający nie wspiera tego typu odpowiedzi.
+        resource_owner_authenticator_not_configured: Wyszukiwanie właściciela zasobu
+          nie powiodło się, ponieważ Doorkeeper.configure.resource_owner_authenticator
+          nie został skonfigurowany.
+        server_error: Serwer uwierzytelniający napotkał nieoczekiwand warunki, które
+          uniemożliwiły obsłużenie żądania.
+        temporarily_unavailable: Serwer uwierzytelniający nie jest obecnie w stanie
+          obsłużyć żądania z powodu tymczasowego przeciążenia lub prac konserwacyjnych.
+        unauthorized_client: Klient nie jest uprawniony do wykonania tego żądania
+          przy pomocy tej metody.
+        unsupported_grant_type: Ten typ grantu uwierzytelniającego nie jest wspierany
+          przez serwer uwierzytelniający.
+        unsupported_response_type: Serwer uwierzytelniający nie wspiera tego typu
+          odpowiedzi.
     flash:
       applications:
         create:
@@ -114,6 +128,7 @@ pl:
       application:
         title: Uwierzytelnienie OAuth jest wymagane
     scopes:
-      follow: możliwość śledzenia, blokowania, usuwania blokad, anulowania śledzenia kont
+      follow: możliwość śledzenia, blokowania, usuwania blokad, anulowania śledzenia
+        kont
       read: dostęp do odczytu danych konta
       write: możliwość publikowania wpisów w Twoim imieniu
