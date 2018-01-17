@@ -540,12 +540,14 @@ nl:
     title: Moderatie
   notification_mailer:
     digest:
-      body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance}
-        sinds jouw laatste bezoek op %{since}:'
+      body: Hier is een korte samenvatting van de berichten die je sinds jouw laatste
+        bezoek op %{since} hebt gemist
       mention: '%{name} vermeldde jou in:'
       new_followers_summary:
-        one: Jij hebt een nieuwe volger! Hoera!
-        other: Jij hebt %{count} nieuwe volgers! Prachtig!
+        one: Je hebt trouwens sinds je weg was er ook een nieuwe volger bijgekregen!
+          Hoera!
+        other: Je hebt trouwens sinds je weg was er ook %{count} nieuwe volgers bijgekregen!
+          Fantastisch!
       subject:
         one: 1 nieuwe melding sinds jouw laatste bezoek 🐘
         other: '%{count} nieuwe meldingen sinds jouw laatste bezoek 🐘'
