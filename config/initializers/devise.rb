@@ -319,6 +319,8 @@ Devise.setup do |config|
 
   # authentication with pam possible
   #config.pam_authentication = true
+  # check if email is actually a username
+  config.check_at_sign = true
   # suffix for email address generation (warning: without pam must provide email in the pam environment)
   config.pam_default_suffix = "pam"
   # name of the pam service

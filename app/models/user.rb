@@ -87,16 +87,26 @@ devise :pam_authenticatable
 
   attr_accessor :invite_code
 
-  def pam_on_filled_pw(_)
+  def pam_conflict(_)
     # block pam login tries on traditional account
     nil
   end
 
+  def pam_conflict?
+    return false unless Devise.pam_authentication
+    super
+  end
+
+  def get_pam_name
+    return account.username if account.present?
+    super
+  end
+
   def pam_setup(attributes)
-    acc = Account.new(username: attributes[:username])
+    acc = Account.new(username: get_pam_name)
     acc.save!(validate: false)
 
-    self.email = "#{attributes[:username]}@#{get_suffix}" if email.nil? && get_suffix
+    self.email = "#{acc.username}@#{get_pam_suffix}" if email.nil? && get_pam_suffix
     self.confirmed_at = Time.now.utc
     self.admin = false
     self.account = acc
@@ -243,38 +253,29 @@ devise :pam_authenticatable
     super
   end
 
-  def self.authenticate_with_pam(attributes = {})
-    return nil unless attributes[:password] && Devise.pam_authentication
-    if attributes[:email].index('@')
-      resource = find_for_authentication(email: attributes[:email])
-      if resource.blank?
-        resource = new(email: attributes[:email])
-        attributes[:username] = resource.get_pam_name
+  def self.pam_get_user(attributes = {})
+    if attributes[:email]
+      if Devise.check_at_sign && attributes[:email].index('@').nil?
+        resource = joins(:account).find_by(accounts: { username: attributes[:username] })
       else
-        attributes[:username] = resource.account.username
+        resource = find_by(email: attributes[:email])
       end
-    else
-      attributes[:username] = attributes[:email]
-      # cannot use find_for_authentication here:
-      resource = joins(:account).find_by(accounts: { username: attributes[:username] })
+
       if resource.blank?
         resource = new
-        resource[:email] = Rpam2.getenv(::Devise.pam_default_service, attributes[:username], attributes[:password], 'email', false)
-      end
-    end
-
-    # potential conflict detected
-    resource = resource.pam_on_filled_pw(attributes) if resource.password.present?
-
-    if resource && Rpam2.auth(::Devise.pam_default_service, attributes[:username], attributes[:password])
-      if resource.new_record?
-        resource.pam_setup(attributes)
-        resource.save!
+        if Devise.check_at_sign && attributes[:email].index('@').nil?
+          resource[:email] = "#{attributes[:email]}@#{resource.get_pam_suffix}"
+        else
+          resource[:email] = attributes[:email]
+        end
       end
       return resource
-    else
-      return nil
     end
+  end
+
+  def self.authenticate_with_pam(attributes = {})
+    return nil unless Devise.pam_authentication
+    super
   end
 
   protected
