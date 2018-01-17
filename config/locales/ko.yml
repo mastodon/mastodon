@@ -338,9 +338,12 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
   application_mailer:
+    notification_preferences: 메일 설정 변경
     settings: '메일 설정을 변경: %{link}'
     signature: Mastodon %{instance} 인스턴스로에서 알림
     view: 'View:'
+    view_profile: 프로필 보기
+    view_status: 게시물 보기
   applications:
     created: 애플리케이션이 작성되었습니다.
     destroyed: 애플리케이션이 삭제되었습니다.
@@ -481,6 +484,7 @@ ko:
     title: 모더레이션
   notification_mailer:
     digest:
+      action: 모든 알림 보기
       body: "%{instance} 에서 마지막 로그인 뒤로 일어난 일:"
       mention: "%{name} 님이 답장했습니다:"
       new_followers_summary:
@@ -489,21 +493,29 @@ ko:
       subject:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
+      title: 당신이 없는 동안에…
     favourite:
       body: "%{name} 님이 내 툿을 즐겨찾기에 등록했습니다."
       subject: "%{name} 님이 내 툿을 즐겨찾기에 등록했습니다"
+      title: 새 즐겨찾기
     follow:
       body: "%{name} 님이 나를 팔로우 했습니다"
       subject: "%{name} 님이 나를 팔로우 했습니다"
+      title: 새 팔로워
     follow_request:
+      action: 팔로우 요청 관리
       body: "%{name} 님이 내게 팔로우 요청을 보냈습니다."
       subject: "%{name} 님이 보낸 팔로우 요청"
+      title: 새 팔로우 요청
     mention:
+      action: 답장
       body: "%{name} 님이 답장을 보냈습니다:"
       subject: "%{name} 님이 답장을 보냈습니다"
+      title: 새 멘션
     reblog:
       body: "%{name} 님이 내 툿을 부스트 했습니다:"
       subject: "%{name} 님이 내 툿을 부스트 했습니다"
+      title: 새 부스트
   number:
     human:
       decimal_units:
