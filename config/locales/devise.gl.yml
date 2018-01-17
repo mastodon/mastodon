@@ -18,8 +18,12 @@ gl:
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Instruccións de confirmación para %{instance}'
+      email_changed:
+        subject: 'Mastodon: email cambiado'
       password_change:
         subject: 'Mastodon: contrasinal cambiado'
+      reconfirmation_instructions:
+        subject: 'Mastodon: Confirme email para %{instance}'
       reset_password_instructions:
         subject: 'Mastodon: Instruccións para restablecer o contrasinal'
       unlock_instructions:
