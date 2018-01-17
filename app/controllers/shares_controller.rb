@@ -14,13 +14,9 @@ class SharesController < ApplicationController
   private
 
   def initial_state_params
-    text = params[:text]
-    if params[:title]
-      text = params[:title] + ' ' + text
-    end
-    if params[:url]
-      text += ' ' + params[:url]
-    end
+    text = params[:text] || ''
+    text = params[:title] + ' ' + text if params[:title]
+    text += ' ' + params[:url] if params[:url]
     {
       settings: Web::Setting.find_by(user: current_user)&.data || {},
       push_subscription: current_account.user.web_push_subscription(current_session),
