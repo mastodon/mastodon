@@ -175,7 +175,7 @@ export default class Status extends ImmutablePureComponent {
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-thumb-tack status__prepend-icon' /></div>
-          Pinned
+          <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
         </div>
       );
     }
