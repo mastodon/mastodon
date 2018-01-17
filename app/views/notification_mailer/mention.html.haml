@@ -17,7 +17,7 @@
                                 %tbody
                                   %tr
                                     %td
-                                      = image_tag asset_pack_path('icon_reply.svg')
+                                      = image_tag full_pack_url('icon_reply.svg'), alt: ''
 
                               %h1= t 'notification_mailer.mention.title'
                               %p.lead= t('notification_mailer.mention.body', name: @status.account.acct)
