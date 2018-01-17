@@ -18,10 +18,10 @@ en:
     mailer:
       confirmation_instructions:
         action: Verify email address
-        explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this e-mail.
-        extra_html: Please also check out our <a href="%{terms_path}">terms of service</a> and <a href="%{policy_path}">privacy policy</a>.
+        explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this email.
+        extra_html: Please also check out <a href="%{terms_path}">the rules of the instance</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Confirmation instructions for %{instance}'
-        title: Verify e-mail address
+        title: Verify email address
       email_changed:
         explanation: 'The email address for your account is being changed to:'
         extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the instance admin if you're locked out of your account.

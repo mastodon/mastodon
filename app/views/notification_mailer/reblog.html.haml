@@ -17,10 +17,12 @@
                                 %tbody
                                   %tr
                                     %td
-                                      = image_tag full_pack_url('icon_lock_open.svg'), alt: ''
+                                      = image_tag full_pack_url('icon_cached.svg'), alt: ''
 
-                              %h1= t 'devise.mailer.password_change.title'
-                              %p.lead= t 'devise.mailer.password_change.explanation'
+                              %h1= t 'notification_mailer.reblog.title'
+                              %p.lead= t('notification_mailer.reblog.body', name: @account.acct)
+
+= render 'status', status: @status
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -30,11 +32,14 @@
           %table.content-section{ cellspacing: 0, cellpadding: 0 }
             %tbody
               %tr
-                %td.content-cell.content-start
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %p= t 'devise.mailer.password_change.extra'
+                %td.content-cell.content-start.border-top
+                  %table.column{ cellspacing: 0, cellpadding: 0 }
+                    %tbody
+                      %tr
+                        %td.column-cell.button-cell
+                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                            %tbody
+                              %tr
+                                %td.button-primary
+                                  = link_to web_url("statuses/#{@status.id}") do
+                                    %span= t 'application_mailer.view_status'

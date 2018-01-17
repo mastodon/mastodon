@@ -17,10 +17,10 @@
                                 %tbody
                                   %tr
                                     %td
-                                      = image_tag full_pack_url('icon_lock_open.svg'), alt: ''
+                                      = image_tag full_pack_url('icon_person_add.svg'), alt: ''
 
-                              %h1= t 'devise.mailer.password_change.title'
-                              %p.lead= t 'devise.mailer.password_change.explanation'
+                              %h1= t 'notification_mailer.follow_request.title'
+                              %p.lead= t('notification_mailer.follow_request.body', name: @account.acct)
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -31,10 +31,13 @@
             %tbody
               %tr
                 %td.content-cell.content-start
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %p= t 'devise.mailer.password_change.extra'
+                  %table.column{ cellspacing: 0, cellpadding: 0 }
+                    %tbody
+                      %tr
+                        %td.column-cell.button-cell
+                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                            %tbody
+                              %tr
+                                %td.button-primary
+                                  = link_to web_url("follow_requests") do
+                                    %span= t 'notification_mailer.follow_request.action'

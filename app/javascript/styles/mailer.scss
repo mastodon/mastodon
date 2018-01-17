@@ -254,11 +254,27 @@ h3 {
 
 .content-cell {
   background-color: darken($ui-base-color, 4%);
+
+  &.darker {
+    background-color: darken($ui-base-color, 8%);
+  }
 }
 
 .hero {
   background-color: $ui-base-color;
   padding-top: 20px;
+}
+
+.hero-with-button {
+  h1 {
+    margin-bottom: 4px;
+  }
+
+  p.lead {
+    margin-bottom: 32px;
+  }
+
+  padding-bottom: 16px;
 }
 
 .header {
@@ -284,7 +300,7 @@ h3 {
 .footer {
   .column-cell,
   p {
-    color: lighten($ui-base-color, 26%);
+    color: lighten($ui-base-color, 34%);
   }
 
   p {
@@ -297,7 +313,7 @@ h3 {
   }
 
   a {
-    color: lighten($ui-base-color, 26%);
+    color: lighten($ui-base-color, 34%);
     text-decoration: underline;
   }
 
@@ -347,7 +363,7 @@ h3 {
 }
 
 .button-primary {
-  background-color: $ui-highlight-color;
+  background-color: darken($ui-highlight-color, 3%);
 }
 
 .text-center {
@@ -383,6 +399,68 @@ h3 {
     display: block;
     line-height: 100%;
   }
+}
+
+.hr {
+  width: 100%;
+
+  td {
+    font-size: 0;
+    line-height: 1px;
+    mso-line-height-rule: exactly;
+    min-height: 1px;
+    overflow: hidden;
+    height: 2px;
+    background-color: transparent !important;
+    border-top: 1px solid lighten($ui-base-color, 8%);
+  }
+}
+
+.status {
+  padding-bottom: 32px;
+
+  .status-header {
+    td {
+      font-size: 14px;
+      padding-bottom: 15px;
+    }
+
+    bdi {
+      color: $white;
+      font-size: 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    td:first-child {
+      padding-right: 10px;
+    }
+
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+    }
+  }
+
+  p {
+    font-size: 19px;
+    margin-bottom: 20px;
+
+    &.status-footer {
+      color: lighten($ui-base-color, 26%);
+      font-size: 14px;
+      margin-bottom: 0;
+
+      a {
+        color: lighten($ui-base-color, 26%);
+      }
+    }
+  }
+}
+
+.border-top {
+  border-top: 1px solid lighten($ui-base-color, 8%);
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {

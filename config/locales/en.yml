@@ -343,6 +343,8 @@ en:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
+    view_profile: View Profile
+    view_status: View status
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
@@ -492,29 +494,38 @@ en:
     title: Moderation
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      action: View all notifications
+      body: Here is a brief summary of the messages you missed since your last visit on %{since}
       mention: "%{name} mentioned you in:"
       new_followers_summary:
-        one: You have acquired one new follower! Yay!
-        other: You have gotten %{count} new followers! Amazing!
+        one: Also, you have acquired one new follower while being away! Yay!
+        other: Also, you have acquired %{count} new followers while being away! Amazing!
       subject:
         one: "1 new notification since your last visit \U0001F418"
         other: "%{count} new notifications since your last visit \U0001F418"
+      title: In your absence…
     favourite:
       body: 'Your status was favourited by %{name}:'
       subject: "%{name} favourited your status"
+      title: New favourite
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
+      title: New follower
     follow_request:
+      action: Manage follow requests
       body: "%{name} has requested to follow you"
       subject: 'Pending follower: %{name}'
+      title: New follow request
     mention:
+      action: Reply
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
+      title: New mention
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+      title: New boost
   number:
     human:
       decimal_units:

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class NotificationMailer < ApplicationMailer
-  layout 'plain_mailer'
-
   helper :stream_entries
+
+  add_template_helper RoutingHelper
 
   def mention(recipient, notification)
     @me     = recipient
