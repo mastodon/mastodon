@@ -97,16 +97,16 @@ devise :pam_authenticatable
     super
   end
 
-  def get_pam_name
+  def pam_get_name
     return account.username if account.present?
     super
   end
 
-  def pam_setup(attributes)
-    acc = Account.new(username: get_pam_name)
+  def pam_setup(_attributes)
+    acc = Account.new(username: pam_get_name)
     acc.save!(validate: false)
 
-    self.email = "#{acc.username}@#{get_pam_suffix}" if email.nil? && get_pam_suffix
+    self.email = "#{acc.username}@#{find_pam_suffix}" if email.nil? && find_pam_suffix
     self.confirmed_at = Time.now.utc
     self.admin = false
     self.account = acc
@@ -255,21 +255,19 @@ devise :pam_authenticatable
 
   def self.pam_get_user(attributes = {})
     if attributes[:email]
-      if Devise.check_at_sign && attributes[:email].index('@').nil?
-        resource = joins(:account).find_by(accounts: { username: attributes[:username] })
+      if Devise.check_at_sign && !attributes[:email].index('@')
+        resource = joins(:account).find_by(accounts: { username: attributes[:email] })
       else
         resource = find_by(email: attributes[:email])
       end
 
       if resource.blank?
-        resource = new
-        if Devise.check_at_sign && attributes[:email].index('@').nil?
-          resource[:email] = "#{attributes[:email]}@#{resource.get_pam_suffix}"
-        else
-          resource[:email] = attributes[:email]
+        resource = new(email: attributes[:email])
+        if Devise.check_at_sign && !resource[:email].index('@')
+          resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}"
         end
       end
-      return resource
+      resource
     end
   end
 
