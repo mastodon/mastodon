@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { fetchAccount } from '../../actions/accounts';
-import { refreshAccountTimeline, expandAccountTimeline } from '../../actions/timelines';
+import { refreshAccountTimeline, refreshAccountPinnedTimeline, expandAccountTimeline } from '../../actions/timelines';
 import StatusList from '../../components/status_list';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
@@ -14,6 +14,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
   statusIds: state.getIn(['timelines', `account:${props.params.accountId}`, 'items'], ImmutableList()),
+  pinnedStatusIds: state.getIn(['timelines', `account:${props.params.accountId}:pinned`, 'items'], ImmutableList()),
   isLoading: state.getIn(['timelines', `account:${props.params.accountId}`, 'isLoading']),
   hasMore: !!state.getIn(['timelines', `account:${props.params.accountId}`, 'next']),
 });
@@ -27,17 +28,20 @@ export default class AccountTimeline extends ImmutablePureComponent {
     statusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
+    pinnedStatusIds: ImmutablePropTypes.list,
   };
 
   componentWillMount () {
     this.props.dispatch(fetchAccount(this.props.params.accountId));
     this.props.dispatch(refreshAccountTimeline(this.props.params.accountId));
+    this.props.dispatch(refreshAccountPinnedTimeline(this.props.params.accountId));
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
       this.props.dispatch(fetchAccount(nextProps.params.accountId));
       this.props.dispatch(refreshAccountTimeline(nextProps.params.accountId));
+      this.props.dispatch(refreshAccountPinnedTimeline(nextProps.params.accountId));
     }
   }
 
@@ -48,7 +52,7 @@ export default class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, isLoading, hasMore } = this.props;
+    const { statusIds, pinnedStatusIds, isLoading, hasMore } = this.props;
 
     if (!statusIds && isLoading) {
       return (
@@ -58,6 +62,8 @@ export default class AccountTimeline extends ImmutablePureComponent {
       );
     }
 
+    const mergedStatusIds = pinnedStatusIds.concat(statusIds).toOrderedSet().toList();
+
     return (
       <Column>
         <ColumnBackButton />
@@ -65,10 +71,11 @@ export default class AccountTimeline extends ImmutablePureComponent {
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
           scrollKey='account_timeline'
-          statusIds={statusIds}
+          statusIds={mergedStatusIds}
           isLoading={isLoading}
           hasMore={hasMore}
           onScrollToBottom={this.handleScrollToBottom}
+          displayPinned
         />
       </Column>
     );

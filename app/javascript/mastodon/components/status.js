@@ -40,6 +40,7 @@ export default class Status extends ImmutablePureComponent {
     hidden: PropTypes.bool,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
+    displayPinned: PropTypes.bool,
   };
 
   state = {
@@ -168,6 +169,15 @@ export default class Status extends ImmutablePureComponent {
 
       account = status.get('account');
       status  = status.get('reblog');
+    }
+
+    if (other.displayPinned && status.get('pinned', false)) {
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-thumb-tack status__prepend-icon' /></div>
+          Pinned
+        </div>
+      );
     }
 
     if (status.get('media_attachments').size > 0 && !this.props.muted) {

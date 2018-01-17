@@ -112,13 +112,14 @@ export function refreshTimeline(timelineId, path, params = {}) {
   };
 };
 
-export const refreshHomeTimeline         = () => refreshTimeline('home', '/api/v1/timelines/home');
-export const refreshPublicTimeline       = () => refreshTimeline('public', '/api/v1/timelines/public');
-export const refreshCommunityTimeline    = () => refreshTimeline('community', '/api/v1/timelines/public', { local: true });
-export const refreshAccountTimeline      = accountId => refreshTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
-export const refreshAccountMediaTimeline = accountId => refreshTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
-export const refreshHashtagTimeline      = hashtag => refreshTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
-export const refreshListTimeline         = id => refreshTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
+export const refreshHomeTimeline          = () => refreshTimeline('home', '/api/v1/timelines/home');
+export const refreshPublicTimeline        = () => refreshTimeline('public', '/api/v1/timelines/public');
+export const refreshCommunityTimeline     = () => refreshTimeline('community', '/api/v1/timelines/public', { local: true });
+export const refreshAccountTimeline       = accountId => refreshTimeline(`account:${accountId}`, `/api/v1/accounts/${accountId}/statuses`);
+export const refreshAccountPinnedTimeline = accountId => refreshTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true });
+export const refreshAccountMediaTimeline  = accountId => refreshTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
+export const refreshHashtagTimeline       = hashtag => refreshTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
+export const refreshListTimeline          = id => refreshTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
 
 export function refreshTimelineFail(timeline, error, skipLoading) {
   return {
