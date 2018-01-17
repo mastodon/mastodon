@@ -255,10 +255,10 @@ devise :pam_authenticatable
 
   def self.pam_get_user(attributes = {})
     if attributes[:email]
-      if Devise.check_at_sign && !attributes[:email].index('@')
-        resource = joins(:account).find_by(accounts: { username: attributes[:email] })
+      resource = if Devise.check_at_sign && !attributes[:email].index('@')
+        joins(:account).find_by(accounts: { username: attributes[:email] })
       else
-        resource = find_by(email: attributes[:email])
+        find_by(email: attributes[:email])
       end
 
       if resource.blank?
