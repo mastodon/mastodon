@@ -17,7 +17,7 @@
                                 %tbody
                                   %tr
                                     %td
-                                      = image_tag asset_pack_path('icon_grade.svg')
+                                      = image_tag full_pack_url('icon_grade.svg'), alt:''
 
                               %h1= t 'notification_mailer.favourite.title'
                               %p.lead= t('notification_mailer.favourite.body', name: @account.acct)
