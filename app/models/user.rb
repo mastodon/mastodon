@@ -94,7 +94,7 @@ devise :pam_authenticatable
 
   def pam_conflict?
     return false unless Devise.pam_authentication
-    password.present? && is_pam_account?
+    encrypted_password.present? && is_pam_account?
   end
 
   def pam_get_name
@@ -244,12 +244,12 @@ devise :pam_authenticatable
   end
 
   def send_reset_password_instructions
-    return false if password.blank? && Devise.pam_authentication
+    return false if encrypted_password.blank? && Devise.pam_authentication
     super
   end
 
   def reset_password!(new_password, new_password_confirmation)
-    return false if password.blank? && Devise.pam_authentication
+    return false if encrypted_password.blank? && Devise.pam_authentication
     super
   end
 
