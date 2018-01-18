@@ -9,6 +9,7 @@ import {
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 import { defineMessages, injectIntl } from 'react-intl';
+import { connectCommunityStream } from '../../../actions/streaming';
 
 const messages = defineMessages({
   title: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
@@ -35,7 +36,7 @@ export default class CommunityTimeline extends React.PureComponent {
     const { dispatch } = this.props;
 
     dispatch(refreshCommunityTimeline());
-    this.disconnect = dispatch(connectPublicStream());
+    this.disconnect = dispatch(connectCommunityStream());
   }
 
   componentWillUnmount () {

@@ -24,11 +24,11 @@ export default class TimelineContainer extends React.PureComponent {
   static propTypes = {
     locale: PropTypes.string.isRequired,
     hashtag: PropTypes.string,
-    showPublicTimeline: PropTypes.bool.isRequired
+    showPublicTimeline: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
-    showPublicTimeline: initialState.settings['known_fediverse']
+    showPublicTimeline: initialState.settings.known_fediverse,
   };
 
   render () {
