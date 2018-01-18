@@ -50,7 +50,28 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path if single_user_mode? || !allowed_registrations?
   end
 
+  def extract_email
+    if params[:email]
+      params[:user][:email]
+    else
+      params[:email]
+    end
+  end
+
+  def pam_controlled?
+    return false unless Devise.pam_authentication
+    email = "#{extract_email}\n"
+    if (pos = email.index("@#{Devise.pam_default_suffix}\n"))
+      # deceptive email address
+      return false if email.count('\n') > 1
+      Rpam2.account(Devise.pam_default_service, email.slice(0, pos))
+    else
+      Rpam2.account(Devise.pam_default_service, email)
+    end
+  end
+
   def allowed_registrations?
+    return false if pam_controlled?
     Setting.open_registrations || (invite_code.present? && Invite.find_by(code: invite_code)&.valid_for_use?)
   end
 
