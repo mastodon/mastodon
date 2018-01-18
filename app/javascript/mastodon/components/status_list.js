@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import StatusContainer from '../containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ScrollableList from './scrollable_list';
+import { FormattedMessage } from 'react-intl';
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -16,6 +17,7 @@ export default class StatusList extends ImmutablePureComponent {
     trackScroll: PropTypes.bool,
     shouldUpdateScroll: PropTypes.func,
     isLoading: PropTypes.bool,
+    isPartial: PropTypes.bool,
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
@@ -48,8 +50,23 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, ...other } = this.props;
-    const { isLoading } = other;
+    const { statusIds, ...other }  = this.props;
+    const { isLoading, isPartial } = other;
+
+    if (isPartial) {
+      return (
+        <div className='regeneration-indicator'>
+          <div>
+            <div className='regeneration-indicator__figure' />
+
+            <div className='regeneration-indicator__label'>
+              <FormattedMessage id='regeneration_indicator.label' tagName='strong' defaultMessage='Loading&hellip;' />
+              <FormattedMessage id='regeneration_indicator.sublabel' defaultMessage='Your home feed is being prepared!' />
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     const scrollableContent = (isLoading || statusIds.size > 0) ? (
       statusIds.map((statusId) => (
