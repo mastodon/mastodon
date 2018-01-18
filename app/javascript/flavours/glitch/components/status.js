@@ -318,14 +318,14 @@ export default class Status extends ImmutablePureComponent {
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
-            {Component => <Component
+            {Component => (<Component
               preview={video.get('preview_url')}
               src={video.get('url')}
               sensitive={status.get('sensitive')}
               letterbox={settings.getIn(['media', 'letterbox'])}
               fullwidth={settings.getIn(['media', 'fullwidth'])}
               onOpenVideo={this.handleOpenVideo}
-            />}
+            />)}
           </Bundle>
         );
         mediaIcon = 'video-camera';

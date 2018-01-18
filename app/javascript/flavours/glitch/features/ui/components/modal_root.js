@@ -124,7 +124,7 @@ export default class ModalRoot extends React.PureComponent {
                 (<BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
                   {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
                 </BundleContainer>) :
-              null
+                null
             }
           </div>
         </div>

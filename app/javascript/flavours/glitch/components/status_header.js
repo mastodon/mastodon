@@ -104,8 +104,8 @@ export default class StatusHeader extends React.PureComponent {
               active={collapsed}
               title={
                 collapsed ?
-                intl.formatMessage(messages.uncollapse) :
-                intl.formatMessage(messages.collapse)
+                  intl.formatMessage(messages.uncollapse) :
+                  intl.formatMessage(messages.collapse)
               }
               icon='angle-double-up'
               onClick={this.handleCollapsedClick}

@@ -97,8 +97,8 @@ const rexstr = exp => '(?:' + exp.source + ')';
 const DOCUMENT_START    = /^/;
 const DOCUMENT_END      = /$/;
 const ALLOWED_CHAR      =  unirex( //  `c-printable` in the YAML 1.2 spec.
-    compat_mode ? '[\t\n\r\x20-\x7e\x85\xa0-\ufffd]' : '[\t\n\r\x20-\x7e\x85\xa0-\ud7ff\ue000-\ufffd\u{10000}-\u{10FFFF}]'
-  );
+  compat_mode ? '[\t\n\r\x20-\x7e\x85\xa0-\ufffd]' : '[\t\n\r\x20-\x7e\x85\xa0-\ud7ff\ue000-\ufffd\u{10000}-\u{10FFFF}]'
+);
 const WHITE_SPACE       = /[ \t]/;
 const LINE_BREAK        = /\r?\n|\r|<br\s*\/?>/;
 const INDICATOR         = /[-?:,[\]{}&#*!|>'"%@`]/;
