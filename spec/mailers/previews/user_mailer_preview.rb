@@ -29,4 +29,9 @@ class UserMailerPreview < ActionMailer::Preview
   def reset_password_instructions
     UserMailer.reset_password_instructions(User.first, 'spec')
   end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/welcome
+  def welcome
+    UserMailer.welcome(User.first)
+  end
 end

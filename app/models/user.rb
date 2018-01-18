@@ -223,5 +223,6 @@ class User < ApplicationRecord
   def update_statistics!
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
+    UserMailer.welcome(self).deliver_later
   end
 end
