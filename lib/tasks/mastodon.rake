@@ -341,6 +341,15 @@ namespace :mastodon do
       LinkCrawlWorker.push_bulk status_ids
     end
 
+    desc 'Remove all home feed regeneration markers'
+    task remove_regeneration_markers: :environment do
+      keys = Redis.current.keys('account:*:regeneration')
+
+      Redis.current.pipelined do
+        keys.each { |key| Redis.current.del(key) }
+      end
+    end
+
     desc 'Check every known remote account and delete those that no longer exist in origin'
     task purge_removed_accounts: :environment do
       prepare_for_options!
