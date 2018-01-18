@@ -377,5 +377,22 @@ RSpec.describe ActivityPub::Activity::Create do
         expect(status).to_not be_nil
       end
     end
+
+    context 'with a license' do
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          type: 'Note',
+          content: 'Lorem ipsum',
+          license: 'https://creativecommons.org/licenses/by/4.0/',
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+        expect(status).to_not be_nil
+        expect(status.license_url).to eq('https://creativecommons.org/licenses/by/4.0/')
+      end
+    end
   end
 end

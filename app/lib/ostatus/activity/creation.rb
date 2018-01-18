@@ -49,7 +49,8 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         conversation: find_or_create_conversation,
         thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil,
         media_attachment_ids: media_attachments.map(&:id),
-        sensitive: sensitive?
+        sensitive: sensitive?,
+        license_url: license_url,
       )
 
       save_mentions(status)
@@ -108,9 +109,16 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
 
   private
 
+<<<<<<< HEAD
   def sensitive?
     # OStatus-specific convention (not standard)
     @xml.xpath('./xmlns:category', xmlns: OStatus::TagManager::XMLNS).any? { |category| category['term'] == 'nsfw' }
+=======
+  def license_url
+    @xml.
+      at_xpath('./xmlns:link[@rel="license"][@type="application/rdf+xml"]', xmlns: OStatus::TagManager::XMLNS).
+      try(:[], 'href')
+>>>>>>> Consume status with licenses
   end
 
   def find_or_create_conversation

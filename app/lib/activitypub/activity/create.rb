@@ -57,6 +57,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       thread: replied_to_status,
       conversation: conversation_from_uri(@object['conversation']),
       media_attachment_ids: process_attachments.take(4).map(&:id),
+      license_url: @object['license'],
     }
   end
 
