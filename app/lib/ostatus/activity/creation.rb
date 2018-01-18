@@ -116,7 +116,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
 
   def license_url
     @xml
-      .at_xpath('./xmlns:link[@rel="license"][@type="application/rdf+xml"]', xmlns: OStatus::TagManager::XMLNS)
+      .at_xpath('./xmlns:link[@rel="license"]', xmlns: OStatus::TagManager::XMLNS)
       .try(:[], 'href')
   end
 
