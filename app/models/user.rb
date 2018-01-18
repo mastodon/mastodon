@@ -94,7 +94,7 @@ devise :pam_authenticatable
 
   def pam_conflict?
     return false unless Devise.pam_authentication
-    super
+    password.present? && is_pam_account?
   end
 
   def pam_get_name
