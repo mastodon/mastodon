@@ -12,13 +12,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     not_found
   end
 
-  def account_update_params
-    ret = devise_parameter_sanitizer.sanitize(:account_update)
-    ret.permit(:account_update, except: [:password, :password_confirmation, :current_password]) if current_user.password.blank? && use_pam?
-    ret
-  end
-
   protected
+
+  def update_resource(resource, params)
+    params[:password] = nil if Devise.pam_authentication && resource.password.blank?
+    super
+  end
 
   def build_resource(hash = nil)
     super(hash)
