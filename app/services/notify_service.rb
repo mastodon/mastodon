@@ -53,13 +53,8 @@ class NotifyService < BaseService
     @notification.type == :mention && @notification.target_status.direct_visibility?
   end
 
-  def replied_to_status_is_direct_message?
-    replied_to_status = Status.find(@notification.target_status.in_reply_to_id)
-    replied_to_status.direct_visibility?
-  end
-
   def response_to_recipient?
-    @notification.target_status.in_reply_to_account_id == @recipient.id && replied_to_status_is_direct_message?
+    @notification.target_status.in_reply_to_account_id == @recipient.id && @notification.target_status.thread&.direct_visibility?
   end
 
   def optional_non_following_and_direct?
