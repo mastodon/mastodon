@@ -838,21 +838,10 @@
 }
 
 .missing-indicator {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-  color: lighten($ui-base-color, 16%);
-  background: $ui-base-color;
-  cursor: default;
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
-  justify-content: center;
+  padding-top: 20px + 48px;
 
-  & > div {
-    background: url('~images/mastodon-not-found.png') no-repeat center -50px;
-    padding-top: 210px;
-    width: 100%;
+  .regeneration-indicator__figure {
+    background-image: url('~flavours/glitch/images/elephant_ui_disappointed.svg');
   }
 }
 
@@ -1162,6 +1151,7 @@ noscript {
 @import 'metadata';
 @import 'composer';
 @import 'columns';
+@import 'regeneration_indicator';
 @import 'search';
 @import 'emoji';
 @import 'doodle';
