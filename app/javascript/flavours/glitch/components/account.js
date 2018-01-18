@@ -132,7 +132,7 @@ export default class Account extends ImmutablePureComponent {
             <div className='account__relationship'>
               {buttons}
             </div>
-          : null}
+            : null}
         </div>
       </div>
     );

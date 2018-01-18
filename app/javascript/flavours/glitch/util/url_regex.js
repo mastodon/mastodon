@@ -40,7 +40,7 @@ export const urlRegex = (function() {
   regexen.validSubdomain = regexSupplant(/(?:(?:#{validDomainChars}(?:[_-]|#{validDomainChars})*)?#{validDomainChars}\.)/);
   regexen.validDomainName = regexSupplant(/(?:(?:#{validDomainChars}(?:-|#{validDomainChars})*)?#{validDomainChars}\.)/);
   regexen.validGTLD = regexSupplant(RegExp(
-  '(?:(?:' +
+    '(?:(?:' +
     '삼성|닷컴|닷넷|香格里拉|餐厅|食品|飞利浦|電訊盈科|集团|通販|购物|谷歌|诺基亚|联通|网络|网站|网店|网址|组织机构|移动|珠宝|点看|游戏|淡马锡|机构|書籍|时尚|新闻|政府|' +
     '政务|手表|手机|我爱你|慈善|微博|广东|工行|家電|娱乐|天主教|大拿|大众汽车|在线|嘉里大酒店|嘉里|商标|商店|商城|公益|公司|八卦|健康|信息|佛山|企业|中文网|中信|世界|' +
     'ポイント|ファッション|セール|ストア|コム|グーグル|クラウド|みんな|คอม|संगठन|नेट|कॉम|همراه|موقع|موبايلي|كوم|كاثوليك|عرب|شبكة|' +
@@ -131,7 +131,7 @@ export const urlRegex = (function() {
     'academy|abudhabi|abogado|able|abc|abbvie|abbott|abb|abarth|aarp|aaa|onion' +
   ')(?=[^0-9a-zA-Z@]|$))'));
   regexen.validCCTLD = regexSupplant(RegExp(
-  '(?:(?:' +
+    '(?:(?:' +
       '한국|香港|澳門|新加坡|台灣|台湾|中國|中国|გე|ไทย|ලංකා|ഭാരതം|ಭಾರತ|భారత్|சிங்கப்பூர்|இலங்கை|இந்தியா|ଭାରତ|ભારત|ਭਾਰਤ|' +
       'ভাৰত|ভারত|বাংলা|भारोत|भारतम्|भारत|ڀارت|پاکستان|مليسيا|مصر|قطر|فلسطين|عمان|عراق|سورية|سودان|تونس|' +
       'بھارت|بارت|ایران|امارات|المغرب|السعودية|الجزائر|الاردن|հայ|қаз|укр|срб|рф|мон|мкд|ею|бел|бг|ελ|' +
@@ -169,7 +169,7 @@ export const urlRegex = (function() {
         ')'                                 +
       ')'                                   +
     '\\)'
-  , 'i');
+    , 'i');
   // Valid end-of-path chracters (so /foo. does not gobble the period).
   // 1. Allow =&# for empty URL parameters and other URL-join artifacts
   regexen.validUrlPathEndingChars = regexSupplant(/[^#{spaces_group}\(\)\?!\*';:=\,\.\$%\[\]#{pd}~&\|@]|(?:#{validUrlBalancedParens})/i);
@@ -191,6 +191,6 @@ export const urlRegex = (function() {
       '(\\/#{validUrlPath}*)?'                                   + // $5 URL Path
       '(\\?#{validUrlQueryChars}*#{validUrlQueryEndingChars})?'  + // $6 Query String
     ')'
-  , 'gi');
+    , 'gi');
   return regexen.validUrl;
 }());

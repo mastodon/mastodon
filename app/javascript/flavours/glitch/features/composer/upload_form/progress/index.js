@@ -36,10 +36,10 @@ export default function ComposerUploadFormProgress ({ progress }) {
             style={{ width: spring(progress) }}
           >
             {({ width }) =>
-              <div
+              (<div
                 className='tracker'
                 style={{ width: `${width}%` }}
-              />
+              />)
             }
           </Motion>
         </div>

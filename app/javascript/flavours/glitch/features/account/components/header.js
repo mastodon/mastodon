@@ -64,11 +64,11 @@ export default class Header extends ImmutablePureComponent {
         <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
           <div>
             <a
-                href={account.get('url')}
-                className='account__header__avatar'
-                role='presentation'
-                target='_blank'
-                rel='noopener'
+              href={account.get('url')}
+              className='account__header__avatar'
+              role='presentation'
+              target='_blank'
+              rel='noopener'
             >
               <Avatar account={account} size={90} />
             </a>

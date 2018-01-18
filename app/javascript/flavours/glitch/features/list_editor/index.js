@@ -67,9 +67,9 @@ export default class ListEditor extends ImmutablePureComponent {
 
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) =>
-              <div className='drawer__inner backdrop' style={{ transform: x === 0 ? null : `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
+              (<div className='drawer__inner backdrop' style={{ transform: x === 0 ? null : `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
                 {searchAccountIds.map(accountId => <Account key={accountId} accountId={accountId} />)}
-              </div>
+              </div>)
             }
           </Motion>
         </div>

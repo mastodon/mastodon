@@ -21,9 +21,9 @@ export default class AttachmentList extends ImmutablePureComponent {
 
         <ul className='attachment-list__list'>
           {media.map(attachment =>
-            <li key={attachment.get('id')}>
+            (<li key={attachment.get('id')}>
               <a href={attachment.get('remote_url')} target='_blank' rel='noopener'>{filename(attachment.get('remote_url'))}</a>
-            </li>
+            </li>)
           )}
         </ul>
       </div>

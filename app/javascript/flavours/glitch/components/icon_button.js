@@ -116,7 +116,7 @@ export default class IconButton extends React.PureComponent {
     return (
       <Motion defaultStyle={motionDefaultStyle} style={motionStyle}>
         {({ rotate }) =>
-          <button
+          (<button
             aria-label={title}
             aria-pressed={pressed}
             aria-expanded={expanded}
@@ -128,7 +128,7 @@ export default class IconButton extends React.PureComponent {
           >
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
             {this.props.label}
-          </button>
+          </button>)
         }
       </Motion>
     );
