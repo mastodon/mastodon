@@ -109,16 +109,15 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
 
   private
 
-<<<<<<< HEAD
   def sensitive?
     # OStatus-specific convention (not standard)
     @xml.xpath('./xmlns:category', xmlns: OStatus::TagManager::XMLNS).any? { |category| category['term'] == 'nsfw' }
-=======
+  end
+
   def license_url
-    @xml.
-      at_xpath('./xmlns:link[@rel="license"][@type="application/rdf+xml"]', xmlns: OStatus::TagManager::XMLNS).
-      try(:[], 'href')
->>>>>>> Consume status with licenses
+    @xml
+      .at_xpath('./xmlns:link[@rel="license"][@type="application/rdf+xml"]', xmlns: OStatus::TagManager::XMLNS)
+      .try(:[], 'href')
   end
 
   def find_or_create_conversation
