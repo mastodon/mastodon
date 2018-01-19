@@ -50,8 +50,8 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  belongs_to :account, inverse_of: :user, required: true
-  belongs_to :invite, counter_cache: :uses
+  belongs_to :account, inverse_of: :user
+  belongs_to :invite, counter_cache: :uses, optional: true
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
