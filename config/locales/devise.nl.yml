@@ -19,8 +19,12 @@ nl:
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: E-mail bevestigen voor %{instance}'
+      email_changed:
+        subject: 'Mastodon: E-mailadres is veranderd'
       password_change:
         subject: 'Mastodon: Wachtwoord veranderd'
+      reconfirmation_instructions:
+        subject: 'Mastodon: Bevestig het e-mailadres voor %{instance}'
       reset_password_instructions:
         subject: 'Mastodon: Wachtwoord opnieuw instellen'
       unlock_instructions:

@@ -18,8 +18,12 @@ pt-BR:
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Instruções de confirmação'
+      email_changed:
+        subject: 'Mastodon: Email alterado'
       password_change:
         subject: 'Mastodon: Senha modificada'
+      reconfirmation_instructions:
+        subject: 'Mastodon: Confirmar emai para %{instance}'
       reset_password_instructions:
         subject: 'Mastodon: Instruções para mudança de senha'
       unlock_instructions:
