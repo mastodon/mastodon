@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.3.0', '< 2.5.0'
+ruby '>= 2.3.0', '< 2.6.0'
 
 gem 'pkg-config', '~> 1.2'
 
@@ -29,7 +29,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.5'
 gem 'iso-639'
 gem 'cld3', '~> 3.2.0'
-gem 'devise', '~> 4.3'
+gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'

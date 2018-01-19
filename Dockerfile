@@ -1,4 +1,4 @@
-FROM ruby:2.4.2-alpine3.6
+FROM ruby:2.5.0-alpine3.7
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="A GNU Social-compatible microblogging server"
@@ -40,6 +40,7 @@ RUN apk -U upgrade \
     protobuf \
     su-exec \
     tini \
+    tzdata \
  && update-ca-certificates \
  && mkdir -p /tmp/src /opt \
  && wget -O yarn.tar.gz "https://github.com/yarnpkg/yarn/releases/download/v$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
