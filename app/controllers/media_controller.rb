@@ -6,7 +6,11 @@ class MediaController < ApplicationController
   before_action :verify_permitted_status
 
   def show
-    redirect_to media_attachment.file.url(:original)
+    if params[:thumb].present?
+      redirect_to media_attachment.file.url(:small)
+    else
+      redirect_to media_attachment.file.url(:original)
+    end
   end
 
   private
