@@ -265,12 +265,18 @@ pt-BR:
       unresolved: Não resolvido
       view: Visualizar
     settings:
+      activity_api_enabled:
+        desc_html: Contagem de status postados localmente, usuários ativos e novos cadastros filtrados semanalmente
+        title: Publicar estatísticas agregadas sobre atividade de usuários
       bootstrap_timeline_accounts:
         desc_html: Separe nomes de usuário através de vírgulas. Funciona apenas com contas locais e destrancadas. O padrão quando vazio são todos os administradores locais.
         title: Usuários a serem seguidos por padrão por novas contas
       contact_information:
         email: E-mail
         username: Contate usuário
+      peers_api_enabled:
+        desc_html: Nomes de domínio que essa instância encontrou no fediverso
+        title: Publicar lista de instâncias descobertas
       registrations:
         closed_message:
           desc_html: Exibido na página inicial quando cadastros estão fechados. Você pode usar tags HTML
@@ -285,7 +291,7 @@ pt-BR:
           desc_html: Permitir que qualquer um crie uma conta
           title: Cadastro aberto
       show_staff_badge:
-        desc_html: Mostrar uma insígnia de equipe na página de usuário
+        desc_html: Mostrar uma insígnia de Equipe na página de usuário
         title: Mostrar insígnia de equipe
       site_description:
         desc_html: Parágrafo introdutório na página inicial e em meta tags. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
@@ -334,7 +340,6 @@ pt-BR:
   application_mailer:
     salutation: "%{name},"
     settings: 'Mudar e-mail de preferência: %{link}'
-    signature: Notificações do Mastodon de %{instance}
     view: 'Visualizar:'
   applications:
     created: Aplicação criada com sucesso
@@ -345,7 +350,7 @@ pt-BR:
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
     your_token: Seu token de acesso
   auth:
-    agreement_html: Cadastrando-se você concorda em seguir <a href="%{rules_path}">as regras da instância</a> e <a href="%{terms_path}">os nossos termos de serviço</a>.
+    agreement_html: Ao se cadastrar você concorda em seguir <a href="%{rules_path}">as regras da instância</a> e <a href="%{terms_path}">os nossos termos de serviço</a>.
     change_password: Segurança
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir a sua conta, você pode <a href="%{path}">prosseguir para cá</a>. Uma confirmação será requisitada.
@@ -596,7 +601,7 @@ pt-BR:
     open_in_web: Abrir na web
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
-      limit: Você já fixou o máximo de toots possíveis
+      limit: Você já fixou a quantidade máxima de toots
       ownership: Toots de outras pessoas não podem ser fixados
       private: Toot não-público não pode ser fixado
       reblog: Um compartilhamento não pode ser fixado

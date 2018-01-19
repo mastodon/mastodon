@@ -265,12 +265,18 @@ ca:
       unresolved: No resolt
       view: Visualització
     settings:
+      activity_api_enabled:
+        desc_html: Compte d'estatus publicats localment, usuaris actius i registres nous en cubs setmanals
+        title: Publica estadístiques agregades sobre l'activitat de l'usuari
       bootstrap_timeline_accounts:
         desc_html: Separa diversos noms d'usuari amb comes. Només funcionaran els comptes locals i desbloquejats. El valor predeterminat quan està buit és tots els administradors locals..
         title: El seguiment per defecte per als nous usuaris
       contact_information:
         email: Introdueix una adreça de correu electrònic pùblica
         username: Introdueix un nom d'usuari
+      peers_api_enabled:
+        desc_html: Els noms de domini que ha trobat aquesta instància al fediverse
+        title: Publica la llista d'instàncies descobertes
       registrations:
         closed_message:
           desc_html: Apareix en la primera pàgina quan es tanquen els registres<br>Pots utilitzar etiquetes HTML
@@ -334,7 +340,6 @@ ca:
   application_mailer:
     salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
-    signature: Notificacions de Mastodon des de %{instance}
     view: 'Vista:'
   applications:
     created: L'aplicació s'ha creat correctament
@@ -345,7 +350,7 @@ ca:
     warning: Aneu amb compte amb aquestes dades. No ho compartiu mai amb ningú!
     your_token: El token d'accés
   auth:
-    agreement_html: En inscriure't, acceptes <a href="%{rules_path}">els nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
+    agreement_html: En inscriure't, acceptes seguir <a href="%{rules_path}">els nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
     change_password: Canvia la contrasenya
     delete_account: Esborra el compte
     delete_account_html: Si vols esborrar el teu compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -546,12 +551,14 @@ ca:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navegador desconegut
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Altre
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -596,7 +603,7 @@ ca:
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
-      limit: S'han fixat massa toots
+      limit: Ja has fixat el màxim nombre de toots
       ownership: El toot d'algú altre no es pot fixar
       private: No es pot fixar el toot no públic
       reblog: No es pot fixar un impuls

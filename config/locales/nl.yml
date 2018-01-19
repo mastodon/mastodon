@@ -265,12 +265,18 @@ nl:
       unresolved: Onopgelost
       view: Weergeven
     settings:
+      activity_api_enabled:
+        desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
+        title: Statistieken over gebruikersactiviteit publiceren
       bootstrap_timeline_accounts:
         desc_html: Meerdere gebruikersnamen met komma's scheiden. Alleen lokale en niet opgeschorte accounts werken. Laat leeg voor alle lokale beheerders.
         title: Standaard te volgen accounts voor nieuwe gebruikers
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
         username: Vul een gebruikersnaam in
+      peers_api_enabled:
+        desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
+        title: Lijst van bekende servers publiceren
       registrations:
         closed_message:
           desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
@@ -334,7 +340,6 @@ nl:
   application_mailer:
     salutation: "%{name},"
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
-    signature: Mastodon-meldingen van %{instance}
     view: 'Bekijk:'
   applications:
     created: Aanmaken toepassing geslaagd
@@ -476,11 +481,11 @@ nl:
     title: Moderatie
   notification_mailer:
     digest:
-      body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:'
+      body: Hier is een korte samenvatting van de berichten die je sinds jouw laatste bezoek op %{since} hebt gemist
       mention: "%{name} vermeldde jou in:"
       new_followers_summary:
-        one: Jij hebt een nieuwe volger! Hoera!
-        other: Jij hebt %{count} nieuwe volgers! Prachtig!
+        one: Je hebt trouwens sinds je weg was er ook een nieuwe volger bijgekregen! Hoera!
+        other: Je hebt trouwens sinds je weg was er ook %{count} nieuwe volgers bijgekregen! Fantastisch!
       subject:
         one: "1 nieuwe melding sinds jouw laatste bezoek \U0001F418"
         other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"

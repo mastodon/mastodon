@@ -6,7 +6,8 @@ class ManifestSerializer < ActiveModel::Serializer
 
   attributes :name, :short_name, :description,
              :icons, :theme_color, :background_color,
-             :display, :start_url, :scope
+             :display, :start_url, :scope,
+             :share_target
 
   def name
     object.site_title
@@ -48,5 +49,9 @@ class ManifestSerializer < ActiveModel::Serializer
 
   def scope
     root_url
+  end
+
+  def share_target
+    { url_template: 'share?title={title}&text={text}&url={url}' }
   end
 end

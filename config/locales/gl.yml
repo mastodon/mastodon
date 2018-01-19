@@ -265,12 +265,18 @@ gl:
       unresolved: Non resolto
       view: Vista
     settings:
+      activity_api_enabled:
+        desc_html: Conta de estados publicados localmente, usuarias activas, e novos rexistros por semana
+        title: Publicar estatísticas agregadas sobre a actividade da usuaria
       bootstrap_timeline_accounts:
         desc_html: Separar múltiples nomes de usuaria con vírgulas. Só funcionarán as contas locais non bloqueadas. Si baldeiro, por omisión son todos os local admin.
         title: Seguimentos por omisión para novas usuarias
       contact_information:
         email: e-mail de traballo
         username: Nome de usuaria de contacto
+      peers_api_enabled:
+        desc_html: Nome de dominio que esta instancia atopou no fediverso
+        title: Publicar lista de instancias descubertas
       registrations:
         closed_message:
           desc_html: Mostrado na páxina de portada cando o rexistro está pechado. Pode utilizar etiquetas HTML
@@ -334,7 +340,6 @@ gl:
   application_mailer:
     salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
-    signature: Notificacións Mastodon de %{instance}
     view: 'Vista:'
   applications:
     created: Creouse con éxito este aplicativo
@@ -509,6 +514,7 @@ gl:
           quadrillion: Q
           thousand: K
           trillion: T
+          unit: " "
   pagination:
     next: Seguinte
     prev: Previo

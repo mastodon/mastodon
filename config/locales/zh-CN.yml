@@ -336,10 +336,12 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}。"
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
+    notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
     settings: 使用此链接更改你的电子邮件首选项：%{link}
-    signature: 这是一封来自 %{instance} 的 Mastodon 电子邮件通知。
     view: 点此链接查看详情：
+    view_profile: 查看个人资料页
+    view_status: 查看嘟文
   applications:
     created: 应用创建成功
     destroyed: 应用删除成功
@@ -476,27 +478,36 @@ zh-CN:
     title: 运营
   notification_mailer:
     digest:
-      body: 自从你最后一次（时间是%{since}）登录 %{instance} 以来，你错过了这些嘟嘟滴滴：
+      action: 查看所有通知
+      body: 以下是自%{since}你最后一次登录以来错过的消息的摘要
       mention: "%{name} 在嘟文中提到了你："
       new_followers_summary:
-        one: 有个人关注了你！耶！
-        other: 有 %{count} 个人关注了你！好棒！
+        one: 而且，你不在的时候，有一个人关注了你！耶！
+        other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
       subject: "自从你最后一次登录以来，你错过了 %{count} 条新通知 \U0001F418"
+      title: 在你不在的这段时间……
     favourite:
       body: 你的嘟文被 %{name} 收藏了：
       subject: "%{name} 收藏了你的嘟文"
+      title: 新的收藏
     follow:
       body: "%{name} 关注了你！"
       subject: "%{name} 关注了你"
+      title: 新的关注者
     follow_request:
+      action: 处理关注请求
       body: "%{name} 向你发送了关注请求！"
       subject: 来自 %{name} 的关注请求
+      title: 新的关注请求
     mention:
+      action: 回复
       body: "%{name} 在嘟文中提到了你："
       subject: "%{name} 提到了你"
+      title: 新的提及
     reblog:
       body: 你的嘟文被 %{name} 转嘟了：
       subject: "%{name} 转嘟了你的嘟文"
+      title: 新的转嘟
   number:
     human:
       decimal_units:

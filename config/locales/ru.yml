@@ -49,6 +49,7 @@ ru:
     reserved_username: Имя пользователя зарезервировано
     roles:
       admin: Администратор
+      moderator: Мод
     unfollow: Отписаться
   admin:
     account_moderation_notes:
@@ -71,6 +72,8 @@ ru:
       domain: Домен
       edit: Изменить
       email: E-mail
+      enable: Включить
+      enabled: Включен
       feed_url: URL фида
       followers: Подписчики
       followers_url: URL подписчиков
@@ -336,10 +339,11 @@ ru:
       body: "%{reporter} подал(а) жалобу на %{target}"
       subject: Новая жалоба, узел %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Изменить настройки e-mail
     salutation: "%{name},"
     settings: 'Изменить настройки e-mail: %{link}'
-    signature: Уведомления Mastodon от %{instance}
     view: 'Просмотр:'
+    view_status: Просмотреть статус
   applications:
     created: Приложение успешно создано
     destroyed: Приложение успешно удалено
@@ -349,7 +353,7 @@ ru:
     warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
     your_token: Ваш токен доступа
   auth:
-    agreement_html: Создавая аккаунт, вы соглашаетесь с <a href="%{rules_path}">нашими правилами поведения</a> и <a href="%{terms_path}">политикой конфиденциальности</a>.
+    agreement_html: Создавая аккаунт, вы соглашаетесь с <a href="%{rules_path}">правилами узла</a> и <a href="%{terms_path}">нашими условиями обслуживания</a>.
     change_password: Изменить пароль
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
@@ -554,6 +558,7 @@ ru:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Неизвестный браузер
       ie: Internet Explorer

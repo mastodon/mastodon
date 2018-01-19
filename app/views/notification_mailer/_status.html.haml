@@ -1,0 +1,30 @@
+- i ||= 0
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell{ class: i.zero? ? 'content-start' : nil }
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded.status
+                              %table.status-header{ cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td{ align: 'left', width: 48 }
+                                      = image_tag status.account.avatar
+                                    %td{ align: 'left' }
+                                      %bdi= display_name(status.account)
+                                      = "@#{status.account.acct}"
+
+                              = Formatter.instance.format(status)
+
+                              %p.status-footer
+                                = link_to l(status.created_at), web_url("statuses/#{status.id}")
