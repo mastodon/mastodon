@@ -1419,6 +1419,10 @@
     color: $primary-text-color;
   }
 
+  a {
+    color: inherit;
+  }
+
   .permalink {
     text-decoration: none;
   }
@@ -3519,6 +3523,10 @@
     &:active {
       color: lighten($ui-highlight-color, 4%);
     }
+  }
+
+  .navigation-bar a {
+    color: inherit;
   }
 
   p {
