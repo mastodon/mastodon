@@ -805,3 +805,32 @@ ca:
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
     signed_in_as: 'Sessió iniciada com a:'
+  user_mailer:
+    welcome:
+      edit_profile_action: Configurar perfil
+      edit_profile_step: Pots personalitzar el teu perfil penjant un avatar, un encapçalament,
+        canviant el teu nom de visualització i molt més. Si prefereixes revisar els
+        seguidors nous abans de que et puguin seguir, pots bloquejar el teu compte.
+      explanation: Aquests són alguns consells per començar
+      final_action: Comença a publicar
+      final_step: 'Comença a publicar! Fins i tot sense seguidors, els altres poden
+        veure els teus missatges públics, per exemple, a la línia de temps local i
+        a les etiquetes ("hashtags"). És possible que vulguis presentar-te amb l''etiqueta
+        #introductions.'
+      full_handle: El teu nom d'usuari sencer
+      full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te
+        missatges o seguir-te des d'una altra instància.
+      review_preferences_action: Canviar preferències
+      review_preferences_step: Assegura't d'establir les teves preferències, com ara
+        els correus electrònics que vols rebre o el nivell de privadesa per defecte
+        que t'agradaria que tinguin les teves entrades. Si no tens malaltia de moviment,
+        pots optar per habilitar la reproducció automàtica de GIF.
+      subject: Benvingut/da a Mastodon
+      tip_bridge_html: Si vens de Twitter, pots trobar els teus amics a Mastodon mitjançant
+        l'aplicació <a href="%{bridge_url}"> bridge </a>. Només funciona si també
+        ells usen aquesta aplicació pont!
+      tip_federated_timeline: La línia de temps federada és una vista de foc de la
+        xarxa Mastodon. Però només inclou les persones a les quals els teus veïns
+        estan subscrits, de manera que no està completa.
+      tip_following: Per defecte segueixes als administradors del servidor. Per trobar
+        més persones interessants, consulta les línies de temps local i federada.
