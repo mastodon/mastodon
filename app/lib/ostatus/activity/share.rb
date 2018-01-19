@@ -2,11 +2,7 @@
 
 class OStatus::Activity::Share < OStatus::Activity::Creation
   def perform
-    return if reblog.nil?
-
-    status, just_created = super
-    NotifyService.new.call(reblog.account, status) if reblog.account.local? && just_created
-    status
+    reblog.nil? ? nil : super
   end
 
   def object
