@@ -40,7 +40,7 @@ const normalizeTimeline = (state, timeline, statuses, next, isPartial) => {
     mMap.set('loaded', true);
     mMap.set('isLoading', false);
     if (!hadNext) mMap.set('next', next);
-    mMap.set('items', wasLoaded ? ids.concat(oldIds) : ids);
+    mMap.set('items', wasLoaded ? ids.concat(oldIds) : oldIds.concat(ids));
     mMap.set('isPartial', isPartial);
   }));
 };
