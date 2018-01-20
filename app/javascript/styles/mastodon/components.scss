@@ -2080,19 +2080,21 @@
   cursor: default;
 }
 
-.getting-started__wrapper,
-.getting_started {
+.navigation__wrapper,
+.navigation-footer {
   background: $ui-base-color;
 }
 
-.getting-started__wrapper {
+.navigation__wrapper {
   position: relative;
   overflow-y: auto;
 }
 
-.getting-started {
-  background: $ui-base-color;
+.navigation-footer {
+  display: flex;
   flex: 1 0 auto;
+  flex-direction: column;
+  justify-content: end;
 
   p {
     color: $ui-secondary-color;
