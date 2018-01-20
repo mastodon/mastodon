@@ -490,7 +490,7 @@ ja:
   notification_mailer:
     digest:
       action: 全ての通知を表示
-      body: '%{instance} での最後のログインからの出来事:'
+      body: '最後のログイン（%{instance} ）からの出来事:'
       mention: '%{name} さんがあなたに返信しました:'
       new_followers_summary:
         one: また、離れている間に新たなフォロワーを獲得しました！
@@ -579,6 +579,8 @@ ja:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+      electron: Electron
+      otter: Otter
     current_session: 現在のセッション
     description: '%{browser} on %{platform}'
     explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
@@ -707,3 +709,5 @@ ja:
       tip_mobile_webapp: もしモバイル端末のブラウザで Mastodon をホーム画面に追加できる場合、プッシュ通知を受け取ることができます。それはまるでネイティブアプリのように動作します！
       tips: 豆知識
       title: ようこそ、 %{name}!
+  themes:
+    default: マストドン
