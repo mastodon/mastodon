@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\S+)/i;
+
 //  Actions.
 import {
   cancelReplyCompose,
@@ -36,6 +38,7 @@ import ComposerSpoiler from './spoiler';
 import ComposerTextarea from './textarea';
 import ComposerUploadForm from './upload_form';
 import ComposerWarning from './warning';
+import ComposerHashtagWarning from './hashtag_warning';
 
 //  Utils.
 import { countableText } from 'flavours/glitch/util/counter';
@@ -312,6 +315,7 @@ class Composer extends React.Component {
           text={spoilerText}
         />
         {privacy === 'private' && amUnlocked ? <ComposerWarning /> : null}
+        {privacy !== 'public' && APPROX_HASHTAG_RE.test(text) ? <ComposerHashtagWarning /> : null}
         {replyContent ? (
           <ComposerReply
             account={replyAccount}
