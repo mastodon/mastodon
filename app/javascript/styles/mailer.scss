@@ -17,7 +17,7 @@ body {
   -ms-text-size-adjust: 100%;
 }
 
-.email_body {
+.email-body {
   td,
   div,
   a,
@@ -228,6 +228,19 @@ h3 {
   line-height: 25px;
 }
 
+h5 {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 700;
+  color: lighten($ui-base-color, 34%);
+}
+
+.input-cell {
+  h5 {
+    margin-top: 4px;
+  }
+}
+
 .input {
   td {
     background: darken($ui-base-color, 8%);
@@ -356,6 +369,19 @@ h3 {
       font-weight: 500 !important;
     }
   }
+
+  &.button-small {
+    td {
+      border-radius: 4px;
+      font-size: 14px;
+      padding: 8px 16px;
+
+      a {
+        padding: 5px 16px !important;
+        line-height: 26px !important;
+      }
+    }
+  }
 }
 
 .button-default {
@@ -377,6 +403,14 @@ h3 {
 .padded {
   padding-left: 16px;
   padding-right: 16px;
+}
+
+.padded-bottom {
+  padding-bottom: 32px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
 }
 
 .hero-icon {
@@ -463,8 +497,50 @@ h3 {
   border-top: 1px solid lighten($ui-base-color, 8%);
 }
 
+ul {
+  padding-left: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 16px;
+
+  li {
+    margin-bottom: 16px;
+    color: lighten($ui-base-color, 26%);
+
+    span {
+      color: $ui-primary-color;
+    }
+  }
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   body {
     min-height: 1024px !important;
+  }
+}
+
+@media (max-width: 697px) {
+  .email-container,
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6 {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .email-start {
+    padding-top: 16px !important;
+  }
+
+  .email-end {
+    padding-bottom: 16px !important;
+  }
+
+  .padded {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
