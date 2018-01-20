@@ -44,4 +44,38 @@ class TagManager
       short_account_status_url(target.account, target)
     end
   end
+
+  def path_to_resource!(path, klass = nil)
+    recognized_params = Rails.application.routes.recognize_path(path)
+
+    raise Mastodon::NotFound unless recognized_params[:action] == 'show'
+
+    if recognized_params[:controller] == 'stream_entries'
+      raise Mastodon::NotFound unless klass.nil? || klass == Status
+      StreamEntry.find_by!(id: recognized_params[:id])&.status
+    elsif recognized_params[:controller] == 'statuses'
+      raise Mastodon::NotFound unless klass.nil? || klass == Status
+      Status.find_by!(id: recognized_params[:id])
+    elsif recognized_params[:controller] == 'accounts'
+      raise Mastodon::NotFound unless klass.nil? || klass == Account
+      Account.find_local!(recognized_params[:username])
+    else
+      raise Mastodon::NotFound
+    end
+  end
+
+  def path_to_resource(path, klass = nil)
+    path_to_resource! path, klass
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotFound
+    nil
+  end
+
+  def url_to_resource!(url, klass = nil)
+    raise Mastodon::NotFound unless local_url? url
+    path_to_resource! url, klass
+  end
+
+  def url_to_resource(url, klass = nil)
+    local_url?(url) ? path_to_resource(url, klass) : nil
+  end
 end

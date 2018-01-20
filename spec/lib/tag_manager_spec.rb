@@ -161,4 +161,68 @@ RSpec.describe TagManager do
       end
     end
   end
+
+  describe 'path_to_resource!' do
+    let!(:account) { Fabricate(:account, domain: nil, username: 'username') }
+
+    it 'raise Mastodon::NotFound for plausible URL' do
+      status = Fabricate(:status, account: account, id: 0)
+      expect{ TagManager.instance.path_to_resource!('https://cb6e6126.ngrok.io/@username/0/embed') }.to raise_error Mastodon::NotFound
+    end
+
+    it 'raise Mastodon::NotFound if the given URL is not for the given class' do
+      expect{ TagManager.instance.path_to_resource!('https://cb6e6126.ngrok.io/@username', Status) }.to raise_error Mastodon::NotFound
+    end
+
+    it 'returns Status for stream entry URL' do
+      status = Fabricate(:status, account: account)
+      stream_entry = Fabricate(:stream_entry, account: account, activity: status, id: 0)
+
+      expect(TagManager.instance.path_to_resource!('https://cb6e6126.ngrok.io/users/username/updates/0')).to eq status
+    end
+
+    it 'returns Status for status URL' do
+      status = Fabricate(:status, account: account, id: 0)
+      expect(TagManager.instance.path_to_resource!('https://cb6e6126.ngrok.io/@username/0')).to eq status
+    end
+
+    it 'returns Account for account URL' do
+      expect(TagManager.instance.path_to_resource!('https://cb6e6126.ngrok.io/@username')).to eq account
+    end
+  end
+
+  describe 'path_to_resource' do
+    it 'returns nil instead of raising Masotodon::NotFound' do
+      account = Fabricate(:account, domain: nil, username: 'username')
+      expect(TagManager.instance.path_to_resource('https://cb6e6126.ngrok.io/@username', Status)).to eq nil
+    end
+
+    it 'returns nil instead of raising ActiveRecord::NotFound' do
+      expect(TagManager.instance.path_to_resource('https://cb6e6126.ngrok.io/@username')).to eq nil
+    end
+  end
+
+  describe 'url_to_resource!' do
+    let!(:account) { Fabricate(:account, domain: nil, username: 'username') }
+
+    it 'returns resource if the given URL is local' do
+      expect(TagManager.instance.url_to_resource!('https://cb6e6126.ngrok.io/@username')).to eq account
+    end
+
+    it 'returns Mastodon::NotFound if the given URL is remote' do
+      expect{ TagManager.instance.url_to_resource!('https://example.com/@username') }.to raise_error Mastodon::NotFound
+    end
+  end
+
+  describe 'url_to_resource' do
+    let!(:account) { Fabricate(:account, domain: nil, username: 'username') }
+
+    it 'returns resource if the given URL is local' do
+      expect(TagManager.instance.url_to_resource('https://cb6e6126.ngrok.io/@username')).to eq account
+    end
+
+    it 'returns nil if the given URL is remote' do
+      expect(TagManager.instance.url_to_resource('https://example.com/@username')).to eq nil
+    end
+  end
 end

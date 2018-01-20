@@ -5,6 +5,7 @@ module Mastodon
   class NotPermittedError < Error; end
   class ValidationError < Error; end
   class RaceConditionError < Error; end
+  class NotFound < Error; end
 
   class UnexpectedResponseError < Error
     def initialize(response = nil)

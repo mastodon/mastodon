@@ -96,12 +96,7 @@ class ActivityPub::TagManager
 
   def uri_to_resource(uri, klass)
     if local_uri?(uri)
-      case klass.name
-      when 'Account'
-        klass.find_local(uri_to_local_id(uri, :username))
-      else
-        StatusFinder.new(uri).status
-      end
+      ::TagManager.instance.path_to_resource(uri, klass)
     elsif OStatus::TagManager.instance.local_id?(uri)
       klass.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, klass.to_s))
     else

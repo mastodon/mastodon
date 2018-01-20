@@ -6,11 +6,13 @@ class Api::Web::EmbedsController < Api::BaseController
   before_action :require_user!
 
   def create
-    status = StatusFinder.new(params[:url]).status
-    render json: status, serializer: OEmbedSerializer, width: 400
-  rescue ActiveRecord::RecordNotFound
-    oembed = OEmbed::Providers.get(params[:url])
-    render json: Oj.dump(oembed.fields)
+    if TagManager.instance.local_url? params[:url]
+      status = TagManager.instance.url_to_resource!(params[:url], Status)
+      render json: status, serializer: OEmbedSerializer, width: 400
+    else
+      oembed = OEmbed::Providers.get(params[:url])
+      render json: Oj.dump(oembed.fields)
+    end
   rescue OEmbed::NotFound
     render json: {}, status: :not_found
   end
