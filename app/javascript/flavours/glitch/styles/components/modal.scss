@@ -77,13 +77,12 @@
   height: 80vh;
   width: 80vw;
   max-width: 520px;
-  max-height: 420px;
+  max-height: 470px;
 
   .react-swipeable-view-container > div {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 25px;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -156,23 +155,32 @@
   .onboarding-modal__nav,
   .error-modal__nav {
     color: darken($ui-secondary-color, 34%);
-    background-color: transparent;
     border: 0;
     font-size: 14px;
     font-weight: 500;
-    padding: 0;
+    padding: 10px 25px;
     line-height: inherit;
     height: auto;
+    margin: -10px;
+    border-radius: 4px;
+    background-color: transparent;
 
     &:hover,
     &:focus,
     &:active {
       color: darken($ui-secondary-color, 38%);
+      background-color: darken($ui-secondary-color, 16%);
     }
 
     &.onboarding-modal__done,
     &.onboarding-modal__next {
-      color: $ui-highlight-color;
+      color: $ui-base-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: darken($ui-base-color, 4%);
+      }
     }
   }
 }
@@ -208,6 +216,8 @@
 
 .onboarding-modal__page__wrapper {
   pointer-events: none;
+  padding: 25px;
+  padding-bottom: 0;
 
   &.onboarding-modal__page__wrapper--active {
     pointer-events: auto;
@@ -233,6 +243,10 @@
     &:active {
       color: lighten($ui-highlight-color, 4%);
     }
+  }
+
+  .navigation-bar a {
+    color: inherit;
   }
 
   p {
@@ -262,29 +276,56 @@
   }
 }
 
+.onboarding-modal__page__wrapper-0 {
+  background: url('~images/elephant_ui_greeting.svg') no-repeat left bottom / auto 250px;
+  height: 100%;
+  padding: 0;
+}
+
 .onboarding-modal__page-one {
-  display: flex;
-  align-items: center;
-}
+  &__lead {
+    padding: 65px;
+    padding-top: 45px;
+    padding-bottom: 0;
+    margin-bottom: 10px;
 
-.onboarding-modal__page-one__elephant-friend {
-  background: url('~images/elephant-friend-1.png') no-repeat center center / contain;
-  width: 155px;
-  height: 193px;
-  margin-right: 15px;
-}
+    h1 {
+      font-size: 26px;
+      line-height: 36px;
+      margin-bottom: 8px;
+    }
 
-@media screen and (max-width: 400px) {
-  .onboarding-modal__page-one {
-    flex-direction: column;
-    align-items: normal;
+    p {
+      margin-bottom: 0;
+    }
   }
 
-  .onboarding-modal__page-one__elephant-friend {
-    width: 100%;
-    height: 30vh;
-    max-height: 160px;
-    margin-bottom: 5vh;
+  &__extra {
+    padding-right: 65px;
+    padding-left: 185px;
+    text-align: center;
+  }
+}
+
+.display-case {
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 15px;
+
+  &__label {
+    font-weight: 500;
+    color: $ui-base-color;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  &__case {
+    background: $ui-base-color;
+    color: $ui-secondary-color;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 4px;
   }
 }
 
@@ -372,16 +413,6 @@
     padding: 5px;
     font-size: 12px;
   }
-}
-
-.onboarding-modal__image {
-  border-radius: 8px;
-  width: 70vw;
-  max-width: 450px;
-  max-height: auto;
-  display: block;
-  margin: auto;
-  margin-bottom: 20px;
 }
 
 .onboard-sliders {
