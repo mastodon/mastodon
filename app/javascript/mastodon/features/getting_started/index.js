@@ -1,4 +1,6 @@
 import React from 'react';
+import api from '../../api';
+import Badge from '../ui/components/badge';
 import Column from '../ui/components/column';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
@@ -32,6 +34,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   myAccount: state.getIn(['accounts', me]),
   columns: state.getIn(['settings', 'columns']),
+  getState: () => state,
 });
 
 @connect(mapStateToProps)
@@ -43,10 +46,11 @@ export default class GettingStarted extends ImmutablePureComponent {
     myAccount: ImmutablePropTypes.map.isRequired,
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
+    getState: PropTypes.func,
   };
 
   render () {
-    const { intl, myAccount, columns, multiColumn } = this.props;
+    const { intl, myAccount, columns, multiColumn, getState } = this.props;
 
     const navItems = [];
 
@@ -74,7 +78,11 @@ export default class GettingStarted extends ImmutablePureComponent {
     );
 
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
+      let update = () => {
+        return api(getState).get('/api/v1/follow_requests').then(res => res.data.length);
+      };
+      let badge = <Badge update={update} />;
+      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' badge={badge} />);
     }
 
     if (multiColumn) {
