@@ -39,7 +39,13 @@ describe AuthorizeFollowsController do
         expect(service).to have_received(:call).with('missing@hostname')
       end
 
-      it 'sets account from url' do
+      it 'sets account from local url' do
+        account = Fabricate(:account, username: 'followee')
+        get :show, params: { acct: 'https://cb6e6126.ngrok.io/@followee' }
+        expect(assigns(:account)).to eq account
+      end
+
+      it 'sets account from remote url' do
         account = Account.new
         service = double
         allow(FetchRemoteAccountService).to receive(:new).and_return(service)

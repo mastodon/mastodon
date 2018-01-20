@@ -30,17 +30,25 @@ class AuthorizeFollowsController < ApplicationController
 
   def located_account
     if acct_param_is_url?
-      account_from_remote_fetch
+      if TagManager.instance.local_url? acct_without_prefix
+        account_from_local_url
+      else
+        account_from_remote_url
+      end
     else
-      account_from_remote_follow
+      account_webfinger
     end
   end
 
-  def account_from_remote_fetch
+  def account_from_local_url
+    TagManager.instance.url_to_resource(acct_without_prefix, Account)
+  end
+
+  def account_from_remote_url
     FetchRemoteAccountService.new.call(acct_without_prefix)
   end
 
-  def account_from_remote_follow
+  def account_webfinger
     ResolveRemoteAccountService.new.call(acct_without_prefix)
   end
 
