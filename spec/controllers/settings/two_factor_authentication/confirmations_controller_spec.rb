@@ -6,6 +6,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
   render_views
 
   let(:user) { Fabricate(:user, email: 'local-part@domain', otp_secret: 'thisisasecretforthespecofnewview') }
+  let(:user_without_otp_secret) { Fabricate(:user, email: 'local-part@domain') }
 
   shared_examples 'renders :new' do
     it 'renders the new view' do
@@ -32,6 +33,12 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
     it 'redirects if not signed in' do
       get :new
       expect(response).to redirect_to('/auth/sign_in')
+    end
+
+    it 'redirects if user do not have otp_secret' do
+      sign_in user_without_otp_secret, scope: :user
+      get :new
+      expect(response).to redirect_to('/settings/two_factor_authentication')
     end
   end
 
