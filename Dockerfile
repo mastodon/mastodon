@@ -28,6 +28,7 @@ RUN apk -U upgrade \
     python \
  && apk add \
     ca-certificates \
+    exiv2 \
     ffmpeg \
     file \
     git \

@@ -22,6 +22,7 @@ sudo apt-get install iptables-persistent -y
 
 # Add packages to build and run Mastodon
 sudo apt-get install \
+  exiv2 \
   git-core \
   g++ \
   libpq-dev \

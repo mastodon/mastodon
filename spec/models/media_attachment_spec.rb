@@ -136,6 +136,52 @@ RSpec.describe MediaAttachment, type: :model do
     end
   end
 
+  describe 'image with Photo Sphere XMP Metadata' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('360°_Freedom_of_Panorama_presentation_3.jpg')) }
+
+    it 'preserves Photo Sphere metadata for original style' do
+      Tempfile.open(['mastodon-media-attachment-spec', '.jpg']) do |file|
+        media.file.copy_to_local_file :original, file
+        out, err, status = Open3.capture3('exiv2', '-PXkyt', file.path)
+
+        expect(status).to be_success
+        expect(out).to eq <<~PRINTED
+          Xmp.GPano.ProjectionType                     XmpText    equirectangular
+          Xmp.GPano.UsePanoramaViewer                  XmpText    True
+          Xmp.GPano.CroppedAreaImageWidthPixels        XmpText    1280
+          Xmp.GPano.CroppedAreaImageHeightPixels       XmpText    640
+          Xmp.GPano.FullPanoWidthPixels                XmpText    1280
+          Xmp.GPano.FullPanoHeightPixels               XmpText    640
+          Xmp.GPano.CroppedAreaLeftPixels              XmpText    0
+          Xmp.GPano.CroppedAreaTopPixels               XmpText    0
+          Xmp.GPano.PosePitchDegrees                   XmpText    -3.3
+          Xmp.GPano.PoseRollDegrees                    XmpText    0.5
+        PRINTED
+      end
+    end
+
+    it 'preserves Photo Sphere metadata for small style' do
+      Tempfile.open(['mastodon-media-attachment-spec', '.jpg']) do |file|
+        media.file.copy_to_local_file :small, file
+        out, err, status = Open3.capture3('exiv2', '-PXkyt', file.path)
+
+        expect(status).to be_success
+        expect(out).to eq <<~PRINTED
+          Xmp.GPano.ProjectionType                     XmpText    equirectangular
+          Xmp.GPano.UsePanoramaViewer                  XmpText    True
+          Xmp.GPano.CroppedAreaImageWidthPixels        XmpText    400
+          Xmp.GPano.CroppedAreaImageHeightPixels       XmpText    200
+          Xmp.GPano.FullPanoWidthPixels                XmpText    400
+          Xmp.GPano.FullPanoHeightPixels               XmpText    200
+          Xmp.GPano.CroppedAreaLeftPixels              XmpText    0
+          Xmp.GPano.CroppedAreaTopPixels               XmpText    0
+          Xmp.GPano.PosePitchDegrees                   XmpText    -3.3
+          Xmp.GPano.PoseRollDegrees                    XmpText    0.5
+        PRINTED
+      end
+    end
+  end
+
   describe 'descriptions for remote attachments' do
     it 'are cut off at 140 characters' do
       media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
