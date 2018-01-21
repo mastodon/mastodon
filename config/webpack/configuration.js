@@ -27,7 +27,7 @@ function formatPublicPath(host = '', path = '') {
 
 const output = {
   path: resolve('public', settings.public_output_path),
-  publicPath: formatPublicPath(env.ASSET_HOST || env.LOCAL_DOMAIN, settings.public_output_path),
+  publicPath: formatPublicPath(env.ASSET_HOST || env.WEB_DOMAIN || env.LOCAL_DOMAIN, settings.public_output_path),
 };
 
 module.exports = {
