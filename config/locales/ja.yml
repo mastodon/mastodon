@@ -267,7 +267,7 @@ ja:
       view: 表示
     settings:
       activity_api_enabled:
-        desc_html: ローカルに投稿されたトゥート数、アクティブなユーザー数、週ごとの新規登録者数
+        desc_html: 週ごとのローカルに投稿されたトゥート数、アクティブなユーザー数、新規登録者数
         title: ユーザーアクティビティに関する統計を公開する
       bootstrap_timeline_accounts:
         desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
@@ -352,7 +352,7 @@ ja:
     invalid_url: URLが無効です
     regenerate_token: アクセストークンの再生成
     token_regenerated: アクセストークンが再生成されました
-    warning: このデータは気をつけて取り扱ってください。不特定多数の人と共有しないでください！
+    warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
     agreement_html: 登録すると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">利用規約</a>
@@ -427,7 +427,7 @@ ja:
     explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。
       フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
     followers_count: フォロワー数
-    lock_link: 非公開アカウント
+    lock_link: 非公開アカウントにする
     purge: フォロワーから削除する
     success:
       one: 1個のドメインからソフトブロックするフォロワーを処理中...
@@ -490,7 +490,7 @@ ja:
   notification_mailer:
     digest:
       action: 全ての通知を表示
-      body: '最後のログイン（%{instance} ）からの出来事:'
+      body: '最後のログイン（%{since}）からの出来事:'
       mention: '%{name} さんがあなたに返信しました:'
       new_followers_summary:
         one: また、離れている間に新たなフォロワーを獲得しました！
@@ -710,4 +710,4 @@ ja:
       tips: 豆知識
       title: ようこそ、 %{name}!
   themes:
-    default: マストドン
+    default: Mastodon
