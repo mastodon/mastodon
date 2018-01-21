@@ -65,9 +65,6 @@ class StatusesController < ApplicationController
     @type         = @stream_entry.activity_type.downcase
 
     authorize @status, :show?
-  rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404
-    raise ActiveRecord::RecordNotFound
   end
 
   def check_account_suspension

@@ -16,6 +16,10 @@ describe ApplicationController, type: :controller do
       raise ActiveRecord::RecordNotFound, ''
     end
 
+    def custom_not_found
+      raise Mastodon::NotFound
+    end
+
     def invalid_authenticity_token
       raise ActionController::InvalidAuthenticityToken, ''
     end
@@ -105,6 +109,15 @@ describe ApplicationController, type: :controller do
     subject do
       routes.draw { get 'record_not_found' => 'anonymous#record_not_found' }
       get 'record_not_found'
+    end
+
+    include_examples 'respond_with_error', 404
+  end
+
+  context 'Mastodon::NotFound' do
+    subject do
+      routes.draw { get 'custom_not_found' => 'anonymous#custom_not_found' }
+      get 'custom_not_found'
     end
 
     include_examples 'respond_with_error', 404
