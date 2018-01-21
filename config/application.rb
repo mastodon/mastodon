@@ -46,7 +46,7 @@ module Mastodon
       :he,
       :hr,
       :hu,
-	  :hy,
+      :hy,
       :id,
       :io,
       :it,

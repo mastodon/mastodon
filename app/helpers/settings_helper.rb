@@ -16,7 +16,7 @@ module SettingsHelper
     he: 'עברית',
     hr: 'Hrvatski',
     hu: 'Magyar',
-	hy: 'Հայերեն',
+    hy: 'Հայերեն',
     id: 'Bahasa Indonesia',
     io: 'Ido',
     it: 'Italiano',
