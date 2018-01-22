@@ -51,7 +51,7 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-devise :pam_authenticatable
+  devise :pam_authenticatable
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
