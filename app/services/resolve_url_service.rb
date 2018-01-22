@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FetchRemoteResourceService < BaseService
+class ResolveURLService < BaseService
   include JsonLdHelper
 
   attr_reader :url
