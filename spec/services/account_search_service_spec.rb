@@ -123,7 +123,7 @@ describe AccountSearchService do
     describe 'when there is a domain but no exact match' do
       it 'follows the remote account when resolve is true' do
         service = double(call: nil)
-        allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
 
         results = subject.call('newuser@remote.com', 10, nil, resolve: true)
         expect(service).to have_received(:call).with('newuser@remote.com')
@@ -131,7 +131,7 @@ describe AccountSearchService do
 
       it 'does not follow the remote account when resolve is false' do
         service = double(call: nil)
-        allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
 
         results = subject.call('newuser@remote.com', 10, nil, resolve: false)
         expect(service).not_to have_received(:call)
