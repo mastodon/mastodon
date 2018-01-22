@@ -338,9 +338,12 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       subject: Nou informe per a %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Canviar preferències de correu
     salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
     view: 'Vista:'
+    view_profile: Veure perfil
+    view_status: Veure estat
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
@@ -481,29 +484,38 @@ ca:
     title: Moderació
   notification_mailer:
     digest:
-      body: 'Un resum del que et vas perdre en %{instance} desde la darrera visita el %{since}:'
+      action: Veure totes les notificacions
+      body: Un resum del que et vas perdre en %{instance} desde la darrera visita el %{since}
       mention: "%{name} t'ha mencionat en:"
       new_followers_summary:
-        one: Visca!. Algú més t´ha començat a seguir!
-        other: Genial!. Et segueixen %{count} persones més!
+        one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
+        other: A més, has adquirit %{count} nous seguidors mentre estaves fora! Increïble!
       subject:
         one: "1 notificació nova des de la darrera visita \U0001F418"
         other: "%{count} notificacions noves des de la darrera visita \U0001F418"
+      title: Durant la teva absència…
     favourite:
       body: "%{name} ha marcat com a favorit el teu estat:"
       subject: "%{name} ha marcat com a favorit el teu estat"
+      title: Favorit nou
     follow:
       body: "%{name} t'està seguint!"
       subject: "%{name} t'està seguint"
+      title: Seguidor nou
     follow_request:
+      action: Gestiona les sol·licituds de seguiment
       body: "%{name} ha sol·licitat seguir-te"
       subject: 'Seguidor pendent: %{name}'
+      title: Nova sol·licitud de seguiment
     mention:
+      action: Respon
       body: "%{name} t'ha mencionat en:"
       subject: "%{name} t'ha mencionat"
+      title: Menció nova
     reblog:
       body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha retootejat el teu estat"
+      title: Nou impuls
   number:
     human:
       decimal_units:
@@ -619,7 +631,7 @@ ca:
   stream_entries:
     click_to_show: Clic per mostrar
     pinned: Toot fixat
-    reblogged: impulsat
+    reblogged: ha impulsat
     sensitive_content: Contingut sensible
   terms:
     body_html: |
@@ -712,6 +724,25 @@ ca:
     recovery_instructions_html: Si mai perds l'accéss al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     setup: Establir
     wrong_code: El codi introduït no és vàlid! És correcta l'hora del servidor i del dispositiu?
+  user_mailer:
+    welcome:
+      edit_profile_action: Configurar perfil
+      edit_profile_step: Pots personalitzar el teu perfil penjant un avatar, un encapçalament, canviant el teu nom de visualització i molt més. Si prefereixes revisar els seguidors nous abans de que et puguin seguir, pots bloquejar el teu compte.
+      explanation: Aquests són alguns consells per començar
+      final_action: Comença a publicar
+      final_step: 'Comença a publicar! Fins i tot sense seguidors, els altres poden veure els teus missatges públics, per exemple, a la línia de temps local i a les etiquetes ("hashtags"). És possible que vulguis presentar-te amb l''etiqueta #introductions.'
+      full_handle: El teu nom d'usuari sencer
+      full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te missatges o seguir-te des d'una altra instància.
+      review_preferences_action: Canviar preferències
+      review_preferences_step: Assegura't d'establir les teves preferències, com ara els correus electrònics que vols rebre o el nivell de privadesa per defecte que t'agradaria que tinguin les teves entrades. Si no tens malaltia de moviment, pots optar per habilitar la reproducció automàtica de GIF.
+      subject: Benvingut/da a Mastodon
+      tip_bridge_html: Si vens de Twitter, pots trobar els teus amics a Mastodon mitjançant l'aplicació <a href="%{bridge_url}"> bridge </a>. Només funciona si també ells usen aquesta aplicació pont!
+      tip_federated_timeline: La línia de temps federada és el cabal principal de la xarxa Mastodon. Però només inclou les persones a les quals els teus veïns estan subscrits, de manera que no està complet.
+      tip_following: Per defecte segueixes als administradors del servidor. Per trobar més persones interessants, consulta les línies de temps local i federada.
+      tip_local_timeline: La línia de temps local és la vista del flux de publicacions dels usuaris de %{instance}. Aquests usuaris són els teus veïns més propers!
+      tip_mobile_webapp: Si el teu navegador del mòbil t'ofereix afegir Mastodon a la teva pantalla d'inici, podràs rebre notificacions "push". Es comporta com una aplicació nativa en molts aspectes!
+      tips: Consells
+      title: Benvingut a bord, %{name}!
   users:
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte

@@ -265,12 +265,18 @@ fr:
       unresolved: Non résolus
       view: Voir
     settings:
+      activity_api_enabled:
+        desc_html: Nombre de statuts affichés localement, d'utilisateurs actifs et de nouveaux enregistrements dans les registres hebdomadaires
+        title: Publier des statistiques agrégées sur l'activité des utilisateurs
       bootstrap_timeline_accounts:
         desc_html: Séparez les noms d’utilisateur·ice par des virgules. Ne fonctionne qu’avec des comptes locaux et non-verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
         title: Abonnements par défaut pour les nouveaux·elles utilisateur·ice·s
       contact_information:
         email: Entrez une adresse courriel publique
         username: Entrez un nom d’utilisateur⋅ice
+      peers_api_enabled:
+        desc_html: Noms des domaines que cette instance a découvert dans le fediverse
+        title: Publier la liste des instances découvertes
       registrations:
         closed_message:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
@@ -332,9 +338,12 @@ fr:
       body: "%{reporter} a signalé %{target}"
       subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
     settings: 'Changer les préférences courriel : %{link}'
     view: 'Voir :'
+    view_profile: Voir le profil
+    view_status: Afficher le statut
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
@@ -475,29 +484,38 @@ fr:
     title: Modération
   notification_mailer:
     digest:
+      action: Voir toutes les notifications
       body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite le %{since} :'
       mention: "%{name} vous a mentionné⋅e dans :"
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
-        other: Vous avez %{count} nouveaux⋅elles abonné⋅e⋅s ! Incroyable !
+        other: Vous avez %{count} nouveaux⋅elles abonné⋅e·s ! Incroyable !
       subject:
         one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
+      title: Pendant votre absence…
     favourite:
       body: "%{name} a ajouté votre post à ses favoris :"
       subject: "%{name} a ajouté votre post à ses favoris"
+      title: Nouveau favori
     follow:
       body: "%{name} vous suit !"
       subject: "%{name} vous suit"
+      title: Nouvel·le abonné·e
     follow_request:
+      action: Gérer les demandes d'abonnement
       body: "%{name} a demandé à vous suivre"
       subject: 'Abonné⋅es en attente : %{name}'
+      title: Nouvelle demande d'abonnement
     mention:
+      action: Répondre
       body: "%{name} vous a mentionné⋅e dans :"
       subject: "%{name} vous a mentionné·e"
+      title: Nouvelle mention
     reblog:
       body: "%{name} a partagé votre statut :"
       subject: "%{name} a partagé votre statut"
+      title: Nouveau partage
   number:
     human:
       decimal_units:
@@ -533,7 +551,7 @@ fr:
     reblog:
       title: "%{name} a partagé votre statut"
   remote_follow:
-    acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅rice
+    acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre cet·te utilisateur⋅ice
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     proceed: Continuez pour suivre
     prompt: 'Vous allez suivre :'
@@ -545,12 +563,14 @@ fr:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navigateur inconnu
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Autre
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -704,6 +724,25 @@ fr:
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     setup: Installer
     wrong_code: Les codes entrés sont incorrects ! L’heure du serveur et celle de votre appareil sont-elles correctes ?
+  user_mailer:
+    welcome:
+      edit_profile_action: Configuration du profil
+      edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d'en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux abonnés avant qu'ils ne soient autorisés à vous suivre, vous pouvez verrouiller votre compte.
+      explanation: Voici quelques conseils pour vous aider à démarrer
+      final_action: Commencer à publier
+      final_step: 'Commencez à poster ! Même sans abonné·es, vos messages publics peuvent être vus par d''autres, par exemple sur la chronologie locale et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
+      full_handle: Votre pleine maîtrise
+      full_handle_hint: C'est ce que vous diriez à vos amis pour qu'ils puissent vous envoyer un message ou vous suivre à partir d'une autre instance.
+      review_preferences_action: Modifier les préférences
+      review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n'avez pas le mal des transports, vous pouvez choisir d'activer la lecture automatique GIF.
+      subject: Bienvenue sur Mastodon
+      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos amis sur Mastodon en utilisant le <a href="%{bridge_url}"> 1bridge app</a> 2. Cela ne fonctionne que s'ils ont aussi utilisé cette application !
+      tip_federated_timeline: La chronologie fédérée est une vue en direct du réseau Mastodon. Mais elle n'inclut que les personnes auxquelles vos voisin·es sont abonné·es, donc elle n'est pas complète.
+      tip_following: Vous suivez les administrateurs et administratrices de votre serveur par défaut. Pour trouver d'autres personnes intéressantes, consultez les chronologies locales et fédérées.
+      tip_local_timeline: La chronologie locale est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
+      tip_mobile_webapp: Si votre navigateur mobile vous propose d'ajouter Mastodon à votre écran d'accueil, vous pouvez recevoir des notifications push. Il agit comme une application native de bien des façons !
+      tips: Astuces
+      title: Bienvenue à bord, %{name} !
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide

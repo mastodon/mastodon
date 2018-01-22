@@ -338,9 +338,12 @@ pt-BR:
       body: "%{reporter} denunciou %{target}"
       subject: Nova denúncia sobre %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Mudar preferências de e-mail
     salutation: "%{name},"
     settings: 'Mudar e-mail de preferência: %{link}'
     view: 'Visualizar:'
+    view_profile: Ver perfil
+    view_status: Ver status
   applications:
     created: Aplicação criada com sucesso
     destroyed: Aplicação excluída com sucesso
@@ -481,7 +484,8 @@ pt-BR:
     title: Moderação
   notification_mailer:
     digest:
-      body: 'Aqui está um resumo do que você perdeu no %{instance} desde o seu último acesso em %{since}:'
+      action: Ver todas as notificações
+      body: Aqui está um pequeno resumo das mensagens que você perdeu desde o seu último acesso em %{since}
       mention: "%{name} te mencionou em:"
       new_followers_summary:
         one: Você tem um novo seguidor! Yay!
@@ -489,21 +493,29 @@ pt-BR:
       subject:
         one: "Uma nova notificação desde o seu último acesso \U0001F418"
         other: "%{count} novas notificações desde o seu último acesso \U0001F418"
+      title: Enquanto você estava ausente…
     favourite:
       body: 'Sua postagem foi favoritada por %{name}:'
       subject: "%{name} favoritou a sua postagem"
+      title: Novo favorito
     follow:
       body: "%{name} está te seguindo!"
       subject: "%{name} está te seguindo"
+      title: Novo seguidor
     follow_request:
+      action: Gerenciar pedidos de seguidores
       body: "%{name} requisitou autorização para te seguir"
       subject: 'Seguidor pendente: %{name}'
+      title: Nova solicitação de seguidor
     mention:
+      action: Responder
       body: 'Você foi mencionado por %{name} em:'
       subject: Você foi mencionado por %{name}
+      title: Nova menção
     reblog:
       body: 'Sua postagem foi compartilhada por %{name}:'
       subject: "%{name} compartilhou a sua postagem"
+      title: Novo compartilhamento
   number:
     human:
       decimal_units:
@@ -551,12 +563,14 @@ pt-BR:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navegador desconhecido
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -710,6 +724,25 @@ pt-BR:
     recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para reganhar acesso à sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los com outros documentos importantes.
     setup: Configurar
     wrong_code: O código inserido é invalido! O horário do servidor e o horário do seu aparelho estão corretos?
+  user_mailer:
+    welcome:
+      edit_profile_action: Configurar perfil
+      edit_profile_step: Você pode customizar o seu perfil enviando um avatar, uma imagem de topo, mudando seu nome de exibição, dentre outros. Se você gostaria de aprovar novos seguidores antes que eles possam seguir você, você pode trancar a sua conta.
+      explanation: Aqui estão algumas dicas para te ajudar a começar
+      final_action: Comece a postar
+      final_step: 'Comece a postar! Mesmo sem seguidores, suas mensagens públicas podem ser vistas por outros, por exemplo nas timelines locais e buscando hashtags. Você pode querer fazer uma introdução usando a hashtag #introduções, ou em inglês usando a hashtag #introductions.'
+      full_handle: Seu nome de usuário completo
+      full_handle_hint: Isso é o que você diz aos seus amigos para que eles possam te mandar mensagens ou te seguir a partir de outra instância.
+      review_preferences_action: Mudar as preferências
+      review_preferences_step: Não se esqueça de configurar suas preferências, como quais e-mails você gostaria de receber, que nível de privacidade você gostaria que seus posts tenham por padrão. Se você não sofre de enjôo com movimento, você pode habilitar GIFs animando automaticamente.
+      subject: Boas-vindas ao Mastodon
+      tip_bridge_html: Se você está vindo do Twitter, você pode encontrar pessoas amigas que estão no Mastodon usando <a href="%{bridge_url}">app de associação</a>. Mas só funciona se as pessoas também estiverem usando o app!
+      tip_federated_timeline: A timeline global é uma visão contínua da rede do Mastodon. Mas ela só inclui pessoas que outras pessoas da sua instância estão seguindo, então não é a rede completa.
+      tip_following: Você vai seguir administradores da sua instância por padrão. Para encontrar mais gente interessante, confira as timelines local e global.
+      tip_local_timeline: A timeline local é uma visão contínua das pessoas que estão em %{instance}. Esses são seus vizinhos próximos!
+      tip_mobile_webapp: Se o seu navegador móvel oferecer a opção de adicionar Mastodon à tela inicial, você pode receber notificações push. Vai funcionar quase como um aplicativo nativo!
+      tips: Dicas
+      title: Boas-vindas à bordo, %{name}!
   users:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
