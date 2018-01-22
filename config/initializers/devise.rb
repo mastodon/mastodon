@@ -320,13 +320,17 @@ Devise.setup do |config|
   config.emailfield = "email"
 
   # authentication with pam possible
+  # if not enabled, all pam settings are ignored
   #config.pam_authentication = true
   # check if email is actually a username
   config.check_at_sign = true
   # suffix for email address generation (warning: without pam must provide email in the pam environment)
   config.pam_default_suffix = "pam"
   # name of the pam service
+  # pam "auth" section is evaluated
   config.pam_default_service = "rpam"
-  # name of the pam service used for checking if a user can register
+  # name of the pam service used for checking if an user can register
+  # pam "account" section is evaluated
+  # nil for allowing registration of pam names (not recommended)
   config.pam_controlled_service = "rpam"
 end
