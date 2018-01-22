@@ -33,6 +33,8 @@ end
 module Devise
   mattr_accessor :pam_authentication
   @@pam_authentication = false
+  mattr_accessor :pam_controlled_service
+  @@pam_controlled_service = nil
 
   class Strategies::PamAuthenticatable
     def valid?
@@ -325,4 +327,6 @@ Devise.setup do |config|
   config.pam_default_suffix = "pam"
   # name of the pam service
   config.pam_default_service = "rpam"
+  # name of the pam service used for checking if a user can register
+  config.pam_controlled_service = "rpam"
 end
