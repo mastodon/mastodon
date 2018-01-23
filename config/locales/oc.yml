@@ -282,13 +282,13 @@ oc:
           desc_html: Afichat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz utilizar de balisas HTML
           title: Messatge de barradura de las inscripcions
         deletion:
-          desc_html: Autorizar lo monde a suprimir lor compte
+          desc_html: Autorizar lo mond a suprimir lor compte
           title: Possibilitat de suprimir lo compte
         min_invite_role:
           disabled: Degun
           title: Autorizat amb invitacions
         open:
-          desc_html: Autorizar lo monde a se marcar
+          desc_html: Autorizar lo mond a se marcar
           title: Inscripcions
       show_staff_badge:
         desc_html: Mostrar lo badge Personal sus la pagina de perfil
@@ -338,9 +338,12 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       subject: Novèl senhalament per %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     view: 'Veire :'
+    view_profile: Veire lo perfil
+    view_status: Veire los estatuts
   applications:
     created: Aplicacion ben creada
     destroyed: Aplication ben suprimida
@@ -535,12 +538,12 @@ oc:
     max_uses:
       one: 1 persona
       other: "%{count} personas"
-    max_uses_prompt: Cap limit
+    max_uses_prompt: Cap de limit
     prompt: Generatz e partejatz los ligams per donar accès a aquesta instància
     table:
       expires_at: Expirats
       uses: Usatges
-    title: Convidar de monde
+    title: Convidar de mond
   landing_strip_html: "<strong>%{name}</strong> utiliza %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasque sul fediverse."
   landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
   lists:
@@ -567,21 +570,27 @@ oc:
       subject:
         one: "Una nòva notificacion dempuèi vòstra darrièra visita \U0001F418"
         other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
+      title: Pendent vòstra abséncia…
     favourite:
       body: "%{name} a mes vòstre estatut en favorit :"
       subject: "%{name} a mes vòstre estatut en favorit"
+      title: Novèl apondut als favorits
     follow:
       body: "%{name} vos sèc ara !"
       subject: "%{name} vos sèc ara"
+      title: Nòu seguidor
     follow_request:
       body: "%{name} a demandat a vos sègre"
       subject: 'Demanda d’abonament : %{name}'
+      title: Novèla demanda d’abonament
     mention:
       body: "%{name} vos a mencionat dins :"
       subject: "%{name} vos a mencionat"
+      title: Novèla mencion
     reblog:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
+      title: Novèl partatge
   number:
     human:
       decimal_units:
@@ -629,12 +638,14 @@ oc:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navigator desconegut
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -786,6 +797,25 @@ oc:
     recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
     setup: Paramètres
     wrong_code: Lo còdi picat es invalid ! L’ora es la bona sul servidor e lo mobil ?
+  user_mailer:
+    welcome:
+      edit_profile_action: Setup profile
+      edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.
+      explanation: Here are some tips to get you started
+      final_action: Start posting
+      final_step: 'Start posting! Even without followers your public messages may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
+      full_handle: Your full handle
+      full_handle_hint: This is what you would tell your friends so they can message or follow you from another instance.
+      review_preferences_action: Change preferences
+      review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
+      subject: Welcome to Mastodon
+      tip_bridge_html: If you are coming from Twitter, you can find your friends on Mastodon by using the <a href="%{bridge_url}">bridge app</a>. It only works if they also used the bridge app though!
+      tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. But it only includes people your neighbours are subscribed to, so it's not complete.
+      tip_following: You follow your server's admin(s) by default. To find more interesting people, check the local and federated timelines.
+      tip_local_timeline: The local timeline is a firehose view of people on %{instance}. These are your immediate neighbours!
+      tip_mobile_webapp: If your mobile browser offers you to add Mastodon to your homescreen, you can receive push notifications. It acts like a native app in many ways!
+      tips: Tips
+      title: Welcome aboard, %{name}!
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
