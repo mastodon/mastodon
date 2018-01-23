@@ -2,16 +2,21 @@
 
 module PremailerWebpackStrategy
   def load(url)
-    public_path_host = ENV['ASSET_HOST'] || ENV['LOCAL_DOMAIN']
-    url = url.gsub(/\A\/\/#{public_path_host}/, '')
+    asset_host = ENV['ASSET_HOST'] || ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']
 
     if Webpacker.dev_server.running?
-      url = File.join("#{Webpacker.dev_server.protocol}://#{Webpacker.dev_server.host_with_port}", url)
-      HTTP.get(url).to_s
-    else
-      url = url[1..-1] if url.start_with?('/')
-      File.read(Rails.root.join('public', url))
+      asset_host = "#{Webpacker.dev_server.protocol}://#{Webpacker.dev_server.host_with_port}"
+      url        = File.join(asset_host, url)
     end
+
+    css = if url.start_with?('http')
+            HTTP.get(url).to_s
+          else
+            url = url[1..-1] if url.start_with?('/')
+            File.read(Rails.root.join('public', url))
+          end
+
+    css.gsub(/url\(\//, "url(#{asset_host}/")
   end
 
   module_function :load
