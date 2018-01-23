@@ -47,7 +47,6 @@ export default class Status extends ImmutablePureComponent {
 
   state = {
     isExpanded: null,
-    markedForDelete: false,
   }
 
   // Avoid checking props that are functions (and whose equality will always
@@ -67,7 +66,6 @@ export default class Status extends ImmutablePureComponent {
 
   updateOnStates = [
     'isExpanded',
-    'markedForDelete',
   ]
 
   //  If our settings have changed to disable collapsed statuses, then we
@@ -382,7 +380,6 @@ export default class Status extends ImmutablePureComponent {
     const computedClass = classNames('status', `status-${status.get('visibility')}`, {
       collapsed: isExpanded === false,
       'has-background': isExpanded === false && background,
-      'marked-for-delete': this.state.markedForDelete,
       muted,
     }, 'focusable');
 
