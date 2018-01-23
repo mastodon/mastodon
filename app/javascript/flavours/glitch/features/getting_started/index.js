@@ -88,7 +88,7 @@ export default class GettingStarted extends ImmutablePureComponent {
   };
 
   componentWillMount () {
-    fetchLists();
+    this.props.fetchLists();
   }
 
   componentDidMount () {
