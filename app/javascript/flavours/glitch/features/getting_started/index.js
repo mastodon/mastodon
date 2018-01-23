@@ -56,15 +56,8 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = dispatch => ({
   fetchFollowRequests: () => dispatch(fetchFollowRequests()),
-
   fetchLists: () => dispatch(fetchLists()),
-
   openSettings: () => dispatch(openModal('SETTINGS', {})),
-
-  openOnboardingModal: (e) => {
-    e.preventDefault();
-    this.props.dispatch(openModal('ONBOARDING'));
-  },
 });
 
 const badgeDisplay = (number, limit) => {
@@ -92,7 +85,6 @@ export default class GettingStarted extends ImmutablePureComponent {
     lists: ImmutablePropTypes.list,
     fetchLists: PropTypes.func.isRequired,
     openSettings: PropTypes.func.isRequired,
-    openOnboardingModal: PropTypes.func.isRequired,
   };
 
   componentWillMount () {
@@ -136,7 +128,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     }
 
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key='5' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />); 
+      navItems.push(<ColumnLink key='5' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
     }
 
     navItems.push(<ColumnLink key='6' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
