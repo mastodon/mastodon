@@ -95,6 +95,7 @@ group :test do
   gem 'simplecov', '~> 0.14', require: false
   gem 'webmock', '~> 3.0'
   gem 'parallel_tests', '~> 2.17'
+  gem 'timecop', '~> 0.9'
 end
 
 group :development do
