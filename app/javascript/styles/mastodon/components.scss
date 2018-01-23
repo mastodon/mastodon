@@ -2393,7 +2393,6 @@
 
 .column-header {
   display: flex;
-  padding: 15px;
   font-size: 16px;
   background: lighten($ui-base-color, 4%);
   flex: 0 0 auto;
@@ -2408,7 +2407,7 @@
     flex: auto;
     margin: 0;
     border: none;
-    padding: 0;
+    padding: 15px;
     color: inherit;
     background: transparent;
     font: inherit;
@@ -2433,7 +2432,6 @@
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin: -15px;
   margin-left: 0;
 }
 
