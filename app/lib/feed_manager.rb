@@ -113,28 +113,6 @@ class FeedManager
     end
   end
 
-  def populate_feed(account)
-    added  = 0
-    limit  = FeedManager::MAX_ITEMS / 2
-    max_id = nil
-
-    loop do
-      statuses = Status.as_home_timeline(account)
-                       .paginate_by_max_id(limit, max_id)
-
-      break if statuses.empty?
-
-      statuses.each do |status|
-        next if filter_from_home?(status, account)
-        added += 1 if add_to_feed(:home, account.id, status)
-      end
-
-      break unless added.zero?
-
-      max_id = statuses.last.id
-    end
-  end
-
   private
 
   def redis
