@@ -23,7 +23,7 @@ const debouncedSave = debounce((dispatch, getState) => {
 
   const data = getState().get('settings').filter((_, path) => path !== 'saved').toJS();
 
-  api(getState).put('/api/web/settings', { data }).then(() => dispatch({ type: SETTING_SAVE }));
+  api().put('/api/web/settings', { data }).then(() => dispatch({ type: SETTING_SAVE }));
 }, 5000, { trailing: true });
 
 export function saveSettings() {

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::Web::SettingsController < Api::BaseController
+class Api::Web::SettingsController < Api::Web::BaseController
   respond_to :json
 
   before_action :require_user!
