@@ -189,27 +189,6 @@ class FrontmatterHandler
     case str[0]
     when '"'
       str[1..-2]
-        .gsub(/\\0/, "\u{00}")
-        .gsub(/\\a/, "\u{07}")
-        .gsub(/\\b/, "\u{08}")
-        .gsub(/\\t/, "\u{09}")
-        .gsub(/\\\u{09}/, "\u{09}")
-        .gsub(/\\n/, "\u{0a}")
-        .gsub(/\\v/, "\u{0b}")
-        .gsub(/\\f/, "\u{0c}")
-        .gsub(/\\r/, "\u{0d}")
-        .gsub(/\\e/, "\u{1b}")
-        .gsub(/\\ /, "\u{20}")
-        .gsub(/\\"/, "\u{22}")
-        .gsub(/\\\//, "\u{2f}")
-        .gsub(/\\\\/, "\u{5c}")
-        .gsub(/\\N/, "\u{85}")
-        .gsub(/\\_/, "\u{a0}")
-        .gsub(/\\L/, "\u{2028}")
-        .gsub(/\\P/, "\u{2029}")
-        .gsub(/\\x([0-9a-fA-F]{2})/mu) {|s| $1.to_i.chr Encoding::UTF_8}
-        .gsub(/\\u([0-9a-fA-F]{4})/mu) {|s| $1.to_i.chr Encoding::UTF_8}
-        .gsub(/\\U([0-9a-fA-F]{8})/mu) {|s| $1.to_i.chr Encoding::UTF_8}
     when "'"
       str[1..-2].gsub(/''/, "'")
     else
