@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default class ColumnHeader extends React.PureComponent {
 
@@ -16,18 +17,17 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { type, active, columnHeaderId } = this.props;
+    const { icon, type, active, columnHeaderId } = this.props;
+    let iconElement = '';
 
-    let icon = '';
-
-    if (this.props.icon) {
-      icon = <i className={`fa fa-fw fa-${this.props.icon} column-header__icon`} />;
+    if (icon) {
+      iconElement = <i className={`fa fa-fw fa-${icon} column-header__icon`} />;
     }
 
     return (
-      <h1 className={`column-header ${active ? 'active' : ''}`} id={columnHeaderId || null}>
+      <h1 className={classNames('column-header', { active })} id={columnHeaderId || null}>
         <button onClick={this.handleClick}>
-          {icon}
+          {iconElement}
           {type}
         </button>
       </h1>
