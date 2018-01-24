@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ResolveRemoteAccountService do
+RSpec.describe ResolveAccountService do
   subject { described_class.new }
 
   before do

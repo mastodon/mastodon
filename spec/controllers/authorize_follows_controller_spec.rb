@@ -30,7 +30,7 @@ describe AuthorizeFollowsController do
 
       it 'renders error when account cant be found' do
         service = double
-        allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('missing@hostname').and_return(nil)
 
         get :show, params: { acct: 'acct:missing@hostname' }
@@ -54,7 +54,7 @@ describe AuthorizeFollowsController do
       it 'sets account from acct uri' do
         account = Account.new
         service = double
-        allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('found@hostname').and_return(account)
 
         get :show, params: { acct: 'acct:found@hostname' }

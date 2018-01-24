@@ -338,9 +338,12 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       subject: Novo informe sobre %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Cambiar os axustes de correo-e
     salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
     view: 'Vista:'
+    view_profile: Ver perfil
+    view_status: Ver estado
   applications:
     created: Creouse con éxito este aplicativo
     destroyed: Eliminouse con éxito o aplicativo
@@ -481,29 +484,38 @@ gl:
     title: Moderación
   notification_mailer:
     digest:
-      body: 'Aquí ten un breve sumario do que perdeu en %{instance} desde a última visita en %{since}:'
+      action: Ver todas as notificacións
+      body: Aquí ten un breve resumo das mensaxes publicadas desde a súa última visita en %{since}
       mention: "%{name} mencionouna en:"
       new_followers_summary:
-        one: Ten unha nova seguidora! Ben!
-        other: Obtivo %{count} novas seguidoras! Tremendo!
+        one: Ademáis, ten unha nova seguidora desde entón! Ben!
+        other: Ademáis, obtivo %{count} novas seguidoras desde entón! Tremendo!
       subject:
         one: "1 nova notificación desde a súa última visita \U0001F418"
         other: "%{count} novas notificacións desde a súa última visita \U0001F418"
+      title: Na súa ausencia…
     favourite:
       body: 'O seu estado foi marcado favorito por %{name}:'
       subject: "%{name} marcou favorito o seu estado"
+      title: Nova favorita
     follow:
       body: "%{name} agora está a seguila!"
       subject: "%{name} agora está a seguila"
+      title: Nova seguidora
     follow_request:
+      action: Xestionar peticións de seguimento
       body: "%{name} solicitou poder seguila"
       subject: 'Seguidora pendente: %{name}'
+      title: Nova petición de seguimento
     mention:
+      action: Respostar
       body: 'Foi mencionada por %{name} en:'
       subject: Vostede foi mencionada por %{name}
+      title: Nova mención
     reblog:
       body: 'O seu estado foi promocionado por %{name}:'
-      subject: "%{name} promocionou o seu estado"
+      subject: "%{name} promoveu o seu estado"
+      title: Nova promoción
   number:
     human:
       decimal_units:
@@ -537,7 +549,7 @@ gl:
       action_favourite: Favorito
       title: "%{name} mencionouna"
     reblog:
-      title: "%{name} promocionou un dos seus estados"
+      title: "%{name} promoveu un dos seus estados"
   remote_follow:
     acct: Introduza o seu nomedeusuaria@dominio desde onde quere facer seguimento
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
@@ -551,12 +563,14 @@ gl:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navegador descoñecido
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: Navegador QQ
       safari: Safari
@@ -710,6 +724,25 @@ gl:
     recovery_instructions_html: Si perdese o acceso ao seu teléfono, pode utilizar un dos códigos inferiores de recuperación para recuperar o acceso a súa conta. <strong>Garde os códigos en lugar seguro</strong>. Por exemplo, pode imprimilos e gardalos xunto con outros documentos importantes.
     setup: Configurar
     wrong_code: O código introducido non é válido! Son correctas as horas no dispositivo e o servidor?
+  user_mailer:
+    welcome:
+      edit_profile_action: Configurar perfil
+      edit_profile_step: Vostede pode personalizar o seu perfil subindo un avatar, cabeceira, cambiar o seu nome público e aínda máis. Si restrinxe a súa conta pode revisar a conta das personas que solicitan seguilas antes de permitirlles o acceso aos seus toots.
+      explanation: Aquí ten alunhas endereitas para ir aprendendo
+      final_action: Comece a publicar
+      final_step: 'Publique! Incluso sin seguidoras as súas mensaxes serán vistas por outras, por exemplo na liña temporal local e nas etiquetas. Podería presentarse no #fediverso utilizando a etiqueta #introductions.'
+      full_handle: O seu alcume completo
+      full_handle_hint: Esto é o que lle dirá aos seus amigos para que poidan seguila ou enviarlle mensaxes desde outra instancia.
+      review_preferences_action: Cambiar preferencias
+      review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
+      subject: Benvida a Mastodon
+      tip_bridge_html: Si chega desde a Twitter, pode atopar aos seus amigos en Mastodon utilizando o <a href="%{bridge_url}">aplicativo ponte</a>. Só funciona si eles tamén utilizan o aplicativo ponte!
+      tip_federated_timeline: A liña temporal federada é unha visión ampla da rede Mastodon. Pero so inclúe xente a que segue xente que vostede segue, así que non é completa.
+      tip_following: Por omisión vostede segue ao Admin do seu servidor. Para atopar máis xente interesante, mire nas liñas temporais local e federada.
+      tip_local_timeline: A liña temporal local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!
+      tip_mobile_webapp: Si o navegador móbil lle ofrece engadir Mastodon a pantalla de inicio, pode recibir notificacións push. En moitos aspectos comportarase como un aplicativo nativo!
+      tips: Consellos
+      title: Benvida, %{name}!
   users:
     invalid_email: O enderezo de correo non é válido
     invalid_otp_token: Código de doble-factor non válido

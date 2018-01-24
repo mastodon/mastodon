@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResolveRemoteAccountService < BaseService
+class ResolveAccountService < BaseService
   include OStatus2::MagicKey
   include JsonLdHelper
 

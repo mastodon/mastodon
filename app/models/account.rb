@@ -165,7 +165,7 @@ class Account < ApplicationRecord
 
   def refresh!
     return if local?
-    ResolveRemoteAccountService.new.call(acct)
+    ResolveAccountService.new.call(acct)
   end
 
   def unsuspend!
