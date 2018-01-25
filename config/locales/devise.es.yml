@@ -5,7 +5,7 @@ es:
       send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo
         confirmar su dirección de correo en pocos minutos.
       send_paranoid_instructions: Si su dirección de correo electrónico existe en
-        nuesta base de datos, recibirá un correo electrónico con instrucciones sobre
+        nuestra base de datos, recibirá un correo electrónico con instrucciones sobre
         cómo confirmar su dirección de correo en pocos minutos.
     failure:
       already_authenticated: Usted ya está registrado.
@@ -19,14 +19,38 @@ es:
       unconfirmed: Tiene que confirmar su correo electrónico antes de continuar.
     mailer:
       confirmation_instructions:
-        subject: 'Mastodon: Instrucciones de confirmación'
-        action: Verifique dirección de email
+        subject: 'Mastodon: Instrucciones de confirmación para %{instance}'
+        action: Verifique dirección de correo electrónico
+        explanation: As creado una cuenta en %{host} con esta dirección de correo
+          electrónico. Estas a un clic de activarla. Si no fue usted, por favor ignore
+          este correo electrónico.
+        extra_html: Por favor eche un vistazo a <a href="%{terms_path}">las reglas
+          de la instancia</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
+        title: Verifique dirección de correo electrónico
       password_change:
         subject: 'Mastodon: Contraseña cambiada'
+        explanation: La contraseña de su cuenta a sido cambiada.
+        extra: Si usted no a cambiado su contraseña. es probable que alguien a conseguido
+          acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte
+          a el administrador de la instancia si usted esta bloqueado de su cuenta.
+        title: Contraseña cambiada
       reset_password_instructions:
         subject: 'Mastodon: Instrucciones para reiniciar contraseña'
+        action: Cambiar contraseña
       unlock_instructions:
         subject: 'Mastodon: Instrucciones para desbloquear'
+      email_changed:
+        explanation: 'El correo electrónico para su cuenta esta siendo cambiada a:'
+        extra: Si usted no a cambiado su correo electrónico. es probable que alguien
+          a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente
+          o contacte a el administrador de la instancia si usted esta bloqueado de
+          su cuenta.
+        subject: 'Mastodon: Correo electrónico cambiado'
+        title: Nueva dirección de correo electrónico
+      reconfirmation_instructions:
+        explanation: Confirme la nueva dirección para cambiar su coreo electrónico.
+        subject: 'Mastodon: Confirme correo electrónico para %{instance}'
+        title: Verifique dirección de correo electrónico
     omniauth_callbacks:
       failure: No podemos autentificarle desde %{kind} debido a "%{reason}".
       success: Autentificado con éxito desde la cuenta %{kind} .
