@@ -29,7 +29,7 @@ module Remotable
           filename = matches.nil? ? parsed_url.path.split('/').last : matches[1]
           basename = SecureRandom.hex(8)
           begin
-            extname  = File.extname(filename)
+            extname = File.extname(filename)
           rescue TypeError
             return
           end
