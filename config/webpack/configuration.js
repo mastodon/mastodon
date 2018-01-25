@@ -30,6 +30,16 @@ const output = {
   publicPath: formatPublicPath(env.ASSET_HOST || env.LOCAL_DOMAIN, settings.public_output_path),
 };
 
+if ('dev_server' in settings) {
+  if (env.WEBPACKER_DEV_SERVER_HOST) {
+    settings.dev_server.host = env.WEBPACKER_DEV_SERVER_HOST;
+  }
+
+  if (env.WEBPACKER_DEV_SERVER_PUBLIC) {
+    settings.dev_server.public = env.WEBPACKER_DEV_SERVER_PUBLIC;
+  }
+}
+
 module.exports = {
   settings,
   themes,
