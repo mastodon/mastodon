@@ -1,7 +1,11 @@
----
 fi:
   about:
-    about_mastodon_html: Mastodon on <em>vapaa, avoimeen lähdekoodiin perustuva</em> sosiaalinen verkosto. <em>Hajautettu</em> vaihtoehto kaupallisille alustoille, se välttää eiskit yhden yrityksen monopolisoinnin sinun viestinnässäsi. Valitse palvelin mihin luotat &mdash; minkä tahansa valitset, voit vuorovaikuttaa muiden kanssa. Kuka tahansa voi luoda Mastodon palvelimen ja ottaa osaa <em>sosiaaliseen verkkoon</em> saumattomasti.
+    about_mastodon_html: Mastodon on <em>vapaa, avoimeen lähdekoodiin perustuva</em>
+      sosiaalinen verkosto. <em>Hajautettu</em> vaihtoehto kaupallisille alustoille,
+      se välttää eiskit yhden yrityksen monopolisoinnin sinun viestinnässäsi. Valitse
+      palvelin mihin luotat &mdash; minkä tahansa valitset, voit vuorovaikuttaa muiden
+      kanssa. Kuka tahansa voi luoda Mastodon palvelimen ja ottaa osaa <em>sosiaaliseen
+      verkkoon</em> saumattomasti.
     about_this: Tietoja tästä palvelimesta
     contact: Ota yhteyttä
     description_headline: Mikä on %{domain}?
@@ -13,6 +17,32 @@ fi:
     status_count_before: Ovat luoneet
     user_count_after: käyttäjälle
     user_count_before: Koti
+    closed_registrations: Rekisteröityminen tässä instanssissa on juuri nyt suljettu.
+      Mutta! Voit yhdistää täysin samaan, yhteiseen verkostoon rekisteröitymällä jossain
+      toisessa instanssissa.
+    contact_missing: Ei asetettu
+    contact_unavailable: Ei saatavilla
+    extended_description_html: '<h3>Hyvä paikka säännöille</h3>
+
+      <p>Pidennettyä kuvausta ei ole vielä asetettu.</p>
+
+      '
+    features:
+      humane_approach_body: Muiden verkostojen virheistä oppien, Mastodon pyrkii tekemään
+        eettisiä valintoja suunnittelussa taistellakseen sosiaalisen median väärinkäyttöä
+        vastaan.
+      humane_approach_title: Humaanimpi lähestymistapa
+      not_a_product_body: Mastodon ei ole kaupallinen verkosto. Ei mainoksia, ei tiedonlouhintaa,
+        ei suljettuja sisäpiirejä. Mastodonissa ei ole keskitettyä auktoriteettiä.
+      not_a_product_title: Olet henkilö, et tuote
+      real_conversation_title: Rakennettu oikealle keskustelulle
+      within_reach_body: Kehittäjäystävällisen rajapintaekosysteemin ansiosta useita
+        appeja Androidille, iOS:lle ja muille alustoille, jotka mahdollistavat yhteydenpidon
+        ystäviesi kanssa missä vain.
+      within_reach_title: Aina lähellä
+    find_another_instance: Löydä toinen instanssi
+    learn_more: Lisätietoja
+    what_is_mastodon: Mikä on Mastodon?
   accounts:
     follow: Seuraa
     followers: Seuraajat
@@ -23,6 +53,9 @@ fi:
     posts: Postaukset
     remote_follow: Etäseuranta
     unfollow: Lopeta seuraaminen
+    reserved_username: Käyttäjänimi on varattu
+    roles:
+      admin: Ylläpitäjä
   application_mailer:
     settings: 'Muokkaa sähköpostiasetuksia: %{link}'
     view: 'Katso:'
@@ -44,18 +77,18 @@ fi:
     title: Seuraa %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}t"
-      about_x_months: "%{count}kk"
-      about_x_years: "%{count}v"
-      almost_x_years: "%{count}v"
+      about_x_hours: '%{count}t'
+      about_x_months: '%{count}kk'
+      about_x_years: '%{count}v'
+      almost_x_years: '%{count}v'
       half_a_minute: Juuri nyt
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: '%{count}m'
       less_than_x_seconds: Juuri nyt
-      over_x_years: "%{count}v"
-      x_days: "%{count}pv"
-      x_minutes: "%{count}m"
-      x_months: "%{count}kk"
-      x_seconds: "%{count}s"
+      over_x_years: '%{count}v'
+      x_days: '%{count}pv'
+      x_minutes: '%{count}m'
+      x_months: '%{count}kk'
+      x_seconds: '%{count}s'
   exports:
     blocks: Estosi
     csv: CSV
@@ -69,43 +102,48 @@ fi:
       one: Jokin ei ole viellä oikein! Katso virhe alapuolelta.
       other: Jokin ei ole viellä oikein! Katso %{count} virhettä alapuolelta.
   imports:
-    preface: Voit tuoda tiettyä dataa kaikista ihmisistä joita seuraat tai estät tilillesi tälle palvelimelle tiedostoista, jotka on luotu toisella palvelimella
+    preface: Voit tuoda tiettyä dataa kaikista ihmisistä joita seuraat tai estät tilillesi
+      tälle palvelimelle tiedostoista, jotka on luotu toisella palvelimella.
     success: Datasi on onnistuneesti ladattu ja käsitellään pian
     types:
       blocking: Estetyt lista
       following: Seuratut lista
     upload: Lähetä
-  landing_strip_html: "<strong>%{name}</strong> on käyttäjä domainilla %{link_to_root_path}. Voit seurata tai vuorovaikuttaa heidän kanssaan jos sinulla on tili yleisessä verkossa."
-  landing_strip_signup_html: Jos sinulla ei ole tiliä, voit <a href="%{sign_up_path}">rekisteröityä täällä</a>.
+  landing_strip_html: <strong>%{name}</strong> on käyttäjä domainilla %{link_to_root_path}.
+    Voit seurata tai vuorovaikuttaa heidän kanssaan jos sinulla on tili yleisessä
+    verkossa.
+  landing_strip_signup_html: Jos sinulla ei ole tiliä, voit <a href="%{sign_up_path}">rekisteröityä
+    täällä</a>.
   notification_mailer:
     digest:
-      body: 'Tässä on pieni yhteenveto palvelimelta %{instance} viimeksi kun olit paikalla %{since}:'
-      mention: "%{name} mainitsi sinut:"
+      body: 'Tässä on pieni yhteenveto palvelimelta %{instance} viimeksi kun olit
+        paikalla %{since}:'
+      mention: '%{name} mainitsi sinut:'
       new_followers_summary:
         one: Olet saanut yhden uuden seuraajan! Jee!
         other: Olet saanut %{count} uutta seuraajaa! Loistavaa!
       subject:
-        one: "1 uusi ilmoitus viimeisen käyntisi jälkeen \U0001F418"
-        other: "%{count} uutta ilmoitusta viimeisen käyntisi jälkeen \U0001F418"
+        one: 1 uusi ilmoitus viimeisen käyntisi jälkeen 🐘
+        other: '%{count} uutta ilmoitusta viimeisen käyntisi jälkeen 🐘'
     favourite:
       body: 'Statuksestasi tykkäsi %{name}:'
-      subject: "%{name} tykkäsi sinun statuksestasi"
+      subject: '%{name} tykkäsi sinun statuksestasi'
     follow:
-      body: "%{name} seuraa nyt sinua!"
-      subject: "%{name} seuraa nyt sinua"
+      body: '%{name} seuraa nyt sinua!'
+      subject: '%{name} seuraa nyt sinua'
     follow_request:
-      body: "%{name} on pyytänyt seurata sinua"
+      body: '%{name} on pyytänyt seurata sinua'
       subject: 'Odottava seuraus pyyntö: %{name}'
     mention:
       body: 'Sinut mainitsi %{name} postauksessa:'
       subject: Sinut mainitsi %{name}
     reblog:
       body: 'Sinun statustasi boostasi %{name}:'
-      subject: "%{name} boostasi statustasi"
+      subject: '%{name} boostasi statustasi'
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -144,12 +182,34 @@ fi:
     sensitive_content: Herkkä materiaali
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: '%b %d, %Y, %H:%M'
   two_factor_authentication:
-    description_html: Jos otat käyttöön <strong>kaksivaiheisen tunnistuksen</stron>, kirjautumiseen vaaditaan puhelin, joka voi luoda tokeneita kirjautumista varten.
+    description_html: Jos otat käyttöön <strong>kaksivaiheisen tunnistuksen</strong>,
+      kirjautumiseen vaaditaan puhelin, joka voi luoda tokeneita kirjautumista varten.
     disable: Poista käytöstä
     enable: Ota käyttöön
-    instructions_html: "<strong>Skannaa tämä QR-koodi Google Authenticator- tai vastaavaan sovellukseen puhelimellasi</strong>. Tästä hetkestä lähtien ohjelma luo koodin, mikä sinun tarvitsee syöttää sisäänkirjautuessa."
+    instructions_html: <strong>Skannaa tämä QR-koodi Google Authenticator- tai vastaavaan
+      sovellukseen puhelimellasi</strong>. Tästä hetkestä lähtien ohjelma luo koodin,
+      mikä sinun tarvitsee syöttää sisäänkirjautuessa.
   users:
     invalid_email: Virheellinen sähköposti
     invalid_otp_token: Virheellinen kaksivaihetunnistuskoodi
+  admin:
+    account_moderation_notes:
+      account: Moderaattori
+      create: Luo
+      created_at: Päiväys
+      created_msg: Moderointimerkintä luotu onnistuneesti!
+      delete: Poista
+      destroyed_msg: Moderointimerkintä tuhottu onnistuneesti!
+    accounts:
+      are_you_sure: Oletko varma?
+      confirm: Hyväksy
+      confirmed: Hyväksytty
+      disable: Poista käytöstä
+      disable_two_factor_authentication: Poista 2FA käytöstä
+      disabled: Poistettu käytöstä
+      edit: Muokkaa
+      email: Sähköposti
+      followers: Seuraajat
+      followers_url: Seuraajat URL
