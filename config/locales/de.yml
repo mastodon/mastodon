@@ -171,8 +171,8 @@ de:
         unsuspend_account: '%{name} hat die Sperrung von %{target}s Account aufgehoben'
         update_custom_emoji: '%{name} hat das %{target} Emoji aktualisiert'
         update_status: '%{name} hat den Status von %{target} aktualisiert'
-        disable_2fa_user: '%{name} hat Zweifaktor-Authentifizierung von %{target}
-          entfernt'
+        disable_2fa_user: '%{name} hat Zwei-Faktor-Authentifizierung für %{target}
+          deaktiviert'
         disable_user: '%{name} hat den Login für %{target} deaktiviert'
         promote_user: '%{name} hat %{target} befördert'
       title: Überprüfungsprotokoll
@@ -329,6 +329,9 @@ de:
         desc_html: Auf der Frontseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
       title: Instanz-Einstellungen
+      activity_api_enabled:
+        desc_html: Anzahl an lokal veröffentlichten Beiträgen, aktiven Wesen und neuen
+          Registrierungen pro Woche
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -366,10 +369,10 @@ de:
     invalid_url: Die angegebene URL ist ungültig
     regenerate_token: Zugangs-Token neu erstellen
     token_regenerated: Zugangs-Token neu erstellt
-    warning: Sei mit diesen Daten sehr vorsichtig! Teile sie niemandem mit.
+    warning: Sei mit diesen Daten sehr vorsichtig! Teile sie mit niemandem.
     your_token: Dein Zugangs-Token
   auth:
-    agreement_html: Indem du dich registrierst, erklärst du dich mit unseren <a href="%{rules_path}">Geschäftsbedingungen</a>
+    agreement_html: Indem du dich registrierst, erklärst du dich mit den <a href="%{rules_path}">Instanzregeln</a>
       und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
     change_password: Sicherheit
     delete_account: Konto löschen
@@ -510,12 +513,13 @@ de:
     title: Moderation
   notification_mailer:
     digest:
-      body: 'Hier ist eine kurze Zusammenfasung dessen, was du auf %{instance} seit
-        deinem letzten Besuch am %{since} verpasst hast:'
+      body: Hier ist eine kurze Zusammenfassung der Nachrichten, die du seit deinem
+        letzten Besuch am %{since} verpasst hast
       mention: '%{name} hat dich erwähnt:'
       new_followers_summary:
-        one: Ein weiteres Wesen folgt dir nun! Juhu!
-        other: '%{count} weitere Wesen folgen dir nun! Großartig!'
+        one: Außerdem ist dir seit du weg warst ein weiteres Wesen gefolgt! Juhu!
+        other: Außerdem sind dir seit du weg warst %{count} weitere Wesen gefolgt!
+          Großartig!
       subject:
         one: 1 neue Mitteilung seit deinem letzten Besuch 🐘
         other: '%{count} neue Mitteilungen seit deinem letzten Besuch 🐘'
@@ -626,13 +630,13 @@ de:
     notifications: Benachrichtigungen
     preferences: Einstellungen
     settings: Einstellungen
-    two_factor_authentication: Zwei-Faktor-Authentisierung
+    two_factor_authentication: Zwei-Faktor-Auth
     your_apps: Deine Anwendungen
   statuses:
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
     pin_errors:
-      limit: Du kannst nicht noch mehr Beiträge anheften
+      limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       private: Du kannst nur öffentliche Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
