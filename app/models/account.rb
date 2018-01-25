@@ -80,6 +80,14 @@ class Account < ApplicationRecord
   has_many :mentions, inverse_of: :account, dependent: :destroy
   has_many :notifications, inverse_of: :account, dependent: :destroy
 
+  counter_cache :statuses,
+                if: -> (status) { status.public_visibility? },
+                scope: -> (status) { status.with_public_visibility }
+  STATUSES_COUNT_UPDATED_CACHE_KEY = 'statuses_count_update_ids'
+  after_update_statuses_count do
+    Redis.current.sadd(STATUSES_COUNT_UPDATED_CACHE_KEY, id)
+  end
+
   # Pinned statuses
   has_many :status_pins, inverse_of: :account, dependent: :destroy
   has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status

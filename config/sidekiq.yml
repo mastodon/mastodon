@@ -33,3 +33,6 @@
   backup_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::BackupCleanupScheduler
+  statuses_count_writeback_scheduler:
+    cron: '*/5 * * * *'
+    class: Scheduler::StatusesCountWritebackScheduler
