@@ -1,10 +1,10 @@
----
 eo:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Nomo
         redirect_uri: URI de plusendo
+        website: Aplikaĵa retejo
     errors:
       models:
         doorkeeper/application:
@@ -31,7 +31,8 @@ eo:
       help:
         native_redirect_uri: Uzu %{native_redirect_uri} por lokaj provoj
         redirect_uri: Uzu unu linion por ĉiu URI
-        scopes: Apartigu ampleksojn per spacetoj. Lasu malplena por uzi la senŝanĝajn ampleksojn.
+        scopes: Apartigu ampleksojn per spacetoj. Lasu malplena por uzi la senŝanĝajn
+          ampleksojn.
       index:
         callback_url: URL vokita per referenco
         name: Nomo
@@ -66,28 +67,42 @@ eo:
       index:
         application: Aplikaĵo
         created_at: Rajtigita
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: '%Y-%m-%d %H:%M:%S'
         scopes: Ampleksoj
         title: Viaj rajtigitaj aplikaĵoj
     errors:
       messages:
-        access_denied: La posedanto de la rimedo aŭ la rajtiga servilo rifuzis vian peton.
-        credential_flow_not_configured: La sendado de la identigiloj de la posedanto de la rimedo malsukcesis ĉar Doorkeeper.configure.resource_owner_from_credentials ne estis agordita.
-        invalid_client: La aŭtentigo de la kliento malsukcesis ĉar la kliento estas nekonata, aŭ mankis peto aŭtentigi, aŭ la aŭtentig-metodo ne estas subtenata.
-        invalid_grant: La rajtiga konsento ne estas valida, ne plu estas valida, estis forigita, ne kongruas kun la plusenda URI uzita en la aŭtentiga peto, aŭ estis sendita al alia kliento.
+        access_denied: La posedanto de la rimedo aŭ la rajtiga servilo rifuzis vian
+          peton.
+        credential_flow_not_configured: La sendado de la identigiloj de la posedanto
+          de la rimedo malsukcesis ĉar Doorkeeper.configure.resource_owner_from_credentials
+          ne estis agordita.
+        invalid_client: La aŭtentigo de la kliento malsukcesis ĉar la kliento estas
+          nekonata, aŭ mankis peto aŭtentigi, aŭ la aŭtentig-metodo ne estas subtenata.
+        invalid_grant: La rajtiga konsento ne estas valida, ne plu estas valida, estis
+          forigita, ne kongruas kun la plusenda URI uzita en la aŭtentiga peto, aŭ
+          estis sendita al alia kliento.
         invalid_redirect_uri: La plusenda URI uzita en estas valida.
-        invalid_request: Mankis al la peto nepra parametro, enhavas nesubtenatan parametran valoron, aŭ la peto simple estas misformita.
-        invalid_resource_owner: La donitaj identigiloj pri la posedanto de la rimedo ne estas validaj, aŭ tiu ne povas esti trovita.
-        invalid_scope: La petita amplekso ne estas valida, estas nekonata, aŭ estas misformita.
+        invalid_request: Mankis al la peto nepra parametro, enhavas nesubtenatan parametran
+          valoron, aŭ la peto simple estas misformita.
+        invalid_resource_owner: La donitaj identigiloj pri la posedanto de la rimedo
+          ne estas validaj, aŭ tiu ne povas esti trovita.
+        invalid_scope: La petita amplekso ne estas valida, estas nekonata, aŭ estas
+          misformita.
         invalid_token:
           expired: La atingoĵetono eskiĝis.
           revoked: La atingoĵetono estis rifuzita.
           unknown: La atingoĵetono ne estas valida.
-        resource_owner_authenticator_not_configured: La posedanto de la rimedo ne povis esti trovita ĉar Doorkeeper.configure.resource_owner_authenticator ne estas agordita.
-        server_error: La rajtiga servilo rimarkis neatenditan kondiĉon, kiu malpermesis al ĝi plenumi la peton.
-        temporarily_unavailable: La rajtiga servilo ne povas nun plenumi la peton pro dumtempa superŝarĝo aŭ prizorgado de la servilo.
+        resource_owner_authenticator_not_configured: La posedanto de la rimedo ne
+          povis esti trovita ĉar Doorkeeper.configure.resource_owner_authenticator
+          ne estas agordita.
+        server_error: La rajtiga servilo rimarkis neatenditan kondiĉon, kiu malpermesis
+          al ĝi plenumi la peton.
+        temporarily_unavailable: La rajtiga servilo ne povas nun plenumi la peton
+          pro dumtempa superŝarĝo aŭ prizorgado de la servilo.
         unauthorized_client: La kliento ne rajtas fari tian peton uzante tiun metodon.
-        unsupported_grant_type: La tipo de la rajtiga konsento ne estas subtenata de la rajtiga servilo.
+        unsupported_grant_type: La tipo de la rajtiga konsento ne estas subtenata
+          de la rajtiga servilo.
         unsupported_response_type: La rajtiga servilo ne subtenas tian respondon.
     flash:
       applications:
