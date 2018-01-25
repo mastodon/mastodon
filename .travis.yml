@@ -8,7 +8,7 @@ cache:
   - public/packs-test
   - tmp/cache/babel-loader
 dist: trusty
-sudo: required
+sudo: false
 
 notifications:
   email: false
@@ -44,7 +44,6 @@ services:
   - redis-server
 
 install:
-  - gem update --system
   - nvm install
   - bundle install --path=vendor/bundle --without development production --retry=3 --jobs=16
   - yarn install
