@@ -37,6 +37,10 @@ es:
       reset_password_instructions:
         subject: 'Mastodon: Instrucciones para reiniciar contraseña'
         action: Cambiar contraseña
+        explanation: Solicitaste una nueva contraseña para tu cuenta.
+        extra: Si no solicitaste esto, por favor ignora este correo. Tu contraseña
+          no cambiará hasta que tu accedas al vinculo arriba y crees una nueva.
+        title: Reiniciar contraseña
       unlock_instructions:
         subject: 'Mastodon: Instrucciones para desbloquear'
       email_changed:
@@ -51,6 +55,9 @@ es:
         explanation: Confirme la nueva dirección para cambiar su coreo electrónico.
         subject: 'Mastodon: Confirme correo electrónico para %{instance}'
         title: Verifique dirección de correo electrónico
+        extra: Si no iniciaste este cambio, por favor ignora este correo. Esta dirección
+          de correo para la cuenta de Mastodon no cambiará hasta que accedas al vinculo
+          arriba.
     omniauth_callbacks:
       failure: No podemos autentificarle desde %{kind} debido a "%{reason}".
       success: Autentificado con éxito desde la cuenta %{kind} .
