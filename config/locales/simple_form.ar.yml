@@ -9,10 +9,13 @@ ar:
           one: <span class="note-counter">1</span> حرف متبقي
           other: <span class="note-counter">%{count}</span> حروف متبقية
         avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 120x120px
+        header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 700x335px
       imports:
         data: ملف CSV تم تصديره من مثيل خادوم ماستدون آخر
       user:
         filtered_languages: سوف يتم تصفية و إخفاء اللغات المختارة من خيوطك العمومية
+      sessions:
+        otp: قم بإدخال رمز المصادقة بخطوتين مِن هاتفك أو إستخدم أحد رموز النفاذ الإحتياطية.
     labels:
       defaults:
         avatar: الصورة الرمزية
@@ -41,11 +44,17 @@ ar:
         setting_unfollow_modal: إظهار مربع حوار للتأكيد قبل إلغاء متابعة أي حساب
         type: نوع الإستيراد
         username: إسم المستخدم
+        setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
+        setting_reduce_motion: تخفيض عدد الصور في الوسائط المتحركة
+        severity: القوّة
       interactions:
         must_be_follower: حظر الإخطارات القادمة من الحسابات التي لا تتبعك
         must_be_following: حظر الإخطارات القادمة من الحسابات التي لا تتابعها
+        must_be_following_dm: حظر الإشعارات القادمة من الأشخاص الذين لا تتابعهم
       notification_emails:
         digest: إرسال ملخصات عبر البريد الإلكتروني
+        favourite: إبعث بريداً إلكترونيًا عندما يُعجَب أحدهم بمنشورك
+        follow: إبعث بريداً إلكترونيًا عندما يتبعك أحد
     'no': لا
     required:
       mark: '*'
