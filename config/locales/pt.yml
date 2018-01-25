@@ -172,7 +172,7 @@ pt:
         unsuspend_account: '%{name} desativou a suspensão de  %{target}'
         update_custom_emoji: '%{name} atualizou o emoji %{target}'
         update_status: '%{name} atualizou o estado de %{target}'
-        destroy_status: mudou a situação por
+        destroy_status: '%{name} removeu o publicação feita por %{target}'
       title: Registo de auditoria
     custom_emojis:
       by_domain: Domínio
@@ -282,9 +282,15 @@ pt:
       title: Denúncias
       unresolved: Por resolver
       view: Ver
+      nsfw:
+        'false': Mostrar imagens/vídeos
+        'true': Esconder imagens/vídeos
     settings:
       bootstrap_timeline_accounts:
         title: Seguidores predefinidos para novas contas
+        desc_html: Separa os nomes de utilizadores por vírgulas. Funciona apenas com
+          contas locais e desbloqueadas. O padrão quando vazio são todos os administradores
+          locais.
       contact_information:
         email: Inserir um endereço de email para tornar público
         username: Insira um nome de utilizador
@@ -295,6 +301,7 @@ pt:
           title: Mensagem de registos encerrados
         deletion:
           desc_html: Permite a qualquer um apagar a conta
+          title: Permitir eliminar contas
         min_invite_role:
           disabled: Ninguém
           title: Permitir convites de
@@ -323,6 +330,13 @@ pt:
         desc_html: Exibir a linha temporal pública na página inicial
         title: Visualização da linha temporal
       title: Preferências do site
+      activity_api_enabled:
+        desc_html: Contagem semanais de publicações locais, utilizadores activos e
+          novos registos
+        title: Publicar estatísticas agregadas sobre atividade dos utilizadores
+      peers_api_enabled:
+        desc_html: Nomes de domínio que esta instância encontrou no fediverso
+        title: Publicar lista de instâncias descobertas
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -354,6 +368,9 @@ pt:
     salutation: '%{name},'
     settings: 'Alterar preferências de email: %{link}'
     view: 'Ver:'
+    notification_preferences: Alterar preferências de e-mail
+    view_profile: Ver perfil
+    view_status: Ver publicação
   applications:
     created: Aplicação criada com sucesso
     destroyed: Aplicação eliminada com sucesso
@@ -390,6 +407,7 @@ pt:
     post_follow:
       close: Ou podes simplesmente fechar esta janela.
       return: Voltar ao perfil do utilizador
+      web: Voltar à página inicial
     title: Seguir %{acct}
   datetime:
     distance_in_words:
@@ -432,6 +450,7 @@ pt:
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ativa o JavaScript.
       Alternativamente, experimenta um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps
       nativos</a> para o Mastodon na sua plataforma.
+    '429': Desacelerado
   exports:
     blocks: Bloqueaste
     csv: CSV
@@ -516,30 +535,38 @@ pt:
     title: Moderação
   notification_mailer:
     digest:
-      body: 'Aqui tens um breve resumo do que tens perdido em %{instance} desde o  último
-        acesso em %{since}:'
+      body: Aqui tens um breve resumo do que perdeste desde o último acesso a %{since}
       mention: '%{name} mencionou-te em:'
       new_followers_summary:
-        one: Boa! Tens um novo seguidor!
+        one: Tens um novo seguidor! Boa!
         other: Tens %{count} novos seguidores! Fantástico!
       subject:
         one: 1 nova notificação desde o último acesso 🐘
         other: '%{count} novas notificações desde o  último acesso 🐘'
+      action: Ver todas as notificações
+      title: Enquanto estiveste ausente…
     favourite:
       body: 'O teu post foi adicionado aos favoritos por %{name}:'
       subject: '%{name} adicionou o teu post aos favoritos'
+      title: Novo favorito
     follow:
       body: '%{name} é teu seguidor!'
       subject: '%{name} começou a seguir-te'
+      title: Novo seguidor
     follow_request:
       body: '%{name} solicitou autorização para te seguir'
       subject: 'Seguidor pendente: %{name}'
+      action: Gerir pedidos de seguidores
+      title: Nova solicitação de seguidor
     mention:
       body: 'Foste mencionado por %{name}:'
       subject: '%{name} mencionou-te'
+      action: Responder
+      title: Nova menção
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
       subject: '%{name} partilhou o teu post'
+      title: Nova partilha
   number:
     human:
       decimal_units:
@@ -598,6 +625,7 @@ pt:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+      electron: Electron
     current_session: Sessão atual
     description: '%{browser} em %{platform}'
     explanation: Estes são os navegadores que estão conectados com a tua conta do
@@ -640,6 +668,8 @@ pt:
     pin_errors:
       ownership: Posts de outras pessoas não podem ser fixados
       private: Post não-público não pode ser fixado
+      limit: Já fixaste a quantidade máxima de publicações
+      reblog: Não podes fixar uma partilha
     show_more: Mostrar mais
     title: '%{name}: "%{quote}"'
     visibilities:
