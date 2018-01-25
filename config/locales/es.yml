@@ -199,6 +199,7 @@ es:
       update_failed_msg: No se pudo actualizar ese emoji
       updated_msg: ¡Emoji actualizado con éxito!
       upload: Subir
+      by_domain: Dominio
     domain_blocks:
       add_new: Añadir nuevo
       created_msg: El bloque de dominio está siendo procesado
@@ -330,6 +331,13 @@ es:
         desc_html: Mostrar línea de tiempo pública en la portada
         title: Previsualización
       title: Ajustes del sitio
+      activity_api_enabled:
+        desc_html: Conteo de estados publicados localmente, usuarios activos, y nuevos
+          registros en  periodos semanales
+        title: Publicar estadísticas locales acerca de actividad de usuario
+      peers_api_enabled:
+        desc_html: Nombres de dominio que esta instancia ha encontrado en el fediverso
+        title: Publicar lista de instancias descubiertas
     statuses:
       back_to_account: Volver a la cuenta
       batch:
@@ -361,6 +369,9 @@ es:
     salutation: '%{name},'
     settings: 'Cambiar preferencias de correo: %{link}'
     view: 'Vista:'
+    notification_preferences: Cambiar preferencias de correo electrónico
+    view_profile: Ver perfil
+    view_status: Ver estado
   applications:
     created: Aplicación creada exitosamente
     destroyed: Apicación eliminada exitosamente
@@ -370,9 +381,8 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
-    agreement_html: Al registrarte aceptas <a href="%{rules_path}">nuestros y términos
-      y condiciones del servicio</a> y <a href="%{terms_path}">nuestras políticas
-      de privacidda</a>.
+    agreement_html: Al registrarte, acepta seguir <a href="%{rules_path}">las reglas
+      de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
     change_password: Cambiar contraseña
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder
@@ -523,30 +533,40 @@ es:
     title: Moderación
   notification_mailer:
     digest:
-      body: 'Un resumen de lo que te perdiste en %{instance} desde tu última visita
-        el %{since}:'
+      body: Un resumen de los mensajes que perdiste en desde tu última visita, el
+        %{since}
       mention: '%{name} te ha mencionado en:'
       new_followers_summary:
-        one: ¡Hurra! ¡Tienes un nuevo seguidor!
-        other: ¡Genial! ¡Tienes %{count} nuevos seguidores!
+        one: ¡Ademas, has adquirido un nuevo seguidor mientras no estabas! ¡Hurra!
+        other: ¡Ademas, has adquirido %{count} nuevos seguidores mientras no estabas!
+          ¡Genial!
       subject:
         one: 1 nueva notificación desde tu última visita 🐘
         other: '%{count} nuevas notificaciones desde tu última visita 🐘'
+      action: Ver todas las notificaciones
+      title: En tu ausencia…
     favourite:
       body: 'Tu estado fue marcado como favorito por %{name}:'
       subject: '%{name} marcó como favorito tu estado'
+      title: Nuevo favorito
     follow:
       body: ¡%{name} te está siguiendo!
       subject: '%{name} te está siguiendo'
+      title: Nuevo seguidor
     follow_request:
       body: '%{name} ha solicitado seguirte'
       subject: 'Seguidor pendiente: %{name}'
+      action: Administrar solicitudes para seguir
+      title: Nueva solicitud para seguir
     mention:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
+      action: Responder
+      title: Nueva mención
     reblog:
       body: '%{name} ha retooteado tu estado:'
       subject: '%{name} ha retooteado tu estado'
+      title: Nueva difusión
   number:
     human:
       decimal_units:
@@ -606,6 +626,8 @@ es:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+      electron: Electron
+      otter: Otter
     current_session: Sesión actual
     description: '%{browser} en %{platform}'
     explanation: Estos son los navegadores web conectados actualmente en tu cuenta
@@ -646,7 +668,7 @@ es:
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
-      limit: Demasiados toots fijados
+      limit: Ya has fijado el número máximo de publicaciones
       ownership: El toot de alguien más no puede fijarse
       private: Los toots no-públicos no pueden fijarse
       reblog: Un boost no puede fijarse
@@ -659,6 +681,7 @@ es:
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo
         públicas
+    title: '%{name}: "%{quote}"'
   stream_entries:
     click_to_show: Click para mostrar
     pinned: Toot fijado
@@ -779,3 +802,32 @@ es:
   user_mailer:
     welcome:
       tips: Tips
+      edit_profile_action: Configurar el perfil
+      explanation: Aquí hay algunos consejos para iniciar
+      final_action: Empezar a publicar
+      final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos
+        pueden ser vistos por otros, por ejemplo en la linea de tiempo local y con
+        "hashtags". Podrías querer introducirte con el "hashtag" #introductions.'
+      full_handle: Su sobrenombre completo
+      full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan
+        enviarte mensajes o seguirte desde otra instancia.
+      review_preferences_action: Cambiar preferencias
+      review_preferences_step: Asegurate de poner tus preferencias, como que correos
+        te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones
+        tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción
+        automática de "GIFs".
+      subject: Bienvenido a Mastodon
+      tip_bridge_html: Si esta viniendo desde Twitter, puedes encontrar a tus amigos
+        en Mastodon usando la <a href="%{bridge_url}">aplicación puente</a>. Aunque
+        solo funciona si ellos también usaron la aplicación puente!
+      tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar
+        más gente interesante, revisa las lineas de tiempo local y federada.
+      tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}.
+        Estos son tus vecinos inmediatos!
+      tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon
+        a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación
+        nativa en muchas formas!
+      title: Bienvenido a bordo, %{name}!
+  lists:
+    errors:
+      limit: Has alcanzado la cantidad máxima de listas
