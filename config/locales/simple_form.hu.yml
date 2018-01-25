@@ -1,4 +1,3 @@
----
 hu:
   simple_form:
     labels:
@@ -22,6 +21,9 @@ hu:
         reblog: E-mail küldése amikor valaki reblogolja az állapotod
     'no': Nem
     required:
-      mark: "*"
+      mark: '*'
       text: kötelező
     'yes': Igen
+    hints:
+      defaults:
+        avatar: PNG, GIF vagy JPG. Maximum 2MB. Át lesz méretezve 120x120 pixelre.
