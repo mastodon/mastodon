@@ -12,21 +12,22 @@ es:
       inactive: Su cuenta todavía no está activa.
       invalid: Inválido %{authentication_keys} o contraseña.
       last_attempt: Tiene un intento más antes de que su cuenta sea bloqueada.
-      locked: su cuenta está bloqueada.
+      locked: Su cuenta está bloqueada.
       not_found_in_database: Inválido %{authentication_keys} o contraseña.
-      timeout: su sesión ha expirado. Por favor inicie sesión de nuevo para continuar.
+      timeout: Su sesión ha expirado. Por favor inicie sesión de nuevo para continuar.
       unauthenticated: Necesita iniciar sesión o registrarse antes de continuar.
-      unconfirmed: Tiene que confirmar su correo electrónico antes de continuar.
+      unconfirmed: Tiene que confirmar su dirección de correo electrónico antes de
+        continuar.
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Instrucciones de confirmación para %{instance}'
-        action: Verifique dirección de correo electrónico
-        explanation: As creado una cuenta en %{host} con esta dirección de correo
+        action: Verificar dirección de correo electrónico
+        explanation: Has creado una cuenta en %{host} con esta dirección de correo
           electrónico. Estas a un clic de activarla. Si no fue usted, por favor ignore
           este correo electrónico.
-        extra_html: Por favor eche un vistazo a <a href="%{terms_path}">las reglas
-          de la instancia</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
-        title: Verifique dirección de correo electrónico
+        extra_html: Por favor revise <a href="%{terms_path}">las reglas de la instancia</a>
+          y <a href="%{policy_path}">nuestros términos de servicio</a>.
+        title: Verificar dirección de correo electrónico
       password_change:
         subject: 'Mastodon: Contraseña cambiada'
         explanation: La contraseña de su cuenta a sido cambiada.
