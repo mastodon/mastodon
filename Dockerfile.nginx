@@ -1,0 +1,4 @@
+FROM nginx:1.13-alpine
+
+COPY --from=tootsuite/mastodon-development /common.key /usr/local/share/ca-certificates/common.crt /etc/nginx/
+COPY default.conf /etc/nginx/conf.d

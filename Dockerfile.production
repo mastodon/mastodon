@@ -1,0 +1,32 @@
+FROM gargron/mastodon-base
+
+LABEL maintainer="https://github.com/tootsuite/mastodon" \
+      description="Mastodon for production"
+
+ARG UID=991
+ARG GID=991
+
+ENV RAILS_SERVE_STATIC_FILES=true \
+    RAILS_ENV=production NODE_ENV=production
+
+EXPOSE 3000 4000
+
+COPY Gemfile Gemfile.lock package.json yarn.lock .yarnclean /mastodon/
+
+RUN bundle install -j$(getconf _NPROCESSORS_ONLN) --deployment --without test development \
+ && yarn --pure-lockfile \
+ && yarn cache clean
+
+RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
+ && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
+ && chown -R mastodon:mastodon /mastodon/public
+
+COPY . /mastodon
+
+RUN chown -R mastodon:mastodon /mastodon
+
+VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
+
+USER mastodon
+
+ENTRYPOINT ["/sbin/tini", "--"]

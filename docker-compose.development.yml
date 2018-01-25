@@ -1,0 +1,107 @@
+version: '3'
+services:
+
+  db:
+    restart: always
+    image: postgres:9.6-alpine
+    networks:
+      - default
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  redis:
+    restart: always
+    image: redis:4.0-alpine
+    networks:
+      - default
+    volumes:
+      - ./redis:/data
+
+  base:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    image: tootsuite/mastodon-base
+
+  development:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    image: tootsuite/mastodon-development
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    networks:
+      - default
+    image: tootsuite/mastodon-nginx
+    restart: always
+    command: nginx -g 'daemon off;'
+    networks:
+      default:
+      federation:
+        aliases:
+          - ${LOCAL_DOMAIN:-mastodon.localdomain}
+    depends_on:
+      - asset
+      - streaming
+    ports:
+      - "${FRONTEND_DOMAIN:-127.0.0.1}:80:80"
+      - "${FRONTEND_DOMAIN:-127.0.0.1}:443:443"
+
+  web:
+    image: tootsuite/mastodon-development
+    restart: always
+    command: bundle exec rails runner docker_development_entrypoint.rb rails s -b '0.0.0.0'
+    network_mode: service:nginx
+    depends_on:
+      - db
+      - redis
+      - development
+    volumes:
+      - .:/mastodon
+
+  asset:
+    image: tootsuite/mastodon-development
+    environment:
+      - LOCAL_HTTPS=$LOCAL_HTTPS
+      - WEBPACKER_DEV_SERVER_PUBLIC=${FRONTEND_DOMAIN:-127.0.0.1}
+    restart: always
+    command: ./bin/webpack-dev-server
+    networks:
+      - default
+    depends_on:
+      - development
+    volumes:
+      - .:/mastodon
+
+  streaming:
+    image: tootsuite/mastodon-development
+    restart: always
+    command: yarn start
+    networks:
+      - default
+    depends_on:
+      - db
+      - redis
+      - development
+    volumes:
+      - .:/mastodon
+
+  sidekiq:
+    image: tootsuite/mastodon-development
+    restart: always
+    command: bundle exec rails runner docker_development_entrypoint.rb sidekiq -q default -q mailers -q pull -q push
+    network_mode: service:nginx
+    depends_on:
+      - db
+      - redis
+      - development
+    volumes:
+      - .:/mastodon
+
+networks:
+  default:
+    driver: bridge
+  federation:
