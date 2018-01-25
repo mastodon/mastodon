@@ -1,10 +1,10 @@
----
 sv:
   simple_form:
     hints:
       defaults:
         avatar: Högst 2 MB. Kommer nedskalas till 120x120px
-        digest: Skickas efter en lång period av inaktivitet med en sammanfattning av anmärkningar du har fått under din frånvaro
+        digest: Skickas endast efter en lång period av inaktivitet och endast om du
+          har fått några personliga meddelanden i din frånvaro
         display_name:
           one: <span class="name-counter">1</span> tecken kvar
           other: <span class="name-counter">%{count}</span> tecken kvar
@@ -14,13 +14,15 @@ sv:
           one: <span class="note-counter">1</span> tecken kvar
           other: <span class="note-counter">%{count}</span> tecken kvar
         setting_noindex: Påverkar din offentliga profil och status sidor
-        setting_theme: Påverkar hur Mastodon ser ut när du är inloggad från vilken enhet som helst.
+        setting_theme: Påverkar hur Mastodon ser ut när du är inloggad från vilken
+          enhet som helst.
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
         otp: Ange tvåfaktorkoden från din telefon eller använd någon av dina återställningskoder.
       user:
-        filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer för dig
+        filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer
+          för dig
     labels:
       defaults:
         avatar: Avatar
@@ -50,9 +52,13 @@ sv:
         severity: Strikthet
         type: Importtyp
         username: Användarnamn
+        expires_in: Förfaller efter
+        max_uses: Högst antal  användningar
+        setting_reduce_motion: Minska rörelser i animationer
       interactions:
         must_be_follower: Blockera meddelanden från icke-följare
         must_be_following: Blockera meddelanden från personer du inte följer
+        must_be_following_dm: Blockera direktmeddelanden från personer du inte följer
       notification_emails:
         digest: Skicka sammandrag via e-post
         favourite: Skicka e-post när någon favoriterar din status
@@ -62,6 +68,6 @@ sv:
         reblog: Skicka e-post när någon knuffar din status
     'no': Nej
     required:
-      mark: "*"
+      mark: '*'
       text: obligatorisk
     'yes': Ja
