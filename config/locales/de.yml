@@ -337,6 +337,9 @@ de:
       peers_api_enabled:
         desc_html: Domain-Namen dieser Instanz, die im Fediverse gefunden wurden
         title: Veröffentliche Liste von gefundenen Instanzen
+      show_staff_badge:
+        desc_html: Zeige Mitarbeiter-Badge auf Benutzerseite
+        title: Zeige Mitarbeiter-Badge
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -368,13 +371,16 @@ de:
     salutation: '%{name},'
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     view: 'Ansehen:'
+    notification_preferences: Ändere E-Mail-Einstellungen
+    view_profile: Zeige Profil
+    view_status: Zeige Status
   applications:
-    created: Anwendung erstellt
-    destroyed: Anwendung gelöscht
+    created: Anwendung erfolgreich erstellt
+    destroyed: Anwendung erfolgreich gelöscht
     invalid_url: Die angegebene URL ist ungültig
     regenerate_token: Zugangs-Token neu erstellen
     token_regenerated: Zugangs-Token neu erstellt
-    warning: Sei mit diesen Daten sehr vorsichtig! Teile sie mit niemandem.
+    warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
     agreement_html: Indem du dich registrierst, erklärst du dich mit den <a href="%{rules_path}">Instanzregeln</a>
