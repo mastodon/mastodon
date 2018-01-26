@@ -54,7 +54,7 @@ hu:
     nothing_here: Nincs itt semmi!
     people_followed_by: '%{name} követett személyei'
     people_who_follow: '%{name} követői'
-    posts: Bejegyzések
+    posts: Tülkök
     unfollow: Követés abbahagyása
     media: Média
     moved_html: '%{name} ide költözött: %{new_profile_link}'
@@ -239,6 +239,8 @@ hu:
       unsubscribe: Leiratkozás
       username: Felhasználónév
       web: Weboldal
+      memorialize: Emlékállítás
+      push_subscription_expires: A PuSH feliratkozás elévül
     action_logs:
       actions:
         confirm_user: '%{name} megerősítette e-mail címét: %{target}'
@@ -268,6 +270,7 @@ hu:
         unsuspend_account: '%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését'
         update_custom_emoji: '%{name} frissítette az alábbi hangulatjelet: %{target}'
         update_status: '%{name} frissítette %{target} felhasználó tülkjét'
+        memorialize_account: '%{name} emléket állított az alábbi felhasználónak: %{target}'
       title: Audit log
     custom_emojis:
       by_domain: Domain
@@ -333,6 +336,7 @@ hu:
         undo: Visszavonás
       title: Tiltott domainek
       undo: Visszavonás
+      severity: Súlyosság
     email_domain_blocks:
       add_new: Új hozzáadása
       created_msg: E-mail domain sikeresen hozzáadva a feketelistához
@@ -379,6 +383,7 @@ hu:
       title: Jelentések
       unresolved: Megoldatlan
       view: Megtekintés
+      target: Cél
     settings:
       activity_api_enabled:
         desc_html: Helyi tülkök, aktív felhasználók és új regisztrációk száma heti
