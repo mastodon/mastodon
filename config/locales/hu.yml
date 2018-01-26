@@ -91,24 +91,43 @@ hu:
     validation_errors:
       one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
       other: Valami nincs rendjén! Kérlek tekintsd meg a %{count} darab hibát alant.
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}.
-    You can follow them or interact with them if you have an account anywhere in the
-    fediverse.
-  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign
-    up here</a>.
+  landing_strip_html: '<strong>%{name}</strong> az alábbi instancia használója: %{link_to_root_path}.
+    Követheted vagy kapcsolatba léphetsz vele, ha már van felhasználói fiókod a föderációban.'
+  landing_strip_signup_html: Ha még nincs fiókod, <a href="%{sign_up_path}">itt regisztrálhatsz</a>.
   notification_mailer:
     favourite:
       body: 'Az állapotodat kedvencnek jelölte %{name}:'
       subject: '%{name} kedvencnek jelölte az állapotod'
+      title: Új kedvencnek jelölés
     follow:
       body: '%{name} mostantól követ téged!'
       subject: '%{name} mostantól követ téged'
+      title: Új követő
     mention:
       body: '%{name} megemlített téged:'
       subject: '%{name} megemlített téged'
+      action: Válasz
+      title: Új említés
     reblog:
       body: 'Az állapotod reblogolta %{name}:'
       subject: '%{name} reblogolta az állapotod'
+      title: Új reblog
+    digest:
+      action: Összes értesítés megtekintése
+      body: Itt a legutóbbi látogatásod (%{since}) óta írott üzenetek rövid összefoglalása
+      mention: '%{name} megemlített itt:'
+      new_followers_summary:
+        one: Sőt, egy új követőd is lett, amióta nem jártál itt. Hurrá!
+        other: Sőt, %{count} új követőd is lett, amióta nem jártál itt. Hihetetlen!
+      subject:
+        one: Egy új értesítésed érkezett legutóbbi látogatásod óta 🐘
+        other: '%{count} új értesítésed érkezett legutóbbi látogatásod óta 🐘'
+      title: Amíg távol voltál…
+    follow_request:
+      action: Követési kérések kezelése
+      body: '%{name} követni szeretne téged'
+      subject: 'Jóváhagyásra vár: %{name}'
+      title: Új követési kérés
   number:
     human:
       decimal_units:
@@ -119,13 +138,26 @@ hu:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: ' '
   pagination:
     next: Következő
     prev: Előző
+    truncate: '&hellip;'
   settings:
     edit_profile: Profil szerkesztése
-    preferences: Beállítások
+    preferences: Általános beállítások
+    authorized_apps: Jóváhagyott alkalmazások
+    back: Vissza a Mastodonhoz
+    delete: Fiók törlése
+    development: Fejlesztőknek
+    export: Adatok exportálása
+    followers: Jóváhagyott követők
+    import: Importálás
+    migrate: Fiók átirányítása
+    notifications: Értesítések
+    settings: Beállítások
+    two_factor_authentication: Kétlépcsős azonosítás
+    your_apps: Alkalmazásaid
   admin:
     account_moderation_notes:
       account: Moderátor
@@ -550,3 +582,149 @@ hu:
       expires_at: Lejárat
       uses: Használat
     title: Meghívások
+  lists:
+    errors:
+      limit: Elérted a hozzáadható listák maximális számát
+  media_attachments:
+    validations:
+      images_and_video: Nem csatolhatsz videót olyan tülkhöz, amelyhez már csatoltál
+        képet
+      too_many: Maximum négy fájlt csatolhatsz a tülkhöz
+  migrations:
+    acct: Az új fiók felhasznalonev@domain formátumban
+    currently_redirecting: 'A profilod az alábbi fiókra van átirányítva:'
+    proceed: Mentés
+    updated_msg: Fiókod átirányítási beállítasait sikeresen mentettük!
+  moderation:
+    title: Moderáció
+  preferences:
+    languages: Nyelvek
+    other: Egyéb
+    publishing: Közzététel
+    web: Web
+  push_notifications:
+    favourite:
+      title: '%{name} a kedvenceihez adta a tülköd'
+    follow:
+      title: '%{name} mostantól követ téged'
+    group:
+      title: '%{count} értesítés'
+    mention:
+      action_boost: Reblog
+      action_expand: Mutass többet
+      action_favourite: Kedvencekhez adás
+      title: '%{name} megemlített téged'
+    reblog:
+      title: '%{name} reblogolta a tülköd'
+  remote_follow:
+    acct: Írd be a felhasználódat, amelyről követni szeretnéd felhasznalonev@domain
+      formátumban
+    missing_resource: A fiókodnál nem található a szükséges átirányítási URL
+    proceed: Tovább a követéshez
+    prompt: 'Őt tervezed követni:'
+  sessions:
+    activity: Legutóbbi tevékenység
+    browser: Böngésző
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Ismeretlen böngésző
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Böngésző
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Jelenlegi munkamenet
+    description: '%{browser} az alábbi platformon: %{platform}'
+    explanation: Jelenleg az alábbi böngészőkkel vagy bejelentkezve a fiókodba.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: ismeretlen platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Visszavonás
+    revoke_success: Munkamenet sikeresen visszavonva
+    title: Munkamenetek
+  statuses:
+    open_in_web: Megnyitás a weben
+    over_character_limit: Túllépted a maximális %{max} karakteres keretet
+    pin_errors:
+      limit: Elérted a kitűzhető tülkök maximális számát
+      ownership: Nem tűzheted ki valaki más tülkjét
+      private: Csak publikus tülköt tűzhetsz ki
+      reblog: Reblogolt tülköt nem tudsz kitűzni
+    show_more: Mutass többet
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Csak követőknek
+      private_long: A tülk csak követőidnek jelenik meg
+      public: Nyilvános
+      public_long: Bárki láthatja a tülköt
+      unlisted: Listázatlan
+      unlisted_long: Mindenki látja, de a nyilvános időfolyamokban nem jelenik meg
+  stream_entries:
+    click_to_show: Megtekintéshez kattints
+    pinned: Kitűzött tülk
+    reblogged: reblogolt
+    sensitive_content: Szenzitív tartalom
+  terms:
+    title: '%{instance} Felhasználási feltételek és Adatkezelési nyilatkozat'
+  themes:
+    default: Mastodon
+  time:
+    formats:
+      default: '%Y %b %d, %H:%M'
+  two_factor_authentication:
+    code_hint: Megerősítéshez írd be az alkalmazás által generált kódot
+    description_html: He engedélyezed a <strong>kétlépcsős azonosítást</strong>, a
+      bejelentkezéshez szükséged lesz a teefonodre és egy alkalmazásra, amely hozzáférési
+      kódot generál számodra.
+    disable: Kikapcsolás
+    enable: Engedélyezés
+    enabled: Kétlépcsős azonosítás engedélyezve
+    enabled_success: A kétlépcsős azonosítást sikeresen engedélyezted
+    generate_recovery_codes: Visszaállítási kódok generálása
+    instructions_html: <strong>Olvasd be ez a QR-kódot a telefonodon futó Google Authenticator
+      (vagy egyéb TOTP) alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra
+      hozzáférési kódot generálni a belépéshez.
+    lost_recovery_codes: A visszaállítási kódok segítségével tudsz belépni, ha elveszítenéd
+      a telefonod. Ha a visszaállítási kódjaidat hagytad el, itt generálhatsz újakat.
+      A régi kódokat ebben az esetben érvénytelenítjük.
+    manual_instructions: 'Ha nem sikerült a QR-kód beolvasása, itt a szöveges kulcs,
+      amelyet manuálisan kell begépelned:'
+    recovery_codes: Visszaállítási kódok biztonsági mentése
+    recovery_codes_regenerated: Visszaállítási kódok sikeresen újragenerálva
+    recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz
+      majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási
+      kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal
+      együtt.
+    setup: Beállítás
+    wrong_code: A beírt kód nem érvényes! A szerver órája és az eszközöd órája szinkronban
+      jár?
+  user_mailer:
+    welcome:
+      edit_profile_action: Készítsd el profilod
+      edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil-
+        és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha
+        jóvá szeretnéd hagyni követőidet, mielőtt láthatják a tülkjeid, itt tudod
+        a fiókodat zárttá tenni.'
+      explanation: Néhány tipp a kezdeti lépésekhez
+      final_action: Kezdj tülkölni
