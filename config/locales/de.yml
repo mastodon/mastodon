@@ -512,9 +512,11 @@ de:
       other: '%{count} mal verwendet'
     max_uses_prompt: Kein Limit
     expired: Abgelaufen
-    prompt: 'Generiere und teile Links um Zugang zu dieser Instanz zu geben
-
-      '
+    prompt: Generiere und teile Links um Zugang zu dieser Instanz zu geben
+    table:
+      expires_at: Läuft ab
+      uses: Verwendungen
+    title: Leute Einladen
   landing_strip_html: <strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}.
     Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum
     hast.
@@ -528,6 +530,8 @@ de:
   migrations:
     acct: benutzername@domain des neuen Accounts
     proceed: Speichern
+    currently_redirecting: 'Deine Profilweiterleitung wurde gesetzt auf:'
+    updated_msg: Deine Account-Migrationseinstellungen wurden erfolgreich aktualisiert!
   moderation:
     title: Moderation
   notification_mailer:
@@ -542,21 +546,30 @@ de:
       subject:
         one: 1 neue Mitteilung seit deinem letzten Besuch 🐘
         other: '%{count} neue Mitteilungen seit deinem letzten Besuch 🐘'
+      action: Zeige alle Benachrichtigungen
+      title: In deiner Abwesenheit…
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
       subject: '%{name} hat deinen Beitrag favorisiert'
+      title: Neue Favorisierung
     follow:
       body: '%{name} folgt dir jetzt!'
       subject: '%{name} folgt dir jetzt'
+      title: Neuer Follower
     follow_request:
-      body: '%{name} möchte dir folgen:'
-      subject: '%{name} möchte dir folgen'
+      body: '%{name} möchte dir folgen'
+      subject: 'Ausstehender Follower: %{name}'
+      action: Verwalte Folge-Anfragen
+      title: Neue Folge-Anfrage
     mention:
       body: '%{name} hat dich erwähnt:'
       subject: '%{name} hat dich erwähnt'
+      action: Antworten
+      title: Neue Erwähnung
     reblog:
       body: '%{name} hat deinen Beitrag geteilt:'
       subject: '%{name} hat deinen Beitrag geteilt'
+      title: Dein Beitrag wurde geteilt
   number:
     human:
       decimal_units:
@@ -616,6 +629,8 @@ de:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+      electron: Electron
+      otter: Otter
     current_session: Aktuelle Sitzung
     description: '%{browser} auf %{platform}'
     explanation: Dies sind die Webbrowser, die derzeit in dein Mastodon-Konto eingeloggt
@@ -651,6 +666,7 @@ de:
     settings: Einstellungen
     two_factor_authentication: Zwei-Faktor-Auth
     your_apps: Deine Anwendungen
+    migrate: Account-Umzug
   statuses:
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
@@ -709,3 +725,42 @@ de:
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
     signed_in_as: 'Angemeldet als:'
   in_memoriam_html: In Gedenken.
+  lists:
+    errors:
+      limit: Du hast die maximale Anzahl an Listen erreicht
+  user_mailer:
+    welcome:
+      edit_profile_action: Profil einstellen
+      edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder
+        ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du
+        deine Follower vorher überprüfen möchtest, bevor sie dir folgen können, dann
+        kannst du dein Profil sperren.
+      explanation: Hier sind ein paar Tipps, um loszulegen
+      final_action: Fang an zu posten
+      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen
+        Beitrage von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder
+        in Hashtags. Vielleicht möchtest du dich vorstellen mit dem #introductions-Hashtag.'
+      full_handle: Dein vollständiger Benutzername
+      full_handle_hint: Dies ist was du deinen Freunden sagen kannst, damit sie dich
+        anschreiben oder von einer anderen Instanz folgen können.
+      review_preferences_action: Einstellungen ändern
+      review_preferences_step: Stelle sicher, dass du deine Einstellungen einstellst,
+        wie zum Beispiel welche E-Mails du gerne erhalten möchtest oder was für Privatsphäreneinstellungen
+        voreingestellt werden sollten. Wenn dir beim Ansehen von GIFs nicht schwindelig
+        wird, dann kannst du auch das automatische Abspielen dieser aktivieren.
+      subject: Willkommen bei Mastodon
+      tip_bridge_html: Wenn du gerade von Twitter kommst, dann kannst du deine Freunde
+        auf Mastodon mithilfe der <a href="%{bridge_url}">Bridge-App</a> finden. Es
+        funktioniert aber auch nur, wenn diese die Bridge-App vorher verwendet haben!
+      tip_federated_timeline: Die föderierte Zeitleiste ist die sehr große Ansicht
+        vom Mastodon-Netzwerk. Sie enthält aber auch nur Leute, denen du und deine
+        Nachbarn folgen, sie ist also nicht komplett.
+      tip_following: Du folgst standardmäßig deinen Server-Admin(s). Um mehr interessante
+        Leute zu finden, kannst du die lokale oder öffentliche Zeitleiste durchsuchen.
+      tip_local_timeline: Die lokale Zeitleiste ist eine Ansicht aller Leute auf %{instance}.
+        Diese sind deine Nachbarn!
+      tip_mobile_webapp: Wenn dein mobiler Browser dir anbietet Mastodon zu deinem
+        Startbildschirm hinzuzufügen, dann kannst du Benachrichtigungen erhalten.
+        Es verhält sich wie eine native App in vielen Wegen!
+      tips: Tipps
+      title: Willkommen an Bord, %{name}!
