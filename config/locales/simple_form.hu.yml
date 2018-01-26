@@ -14,6 +14,10 @@ hu:
         note: Önéletrajz
         password: Jelszó
         username: Felhasználónév
+        data: Adatok
+        filtered_languages: Szűrt nyelvek
+        locked: Zárt felhasználói fiók
+        otp_attempt: Második-faktor kód
       notification_emails:
         favourite: E-mail küldése amikor valaki kedvencnek jelöli az állapotod
         follow: E-mail küldése amikor valaki követni kezd téged
@@ -26,4 +30,24 @@ hu:
     'yes': Igen
     hints:
       defaults:
-        avatar: PNG, GIF vagy JPG. Maximum 2MB. Át lesz méretezve 120x120 pixelre.
+        avatar: PNG, GIF vagy JPG. Maximum 2MB. Át lesz méretezve 120x120 pixelre
+        digest: Csak hosszú távollét esetén küldve és csak ha személyes üzenetet kaptál
+          távollétedben
+        display_name:
+          one: <span class="name-counter">1</span>karakter maradt
+          other: <span class="name-counter">%{count}</span>karakter maradt
+        header: PNG, GIF vagy JPG. Maximum 2MB. Át lesz méretezve 700x335 pixelre
+        locked: Egyenként engedélyezned kell a követőidet
+        note:
+          one: <span class="note-counter">1</span>karakter maradt
+          other: <span class="note-counter">%{count}</span>karakter maradt
+        setting_noindex: A publikus profilodra és státusz oldalra vonatkozik
+        setting_theme: A bármely eszközről bejelentkezett felület kinézetére vonatkozik.
+      imports:
+        data: Egy másik Mastodon szerverről exportált CSV fájl
+      sessions:
+        otp: Add meg a Második-faktor kódodat a telefonodról vagy használd az egyik
+          tartalék bejelentkező kódodat.
+      user:
+        filtered_languages: A kiválasztott nyelvek nem jelennek majd meg a nyilvános
+          idővonaladon
