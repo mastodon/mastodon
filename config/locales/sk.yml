@@ -4,12 +4,12 @@ sk:
       Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových
       protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
-    about_this: Info
+    about_this: O instancii
     closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, existujú ďalšie
-      Mastodon inštancie kde si môžete založiť účet a získať prístup do tejto siete
-      od nich.
+      Mastodon inštancie kde si môžete založiť účet a získať prístup do tej istej
+      siete z tamaď.
     contact: Kontakt
-    contact_missing: Chýba
+    contact_missing: Nezadané
     contact_unavailable: Neuvedené
     description_headline: Čo je %{domain}?
     domain_count_after: ďalším inštanciám
@@ -59,7 +59,7 @@ sk:
     reserved_username: Prihlasovacie meno je rezervované
     roles:
       admin: Admin
-      moderator: Mod
+      moderator: Moderátor
     unfollow: Prestať sledovať
   admin:
     account_moderation_notes:
@@ -128,7 +128,7 @@ sk:
         moderator: Moderátor
         staff: Člen
         user: Používateľ
-      salmon_url: Salmon URL
+      salmon_url: Salmon adresa
       search: Hľadať
       shared_inbox_url: URL zdieľanej schránky
       show:
@@ -315,8 +315,8 @@ sk:
         title: Zobraziť značku moderátora
       site_description:
         desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Môžete
-          použiť HTML kód, presnejšie  <code> 1&lt; 2a&gt; 3</code> 4 and <code> 5&lt;
-          6em&gt; 7</code> 8.
+          použiť HTML kód, presnejšie  <code>&lt; a&gt;</code> and <code>&lt; em&gt;
+          </code>.
         title: Popis instancie
       site_description_extended:
         desc_html: Toto je vhodné miesto pre vaše pravidlá, oboznámenia a iné veci,
@@ -331,10 +331,16 @@ sk:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
         title: Náhľad nástenky
       title: Nastavenia stránky
+      thumbnail:
+        desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie
+          1200x630px
+        title: Miniatúra instancie
     statuses:
       back_to_account: Späť na účet
       batch:
         delete: Vymazať
+        nsfw_off: Nevhodný obsah je vypnutý
+        nsfw_on: Nevhodný obsah je zapnutý
       execute: Vykonať
       failed_to_execute: Nepodarilo sa vykonať
       media:
@@ -350,6 +356,7 @@ sk:
       expires_in: Vyprší do
       last_delivery: Posledné doručenie
       topic: Téma
+      title: WebSub
     title: Administrácia
   auth:
     login: Prihlásenie
@@ -370,6 +377,8 @@ sk:
     resend_confirmation: Poslať potvrdzujúce pokyny znovu
     reset_password: Resetovať heslo
     set_new_password: Nastaviť nové heslo
+    migrate_account_html: Pokiaľ si želáte presmerovať tento účet na nejaký iný, môžete
+      <a href="%{path}"> tak urobiť tu</a>.
   settings:
     authorized_apps: Autorizované aplikácie
     back: Naspäť na stránku
