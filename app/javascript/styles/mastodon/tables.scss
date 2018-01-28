@@ -40,6 +40,12 @@
 
   strong {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   &.inline-table > tbody > tr:nth-child(odd) > td,

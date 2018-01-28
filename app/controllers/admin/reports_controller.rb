@@ -5,14 +5,17 @@ module Admin
     before_action :set_report, except: [:index]
 
     def index
+      authorize :report, :index?
       @reports = filtered_reports.page(params[:page])
     end
 
     def show
+      authorize @report, :show?
       @form = Form::StatusBatch.new
     end
 
     def update
+      authorize @report, :update?
       process_report
       redirect_to admin_report_path(@report)
     end
@@ -22,12 +25,17 @@ module Admin
     def process_report
       case params[:outcome].to_s
       when 'resolve'
-        @report.update(action_taken_by_current_attributes)
+        @report.update!(action_taken_by_current_attributes)
+        log_action :resolve, @report
       when 'suspend'
         Admin::SuspensionWorker.perform_async(@report.target_account.id)
+        log_action :resolve, @report
+        log_action :suspend, @report.target_account
         resolve_all_target_account_reports
       when 'silence'
-        @report.target_account.update(silenced: true)
+        @report.target_account.update!(silenced: true)
+        log_action :resolve, @report
+        log_action :silence, @report.target_account
         resolve_all_target_account_reports
       else
         raise ActiveRecord::RecordNotFound

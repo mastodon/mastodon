@@ -1,6 +1,43 @@
 # frozen_string_literal: true
 
+require 'doorkeeper/grape/authorization_decorator'
+
 class Rack::Attack
+  class Request
+    def authenticated_token
+      return @token if defined?(@token)
+
+      @token = Doorkeeper::OAuth::Token.authenticate(
+        Doorkeeper::Grape::AuthorizationDecorator.new(self),
+        *Doorkeeper.configuration.access_token_methods
+      )
+    end
+
+    def authenticated_user_id
+      authenticated_token&.resource_owner_id
+    end
+
+    def unauthenticated?
+      !authenticated_user_id
+    end
+
+    def api_request?
+      path.start_with?('/api')
+    end
+
+    def web_request?
+      !api_request?
+    end
+  end
+
+  PROTECTED_PATHS = %w(
+    /auth/sign_in
+    /auth
+    /auth/password
+  ).freeze
+
+  PROTECTED_PATHS_REGEX = Regexp.union(PROTECTED_PATHS.map { |path| /\A#{Regexp.escape(path)}/ })
+
   # Always allow requests from localhost
   # (blocklist & throttles are skipped)
   Rack::Attack.safelist('allow from localhost') do |req|
@@ -8,24 +45,16 @@ class Rack::Attack
     '127.0.0.1' == req.ip || '::1' == req.ip
   end
 
-  # Rate limits for the API
-  throttle('api', limit: 300, period: 5.minutes) do |req|
-    req.ip if req.path =~ /\A\/api\/v/
+  throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
+    req.api_request? && req.authenticated_user_id
   end
 
-  # Rate limit logins
-  throttle('login', limit: 5, period: 5.minutes) do |req|
-    req.ip if req.path == '/auth/sign_in' && req.post?
+  throttle('throttle_unauthenticated_api', limit: 7_500, period: 5.minutes) do |req|
+    req.ip if req.api_request?
   end
 
-  # Rate limit sign-ups
-  throttle('register', limit: 5, period: 5.minutes) do |req|
-    req.ip if req.path == '/auth' && req.post?
-  end
-
-  # Rate limit forgotten passwords
-  throttle('reminder', limit: 5, period: 5.minutes) do |req|
-    req.ip if req.path == '/auth/password' && req.post?
+  throttle('protected_paths', limit: 25, period: 5.minutes) do |req|
+    req.ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
   end
 
   self.throttled_response = lambda do |env|

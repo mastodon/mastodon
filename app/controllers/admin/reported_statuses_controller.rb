@@ -2,26 +2,29 @@
 
 module Admin
   class ReportedStatusesController < BaseController
-    include Authorization
-
     before_action :set_report
     before_action :set_status, only: [:update, :destroy]
 
     def create
-      @form = Form::StatusBatch.new(form_status_batch_params)
-      flash[:alert] = t('admin.statuses.failed_to_execute') unless @form.save
+      authorize :status, :update?
+
+      @form         = Form::StatusBatch.new(form_status_batch_params.merge(current_account: current_account))
+      flash[:alert] = I18n.t('admin.statuses.failed_to_execute') unless @form.save
 
       redirect_to admin_report_path(@report)
     end
 
     def update
-      @status.update(status_params)
+      authorize @status, :update?
+      @status.update!(status_params)
+      log_action :update, @status
       redirect_to admin_report_path(@report)
     end
 
     def destroy
       authorize @status, :destroy?
       RemovalWorker.perform_async(@status.id)
+      log_action :destroy, @status
       render json: @status
     end
 

@@ -38,12 +38,31 @@ class LanguageDetector
   end
 
   def simplify_text(text)
-    text.dup.tap do |new_text|
-      new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
-      new_text.gsub!(Account::MENTION_RE, '')
-      new_text.gsub!(Tag::HASHTAG_RE, '')
-      new_text.gsub!(/\s+/, ' ')
-    end
+    new_text = remove_html(text)
+    new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
+    new_text.gsub!(Account::MENTION_RE, '')
+    new_text.gsub!(Tag::HASHTAG_RE, '')
+    new_text.gsub!(/:#{CustomEmoji::SHORTCODE_RE_FRAGMENT}:/, '')
+    new_text.gsub!(/\s+/, ' ')
+    new_text
+  end
+
+  def new_scrubber
+    scrubber = Rails::Html::PermitScrubber.new
+    scrubber.tags = %w(br p)
+    scrubber
+  end
+
+  def scrubber
+    @scrubber ||= new_scrubber
+  end
+
+  def remove_html(text)
+    text = Loofah.fragment(text).scrub!(scrubber).to_s
+    text.gsub!('<br>', "\n")
+    text.gsub!('</p><p>', "\n\n")
+    text.gsub!(/(^<p>|<\/p>$)/, '')
+    text
   end
 
   def default_locale(account)

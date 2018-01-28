@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'optparse'
+require 'colorize'
+
 namespace :mastodon do
   desc 'Execute daily tasks (deprecated)'
   task :daily do
@@ -10,14 +13,41 @@ namespace :mastodon do
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
   task make_admin: :environment do
     include RoutingHelper
+
     account_username = ENV.fetch('USERNAME')
-    user = User.joins(:account).where(accounts: { username: account_username })
+    user             = User.joins(:account).where(accounts: { username: account_username })
 
     if user.present?
       user.update(admin: true)
       puts "Congrats! #{account_username} is now an admin. \\o/\nNavigate to #{edit_admin_settings_url} to get started"
     else
-      puts "User could not be found; please make sure an Account with the `#{account_username}` username exists."
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
+    end
+  end
+
+  desc 'Turn a user into a moderator, identified by the USERNAME environment variable'
+  task make_mod: :environment do
+    account_username = ENV.fetch('USERNAME')
+    user             = User.joins(:account).where(accounts: { username: account_username })
+
+    if user.present?
+      user.update(moderator: true)
+      puts "Congrats! #{account_username} is now a moderator \\o/"
+    else
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
+    end
+  end
+
+  desc 'Remove admin and moderator privileges from user identified by the USERNAME environment variable'
+  task revoke_staff: :environment do
+    account_username = ENV.fetch('USERNAME')
+    user             = User.joins(:account).where(accounts: { username: account_username })
+
+    if user.present?
+      user.update(moderator: false, admin: false)
+      puts "#{account_username} is no longer admin or moderator."
+    else
+      puts "User could not be found; please make sure an account with the `#{account_username}` username exists."
     end
   end
 
@@ -99,7 +129,7 @@ namespace :mastodon do
     task remove_remote: :environment do
       time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
 
-      MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
+      MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
         media.save
       end
@@ -317,5 +347,87 @@ namespace :mastodon do
         end
       end
     end
+
+    desc 'Migrate photo preview cards made before 2.1'
+    task migrate_photo_preview_cards: :environment do
+      status_ids = Status.joins(:preview_cards)
+                         .where(preview_cards: { embed_url: '', type: :photo })
+                         .reorder(nil)
+                         .group(:id)
+                         .pluck(:id)
+
+      PreviewCard.where(embed_url: '', type: :photo).delete_all
+      LinkCrawlWorker.push_bulk status_ids
+    end
+
+    desc 'Check every known remote account and delete those that no longer exist in origin'
+    task purge_removed_accounts: :environment do
+      prepare_for_options!
+
+      options = {}
+
+      OptionParser.new do |opts|
+        opts.banner = 'Usage: rails mastodon:maintenance:purge_removed_accounts [options]'
+
+        opts.on('-f', '--force', 'Remove all encountered accounts without asking for confirmation') do
+          options[:force] = true
+        end
+
+        opts.on('-h', '--help', 'Display this message') do
+          puts opts
+          exit
+        end
+      end.parse!
+
+      disable_log_stdout!
+
+      total        = Account.remote.where(protocol: :activitypub).count
+      progress_bar = ProgressBar.create(total: total, format: '%c/%C |%w>%i| %e')
+
+      Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
+        progress_bar.increment
+
+        begin
+          res = Request.new(:head, account.uri).perform
+        rescue StandardError
+          # This could happen due to network timeout, DNS timeout, wrong SSL cert, etc,
+          # which should probably not lead to perceiving the account as deleted, so
+          # just skip till next time
+          next
+        end
+
+        if [404, 410].include?(res.code)
+          if options[:force]
+            account.destroy
+          else
+            progress_bar.pause
+            progress_bar.clear
+            print "\nIt seems like #{account.acct} no longer exists. Purge the account from the database? [Y/n]: ".colorize(:yellow)
+            confirm = STDIN.gets.chomp
+            puts ''
+            progress_bar.resume
+
+            if confirm.casecmp('n').zero?
+              next
+            else
+              account.destroy
+            end
+          end
+        end
+      end
+    end
   end
+end
+
+def disable_log_stdout!
+  dev_null = Logger.new('/dev/null')
+
+  Rails.logger                 = dev_null
+  ActiveRecord::Base.logger    = dev_null
+  HttpLog.configuration.logger = dev_null
+  Paperclip.options[:log]      = false
+end
+
+def prepare_for_options!
+  2.times { ARGV.shift }
 end

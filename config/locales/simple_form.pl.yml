@@ -34,10 +34,12 @@ pl:
         data: Dane
         display_name: Widoczna nazwa
         email: Adres e-mail
+        expires_in: Wygaśnie po
         filtered_languages: Filtrowane języki
         header: Nagłówek
         locale: Język
         locked: Ustaw konto jako prywatne
+        max_uses: Maksymalna liczba użyć
         new_password: Nowe hasło
         note: Biogram
         otp_attempt: Kod uwierzytelnienia dwustopniowego
@@ -58,6 +60,7 @@ pl:
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
+        must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie śledzisz
       notification_emails:
         digest: Wysyłaj podsumowania e-mailem
         favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis

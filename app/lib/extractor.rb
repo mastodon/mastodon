@@ -5,7 +5,8 @@ module Extractor
 
   module_function
 
-  def extract_mentions_or_lists_with_indices(text) # :yields: username, list_slug, start, end
+  # :yields: username, list_slug, start, end
+  def extract_mentions_or_lists_with_indices(text)
     return [] unless text =~ Twitter::Regex[:at_signs]
 
     possible_entries = []
@@ -31,7 +32,7 @@ module Extractor
     possible_entries
   end
 
-  def extract_hashtags_with_indices(text, _options = {})
+  def extract_hashtags_with_indices(text, **)
     return [] unless text =~ /#/
 
     tags = []

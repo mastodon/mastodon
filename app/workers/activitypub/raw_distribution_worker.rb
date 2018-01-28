@@ -5,10 +5,10 @@ class ActivityPub::RawDistributionWorker
 
   sidekiq_options queue: 'push'
 
-  def perform(json, source_account_id)
+  def perform(json, source_account_id, exclude_inboxes = [])
     @account = Account.find(source_account_id)
 
-    ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
+    ActivityPub::DeliveryWorker.push_bulk(inboxes - exclude_inboxes) do |inbox_url|
       [json, @account.id, inbox_url]
     end
   rescue ActiveRecord::RecordNotFound

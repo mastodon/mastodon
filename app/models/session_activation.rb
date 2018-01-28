@@ -4,24 +4,14 @@
 # Table name: session_activations
 #
 #  id                       :integer          not null, primary key
-#  user_id                  :integer          not null
 #  session_id               :string           not null
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  user_agent               :string           default(""), not null
 #  ip                       :inet
 #  access_token_id          :integer
+#  user_id                  :integer          not null
 #  web_push_subscription_id :integer
-#
-
-#  id              :integer          not null, primary key
-#  user_id         :integer          not null
-#  session_id      :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  user_agent      :string           default(""), not null
-#  ip              :inet
-#  access_token_id :integer
 #
 
 class SessionActivation < ApplicationRecord
@@ -53,7 +43,7 @@ class SessionActivation < ApplicationRecord
       id && where(session_id: id).exists?
     end
 
-    def activate(options = {})
+    def activate(**options)
       activation = create!(options)
       purge_old
       activation

@@ -6,7 +6,7 @@ class ActivityPub::ProcessAccountService < BaseService
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json)
-    return if json['inbox'].blank?
+    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id'])
 
     @json        = json
     @uri         = @json['id']
@@ -74,6 +74,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
+    @account.moved_to_account  = @json['movedTo'].present? ? moved_account : nil
   end
 
   def after_protocol_change!
@@ -107,11 +108,20 @@ class ActivityPub::ProcessAccountService < BaseService
   def url
     return if @json['url'].blank?
 
-    value = first_of_value(@json['url'])
+    url_candidate = url_to_href(@json['url'], 'text/html')
 
-    return value if value.is_a?(String)
+    if unsupported_uri_scheme?(url_candidate) || mismatching_origin?(url_candidate)
+      nil
+    else
+      url_candidate
+    end
+  end
 
-    value['href']
+  def mismatching_origin?(url)
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@uri).host
+
+    !haystack.casecmp(needle).zero?
   end
 
   def outbox_total_items
@@ -135,6 +145,12 @@ class ActivityPub::ProcessAccountService < BaseService
     @collections[type] = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
   rescue HTTP::Error, OpenSSL::SSL::SSLError
     @collections[type] = nil
+  end
+
+  def moved_account
+    account   = ActivityPub::TagManager.instance.uri_to_resource(@json['movedTo'], Account)
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], id: true)
+    account
   end
 
   def skip_download?

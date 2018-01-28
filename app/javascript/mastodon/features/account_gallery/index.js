@@ -12,14 +12,13 @@ import { getAccountGallery } from '../../selectors';
 import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import { FormattedMessage } from 'react-intl';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import LoadMore from '../../components/load_more';
 
 const mapStateToProps = (state, props) => ({
   medias: getAccountGallery(state, props.params.accountId),
   isLoading: state.getIn(['timelines', `account:${props.params.accountId}:media`, 'isLoading']),
   hasMore: !!state.getIn(['timelines', `account:${props.params.accountId}:media`, 'next']),
-  autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
 });
 
 @connect(mapStateToProps)
@@ -31,7 +30,6 @@ export default class AccountGallery extends ImmutablePureComponent {
     medias: ImmutablePropTypes.list.isRequired,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
-    autoPlayGif: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -67,7 +65,7 @@ export default class AccountGallery extends ImmutablePureComponent {
   }
 
   render () {
-    const { medias, autoPlayGif, isLoading, hasMore } = this.props;
+    const { medias, isLoading, hasMore } = this.props;
 
     let loadMore = null;
 
@@ -100,7 +98,6 @@ export default class AccountGallery extends ImmutablePureComponent {
                 <MediaItem
                   key={media.get('id')}
                   media={media}
-                  autoPlayGif={autoPlayGif}
                 />
               )}
               {loadMore}

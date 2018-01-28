@@ -5,7 +5,7 @@ module ApplicationHelper
     current_page?(path) ? 'active' : ''
   end
 
-  def active_link_to(label, path, options = {})
+  def active_link_to(label, path, **options)
     link_to label, path, options.merge(class: active_nav_class(path))
   end
 
@@ -35,12 +35,21 @@ module ApplicationHelper
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 
+  def can?(action, record)
+    return false if record.nil?
+    policy(record).public_send("#{action}?")
+  end
+
   def fa_icon(icon, attributes = {})
     class_names = attributes[:class]&.split(' ') || []
     class_names << 'fa'
     class_names += icon.split(' ').map { |cl| "fa-#{cl}" }
 
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
+  end
+
+  def custom_emoji_tag(custom_emoji)
+    image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
   end
 
   def opengraph(property, content)

@@ -9,6 +9,7 @@ import {
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 import { defineMessages, injectIntl } from 'react-intl';
+import { connectCommunityStream } from '../../../actions/streaming';
 
 const messages = defineMessages({
   title: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
@@ -35,16 +36,13 @@ export default class PublicTimeline extends React.PureComponent {
     const { dispatch } = this.props;
 
     dispatch(refreshCommunityTimeline());
-
-    this.polling = setInterval(() => {
-      dispatch(refreshCommunityTimeline());
-    }, 3000);
+    this.disconnect = dispatch(connectCommunityStream());
   }
 
   componentWillUnmount () {
-    if (typeof this.polling !== 'undefined') {
-      clearInterval(this.polling);
-      this.polling = null;
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
   }
 

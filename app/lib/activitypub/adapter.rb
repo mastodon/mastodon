@@ -9,6 +9,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
       {
         'manuallyApprovesFollowers' => 'as:manuallyApprovesFollowers',
         'sensitive'                 => 'as:sensitive',
+        'movedTo'                   => 'as:movedTo',
         'Hashtag'                   => 'as:Hashtag',
         'ostatus'                   => 'http://ostatus.org#',
         'atomUri'                   => 'ostatus:atomUri',

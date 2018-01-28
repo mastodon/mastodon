@@ -24,12 +24,12 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def pushable?(notification)
-    data && data.key?('alerts') && data['alerts'][notification.type.to_s]
+    data&.key?('alerts') && data['alerts'][notification.type.to_s]
   end
 
   def as_payload
     payload = { id: id, endpoint: endpoint }
-    payload[:alerts] = data['alerts'] if data && data.key?('alerts')
+    payload[:alerts] = data['alerts'] if data&.key?('alerts')
     payload
   end
 

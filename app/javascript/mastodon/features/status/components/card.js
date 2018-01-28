@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import punycode from 'punycode';
 import classnames from 'classnames';
@@ -24,6 +25,7 @@ export default class Card extends React.PureComponent {
   static propTypes = {
     card: ImmutablePropTypes.map,
     maxDescription: PropTypes.number,
+    onOpenMedia: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -34,8 +36,31 @@ export default class Card extends React.PureComponent {
     width: 0,
   };
 
+  handlePhotoClick = () => {
+    const { card, onOpenMedia } = this.props;
+
+    onOpenMedia(
+      Immutable.fromJS([
+        {
+          type: 'image',
+          url: card.get('embed_url'),
+          description: card.get('title'),
+          meta: {
+            original: {
+              width: card.get('width'),
+              height: card.get('height'),
+            },
+          },
+        },
+      ]),
+      0
+    );
+  };
+
   renderLink () {
     const { card, maxDescription } = this.props;
+    const { width }  = this.state;
+    const horizontal = card.get('width') > card.get('height') && (card.get('width') + 100 >= width);
 
     let image    = '';
     let provider = card.get('provider_name');
@@ -52,17 +77,15 @@ export default class Card extends React.PureComponent {
       provider = decodeIDNA(getHostname(card.get('url')));
     }
 
-    const className = classnames('status-card', {
-      'horizontal': card.get('width') > card.get('height'),
-    });
+    const className = classnames('status-card', { horizontal });
 
     return (
-      <a href={card.get('url')} className={className} target='_blank' rel='noopener'>
+      <a href={card.get('url')} className={className} target='_blank' rel='noopener' ref={this.setRef}>
         {image}
 
         <div className='status-card__content'>
           <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
-          <p className='status-card__description'>{(card.get('description') || '').substring(0, maxDescription)}</p>
+          {!horizontal && <p className='status-card__description'>{(card.get('description') || '').substring(0, maxDescription)}</p>}
           <span className='status-card__host'>{provider}</span>
         </div>
       </a>
@@ -73,9 +96,16 @@ export default class Card extends React.PureComponent {
     const { card } = this.props;
 
     return (
-      <a href={card.get('url')} className='status-card-photo' target='_blank' rel='noopener'>
-        <img src={card.get('url')} alt={card.get('title')} width={card.get('width')} height={card.get('height')} />
-      </a>
+      <img
+        className='status-card-photo'
+        onClick={this.handlePhotoClick}
+        role='button'
+        tabIndex='0'
+        src={card.get('embed_url')}
+        alt={card.get('title')}
+        width={card.get('width')}
+        height={card.get('height')}
+      />
     );
   }
 

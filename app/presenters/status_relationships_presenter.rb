@@ -3,7 +3,7 @@
 class StatusRelationshipsPresenter
   attr_reader :reblogs_map, :favourites_map, :mutes_map, :pins_map
 
-  def initialize(statuses, current_account_id = nil, options = {})
+  def initialize(statuses, current_account_id = nil, **options)
     if current_account_id.nil?
       @reblogs_map    = {}
       @favourites_map = {}

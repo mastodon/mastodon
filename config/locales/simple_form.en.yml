@@ -30,10 +30,12 @@ en:
         data: Data
         display_name: Display name
         email: E-mail address
+        expires_in: Expire after
         filtered_languages: Filtered languages
         header: Header
         locale: Language
         locked: Lock account
+        max_uses: Max number of uses
         new_password: New password
         note: Bio
         otp_attempt: Two-factor code
@@ -54,6 +56,7 @@ en:
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow
+        must_be_following_dm: Block direct messages from people you don't follow
       notification_emails:
         digest: Send digest e-mails
         favourite: Send e-mail when someone favourites your status

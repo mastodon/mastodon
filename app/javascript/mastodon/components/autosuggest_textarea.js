@@ -209,6 +209,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
             onBlur={this.onBlur}
             onPaste={this.onPaste}
             style={style}
+            aria-autocomplete='list'
           />
         </label>
 

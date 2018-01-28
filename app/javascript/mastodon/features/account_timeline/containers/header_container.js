@@ -7,19 +7,19 @@ import {
   unfollowAccount,
   blockAccount,
   unblockAccount,
-  muteAccount,
   unmuteAccount,
 } from '../../../actions/accounts';
 import { mentionCompose } from '../../../actions/compose';
+import { initMuteModal } from '../../../actions/mutes';
 import { initReport } from '../../../actions/reports';
 import { openModal } from '../../../actions/modal';
 import { blockDomain, unblockDomain } from '../../../actions/domain_blocks';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { unfollowModal } from '../../../initial_state';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
-  muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
 });
 
@@ -28,8 +28,6 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
-    me: state.getIn(['meta', 'me']),
-    unfollowModal: state.getIn(['meta', 'unfollow_modal']),
   });
 
   return mapStateToProps;
@@ -39,7 +37,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
-      if (this.unfollowModal) {
+      if (unfollowModal) {
         dispatch(openModal('CONFIRM', {
           message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
           confirm: intl.formatMessage(messages.unfollowConfirm),
@@ -69,6 +67,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(mentionCompose(account, router));
   },
 
+  onReblogToggle (account) {
+    if (account.getIn(['relationship', 'showing_reblogs'])) {
+      dispatch(followAccount(account.get('id'), false));
+    } else {
+      dispatch(followAccount(account.get('id'), true));
+    }
+  },
+
   onReport (account) {
     dispatch(initReport(account));
   },
@@ -77,11 +83,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (account.getIn(['relationship', 'muting'])) {
       dispatch(unmuteAccount(account.get('id')));
     } else {
-      dispatch(openModal('CONFIRM', {
-        message: <FormattedMessage id='confirmations.mute.message' defaultMessage='Are you sure you want to mute {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-        confirm: intl.formatMessage(messages.muteConfirm),
-        onConfirm: () => dispatch(muteAccount(account.get('id'))),
-      }));
+      dispatch(initMuteModal(account));
     }
   },
 

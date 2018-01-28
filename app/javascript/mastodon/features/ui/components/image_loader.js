@@ -7,7 +7,7 @@ export default class ImageLoader extends React.PureComponent {
   static propTypes = {
     alt: PropTypes.string,
     src: PropTypes.string.isRequired,
-    previewSrc: PropTypes.string.isRequired,
+    previewSrc: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
   }
@@ -47,7 +47,7 @@ export default class ImageLoader extends React.PureComponent {
     this.removeEventListeners();
     this.setState({ loading: true, error: false });
     Promise.all([
-      this.loadPreviewCanvas(props),
+      props.previewSrc && this.loadPreviewCanvas(props),
       this.hasSize() && this.loadOriginalImage(props),
     ].filter(Boolean))
       .then(() => {

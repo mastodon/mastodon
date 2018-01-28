@@ -3,6 +3,7 @@
 #
 # Table name: subscriptions
 #
+#  id                          :integer          not null, primary key
 #  callback_url                :string           default(""), not null
 #  secret                      :string
 #  expires_at                  :datetime
@@ -12,7 +13,6 @@
 #  last_successful_delivery_at :datetime
 #  domain                      :string
 #  account_id                  :integer          not null
-#  id                          :integer          not null, primary key
 #
 
 class Subscription < ApplicationRecord

@@ -19,6 +19,7 @@ import {
   Compose,
   Status,
   GettingStarted,
+  KeyboardShortcuts,
   PublicTimeline,
   CommunityTimeline,
   AccountTimeline,
@@ -33,11 +34,15 @@ import {
   FollowRequests,
   GenericNotFound,
   FavouritedStatuses,
+  ListTimeline,
   Blocks,
   Mutes,
   PinnedStatuses,
+  Lists,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
+import { me } from '../../initial_state';
+import { defineMessages, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
@@ -45,12 +50,17 @@ import '../../components/status';
 
 import TutorialContainer from '../tutorial/containers/tutorial_container';
 
+const messages = defineMessages({
+  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
+});
+
 const mapStateToProps = state => ({
-  me: state.getIn(['meta', 'me']),
   isComposing: state.getIn(['compose', 'is_composing']),
+  hasComposingText: state.getIn(['compose', 'text']) !== '',
 });
 
 const keyMap = {
+  help: '?',
   new: 'n',
   search: 's',
   forceNew: 'option+n',
@@ -77,6 +87,7 @@ const keyMap = {
 };
 
 @connect(mapStateToProps)
+@injectIntl
 @withRouter
 export default class UI extends React.Component {
 
@@ -88,14 +99,26 @@ export default class UI extends React.Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     isComposing: PropTypes.bool,
-    me: PropTypes.string,
+    hasComposingText: PropTypes.bool,
     location: PropTypes.object,
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
     width: window.innerWidth,
     draggingOver: false,
   };
+
+  handleBeforeUnload = (e) => {
+    const { intl, isComposing, hasComposingText } = this.props;
+
+    if (isComposing && hasComposingText) {
+      // Setting returnValue to any string causes confirmation dialog.
+      // Many browsers no longer display this text to users,
+      // but we set user-friendly message for other browsers, e.g. Edge.
+      e.returnValue = intl.formatMessage(messages.beforeUnload);
+    }
+  }
 
   handleResize = debounce(() => {
     // The cached heights are no longer accurate, invalidate
@@ -171,6 +194,7 @@ export default class UI extends React.Component {
   }
 
   componentWillMount () {
+    window.addEventListener('beforeunload', this.handleBeforeUnload, false);
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
@@ -212,6 +236,7 @@ export default class UI extends React.Component {
   }
 
   componentWillUnmount () {
+    window.removeEventListener('beforeunload', this.handleBeforeUnload);
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
@@ -278,6 +303,14 @@ export default class UI extends React.Component {
     this.hotkeys = c;
   }
 
+  handleHotkeyToggleHelp = () => {
+    if (this.props.location.pathname === '/keyboard-shortcuts') {
+      this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/keyboard-shortcuts');
+    }
+  }
+
   handleHotkeyGoToHome = () => {
     this.context.router.history.push('/timelines/home');
   }
@@ -307,7 +340,7 @@ export default class UI extends React.Component {
   }
 
   handleHotkeyGoToProfile = () => {
-    this.context.router.history.push(`/accounts/${this.props.me}`);
+    this.context.router.history.push(`/accounts/${me}`);
   }
 
   handleHotkeyGoToBlocked = () => {
@@ -323,6 +356,7 @@ export default class UI extends React.Component {
     const { children } = this.props;
 
     const handlers = {
+      help: this.handleHotkeyToggleHelp,
       new: this.handleHotkeyNew,
       search: this.handleHotkeySearch,
       forceNew: this.handleHotkeyForceNew,
@@ -349,10 +383,12 @@ export default class UI extends React.Component {
             <WrappedSwitch>
               <Redirect from='/' to='/getting-started' exact />
               <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+              <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
               <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
               <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
               <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
               <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
+              <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
 
               <WrappedRoute path='/notifications' component={Notifications} content={children} />
               <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
@@ -371,6 +407,7 @@ export default class UI extends React.Component {
               <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
               <WrappedRoute path='/blocks' component={Blocks} content={children} />
               <WrappedRoute path='/mutes' component={Mutes} content={children} />
+              <WrappedRoute path='/lists' component={Lists} content={children} />
 
               <WrappedRoute component={GenericNotFound} content={children} />
             </WrappedSwitch>
