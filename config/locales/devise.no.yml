@@ -1,10 +1,11 @@
----
 'no':
   devise:
     confirmations:
       confirmed: E-postaddressen din er blitt bekreftet.
-      send_instructions: Du vil motta en e-post med instruksjoner for bekreftelse om noen få minutter.
-      send_paranoid_instructions: Hvis din e-postaddresse finnes i vår database vil du motta en e-post med instruksjoner for bekreftelse om noen få minutter.
+      send_instructions: Du vil motta en e-post med instruksjoner for bekreftelse
+        om noen få minutter.
+      send_paranoid_instructions: Hvis din e-postaddresse finnes i vår database vil
+        du motta en e-post med instruksjoner for bekreftelse om noen få minutter.
     failure:
       already_authenticated: Du er allerede innlogget.
       inactive: Din konto er ikke blitt aktivert ennå.
@@ -18,44 +19,87 @@
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse'
+        action: Bekreft e-postadresse
+        explanation: Du har laget en konto på %{host} med denne e-postadressen. Du
+          er ett klikk unna å aktivere den. Hvis dette ikke var deg, vennligst se
+          bort fra denne e-posten.
+        extra_html: Vennligst også sjekk ut <a href="%{terms_path}">instansens regler
+          </a> og <a href="%{policy_path}">våre bruksvilkår</a>.
+        title: Bekreft e-postadresse
       password_change:
         subject: 'Mastodon: Passord endret'
+        explanation: Passordet til din konto har blitt endret.
+        extra: Hvis du ikke endret ditt passord, er det sannsynlig at noen har fått
+          tilgang til din konto. Vennligst endre ditt passord umiddelbart eller kontakt
+          instansens administrator dersom du er utestengt fra kontoen din.
+        title: Passord endret
       reset_password_instructions:
         subject: 'Mastodon: Hvordan nullstille passord'
+        action: Endre passord
+        explanation: Du ba om et nytt passord for din konto.
+        extra: Se bort fra denne e-posten dersom du ikke ba om dette. Ditt passord
+          blir ikke endret før du trykker på lenken over og lager et nytt.
+        title: Nullstill passord
       unlock_instructions:
         subject: 'Mastodon: Instruksjoner for å gjenåpne konto'
+      email_changed:
+        explanation: 'E-postadressen til din konto endres til:'
+        extra: Hvis du ikke endret din e-postadresse, er det sannsynlig at noen har
+          fått tilgang til din konto. Vennligst endre ditt passord umiddelbart eller
+          kontakt instansens administrator dersom du er utestengt fra kontoen din.
+        subject: 'Mastadon: E-postadresse endret'
+        title: Ny e-postadresse
+      reconfirmation_instructions:
+        explanation: Din nye e-postadresse må bekreftes for å bli endret.
+        extra: Se bort fra denne e-posten dersom du ikke gjorde denne endringen. E-postadressen
+          for Mastadon-kontoen blir ikke endret før du trykker på lenken over.
+        subject: 'Mastodon: Bekreft e-postadresse for %{instance}'
+        title: Bekreft e-postadresse
     omniauth_callbacks:
       failure: Kunne ikke autentisere deg fra %{kind} fordi "%{reason}".
       success: Vellykket autentisering fra %{kind}.
     passwords:
-      no_token: Du har ingen tilgang til denne siden hvis ikke klikket på en e-post om nullstilling av passord. Hvis du kommer fra en sådan bør du dobbelsjekke at du limte inn hele URLen.
-      send_instructions: Du vil motta en e-post med instruksjoner om nullstilling av passord om noen få minutter.
-      send_paranoid_instructions: Hvis e-postadressen din finnes i databasen vår vil du motta en e-post med instruksjoner om nullstilling av passord om noen få minutter.
+      no_token: Du har ingen tilgang til denne siden hvis ikke klikket på en e-post
+        om nullstilling av passord. Hvis du kommer fra en sådan bør du dobbelsjekke
+        at du limte inn hele URLen.
+      send_instructions: Du vil motta en e-post med instruksjoner om nullstilling
+        av passord om noen få minutter.
+      send_paranoid_instructions: Hvis e-postadressen din finnes i databasen vår vil
+        du motta en e-post med instruksjoner om nullstilling av passord om noen få
+        minutter.
       updated: Passordet ditt er endret. Du er nå logget inn.
       updated_not_active: Passordet ditt er endret.
     registrations:
       destroyed: Adjø! Kontoen din er slettet. På gjensyn.
       signed_up: Velkommen! Registreringen var vellykket.
-      signed_up_but_inactive: Registreringen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din ennå ikke har blitt aktivert.
-      signed_up_but_locked: Registreringen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din har blitt låst.
-      signed_up_but_unconfirmed: En e-post med en bekreftelseslenke har blitt sendt til din innboks. Klikk på lenken i e-posten for å aktivere kontoen din.
-      update_needs_confirmation: Du har oppdatert kontoen din, men vi må bekrefte din nye e-postadresse. Sjekk e-posten din og følg bekreftelseslenken for å bekrefte din nye e-postadresse.
+      signed_up_but_inactive: Registreringen var vellykket. Vi kunne dessverre ikke
+        logge deg inn fordi kontoen din ennå ikke har blitt aktivert.
+      signed_up_but_locked: Registreringen var vellykket. Vi kunne dessverre ikke
+        logge deg inn fordi kontoen din har blitt låst.
+      signed_up_but_unconfirmed: En e-post med en bekreftelseslenke har blitt sendt
+        til din innboks. Klikk på lenken i e-posten for å aktivere kontoen din.
+      update_needs_confirmation: Du har oppdatert kontoen din, men vi må bekrefte
+        din nye e-postadresse. Sjekk e-posten din og følg bekreftelseslenken for å
+        bekrefte din nye e-postadresse.
       updated: Kontoen din ble oppdatert.
     sessions:
       already_signed_out: Logget ut.
       signed_in: Logget inn.
       signed_out: Logget ut.
     unlocks:
-      send_instructions: Du vil motta en e-post med instruksjoner for å åpne kontoen din om noen få minutter.
-      send_paranoid_instructions: Hvis kontoen din eksisterer vil du motta en e-post med instruksjoner for å åpne kontoen din om noen få minutter.
+      send_instructions: Du vil motta en e-post med instruksjoner for å åpne kontoen
+        din om noen få minutter.
+      send_paranoid_instructions: Hvis kontoen din eksisterer vil du motta en e-post
+        med instruksjoner for å åpne kontoen din om noen få minutter.
       unlocked: Kontoen din ble åpnet uten problemer. Logg på for å fortsette.
   errors:
     messages:
       already_confirmed: har allerede blitt bekreftet, prøv å logge på istedet
-      confirmation_period_expired: må bekreftes innen %{period}. Spør om en ny e-post for bekreftelse istedet
+      confirmation_period_expired: må bekreftes innen %{period}. Spør om en ny e-post
+        for bekreftelse istedet
       expired: har utløpt, spør om en ny en istedet
       not_found: ikke funnet
       not_locked: var ikke låst
       not_saved:
         one: '1 feil hindret denne %{resource} i å bli lagret:'
-        other: "%{count} feil hindret denne %{resource} i å bli lagret:"
+        other: '%{count} feil hindret denne %{resource} i å bli lagret:'

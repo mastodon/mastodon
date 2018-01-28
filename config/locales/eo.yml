@@ -1,7 +1,11 @@
----
 eo:
   about:
-    about_mastodon_html: Mastodon estas <em>senpaga, malfermitkoda</em> socia reto. Ĝi estas <em>sencentra</em> alia eblo al komercaj servoj. Ĝi evitigas, ke unusola firmao regu vian tutan komunikadon. Elektu servilon, kiun vi fidas. Kiu ajn estas via elekto, vi povas interagi kun ĉiuj aliaj uzantoj. Iu ajn povas krei sian propran aperaĵon de Mastodon en sia servilo, kaj partopreni en la <em>socia reto</em> tute glate.
+    about_mastodon_html: Mastodon estas <em>senpaga, malfermitkoda</em> socia reto.
+      Ĝi estas <em>sencentra</em> alia eblo al komercaj servoj. Ĝi evitigas, ke unusola
+      firmao regu vian tutan komunikadon. Elektu servilon, kiun vi fidas. Kiu ajn
+      estas via elekto, vi povas interagi kun ĉiuj aliaj uzantoj. Iu ajn povas krei
+      sian propran aperaĵon de Mastodon en sia servilo, kaj partopreni en la <em>socia
+      reto</em> tute glate.
     about_this: Pri tiu aperaĵo
     contact: Kontakti
     description_headline: Kio estas %{domain}?
@@ -128,7 +132,7 @@ eo:
       show:
         affected_accounts:
           one: Unu konto en la datumbazo esta afekta
-          other: "%{count} kontoj en la datumbazo esta afekta"
+          other: '%{count} kontoj en la datumbazo esta afekta'
         retroactive:
           silence: Malfari silenti ĉio konton de ĉi tiu domajno
           suspend: Malfari suspendi ĉio konton de ĉi tiu domajno
@@ -178,14 +182,16 @@ eo:
       view: Vidi
     settings:
       bootstrap_timeline_accounts:
-        desc_html: Disigi multaj uzantnomoj per komo. Nur lokaj kaj malsloŝi kontoj estus operaci. Defaŭlo Defaŭlo kiam malplena estas ĉio lokaj administristoj.
+        desc_html: Disigi multaj uzantnomoj per komo. Nur lokaj kaj malsloŝi kontoj
+          estus operaci. Defaŭlo Defaŭlo kiam malplena estas ĉio lokaj administristoj.
         title: Defaŭltoj sakvatoj al novoj uzantoj
       contact_information:
         email: Afero retpoŝto
         username: kontakto uzantnomo
       registrations:
         closed_message:
-          desc_html: Vidigis sur antaŭpaĝo kian registrado estas fermis. Vi povas uzi HTML
+          desc_html: Vidigis sur antaŭpaĝo kian registrado estas fermis. Vi povas
+            uzi HTML
           title: Fermis registrado mesaĝo
         deletion:
           desc_html: Permesi ĉiuj forigi ilian konton
@@ -198,7 +204,8 @@ eo:
       site_description_extended:
         title: Kutimo etendis informaĵo
       site_terms:
-        desc_html: Vi povas skribi via politika pri privateco reguloj de servo aŭ aliaj senpagaj. Vi povas uzi HTML
+        desc_html: Vi povas skribi via politika pri privateco reguloj de servo aŭ
+          aliaj senpagaj. Vi povas uzi HTML
         title: Kutimoj reguloj de servo
       site_title: Petskribo nomo
       thumbnail:
@@ -233,7 +240,7 @@ eo:
     title: Administri
   admin_mailer:
     new_report:
-      body: "%{reporter} raportis %{target}"
+      body: '%{reporter} raportis %{target}'
       subject: Nova raporto por %{instance} (#%{id})
   application_mailer:
     settings: 'Ŝanĝi la retpoŝt-mesaĝajn preferojn: %{link}'
@@ -268,18 +275,18 @@ eo:
     title: Sekvi %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}j"
-      almost_x_years: "%{count}j"
+      about_x_hours: '%{count}h'
+      about_x_months: '%{count}mo'
+      about_x_years: '%{count}j'
+      almost_x_years: '%{count}j'
       half_a_minute: Ĵus
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: '%{count}m'
       less_than_x_seconds: Ĵus
-      over_x_years: "%{count}j"
-      x_days: "%{count}t"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
+      over_x_years: '%{count}j'
+      x_days: '%{count}t'
+      x_minutes: '%{count}m'
+      x_months: '%{count}mo'
+      x_seconds: '%{count}s'
   exports:
     blocks: Via blokoj
     csv: CSV
@@ -296,51 +303,56 @@ eo:
     powered_by: povigita de %{link}
     save_changes: Konservi la ŝanĝojn
     validation_errors:
-      one: Io ne okazis senprobleme! Bonvolu konsulti la suban erar-raporton.
-      other: Io ne okazis senprobleme! Bonvolu konsulti la subajn %{count} erar-raportojn.
+      one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
+      other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   imports:
-    preface: Vi povas alporti kelkajn datumojn, kiel listojn de ĉiuj homoj kiujn vi sekvas aŭ blokas, al via konto de ĉi tiu aperaĵo, per dosiero elportita de alia aperaĵo.
+    preface: Vi povas alporti kelkajn datumojn, kiel listojn de ĉiuj homoj kiujn vi
+      sekvas aŭ blokas, al via konto de ĉi tiu aperaĵo, per dosiero elportita de alia
+      aperaĵo.
     success: Viaj datumoj estis senprobleme alportitaj kaj estos traktitaj kiel planite.
     types:
       blocking: Listo de blokitoj
       following: Listo de sekvatoj
       muting: Listo de silentoj
     upload: Alporti
-  landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la Fediverse."
-  landing_strip_signup_html: Se vi ne havas, vi povas <a href="%{sign_up_path}">membriĝi ĉi tie.</a>.
+  landing_strip_html: <strong>%{name}</strong> estas uzanto en %{link_to_root_path}.
+    Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la Fediverse.
+  landing_strip_signup_html: Se vi ne havas, vi povas <a href="%{sign_up_path}">membriĝi
+    ĉi tie.</a>.
   media_attachments:
     validations:
       images_and_video: Vi ne povas alligi video al statuson kiu jam havas bilojn
       too_many: Vi ne povas alligi pli ol 4 dosieroj
   notification_mailer:
     digest:
-      body: 'Jen eta resumo de tio, kio okazis en %{instance}, ekde kiam vi laste vizitis en %{since}:'
-      mention: "%{name} menciis vin en:"
+      body: 'Jen eta resumo de tio, kio okazis en %{instance}, ekde kiam vi laste
+        vizitis en %{since}:'
+      mention: '%{name} menciis vin en:'
       new_followers_summary:
         one: Vi ekhavis novan sekvanton! Jej!
         other: Vi ekhavis %{count} novajn sekvantojn! Mirinde!
       subject:
-        one: "1 nova sciigo ekde via lasta vizito \U0001F418"
-        other: "%{count} novaj sciigoj ekde via lasta vizito \U0001F418"
+        one: 1 nova sciigo ekde via lasta vizito 🐘
+        other: '%{count} novaj sciigoj ekde via lasta vizito 🐘'
     favourite:
-      body: "%{name} favoris vian mesaĝon:"
-      subject: "%{name} favoris vian mesaĝon"
+      body: '%{name} favoris vian mesaĝon:'
+      subject: '%{name} favoris vian mesaĝon'
     follow:
-      body: "%{name} eksekvis vin:"
-      subject: "%{name} eksekvis vin"
+      body: '%{name} eksekvis vin:'
+      subject: '%{name} eksekvis vin'
     follow_request:
-      body: "%{name} petis sekvi vin:"
-      subject: "%{name} petis sekvi vin"
+      body: '%{name} petis sekvi vin:'
+      subject: '%{name} petis sekvi vin'
     mention:
-      body: "%{name} menciis vin en:"
-      subject: "%{name} menciis vin"
+      body: '%{name} menciis vin en:'
+      subject: '%{name} menciis vin'
     reblog:
-      body: "%{name} diskonigis vian mesaĝon:"
-      subject: "%{name} diskonigis vian mesaĝon"
+      body: '%{name} diskonigis vian mesaĝon:'
+      subject: '%{name} diskonigis vian mesaĝon'
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -358,18 +370,18 @@ eo:
     web: Ret
   push_notifications:
     favourite:
-      title: "%{name} preferitis via statuso"
+      title: '%{name} preferitis via statuso'
     follow:
-      title: "%{name} estas sekvantas vin"
+      title: '%{name} estas sekvantas vin'
     group:
-      title: "%{count} sciigoj"
+      title: '%{count} sciigoj'
     mention:
       action_boost: Akceli
       action_expand: Pli
       action_favourite: Preferi
-      title: "%{name} menciitis vin"
+      title: '%{name} menciitis vin'
     reblog:
-      title: "%{name} akcelis via statuson"
+      title: '%{name} akcelis via statuson'
   remote_follow:
     acct: Enmetu vian uzantnomo@aperaĵo de kie vi volas sekvi tiun uzanton
     missing_resource: La URL de plusendado ne povis esti trovita
@@ -379,7 +391,7 @@ eo:
     activity: Lasta Aktiveco
     browser: Retumilo
     current_session: Aktuala sesio
-    description: "%{browser} sur %{platform}"
+    description: '%{browser} sur %{platform}'
     explanation: Ĉi tiuj estas la retumiloj nun ensalutinda en via Mastodon konton.
     ip: IP
     revoke: Revoki
@@ -421,15 +433,18 @@ eo:
     reblogged: diskonigis
     sensitive_content: Tikla enhavo
   terms:
-    title: "%{instance} Reguloj de servo kaj Politikaj pri privatecoj"
+    title: '%{instance} Reguloj de servo kaj Politikaj pri privatecoj'
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: '%b %d, %Y, %H:%M'
   two_factor_authentication:
-    description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong>, vi bezonos vian poŝtelefonon por ensaluti, ĉar ĝi kreos nombrojn, kiujn vi devos entajpi.
+    description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong>, vi bezonos
+      vian poŝtelefonon por ensaluti, ĉar ĝi kreos nombrojn, kiujn vi devos entajpi.
     disable: Malebligi
     enable: Ebligi
-    instructions_html: "<strong>Skanu tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo de via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos entajpi."
+    instructions_html: <strong>Skanu tiun QR-kodon per Google Authenticator aŭ per
+      simila aplikaĵo de via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn,
+      kiujn vi devos entajpi.
   users:
     invalid_email: La retpoŝt-adreso ne estas valida
     invalid_otp_token: La dufaktora aŭtentigila kodo ne estas valida
