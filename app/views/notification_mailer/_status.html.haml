@@ -1,6 +1,6 @@
 - i ||= 0
 
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
+%table.email-table{ cellspacing: 0, cellpadding: 0, dir: 'ltr' }
   %tbody
     %tr
       %td.email-body
@@ -24,7 +24,8 @@
                                       %bdi= display_name(status.account)
                                       = "@#{status.account.acct}"
 
-                              = Formatter.instance.format(status)
+                              %div{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
+                                = Formatter.instance.format(status)
 
                               %p.status-footer
                                 = link_to l(status.created_at), web_url("statuses/#{status.id}")
