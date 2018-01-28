@@ -1,21 +1,22 @@
+---
 ar:
   simple_form:
     hints:
       defaults:
+        avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 120x120px
         display_name:
           one: <span class="name-counter">1</span> حرف متبقي
+        header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 700x335px
         locked: يتطلب منك الموافقة يدويا على طلبات المتابعة
         note:
           one: <span class="note-counter">1</span> حرف متبقي
           other: <span class="note-counter">%{count}</span> حروف متبقية
-        avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 120x120px
-        header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 700x335px
       imports:
         data: ملف CSV تم تصديره من مثيل خادوم ماستدون آخر
-      user:
-        filtered_languages: سوف يتم تصفية و إخفاء اللغات المختارة من خيوطك العمومية
       sessions:
         otp: قم بإدخال رمز المصادقة بخطوتين مِن هاتفك أو إستخدم أحد رموز النفاذ الإحتياطية.
+      user:
+        filtered_languages: سوف يتم تصفية و إخفاء اللغات المختارة من خيوطك العمومية
     labels:
       defaults:
         avatar: الصورة الرمزية
@@ -34,19 +35,19 @@ ar:
         note: السيرة الذاتية
         otp_attempt: رمز المصادقة بخطوتين
         password: كلمة السر
+        setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
         setting_boost_modal: إظهار مربع حوار للتأكيد قبل ترقية أي تبويق
         setting_default_privacy: خصوصية المنشور
         setting_default_sensitive: إعتبر الوسائط دائما كمحتوى حساس
         setting_delete_modal: إظهار مربع حوار للتأكيد قبل حذف أي تبويق
         setting_noindex: عدم السماح لمحركات البحث بفهرسة ملفك الشخصي
+        setting_reduce_motion: تخفيض عدد الصور في الوسائط المتحركة
         setting_system_font_ui: إستخدم الخطوط الإفتراضية للنظام
         setting_theme: سمة الموقع
         setting_unfollow_modal: إظهار مربع حوار للتأكيد قبل إلغاء متابعة أي حساب
+        severity: القوّة
         type: نوع الإستيراد
         username: إسم المستخدم
-        setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
-        setting_reduce_motion: تخفيض عدد الصور في الوسائط المتحركة
-        severity: القوّة
       interactions:
         must_be_follower: حظر الإخطارات القادمة من الحسابات التي لا تتبعك
         must_be_following: حظر الإخطارات القادمة من الحسابات التي لا تتابعها
@@ -57,6 +58,6 @@ ar:
         follow: إبعث بريداً إلكترونيًا عندما يتبعك أحد
     'no': لا
     required:
-      mark: '*'
+      mark: "*"
       text: مطلوب
     'yes': نعم
