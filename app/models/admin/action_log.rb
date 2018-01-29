@@ -16,8 +16,8 @@
 class Admin::ActionLog < ApplicationRecord
   serialize :recorded_changes
 
-  belongs_to :account, required: true
-  belongs_to :target, required: true, polymorphic: true
+  belongs_to :account
+  belongs_to :target, polymorphic: true
 
   default_scope -> { order('id desc') }
 

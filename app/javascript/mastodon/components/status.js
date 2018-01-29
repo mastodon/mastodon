@@ -162,7 +162,7 @@ export default class Status extends ImmutablePureComponent {
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={display_name_html} /></a> }} />
+          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
         </div>
       );
 
@@ -178,14 +178,16 @@ export default class Status extends ImmutablePureComponent {
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
-            {Component => <Component
-              preview={video.get('preview_url')}
-              src={video.get('url')}
-              width={239}
-              height={110}
-              sensitive={status.get('sensitive')}
-              onOpenVideo={this.handleOpenVideo}
-            />}
+            {Component => (
+              <Component
+                preview={video.get('preview_url')}
+                src={video.get('url')}
+                width={239}
+                height={110}
+                sensitive={status.get('sensitive')}
+                onOpenVideo={this.handleOpenVideo}
+              />
+            )}
           </Bundle>
         );
       } else {

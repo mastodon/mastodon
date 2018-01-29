@@ -45,8 +45,8 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  belongs_to :account, inverse_of: :media_attachments
-  belongs_to :status,  inverse_of: :media_attachments
+  belongs_to :account, inverse_of: :media_attachments, optional: true
+  belongs_to :status,  inverse_of: :media_attachments, optional: true
 
   has_attached_file :file,
                     styles: ->(f) { file_styles f },

@@ -18,11 +18,32 @@ nl:
       unconfirmed: Je dient eerst jouw account te bevestigen.
     mailer:
       confirmation_instructions:
+        action: E-mailadres verifiëren
+        explanation: Je hebt een account op %{host} aangemaakt en met één klik kun je deze activeren. Wanneer jij dit account niet hebt aangemaakt, mag je deze e-mail negeren.
+        extra_html: Bekijk ook de <a href="%{terms_path}">regels van de Mastodonserver</a> en <a href="%{policy_path}">onze gebruikersvoorwaarden</a>.
         subject: 'Mastodon: E-mail bevestigen voor %{instance}'
+        title: E-mailadres verifiëren
+      email_changed:
+        explanation: 'Het e-mailadres van jouw account is gewijzigd naar:'
+        extra: Wanneer jij jouw e-mailadres niet hebt gewijzigd, heeft iemand zich waarschijnlijk toegang tot jouw account verschaft. Verander onmiddellijk jouw wachtwoord of neem contact op met de beheerder van jouw Mastodonserver wanneer je niet meer kunt inloggen.
+        subject: 'Mastodon: E-mailadres is veranderd'
+        title: Nieuw e-mailadres
       password_change:
+        explanation: Het wachtwoord van dit account is gewijzigd.
+        extra: Wanneer jij jouw wachtwoord niet hebt gewijzigd, heeft iemand zich waarschijnlijk toegang tot jouw account verschaft. Verander onmiddellijk jouw wachtwoord of neem contact op met de beheerder van jouw Mastodonserver wanneer je niet meer kunt inloggen.
         subject: 'Mastodon: Wachtwoord veranderd'
+        title: Wachtwoord gewijzigd
+      reconfirmation_instructions:
+        explanation: Bevestig jouw nieuw e-mailadres om deze te wijzigen.
+        extra: Wanneer jij deze wijziging niet hebt uitgevoerd, mag je deze e-mail negeren. Het e-mailadres van jouw Mastodonaccount wordt pas daadwerkelijk gewijzigd totdat je de link hierboven aanklikt.
+        subject: 'Mastodon: Bevestig het e-mailadres voor %{instance}'
+        title: E-mailadres verifiëren
       reset_password_instructions:
+        action: Wachtwoord wijzigen
+        explanation: Jij hebt een nieuw wachtwoord voor jouw account aangevraagd.
+        extra: Wanneer jij dit niet hebt aangevraagd, mag je deze e-mail negeren. Jouw wachtwoord wordt pas gewijzigd nadat je de link hierboven hebt aangeklikt en een nieuw wachtwoord aanmaakt.
         subject: 'Mastodon: Wachtwoord opnieuw instellen'
+        title: Wachtwoord opnieuw instellen
       unlock_instructions:
         subject: 'Mastodon: Instructies om opschorten account ongedaan te maken'
     omniauth_callbacks:
