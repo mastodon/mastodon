@@ -163,10 +163,15 @@ class Status < ApplicationRecord
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
-      where(visibility: [:public, :unlisted])
-      query = timeline_scope(local_only, false, false).tagged_with(tag)
+      if account
+        query = timeline_scope(local_only, false, false).tagged_with(tag)
 
-      apply_timeline_filters(query, account, local_only)
+        apply_timeline_filters(query, account, local_only)
+      else
+        query = timeline_scope(local_only, true, false).tagged_with(tag)
+
+        apply_timeline_filters(query, account, local_only)
+      end
     end
 
     def as_outbox_timeline(account)
