@@ -1,4 +1,3 @@
----
 ar:
   simple_form:
     hints:
@@ -6,11 +5,15 @@ ar:
         avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 120x120px
         display_name:
           one: <span class="name-counter">1</span> حرف متبقي
+          other: <span class="name-counter">%{count}</span> حروف متبقية
         header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 700x335px
         locked: يتطلب منك الموافقة يدويا على طلبات المتابعة
         note:
           one: <span class="note-counter">1</span> حرف متبقي
           other: <span class="note-counter">%{count}</span> حروف متبقية
+        setting_noindex: ذلك يؤثر على حالة ملفك الشخصي و صفحاتك
+        setting_theme: ذلك يؤثر على الشكل الذي سيبدو عليه ماستدون عندما تقوم بالدخول
+          مِن أي جهاز.
       imports:
         data: ملف CSV تم تصديره من مثيل خادوم ماستدون آخر
       sessions:
@@ -30,7 +33,7 @@ ar:
         filtered_languages: اللغات التي تم تصفيتها
         header: الرأسية
         locale: اللغة
-        locked: قفل الحساب
+        locked: تجميد الحساب
         new_password: كلمة السر الجديدة
         note: السيرة الذاتية
         otp_attempt: رمز المصادقة بخطوتين
@@ -48,16 +51,20 @@ ar:
         severity: القوّة
         type: نوع الإستيراد
         username: إسم المستخدم
+        max_uses: عدد مرات استخدام الرابط
       interactions:
-        must_be_follower: حظر الإخطارات القادمة من الحسابات التي لا تتبعك
+        must_be_follower: حظر الإخطارات القادمة من حسابات لا تتبعك
         must_be_following: حظر الإخطارات القادمة من الحسابات التي لا تتابعها
-        must_be_following_dm: حظر الإشعارات القادمة من الأشخاص الذين لا تتابعهم
+        must_be_following_dm: حظر الرسائل المباشرة القادمة من طرف أشخاص لا تتبعهم
       notification_emails:
         digest: إرسال ملخصات عبر البريد الإلكتروني
         favourite: إبعث بريداً إلكترونيًا عندما يُعجَب أحدهم بمنشورك
         follow: إبعث بريداً إلكترونيًا عندما يتبعك أحد
+        follow_request: إبعث بريدا إلكترونيا عندما يقوم أحدهم بإرسال طلب بالمتابعة
+        mention: إبعث بريداً إلكترونيًا عندما يُشير إليك أو يذكُرك أحدهم
+        reblog: إبعث بريداً إلكترونيًا عندما يقوم أحدهم بترقية منشورك
     'no': لا
     required:
-      mark: "*"
+      mark: '*'
       text: مطلوب
     'yes': نعم
