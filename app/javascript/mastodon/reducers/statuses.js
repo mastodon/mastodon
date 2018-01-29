@@ -1,4 +1,7 @@
 import {
+  COMPOSE_SUBMIT_SUCCESS,
+} from '../actions/compose';
+import {
   REBLOG_REQUEST,
   REBLOG_SUCCESS,
   REBLOG_FAIL,
@@ -88,6 +91,7 @@ const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
   switch(action.type) {
+  case COMPOSE_SUBMIT_SUCCESS:
   case TIMELINE_UPDATE:
   case STATUS_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:
