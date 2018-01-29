@@ -2,7 +2,7 @@
 
 module PremailerWebpackStrategy
   def load(url)
-    asset_host = ENV['ASSET_HOST'] || ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']
+    asset_host = ENV['CDN_HOST'] || ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']
 
     if Webpacker.dev_server.running?
       asset_host = "#{Webpacker.dev_server.protocol}://#{Webpacker.dev_server.host_with_port}"
