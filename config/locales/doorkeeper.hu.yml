@@ -1,10 +1,11 @@
----
 hu:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Név
         redirect_uri: Visszairányító URI
+        scopes: Hatáskör
+        website: Az alkalmazás weboldala
     errors:
       models:
         doorkeeper/application:
@@ -31,12 +32,17 @@ hu:
       help:
         native_redirect_uri: Használj %{native_redirect_uri} a helyi tesztekhez
         redirect_uri: Egy sor URI-nként
-        scopes: A nézeteket szóközzel válaszd el. Hagyd üresen az alapértelmezett nézetekhez.
+        scopes: A nézeteket szóközzel válaszd el. Hagyd üresen az alapértelmezett
+          nézetekhez.
       index:
         callback_url: Callback URL
         name: Név
         new: Új alkalmazás
         title: Alkalmazásod
+        application: Alkalmazás
+        delete: Eltávolítás
+        scopes: Hatáskör
+        show: Mutat
       new:
         title: Új alkalmazás
       show:
@@ -54,7 +60,7 @@ hu:
         title: Hiba történt
       new:
         able_to: Képes lesz
-        prompt: "%{client_name} nevű alkalmazás engedélyt kér a fiókodhoz való hozzáféréshez."
+        prompt: '%{client_name} nevű alkalmazás engedélyt kér a fiókodhoz való hozzáféréshez.'
         title: Engedély szükséges
       show:
         title: Copy this authorization code and paste it to the application.
@@ -66,25 +72,38 @@ hu:
       index:
         application: Alkalmazás
         created_at: Készítve
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: '%Y-%m-%d %H:%M:%S'
         title: Engedélyezett alkalmazásaid
+        scopes: Hatáskör
     errors:
       messages:
-        access_denied: Az erőforrás tulajdonosa vagy hitelesítő kiszolgálója megtakadta a kérést.
-        credential_flow_not_configured: Az erőforrás tulajdonos jelszóadatainak átadása megszakadt, mert a Doorkeeper.configure.resource_owner_from_credentials beállítatlan.
-        invalid_client: A kliens hitelesítése megszakadt, mert a ismeretlen a kliens, kliens nem küldött hitelesítést, vagy ismeretlen a kliens
-        invalid_grant: A biztosított hitelesítés érvénytelen, lejárt, visszavont, vagy nem egyezik a hitelesítéi kérésben használt URIval, vagy más kliensnek lett címezve.
+        access_denied: Az erőforrás tulajdonosa vagy hitelesítő kiszolgálója megtakadta
+          a kérést.
+        credential_flow_not_configured: Az erőforrás tulajdonos jelszóadatainak átadása
+          megszakadt, mert a Doorkeeper.configure.resource_owner_from_credentials
+          beállítatlan.
+        invalid_client: A kliens hitelesítése megszakadt, mert a ismeretlen a kliens,
+          kliens nem küldött hitelesítést, vagy ismeretlen a kliens
+        invalid_grant: A biztosított hitelesítés érvénytelen, lejárt, visszavont,
+          vagy nem egyezik a hitelesítéi kérésben használt URIval, vagy más kliensnek
+          lett címezve.
         invalid_redirect_uri: A redirect uri nem valós.
-        invalid_request: A kérésből hiányzik egy szükséges paraméter, nem támogatott paramétert tartalmaz, vagy egyéb módon hibás.
-        invalid_resource_owner: A biztosított erőforrás tulajdonosának hitelesítő adatai nem valósak, vagy az erőforrás tulajdonosa nem található.
+        invalid_request: A kérésből hiányzik egy szükséges paraméter, nem támogatott
+          paramétert tartalmaz, vagy egyéb módon hibás.
+        invalid_resource_owner: A biztosított erőforrás tulajdonosának hitelesítő
+          adatai nem valósak, vagy az erőforrás tulajdonosa nem található.
         invalid_scope: A kért nézet érvénytelen, ismeretlen, vagy hibás.
         invalid_token:
           expired: Hozzáférési kulcs lejárt
           revoked: Hozzáférési kulcs vissza lett vonva
           unknown: Hozzáférési kulcs érvénytelen
-        resource_owner_authenticator_not_configured: Erőforrás tulajdonos keresés megszakadt, ugyanis a Doorkeeper.configure.resource_owner_authenticator beállítatlan.
-        server_error: Hitelesítő szervert váratlan esemény érte, mely meggátolta a kérés teljesítését.
-        temporarily_unavailable: A hitelesítő szerver jelenleg nem tudja teljesíteni a kérést egy átmeneti túlterheltség vagy a kiszolgáló karbantartása miatt.
+        resource_owner_authenticator_not_configured: Erőforrás tulajdonos keresés
+          megszakadt, ugyanis a Doorkeeper.configure.resource_owner_authenticator
+          beállítatlan.
+        server_error: Hitelesítő szervert váratlan esemény érte, mely meggátolta a
+          kérés teljesítését.
+        temporarily_unavailable: A hitelesítő szerver jelenleg nem tudja teljesíteni
+          a kérést egy átmeneti túlterheltség vagy a kiszolgáló karbantartása miatt.
         unauthorized_client: A kliens nincs feljogosítva a kérés teljesítésére.
         unsupported_grant_type: A hitelesítés módja nem támogatott a hitelesítő kiszolgálón.
         unsupported_response_type: A hitelesítő kiszolgáló nem támogatja ezt a választ.
