@@ -54,6 +54,7 @@ const initialState = ImmutableMap({
   default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
+  last: null,
 });
 
 function statusToTextMentions(state, status) {
@@ -227,7 +228,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_CHANGE_REQUEST:
     return state.set('is_submitting', true);
   case COMPOSE_SUBMIT_SUCCESS:
-    return clearAll(state);
+    return clearAll(state).set('last', action.status.id);
   case COMPOSE_SUBMIT_FAIL:
   case COMPOSE_UPLOAD_CHANGE_FAIL:
     return state.set('is_submitting', false);

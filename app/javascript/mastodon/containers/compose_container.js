@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
 import { hydrateStore } from '../actions/store';
@@ -29,7 +30,9 @@ export default class TimelineContainer extends React.PureComponent {
     return (
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
-          <Compose />
+          <BrowserRouter basename='/web' forceRefresh>
+            <Compose />
+          </BrowserRouter>
         </Provider>
       </IntlProvider>
     );

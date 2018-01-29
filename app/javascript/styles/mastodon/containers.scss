@@ -45,7 +45,8 @@
 }
 
 .compose-standalone {
-  .compose-form {
+  .compose-form,
+  .compose-standalone__status {
     width: 400px;
     margin: 0 auto;
     padding: 20px 0;
@@ -57,6 +58,24 @@
       margin-top: 0;
       padding: 20px;
     }
+  }
+
+  .compose-standalone__status {
+    > h1,
+    > p {
+      color: $classic-primary-color;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    > h1 {
+      font-size: 16px;
+    }
+  }
+
+  .compose-standalone__status__button {
+    margin: 30px 0 4px;
+    width: 100%;
   }
 }
 
