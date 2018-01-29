@@ -559,14 +559,15 @@ oc:
     proceed: Enregistrar
     updated_msg: Vòstre paramètre de migracion es ben estat mes a jorn !
   moderation:
-    title: Moderation
+    title: Moderacion
   notification_mailer:
     digest:
-      body: 'Trobatz aquí un resumit de çò qu’avètz mancat dempuèi vòstra darrièra visita lo %{since}:'
+      action: Veire totas las notificacions
+      body: 'Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra darrièra visita lo %{since} :'
       mention: "%{name} vos a mencionat dins :"
       new_followers_summary:
-        one: Avètz un nòu seguidor ! Ouà !
-        other: Avètz %{count} nòus seguidors ! Qué crane !
+        one: Avètz un nòu seguidor dempuèi vòstra darrièra visita ! Ouà !
+        other: Avètz %{count} nòus seguidors dempuèi vòstra darrièra visita ! Qué crane !
       subject:
         one: "Una nòva notificacion dempuèi vòstra darrièra visita \U0001F418"
         other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
@@ -580,10 +581,12 @@ oc:
       subject: "%{name} vos sèc ara"
       title: Nòu seguidor
     follow_request:
+      action: Gerir las demandas d’abonament
       body: "%{name} a demandat a vos sègre"
       subject: 'Demanda d’abonament : %{name}'
       title: Novèla demanda d’abonament
     mention:
+      action: Respondre
       body: "%{name} vos a mencionat dins :"
       subject: "%{name} vos a mencionat"
       title: Novèla mencion

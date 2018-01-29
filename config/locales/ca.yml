@@ -2,9 +2,9 @@
 ca:
   about:
     about_hashtag_html: Aquests són toots públics etiquetats amb <strong>#%{hashtag}</strong>. Pots interactuar amb ells si tens un compte a qualsevol lloc del fediverse.
-    about_mastodon_html: Mastodon és un servidor de xarxa social <em>lliure i de codi obert</em>. Una alternativa <em>descentralitzada</em> a plataformes comercials, que evita el risc que una única companyia monopolitzi la teva comunicació. Qualsevol pot executar Mastodon i participar sense problemes en la <em>xarxa social</em>.
-    about_this: Quant a aquesta instància
-    closed_registrations: Els registres estan actualment tancats en aquesta instància.
+    about_mastodon_html: Mastodon és una xarxa social basada en protocols web oberts i en programari lliure i de codi obert. Està descentralitzat com el correu electrònic.
+    about_this: Quant a
+    closed_registrations: Actualment, el registre està tancat en aquesta instància. Malgrat això! Pots trobar una altra instància per fer-te un compte i obtenir accés a la mateixa xarxa des d'allà.
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
@@ -17,7 +17,7 @@ ca:
     features:
       humane_approach_body: Aprenent dels errors d'altres xarxes, Mastodon té com a objectiu fer eleccions ètiques de disseny per a combatre el mal ús de les xarxes socials.
       humane_approach_title: Un enfocament més humà
-      not_a_product_body: Mastodon no és una xarxa comercial. Sense publicitat, sense mineria de dades, sense jardins emmurallats. No hi ha autoritat central.
+      not_a_product_body: Mastodon no és una xarxa comercial. Sense publicitat, sense mineria de dades, sense jardins emmurallats. No hi ha cap autoritat central.
       not_a_product_title: Ets una persona, no un producte
       real_conversation_body: Amb 500 caràcters a la teva disposició i suport per a continguts granulars i avisos multimèdia, pots expressar-te de la manera que vulguis.
       real_conversation_title: Construït per a converses reals
@@ -58,7 +58,7 @@ ca:
       created_at: Data
       created_msg: La nota de moderació s'ha creat correctament!
       delete: Suprimeix
-      destroyed_msg: S'ha destruït la nota de moderació!
+      destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
       are_you_sure: Estàs segur?
       by_domain: Domini
@@ -71,7 +71,7 @@ ca:
       display_name: Nom de visualització
       domain: Domini
       edit: Editar
-      email: E-mail
+      email: Correu electrònic
       enable: Habilitar
       enabled: Habilitat
       feed_url: URL del feed
@@ -291,18 +291,18 @@ ca:
           desc_html: Permet que qualsevol pugui crear un compte
           title: Registre obert
       show_staff_badge:
-        desc_html: Mostra una insígnia de personal en una pàgina d'usuari
+        desc_html: Mostra una insígnia de personal en la pàgina d'usuari
         title: Mostra insígnia de personal
       site_description:
         desc_html: Paràgraf introductori a la pàgina principal i en etiquetes meta. Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
-        title: Descripció del lloc
+        title: Descripció de la instància
       site_description_extended:
         desc_html: Un bon lloc per al codi de conducta, regles, directrius i altres coses que distingeixen la vostra instància. Pots utilitzar etiquetes HTML
         title: Descripció ampliada del lloc
       site_terms:
         desc_html: Pots escriure la teva pròpia política de privadesa, els termes del servei o d'altres normes legals. Pots utilitzar etiquetes HTML
         title: Termes del servei personalitzats
-      site_title: Títol del lloc
+      site_title: Nom de la instància
       thumbnail:
         desc_html: S'utilitza per obtenir visualitzacions prèvies a través d'OpenGraph i API. Es recomana 1200x630px
         title: Miniatura de la Instància
@@ -357,7 +357,7 @@ ca:
     change_password: Canvia la contrasenya
     delete_account: Esborra el compte
     delete_account_html: Si vols esborrar el teu compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
-    didnt_get_confirmation: No ha rebut el correu de confirmació?
+    didnt_get_confirmation: No has rebut el correu de confirmació?
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar..
     login: Inicia sessió
