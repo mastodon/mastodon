@@ -8,7 +8,7 @@ cache:
   - public/packs-test
   - tmp/cache/babel-loader
 dist: trusty
-sudo: required
+sudo: false
 branches:
   only:
   - master
@@ -40,8 +40,8 @@ addons:
     - yarn
 
 rvm:
-  - 2.3.4
   - 2.4.2
+  - 2.5.0
 
 services:
   - redis-server
@@ -52,8 +52,7 @@ install:
   - yarn install
 
 before_script:
-  - bundle exec rake parallel:create parallel:load_schema parallel:prepare
-  - bundle exec rails assets:precompile
+  - ./bin/rails parallel:create parallel:load_schema parallel:prepare assets:precompile
   - ln -s /usr/bin/x86_64-linux-gnu-g++-6 "$HOME/g++"
 
 script:

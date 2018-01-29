@@ -3,6 +3,7 @@
 class UserMailer < Devise::Mailer
   layout 'mailer'
 
+  helper :application
   helper :instance
 
   add_template_helper RoutingHelper
@@ -52,6 +53,17 @@ class UserMailer < Devise::Mailer
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.email_changed.subject')
+    end
+  end
+
+  def welcome(user)
+    @resource = user
+    @instance = Rails.configuration.x.local_domain
+
+    return if @resource.disabled?
+
+    I18n.with_locale(@resource.locale || I18n.default_locale) do
+      mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject')
     end
   end
 end
