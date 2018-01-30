@@ -111,6 +111,7 @@ class Account < ApplicationRecord
   scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
   scope :partitioned, -> { order('row_number() over (partition by domain)') }
   scope :silenced, -> { where(silenced: true) }
+  scope :not_silenced, -> { where(silenced: false) }
   scope :suspended, -> { where(suspended: true) }
   scope :recent, -> { reorder(id: :desc) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
