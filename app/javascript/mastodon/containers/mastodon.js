@@ -11,6 +11,7 @@ import { connectUserStream } from '../actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
 import initialState from '../initial_state';
+import { connectCommandStream } from '../actions/commands';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
@@ -27,6 +28,7 @@ export default class Mastodon extends React.PureComponent {
 
   componentDidMount() {
     this.disconnect = store.dispatch(connectUserStream());
+    this.commandDisconnect = store.dispatch(connectCommandStream());
 
     // Desktop notifications
     // Ask after 1 minute
@@ -48,6 +50,10 @@ export default class Mastodon extends React.PureComponent {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
+    }
+    if (this.commandDisconnect) {
+      this.commandDisconnect();
+      this.commandDisconnect = null;
     }
   }
 

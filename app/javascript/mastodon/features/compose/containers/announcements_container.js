@@ -1,11 +1,16 @@
 import { connect } from 'react-redux';
 import Announcements from '../components/announcements';
+import { toggleAnnouncements } from '../../../actions/announcements';
 
-const mapStateToProps = state => {
-  return {
-    homeSize: state.getIn(['timelines', 'home', 'items']).size,
-    isLoading: state.getIn(['timelines', 'home', 'isLoading']),
-  };
-};
+const mapStateToProps = (state) => ({
+  visible: state.getIn(['announcements', 'visible']),
+  announcements: state.getIn(['announcements', 'list']),
+});
 
-export default connect(mapStateToProps)(Announcements);
+const mapDispatchToProps = (dispatch) => ({
+  onToggle () {
+    dispatch(toggleAnnouncements());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Announcements);

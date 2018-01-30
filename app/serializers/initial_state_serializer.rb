@@ -5,6 +5,7 @@ class InitialStateSerializer < ActiveModel::Serializer
              :media_attachments, :settings, :push_subscription
 
   has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
+  has_many :announcements, serializer: REST::AnnouncementSerializer
 
   def custom_emojis
     CustomEmoji.local.where(disabled: false)
@@ -57,5 +58,9 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def media_attachments
     { accept_content_types: MediaAttachment::IMAGE_FILE_EXTENSIONS + MediaAttachment::VIDEO_FILE_EXTENSIONS + MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES }
+  end
+
+  def announcements
+    Announcement.all
   end
 end

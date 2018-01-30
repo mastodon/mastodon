@@ -35,6 +35,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :admin, safe_join([fa_icon('cogs fw'), t('admin.title')]), proc { current_user.admin? ? edit_admin_settings_url : admin_custom_emojis_url }, if: proc { current_user.staff? } do |admin|
       admin.item :settings, safe_join([fa_icon('cogs fw'), t('admin.settings.title')]), edit_admin_settings_url, if: -> { current_user.admin? }
+      admin.item :announcements, safe_join([fa_icon('cogs fw'), t('admin.announcements.title')]), admin_announcements_url
       admin.item :custom_emojis, safe_join([fa_icon('smile-o fw'), t('admin.custom_emojis.title')]), admin_custom_emojis_url, highlights_on: %r{/admin/custom_emojis}
       admin.item :subscriptions, safe_join([fa_icon('paper-plane-o fw'), t('admin.subscriptions.title')]), admin_subscriptions_url, if: -> { current_user.admin? }
       admin.item :sidekiq, safe_join([fa_icon('diamond fw'), 'Sidekiq']), sidekiq_url, link_html: { target: 'sidekiq' }, if: -> { current_user.admin? }

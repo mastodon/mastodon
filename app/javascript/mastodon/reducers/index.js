@@ -17,6 +17,7 @@ import mutes from './mutes';
 import reports from './reports';
 import contexts from './contexts';
 import favourite_tags from './favourite_tags';
+import announcements from './announcements';
 import compose from './compose';
 import search from './search';
 import media_attachments from './media_attachments';
@@ -46,6 +47,7 @@ const reducers = {
   reports,
   contexts,
   favourite_tags,
+  announcements,
   compose,
   search,
   media_attachments,
