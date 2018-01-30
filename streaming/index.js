@@ -466,11 +466,23 @@ const startWorker = (workerId) => {
   });
 
   app.get('/api/v1/streaming/hashtag', (req, res) => {
-    streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    if (req.accountId) {
+      log.verbose(`timeline:hashtag:${req.query.tag.toLowerCase()}:authorized req.accountId: ${req.accountId}`);
+      streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}:authorized`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    }else{
+      log.verbose(`timeline:hashtag:${req.query.tag.toLowerCase()} req.accountId: ${req.accountId}`);
+      streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    }
   });
 
   app.get('/api/v1/streaming/hashtag/local', (req, res) => {
-    streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    if (req.accountId) {
+      log.verbose(`timeline:hashtag:${req.query.tag.toLowerCase()}:authorized:local req.accountId: ${req.accountId}`);
+      streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}:authorized:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    }else{
+      log.verbose(`timeline:hashtag:${req.query.tag.toLowerCase()}:local req.accountId: ${req.accountId}`);
+      streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    }
   });
 
   app.get('/api/v1/streaming/list', (req, res) => {
@@ -517,10 +529,22 @@ const startWorker = (workerId) => {
       streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     case 'hashtag':
-      streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      if (req.accountId) {
+        log.verbose(`timeline:hashtag:${location.query.tag.toLowerCase()}:authorized req.accountId: ${req.accountId}`);
+        streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}:authorized`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      }else{
+        log.verbose(`timeline:hashtag:${location.query.tag.toLowerCase()} req.accountId: ${req.accountId}`);
+        streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      }
       break;
     case 'hashtag:local':
-      streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      if (req.accountId) {
+        log.verbose(`timeline:hashtag:${location.query.tag.toLowerCase()}:authorized:local req.accountId: ${req.accountId}`);
+        streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}:authorized:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      }else{
+        log.verbose(`timeline:hashtag:${location.query.tag.toLowerCase()}:local req.accountId: ${req.accountId}`);
+        streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+      }
       break;
     case 'list':
       const listId = location.query.list;

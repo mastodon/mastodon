@@ -74,8 +74,17 @@ class FanOutOnWriteService < BaseService
     Rails.logger.debug "Delivering status #{status.id} to hashtags"
 
     status.tags.pluck(:name).each do |hashtag|
-      Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
-      Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if status.local?
+      if status.public_visibility?
+        Rails.logger.debug "Delivering public tagged status #{status.id}"
+        Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
+        Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if status.local?
+        Redis.current.publish("timeline:hashtag:#{hashtag}:authorized", @payload)
+        Redis.current.publish("timeline:hashtag:#{hashtag}:authorized:local", @payload) if status.local?
+      else
+        Rails.logger.debug "Delivering unlisted tagged status #{status.id}"
+        Redis.current.publish("timeline:hashtag:#{hashtag}:authorized", @payload)
+        Redis.current.publish("timeline:hashtag:#{hashtag}:authorized:local", @payload) if status.local?
+      end
     end
   end
 
