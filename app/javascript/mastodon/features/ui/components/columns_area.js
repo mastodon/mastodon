@@ -37,6 +37,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     columns: ImmutablePropTypes.list.isRequired,
+    isModalOpen: PropTypes.bool.isRequired,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
   };
@@ -144,7 +145,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   render () {
-    const { columns, children, singleColumn } = this.props;
+    const { columns, children, singleColumn, isModalOpen } = this.props;
     const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
@@ -159,7 +160,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
 
     return (
-      <div className='columns-area' ref={this.setRef}>
+      <div className={`columns-area ${ isModalOpen ? 'unscrollable' : '' }`} ref={this.setRef}>
         {columns.map(column => {
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
 

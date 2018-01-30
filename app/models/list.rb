@@ -15,7 +15,7 @@ class List < ApplicationRecord
 
   PER_ACCOUNT_LIMIT = 50
 
-  belongs_to :account
+  belongs_to :account, optional: true
 
   has_many :list_accounts, inverse_of: :list, dependent: :destroy
   has_many :accounts, through: :list_accounts

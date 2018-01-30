@@ -62,8 +62,17 @@ RSpec.describe NotifyService do
         is_expected.to_not change(Notification, :count)
       end
 
-      context 'if the message chain initiated by recipient' do
+      context 'if the message chain initiated by recipient, but is not direct message' do
         let(:reply_to) { Fabricate(:status, account: recipient) }
+        let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
+
+        it 'does not notify' do
+          is_expected.to_not change(Notification, :count)
+        end
+      end
+
+      context 'if the message chain initiated by recipient and is direct message' do
+        let(:reply_to) { Fabricate(:status, account: recipient, visibility: :direct) }
         let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
 
         it 'does notify' do

@@ -1419,6 +1419,10 @@
     color: $primary-text-color;
   }
 
+  a {
+    color: inherit;
+  }
+
   .permalink {
     text-decoration: none;
   }
@@ -1613,6 +1617,10 @@
   justify-content: flex-start;
   overflow-x: auto;
   position: relative;
+
+  &.unscrollable {
+    overflow-x: hidden;
+  }
 }
 
 @media screen and (min-width: 360px) {
@@ -1758,7 +1766,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: lighten($ui-base-color, 13%) url('../images/wave-drawer.png') no-repeat bottom / 100% auto;
+  background: lighten($ui-base-color, 13%) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>') no-repeat bottom / 100% auto;
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -1773,7 +1781,7 @@
   }
 
   > .mastodon {
-    background: url('../images/mastodon-ui.png') no-repeat left bottom / contain;
+    background: url('../images/elephant_ui_plane.svg') no-repeat left bottom / contain;
     flex: 1;
   }
 }
@@ -2062,6 +2070,17 @@
   margin-right: 5px;
 }
 
+.column-link__badge {
+  display: inline-block;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 19px;
+  font-weight: 500;
+  background: $ui-base-color;
+  padding: 4px 8px;
+  margin: -6px 10px;
+}
+
 .column-subheading {
   background: $ui-base-color;
   color: $ui-base-lighter-color;
@@ -2150,10 +2169,7 @@
   }
 }
 
-@import 'boost';
-
 .no-reduce-motion button.icon-button i.fa-retweet {
-
   background-position: 0 0;
   height: 19px;
   transition: background-position 0.9s steps(10);
@@ -2299,7 +2315,7 @@
   }
 }
 
-.missing-indicator {
+.regeneration-indicator {
   text-align: center;
   font-size: 16px;
   font-weight: 500;
@@ -2310,11 +2326,46 @@
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 
   & > div {
-    background: url('../images/mastodon-not-found.png') no-repeat center -50px;
-    padding-top: 210px;
     width: 100%;
+    background: transparent;
+    padding-top: 0;
+  }
+
+  &__figure {
+    background: url('../images/elephant_ui_working.svg') no-repeat center 0;
+    width: 100%;
+    height: 160px;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.missing-indicator {
+    padding-top: 20px + 48px;
+
+    .regeneration-indicator__figure {
+      background-image: url('../images/elephant_ui_disappointed.svg');
+    }
+  }
+
+  &__label {
+    margin-top: 200px;
+
+    strong {
+      display: block;
+      margin-bottom: 10px;
+      color: lighten($ui-base-color, 34%);
+    }
+
+    span {
+      font-size: 15px;
+      font-weight: 400;
+    }
   }
 }
 
@@ -2342,7 +2393,6 @@
 
 .column-header {
   display: flex;
-  padding: 15px;
   font-size: 16px;
   background: lighten($ui-base-color, 4%);
   flex: 0 0 auto;
@@ -2350,6 +2400,19 @@
   position: relative;
   z-index: 2;
   outline: 0;
+  overflow: hidden;
+
+  & > button {
+    display: flex;
+    flex: auto;
+    margin: 0;
+    border: none;
+    padding: 15px;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+  }
 
   &.active {
     box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
@@ -2369,7 +2432,6 @@
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin: -15px;
   margin-left: 0;
 }
 
@@ -2711,6 +2773,7 @@
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
+
   @supports(display: grid) { // hack to fix Chrome <57
     contain: strict;
   }
@@ -2732,7 +2795,6 @@
 @keyframes heartbeat {
   from {
     transform: scale(1);
-    transform-origin: center center;
     animation-timing-function: ease-out;
   }
 
@@ -2757,8 +2819,46 @@
   }
 }
 
-.pulse-loading {
+.no-reduce-motion .pulse-loading {
+  transform-origin: center center;
   animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@keyframes shake-bottom {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 100%;
+  }
+
+  10% {
+    transform: rotate(2deg);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: rotate(4deg);
+  }
+
+  80% {
+    transform: rotate(-2deg);
+  }
+
+  90% {
+    transform: rotate(2deg);
+  }
+}
+
+.no-reduce-motion .shake-bottom {
+  transform-origin: 50% 100%;
+  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2s 2 both;
 }
 
 .emoji-picker-dropdown__menu {
@@ -3266,13 +3366,12 @@
   height: 80vh;
   width: 80vw;
   max-width: 520px;
-  max-height: 420px;
+  max-height: 470px;
 
   .react-swipeable-view-container > div {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 25px;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -3345,23 +3444,32 @@
   .onboarding-modal__nav,
   .error-modal__nav {
     color: darken($ui-secondary-color, 34%);
-    background-color: transparent;
     border: 0;
     font-size: 14px;
     font-weight: 500;
-    padding: 0;
+    padding: 10px 25px;
     line-height: inherit;
     height: auto;
+    margin: -10px;
+    border-radius: 4px;
+    background-color: transparent;
 
     &:hover,
     &:focus,
     &:active {
       color: darken($ui-secondary-color, 38%);
+      background-color: darken($ui-secondary-color, 16%);
     }
 
     &.onboarding-modal__done,
     &.onboarding-modal__next {
-      color: $ui-highlight-color;
+      color: $ui-base-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: darken($ui-base-color, 4%);
+      }
     }
   }
 }
@@ -3397,6 +3505,8 @@
 
 .onboarding-modal__page__wrapper {
   pointer-events: none;
+  padding: 25px;
+  padding-bottom: 0;
 
   &.onboarding-modal__page__wrapper--active {
     pointer-events: auto;
@@ -3422,6 +3532,10 @@
     &:active {
       color: lighten($ui-highlight-color, 4%);
     }
+  }
+
+  .navigation-bar a {
+    color: inherit;
   }
 
   p {
@@ -3451,29 +3565,56 @@
   }
 }
 
+.onboarding-modal__page__wrapper-0 {
+  background: url('../images/elephant_ui_greeting.svg') no-repeat left bottom / auto 250px;
+  height: 100%;
+  padding: 0;
+}
+
 .onboarding-modal__page-one {
-  display: flex;
-  align-items: center;
-}
+  &__lead {
+    padding: 65px;
+    padding-top: 45px;
+    padding-bottom: 0;
+    margin-bottom: 10px;
 
-.onboarding-modal__page-one__elephant-friend {
-  background: url('../images/elephant-friend-1.png') no-repeat center center / contain;
-  width: 155px;
-  height: 193px;
-  margin-right: 15px;
-}
+    h1 {
+      font-size: 26px;
+      line-height: 36px;
+      margin-bottom: 8px;
+    }
 
-@media screen and (max-width: 400px) {
-  .onboarding-modal__page-one {
-    flex-direction: column;
-    align-items: normal;
+    p {
+      margin-bottom: 0;
+    }
   }
 
-  .onboarding-modal__page-one__elephant-friend {
-    width: 100%;
-    height: 30vh;
-    max-height: 160px;
-    margin-bottom: 5vh;
+  &__extra {
+    padding-right: 65px;
+    padding-left: 185px;
+    text-align: center;
+  }
+}
+
+.display-case {
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 15px;
+
+  &__label {
+    font-weight: 500;
+    color: $ui-base-color;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  &__case {
+    background: $ui-base-color;
+    color: $ui-secondary-color;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 4px;
   }
 }
 
@@ -3561,16 +3702,6 @@
     padding: 5px;
     font-size: 12px;
   }
-}
-
-.onboarding-modal__image {
-  border-radius: 8px;
-  width: 70vw;
-  max-width: 450px;
-  max-height: auto;
-  display: block;
-  margin: auto;
-  margin-bottom: 20px;
 }
 
 .onboard-sliders {

@@ -3,7 +3,7 @@
 class RegenerationWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull', backtrace: true, unique: :until_executed
+  sidekiq_options unique: :until_executed
 
   def perform(account_id, _ = :home)
     account = Account.find(account_id)
