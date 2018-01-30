@@ -63,6 +63,7 @@ services:
       - db
       - redis
     volumes:
+      - ./public/packs:/mastodon/public/packs
       - ./public/system:/mastodon/public/system
 
   sidekiq_push_a:
@@ -99,5 +100,4 @@ services:
       - db
       - redis
     volumes:
-      - ./public/packs:/mastodon/public/packs
       - ./public/system:/mastodon/public/system
