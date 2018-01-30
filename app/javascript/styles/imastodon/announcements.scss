@@ -1,12 +1,11 @@
 .announcements {
-    padding: 5px;
-
     li {
         display: flex;
         padding: 10px;
         color: $ui-base-color;
         background: darken($white, 10%);
         border-radius: 4px;
+        margin: 5px;
 
         & + li {
         margin-top: 10px;
