@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106000232) do
+ActiveRecord::Schema.define(version: 20180122110118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,22 @@ ActiveRecord::Schema.define(version: 20180106000232) do
     t.index ["target_type", "target_id"], name: "index_admin_action_logs_on_target_type_and_target_id"
   end
 
+  create_table "announcement_links", force: :cascade do |t|
+    t.bigint "announcement_id", null: false
+    t.string "text", default: "", null: false
+    t.string "url", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["announcement_id"], name: "index_announcement_links_on_announcement_id"
+  end
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "body", default: "", null: false
+    t.integer "order", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -146,11 +162,11 @@ ActiveRecord::Schema.define(version: 20180106000232) do
   end
 
   create_table "favourite_tags", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "visibility", default: 0, null: false
-    t.bigint "account_id", null: false
-    t.bigint "tag_id", null: false
     t.index ["account_id", "tag_id"], name: "index_favourite_tags_on_account_id_and_tag_id", unique: true
   end
 
@@ -525,6 +541,7 @@ ActiveRecord::Schema.define(version: 20180106000232) do
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
   add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
+  add_foreign_key "announcement_links", "announcements", on_delete: :cascade
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade

@@ -9,7 +9,7 @@ const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\S+)/i;
 
 const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
-  hashtagWarning: ['private','direct'].includes(state.getIn(['compose', 'privacy'])) && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
+  hashtagWarning: ['private', 'direct'].includes(state.getIn(['compose', 'privacy'])) && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
 });
 
 const WarningWrapper = ({ needsLockWarning, hashtagWarning }) => {

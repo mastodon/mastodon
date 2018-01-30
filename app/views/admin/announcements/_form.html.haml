@@ -1,0 +1,16 @@
+= simple_form_for [:admin, @announcement] do |f|
+  = render 'shared/error_messages', object: @announcement
+
+  = f.input :body, placeholder: t('admin.announcements.body'), as: :text, hint: t('.hint.body'), input_html: { rows: 4 }
+  = f.input :order, wrapper: :with_label, as: :integer, hint: t('.hint.order'), label: t('admin.announcements.order')
+
+  %h3= t('admin.announcements.links')
+  = f.fields_for :links do |ff|
+    .fields-group
+      = ff.input :id, as: :hidden
+      = ff.input :text, wrapper: :with_label, as: :string, label: t('.links.text')
+      = ff.input :url, wrapper: :with_label, as: :string, label: t('.links.url')
+    %hr
+
+  .actions
+    = f.button :button, submit, type: :submit
