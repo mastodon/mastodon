@@ -1,16 +1,23 @@
 # frozen_string_literal: true
 
-def render_static_page(action, dest:, **opts)
+def render_static_page(dest)
   I18n.with_locale(ENV['DEFAULT_LOCALE'] || I18n.default_locale) do
-    html = ApplicationController.render(action, opts)
-    File.write(dest, html)
+    File.write(dest, yield)
   end
 end
 
 namespace :assets do
   desc 'Generate static pages'
   task generate_static_pages: :environment do
-    render_static_page 'errors/500', layout: 'error', dest: Rails.root.join('public', 'assets', '500.html')
+    class StaticController < ApplicationController
+      def current_user
+        nil
+      end
+    end
+
+    render_static_page Rails.root.join('public', 'assets', '500.html') do
+      StaticController.render 'errors/500', layout: 'error'
+    end
   end
 end
 

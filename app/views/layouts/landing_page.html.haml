@@ -1,0 +1,25 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+
+- content_for :content, flush: true do
+  .header-wrapper.compact
+    .header
+      .container.links
+        .brand
+          = link_to root_url do
+            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+
+        %ul.nav
+          - if content_for? :nav
+            = yield :nav
+          - else
+            %li
+              = link_to t('landing_page.home'), root_url, class: 'webapp-btn'
+            %li= link_to t('landing_page.about_this'), about_more_path
+
+      = yield :header
+
+  .content
+    = content_for?(:content) ? yield(:content) : yield
+
+= render template: 'layouts/application', locals: { body_classes: (@body_classes || '') + ' landing-page' }

@@ -2,42 +2,37 @@
   = site_hostname
 
 - content_for :header_tags do
-  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
   = render partial: 'shared/og'
 
-.landing-page
-  .header-wrapper.compact
-    .header
-      = render 'links'
+- content_for :header do
+  .container.hero
+    .heading
+      %h3= t('about.description_headline', domain: site_hostname)
+      %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
-      .container.hero
-        .heading
-          %h3= t('about.description_headline', domain: site_hostname)
-          %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+.information-board
+  .container
+    .information-board-sections
+      .section
+        %span= t 'about.user_count_before'
+        %strong= number_with_delimiter @instance_presenter.user_count
+        %span= t 'about.user_count_after'
+      .section
+        %span= t 'about.status_count_before'
+        %strong= number_with_delimiter @instance_presenter.status_count
+        %span= t 'about.status_count_after'
+      .section
+        %span= t 'about.domain_count_before'
+        %strong= number_with_delimiter @instance_presenter.domain_count
+        %span= t 'about.domain_count_after'
+    = render 'contact', contact: @instance_presenter
 
-  .information-board
-    .container
-      .information-board-sections
-        .section
-          %span= t 'about.user_count_before'
-          %strong= number_with_delimiter @instance_presenter.user_count
-          %span= t 'about.user_count_after'
-        .section
-          %span= t 'about.status_count_before'
-          %strong= number_with_delimiter @instance_presenter.status_count
-          %span= t 'about.status_count_after'
-        .section
-          %span= t 'about.domain_count_before'
-          %strong= number_with_delimiter @instance_presenter.domain_count
-          %span= t 'about.domain_count_after'
-      = render 'contact', contact: @instance_presenter
+.extended-description
+  .container
+    = @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
 
-  .extended-description
-    .container
-      = @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
-
-  .footer-links
-    .container
-      %p
-        = link_to t('about.source_code'), @instance_presenter.source_url
-        = " (#{@instance_presenter.version_number})"
+.footer-links
+  .container
+    %p
+      = link_to t('about.source_code'), @instance_presenter.source_url
+      = " (#{@instance_presenter.version_number})"

@@ -4,6 +4,8 @@ class AboutController < ApplicationController
   before_action :set_body_classes
   before_action :set_instance_presenter, only: [:show, :more, :terms]
 
+  layout 'landing_page'
+
   def show
     serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
     @initial_state_json   = serializable_resource.to_json
