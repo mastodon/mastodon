@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
 import Link from 'react-router-dom/Link';
-import IconButton from '../../../components/announcement_icon_button';
-import Motion from 'react-motion/lib/Motion';
-import spring from 'react-motion/lib/spring';
 
 export default class Announcements extends React.PureComponent {
 
@@ -23,7 +20,7 @@ export default class Announcements extends React.PureComponent {
       <div className='announcements'>
         <div className='compose__extra__header'>
           <i className='fa fa-bell' />
-            <FormattedMessage id='announcement.title' defaultMessage='information' />
+          <FormattedMessage id='announcement.title' defaultMessage='information' />
           <button className='compose__extra__header__icon' onClick={onToggle} >
             <i className={caretClass} />
           </button>

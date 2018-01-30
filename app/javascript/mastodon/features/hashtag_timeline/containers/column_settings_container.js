@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
   addFavouriteTags (tag, visibility) {
     dispatch(addFavouriteTags(tag, visibility));
   },
-  
+
   removeFavouriteTags (tag) {
     dispatch(removeFavouriteTags(tag));
   },
