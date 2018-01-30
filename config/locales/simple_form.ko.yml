@@ -3,8 +3,8 @@ ko:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF 혹은 JPG. 최대 2MB. 120x120px로 다운스케일 됨
-        digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기.
+        avatar: PNG, GIF 혹은 JPG. 최대 2MB. 120x120px로 다운스케일 될 것임
+        digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
         display_name:
           one: <span class="name-counter">1</span> 글자 남음
           other: <span class="name-counter">%{count}</span> 글자 남음
@@ -18,9 +18,9 @@ ko:
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
-        otp: 2단계 인증 코드를 휴대전화를 보고 입력하거나, 복구 코드 중 하나를 사용
+        otp: 2단계 인증 코드를 휴대전화를 보고 입력하거나, 복구 코드 중 하나를 사용하세요.
       user:
-        filtered_languages: 선택된 언어가 공개 타임라인에서 제외 될 것입니다.
+        filtered_languages: 선택된 언어가 공개 타임라인에서 제외 될 것입니다
     labels:
       defaults:
         avatar: 아바타

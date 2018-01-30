@@ -17,11 +17,32 @@
       unconfirmed: Du må bekrefte e-postadressen din før du kan fortsette.
     mailer:
       confirmation_instructions:
+        action: Bekreft e-postadresse
+        explanation: Du har laget en konto på %{host} med denne e-postadressen. Du er ett klikk unna å aktivere den. Hvis dette ikke var deg, vennligst se bort fra denne e-posten.
+        extra_html: Vennligst også sjekk ut <a href="%{terms_path}">instansens regler </a> og <a href="%{policy_path}">våre bruksvilkår</a>.
         subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse'
+        title: Bekreft e-postadresse
+      email_changed:
+        explanation: 'E-postadressen til din konto endres til:'
+        extra: Hvis du ikke endret din e-postadresse, er det sannsynlig at noen har fått tilgang til din konto. Vennligst endre ditt passord umiddelbart eller kontakt instansens administrator dersom du er utestengt fra kontoen din.
+        subject: 'Mastadon: E-postadresse endret'
+        title: Ny e-postadresse
       password_change:
+        explanation: Passordet til din konto har blitt endret.
+        extra: Hvis du ikke endret ditt passord, er det sannsynlig at noen har fått tilgang til din konto. Vennligst endre ditt passord umiddelbart eller kontakt instansens administrator dersom du er utestengt fra kontoen din.
         subject: 'Mastodon: Passord endret'
+        title: Passord endret
+      reconfirmation_instructions:
+        explanation: Din nye e-postadresse må bekreftes for å bli endret.
+        extra: Se bort fra denne e-posten dersom du ikke gjorde denne endringen. E-postadressen for Mastadon-kontoen blir ikke endret før du trykker på lenken over.
+        subject: 'Mastodon: Bekreft e-postadresse for %{instance}'
+        title: Bekreft e-postadresse
       reset_password_instructions:
+        action: Endre passord
+        explanation: Du ba om et nytt passord for din konto.
+        extra: Se bort fra denne e-posten dersom du ikke ba om dette. Ditt passord blir ikke endret før du trykker på lenken over og lager et nytt.
         subject: 'Mastodon: Hvordan nullstille passord'
+        title: Nullstill passord
       unlock_instructions:
         subject: 'Mastodon: Instruksjoner for å gjenåpne konto'
     omniauth_callbacks:

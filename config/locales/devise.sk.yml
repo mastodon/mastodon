@@ -6,17 +6,18 @@ sk:
       send_instructions: O niekoľko minút obdržíte email s inštrukciami ako potvrdiť váš účet.
       send_paranoid_instructions: Ak sa váš email nachádza v našej databáze, obdržíte email s inštrukciami ako potvrdiť váš účet.
     failure:
-      already_authenticated: Už ste prihlásený.
+      already_authenticated: Už ste prihlásený/á.
       inactive: Váš účet ešte nebol aktivovaný.
       invalid: Nesprávny %{authentication_keys} alebo heslo.
       last_attempt: Máte posledný pokus pred zamknutím vašeho účtu.
       locked: Váš účet je zamknutý.
       not_found_in_database: Nesprávny %{authentication_keys} alebo heslo.
-      timeout: Vaša session vypršala. Na pokračovanie sa prosím znovu prihláste.
+      timeout: Vaša aktívna sezóna vypršala. Pre pokračovanie sa prosím znovu prihláste.
       unauthenticated: Pred pokračovaním sa musíte zaregistrovať alebo prihlásiť.
       unconfirmed: Pred pokračovaním musíte potvrdiť svoj email.
     mailer:
       confirmation_instructions:
+        action: Potvrite emailovú adresu
         subject: 'Mastodon: Potvrdzovacie inštrukcie pre %{instance}'
       password_change:
         subject: 'Mastodon: Heslo bolo zmenené'
@@ -29,12 +30,12 @@ sk:
       success: Úspešne autentifikovaný z účtu %{kind}.
     passwords:
       no_token: Túto stránku nemôžete navštíviť pokiaľ neprichádzate z emailu s inštrukciami na obnovu hesla. Pokiaľ prichádzate z tohto emailu, prosím uistite sa že ste použili celú URL z emailu.
-      send_instructions: Ak zadaný email existuje v našej databáze tak o niekoľko minút obdržíte email s inštrukciami ako nastaviť nové heslo.
-      send_paranoid_instructions: Ak zadaný email existuje v našej databáze, obdržíte odkaz na obnovu hesla na svoj email.
-      updated: Vaše heslo bolo úspešne zmenené. Teraz ste prihlásený.
+      send_instructions: Ak zadaný email existuje v našej databázi, tak o niekoľko minút obdržíte email s inštrukciami ako nastaviť nové heslo.
+      send_paranoid_instructions: Ak zadaný email existuje v našej databázi, zachvíľu obdržíte odkaz na obnovu hesla na svoj email. Skontrolujte aj spam ak tento email nevidíte.
+      updated: Vaše heslo bolo úspešne zmenené. Teraz ste prihlásený/á.
       updated_not_active: Vaše heslo bolo úspešne zmenené.
     registrations:
-      destroyed: Dovidenia! Váš účet bol úspešne zrušený. Dúfame že sa opäť niekedy zastavíte.
+      destroyed: Dovidenia! Váš účet bol úspešne zrušený. Dúfame ale, že sa tu opäť niekedy zastavíte.
       signed_up: Vitajte! Vaša registrácia bola úspešná.
       signed_up_but_inactive: Registrácia bola úspešná. Avšak, účet ešte nebol aktivovaný, takže vás nemôžeme prihlásiť.
       signed_up_but_locked: Prihlasovanie úspešné. Avšak, účet je zablokovaný, takže vás nemôžeme prihlásiť.

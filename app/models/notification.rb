@@ -26,15 +26,15 @@ class Notification < ApplicationRecord
 
   STATUS_INCLUDES = [:account, :application, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :application, :media_attachments, :tags, mentions: :account]].freeze
 
-  belongs_to :account
-  belongs_to :from_account, class_name: 'Account'
-  belongs_to :activity, polymorphic: true
+  belongs_to :account, optional: true
+  belongs_to :from_account, class_name: 'Account', optional: true
+  belongs_to :activity, polymorphic: true, optional: true
 
-  belongs_to :mention,        foreign_type: 'Mention',       foreign_key: 'activity_id'
-  belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id'
-  belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id'
-  belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id'
-  belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id'
+  belongs_to :mention,        foreign_type: 'Mention',       foreign_key: 'activity_id', optional: true
+  belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id', optional: true
+  belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id', optional: true
+  belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id', optional: true
+  belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id', optional: true
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
   validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }

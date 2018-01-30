@@ -143,6 +143,7 @@ pt:
         demote_user: "%{name} rebaixou o utilizador %{target}"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block: "%{name} adicionou na lista branca o domínio de correio electrónico %{target}"
+        destroy_status: "%{name} removeu o publicação feita por %{target}"
         disable_2fa_user: "%{name} desactivou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji: "%{name} desabilitou o emoji %{target}"
         disable_user: "%{name} desativou o acesso para o utilizador %{target}"
@@ -248,6 +249,9 @@ pt:
       delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resolvido
+      nsfw:
+        'false': Mostrar imagens/vídeos
+        'true': Esconder imagens/vídeos
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
       reported_account: Conta denunciada
@@ -261,17 +265,25 @@ pt:
       unresolved: Por resolver
       view: Ver
     settings:
+      activity_api_enabled:
+        desc_html: Contagem semanais de publicações locais, utilizadores activos e novos registos
+        title: Publicar estatísticas agregadas sobre atividade dos utilizadores
       bootstrap_timeline_accounts:
+        desc_html: Separa os nomes de utilizadores por vírgulas. Funciona apenas com contas locais e desbloqueadas. O padrão quando vazio são todos os administradores locais.
         title: Seguidores predefinidos para novas contas
       contact_information:
         email: Inserir um endereço de email para tornar público
         username: Insira um nome de utilizador
+      peers_api_enabled:
+        desc_html: Nomes de domínio que esta instância encontrou no fediverso
+        title: Publicar lista de instâncias descobertas
       registrations:
         closed_message:
           desc_html: Mostrar na página inicial quando registos estão encerrados<br/>Podes usar tags HTML
           title: Mensagem de registos encerrados
         deletion:
           desc_html: Permite a qualquer um apagar a conta
+          title: Permitir eliminar contas
         min_invite_role:
           disabled: Ninguém
           title: Permitir convites de
@@ -326,9 +338,12 @@ pt:
       body: "%{reporter} relatou %{target}"
       subject: Novo relatório sobre %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
     settings: 'Alterar preferências de email: %{link}'
     view: 'Ver:'
+    view_profile: Ver perfil
+    view_status: Ver publicação
   applications:
     created: Aplicação criada com sucesso
     destroyed: Aplicação eliminada com sucesso
@@ -361,6 +376,7 @@ pt:
     post_follow:
       close: Ou podes simplesmente fechar esta janela.
       return: Voltar ao perfil do utilizador
+      web: Voltar à página inicial
     title: Seguir %{acct}
   datetime:
     distance_in_words:
@@ -393,6 +409,7 @@ pt:
     '422':
       content: "A verificação de segurança falhou. \nDesativaste o uso de cookies?"
       title: A verificação de segurança falhou
+    '429': Desacelerado
     '500':
       content: Desculpe, mas algo correu mal.
       title: Esta página não está correta
@@ -469,29 +486,38 @@ pt:
     title: Moderação
   notification_mailer:
     digest:
-      body: 'Aqui tens um breve resumo do que tens perdido em %{instance} desde o  último acesso em %{since}:'
+      action: Ver todas as notificações
+      body: Aqui tens um breve resumo do que perdeste desde o último acesso a %{since}
       mention: "%{name} mencionou-te em:"
       new_followers_summary:
-        one: Boa! Tens um novo seguidor!
+        one: Tens um novo seguidor! Boa!
         other: Tens %{count} novos seguidores! Fantástico!
       subject:
         one: "1 nova notificação desde o último acesso \U0001F418"
         other: "%{count} novas notificações desde o  último acesso \U0001F418"
+      title: Enquanto estiveste ausente…
     favourite:
       body: 'O teu post foi adicionado aos favoritos por %{name}:'
       subject: "%{name} adicionou o teu post aos favoritos"
+      title: Novo favorito
     follow:
       body: "%{name} é teu seguidor!"
       subject: "%{name} começou a seguir-te"
+      title: Novo seguidor
     follow_request:
+      action: Gerir pedidos de seguidores
       body: "%{name} solicitou autorização para te seguir"
       subject: 'Seguidor pendente: %{name}'
+      title: Nova solicitação de seguidor
     mention:
+      action: Responder
       body: 'Foste mencionado por %{name}:'
       subject: "%{name} mencionou-te"
+      title: Nova menção
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
       subject: "%{name} partilhou o teu post"
+      title: Nova partilha
   number:
     human:
       decimal_units:
@@ -539,6 +565,7 @@ pt:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navegador desconhecido
       ie: Internet Explorer
@@ -589,8 +616,10 @@ pt:
     open_in_web: Abrir no browser
     over_character_limit: limite de caracter excedeu %{max}
     pin_errors:
+      limit: Já fixaste a quantidade máxima de publicações
       ownership: Posts de outras pessoas não podem ser fixados
       private: Post não-público não pode ser fixado
+      reblog: Não podes fixar uma partilha
     show_more: Mostrar mais
     title: '%{name}: "%{quote}"'
     visibilities:

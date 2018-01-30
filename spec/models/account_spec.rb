@@ -185,8 +185,8 @@ RSpec.describe Account, type: :model do
         expect(account.refresh!).to be_nil
       end
 
-      it 'calls not ResolveRemoteAccountService#call' do
-        expect_any_instance_of(ResolveRemoteAccountService).not_to receive(:call).with(acct)
+      it 'calls not ResolveAccountService#call' do
+        expect_any_instance_of(ResolveAccountService).not_to receive(:call).with(acct)
         account.refresh!
       end
     end
@@ -194,8 +194,8 @@ RSpec.describe Account, type: :model do
     context 'domain is present' do
       let(:domain) { 'example.com' }
 
-      it 'calls ResolveRemoteAccountService#call' do
-        expect_any_instance_of(ResolveRemoteAccountService).to receive(:call).with(acct).once
+      it 'calls ResolveAccountService#call' do
+        expect_any_instance_of(ResolveAccountService).to receive(:call).with(acct).once
         account.refresh!
       end
     end

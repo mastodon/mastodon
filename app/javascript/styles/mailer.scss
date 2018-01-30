@@ -17,7 +17,7 @@ body {
   -ms-text-size-adjust: 100%;
 }
 
-.email_body {
+.email-body {
   td,
   div,
   a,
@@ -233,6 +233,12 @@ h5 {
   line-height: 21px;
   font-weight: 700;
   color: lighten($ui-base-color, 34%);
+}
+
+.input-cell {
+  h5 {
+    margin-top: 4px;
+  }
 }
 
 .input {
@@ -510,5 +516,31 @@ ul {
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   body {
     min-height: 1024px !important;
+  }
+}
+
+@media (max-width: 697px) {
+  .email-container,
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6 {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .email-start {
+    padding-top: 16px !important;
+  }
+
+  .email-end {
+    padding-bottom: 16px !important;
+  }
+
+  .padded {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }

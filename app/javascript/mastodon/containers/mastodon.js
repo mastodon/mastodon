@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
+import { showOnboardingOnce } from '../actions/onboarding';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
 import UI from '../features/ui';
@@ -39,6 +40,8 @@ export default class Mastodon extends React.PureComponent {
       const handlerUrl = window.location.protocol + '//' + window.location.host + '/intent?uri=%s';
       window.setTimeout(() => navigator.registerProtocolHandler('web+mastodon', handlerUrl, 'Mastodon'), 5 * 60 * 1000);
     }
+
+    store.dispatch(showOnboardingOnce());
   }
 
   componentWillUnmount () {

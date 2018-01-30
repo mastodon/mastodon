@@ -116,6 +116,7 @@ es:
       roles:
         admin: Administrador
         moderator: Moderador
+        staff: Personal
         user: Usuario
       salmon_url: URL de salmón
       search: Buscar
@@ -160,6 +161,7 @@ es:
         update_status: "%{name} actualizó el estado de %{target}"
       title: Log de auditoría
     custom_emojis:
+      by_domain: Dominio
       copied_msg: Copia local del emoji creada con éxito
       copy: Copiar
       copy_failed_msg: No se pudo realizar una copia local de ese emoji
@@ -263,12 +265,18 @@ es:
       unresolved: No resuelto
       view: Ver
     settings:
+      activity_api_enabled:
+        desc_html: Conteo de estados publicados localmente, usuarios activos, y nuevos registros en  periodos semanales
+        title: Publicar estadísticas locales acerca de actividad de usuario
       bootstrap_timeline_accounts:
         desc_html: Separa con comas los nombres de usuario. Solo funcionará para cuentas locales desbloqueadas. Si se deja vacío, se tomará como valor por defecto a todos los administradores locales.
         title: Seguimientos predeterminados para usuarios nuevos
       contact_information:
         email: Correo de trabajo
         username: Nombre de usuario
+      peers_api_enabled:
+        desc_html: Nombres de dominio que esta instancia ha encontrado en el fediverso
+        title: Publicar lista de instancias descubiertas
       registrations:
         closed_message:
           desc_html: Se muestra en la portada cuando los registros están cerrados. Puedes usar tags HTML
@@ -330,9 +338,12 @@ es:
       body: "%{reporter} ha reportado a %{target}"
       subject: Nuevo reporte para la %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name},"
     settings: 'Cambiar preferencias de correo: %{link}'
     view: 'Vista:'
+    view_profile: Ver perfil
+    view_status: Ver estado
   applications:
     created: Aplicación creada exitosamente
     destroyed: Apicación eliminada exitosamente
@@ -342,7 +353,7 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
-    agreement_html: Al registrarte aceptas <a href="%{rules_path}">nuestros y términos y condiciones del servicio</a> y <a href="%{terms_path}">nuestras políticas de privacidda</a>.
+    agreement_html: Al registrarte, acepta seguir <a href="%{rules_path}">las reglas de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
     change_password: Cambiar contraseña
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
@@ -457,6 +468,9 @@ es:
     title: Invitar a gente
   landing_strip_html: "<strong>%{name}</strong> es un usuario en %{link_to_root_path}. Puedes seguirlo(a) o interactuar con el o ella si tienes una cuenta en cualquier parte del fediverse."
   landing_strip_signup_html: Si no tienes una, puedes <a href="%{sign_up_path}">registrarte aquí</a>.
+  lists:
+    errors:
+      limit: Has alcanzado la cantidad máxima de listas
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
@@ -470,29 +484,38 @@ es:
     title: Moderación
   notification_mailer:
     digest:
-      body: 'Un resumen de lo que te perdiste en %{instance} desde tu última visita el %{since}:'
+      action: Ver todas las notificaciones
+      body: Un resumen de los mensajes que perdiste en desde tu última visita, el %{since}
       mention: "%{name} te ha mencionado en:"
       new_followers_summary:
-        one: "¡Hurra! ¡Tienes un nuevo seguidor!"
-        other: "¡Genial! ¡Tienes %{count} nuevos seguidores!"
+        one: "¡Ademas, has adquirido un nuevo seguidor mientras no estabas! ¡Hurra!"
+        other: "¡Ademas, has adquirido %{count} nuevos seguidores mientras no estabas! ¡Genial!"
       subject:
         one: "1 nueva notificación desde tu última visita \U0001F418"
         other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
+      title: En tu ausencia…
     favourite:
       body: 'Tu estado fue marcado como favorito por %{name}:'
       subject: "%{name} marcó como favorito tu estado"
+      title: Nuevo favorito
     follow:
       body: "¡%{name} te está siguiendo!"
       subject: "%{name} te está siguiendo"
+      title: Nuevo seguidor
     follow_request:
+      action: Administrar solicitudes para seguir
       body: "%{name} ha solicitado seguirte"
       subject: 'Seguidor pendiente: %{name}'
+      title: Nueva solicitud para seguir
     mention:
+      action: Responder
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
+      title: Nueva mención
     reblog:
       body: "%{name} ha retooteado tu estado:"
       subject: "%{name} ha retooteado tu estado"
+      title: Nueva difusión
   number:
     human:
       decimal_units:
@@ -540,12 +563,14 @@ es:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Desconocido
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -590,11 +615,12 @@ es:
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
-      limit: Demasiados toots fijados
+      limit: Ya has fijado el número máximo de publicaciones
       ownership: El toot de alguien más no puede fijarse
       private: Los toots no-públicos no pueden fijarse
       reblog: Un boost no puede fijarse
     show_more: Mostrar más
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Sólo mostrar a seguidores
       private_long: Solo mostrar a tus seguidores
@@ -698,6 +724,23 @@ es:
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
     setup: Configurar
     wrong_code: "¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?"
+  user_mailer:
+    welcome:
+      edit_profile_action: Configurar el perfil
+      explanation: Aquí hay algunos consejos para iniciar
+      final_action: Empezar a publicar
+      final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea de tiempo local y con "hashtags". Podrías querer introducirte con el "hashtag" #introductions.'
+      full_handle: Su sobrenombre completo
+      full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan enviarte mensajes o seguirte desde otra instancia.
+      review_preferences_action: Cambiar preferencias
+      review_preferences_step: Asegurate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
+      subject: Bienvenido a Mastodon
+      tip_bridge_html: Si esta viniendo desde Twitter, puedes encontrar a tus amigos en Mastodon usando la <a href="%{bridge_url}">aplicación puente</a>. Aunque solo funciona si ellos también usaron la aplicación puente!
+      tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
+      tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
+      tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
+      tips: Tips
+      title: Bienvenido a bordo, %{name}!
   users:
     invalid_email: La dirección de correo es incorrecta
     invalid_otp_token: Código de dos factores incorrecto
