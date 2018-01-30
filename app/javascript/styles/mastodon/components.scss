@@ -2202,16 +2202,11 @@
   }
 }
 
-.status-card-video,
+.status-card-html,
 .status-card-rich,
 .status-card-photo {
   margin-top: 14px;
   overflow: hidden;
-
-  iframe {
-    width: 100%;
-    height: auto;
-  }
 }
 
 .status-card-photo {
@@ -2223,11 +2218,8 @@
   margin: 0;
 }
 
-.status-card-video {
-  iframe {
-    width: 100%;
-    height: 100%;
-  }
+.status-card-html {
+  width: 100%;
 }
 
 .status-card__title {

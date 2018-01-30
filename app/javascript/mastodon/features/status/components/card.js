@@ -6,6 +6,7 @@ import punycode from 'punycode';
 import classnames from 'classnames';
 
 const IDNA_PREFIX = 'xn--';
+let id = 0;
 
 const decodeIDNA = domain => {
   return domain
@@ -33,8 +34,31 @@ export default class Card extends React.PureComponent {
   };
 
   state = {
+    height: 0,
     width: 0,
   };
+
+  componentWillUnmount () {
+    removeEventListener('message', this.handleHtmlMessage);
+  }
+
+  handleHtmlLoad = ({ target }) => {
+    this.id = id;
+    id++;
+
+    addEventListener('message', this.handleHtmlMessage);
+
+    target.contentWindow.postMessage({
+      type: 'mastodonSetHeight',
+      id: this.id,
+    }, '*');
+  }
+
+  handleHtmlMessage = ({ data }) => {
+    if (data.id === this.id && data.type === 'mastodonSetHeight') {
+      this.setState({ height: data.height });
+    }
+  }
 
   handlePhotoClick = () => {
     const { card, onOpenMedia } = this.props;
@@ -115,19 +139,44 @@ export default class Card extends React.PureComponent {
     }
   }
 
-  renderVideo () {
+  renderHtml () {
     const { card }  = this.props;
-    const content   = { __html: card.get('html') };
-    const { width } = this.state;
-    const ratio     = card.get('width') / card.get('height');
-    const height    = card.get('width') > card.get('height') ? (width / ratio) : (width * ratio);
+    const encodedHtml = encodeURIComponent(card.get('unsafe_html'));
+    const cardWidth = card.get('width');
+    const cardHeight = card.get('height');
+    const title = card.get('title')
+      || card.get('description')
+      || card.get('provider_name')
+      || card.get('url');
+
+    if (cardWidth > 0 && cardHeight > 0) {
+      const { width } = this.state;
+      const ratio  = cardWidth / cardHeight;
+      const height = cardWidth > cardHeight ? (width / ratio) : (width * ratio);
+
+      return (
+        <iframe
+          allowFullScreen
+          className='status-card-html'
+          src={'data:text/html;charset=UTF-8,%3Cstyle%3Ebody%7Bmargin:0%7Diframe%7Bwidth:100%25;height:100%25%7D%3C/style%3E' + encodedHtml}
+          title={title}
+          width={width}
+          height={height}
+        />
+      );
+    }
+
+    const { height, width } = this.state;
 
     return (
-      <div
-        ref={this.setRef}
-        className='status-card-video'
-        dangerouslySetInnerHTML={content}
-        style={{ height }}
+      <iframe
+        allowFullScreen
+        className='status-card-html'
+        onLoad={this.handleHtmlLoad}
+        src={'data:text/html;charset=UTF-8,%3Cscript%3EaddEventListener(\'message\',function(e){var d=e.data;var t=9;function f(){e.source.postMessage({type:\'mastodonSetHeight\',id:d.id,height:document.getElementsByTagName(\'html\')[0].scrollHeight},\'*\')}function g(){f();setTimeout(g,t);t*=9}d&&d.type==\'mastodonSetHeight\'&&document.readyState==\'complete\'?g():addEventListener(\'DOMContentLoaded\',g)})%3C/script%3E%3Cstyle%3Ebody%7Bmargin:0%7D%3C/style%3E' + encodedHtml}
+        title={title}
+        width={width}
+        height={height}
       />
     );
   }
@@ -145,8 +194,8 @@ export default class Card extends React.PureComponent {
     case 'photo':
       return this.renderPhoto();
     case 'video':
-      return this.renderVideo();
     case 'rich':
+      return this.renderHtml();
     default:
       return null;
     }
