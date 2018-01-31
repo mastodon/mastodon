@@ -38,7 +38,10 @@ en:
         subject: 'Mastodon: Confirm email for %{instance}'
         title: Verify email address
       recovery_codes_regenerated:
+        explanation: The recovery codes for your account were regenerated.
+        extra: Recovery codes allow you to regain access to your account if you lose your phone. If you did not regenerate the recovery codes yourself, it is likely that someone has gained access to your account. Please change your password and reset your two-factor authentication settings immediately or contact the instance admin if you're locked out of your account.
         subject: 'Mastodon: Recovery codes regenerated'
+        title: Recovery codes regenerated
       reset_password_instructions:
         action: Change password
         explanation: You requested a new password for your account.
@@ -46,7 +49,10 @@ en:
         subject: 'Mastodon: Reset password instructions'
         title: Password reset
       two_factor_disabled:
+        explanation: Two-factor authentication was disabled for your account.
+        extra: Your account is now protected only by your password. If you did not disable two-factor authentication yourself, it is likely that someone has gained access to your account. Please change your password and re-enable two-factor authentication immediately or contact the instance admin if you're locked out of your account.
         subject: 'Mastodon: Two-factor authentication disabled'
+        title: Two-factor authentication disabled
       unlock_instructions:
         subject: 'Mastodon: Unlock instructions'
     omniauth_callbacks:

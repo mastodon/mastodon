@@ -89,7 +89,7 @@ describe UserMailer, type: :mailer do
 
     it 'renders recovery code notification' do
       receiver.update!(locale: nil)
-      expect(mail.body.encoded).to include receiver.email
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.recovery_codes_regenerated.title')
     end
 
     include_examples 'localized subject',
@@ -101,7 +101,7 @@ describe UserMailer, type: :mailer do
 
     it 'renders two-factor disabled notification' do
       receiver.update!(locale: nil)
-      expect(mail.body.encoded).to include receiver.email
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.two_factor_disabled.title')
     end
 
     include_examples 'localized subject',
