@@ -48,7 +48,7 @@ curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-instal
 source /home/vagrant/.rvm/scripts/rvm
 
 # Install Ruby
-rvm install ruby-$RUBY_VERSION
+rvm reinstall ruby-$RUBY_VERSION --disable-binary
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s

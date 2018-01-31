@@ -5,6 +5,8 @@ ru:
       doorkeeper/application:
         name: Название
         redirect_uri: URI перенаправления
+        scopes: Права
+        website: Веб-сайт приложения
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@ ru:
         redirect_uri: Используйте по одной строке на URI
         scopes: Разделяйте список разрешений пробелами. Оставьте незаполненным для использования разрешений по умолчанию.
       index:
+        application: Приложение
         callback_url: Callback URL
+        delete: Удалить
         name: Название
         new: Новое Приложение
+        scopes: Права
+        show: Показывать
         title: Ваши приложения
       new:
         title: Новое Приложение
