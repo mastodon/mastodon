@@ -26,6 +26,7 @@ module Settings
         UserMailer.two_factor_disabled(current_user).deliver_later
         redirect_to settings_two_factor_authentication_path
       else
+        # i18n-tasks-use t('two_factor_authentication.bad_password_msg')
         flash.now[:alert] = I18n.t(valid_password ? 'two_factor_authentication.wrong_code' : 'two_factor_authentication.bad_password_msg')
         @confirmation = Form::TwoFactorConfirmation.new
         @recovery_confirmation = Form::RecoveryCodeConfirmation.new

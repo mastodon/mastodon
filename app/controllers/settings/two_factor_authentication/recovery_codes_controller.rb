@@ -16,6 +16,7 @@ module Settings
           flash[:notice] = I18n.t('two_factor_authentication.recovery_codes_regenerated')
           render :index
         else
+          # i18n-tasks-use t('two_factor_authentication.bad_password_msg')
           redirect_to settings_two_factor_authentication_path,
                       alert: I18n.t(valid_password ? 'two_factor_authentication.wrong_code' : 'two_factor_authentication.bad_password_msg')
         end
