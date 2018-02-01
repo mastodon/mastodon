@@ -115,7 +115,7 @@ export default class Card extends React.PureComponent {
     }
   }
 
-  renderVideo () {
+  renderHtml () {
     const { card }  = this.props;
     const content   = { __html: card.get('html') };
     const { width } = this.state;
@@ -125,7 +125,7 @@ export default class Card extends React.PureComponent {
     return (
       <div
         ref={this.setRef}
-        className='status-card-video'
+        className='status-card-html'
         dangerouslySetInnerHTML={content}
         style={{ height }}
       />
@@ -144,9 +144,12 @@ export default class Card extends React.PureComponent {
       return this.renderLink();
     case 'photo':
       return this.renderPhoto();
-    case 'video':
-      return this.renderVideo();
     case 'rich':
+    case 'video':
+      if (card.has('html')) {
+        return this.renderHtml();
+      }
+      // fallthrough
     default:
       return null;
     }

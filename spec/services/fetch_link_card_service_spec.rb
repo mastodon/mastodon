@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe FetchLinkCardService do
+  let(:oembed) { nil }
+
   subject { FetchLinkCardService.new }
 
   before do
@@ -15,6 +17,12 @@ RSpec.describe FetchLinkCardService do
     stub_request(:head, 'http://example.com/日本語').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
     stub_request(:get, 'http://example.com/日本語').to_return(request_fixture('sjis.txt'))
     stub_request(:head, 'https://github.com/qbi/WannaCry').to_return(status: 404)
+    stub_request(:head, 'https://example.com/link_to_oembed').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
+    stub_request(:get, 'https://example.com/link_to_oembed').to_return(body: attachment_fixture('link_to_oembed.html'), headers: { 'Content-Type' => 'text/html' })
+
+    if oembed.present?
+      stub_request(:get, 'https://example.com/oembed?format=json&url=https%3A%2F%2Fexample.com%2Flink_to_oembed').to_return(body: oembed, headers: { 'Content-Type' => 'application/json+oembed' })
+    end
 
     subject.call(status)
   end
@@ -74,6 +82,46 @@ RSpec.describe FetchLinkCardService do
 
     it 'ignores URLs to hashtags' do
       expect(a_request(:head, 'https://quitter.se/tag/wannacry')).to_not have_been_made
+    end
+  end
+
+  context 'when link to oEmbed representation is present' do
+    let(:status) { Fabricate(:status, text: 'https://example.com/link_to_oembed') }
+
+    context 'when oEmbed representation is video type with HTML which contains iframe' do
+      let(:oembed) { '{ "type": "video", "version": "1.0", "width": 8, "height": 8, "html": "<iframe></iframe>" }' }
+
+      it 'attaches a preview card' do
+        expect(status.preview_cards.first.width).to eq 8
+        expect(status.preview_cards.first.height).to eq 8
+        expect(status.preview_cards.first.html).to eq '<iframe></iframe>'
+      end
+    end
+
+    context 'when oEmbed representation is video type with HTML which does not contain iframe' do
+      let(:oembed) { '{ "type": "video", "version": "1.0", "width": 8, "height": 8, "html": "" }' }
+
+      it 'does not attach a preview card' do
+        expect(status.preview_cards).not_to exist
+      end
+    end
+
+    context 'when oEmbed representation is rich type with HTML which contains iframe' do
+      let(:oembed) { '{ "type": "rich", "version": "1.0", "width": 8, "height": 8, "html": "<iframe></iframe>" }' }
+
+      it 'attaches a preview card' do
+        expect(status.preview_cards.first.width).to eq 8
+        expect(status.preview_cards.first.height).to eq 8
+        expect(status.preview_cards.first.html).to eq '<iframe></iframe>'
+      end
+    end
+
+    context 'when oEmbed representation is video type with HTML which does not contain iframe' do
+      let(:oembed) { '{ "type": "rich", "version": "1.0", "width": 8, "height": 8, "html": "" }' }
+
+      it 'does not attach a preview card' do
+        expect(status.preview_cards).not_to exist
+      end
     end
   end
 end
