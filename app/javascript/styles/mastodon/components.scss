@@ -1913,7 +1913,7 @@
   font-family: inherit;
   color: $ui-highlight-color;
   cursor: pointer;
-  flex: 0 0 auto;
+  white-space: nowrap;
   font-size: 16px;
   padding: 0 5px 0 0;
   z-index: 3;
@@ -2403,15 +2403,16 @@
   overflow: hidden;
 
   & > button {
-    display: flex;
-    flex: auto;
     margin: 0;
     border: none;
-    padding: 15px;
+    padding: 15px 0 15px 15px;
     color: inherit;
     background: transparent;
     font: inherit;
     text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   &.active {
@@ -2432,7 +2433,7 @@
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin-left: 0;
+  margin-left: auto;
 }
 
 .column-header__links .text-btn {
@@ -2510,14 +2511,6 @@
       padding-right: 0;
     }
   }
-}
-
-.column-header__title {
-  display: inline-block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  flex: 1;
 }
 
 .text-btn {
