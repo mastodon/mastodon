@@ -34,6 +34,7 @@
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :integer
+#  remember_token            :string
 #
 
 class User < ApplicationRecord
@@ -49,6 +50,8 @@ class User < ApplicationRecord
 
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
+
+  devise :pam_authenticatable
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
@@ -83,6 +86,33 @@ class User < ApplicationRecord
            to: :settings, prefix: :setting, allow_nil: false
 
   attr_accessor :invite_code
+
+  def pam_conflict(_)
+    # block pam login tries on traditional account
+    nil
+  end
+
+  def pam_conflict?
+    return false unless Devise.pam_authentication
+    encrypted_password.present? && is_pam_account?
+  end
+
+  def pam_get_name
+    return account.username if account.present?
+    super
+  end
+
+  def pam_setup(_attributes)
+    acc = Account.new(username: pam_get_name)
+    acc.save!(validate: false)
+
+    self.email = "#{acc.username}@#{find_pam_suffix}" if email.nil? && find_pam_suffix
+    self.confirmed_at = Time.now.utc
+    self.admin = false
+    self.account = acc
+
+    acc.destroy! unless save
+  end
 
   def confirmed?
     confirmed_at.present?
@@ -211,6 +241,45 @@ class User < ApplicationRecord
   def invite_code=(code)
     self.invite  = Invite.find_by(code: code) unless code.blank?
     @invite_code = code
+  end
+
+  def password_required?
+    return false if Devise.pam_authentication
+    super
+  end
+
+  def send_reset_password_instructions
+    return false if encrypted_password.blank? && Devise.pam_authentication
+    super
+  end
+
+  def reset_password!(new_password, new_password_confirmation)
+    return false if encrypted_password.blank? && Devise.pam_authentication
+    super
+  end
+
+  def self.pam_get_user(attributes = {})
+    if attributes[:email]
+      resource =
+        if Devise.check_at_sign && !attributes[:email].index('@')
+          joins(:account).find_by(accounts: { username: attributes[:email] })
+        else
+          find_by(email: attributes[:email])
+        end
+
+      if resource.blank?
+        resource = new(email: attributes[:email])
+        if Devise.check_at_sign && !resource[:email].index('@')
+          resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}"
+        end
+      end
+      resource
+    end
+  end
+
+  def self.authenticate_with_pam(attributes = {})
+    return nil unless Devise.pam_authentication
+    super
   end
 
   protected
