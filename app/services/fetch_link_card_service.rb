@@ -98,13 +98,10 @@ class FetchLinkCardService < BaseService
       @card.image     = URI.parse(embed.url)
       @card.width     = embed.width.presence  || 0
       @card.height    = embed.height.presence || 0
-    when 'video'
+    when 'video', 'rich'
       @card.width  = embed.width.presence  || 0
       @card.height = embed.height.presence || 0
-      @card.html   = Formatter.instance.sanitize(embed.html, Sanitize::Config::MASTODON_OEMBED)
-    when 'rich'
-      # Most providers rely on <script> tags, which is a no-no
-      return false
+      @card.html   = embed.html
     end
 
     @card.save_with_optional_image!
