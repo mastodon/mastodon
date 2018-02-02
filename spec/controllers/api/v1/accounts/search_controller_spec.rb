@@ -4,7 +4,7 @@ RSpec.describe Api::V1::Accounts::SearchController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { double acceptable?: true, resource_owner_id: user.id }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }

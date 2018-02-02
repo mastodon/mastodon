@@ -79,13 +79,41 @@ describe Settings::TwoFactorAuthenticationsController do
       user.update(otp_required_for_login: true)
     end
 
-    it 'turns off otp requirement if signed in' do
-      sign_in user, scope: :user
-      post :destroy
+    context 'when signed in' do
+      before do
+        sign_in user, scope: :user
+      end
 
-      expect(response).to redirect_to(settings_two_factor_authentication_path)
-      user.reload
-      expect(user.otp_required_for_login).to eq(false)
+      it 'turns off otp requirement with correct code' do
+        expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, arg|
+          expect(value).to eq user
+          expect(arg).to eq '123456'
+          true
+        end
+
+        post :destroy, params: { form_two_factor_confirmation: { code: '123456' } }
+
+        expect(response).to redirect_to(settings_two_factor_authentication_path)
+        user.reload
+        expect(user.otp_required_for_login).to eq(false)
+      end
+
+      it 'does not turn off otp if code is incorrect' do
+        expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, arg|
+          expect(value).to eq user
+          expect(arg).to eq '057772'
+          false
+        end
+
+        post :destroy, params: { form_two_factor_confirmation: { code: '057772' } }
+
+        user.reload
+        expect(user.otp_required_for_login).to eq(true)
+      end
+
+      it 'raises ActionController::ParameterMissing if code is missing' do
+        expect { post :destroy }.to raise_error(ActionController::ParameterMissing)
+      end
     end
 
     it 'redirects if not signed in' do

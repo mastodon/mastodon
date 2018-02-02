@@ -7,19 +7,19 @@ import ColumnHeader from '../../components/column_header';
 import { expandNotifications, scrollTopNotifications } from '../../actions/notifications';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
-import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
-import Immutable from 'immutable';
-import LoadMore from '../../components/load_more';
+import { List as ImmutableList } from 'immutable';
+import { debounce } from 'lodash';
+import ScrollableList from '../../components/scrollable_list';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
 });
 
 const getNotifications = createSelector([
-  state => Immutable.List(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
+  state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items']),
 ], (excludedTypes, notifications) => notifications.filterNot(item => excludedTypes.includes(item.get('type'))));
 
@@ -30,7 +30,9 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['notifications', 'next']),
 });
 
-class Notifications extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Notifications extends React.PureComponent {
 
   static propTypes = {
     columnId: PropTypes.string,
@@ -48,32 +50,18 @@ class Notifications extends React.PureComponent {
     trackScroll: true,
   };
 
-  handleScroll = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-    const offset = scrollHeight - scrollTop - clientHeight;
-    this._oldScrollPosition = scrollHeight - scrollTop;
-
-    if (250 > offset && !this.props.isLoading) {
-      if (this.props.hasMore) {
-        this.props.dispatch(expandNotifications());
-      }
-    } else if (scrollTop < 100) {
-      this.props.dispatch(scrollTopNotifications(true));
-    } else {
-      this.props.dispatch(scrollTopNotifications(false));
-    }
-  }
-
-  componentDidUpdate (prevProps) {
-    if (this.node.scrollTop > 0 && (prevProps.notifications.size < this.props.notifications.size && prevProps.notifications.first() !== this.props.notifications.first() && !!this._oldScrollPosition)) {
-      this.node.scrollTop = this.node.scrollHeight - this._oldScrollPosition;
-    }
-  }
-
-  handleLoadMore = (e) => {
-    e.preventDefault();
+  handleScrollToBottom = debounce(() => {
+    this.props.dispatch(scrollTopNotifications(false));
     this.props.dispatch(expandNotifications());
-  }
+  }, 300, { leading: true });
+
+  handleScrollToTop = debounce(() => {
+    this.props.dispatch(scrollTopNotifications(true));
+  }, 100);
+
+  handleScroll = debounce(() => {
+    this.props.dispatch(scrollTopNotifications(false));
+  }, 100);
 
   handlePin = () => {
     const { columnId, dispatch } = this.props;
@@ -94,63 +82,68 @@ class Notifications extends React.PureComponent {
     this.column.scrollTop();
   }
 
-  setRef = (c) => {
-    this.node = c;
-  }
-
   setColumnRef = c => {
     this.column = c;
+  }
+
+  handleMoveUp = id => {
+    const elementIndex = this.props.notifications.findIndex(item => item.get('id') === id) - 1;
+    this._selectChild(elementIndex);
+  }
+
+  handleMoveDown = id => {
+    const elementIndex = this.props.notifications.findIndex(item => item.get('id') === id) + 1;
+    this._selectChild(elementIndex);
+  }
+
+  _selectChild (index) {
+    const element = this.column.node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+
+    if (element) {
+      element.focus();
+    }
   }
 
   render () {
     const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore } = this.props;
     const pinned = !!columnId;
+    const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />;
 
-    let loadMore       = '';
-    let scrollableArea = '';
-    let unread         = '';
-    let scrollContainer = '';
+    let scrollableContent = null;
 
-    if (!isLoading && notifications.size > 0 && hasMore) {
-      loadMore = <LoadMore onClick={this.handleLoadMore} />;
-    }
-
-    if (isUnread) {
-      unread = <div className='notifications__unread-indicator' />;
-    }
-
-    if (isLoading && this.scrollableArea) {
-      scrollableArea = this.scrollableArea;
-    } else if (notifications.size > 0) {
-      scrollableArea = (
-        <div className='scrollable' onScroll={this.handleScroll} ref={this.setRef}>
-          {unread}
-
-          <div>
-            {notifications.map(item => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />)}
-            {loadMore}
-          </div>
-        </div>
-      );
+    if (isLoading && this.scrollableContent) {
+      scrollableContent = this.scrollableContent;
+    } else if (notifications.size > 0 || hasMore) {
+      scrollableContent = notifications.map((item) => (
+        <NotificationContainer
+          key={item.get('id')}
+          notification={item}
+          accountId={item.get('account')}
+          onMoveUp={this.handleMoveUp}
+          onMoveDown={this.handleMoveDown}
+        />
+      ));
     } else {
-      scrollableArea = (
-        <div className='empty-column-indicator' ref={this.setRef}>
-          <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />
-        </div>
-      );
+      scrollableContent = null;
     }
 
-    if (pinned) {
-      scrollContainer = scrollableArea;
-    } else {
-      scrollContainer = (
-        <ScrollContainer scrollKey={`notifications-${columnId}`} shouldUpdateScroll={shouldUpdateScroll}>
-          {scrollableArea}
-        </ScrollContainer>
-      );
-    }
+    this.scrollableContent = scrollableContent;
 
-    this.scrollableArea = scrollableArea;
+    const scrollContainer = (
+      <ScrollableList
+        scrollKey={`notifications-${columnId}`}
+        trackScroll={!pinned}
+        isLoading={isLoading}
+        hasMore={hasMore}
+        emptyMessage={emptyMessage}
+        onScrollToBottom={this.handleScrollToBottom}
+        onScrollToTop={this.handleScrollToTop}
+        onScroll={this.handleScroll}
+        shouldUpdateScroll={shouldUpdateScroll}
+      >
+        {scrollableContent}
+      </ScrollableList>
+    );
 
     return (
       <Column ref={this.setColumnRef}>
@@ -173,5 +166,3 @@ class Notifications extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(Notifications));

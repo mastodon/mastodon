@@ -6,7 +6,7 @@ import ReplyIndicator from '../components/reply_indicator';
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
-  const mapStateToProps = (state, props) => ({
+  const mapStateToProps = state => ({
     status: getStatus(state, state.getIn(['compose', 'in_reply_to'])),
   });
 

@@ -15,13 +15,15 @@
   "plugins": [
     "syntax-dynamic-import",
     ["transform-object-rest-spread", { "useBuiltIns": true }],
+    "transform-decorators-legacy",
     "transform-class-properties",
     [
       "react-intl",
       {
         "messagesDir": "./build/messages"
       }
-    ]
+    ],
+    "preval"
   ],
   "env": {
     "development": {
@@ -43,6 +45,7 @@
             ]
           }
         ],
+        "transform-react-inline-elements",
         [
           "transform-runtime",
           {

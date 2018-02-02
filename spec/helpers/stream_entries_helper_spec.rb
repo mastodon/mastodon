@@ -77,7 +77,7 @@ RSpec.describe StreamEntriesHelper, type: :helper do
     params[:controller] = StreamEntriesHelper::EMBEDDED_CONTROLLER
     params[:action] = StreamEntriesHelper::EMBEDDED_ACTION
   end
-  
+
   describe '#style_classes' do
     it do
       status = double(reblog?: false)
@@ -202,7 +202,7 @@ RSpec.describe StreamEntriesHelper, type: :helper do
       expect(css_class).to eq 'h-cite'
     end
   end
-  
+
   describe '#rtl?' do
     it 'is false if text is empty' do
       expect(helper).not_to be_rtl ''
@@ -217,7 +217,7 @@ RSpec.describe StreamEntriesHelper, type: :helper do
     end
 
     it 'is true if right to left characters are greater than 1/3 of total text' do
-      expect(helper).to be_rtl 'aaݟ'
+      expect(helper).to be_rtl 'aaݟaaݟ'
     end
   end
 end

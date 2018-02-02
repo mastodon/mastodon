@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import ReactSwipeableViews from 'react-swipeable-views';
 import classNames from 'classnames';
 import Permalink from '../../../components/permalink';
-import TransitionMotion from 'react-motion/lib/TransitionMotion';
-import spring from 'react-motion/lib/spring';
 import ComposeForm from '../../compose/components/compose_form';
 import Search from '../../compose/components/search';
 import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
+import { me } from '../../../initial_state';
 
 const noop = () => { };
 
@@ -24,14 +24,23 @@ const messages = defineMessages({
 
 const PageOne = ({ acct, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-one'>
-    <div style={{ flex: '0 0 auto' }}>
-      <div className='onboarding-modal__page-one__elephant-friend' />
-    </div>
-
-    <div>
+    <div className='onboarding-modal__page-one__lead'>
       <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
       <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.' /></p>
-      <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain, handle: <strong>{acct}@{domain}</strong> }} /></p>
+    </div>
+
+    <div className='onboarding-modal__page-one__extra'>
+      <div className='display-case'>
+        <div className='display-case__label'>
+          <FormattedMessage id='onboarding.page_one.full_handle' defaultMessage='Your full handle' />
+        </div>
+
+        <div className='display-case__case'>
+          @{acct}@{domain}
+        </div>
+      </div>
+
+      <p><FormattedMessage id='onboarding.page_one.handle_hint' defaultMessage='This is what you would tell your friends to search for.' /></p>
     </div>
   </div>
 );
@@ -41,27 +50,28 @@ PageOne.propTypes = {
   domain: PropTypes.string.isRequired,
 };
 
-const PageTwo = ({ me }) => (
+const PageTwo = ({ myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
       <div className='pseudo-drawer'>
-        <NavigationBar account={me} />
+        <NavigationBar account={myAccount} />
+
+        <ComposeForm
+          text='Awoo! #introductions'
+          suggestions={ImmutableList()}
+          mentionedDomains={[]}
+          spoiler={false}
+          onChange={noop}
+          onSubmit={noop}
+          onPaste={noop}
+          onPickEmoji={noop}
+          onChangeSpoilerText={noop}
+          onClearSuggestions={noop}
+          onFetchSuggestions={noop}
+          onSuggestionSelected={noop}
+          showSearch
+        />
       </div>
-      <ComposeForm
-        text='Awoo! #introductions'
-        suggestions={Immutable.List()}
-        mentionedDomains={[]}
-        spoiler={false}
-        onChange={noop}
-        onSubmit={noop}
-        onPaste={noop}
-        onPickEmoji={noop}
-        onChangeSpoilerText={noop}
-        onClearSuggestions={noop}
-        onFetchSuggestions={noop}
-        onSuggestionSelected={noop}
-        showSearch
-      />
     </div>
 
     <p><FormattedMessage id='onboarding.page_two.compose' defaultMessage='Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.' /></p>
@@ -69,10 +79,10 @@ const PageTwo = ({ me }) => (
 );
 
 PageTwo.propTypes = {
-  me: ImmutablePropTypes.map.isRequired,
+  myAccount: ImmutablePropTypes.map.isRequired,
 };
 
-const PageThree = ({ me, domain }) => (
+const PageThree = ({ myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
     <div className='figure non-interactive'>
       <Search
@@ -84,7 +94,7 @@ const PageThree = ({ me, domain }) => (
       />
 
       <div className='pseudo-drawer'>
-        <NavigationBar account={me} />
+        <NavigationBar account={myAccount} />
       </div>
     </div>
 
@@ -94,8 +104,7 @@ const PageThree = ({ me, domain }) => (
 );
 
 PageThree.propTypes = {
-  me: ImmutablePropTypes.map.isRequired,
-  domain: PropTypes.string.isRequired,
+  myAccount: ImmutablePropTypes.map.isRequired,
 };
 
 const PageFour = ({ domain, intl }) => (
@@ -163,17 +172,19 @@ PageSix.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
+  myAccount: state.getIn(['accounts', me]),
   admin: state.getIn(['accounts', state.getIn(['meta', 'admin'])]),
   domain: state.getIn(['meta', 'domain']),
 });
 
-class OnboardingModal extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class OnboardingModal extends React.PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    me: ImmutablePropTypes.map.isRequired,
+    myAccount: ImmutablePropTypes.map.isRequired,
     domain: PropTypes.string.isRequired,
     admin: ImmutablePropTypes.map,
   };
@@ -183,11 +194,11 @@ class OnboardingModal extends React.PureComponent {
   };
 
   componentWillMount() {
-    const { me, admin, domain, intl } = this.props;
+    const { myAccount, admin, domain, intl } = this.props;
     this.pages = [
-      <PageOne acct={me.get('acct')} domain={domain} />,
-      <PageTwo me={me} />,
-      <PageThree me={me} domain={domain} />,
+      <PageOne acct={myAccount.get('acct')} domain={domain} />,
+      <PageTwo myAccount={myAccount} />,
+      <PageThree myAccount={myAccount} />,
       <PageFour domain={domain} intl={intl} />,
       <PageSix admin={admin} domain={domain} />,
     ];
@@ -225,6 +236,10 @@ class OnboardingModal extends React.PureComponent {
     }));
   }
 
+  handleSwipe = (index) => {
+    this.setState({ currentIndex: index });
+  }
+
   handleKeyUp = ({ key }) => {
     switch (key) {
     case 'ArrowLeft':
@@ -246,45 +261,28 @@ class OnboardingModal extends React.PureComponent {
     const hasMore = currentIndex < pages.length - 1;
 
     const nextOrDoneBtn = hasMore ? (
-      <button
-        onClick={this.handleNext}
-        className='onboarding-modal__nav onboarding-modal__next'
-      >
-        <FormattedMessage id='onboarding.next' defaultMessage='Next' />
+      <button onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__next shake-bottom'>
+        <FormattedMessage id='onboarding.next' defaultMessage='Next' /> <i className='fa fa-fw fa-chevron-right' />
       </button>
     ) : (
-      <button
-        onClick={this.handleClose}
-        className='onboarding-modal__nav onboarding-modal__done'
-      >
-        <FormattedMessage id='onboarding.done' defaultMessage='Done' />
+      <button onClick={this.handleClose} className='onboarding-modal__nav onboarding-modal__done shake-bottom'>
+        <FormattedMessage id='onboarding.done' defaultMessage='Done' /> <i className='fa fa-fw fa-check' />
       </button>
     );
 
-    const styles = pages.map((data, i) => ({
-      key: `page-${i}`,
-      data,
-      style: {
-        opacity: spring(i === currentIndex ? 1 : 0),
-      },
-    }));
-
     return (
       <div className='modal-root__modal onboarding-modal'>
-        <TransitionMotion styles={styles}>
-          {interpolatedStyles => (
-            <div className='onboarding-modal__pager'>
-              {interpolatedStyles.map(({ key, data, style }, i) => {
-                const className = classNames('onboarding-modal__page__wrapper', {
-                  'onboarding-modal__page__wrapper--active': i === currentIndex,
-                });
-                return (
-                  <div key={key} style={style} className={className}>{data}</div>
-                );
-              })}
-            </div>
-          )}
-        </TransitionMotion>
+        <ReactSwipeableViews index={currentIndex} onChangeIndex={this.handleSwipe} className='onboarding-modal__pager'>
+          {pages.map((page, i) => {
+            const className = classNames('onboarding-modal__page__wrapper', `onboarding-modal__page__wrapper-${i}`, {
+              'onboarding-modal__page__wrapper--active': i === currentIndex,
+            });
+
+            return (
+              <div key={i} className={className}>{page}</div>
+            );
+          })}
+        </ReactSwipeableViews>
 
         <div className='onboarding-modal__paginator'>
           <div>
@@ -301,6 +299,7 @@ class OnboardingModal extends React.PureComponent {
               const className = classNames('onboarding-modal__dot', {
                 active: i === currentIndex,
               });
+
               return (
                 <div
                   key={`dot-${i}`}
@@ -323,5 +322,3 @@ class OnboardingModal extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(OnboardingModal));

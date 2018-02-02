@@ -1,5 +1,6 @@
 import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
+import { openModal } from './modal';
 
 export const MUTES_FETCH_REQUEST = 'MUTES_FETCH_REQUEST';
 export const MUTES_FETCH_SUCCESS = 'MUTES_FETCH_SUCCESS';
@@ -8,6 +9,9 @@ export const MUTES_FETCH_FAIL    = 'MUTES_FETCH_FAIL';
 export const MUTES_EXPAND_REQUEST = 'MUTES_EXPAND_REQUEST';
 export const MUTES_EXPAND_SUCCESS = 'MUTES_EXPAND_SUCCESS';
 export const MUTES_EXPAND_FAIL    = 'MUTES_EXPAND_FAIL';
+
+export const MUTES_INIT_MODAL = 'MUTES_INIT_MODAL';
+export const MUTES_TOGGLE_HIDE_NOTIFICATIONS = 'MUTES_TOGGLE_HIDE_NOTIFICATIONS';
 
 export function fetchMutes() {
   return (dispatch, getState) => {
@@ -80,3 +84,20 @@ export function expandMutesFail(error) {
     error,
   };
 };
+
+export function initMuteModal(account) {
+  return dispatch => {
+    dispatch({
+      type: MUTES_INIT_MODAL,
+      account,
+    });
+
+    dispatch(openModal('MUTE'));
+  };
+}
+
+export function toggleHideNotifications() {
+  return dispatch => {
+    dispatch({ type: MUTES_TOGGLE_HIDE_NOTIFICATIONS });
+  };
+}

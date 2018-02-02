@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-class ColumnHeader extends React.PureComponent {
+export default class ColumnHeader extends React.PureComponent {
 
   static propTypes = {
     icon: PropTypes.string,
     type: PropTypes.string,
     active: PropTypes.bool,
     onClick: PropTypes.func,
-    hideOnMobile: PropTypes.bool,
     columnHeaderId: PropTypes.string,
   };
 
@@ -17,22 +17,21 @@ class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { type, active, hideOnMobile, columnHeaderId } = this.props;
+    const { icon, type, active, columnHeaderId } = this.props;
+    let iconElement = '';
 
-    let icon = '';
-
-    if (this.props.icon) {
-      icon = <i className={`fa fa-fw fa-${this.props.icon} column-header__icon`} />;
+    if (icon) {
+      iconElement = <i className={`fa fa-fw fa-${icon} column-header__icon`} />;
     }
 
     return (
-      <div role='button heading' tabIndex='0' className={`column-header ${active ? 'active' : ''} ${hideOnMobile ? 'hidden-on-mobile' : ''}`} onClick={this.handleClick} id={columnHeaderId || null}>
-        {icon}
-        {type}
-      </div>
+      <h1 className={classNames('column-header', { active })} id={columnHeaderId || null}>
+        <button onClick={this.handleClick}>
+          {iconElement}
+          {type}
+        </button>
+      </h1>
     );
   }
 
 }
-
-export default ColumnHeader;

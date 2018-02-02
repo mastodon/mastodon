@@ -1,5 +1,4 @@
 import api, { getLinks } from '../api';
-import Immutable from 'immutable';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
 export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';
@@ -106,12 +105,13 @@ export function fetchAccountFail(id, error) {
   };
 };
 
-export function followAccount(id) {
+export function followAccount(id, reblogs = true) {
   return (dispatch, getState) => {
+    const alreadyFollowing = getState().getIn(['relationships', id, 'following']);
     dispatch(followAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/follow`).then(response => {
-      dispatch(followAccountSuccess(response.data));
+    api(getState).post(`/api/v1/accounts/${id}/follow`, { reblogs }).then(response => {
+      dispatch(followAccountSuccess(response.data, alreadyFollowing));
     }).catch(error => {
       dispatch(followAccountFail(error));
     });
@@ -123,7 +123,7 @@ export function unfollowAccount(id) {
     dispatch(unfollowAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/unfollow`).then(response => {
-      dispatch(unfollowAccountSuccess(response.data));
+      dispatch(unfollowAccountSuccess(response.data, getState().get('statuses')));
     }).catch(error => {
       dispatch(unfollowAccountFail(error));
     });
@@ -137,10 +137,11 @@ export function followAccountRequest(id) {
   };
 };
 
-export function followAccountSuccess(relationship) {
+export function followAccountSuccess(relationship, alreadyFollowing) {
   return {
     type: ACCOUNT_FOLLOW_SUCCESS,
     relationship,
+    alreadyFollowing,
   };
 };
 
@@ -158,10 +159,11 @@ export function unfollowAccountRequest(id) {
   };
 };
 
-export function unfollowAccountSuccess(relationship) {
+export function unfollowAccountSuccess(relationship, statuses) {
   return {
     type: ACCOUNT_UNFOLLOW_SUCCESS,
     relationship,
+    statuses,
   };
 };
 
@@ -241,11 +243,11 @@ export function unblockAccountFail(error) {
 };
 
 
-export function muteAccount(id) {
+export function muteAccount(id, notifications) {
   return (dispatch, getState) => {
     dispatch(muteAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/mute`).then(response => {
+    api(getState).post(`/api/v1/accounts/${id}/mute`, { notifications }).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
       dispatch(muteAccountSuccess(response.data, getState().get('statuses')));
     }).catch(error => {
@@ -597,7 +599,7 @@ export function authorizeFollowRequest(id) {
 
     api(getState)
       .post(`/api/v1/follow_requests/${id}/authorize`)
-      .then(response => dispatch(authorizeFollowRequestSuccess(id)))
+      .then(() => dispatch(authorizeFollowRequestSuccess(id)))
       .catch(error => dispatch(authorizeFollowRequestFail(id, error)));
   };
 };
@@ -631,7 +633,7 @@ export function rejectFollowRequest(id) {
 
     api(getState)
       .post(`/api/v1/follow_requests/${id}/reject`)
-      .then(response => dispatch(rejectFollowRequestSuccess(id)))
+      .then(() => dispatch(rejectFollowRequestSuccess(id)))
       .catch(error => dispatch(rejectFollowRequestFail(id, error)));
   };
 };

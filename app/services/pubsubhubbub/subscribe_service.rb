@@ -3,13 +3,15 @@
 class Pubsubhubbub::SubscribeService < BaseService
   URL_PATTERN = /\A#{URI.regexp(%w(http https))}\z/
 
-  attr_reader :account, :callback, :secret, :lease_seconds
+  attr_reader :account, :callback, :secret,
+              :lease_seconds, :domain
 
-  def call(account, callback, secret, lease_seconds)
+  def call(account, callback, secret, lease_seconds, verified_domain = nil)
     @account       = account
     @callback      = Addressable::URI.parse(callback).normalize.to_s
     @secret        = secret
     @lease_seconds = lease_seconds
+    @domain        = verified_domain
 
     process_subscribe
   end
@@ -56,6 +58,14 @@ class Pubsubhubbub::SubscribeService < BaseService
   end
 
   def locate_subscription
-    Subscription.where(account: account, callback_url: callback).first_or_create!(account: account, callback_url: callback)
+    subscription = Subscription.find_by(account: account, callback_url: callback)
+
+    if subscription.nil?
+      subscription = Subscription.new(account: account, callback_url: callback)
+    end
+
+    subscription.domain = domain
+    subscription.save!
+    subscription
   end
 end

@@ -15,19 +15,22 @@ class BatchedRemoveStatusService < BaseService
     @mentions = statuses.map { |s| [s.id, s.mentions.includes(:account).to_a] }.to_h
     @tags     = statuses.map { |s| [s.id, s.tags.pluck(:name)] }.to_h
 
-    @stream_entry_batches = []
-    @salmon_batches       = []
-    @json_payloads        = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id)] }.to_h
+    @stream_entry_batches  = []
+    @salmon_batches        = []
+    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id.to_s)] }.to_h
+    @activity_xml          = {}
 
     # Ensure that rendered XML reflects destroyed state
-    Status.where(id: statuses.map(&:id)).in_batches.destroy_all
+    statuses.each(&:destroy)
 
     # Batch by source account
-    statuses.group_by(&:account_id).each do |_, account_statuses|
+    statuses.group_by(&:account_id).each_value do |account_statuses|
       account = account_statuses.first.account
 
-      unpush_from_home_timelines(account_statuses)
-      batch_stream_entries(account_statuses) if account.local?
+      unpush_from_home_timelines(account, account_statuses)
+      unpush_from_list_timelines(account, account_statuses)
+
+      batch_stream_entries(account, account_statuses) if account.local?
     end
 
     # Cannot be batched
@@ -36,32 +39,41 @@ class BatchedRemoveStatusService < BaseService
       batch_salmon_slaps(status) if status.local?
     end
 
-    Pubsubhubbub::DistributionWorker.push_bulk(@stream_entry_batches) { |batch| batch }
+    Pubsubhubbub::RawDistributionWorker.push_bulk(@stream_entry_batches) { |batch| batch }
     NotificationWorker.push_bulk(@salmon_batches) { |batch| batch }
   end
 
   private
 
-  def batch_stream_entries(statuses)
-    stream_entry_ids = statuses.map { |s| s.stream_entry.id }
-
-    stream_entry_ids.each_slice(100) do |batch_of_stream_entry_ids|
-      @stream_entry_batches << [batch_of_stream_entry_ids]
+  def batch_stream_entries(account, statuses)
+    statuses.each do |status|
+      @stream_entry_batches << [build_xml(status.stream_entry), account.id]
     end
   end
 
-  def unpush_from_home_timelines(statuses)
-    account    = statuses.first.account
-    recipients = account.followers.local.pluck(:id)
+  def unpush_from_home_timelines(account, statuses)
+    recipients = account.followers.local.to_a
 
-    recipients << account.id if account.local?
+    recipients << account if account.local?
 
-    recipients.each do |follower_id|
-      unpush(follower_id, statuses)
+    recipients.each do |follower|
+      statuses.each do |status|
+        FeedManager.instance.unpush_from_home(follower, status)
+      end
+    end
+  end
+
+  def unpush_from_list_timelines(account, statuses)
+    account.lists.select(:id, :account_id).each do |list|
+      statuses.each do |status|
+        FeedManager.instance.unpush_from_list(list, status)
+      end
     end
   end
 
   def unpush_from_public_timelines(status)
+    return unless status.public_visibility?
+
     payload = @json_payloads[status.id]
 
     redis.pipelined do
@@ -78,37 +90,20 @@ class BatchedRemoveStatusService < BaseService
   def batch_salmon_slaps(status)
     return if @mentions[status.id].empty?
 
-    payload    = stream_entry_to_xml(status.stream_entry.reload)
-    recipients = @mentions[status.id].map(&:account).reject(&:local?).uniq(&:domain).map(&:id)
+    recipients = @mentions[status.id].map(&:account).reject(&:local?).select(&:ostatus?).uniq(&:domain).map(&:id)
 
     recipients.each do |recipient_id|
-      @salmon_batches << [payload, status.account_id, recipient_id]
-    end
-  end
-
-  def unpush(follower_id, statuses)
-    key = FeedManager.instance.key(:home, follower_id)
-
-    originals = statuses.reject(&:reblog?)
-    reblogs   = statuses.reject { |s| !s.reblog? }
-
-    # Quickly remove all originals
-    redis.pipelined do
-      originals.each do |status|
-        redis.zremrangebyscore(key, status.id, status.id)
-        redis.publish("timeline:#{follower_id}", @json_payloads[status.id])
-      end
-    end
-
-    # For reblogs, re-add original status to feed, unless the reblog
-    # was not in the feed in the first place
-    reblogs.each do |status|
-      redis.zadd(key, status.reblog_of_id, status.reblog_of_id) unless redis.zscore(key, status.reblog_of_id).nil?
-      redis.publish("timeline:#{follower_id}", @json_payloads[status.id])
+      @salmon_batches << [build_xml(status.stream_entry), status.account_id, recipient_id]
     end
   end
 
   def redis
     Redis.current
+  end
+
+  def build_xml(stream_entry)
+    return @activity_xml[stream_entry.id] if @activity_xml.key?(stream_entry.id)
+
+    @activity_xml[stream_entry.id] = stream_entry_to_xml(stream_entry)
   end
 end

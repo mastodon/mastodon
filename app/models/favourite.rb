@@ -4,17 +4,17 @@
 # Table name: favourites
 #
 #  id         :integer          not null, primary key
-#  account_id :integer          not null
-#  status_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  account_id :integer          not null
+#  status_id  :integer          not null
 #
 
 class Favourite < ApplicationRecord
   include Paginable
 
-  belongs_to :account, inverse_of: :favourites, required: true
-  belongs_to :status,  inverse_of: :favourites, counter_cache: true, required: true
+  belongs_to :account, inverse_of: :favourites
+  belongs_to :status,  inverse_of: :favourites, counter_cache: true
 
   has_one :notification, as: :activity, dependent: :destroy
 

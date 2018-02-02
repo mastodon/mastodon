@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountContainer from '../../containers/account_container';
@@ -19,7 +19,16 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'mutes', 'items']),
 });
 
-class Mutes extends ImmutablePureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Mutes extends ImmutablePureComponent {
+
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    accountIds: ImmutablePropTypes.list,
+    intl: PropTypes.object.isRequired,
+  };
 
   componentWillMount () {
     this.props.dispatch(fetchMutes());
@@ -59,12 +68,3 @@ class Mutes extends ImmutablePureComponent {
   }
 
 }
-
-Mutes.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  accountIds: ImmutablePropTypes.list,
-  intl: PropTypes.object.isRequired,
-};
-
-export default connect(mapStateToProps)(injectIntl(Mutes));

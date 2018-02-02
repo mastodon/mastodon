@@ -7,9 +7,9 @@
 #  var        :string           not null
 #  value      :text
 #  thing_type :string
-#  thing_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  thing_id   :integer
 #
 
 class Setting < RailsSettings::Base

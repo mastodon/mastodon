@@ -4,7 +4,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
 
-class AttachmentList extends ImmutablePureComponent {
+export default class AttachmentList extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
@@ -20,16 +20,14 @@ class AttachmentList extends ImmutablePureComponent {
         </div>
 
         <ul className='attachment-list__list'>
-          {media.map(attachment =>
+          {media.map(attachment => (
             <li key={attachment.get('id')}>
               <a href={attachment.get('remote_url')} target='_blank' rel='noopener'>{filename(attachment.get('remote_url'))}</a>
             </li>
-          )}
+          ))}
         </ul>
       </div>
     );
   }
 
 }
-
-export default AttachmentList;

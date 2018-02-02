@@ -4,17 +4,18 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchFavourites } from '../../actions/interactions';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'favourited_by', Number(props.params.statusId)]),
+  accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId]),
 });
 
-class Favourites extends ImmutablePureComponent {
+@connect(mapStateToProps)
+export default class Favourites extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -23,12 +24,12 @@ class Favourites extends ImmutablePureComponent {
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchFavourites(Number(this.props.params.statusId)));
+    this.props.dispatch(fetchFavourites(this.props.params.statusId));
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this.props.dispatch(fetchFavourites(Number(nextProps.params.statusId)));
+      this.props.dispatch(fetchFavourites(nextProps.params.statusId));
     }
   }
 
@@ -57,5 +58,3 @@ class Favourites extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(Favourites);

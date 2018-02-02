@@ -5,7 +5,11 @@ module AccountInteractions
 
   class_methods do
     def following_map(target_account_ids, account_id)
-      follow_mapping(Follow.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+      Follow.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow, mapping|
+        mapping[follow.target_account_id] = {
+          reblogs: follow.show_reblogs?,
+        }
+      end
     end
 
     def followed_by_map(target_account_ids, account_id)
@@ -17,17 +21,31 @@ module AccountInteractions
     end
 
     def muting_map(target_account_ids, account_id)
-      follow_mapping(Mute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+      Mute.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |mute, mapping|
+        mapping[mute.target_account_id] = {
+          notifications: mute.hide_notifications?,
+        }
+      end
     end
 
     def requested_map(target_account_ids, account_id)
-      follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+      FollowRequest.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow_request, mapping|
+        mapping[follow_request.target_account_id] = {
+          reblogs: follow_request.show_reblogs?,
+        }
+      end
     end
 
     def domain_blocking_map(target_account_ids, account_id)
       accounts_map    = Account.where(id: target_account_ids).select('id, domain').map { |a| [a.id, a.domain] }.to_h
       blocked_domains = AccountDomainBlock.where(account_id: account_id, domain: accounts_map.values).pluck(:domain)
       accounts_map.map { |id, domain| [id, blocked_domains.include?(domain)] }.to_h
+    end
+
+    private
+
+    def follow_mapping(query, field)
+      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
     end
   end
 
@@ -56,16 +74,25 @@ module AccountInteractions
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
   end
 
-  def follow!(other_account)
-    active_relationships.find_or_create_by!(target_account: other_account)
+  def follow!(other_account, reblogs: nil)
+    reblogs = true if reblogs.nil?
+    rel = active_relationships.create_with(show_reblogs: reblogs).find_or_create_by!(target_account: other_account)
+    rel.update!(show_reblogs: reblogs)
+
+    rel
   end
 
   def block!(other_account)
     block_relationships.find_or_create_by!(target_account: other_account)
   end
 
-  def mute!(other_account)
-    mute_relationships.find_or_create_by!(target_account: other_account)
+  def mute!(other_account, notifications: nil)
+    notifications = true if notifications.nil?
+    mute = mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
+    # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
+    if mute.hide_notifications? != notifications
+      mute.update!(hide_notifications: notifications)
+    end
   end
 
   def mute_conversation!(conversation)
@@ -121,6 +148,14 @@ module AccountInteractions
     conversation_mutes.where(conversation: conversation).exists?
   end
 
+  def muting_notifications?(other_account)
+    mute_relationships.where(target_account: other_account, hide_notifications: true).exists?
+  end
+
+  def muting_reblogs?(other_account)
+    active_relationships.where(target_account: other_account, show_reblogs: false).exists?
+  end
+
   def requested?(other_account)
     follow_requests.where(target_account: other_account).exists?
   end
@@ -131,5 +166,9 @@ module AccountInteractions
 
   def reblogged?(status)
     status.proper.reblogs.where(account: self).exists?
+  end
+
+  def pinned?(status)
+    status_pins.where(status: status).exists?
   end
 end

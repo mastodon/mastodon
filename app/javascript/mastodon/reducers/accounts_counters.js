@@ -45,10 +45,14 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
+import {
+  LIST_ACCOUNTS_FETCH_SUCCESS,
+  LIST_EDITOR_SUGGESTIONS_READY,
+} from '../actions/lists';
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, fromJS } from 'immutable';
 
-const normalizeAccount = (state, account) => state.set(account.id, Immutable.fromJS({
+const normalizeAccount = (state, account) => state.set(account.id, fromJS({
   followers_count: account.followers_count,
   following_count: account.following_count,
   statuses_count: account.statuses_count,
@@ -80,12 +84,12 @@ const normalizeAccountsFromStatuses = (state, statuses) => {
   return state;
 };
 
-const initialState = Immutable.Map();
+const initialState = ImmutableMap();
 
 export default function accountsCounters(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.merge(action.state.get('accounts').map(item => Immutable.fromJS({
+    return state.merge(action.state.get('accounts').map(item => fromJS({
       followers_count: item.get('followers_count'),
       following_count: item.get('following_count'),
       statuses_count: item.get('statuses_count'),
@@ -106,7 +110,9 @@ export default function accountsCounters(state = initialState, action) {
   case BLOCKS_EXPAND_SUCCESS:
   case MUTES_FETCH_SUCCESS:
   case MUTES_EXPAND_SUCCESS:
-    return normalizeAccounts(state, action.accounts);
+  case LIST_ACCOUNTS_FETCH_SUCCESS:
+  case LIST_EDITOR_SUGGESTIONS_READY:
+    return action.accounts ? normalizeAccounts(state, action.accounts) : state;
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case SEARCH_FETCH_SUCCESS:
@@ -126,7 +132,8 @@ export default function accountsCounters(state = initialState, action) {
   case STATUS_FETCH_SUCCESS:
     return normalizeAccountFromStatus(state, action.status);
   case ACCOUNT_FOLLOW_SUCCESS:
-    return state.updateIn([action.relationship.id, 'followers_count'], num => num + 1);
+    return action.alreadyFollowing ? state :
+      state.updateIn([action.relationship.id, 'followers_count'], num => num + 1);
   case ACCOUNT_UNFOLLOW_SUCCESS:
     return state.updateIn([action.relationship.id, 'followers_count'], num => Math.max(0, num - 1));
   default:

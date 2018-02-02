@@ -10,6 +10,7 @@ module Paperclip
       unless options[:style] == :original && num_frames > 1
         tmp_file = Paperclip::TempfileFactory.new.generate(attachment.instance.file_file_name)
         tmp_file << file.read
+        tmp_file.flush
         return tmp_file
       end
 

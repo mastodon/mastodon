@@ -3,34 +3,12 @@
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %meta{ charset: 'utf-8' }/
-    %title= yield :page_title
+    %title= safe_join([yield(:page_title), Setting.default_settings['site_title']], ' - ')
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
-    %link{ href: 'https://fonts.googleapis.com/css?family=Roboto:400', rel: 'stylesheet' }/
-    :css
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: #282c37;
-        color: #9baec8;
-        text-align: center;
-        margin: 0;
-        padding: 20px;
-      }
-
-      .dialog img {
-        display: block;
-        margin: 20px auto;
-        margin-top: 50px;
-        max-width: 600px;
-        width: 100%;
-        height: auto;
-      }
-
-      .dialog h1 {
-        font: 20px/28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-weight: 400;
-      }
-  %body
+    = stylesheet_pack_tag 'common', media: 'all'
+    = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
+  %body.error
     .dialog
-      %img{ alt: 'Mastodon', src: '/oops.png' }/
+      %img{ alt: Setting.default_settings['site_title'], src: '/oops.gif' }/
       %div
         %h1= yield :content

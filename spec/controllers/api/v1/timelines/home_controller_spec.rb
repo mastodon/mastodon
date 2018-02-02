@@ -12,7 +12,7 @@ describe Api::V1::Timelines::HomeController do
   end
 
   context 'with a user context' do
-    let(:token) { double acceptable?: true, resource_owner_id: user.id }
+    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
 
     describe 'GET #show' do
       before do
@@ -30,7 +30,7 @@ describe Api::V1::Timelines::HomeController do
   end
 
   context 'without a user context' do
-    let(:token) { double acceptable?: true, resource_owner_id: nil }
+    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil, scopes: 'read') }
 
     describe 'GET #show' do
       it 'returns http unprocessable entity' do

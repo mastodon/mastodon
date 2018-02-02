@@ -9,9 +9,11 @@ class AccountFilter
 
   def results
     scope = Account.alphabetic
+
     params.each do |key, value|
       scope.merge!(scope_for(key, value)) if value.present?
     end
+
     scope
   end
 
@@ -43,6 +45,8 @@ class AccountFilter
       else
         Account.default_scoped
       end
+    when 'staff'
+      accounts_with_users.merge User.staff
     else
       raise "Unknown filter: #{key}"
     end

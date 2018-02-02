@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Status, type: :model do
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob)   { Fabricate(:account, username: 'bob') }
-  let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!')}
+  let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
 
   subject { Fabricate(:status, account: alice) }
 
@@ -13,8 +13,14 @@ RSpec.describe Status, type: :model do
     end
 
     it 'returns false if a remote URI is set' do
-      subject.uri = 'a'
+      alice.update(domain: 'example.com')
+      subject.save
       expect(subject.local?).to be false
+    end
+
+    it 'returns true if a URI is set and `local` is true' do
+      subject.update(uri: 'example.com', local: true)
+      expect(subject.local?).to be true
     end
   end
 
@@ -41,8 +47,27 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#verb' do
-    it 'is always post' do
-      expect(subject.verb).to be :post
+    context 'if destroyed?' do
+      it 'returns :delete' do
+        subject.destroy!
+        expect(subject.verb).to be :delete
+      end
+    end
+
+    context 'unless destroyed?' do
+      context 'if reblog?' do
+        it 'returns :share' do
+          subject.reblog = other
+          expect(subject.verb).to be :share
+        end
+      end
+
+      context 'unless reblog?' do
+        it 'returns :post' do
+          subject.reblog = nil
+          expect(subject.verb).to be :post
+        end
+      end
     end
   end
 
@@ -58,8 +83,61 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#title' do
-    it 'is a shorter version of the content' do
-      expect(subject.title).to be_a String
+    # rubocop:disable Style/InterpolationCheck
+
+    let(:account) { subject.account }
+
+    context 'if destroyed?' do
+      it 'returns "#{account.acct} deleted status"' do
+        subject.destroy!
+        expect(subject.title).to eq "#{account.acct} deleted status"
+      end
+    end
+
+    context 'unless destroyed?' do
+      context 'if reblog?' do
+        it 'returns "#{account.acct} shared a status by #{reblog.account.acct}"' do
+          reblog = subject.reblog = other
+          expect(subject.title).to eq "#{account.acct} shared a status by #{reblog.account.acct}"
+        end
+      end
+
+      context 'unless reblog?' do
+        it 'returns "New status by #{account.acct}"' do
+          subject.reblog = nil
+          expect(subject.title).to eq "New status by #{account.acct}"
+        end
+      end
+    end
+  end
+
+  describe '#hidden?' do
+    context 'if private_visibility?' do
+      it 'returns true' do
+        subject.visibility = :private
+        expect(subject.hidden?).to be true
+      end
+    end
+
+    context 'if direct_visibility?' do
+      it 'returns true' do
+        subject.visibility = :direct
+        expect(subject.hidden?).to be true
+      end
+    end
+
+    context 'if public_visibility?' do
+      it 'returns false' do
+        subject.visibility = :public
+        expect(subject.hidden?).to be false
+      end
+    end
+
+    context 'if unlisted_visibility?' do
+      it 'returns false' do
+        subject.visibility = :unlisted
+        expect(subject.hidden?).to be false
+      end
     end
   end
 
@@ -167,29 +245,35 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.local_only' do
-    it 'returns only statuses from local accounts' do
-      local_account = Fabricate(:account, domain: nil)
-      remote_account = Fabricate(:account, domain: 'test.com')
-      local_status = Fabricate(:status, account: local_account)
-      remote_status = Fabricate(:status, account: remote_account)
+  describe '.not_in_filtered_languages' do
+    context 'for accounts with language filters' do
+      let(:user) { Fabricate(:user, filtered_languages: ['en']) }
 
-      results = described_class.local_only
-      expect(results).to include(local_status)
-      expect(results).not_to include(remote_status)
+      it 'does not include statuses in filtered languages' do
+        status = Fabricate(:status, language: 'en')
+        expect(Status.not_in_filtered_languages(user.account)).not_to include status
+      end
+
+      it 'includes status with unknown language' do
+        status = Fabricate(:status, language: nil)
+        expect(Status.not_in_filtered_languages(user.account)).to include status
+      end
     end
   end
 
   describe '.as_home_timeline' do
+    let(:account) { Fabricate(:account) }
+    let(:followed) { Fabricate(:account) }
+    let(:not_followed) { Fabricate(:account) }
+
     before do
-      account = Fabricate(:account)
-      followed = Fabricate(:account)
-      not_followed = Fabricate(:account)
       Fabricate(:follow, account: account, target_account: followed)
 
-      @self_status = Fabricate(:status, account: account)
-      @followed_status = Fabricate(:status, account: followed)
-      @not_followed_status = Fabricate(:status, account: not_followed)
+      @self_status = Fabricate(:status, account: account, visibility: :public)
+      @self_direct_status = Fabricate(:status, account: account, visibility: :direct)
+      @followed_status = Fabricate(:status, account: followed, visibility: :public)
+      @followed_direct_status = Fabricate(:status, account: followed, visibility: :direct)
+      @not_followed_status = Fabricate(:status, account: not_followed, visibility: :public)
 
       @results = Status.as_home_timeline(account)
     end
@@ -198,8 +282,21 @@ RSpec.describe Status, type: :model do
       expect(@results).to include(@self_status)
     end
 
+    it 'does not include direct statuses from self' do
+      expect(@results).to_not include(@self_direct_status)
+    end
+
     it 'includes statuses from followed' do
       expect(@results).to include(@followed_status)
+    end
+
+    it 'does not include direct statuses mentioning recipient from followed' do
+      Fabricate(:mention, account: account, status: @followed_direct_status)
+      expect(@results).to_not include(@followed_direct_status)
+    end
+
+    it 'does not include direct statuses not mentioning recipient from followed' do
+      expect(@results).not_to include(@followed_direct_status)
     end
 
     it 'does not include statuses from non-followed' do
@@ -479,7 +576,7 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe 'before_create' do
+  describe 'before_validation' do
     it 'sets account being replied to correctly over intermediary nodes' do
       first_status = Fabricate(:status, account: bob)
       intermediary = Fabricate(:status, thread: first_status, account: alice)
@@ -495,6 +592,31 @@ RSpec.describe Status, type: :model do
     it 'keeps conversation of parent node' do
       parent = Fabricate(:status, text: 'First')
       expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
+    end
+
+    it 'sets `local` to true for status by local account' do
+      expect(Status.create(account: alice, text: 'foo').local).to be true
+    end
+
+    it 'sets `local` to false for status by remote account' do
+      alice.update(domain: 'example.com')
+      expect(Status.create(account: alice, text: 'foo').local).to be false
+    end
+  end
+
+  describe 'validation' do
+    it 'disallow empty uri for remote status' do
+      alice.update(domain: 'example.com')
+      status = Fabricate.build(:status, uri: '', account: alice)
+      expect(status).to model_have_error_on_field(:uri)
+    end
+  end
+
+  describe 'after_create' do
+    it 'saves ActivityPub uri as uri for local status' do
+      status = Status.create(account: alice, text: 'foo')
+      status.reload
+      expect(status.uri).to start_with('https://')
     end
   end
 end

@@ -21,4 +21,18 @@ describe Report do
       expect(report.media_attachments).to eq [media_attachment]
     end
   end
+
+  describe 'validatiions' do
+    it 'has a valid fabricator' do
+      report = Fabricate(:report)
+      report.valid?
+      expect(report).to be_valid
+    end
+
+    it 'is invalid if comment is longer than 1000 characters' do
+      report = Fabricate.build(:report, comment: Faker::Lorem.characters(1001))
+      report.valid?
+      expect(report).to model_have_error_on_field(:comment)
+    end
+  end
 end

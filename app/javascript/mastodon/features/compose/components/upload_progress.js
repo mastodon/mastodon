@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Motion from 'react-motion/lib/Motion';
+import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { FormattedMessage } from 'react-intl';
 
-class UploadProgress extends React.PureComponent {
+export default class UploadProgress extends React.PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,
@@ -40,5 +40,3 @@ class UploadProgress extends React.PureComponent {
   }
 
 }
-
-export default UploadProgress;

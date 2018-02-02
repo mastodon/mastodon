@@ -17,7 +17,7 @@ RSpec.describe Formatter do
       let(:text) { 'http://google.com' }
 
       it 'has valid URL' do
-        is_expected.to include 'href="http://google.com/"'
+        is_expected.to include 'href="http://google.com"'
       end
     end
 
@@ -25,7 +25,7 @@ RSpec.describe Formatter do
       let(:text) { 'https://nic.みんな/' }
 
       it 'has valid URL' do
-        is_expected.to include 'href="https://nic.xn--q9jyb4c/"'
+        is_expected.to include 'href="https://nic.みんな/"'
       end
 
       it 'has display URL' do
@@ -53,7 +53,7 @@ RSpec.describe Formatter do
       let(:text) { 'http://www.google.com!' }
 
       it 'has valid URL' do
-        is_expected.to include 'href="http://www.google.com/"'
+        is_expected.to include 'href="http://www.google.com"'
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Formatter do
       let(:text) { "http://www.google.com'" }
 
       it 'has valid URL' do
-        is_expected.to include 'href="http://www.google.com/"'
+        is_expected.to include 'href="http://www.google.com"'
       end
     end
 
@@ -69,7 +69,7 @@ RSpec.describe Formatter do
       let(:text) { 'http://www.google.com>' }
 
       it 'has valid URL' do
-        is_expected.to include 'href="http://www.google.com/"'
+        is_expected.to include 'href="http://www.google.com"'
       end
     end
 
@@ -86,6 +86,54 @@ RSpec.describe Formatter do
 
       it 'has valid URL' do
         is_expected.to include 'href="https://en.wikipedia.org/wiki/Diaspora_(software)"'
+      end
+    end
+
+    context 'matches a URL with Japanese path string' do
+      let(:text) { 'https://ja.wikipedia.org/wiki/日本' }
+
+      it 'has valid URL' do
+        is_expected.to include 'href="https://ja.wikipedia.org/wiki/日本"'
+      end
+    end
+
+    context 'matches a URL with Korean path string' do
+      let(:text) { 'https://ko.wikipedia.org/wiki/대한민국' }
+
+      it 'has valid URL' do
+        is_expected.to include 'href="https://ko.wikipedia.org/wiki/대한민국"'
+      end
+    end
+
+    context 'matches a URL with Simplified Chinese path string' do
+      let(:text) { 'https://baike.baidu.com/item/中华人民共和国' }
+
+      it 'has valid URL' do
+        is_expected.to include 'href="https://baike.baidu.com/item/中华人民共和国"'
+      end
+    end
+
+    context 'matches a URL with Traditional Chinese path string' do
+      let(:text) { 'https://zh.wikipedia.org/wiki/臺灣' }
+
+      it 'has valid URL' do
+        is_expected.to include 'href="https://zh.wikipedia.org/wiki/臺灣"'
+      end
+    end
+
+    context 'contains unsafe URL (XSS attack, visible part)' do
+      let(:text) { %q{http://example.com/b<del>b</del>} }
+
+      it 'has escaped HTML' do
+        is_expected.to include '&lt;del&gt;b&lt;/del&gt;'
+      end
+    end
+
+    context 'contains unsafe URL (XSS attack, invisible part)' do
+      let(:text) { %q{http://example.com/blahblahblahblah/a<script>alert("Hello")</script>} }
+
+      it 'has escaped HTML' do
+        is_expected.to include '&lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;'
       end
     end
 
@@ -175,13 +223,91 @@ RSpec.describe Formatter do
 
         include_examples 'encode and link URLs'
       end
+
+      context 'with custom_emojify option' do
+        let!(:emoji) { Fabricate(:custom_emoji) }
+        let(:status) { Fabricate(:status, account: local_account, text: text) }
+
+        subject { Formatter.instance.format(status, custom_emojify: true) }
+
+        context 'with emoji at the start' do
+          let(:text) { ':coolcat: Beep boop' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with emoji in the middle' do
+          let(:text) { 'Beep :coolcat: boop' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with concatenated emoji' do
+          let(:text) { ':coolcat::coolcat:' }
+
+          it 'does not touch the shortcodes' do
+            is_expected.to match(/:coolcat::coolcat:/)
+          end
+        end
+
+        context 'with emoji at the end' do
+          let(:text) { 'Beep boop :coolcat:' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/boop <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+      end
     end
 
     context 'with remote status' do
-      let(:status) { Fabricate(:status, text: 'Beep boop', uri: 'beepboop') }
+      let(:status) { Fabricate(:status, account: remote_account, text: 'Beep boop') }
 
       it 'reformats' do
         is_expected.to eq 'Beep boop'
+      end
+
+      context 'with custom_emojify option' do
+        let!(:emoji) { Fabricate(:custom_emoji, domain: remote_account.domain) }
+        let(:status) { Fabricate(:status, account: remote_account, text: text) }
+
+        subject { Formatter.instance.format(status, custom_emojify: true) }
+
+        context 'with emoji at the start' do
+          let(:text) { '<p>:coolcat: Beep boop<br />' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<p><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with emoji in the middle' do
+          let(:text) { '<p>Beep :coolcat: boop</p>' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/Beep <img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
+
+        context 'with concatenated emoji' do
+          let(:text) { '<p>:coolcat::coolcat:</p>' }
+
+          it 'does not touch the shortcodes' do
+            is_expected.to match(/<p>:coolcat::coolcat:<\/p>/)
+          end
+        end
+
+        context 'with emoji at the end' do
+          let(:text) { '<p>Beep boop<br />:coolcat:</p>' }
+
+          it 'converts shortcode to image tag' do
+            is_expected.to match(/<br><img draggable="false" class="emojione" alt=":coolcat:"/)
+          end
+        end
       end
     end
   end
@@ -204,6 +330,14 @@ RSpec.describe Formatter do
         is_expected.to_not include '<script>alert("Hello")</script>'
       end
     end
+
+    context 'contains malicious classes' do
+      let(:text) { '<span class="mention	status__content__spoiler-link">Show more</span>' }
+
+      it 'strips malicious classes' do
+        is_expected.to_not include 'status__content__spoiler-link'
+      end
+    end
   end
 
   describe '#plaintext' do
@@ -218,7 +352,7 @@ RSpec.describe Formatter do
     end
 
     context 'with remote status' do
-      let(:status)  { Fabricate(:status, text: '<script>alert("Hello")</script>', uri: 'beep boop') }
+      let(:status)  { Fabricate(:status, account: remote_account, text: '<script>alert("Hello")</script>') }
 
       it 'returns tag-stripped text' do
         is_expected.to eq ''

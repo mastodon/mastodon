@@ -1,4 +1,4 @@
-<%= display_name(@me) %>,
+<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
 
 <%= raw t('notification_mailer.digest.body', since: l(@since), instance: root_url) %>
 <% @notifications.each do |notification| %>

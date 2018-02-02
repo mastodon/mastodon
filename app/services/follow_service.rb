@@ -5,39 +5,54 @@ class FollowService < BaseService
 
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
-  # @param [String] uri User URI to follow in the form of username@domain
-  def call(source_account, uri)
-    target_account = FollowRemoteAccountService.new.call(uri)
+  # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
+  # @param [true, false, nil] reblogs Whether or not to show reblogs, defaults to true
+  def call(source_account, uri, reblogs: nil)
+    reblogs = true if reblogs.nil?
+    target_account = uri.is_a?(Account) ? uri : ResolveAccountService.new.call(uri)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
 
-    return if source_account.following?(target_account)
+    if source_account.following?(target_account)
+      # We're already following this account, but we'll call follow! again to
+      # make sure the reblogs status is set correctly.
+      source_account.follow!(target_account, reblogs: reblogs)
+      return
+    elsif source_account.requested?(target_account)
+      # This isn't managed by a method in AccountInteractions, so we modify it
+      # ourselves if necessary.
+      req = source_account.follow_requests.find_by(target_account: target_account)
+      req.update!(show_reblogs: reblogs)
+      return
+    end
 
-    if target_account.locked?
-      request_follow(source_account, target_account)
+    if target_account.locked? || target_account.activitypub?
+      request_follow(source_account, target_account, reblogs: reblogs)
     else
-      direct_follow(source_account, target_account)
+      direct_follow(source_account, target_account, reblogs: reblogs)
     end
   end
 
   private
 
-  def request_follow(source_account, target_account)
-    follow_request = FollowRequest.create!(account: source_account, target_account: target_account)
+  def request_follow(source_account, target_account, reblogs: true)
+    follow_request = FollowRequest.create!(account: source_account, target_account: target_account, show_reblogs: reblogs)
 
     if target_account.local?
       NotifyService.new.call(target_account, follow_request)
-    else
+    elsif target_account.ostatus?
       NotificationWorker.perform_async(build_follow_request_xml(follow_request), source_account.id, target_account.id)
       AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
+    elsif target_account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), source_account.id, target_account.inbox_url)
     end
 
     follow_request
   end
 
-  def direct_follow(source_account, target_account)
-    follow = source_account.follow!(target_account)
+  def direct_follow(source_account, target_account, reblogs: true)
+    follow = source_account.follow!(target_account, reblogs: reblogs)
 
     if target_account.local?
       NotifyService.new.call(target_account, follow)
@@ -57,10 +72,18 @@ class FollowService < BaseService
   end
 
   def build_follow_request_xml(follow_request)
-    AtomSerializer.render(AtomSerializer.new.follow_request_salmon(follow_request))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_request_salmon(follow_request))
   end
 
   def build_follow_xml(follow)
-    AtomSerializer.render(AtomSerializer.new.follow_salmon(follow))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_salmon(follow))
+  end
+
+  def build_json(follow_request)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+      follow_request,
+      serializer: ActivityPub::FollowSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json).sign!(follow_request.account))
   end
 end

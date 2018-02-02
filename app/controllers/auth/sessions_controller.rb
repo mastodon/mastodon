@@ -8,6 +8,7 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :check_suspension, only: [:destroy]
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
+  before_action :set_instance_presenter, only: [:new]
 
   def create
     super do |resource|
@@ -27,7 +28,11 @@ class Auth::SessionsController < Devise::SessionsController
     if session[:otp_user_id]
       User.find(session[:otp_user_id])
     elsif user_params[:email]
-      User.find_for_authentication(email: user_params[:email])
+      if use_pam? && Devise.check_at_sign && user_params[:email].index('@').nil?
+        User.joins(:account).find_by(accounts: { username: user_params[:email] })
+      else
+        User.find_for_authentication(email: user_params[:email])
+      end
     end
   end
 
@@ -61,7 +66,7 @@ class Auth::SessionsController < Devise::SessionsController
 
     if user_params[:otp_attempt].present? && session[:otp_user_id]
       authenticate_with_two_factor_via_otp(user)
-    elsif user && user.valid_password?(user_params[:password])
+    elsif user&.valid_password?(user_params[:password])
       prompt_for_two_factor(user)
     end
   end
@@ -83,6 +88,10 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   private
+
+  def set_instance_presenter
+    @instance_presenter = InstancePresenter.new
+  end
 
   def home_paths(resource)
     paths = [about_path]

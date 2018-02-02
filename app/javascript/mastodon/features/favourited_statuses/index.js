@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import LoadingIndicator from '../../components/loading_indicator';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from '../../actions/favourites';
 import Column from '../ui/components/column';
+import ColumnHeader from '../../components/column_header';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import StatusList from '../../components/status_list';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { debounce } from 'lodash';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
@@ -16,47 +17,82 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   statusIds: state.getIn(['status_lists', 'favourites', 'items']),
-  loaded: state.getIn(['status_lists', 'favourites', 'loaded']),
-  me: state.getIn(['meta', 'me']),
+  isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
+  hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });
 
-class Favourites extends ImmutablePureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Favourites extends ImmutablePureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
-    loaded: PropTypes.bool,
     intl: PropTypes.object.isRequired,
-    me: PropTypes.number.isRequired,
+    columnId: PropTypes.string,
+    multiColumn: PropTypes.bool,
+    hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
   };
 
   componentWillMount () {
     this.props.dispatch(fetchFavouritedStatuses());
   }
 
-  handleScrollToBottom = () => {
-    this.props.dispatch(expandFavouritedStatuses());
+  handlePin = () => {
+    const { columnId, dispatch } = this.props;
+
+    if (columnId) {
+      dispatch(removeColumn(columnId));
+    } else {
+      dispatch(addColumn('FAVOURITES', {}));
+    }
   }
 
-  render () {
-    const { statusIds, loaded, intl, me } = this.props;
+  handleMove = (dir) => {
+    const { columnId, dispatch } = this.props;
+    dispatch(moveColumn(columnId, dir));
+  }
 
-    if (!loaded) {
-      return (
-        <Column>
-          <LoadingIndicator />
-        </Column>
-      );
-    }
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
+  setRef = c => {
+    this.column = c;
+  }
+
+  handleScrollToBottom = debounce(() => {
+    this.props.dispatch(expandFavouritedStatuses());
+  }, 300, { leading: true })
+
+  render () {
+    const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
+    const pinned = !!columnId;
 
     return (
-      <Column icon='star' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
-        <StatusList {...this.props} scrollKey='favourited_statuses' onScrollToBottom={this.handleScrollToBottom} />
+      <Column ref={this.setRef}>
+        <ColumnHeader
+          icon='star'
+          title={intl.formatMessage(messages.heading)}
+          onPin={this.handlePin}
+          onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
+          pinned={pinned}
+          multiColumn={multiColumn}
+          showBackButton
+        />
+
+        <StatusList
+          trackScroll={!pinned}
+          statusIds={statusIds}
+          scrollKey={`favourited_statuses-${columnId}`}
+          hasMore={hasMore}
+          isLoading={isLoading}
+          onScrollToBottom={this.handleScrollToBottom}
+        />
       </Column>
     );
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(Favourites));

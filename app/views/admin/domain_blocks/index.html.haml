@@ -1,15 +1,16 @@
 - content_for :page_title do
   = t('admin.domain_blocks.title')
 
-%table.table
-  %thead
-    %tr
-      %th= t('admin.domain_blocks.domain')
-      %th= t('admin.domain_blocks.severity')
-      %th= t('admin.domain_blocks.reject_media')
-      %th
-  %tbody
-    = render @domain_blocks
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.domain_blocks.domain')
+        %th= t('admin.domain_blocks.severity')
+        %th= t('admin.domain_blocks.reject_media')
+        %th
+    %tbody
+      = render @domain_blocks
 
 = paginate @domain_blocks
 = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'

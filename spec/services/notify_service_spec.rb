@@ -17,6 +17,16 @@ RSpec.describe NotifyService do
     is_expected.to_not change(Notification, :count)
   end
 
+  it 'does not notify when sender is muted with hide_notifications' do
+    recipient.mute!(sender, notifications: true)
+    is_expected.to_not change(Notification, :count)
+  end
+
+  it 'does notify when sender is muted without hide_notifications' do
+    recipient.mute!(sender, notifications: false)
+    is_expected.to change(Notification, :count)
+  end
+
   it 'does not notify when sender\'s domain is blocked' do
     recipient.block_domain!(sender.domain)
     is_expected.to_not change(Notification, :count)
@@ -36,6 +46,68 @@ RSpec.describe NotifyService do
   it 'does not notify when recipient is suspended' do
     recipient.update(suspended: true)
     is_expected.to_not change(Notification, :count)
+  end
+
+  context 'for direct messages' do
+    let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct)) }
+
+    before do
+      user.settings.interactions = user.settings.interactions.merge('must_be_following_dm' => enabled)
+    end
+
+    context 'if recipient is supposed to be following sender' do
+      let(:enabled) { true }
+
+      it 'does not notify' do
+        is_expected.to_not change(Notification, :count)
+      end
+
+      context 'if the message chain initiated by recipient, but is not direct message' do
+        let(:reply_to) { Fabricate(:status, account: recipient) }
+        let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
+
+        it 'does not notify' do
+          is_expected.to_not change(Notification, :count)
+        end
+      end
+
+      context 'if the message chain initiated by recipient and is direct message' do
+        let(:reply_to) { Fabricate(:status, account: recipient, visibility: :direct) }
+        let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
+
+        it 'does notify' do
+          is_expected.to change(Notification, :count)
+        end
+      end
+    end
+
+    context 'if recipient is NOT supposed to be following sender' do
+      let(:enabled) { false }
+
+      it 'does notify' do
+        is_expected.to change(Notification, :count)
+      end
+    end
+  end
+
+  describe 'reblogs' do
+    let(:status)   { Fabricate(:status, account: Fabricate(:account)) }
+    let(:activity) { Fabricate(:status, account: sender, reblog: status) }
+
+    it 'shows reblogs by default' do
+      recipient.follow!(sender)
+      is_expected.to change(Notification, :count)
+    end
+
+    it 'shows reblogs when explicitly enabled' do
+      recipient.follow!(sender, reblogs: true)
+      is_expected.to change(Notification, :count)
+    end
+
+    it 'hides reblogs when disabled' do
+      recipient.follow!(sender, reblogs: false)
+      is_expected.to_not change(Notification, :count)
+    end
   end
 
   context do

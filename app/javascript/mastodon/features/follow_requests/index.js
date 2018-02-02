@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountAuthorizeContainer from './containers/account_authorize_container';
@@ -19,7 +19,9 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'follow_requests', 'items']),
 });
 
-class FollowRequests extends ImmutablePureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class FollowRequests extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -54,6 +56,7 @@ class FollowRequests extends ImmutablePureComponent {
     return (
       <Column icon='users' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
+
         <ScrollContainer scrollKey='follow_requests'>
           <div className='scrollable' onScroll={this.handleScroll}>
             {accountIds.map(id =>
@@ -66,5 +69,3 @@ class FollowRequests extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(FollowRequests));

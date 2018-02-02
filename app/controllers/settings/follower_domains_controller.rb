@@ -9,7 +9,7 @@ class Settings::FollowerDomainsController < ApplicationController
 
   def show
     @account = current_account
-    @domains = current_account.followers.reorder(nil).group('accounts.domain').select('accounts.domain, count(accounts.id) as accounts_from_domain').page(params[:page]).per(10)
+    @domains = current_account.followers.reorder('MIN(follows.id) DESC').group('accounts.domain').select('accounts.domain, count(accounts.id) as accounts_from_domain').page(params[:page]).per(10)
   end
 
   def update

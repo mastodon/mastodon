@@ -43,8 +43,14 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
+import {
+  LIST_ACCOUNTS_FETCH_SUCCESS,
+  LIST_EDITOR_SUGGESTIONS_READY,
+} from '../actions/lists';
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import emojify from '../features/emoji/emoji';
+import { Map as ImmutableMap, fromJS } from 'immutable';
+import escapeTextContentForBrowser from 'escape-html';
 
 const normalizeAccount = (state, account) => {
   account = { ...account };
@@ -53,7 +59,16 @@ const normalizeAccount = (state, account) => {
   delete account.following_count;
   delete account.statuses_count;
 
-  return state.set(account.id, Immutable.fromJS(account));
+  const displayName = account.display_name.length === 0 ? account.username : account.display_name;
+  account.display_name_html = emojify(escapeTextContentForBrowser(displayName));
+  account.note_emojified = emojify(account.note);
+
+  if (account.moved) {
+    state = normalizeAccount(state, account.moved);
+    account.moved = account.moved.id;
+  }
+
+  return state.set(account.id, fromJS(account));
 };
 
 const normalizeAccounts = (state, accounts) => {
@@ -82,7 +97,7 @@ const normalizeAccountsFromStatuses = (state, statuses) => {
   return state;
 };
 
-const initialState = Immutable.Map();
+const initialState = ImmutableMap();
 
 export default function accounts(state = initialState, action) {
   switch(action.type) {
@@ -104,7 +119,9 @@ export default function accounts(state = initialState, action) {
   case BLOCKS_EXPAND_SUCCESS:
   case MUTES_FETCH_SUCCESS:
   case MUTES_EXPAND_SUCCESS:
-    return normalizeAccounts(state, action.accounts);
+  case LIST_ACCOUNTS_FETCH_SUCCESS:
+  case LIST_EDITOR_SUGGESTIONS_READY:
+    return action.accounts ? normalizeAccounts(state, action.accounts) : state;
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case SEARCH_FETCH_SUCCESS:

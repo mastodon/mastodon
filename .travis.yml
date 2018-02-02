@@ -5,9 +5,13 @@ cache:
   directories:
   - node_modules
   - public/assets
-  - public/packs
+  - public/packs-test
+  - tmp/cache/babel-loader
 dist: trusty
 sudo: false
+branches:
+  only:
+  - master
 
 notifications:
   email: false
@@ -25,33 +29,33 @@ addons:
   postgresql: 9.4
   apt:
     sources:
-    - ubuntu-toolchain-r-test
     - trusty-media
+    - sourceline: deb https://dl.yarnpkg.com/debian/ stable main
+      key_url: https://dl.yarnpkg.com/debian/pubkey.gpg
     packages:
     - ffmpeg
-    - g++-6
+    - libicu-dev
     - libprotobuf-dev
     - protobuf-compiler
+    - yarn
 
 rvm:
-  - 2.3.4
-  - 2.4.1
+  - 2.4.2
+  - 2.5.0
 
 services:
   - redis-server
 
 install:
   - nvm install
-  - npm install -g yarn
   - bundle install --path=vendor/bundle --without development production --retry=3 --jobs=16
   - yarn install
 
 before_script:
-  - bundle exec rake parallel:create parallel:load_schema parallel:prepare
-  - bundle exec rails assets:precompile
+  - ./bin/rails parallel:create parallel:load_schema parallel:prepare assets:precompile
   - ln -s /usr/bin/x86_64-linux-gnu-g++-6 "$HOME/g++"
 
 script:
   - travis_retry bundle exec parallel_test spec/ --group-by filesize --type rspec
-  - npm test
-  - bundle exec i18n-tasks unused
+  - yarn test
+  - bundle exec i18n-tasks check-normalized && bundle exec i18n-tasks unused

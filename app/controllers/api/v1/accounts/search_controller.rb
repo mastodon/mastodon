@@ -8,8 +8,7 @@ class Api::V1::Accounts::SearchController < Api::BaseController
 
   def show
     @accounts = account_search
-
-    render 'api/v1/accounts/index'
+    render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
   private
@@ -18,12 +17,13 @@ class Api::V1::Accounts::SearchController < Api::BaseController
     AccountSearchService.new.call(
       params[:q],
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
-      resolving_search?,
-      current_account
+      current_account,
+      resolve: truthy_param?(:resolve),
+      following: truthy_param?(:following)
     )
   end
 
-  def resolving_search?
-    params[:resolve] == 'true'
+  def truthy_param?(key)
+    params[key] == 'true'
   end
 end

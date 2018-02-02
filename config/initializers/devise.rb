@@ -1,3 +1,48 @@
+Warden::Manager.after_set_user except: :fetch do |user, warden|
+  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
+    session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
+  else
+    session_id = user.activate_session(warden.request)
+  end
+
+  warden.cookies.signed['_session_id'] = {
+    value: session_id,
+    expires: 1.year.from_now,
+    httponly: true,
+  }
+end
+
+Warden::Manager.after_fetch do |user, warden|
+  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
+    warden.cookies.signed['_session_id'] = {
+      value: warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'],
+      expires: 1.year.from_now,
+      httponly: true,
+    }
+  else
+    warden.logout
+    throw :warden, message: :unauthenticated
+  end
+end
+
+Warden::Manager.before_logout do |_, warden|
+  SessionActivation.deactivate warden.cookies.signed['_session_id']
+  warden.cookies.delete('_session_id')
+end
+
+module Devise
+  mattr_accessor :pam_authentication
+  @@pam_authentication = false
+  mattr_accessor :pam_controlled_service
+  @@pam_controlled_service = nil
+
+  class Strategies::PamAuthenticatable
+    def valid?
+      super && ::Devise.pam_authentication
+    end
+  end
+end
+
 Devise.setup do |config|
   config.warden do |manager|
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
@@ -64,7 +109,7 @@ Devise.setup do |config|
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  config.http_authenticatable = [:database]
+  config.http_authenticatable = [:pam, :database]
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -105,6 +150,9 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   # config.pepper = '104d16705f794923e77c5e5167b52452d00646dc952a2d30b541c24086e647012c7b9625f253c51912e455981e503446772973d5f1638631196c819d7137fad4'
 
+  # Send a notification to the original email when the user's email is changed.
+  config.send_email_changed_notification = true
+
   # Send a notification email when the user's password is changed
   config.send_password_change_notification = true
 
@@ -122,20 +170,20 @@ Devise.setup do |config|
   # their account can't be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
-  # config.confirm_within = 3.days
+  config.confirm_within = 2.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
-  config.reconfirmable = false
+  config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [:email]
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 1.year
 
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true
@@ -145,7 +193,7 @@ Devise.setup do |config|
 
   # Options to be passed to the created cookie. For instance, you can set
   # secure: true in order to force SSL only cookies.
-  # config.rememberable_options = {}
+  config.rememberable_options = { secure: true }
 
   # ==> Configuration for :validatable
   # Range for password length.
@@ -266,4 +314,23 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  # PAM: only look for email field
+  config.usernamefield = nil
+  config.emailfield = "email"
+
+  # authentication with pam possible
+  # if not enabled, all pam settings are ignored
+  #config.pam_authentication = true
+  # check if email is actually a username
+  config.check_at_sign = true
+  # suffix for email address generation (warning: without pam must provide email in the pam environment)
+  config.pam_default_suffix = "pam"
+  # name of the pam service
+  # pam "auth" section is evaluated
+  config.pam_default_service = "rpam"
+  # name of the pam service used for checking if an user can register
+  # pam "account" section is evaluated
+  # nil for allowing registration of pam names (not recommended)
+  config.pam_controlled_service = "rpam"
 end

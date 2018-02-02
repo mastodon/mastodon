@@ -11,11 +11,12 @@ class Api::V1::NotificationsController < Api::BaseController
 
   def index
     @notifications = load_notifications
-    set_maps_for_notification_target_statuses
+    render json: @notifications, each_serializer: REST::NotificationSerializer, relationships: StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
   end
 
   def show
     @notification = current_account.notifications.find(params[:id])
+    render json: @notification, serializer: REST::NotificationSerializer
   end
 
   def clear
@@ -44,10 +45,6 @@ class Api::V1::NotificationsController < Api::BaseController
 
   def browserable_account_notifications
     current_account.notifications.browserable(exclude_types)
-  end
-
-  def set_maps_for_notification_target_statuses
-    set_maps target_statuses_from_notifications
   end
 
   def target_statuses_from_notifications

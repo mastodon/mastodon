@@ -6,8 +6,8 @@ class Api::BaseController < ApplicationController
 
   include RateLimitHeaders
 
-  skip_before_action :verify_authenticity_token
   skip_before_action :store_current_location
+  protect_from_forgery with: :null_session
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
@@ -17,11 +17,7 @@ class Api::BaseController < ApplicationController
     render json: { error: 'Record not found' }, status: 404
   end
 
-  rescue_from Goldfinger::Error do
-    render json: { error: 'Remote account could not be resolved' }, status: 422
-  end
-
-  rescue_from HTTP::Error do
+  rescue_from HTTP::Error, Mastodon::UnexpectedResponseError do
     render json: { error: 'Remote data could not be fetched' }, status: 503
   end
 
@@ -47,7 +43,7 @@ class Api::BaseController < ApplicationController
     links = []
     links << [next_path, [%w(rel next)]] if next_path
     links << [prev_path, [%w(rel prev)]] if prev_path
-    response.headers['Link'] = LinkHeader.new(links)
+    response.headers['Link'] = LinkHeader.new(links) unless links.empty?
   end
 
   def limit_param(default_limit)
@@ -66,28 +62,14 @@ class Api::BaseController < ApplicationController
   end
 
   def require_user!
-    current_resource_owner
-    set_user_activity
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: 'This method requires an authenticated user' }, status: 422
+    if current_user
+      set_user_activity
+    else
+      render json: { error: 'This method requires an authenticated user' }, status: 422
+    end
   end
 
   def render_empty
     render json: {}, status: 200
-  end
-
-  def set_maps(statuses) # rubocop:disable Style/AccessorMethodName
-    if current_account.nil?
-      @reblogs_map    = {}
-      @favourites_map = {}
-      @mutes_map      = {}
-      return
-    end
-
-    status_ids       = statuses.compact.flat_map { |s| [s.id, s.reblog_of_id] }.uniq
-    conversation_ids = statuses.compact.map(&:conversation_id).compact.uniq
-    @reblogs_map     = Status.reblogs_map(status_ids, current_account)
-    @favourites_map  = Status.favourites_map(status_ids, current_account)
-    @mutes_map       = Status.mutes_map(conversation_ids, current_account)
   end
 end

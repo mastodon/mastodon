@@ -1,5 +1,11 @@
 .panel
-  .panel-header= t 'about.contact'
+  .panel-header
+    = succeed ':' do
+      = t 'about.contact'
+    - if contact.site_contact_email.present?
+      = mail_to contact.site_contact_email, nil, title: contact.site_contact_email
+    - else
+      %span= t 'about.contact_unavailable'
   .panel-body
     - if contact.contact_account
       .owner
@@ -8,8 +14,9 @@
           = link_to TagManager.instance.url_for(contact.contact_account) do
             %span.display_name.emojify= display_name(contact.contact_account)
             %span.username @#{contact.contact_account.acct}
-
-    - unless contact.site_contact_email.blank?
-      .contact-email
-        = t 'about.business_email'
-        %strong= contact.site_contact_email
+    - else
+      .owner
+        .avatar= image_tag full_asset_url('avatars/original/missing.png', skip_pipeline: true)
+        .name
+          %span.display_name= t 'about.contact_missing'
+          %span.username= t 'about.contact_unavailable'

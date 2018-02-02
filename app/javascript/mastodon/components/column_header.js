@@ -1,16 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
-class ColumnHeader extends React.PureComponent {
+const messages = defineMessages({
+  show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
+  hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
+  moveLeft: { id: 'column_header.moveLeft_settings', defaultMessage: 'Move column to the left' },
+  moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
+});
+
+@injectIntl
+export default class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
   };
 
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    intl: PropTypes.object.isRequired,
+    title: PropTypes.node.isRequired,
     icon: PropTypes.string.isRequired,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
@@ -45,8 +54,8 @@ class ColumnHeader extends React.PureComponent {
   }
 
   handleBackClick = () => {
-    if (window.history && window.history.length === 1) this.context.router.push('/');
-    else this.context.router.goBack();
+    if (window.history && window.history.length === 1) this.context.router.history.push('/');
+    else this.context.router.history.goBack();
   }
 
   handleTransitionEnd = () => {
@@ -54,7 +63,7 @@ class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton } = this.props;
+    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton, intl: { formatMessage } } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -89,8 +98,8 @@ class ColumnHeader extends React.PureComponent {
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
-          <button className='text-btn column-header__setting-btn' onClick={this.handleMoveLeft}><i className='fa fa-chevron-left' /></button>
-          <button className='text-btn column-header__setting-btn' onClick={this.handleMoveRight}><i className='fa fa-chevron-right' /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='text-btn column-header__setting-btn' onClick={this.handleMoveLeft}><i className='fa fa-chevron-left' /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='text-btn column-header__setting-btn' onClick={this.handleMoveRight}><i className='fa fa-chevron-right' /></button>
         </div>
       );
     } else if (multiColumn) {
@@ -116,23 +125,25 @@ class ColumnHeader extends React.PureComponent {
     }
 
     if (children || multiColumn) {
-      collapseButton = <button className={collapsibleButtonClassName} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
+      collapseButton = <button className={collapsibleButtonClassName} aria-label={formatMessage(collapsed ? messages.show : messages.hide)} aria-pressed={collapsed ? 'false' : 'true'} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
     }
 
     return (
       <div className={wrapperClassName}>
-        <div role='button heading' tabIndex='0' className={buttonClassName} onClick={this.handleTitleClick}>
-          <i className={`fa fa-fw fa-${icon} column-header__icon`} />
-          {title}
+        <h1 className={buttonClassName}>
+          <button onClick={this.handleTitleClick}>
+            <i className={`fa fa-fw fa-${icon} column-header__icon`} />
+            {title}
+          </button>
 
           <div className='column-header__buttons'>
             {backButton}
             {collapseButton}
           </div>
-        </div>
+        </h1>
 
-        <div className={collapsibleClassName} onTransitionEnd={this.handleTransitionEnd}>
-          <div>
+        <div className={collapsibleClassName} tabIndex={collapsed ? -1 : null} onTransitionEnd={this.handleTransitionEnd}>
+          <div className='column-header__collapsible-inner'>
             {(!collapsed || animating) && collapsedContent}
           </div>
         </div>
@@ -141,5 +152,3 @@ class ColumnHeader extends React.PureComponent {
   }
 
 }
-
-export default ColumnHeader;

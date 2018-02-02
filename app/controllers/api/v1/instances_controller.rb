@@ -3,5 +3,7 @@
 class Api::V1::InstancesController < Api::BaseController
   respond_to :json
 
-  def show; end
+  def show
+    render json: {}, serializer: REST::InstanceSerializer
+  end
 end

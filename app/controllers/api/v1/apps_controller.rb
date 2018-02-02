@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class Api::V1::AppsController < Api::BaseController
-  respond_to :json
-
   def create
     @app = Doorkeeper::Application.create!(application_options)
+    render json: @app, serializer: REST::ApplicationSerializer
   end
 
   private

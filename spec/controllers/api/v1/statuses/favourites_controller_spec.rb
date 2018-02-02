@@ -7,7 +7,7 @@ describe Api::V1::Statuses::FavouritesController do
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
   let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
-  let(:token) { double acceptable?: true, resource_owner_id: user.id, application: app }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write', application: app) }
 
   context 'with an oauth token' do
     before do
@@ -36,7 +36,7 @@ describe Api::V1::Statuses::FavouritesController do
       it 'return json with updated attributes' do
         hash_body = body_as_json
 
-        expect(hash_body[:id]).to eq status.id
+        expect(hash_body[:id]).to eq status.id.to_s
         expect(hash_body[:favourites_count]).to eq 1
         expect(hash_body[:favourited]).to be true
       end
