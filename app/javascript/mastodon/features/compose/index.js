@@ -91,7 +91,7 @@ export default class Compose extends React.PureComponent {
         <SearchContainer />
 
         <div className='drawer__pager'>
-          <div className='drawer__inner' onFocus={this.onFocus}>
+          <div className='drawer__inner drawer__inner--with-mastodon' onFocus={this.onFocus}>
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer />
             {multiColumn && <div className='mastodon' />}
