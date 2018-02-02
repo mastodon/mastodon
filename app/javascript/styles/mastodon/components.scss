@@ -2422,6 +2422,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    flex: 1;
   }
 
   &.active {
@@ -2442,7 +2443,6 @@
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin-left: auto;
 }
 
 .column-header__links .text-btn {
