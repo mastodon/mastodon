@@ -30,6 +30,19 @@ Warden::Manager.before_logout do |_, warden|
   warden.cookies.delete('_session_id')
 end
 
+module Devise
+  mattr_accessor :pam_authentication
+  @@pam_authentication = false
+  mattr_accessor :pam_controlled_service
+  @@pam_controlled_service = nil
+
+  class Strategies::PamAuthenticatable
+    def valid?
+      super && ::Devise.pam_authentication
+    end
+  end
+end
+
 Devise.setup do |config|
   config.warden do |manager|
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
@@ -96,7 +109,7 @@ Devise.setup do |config|
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  config.http_authenticatable = [:database]
+  config.http_authenticatable = [:pam, :database]
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -301,4 +314,23 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  # PAM: only look for email field
+  config.usernamefield = nil
+  config.emailfield = "email"
+
+  # authentication with pam possible
+  # if not enabled, all pam settings are ignored
+  #config.pam_authentication = true
+  # check if email is actually a username
+  config.check_at_sign = true
+  # suffix for email address generation (warning: without pam must provide email in the pam environment)
+  config.pam_default_suffix = "pam"
+  # name of the pam service
+  # pam "auth" section is evaluated
+  config.pam_default_service = "rpam"
+  # name of the pam service used for checking if an user can register
+  # pam "account" section is evaluated
+  # nil for allowing registration of pam names (not recommended)
+  config.pam_controlled_service = "rpam"
 end
