@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class StatusesController < ApplicationController
+  include SignatureAuthentication
   include Authorization
 
   layout 'public'
