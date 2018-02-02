@@ -30,9 +30,7 @@ gem 'iso-639'
 gem 'cld3', '~> 3.2.0'
 gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
-
-gem 'devise_pam_authenticatable2', '~> 8.0'
-
+gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'
 gem 'goldfinger', '~> 2.1'

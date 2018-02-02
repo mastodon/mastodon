@@ -315,22 +315,13 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  # PAM: only look for email field
-  config.usernamefield = nil
-  config.emailfield = "email"
-
-  # authentication with pam possible
-  # if not enabled, all pam settings are ignored
-  #config.pam_authentication = true
-  # check if email is actually a username
-  config.check_at_sign = true
-  # suffix for email address generation (warning: without pam must provide email in the pam environment)
-  config.pam_default_suffix = "pam"
-  # name of the pam service
-  # pam "auth" section is evaluated
-  config.pam_default_service = "rpam"
-  # name of the pam service used for checking if an user can register
-  # pam "account" section is evaluated
-  # nil for allowing registration of pam names (not recommended)
-  config.pam_controlled_service = "rpam"
+  if ENV['PAM_ENABLED'] == 'true'
+    config.pam_authentication     = true
+    config.usernamefield          = nil
+    config.emailfield             = 'email'
+    config.check_at_sign          = true
+    config.pam_default_suffix     = ENV.fetch('PAM_DEFAULT_SUFFIX') { nil }
+    config.pam_default_service    = ENV.fetch('PAM_DEFAULT_SERVICE') { 'rpam' }
+    config.pam_controlled_service = ENV.fetch('PAM_CONTROLLED_SERVICE') { 'rpam' }
+  end
 end
