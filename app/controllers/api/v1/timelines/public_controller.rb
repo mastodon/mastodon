@@ -29,7 +29,11 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   end
 
   def public_timeline_statuses
-    Status.as_public_timeline(current_account, params[:local])
+    if params[:local] then
+      Status.as_tag_timeline(Rails.configuration.x.default_hashtag_id, current_account, false)
+    else
+      Status.as_public_timeline(current_account, false)
+    end
   end
 
   def insert_pagination_headers

@@ -24,6 +24,7 @@ const messages = defineMessages({
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Toot' },
   publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
+  publish_without_community: { id: 'compose_form.publish_without_community', defaultMessage: 'Toot without Local' },
 });
 
 @injectIntl
@@ -61,19 +62,25 @@ export default class ComposeForm extends ImmutablePureComponent {
   }
 
   handleKeyDown = (e) => {
-    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey) && e.shiftKey) {
+      this.handleSubmit(false);
+    } else if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
   }
 
-  handleSubmit = () => {
+  handleSubmit = (withCommunity = true) => {
     if (this.props.text !== this.autosuggestTextarea.textarea.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
       // Update the state to match the current text
       this.props.onChange(this.autosuggestTextarea.textarea.value);
     }
 
-    this.props.onSubmit();
+    this.props.onSubmit(withCommunity);
+  }
+
+  handleSubmitWithoutCommunity = () => {
+    this.handleSubmit(false);
   }
 
   onSuggestionsClearRequested = () => {
@@ -204,6 +211,10 @@ export default class ComposeForm extends ImmutablePureComponent {
 
         <div className='compose-form__publish'>
           <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block /></div>
+        </div>
+
+        <div className='compose-form__publish'>
+          <div className='compose-form__publish-button-wrapper'><Button text={intl.formatMessage(messages.publish_without_community)} onClick={this.handleSubmitWithoutCommunity} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block secondary /></div>
         </div>
       </div>
     );
