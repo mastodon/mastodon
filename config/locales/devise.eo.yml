@@ -17,11 +17,26 @@ eo:
       unconfirmed: Vi devas konfirmi vian konton por daŭrigi.
     mailer:
       confirmation_instructions:
+        action: Kontrolu vian retmesaĝan adreson
         subject: Instrukcioj por konfirmi
+        title: Kontrolu la retmesaĝan adreson
+      email_changed:
+        explanation: 'La retmesaĝa adreso de via konto estas ŝanĝonta al:'
+        subject: 'Mastodon: retmesaĝa adreso ŝanĝiĝis'
+        title: Nova retmesaĝa adreso
       password_change:
-        subject: Via pasvorto estis ŝanĝita senprobleme.
+        explanation: La pasvorto de via konto ŝanĝiĝis.
+        subject: 'Mastodon: via pasvorto estis ŝanĝita senprobleme'
+        title: Pasvorto ŝanĝita
+      reconfirmation_instructions:
+        explanation: Retajpu la novan adreson por ŝanĝi vian retmesaĝujon.
+        subject: 'Mastodon: jesigi retmesaĝon por %{instance}'
+        title: Kontrolu la retmesaĝan adreson
       reset_password_instructions:
+        action: Ŝanĝi la pasvorton
+        explanation: Vi petis novan pasvorton por via konto.
         subject: Instrukcioj por ŝanĝi la pasvorton
+        title: Pasvorto renovigita
       unlock_instructions:
         subject: Instrukcioj por malŝlosi la konton
     omniauth_callbacks:

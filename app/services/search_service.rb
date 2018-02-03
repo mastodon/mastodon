@@ -8,7 +8,7 @@ class SearchService < BaseService
 
     default_results.tap do |results|
       if url_query?
-        results.merge!(remote_resource_results) unless remote_resource.nil?
+        results.merge!(url_resource_results) unless url_resource.nil?
       elsif query.present?
         results[:accounts] = AccountSearchService.new.call(query, limit, account, resolve: resolve)
         results[:hashtags] = Tag.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@')
@@ -24,15 +24,15 @@ class SearchService < BaseService
     query =~ /\Ahttps?:\/\//
   end
 
-  def remote_resource_results
-    { remote_resource_symbol => [remote_resource] }
+  def url_resource_results
+    { url_resource_symbol => [url_resource] }
   end
 
-  def remote_resource
-    @_remote_resource ||= FetchRemoteResourceService.new.call(query)
+  def url_resource
+    @_url_resource ||= ResolveURLService.new.call(query)
   end
 
-  def remote_resource_symbol
-    remote_resource.class.name.downcase.pluralize.to_sym
+  def url_resource_symbol
+    url_resource.class.name.downcase.pluralize.to_sym
   end
 end
