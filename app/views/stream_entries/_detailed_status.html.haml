@@ -9,7 +9,7 @@
 
   - if embedded_view?
     = link_to "web+mastodon://follow?uri=#{status.account.local_username_and_domain}", class: 'button button-secondary logo-button', target: '_new' do
-      = render file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')
+      = render file: Rails.root.join('app', 'javascript', 'images', 'logo.png')
       = t('accounts.follow')
 
   .status__content.p-name.emojify<
