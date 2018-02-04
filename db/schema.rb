@@ -545,11 +545,8 @@ ActiveRecord::Schema.define(version: 20180204034416) do
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
-<<<<<<< HEAD
   add_foreign_key "glitch_keyword_mutes", "accounts", on_delete: :cascade
-=======
   add_foreign_key "identities", "users", on_delete: :cascade
->>>>>>> origin/master
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
   add_foreign_key "list_accounts", "accounts", on_delete: :cascade
