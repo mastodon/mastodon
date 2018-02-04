@@ -1,24 +1,14 @@
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+import * as WebPushSubscription from './web_push_subscription';
+import Mastodon from 'mastodon/containers/mastodon';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ready from './ready';
+
 const perf = require('./performance');
-
-// import default stylesheet with variables
-require('font-awesome/css/font-awesome.css');
-require('mastodon-application-style');
-
-function onDomContentLoaded(callback) {
-  if (document.readyState !== 'loading') {
-    callback();
-  } else {
-    document.addEventListener('DOMContentLoaded', callback);
-  }
-}
 
 function main() {
   perf.start('main()');
-  const Mastodon = require('mastodon/containers/mastodon').default;
-  const React = require('react');
-  const ReactDOM = require('react-dom');
-
-  require.context('../images/', true);
 
   if (window.history && history.replaceState) {
     const { pathname, search, hash } = window.location;
@@ -28,11 +18,16 @@ function main() {
     }
   }
 
-  onDomContentLoaded(() => {
+  ready(() => {
     const mountNode = document.getElementById('mastodon');
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
     ReactDOM.render(<Mastodon {...props} />, mountNode);
+    if (process.env.NODE_ENV === 'production') {
+      // avoid offline in dev mode because it's harder to debug
+      OfflinePluginRuntime.install();
+      WebPushSubscription.register();
+    }
     perf.stop('main()');
   });
 }

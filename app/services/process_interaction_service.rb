@@ -47,7 +47,7 @@ class ProcessInteractionService < BaseService
         reflect_unblock!(account, target_account)
       end
     end
-  rescue Goldfinger::Error, HTTP::Error, OStatus2::BadSalmonError, Mastodon::NotPermittedError
+  rescue HTTP::Error, OStatus2::BadSalmonError, Mastodon::NotPermittedError
     nil
   end
 

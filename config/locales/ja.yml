@@ -1,35 +1,38 @@
 ---
 ja:
   about:
-    about_mastodon: Mastodon は<em>自由でオープンソース</em>なソーシャルネットワークです。商用プラットフォームの代替となる<em>分散型</em>を採用し、あなたのやりとりが一つの会社によって独占されるのを防ぎます。信頼できるインスタンスを選択してください &mdash; どのインスタンスを選んでも、誰とでもやりとりすることができます。 だれでも自分の Mastodon インスタンスを作ることができ、シームレスに<em>ソーシャルネットワーク</em>に参加できます。
-    about_this: このインスタンスについて
-    apps: アプリ
-    business_email: 'ビジネスメールアドレス:'
-    closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。
+    about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
+    about_this: 詳細情報
+    closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
+    contact_missing: 未設定
+    contact_unavailable: N/A
     description_headline: "%{domain} とは？"
     domain_count_after: 個のインスタンス
     domain_count_before: 接続中
+    extended_description_html: |
+      <h3>ルールを書くのに適した場所</h3>
+      <p>詳細説明が設定されていません。</p>
     features:
-      api: アプリやその他サービスにAPIを公開
-      blocks: 豊富なブロックやミュート機能
-      characters: 1つの投稿は500文字まで利用可能
-      chronology: 時系列順のタイムライン
-      ethics: 広告もトラッキングもありません
-      gifv: GIFVや短い動画にも対応
-      privacy: 投稿ごとに公開範囲を細かく設定可能
-      public: 公開タイムライン
-    features_headline: Mastodon の特徴
-    get_started: 参加する
-    links: リンク
+      humane_approach_body: 他の SNS の失敗から学び、Mastodon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指しています。
+      humane_approach_title: より思いやりのある設計
+      not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析は無く、またユーザーの囲い込みもありません。
+      not_a_product_title: あなたは人間であり、商品ではありません
+      real_conversation_body: 好きなように書ける500文字までの投稿や、文章やメディアの内容に警告をつけられる機能で、思い通りに自分自身を表現することができます。
+      real_conversation_title: 本当のコミュニケーションのために
+      within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
+      within_reach_title: いつでも身近に
+    find_another_instance: 他のインスタンスを探す
+    generic_description: "%{domain} は、Mastodon インスタンスの一つです。"
+    hosted_on: Mastodon hosted on %{domain}
+    learn_more: もっと詳しく
     other_instances: 他のインスタンス
     source_code: ソースコード
     status_count_after: トゥート
     status_count_before: トゥート数
-    terms: プライバシーポリシー
     user_count_after: 人
     user_count_before: ユーザー数
-    version: バージョン
+    what_is_mastodon: Mastodon とは？
   accounts:
     follow: フォロー
     followers: フォロワー
@@ -41,15 +44,6 @@ ja:
     remote_follow: リモートフォロー
     reserved_username: このユーザー名は予約されています。
     unfollow: フォロー解除
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} さんがアクティビティをシェアしました"
-      create:
-        name: "%{account_name} さんがノートを作成しました"
-    outbox:
-      name: "%{account_name} さんの送信トレイ"
-      summary: "%{account_name} さんからのアクティビティコレクション"
   admin:
     accounts:
       are_you_sure: 本当に実行しますか?
@@ -115,12 +109,14 @@ ja:
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
           desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          noop: なし
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です。
       severities:
+        noop: なし
         silence: サイレンス
         suspend: 停止
       severity: 深刻度
@@ -165,32 +161,53 @@ ja:
       view: 表示
     settings:
       contact_information:
-        email: 公開するメールアドレスを入力
-        label: 連絡先情報
-        username: ユーザー名を入力
+        email: ビジネスメールアドレス
+        username: 連絡先のユーザー名
       registrations:
         closed_message:
-          desc_html: 新規登録を停止しているときにフロントページに表示されます。<br>HTMLタグが利用可能です。
+          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
           title: 新規登録停止時のメッセージ
+        deletion:
+          desc_html: 誰でも自分のアカウントを削除できるようにします
+          title: アカウント削除を受け付ける
         open:
-          disabled: 無効
-          enabled: 有効
+          desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
-      setting: 設定
       site_description:
-        desc_html: トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が利用可能です。
-        title: サイトの説明文
+        desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
+        title: インスタンスの説明
       site_description_extended:
-        desc_html: インスタンスについてのページに表示されます。<br>HTMLタグが利用可能です。
-        title: サイトの詳細な説明
-      site_title: サイトのタイトル
+        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
+        title: カスタム詳細説明
+      site_terms:
+        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
+        title: カスタム利用規約
+      site_title: インスタンスの名前
+      timeline_preview:
+        desc_html: ランディングページに公開タイムラインを表示します
+        title: タイムラインプレビュー
       title: サイト設定
+    statuses:
+      back_to_account: アカウントページに戻る
+      batch:
+        delete: 削除
+        nsfw_off: NSFW オフ
+        nsfw_on: NSFW オン
+      execute: 実行
+      failed_to_execute: 実行に失敗しました
+      media:
+        hide: メディアを隠す
+        show: メディアを表示
+        title: メディア
+      no_media: メディアなし
+      title: トゥート一覧
+      with_media: メディアあり
     subscriptions:
       callback_url: コールバックURL
       confirmed: 確認済み
       expires_in: 期限
       last_delivery: 最終配送
-      title: PubSubHubbub
+      title: WebSub
       topic: トピック
     title: 管理
   admin_mailer:
@@ -204,9 +221,10 @@ ja:
   applications:
     invalid_url: URLが無効です
   auth:
-    change_password: ログイン情報
+    agreement_html: 登録すると <a href="%{rules_path}">利用規約</a> と <a href="%{terms_path}">プライバシーポリシー</a> に同意したことになります。
+    change_password: セキュリティ
     delete_account: アカウントの削除
-    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除前には確認画面があります。
+    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     login: ログイン
@@ -218,6 +236,12 @@ ja:
   authorize_follow:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
     follow: フォロー
+    follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
+    following: '成功! あなたは現在以下のアカウントをフォローしています:'
+    post_follow:
+      close: またはこのウィンドウを閉じます
+      return: ユーザーのプロフィールに戻る
+      web: Web を開く
     prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
     title: "%{acct} をフォロー"
   datetime:
@@ -250,7 +274,7 @@ ja:
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
     '429': リクエストの制限に達しました。
-    noscript: Mastodonを利用する場合はJavaScriptを有効にしてください。
+    noscript: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けのMastodonネイティブアプリを探すことができます。
   exports:
     blocks: ブロック
     csv: CSV
@@ -319,6 +343,23 @@ ja:
     next: 次
     prev: 前
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: あなたのトゥートが %{name} さんにお気に入り登録されました
+    follow:
+      title: "%{name} さんにフォローされました"
+    group:
+      title: "%{count} 件の通知"
+    mention:
+      action_boost: ブースト
+      action_expand: もっと見る
+      action_favourite: お気に入り
+      title: "%{name} さんから返信がありました"
+    reblog:
+      title: あなたのトゥートが %{name} さんにブーストされました
+    subscribed:
+      body: あなたはプッシュ通知を受け取ることが出来ます
+      title: Subscription が登録されました
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
@@ -360,10 +401,12 @@ ja:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    revoke: 削除
+    revoke_success: セッションを削除しました
     title: セッション
   settings:
     authorized_apps: 認証済みアプリ
-    back: 戻る
+    back: Mastodon に戻る
     delete: アカウントの削除
     edit_profile: プロフィールを編集
     export: データのエクスポート
@@ -385,8 +428,78 @@ ja:
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
     click_to_show: クリックして表示
-    reblogged: ブーストされました
+    reblogged: さんにブーストされました
     sensitive_content: 閲覧注意
+  terms:
+    body_html: |
+      <h2>プライバシーポリシー</h2>
+
+      <h3 id="collect">どのような情報を収集するのですか？</h3>
+
+      <p>あなたがこのサイトに登録すると、ここで共有された情報を読んだり、書いたり、評価したりして、フォーラムでの情報を集める事ができます。</p>
+
+      <p>このサイトに登録する際には、名前とメールアドレスの入力を求めることがあります。ただし、登録をすることなくこのサイトを利用することも可能です。あなたのメールアドレスは、固有のリンクを含んだメールで確認されます。そのリンクにアクセスした場合にメールアドレスを制御することとなります。</p>
+
+      <p>アカウントを登録し、投稿を行った際にはその投稿が行われたIPアドレスを記録します。また、このサーバーに対する全てのリクエストはIPアドレスを含むサーバーログとして保管されます。</p>
+
+      <h3 id="use">自分の情報を何に使うのですか？</h3>
+
+      <p>このサイトで収集された情報は、次のいくつかの方法で使用されます:</p>
+
+      <ul>
+        <li>パーソナライズ・エクスペリエンス &mdash; あなたの情報は、あなたや他のユーザーのニーズに対応するために役立ちます。</li>
+        <li>サイトの改善・最適化 &mdash; このサービスはあなたから受け取った情報やフィードバックに基づいて提供されるサイトの改善を行いつづけます。</li>
+        <li>サービスの向上 &mdash; あなたの情報は、ユーザーからの要求やサポートへより効果的に対応するために役立ちます。</li>
+        <li>定期メールの送信 &mdash; メールアドレスは、情報の送信、トピックの変更やユーザー名に関係するお知らせ、お問い合わせに関する返答、その他のリクエストや質問に関してお知らせするために使用されます。</li>
+      </ul>
+
+      <h3 id="protect">自分の情報はどのように保護されるのですか？</h3>
+
+      <p>このサービスはあなたの個人情報の入力、送信、またはアクセスに際してあなたの個人情報の安全性を維持するために様々なセキュリティ手段をとっています。</p>
+
+      <h3 id="data-retention">データ保持のポリシーはどのようになっていますか？</h3>
+
+      <p>このサービスはデータ保持に関して次のことを行うよう努めます。:</p>
+
+      <ul>
+        <li>このサーバーへのすべての要求に対して、IPアドレスを含むサーバーログを90日以内に渡って保持します。</li>
+        <li>登録されたユーザーとその投稿に関連付けされたIPアドレスを5年以内に渡って保持します。</li>
+      </ul>
+
+      <h3 id="cookies">クッキーを使用していますか？</h3>
+
+      <p>はい。クッキーはあなたがウェブブラウザ上で許可した場合にコンピュータのストレージに転送される小さなファイルです。これらのクッキーを使用すると、サイトでブラウザが識別され、登録済みのアカウントを持っている場合は登録済みのアカウントに関連付けがされます。</p>
+
+      <p>クッキーを使用して、今後再度閲覧された場合に前回のデータから設定を呼び出したり、今後の改善のためにサイトのトラフィックやサイトの相互作用に関する集計データを作成します。このサービスは、サイトを訪れた方との理解を深めるために、第三者のサービス提供者と契約することがあります。これらのサービス提供者というものは、このサービスでの業務を行ったり、改善するためにこのサービスの代わって収集された情報を使用することはできません。</p>
+
+      <h3 id="disclose">このサイトは外部に何らかの情報を開示していますか？</h3>
+
+      <p>私たちは、個人を特定出来る情報を外部へ販売、取引、または他の方法で渡すことはありません。これには、このサイトを操作したり、業務を行ったり、サービスを提供するのに役立つ信頼できる第三者は含まれません。法令遵守、サイトポリシーの施行、このサービスや他の人の権利、財産または安全の保護のために適切であると判断した場合に、あなたの情報を公開する場合があります。ただし、マーケティングや広告、その他の目的で匿名での訪問者情報を他者へ提供することができます。</p>
+
+      <h3 id="third-party">サードパーティのリンク</h3>
+
+      <p>必要に応じて、このサービスの方針にもとづいてこのサイトや第三者のサービスを提供することがあります。これらの第三者のサイトには、個別の独立したプライバシーポリシーがあります。従って、これらのリンク先のサイトに関するコンテンツや活動にかんしては一切責任を負いません。ですが、サイトの完全性やこれらのサイトに関するフィードバックは非常に重要なものであると認識しております。</p>
+
+      <h3 id="coppa">子供のオンライン・プライバシー保護法</h3>
+
+      <p>このサイト、製品、サービスはすべて13歳以上の人を対象としております。このサーバーが米国にあり、13歳未満の場合はCOPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) にもとづいてこのサイトを使用しないでください。</p>
+
+      <h3 id="online">オンライン限定のプライバシーポリシー</h3>
+
+      <p>このオンライン・プライバシーポリシーは、このサイトを通じて収集された情報のみに適用され、オフラインで収集される情報には適用されません。</p>
+
+      <h3 id="consent">あなたの同意</h3>
+
+      <p>このサービスを使用することにより、このサイトのプライバシーポリシーに同意するものとします。</p>
+
+      <h3 id="changes">プライバシーポリシーの変更</h3>
+
+      <p>プライバシーポリシーを変更する場合は、このページへ変更内容を掲載します。</p>
+
+      <p>この文章のライセンスはCC-BY-SAです。このページは2017年5月6日が最終更新です。</p>
+
+      <p>オリジナルの出典 <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "%{instance} 利用規約・プライバシーポリシー"
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"

@@ -8,7 +8,6 @@ export default class ColumnHeader extends React.PureComponent {
     type: PropTypes.string,
     active: PropTypes.bool,
     onClick: PropTypes.func,
-    hideOnMobile: PropTypes.bool,
     columnHeaderId: PropTypes.string,
   };
 
@@ -17,7 +16,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { type, active, hideOnMobile, columnHeaderId } = this.props;
+    const { type, active, columnHeaderId } = this.props;
 
     let icon = '';
 
@@ -26,7 +25,7 @@ export default class ColumnHeader extends React.PureComponent {
     }
 
     return (
-      <div role='button heading' tabIndex='0' className={`column-header ${active ? 'active' : ''} ${hideOnMobile ? 'hidden-on-mobile' : ''}`} onClick={this.handleClick} id={columnHeaderId || null}>
+      <div role='heading' tabIndex='0' className={`column-header ${active ? 'active' : ''}`} onClick={this.handleClick} id={columnHeaderId || null}>
         {icon}
         {type}
       </div>

@@ -9,7 +9,7 @@ describe WellKnown::WebfingerController, type: :controller do
     end
 
     before do
-      alice.private_key = <<PEM
+      alice.private_key = <<-PEM
 -----BEGIN RSA PRIVATE KEY-----
 MIICXQIBAAKBgQDHgPoPJlrfMZrVcuF39UbVssa8r4ObLP3dYl9Y17Mgp5K4mSYD
 R/Y2ag58tSi6ar2zM3Ze3QYsNfTq0NqN1g89eAu0MbSjWqpOsgntRPJiFuj3hai2
@@ -27,7 +27,7 @@ FTX8IvYBNTbpEttc1VCf/0ccnNpfb0CrFNSPWxRj7t7D
 -----END RSA PRIVATE KEY-----
 PEM
 
-      alice.public_key = <<PEM
+      alice.public_key = <<-PEM
 -----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHgPoPJlrfMZrVcuF39UbVssa8
 r4ObLP3dYl9Y17Mgp5K4mSYDR/Y2ag58tSi6ar2zM3Ze3QYsNfTq0NqN1g89eAu0
@@ -48,29 +48,23 @@ PEM
     it 'returns JSON when account can be found' do
       get :show, params: { resource: alice.to_webfinger_s }, format: :json
 
+      json = body_as_json
+
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq 'application/jrd+json'
-      expect(response.body).to eq "{\"subject\":\"acct:alice@cb6e6126.ngrok.io\",\"aliases\":[\"https://cb6e6126.ngrok.io/@alice\",\"https://cb6e6126.ngrok.io/users/alice\"],\"links\":[{\"rel\":\"http://webfinger.net/rel/profile-page\",\"type\":\"text/html\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"http://schemas.google.com/g/2010#updates-from\",\"type\":\"application/atom+xml\",\"href\":\"https://cb6e6126.ngrok.io/users/alice.atom\"},{\"rel\":\"self\",\"type\":\"application/activity+json\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"salmon\",\"href\":\"#{api_salmon_url(alice.id)}\"},{\"rel\":\"magic-public-key\",\"href\":\"data:application/magic-public-key,RSA.x4D6DyZa3zGa1XLhd_VG1bLGvK-Dmyz93WJfWNezIKeSuJkmA0f2NmoOfLUoumq9szN2Xt0GLDX06tDajdYPPXgLtDG0o1qqTrIJ7UTyYhbo94Wotl9iJvEwa5IjP1Mn00YJ_KvFrzKCm15PC7up6r-NtHsqoYS8X1KAqcbnptU=.AQAB\"},{\"rel\":\"http://ostatus.org/schema/1.0/subscribe\",\"template\":\"https://cb6e6126.ngrok.io/authorize_follow?acct={uri}\"}]}"
+      expect(json[:subject]).to eq 'acct:alice@cb6e6126.ngrok.io'
+      expect(json[:aliases]).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
     end
 
     it 'returns JSON when account can be found' do
       get :show, params: { resource: alice.to_webfinger_s }, format: :xml
 
+      xml = Nokogiri::XML(response.body)
+
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq 'application/xrd+xml'
-      expect(response.body).to eq <<"XML"
-<?xml version="1.0"?>
-<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
-  <Subject>acct:alice@cb6e6126.ngrok.io</Subject>
-  <Alias>https://cb6e6126.ngrok.io/@alice</Alias>
-  <Alias>https://cb6e6126.ngrok.io/users/alice</Alias>
-  <Link rel="http://webfinger.net/rel/profile-page" type="text/html" href="https://cb6e6126.ngrok.io/@alice"/>
-  <Link rel="http://schemas.google.com/g/2010#updates-from" type="application/atom+xml" href="https://cb6e6126.ngrok.io/users/alice.atom"/>
-  <Link rel="salmon" href="#{api_salmon_url(alice.id)}"/>
-  <Link rel="magic-public-key" href="data:application/magic-public-key,RSA.x4D6DyZa3zGa1XLhd_VG1bLGvK-Dmyz93WJfWNezIKeSuJkmA0f2NmoOfLUoumq9szN2Xt0GLDX06tDajdYPPXgLtDG0o1qqTrIJ7UTyYhbo94Wotl9iJvEwa5IjP1Mn00YJ_KvFrzKCm15PC7up6r-NtHsqoYS8X1KAqcbnptU=.AQAB"/>
-  <Link rel="http://ostatus.org/schema/1.0/subscribe" template="https://cb6e6126.ngrok.io/authorize_follow?acct={uri}"/>
-</XRD>
-XML
+      expect(xml.at_xpath('//xmlns:Subject').content).to eq 'acct:alice@cb6e6126.ngrok.io'
+      expect(xml.xpath('//xmlns:Alias').map(&:content)).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
     end
 
     it 'returns http not found when account cannot be found' do
@@ -80,19 +74,22 @@ XML
     end
 
     it 'returns JSON when account can be found with alternate domains' do
-      Rails.configuration.x.alternate_domains = ["foo.org"]
-      username, domain = alice.to_webfinger_s.split("@")
+      Rails.configuration.x.alternate_domains = ['foo.org']
+      username, = alice.to_webfinger_s.split('@')
 
       get :show, params: { resource: "#{username}@foo.org" }, format: :json
 
+      json = body_as_json
+
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq 'application/jrd+json'
-      expect(response.body).to eq "{\"subject\":\"acct:alice@cb6e6126.ngrok.io\",\"aliases\":[\"https://cb6e6126.ngrok.io/@alice\",\"https://cb6e6126.ngrok.io/users/alice\"],\"links\":[{\"rel\":\"http://webfinger.net/rel/profile-page\",\"type\":\"text/html\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"http://schemas.google.com/g/2010#updates-from\",\"type\":\"application/atom+xml\",\"href\":\"https://cb6e6126.ngrok.io/users/alice.atom\"},{\"rel\":\"self\",\"type\":\"application/activity+json\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"salmon\",\"href\":\"#{api_salmon_url(alice.id)}\"},{\"rel\":\"magic-public-key\",\"href\":\"data:application/magic-public-key,RSA.x4D6DyZa3zGa1XLhd_VG1bLGvK-Dmyz93WJfWNezIKeSuJkmA0f2NmoOfLUoumq9szN2Xt0GLDX06tDajdYPPXgLtDG0o1qqTrIJ7UTyYhbo94Wotl9iJvEwa5IjP1Mn00YJ_KvFrzKCm15PC7up6r-NtHsqoYS8X1KAqcbnptU=.AQAB\"},{\"rel\":\"http://ostatus.org/schema/1.0/subscribe\",\"template\":\"https://cb6e6126.ngrok.io/authorize_follow?acct={uri}\"}]}"
+      expect(json[:subject]).to eq 'acct:alice@cb6e6126.ngrok.io'
+      expect(json[:aliases]).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
     end
 
     it 'returns http not found when account can not be found with alternate domains' do
-      Rails.configuration.x.alternate_domains = ["foo.org"]
-      username, domain = alice.to_webfinger_s.split("@")
+      Rails.configuration.x.alternate_domains = ['foo.org']
+      username, = alice.to_webfinger_s.split('@')
 
       get :show, params: { resource: "#{username}@bar.org" }, format: :json
 

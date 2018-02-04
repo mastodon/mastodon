@@ -1,6 +1,6 @@
 body {
   font-family: 'mastodon-font-sans-serif', sans-serif;
-  background: $ui-base-color url('../images/background-photo.jpg');
+  background: $ui-base-color;
   background-size: cover;
   background-attachment: fixed;
   font-size: 13px;
@@ -11,6 +11,8 @@ body {
   text-rendering: optimizelegibility;
   font-feature-settings: "kern";
   text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 
   &.app-body {
     position: fixed;
@@ -18,6 +20,11 @@ body {
     height: 100%;
     padding: 0;
     background: $ui-base-color;
+  }
+
+  &.about-body {
+    background: darken($ui-base-color, 8%);
+    padding-bottom: 0;
   }
 
   &.embed {
@@ -60,4 +67,19 @@ button {
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+
+.system-font {
+  // system-ui => standard property (Chrome/Android WebView 56+, Opera 43+, Safari 11+)
+  // -apple-system => Safari <11 specific
+  // BlinkMacSystemFont => Chrome <56 on macOS specific
+  // Segoe UI => Windows 7/8/10
+  // Oxygen => KDE
+  // Ubuntu => Unity/Ubuntu
+  // Cantarell => GNOME
+  // Fira Sans => Firefox OS
+  // Droid Sans => Older Androids (<4.0)
+  // Helvetica Neue => Older macOS <10.11
+  // mastodon-font-sans-serif => web-font (Roboto) fallback and newer Androids (>=4.0)
+  font-family: system-ui, -apple-system,BlinkMacSystemFont, "Segoe UI","Oxygen", "Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",mastodon-font-sans-serif, sans-serif;
 }

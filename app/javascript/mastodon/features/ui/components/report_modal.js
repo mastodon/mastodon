@@ -7,7 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { makeGetAccount } from '../../../selectors';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import StatusCheckBox from '../../report/containers/status_check_box_container';
-import Immutable from 'immutable';
+import { OrderedSet } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Button from '../../../components/button';
 
@@ -26,7 +26,7 @@ const makeMapStateToProps = () => {
       isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
       account: getAccount(state, accountId),
       comment: state.getIn(['reports', 'new', 'comment']),
-      statusIds: Immutable.OrderedSet(state.getIn(['timelines', `account:${accountId}`, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
+      statusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}`, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
     };
   };
 

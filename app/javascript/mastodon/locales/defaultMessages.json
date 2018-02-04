@@ -54,6 +54,22 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Show settings",
+        "id": "column_header.show_settings"
+      },
+      {
+        "defaultMessage": "Hide settings",
+        "id": "column_header.hide_settings"
+      },
+      {
+        "defaultMessage": "Move column to the left",
+        "id": "column_header.moveLeft_settings"
+      },
+      {
+        "defaultMessage": "Move column to the right",
+        "id": "column_header.moveRight_settings"
+      },
+      {
         "defaultMessage": "Unpin",
         "id": "column_header.unpin"
       },
@@ -137,6 +153,10 @@
       {
         "defaultMessage": "Reply",
         "id": "status.reply"
+      },
+      {
+        "defaultMessage": "Share",
+        "id": "status.share"
       },
       {
         "defaultMessage": "Reply to thread",
@@ -231,6 +251,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Unfollow",
+        "id": "confirmations.unfollow.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to unfollow {name}?",
+        "id": "confirmations.unfollow.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/containers/account_container.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "confirmations.delete.confirm"
       },
@@ -269,6 +302,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Unfollow",
+        "id": "confirmations.unfollow.confirm"
+      },
+      {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
       },
@@ -279,6 +316,10 @@
       {
         "defaultMessage": "Hide entire domain",
         "id": "confirmations.domain_block.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to unfollow {name}?",
+        "id": "confirmations.unfollow.message"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
@@ -334,12 +375,12 @@
         "id": "account.report"
       },
       {
-        "defaultMessage": "Media",
-        "id": "account.media"
+        "defaultMessage": "Share @{name}'s profile",
+        "id": "account.share"
       },
       {
-        "defaultMessage": "This user is from another instance. This number may be larger.",
-        "id": "account.disclaimer"
+        "defaultMessage": "Media",
+        "id": "account.media"
       },
       {
         "defaultMessage": "Hide everything from {domain}",
@@ -348,6 +389,14 @@
       {
         "defaultMessage": "Unhide {domain}",
         "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "Information below may reflect the user's profile incompletely.",
+        "id": "account.disclaimer_full"
+      },
+      {
+        "defaultMessage": "View full profile",
+        "id": "account.view_full_profile"
       },
       {
         "defaultMessage": "Posts",
@@ -431,7 +480,7 @@
         "id": "compose_form.placeholder"
       },
       {
-        "defaultMessage": "Content warning",
+        "defaultMessage": "Write your warning here",
         "id": "compose_form.spoiler_placeholder"
       },
       {
@@ -634,6 +683,14 @@
       {
         "defaultMessage": "Getting started",
         "id": "getting_started.heading"
+      },
+      {
+        "defaultMessage": "Home",
+        "id": "tabs_bar.home"
+      },
+      {
+        "defaultMessage": "Notifications",
+        "id": "tabs_bar.notifications"
       },
       {
         "defaultMessage": "Federated timeline",
@@ -854,6 +911,14 @@
         "id": "notifications.column_settings.sound"
       },
       {
+        "defaultMessage": "Push notifications",
+        "id": "notifications.column_settings.push"
+      },
+      {
+        "defaultMessage": "This device",
+        "id": "notifications.column_settings.push_meta"
+      },
+      {
         "defaultMessage": "New followers:",
         "id": "notifications.column_settings.follow"
       },
@@ -931,23 +996,11 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "New report",
-        "id": "report.heading"
-      },
-      {
-        "defaultMessage": "Additional comments",
-        "id": "report.placeholder"
-      },
-      {
-        "defaultMessage": "Submit",
-        "id": "report.submit"
-      },
-      {
-        "defaultMessage": "Reporting",
-        "id": "report.target"
+        "defaultMessage": "A look inside...",
+        "id": "standalone.public_title"
       }
     ],
-    "path": "app/javascript/mastodon/features/report/index.json"
+    "path": "app/javascript/mastodon/features/standalone/public_timeline/index.json"
   },
   {
     "descriptors": [
@@ -978,6 +1031,10 @@
       {
         "defaultMessage": "Report @{name}",
         "id": "status.report"
+      },
+      {
+        "defaultMessage": "Share",
+        "id": "status.share"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
@@ -1011,6 +1068,40 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Network error",
+        "id": "bundle_column_error.title"
+      },
+      {
+        "defaultMessage": "Something went wrong while loading this component.",
+        "id": "bundle_column_error.body"
+      },
+      {
+        "defaultMessage": "Try again",
+        "id": "bundle_column_error.retry"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/bundle_column_error.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Something went wrong while loading this component.",
+        "id": "bundle_modal_error.message"
+      },
+      {
+        "defaultMessage": "Try again",
+        "id": "bundle_modal_error.retry"
+      },
+      {
+        "defaultMessage": "Close",
+        "id": "bundle_modal_error.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/bundle_modal_error.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Cancel",
         "id": "confirmation_modal.cancel"
       }
@@ -1022,6 +1113,14 @@
       {
         "defaultMessage": "Close",
         "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Previous",
+        "id": "lightbox.previous"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "lightbox.next"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/media_modal.json"

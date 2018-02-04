@@ -1,58 +1,32 @@
 - content_for :page_title do
   = t('admin.settings.title')
 
-= form_tag(admin_settings_path, method: :put, class: 'simple_form', style: 'max-width: 100%') do
-  %table.table
-    %thead
-      %tr
-        %th{ width: '40%' }
-          = t('admin.settings.setting')
-        %th
-    %tbody
-      %tr
-        %td
-          %strong= t('admin.settings.contact_information.label')
-        %td= text_field_tag :site_contact_username,
-          @settings['site_contact_username'].value,
-          place_holder: t('admin.settings.contact_information.username')
-      %tr
-        %td
-          %strong= t('admin.accounts.email')
-        %td= text_field_tag :site_contact_email,
-          @settings['site_contact_email'].value,
-          place_holder: t('admin.settings.contact_information.email')
-      %tr
-        %td
-          %strong= t('admin.settings.site_title')
-        %td= text_field_tag :site_title,
-          @settings['site_title'].value
-      %tr
-        %td
-          %strong= t('admin.settings.site_description.title')
-          %p= t('admin.settings.site_description.desc_html')
-        %td= text_area_tag :site_description,
-          @settings['site_description'].value,
-          rows: 8
-      %tr
-        %td
-          %strong= t('admin.settings.site_description_extended.title')
-          %p= t('admin.settings.site_description_extended.desc_html')
-        %td= text_area_tag :site_extended_description,
-          @settings['site_extended_description'].value,
-          rows: 8
-      %tr
-        %td
-          %strong= t('admin.settings.registrations.open.title')
-        %td
-          = select_tag :open_registrations,
-          options_for_select({ t('admin.settings.registrations.open.disabled') => false, t('admin.settings.registrations.open.enabled') => true }, @settings['open_registrations'].value)
-      %tr
-        %td
-          %strong= t('admin.settings.registrations.closed_message.title')
-          %p= t('admin.settings.registrations.closed_message.desc_html')
-        %td= text_area_tag :closed_registrations_message,
-          @settings['closed_registrations_message'].value,
-          rows: 8
+= simple_form_for @admin_settings, url: admin_settings_path, html: { method: :patch } do |f|
+  .fields-group
+    = f.input :site_title, placeholder: t('admin.settings.site_title')
+    = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 8 }
+    = f.input :site_contact_username, placeholder: t('admin.settings.contact_information.username')
+    = f.input :site_contact_email, placeholder: t('admin.settings.contact_information.email')
 
-  .simple_form.actions
-    = button_tag t('generic.save_changes'), type: :submit, class: :btn
+  %hr/
+
+  .fields-group
+    = f.input :timeline_preview, as: :boolean, wrapper: :with_label, label: t('admin.settings.timeline_preview.title'), hint: t('admin.settings.timeline_preview.desc_html')
+
+  .fields-group
+    = f.input :open_registrations, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.open.title'), hint: t('admin.settings.registrations.open.desc_html')
+
+  .fields-group
+    = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
+
+  .fields-group
+    = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
+
+  %hr/
+
+  .fields-group
+    = f.input :site_extended_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description_extended.title'), hint: t('admin.settings.site_description_extended.desc_html'), input_html: { rows: 8 }
+    = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

@@ -8,10 +8,11 @@ en:
           one: <span class="name-counter">1</span> character left
           other: <span class="name-counter">%{count}</span> characters left
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
-        locked: Requires you to manually approve followers and defaults post privacy to followers-only
+        locked: Requires you to manually approve followers
         note:
           one: <span class="note-counter">1</span> character left
           other: <span class="note-counter">%{count}</span> characters left
+        setting_noindex: Affects your public profile and status pages
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:
@@ -27,6 +28,7 @@ en:
         data: Data
         display_name: Display name
         email: E-mail address
+        filtered_languages: Filtered languages
         header: Header
         locale: Language
         locked: Lock account
@@ -37,7 +39,11 @@ en:
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Show confirmation dialog before boosting
         setting_default_privacy: Post privacy
+        setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a toot
+        setting_noindex: Opt-out of search engine indexing
+        setting_system_font_ui: Use system's default font
+        setting_unfollow_modal: Show confirmation dialog before unfollowing someone
         severity: Severity
         type: Import type
         username: Username

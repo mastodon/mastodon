@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Status, type: :model do
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob)   { Fabricate(:account, username: 'bob') }
-  let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!')}
+  let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
 
   subject { Fabricate(:status, account: alice) }
 

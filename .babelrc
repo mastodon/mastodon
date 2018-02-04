@@ -23,7 +23,8 @@
       {
         "messagesDir": "./build/messages"
       }
-    ]
+    ],
+    "preval"
   ],
   "env": {
     "development": {
@@ -45,6 +46,7 @@
             ]
           }
         ],
+        "transform-react-inline-elements",
         [
           "transform-runtime",
           {

@@ -44,7 +44,7 @@ import {
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const normalizeAccount = (state, account) => {
   account = { ...account };
@@ -53,7 +53,7 @@ const normalizeAccount = (state, account) => {
   delete account.following_count;
   delete account.statuses_count;
 
-  return state.set(account.id, Immutable.fromJS(account));
+  return state.set(account.id, fromJS(account));
 };
 
 const normalizeAccounts = (state, accounts) => {
@@ -82,7 +82,7 @@ const normalizeAccountsFromStatuses = (state, statuses) => {
   return state;
 };
 
-const initialState = Immutable.Map();
+const initialState = ImmutableMap();
 
 export default function accounts(state = initialState, action) {
   switch(action.type) {

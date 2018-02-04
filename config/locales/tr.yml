@@ -1,35 +1,19 @@
 ---
 tr:
   about:
-    about_mastodon: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
+    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
     about_this: Bu sunucu hakkında
-    apps: Uygulamalar
-    business_email: 'İş e-postası:'
     closed_registrations: Bu sunucu şu anda yeni kayıt almamaktadır.
     contact: İletişim
     description_headline: Peki %{domain} nedir?
     domain_count_after: sunucu var.
     domain_count_before: Bağlı olduğu
-    features:
-      api: Uygulama ve servisler için açık API
-      blocks: Zengin blok ve iletişim araçları
-      characters: 500 karakterlik gönderiler
-      chronology: Kronolojik zaman tüneli
-      ethics: 'Etik tasarım: reklam ve izleme yok'
-      gifv: GIFV ve diğer video türleri
-      privacy: Gönderi bazlı gizlilik
-      public: Herkese açık zaman tünelleri
-    features_headline: Mastodon'ı diğerlerinden ayıran nedir?
-    get_started: Kayıt ol
-    links: Bağlantılar
     other_instances: Diğer sunucular
     source_code: Kaynak kodu
     status_count_after: adet gönderi yazıldı.
     status_count_before: Şu ana kadar
-    terms: Kullanım koşulları
     user_count_after: kullanıcı var.
     user_count_before: Kayıtlı
-    version: Sürüm
   accounts:
     follow: Takip et
     followers: Takipçiler
@@ -40,15 +24,6 @@ tr:
     posts: Gönderiler
     remote_follow: Uzaktan takip et
     unfollow: Takibi bırak
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} bir aktivite paylaştı."
-      create:
-        name: "%{account_name} bir not oluşturdu."
-    outbox:
-      name: "%{account_name}'in Gönderdikleri"
-      summary: "%{account_name}'den gelen aktiviteler."
   admin:
     accounts:
       are_you_sure: Emin misiniz?
@@ -152,17 +127,13 @@ tr:
     settings:
       contact_information:
         email: Herkese açık e-posta adresiniz
-        label: İletişim bilgisi
         username: Bir kullanıcı adı giriniz
       registrations:
         closed_message:
           desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz.
           title: Kayıt alımları kapatılma mesajı
         open:
-          disabled: Kapalı
-          enabled: Açık
           title: Kayıt alımları
-      setting: Ayar adı
       site_description:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması
@@ -176,7 +147,7 @@ tr:
       confirmed: Onaylandı
       expires_in: Bitiş Tarihi
       last_delivery: Son gönderim
-      title: PubSubHubbub
+      title: WebSub
       topic: Konu
     title: Yönetim
   application_mailer:

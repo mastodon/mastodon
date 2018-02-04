@@ -1,4 +1,4 @@
-Mastodon
+![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
 [![Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
@@ -9,7 +9,7 @@ Mastodon
 
 Mastodon is a free, open-source social network server. A decentralized solution to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
 
-An alternative implementation of the GNU social project. Based on [ActivityStreams](https://en.wikipedia.org/wiki/Activity_Streams_(format)), [Webfinger](https://en.wikipedia.org/wiki/WebFinger), [PubsubHubbub](https://en.wikipedia.org/wiki/PubSubHubbub) and [Salmon](https://en.wikipedia.org/wiki/Salmon_(protocol)).
+An alternative implementation of the GNU social project. Based on [ActivityStreams](https://en.wikipedia.org/wiki/Activity_Streams_(format)), [Webfinger](https://en.wikipedia.org/wiki/WebFinger), [WebSub](https://en.wikipedia.org/wiki/WebSub) and [Salmon](https://en.wikipedia.org/wiki/Salmon_(protocol)).
 
 Click on the screenshot to watch a demo of the UI:
 
@@ -34,7 +34,7 @@ If you would like, you can [support the development of this project on Patreon][
 ## Features
 
 - **Fully interoperable with GNU social and any OStatus platform**
-  Whatever implements Atom feeds, ActivityStreams, Salmon, PubSubHubbub and Webfinger is part of the network
+  Whatever implements Atom feeds, ActivityStreams, Salmon, WebSub and Webfinger is part of the network
 - **Real-time timeline updates**
   See the updates of people you're following appear in real-time in the UI via WebSockets
 - **Federated thread resolving**

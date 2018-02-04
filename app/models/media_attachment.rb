@@ -18,6 +18,8 @@
 #  file_meta         :json
 #
 
+require 'mime/types'
+
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 

@@ -4,12 +4,20 @@ fr:
     hints:
       defaults:
         avatar: Au format PNG, GIF ou JPG. 2Mo maximum. Sera réduit à 120x120px
-        display_name: 30 caractères maximum
+        display_name:
+          one: <span class="name-counter">1</span> caractère restant
+          other: <span class="name-counter">%{count}</span> caractères restants
         header: Au format PNG, GIF ou JPG. 2Mo maximum. Sera réduit à 700x335px
-        locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s'afficheront qu'à vos abonné⋅es
-        note: 160 caractères maximum
+        locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
+        note:
+          one: <span class="note-counter">1</span> caractère restant
+          other: <span class="note-counter">%{count}</span> caractères restants
       imports:
         data: Un fichier CSV généré par une autre instance de Mastodon
+      sessions:
+        otp: Entrez le code d’authentification à deux facteurs depuis votre téléphone ou utilisez un de vos codes de récupération.
+      user:
+        filtered_languages: Les langues sélectionnées seront retirées de vos fils publics.
     labels:
       defaults:
         avatar: Image de profil
@@ -21,15 +29,18 @@ fr:
         email: Adresse courriel
         header: Image d’en-tête
         locale: Langue
-        locked: Rendre le compte privé
+        locked: Verrouiller le compte
         new_password: Nouveau mot de passe
         note: Présentation
-        otp_attempt: Code d'identification à deux facteurs
+        otp_attempt: Code d’identification à deux facteurs
         password: Mot de passe
+        setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Afficher un dialogue de confirmation avant de partager
         setting_default_privacy: Confidentialité des statuts
+        setting_delete_modal: Afficher un dialogue de confirmation avant de supprimer un pouet
+        setting_system_font_ui: Utiliser la police par défaut du système
         severity: Séverité
-        type: Type d'import
+        type: Type d’import
         username: Identifiant
       interactions:
         must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
@@ -38,7 +49,7 @@ fr:
         digest: Envoyer des courriels récapitulatifs
         favourite: Envoyer un courriel lorsque quelqu’un ajoute mes statuts à ses favoris
         follow: Envoyer un courriel lorsque quelqu’un me suit
-        follow_request: Envoyer un courriel lorsque quelqu'un demande à me suivre
+        follow_request: Envoyer un courriel lorsque quelqu’un demande à me suivre
         mention: Envoyer un courriel lorsque quelqu’un me mentionne
         reblog: Envoyer un courriel lorsque quelqu’un partage mes statuts
     'no': Non

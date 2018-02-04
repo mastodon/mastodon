@@ -33,9 +33,7 @@ class LanguageDetector
 
   def simplified_text
     text.dup.tap do |new_text|
-      URI.extract(new_text).each do |url|
-        new_text.gsub!(url, '')
-      end
+      new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
       new_text.gsub!(Account::MENTION_RE, '')
       new_text.gsub!(Tag::HASHTAG_RE, '')
       new_text.gsub!(/\s+/, ' ')

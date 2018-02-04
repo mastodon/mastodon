@@ -9,6 +9,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def index
     @statuses = load_statuses
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
   end
 
   private
@@ -18,9 +19,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def load_statuses
-    cached_account_statuses.tap do |statuses|
-      set_maps(statuses)
-    end
+    cached_account_statuses
   end
 
   def cached_account_statuses

@@ -24,6 +24,24 @@ code {
 
   p.hint {
     margin-bottom: 15px;
+    color: lighten($ui-base-color, 32%);
+
+    &.subtle-hint {
+      text-align: center;
+      font-size: 12px;
+      line-height: 18px;
+      margin-top: 15px;
+      margin-bottom: 0;
+      color: $ui-base-lighter-color;
+
+      a {
+        color: $ui-primary-color;
+      }
+    }
+  }
+
+  .card {
+    margin-bottom: 15px;
   }
 
   strong {
@@ -43,10 +61,7 @@ code {
     }
   }
 
-  .input.file,
-  .input.select,
-  .input.radio_buttons,
-  .input.check_boxes {
+  .input.with_label {
     padding: 15px 0;
     margin-bottom: 0;
 
@@ -56,6 +71,44 @@ code {
       color: $primary-text-color;
       display: block;
       padding-top: 5px;
+    }
+
+    &.boolean {
+      padding: initial;
+      margin-bottom: initial;
+
+      .label_input > label {
+        font-family: inherit;
+        font-size: 14px;
+        color: $primary-text-color;
+        display: block;
+        width: auto;
+      }
+
+      label.checkbox {
+        position: relative;
+        padding-left: 25px;
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  .input.with_block_label {
+    & > label {
+      font-family: inherit;
+      font-size: 16px;
+      color: $primary-text-color;
+      display: block;
+      padding-top: 5px;
+    }
+
+    .hint {
+      margin-bottom: 15px;
+    }
+
+    li {
+      float: left;
+      width: 50%;
     }
   }
 
@@ -92,13 +145,36 @@ code {
     input[type=checkbox] {
       position: absolute;
       left: 0;
-      top: 1px;
+      top: 5px;
       margin: 0;
     }
 
     .hint {
       padding-left: 25px;
       margin-left: 0;
+    }
+  }
+
+  .check_boxes {
+    .checkbox {
+      label {
+        font-family: inherit;
+        font-size: 14px;
+        color: $primary-text-color;
+        display: block;
+        width: auto;
+        position: relative;
+        padding-top: 5px;
+        padding-left: 25px;
+        flex: 1 1 auto;
+      }
+
+      input[type=checkbox] {
+        position: absolute;
+        left: 0;
+        top: 5px;
+        margin: 0;
+      }
     }
   }
 
@@ -197,8 +273,6 @@ code {
 
     &:active,
     &:focus {
-      position: relative;
-      top: 1px;
       background-color: darken($ui-highlight-color, 5%);
     }
 
@@ -218,6 +292,27 @@ code {
 
   select {
     font-size: 16px;
+  }
+
+  .input-with-append {
+    position: relative;
+
+    .input input {
+      padding-right: 127px;
+    }
+
+    .append {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 7px 4px;
+      padding-bottom: 9px;
+      font-size: 16px;
+      color: $ui-base-lighter-color;
+      font-family: inherit;
+      pointer-events: none;
+      cursor: default;
+    }
   }
 }
 
@@ -240,7 +335,7 @@ code {
   text-align: center;
 
   a {
-    color: $primary-text-color;
+    color: $ui-primary-color;
     text-decoration: none;
 
     &:hover {
@@ -357,21 +452,11 @@ code {
   }
 }
 
-.user_filtered_languages {
-  & > label {
-    font-family: inherit;
-    font-size: 16px;
-    color: $primary-text-color;
-    display: block;
-    padding-top: 5px;
-  }
+.post-follow-actions {
+  text-align: center;
+  color: $ui-primary-color;
 
-  .hint {
-    margin-bottom: 15px;
-  }
-
-  li {
-    float: left;
-    width: 50%;
+  div {
+    margin-bottom: 4px;
   }
 }

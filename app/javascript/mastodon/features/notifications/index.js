@@ -11,7 +11,7 @@ import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
 import LoadMore from '../../components/load_more';
 import { debounce } from 'lodash';
 
@@ -20,7 +20,7 @@ const messages = defineMessages({
 });
 
 const getNotifications = createSelector([
-  state => Immutable.List(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
+  state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items']),
 ], (excludedTypes, notifications) => notifications.filterNot(item => excludedTypes.includes(item.get('type'))));
 
@@ -122,7 +122,7 @@ export default class Notifications extends React.PureComponent {
     let unread         = '';
     let scrollContainer = '';
 
-    if (!isLoading && notifications.size > 0 && hasMore) {
+    if (!isLoading && hasMore) {
       loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
@@ -132,7 +132,7 @@ export default class Notifications extends React.PureComponent {
 
     if (isLoading && this.scrollableArea) {
       scrollableArea = this.scrollableArea;
-    } else if (notifications.size > 0) {
+    } else if (notifications.size > 0 || hasMore) {
       scrollableArea = (
         <div className='scrollable' onScroll={this.handleScroll} ref={this.setRef}>
           {unread}

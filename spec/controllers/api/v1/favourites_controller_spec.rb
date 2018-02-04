@@ -3,19 +3,77 @@ require 'rails_helper'
 RSpec.describe Api::V1::FavouritesController, type: :controller do
   render_views
 
-  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { double acceptable?: true, resource_owner_id: user.id }
-
-  before do
-    Fabricate(:favourite, account: user.account)
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
+  let(:user)  { Fabricate(:user) }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
 
   describe 'GET #index' do
-    it 'returns http success' do
-      get :index, params: { limit: 1 }
+    context 'without token' do
+      it 'returns http unauthorized' do
+        get :index
+        expect(response).to have_http_status :unauthorized
+      end
+    end
 
-      expect(response).to have_http_status(:success)
+    context 'with token' do
+      context 'without read scope' do
+        before do
+          allow(controller).to receive(:doorkeeper_token) do
+            Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: '')
+          end
+        end
+
+        it 'returns http forbidden' do
+          get :index
+          expect(response).to have_http_status :forbidden
+        end
+      end
+
+      context 'without valid resource owner' do
+        before do
+          token = Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read')
+          user.destroy!
+
+          allow(controller).to receive(:doorkeeper_token) { token }
+        end
+
+        it 'returns http unprocessable entity' do
+          get :index
+          expect(response).to have_http_status :unprocessable_entity
+        end
+      end
+
+      context 'with read scope and valid resource owner' do
+        before do
+          allow(controller).to receive(:doorkeeper_token) do
+            Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read')
+          end
+        end
+
+        it 'shows favourites owned by the user' do
+          favourite_by_user = Fabricate(:favourite, account: user.account)
+          favourite_by_others = Fabricate(:favourite)
+
+          get :index
+
+          expect(assigns(:statuses)).to match_array [favourite_by_user.status]
+        end
+
+        it 'adds pagination headers if necessary' do
+          favourite = Fabricate(:favourite, account: user.account)
+
+          get :index, params: { limit: 1 }
+
+          expect(response.headers['Link'].find_link(['rel', 'next']).href).to eq "http://test.host/api/v1/favourites?limit=1&max_id=#{favourite.id}"
+          expect(response.headers['Link'].find_link(['rel', 'prev']).href).to eq "http://test.host/api/v1/favourites?limit=1&since_id=#{favourite.id}"
+        end
+
+        it 'does not add pagination headers if not necessary' do
+          get :index
+
+          expect(response.headers['Link'].find_link(['rel', 'next'])).to eq nil
+          expect(response.headers['Link'].find_link(['rel', 'prev'])).to eq nil
+        end
+      end
     end
   end
 end

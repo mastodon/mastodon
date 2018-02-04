@@ -253,7 +253,8 @@
   }
 }
 
-.report-status {
+.report-status,
+.account-status {
   display: flex;
   margin-bottom: 10px;
 
@@ -263,7 +264,8 @@
   }
 }
 
-.report-status__actions {
+.report-status__actions,
+.account-status__actions {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -273,5 +275,44 @@
     width: 24px;
     text-align: center;
     margin-bottom: 10px;
+  }
+}
+
+.batch-form-box {
+  display: flex;
+  margin-bottom: 10px;
+
+  #form_status_batch_action {
+    margin-right: 5px;
+    font-size: 14px;
+  }
+
+  .media-spoiler-toggle-buttons {
+    margin-left: auto;
+
+    .button {
+      overflow: visible;
+    }
+  }
+}
+
+.batch-checkbox,
+.batch-checkbox-all {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.back-link {
+  margin-bottom: 10px;
+  font-size: 14px;
+
+  a {
+    color: $classic-highlight-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
