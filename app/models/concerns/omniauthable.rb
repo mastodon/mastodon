@@ -20,8 +20,6 @@ module Omniauthable
     def find_for_oauth(auth, signed_in_resource = nil)
       # EOLE-SSO Patch
       auth.uid = (auth.uid[0][:uid] || auth.uid[0][:user]) if auth.uid.is_a? Hashie::Array
-
-      # Get the identity and user if they exist
       identity = Identity.find_for_oauth(auth)
 
       # If a signed_in_resource is provided it always overrides the existing user
@@ -29,11 +27,8 @@ module Omniauthable
       # Note that this may leave zombie accounts (with no associated identity) which
       # can be cleaned up at a later date.
       user = signed_in_resource ? signed_in_resource : identity.user
-
-      # Create the user if needed
       user = create_for_oauth(auth) if user.nil?
 
-      # Associate the identity with the user if needed
       if identity.user.nil?
         identity.user = user
         identity.save!
@@ -66,8 +61,8 @@ module Omniauthable
         password: Devise.friendly_token[0, 20],
         account_attributes: {
           username: ensure_unique_username(auth.uid),
-          display_name: [auth.info.first_name, auth.info.last_name].join(' ')
-        }
+          display_name: [auth.info.first_name, auth.info.last_name].join(' '),
+        },
       }
     end
 

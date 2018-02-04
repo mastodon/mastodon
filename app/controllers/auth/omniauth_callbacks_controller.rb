@@ -19,7 +19,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  Devise.omniauth_configs.keys.each do |provider|
+  Devise.omniauth_configs.each_key do |provider|
     provides_callback_for provider
   end
 
