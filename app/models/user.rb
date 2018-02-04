@@ -52,7 +52,7 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  devise :pam_authenticatable
+  devise :pam_authenticatable if Devise.pam_authentication
   devise :omniauthable
 
   belongs_to :account, inverse_of: :user
