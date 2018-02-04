@@ -2,7 +2,9 @@
 %html{ lang: I18n.locale }
   %head
     %meta{ charset: 'utf-8' }/
-    = stylesheet_pack_tag 'application', media: 'all'
+    %meta{ name: 'robots', content: 'noindex' }/
+
+    = stylesheet_pack_tag 'common', media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'

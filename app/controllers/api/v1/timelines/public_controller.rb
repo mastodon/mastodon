@@ -7,15 +7,13 @@ class Api::V1::Timelines::PublicController < Api::BaseController
 
   def show
     @statuses = load_statuses
-    render 'api/v1/timelines/show'
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
   end
 
   private
 
   def load_statuses
-    cached_public_statuses.tap do |statuses|
-      set_maps(statuses)
-    end
+    cached_public_statuses
   end
 
   def cached_public_statuses

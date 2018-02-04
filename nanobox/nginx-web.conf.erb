@@ -22,8 +22,8 @@ http {
     }
 
     map $http_upgrade $connection_upgrade {
-      default upgrade;
-      ''      close;
+        default upgrade;
+        ''      close;
     }
 
     # Configuration for Nginx
@@ -35,6 +35,8 @@ http {
         add_header Content-Security-Policy "style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'self'; img-src data: https:; media-src data: https:; connect-src 'self' wss://<%= ENV["LOCAL_DOMAIN"] %>; upgrade-insecure-requests";
 
         root /app/public;
+
+        client_max_body_size 8M;
 
         location / {
             try_files $uri @rails;

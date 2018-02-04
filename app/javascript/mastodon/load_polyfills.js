@@ -20,11 +20,14 @@ function loadPolyfills() {
   );
 
   // Latest version of Firefox and Safari do not have IntersectionObserver.
-  // Edge does not have requestIdleCallback.
+  // Edge does not have requestIdleCallback and object-fit CSS property.
   // This avoids shipping them all the polyfills.
   const needsExtraPolyfills = !(
     window.IntersectionObserver &&
-    window.requestIdleCallback
+    window.IntersectionObserverEntry &&
+    'isIntersecting' in IntersectionObserverEntry.prototype &&
+    window.requestIdleCallback &&
+    'object-fit' in (new Image()).style
   );
 
   return Promise.all([

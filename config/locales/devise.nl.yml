@@ -2,7 +2,7 @@
 nl:
   devise:
     confirmations:
-      confirmed: Je account is bevestigd.
+      confirmed: Jouw account is bevestigd.
       send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kunt bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
       send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kunt bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
     failure:
@@ -10,8 +10,8 @@ nl:
       inactive: Jouw account is nog niet geactiveerd.
       invalid: Ongeldig e-mailadres of wachtwoord.
       invalid_token: Ongeldige bevestigingscode.
-      last_attempt: Je hebt nog één poging over voordat jouw account geblokkeerd wordt.
-      locked: Jouw account is geblokkeerd.
+      last_attempt: Je hebt nog één poging over voordat jouw account wordt opgeschort.
+      locked: Jouw account is opgeschort.
       not_found_in_database: Ongeldig e-mailadres of wachtwoord.
       timeout: Jouw sessie is verlopen, log opnieuw in.
       unauthenticated: Je dient in te loggen of te registreren.
@@ -24,21 +24,21 @@ nl:
       reset_password_instructions:
         subject: 'Mastodon: Wachtwoord opnieuw instellen'
       unlock_instructions:
-        subject: 'Mastodon: Instructies om account te deblokkeren' 
+        subject: 'Mastodon: Instructies om opschorten account ongedaan te maken' 
     omniauth_callbacks:
       failure: Kon je niet aanmelden met jouw %{kind} account, omdat "%{reason}".
       success: Successvol aangemeld met jouw %{kind} account.
     passwords:
       no_token: Je kunt deze pagina niet benaderen zonder dat je een e-mail om je wachtwoord opnieuw in te stellen hebt ontvangen.
       send_instructions: Je ontvangt via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen. Kijk tussen je spam wanneer niks werd ontvangen.
-      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen. Kijk tussen je spam wanneer niks werd ontvangen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw wachtwoord opnieuw kunt instellen. Kijk tussen je spam wanneer niks werd ontvangen.
       updated: Jouw wachtwoord is gewijzigd. Je bent nu ingelogd.
       updated_not_active: Jouw wachtwoord is gewijzigd.
     registrations:
       destroyed: Jouw account is verwijderd. Wellicht tot ziens!
       signed_up: Je bent geregistreerd.
       signed_up_but_inactive: Je bent geregistreerd. Je kon alleen niet automatisch ingelogd worden omdat jouw account nog niet geactiveerd is.
-      signed_up_but_locked: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat jouw account geblokkeerd is.
+      signed_up_but_locked: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat jouw account is opgeschort.
       signed_up_but_unconfirmed: Je ontvangt via e-mail instructies hoe je jouw account kunt activeren. Kijk tussen je spam wanneer niks werd ontvangen.
       update_needs_confirmation: Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog bevestigen. Controleer jouw e-mail en klik op de link in de mail om jouw e-mailadres te bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
       updated: Jouw accountgegevens zijn opgeslagen.
@@ -46,16 +46,16 @@ nl:
       signed_in: Je bent succesvol ingelogd.
       signed_out: Je bent succesvol uitgelogd.
     unlocks:
-      send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kunt deblokkeren. Kijk tussen je spam wanneer niks werd ontvangen.
-      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kunt deblokkeren. Kijk tussen je spam wanneer niks werd ontvangen.
-      unlocked: Jouw account is gedeblokkeerd. Je kunt nu weer inloggen.
+      send_instructions: Je ontvangt via e-mail instructies hoe je het opschorten van jouw account ongedaan kunt maken. Kijk tussen je spam wanneer niks werd ontvangen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je het opschorten van jouw account ongedaan kunt maken. Kijk tussen je spam wanneer niks werd ontvangen.
+      unlocked: Jouw account is niet meer opgeschort. Je kunt nu weer inloggen.
   errors:
     messages:
       already_confirmed: is reeds bevestigd
       confirmation_period_expired: moet worden bevestigd binnen %{period}, probeer het nog een keer
       expired: is verlopen, vraag een nieuwe aan
       not_found: niet gevonden
-      not_locked: is niet geblokkeerd
+      not_locked: is niet opgeschort
       not_saved:
         one: '1 fout verhinderde het opslaan van deze %{resource}:'
         other: "%{count} fouten verhinderden het opslaan van deze %{resource}:"

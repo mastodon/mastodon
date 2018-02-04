@@ -52,15 +52,18 @@ export default class Search extends React.PureComponent {
 
     return (
       <div className='search'>
-        <input
-          className='search__input'
-          type='text'
-          placeholder={intl.formatMessage(messages.placeholder)}
-          value={value}
-          onChange={this.handleChange}
-          onKeyUp={this.handleKeyDown}
-          onFocus={this.handleFocus}
-        />
+        <label>
+          <span style={{ display: 'none' }}>{intl.formatMessage(messages.placeholder)}</span>
+          <input
+            className='search__input'
+            type='text'
+            placeholder={intl.formatMessage(messages.placeholder)}
+            value={value}
+            onChange={this.handleChange}
+            onKeyUp={this.handleKeyDown}
+            onFocus={this.handleFocus}
+          />
+        </label>
 
         <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
           <i className={`fa fa-search ${hasValue ? '' : 'active'}`} />

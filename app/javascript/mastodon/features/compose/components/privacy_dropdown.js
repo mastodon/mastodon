@@ -24,6 +24,10 @@ const iconStyle = {
 export default class PrivacyDropdown extends React.PureComponent {
 
   static propTypes = {
+    isUserTouching: PropTypes.func,
+    isModalOpen: PropTypes.bool.isRequired,
+    onModalOpen: PropTypes.func,
+    onModalClose: PropTypes.func,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -34,20 +38,53 @@ export default class PrivacyDropdown extends React.PureComponent {
   };
 
   handleToggle = () => {
-    this.setState({ open: !this.state.open });
+    if (this.props.isUserTouching()) {
+      if (this.state.open) {
+        this.props.onModalClose();
+      } else {
+        this.props.onModalOpen({
+          actions: this.options.map(option => ({ ...option, active: option.value === this.props.value })),
+          onClick: this.handleModalActionClick,
+        });
+      }
+    } else {
+      this.setState({ open: !this.state.open });
+    }
+  }
+
+  handleModalActionClick = (e) => {
+    e.preventDefault();
+    const { value } = this.options[e.currentTarget.getAttribute('data-index')];
+    this.props.onModalClose();
+    this.props.onChange(value);
   }
 
   handleClick = (e) => {
-    const value = e.currentTarget.getAttribute('data-index');
-    e.preventDefault();
-    this.setState({ open: false });
-    this.props.onChange(value);
+    if (e.key === 'Escape') {
+      this.setState({ open: false });
+    } else if (!e.key || e.key === 'Enter') {
+      const value = e.currentTarget.getAttribute('data-index');
+      e.preventDefault();
+      this.setState({ open: false });
+      this.props.onChange(value);
+    }
   }
 
   onGlobalClick = (e) => {
     if (e.target !== this.node && !this.node.contains(e.target) && this.state.open) {
       this.setState({ open: false });
     }
+  }
+
+  componentWillMount () {
+    const { intl: { formatMessage } } = this.props;
+
+    this.options = [
+      { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
+      { icon: 'unlock-alt', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
+      { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
+      { icon: 'envelope', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
+    ];
   }
 
   componentDidMount () {
@@ -68,25 +105,18 @@ export default class PrivacyDropdown extends React.PureComponent {
     const { value, intl } = this.props;
     const { open } = this.state;
 
-    const options = [
-      { icon: 'globe', value: 'public', shortText: intl.formatMessage(messages.public_short), longText: intl.formatMessage(messages.public_long) },
-      { icon: 'unlock-alt', value: 'unlisted', shortText: intl.formatMessage(messages.unlisted_short), longText: intl.formatMessage(messages.unlisted_long) },
-      { icon: 'lock', value: 'private', shortText: intl.formatMessage(messages.private_short), longText: intl.formatMessage(messages.private_long) },
-      { icon: 'envelope', value: 'direct', shortText: intl.formatMessage(messages.direct_short), longText: intl.formatMessage(messages.direct_long) },
-    ];
-
-    const valueOption = options.find(item => item.value === value);
+    const valueOption = this.options.find(item => item.value === value);
 
     return (
       <div ref={this.setRef} className={`privacy-dropdown ${open ? 'active' : ''}`}>
-        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
+        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} expanded={open} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
         <div className='privacy-dropdown__dropdown'>
-          {open && options.map(item =>
-            <div role='button' tabIndex='0' key={item.value} data-index={item.value} onClick={this.handleClick} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
+          {open && this.options.map(item =>
+            <div role='button' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
               <div className='privacy-dropdown__option__icon'><i className={`fa fa-fw fa-${item.icon}`} /></div>
               <div className='privacy-dropdown__option__content'>
-                <strong>{item.shortText}</strong>
-                {item.longText}
+                <strong>{item.text}</strong>
+                {item.meta}
               </div>
             </div>
           )}

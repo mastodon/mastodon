@@ -1,3 +1,7 @@
-.media-spoiler
-  %span= t('stream_entries.sensitive_content')
-  %span= t('stream_entries.click_to_show')
+.media-spoiler-wrapper{ class: sensitive == false && 'media-spoiler-wrapper__visible' }
+  .spoiler-button
+    .icon-button.overlayed
+      %i.fa.fa-fw.fa-eye
+  .media-spoiler
+    %span= t('stream_entries.sensitive_content')
+    %span= t('stream_entries.click_to_show')

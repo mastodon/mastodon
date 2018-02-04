@@ -5,8 +5,7 @@ class Api::OEmbedController < Api::BaseController
 
   def show
     @stream_entry = find_stream_entry.stream_entry
-    @width = maxwidth_or_default
-    @height = maxheight_or_default
+    render json: @stream_entry, serializer: OEmbedSerializer, width: maxwidth_or_default, height: maxheight_or_default
   end
 
   private

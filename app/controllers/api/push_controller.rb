@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::PushController < Api::BaseController
+  include SignatureVerification
+
   def update
     response, status = process_push_request
     render plain: response, status: status
@@ -11,7 +13,7 @@ class Api::PushController < Api::BaseController
   def process_push_request
     case hub_mode
     when 'subscribe'
-      Pubsubhubbub::SubscribeService.new.call(account_from_topic, hub_callback, hub_secret, hub_lease_seconds)
+      Pubsubhubbub::SubscribeService.new.call(account_from_topic, hub_callback, hub_secret, hub_lease_seconds, verified_domain)
     when 'unsubscribe'
       Pubsubhubbub::UnsubscribeService.new.call(account_from_topic, hub_callback)
     else
@@ -55,6 +57,10 @@ class Api::PushController < Api::BaseController
 
   def local_domain?
     TagManager.instance.web_domain?(hub_topic_domain)
+  end
+
+  def verified_domain
+    return signed_request_account.domain if signed_request_account
   end
 
   def hub_topic_domain

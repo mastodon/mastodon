@@ -19,7 +19,7 @@ describe InstanceHelper do
     it 'returns empty string when Setting.site_title is nil' do
       Setting.site_title = nil
 
-      expect(helper.site_title).to eq ''
+      expect(helper.site_title).to eq 'cb6e6126.ngrok.io'
     end
   end
 

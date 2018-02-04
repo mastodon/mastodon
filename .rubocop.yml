@@ -27,6 +27,7 @@ Metrics/AbcSize:
   Max: 100
 
 Metrics/BlockLength:
+  Max: 35
   Exclude:
     - 'lib/tasks/**/*'
 
@@ -35,10 +36,10 @@ Metrics/BlockNesting:
 
 Metrics/ClassLength:
   CountComments: false
-  Max: 200
+  Max: 300
 
 Metrics/CyclomaticComplexity:
-  Max: 15
+  Max: 25
 
 Metrics/LineLength:
   AllowURI: true
@@ -53,11 +54,11 @@ Metrics/ModuleLength:
   Max: 200
 
 Metrics/ParameterLists:
-  Max: 4
+  Max: 5
   CountKeywordArgs: true
 
 Metrics/PerceivedComplexity:
-  Max: 10
+  Max: 20
 
 Rails:
   Enabled: true

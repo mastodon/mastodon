@@ -18,7 +18,7 @@ module Settings
     end
 
     def destroy
-      if current_user.validate_and_consume_otp!(confirmation_params[:code])
+      if acceptable_code?
         current_user.otp_required_for_login = false
         current_user.save!
         redirect_to settings_two_factor_authentication_path
@@ -37,6 +37,11 @@ module Settings
 
     def verify_otp_required
       redirect_to settings_two_factor_authentication_path if current_user.otp_required_for_login?
+    end
+
+    def acceptable_code?
+      current_user.validate_and_consume_otp!(confirmation_params[:code]) ||
+        current_user.invalidate_otp_backup_code!(confirmation_params[:code])
     end
   end
 end

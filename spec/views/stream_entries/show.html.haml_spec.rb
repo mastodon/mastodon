@@ -27,7 +27,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
 
     render
 
-    mf2 = Microformats2.parse(rendered)
+    mf2 = Microformats.parse(rendered)
 
     expect(mf2.entry.name.to_s).to eq status.text
     expect(mf2.entry.url.to_s).not_to be_empty
@@ -53,7 +53,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
 
     render
 
-    mf2 = Microformats2.parse(rendered)
+    mf2 = Microformats.parse(rendered)
 
     expect(mf2.entry.name.to_s).to eq reply.text
     expect(mf2.entry.url.to_s).not_to be_empty

@@ -24,6 +24,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.6)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.2)
     active_record_query_trace (1.5.4)
     activejob (5.1.2)
       activesupport (= 5.1.2)
@@ -101,6 +106,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    case_transform (0.2)
+      activesupport
+    charlock_holmes (0.7.3)
     chunky_png (1.3.8)
     cld3 (3.1.3)
       ffi (>= 1.1.0, < 1.10.0)
@@ -157,10 +165,11 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    goldfinger (1.2.0)
-      addressable (~> 2.4)
-      http (~> 2.0)
-      nokogiri (~> 1.6)
+    goldfinger (2.0.0)
+      addressable (~> 2.5)
+      http (~> 2.2)
+      nokogiri (~> 1.8)
+      oj (~> 3.0)
     hamlit (2.8.4)
       temple (>= 0.8.0)
       thor
@@ -173,6 +182,7 @@ GEM
     hashdiff (0.3.4)
     highline (1.7.8)
     hiredis (0.6.1)
+    hkdf (0.3.0)
     htmlentities (4.3.4)
     http (2.2.2)
       addressable (~> 2.3)
@@ -198,8 +208,11 @@ GEM
       parser (>= 2.2.3.0)
       rainbow (~> 2.2)
       terminal-table (>= 1.5.1)
+    idn-ruby (0.1.0)
     jmespath (1.3.1)
     json (2.1.0)
+    jsonapi-renderer (0.1.2)
+    jwt (1.5.6)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -229,8 +242,10 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
+    mario-redis-lock (1.2.0)
+      redis (~> 3, >= 3.0.5)
     method_source (0.8.2)
-    microformats2 (3.1.0)
+    microformats (4.0.7)
       json
       nokogiri
     mime-types (3.1)
@@ -466,6 +481,9 @@ GEM
       activesupport (>= 4.2)
       multi_json (~> 1.2)
       railties (>= 4.2)
+    webpush (0.3.2)
+      hkdf (~> 0.2)
+      jwt
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -476,6 +494,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10)
   active_record_query_trace (~> 1.5)
   addressable (~> 2.5)
   annotate (~> 2.7)
@@ -492,6 +511,7 @@ DEPENDENCIES
   capistrano-rbenv (~> 2.1)
   capistrano-yarn (~> 2.0)
   capybara (~> 2.14)
+  charlock_holmes (~> 0.7.3)
   cld3 (~> 3.1)
   climate_control (~> 0.2)
   devise (~> 4.2)
@@ -502,7 +522,7 @@ DEPENDENCIES
   faker (~> 1.7)
   fast_blank (~> 1.0)
   fuubar (~> 2.2)
-  goldfinger (~> 1.2)
+  goldfinger (~> 2.0)
   hamlit-rails (~> 0.2)
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
@@ -510,12 +530,15 @@ DEPENDENCIES
   http_accept_language (~> 2.1)
   httplog (~> 0.99)
   i18n-tasks (~> 0.9)
+  idn-ruby
   kaminari (~> 1.0)
   letter_opener (~> 1.4)
   letter_opener_web (~> 1.3)
   link_header (~> 0.0)
   lograge (~> 0.5)
-  microformats2 (~> 3.0)
+  mario-redis-lock (~> 1.2)
+  microformats (~> 4.0)
+  mime-types (~> 3.1)
   nokogiri (~> 1.7)
   oj (~> 3.0)
   ostatus2 (~> 2.0)
@@ -561,9 +584,10 @@ DEPENDENCIES
   uglifier (~> 3.2)
   webmock (~> 3.0)
   webpacker (~> 2.0)
+  webpush
 
 RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.1
+   1.15.2

@@ -1,10 +1,10 @@
 import { CONTEXT_FETCH_SUCCESS } from '../actions/statuses';
 import { TIMELINE_DELETE } from '../actions/timelines';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
-const initialState = Immutable.Map({
-  ancestors: Immutable.Map(),
-  descendants: Immutable.Map(),
+const initialState = ImmutableMap({
+  ancestors: ImmutableMap(),
+  descendants: ImmutableMap(),
 });
 
 const normalizeContext = (state, id, ancestors, descendants) => {
@@ -18,12 +18,12 @@ const normalizeContext = (state, id, ancestors, descendants) => {
 };
 
 const deleteFromContexts = (state, id) => {
-  state.getIn(['descendants', id], Immutable.List()).forEach(descendantId => {
-    state = state.updateIn(['ancestors', descendantId], Immutable.List(), list => list.filterNot(itemId => itemId === id));
+  state.getIn(['descendants', id], ImmutableList()).forEach(descendantId => {
+    state = state.updateIn(['ancestors', descendantId], ImmutableList(), list => list.filterNot(itemId => itemId === id));
   });
 
-  state.getIn(['ancestors', id], Immutable.List()).forEach(ancestorId => {
-    state = state.updateIn(['descendants', ancestorId], Immutable.List(), list => list.filterNot(itemId => itemId === id));
+  state.getIn(['ancestors', id], ImmutableList()).forEach(ancestorId => {
+    state = state.updateIn(['descendants', ancestorId], ImmutableList(), list => list.filterNot(itemId => itemId === id));
   });
 
   state = state.deleteIn(['descendants', id]).deleteIn(['ancestors', id]);
@@ -34,7 +34,7 @@ const deleteFromContexts = (state, id) => {
 export default function contexts(state = initialState, action) {
   switch(action.type) {
   case CONTEXT_FETCH_SUCCESS:
-    return normalizeContext(state, action.id, Immutable.fromJS(action.ancestors), Immutable.fromJS(action.descendants));
+    return normalizeContext(state, action.id, fromJS(action.ancestors), fromJS(action.descendants));
   case TIMELINE_DELETE:
     return deleteFromContexts(state, action.id);
   default:

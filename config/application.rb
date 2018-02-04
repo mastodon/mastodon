@@ -45,6 +45,7 @@ module Mastodon
       :io,
       :it,
       :ja,
+      :ko,
       :nl,
       :no,
       :oc,

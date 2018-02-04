@@ -10,14 +10,24 @@ class SendInteractionService < BaseService
     @source_account = source_account
     @target_account = target_account
 
-    return if block_notification?
+    return if !target_account.ostatus? || block_notification?
 
-    envelope = salmon.pack(@xml, @source_account.keypair)
-    delivery = salmon.post(@target_account.salmon_url, envelope)
-    raise "Delivery failed for #{target_account.salmon_url}: HTTP #{delivery.code}" unless delivery.code > 199 && delivery.code < 300
+    delivery = build_request.perform
+
+    raise Mastodon::UnexpectedResponseError, delivery unless delivery.code > 199 && delivery.code < 300
   end
 
   private
+
+  def build_request
+    request = Request.new(:post, @target_account.salmon_url, body: envelope)
+    request.add_headers('Content-Type' => 'application/magic-envelope+xml')
+    request
+  end
+
+  def envelope
+    salmon.pack(@xml, @source_account.keypair)
+  end
 
   def block_notification?
     DomainBlock.blocked?(@target_account.domain)
