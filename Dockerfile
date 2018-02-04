@@ -23,6 +23,7 @@ RUN apk -U upgrade \
     libidn-dev \
     libressl \
     libtool \
+    linux-pam-dev \
     postgresql-dev \
     protobuf-dev \
     python \
