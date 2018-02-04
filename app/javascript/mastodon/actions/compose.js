@@ -145,6 +145,10 @@ export function submitCompose(withCommunity) {
 };
 
 const handleDefaultTag = (withCommunity, status, visibility) => {
+  if (!status || !status.length) {
+    return {};
+  }
+
   const tags = extractHashtags(status);
   const hasHashtags = tags.length > 0;
   const hasDefaultHashtag = tags.some(tag => tag === process.env.DEFAULT_HASHTAG);

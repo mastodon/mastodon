@@ -161,7 +161,7 @@ export default class ComposeForm extends ImmutablePureComponent {
       publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
-    const unclickable = disabled || this.props.is_uploading || length(text) > 500 || text.length === 0 || text.trim().length === 0;
+    const unclickable = disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0);
 
     return (
       <div className='compose-form'>
