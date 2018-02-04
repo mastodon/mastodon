@@ -39,6 +39,7 @@ sudo apt-get install \
   libidn11-dev \
   libprotobuf-dev \
   libreadline-dev \
+  libpam0g-dev \
   -y
 
 # Install rvm
@@ -79,7 +80,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"
