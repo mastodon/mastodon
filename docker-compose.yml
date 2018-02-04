@@ -4,6 +4,8 @@ services:
   db:
     restart: always
     image: postgres:9.6-alpine
+    networks:
+      - internal_network
 ### Uncomment to enable DB persistance
 #    volumes:
 #      - ./postgres:/var/lib/postgresql/data
@@ -11,6 +13,8 @@ services:
   redis:
     restart: always
     image: redis:4.0-alpine
+    networks:
+      - internal_network
 ### Uncomment to enable REDIS persistance
 #    volumes:
 #      - ./redis:/data
@@ -21,6 +25,9 @@ services:
     restart: always
     env_file: .env.production
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    networks:
+      - external_network
+      - internal_network
     ports:
       - "3000:3000"
     depends_on:
@@ -37,6 +44,9 @@ services:
     restart: always
     env_file: .env.production
     command: npm run start
+    networks:
+      - external_network
+      - internal_network
     ports:
       - "4000:4000"
     depends_on:
@@ -52,6 +62,14 @@ services:
     depends_on:
       - db
       - redis
+    networks:
+      - external_network
+      - internal_network
     volumes:
       - ./public/packs:/mastodon/public/packs
       - ./public/system:/mastodon/public/system
+
+networks:
+  external_network:
+  internal_network:
+    internal: true

@@ -1,17 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import PropTypes from 'prop-types';
+import ColumnBackButton from './column_back_button';
 
-export default class ColumnBackButtonSlim extends React.PureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
-  handleClick = () => {
-    if (window.history && window.history.length === 1) this.context.router.history.push('/');
-    else this.context.router.history.goBack();
-  }
+export default class ColumnBackButtonSlim extends ColumnBackButton {
 
   render () {
     return (
