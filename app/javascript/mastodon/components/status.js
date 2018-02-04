@@ -19,6 +19,12 @@ import { MediaGallery, VideoPlayer } from '../features/ui/util/async-components'
 import Bundle from '../features/ui/components/bundle';
 import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
 
+const isMathjaxifyable = str => {
+  return [ /\$\$(.*?)\$\$/g, /\$(.*?)\$/g, /\\\((.*?)\\\)/g, /\\\[(.*?)\\\]/g, /\\begin\{.+?\}(.*?)\\end\{.+?\}/g]
+    .map( r => str.match(r))
+    .reduce((prev, elem) => prev || elem, null);
+}
+
 export default class Status extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -234,7 +240,7 @@ export default class Status extends ImmutablePureComponent {
     }
 
     return (
-      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} tabIndex={wrapped ? null : '0'}  ref={this.handleRef}>
+      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')} ${isMathjaxifyable(status.get('content')) !== null ? ' mathjaxified__content' : ''}`} data-id={status.get('id')} tabIndex={wrapped ? null : '0'}  ref={this.handleRef}>
         <div className='status__info'>
           <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 
