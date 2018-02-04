@@ -162,6 +162,8 @@ export default class ComposeForm extends ImmutablePureComponent {
       publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
+    const unclickable = disabled || this.props.is_uploading || length(text) > 500 || text.length === 0 || text.trim().length === 0;
+
     return (
       <div className='compose-form'>
         <WarningContainer />
@@ -211,11 +213,11 @@ export default class ComposeForm extends ImmutablePureComponent {
         </div>
 
         <div className='compose-form__publish'>
-          <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabledButton} block /></div>
+          <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={unclickable} block /></div>
         </div>
 
         <div className='compose-form__publish'>
-          <div className='compose-form__publish-button-wrapper'><Button text={intl.formatMessage(messages.publish_without_community)} onClick={this.handleSubmitWithoutCommunity} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block secondary /></div>
+          <div className='compose-form__publish-button-wrapper'><Button text={intl.formatMessage(messages.publish_without_community)} onClick={this.handleSubmitWithoutCommunity} disabled={unclickable} block secondary /></div>
         </div>
       </div>
     );
