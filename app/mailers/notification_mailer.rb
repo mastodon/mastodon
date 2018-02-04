@@ -9,7 +9,7 @@ class NotificationMailer < ApplicationMailer
     @me     = recipient
     @status = notification.target_status
 
-    return if @me.user.disabled?
+    return if @me.user.disabled? || @status.nil?
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
@@ -33,7 +33,7 @@ class NotificationMailer < ApplicationMailer
     @account = notification.from_account
     @status  = notification.target_status
 
-    return if @me.user.disabled?
+    return if @me.user.disabled? || @status.nil?
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
@@ -46,7 +46,7 @@ class NotificationMailer < ApplicationMailer
     @account = notification.from_account
     @status  = notification.target_status
 
-    return if @me.user.disabled?
+    return if @me.user.disabled? || @status.nil?
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)

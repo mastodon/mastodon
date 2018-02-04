@@ -32,7 +32,10 @@ gem 'cld3', '~> 3.2.0'
 gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
-gem 'devise_pam_authenticatable2', '~> 8.0'
+gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
+gem 'omniauth-cas', '~> 1.1', install_if: -> { ENV['CAS_ENABLED'] == 'true' }
+gem 'omniauth-saml', '~> 1.8', install_if: -> { ENV['SAML_ENABLED'] == 'true' }
+gem 'omniauth', '~> 1.2'
 
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'

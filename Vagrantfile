@@ -39,6 +39,7 @@ sudo apt-get install \
   libidn11-dev \
   libprotobuf-dev \
   libreadline-dev \
+  libpam0g-dev \
   -y
 
 # Install rvm
