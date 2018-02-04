@@ -47,26 +47,40 @@ module Omniauthable
       # verified email.  If no verified email was provided or the user already
       # exists, we assign a temporary email and ask the user to verify it on
       # the next step via Auth::ConfirmationsController.finish_signup
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email if email_is_verified && !User.exists?(email: auth.info.email)
-      username = auth.uid
-      i = 0
-      while Account.exists?(username: username)
-        i += 1
-        username = "#{auth.uid}_#{i}"
-      end
-      user = User.new(
-        email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-        password: Devise.friendly_token[0, 20],
-        account: Account.new(
-          username: username,
-          display_name: [auth.info.first_name, auth.info.last_name].join(' ')
-        )
-      )
-      user.account.avatar = open(auth.info.image, allow_redirections: :safe) if auth.info.image =~ /\A#{URI.regexp(%w(http https))}\z/
+
+      user = User.new(user_params_from_auth(auth))
+      user.account.avatar_remote_url = auth.info.image if auth.info.image =~ /\A#{URI.regexp(%w(http https))}\z/
       user.skip_confirmation!
       user.save!
       user
+    end
+
+    private
+
+    def user_params_from_auth(auth)
+      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
+      email             = auth.info.email if email_is_verified && !User.exists?(email: auth.info.email)
+
+      {
+        email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+        password: Devise.friendly_token[0, 20],
+        account_attributes: {
+          username: ensure_unique_username(auth.uid),
+          display_name: [auth.info.first_name, auth.info.last_name].join(' ')
+        }
+      }
+    end
+
+    def ensure_unique_username(starting_username)
+      username = starting_username
+      i        = 0
+
+      while Account.exists?(username: username)
+        i       += 1
+        username = "#{starting_username}_#{i}"
+      end
+
+      username
     end
   end
 end
