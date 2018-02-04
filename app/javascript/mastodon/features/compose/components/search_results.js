@@ -1,15 +1,15 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
-import Link from 'react-router/lib/Link';
+import { Link } from 'react-router-dom';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class SearchResults extends ImmutablePureComponent {
+export default class SearchResults extends ImmutablePureComponent {
 
   static propTypes = {
-    results: ImmutablePropTypes.map.isRequired
+    results: ImmutablePropTypes.map.isRequired,
   };
 
   render () {
@@ -40,11 +40,11 @@ class SearchResults extends ImmutablePureComponent {
       count += results.get('hashtags').size;
       hashtags = (
         <div className='search-results__section'>
-          {results.get('hashtags').map(hashtag =>
-            <Link className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
+          {results.get('hashtags').map(hashtag => (
+            <Link key={hashtag} className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
               #{hashtag}
             </Link>
-          )}
+          ))}
         </div>
       );
     }
@@ -63,5 +63,3 @@ class SearchResults extends ImmutablePureComponent {
   }
 
 }
-
-export default SearchResults;

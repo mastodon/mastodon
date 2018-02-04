@@ -7,9 +7,11 @@
     - if !user_signed_in? && single_user_mode?
       %span.single-user-login
         = link_to t('auth.login'), new_user_session_path
-        \u2014
-    %span.domain= link_to site_hostname, root_path
+        &mdash;
+      %span.domain= link_to site_hostname, about_path
+    - else
+      %span.domain= link_to site_hostname, root_path
     %span.powered-by
-      != t('generic.powered_by', link: link_to('Mastodon', 'https://github.com/tootsuite/mastodon'))
+      != t('generic.powered_by', link: link_to('Mastodon', 'https://joinmastodon.org'))
 
 = render template: 'layouts/application'

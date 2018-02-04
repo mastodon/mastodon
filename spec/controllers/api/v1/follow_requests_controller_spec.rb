@@ -4,7 +4,7 @@ RSpec.describe Api::V1::FollowRequestsController, type: :controller do
   render_views
 
   let(:user)     { Fabricate(:user, account: Fabricate(:account, username: 'alice', locked: true)) }
-  let(:token)    { double acceptable?: true, resource_owner_id: user.id }
+  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'follow') }
   let(:follower) { Fabricate(:account, username: 'bob') }
 
   before do
@@ -14,7 +14,7 @@ RSpec.describe Api::V1::FollowRequestsController, type: :controller do
 
   describe 'GET #index' do
     before do
-      get :index
+      get :index, params: { limit: 1 }
     end
 
     it 'returns http success' do

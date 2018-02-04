@@ -7,12 +7,16 @@ const createAudio = sources => {
     audio.appendChild(source);
   });
   return audio;
-}
+};
 
 const play = audio => {
   if (!audio.paused) {
     audio.pause();
-    audio.fastSeek(0);
+    if (typeof audio.fastSeek === 'function') {
+      audio.fastSeek(0);
+    } else {
+      audio.currentTime = 0;
+    }
   }
 
   audio.play();
@@ -27,12 +31,12 @@ export default function soundsMiddleware() {
       },
       {
         src: '/sounds/boop.mp3',
-        type: 'audio/mpeg'
+        type: 'audio/mpeg',
       },
     ]),
   };
 
-  return ({ dispatch }) => next => (action) => {
+  return () => next => action => {
     if (action.meta && action.meta.sound && soundCache[action.meta.sound]) {
       play(soundCache[action.meta.sound]);
     }

@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
+require 'sidekiq-bulk'
+
 class SoftBlockDomainFollowersWorker
   include Sidekiq::Worker
 
   sidekiq_options queue: 'pull'
 
   def perform(account_id, domain)
-    Account.find(account_id).followers.where(domain: domain).pluck(:id).each do |follower_id|
-      SoftBlockWorker.perform_async(account_id, follower_id)
+    followers_id = Account.find(account_id).followers.where(domain: domain).pluck(:id)
+    SoftBlockWorker.push_bulk(followers_id) do |follower_id|
+      [account_id, follower_id]
     end
   end
 end

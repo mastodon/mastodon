@@ -1,16 +1,23 @@
 - content_for :page_title do
   = site_hostname
 
-.wrapper.thicc
-  .sidebar-layout
-    .main
-      .panel
-        %h2= site_hostname
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = render partial: 'shared/og'
 
-        - unless @instance_presenter.site_description.blank?
-          %p!= @instance_presenter.site_description
+.landing-page
+  .header-wrapper.compact
+    .header
+      = render 'links'
 
-      .information-board
+      .container.hero
+        .heading
+          %h3= t('about.description_headline', domain: site_hostname)
+          %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+
+  .information-board
+    .container
+      .information-board-sections
         .section
           %span= t 'about.user_count_before'
           %strong= number_with_delimiter @instance_presenter.user_count
@@ -23,11 +30,14 @@
           %span= t 'about.domain_count_before'
           %strong= number_with_delimiter @instance_presenter.domain_count
           %span= t 'about.domain_count_after'
-
-      - unless @instance_presenter.site_extended_description.blank?
-        .panel!= @instance_presenter.site_extended_description
-
-    .sidebar
       = render 'contact', contact: @instance_presenter
-      = render 'links', instance: @instance_presenter
-      = render 'version', version: @instance_presenter
+
+  .extended-description
+    .container
+      = @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
+
+  .footer-links
+    .container
+      %p
+        = link_to t('about.source_code'), @instance_presenter.source_url
+        = " (#{@instance_presenter.version_number})"

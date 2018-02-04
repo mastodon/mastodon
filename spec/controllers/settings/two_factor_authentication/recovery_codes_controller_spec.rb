@@ -5,21 +5,27 @@ require 'rails_helper'
 describe Settings::TwoFactorAuthentication::RecoveryCodesController do
   render_views
 
-  let(:user) { Fabricate(:user) }
-  before do
-    sign_in user, scope: :user
-  end
-
   describe 'POST #create' do
-    it 'updates the codes and shows them on a view' do
-      before = user.otp_backup_codes
+    it 'updates the codes and shows them on a view when signed in' do
+      user = Fabricate(:user)
+      otp_backup_codes = user.generate_otp_backup_codes!
+      expect_any_instance_of(User).to receive(:generate_otp_backup_codes!) do |value|
+        expect(value).to eq user
+        otp_backup_codes
+      end
 
+      sign_in user, scope: :user
       post :create
-      user.reload
 
-      expect(user.otp_backup_codes).not_to eq(before)
+      expect(assigns(:recovery_codes)).to eq otp_backup_codes
+      expect(flash[:notice]).to eq 'Recovery codes successfully regenerated'
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:index)
+    end
+
+    it 'redirects when not signed in' do
+      post :create
+      expect(response).to redirect_to '/auth/sign_in'
     end
   end
 end

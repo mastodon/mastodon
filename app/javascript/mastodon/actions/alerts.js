@@ -5,13 +5,13 @@ export const ALERT_CLEAR   = 'ALERT_CLEAR';
 export function dismissAlert(alert) {
   return {
     type: ALERT_DISMISS,
-    alert
+    alert,
   };
 };
 
 export function clearAlert() {
   return {
-    type: ALERT_CLEAR
+    type: ALERT_CLEAR,
   };
 };
 
@@ -19,6 +19,6 @@ export function showAlert(title, message) {
   return {
     type: ALERT_SHOW,
     title,
-    message
+    message,
   };
 };

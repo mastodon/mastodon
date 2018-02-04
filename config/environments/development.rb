@@ -16,8 +16,10 @@ Rails.application.configure do
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
+    config.cache_store = :redis_store, ENV['REDIS_URL'], REDIS_CACHE_PARAMS
+
     config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800',
+      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -30,8 +32,14 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # Generate random VAPID keys
+  vapid_key = Webpush.generate_key
+  config.x.vapid_private_key = vapid_key.private_key
+  config.x.vapid_public_key = vapid_key.public_key
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
@@ -59,6 +67,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.action_mailer.default_options = { from: 'notifications@localhost' }
 
   # If using a Heroku, Vagrant or generic remote development environment,
   # use letter_opener_web, accessible at  /letter_opener.

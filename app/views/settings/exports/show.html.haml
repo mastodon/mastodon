@@ -1,21 +1,22 @@
 - content_for :page_title do
   = t('settings.export')
 
-%table.table
-  %tbody
-    %tr
-      %th= t('exports.storage')
-      %td= number_to_human_size @export.total_storage
-      %td
-    %tr
-      %th= t('exports.follows')
-      %td= @export.total_follows
-      %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
-    %tr
-      %th= t('exports.blocks')
-      %td= @export.total_blocks
-      %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
-    %tr
-      %th= t('exports.mutes')
-      %td= @export.total_mutes
-      %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
+.table-wrapper
+  %table.table
+    %tbody
+      %tr
+        %th= t('exports.storage')
+        %td= number_to_human_size @export.total_storage
+        %td
+      %tr
+        %th= t('exports.follows')
+        %td= @export.total_follows
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
+      %tr
+        %th= t('exports.blocks')
+        %td= @export.total_blocks
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
+      %tr
+        %th= t('exports.mutes')
+        %td= @export.total_mutes
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)

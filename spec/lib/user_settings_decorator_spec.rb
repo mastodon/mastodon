@@ -28,6 +28,20 @@ describe UserSettingsDecorator do
       expect(user.settings['default_privacy']).to eq 'public'
     end
 
+    it 'updates the user settings value for sensitive' do
+      values = { 'setting_default_sensitive' => '1' }
+
+      settings.update(values)
+      expect(user.settings['default_sensitive']).to eq true
+    end
+
+    it 'updates the user settings value for unfollow modal' do
+      values = { 'setting_unfollow_modal' => '0' }
+
+      settings.update(values)
+      expect(user.settings['unfollow_modal']).to eq false
+    end
+
     it 'updates the user settings value for boost modal' do
       values = { 'setting_boost_modal' => '1' }
 
@@ -35,11 +49,25 @@ describe UserSettingsDecorator do
       expect(user.settings['boost_modal']).to eq true
     end
 
+    it 'updates the user settings value for delete toot modal' do
+      values = { 'setting_delete_modal' => '0' }
+
+      settings.update(values)
+      expect(user.settings['delete_modal']).to eq false
+    end
+
     it 'updates the user settings value for gif auto play' do
       values = { 'setting_auto_play_gif' => '0' }
 
       settings.update(values)
       expect(user.settings['auto_play_gif']).to eq false
+    end
+
+    it 'updates the user settings value for system font in UI' do
+      values = { 'setting_system_font_ui' => '0' }
+
+      settings.update(values)
+      expect(user.settings['system_font_ui']).to eq false
     end
   end
 end

@@ -5,8 +5,8 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  provider   :string
-#  uid        :string
+#  provider   :string           default(""), not null
+#  uid        :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

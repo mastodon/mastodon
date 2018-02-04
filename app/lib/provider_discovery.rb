@@ -1,16 +1,27 @@
 # frozen_string_literal: true
 
 class ProviderDiscovery < OEmbed::ProviderDiscovery
-  extend HttpHelper
-
   class << self
-    def discover_provider(url, options = {})
-      res    = http_client.get(url)
+    def get(url, **options)
+      provider = discover_provider(url, options)
+
+      options.delete(:html)
+
+      provider.get(url, options)
+    end
+
+    def discover_provider(url, **options)
       format = options[:format]
 
-      raise OEmbed::NotFound, url if res.code != 200 || res.mime_type != 'text/html'
+      if options[:html]
+        html = Nokogiri::HTML(options[:html])
+      else
+        res = Request.new(:get, url).perform
 
-      html = Nokogiri::HTML(res.to_s)
+        raise OEmbed::NotFound, url if res.code != 200 || res.mime_type != 'text/html'
+
+        html = Nokogiri::HTML(res.to_s)
+      end
 
       if format.nil? || format == :json
         provider_endpoint ||= html.at_xpath('//link[@type="application/json+oembed"]')&.attribute('href')&.value
@@ -18,7 +29,7 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
       end
 
       if format.nil? || format == :xml
-        provider_endpoint ||= html.at_xpath('//link[@type="application/xml+oembed"]')&.attribute('href')&.value
+        provider_endpoint ||= html.at_xpath('//link[@type="text/xml+oembed"]')&.attribute('href')&.value
         format ||= :xml if provider_endpoint
       end
 
@@ -31,7 +42,7 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
         raise OEmbed::NotFound, url
       end
 
-      OEmbed::Provider.new(provider_endpoint, format || OEmbed::Formatter.default)
+      OEmbed::Provider.new(provider_endpoint, format)
     end
   end
 end

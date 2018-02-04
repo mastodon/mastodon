@@ -1,16 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import PropTypes from 'prop-types';
+import ColumnBackButton from './column_back_button';
 
-class ColumnBackButtonSlim extends React.PureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object
-  };
-
-  handleClick = () => {
-    this.context.router.push('/');
-  }
+export default class ColumnBackButtonSlim extends ColumnBackButton {
 
   render () {
     return (
@@ -22,6 +14,5 @@ class ColumnBackButtonSlim extends React.PureComponent {
       </div>
     );
   }
-}
 
-export default ColumnBackButtonSlim;
+}

@@ -1,25 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { autoPlayGif } from '../initial_state';
 
-class Avatar extends React.PureComponent {
+export default class Avatar extends React.PureComponent {
 
   static propTypes = {
-    src: PropTypes.string.isRequired,
-    staticSrc: PropTypes.string,
+    account: ImmutablePropTypes.map.isRequired,
     size: PropTypes.number.isRequired,
     style: PropTypes.object,
+    inline: PropTypes.bool,
     animate: PropTypes.bool,
-    inline: PropTypes.bool
   };
 
   static defaultProps = {
-    animate: false,
+    animate: autoPlayGif,
     size: 20,
-    inline: false
+    inline: false,
   };
 
   state = {
-    hovering: true
+    hovering: false,
   };
 
   handleMouseEnter = () => {
@@ -33,8 +34,11 @@ class Avatar extends React.PureComponent {
   }
 
   render () {
-    const { src, size, staticSrc, animate, inline } = this.props;
+    const { account, size, animate, inline } = this.props;
     const { hovering } = this.state;
+
+    const src = account.get('avatar');
+    const staticSrc = account.get('avatar_static');
 
     let className = 'account__avatar';
 
@@ -46,7 +50,7 @@ class Avatar extends React.PureComponent {
       ...this.props.style,
       width: `${size}px`,
       height: `${size}px`,
-      backgroundSize: `${size}px ${size}px`
+      backgroundSize: `${size}px ${size}px`,
     };
 
     if (hovering || animate) {
@@ -66,5 +70,3 @@ class Avatar extends React.PureComponent {
   }
 
 }
-
-export default Avatar;

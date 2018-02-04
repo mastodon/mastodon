@@ -6,36 +6,40 @@ import {
   FAVOURITE_REQUEST,
   FAVOURITE_SUCCESS,
   FAVOURITE_FAIL,
-  UNFAVOURITE_SUCCESS
+  UNFAVOURITE_SUCCESS,
+  PIN_SUCCESS,
+  UNPIN_SUCCESS,
 } from '../actions/interactions';
 import {
   STATUS_FETCH_SUCCESS,
   CONTEXT_FETCH_SUCCESS,
   STATUS_MUTE_SUCCESS,
-  STATUS_UNMUTE_SUCCESS
+  STATUS_UNMUTE_SUCCESS,
 } from '../actions/statuses';
 import {
   TIMELINE_REFRESH_SUCCESS,
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
-  TIMELINE_EXPAND_SUCCESS
+  TIMELINE_EXPAND_SUCCESS,
 } from '../actions/timelines';
-import {
-  ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
-  ACCOUNT_BLOCK_SUCCESS
-} from '../actions/accounts';
 import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
-  NOTIFICATIONS_EXPAND_SUCCESS
+  NOTIFICATIONS_EXPAND_SUCCESS,
 } from '../actions/notifications';
 import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
-  FAVOURITED_STATUSES_EXPAND_SUCCESS
+  FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
+import {
+  PINNED_STATUSES_FETCH_SUCCESS,
+} from '../actions/pin_statuses';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
-import Immutable from 'immutable';
+import emojify from '../features/emoji/emoji';
+import { Map as ImmutableMap, fromJS } from 'immutable';
+import escapeTextContentForBrowser from 'escape-html';
+
+const domParser = new DOMParser();
 
 const normalizeStatus = (state, status) => {
   if (!status) {
@@ -50,10 +54,18 @@ const normalizeStatus = (state, status) => {
     normalStatus.reblog = status.reblog.id;
   }
 
-  const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-  normalStatus.search_index = new DOMParser().parseFromString(searchContent, 'text/html').documentElement.textContent;
+  const searchContent = [status.spoiler_text, status.content].join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
 
-  return state.update(status.id, Immutable.Map(), map => map.mergeDeep(Immutable.fromJS(normalStatus)));
+  const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
+    obj[`:${emoji.shortcode}:`] = emoji;
+    return obj;
+  }, {});
+
+  normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+  normalStatus.contentHtml = emojify(normalStatus.content, emojiMap);
+  normalStatus.spoilerHtml = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''), emojiMap);
+
+  return state.update(status.id, ImmutableMap(), map => map.mergeDeep(fromJS(normalStatus)));
 };
 
 const normalizeStatuses = (state, statuses) => {
@@ -72,19 +84,7 @@ const deleteStatus = (state, id, references) => {
   return state.delete(id);
 };
 
-const filterStatuses = (state, relationship) => {
-  state.forEach(status => {
-    if (status.get('account') !== relationship.id) {
-      return;
-    }
-
-    state = deleteStatus(state, status.get('id'), state.filter(item => item.get('reblog') === status.get('id')));
-  });
-
-  return state;
-};
-
-const initialState = Immutable.Map();
+const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
   switch(action.type) {
@@ -96,6 +96,8 @@ export default function statuses(state = initialState, action) {
   case UNREBLOG_SUCCESS:
   case FAVOURITE_SUCCESS:
   case UNFAVOURITE_SUCCESS:
+  case PIN_SUCCESS:
+  case UNPIN_SUCCESS:
     return normalizeStatus(state, action.response);
   case FAVOURITE_REQUEST:
     return state.setIn([action.status.get('id'), 'favourited'], true);
@@ -111,19 +113,16 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.id, 'muted'], false);
   case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:
-  case ACCOUNT_TIMELINE_FETCH_SUCCESS:
-  case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
   case CONTEXT_FETCH_SUCCESS:
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
+  case PINNED_STATUSES_FETCH_SUCCESS:
   case SEARCH_FETCH_SUCCESS:
     return normalizeStatuses(state, action.statuses);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
-  case ACCOUNT_BLOCK_SUCCESS:
-    return filterStatuses(state, action.relationship);
   default:
     return state;
   }

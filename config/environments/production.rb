@@ -38,20 +38,17 @@ Rails.application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Allow to specify public IP of reverse proxy if it's needed
-  config.action_dispatch.trusted_proxies = [IPAddr.new(ENV['TRUSTED_PROXY_IP'])] unless ENV['TRUSTED_PROXY_IP'].blank?
+  config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split.map { |item| IPAddr.new(item) } unless ENV['TRUSTED_PROXY_IP'].blank?
 
-  # By default, use the lowest log level to ensure availability of diagnostic information
+  # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 
-  # Use a different logger for distributed setups.
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  # Use a different cache store in production.
+  config.cache_store = :redis_store, ENV['REDIS_URL'], REDIS_CACHE_PARAMS
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -76,6 +73,8 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
+  config.action_mailer.default_options = { from: ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost') }
+
   config.action_mailer.smtp_settings = {
     :port                 => ENV['SMTP_PORT'],
     :address              => ENV['SMTP_SERVER'],
@@ -86,14 +85,10 @@ Rails.application.configure do
     :ca_file              => ENV['SMTP_CA_FILE'].presence,
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
+    :tls                  => ENV['SMTP_TLS'].presence,
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
-
-  config.to_prepare do
-    StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
-    Sidekiq::Logging.logger.level = Logger::WARN
-  end
 
   config.action_dispatch.default_headers = {
     'Server'                 => 'Mastodon',

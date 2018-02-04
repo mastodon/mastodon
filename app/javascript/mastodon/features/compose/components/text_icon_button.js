@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class TextIconButton extends React.PureComponent {
+export default class TextIconButton extends React.PureComponent {
 
   static propTypes = {
     label: PropTypes.string.isRequired,
     title: PropTypes.string,
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    ariaControls: PropTypes.string
+    ariaControls: PropTypes.string,
   };
 
   handleClick = (e) => {
@@ -27,5 +27,3 @@ class TextIconButton extends React.PureComponent {
   }
 
 }
-
-export default TextIconButton;

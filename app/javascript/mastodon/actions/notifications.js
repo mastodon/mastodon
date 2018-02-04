@@ -1,5 +1,5 @@
-import api, { getLinks } from '../api'
-import Immutable from 'immutable';
+import api, { getLinks } from '../api';
+import { List as ImmutableList } from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
 import { defineMessages } from 'react-intl';
@@ -17,7 +17,7 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 
-const messages = defineMessages({
+defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
 });
 
@@ -31,9 +31,10 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
 
 const unescapeHTML = (html) => {
   const wrapper = document.createElement('div');
+  html = html.replace(/<br \/>|<br>|\n/g, ' ');
   wrapper.innerHTML = html;
   return wrapper.textContent;
-}
+};
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
@@ -45,7 +46,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       notification,
       account: notification.account,
       status: notification.status,
-      meta: playSound ? { sound: 'boop' } : undefined
+      meta: playSound ? { sound: 'boop' } : undefined,
     });
 
     fetchRelatedRelationships(dispatch, [notification]);
@@ -99,7 +100,7 @@ export function refreshNotifications() {
 export function refreshNotificationsRequest(skipLoading) {
   return {
     type: NOTIFICATIONS_REFRESH_REQUEST,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -110,7 +111,7 @@ export function refreshNotificationsSuccess(notifications, skipLoading, next) {
     accounts: notifications.map(item => item.account),
     statuses: notifications.map(item => item.status).filter(status => !!status),
     skipLoading,
-    next
+    next,
   };
 };
 
@@ -118,31 +119,28 @@ export function refreshNotificationsFail(error, skipLoading) {
   return {
     type: NOTIFICATIONS_REFRESH_FAIL,
     error,
-    skipLoading
+    skipLoading,
   };
 };
 
 export function expandNotifications() {
   return (dispatch, getState) => {
-    const url    = getState().getIn(['notifications', 'next'], null);
-    const lastId = getState().getIn(['notifications', 'items']).last();
+    const items  = getState().getIn(['notifications', 'items'], ImmutableList());
 
-    if (url === null || getState().getIn(['notifications', 'isLoading'])) {
+    if (getState().getIn(['notifications', 'isLoading']) || items.size === 0) {
       return;
     }
 
-    dispatch(expandNotificationsRequest());
-
     const params = {
-      max_id: lastId,
-      limit: 20
+      max_id: items.last().get('id'),
+      limit: 20,
+      exclude_types: excludeTypesFromSettings(getState()),
     };
 
-    params.exclude_types = excludeTypesFromSettings(getState());
+    dispatch(expandNotificationsRequest());
 
-    api(getState).get(url, params).then(response => {
+    api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
     }).catch(error => {
@@ -153,7 +151,7 @@ export function expandNotifications() {
 
 export function expandNotificationsRequest() {
   return {
-    type: NOTIFICATIONS_EXPAND_REQUEST
+    type: NOTIFICATIONS_EXPAND_REQUEST,
   };
 };
 
@@ -163,21 +161,21 @@ export function expandNotificationsSuccess(notifications, next) {
     notifications,
     accounts: notifications.map(item => item.account),
     statuses: notifications.map(item => item.status).filter(status => !!status),
-    next
+    next,
   };
 };
 
 export function expandNotificationsFail(error) {
   return {
     type: NOTIFICATIONS_EXPAND_FAIL,
-    error
+    error,
   };
 };
 
 export function clearNotifications() {
   return (dispatch, getState) => {
     dispatch({
-      type: NOTIFICATIONS_CLEAR
+      type: NOTIFICATIONS_CLEAR,
     });
 
     api(getState).post('/api/v1/notifications/clear');
@@ -187,6 +185,6 @@ export function clearNotifications() {
 export function scrollTopNotifications(top) {
   return {
     type: NOTIFICATIONS_SCROLL_TOP,
-    top
+    top,
   };
 };

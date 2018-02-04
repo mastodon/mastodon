@@ -3,60 +3,75 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import ReactSwipeableViews from 'react-swipeable-views';
+import classNames from 'classnames';
 import Permalink from '../../../components/permalink';
-import { TransitionMotion, spring } from 'react-motion';
 import ComposeForm from '../../compose/components/compose_form';
 import Search from '../../compose/components/search';
 import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
+import { me } from '../../../initial_state';
+
+const noop = () => { };
 
 const messages = defineMessages({
   home_title: { id: 'column.home', defaultMessage: 'Home' },
   notifications_title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   local_title: { id: 'column.community', defaultMessage: 'Local timeline' },
-  federated_title: { id: 'column.public', defaultMessage: 'Federated timeline' }
+  federated_title: { id: 'column.public', defaultMessage: 'Federated timeline' },
 });
 
 const PageOne = ({ acct, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-one'>
-    <div style={{ flex: '0 0 auto' }}>
-      <div className='onboarding-modal__page-one__elephant-friend' />
-    </div>
-
-    <div>
+    <div className='onboarding-modal__page-one__lead'>
       <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
       <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.' /></p>
-      <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain, handle: <strong>{acct}@{domain}</strong> }}/></p>
+    </div>
+
+    <div className='onboarding-modal__page-one__extra'>
+      <div className='display-case'>
+        <div className='display-case__label'>
+          <FormattedMessage id='onboarding.page_one.full_handle' defaultMessage='Your full handle' />
+        </div>
+
+        <div className='display-case__case'>
+          @{acct}@{domain}
+        </div>
+      </div>
+
+      <p><FormattedMessage id='onboarding.page_one.handle_hint' defaultMessage='This is what you would tell your friends to search for.' /></p>
     </div>
   </div>
 );
 
 PageOne.propTypes = {
   acct: PropTypes.string.isRequired,
-  domain: PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired,
 };
 
-const PageTwo = ({ me }) => (
+const PageTwo = ({ myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
       <div className='pseudo-drawer'>
-        <NavigationBar account={me} />
+        <NavigationBar account={myAccount} />
+
+        <ComposeForm
+          text='Awoo! #introductions'
+          suggestions={ImmutableList()}
+          mentionedDomains={[]}
+          spoiler={false}
+          onChange={noop}
+          onSubmit={noop}
+          onPaste={noop}
+          onPickEmoji={noop}
+          onChangeSpoilerText={noop}
+          onClearSuggestions={noop}
+          onFetchSuggestions={noop}
+          onSuggestionSelected={noop}
+          showSearch
+        />
       </div>
-      <ComposeForm
-        text='Awoo! #introductions'
-        suggestions={Immutable.List()}
-        mentionedDomains={[]}
-        spoiler={false}
-        onChange={() => {}}
-        onSubmit={() => {}}
-        onPaste={() => {}}
-        onPickEmoji={() => {}}
-        onChangeSpoilerText={() => {}}
-        onClearSuggestions={() => {}}
-        onFetchSuggestions={() => {}}
-        onSuggestionSelected={() => {}}
-      />
     </div>
 
     <p><FormattedMessage id='onboarding.page_two.compose' defaultMessage='Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.' /></p>
@@ -64,33 +79,32 @@ const PageTwo = ({ me }) => (
 );
 
 PageTwo.propTypes = {
-  me: ImmutablePropTypes.map.isRequired,
+  myAccount: ImmutablePropTypes.map.isRequired,
 };
 
-const PageThree = ({ me, domain }) => (
+const PageThree = ({ myAccount }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
     <div className='figure non-interactive'>
       <Search
         value=''
-        onChange={() => {}}
-        onSubmit={() => {}}
-        onClear={() => {}}
-        onShow={() => {}}
+        onChange={noop}
+        onSubmit={noop}
+        onClear={noop}
+        onShow={noop}
       />
 
       <div className='pseudo-drawer'>
-        <NavigationBar account={me} />
+        <NavigationBar account={myAccount} />
       </div>
     </div>
 
-    <p><FormattedMessage id='onboarding.page_three.search' defaultMessage='Use the search bar to find people and look at hashtags, such as {illustration} and {introductions}. To look for a person who is not on this instance, use their full handle.' values={{ illustration: <Permalink to='/timelines/tag/illustration' href='/tags/illustration'>#illustration</Permalink>, introductions: <Permalink to='/timelines/tag/introductions' href='/tags/introductions'>#introductions</Permalink> }}/></p>
+    <p><FormattedMessage id='onboarding.page_three.search' defaultMessage='Use the search bar to find people and look at hashtags, such as {illustration} and {introductions}. To look for a person who is not on this instance, use their full handle.' values={{ illustration: <Permalink to='/timelines/tag/illustration' href='/tags/illustration'>#illustration</Permalink>, introductions: <Permalink to='/timelines/tag/introductions' href='/tags/introductions'>#introductions</Permalink> }} /></p>
     <p><FormattedMessage id='onboarding.page_three.profile' defaultMessage='Edit your profile to change your avatar, bio, and display name. There, you will also find other preferences.' /></p>
   </div>
 );
 
 PageThree.propTypes = {
-  me: ImmutablePropTypes.map.isRequired,
-  domain: PropTypes.string.isRequired
+  myAccount: ImmutablePropTypes.map.isRequired,
 };
 
 const PageFour = ({ domain, intl }) => (
@@ -99,7 +113,7 @@ const PageFour = ({ domain, intl }) => (
       <div className='row'>
         <div>
           <div className='figure non-interactive'><ColumnHeader icon='home' type={intl.formatMessage(messages.home_title)} /></div>
-          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows posts from people you follow.'/></p>
+          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows posts from people you follow.' /></p>
         </div>
 
         <div>
@@ -125,7 +139,7 @@ const PageFour = ({ domain, intl }) => (
 
 PageFour.propTypes = {
   domain: PropTypes.string.isRequired,
-  intl: PropTypes.object.isRequired
+  intl: PropTypes.object.isRequired,
 };
 
 const PageSix = ({ admin, domain }) => {
@@ -136,7 +150,7 @@ const PageSix = ({ admin, domain }) => {
       <p>
         <FormattedMessage id='onboarding.page_six.admin' defaultMessage="Your instance's admin is {admin}." values={{ admin: <Permalink href={admin.get('url')} to={`/accounts/${admin.get('id')}`}>@{admin.get('acct')}</Permalink> }} />
         <br />
-        <FormattedMessage id='onboarding.page_six.read_guidelines' defaultMessage="Please read {domain}'s {guidelines}!" values={{domain, guidelines: <a href='/about/more' target='_blank'><FormattedMessage id='onboarding.page_six.guidelines' defaultMessage='community guidelines' /></a> }}/>
+        <FormattedMessage id='onboarding.page_six.read_guidelines' defaultMessage="Please read {domain}'s {guidelines}!" values={{ domain, guidelines: <a href='/about/more' target='_blank'><FormattedMessage id='onboarding.page_six.guidelines' defaultMessage='community guidelines' /></a> }} />
       </p>
     );
   }
@@ -154,95 +168,149 @@ const PageSix = ({ admin, domain }) => {
 
 PageSix.propTypes = {
   admin: ImmutablePropTypes.map,
-  domain: PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
+  myAccount: state.getIn(['accounts', me]),
   admin: state.getIn(['accounts', state.getIn(['meta', 'admin'])]),
-  domain: state.getIn(['meta', 'domain'])
+  domain: state.getIn(['meta', 'domain']),
 });
 
-class OnboardingModal extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class OnboardingModal extends React.PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    me: ImmutablePropTypes.map.isRequired,
+    myAccount: ImmutablePropTypes.map.isRequired,
     domain: PropTypes.string.isRequired,
-    admin: ImmutablePropTypes.map
+    admin: ImmutablePropTypes.map,
   };
 
   state = {
-    currentIndex: 0
+    currentIndex: 0,
   };
+
+  componentWillMount() {
+    const { myAccount, admin, domain, intl } = this.props;
+    this.pages = [
+      <PageOne acct={myAccount.get('acct')} domain={domain} />,
+      <PageTwo myAccount={myAccount} />,
+      <PageThree myAccount={myAccount} />,
+      <PageFour domain={domain} intl={intl} />,
+      <PageSix admin={admin} domain={domain} />,
+    ];
+  };
+
+  componentDidMount() {
+    window.addEventListener('keyup', this.handleKeyUp);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener('keyup', this.handleKeyUp);
+  }
 
   handleSkip = (e) => {
     e.preventDefault();
     this.props.onClose();
   }
 
-  handleDot = (i, e) => {
+  handleDot = (e) => {
+    const i = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.setState({ currentIndex: i });
   }
 
-  handleNext = (maxNum, e) => {
-    e.preventDefault();
+  handlePrev = () => {
+    this.setState(({ currentIndex }) => ({
+      currentIndex: Math.max(0, currentIndex - 1),
+    }));
+  }
 
-    if (this.state.currentIndex < maxNum - 1) {
-      this.setState({ currentIndex: this.state.currentIndex + 1 });
-    } else {
-      this.props.onClose();
+  handleNext = () => {
+    const { pages } = this;
+    this.setState(({ currentIndex }) => ({
+      currentIndex: Math.min(currentIndex + 1, pages.length - 1),
+    }));
+  }
+
+  handleSwipe = (index) => {
+    this.setState({ currentIndex: index });
+  }
+
+  handleKeyUp = ({ key }) => {
+    switch (key) {
+    case 'ArrowLeft':
+      this.handlePrev();
+      break;
+    case 'ArrowRight':
+      this.handleNext();
+      break;
     }
   }
 
+  handleClose = () => {
+    this.props.onClose();
+  }
+
   render () {
-    const { me, admin, domain, intl } = this.props;
-
-    const pages = [
-      <PageOne acct={me.get('acct')} domain={domain} />,
-      <PageTwo me={me} />,
-      <PageThree me={me} domain={domain} />,
-      <PageFour domain={domain} intl={intl} />,
-      <PageSix admin={admin} domain={domain} />
-    ];
-
+    const { pages } = this;
     const { currentIndex } = this.state;
     const hasMore = currentIndex < pages.length - 1;
 
-    let nextOrDoneBtn;
-
-    if(hasMore) {
-      nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__next'><FormattedMessage id='onboarding.next' defaultMessage='Next' /></a>;
-    } else {
-      nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__done'><FormattedMessage id='onboarding.done' defaultMessage='Done' /></a>;
-    }
-
-    const styles = pages.map((page, i) => ({
-      key: `page-${i}`,
-      style: { opacity: spring(i === currentIndex ? 1 : 0) }
-    }));
+    const nextOrDoneBtn = hasMore ? (
+      <button onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__next shake-bottom'>
+        <FormattedMessage id='onboarding.next' defaultMessage='Next' /> <i className='fa fa-fw fa-chevron-right' />
+      </button>
+    ) : (
+      <button onClick={this.handleClose} className='onboarding-modal__nav onboarding-modal__done shake-bottom'>
+        <FormattedMessage id='onboarding.done' defaultMessage='Done' /> <i className='fa fa-fw fa-check' />
+      </button>
+    );
 
     return (
       <div className='modal-root__modal onboarding-modal'>
-        <TransitionMotion styles={styles}>
-          {interpolatedStyles =>
-            <div className='onboarding-modal__pager'>
-              {pages.map((page, i) =>
-                <div key={`page-${i}`} style={{ opacity: interpolatedStyles[i].style.opacity, pointerEvents: i === currentIndex ? 'auto' : 'none' }}>{page}</div>
-              )}
-            </div>
-          }
-        </TransitionMotion>
+        <ReactSwipeableViews index={currentIndex} onChangeIndex={this.handleSwipe} className='onboarding-modal__pager'>
+          {pages.map((page, i) => {
+            const className = classNames('onboarding-modal__page__wrapper', `onboarding-modal__page__wrapper-${i}`, {
+              'onboarding-modal__page__wrapper--active': i === currentIndex,
+            });
+
+            return (
+              <div key={i} className={className}>{page}</div>
+            );
+          })}
+        </ReactSwipeableViews>
 
         <div className='onboarding-modal__paginator'>
           <div>
-            <a href='#' className='onboarding-modal__skip' onClick={this.handleSkip}><FormattedMessage id='onboarding.skip' defaultMessage='Skip' /></a>
+            <button
+              onClick={this.handleSkip}
+              className='onboarding-modal__nav onboarding-modal__skip'
+            >
+              <FormattedMessage id='onboarding.skip' defaultMessage='Skip' />
+            </button>
           </div>
 
           <div className='onboarding-modal__dots'>
-            {pages.map((_, i) => <div key={i} onClick={this.handleDot.bind(null, i)} className={`onboarding-modal__dot ${i === currentIndex ? 'active' : ''}`} />)}
+            {pages.map((_, i) => {
+              const className = classNames('onboarding-modal__dot', {
+                active: i === currentIndex,
+              });
+
+              return (
+                <div
+                  key={`dot-${i}`}
+                  role='button'
+                  tabIndex='0'
+                  data-index={i}
+                  onClick={this.handleDot}
+                  className={className}
+                />
+              );
+            })}
           </div>
 
           <div>
@@ -254,5 +322,3 @@ class OnboardingModal extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(OnboardingModal));

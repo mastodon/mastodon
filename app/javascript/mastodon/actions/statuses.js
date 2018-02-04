@@ -27,7 +27,7 @@ export function fetchStatusRequest(id, skipLoading) {
   return {
     type: STATUS_FETCH_REQUEST,
     id,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -56,7 +56,7 @@ export function fetchStatusSuccess(status, skipLoading) {
   return {
     type: STATUS_FETCH_SUCCESS,
     status,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -66,7 +66,7 @@ export function fetchStatusFail(id, error, skipLoading) {
     id,
     error,
     skipLoading,
-    skipAlert: true
+    skipAlert: true,
   };
 };
 
@@ -74,7 +74,7 @@ export function deleteStatus(id) {
   return (dispatch, getState) => {
     dispatch(deleteStatusRequest(id));
 
-    api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
+    api(getState).delete(`/api/v1/statuses/${id}`).then(() => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
     }).catch(error => {
@@ -86,14 +86,14 @@ export function deleteStatus(id) {
 export function deleteStatusRequest(id) {
   return {
     type: STATUS_DELETE_REQUEST,
-    id: id
+    id: id,
   };
 };
 
 export function deleteStatusSuccess(id) {
   return {
     type: STATUS_DELETE_SUCCESS,
-    id: id
+    id: id,
   };
 };
 
@@ -101,7 +101,7 @@ export function deleteStatusFail(id, error) {
   return {
     type: STATUS_DELETE_FAIL,
     id: id,
-    error: error
+    error: error,
   };
 };
 
@@ -113,7 +113,7 @@ export function fetchContext(id) {
       dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
 
     }).catch(error => {
-      if (error.response.status === 404) {
+      if (error.response && error.response.status === 404) {
         dispatch(deleteFromTimelines(id));
       }
 
@@ -125,7 +125,7 @@ export function fetchContext(id) {
 export function fetchContextRequest(id) {
   return {
     type: CONTEXT_FETCH_REQUEST,
-    id
+    id,
   };
 };
 
@@ -135,7 +135,7 @@ export function fetchContextSuccess(id, ancestors, descendants) {
     id,
     ancestors,
     descendants,
-    statuses: ancestors.concat(descendants)
+    statuses: ancestors.concat(descendants),
   };
 };
 
@@ -144,7 +144,7 @@ export function fetchContextFail(id, error) {
     type: CONTEXT_FETCH_FAIL,
     id,
     error,
-    skipAlert: true
+    skipAlert: true,
   };
 };
 
@@ -152,7 +152,7 @@ export function muteStatus(id) {
   return (dispatch, getState) => {
     dispatch(muteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/mute`).then(response => {
+    api(getState).post(`/api/v1/statuses/${id}/mute`).then(() => {
       dispatch(muteStatusSuccess(id));
     }).catch(error => {
       dispatch(muteStatusFail(id, error));
@@ -163,14 +163,14 @@ export function muteStatus(id) {
 export function muteStatusRequest(id) {
   return {
     type: STATUS_MUTE_REQUEST,
-    id
+    id,
   };
 };
 
 export function muteStatusSuccess(id) {
   return {
     type: STATUS_MUTE_SUCCESS,
-    id
+    id,
   };
 };
 
@@ -178,7 +178,7 @@ export function muteStatusFail(id, error) {
   return {
     type: STATUS_MUTE_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -186,7 +186,7 @@ export function unmuteStatus(id) {
   return (dispatch, getState) => {
     dispatch(unmuteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(response => {
+    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(() => {
       dispatch(unmuteStatusSuccess(id));
     }).catch(error => {
       dispatch(unmuteStatusFail(id, error));
@@ -197,14 +197,14 @@ export function unmuteStatus(id) {
 export function unmuteStatusRequest(id) {
   return {
     type: STATUS_UNMUTE_REQUEST,
-    id
+    id,
   };
 };
 
 export function unmuteStatusSuccess(id) {
   return {
     type: STATUS_UNMUTE_SUCCESS,
-    id
+    id,
   };
 };
 
@@ -212,6 +212,6 @@ export function unmuteStatusFail(id, error) {
   return {
     type: STATUS_UNMUTE_FAIL,
     id,
-    error
+    error,
   };
 };

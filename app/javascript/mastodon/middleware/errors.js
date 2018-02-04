@@ -1,13 +1,11 @@
 import { showAlert } from '../actions/alerts';
 
-const defaultSuccessSuffix = 'SUCCESS';
 const defaultFailSuffix = 'FAIL';
 
 export default function errorsMiddleware() {
   return ({ dispatch }) => next => action => {
     if (action.type && !action.skipAlert) {
       const isFail = new RegExp(`${defaultFailSuffix}$`, 'g');
-      const isSuccess = new RegExp(`${defaultSuccessSuffix}$`, 'g');
 
       if (action.type.match(isFail)) {
         if (action.error.response) {
@@ -22,7 +20,7 @@ export default function errorsMiddleware() {
 
           dispatch(showAlert(title, message));
         } else {
-          console.error(action.error); // eslint-disable-line no-console
+          console.error(action.error);
           dispatch(showAlert('Oops!', 'An unexpected error occurred.'));
         }
       }

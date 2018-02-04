@@ -5,21 +5,24 @@ import InnerHeader from '../../account/components/header';
 import ActionBar from '../../account/components/action_bar';
 import MissingIndicator from '../../../components/missing_indicator';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import MovedNote from './moved_note';
 
-class Header extends ImmutablePureComponent {
+export default class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
-    me: PropTypes.number.isRequired,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    onReblogToggle: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
-    onMute: PropTypes.func.isRequired
+    onMute: PropTypes.func.isRequired,
+    onBlockDomain: PropTypes.func.isRequired,
+    onUnblockDomain: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   handleFollow = () => {
@@ -31,20 +34,39 @@ class Header extends ImmutablePureComponent {
   }
 
   handleMention = () => {
-    this.props.onMention(this.props.account, this.context.router);
+    this.props.onMention(this.props.account, this.context.router.history);
   }
 
   handleReport = () => {
     this.props.onReport(this.props.account);
-    this.context.router.push('/report');
+  }
+
+  handleReblogToggle = () => {
+    this.props.onReblogToggle(this.props.account);
   }
 
   handleMute = () => {
     this.props.onMute(this.props.account);
   }
 
+  handleBlockDomain = () => {
+    const domain = this.props.account.get('acct').split('@')[1];
+
+    if (!domain) return;
+
+    this.props.onBlockDomain(domain, this.props.account.get('id'));
+  }
+
+  handleUnblockDomain = () => {
+    const domain = this.props.account.get('acct').split('@')[1];
+
+    if (!domain) return;
+
+    this.props.onUnblockDomain(domain, this.props.account.get('id'));
+  }
+
   render () {
-    const { account, me } = this.props;
+    const { account } = this.props;
 
     if (account === null) {
       return <MissingIndicator />;
@@ -52,24 +74,25 @@ class Header extends ImmutablePureComponent {
 
     return (
       <div className='account-timeline__header'>
+        {account.get('moved') && <MovedNote from={account} to={account.get('moved')} />}
+
         <InnerHeader
           account={account}
-          me={me}
           onFollow={this.handleFollow}
         />
 
         <ActionBar
           account={account}
-          me={me}
           onBlock={this.handleBlock}
           onMention={this.handleMention}
+          onReblogToggle={this.handleReblogToggle}
           onReport={this.handleReport}
           onMute={this.handleMute}
+          onBlockDomain={this.handleBlockDomain}
+          onUnblockDomain={this.handleUnblockDomain}
         />
       </div>
     );
   }
 
 }
-
-export default Header;

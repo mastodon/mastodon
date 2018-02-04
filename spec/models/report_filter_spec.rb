@@ -19,12 +19,13 @@ describe ReportFilter do
 
   describe 'with valid params' do
     it 'combines filters on Report' do
-      filter = ReportFilter.new(account_id: '123', resolved: true)
+      filter = ReportFilter.new(account_id: '123', resolved: true, target_account_id: '456')
 
       allow(Report).to receive(:where).and_return(Report.none)
       allow(Report).to receive(:resolved).and_return(Report.none)
       filter.results
       expect(Report).to have_received(:where).with(account_id: '123')
+      expect(Report).to have_received(:where).with(target_account_id: '456')
       expect(Report).to have_received(:resolved)
     end
   end

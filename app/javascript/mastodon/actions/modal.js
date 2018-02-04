@@ -5,12 +5,12 @@ export function openModal(type, props) {
   return {
     type: MODAL_OPEN,
     modalType: type,
-    modalProps: props
+    modalProps: props,
   };
 };
 
 export function closeModal() {
   return {
-    type: MODAL_CLOSE
+    type: MODAL_CLOSE,
   };
 };

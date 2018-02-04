@@ -1,0 +1,47 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.statuses.title')
+
+.back-link
+  = link_to admin_account_path(@account.id) do
+    %i.fa.fa-chevron-left.fa-fw
+    = t('admin.statuses.back_to_account')
+
+.filters
+  .filter-subset
+    %strong= t('admin.statuses.media.title')
+    %ul
+      %li= link_to t('admin.statuses.no_media'), admin_account_statuses_path(@account.id, current_params.merge(media: nil)), class: !params[:media] && 'selected'
+      %li= link_to t('admin.statuses.with_media'), admin_account_statuses_path(@account.id, current_params.merge(media: true)), class: params[:media] && 'selected'
+
+- if @statuses.empty?
+  .accounts-grid
+    = render 'accounts/nothing_here'
+- else
+  = form_for(@form, url: admin_account_statuses_path(@account.id)) do |f|
+    = hidden_field_tag :page, params[:page]
+    = hidden_field_tag :media, params[:media]
+    .batch-form-box
+      .batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      = f.select :action, Form::StatusBatch::ACTION_TYPE.map{|action| [t("admin.statuses.batch.#{action}"), action]}
+      = f.submit t('admin.statuses.execute'), data: { confirm: t('admin.reports.are_you_sure') }, class: 'button'
+      .media-spoiler-toggle-buttons
+        .media-spoiler-show-button.button= t('admin.statuses.media.show')
+        .media-spoiler-hide-button.button= t('admin.statuses.media.hide')
+    - @statuses.each do |status|
+      .account-status{ data: { id: status.id } }
+        .batch-checkbox
+          = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
+        .activity-stream.activity-stream-headless
+          .entry= render 'stream_entries/simple_status', status: status
+        .account-status__actions
+          - unless status.media_attachments.empty?
+            = link_to admin_account_status_path(@account.id, status, current_params.merge(status: { sensitive: !status.sensitive })), method: :patch, class: 'icon-button nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
+              = fa_icon status.sensitive? ? 'eye' : 'eye-slash'
+          = link_to admin_account_status_path(@account.id, status), method: :delete, class: 'icon-button trash-button', title: t('admin.reports.delete'), data: { confirm: t('admin.reports.are_you_sure') }, remote: true do
+            = fa_icon 'trash'
+
+= paginate @statuses

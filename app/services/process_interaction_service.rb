@@ -2,6 +2,7 @@
 
 class ProcessInteractionService < BaseService
   include AuthorExtractor
+  include Authorization
 
   # Record locally the remote interaction with our user
   # @param [String] envelope Salmon envelope
@@ -12,7 +13,7 @@ class ProcessInteractionService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS))
+    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS))
 
     return if account.nil? || account.suspended?
 
@@ -21,9 +22,9 @@ class ProcessInteractionService < BaseService
 
       case verb(xml)
       when :follow
-        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account)
+        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account) || target_account.domain_blocking?(account.domain)
       when :request_friend
-        follow_request!(account, target_account) unless !target_account.locked? || target_account.blocking?(account)
+        follow_request!(account, target_account) unless !target_account.locked? || target_account.blocking?(account) || target_account.domain_blocking?(account.domain)
       when :authorize
         authorize_follow_request!(account, target_account)
       when :reject
@@ -46,30 +47,33 @@ class ProcessInteractionService < BaseService
         reflect_unblock!(account, target_account)
       end
     end
-  rescue Goldfinger::Error, HTTP::Error, OStatus2::BadSalmonError
+  rescue HTTP::Error, OStatus2::BadSalmonError, Mastodon::NotPermittedError
     nil
   end
 
   private
 
   def mentions_account?(xml, account)
-    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each { |mention_link| return true if [TagManager.instance.uri_for(account), TagManager.instance.url_for(account)].include?(mention_link.attribute('href').value) }
+    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: OStatus::TagManager::XMLNS).each { |mention_link| return true if [OStatus::TagManager.instance.uri_for(account), OStatus::TagManager.instance.url_for(account)].include?(mention_link.attribute('href').value) }
     false
   end
 
   def verb(xml)
-    raw = xml.at_xpath('//activity:verb', activity: TagManager::AS_XMLNS).content
-    TagManager::VERBS.key(raw)
+    raw = xml.at_xpath('//activity:verb', activity: OStatus::TagManager::AS_XMLNS).content
+    OStatus::TagManager::VERBS.key(raw)
   rescue
     :post
   end
 
   def follow!(account, target_account)
     follow = account.follow!(target_account)
+    FollowRequest.find_by(account: account, target_account: target_account)&.destroy
     NotifyService.new.call(target_account, follow)
   end
 
   def follow_request!(account, target_account)
+    return if account.requested?(target_account)
+
     follow_request = FollowRequest.create!(account: account, target_account: target_account)
     NotifyService.new.call(target_account, follow_request)
   end
@@ -87,6 +91,7 @@ class ProcessInteractionService < BaseService
 
   def unfollow!(account, target_account)
     account.unfollow!(target_account)
+    FollowRequest.find_by(account: account, target_account: target_account)&.destroy
   end
 
   def reflect_block!(account, target_account)
@@ -99,21 +104,29 @@ class ProcessInteractionService < BaseService
   end
 
   def delete_post!(xml, account)
-    status = Status.find(xml.at_xpath('//xmlns:id', xmlns: TagManager::XMLNS).content)
+    status = Status.find(xml.at_xpath('//xmlns:id', xmlns: OStatus::TagManager::XMLNS).content)
 
     return if status.nil?
 
-    RemovalWorker.perform_async(status.id) if account.id == status.account_id
+    authorize_with account, status, :destroy?
+
+    RemovalWorker.perform_async(status.id)
   end
 
   def favourite!(xml, from_account)
     current_status = status(xml)
+
+    return if current_status.nil?
+
     favourite = current_status.favourites.where(account: from_account).first_or_create!(account: from_account)
     NotifyService.new.call(current_status.account, favourite)
   end
 
   def unfavourite!(xml, from_account)
     current_status = status(xml)
+
+    return if current_status.nil?
+
     favourite = current_status.favourites.where(account: from_account).first
     favourite&.destroy
   end
@@ -124,12 +137,12 @@ class ProcessInteractionService < BaseService
 
   def status(xml)
     uri = activity_id(xml)
-    return nil unless TagManager.instance.local_id?(uri)
-    Status.find(TagManager.instance.unique_tag_to_local_id(uri, 'Status'))
+    return nil unless OStatus::TagManager.instance.local_id?(uri)
+    Status.find(OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Status'))
   end
 
   def activity_id(xml)
-    xml.at_xpath('//activity:object', activity: TagManager::AS_XMLNS).at_xpath('./xmlns:id', xmlns: TagManager::XMLNS).content
+    xml.at_xpath('//activity:object', activity: OStatus::TagManager::AS_XMLNS).at_xpath('./xmlns:id', xmlns: OStatus::TagManager::XMLNS).content
   end
 
   def salmon

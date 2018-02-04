@@ -1,4 +1,4 @@
-class CreateMentions < ActiveRecord::Migration
+class CreateMentions < ActiveRecord::Migration[4.2]
   def change
     create_table :mentions do |t|
       t.integer :account_id

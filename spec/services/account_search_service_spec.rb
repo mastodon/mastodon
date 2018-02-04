@@ -33,25 +33,25 @@ describe AccountSearchService do
     describe 'searching local and remote users' do
       describe "when only '@'" do
         before do
-          allow(Account).to receive(:find_remote)
+          allow(Account).to receive(:find_local)
           allow(Account).to receive(:search_for)
           subject.call('@', 10)
         end
 
-        it 'uses find_remote with empty query to look for local accounts' do
-          expect(Account).to have_received(:find_remote).with('', nil)
+        it 'uses find_local with empty query to look for local accounts' do
+          expect(Account).to have_received(:find_local).with('')
         end
       end
 
       describe 'when no domain' do
         before do
-          allow(Account).to receive(:find_remote)
+          allow(Account).to receive(:find_local)
           allow(Account).to receive(:search_for)
           subject.call('one', 10)
         end
 
-        it 'uses find_remote with nil domain to look for local accounts' do
-          expect(Account).to have_received(:find_remote).with('one', nil)
+        it 'uses find_local to look for local accounts' do
+          expect(Account).to have_received(:find_local).with('one')
         end
 
         it 'uses search_for to find matches' do
@@ -72,7 +72,7 @@ describe AccountSearchService do
         describe 'and there is no account provided' do
           it 'uses search_for to find matches' do
             allow(Account).to receive(:search_for)
-            subject.call('two@example.com', 10, false, nil)
+            subject.call('two@example.com', 10, nil, resolve: false)
 
             expect(Account).to have_received(:search_for).with('two example.com', 10)
           end
@@ -82,9 +82,9 @@ describe AccountSearchService do
           it 'uses advanced_search_for to find matches' do
             account = Fabricate(:account)
             allow(Account).to receive(:advanced_search_for)
-            subject.call('two@example.com', 10, false, account)
+            subject.call('two@example.com', 10, account, resolve: false)
 
-            expect(Account).to have_received(:advanced_search_for).with('two example.com', account, 10)
+            expect(Account).to have_received(:advanced_search_for).with('two example.com', account, 10, nil)
           end
         end
       end
@@ -101,20 +101,39 @@ describe AccountSearchService do
       end
     end
 
+    describe 'when there is a local domain' do
+      around do |example|
+        before = Rails.configuration.x.local_domain
+        example.run
+        Rails.configuration.x.local_domain = before
+      end
+
+      it 'returns exact match first' do
+        remote     = Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e')
+        remote_too = Fabricate(:account, username: 'b', domain: 'remote', display_name: 'e')
+        exact = Fabricate(:account, username: 'e')
+        Rails.configuration.x.local_domain = 'example.com'
+
+        results = subject.call('e@example.com', 2)
+        expect(results.size).to eq 2
+        expect(results).to eq([exact, remote]).or eq([exact, remote_too])
+      end
+    end
+
     describe 'when there is a domain but no exact match' do
       it 'follows the remote account when resolve is true' do
         service = double(call: nil)
-        allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
 
-        results = subject.call('newuser@remote.com', 10, true)
+        results = subject.call('newuser@remote.com', 10, nil, resolve: true)
         expect(service).to have_received(:call).with('newuser@remote.com')
       end
 
       it 'does not follow the remote account when resolve is false' do
         service = double(call: nil)
-        allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
 
-        results = subject.call('newuser@remote.com', 10, false)
+        results = subject.call('newuser@remote.com', 10, nil, resolve: false)
         expect(service).not_to have_received(:call)
       end
     end

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountContainer from '../../containers/account_container';
@@ -12,25 +12,29 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  heading: { id: 'column.mutes', defaultMessage: 'Muted users' }
+  heading: { id: 'column.mutes', defaultMessage: 'Muted users' },
 });
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['user_lists', 'mutes', 'items'])
+  accountIds: state.getIn(['user_lists', 'mutes', 'items']),
 });
 
-class Mutes extends ImmutablePureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Mutes extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScroll = this.handleScroll.bind(this);
-  }
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    accountIds: ImmutablePropTypes.list,
+    intl: PropTypes.object.isRequired,
+  };
 
   componentWillMount () {
     this.props.dispatch(fetchMutes());
   }
 
-  handleScroll (e) {
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
     if (scrollTop === scrollHeight - clientHeight) {
@@ -64,12 +68,3 @@ class Mutes extends ImmutablePureComponent {
   }
 
 }
-
-Mutes.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  accountIds: ImmutablePropTypes.list,
-  intl: PropTypes.object.isRequired
-};
-
-export default connect(mapStateToProps)(injectIntl(Mutes));

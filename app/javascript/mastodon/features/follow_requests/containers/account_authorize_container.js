@@ -7,20 +7,20 @@ const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
   const mapStateToProps = (state, props) => ({
-    account: getAccount(state, props.id)
+    account: getAccount(state, props.id),
   });
 
   return mapStateToProps;
 };
 
 const mapDispatchToProps = (dispatch, { id }) => ({
-  onAuthorize (account) {
+  onAuthorize () {
     dispatch(authorizeFollowRequest(id));
   },
 
-  onReject (account) {
+  onReject () {
     dispatch(rejectFollowRequest(id));
-  }
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(AccountAuthorize);
