@@ -157,11 +157,11 @@ const handleDefaultTag = (withCommunity, status, visibility) => {
     return hasDefaultHashtag ? {
       status,
       visibility,
-      hasDefaultHashtag,
+      hasDefaultHashtag: true,
     } : {
       status: isPublic ? `${status} #${process.env.DEFAULT_HASHTAG}` : status,
       visibility,
-      hasDefaultHashtag,
+      hasDefaultHashtag: true,
     };
 
   } else {
@@ -171,11 +171,11 @@ const handleDefaultTag = (withCommunity, status, visibility) => {
     return hasHashtags ? {
       status,
       visibility,
-      hasDefaultHashtag,
+      hasDefaultHashtag: false,
     } : {
       status,
       visibility: isPublic ? 'unlisted' : visibility,
-      hasDefaultHashtag,
+      hasDefaultHashtag: false,
     };
 
   }
