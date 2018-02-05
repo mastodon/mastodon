@@ -8,6 +8,7 @@ Chewy.settings = {
   host: "#{host}:#{port}",
   prefix: prefix,
   enabled: enabled,
+  journal: false,
 }
 
 Chewy.root_strategy = enabled ? :sidekiq : :bypass

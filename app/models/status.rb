@@ -80,11 +80,19 @@ class Status < ApplicationRecord
 
   delegate :domain, to: :account, prefix: true
 
-  def searchable_by
-    ids  = [account_id]
-    ids += mentions.pluck(:account_id)
-    ids += favourites.pluck(:account_id)
-    ids += reblogs.pluck(:account_id)
+  def searchable_by(preloaded = nil)
+    ids = [account_id]
+
+    if preloaded.nil?
+      ids += mentions.pluck(:account_id)
+      ids += favourites.pluck(:account_id)
+      ids += reblogs.pluck(:account_id)
+    else
+      ids += preloaded.mentions[id] || []
+      ids += preloaded.favourites[id] || []
+      ids += preloaded.reblogs[id] || []
+    end
+
     ids.uniq
   end
 

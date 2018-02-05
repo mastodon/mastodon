@@ -1,21 +1,41 @@
 # frozen_string_literal: true
 
 class SearchService < BaseService
-  attr_accessor :query, :account
+  attr_accessor :query, :account, :limit, :resolve
 
   def call(query, limit, resolve = false, account = nil)
     @query   = query
     @account = account
+    @limit   = limit
+    @resolve = resolve
 
     default_results.tap do |results|
       if url_query?
         results.merge!(url_resource_results) unless url_resource.nil?
       elsif query.present?
-        results[:accounts] = AccountSearchService.new.call(query, limit, account, resolve: resolve)
-        results[:statuses] = StatusesIndex.filter(term: { searchable_by: account.id }).query(match: { text: query }).limit(limit).objects if full_text_searchable?
-        results[:hashtags] = Tag.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@')
+        results[:accounts] = perform_accounts_search!
+        results[:statuses] = perform_statuses_search! if full_text_searchable?
+        results[:hashtags] = perform_hashtags_search! unless query.include?('@')
       end
     end
+  end
+
+  private
+
+  def perform_accounts_search!
+    AccountSearchService.new.call(query, limit, account, resolve: resolve)
+  end
+
+  def perform_statuses_search!
+    statuses = StatusesIndex.filter(term: { searchable_by: account.id })
+                            .query(match: { text: { query: query, operator: 'and' } })
+                            .limit(limit).objects
+
+    statuses.reject { |status| StatusFilter.new(status, account).filtered? }
+  end
+
+  def perform_hashtags_search!
+    Tag.search_for(query.gsub(/\A#/, ''), limit)
   end
 
   def default_results
