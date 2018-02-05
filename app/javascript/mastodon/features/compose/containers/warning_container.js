@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { me } from '../../../initial_state';
 
-const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\S+)/i;
+const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\w*[a-zA-Z]\w*)/i;
 
 const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
