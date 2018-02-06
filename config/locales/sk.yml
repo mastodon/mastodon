@@ -335,6 +335,11 @@ sk:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
         title: Náhľad nástenky
       title: Nastavenia stránky
+      show_known_fediverse_at_about_page:
+        desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť statusy z
+          celého známeho fediversa. V opačnom prípade tam budú ukázané iba statusy
+          z lokálnej osi.
+        title: Ukázať celé známe fediversum ako ukážku osi
     statuses:
       back_to_account: Späť na účet
       batch:
@@ -397,6 +402,8 @@ sk:
     resend_confirmation: Poslať potvrdzujúce pokyny znovu
     reset_password: Resetovať heslo
     set_new_password: Nastaviť nové heslo
+    confirm_email: Potvrdiť email
+    or_log_in_with: Alebo prihlásiť z
   authorize_follow:
     follow: Následovať
     follow_request: 'Poslali ste požiadavku následovať užívateľa:'
@@ -406,10 +413,14 @@ sk:
       return: Vrátiť sa na užívateľov profil
       web: Ísť na web
     title: Následovať %{acct}
+    error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
   datetime:
     distance_in_words:
       half_a_minute: Len teraz
       less_than_x_seconds: Len teraz
+      about_x_months: '%{count}mesiace'
+      x_days: '%{count}dni'
+      x_months: '%{count}mesiace'
   deletes:
     confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
     proceed: Vymazať účet
@@ -417,6 +428,7 @@ sk:
     warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je garantované.
       Obsah ktorý bol zdieľaný široko=ďaleko pravdepodobne zanechá nejaké stopy. Servery
       ktoré sú offline a tie ktoré vás ignorujú nezaktualizujú svoje databázy.
+    bad_password_msg: Dobrý pokus, hakeri! Nesprávne heslo
   errors:
     '403': Nemáte dostatočné povolenie na zobrazenie tejto stránky.
     '404': Stránka ktorú ste hľadali neexistuje.
@@ -427,10 +439,14 @@ sk:
     '500':
       content: Ospravedlňujeme sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
+    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, prosím povoľte
+      JavaScript. Alebo skúste jednu z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">
+      aplikácii </a> dostupných pre vašu platformu.
   exports:
     blocks: Blokujete
     follows: Následujete
     mutes: Stíšili ste
+    storage: Úložisko médii
   followers:
     domain: Doména
     followers_count: Počet následovateľov
