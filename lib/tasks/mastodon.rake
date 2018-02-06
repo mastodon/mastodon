@@ -67,32 +67,38 @@ namespace :mastodon do
   desc 'Add a user by providing their email, username and initial password.' \
        'The user will receive a confirmation email, then they must reset their password before logging in.'
   task add_user: :environment do
-    print 'Enter email: '
-    email = STDIN.gets.chomp
+    disable_log_stdout!
 
-    print 'Enter username: '
-    username = STDIN.gets.chomp
+    prompt = TTY::Prompt.new
 
-    print 'Create user and send them confirmation mail [y/N]: '
-    confirm = STDIN.gets.chomp
-    puts
+    email = prompt.ask('E-mail:', required: true) do |q|
+      q.modify :strip
+    end
 
-    if confirm.casecmp('y').zero?
-      password = SecureRandom.hex
-      user = User.new(email: email, password: password, account_attributes: { username: username })
+    username = prompt.ask('Username:', required: true) do |q|
+      q.modify :strip
+    end
+
+    role = prompt.select('Role:', %w(user moderator admin))
+
+    if prompt.yes?('Proceed to create the user?')
+      user = User.new(email: email, password: SecureRandom.hex, admin: role == 'admin', moderator: role == 'moderator', account_attributes: { username: username })
+
       if user.save
-        puts 'User added and confirmation mail sent to user\'s email address.'
-        puts "Here is the random password generated for the user: #{password}"
+        prompt.ok 'User created and confirmation mail sent to the user\'s email address.'
+        prompt.ok "Here is the random password generated for the user: #{password}"
       else
-        puts 'Following errors occured while creating new user:'
+        prompt.warn 'User was not created because of the following errors:'
+
         user.errors.each do |key, val|
-          puts "#{key}: #{val}"
+          prompt.error "#{key}: #{val}"
         end
       end
     else
-      puts 'Aborted by user.'
+      prompt.ok 'Aborting. Bye!'
     end
-    puts
+  rescue TTY::Reader::InputInterrupt
+    prompt.ok 'Aborting. Bye!'
   end
 
   namespace :media do
