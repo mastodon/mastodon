@@ -5,7 +5,7 @@ class ProcessHashtagsService < BaseService
     if status.local? then
       tags = Extractor.extract_hashtags(status.text)
 
-      if Rails.configuration.x.default_hashtag.present? && tags.empty? && status.visibility == 'public' then
+      if Rails.configuration.x.default_hashtag.present? && tags.empty? && status.visibility == 'public' && !status.reply? then
         tags << Rails.configuration.x.default_hashtag
         status.update(text: "#{status.text} ##{Rails.configuration.x.default_hashtag}")
       end
