@@ -53,14 +53,14 @@ ca:
     media: Mèdia
     moved_html: '%{name} s''ha mogut a %{new_profile_link}:'
     nothing_here: No hi ha res aquí!
-    people_followed_by: Usuaris a qui %{name} segueix
+    people_followed_by: Usuaris seguits per %{name}
     people_who_follow: Usuaris que segueixen %{name}
     posts: Toots
     posts_with_replies: Toots i respostes
     remote_follow: Seguiment remot
     reserved_username: El nom d'usuari està reservat
     roles:
-      admin: Admin
+      admin: Administrador
       moderator: Moderador
     unfollow: Deixa de seguir
   admin:
@@ -72,21 +72,21 @@ ca:
       delete: Suprimeix
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
-      are_you_sure: Estàs segur?
+      are_you_sure: N'estàs segur?
       by_domain: Domini
       confirm: Confirma
       confirmed: Confirmat
       demote: Degrada
       disable: Inhabilita
-      disable_two_factor_authentication: Desactivar 2FA
-      disabled: Inhabilita
+      disable_two_factor_authentication: Desactiva 2FA
+      disabled: Inhabilitat
       display_name: Nom de visualització
       domain: Domini
       edit: Edita
       email: Correu electrònic
       enable: Habilita
       enabled: Habilitat
-      feed_url: URL del feed
+      feed_url: URL del canal
       followers: Seguidors
       followers_url: URL dels seguidors
       follows: Segueix
@@ -99,7 +99,7 @@ ca:
         title: Localització
       login_status: Estat d'accés
       media_attachments: Adjunts multimèdia
-      memorialize: Es converteix en memoriam
+      memorialize: Converteix-lo en memorial
       moderation:
         all: Tot
         silenced: Silenciat
@@ -114,7 +114,7 @@ ca:
         most_recent: Més recent
         title: Ordre
       outbox_url: URL de la bústia de sortida
-      perform_full_suspension: Aplicar suspensió completa
+      perform_full_suspension: Aplica una suspensió completa
       profile_url: URL del perfil
       promote: Promociona
       protocol: Protocol
@@ -143,14 +143,14 @@ ca:
       title: Comptes
       undo_silenced: Deixa de silenciar
       undo_suspension: Desfés la suspensió
-      unsubscribe: Donar-se de baixa
+      unsubscribe: Cancel·la la subscripció
       username: Nom d'usuari
       web: Web
     action_logs:
       actions:
         confirm_user: '%{name} ha confirmat l''adreça de correu electrònic de l''usuari
           %{target}'
-        create_custom_emoji: '%{name} ha penjat un nou emoji %{target}'
+        create_custom_emoji: '%{name} ha pujat un nou emoji %{target}'
         create_domain_block: '%{name} ha blocat el domini %{target}'
         create_email_domain_block: '%{name} ha afegit a la llista negra el domini
           del correu electrònic %{target}'
@@ -166,7 +166,7 @@ ca:
         enable_custom_emoji: '%{name} ha activat l''emoji %{target}'
         enable_user: '%{name} ha activat l''accés per a l''usuari %{target}'
         memorialize_account: '%{name} ha convertit el compte %{target} en una pàgina
-          de memòria'
+          de memorial'
         promote_user: '%{name} ha promogut l''usuari %{target}'
         reset_password_user: '%{name} restablirà la contrasenya de l''usuari %{target}'
         resolve_report: '%{name} ha descartat l''informe %{target}'
@@ -174,12 +174,12 @@ ca:
         suspend_account: '%{name} ha suspès el compte de %{target}'
         unsilence_account: '%{name} ha silenciat el compte de %{target}'
         unsuspend_account: '%{name} ha llevat la suspensió del compte de %{target}'
-        update_custom_emoji: '%{name} ha actualizat l''emoji %{target}'
-        update_status: '%{name} estat actualizat per %{target}'
+        update_custom_emoji: '%{name} ha actualitzat l''emoji %{target}'
+        update_status: '%{name} estat actualitzat per %{target}'
       title: Registre d'auditoria
     custom_emojis:
       by_domain: Domini
-      copied_msg: S'ha creat correctament la còpia local del emoji
+      copied_msg: S'ha creat correctament la còpia local de l'emoji
       copy: Copia
       copy_failed_msg: No s'ha pogut fer una còpia local d'aquest emoji
       created_msg: Emoji creat amb èxit!
@@ -193,12 +193,12 @@ ca:
       image_hint: PNG de fins a 50 KB
       listed: Enumerat
       new:
-        title: Afegeix nou emoji personalitzat
+        title: Afegeix emoji personalitzat nou
       overwrite: Sobreescriure
       shortcode: Codi curt
       shortcode_hint: Com a mínim 2 caràcters, només caràcters alfanumèrics i guions
         baixos
-      title: Emojis personatlitzats
+      title: Emojis personalitzats
       unlisted: Sense classificar
       update_failed_msg: No s'ha pogut actualitzar aquest emoji
       updated_msg: Emoji s'ha actualitzat correctament!
@@ -223,8 +223,8 @@ ca:
           suspend: Suspensió
         title: Bloqueig de domini nou
       reject_media: Rebutja els fitxers multimèdia
-      reject_media_hint: Elimina els fitxers multimèdia emmagatzamats localment i
-        impideix descarregar-ne cap en el futur. Irrellevant en les suspensions
+      reject_media_hint: Elimina els fitxers multimèdia emmagatzemats localment i
+        impedeix baixar-ne cap en el futur. Irrellevant en les suspensions
       severities:
         noop: Cap
         silence: Silenci
@@ -240,33 +240,33 @@ ca:
         title: Desfés el bloqueig de domini de %{domain}
         undo: Desfés
       title: Bloquejos de domini
-      undo: Desfer
+      undo: Desfés
     email_domain_blocks:
-      add_new: Afegir nou
+      add_new: Afegeix
       created_msg: S'ha creat el bloc de domini de correu electrònic
       delete: Suprimeix
       destroyed_msg: S'ha eliminat correctament el bloc del domini de correu
       domain: Domini
       new:
-        create: Crear bloc
+        create: Afegeix un domini
         title: Nou bloc de domini de correu electrònic
       title: Bloc de domini de correu electrònic
     instances:
       account_count: Comptes coneguts
       domain_name: Domini
-      reset: Restablir
+      reset: Restableix
       search: Cerca
       title: Instàncies conegudes
     invites:
       filter:
-        all: Tot
+        all: Totes
         available: Disponible
         expired: Caducat
         title: Filtre
       title: Convida
     reports:
       action_taken_by: Mesures adoptades per
-      are_you_sure: Estàs segur?
+      are_you_sure: N'estàs segur?
       comment:
         label: Comentari
         none: Cap
@@ -277,7 +277,7 @@ ca:
         'false': Mostra els fitxers multimèdia adjunts
         'true': Amaga els fitxers multimèdia adjunts
       report: 'Informe #%{id}'
-      report_contents: Continguts
+      report_contents: Contingut
       reported_account: Compte reportat
       reported_by: Reportat per
       resolved: Resolt
@@ -291,26 +291,26 @@ ca:
     settings:
       activity_api_enabled:
         desc_html: Compte d'estatus publicats localment, usuaris actius i registres
-          nous en cubs setmanals
+          nous en períodes setmanals
         title: Publica estadístiques agregades sobre l'activitat de l'usuari
       bootstrap_timeline_accounts:
         desc_html: Separa diversos noms d'usuari amb comes. Només funcionaran els
           comptes locals i desblocats. El valor predeterminat quan està buit és tots
-          els administradors locals..
-        title: El seguiment per defecte per als nous usuaris
+          els administradors locals.
+        title: El seguiment per defecte per als usuaris nous
       contact_information:
-        email: Introdueix una adreça de correu electrònic pùblica
+        email: Introdueix una adreça de correu electrònic píblica
         username: Introdueix un nom d'usuari
       peers_api_enabled:
         desc_html: Els noms de domini que ha trobat aquesta instància al fediverse
         title: Publica la llista d'instàncies descobertes
       registrations:
         closed_message:
-          desc_html: Apareix en la primera pàgina quan es tanquen els registres<br>Pots
+          desc_html: Apareix en la primera pàgina quan es tanquen els registres. Pots
             utilitzar etiquetes HTML
           title: Missatge de registre tancat
         deletion:
-          desc_html: Permet a qualsevol esborrar el seu compte
+          desc_html: Permet a qualsevol usuari d'esborrar el seu compte
           title: Obre la supressió del compte
         min_invite_role:
           disabled: Ningú
@@ -363,51 +363,54 @@ ca:
       expires_in: Expira en
       last_delivery: Últim lliurament
       title: WebSub
-      topic: Tòpic
+      topic: Tema
     title: Administració
   admin_mailer:
     new_report:
       body: '%{reporter} ha informat de %{target}'
-      subject: Nou informe per a %{instance} (#%{id})
+      subject: Informe nou per a %{instance} (#%{id})
   application_mailer:
-    notification_preferences: Canviar preferències de correu
+    notification_preferences: Canvia les preferències de correu
     salutation: '%{name},'
     settings: 'Canvia les preferències de correu: %{link}'
-    view: 'Vista:'
-    view_profile: Veure perfil
-    view_status: Veure estat
+    view: 'Visualització:'
+    view_profile: Mostra el perfil
+    view_status: Mostra l'estat
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
-    invalid_url: La URL proporcionada es incorrecte
-    regenerate_token: Regenerar token d'accés
-    token_regenerated: Token d'accés s'ha generat correctament
-    warning: Aneu amb compte amb aquestes dades. No ho compartiu mai amb ningú!
-    your_token: El token d'accés
+    invalid_url: L'URL proporcionat no és correcte
+    regenerate_token: Torna a generar l'identificador d'accés
+    token_regenerated: L'identificador d'accés s'ha generat correctament
+    warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
+    your_token: El teu identificador d'accés
   auth:
     agreement_html: En inscriure't, acceptes seguir <a href="%{rules_path}">els nostres
       termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
-    change_password: Canvia la contrasenya
-    delete_account: Esborra el compte
-    delete_account_html: Si vols esborrar el teu compte pots <a href="%{path}">fer-ho
+    change_password: Seguretat
+    delete_account: Suprimeix el compte
+    delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho
       aquí</a>. Se't demanarà confirmació.
     didnt_get_confirmation: No has rebut el correu de confirmació?
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és
-      vàlid o ha caducat. Torna-ho a provar..
+      vàlid o ha caducat. Torna-ho a provar.
     login: Inicia sessió
     logout: Tanca sessió
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el
       pots  <a href="%{path}">configurar aquí</a>.
-    register: Registra't
+    register: Registre
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
-    set_new_password: Estableix nova contrasenya
+    set_new_password: Estableix una contrasenya nova
+    or_log_in_with: O inicia sessió amb
+    providers:
+      saml: SAML
   authorize_follow:
-    error: Malauradament, ha ocorregut un error buscant el compte remot
+    error: Malauradament, ha ocorregut un error cercant el compte remot
     follow: Segueix
-    follow_request: 'Heu enviat una sol·licitud de seguiment a:'
+    follow_request: 'Has enviat una sol·licitud de seguiment a:'
     following: 'Perfecte! Ara segueixes:'
     post_follow:
       close: O bé, pots tancar aquesta finestra.
@@ -430,31 +433,31 @@ ca:
       x_seconds: '%{count} s'
   deletes:
     bad_password_msg: Bon intent hackers! La contrasenya no és correcta
-    confirm_password: Introdueix la contrasenya actual per a verificar la teva identitat
+    confirm_password: Introdueix la contrasenya actual per a verificar la identitat
     description_html: Això eliminarà de forma <strong>irreversible i permanent</strong>
       el contingut del teu compte i el desactivarà. El teu nom d'usuari romandrà reservat
       per evitar que algú volgués fer-se passar per tu.
-    proceed: Suprimir el compte
-    success_msg: El teu compte s'ha eliminat correctament
-    warning_html: Només està garantida l'eliminació d'aquesta particular instància.
-      El contingut que ha estat àmpliament compartit que deixi petjades. Els servidors
-      fora de línia i els que ja no estan subscrits no actualitzaran les seves bases
-      de dades.
+    proceed: Suprimeix el compte
+    success_msg: El compte s'ha eliminat correctament
+    warning_html: Només és garantida l'eliminació d'aquesta particular instància.
+      El contingut que s'ha compartit àmpliament deixa petjades. Els servidors fora
+      de línia i els que ja no estan subscrits no actualitzaran les seves bases de
+      dades.
     warning_title: Disponibilitat de contingut disseminat
   errors:
     '403': No tens permís per a veure aquesta pàgina.
     '404': La pàgina que estàs cercant no existeix.
     '410': La pàgina que estàs cercant ja no existeix.
     '422':
-      content: La verificació de seguretat ha fallat. Teniu les galetes blocades?
+      content: La verificació de seguretat ha fallat. Tens les galetes blocades?
       title: La verificació de seguretat ha fallat
     '429': Estrangulat
     '500':
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
-      title: Aquesta pàgina no es correcte
-    noscript_html: Per utilitzar Mastodon si us plau activa JavaScript. També podeu
-      provar una de les <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">
-      aplicacions natives</a> per Mastodon per a la vostra plataforma.
+      title: Aquesta pàgina no es correcta
+    noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar
+      una de les <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">
+      aplicacions natives</a> de Mastodon per a la vostra plataforma.
   exports:
     blocks: Persones que has blocat
     csv: CSV
