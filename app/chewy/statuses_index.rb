@@ -1,39 +1,41 @@
 # frozen_string_literal: true
 
 class StatusesIndex < Chewy::Index
-  settings index: {
-    refresh_interval: '15m',
-  },
-
-  analysis: {
-    filter: {
-      english_stop: {
-        type: 'stop',
-        stopwords: '_english_',
-      },
-
-      english_stemmer: {
-        type: 'stemmer',
-        language: 'english',
-      },
-
-      english_possessive_stemmer: {
-        type: 'stemmer',
-        language: 'possessive_english',
-      },
+  settings {
+    index: {
+      refresh_interval: '15m',
     },
 
-    analyzer: {
-      content: {
-        tokenizer: 'uax_url_email',
-        filter: %w(
-          english_possessive_stemmer
-          lowercase
-          asciifolding
-          cjk_width
-          english_stop
-          english_stemmer
-        ),
+    analysis: {
+      filter: {
+        english_stop: {
+          type: 'stop',
+          stopwords: '_english_',
+        },
+
+        english_stemmer: {
+          type: 'stemmer',
+          language: 'english',
+        },
+
+        english_possessive_stemmer: {
+          type: 'stemmer',
+          language: 'possessive_english',
+        },
+      },
+
+      analyzer: {
+        content: {
+          tokenizer: 'uax_url_email',
+          filter: %w(
+            english_possessive_stemmer
+            lowercase
+            asciifolding
+            cjk_width
+            english_stop
+            english_stemmer
+          ),
+        },
       },
     },
   }
