@@ -1,0 +1,10 @@
+FROM nginx:1.13-alpine
+
+RUN apk -U upgrade \
+ && apk add openssl \
+ && openssl req -newkey rsa:2048 -x509 -days 365 -nodes \
+                -subj /CN=*.localdomain \
+                -keyout /etc/nginx/common.key \
+                -out /etc/nginx/common.crt
+
+COPY default.conf /etc/nginx/conf.d

@@ -1,0 +1,24 @@
+FROM gargron/mastodon-nginx
+
+FROM gargron/mastodon-base
+
+LABEL maintainer="https://github.com/tootsuite/mastodon" \
+      description="Mastodon for development"
+
+EXPOSE 3000 3035 4000
+
+ENV BUNDLE_APP_CONFIG=/mastodon/.bundle \
+    REDIS_HOST=redis \
+    REDIS_PORT=6379 \
+    DB_HOST=db \
+    DB_USER=postgres \
+    DB_NAME=postgres \
+    DB_PASS= \
+    DB_PORT=5432 \
+    WEBPACKER_DEV_SERVER_HOST=asset
+
+COPY --from=0 /etc/nginx/common.crt /usr/local/share/ca-certificates
+
+RUN update-ca-certificates
+
+VOLUME /mastodon

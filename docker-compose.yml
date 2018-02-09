@@ -19,8 +19,16 @@ services:
 #    volumes:
 #      - ./redis:/data
 
+  base:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    image: gargron/mastodon-base
+
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.production
     image: gargron/mastodon
     restart: always
     env_file: .env.production
@@ -39,7 +47,9 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.production
     image: gargron/mastodon
     restart: always
     env_file: .env.production
@@ -54,7 +64,9 @@ services:
       - redis
 
   sidekiq:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.production
     image: gargron/mastodon
     restart: always
     env_file: .env.production
