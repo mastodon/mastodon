@@ -14,7 +14,7 @@ namespace :mastodon do
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
         q.required true
         q.modify :strip
-        q.validate /\A[a-z0-9\.\-]+\z/i
+        q.validate(/\A[a-z0-9\.\-]+\z/i)
         q.messages[:valid?] = 'Invalid domain. If you intend to use unicode characters, enter punycode here'
       end
 
@@ -34,50 +34,93 @@ namespace :mastodon do
 
       prompt.say "\n"
 
-      using_docker = prompt.yes?('Are you using Docker to run Mastodon?')
+      using_docker        = prompt.yes?('Are you using Docker to run Mastodon?')
+      db_connection_works = false
 
       prompt.say "\n"
 
-      env['DB_HOST'] = prompt.ask('PostgreSQL host:') do |q|
-        q.required true
-        q.default using_docker ? 'db' : '/var/run/postgresql'
-        q.modify :strip
-      end
+      loop do
+        env['DB_HOST'] = prompt.ask('PostgreSQL host:') do |q|
+          q.required true
+          q.default using_docker ? 'db' : '/var/run/postgresql'
+          q.modify :strip
+        end
 
-      env['DB_PORT'] = prompt.ask('PostgreSQL port:') do |q|
-        q.required true
-        q.default 5432
-        q.convert :int
-      end
+        env['DB_PORT'] = prompt.ask('PostgreSQL port:') do |q|
+          q.required true
+          q.default 5432
+          q.convert :int
+        end
 
-      env['DB_NAME'] = prompt.ask('Name of PostgreSQL database:') do |q|
-        q.required true
-        q.default using_docker ? 'postgres' : 'mastodon_production'
-        q.modify :strip
-      end
+        env['DB_NAME'] = prompt.ask('Name of PostgreSQL database:') do |q|
+          q.required true
+          q.default using_docker ? 'postgres' : 'mastodon_production'
+          q.modify :strip
+        end
 
-      env['DB_USER'] = prompt.ask('Name of PostgreSQL user:') do |q|
-        q.required true
-        q.default using_docker ? 'postgres' : 'mastodon'
-        q.modify :strip
-      end
+        env['DB_USER'] = prompt.ask('Name of PostgreSQL user:') do |q|
+          q.required true
+          q.default using_docker ? 'postgres' : 'mastodon'
+          q.modify :strip
+        end
 
-      env['DB_PASS'] = prompt.ask('Password of PostgreSQL user:') do |q|
-        q.echo false
+        env['DB_PASS'] = prompt.ask('Password of PostgreSQL user:') do |q|
+          q.echo false
+        end
+
+        db_options = {
+          adapter: :postgresql,
+          database: env['DB_NAME'],
+          host: env['DB_HOST'],
+          port: env['DB_PORT'],
+          user: env['DB_USER'],
+          password: env['DB_PASS'],
+        }
+
+        begin
+          ActiveRecord::Base.establish_connection(db_options)
+          ActiveRecord::Base.connection
+          prompt.ok 'Database configuration works! 🎆'
+          db_connection_works = true
+          break
+        rescue StandardError => e
+          prompt.error 'Database connection could not be established with this configuration, try again.'
+          prompt.error e.message
+          break unless prompt.yes?('Try again?')
+        end
       end
 
       prompt.say "\n"
 
-      env['REDIS_HOST'] = prompt.ask('Redis host:') do |q|
-        q.required true
-        q.default using_docker ? 'redis' : 'localhost'
-        q.modify :strip
-      end
+      loop do
+        env['REDIS_HOST'] = prompt.ask('Redis host:') do |q|
+          q.required true
+          q.default using_docker ? 'redis' : 'localhost'
+          q.modify :strip
+        end
 
-      env['REDIS_PORT'] = prompt.ask('Redis port:') do |q|
-        q.required true
-        q.default 6379
-        q.convert :int
+        env['REDIS_PORT'] = prompt.ask('Redis port:') do |q|
+          q.required true
+          q.default 6379
+          q.convert :int
+        end
+
+        redis_options = {
+          host: env['REDIS_HOST'],
+          port: env['REDIS_PORT'],
+          driver: :hiredis,
+        }
+
+        begin
+          redis = Redis.new(redis_options)
+          redis.ping
+          prompt.ok 'Redis configuration works! 🎆'
+          break
+        rescue StandardError => e
+          prompt.error 'Redis connection could not be established with this configuration, try again.'
+          prompt.error e.message
+          break unless prompt.yes?('Try again?')
+        end
       end
 
       prompt.say "\n"
@@ -178,32 +221,59 @@ namespace :mastodon do
 
       prompt.say "\n"
 
-      env['SMTP_SERVER'] = prompt.ask('SMTP server:') do |q|
-        q.required true
-        q.default 'smtp.mailgun.org'
-        q.modify :strip
-      end
+      loop do
+        env['SMTP_SERVER'] = prompt.ask('SMTP server:') do |q|
+          q.required true
+          q.default 'smtp.mailgun.org'
+          q.modify :strip
+        end
 
-      env['SMTP_PORT'] = prompt.ask('SMTP port:') do |q|
-        q.required true
-        q.default 587
-        q.convert :int
-      end
+        env['SMTP_PORT'] = prompt.ask('SMTP port:') do |q|
+          q.required true
+          q.default 587
+          q.convert :int
+        end
 
-      env['SMTP_LOGIN'] = prompt.ask('SMTP username:') do |q|
-        q.required true
-        q.modify :strip
-      end
+        env['SMTP_LOGIN'] = prompt.ask('SMTP username:') do |q|
+          q.modify :strip
+        end
 
-      env['SMTP_PASSWORD'] = prompt.ask('SMTP password:') do |q|
-        q.required true
-        q.echo false
-      end
+        env['SMTP_PASSWORD'] = prompt.ask('SMTP password:') do |q|
+          q.echo false
+        end
 
-      env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|
-        q.required true
-        q.default "Mastodon <notifications@#{env['LOCAL_DOMAIN']}>"
-        q.modify :strip
+        env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|
+          q.required true
+          q.default "Mastodon <notifications@#{env['LOCAL_DOMAIN']}>"
+          q.modify :strip
+        end
+
+        break unless prompt.yes?('Send a test e-mail with this configuration right now?')
+
+        send_to = prompt.ask('Send test e-mail to:', required: true)
+
+        begin
+          ActionMailer::Base.smtp_settings = {
+            :port                 => env['SMTP_PORT'],
+            :address              => env['SMTP_SERVER'],
+            :user_name            => env['SMTP_LOGIN'].presence,
+            :password             => env['SMTP_PASSWORD'].presence,
+            :domain               => env['LOCAL_DOMAIN'],
+            :authentication       => :plain,
+            :enable_starttls_auto => true,
+          }
+
+          ActionMailer::Base.default_options = {
+            from: env['SMTP_FROM_ADDRESS'],
+          }
+
+          mail = ActionMailer::Base.new.mail to: send_to, subject: 'Test', body: 'Mastodon SMTP configuration works!'
+          mail.deliver
+        rescue StandardError => e
+          prompt.error 'E-mail could not be sent with this configuration, try again.'
+          prompt.error e.message
+          break unless prompt.yes?('Try again?')
+        end
       end
 
       prompt.say "\n"
@@ -250,6 +320,38 @@ namespace :mastodon do
 
         prompt.say "\n"
         prompt.ok 'All done! You can now power on the Mastodon server 🐘'
+        prompt.say "\n"
+
+        if db_connection_works && prompt.yes?('Do you want to create an admin user straight away?')
+          env.each_pair do |key, value|
+            ENV[key] = value.to_s
+          end
+
+          require_relative '../../config/environment'
+          disable_log_stdout!
+
+          username = prompt.ask('Username:') do |q|
+            q.required true
+            q.default 'admin'
+            q.validate(/\A[a-z0-9_]+\z/i)
+            q.modify :strip
+          end
+
+          email = prompt.ask('E-mail:') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          password = SecureRandom.hex(16)
+
+          user = User.new(admin: true, email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username })
+          user.save(validate: false)
+
+          prompt.ok "You can login with the password: #{password}"
+          prompt.warn 'You can change your password once you login.'
+        end
+      else
+        prompt.warn 'Nothing saved. Bye!'
       end
     rescue TTY::Reader::InputInterrupt
       prompt.ok 'Aborting. Bye!'
