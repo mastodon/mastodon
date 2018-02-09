@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/toptal/chewy.git
+  revision: a7d21eb4b0bd7415533ef134bb6d31b2df309701
+  specs:
+    chewy (0.10.1)
+      activesupport (>= 4.0)
+      elasticsearch (>= 2.0.0)
+      elasticsearch-dsl
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -154,6 +163,15 @@ GEM
       json
       thread
       thread_safe
+    elasticsearch (6.0.1)
+      elasticsearch-api (= 6.0.1)
+      elasticsearch-transport (= 6.0.1)
+    elasticsearch-api (6.0.1)
+      multi_json
+    elasticsearch-dsl (0.1.5)
+    elasticsearch-transport (6.0.1)
+      faraday
+      multi_json
     encryptor (3.0.0)
     erubi (1.7.0)
     et-orbi (1.0.8)
@@ -163,6 +181,8 @@ GEM
     fabrication (2.18.0)
     faker (1.8.4)
       i18n (~> 0.5)
+    faraday (0.14.0)
+      multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
     ffi (1.9.18)
     fog-core (1.45.0)
@@ -291,6 +311,7 @@ GEM
     minitest (5.11.3)
     msgpack (1.1.0)
     multi_json (1.12.2)
+    multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
@@ -583,6 +604,7 @@ DEPENDENCIES
   capistrano-yarn (~> 2.0)
   capybara (~> 2.15)
   charlock_holmes (~> 0.7.5)
+  chewy (~> 0.10)!
   cld3 (~> 3.2.0)
   climate_control (~> 0.2)
   devise (~> 4.4)

@@ -25,6 +25,10 @@ RSpec.configure do |config|
     end
   end
 
+  config.before :suite do
+    Chewy.strategy(:bypass)
+  end
+
   config.after :suite do
     gc_counter = 0
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
