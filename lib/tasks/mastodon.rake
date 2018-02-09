@@ -4,6 +4,258 @@ require 'optparse'
 require 'colorize'
 
 namespace :mastodon do
+  desc 'Configure the instance for production use'
+  task :setup do
+    prompt = TTY::Prompt.new
+    env    = {}
+
+    begin
+      prompt.say('Your instance is identified by its domain name. Changing it afterward will break things.')
+      env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
+        q.required true
+        q.modify :strip
+        q.validate /\A[a-z0-9\.\-]+\z/i
+        q.messages[:valid?] = 'Invalid domain. If you intend to use unicode characters, enter punycode here'
+      end
+
+      prompt.say "\n"
+
+      prompt.say('Single user mode disables registrations and redirects the landing page to your public profile.')
+      env['SINGLE_USER_MODE'] = prompt.yes?('Do you want to enable single user mode?', default: false)
+
+      %w(SECRET_KEY_BASE PAPERCLIP_SECRET OTP_SECRET).each do |key|
+        env[key] = SecureRandom.hex(64)
+      end
+
+      vapid_key = Webpush.generate_key
+
+      env['VAPID_PRIVATE_KEY'] = vapid_key.private_key
+      env['VAPID_PUBLIC_KEY']  = vapid_key.public_key
+
+      prompt.say "\n"
+
+      using_docker = prompt.yes?('Are you using Docker to run Mastodon?')
+
+      prompt.say "\n"
+
+      env['DB_HOST'] = prompt.ask('PostgreSQL host:') do |q|
+        q.required true
+        q.default using_docker ? 'db' : '/var/run/postgresql'
+        q.modify :strip
+      end
+
+      env['DB_PORT'] = prompt.ask('PostgreSQL port:') do |q|
+        q.required true
+        q.default 5432
+        q.convert :int
+      end
+
+      env['DB_NAME'] = prompt.ask('Name of PostgreSQL database:') do |q|
+        q.required true
+        q.default using_docker ? 'postgres' : 'mastodon_production'
+        q.modify :strip
+      end
+
+      env['DB_USER'] = prompt.ask('Name of PostgreSQL user:') do |q|
+        q.required true
+        q.default using_docker ? 'postgres' : 'mastodon'
+        q.modify :strip
+      end
+
+      env['DB_PASS'] = prompt.ask('Password of PostgreSQL user:') do |q|
+        q.echo false
+      end
+
+      prompt.say "\n"
+
+      env['REDIS_HOST'] = prompt.ask('Redis host:') do |q|
+        q.required true
+        q.default using_docker ? 'redis' : 'localhost'
+        q.modify :strip
+      end
+
+      env['REDIS_PORT'] = prompt.ask('Redis port:') do |q|
+        q.required true
+        q.default 6379
+        q.convert :int
+      end
+
+      prompt.say "\n"
+
+      if prompt.yes?('Do you want to store uploaded files on the cloud?', default: false)
+        case prompt.select('Provider', ['Amazon S3', 'Wasabi', 'Minio'])
+        when 'Amazon S3'
+          env['S3_ENABLED']  = 'true'
+          env['S3_PROTOCOL'] = 'https'
+
+          env['S3_BUCKET'] = prompt.ask('S3 bucket name:') do |q|
+            q.required true
+            q.default "files.#{env['LOCAL_DOMAIN']}"
+            q.modify :strip
+          end
+
+          env['S3_REGION'] = prompt.ask('S3 region:') do |q|
+            q.required true
+            q.default 'us-east-1'
+            q.modify :strip
+          end
+
+          env['S3_HOSTNAME'] = prompt.ask('S3 hostname:') do |q|
+            q.required true
+            q.default 's3-us-east-1.amazonaws.com'
+            q.modify :strip
+          end
+
+          env['AWS_ACCESS_KEY_ID'] = prompt.ask('S3 access key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('S3 secret key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+        when 'Wasabi'
+          env['S3_ENABLED']  = 'true'
+          env['S3_PROTOCOL'] = 'https'
+          env['S3_REGION']   = 'us-east-1'
+          env['S3_HOSTNAME'] = 's3.wasabisys.com'
+          env['S3_ENDPOINT'] = 'https://s3.wasabisys.com/'
+
+          env['S3_BUCKET'] = prompt.ask('Wasabi bucket name:') do |q|
+            q.required true
+            q.default "files.#{env['LOCAL_DOMAIN']}"
+            q.modify :strip
+          end
+
+          env['AWS_ACCESS_KEY_ID'] = prompt.ask('Wasabi access key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('Wasabi secret key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+        when 'Minio'
+          env['S3_ENABLED']  = 'true'
+          env['S3_PROTOCOL'] = 'https'
+          env['S3_REGION']   = 'us-east-1'
+
+          env['S3_ENDPOINT'] = prompt.ask('Minio endpoint URL:') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+
+          env['S3_BUCKET'] = prompt.ask('Minio bucket name:') do |q|
+            q.required true
+            q.default "files.#{env['LOCAL_DOMAIN']}"
+            q.modify :strip
+          end
+
+          env['AWS_ACCESS_KEY_ID'] = prompt.ask('Minio access key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('Minio secret key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+        end
+
+        if prompt.yes?('Do you want to access the uploaded files from your own domain?')
+          env['S3_CLOUDFRONT_HOST'] = prompt.ask('Domain for uploaded files:') do |q|
+            q.required true
+            q.default "files.#{env['LOCAL_DOMAIN']}"
+            q.modify :strip
+          end
+        end
+      end
+
+      prompt.say "\n"
+
+      env['SMTP_SERVER'] = prompt.ask('SMTP server:') do |q|
+        q.required true
+        q.default 'smtp.mailgun.org'
+        q.modify :strip
+      end
+
+      env['SMTP_PORT'] = prompt.ask('SMTP port:') do |q|
+        q.required true
+        q.default 587
+        q.convert :int
+      end
+
+      env['SMTP_LOGIN'] = prompt.ask('SMTP username:') do |q|
+        q.required true
+        q.modify :strip
+      end
+
+      env['SMTP_PASSWORD'] = prompt.ask('SMTP password:') do |q|
+        q.required true
+        q.echo false
+      end
+
+      env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|
+        q.required true
+        q.default "Mastodon <notifications@#{env['LOCAL_DOMAIN']}>"
+        q.modify :strip
+      end
+
+      prompt.say "\n"
+      prompt.say 'This configuration will be written to .env.production'
+
+      if prompt.yes?('Save configuration?')
+        cmd = TTY::Command.new(printer: :quiet)
+
+        File.write(Rails.root.join('.env.production'), "# Generated with mastodon:setup on #{Time.now.utc}\n\n" + env.each_pair.map { |key, value| "#{key}=#{value}" }.join("\n") + "\n")
+
+        prompt.say "\n"
+        prompt.say 'Now that configuration is saved, the database schema must be loaded.'
+        prompt.warn 'If the database already exists, this will erase its contents.'
+
+        if prompt.yes?('Prepare the database now?')
+          prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
+          prompt.say "\n"
+
+          if cmd.run!({ RAILS_ENV: 'production' }, :rails, 'db:setup').failure?
+            prompt.say "\n"
+            prompt.error 'That failed! Perhaps your configuration is not right'
+          else
+            prompt.say "\n"
+            prompt.ok 'Done!'
+          end
+        end
+
+        prompt.say "\n"
+        prompt.say 'The final step is compiling CSS/JS assets.'
+        prompt.say 'This may take a while and consume a lot of RAM.'
+
+        if prompt.yes?('Compile the assets now?')
+          prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
+          prompt.say "\n"
+
+          if cmd.run!({ RAILS_ENV: 'production' }, :rails, 'assets:precompile').failure?
+            prompt.say "\n"
+            prompt.error 'That failed! Maybe you need swap space?'
+          else
+            prompt.say "\n"
+            prompt.say 'Done!'
+          end
+        end
+
+        prompt.say "\n"
+        prompt.ok 'All done! You can now power on the Mastodon server 🐘'
+      end
+    rescue TTY::Reader::InputInterrupt
+      prompt.ok 'Aborting. Bye!'
+    end
+  end
+
   desc 'Execute daily tasks (deprecated)'
   task :daily do
     # No-op
@@ -71,34 +323,36 @@ namespace :mastodon do
 
     prompt = TTY::Prompt.new
 
-    email = prompt.ask('E-mail:', required: true) do |q|
-      q.modify :strip
-    end
-
-    username = prompt.ask('Username:', required: true) do |q|
-      q.modify :strip
-    end
-
-    role = prompt.select('Role:', %w(user moderator admin))
-
-    if prompt.yes?('Proceed to create the user?')
-      user = User.new(email: email, password: SecureRandom.hex, admin: role == 'admin', moderator: role == 'moderator', account_attributes: { username: username })
-
-      if user.save
-        prompt.ok 'User created and confirmation mail sent to the user\'s email address.'
-        prompt.ok "Here is the random password generated for the user: #{password}"
-      else
-        prompt.warn 'User was not created because of the following errors:'
-
-        user.errors.each do |key, val|
-          prompt.error "#{key}: #{val}"
-        end
+    begin
+      email = prompt.ask('E-mail:', required: true) do |q|
+        q.modify :strip
       end
-    else
+
+      username = prompt.ask('Username:', required: true) do |q|
+        q.modify :strip
+      end
+
+      role = prompt.select('Role:', %w(user moderator admin))
+
+      if prompt.yes?('Proceed to create the user?')
+        user = User.new(email: email, password: SecureRandom.hex, admin: role == 'admin', moderator: role == 'moderator', account_attributes: { username: username })
+
+        if user.save
+          prompt.ok 'User created and confirmation mail sent to the user\'s email address.'
+          prompt.ok "Here is the random password generated for the user: #{password}"
+        else
+          prompt.warn 'User was not created because of the following errors:'
+
+          user.errors.each do |key, val|
+            prompt.error "#{key}: #{val}"
+          end
+        end
+      else
+        prompt.ok 'Aborting. Bye!'
+      end
+    rescue TTY::Reader::InputInterrupt
       prompt.ok 'Aborting. Bye!'
     end
-  rescue TTY::Reader::InputInterrupt
-    prompt.ok 'Aborting. Bye!'
   end
 
   namespace :media do
