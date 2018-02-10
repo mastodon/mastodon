@@ -39,5 +39,12 @@ RSpec.describe Glitch::KeywordMuteHelper do
 
       expect(helper.matches?(status)).to be true
     end
+
+    it 'matches link hrefs in HTML text' do
+      status = Fabricate(:status, text: '<p><a href="https://example.com/it-was-milk">yep</a></p>')
+      Glitch::KeywordMute.create!(account: alice, keyword: 'milk')
+
+      expect(helper.matches?(status)).to be true
+    end
   end
 end
