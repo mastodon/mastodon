@@ -3,15 +3,15 @@ cache:
   bundler: true
   yarn: true
   directories:
-  - node_modules
-  - public/assets
-  - public/packs-test
-  - tmp/cache/babel-loader
+    - node_modules
+    - public/assets
+    - public/packs-test
+    - tmp/cache/babel-loader
 dist: trusty
 sudo: false
 branches:
   only:
-  - master
+    - master
 
 notifications:
   email: false
@@ -29,15 +29,15 @@ addons:
   postgresql: 9.4
   apt:
     sources:
-    - trusty-media
-    - sourceline: deb https://dl.yarnpkg.com/debian/ stable main
-      key_url: https://dl.yarnpkg.com/debian/pubkey.gpg
+      - trusty-media
+      - sourceline: deb https://dl.yarnpkg.com/debian/ stable main
+        key_url: https://dl.yarnpkg.com/debian/pubkey.gpg
     packages:
-    - ffmpeg
-    - libicu-dev
-    - libprotobuf-dev
-    - protobuf-compiler
-    - yarn
+      - ffmpeg
+      - libicu-dev
+      - libprotobuf-dev
+      - protobuf-compiler
+      - yarn
 
 rvm:
   - 2.4.2

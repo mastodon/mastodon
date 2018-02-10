@@ -7,6 +7,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
 import { autoPlayGif } from '../initial_state';
+import { autoPlayGif, displaySensitiveMedia } from '../initial_state';
 import { remote_type } from '../remote_media_detector';
 
 const messages = defineMessages({
@@ -203,7 +204,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !this.props.sensitive,
+    visible: !this.props.sensitive || displaySensitiveMedia,
   };
 
   componentWillReceiveProps (nextProps) {

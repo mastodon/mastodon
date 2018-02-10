@@ -4,7 +4,7 @@
 # Table name: invites
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
+#  user_id    :integer          not null
 #  code       :string           default(""), not null
 #  expires_at :datetime
 #  max_uses   :integer
