@@ -4,7 +4,7 @@
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'auth_edit' }) do |f|
   = render 'shared/error_messages', object: resource
 
-  - if !use_pam? || current_user.encrypted_password.present?
+  - if !use_pam? || resource.encrypted_password.present?
     = f.input :email, placeholder: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
     = f.input :password, placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }
     = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }
