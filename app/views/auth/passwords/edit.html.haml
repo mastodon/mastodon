@@ -1,18 +1,18 @@
 - content_for :page_title do
   = t('auth.set_new_password')
 
-  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-    = render 'shared/error_messages', object: resource
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  = render 'shared/error_messages', object: resource
 
-    - if use_pam? || current_user.encrypted_password.present?
-      = f.input :reset_password_token, as: :hidden
+  - if !use_pam? || resource.encrypted_password.present?
+    = f.input :reset_password_token, as: :hidden
 
-      = f.input :password, autofocus: true, placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }
-      = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }
+    = f.input :password, autofocus: true, placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }
+    = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }
 
-      .actions
-        = f.button :button, t('auth.set_new_password'), type: :submit
-    - else
-      = t('simple_form.labels.defaults.pam_account')
+    .actions
+      = f.button :button, t('auth.set_new_password'), type: :submit
+  - else
+    = t('simple_form.labels.defaults.pam_account')
 
 .form-footer= render 'auth/shared/links'
