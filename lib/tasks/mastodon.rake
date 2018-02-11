@@ -68,9 +68,11 @@ namespace :mastodon do
           q.echo false
         end
 
+        # The chosen database may not exist yet. Connect to default database
+        # to avoid "database does not exist" error.
         db_options = {
           adapter: :postgresql,
-          database: env['DB_NAME'],
+          database: 'postgres',
           host: env['DB_HOST'],
           port: env['DB_PORT'],
           user: env['DB_USER'],
