@@ -52,7 +52,7 @@ RSpec.describe Setting, type: :model do
           allow(RailsSettings::Settings).to receive(:object).with(key).and_return(object)
           allow(described_class).to receive(:default_settings).and_return(default_settings)
           allow_any_instance_of(Settings::ScopedSettings).to receive(:thing_scoped).and_return(records)
-          Rails.cache.clear(cache_key)
+          Rails.cache.delete(cache_key)
         end
 
         let(:object)           { nil }

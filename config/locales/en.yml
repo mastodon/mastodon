@@ -290,6 +290,9 @@ en:
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
+      show_known_fediverse_at_about_page:
+        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
+        title: Show known fediverse on timeline preview
       show_staff_badge:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
@@ -355,6 +358,7 @@ en:
   auth:
     agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Security
+    confirm_email: Confirm email
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
@@ -364,6 +368,10 @@ en:
     logout: Logout
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
+    or_log_in_with: Or log in with
+    providers:
+      cas: CAS
+      saml: SAML
     register: Sign up
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password

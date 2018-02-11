@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_session
   helper_method :current_theme
   helper_method :single_user_mode?
+  helper_method :use_pam?
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -73,6 +74,10 @@ class ApplicationController < ActionController::Base
 
   def single_user_mode?
     @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.exists?
+  end
+
+  def use_pam?
+    Devise.pam_authentication
   end
 
   def current_account

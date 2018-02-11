@@ -91,13 +91,13 @@ class FetchLinkCardService < BaseService
 
     case @card.type
     when 'link'
-      @card.image = URI.parse(embed.thumbnail_url) if embed.respond_to?(:thumbnail_url)
+      @card.image_remote_url = embed.thumbnail_url if embed.respond_to?(:thumbnail_url)
     when 'photo'
       return false unless embed.respond_to?(:url)
-      @card.embed_url = embed.url
-      @card.image     = URI.parse(embed.url)
-      @card.width     = embed.width.presence  || 0
-      @card.height    = embed.height.presence || 0
+      @card.embed_url        = embed.url
+      @card.image_remote_url = embed.url
+      @card.width            = embed.width.presence  || 0
+      @card.height           = embed.height.presence || 0
     when 'video'
       @card.width  = embed.width.presence  || 0
       @card.height = embed.height.presence || 0
