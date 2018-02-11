@@ -4,9 +4,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
+import FoldButton from '../../../components/fold_button';
+import Foldable from '../../../components/foldable';
 
 const messages = defineMessages({
   favourite_tags: { id: 'compose_form.favourite_tags', defaultMessage: 'Favourite tags' },
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
 });
 
 const icons = [
@@ -28,7 +31,12 @@ class FavouriteTags extends React.PureComponent {
   state = {
     lockedTag: ImmutableList(),
     lockedVisibility: ImmutableList(),
+    show: true,
   };
+
+  onClickCollapse = () => {
+    this.setState({ show: !this.state.show });
+  }
 
   componentDidMount () {
     this.props.refreshFavouriteTags();
@@ -101,10 +109,15 @@ class FavouriteTags extends React.PureComponent {
               <i className='fa fa-gear' />
             </a>
           </div>
+          <div className='favourite-tags__fold__icon'>
+            <FoldButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={this.onClickCollapse} size={20} animate active={this.state.show} />
+          </div>
         </div>
-        <ul className='favourite-tags__body'>
-          {tags}
-        </ul>
+        <Foldable isVisible={this.state.show} fullHeight={this.props.tags.size * 30} minHeight={0} >
+          <ul className='favourite-tags__body'>
+            {tags}
+          </ul>
+        </Foldable>
       </div>
     );
   }

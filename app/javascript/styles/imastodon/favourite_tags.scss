@@ -31,7 +31,7 @@
 .favourite-tags__body li {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 6px 10px;
   position: relative
 }
 
@@ -79,4 +79,9 @@
   &:hover {
     background-color: lighten($error-value-color, 5%);
   }
+}
+
+.favourite-tags__fold__icon {
+  position: absolute;
+  right: 14px;
 }
