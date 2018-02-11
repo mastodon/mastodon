@@ -83,10 +83,13 @@ export default class GettingStarted extends ImmutablePureComponent {
     }
 
     if (multiColumn) {
-      navItems.push(<ColumnLink key='7' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />);
+      navItems.push(<ColumnLink key='7' icon='keyboard-o' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />);
     }
 
-    navItems.push(<ColumnLink key='8' icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />);
+    navItems.push(
+      <ColumnLink key='8' icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />,
+      <ColumnLink key='9' icon='question' text={intl.formatMessage(messages.faq)} href='http://faq.imastodon.net/getting-started/' targetWindow='_blank' />
+    );
 
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
@@ -95,8 +98,9 @@ export default class GettingStarted extends ImmutablePureComponent {
             <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
             {navItems}
             <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-            <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
-            <ColumnLink icon='question' text={intl.formatMessage(messages.faq)} href='http://faq.imastodon.net/getting-started/' targetWindow='_blank' />
+            <ColumnLink icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
+            <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
+            <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
             <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
             <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
           </div>
