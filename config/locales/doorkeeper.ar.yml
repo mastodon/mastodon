@@ -32,7 +32,7 @@ ar:
       help:
         native_redirect_uri: إستخدم %{native_redirect_uri} للاختبار و التجريب محليا
         redirect_uri: إستخدم خطا واحدا لكل رابط
-        scopes: Separate scopes with spaces. Leave blank to use the default scopes.
+        scopes: ''
       index:
         application: تطبيق
         callback_url: رابط رد النداء
@@ -76,9 +76,8 @@ ar:
         title: تطبيقاتك المرخص لها
     errors:
       messages:
-        access_denied: The resource owner or authorization server denied the request.
-        credential_flow_not_configured: Resource Owner Password Credentials flow failed
-          due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        access_denied: ''
+        credential_flow_not_configured: ''
         invalid_client: فشلت المصادقة مع العميل لأنه العميل مجهول أو لغياب المصادقة
           ضمن العميل أو أنّ أسلوب المصادقة غير مدعومة.
         invalid_grant: The provided authorization grant is invalid, expired, revoked,
