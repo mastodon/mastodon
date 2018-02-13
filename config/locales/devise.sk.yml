@@ -23,12 +23,28 @@ sk:
         explanation: S touto email adresou ste si vytvoril/a účet na %{host}. Si iba
           jeden klik od jeho aktivácie. Pokiaľ ste to ale nebol/a vy, prosím ignoruj
           tento email.
+        extra_html: Prosím pozri sa aj na <a href="%{terms_path}"> pravidla tohto
+          servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
+        title: Potvrď emailovú adresu
       password_change:
         subject: 'Mastodon: Heslo bolo zmenené'
+        explanation: Heslo k vašemu účtu bolo zmenené.
+        title: Heslo bolo zmenené
       reset_password_instructions:
         subject: 'Mastodon: Inštrukcie pre obnovu hesla'
+        action: Zmeniť heslo
+        explanation: Vyžiadal/a ste si nové heslo pre svoj účet.
+        title: Nastav nové heslo
       unlock_instructions:
         subject: 'Mastodon: Inštrukcie pre odomknutie účtu'
+      email_changed:
+        explanation: 'Emailová adresa tvojho účtu bude zmenená na:'
+        subject: 'Mastodon: Emailová adresa bola zmenená'
+        title: Nová emailová adresa
+      reconfirmation_instructions:
+        explanation: Potvrď novú emailovú adresu na ktorú chceš zmeniť svoj email.
+        subject: 'Mastodon: Potvrďenie emailu pre %{instance}'
+        title: Overiť emailovú adresu
     omniauth_callbacks:
       failure: Nebolo možné vás autentifikovať z %{kind} z dôvodu "%{reason}".
       success: Úspešne autentifikovaný z účtu %{kind}.
