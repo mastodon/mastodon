@@ -8,6 +8,7 @@ Devise.setup do |config|
   # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'
     cas_options = {}
+
     cas_options[:url] = ENV['CAS_URL'] if ENV['CAS_URL']
     cas_options[:host] = ENV['CAS_HOST'] if ENV['CAS_HOST']
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
@@ -28,12 +29,14 @@ Devise.setup do |config|
     cas_options[:location_key] = ENV['CAS_LOCATION_KEY'] || 'location'
     cas_options[:image_key] = ENV['CAS_IMAGE_KEY'] || 'image'
     cas_options[:phone_key] = ENV['CAS_PHONE_KEY'] || 'phone'
+
     config.omniauth :cas, cas_options
   end
 
   # SAML strategy
   if ENV['SAML_ENABLED'] == 'true'
     saml_options = {}
+
     saml_options[:assertion_consumer_service_url] = ENV['SAML_ACS_URL'] if ENV['SAML_ACS_URL']
     saml_options[:issuer] = ENV['SAML_ISSUER'] if ENV['SAML_ISSUER']
     saml_options[:idp_sso_target_url] = ENV['SAML_IDP_SSO_TARGET_URL']  if ENV['SAML_IDP_SSO_TARGET_URL']
@@ -53,7 +56,23 @@ Devise.setup do |config|
     saml_options[:attribute_statements][:email] = [ENV['SAML_ATTRIBUTES_STATEMENTS_EMAIL']] if ENV['SAML_ATTRIBUTES_STATEMENTS_EMAIL']
     saml_options[:attribute_statements][:full_name] = [ENV['SAML_ATTRIBUTES_STATEMENTS_FULL_NAME']] if ENV['SAML_ATTRIBUTES_STATEMENTS_FULL_NAME']
     saml_options[:uid_attribute] = ENV['SAML_UID_ATTRIBUTE'] if ENV['SAML_UID_ATTRIBUTE']
+
     config.omniauth :saml, saml_options
   end
 
+  # LDAP strategy
+  if ENV['LDAP_ENABLED'] == 'true'
+    ldap_options = {}
+
+    ldap_options[:host]      = ENV.fetch('LDAP_HOST', 'localhost')
+    ldap_options[:port]      = ENV.fetch('LDAP_PORT', 389)
+    ldap_options[:method]    = ENV.fetch('LDAP_METHOD', 'plain').to_sym
+    ldap_options[:base]      = ENV.fetch('LDAP_BASE')
+    ldap_options[:uid]       = ENV.fetch('LDAP_UID', 'cn')
+    ldap_options[:name_proc] = Proc.new { |name| name }
+    ldap_options[:bind_dn]   = ENV.fetch('LDAP_BIND_DN')
+    ldap_options[:password]  = ENV.fetch('LDAP_PASSWORD')
+
+    config.omniauth :ldap, ldap_options
+  end
 end
