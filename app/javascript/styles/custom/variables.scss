@@ -1,6 +1,7 @@
 // Commonly used web colors
 $black: #000000;            // Black
-$white: #3f3434ef;            // White
+$white: #FFFFFF;            // White
+$gray:  #3f3434ef;
 $success-green: #79bd9a;    // Padua
 $error-red: #df405a;        // Cerise
 $warning-red: #ff5050;      // Sunset Orange
@@ -15,8 +16,8 @@ $classic-highlight-color: #0b07f8;    // Summer Sky
 // Variables for defaults in UI
 $base-shadow-color: $black !default;
 $base-overlay-background: $black !default;
-$base-border-color: $white !default;
-$simple-background-color: $white !default;
+$base-border-color: $gray !default;
+$simple-background-color: $gray !default;
 $primary-text-color: $black !default;
 $valid-value-color: $success-green !default;
 $error-value-color: $error-red !default;
