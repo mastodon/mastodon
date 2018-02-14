@@ -261,3 +261,17 @@ body {
     background: rgba($ui-base-color, 0.4);
   }
 }
+
+.fa-star::before {
+  background: url(https://twemoji.maxcdn.com/36x36/1f363.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  filter: grayscale(100%) brightness(200%) opacity(50%);
+  content: "\2003";
+}
+.active > .fa-star::before, .notification__favourite-icon-wrapper > .fa-star::before {
+  filter: grayscale(0%) brightness(100%) opacity(100%);
+}
+.column-link > .fa-star::before, .column-header > button > .fa-star::before {
+  filter: grayscale(100%) brightness(150%) opacity(100%);
+}
