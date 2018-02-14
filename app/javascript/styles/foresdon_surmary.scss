@@ -1,0 +1,22 @@
+@import 'application';
+/*
+ * Override here.
+ $classic-base-color
+ $classic-primary-color
+ *
+ */
+
+@import 'foresdon_variables';
+/*
+ * Override foresdon_variables here.
+ $foresdon-background-filter-alpha
+ */
+// $foresdon-background-filter-alpha: 0.7;
+
+@import 'foresdon_base';
+
+
+.ui {
+  background: url("foresdon_surmary.png");
+  background-position: center bottom;
+}

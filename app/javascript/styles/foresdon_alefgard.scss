@@ -1,0 +1,20 @@
+@import 'application';
+/*
+ * Override here.
+ $classic-base-color
+ $classic-primary-color
+ *
+ */
+
+@import 'foresdon_variables';
+/*
+ * Override foresdon_variables here.
+ $foresdon-background-filter-alpha
+ */
+
+@import 'foresdon_base';
+
+.ui {
+  background: url("foresdon_alefgard.jpg");
+  background-position: center bottom;
+}
