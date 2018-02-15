@@ -30,6 +30,29 @@ const trim = (text, len) => {
   return text.substring(0, cut) + (text.length > len ? '…' : '');
 };
 
+const domParser = new DOMParser();
+
+const addAutoPlay = html => {
+  const document = domParser.parseFromString(html, 'text/html').documentElement;
+  const iframe = document.querySelector('iframe');
+
+  if (iframe) {
+    if (iframe.src.indexOf('?') !== -1) {
+      iframe.src += '&';
+    } else {
+      iframe.src += '?';
+    }
+
+    iframe.src += 'autoplay=1&auto_play=1';
+
+    // DOM parser creates html/body elements around original HTML fragment,
+    // so we need to get innerHTML out of the body and not the entire document
+    return document.querySelector('body').innerHTML;
+  }
+
+  return html;
+};
+
 export default class Card extends React.PureComponent {
 
   static propTypes = {
@@ -92,7 +115,7 @@ export default class Card extends React.PureComponent {
 
   renderVideo () {
     const { card }  = this.props;
-    const content   = { __html: card.get('html') };
+    const content   = { __html: addAutoPlay(card.get('html')) };
     const { width } = this.state;
     const ratio     = card.get('width') / card.get('height');
     const height    = card.get('width') > card.get('height') ? (width / ratio) : (width * ratio);
