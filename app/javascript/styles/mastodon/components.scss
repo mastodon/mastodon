@@ -2208,7 +2208,6 @@
 
 .status-card {
   display: flex;
-  cursor: pointer;
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
@@ -2217,20 +2216,58 @@
   text-decoration: none;
   overflow: hidden;
 
-  &:hover {
-    background: lighten($ui-base-color, 8%);
+  &__actions {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > div {
+      background: rgba($base-shadow-color, 0.6);
+      border-radius: 4px;
+      padding: 12px 9px;
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button,
+    a {
+      display: inline;
+      color: $primary-text-color;
+      background: transparent;
+      border: 0;
+      padding: 0 5px;
+      text-decoration: none;
+      opacity: 0.6;
+      font-size: 18px;
+      line-height: 18px;
+
+      &:hover,
+      &:active,
+      &:focus {
+        opacity: 1;
+      }
+    }
+
+    a {
+      font-size: 19px;
+      position: relative;
+      bottom: -1px;
+    }
   }
 }
 
-.status-card-video,
-.status-card-rich,
-.status-card-photo {
-  margin-top: 14px;
-  overflow: hidden;
+a.status-card {
+  cursor: pointer;
 
-  iframe {
-    width: 100%;
-    height: auto;
+  &:hover {
+    background: lighten($ui-base-color, 8%);
   }
 }
 
@@ -2258,6 +2295,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .status-card__content {
@@ -2279,6 +2317,7 @@
 .status-card__image {
   flex: 0 0 100px;
   background: lighten($ui-base-color, 8%);
+  position: relative;
 }
 
 .status-card.horizontal {
@@ -2304,6 +2343,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background-size: cover;
+  background-position: center center;
 }
 
 .load-more {
