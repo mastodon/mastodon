@@ -21,7 +21,7 @@ body {
 
   & .header-wrapper,
   & .header-wrapper.compact {
-    background: rgba($foresdon-ui-base-color, 0.7);
+    background: rgba($foresdon-ui-base-color, 0.4);
   }
 
   &>.about-short {
@@ -35,6 +35,7 @@ body {
 
   & .features #mastodon-timeline {
     background: none;
+    box-shadow: none;
   }
 
   & .header .links {
