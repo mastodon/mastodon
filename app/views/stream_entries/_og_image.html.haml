@@ -1,4 +1,4 @@
-- if activity.is_a?(Status) && activity.non_sensitive_with_media?
+- if activity.is_a?(Status) && activity.media_attachments.any?
   - activity.media_attachments.each do |media|
     - if media.image?
       = opengraph 'og:image', full_asset_url(media.file.url(:original))
