@@ -249,7 +249,7 @@ export default class MediaGallery extends React.PureComponent {
       }
 
       children = (
-        <button className='media-spoiler' onClick={this.handleOpen} style={style} ref={this.handleRef}>
+        <button type='button' className='media-spoiler' onClick={this.handleOpen} style={style} ref={this.handleRef}>
           <span className='media-spoiler__warning'>{warning}</span>
           <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </button>
