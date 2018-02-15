@@ -1,13 +1,132 @@
-/*
- * Define '.ui' for each theme to switch wallpaper.
- *
-.ui {
-  background: url("/background.jpg");
-  background-position: center, bottom;
-}
-*/
+// Apply background image.
+body {
+  background: url($foresdon-background-image) no-repeat fixed center bottom;
 
-.columns-area {
+  &.app-body {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+  }
+
+  &.about-body {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+  }
+
+  &.admin {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+  }
+}
+
+// landing page.
+.landing-page {
+  background: rgba($foresdon-ui-base-color, 0.7);
+
+  & .header-wrapper,
+  & .header-wrapper.compact {
+    background: rgba($foresdon-ui-base-color, 0.4);
+  }
+
+  &>.about-short {
+    background: rgba($foresdon-ui-base-color, 0.9);
+  }
+
+  & .header .hero .simple_form,
+  & .header .hero .closed-registrations-message {
+    background: rgba($foresdon-ui-base-color, 0.9);
+  }
+
+  & .features #mastodon-timeline {
+    background: none;
+    box-shadow: none;
+  }
+
+  & .header .links {
+      background: none;
+  }
+
+  & .information-board {
+    background: rgba($foresdon-ui-base-color, 0.8);
+
+    & .panel {
+      background: rgba($foresdon-ui-base-color, 0.9);
+      border-radius: $foresdon-primary-border-radius;
+    }
+  }
+
+}
+
+// login page.
+body>.container {
+  background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & ::-webkit-input-placeholder {
+    color: $foresdon-ui-primary-color;
+  }
+
+  & ::-moz-placeholder {
+    color: $foresdon-ui-primary-color;
+  }
+
+  & :-ms-input-placeholder {
+    color: $foresdon-ui-primary-color;
+  }
+}
+
+// Preference
+.admin-wrapper {
+  background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
+
+  & .sidebar-wrapper,
+  & .content-wrapper {
+    background: none;
+
+    & .table-wrapper .table tr {
+      & th, & td {
+        background: none;
+      }
+    }
+  }
+  & .sidebar ul {
+    & a {
+      &.selected {
+        color: $foresdon-ui-primary-color;
+        background: none;
+
+        &:hover {
+          background: none;
+        }
+      }
+
+      &:hover {
+        background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+      }
+    }
+
+    & ul {
+      background: none;
+
+      & a {
+        background: none;
+
+        &.selected {
+          color: $foresdon-ui-primary-color;
+          background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+          border-radius: $foresdon-primary-border-radius;
+
+          &:hover {
+            background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+          }
+        }
+
+        &:hover {
+          background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+        }
+      }
+    }
+  }
+}
+
+// main ui page.
+.ui {
   background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
 }
 
@@ -15,17 +134,17 @@
 .drawer__header {
   margin-bottom: 0;
   background: none;
-}
 
-.drawer__header a {
-  color: $foresdon-ui-primary-color;
-  border-radius: $foresdon-primary-border-radius;
-  transition: color 100ms ease-in;
-}
+  & a {
+    color: $foresdon-ui-primary-color;
+    border-radius: $foresdon-primary-border-radius;
+    transition: color 100ms ease-in;
+  }
 
-.drawer__header a:hover {
-  color: $foresdon-ui-secondary-color;
-  background: none;
+  & a:hover {
+    color: $foresdon-ui-secondary-color;
+    background: none;
+  }
 }
 
 .drawer__tab {
@@ -35,30 +154,31 @@
 .drawer__inner {
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border-radius: $foresdon-primary-border-radius;
-}
-.drawer__inner.darker {
-  background: rgba($foresdon-ui-base-color, 0.9);
+
+  &.darker {
+    background: rgba($foresdon-ui-base-color, 0.9);
+  }
 }
 
 .search__input {
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border-radius: $foresdon-primary-border-radius;
+
+  &:focus {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+    transition: background-color 100ms ease-in;
+  }
 }
 
-.search__input:focus {
-  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
-  transition: background-color 100ms ease-in;
-}
 
 .search-results__header {
-//  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   color: $foresdon-ui-secondary-color;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
   border: none;
 }
 
 // Columns
-.column > .scrollable {
+.column>.scrollable {
   background: none;
 }
 
@@ -69,30 +189,33 @@
 .column-header__button {
   color: $foresdon-ui-primary-color;
   background: none;
-}
-.column-header__button:hover {
-  color: $foresdon-ui-secondary-color;
-}
-.column-header__button.active, .column-header__button.active:hover {
-  color: $foresdon-ui-secondary-color;
-  background: none;
+
+  &:hover {
+    color: $foresdon-ui-secondary-color;
+  }
+  &.active, &.active:hover {
+    color: $foresdon-ui-secondary-color;
+    background: none;
+  }
 }
 
 /// Getting started
 .column-header__back-button {
   color: $foresdon-ui-primary-color;
   background: none;
-}
-.column-header__back-button:hover {
-  color: $foresdon-ui-secondary-color;
+
+  &:hover {
+    color: $foresdon-ui-secondary-color;
+  }
 }
 
 .column-back-button {
   color: $foresdon-ui-primary-color;
   background: none;
-}
-.column-back-button:hover {
-  color: $foresdon-ui-secondary-color;
+
+  &:hover {
+    color: $foresdon-ui-secondary-color;
+  }
 }
 
 .column-header__collapsible-inner {
@@ -120,10 +243,10 @@
 .column-link {
   background: none;
   border-radius: $foresdon-primary-border-radius;
-}
 
-.column-link:hover {
-  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  &:hover {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  }
 }
 
 .static-content {
@@ -137,6 +260,7 @@
   border-radius: 3px;
 }
 
+
 // Statuses
 .status__wrapper {
   margin: 0 3px $foresdon-default-margin-bottom 0;
@@ -148,22 +272,17 @@
   border: none;
 }
 
-.load-more {
-  color: $foresdon-ui-primary-color;
-  background: none;
-  border-radius: $foresdon-primary-border-radius;
-}
-.load-more:hover {
-  color: $foresdon-ui-secondary-color;
-  background: none;
-}
-
 // Accounts
 .account__header {
   background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border: none;
   border-radius: $foresdon-primary-border-radius;
   margin-bottom: 3px;
+
+  & > div {
+    background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
 }
 .account__action-bar__tab {
   background: none;
@@ -178,11 +297,31 @@
   margin-bottom: 3px;
 }
 
+.account-section-headline {
+  color: $foresdon-ui-primary-color;
+  background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
 .account {
   margin-bottom: $foresdon-default-margin-bottom;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border: none;
   border-radius: $foresdon-primary-border-radius;
+}
+
+// Notifications
+.notification {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & .status__wrapper {
+    background: none;
+  }
+
+  & .account {
+    background: none;
+  }
 }
 
 // Single column
@@ -192,6 +331,17 @@
 }
 
 // Other
+.load-more {
+  color: $foresdon-ui-primary-color;
+  background: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  &:hover {
+    color: $foresdon-ui-secondary-color;
+    background: none;
+  }
+}
+
 .empty-column-indicator, .error-column {
   color: $foresdon-primary-text-color;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);

@@ -31,14 +31,8 @@
  */
 
 @import 'foresdon_variables';
-/*
- * Override foresdon_variables here.
- $foresdon-background-filter-alpha
- */
+
+$foresdon-background-image: "foresdon_alefgard.jpg";
+$foresdon-background-filter-alpha: 0.6;
 
 @import 'foresdon_base';
-
-.ui {
-  background: url("foresdon_alefgard.jpg");
-  background-position: center bottom;
-}
