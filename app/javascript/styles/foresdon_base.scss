@@ -133,6 +133,7 @@
   border-radius: 3px;
 }
 
+
 // Statuses
 .status__wrapper {
   margin: 0 3px $foresdon-default-margin-bottom 0;
@@ -142,16 +143,6 @@
 }
 .status {
   border: none;
-}
-
-.load-more {
-  color: $foresdon-ui-primary-color;
-  background: none;
-  border-radius: $foresdon-primary-border-radius;
-}
-.load-more:hover {
-  color: $foresdon-ui-secondary-color;
-  background: none;
 }
 
 // Accounts
@@ -181,6 +172,20 @@
   border-radius: $foresdon-primary-border-radius;
 }
 
+// Notifications
+.notification {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & .status__wrapper {
+    background: none;
+  }
+
+  & .account {
+    background: none;
+  }
+}
+
 // Single column
 .tabs-bar {
   margin: 0;
@@ -188,6 +193,16 @@
 }
 
 // Other
+.load-more {
+  color: $foresdon-ui-primary-color;
+  background: none;
+  border-radius: $foresdon-primary-border-radius;
+}
+.load-more:hover {
+  color: $foresdon-ui-secondary-color;
+  background: none;
+}
+
 .empty-column-indicator, .error-column {
   color: $foresdon-primary-text-color;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
