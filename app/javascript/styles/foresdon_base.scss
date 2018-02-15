@@ -9,6 +9,10 @@ body {
   &.about-body {
     background: url($foresdon-background-image) no-repeat fixed center bottom;
   }
+
+  &.admin {
+    background: url($foresdon-background-image) no-repeat fixed center bottom;
+  }
 }
 
 // landing page.
@@ -66,6 +70,60 @@ body>.container {
   }
 }
 
+// Preference
+.admin-wrapper {
+  background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
+
+  & .sidebar-wrapper,
+  & .content-wrapper {
+    background: none;
+
+    & .table-wrapper .table tr {
+      & th, & td {
+        background: none;
+      }
+    }
+  }
+  & .sidebar ul {
+    & a {
+      &.selected {
+        color: $foresdon-ui-primary-color;
+        background: none;
+
+        &:hover {
+          background: none;
+        }
+      }
+
+      &:hover {
+        background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+      }
+    }
+
+    & ul {
+      background: none;
+
+      & a {
+        background: none;
+
+        &.selected {
+          color: $foresdon-ui-primary-color;
+          background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+          border-radius: $foresdon-primary-border-radius;
+
+          &:hover {
+            background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+          }
+        }
+
+        &:hover {
+          background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+        }
+      }
+    }
+  }
+}
+
 // main ui page.
 .ui {
   background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
@@ -119,7 +177,7 @@ body>.container {
 }
 
 // Columns
-.column > .scrollable {
+.column>.scrollable {
   background: none;
 }
 
