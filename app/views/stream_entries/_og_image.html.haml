@@ -4,19 +4,20 @@
       = opengraph 'og:image', full_asset_url(media.file.url(:original))
       = opengraph 'og:image:type', media.file_content_type
       - unless media.file.meta.nil?
-        = opengraph 'og:image:width', media.file.meta['original']['width']
-        = opengraph 'og:image:height', media.file.meta['original']['height']
-    - elsif media.video?
+        = opengraph 'og:image:width', media.file.meta.dig('original', 'width')
+        = opengraph 'og:image:height', media.file.meta.dig('original', 'height')
+    - elsif media.video? || media.gifv?
       = opengraph 'og:image', full_asset_url(media.file.url(:small))
       = opengraph 'og:image:type', 'image/png'
       - unless media.file.meta.nil?
-        = opengraph 'og:image:width', media.file.meta['small']['width']
-        = opengraph 'og:image:height', media.file.meta['small']['height']
+        = opengraph 'og:image:width', media.file.meta.dig('small', 'width')
+        = opengraph 'og:image:height', media.file.meta.dig('small', 'height')
       = opengraph 'og:video', full_asset_url(media.file.url(:original))
+      = opengraph 'og:video:secure_url', full_asset_url(media.file.url(:original))
       = opengraph 'og:video:type', media.file_content_type
       - unless media.file.meta.nil?
-        = opengraph 'og:video:width', media.file.meta['small']['width']
-        = opengraph 'og:video:height', media.file.meta['small']['height']
+        = opengraph 'og:video:width', media.file.meta.dig('original', 'width')
+        = opengraph 'og:video:height', media.file.meta.dig('original', 'height')
   = opengraph 'twitter:card', 'summary_large_image'
 - else
   = opengraph 'og:image', full_asset_url(account.avatar.url(:original))
