@@ -234,7 +234,7 @@ data.storage:
     - id: backup
       schedule: '0 3 * * *'
       command: |
-        tar cz -C /data/var/db/unfs/ |
+        tar cz -C /data/var/db/unfs/ . |
         curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).tgz --data-binary @- &&
         curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
         json_pp |
