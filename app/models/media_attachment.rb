@@ -160,21 +160,37 @@ class MediaAttachment < ApplicationRecord
     meta = {}
 
     file.queued_for_write.each do |style, file|
-      begin
-        geo = Paperclip::Geometry.from_file file
-
-        meta[style] = {
-          width: geo.width.to_i,
-          height: geo.height.to_i,
-          size: "#{geo.width.to_i}x#{geo.height.to_i}",
-          aspect: geo.width.to_f / geo.height.to_f,
-        }
-      rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-        meta[style] = {}
-      end
+      meta[style] = style == :small || image? ? image_geometry(file) : video_metadata(file)
     end
 
     meta
+  end
+
+  def image_geometry(file)
+    geo = Paperclip::Geometry.from_file file
+
+    {
+      width:  geo.width.to_i,
+      height: geo.height.to_i,
+      size: "#{geo.width.to_i}x#{geo.height.to_i}",
+      aspect: geo.width.to_f / geo.height.to_f,
+    }
+  rescue Paperclip::Errors::NotIdentifiedByImageMagickError
+    {}
+  end
+
+  def video_metadata(file)
+    movie = FFMPEG::Movie.new(file.path)
+
+    return {} unless movie.valid?
+
+    {
+      width: movie.width,
+      height: movie.height,
+      frame_rate: movie.frame_rate,
+      duration: movie.duration,
+      bitrate: movie.bitrate,
+    }
   end
 
   def appropriate_extension
