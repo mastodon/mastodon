@@ -160,11 +160,7 @@ class MediaAttachment < ApplicationRecord
     meta = {}
 
     file.queued_for_write.each do |style, file|
-      if style == :small || image?
-        meta[style] = image_geometry(file)
-      else
-        meta[style] = video_metadata(file)
-      end
+      meta[style] = style == :small || image? ? image_geometry(file) : video_metadata(file)
     end
 
     meta
