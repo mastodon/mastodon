@@ -103,7 +103,10 @@ Rails.application.routes.draw do
     resources :sessions, only: [:destroy]
   end
 
-  resources :media,  only: [:show]
+  resources :media, only: [:show] do
+    get :player
+  end
+
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
