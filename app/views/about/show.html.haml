@@ -24,9 +24,13 @@
 
         .landing-page__information
           .landing-page__short-description
-            %h1
-              = @instance_presenter.site_title
-              %small!= t 'about.hosted_on', domain: content_tag(:span, site_hostname)
+            .row
+              .landing-page__logo.hide-xs
+                = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
+
+              %h1
+                = @instance_presenter.site_title
+                %small!= t 'about.hosted_on', domain: content_tag(:span, site_hostname)
 
             %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
@@ -35,18 +39,19 @@
             = render 'forms'
         .landing-page__call-to-action.hide-xs
           .row
-            .column-5.information-board__section.column-7-sm
-              %span= t 'about.user_count_before'
-              %strong= number_with_delimiter @instance_presenter.user_count
-              %span= t 'about.user_count_after'
-            .column-5.information-board__section.column-7-sm
-              %span= t 'about.status_count_before'
-              %strong= number_with_delimiter @instance_presenter.status_count
-              %span= t 'about.status_count_after'
-            .column-5.hide-sm
-              .landing-page__call-to-action__buttons
-                = link_to t('auth.register'), @instance_presenter.open_registrations ? new_user_registration_path : 'https://joinmastodon.org', class: 'button button-primary hide-xs'
-                = link_to t('about.learn_more'), about_more_path, class: 'button button-alternative-2'
+            .column-5
+              .landing-page__mascot
+                = image_tag asset_pack_path('elephant_ui_plane.svg')
+            .column-5
+              .information-board__section
+                %span= t 'about.user_count_before'
+                %strong= number_with_delimiter @instance_presenter.user_count
+                %span= t 'about.user_count_after'
+            .column-5
+              .information-board__section
+                %span= t 'about.status_count_before'
+                %strong= number_with_delimiter @instance_presenter.status_count
+                %span= t 'about.status_count_after'
         .landing-page__information
           .landing-page__features
             %h3= t 'about.what_is_mastodon'

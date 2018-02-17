@@ -1,10 +1,11 @@
-$fluid-breakpoint: 1180px;
-$column-breakpoint: 600px;
+$maximum-width: 1235px;
+$fluid-breakpoint: $maximum-width + 20px;
+$column-breakpoint: 700px;
 $small-breakpoint: 960px;
 
 .container {
   box-sizing: border-box;
-  max-width: 1140px;
+  max-width: $maximum-width;
   margin: 0 auto;
   position: relative;
 
@@ -553,38 +554,45 @@ $small-breakpoint: 960px;
 
   &__information,
   &__forms {
-    padding: 14px;
+    padding: 20px;
   }
 
   &__call-to-action {
     margin-bottom: 10px;
-    background: darken($ui-base-color, 12%);
+    background: darken($ui-base-color, 4%);
     border-radius: 4px;
-    padding: 10px 0;
+    padding: 25px 40px;
+    overflow: hidden;
 
     .row {
       align-items: center;
     }
 
-    &__buttons {
-      padding: 10px 20px;
+    .information-board__section {
+      padding: 0;
     }
+  }
 
-    .button {
-      display: block;
-    }
+  &__logo {
+    margin-right: 20px;
 
-    .button-alternative-2 {
-      margin-top: 5px;
+    img {
+      height: 50px;
+      width: auto;
+      mix-blend-mode: lighten;
     }
   }
 
   &__information {
-    padding: 25px 20px;
+    padding: 45px 40px;
     margin-bottom: 10px;
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    @media screen and (max-width: $column-breakpoint) {
+      padding: 25px 20px;
     }
   }
 
@@ -597,7 +605,30 @@ $small-breakpoint: 960px;
     box-shadow: 0 0 6px rgba($black, 0.1);
   }
 
+  &__mascot {
+    height: 104px;
+    position: relative;
+    left: -40px;
+    bottom: 25px;
+
+    img {
+      height: 190px;
+      width: auto;
+    }
+  }
+
   &__short-description {
+    .row {
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    @media screen and (max-width: $column-breakpoint) {
+      .row {
+        margin-bottom: 20px;
+      }
+    }
+
     p a {
       color: $ui-secondary-color;
     }
@@ -605,6 +636,7 @@ $small-breakpoint: 960px;
     h1 {
       font-weight: 500;
       color: $primary-text-color;
+      margin-bottom: 0;
 
       small {
         color: $ui-primary-color;
