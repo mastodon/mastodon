@@ -1375,12 +1375,14 @@
 }
 
 .image-loader {
-  position: relative;
-  width: 100vw;
-  display: flex;
-  align-content: center;
 
   &.image-loader--loading {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-content: center;
+
     .image-loader__preview-canvas {
       filter: blur(2px);
     }
@@ -1392,13 +1394,14 @@
     .image-loader__preview-canvas {
       display: none;
     }
-
-    .image-loader__img {
-      position: static;
-      width: auto;
-      height: auto;
-    }
   }
+}
+
+.zoomable-image {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  align-content: center;
 }
 
 .navigation-bar {

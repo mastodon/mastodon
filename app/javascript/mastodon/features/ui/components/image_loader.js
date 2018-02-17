@@ -1,19 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-const MIN_SCALE = 1;
-const MAX_SCALE = 4;
-
-const getMidpoint = (p1, p2) => ({
-  x: (p1.clientX + p2.clientX) / 2,
-  y: (p1.clientY + p2.clientY) / 2,
-});
-
-const getDistance = (p1, p2) =>
-  Math.sqrt(Math.pow(p1.clientX - p2.clientX, 2) + Math.pow(p1.clientY - p2.clientY, 2));
-
-const between = (min, max, value) => Math.min(max, Math.max(min, value));
+import ZoomableImage from './zoomable_image';
 
 export default class ImageLoader extends React.PureComponent {
 
@@ -35,15 +23,10 @@ export default class ImageLoader extends React.PureComponent {
   state = {
     loading: true,
     error: false,
-    scale: MIN_SCALE,
   }
 
   removers = [];
-  container = null;
   canvas = null;
-  image = null;
-  lastTouchEndTime = 0;
-  lastDistance = 0;
 
   get canvasContext() {
     if (!this.canvas) {
@@ -54,12 +37,6 @@ export default class ImageLoader extends React.PureComponent {
   }
 
   componentDidMount () {
-    // TODO register to removers
-    this.container.addEventListener('touchstart', this.handleTouchStart.bind(this));
-    // on Chrome 56+, touch event listeners will default to passive
-    // https://www.chromestatus.com/features/5093566007214080
-    this.container.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
-
     this.loadImage(this.props);
   }
 
@@ -143,116 +120,33 @@ export default class ImageLoader extends React.PureComponent {
     return typeof width === 'number' && typeof height === 'number';
   }
 
-  handleTouchStart = ev => {
-    if (ev.touches.length !== 2) return;
-
-    this.lastDistance = getDistance(...ev.touches);
-  }
-
-  handleTouchMove = ev => {
-    const { scrollTop, scrollHeight, clientHeight } = this.container;
-    if (ev.touches.length === 1
-      && scrollTop !== scrollHeight - clientHeight) {
-      // prevent propagating event to MediaModal
-      ev.stopPropagation();
-      return;
-    }
-    if (ev.touches.length !== 2) return;
-
-    ev.preventDefault();
-    ev.stopPropagation();
-
-    const distance = getDistance(...ev.touches);
-    const midpoint = getMidpoint(...ev.touches);
-    const scale = between(MIN_SCALE, MAX_SCALE, this.state.scale * distance / this.lastDistance);
-
-    this.zoom(scale, midpoint);
-
-    this.lastMidpoint = midpoint;
-    this.lastDistance = distance;
-  }
-
-  zoom(nextScale, midpoint) {
-    const { scale } = this.state;
-    const { scrollLeft, scrollTop } = this.container;
-
-    // math memo:
-    // x = (scrollLeft + midpoint.x) / scrollWidth
-    // x' = (nextScrollLeft + midpoint.x) / nextScrollWidth
-    // scrollWidth = clientWidth * scale
-    // scrollWidth' = clientWidth * nextScale
-    // Solve x = x' for nextScrollLeft
-    const nextScrollLeft = (scrollLeft + midpoint.x) * nextScale / scale - midpoint.x;
-    const nextScrollTop = (scrollTop + midpoint.y) * nextScale / scale - midpoint.y;
-
-    // this.container.scrollLeft = nextScrollLeft;
-    // this.container.scrollTop = nextScrollTop;
-
-    this.setState({ scale: nextScale }, () => {
-      // callback
-      this.container.scrollLeft = nextScrollLeft;
-      this.container.scrollTop = nextScrollTop;
-    });
-  }
-
-  handleClick = ev => {
-    // don't propagate event to MediaModal
-    ev.stopPropagation();
-    const handler = this.props.onClick;
-    if (handler) handler();
-  }
-
   render () {
-    const { alt, src, width, height } = this.props;
-    const { loading, scale } = this.state;
-    const overflow = scale === 1 ? 'hidden' : 'scroll';
+    const { alt, src, width, height, onClick } = this.props;
+    const { loading } = this.state;
 
     const className = classNames('image-loader', {
       'image-loader--loading': loading,
       'image-loader--amorphous': !this.hasSize(),
     });
 
-    const setContainerRef = c => {
-      this.container = c;
-    };
     const setCanvasRef = c => {
       this.canvas = c;
     };
-    const setImageRef = c => {
-      this.image = c;
-    };
 
     return (
-      <div
-        className={className}
-        ref={setContainerRef}
-        style={{
-          height: `${document.body.clientHeight}px`,
-          overflow,
-        }}
-      >
-        {loading && (
+      <div className={className}>
+        {loading ? (
           <canvas
             className='image-loader__preview-canvas'
             ref={setCanvasRef}
             width={width}
             height={height}
           />
-        )}
-        {!loading && (
-          <img
-            className='image-loader__img'
-            role='presentation'
-            ref={setImageRef}
+        ) : (
+          <ZoomableImage
             alt={alt}
             src={src}
-            width={width}
-            height={height}
-            style={{
-              transform: `scale(${scale})`,
-              transformOrigin: '0 0',
-            }}
-            onClick={this.handleClick}
+            onClick={onClick}
           />
         )}
       </div>
