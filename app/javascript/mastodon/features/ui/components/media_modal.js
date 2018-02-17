@@ -137,7 +137,7 @@ export default class MediaModal extends ImmutablePureComponent {
           </div>
         </div>
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={32} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
           {leftNav}
           {rightNav}
           <ul className='media-modal__pagination'>
