@@ -4,8 +4,6 @@ import classNames from 'classnames';
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
-const DOUBLE_TAP_SCALE = 2;
-const DOUBLE_TAP_THRESHOLD = 300; // ms
 
 const getMidpoint = (p1, p2) => ({
   x: (p1.clientX + p2.clientX) / 2,
@@ -62,7 +60,6 @@ export default class ImageLoader extends React.PureComponent {
     // on Chrome 56+, touch event listeners will default to passive
     // https://www.chromestatus.com/features/5093566007214080
     this.container.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
-    this.container.addEventListener('touchend', this.handleTouchEnd.bind(this));
 
     this.loadImage(this.props);
   }
@@ -176,26 +173,9 @@ export default class ImageLoader extends React.PureComponent {
     this.lastDistance = distance;
   }
 
-  handleTouchEnd = ev => {
-    if (ev.touches.length > 0) return;
-    if (this.lastTouchEndTime && ev.timeStamp < this.lastTouchEndTime + DOUBLE_TAP_THRESHOLD) {
-      ev.preventDefault();
-      this.handleDoubleTap(ev);
-    }
-
-    this.lastTouchEndTime = ev.timeStamp;
-  }
-
   handleScroll = ev => {
     const handler = this.props.onScroll;
     if (handler) handler(ev);
-  }
-
-  handleDoubleTap (ev) {
-    if (this.state.scale === MIN_SCALE)
-      this.zoom(DOUBLE_TAP_SCALE, { x: ev.clientX, y: ev.clientY });
-    else
-      this.zoom(MIN_SCALE, { x: ev.clientX, y: ev.clientY });
   }
 
   zoom(nextScale, midpoint) {

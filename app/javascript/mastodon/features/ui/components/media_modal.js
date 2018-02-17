@@ -9,8 +9,6 @@ import IconButton from '../../../components/icon_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImageLoader from './image_loader';
 
-const VERTICAL_SWIPE_THRESHOLD_RATIO = 0.3;
-
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
   previous: { id: 'lightbox.previous', defaultMessage: 'Previous' },
@@ -30,26 +28,10 @@ export default class MediaModal extends ImmutablePureComponent {
   state = {
     index: null,
     navigationShown: true,
-    swiping: false,
-    verticalSwipeDelta: 0,
   };
-
-  closer = null;
-  initialTouchPoint = null;
-  verticalSwipeThreshold = -1; // need to be smaller than 0
-  ignoreTouchMove = false;
 
   handleSwipe = (index) => {
     this.setState({ index: index % this.props.media.size });
-  }
-
-  handleSwitching = (i, s) => {
-    // disable vertical swiping while horizontally swiped
-    if (s === 'move') {
-      this.ignoreTouchMove = true;
-      this.setState({ verticalSwipeDelta: 0 });
-    }
-    if (s === 'end') this.ignoreTouchMove = false;
   }
 
   handleNextClick = () => {
@@ -76,40 +58,8 @@ export default class MediaModal extends ImmutablePureComponent {
     }
   }
 
-  handleTouchStart = ev => {
-    if (ev.touches.length !== 1) return;
-    this.initialTouchPoint = ev.touches[0];
-    this.setState({
-      swiping: true,
-      verticalSwipeDelta: 0,
-    });
-  }
-
-  handleTouchMove = ev => {
-    if (this.ignoreTouchMove) return;
-    if (ev.touches.length !== 1) return;
-    const p = ev.touches[0];
-    this.setState({
-      verticalSwipeDelta: p.clientY - this.initialTouchPoint.clientY,
-    });
-  }
-
-  handleTouchEnd = ev => {
-    if (ev.touches.length > 0) return;
-    if (this.state.verticalSwipeDelta <= this.verticalSwipeThreshold)
-      // FIXME モーダルが閉じるのに3秒くらいかかる
-      setTimeout(this.props.onClose, 300);
-    this.setState({ swiping: false });
-  }
-
   componentDidMount () {
-    this.verticalSwipeThreshold = -this.closer.clientHeight * VERTICAL_SWIPE_THRESHOLD_RATIO;
-
     window.addEventListener('keyup', this.handleKeyUp, false);
-
-    this.closer.addEventListener('touchstart', this.handleTouchStart.bind(this));
-    this.closer.addEventListener('touchmove', this.handleTouchMove.bind(this));
-    this.closer.addEventListener('touchend', this.handleTouchEnd.bind(this));
   }
 
   componentWillUnmount () {
@@ -122,7 +72,7 @@ export default class MediaModal extends ImmutablePureComponent {
 
   render () {
     const { media, intl, onClose } = this.props;
-    const { navigationShown, swiping, verticalSwipeDelta } = this.state;
+    const { navigationShown } = this.state;
 
     const index = this.getIndex();
     let pagination = [];
@@ -163,34 +113,16 @@ export default class MediaModal extends ImmutablePureComponent {
       alignItems: 'center', // center vertically
     };
 
-    const closerStyle = swiping ? {
-      transform: `translateY(${Math.min(verticalSwipeDelta, 0)}px)`,
-    } : {
-      transform: `translateY(${verticalSwipeDelta <= this.verticalSwipeThreshold ? '-100%' : '0'})`,
-      // FIXME better animation
-      transition: 'transform 0.3s linear',
-    };
-
     const navigationClassName = classNames('media-modal__navigation', {
       'media-modal__navigation--hidden': !navigationShown,
     });
 
-    const setCloserRef = c => {
-      this.closer = c;
-    };
-
     return (
       <div className='modal-root__modal media-modal'>
-        {/* FIXME onTouchXXX don't effect */}
         <div
           className='media-modal__closer'
           role='presentation'
-          ref={setCloserRef}
-          style={closerStyle}
           onClick={onClose}
-          onTouchStart={this.handleTouchStart}
-          onTouchMove={this.handleTouchMove}
-          onTouchEnd={this.handleTouchEnd}
         >
           <div className='media-modal__content'>
             <ReactSwipeableViews
