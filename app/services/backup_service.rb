@@ -10,7 +10,6 @@ class BackupService < BaseService
     @account = backup.user.account
 
     build_json!
-    process!
     build_archive!
   end
 
@@ -18,15 +17,22 @@ class BackupService < BaseService
 
   def build_json!
     @collection = serialize(collection_presenter, ActivityPub::CollectionSerializer)
-  end
 
-  def process!
-    @collection[:orderedItems].each do |item|
-      next if item[:type] == 'Announce' || item[:object][:attachment].blank?
+    account.statuses.with_includes.find_in_batches do |statuses|
+      statuses.each do |status|
+        item = serialize(status, ActivityPub::ActivitySerializer)
+        item.delete(:'@context')
 
-      item[:object][:attachment].each do |attachment|
-        attachment[:url] = File.join('media', File.basename(attachment[:url]))
+        unless item[:type] == 'Announce' || item[:object][:attachment].blank?
+          item[:object][:attachment].each do |attachment|
+            attachment[:url] = File.join('media', status.id.to_s, File.basename(attachment[:url]))
+          end
+        end
+
+        @collection[:orderedItems] << item
       end
+
+      GC.start
     end
   end
 
@@ -52,20 +58,19 @@ class BackupService < BaseService
   end
 
   def dump_media_attachments!(tar)
-    MediaAttachment.attached.where(account: account).find_each do |m|
-      file = Paperclip.io_adapters.for(m.file).read
-      name = File.basename(m.file.path)
-
-      tar.add_file_simple(File.join('media', name), 0o444, file.size) do |io|
-        io.write(file)
+    MediaAttachment.attached.where(account: account).find_in_batches do |media_attachments|
+      media_attachments.each do |m|
+        download_to_tar(tar, m.file, File.join('media', m.status_id.to_s, File.basename(m.file.path)))
       end
+
+      GC.start
     end
   end
 
   def dump_outbox!(tar)
     json = Oj.dump(collection)
 
-    tar.add_file_simple('outbox.json', 0o444, json.size) do |io|
+    tar.add_file_simple('outbox.json', 0o444, json.bytesize) do |io|
       io.write(json)
     end
   end
@@ -76,29 +81,16 @@ class BackupService < BaseService
     actor[:icon][:url]  = 'avatar' + File.extname(actor[:icon][:url])  if actor[:icon]
     actor[:image][:url] = 'header' + File.extname(actor[:image][:url]) if actor[:image]
 
-    if account.avatar.exists?
-      file = Paperclip.io_adapters.for(account.avatar).read
-
-      tar.add_file_simple('avatar' + File.extname(account.avatar.path), 0o444, file.size) do |io|
-        io.write(file)
-      end
-    end
-
-    if account.header.exists?
-      file = Paperclip.io_adapters.for(account.header).read
-
-      tar.add_file_simple('header' + File.extname(account.header.path), 0o444, file.size) do |io|
-        io.write(file)
-      end
-    end
+    download_to_tar(tar, account.avatar, 'avatar' + File.extname(account.avatar.path)) if account.avatar.exists?
+    download_to_tar(tar, account.header, 'header' + File.extname(account.header.path)) if account.header.exists?
 
     json = Oj.dump(actor)
 
-    tar.add_file_simple('actor.json', 0o444, json.size) do |io|
+    tar.add_file_simple('actor.json', 0o444, json.bytesize) do |io|
       io.write(json)
     end
 
-    tar.add_file_simple('key.pem', 0o444, account.private_key.size) do |io|
+    tar.add_file_simple('key.pem', 0o444, account.private_key.bytesize) do |io|
       io.write(account.private_key)
     end
   end
@@ -108,7 +100,7 @@ class BackupService < BaseService
       id: account_outbox_url(account),
       type: :ordered,
       size: account.statuses_count,
-      items: account.statuses.with_includes
+      items: []
     )
   end
 
@@ -118,5 +110,17 @@ class BackupService < BaseService
       serializer: serializer,
       adapter: ActivityPub::Adapter
     ).as_json
+  end
+
+  CHUNK_SIZE = 1.megabyte
+
+  def download_to_tar(tar, attachment, filename)
+    adapter = Paperclip.io_adapters.for(attachment)
+
+    tar.add_file_simple(filename, 0o444, adapter.size) do |io|
+      while buffer = adapter.read(CHUNK_SIZE)
+        io.write(buffer)
+      end
+    end
   end
 end
