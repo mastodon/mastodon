@@ -25,7 +25,7 @@ class BackupService < BaseService
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
           item[:object][:attachment].each do |attachment|
-            attachment[:url] = File.join('media', status.id.to_s, File.basename(attachment[:url]))
+            attachment[:url] = Addressable::URI.parse(attachment[:url]).path.gsub(/\A\/system\//, '')
           end
         end
 
@@ -60,7 +60,7 @@ class BackupService < BaseService
   def dump_media_attachments!(tar)
     MediaAttachment.attached.where(account: account).find_in_batches do |media_attachments|
       media_attachments.each do |m|
-        download_to_tar(tar, m.file, File.join('media', m.status_id.to_s, File.basename(m.file.path)))
+        download_to_tar(tar, m.file, m.file.path)
       end
 
       GC.start
