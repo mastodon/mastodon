@@ -20,7 +20,7 @@
 
       .column-7.column-9-sm
         .landing-page__hero
-          = image_tag full_asset_url(@instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg', protocol: :request))
+          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
 
         .landing-page__information
           .landing-page__short-description
