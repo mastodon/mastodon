@@ -16,13 +16,7 @@
               = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
 
           .hide-xs
-            - if @instance_presenter.open_registrations
-              = render 'registration'
-
-              .separator-or
-                %span= t('auth.or')
-
-            = link_to t('auth.login'), new_user_session_path, class: 'button button-alternative-2 webapp-btn'
+            = render 'forms'
 
       .column-7.column-9-sm
         .landing-page__hero
@@ -36,15 +30,9 @@
 
             %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
-        .show-sm
+        .show-xs
           .landing-page__forms
-            - if @instance_presenter.open_registrations
-              = render 'registration'
-
-              .separator-or
-                %span= t('auth.or')
-
-            = link_to t('auth.login'), new_user_session_path, class: 'button button-alternative-2 webapp-btn'
+            = render 'forms'
         .landing-page__call-to-action.hide-xs
           .row
             .column-5.information-board__section.column-7-sm
@@ -80,5 +68,7 @@
             .brand
               = link_to root_url do
                 = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+
+            = render 'forms'
         - if Setting.timeline_preview
           #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
