@@ -24,7 +24,6 @@ export default class ImageLoader extends React.PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     onClick: PropTypes.func,
-    onScroll: PropTypes.func,
   }
 
   static defaultProps = {
@@ -171,11 +170,6 @@ export default class ImageLoader extends React.PureComponent {
 
     this.lastMidpoint = midpoint;
     this.lastDistance = distance;
-  }
-
-  handleScroll = ev => {
-    const handler = this.props.onScroll;
-    if (handler) handler(ev);
   }
 
   zoom(nextScale, midpoint) {
