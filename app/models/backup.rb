@@ -17,6 +17,6 @@
 class Backup < ApplicationRecord
   belongs_to :user, inverse_of: :backups
 
-  has_attached_file :dump, url: '/system/:hash.:extension', hash_secret: ENV['PAPERCLIP_SECRET']
+  has_attached_file :dump
   do_not_validate_attachment_file_type :dump
 end

@@ -49,7 +49,9 @@ class BackupService < BaseService
       end
     end
 
-    @backup.dump      = tmp_file
+    archive_filename = ['archive', Time.now.utc.strftime('%Y%m%d%H%M%S'), SecureRandom.hex(2)].join('-') + '.tar.gz'
+
+    @backup.dump      = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_file, filename: archive_filename)
     @backup.processed = true
     @backup.save!
   ensure
