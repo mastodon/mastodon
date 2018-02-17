@@ -45,7 +45,7 @@
               %span= t 'about.status_count_after'
             .column-5.hide-sm
               .landing-page__call-to-action__buttons
-                = link_to t('auth.register'), new_user_registration_path, class: 'button button-primary hide-xs'
+                = link_to t('auth.register'), @instance_presenter.open_registrations ? new_user_registration_path : 'https://joinmastodon.org', class: 'button button-primary hide-xs'
                 = link_to t('about.learn_more'), about_more_path, class: 'button button-alternative-2'
         .landing-page__information
           .landing-page__features
