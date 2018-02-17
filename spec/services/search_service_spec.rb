@@ -91,6 +91,16 @@ describe SearchService do
           expect(Tag).not_to have_received(:search_for)
           expect(results).to eq empty_results
         end
+
+        it 'does not include tag if its name is silenced' do
+          Fabricate(:text_block, text: 'silenced', severity: :silence)
+          query = '#tag'
+          tag = Tag.new(name: 'tagsilenced')
+          allow(Tag).to receive(:search_for).with('tag', 10).and_return([tag])
+
+          results = subject.call(query, 10)
+          expect(results).not_to eq empty_results.merge(hashtags: [tag])
+        end
       end
     end
   end

@@ -18,7 +18,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
   end
 
   def load_statuses
-    cached_tagged_statuses
+    cached_tagged_statuses.reject { |status| TextBlock.silence? status }
   end
 
   def cached_tagged_statuses

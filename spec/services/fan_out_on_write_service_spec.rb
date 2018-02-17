@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe FanOutOnWriteService do
   let(:author)   { Fabricate(:account, username: 'tom') }
   let(:status)   { Fabricate(:status, text: 'Hello @alice #test', account: author) }
+  let(:silenced_status) { Fabricate(:status, text: 'silenced', account: author) }
   let(:alice)    { Fabricate(:user, account: Fabricate(:account, username: 'alice')).account }
   let(:follower) { Fabricate(:account, username: 'bob') }
 
@@ -11,6 +12,7 @@ RSpec.describe FanOutOnWriteService do
   before do
     alice
     follower.follow!(author)
+    Fabricate(:text_block, text: 'silenced', severity: :silence)
 
     ProcessMentionsService.new.call(status)
     ProcessHashtagsService.new.call(status)
@@ -33,5 +35,9 @@ RSpec.describe FanOutOnWriteService do
 
   it 'delivers status to public timeline' do
     expect(Status.as_public_timeline(alice).map(&:id)).to include status.id
+  end
+
+  it 'does not deliver status to public timeline' do
+    expect(Status.as_public_timeline(alice).map(&:id)).not_to include silenced_status.id
   end
 end

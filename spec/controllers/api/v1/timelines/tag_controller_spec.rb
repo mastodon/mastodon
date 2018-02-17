@@ -19,6 +19,12 @@ describe Api::V1::Timelines::TagController do
         PostStatusService.new.call(user.account, 'It is a #test')
       end
 
+      it 'does not show statuses with silenced texts' do
+        Fabricate(:text_block, text: 'It', severity: :silence)
+        get :show, params: { id: 'test' }
+        expect(body_as_json).to be_empty
+      end
+
       it 'returns http success' do
         get :show, params: { id: 'test' }
         expect(response).to have_http_status(:success)

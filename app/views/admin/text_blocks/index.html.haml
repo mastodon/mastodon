@@ -1,0 +1,27 @@
+- content_for :page_title do
+  = t('admin.text_blocks.title')
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.text_blocks.text')
+        %th= t('admin.text_blocks.severity.title')
+        %th
+        %th
+    %tbody
+      - @text_blocks.each do |text_block|
+        %tr
+          %td= link_to text_block.text, admin_text_block_path(text_block)
+          %td= t("admin.text_blocks.severities.#{text_block.severity}")
+          %td
+            = table_link_to 'trash', t('admin.text_blocks.destroy'), admin_text_block_path(text_block), method: :delete
+
+= paginate @text_blocks
+
+- if @text_block.present?
+  %hr
+
+  %h3= t('admin.text_blocks.new')
+
+  = render @text_block

@@ -61,6 +61,9 @@ class Status < ApplicationRecord
   validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
 
+  validates :text, text_blocks: true
+  validates :spoiler_text, text_blocks: true
+
   default_scope { recent }
 
   scope :recent, -> { reorder(id: :desc) }

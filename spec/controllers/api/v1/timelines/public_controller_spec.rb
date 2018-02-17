@@ -19,6 +19,12 @@ describe Api::V1::Timelines::PublicController do
         PostStatusService.new.call(user.account, 'New status from user for federated public timeline.')
       end
 
+      it 'does not show statuses with silenced texts' do
+        Fabricate(:text_block, text: 'line', severity: :silence)
+        get :show
+        expect(body_as_json).to be_empty
+      end
+
       it 'returns http success' do
         get :show
 
