@@ -120,7 +120,7 @@ class BackupService < BaseService
     adapter = Paperclip.io_adapters.for(attachment)
 
     tar.add_file_simple(filename, 0o444, adapter.size) do |io|
-      while buffer = adapter.read(CHUNK_SIZE)
+      while (buffer = adapter.read(CHUNK_SIZE))
         io.write(buffer)
       end
     end
