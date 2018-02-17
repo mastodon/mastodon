@@ -40,14 +40,20 @@
     cursor: default;
   }
 
-  &.button-alternative {
+  &.button-primary,
+  &.button-alternative,
+  &.button-secondary,
+  &.button-alternative-2 {
     font-size: 16px;
     line-height: 36px;
     height: auto;
-    color: $ui-base-color;
-    background: $ui-primary-color;
     text-transform: none;
     padding: 4px 16px;
+  }
+
+  &.button-alternative {
+    color: $ui-base-color;
+    background: $ui-primary-color;
 
     &:active,
     &:focus,
@@ -56,15 +62,20 @@
     }
   }
 
+  &.button-alternative-2 {
+    background: $ui-base-lighter-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-base-lighter-color, 4%);
+    }
+  }
+
   &.button-secondary {
-    font-size: 16px;
-    line-height: 36px;
-    height: auto;
     color: $ui-primary-color;
-    text-transform: none;
     background: transparent;
     padding: 3px 15px;
-    border-radius: 4px;
     border: 1px solid $ui-primary-color;
 
     &:active,
