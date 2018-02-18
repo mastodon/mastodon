@@ -159,7 +159,7 @@ oc:
         unsuspend_account: "%{name} restabliguèt lo compte a %{target}"
         update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
         update_status: "%{name} metèt a jorn l’estatut a %{target}"
-      title: Audit log
+      title: Audit dels jornals
     custom_emojis:
       by_domain: Domeni
       copied_msg: Còpia locala de l’emoji ben creada
@@ -167,7 +167,7 @@ oc:
       copy_failed_msg: Fracàs de la còpia locala de l’emoji
       created_msg: Emoji ben creat !
       delete: Suprimir
-      destroyed_msg: Emojo ben suprimit !
+      destroyed_msg: Emoji ben suprimit !
       disable: Desactivar
       disabled_msg: Aqueste emoji es ben desactivat
       emoji: Emoji
@@ -282,13 +282,13 @@ oc:
           desc_html: Afichat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz utilizar de balisas HTML
           title: Messatge de barradura de las inscripcions
         deletion:
-          desc_html: Autorizar lo monde a suprimir lor compte
+          desc_html: Autorizar lo mond a suprimir lor compte
           title: Possibilitat de suprimir lo compte
         min_invite_role:
           disabled: Degun
           title: Autorizat amb invitacions
         open:
-          desc_html: Autorizar lo monde a se marcar
+          desc_html: Autorizar lo mond a se marcar
           title: Inscripcions
       show_staff_badge:
         desc_html: Mostrar lo badge Personal sus la pagina de perfil
@@ -338,9 +338,12 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       subject: Novèl senhalament per %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     view: 'Veire :'
+    view_profile: Veire lo perfil
+    view_status: Veire los estatuts
   applications:
     created: Aplicacion ben creada
     destroyed: Aplication ben suprimida
@@ -535,12 +538,12 @@ oc:
     max_uses:
       one: 1 persona
       other: "%{count} personas"
-    max_uses_prompt: Cap limit
+    max_uses_prompt: Cap de limit
     prompt: Generatz e partejatz los ligams per donar accès a aquesta instància
     table:
       expires_at: Expirats
       uses: Usatges
-    title: Convidar de monde
+    title: Convidar de mond
   landing_strip_html: "<strong>%{name}</strong> utiliza %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasque sul fediverse."
   landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
   lists:
@@ -556,32 +559,41 @@ oc:
     proceed: Enregistrar
     updated_msg: Vòstre paramètre de migracion es ben estat mes a jorn !
   moderation:
-    title: Moderation
+    title: Moderacion
   notification_mailer:
     digest:
-      body: 'Trobatz aquí un resumit de çò qu’avètz mancat dempuèi vòstra darrièra visita lo %{since}:'
+      action: Veire totas las notificacions
+      body: 'Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra darrièra visita lo %{since} :'
       mention: "%{name} vos a mencionat dins :"
       new_followers_summary:
-        one: Avètz un nòu seguidor ! Ouà !
-        other: Avètz %{count} nòus seguidors ! Qué crane !
+        one: Avètz un nòu seguidor dempuèi vòstra darrièra visita ! Ouà !
+        other: Avètz %{count} nòus seguidors dempuèi vòstra darrièra visita ! Qué crane !
       subject:
         one: "Una nòva notificacion dempuèi vòstra darrièra visita \U0001F418"
         other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
+      title: Pendent vòstra abséncia…
     favourite:
       body: "%{name} a mes vòstre estatut en favorit :"
       subject: "%{name} a mes vòstre estatut en favorit"
+      title: Novèl apondut als favorits
     follow:
       body: "%{name} vos sèc ara !"
       subject: "%{name} vos sèc ara"
+      title: Nòu seguidor
     follow_request:
+      action: Gerir las demandas d’abonament
       body: "%{name} a demandat a vos sègre"
       subject: 'Demanda d’abonament : %{name}'
+      title: Novèla demanda d’abonament
     mention:
+      action: Respondre
       body: "%{name} vos a mencionat dins :"
       subject: "%{name} vos a mencionat"
+      title: Novèla mencion
     reblog:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
+      title: Novèl partatge
   number:
     human:
       decimal_units:
@@ -629,12 +641,14 @@ oc:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navigator desconegut
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -786,6 +800,25 @@ oc:
     recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
     setup: Paramètres
     wrong_code: Lo còdi picat es invalid ! L’ora es la bona sul servidor e lo mobil ?
+  user_mailer:
+    welcome:
+      edit_profile_action: Configuracion del perfil
+      edit_profile_step: Podètz personalizar lo perfil en mandar un avatard, cambiar l’escais-nom e mai. Se volètz repassar las demandas d’abonaments abans que los nòus seguidors pòscan veire vòstre perfil, podètz clavar vòstre compte.
+      explanation: Vaquí qualques astúcias per vos preparar
+      final_action: Començar de publicar
+      final_step: 'Començatz de publicar ! Quitament s’avètz pas de seguidors los autres pòdon veire vòstres messatges publics, per exemple pel flux d’actualitat local e per las etiquetas. Benlèu que volètz vos presentar amb l’etiquetas #introductions.'
+      full_handle: Vòstre escais-nom complèt
+      full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos escriure o sègre a partir d’una autra instància.
+      review_preferences_action: Cambiar las preferéncias
+      review_preferences_step: Pensatz de configurar vòstras preferéncias, tal coma los corrièls que volètz recebrer o lo nivèl de confidencialitat de vòstres tuts per defaut. O se l’animacion vos dòna pas enveja de rendre, podètz activar la lectura automatica dels GIF.
+      subject: Benvengut a Mastodon
+      tip_bridge_html: Se venètz de Twitter, podètz trobar vòstres amics sus Mastodon en utilizant l‘<a href="%{bridge_url}">aplicacion de Pont</a>. Aquò fonciona pas que s’utilizan lo Pont tanben !
+      tip_federated_timeline: Lo flux d’actualitat federat es una vista generala del malhum Mastodon. Mas aquò inclutz solament lo mond que vòstres vesins sègon, doncas es pas complèt.
+      tip_following: Seguètz l’administrator del servidor per defaut. Per trobar de mond mai interessant, agachatz lo flux d’actualitat local e lo global.
+      tip_local_timeline: Lo flux d’actualitat local es una vista del mond de %{instance}. Son vòstres vesins dirèctes !
+      tip_mobile_webapp: Se vòstre navigator mobil nos permet d’apondre Mastodon a l’ecran d‘acuèlh, podètz recebre de notificacions. Aquò se compòrta coma una aplicacion nativa !
+      tips: Astúcias
+      title: Vos desirem la benvenguda a bòrd %{name} !
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid

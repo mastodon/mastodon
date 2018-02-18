@@ -20,6 +20,7 @@ gem 'fog-local', '~> 0.4', require: false
 gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder', '~> 0.6'
+gem 'streamio-ffmpeg', '~> 3.0'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.5'
@@ -27,9 +28,16 @@ gem 'bootsnap'
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.5'
 gem 'iso-639'
+gem 'chewy', '~> 0.10', git: 'https://github.com/toptal/chewy.git'
 gem 'cld3', '~> 3.2.0'
 gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
+
+gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
+gem 'omniauth-cas', '~> 1.1', install_if: -> { ENV['CAS_ENABLED'] == 'true' }
+gem 'omniauth-saml', '~> 1.8', install_if: -> { ENV['SAML_ENABLED'] == 'true' }
+gem 'omniauth', '~> 1.2'
+
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'
 gem 'goldfinger', '~> 2.1'
@@ -69,6 +77,8 @@ gem 'simple-navigation', '~> 4.0'
 gem 'simple_form', '~> 3.4'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'strong_migrations'
+gem 'tty-command'
+gem 'tty-prompt'
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2017'
 gem 'webpacker', '~> 3.0'

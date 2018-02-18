@@ -65,6 +65,10 @@
     }
   }
 
+  .media-gallery__gifv__label {
+    bottom: 9px;
+  }
+
   .status.light {
     padding: 14px 14px 14px (48px + 14px * 2);
     position: relative;
@@ -258,12 +262,12 @@
   .media-spoiler {
     background: $ui-primary-color;
     color: $white;
-    transition: all 100ms linear;
+    transition: all 40ms linear;
 
     &:hover,
     &:active,
     &:focus {
-      background: darken($ui-primary-color, 5%);
+      background: darken($ui-primary-color, 2%);
       color: unset;
     }
   }

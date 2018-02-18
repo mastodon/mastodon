@@ -31,6 +31,8 @@ class Status < ApplicationRecord
   include Cacheable
   include StatusThreadingConcern
 
+  update_index('statuses#status', :proper) if Chewy.enabled?
+
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
@@ -78,6 +80,24 @@ class Status < ApplicationRecord
 
   delegate :domain, to: :account, prefix: true
 
+  REAL_TIME_WINDOW = 6.hours
+
+  def searchable_by(preloaded = nil)
+    ids = [account_id]
+
+    if preloaded.nil?
+      ids += mentions.pluck(:account_id)
+      ids += favourites.pluck(:account_id)
+      ids += reblogs.pluck(:account_id)
+    else
+      ids += preloaded.mentions[id] || []
+      ids += preloaded.favourites[id] || []
+      ids += preloaded.reblogs[id] || []
+    end
+
+    ids.uniq
+  end
+
   def reply?
     !in_reply_to_id.nil? || attributes['reply']
   end
@@ -88,6 +108,10 @@ class Status < ApplicationRecord
 
   def reblog?
     !reblog_of_id.nil?
+  end
+
+  def within_realtime_window?
+    created_at >= REAL_TIME_WINDOW.ago
   end
 
   def verb

@@ -3,6 +3,7 @@
 class UserMailer < Devise::Mailer
   layout 'mailer'
 
+  helper :application
   helper :instance
 
   add_template_helper RoutingHelper
