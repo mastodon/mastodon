@@ -39,6 +39,9 @@
 
       = render partial: 'stream_entries/status', collection: @statuses, as: :status
 
-  - if @statuses.size == 20
+  - if @next_url || @prev_url
     .pagination
-      = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), @next_url, class: 'next', rel: 'next'
+      - if @prev_url
+        = link_to safe_join([t('pagination.prev'), fa_icon('chevron-left')], ' '), @prev_url, class: 'prev', rel: 'previous'
+      - if @next_url
+        = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), @next_url, class: 'next', rel: 'next'

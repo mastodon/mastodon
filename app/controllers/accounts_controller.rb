@@ -18,7 +18,8 @@ class AccountsController < ApplicationController
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
         @statuses        = filtered_statuses.paginate_by_max_id(20, params[:max_id], params[:since_id])
         @statuses        = cache_collection(@statuses, Status)
-        @next_url        = next_url unless @statuses.empty?
+        @next_url        = next_url if @statuses.last.id > filtered_statuses.last.id
+        @prev_url        = prev_url if @statuses.first.id < filtered_statuses.first.id
       end
 
       format.atom do
@@ -70,12 +71,20 @@ class AccountsController < ApplicationController
   end
 
   def next_url
+    pagination_url(max_id: @statuses.last.id)
+  end
+
+  def prev_url
+    pagination_url(since_id: @statuses.first.id)
+  end
+
+  def pagination_url(max_id: nil, since_id: nil)
     if media_requested?
-      short_account_media_url(@account, max_id: @statuses.last.id)
+      short_account_media_url(@account, max_id: max_id, since_id: since_id)
     elsif replies_requested?
-      short_account_with_replies_url(@account, max_id: @statuses.last.id)
+      short_account_with_replies_url(@account, max_id: max_id, since_id: since_id)
     else
-      short_account_url(@account, max_id: @statuses.last.id)
+      short_account_url(@account, max_id: max_id, since_id: since_id)
     end
   end
 
