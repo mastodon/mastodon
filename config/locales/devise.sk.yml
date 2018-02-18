@@ -30,21 +30,33 @@ sk:
         subject: 'Mastodon: Heslo bolo zmenené'
         explanation: Heslo k vašemu účtu bolo zmenené.
         title: Heslo bolo zmenené
+        extra: Pokiaľ si nezmenil/a svoje heslo, je pravdepodobné že niekto iný získal
+          prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj
+          administrátora tohto serveru pokiaľ si vymknutý/á zo svojho účtu.
       reset_password_instructions:
         subject: 'Mastodon: Inštrukcie pre obnovu hesla'
         action: Zmeniť heslo
         explanation: Vyžiadal/a ste si nové heslo pre svoj účet.
         title: Nastav nové heslo
+        extra: Pokiaľ si túto akciu nevyžiadal/a, prosím ignoruj tento email. Tvoje
+          heslo nebude zmenené pokiaľ nepostúpiš na adresu uvedenú vyššie a vytvoríš
+          si nové.
       unlock_instructions:
         subject: 'Mastodon: Inštrukcie pre odomknutie účtu'
       email_changed:
         explanation: 'Emailová adresa tvojho účtu bude zmenená na:'
         subject: 'Mastodon: Emailová adresa bola zmenená'
         title: Nová emailová adresa
+        extra: Pokiaľ si nezmenil/a svoj email, je pravdepodobné že niekto iný získal
+          prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj
+          administrátora tohto serveru pokiaľ si vymknutý/á zo svojho účtu.
       reconfirmation_instructions:
         explanation: Potvrď novú emailovú adresu na ktorú chceš zmeniť svoj email.
         subject: 'Mastodon: Potvrďenie emailu pre %{instance}'
         title: Overiť emailovú adresu
+        extra: Pokiaľ si túto akciu nevyžiadal/a, prosím ignoruj tento email. Emailová
+          adresa pre tvoj Mastodon účet totiž nebude zmenená pokiaľ nepostúpiš na
+          adresu uvedenú vyššie.
     omniauth_callbacks:
       failure: Nebolo možné vás autentifikovať z %{kind} z dôvodu "%{reason}".
       success: Úspešne autentifikovaný z účtu %{kind}.
