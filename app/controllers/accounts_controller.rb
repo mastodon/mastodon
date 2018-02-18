@@ -18,8 +18,10 @@ class AccountsController < ApplicationController
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
         @statuses        = filtered_statuses.paginate_by_max_id(20, params[:max_id], params[:since_id])
         @statuses        = cache_collection(@statuses, Status)
-        @next_url        = next_url if @statuses.last.id > filtered_statuses.last.id
-        @prev_url        = prev_url if @statuses.first.id < filtered_statuses.first.id
+        unless @statuses.empty
+          @next_url        = next_url if @statuses.last.id > filtered_statuses.last.id
+          @prev_url        = prev_url if @statuses.first.id < filtered_statuses.first.id
+        end
       end
 
       format.atom do
