@@ -20,6 +20,6 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   private
 
   def account_params
-    params.permit(:display_name, :note, :avatar, :header)
+    params.permit(:display_name, :note, :avatar, :header, :locked)
   end
 end
