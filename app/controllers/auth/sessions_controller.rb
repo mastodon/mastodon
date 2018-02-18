@@ -91,35 +91,19 @@ class Auth::SessionsController < Devise::SessionsController
     return if last_url.nil?
 
     parsed_last_url = Addressable::URI.parse(last_url)
-    params = Rails.application.routes.recognize_path(parsed_last_url.path)
-    return if params[:action] != 'show' || parsed_last_url.query_values['web'].present?
+    path_params = Rails.application.routes.recognize_path(parsed_last_url.path)
+    return if path_params[:action] != 'show'
 
-    case params[:controller]
-    when 'authorize_follows'
-      acct = parsed_last_url.query_values['acct']
-      parsed_acct = Addressable::URI.parse(acct)
-      uri = parsed_acct
+    alternative_uri = EncodeAlternativeWebMastodonURIService.new.call(path_params[:controller], parsed_last_url.query_values)
+    return if alternative_uri.nil?
 
-      unless parsed_acct.path && %w(http https).include?(parsed_acct.scheme)
-        uri = 'acct:' + uri
-      end
+    @alternative_href = alternative_uri.to_s
 
-      @alternative_href = Addressable::URI.new(
-        scheme: 'web+mastodon',
-        host: 'follow',
-        query_values: { uri: uri }
-      )
-
-      @alternative_label = I18n.t('auth.follow_on_another_instance')
-
-    when 'shares'
-      @alternative_href = Addressable::URI.new(
-        scheme: 'web+mastodon',
-        host: 'share',
-        query_values: { text: parsed_last_url.query_values['text'] }
-      ).to_s
-
-      @alternative_label = I18n.t('auth.share_on_another_instance')
+    case alternative_uri.host
+    when 'follow'
+      @alternative_label = I18n.t('web_mastodon.follow')
+    when 'share'
+      @alternative_label = I18n.t('web_mastodon.share')
     end
   end
 

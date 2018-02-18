@@ -428,6 +428,19 @@ code {
   }
 }
 
+.button.follow-alternative {
+  background: $ui-secondary-color;
+  color: $ui-base-color;
+  width: 100%;
+
+  &:focus,
+  &:hover,
+  &:active {
+    background: $ui-highlight-color;
+    color: $ui-secondary-color;
+  }
+}
+
 .oauth-prompt,
 .follow-prompt {
   margin-bottom: 30px;

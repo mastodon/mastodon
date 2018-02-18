@@ -62,6 +62,13 @@ describe AuthorizeFollowsController do
         expect(response).to have_http_status(:success)
         expect(assigns(:account)).to eq account
       end
+
+      it 'sets an alternative hyper-reference' do
+        account = Fabricate(:account, domain: 'example.com', username: 'found')
+        get :show, params: { acct: 'acct:found@example.com' }
+        expect(response).to have_http_status(:success)
+        expect(assigns(:alternative_href)).to eq 'web+mastodon://follow?uri=acct%3Afound%40example.com'
+      end
     end
   end
 

@@ -7,7 +7,13 @@ class AuthorizeFollowsController < ApplicationController
   before_action :set_body_classes
 
   def show
-    @account = located_account || render(:error)
+    @account = located_account
+
+    if @account.nil?
+      render :error
+    else
+      @alternative_href = EncodeAlternativeWebMastodonURIService.new.call('authorize_follows', params)&.to_s
+    end
   end
 
   def create

@@ -9,3 +9,7 @@
     = form_tag authorize_follow_path, method: :post, class: 'simple_form' do
       = hidden_field_tag :acct, @account.acct
       = button_tag t('authorize_follow.follow'), type: :submit
+
+  - if @alternative_href.present?
+    %a.button.follow-alternative{ href: @alternative_href }
+      = t('web_mastodon.follow')
