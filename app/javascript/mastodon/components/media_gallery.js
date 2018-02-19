@@ -227,12 +227,8 @@ export default class MediaGallery extends React.PureComponent {
     const style = {};
 
     if (this.isStandaloneEligible()) {
-      if (!visible && width) {
-        // only need to forcibly set the height in "sensitive" mode
+      if (width) {
         style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
-      } else {
-        // layout automatically, using image's natural aspect ratio
-        style.height = '';
       }
     } else {
       // crop the image
