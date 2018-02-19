@@ -286,7 +286,7 @@ sk:
       activity_api_enabled:
         title: Vydať hromadné štatistiky o užívateľskej aktivite
         desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov,
-          a nových registrácii, v týždenných intervaloch.
+          a nových registrácii, v týždenných intervaloch
       bootstrap_timeline_accounts:
         desc_html: Ak je prezývok viacero, každú oddeľte čiarkou. Možno zadať iba
           miestne, odomknuté účty. Pokiaľ necháte prázdne, je to pre všetkých miestnych
@@ -423,6 +423,7 @@ sk:
       about_x_months: '%{count}mesiace'
       x_days: '%{count}dni'
       x_months: '%{count}mesiace'
+      over_x_years: '%{count}rok'
   deletes:
     confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
     proceed: Vymazať účet
@@ -469,6 +470,9 @@ sk:
     success:
       one: Počas utišovania sledovateľov z jednej domény...
       other: Počas utišovania sledovateľov z %{count} domén...
+    unlocked_warning_html: Hocikto ťa môže následovať aby mohol/a ihneď vidieť tvoje
+      súkromné príspevky. %{lock_link} aby si mohla skontrolovať a odmietať sledovateľov.
+    unlocked_warning_title: Tvoj účet nieje zamknutý
   settings:
     authorized_apps: Autorizované aplikácie
     back: Naspäť na stránku
@@ -485,3 +489,10 @@ sk:
       final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné
         ostatnými, napríklad na lokálnej osi a pod haštagmi. Môžete sa ostatným predstaviť
         pod haštagom #introductions.'
+  generic:
+    changes_saved_msg: Zmeny boli úspešne uložené!
+    save_changes: Uložiť zmeny
+    validation_errors:
+      one: Niečo nieje úplne v poriadku! Prosím skontroluj chybu
+      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count}
+        chyby
