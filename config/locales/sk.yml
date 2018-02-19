@@ -285,6 +285,8 @@ sk:
     settings:
       activity_api_enabled:
         title: Vydať hromadné štatistiky o užívateľskej aktivite
+        desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov,
+          a nových registrácii, v týždenných intervaloch.
       bootstrap_timeline_accounts:
         desc_html: Ak je prezývok viacero, každú oddeľte čiarkou. Možno zadať iba
           miestne, odomknuté účty. Pokiaľ necháte prázdne, je to pre všetkých miestnych
@@ -457,6 +459,16 @@ sk:
     lock_link: Zamknite svoj účet
     true_privacy_html: Prosím majte na vedomí, <strong> 1 že ozajstné súkromie sa
       dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong> 2.
+    explanation_html: Pokiaľ chceš zaručiť súkromie svojích príspevkov, musíš mať
+      na vedomí, kto ťa sleduje. <strong> Tvoje súkromné príspevky sú doručené na
+      každý server z ktorého ťa niekto následuje. </strong> Takže možno by si ich
+      chcel/a skontrolovať, a odstrániť tých následovníkov, čo sú na serveroch ktorím
+      nedôveruješ, že ich moderátori, alebo úpravbuy kódu budú tiež rešpektovať tvoje
+      súkromie.
+    purge: Odstrániť následovateľa
+    success:
+      one: Počas utišovania sledovateľov z jednej domény...
+      other: Počas utišovania sledovateľov z %{count} domén...
   settings:
     authorized_apps: Autorizované aplikácie
     back: Naspäť na stránku
