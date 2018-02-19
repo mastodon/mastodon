@@ -23,20 +23,17 @@ class FavouriteTags extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
+    visible: PropTypes.bool.isRequired,
     tags: ImmutablePropTypes.list.isRequired,
     refreshFavouriteTags: PropTypes.func.isRequired,
+    onToggle: PropTypes.func.isRequired,
     onLockTag: PropTypes.func.isRequired,
   };
 
   state = {
     lockedTag: ImmutableList(),
     lockedVisibility: ImmutableList(),
-    show: true,
   };
-
-  onClickCollapse = () => {
-    this.setState({ show: !this.state.show });
-  }
 
   componentDidMount () {
     this.props.refreshFavouriteTags();
@@ -76,7 +73,7 @@ class FavouriteTags extends React.PureComponent {
   }
 
   render () {
-    const { intl } = this.props;
+    const { intl, visible, onToggle } = this.props;
 
     const tags = this.props.tags.map(tag => (
       <li key={tag.get('name')}>
@@ -110,10 +107,10 @@ class FavouriteTags extends React.PureComponent {
             </a>
           </div>
           <div className='compose__extra__header__fold__icon'>
-            <FoldButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={this.onClickCollapse} size={20} animate active={this.state.show} />
+            <FoldButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={onToggle} size={20} animate active={visible} />
           </div>
         </div>
-        <Foldable isVisible={this.state.show} fullHeight={this.props.tags.size * 30} minHeight={0} >
+        <Foldable isVisible={visible} fullHeight={this.props.tags.size * 30} minHeight={0} >
           <ul className='compose__extra__body'>
             {tags}
           </ul>
