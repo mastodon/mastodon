@@ -83,6 +83,8 @@ class Status < ApplicationRecord
 
   delegate :domain, to: :account, prefix: true
 
+  REAL_TIME_WINDOW = 6.hours
+
   def searchable_by(preloaded = nil)
     ids = [account_id]
 
@@ -109,6 +111,10 @@ class Status < ApplicationRecord
 
   def reblog?
     !reblog_of_id.nil?
+  end
+
+  def within_realtime_window?
+    created_at >= REAL_TIME_WINDOW.ago
   end
 
   def verb
