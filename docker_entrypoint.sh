@@ -7,8 +7,10 @@
 echo "Creating mastodon user (UID : ${UID} and GID : ${GID})..."
 addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon
 
-echo "Updating permissions..."
-find /mastodon -path /mastodon/public/system -prune -o -not -user mastodon -not -group mastodon -print0 | xargs -0 chown -f mastodon:mastodon
-
+# if SKIP_CHOWN env var is set, then, skip the chown that is taking sooo long!
+if [ -z ${SKIP_CHOWN+x} ]; then
+  echo "Updating permissions..."
+  find /mastodon -path /mastodon/public/system -prune -o -not -user mastodon -not -group mastodon -print0 | xargs -0 chown -f mastodon:mastodon
+fi
 echo "Executing process..."
 exec su-exec mastodon:mastodon /sbin/tini -- "$@"
