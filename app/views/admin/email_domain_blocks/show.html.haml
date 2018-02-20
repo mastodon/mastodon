@@ -1,0 +1,13 @@
+- content_for :page_title do
+  = t('.title', domain: @email_domain_block.domain)
+
+%h3= t('admin.email_domain_blocks.delete_block')
+
+= simple_form_for @email_domain_block, url: admin_email_domain_block_path(@email_domain_block), method: :delete do |f|
+  .actions
+    = f.button :button, t('admin.email_domain_blocks.delete'), type: :submit
+
+%hr
+
+%h3= t('admin.action_logs.title')
+=render 'admin/action_logs', objects: @email_domain_block.admin_action_logs

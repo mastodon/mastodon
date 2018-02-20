@@ -12,6 +12,7 @@
 class EmailDomainBlock < ApplicationRecord
   before_validation :normalize_domain
 
+  has_many :admin_action_logs, as: :target, class_name: 'Admin::ActionLog', dependent: :nullify
   validates :domain, presence: true, uniqueness: true
 
   def self.block?(email)

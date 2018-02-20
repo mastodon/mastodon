@@ -213,19 +213,21 @@ ja:
         retroactive:
           silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
-        title: "%{domain}のドメインブロックを戻す"
+        title: "%{domain}のドメインブロック"
         undo: 元に戻す
       title: ドメインブロック
-      undo: 元に戻す
     email_domain_blocks:
       add_new: 新規追加
       created_msg: ブラックリストに追加しました
       delete: 消去
+      delete_domain_block: ドメインブロックの消去
       destroyed_msg: ブラックリストから外しました
       domain: ドメイン
       new:
         create: ドメインを追加
         title: メールアドレス用ブラックリスト新規追加
+      show:
+        title: "%{domain}のメールドメインブロック"
       title: メールブラックリスト
     instances:
       account_count: 既知のアカウント数
@@ -241,7 +243,6 @@ ja:
         title: フィルター
       title: 招待
     reports:
-      action_taken_by: レポート処理者
       are_you_sure: 本当に実行しますか？
       comment:
         label: コメント
