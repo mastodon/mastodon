@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FastGeometryParser
   def self.from_file(file)
     width, height = FastImage.size(file.path)
