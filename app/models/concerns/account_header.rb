@@ -7,15 +7,9 @@ module AccountHeader
 
   class_methods do
     def header_styles(file)
-      styles   = {}
-      geometry = Paperclip::Geometry.from_file(file)
-
-      styles[:original] = '700x335#' unless geometry.width == 700 && geometry.height == 335
-      styles[:static]   = { format: 'png', convert_options: '-coalesce' } if file.content_type == 'image/gif'
-
+      styles = { original: { geometry: '700x335#', file_geometry_parser: FastGeometryParser } }
+      styles[:static] = { format: 'png', convert_options: '-coalesce', file_geometry_parser: FastGeometryParser } if file.content_type == 'image/gif'
       styles
-    rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-      {}
     end
 
     private :header_styles

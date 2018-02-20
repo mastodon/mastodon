@@ -32,7 +32,18 @@ class MediaAttachment < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
 
-  IMAGE_STYLES = { original: '1280x1280>', small: '400x400>' }.freeze
+  IMAGE_STYLES = {
+    original: {
+      geometry: '1280x1280>',
+      file_geometry_parser: FastGeometryParser,
+    },
+
+    small: {
+      geometry: '400x400>',
+      file_geometry_parser: FastGeometryParser,
+    },
+  }.freeze
+
   VIDEO_STYLES = {
     small: {
       convert_options: {
@@ -167,16 +178,16 @@ class MediaAttachment < ApplicationRecord
   end
 
   def image_geometry(file)
-    geo = Paperclip::Geometry.from_file file
+    width, height = FastImage.size(file.path)
+
+    return {} if width.nil?
 
     {
-      width:  geo.width.to_i,
-      height: geo.height.to_i,
-      size: "#{geo.width.to_i}x#{geo.height.to_i}",
-      aspect: geo.width.to_f / geo.height.to_f,
+      width:  width,
+      height: height,
+      size: "#{width}x#{height}",
+      aspect: width.to_f / height.to_f,
     }
-  rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-    {}
   end
 
   def video_metadata(file)
