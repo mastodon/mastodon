@@ -72,7 +72,7 @@ RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-in
 
 RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon
 
-COPY --chown=${UID}:${GID} . /mastodon
+COPY --chown=mastodon:mastodon . /mastodon
 
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
 
