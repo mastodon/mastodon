@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe FeedManager do
-  it 'tracks at least as many statuses as reblogs' do
+  before do |example|
+    unless example.metadata[:skip_stub]
+      stub_const 'FeedManager::MAX_ITEMS', 10
+      stub_const 'FeedManager::REBLOG_FALLOFF', 4
+    end
+  end
+
+  it 'tracks at least as many statuses as reblogs', skip_stub: true do
     expect(FeedManager::REBLOG_FALLOFF).to be <= FeedManager::MAX_ITEMS
   end
 
