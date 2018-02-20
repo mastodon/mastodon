@@ -70,10 +70,9 @@ RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-in
  && yarn --pure-lockfile \
  && yarn cache clean
 
-COPY . /mastodon
+RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon
 
-RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
- && chown -R $UID:$GID /mastodon
+COPY --chown=${UID}:${GID} . /mastodon
 
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
 
