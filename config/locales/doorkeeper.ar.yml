@@ -32,7 +32,8 @@ ar:
       help:
         native_redirect_uri: إستخدم %{native_redirect_uri} للاختبار و التجريب محليا
         redirect_uri: إستخدم خطا واحدا لكل رابط
-        scopes: ''
+        scopes: تقسيم المجالات بمسافات بيضاء. بدون تحديد قيمة يعني ذلك استخدام المجالات
+          الإفتراضية.
       index:
         application: تطبيق
         callback_url: رابط رد النداء
@@ -76,7 +77,7 @@ ar:
         title: تطبيقاتك المرخص لها
     errors:
       messages:
-        access_denied: ''
+        access_denied: لقد رفض مالك المَورِدِ أو تصريح السيرفر طلبك.
         credential_flow_not_configured: ''
         invalid_client: فشلت المصادقة مع العميل لأنه العميل مجهول أو لغياب المصادقة
           ضمن العميل أو أنّ أسلوب المصادقة غير مدعومة.
