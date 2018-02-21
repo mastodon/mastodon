@@ -10,6 +10,7 @@ import AccountAuthorizeContainer from './containers/account_authorize_container'
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { List } from 'immutable';
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
@@ -30,8 +31,20 @@ export default class FollowRequests extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
+  state = {
+    accountIds: null,
+  }
+
   componentWillMount () {
     this.props.dispatch(fetchFollowRequests());
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.state.accountIds) {
+      this.setState({
+        accountIds: List(nextProps.accountIds),
+      });
+    }
   }
 
   handleScroll = (e) => {
@@ -59,7 +72,7 @@ export default class FollowRequests extends ImmutablePureComponent {
 
         <ScrollContainer scrollKey='follow_requests'>
           <div className='scrollable' onScroll={this.handleScroll}>
-            {accountIds.map(id =>
+            {this.state.accountIds && this.state.accountIds.map(id =>
               <AccountAuthorizeContainer key={id} id={id} />
             )}
           </div>

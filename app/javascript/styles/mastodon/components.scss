@@ -1251,17 +1251,24 @@
 
 .account-authorize {
   padding: 14px 10px;
+  display: flex;
 
   .detailed-status__display-name {
     display: block;
     margin-bottom: 15px;
     overflow: hidden;
+    flex: 1 1 auto;
   }
 }
 
 .account-authorize__avatar {
   float: left;
   margin-right: 10px;
+}
+
+.account-authorize__relationship {
+  padding: 20px;
+  white-space: nowrap;
 }
 
 .status__display-name,
@@ -2775,6 +2782,14 @@ a.status-card {
 .detailed-status__button {
   flex: 1 1 auto;
   text-align: center;
+
+  &.authorized {
+    color: $ui-highlight-color;
+  }
+
+  &.rejected {
+    color: $error-value-color;
+  }
 }
 
 .column-settings__outer {

@@ -530,6 +530,7 @@ export function fetchFollowRequests() {
     api(getState).get('/api/v1/follow_requests').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => dispatch(fetchFollowRequestsFail(error)));
   };
 };
@@ -568,6 +569,7 @@ export function expandFollowRequests() {
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => dispatch(expandFollowRequestsFail(error)));
   };
 };
