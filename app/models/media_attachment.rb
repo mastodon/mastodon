@@ -92,9 +92,13 @@ class MediaAttachment < ApplicationRecord
   end
 
   def focus=(point)
-    x, y = point.split(',').map(&:to_f)
+    return if point.blank?
+
+    x, y = (point.is_a?(Enumerable) ? point : point.split(',')).map(&:to_f)
+
     meta = file.instance_read(:meta) || {}
     meta['focus'] = { 'x' => x, 'y' => y }
+
     file.instance_write(:meta, meta)
   end
 
