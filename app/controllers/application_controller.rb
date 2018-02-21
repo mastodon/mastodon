@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_current_location
-    store_location_for(:user, request.url)
+    store_location_for(:user, request.url) unless request.format == :json
   end
 
   def require_admin!
