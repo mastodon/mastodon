@@ -57,7 +57,7 @@ const totalElefriends = 3;
 const glitchProbability = 1 - 0.0420215528;
 
 const initialState = ImmutableMap({
-  mounted: false,
+  mounted: 0,
   advanced_options: ImmutableMap({
     do_not_federate: false,
     threaded_mode: false,
@@ -280,9 +280,9 @@ export default function compose(state = initialState, action) {
   case STORE_HYDRATE:
     return hydrate(state, action.state.get('compose'));
   case COMPOSE_MOUNT:
-    return state.set('mounted', true);
+    return state.set('mounted', state.get('mounted') + 1);
   case COMPOSE_UNMOUNT:
-    return state.set('mounted', false);
+    return state.set('mounted', Math.max(state.get('mounted') - 1, 0));
   case COMPOSE_ADVANCED_OPTIONS_CHANGE:
     return state
       .set('advanced_options', state.get('advanced_options').set(action.option, !!overwrite(!state.getIn(['advanced_options', action.option]), action.value)))
