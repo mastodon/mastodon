@@ -433,6 +433,28 @@
       min-width: 40%;
       margin: 5px;
 
+      &__actions {
+        background: linear-gradient(180deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        .icon-button {
+          flex: 0 1 auto;
+          color: $ui-secondary-color;
+          font-size: 14px;
+          font-weight: 500;
+          padding: 10px;
+          font-family: inherit;
+
+          &:hover,
+          &:focus,
+          &:active {
+            color: lighten($ui-secondary-color, 4%);
+          }
+        }
+      }
+
       &-description {
         position: absolute;
         z-index: 2;
@@ -470,10 +492,6 @@
           opacity: 1;
         }
       }
-
-      .icon-button {
-        mix-blend-mode: difference;
-      }
     }
 
     .compose-form__upload-thumbnail {
@@ -481,8 +499,9 @@
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
-      height: 100px;
+      height: 140px;
       width: 100%;
+      overflow: hidden;
     }
   }
 

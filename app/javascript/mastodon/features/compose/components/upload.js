@@ -1,17 +1,14 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import IconButton from '../../../components/icon_button';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 const messages = defineMessages({
-  undo: { id: 'upload_form.undo', defaultMessage: 'Undo' },
   description: { id: 'upload_form.description', defaultMessage: 'Describe for the visually impaired' },
-  focus: { id: 'upload_form.focus', defaultMessage: 'Choose focal point' },
 });
 
 @injectIntl
@@ -75,8 +72,10 @@ export default class Upload extends ImmutablePureComponent {
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) => (
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})` }}>
-              <IconButton icon='times' title={intl.formatMessage(messages.undo)} size={36} onClick={this.handleUndoClick} />
-              <IconButton icon='crosshairs' title={intl.formatMessage(messages.focus)} size={36} onClick={this.handleFocalPointClick} />
+              <div className='compose-form__upload__actions'>
+                <button className='icon-button' onClick={this.handleUndoClick}><i className='fa fa-times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Undo' /></button>
+                <button className='icon-button' onClick={this.handleFocalPointClick}><i className='fa fa-crosshairs' /> <FormattedMessage id='upload_form.focus' defaultMessage='Crop' /></button>
+              </div>
 
               <div className={classNames('compose-form__upload-description', { active })}>
                 <label>

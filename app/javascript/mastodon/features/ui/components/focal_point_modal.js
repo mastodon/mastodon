@@ -6,63 +6,11 @@ import { connect } from 'react-redux';
 import ImageLoader from './image_loader';
 import classNames from 'classnames';
 import { changeUploadCompose } from '../../../actions/compose';
+import { getPointerPosition } from '../../video';
 
 const mapStateToProps = (state, { id }) => ({
   media: state.getIn(['compose', 'media_attachments']).find(item => item.get('id') === id),
 });
-
-const findElementPosition = el => {
-  let box;
-
-  if (el.getBoundingClientRect && el.parentNode) {
-    box = el.getBoundingClientRect();
-  }
-
-  if (!box) {
-    return {
-      left: 0,
-      top: 0,
-    };
-  }
-
-  const docEl = document.documentElement;
-  const body  = document.body;
-
-  const clientLeft = docEl.clientLeft || body.clientLeft || 0;
-  const scrollLeft = window.pageXOffset || body.scrollLeft;
-  const left       = (box.left + scrollLeft) - clientLeft;
-
-  const clientTop = docEl.clientTop || body.clientTop || 0;
-  const scrollTop = window.pageYOffset || body.scrollTop;
-  const top       = (box.top + scrollTop) - clientTop;
-
-  return {
-    left: Math.round(left),
-    top: Math.round(top),
-  };
-};
-
-const getPointerPosition = (el, event) => {
-  const position = {};
-  const box = findElementPosition(el);
-  const boxW = el.offsetWidth;
-  const boxH = el.offsetHeight;
-  const boxY = box.top;
-  const boxX = box.left;
-
-  let pageY = event.pageY;
-  let pageX = event.pageX;
-
-  if (event.changedTouches) {
-    pageX = event.changedTouches[0].pageX;
-    pageY = event.changedTouches[0].pageY;
-  }
-
-  position.y = Math.max(0, Math.min(1, (pageY - boxY) / boxH));
-  position.x = Math.max(0, Math.min(1, (pageX - boxX) / boxW));
-
-  return position;
-};
 
 const mapDispatchToProps = (dispatch, { id }) => ({
 
@@ -139,6 +87,8 @@ export default class FocalPointModal extends ImmutablePureComponent {
       const y = (focusY / -2) + .5;
 
       this.setState({ x, y, focusX, focusY });
+    } else {
+      this.setState({ x: 0.5, y: 0.5, focusX: 0, focusY: 0 });
     }
   }
 
