@@ -421,6 +421,13 @@ en:
       title: This page is not correct
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
   exports:
+    archive_takeout:
+      date: Date
+      download: Download your archive
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in ActivityPub format, readable by any compliant software.
+      in_progress: Compiling your archive...
+      request: Request your archive
+      size: Size
     blocks: You block
     csv: CSV
     follows: You follow
@@ -733,6 +740,10 @@ en:
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
   user_mailer:
+    backup_ready:
+      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      subject: Your archive is ready for download
+      title: Archive takeout
     welcome:
       edit_profile_action: Setup profile
       edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.

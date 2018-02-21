@@ -76,7 +76,7 @@ Rails.application.routes.draw do
     resource :notifications, only: [:show, :update]
     resource :import, only: [:show, :create]
 
-    resource :export, only: [:show]
+    resource :export, only: [:show, :create]
     namespace :exports, constraints: { format: :csv } do
       resources :follows, only: :index, controller: :following_accounts
       resources :blocks, only: :index, controller: :blocked_accounts
