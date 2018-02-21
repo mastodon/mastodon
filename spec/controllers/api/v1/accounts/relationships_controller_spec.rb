@@ -66,6 +66,28 @@ describe Api::V1::Accounts::RelationshipsController do
         expect(json.second[:requested]).to be false
         expect(json.second[:domain_blocking]).to be false
       end
+
+      it 'returns JSON with correct data on cached requests too' do
+        get :index, params: { id: [simon.id] }
+
+        json = body_as_json
+
+        expect(json).to be_a Enumerable
+        expect(json.first[:following]).to be true
+        expect(json.first[:showing_reblogs]).to be true
+      end
+
+      it 'returns JSON with correct data after change too' do
+        user.account.unfollow!(simon)
+
+        get :index, params: { id: [simon.id] }
+
+        json = body_as_json
+
+        expect(json).to be_a Enumerable
+        expect(json.first[:following]).to be false
+        expect(json.first[:showing_reblogs]).to be false
+      end
     end
   end
 end
