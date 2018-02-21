@@ -85,7 +85,7 @@ class FavouriteTags extends React.PureComponent {
         </div>
         <Link
            to={`/timelines/tag/${tag.get('name')}`}
-           className='favourite-tags__name'
+           className='compose__extra__body__name'
            key={tag.get('name')}
         >
           <i className='fa fa-hashtag' />
@@ -100,21 +100,21 @@ class FavouriteTags extends React.PureComponent {
     ));
 
     return (
-      <div className='favourite-tags'>
+      <div className='compose__extra'>
         <div className='compose__extra__header'>
           <i className='fa fa-tag' />
-          <div className='favourite-tags__header__name'>{intl.formatMessage(messages.favourite_tags)}</div>
+          <span>{intl.formatMessage(messages.favourite_tags)}</span>
           <div className='compose__extra__header__icon'>
             <a href='/settings/favourite_tags'>
               <i className='fa fa-gear' />
             </a>
           </div>
-          <div className='favourite-tags__fold__icon'>
+          <div className='compose__extra__header__fold__icon'>
             <FoldButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={this.onClickCollapse} size={20} animate active={this.state.show} />
           </div>
         </div>
         <Foldable isVisible={this.state.show} fullHeight={this.props.tags.size * 30} minHeight={0} >
-          <ul className='favourite-tags__body'>
+          <ul className='compose__extra__body'>
             {tags}
           </ul>
         </Foldable>

@@ -3,51 +3,8 @@
   * features/compose/components/favourite_tags
   */
 
-.favourite-tags {
-  background: $ui-base-color;
-  position: relative;
-}
-
-.favourite-tags__header {
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  background: lighten($ui-base-color, 4%);
-  font-size: 16px;
-}
-
-.favourite-tags a {
-  color: $white;
-}
-
-.favourite-tags .fa-gear{
-  color: $ui-primary-color;
-}
-
-.favourite-tags__header > i {
-  width: 20px;
-}
-
-.favourite-tags__body li {
-  display: flex;
-  align-items: center;
-  padding: 6px 10px;
-  position: relative
-}
-
-.favourite-tags__name {
-  font-size: 14px;
-  color: $white;
-  text-decoration: none;
-  width: 200px;
-}
-
-.favourite-tags__name .fa-hashtag {
-  color: $classic-highlight-color;
-  margin-right: 2px;
-}
-
 .favourite-tags__icon {
+  width: 15px;
   padding: 0 5px;
   text-align: center;
 }
@@ -59,6 +16,10 @@
   margin-top: -7px;
   width: 14px;
   text-align: center;
+
+  a {
+    color: $white;
+  }
 }
 
 .favourite-tags__add-button-in-column {
@@ -79,9 +40,4 @@
   &:hover {
     background-color: lighten($error-value-color, 5%);
   }
-}
-
-.favourite-tags__fold__icon {
-  position: absolute;
-  right: 14px;
 }
