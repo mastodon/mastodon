@@ -8,7 +8,7 @@ module AccountHeader
   class_methods do
     def header_styles(file)
       styles = { original: { geometry: '700x335#', file_geometry_parser: FastGeometryParser } }
-      styles[:static] = { format: 'png', convert_options: '-coalesce', file_geometry_parser: FastGeometryParser } if file.content_type == 'image/gif'
+      styles[:static] = { geometry: '700x335#', format: 'png', convert_options: '-coalesce', file_geometry_parser: FastGeometryParser } if file.content_type == 'image/gif'
       styles
     end
 
