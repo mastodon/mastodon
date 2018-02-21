@@ -4133,8 +4133,12 @@ a.status-card {
   &,
   img {
     width: 100%;
-    height: 100%;
+  }
+
+  img {
+    position: relative;
     object-fit: cover;
+    height: auto;
   }
 }
 
