@@ -3,7 +3,7 @@
 module Paperclip
   class LazyThumbnail < Paperclip::Thumbnail
     def make
-      return @file unless needs_convert?
+      return File.open(@file.path) unless needs_convert?
       Paperclip::Thumbnail.make(file, options, attachment)
     end
 
