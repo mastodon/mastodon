@@ -438,6 +438,8 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        opacity: 0;
+        transition: opacity .1s ease;
 
         .icon-button {
           flex: 0 1 auto;
@@ -452,6 +454,10 @@
           &:active {
             color: lighten($ui-secondary-color, 4%);
           }
+        }
+
+        &.active {
+          opacity: 1;
         }
       }
 

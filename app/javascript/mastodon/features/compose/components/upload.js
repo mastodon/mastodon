@@ -66,13 +66,17 @@ export default class Upload extends ImmutablePureComponent {
     const { intl, media } = this.props;
     const active          = this.state.hovered || this.state.focused;
     const description     = this.state.dirtyDescription || (this.state.dirtyDescription !== '' && media.get('description')) || '';
+    const focusX = media.getIn(['meta', 'focus', 'x']);
+    const focusY = media.getIn(['meta', 'focus', 'y']);
+    const x = ((focusX /  2) + .5) * 100;
+    const y = ((focusY / -2) + .5) * 100;
 
     return (
       <div className='compose-form__upload' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) => (
-            <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})` }}>
-              <div className='compose-form__upload__actions'>
+            <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
+              <div className={classNames('compose-form__upload__actions', { active })}>
                 <button className='icon-button' onClick={this.handleUndoClick}><i className='fa fa-times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Undo' /></button>
                 <button className='icon-button' onClick={this.handleFocalPointClick}><i className='fa fa-crosshairs' /> <FormattedMessage id='upload_form.focus' defaultMessage='Crop' /></button>
               </div>
