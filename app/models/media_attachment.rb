@@ -91,6 +91,24 @@ class MediaAttachment < ApplicationRecord
     shortcode
   end
 
+  def focus=(point)
+    return if point.blank?
+
+    x, y = (point.is_a?(Enumerable) ? point : point.split(',')).map(&:to_f)
+
+    meta = file.instance_read(:meta) || {}
+    meta['focus'] = { 'x' => x, 'y' => y }
+
+    file.instance_write(:meta, meta)
+  end
+
+  def focus
+    x = file.meta['focus']['x']
+    y = file.meta['focus']['y']
+
+    "#{x},#{y}"
+  end
+
   before_create :prepare_description, unless: :local?
   before_create :set_shortcode
   before_post_process :set_type_and_extension
@@ -168,7 +186,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def populate_meta
-    meta = {}
+    meta = file.instance_read(:meta) || {}
 
     file.queued_for_write.each do |style, file|
       meta[style] = style == :small || image? ? image_geometry(file) : video_metadata(file)
