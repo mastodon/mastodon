@@ -1,0 +1,11 @@
+= simple_form_for text_block, url: text_block.persisted? ? admin_text_block_path(text_block) : admin_text_blocks_path do |f|
+  = render 'shared/error_messages', object: text_block
+
+  = f.input :text, placeholder: t('admin.text_blocks.text'), disabled: text_block.persisted?, readonly: text_block.persisted?, required: true
+
+  = f.input :severity, collection: TextBlock.severities.keys, wrapper: :with_label, include_blank: false, label_method: ->(type) { t(".severities.#{type}") }
+
+  %p.hint= t('admin.text_blocks.severity.desc_html')
+
+  .actions
+    = f.button :button, text_block.persisted? ? t('admin.text_blocks.save') : t('admin.text_blocks.create')

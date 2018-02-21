@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t('.title')
+
+= render @text_block
+
+%hr
+
+%h3= t('admin.text_blocks.deletion')
+
+.simple_form
+  = link_to t('admin.text_blocks.destroy'), admin_text_block_path(@text_block), class: 'block-button', method: :delete

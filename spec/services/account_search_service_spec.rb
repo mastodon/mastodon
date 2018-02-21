@@ -137,5 +137,13 @@ describe AccountSearchService do
         expect(service).not_to have_received(:call)
       end
     end
+
+    it 'does not return account with silenced texts' do
+      Fabricate(:text_block, text: 'silenced', severity: :silence)
+      match = Fabricate(:account, username: 'matchingusername', display_name: 'silenced')
+
+      results = subject.call('match', 5)
+      expect(results).not_to eq [match]
+    end
   end
 end

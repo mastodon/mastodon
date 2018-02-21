@@ -31,11 +31,13 @@ class SearchService < BaseService
                             .query(multi_match: { type: 'most_fields', query: query, operator: 'and', fields: %w(text text.stemmed) })
                             .limit(limit).objects
 
-    statuses.reject { |status| StatusFilter.new(status, account).filtered? }
+    statuses.reject do |status|
+      StatusFilter.new(status, account).filtered? || TextBlock.silence?(tag)
+    end
   end
 
   def perform_hashtags_search!
-    Tag.search_for(query.gsub(/\A#/, ''), limit)
+    Tag.search_for(query.gsub(/\A#/, ''), limit).reject { |tag| TextBlock.silence? tag }
   end
 
   def default_results

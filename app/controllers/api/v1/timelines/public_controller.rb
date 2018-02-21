@@ -13,7 +13,7 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   private
 
   def load_statuses
-    cached_public_statuses
+    cached_public_statuses.reject { |status| TextBlock.silence? status }
   end
 
   def cached_public_statuses

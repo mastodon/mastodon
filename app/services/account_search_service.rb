@@ -9,7 +9,7 @@ class AccountSearchService < BaseService
     @options = options
     @account = account
 
-    search_service_results
+    search_service_results.reject { |result| TextBlock.silence? result }
   end
 
   private

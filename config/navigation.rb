@@ -30,6 +30,7 @@ SimpleNavigation::Configuration.run do |navigation|
       admin.item :instances, safe_join([fa_icon('cloud fw'), t('admin.instances.title')]), admin_instances_url, highlights_on: %r{/admin/instances}, if: -> { current_user.admin? }
       admin.item :domain_blocks, safe_join([fa_icon('lock fw'), t('admin.domain_blocks.title')]), admin_domain_blocks_url, highlights_on: %r{/admin/domain_blocks}, if: -> { current_user.admin? }
       admin.item :email_domain_blocks, safe_join([fa_icon('envelope fw'), t('admin.email_domain_blocks.title')]), admin_email_domain_blocks_url, highlights_on: %r{/admin/email_domain_blocks}, if: -> { current_user.admin? }
+      admin.item :text_blocks, safe_join([fa_icon('language fw'), t('admin.text_blocks.title')]), admin_text_blocks_url, highlights_on: %r{/admin/text_blocks}, if: -> { current_user.admin? }
     end
 
     primary.item :admin, safe_join([fa_icon('cogs fw'), t('admin.title')]), proc { current_user.admin? ? edit_admin_settings_url : admin_custom_emojis_url }, if: proc { current_user.staff? } do |admin|

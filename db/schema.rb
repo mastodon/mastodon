@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206000000) do
+ActiveRecord::Schema.define(version: 20180210000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -462,6 +462,14 @@ ActiveRecord::Schema.define(version: 20180206000000) do
     t.datetime "updated_at", null: false
     t.index "lower((name)::text) text_pattern_ops", name: "hashtag_search_index"
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "text_blocks", id: :serial, force: :cascade do |t|
+    t.string "text", null: false
+    t.integer "severity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["text"], name: "index_text_blocks_on_text", unique: true
   end
 
   create_table "users", force: :cascade do |t|

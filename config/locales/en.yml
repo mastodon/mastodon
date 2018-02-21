@@ -335,6 +335,25 @@ en:
       last_delivery: Last delivery
       title: WebSub
       topic: Topic
+    text_blocks:
+      create: Block text
+      created: Text successfully blocked
+      deletion: Unblock text
+      destroy: Unblock
+      destroyed: Text successfully unblocked
+      new: New text block
+      save: Save
+      severities:
+        reject: Reject
+        silence: Silence
+      severity:
+        desc_html: "<strong>Silence</strong> will make the objects including the text invisible on public timeline and search window. <strong>Reject</strong> will reject all of the objects including the text."
+        title: Severity
+      show:
+        title: Text block details
+      text: Text
+      title: Text blocks
+      updated: Text block entry successfully updated
     title: Administration
   admin_mailer:
     new_report:
@@ -558,6 +577,7 @@ en:
       title: "%{name} mentioned you"
     reblog:
       title: "%{name} boosted your status"
+  rejected_text: 'Prohibited text: %{text}'
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
