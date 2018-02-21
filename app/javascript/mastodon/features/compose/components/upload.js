@@ -11,6 +11,7 @@ import classNames from 'classnames';
 const messages = defineMessages({
   undo: { id: 'upload_form.undo', defaultMessage: 'Undo' },
   description: { id: 'upload_form.description', defaultMessage: 'Describe for the visually impaired' },
+  focus: { id: 'upload_form.focus', defaultMessage: 'Choose focal point' },
 });
 
 @injectIntl
@@ -21,6 +22,7 @@ export default class Upload extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     onUndo: PropTypes.func.isRequired,
     onDescriptionChange: PropTypes.func.isRequired,
+    onOpenFocalPoint: PropTypes.func.isRequired,
   };
 
   state = {
@@ -31,6 +33,10 @@ export default class Upload extends ImmutablePureComponent {
 
   handleUndoClick = () => {
     this.props.onUndo(this.props.media.get('id'));
+  }
+
+  handleFocalPointClick = () => {
+    this.props.onOpenFocalPoint(this.props.media.get('id'));
   }
 
   handleInputChange = e => {
@@ -70,6 +76,7 @@ export default class Upload extends ImmutablePureComponent {
           {({ scale }) => (
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})` }}>
               <IconButton icon='times' title={intl.formatMessage(messages.undo)} size={36} onClick={this.handleUndoClick} />
+              <IconButton icon='crosshairs' title={intl.formatMessage(messages.focus)} size={36} onClick={this.handleFocalPointClick} />
 
               <div className={classNames('compose-form__upload-description', { active })}>
                 <label>
