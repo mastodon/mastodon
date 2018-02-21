@@ -40,6 +40,7 @@ gem 'omniauth', '~> 1.2'
 
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'
+gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
 gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.5'
