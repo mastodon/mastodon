@@ -23,7 +23,6 @@ en:
       real_conversation_title: Built for real conversation
       within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
       within_reach_title: Always within reach
-    find_another_instance: Find another instance
     generic_description: "%{domain} is one server in the network"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
@@ -274,6 +273,9 @@ en:
       contact_information:
         email: Business e-mail
         username: Contact username
+      hero:
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
+        title: Hero image
       peers_api_enabled:
         desc_html: Domain names this instance has encountered in the fediverse
         title: Publish list of discovered instances

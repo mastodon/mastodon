@@ -6,51 +6,74 @@
   = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
   = render partial: 'shared/og'
 
-.landing-page
-  .header-wrapper
-    .mascot-container
-      = image_tag asset_pack_path('elephant-fren.png'), alt: '', role: 'presentation', class: 'mascot'
+.landing-page.alternative
+  .container
+    .row
+      .column-4.hide-sm.show-xs.show-m
+        .landing-page__forms
+          .brand
+            = link_to root_url do
+              = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
 
-    .header
-      = render 'links'
+          .hide-xs
+            = render 'forms'
 
-      .container.hero
-        .floats
-          %div{ role: 'presentation', class: 'float-1' }
-          %div{ role: 'presentation', class: 'float-2' }
-          %div{ role: 'presentation', class: 'float-3' }
-        .heading
-          %h1
-            = @instance_presenter.site_title
-            %small= t 'about.hosted_on', domain: site_hostname
-        - if @instance_presenter.open_registrations
-          = render 'registration'
-        - else
-          .closed-registrations-message
-            %div
-              - if @instance_presenter.closed_registrations_message.blank?
-                %p= t('about.closed_registrations')
-              - else
-                = @instance_presenter.closed_registrations_message.html_safe
-            = link_to t('about.find_another_instance'), 'https://joinmastodon.org/', class: 'button button-alternative button--block'
+      .column-7.column-9-sm
+        .landing-page__hero
+          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
 
-  .about-short
-    .container
-      %h3= t('about.description_headline', domain: site_hostname)
-      %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+        .landing-page__information
+          .landing-page__short-description
+            .row
+              .landing-page__logo.hide-xs
+                = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
 
-  .features
-    .container
-      - if Setting.timeline_preview
-        #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
+              %h1
+                = @instance_presenter.site_title
+                %small!= t 'about.hosted_on', domain: content_tag(:span, site_hostname)
 
-      .about-mastodon
-        %h3= t 'about.what_is_mastodon'
-        %p= t 'about.about_mastodon_html'
-        = link_to t('about.learn_more'), 'https://joinmastodon.org/', class: 'button button-secondary'
-        = render 'features'
-  .footer-links
-    .container
-      %p
-        = link_to t('about.source_code'), @instance_presenter.source_url
-        = " (#{@instance_presenter.version_number})"
+            %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+
+        .show-xs
+          .landing-page__forms
+            = render 'forms'
+        .landing-page__call-to-action.hide-xs
+          .row
+            .column-5
+              .landing-page__mascot
+                = image_tag asset_pack_path('elephant_ui_plane.svg')
+            .column-5
+              .information-board__section
+                %span= t 'about.user_count_before'
+                %strong= number_with_delimiter @instance_presenter.user_count
+                %span= t 'about.user_count_after'
+            .column-5
+              .information-board__section
+                %span= t 'about.status_count_before'
+                %strong= number_with_delimiter @instance_presenter.status_count
+                %span= t 'about.status_count_after'
+        .landing-page__information
+          .landing-page__features
+            %h3= t 'about.what_is_mastodon'
+            %p= t 'about.about_mastodon_html'
+
+            = render 'features'
+
+            .landing-page__features__action
+              = link_to t('about.learn_more'), 'https://joinmastodon.org/', class: 'button button-alternative'
+
+          .landing-page__footer
+            %p
+              = link_to t('about.source_code'), @instance_presenter.source_url
+              = " (#{@instance_presenter.version_number})"
+
+      .column-4.column-6-sm.column-flex
+        .show-sm.hide-xs
+          .landing-page__forms
+            .brand
+              = link_to root_url do
+                = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+
+            = render 'forms'
+        - if Setting.timeline_preview
+          #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
