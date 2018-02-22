@@ -274,6 +274,9 @@ pl:
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
+      hero:
+        desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji.
+        title: Obraz bohatera
       peers_api_enabled:
         desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
         title: Publikuj listę znanych instancji
@@ -421,6 +424,13 @@ pl:
       title: Ta strona jest nieprawidłowa
     noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   exports:
+    archive_takeout:
+      date: Data
+      download: Pobierz swoje archiwum
+      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, obsługiwanym przez odpowiednie programy.
+      in_progress: Tworzenie archiwum…
+      request: Uzyskaj archiwum
+      size: Rozmiar
     blocks: Zablokowani
     csv: CSV
     follows: Śledzeni
@@ -739,6 +749,10 @@ pl:
     setup: Skonfiguruj
     wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
   user_mailer:
+    backup_ready:
+      explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ono dostępne do pobrania
+      subject: Twoje archiwum jest gotowe do pobrania
+      title: Odbiór archiwum
     welcome:
       edit_profile_action: Skonfiguruj profil
       edit_profile_step: Możesz dostować profil wysyłając awatar, obraz nagłówka, zmieniając wyświetlaną nazwę i wiele więcej. Jeżeli chcesz, możesz zablokować konto, aby kontrolować, kto może Cię śledzić.
