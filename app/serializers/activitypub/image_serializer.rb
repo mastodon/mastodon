@@ -19,7 +19,7 @@ class ActivityPub::ImageSerializer < ActiveModel::Serializer
   end
 
   def focal_point?
-    object.responds_to?(:meta) && object.meta['focus'].is_a?(Hash)
+    object.respond_to?(:meta) && object.meta['focus'].is_a?(Hash)
   end
 
   def focal_point
