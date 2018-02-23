@@ -18,6 +18,9 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
                                 source_url: 'https://github.com/tootsuite/mastodon',
                                 open_registrations: false,
                                 thumbnail: nil,
+                                hero: nil,
+                                user_count: 0,
+                                status_count: 0,
                                 closed_registrations_message: 'yes',
                                 commit_hash: commit_hash)
 

@@ -752,6 +752,7 @@ namespace :mastodon do
 
         if [404, 410].include?(res.code)
           if options[:force]
+            SuspendAccountService.new.call(account)
             account.destroy
           else
             progress_bar.pause
@@ -764,6 +765,7 @@ namespace :mastodon do
             if confirm.casecmp('n').zero?
               next
             else
+              SuspendAccountService.new.call(account)
               account.destroy
             end
           end

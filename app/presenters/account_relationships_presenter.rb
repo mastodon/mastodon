@@ -45,7 +45,7 @@ class AccountRelationshipsPresenter
       maps_for_account = Rails.cache.read("relationship:#{@current_account_id}:#{account_id}")
 
       if maps_for_account.is_a?(Hash)
-        @cached.merge!(maps_for_account)
+        @cached.deep_merge!(maps_for_account)
       else
         @uncached_account_ids << account_id
       end

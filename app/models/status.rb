@@ -79,7 +79,7 @@ class Status < ApplicationRecord
 
   scope :not_local_only, -> { where(local_only: [false, nil]) }
 
-  cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
+  cache_associated :account, :application, :media_attachments, :conversation, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, :conversation, mentions: :account], thread: :account
 
   delegate :domain, to: :account, prefix: true
 

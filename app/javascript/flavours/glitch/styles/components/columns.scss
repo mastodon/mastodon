@@ -242,14 +242,29 @@
 
 .column-header {
   display: flex;
-  padding: 15px;
   font-size: 16px;
+  padding: 15px;
   background: lighten($ui-base-color, 4%);
   flex: 0 0 auto;
   cursor: pointer;
   position: relative;
   z-index: 2;
   outline: 0;
+  overflow: hidden;
+
+  & > button {
+    margin: 0;
+    border: none;
+    padding: 15px 0 15px 15px;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1;
+  }
 
   &.active {
     box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
