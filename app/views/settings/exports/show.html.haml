@@ -20,3 +20,26 @@
         %th= t('exports.mutes')
         %td= @export.total_mutes
         %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
+
+%p.muted-hint= t('exports.archive_takeout.hint_html')
+
+- if policy(:backup).create?
+  %p= link_to t('exports.archive_takeout.request'), settings_export_path, class: 'button', method: :post
+
+- unless @backups.empty?
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('exports.archive_takeout.date')
+          %th= t('exports.archive_takeout.size')
+          %th
+      %tbody
+        - @backups.each do |backup|
+          %tr
+            %td= l backup.created_at
+            - if backup.processed?
+              %td= number_to_human_size backup.dump_file_size
+              %td= table_link_to 'download', t('exports.archive_takeout.download'), backup.dump.url
+            - else
+              %td{ colspan: 2 }= t('exports.archive_takeout.in_progress')

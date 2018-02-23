@@ -34,7 +34,18 @@ class MediaAttachment < ApplicationRecord
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
   AUDIO_MIME_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/vnd.wav', 'audio/wav', 'audio/x-wav', 'audio/x-wave', 'audio/ogg',].freeze
 
-  IMAGE_STYLES = { original: '1280x1280>', small: '400x400>' }.freeze
+  IMAGE_STYLES = {
+    original: {
+      geometry: '1280x1280>',
+      file_geometry_parser: FastGeometryParser,
+    },
+
+    small: {
+      geometry: '400x400>',
+      file_geometry_parser: FastGeometryParser,
+    },
+  }.freeze
+
   AUDIO_STYLES = {
     original: {
       format: 'mp4',
@@ -50,6 +61,7 @@ class MediaAttachment < ApplicationRecord
       },
     },
   }.freeze
+
   VIDEO_STYLES = {
     small: {
       convert_options: {
@@ -95,6 +107,24 @@ class MediaAttachment < ApplicationRecord
 
   def to_param
     shortcode
+  end
+
+  def focus=(point)
+    return if point.blank?
+
+    x, y = (point.is_a?(Enumerable) ? point : point.split(',')).map(&:to_f)
+
+    meta = file.instance_read(:meta) || {}
+    meta['focus'] = { 'x' => x, 'y' => y }
+
+    file.instance_write(:meta, meta)
+  end
+
+  def focus
+    x = file.meta['focus']['x']
+    y = file.meta['focus']['y']
+
+    "#{x},#{y}"
   end
 
   before_create :prepare_description, unless: :local?
@@ -178,7 +208,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def populate_meta
-    meta = {}
+    meta = file.instance_read(:meta) || {}
 
     file.queued_for_write.each do |style, file|
       meta[style] = style == :small || image? ? image_geometry(file) : video_metadata(file)
@@ -188,16 +218,16 @@ class MediaAttachment < ApplicationRecord
   end
 
   def image_geometry(file)
-    geo = Paperclip::Geometry.from_file file
+    width, height = FastImage.size(file.path)
+
+    return {} if width.nil?
 
     {
-      width:  geo.width.to_i,
-      height: geo.height.to_i,
-      size: "#{geo.width.to_i}x#{geo.height.to_i}",
-      aspect: geo.width.to_f / geo.height.to_f,
+      width:  width,
+      height: height,
+      size: "#{width}x#{height}",
+      aspect: width.to_f / height.to_f,
     }
-  rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-    {}
   end
 
   def video_metadata(file)

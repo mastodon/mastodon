@@ -7,15 +7,9 @@ module AccountAvatar
 
   class_methods do
     def avatar_styles(file)
-      styles   = {}
-      geometry = Paperclip::Geometry.from_file(file)
-
-      styles[:original] = '120x120#' if geometry.width != geometry.height || geometry.width > 120 || geometry.height > 120
-      styles[:static]   = { format: 'png', convert_options: '-coalesce' } if file.content_type == 'image/gif'
-
+      styles = { original: { geometry: '120x120#', file_geometry_parser: FastGeometryParser } }
+      styles[:static] = { geometry: '120x120#', format: 'png', convert_options: '-coalesce', file_geometry_parser: FastGeometryParser } if file.content_type == 'image/gif'
       styles
-    rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-      {}
     end
 
     private :avatar_styles
@@ -23,7 +17,7 @@ module AccountAvatar
 
   included do
     # Avatar upload
-    has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-strip' }
+    has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-strip' }, processors: [:lazy_thumbnail]
     validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :avatar, less_than: 2.megabytes
   end
