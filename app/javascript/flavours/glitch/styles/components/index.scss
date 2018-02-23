@@ -40,19 +40,35 @@
     cursor: default;
   }
 
-  &.button-alternative {
+  &.button-primary,
+  &.button-alternative,
+  &.button-secondary,
+  &.button-alternative-2 {
     font-size: 16px;
     line-height: 36px;
     height: auto;
-    color: $ui-base-color;
-    background: $ui-primary-color;
     text-transform: none;
     padding: 4px 16px;
+  }
+
+  &.button-alternative {
+    color: $ui-base-color;
+    background: $ui-primary-color;
 
     &:active,
     &:focus,
     &:hover {
       background-color: lighten($ui-primary-color, 4%);
+    }
+  }
+
+  &.button-alternative-2 {
+    background: $ui-base-lighter-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-base-lighter-color, 4%);
     }
   }
 
