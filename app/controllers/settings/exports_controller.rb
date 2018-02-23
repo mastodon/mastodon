@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Settings::ExportsController < Settings::BaseController
+  include Authorization
+
   def show
     @export  = Export.new(current_account)
     @backups = current_user.backups
