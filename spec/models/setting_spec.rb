@@ -42,11 +42,6 @@ RSpec.describe Setting, type: :model do
         described_class[key]
       end
 
-      it 'calls Rails.cache.fetch' do
-        expect(Rails).to receive_message_chain(:cache, :fetch).with(cache_key)
-        described_class[key]
-      end
-
       context 'Rails.cache does not exists' do
         before do
           allow(RailsSettings::Settings).to receive(:object).with(key).and_return(object)
@@ -101,6 +96,14 @@ RSpec.describe Setting, type: :model do
       context 'Rails.cache exists' do
         before do
           Rails.cache.write(cache_key, cache_value)
+        end
+
+        it 'does not query the database' do
+          expect do |callback|
+            ActiveSupport::Notifications.subscribed callback, 'sql.active_record' do
+              described_class[key]
+            end
+          end.not_to yield_control
         end
 
         it 'returns the cached value' do

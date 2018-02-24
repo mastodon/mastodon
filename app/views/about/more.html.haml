@@ -10,34 +10,34 @@
     .header
       = render 'links'
 
-      .container.hero
+      .container-alt.hero
         .heading
           %h3= t('about.description_headline', domain: site_hostname)
           %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
   .information-board
-    .container
-      .information-board-sections
-        .section
+    .container-alt
+      .information-board__sections
+        .information-board__section
           %span= t 'about.user_count_before'
           %strong= number_with_delimiter @instance_presenter.user_count
           %span= t 'about.user_count_after'
-        .section
+        .information-board__section
           %span= t 'about.status_count_before'
           %strong= number_with_delimiter @instance_presenter.status_count
           %span= t 'about.status_count_after'
-        .section
+        .information-board__section
           %span= t 'about.domain_count_before'
           %strong= number_with_delimiter @instance_presenter.domain_count
           %span= t 'about.domain_count_after'
       = render 'contact', contact: @instance_presenter
 
   .extended-description
-    .container
+    .container-alt
       = @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
 
   .footer-links
-    .container
+    .container-alt
       %p
         = link_to t('about.source_code'), @instance_presenter.source_url
         = " (#{@instance_presenter.version_number})"

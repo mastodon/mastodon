@@ -185,6 +185,7 @@ GEM
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
+    fastimage (2.1.1)
     ffi (1.9.18)
     fog-core (1.45.0)
       builder
@@ -300,6 +301,7 @@ GEM
       mini_mime (>= 0.1.1)
     mario-redis-lock (1.2.0)
       redis (~> 3, >= 3.0.5)
+    memory_profiler (0.9.10)
     method_source (0.9.0)
     microformats (4.0.7)
       json
@@ -547,6 +549,8 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     statsd-ruby (1.2.1)
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     strong_migrations (0.1.9)
       activerecord (>= 3.2.0)
     temple (0.8.0)
@@ -639,6 +643,7 @@ DEPENDENCIES
   fabrication (~> 2.18)
   faker (~> 1.7)
   fast_blank (~> 1.0)
+  fastimage
   fog-core (~> 1.45)
   fog-local (~> 0.4)
   fog-openstack (~> 0.1)
@@ -660,6 +665,7 @@ DEPENDENCIES
   link_header (~> 0.0)
   lograge (~> 0.7)
   mario-redis-lock (~> 1.2)
+  memory_profiler
   microformats (~> 4.0)
   mime-types (~> 3.1)
   nokogiri (~> 1.8)
@@ -707,6 +713,7 @@ DEPENDENCIES
   simple_form (~> 3.4)
   simplecov (~> 0.14)
   sprockets-rails (~> 3.2)
+  streamio-ffmpeg (~> 3.0)
   strong_migrations
   tty-command
   tty-prompt

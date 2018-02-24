@@ -10,6 +10,15 @@ class Auth::SessionsController < Devise::SessionsController
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
   before_action :set_instance_presenter, only: [:new]
 
+  def new
+    Devise.omniauth_configs.each do |provider, config|
+      if config.strategy.redirect_at_sign_in
+        return redirect_to(omniauth_authorize_path(resource_name, provider))
+      end
+    end
+    super
+  end
+
   def create
     super do |resource|
       remember_me(resource)

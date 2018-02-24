@@ -34,4 +34,9 @@ class UserMailerPreview < ActionMailer::Preview
   def welcome
     UserMailer.welcome(User.first)
   end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/backup_ready
+  def backup_ready
+    UserMailer.backup_ready(User.first, Backup.first)
+  end
 end

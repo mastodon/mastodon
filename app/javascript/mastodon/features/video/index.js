@@ -30,7 +30,7 @@ const formatTime = secondsNum => {
   return (hours === '00' ? '' : `${hours}:`) + `${minutes}:${seconds}`;
 };
 
-const findElementPosition = el => {
+export const findElementPosition = el => {
   let box;
 
   if (el.getBoundingClientRect && el.parentNode) {
@@ -61,7 +61,7 @@ const findElementPosition = el => {
   };
 };
 
-const getPointerPosition = (el, event) => {
+export const getPointerPosition = (el, event) => {
   const position = {};
   const box = findElementPosition(el);
   const boxW = el.offsetWidth;
@@ -77,7 +77,7 @@ const getPointerPosition = (el, event) => {
     pageY = event.changedTouches[0].pageY;
   }
 
-  position.y = Math.max(0, Math.min(1, ((boxY - pageY) + boxH) / boxH));
+  position.y = Math.max(0, Math.min(1, (pageY - boxY) / boxH));
   position.x = Math.max(0, Math.min(1, (pageX - boxX) / boxW));
 
   return position;

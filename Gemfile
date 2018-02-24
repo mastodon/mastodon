@@ -20,6 +20,7 @@ gem 'fog-local', '~> 0.4', require: false
 gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder', '~> 0.6'
+gem 'streamio-ffmpeg', '~> 3.0'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.5'
@@ -39,6 +40,7 @@ gem 'omniauth', '~> 1.2'
 
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'
+gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
 gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.5'
@@ -114,6 +116,7 @@ group :development do
   gem 'bullet', '~> 5.5'
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
+  gem 'memory_profiler'
   gem 'rubocop', require: false
   gem 'brakeman', '~> 4.0', require: false
   gem 'bundler-audit', '~> 0.6', require: false
