@@ -162,7 +162,6 @@ ru:
   authorize_follow:
     error: К сожалению, при поиске удаленного аккаунта возникла ошибка
     follow: Подписаться
-    prompt_html: 'Вы (<strong>%{self}</strong>) запросили подписку:'
     title: Подписаться на %{acct}
   datetime:
     distance_in_words:
@@ -269,14 +268,14 @@ ru:
     truncate: "&hellip;"
   push_notifications:
     favourite:
-      title: "Ваш статус понравился %{name}"
+      title: Ваш статус понравился %{name}
     follow:
       title: "%{name} теперь подписан(а) на Вас"
     mention:
       action_boost: Продвинуть
       action_expand: Развернуть
       action_favourite: Нравится
-      title: "Вас упомянул(а) %{name}"
+      title: Вас упомянул(а) %{name}
     reblog:
       title: "%{name} продвинул(а) Ваш статус"
     subscribed:
@@ -351,7 +350,7 @@ ru:
     reblogged: продвинул(а)
     sensitive_content: Чувствительный контент
   terms:
-    title: "Условия обслуживания и политика конфиденциальности %{instance}"
+    title: Условия обслуживания и политика конфиденциальности %{instance}
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

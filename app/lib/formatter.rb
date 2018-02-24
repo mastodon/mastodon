@@ -104,7 +104,7 @@ class Formatter
     html_attrs     = { target: '_blank', rel: 'nofollow noopener' }
 
     Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), normalized_url, html_attrs)
-  rescue Addressable::URI::InvalidURIError
+  rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     encode(entity[:url])
   end
 

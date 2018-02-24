@@ -12,6 +12,8 @@ import ColumnLoading from './column_loading';
 import BundleColumnError from './bundle_column_error';
 import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, FavouritedStatuses } from '../../ui/util/async-components';
 
+import { scrollRight } from '../../../scroll';
+
 const componentMap = {
   'COMPOSE': Compose,
   'HOME': HomeTimeline,
@@ -49,9 +51,13 @@ export default class ColumnsArea extends ImmutablePureComponent {
     this.setState({ shouldAnimate: true });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
+
+    if (this.props.children !== prevProps.children && !this.props.singleColumn) {
+      scrollRight(this.node);
+    }
   }
 
   handleSwipe = (index) => {
@@ -72,6 +78,10 @@ export default class ColumnsArea extends ImmutablePureComponent {
       this.context.router.history.push(getLink(this.pendingIndex));
       this.pendingIndex = null;
     }
+  }
+
+  setRef = (node) => {
+    this.node = node;
   }
 
   renderView = (link, index) => {
@@ -114,7 +124,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
 
     return (
-      <div className='columns-area'>
+      <div className='columns-area' ref={this.setRef}>
         {columns.map(column => {
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
 

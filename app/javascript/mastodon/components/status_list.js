@@ -105,7 +105,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   handleKeyDown = (e) => {
-    if (['PageDown', 'PageUp', 'End', 'Home'].includes(e.key)) {
+    if (['PageDown', 'PageUp'].includes(e.key) || (e.ctrlKey && ['End', 'Home'].includes(e.key))) {
       const article = (() => {
         switch (e.key) {
         case 'PageDown':
