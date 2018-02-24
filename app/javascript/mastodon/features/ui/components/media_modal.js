@@ -72,7 +72,7 @@ export default class MediaModal extends ImmutablePureComponent {
 
   switchNavigation = () => {
     this.setState({
-      navigationShown: !this.navigationShown,
+      navigationShown: !this.state.navigationShown,
     });
   };
 
