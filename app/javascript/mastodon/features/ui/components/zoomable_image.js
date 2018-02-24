@@ -140,11 +140,7 @@ export default class ZoomableImage extends React.PureComponent {
       <div
         className='zoomable-image'
         ref={setContainerRef}
-        style={{
-          // on Android Chrome, pixel length of 100vh is mutable
-          height: `${document.body.clientHeight}px`,
-          overflow,
-        }}
+        style={{ overflow }}
       >
         <img
           role='presentation'

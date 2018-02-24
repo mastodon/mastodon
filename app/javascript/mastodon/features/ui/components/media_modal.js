@@ -126,7 +126,10 @@ export default class MediaModal extends ImmutablePureComponent {
         >
           <div className='media-modal__content'>
             <ReactSwipeableViews
-              style={{ height: '100%' }}
+              style={{
+                // on Android Chrome, pixel length of 100vh is mutable
+                height: `${document.body.clientHeight}px`,
+              }}
               containerStyle={containerStyle}
               onChangeIndex={this.handleSwipe}
               onSwitching={this.handleSwitching}
