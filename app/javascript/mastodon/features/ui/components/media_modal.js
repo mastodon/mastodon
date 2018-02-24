@@ -2,8 +2,8 @@ import React from 'react';
 import ReactSwipeableViews from 'react-swipeable-views';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
+import classNames from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -103,7 +103,7 @@ export default class MediaModal extends ImmutablePureComponent {
       if (image.get('type') === 'image') {
         return <ImageLoader previewSrc={image.get('preview_url')} src={image.get('url')} width={width} height={height} alt={image.get('description')} key={image.get('url')} onClick={switchNavigation} />;
       } else if (image.get('type') === 'gifv') {
-        return <ExtendedVideoPlayer src={image.get('url')} muted controls={false} width={width} height={height} key={image.get('preview_url')} alt={image.get('description')} />;
+        return <ExtendedVideoPlayer src={image.get('url')} muted controls={false} width={width} height={height} key={image.get('preview_url')} alt={image.get('description')} onClick={switchNavigation}/>;
       }
 
       return null;

@@ -3331,12 +3331,17 @@ a.status-card {
   z-index: 9999;
 }
 
+.video-modal {
+  max-width: 100vw;
+  max-height: 100vh;
+  position: relative;
+}
+
 .media-modal {
   width: 100%;
   height: 100%;
   position: relative;
 
-  .extended-video-player,
   img,
   canvas,
   video {
@@ -3345,13 +3350,6 @@ a.status-card {
     width: auto;
     height: auto;
     margin: auto;
-  }
-
-  .extended-video-player,
-  video {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
   }
 
   img,
