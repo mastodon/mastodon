@@ -120,6 +120,10 @@ export default class ImageLoader extends React.PureComponent {
     return typeof width === 'number' && typeof height === 'number';
   }
 
+  setCanvasRef = c => {
+    this.canvas = c;
+  }
+
   render () {
     const { alt, src, width, height, onClick } = this.props;
     const { loading } = this.state;
@@ -129,16 +133,12 @@ export default class ImageLoader extends React.PureComponent {
       'image-loader--amorphous': !this.hasSize(),
     });
 
-    const setCanvasRef = c => {
-      this.canvas = c;
-    };
-
     return (
       <div className={className}>
         {loading ? (
           <canvas
             className='image-loader__preview-canvas'
-            ref={setCanvasRef}
+            ref={this.setCanvasRef}
             width={width}
             height={height}
           />

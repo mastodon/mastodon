@@ -70,6 +70,12 @@ export default class MediaModal extends ImmutablePureComponent {
     return this.state.index !== null ? this.state.index : this.props.index;
   }
 
+  switchNavigation = () => {
+    this.setState({
+      navigationShown: !this.navigationShown,
+    });
+  };
+
   render () {
     const { media, intl, onClose } = this.props;
     const { navigationShown } = this.state;
@@ -90,20 +96,35 @@ export default class MediaModal extends ImmutablePureComponent {
       });
     }
 
-    const switchNavigation = () => {
-      this.setState({
-        navigationShown: !navigationShown,
-      });
-    };
-
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
       const height = image.getIn(['meta', 'original', 'height']) || null;
 
       if (image.get('type') === 'image') {
-        return <ImageLoader previewSrc={image.get('preview_url')} src={image.get('url')} width={width} height={height} alt={image.get('description')} key={image.get('url')} onClick={switchNavigation} />;
+        return (
+          <ImageLoader
+            previewSrc={image.get('preview_url')}
+            src={image.get('url')}
+            width={width}
+            height={height}
+            alt={image.get('description')}
+            key={image.get('url')}
+            onClick={this.switchNavigation}
+          />
+        );
       } else if (image.get('type') === 'gifv') {
-        return <ExtendedVideoPlayer src={image.get('url')} muted controls={false} width={width} height={height} key={image.get('preview_url')} alt={image.get('description')} onClick={switchNavigation}/>;
+        return (
+          <ExtendedVideoPlayer
+            src={image.get('url')}
+            muted
+            controls={false}
+            width={width}
+            height={height}
+            key={image.get('preview_url')}
+            alt={image.get('description')}
+            onClick={this.switchNavigation}
+          />
+        );
       }
 
       return null;

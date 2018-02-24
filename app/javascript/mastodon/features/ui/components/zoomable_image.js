@@ -89,11 +89,6 @@ export default class ZoomableImage extends React.PureComponent {
     this.lastDistance = distance;
   }
 
-  handleScroll = ev => {
-    const handler = this.props.onScroll;
-    if (handler) handler(ev);
-  }
-
   zoom(nextScale, midpoint) {
     const { scale } = this.state;
     const { scrollLeft, scrollTop } = this.container;
@@ -124,27 +119,28 @@ export default class ZoomableImage extends React.PureComponent {
     if (handler) handler();
   }
 
+  setContainerRef = c => {
+    this.container = c;
+  }
+
+  setImageRef = c => {
+    this.image = c;
+  }
+
   render () {
     const { alt, src } = this.props;
     const { scale } = this.state;
     const overflow = scale === 1 ? 'hidden' : 'scroll';
 
-    const setContainerRef = c => {
-      this.container = c;
-    };
-    const setImageRef = c => {
-      this.image = c;
-    };
-
     return (
       <div
         className='zoomable-image'
-        ref={setContainerRef}
+        ref={this.setContainerRef}
         style={{ overflow }}
       >
         <img
           role='presentation'
-          ref={setImageRef}
+          ref={this.setImageRef}
           alt={alt}
           src={src}
           style={{
