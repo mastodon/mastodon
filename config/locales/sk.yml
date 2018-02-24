@@ -406,6 +406,9 @@ sk:
     set_new_password: Nastaviť nové heslo
     confirm_email: Potvrdiť email
     or_log_in_with: Alebo prihlásiť z
+    providers:
+      cas: CAS
+      saml: SAML
   authorize_follow:
     follow: Následovať
     follow_request: 'Poslali ste požiadavku následovať užívateľa:'
@@ -426,6 +429,7 @@ sk:
       over_x_years: '%{count}rok'
       x_minutes: ''
       x_seconds: '%{count}sek'
+      about_x_hours: '%{count}hod'
   deletes:
     confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
     proceed: Vymazať účet
@@ -457,6 +461,7 @@ sk:
     follows: Následujete
     mutes: Stíšili ste
     storage: Úložisko médii
+    csv: CSV
   followers:
     domain: Doména
     followers_count: Počet následovateľov
@@ -531,3 +536,8 @@ sk:
       expires_at: Vyprší
       uses: Používa
     title: Pozvať ľudí
+  landing_strip_html: <strong>%{name}</strong> je užívateľ na serveri %{link_to_root_path}.
+    Ty ich môžeš následovať a môžeš s nimi interaktovať pokiaľ máš účet hocikde v
+    rámci fediversa.
+  landing_strip_signup_html: Pokiaľ ešte nemáš, môžeš <a href="%{sign_up_path}">si
+    tu vytvoriť účet</a>.
