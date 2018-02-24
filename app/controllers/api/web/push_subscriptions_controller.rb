@@ -26,6 +26,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
         favourite: alerts_enabled,
         reblog: alerts_enabled,
         mention: alerts_enabled,
+        post: alerts_enabled,
       },
     }
 

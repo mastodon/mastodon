@@ -30,6 +30,7 @@ class FeedManager
     return false unless add_to_feed(:home, account.id, status)
     trim(:home, account.id)
     PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}") if push_update_required?("timeline:#{account.id}")
+    NotifyService.new.call(account, status, :post) unless status.reblog? && status.reblog.account == account
     true
   end
 

@@ -78,6 +78,16 @@ export default class ColumnSettings extends React.PureComponent {
             <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'reblog']} onChange={onChange} label={soundStr} />
           </div>
         </div>
+
+        <div role='group' aria-labelledby='notifications-post'>
+          <span id='notifications-post' className='column-settings__section'><FormattedMessage id='notifications.column_settings.post' defaultMessage='New posts:' /></span>
+
+          <div className='column-settings__row'>
+            <SettingToggle prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'post']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'post']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'post']} onChange={onChange} label={soundStr} />
+          </div>
+        </div>
       </div>
     );
   }

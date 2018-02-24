@@ -6,7 +6,7 @@ RSpec.describe Notification, type: :model do
   end
 
   describe '#target_status' do
-    let(:notification) { Fabricate(:notification, activity_type: type, activity: activity) }
+    let(:notification) { Fabricate(:notification, type: type, activity: activity) }
     let(:status)       { Fabricate(:status) }
     let(:reblog)       { Fabricate(:status, reblog: status) }
     let(:favourite)    { Fabricate(:favourite, status: status) }
@@ -33,6 +33,15 @@ RSpec.describe Notification, type: :model do
     context 'type is :mention' do
       let(:type)     { :mention }
       let(:activity) { mention }
+
+      it 'returns status' do
+        expect(notification.target_status).to eq status
+      end
+    end
+
+    context 'type is :post' do
+      let(:type)     { :post }
+      let(:activity) { status }
 
       it 'returns status' do
         expect(notification.target_status).to eq status
@@ -85,6 +94,11 @@ RSpec.describe Notification, type: :model do
     it 'returns :follow for a Follow' do
       notification = Notification.new(activity: Follow.new)
       expect(notification.type).to eq :follow
+    end
+
+    it 'returns :post when type explicitly specified for a Status' do
+      notification = Notification.new(type: :post, activity: Status.new)
+      expect(notification.type).to eq :post
     end
   end
 

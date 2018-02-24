@@ -1,0 +1,5 @@
+<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+
+<%= raw t('notification_mailer.post.body', name: @account.acct) %>
+
+<%= render 'status', status: @status %>

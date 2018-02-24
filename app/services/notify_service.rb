@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class NotifyService < BaseService
-  def call(recipient, activity)
+  def call(recipient, activity, type = '')
     @recipient    = recipient
     @activity     = activity
-    @notification = Notification.new(account: @recipient, activity: @activity)
+    @notification = Notification.new(account: @recipient, activity: @activity, type: type)
 
     return if recipient.user.nil? || blocked?
 
@@ -34,6 +34,10 @@ class NotifyService < BaseService
 
   def blocked_follow_request?
     false
+  end
+
+  def blocked_post?
+    @recipient.muting_notifications?(@notification.from_account)
   end
 
   def following_sender?
