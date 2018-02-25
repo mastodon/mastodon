@@ -9,19 +9,9 @@ describe('<DisplayName />', () => {
     const account = fromJS({
       username: 'bar',
       acct: 'bar@baz',
-      display_name: 'Foo',
+      display_name_html: '<p>Foo</p>',
     });
     const wrapper = render(<DisplayName account={account} />);
     expect(wrapper).to.have.text('Foo @bar@baz');
-  });
-
-  it('renders the username + account name if display name is empty', () => {
-    const account = fromJS({
-      username: 'bar',
-      acct: 'bar@baz',
-      display_name: '',
-    });
-    const wrapper = render(<DisplayName account={account} />);
-    expect(wrapper).to.have.text('bar @bar@baz');
   });
 });

@@ -138,4 +138,8 @@ module AccountInteractions
   def reblogged?(status)
     status.proper.reblogs.where(account: self).exists?
   end
+
+  def pinned?(status)
+    status_pins.where(status: status).exists?
+  end
 end

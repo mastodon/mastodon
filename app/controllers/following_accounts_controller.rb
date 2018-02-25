@@ -10,7 +10,7 @@ class FollowingAccountsController < ApplicationController
       format.html
 
       format.json do
-        render json: collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter
+        render json: collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
       end
     end
   end

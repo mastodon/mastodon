@@ -178,7 +178,7 @@ RSpec.describe Formatter do
     end
 
     context 'with remote status' do
-      let(:status) { Fabricate(:status, text: 'Beep boop', uri: 'beepboop') }
+      let(:status) { Fabricate(:status, account: remote_account, text: 'Beep boop') }
 
       it 'reformats' do
         is_expected.to eq 'Beep boop'
@@ -226,7 +226,7 @@ RSpec.describe Formatter do
     end
 
     context 'with remote status' do
-      let(:status)  { Fabricate(:status, text: '<script>alert("Hello")</script>', uri: 'beep boop') }
+      let(:status)  { Fabricate(:status, account: remote_account, text: '<script>alert("Hello")</script>') }
 
       it 'returns tag-stripped text' do
         is_expected.to eq ''

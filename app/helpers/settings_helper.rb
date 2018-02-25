@@ -30,6 +30,7 @@ module SettingsHelper
     th: 'ภาษาไทย',
     tr: 'Türkçe',
     uk: 'Українська',
+    zh: '中文',
     'zh-CN': '简体中文',
     'zh-HK': '繁體中文（香港）',
     'zh-TW': '繁體中文（臺灣）',
@@ -37,6 +38,10 @@ module SettingsHelper
 
   def human_locale(locale)
     HUMAN_LOCALES[locale]
+  end
+
+  def filterable_languages
+    I18n.available_locales.map { |locale| locale.to_s.split('-').first.to_sym }.uniq
   end
 
   def hash_to_object(hash)

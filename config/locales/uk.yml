@@ -250,6 +250,17 @@ uk:
     reblog:
       body: 'Ваш статус було передмухнуто %{name}:'
       subject: "%{name} передмухнув ваш статус"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Далі
     prev: Назад

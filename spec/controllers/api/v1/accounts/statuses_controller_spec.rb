@@ -18,21 +18,37 @@ describe Api::V1::Accounts::StatusesController do
       expect(response).to have_http_status(:success)
       expect(response.headers['Link'].links.size).to eq(2)
     end
-  end
 
-  describe 'GET #index with only media' do
-    it 'returns http success' do
-      get :index, params: { account_id: user.account.id, only_media: true }
+    context 'with only media' do
+      it 'returns http success' do
+        get :index, params: { account_id: user.account.id, only_media: true }
 
-      expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:success)
+      end
     end
-  end
 
-  describe 'GET #index with exclude replies' do
-    it 'returns http success' do
-      get :index, params: { account_id: user.account.id, exclude_replies: true }
+    context 'with exclude replies' do
+      before do
+        Fabricate(:status, account: user.account, thread: Fabricate(:status))
+      end
 
-      expect(response).to have_http_status(:success)
+      it 'returns http success' do
+        get :index, params: { account_id: user.account.id, exclude_replies: true }
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'with only pinned' do
+      before do
+        Fabricate(:status_pin, account: user.account, status: Fabricate(:status, account: user.account))
+      end
+
+      it 'returns http success' do
+        get :index, params: { account_id: user.account.id, pinned: true }
+
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 end

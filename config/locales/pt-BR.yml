@@ -255,6 +255,17 @@ pt-BR:
     reblog:
       body: 'O seu post foi reblogado por %{name}:'
       subject: "%{name} reblogou o seu post"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Next
     prev: Prev

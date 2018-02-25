@@ -261,6 +261,17 @@ zh-CN:
     reblog:
       body: 你的嘟文得到 %{name} 的转嘟
       subject: "%{name} 转嘟（嘟嘟滴）了你的嘟文"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: 下一页
     prev: 上一页

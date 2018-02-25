@@ -28,7 +28,7 @@ export default function reports(state = initialState, action) {
       if (state.getIn(['new', 'account_id']) !== action.account.get('id')) {
         map.setIn(['new', 'status_ids'], action.status ? ImmutableSet([action.status.getIn(['reblog', 'id'], action.status.get('id'))]) : ImmutableSet());
         map.setIn(['new', 'comment'], '');
-      } else {
+      } else if (action.status) {
         map.updateIn(['new', 'status_ids'], ImmutableSet(), set => set.add(action.status.getIn(['reblog', 'id'], action.status.get('id'))));
       }
     });

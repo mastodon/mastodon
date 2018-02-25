@@ -9,7 +9,7 @@ module Admin
     before_action :set_account
     before_action :set_status, only: [:update, :destroy]
 
-    PAR_PAGE = 20
+    PER_PAGE = 20
 
     def index
       @statuses = @account.statuses
@@ -17,7 +17,7 @@ module Admin
         account_media_status_ids = @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
         @statuses.merge!(Status.where(id: account_media_status_ids))
       end
-      @statuses = @statuses.preload(:media_attachments, :mentions).page(params[:page]).per(PAR_PAGE)
+      @statuses = @statuses.preload(:media_attachments, :mentions).page(params[:page]).per(PER_PAGE)
 
       @form = Form::StatusBatch.new
     end

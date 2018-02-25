@@ -32,7 +32,7 @@ export default class Column extends React.PureComponent {
   }
 
   componentDidMount () {
-    this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents ? { passive: true } : false);
+    this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
   }
 
   componentWillUnmount () {

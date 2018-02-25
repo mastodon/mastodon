@@ -108,6 +108,17 @@ bg:
     reblog:
       body: 'Твоята публикация беше споделена от %{name}:'
       subject: "%{name} сподели публикацията ти"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Напред
     prev: Назад

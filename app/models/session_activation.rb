@@ -25,6 +25,7 @@
 #
 
 class SessionActivation < ApplicationRecord
+  belongs_to :user, inverse_of: :session_activations, required: true
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', dependent: :destroy
   belongs_to :web_push_subscription, class_name: 'Web::PushSubscription', dependent: :destroy
 

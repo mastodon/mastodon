@@ -1,28 +1,29 @@
 %h6= t 'sessions.title'
 %p.muted-hint= t 'sessions.explanation'
 
-%table.table.inline-table
-  %thead
-    %tr
-      %th= t 'sessions.browser'
-      %th= t 'sessions.ip'
-      %th= t 'sessions.activity'
-      %td
-  %tbody
-    - @sessions.each do |session|
+.table-wrapper
+  %table.table.inline-table
+    %thead
       %tr
+        %th= t 'sessions.browser'
+        %th= t 'sessions.ip'
+        %th= t 'sessions.activity'
         %td
-          %span{ title: session.user_agent }<
-            = fa_icon "#{session_device_icon(session)} fw", 'aria-label' => session_device_icon(session)
-            = ' '
-            = t 'sessions.description', browser: t("sessions.browsers.#{session.browser}"), platform: t("sessions.platforms.#{session.platform}")
-        %td
-          %samp= session.ip
-        %td
-          - if current_session.session_id == session.session_id
-            = t 'sessions.current_session'
-          - else
-            %time.time-ago{ datetime: session.updated_at.iso8601, title: l(session.updated_at) }= l(session.updated_at)
-        %td
-          - if current_session.session_id != session.session_id
-            = table_link_to 'times', t('sessions.revoke'), settings_session_path(session), method: :delete
+    %tbody
+      - @sessions.each do |session|
+        %tr
+          %td
+            %span{ title: session.user_agent }<
+              = fa_icon "#{session_device_icon(session)} fw", 'aria-label' => session_device_icon(session)
+              = ' '
+              = t 'sessions.description', browser: t("sessions.browsers.#{session.browser}"), platform: t("sessions.platforms.#{session.platform}")
+          %td
+            %samp= session.ip
+          %td
+            - if current_session.session_id == session.session_id
+              = t 'sessions.current_session'
+            - else
+              %time.time-ago{ datetime: session.updated_at.iso8601, title: l(session.updated_at) }= l(session.updated_at)
+          %td
+            - if current_session.session_id != session.session_id
+              = table_link_to 'times', t('sessions.revoke'), settings_session_path(session), method: :delete

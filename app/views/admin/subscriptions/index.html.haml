@@ -1,15 +1,16 @@
 - content_for :page_title do
   = t('admin.subscriptions.title')
 
-%table.table
-  %thead
-    %tr
-      %th= t('admin.subscriptions.topic')
-      %th= t('admin.subscriptions.callback_url')
-      %th= t('admin.subscriptions.confirmed')
-      %th= t('admin.subscriptions.expires_in')
-      %th= t('admin.subscriptions.last_delivery')
-  %tbody
-    = render @subscriptions
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.subscriptions.topic')
+        %th= t('admin.subscriptions.callback_url')
+        %th= t('admin.subscriptions.confirmed')
+        %th= t('admin.subscriptions.expires_in')
+        %th= t('admin.subscriptions.last_delivery')
+    %tbody
+      = render @subscriptions
 
 = paginate @subscriptions

@@ -8,6 +8,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
   attribute :muted, if: :current_user?
+  attribute :pinned, if: :pinnable?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
   belongs_to :application
@@ -55,6 +56,21 @@ class REST::StatusSerializer < ActiveModel::Serializer
     else
       current_user.account.muting_conversation?(object.conversation)
     end
+  end
+
+  def pinned
+    if instance_options && instance_options[:relationships]
+      instance_options[:relationships].pins_map[object.id] || false
+    else
+      current_user.account.pinned?(object)
+    end
+  end
+
+  def pinnable?
+    current_user? &&
+      current_user.account_id == object.account_id &&
+      !object.reblog? &&
+      %w(public unlisted).include?(object.visibility)
   end
 
   class ApplicationSerializer < ActiveModel::Serializer

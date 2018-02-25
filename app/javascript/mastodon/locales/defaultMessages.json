@@ -189,6 +189,18 @@
       {
         "defaultMessage": "Unmute conversation",
         "id": "status.unmute_conversation"
+      },
+      {
+        "defaultMessage": "Pin on profile",
+        "id": "status.pin"
+      },
+      {
+        "defaultMessage": "Unpin from profile",
+        "id": "status.unpin"
+      },
+      {
+        "defaultMessage": "Embed",
+        "id": "status.embed"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -424,7 +436,7 @@
         "id": "account.follow"
       },
       {
-        "defaultMessage": "Awaiting approval",
+        "defaultMessage": "Awaiting approval. Click to cancel follow request",
         "id": "account.requested"
       },
       {
@@ -1035,6 +1047,18 @@
       {
         "defaultMessage": "Share",
         "id": "status.share"
+      },
+      {
+        "defaultMessage": "Pin on profile",
+        "id": "status.pin"
+      },
+      {
+        "defaultMessage": "Unpin from profile",
+        "id": "status.unpin"
+      },
+      {
+        "defaultMessage": "Embed",
+        "id": "status.embed"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
@@ -1107,6 +1131,23 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/confirmation_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Embed",
+        "id": "status.embed"
+      },
+      {
+        "defaultMessage": "Embed this status on your website by copying the code below.",
+        "id": "embed.instructions"
+      },
+      {
+        "defaultMessage": "Here is what it will look like:",
+        "id": "embed.preview"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/embed_modal.json"
   },
   {
     "descriptors": [

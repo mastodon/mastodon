@@ -17,7 +17,7 @@ module Admin
     end
 
     def unsubscribe
-      UnsubscribeService.new.call(@account)
+      Pubsubhubbub::UnsubscribeWorker.perform_async(@account.id)
       redirect_to admin_account_path(@account.id)
     end
 

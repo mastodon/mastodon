@@ -12,6 +12,7 @@ fr:
         note:
           one: <span class="note-counter">1</span> caractère restant
           other: <span class="note-counter">%{count}</span> caractères restants
+        setting_noindex: Affecte votre profil public ainsi que vos statuts
       imports:
         data: Un fichier CSV généré par une autre instance de Mastodon
       sessions:
@@ -27,6 +28,7 @@ fr:
         data: Données
         display_name: Nom public
         email: Adresse courriel
+        filtered_languages: Langues filtrées
         header: Image d’en-tête
         locale: Langue
         locked: Verrouiller le compte
@@ -37,8 +39,11 @@ fr:
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Afficher un dialogue de confirmation avant de partager
         setting_default_privacy: Confidentialité des statuts
+        setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Afficher un dialogue de confirmation avant de supprimer un pouet
+        setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_system_font_ui: Utiliser la police par défaut du système
+        setting_unfollow_modal: Afficher un dialogue de confirmation avant de vous désabonner d’un compte
         severity: Séverité
         type: Type d’import
         username: Identifiant

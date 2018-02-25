@@ -33,6 +33,7 @@ class Rack::Attack
     match_data = env['rack.attack.match_data']
 
     headers = {
+      'Content-Type'          => 'application/json',
       'X-RateLimit-Limit'     => match_data[:limit].to_s,
       'X-RateLimit-Remaining' => '0',
       'X-RateLimit-Reset'     => (now + (match_data[:period] - now.to_i % match_data[:period])).iso8601(6),

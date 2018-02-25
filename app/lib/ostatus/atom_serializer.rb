@@ -65,7 +65,7 @@ class OStatus::AtomSerializer
 
     add_namespaces(entry) if root
 
-    append_element(entry, 'id', TagManager.instance.unique_tag(stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type))
+    append_element(entry, 'id', TagManager.instance.uri_for(stream_entry.status))
     append_element(entry, 'published', stream_entry.created_at.iso8601)
     append_element(entry, 'updated', stream_entry.updated_at.iso8601)
     append_element(entry, 'title', stream_entry&.status&.title || "#{stream_entry.account.acct} deleted status")
@@ -79,11 +79,14 @@ class OStatus::AtomSerializer
 
     if stream_entry.status.nil?
       append_element(entry, 'content', 'Deleted status')
+    elsif stream_entry.status.destroyed?
+      append_element(entry, 'content', 'Deleted status')
+      append_element(entry, 'link', nil, rel: :alternate, type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(stream_entry.status)) if stream_entry.account.local?
     else
       serialize_status_attributes(entry, stream_entry.status)
     end
 
-    append_element(entry, 'link', nil, rel: :alternate, type: 'text/html', href: account_stream_entry_url(stream_entry.account, stream_entry))
+    append_element(entry, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(stream_entry.status))
     append_element(entry, 'link', nil, rel: :self, type: 'application/atom+xml', href: account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom'))
     append_element(entry, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(stream_entry.thread), href: TagManager.instance.url_for(stream_entry.thread)) if stream_entry.threaded?
     append_element(entry, 'ostatus:conversation', nil, ref: conversation_uri(stream_entry.status.conversation)) unless stream_entry&.status&.conversation_id.nil?
@@ -343,6 +346,8 @@ class OStatus::AtomSerializer
   end
 
   def serialize_status_attributes(entry, status)
+    append_element(entry, 'link', nil, rel: :alternate, type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(status)) if status.account.local?
+
     append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
     append_element(entry, 'content', Formatter.instance.format(status).to_str, type: 'html', 'xml:lang': status.language)
 

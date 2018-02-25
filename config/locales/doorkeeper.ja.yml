@@ -3,8 +3,10 @@ ja:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 名前
+        name: アプリの名前
         redirect_uri: リダイレクトURI
+        scopes: アクセス権
+        website: アプリのウェブサイト
     errors:
       models:
         doorkeeper/application:
@@ -33,18 +35,22 @@ ja:
         redirect_uri: 一行に一つのURLを入力してください
         scopes: アクセス権は半角スペースで区切ることができます。 空白のままにするとデフォルトを使用します。
       index:
+        application: アプリ
         callback_url: コールバックURL
+        delete: 削除
         name: 名前
         new: 新規アプリ
+        scopes: アクセス権
+        show: 見る
         title: アプリ
       new:
         title: 新規アプリ
       show:
         actions: アクション
-        application_id: アクションId
-        callback_urls: コールバックurl
+        application_id: クライアントキー
+        callback_urls: コールバックURL
         scopes: アクセス権
-        secret: 非公開
+        secret: クライアントシークレット
         title: 'アプリ: %{name}'
     authorizations:
       buttons:

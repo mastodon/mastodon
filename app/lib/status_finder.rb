@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
-class StreamEntryFinder
+class StatusFinder
   attr_reader :url
 
   def initialize(url)
     @url = url
   end
 
-  def stream_entry
+  def status
     verify_action!
+
+    raise ActiveRecord::RecordNotFound unless TagManager.instance.local_url?(url)
 
     case recognized_params[:controller]
     when 'stream_entries'
-      StreamEntry.find(recognized_params[:id])
+      StreamEntry.find(recognized_params[:id]).status
     when 'statuses'
-      Status.find(recognized_params[:id]).stream_entry
+      Status.find(recognized_params[:id])
     else
       raise ActiveRecord::RecordNotFound
     end

@@ -254,6 +254,17 @@ id:
     reblog:
       body: 'Status anda di-boost oleh %{name}:'
       subject: "%{name} mem-boost status anda"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Selanjutnya
     prev: Sebelumnya

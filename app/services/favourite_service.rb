@@ -15,17 +15,31 @@ class FavouriteService < BaseService
     return favourite unless favourite.nil?
 
     favourite = Favourite.create!(account: account, status: status)
-
-    if status.local?
-      NotifyService.new.call(favourite.status.account, favourite)
-    else
-      NotificationWorker.perform_async(build_xml(favourite), account.id, status.account_id)
-    end
-
+    create_notification(favourite)
     favourite
   end
 
   private
+
+  def create_notification(favourite)
+    status = favourite.status
+
+    if status.account.local?
+      NotifyService.new.call(status.account, favourite)
+    elsif status.account.ostatus?
+      NotificationWorker.perform_async(build_xml(favourite), favourite.account_id, status.account_id)
+    elsif status.account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(favourite), favourite.account_id, status.account.inbox_url)
+    end
+  end
+
+  def build_json(favourite)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+      favourite,
+      serializer: ActivityPub::LikeSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json).sign!(favourite.account))
+  end
 
   def build_xml(favourite)
     OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.favourite_salmon(favourite))
