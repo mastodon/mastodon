@@ -19,6 +19,12 @@ class StatusesController < ApplicationController
         @ancestors   = @status.reply? ? cache_collection(@status.ancestors(current_account), Status) : []
         @descendants = cache_collection(@status.descendants(current_account), Status)
 
+        @map = UndergroundMap.new
+        @ancestors.each { |s| @map.add_stop(s.id, s.in_reply_to_id) }
+        @map.add_stop(@status.id, @status.in_reply_to_id)
+        @descendants.each { |s| @map.add_stop(s.id, s.in_reply_to_id) }
+        @map.calculate_lines!
+
         render 'stream_entries/show'
       end
 

@@ -12,11 +12,19 @@
   style_classes = style_classes(status, is_predecessor, is_successor, include_threads)
   mf_classes    = microformats_classes(status, is_direct_parent, is_direct_child)
   entry_classes = h_class + ' ' + mf_classes + ' ' + style_classes
+  stop = defined?(@map) ? @map.find_stop(status.id) : nil
 
 - if status.reply? && include_threads
   = render partial: 'stream_entries/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id }
 
 .entry{ class: entry_classes }
+  - if stop
+    - if stop.arrival?
+      .line.line--arriving{ style: "border-color: ##{@map.color(stop.arriving_line)}; left: #{20 + (stop.bypassing_lines.size * 6)}px" }
+    - stop.bypassing_lines.each_with_index do |line, i|
+      .line.line--bypassing{ style: "border-color: ##{@map.color(line)}; left: #{20 + (i * 6)}px" }
+    - stop.departing_lines.each_with_index do |line, i|
+      .line.line--departing{ style: "border-color: ##{@map.color(line)}; left: #{20 + (stop.bypassing_lines.size * 6) + (i * 6)}px" }
 
   - if status.reblog?
     .pre-header
