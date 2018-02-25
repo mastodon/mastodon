@@ -45,7 +45,7 @@ class OEmbedSerializer < ActiveModel::Serializer
       height: height,
     }
 
-    content_tag(:iframe, nil, attributes) + content_tag(:script, nil, src: full_asset_url('embed.js'), async: true)
+    content_tag(:iframe, nil, attributes) + content_tag(:script, nil, src: full_asset_url('embed.js', skip_pipeline: true), async: true)
   end
 
   def width

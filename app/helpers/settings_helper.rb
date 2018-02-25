@@ -41,7 +41,7 @@ module SettingsHelper
   end
 
   def filterable_languages
-    I18n.available_locales.map { |locale| locale.to_s.split('-').first.to_sym }.uniq
+    LanguageDetector.instance.language_names.select(&HUMAN_LOCALES.method(:key?))
   end
 
   def hash_to_object(hash)

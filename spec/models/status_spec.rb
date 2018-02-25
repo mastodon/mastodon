@@ -173,19 +173,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.local_only' do
-    it 'returns only statuses from local accounts' do
-      local_account = Fabricate(:account, domain: nil)
-      remote_account = Fabricate(:account, domain: 'test.com')
-      local_status = Fabricate(:status, account: local_account)
-      remote_status = Fabricate(:status, account: remote_account)
-
-      results = described_class.local_only
-      expect(results).to include(local_status)
-      expect(results).not_to include(remote_status)
-    end
-  end
-
   describe '.as_home_timeline' do
     let(:account) { Fabricate(:account) }
     let(:followed) { Fabricate(:account) }
@@ -526,6 +513,14 @@ RSpec.describe Status, type: :model do
     it 'sets `local` to false for status by remote account' do
       alice.update(domain: 'example.com')
       expect(Status.create(account: alice, text: 'foo').local).to be false
+    end
+  end
+
+  describe 'validation' do
+    it 'disallow empty uri for remote status' do
+      alice.update(domain: 'example.com')
+      status = Fabricate.build(:status, uri: '', account: alice)
+      expect(status).to model_have_error_on_field(:uri)
     end
   end
 

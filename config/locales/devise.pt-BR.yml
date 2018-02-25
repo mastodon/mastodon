@@ -2,60 +2,60 @@
 pt-BR:
   devise:
     confirmations:
-      confirmed: O seu endereço de email foi confirmado.
-      send_instructions: Você irá receber um email com instruções em como confirmar o seu endereço de email dentro de alguns minutos.
-      send_paranoid_instructions: Se o seu endereço de email já existir na nossa base de dados, irá receber um email com instruções em como confirmá-lo dentro de alguns minutos.
+      confirmed: O seu endereço de e-mail foi confirmado.
+      send_instructions: Você receberá uma mensagem em sua caixa de entrada com instruções sobre como confirmar o seu endereço de e-mail dentro de alguns minutos. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
+      send_paranoid_instructions: Se o seu endereço de e-mail já existir em nossa base de dados, você receberá uma mensagem em sua caixa de entrada com instruções sobre confirmá-lo dentro de alguns minutos. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
     failure:
       already_authenticated: A sua sessão já está aberta.
       inactive: A sua contra ainda não está ativada.
-      invalid: "%{authentication_keys} ou password inválidos."
-      last_attempt: Tem mais uma tentativa antes de a sua conta ser protegida.
-      locked: A sua conta está protegida
-      not_found_in_database: "%{authentication_keys} ou password inválidos."
-      timeout: A sua sessão expirou. Por favore entre de novo para continuar.
-      unauthenticated: Você precsa de entrar ou registar-se antes de continuar.
-      unconfirmed: Você tem de confirmar o seu endereço de email antes de continuar.
+      invalid: "%{authentication_keys} ou senha inválida."
+      last_attempt: Você tem apenas mais uma tentativa sobrando antes que a sua conta seja bloqueada.
+      locked: A sua conta está bloqueada.
+      not_found_in_database: "%{authentication_keys} ou senha inválida."
+      timeout: A sua sessão expirou. Por favor, entre novamente para continuar.
+      unauthenticated: Você precisa entrar ou registar-se antes de continuar.
+      unconfirmed: Você precisa confirmar o seu endereço de e-mail antes de continuar.
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Instruções de confirmação'
       password_change:
-        subject: 'Mastodon: Password nova'
+        subject: 'Mastodon: Senha modificada'
       reset_password_instructions:
-        subject: 'Mastodon: Instruções para editar a password'
+        subject: 'Mastodon: Instruções para mudança de senha'
       unlock_instructions:
-        subject: 'Mastodon: Instruções para desproteger a sua conta'
+        subject: 'Mastodon: Instruções de desbloqueio'
     omniauth_callbacks:
-      failure: Could not authenticate you from %{kind} because "%{reason}".
-      success: Successfully authenticated from %{kind} account.
+      failure: Não foi possível autenticá-lo como %{kind} porque "%{reason}".
+      success: Autenticado com sucesso como %{kind}.
     passwords:
-      no_token: Você não pode aceder a esta página sem ter vindo de um email para mudar a password. Se este for o case, por favor faça questão de verificar que usou o URL no email.
-      send_instructions: Irá receber um email com instruções em como mudar a sua password dentro de algns minutos.
-      send_paranoid_instructions: Se  seu endereço de email existe na nossa base de dados, irá receber um link para recuperar a sua password dentro de alguns minutos.
-      updated: A sua password foi alterada. A sua sessão está aberta.
-      updated_not_active: A sua password foi alterada.
+      no_token: Você não pode acessar esta página se não tiver vindo de uma mensagem de mudança de senha. Se este for o caso, por favor verifique se a URL utilizada está completa.
+      send_instructions: Se o seu endereço de e-mail já estiver cadastrado em nossa base de dados, você receberá uma mensagem com um link para realizar a mudança de senha em alguns minutos. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
+      send_paranoid_instructions: Se o seu endereço de e-mail já estiver cadastrado em nossa base de dados, você receberá uma mensagem com um link para realizar a mudança de senha em alguns minutos. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
+      updated: A sua senha foi alterada. A sua sessão está aberta.
+      updated_not_active: A sua senha foi alterada.
     registrations:
       destroyed: Adeus! A sua conta foi cancelada. Esperamos vê-lo em breve.
-      signed_up: Bem vindo! A sua conta foi registada com sucesso.
-      signed_up_but_inactive: A sua conta foi registada. No entanto, não abrimos a sua sessão porque a sua conta ainda não foi ativada.
-      signed_up_but_locked: A sua conta foi registada. No entanto, não abrimos a sua sessão porque a sua conta está protegida.
-      signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu email. Por favor siga o link para ativar a sua conta.
-      update_needs_confirmation: Você mudou o seu endereço de email ou password, mas é necessário confirmar a mudança. Por favor siga o link que foi enviado para o seu novo endereço de email.
+      signed_up: Bem vindo! A sua conta foi registrada com sucesso.
+      signed_up_but_inactive: A sua conta foi registrada. No entanto, não abrimos a sua sessão porque a sua conta ainda não foi ativada.
+      signed_up_but_locked: A sua conta foi registrada. No entanto, não abrimos a sua sessão porque a sua conta está bloqueada.
+      signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Por favor, siga o link para ativar a sua conta e, caso não tenha recebido esta mensagem, cheque a sua pasta de spam.
+      update_needs_confirmation: Você mudou o seu endereço de e-mail ou a sua senha, mas é necessário confirmar a mudança. Por favor siga o link que foi enviado para o seu novo endereço de e-mail e, caso não tenha recebido esta mensagem, cheque a sua pasta de spam.
       updated: A sua conta foi alterada com sucesso.
     sessions:
-      already_signed_out: Sessão fechada.
+      already_signed_out: Sessão encerrada.
       signed_in: Sessão iniciada.
-      signed_out: Sessão fechada.
+      signed_out: Sessão encerrada.
     unlocks:
-      send_instructions: Irá receber um email com instruções para desproteger a sua conta dentro de alguns minutos.
-      send_paranoid_instructions: Se a sua conta existe, irá receber um email com instruções a detalhar como a desproteger dentro de alguns minutos.
-      unlocked: A sua conta foi desprotegida. Por favor inicie sessão para continuar.
+      send_instructions: Você receberá uma mensagem com instruções para desbloquear a sua conta em alguns instantes. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
+      send_paranoid_instructions: Se a sua conta já existe, você receberá uma mensagem com instruções para desbloquear a sua conta em alguns instantes. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
+      unlocked: A sua conta foi desbloqueada com sucesso. Por favor inicie sessão para continuar.
   errors:
     messages:
       already_confirmed: já foi confirmado, por favor tente iniciar sessão
-      confirmation_period_expired: tem de ser confirmado dentro de %{period}, por favor tente outra vez
-      expired: expirou, por favor tente outra vez
+      confirmation_period_expired: precisa ser confirmada em até %{period}, por favor, solicite novo link de confirmação
+      expired: expirou, por favor solicite uma nova
       not_found: não encontrado
-      not_locked: não está protegido
+      not_locked: não está bloqueada
       not_saved:
-        one: '1 erro impediu este %{resource} de ser guardado:'
-        other: "%{count} erros impediram este %{resource} de ser guardado:"
+        one: '1 erro impediu este %{resource} de ser salvo(a):'
+        other: "%{count} erros impediram este %{resource} de ser salvo(a):"

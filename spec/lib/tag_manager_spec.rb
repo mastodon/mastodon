@@ -63,23 +63,23 @@ RSpec.describe TagManager do
 
   describe '#local_url?' do
     around do |example|
-      original_local_domain = Rails.configuration.x.local_domain
+      original_web_domain = Rails.configuration.x.web_domain
       example.run
-      Rails.configuration.x.local_domain = original_local_domain
+      Rails.configuration.x.web_domain = original_web_domain
     end
 
     it 'returns true if the normalized string with port is local URL' do
-      Rails.configuration.x.local_domain = 'domain:42'
+      Rails.configuration.x.web_domain = 'domain:42'
       expect(TagManager.instance.local_url?('https://DoMaIn:42/')).to eq true
     end
 
     it 'returns true if the normalized string without port is local URL' do
-      Rails.configuration.x.local_domain = 'domain'
+      Rails.configuration.x.web_domain = 'domain'
       expect(TagManager.instance.local_url?('https://DoMaIn/')).to eq true
     end
 
     it 'returns false for string with irrelevant characters' do
-      Rails.configuration.x.local_domain = 'domain'
+      Rails.configuration.x.web_domain = 'domain'
       expect(TagManager.instance.local_url?('https://domainn/')).to eq false
     end
   end

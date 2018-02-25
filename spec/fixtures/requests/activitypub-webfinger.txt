@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Cache-Control: max-age=0, private, must-revalidate
+Content-Type: application/jrd+json; charset=utf-8
+X-Content-Type-Options: nosniff
+Date: Sun, 17 Sep 2017 06:22:50 GMT
+
+{"subject":"acct:foo@ap.example.com","aliases":["https://ap.example.com/@foo","https://ap.example.com/users/foo"],"links":[{"rel":"http://webfinger.net/rel/profile-page","type":"text/html","href":"https://ap.example.com/@foo"},{"rel":"http://schemas.google.com/g/2010#updates-from","type":"application/atom+xml","href":"https://ap.example.com/users/foo.atom"},{"rel":"self","type":"application/activity+json","href":"https://ap.example.com/users/foo"},{"rel":"salmon","href":"https://ap.example.com/api/salmon/1"},{"rel":"magic-public-key","href":"data:application/magic-public-key,RSA.u3L4vnpNLzVH31MeWI394F0wKeJFsLDAsNXGeOu0QF2x-h1zLWZw_agqD2R3JPU9_kaDJGPIV2Sn5zLyUA9S6swCCMOtn7BBR9g9sucgXJmUFB0tACH2QSgHywMAybGfmSb3LsEMNKsGJ9VsvYoh8lDET6X4Pyw-ZJU0_OLo_41q9w-OrGtlsTm_PuPIeXnxa6BLqnDaxC-4IcjG_FiPahNCTINl_1F_TgSSDZ4Taf4U9XFEIFw8wmgploELozzIzKq-t8nhQYkgAkt64euWpva3qL5KD1mTIZQEP-LZvh3s2WHrLi3fhbdRuwQ2c0KkJA2oSTFPDpqqbPGZ3QvuHQ==.AQAB"},{"rel":"http://ostatus.org/schema/1.0/subscribe","template":"https://ap.example.com/authorize_follow?acct={uri}"}]}

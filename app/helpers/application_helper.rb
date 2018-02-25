@@ -42,4 +42,8 @@ module ApplicationHelper
 
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
+
+  def opengraph(property, content)
+    tag(:meta, content: content, property: property)
+  end
 end

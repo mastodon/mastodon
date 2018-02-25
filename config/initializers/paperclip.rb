@@ -47,9 +47,12 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
     fog_credentials: {
       provider: 'OpenStack',
       openstack_username: ENV.fetch('SWIFT_USERNAME'),
-      openstack_tenant: ENV.fetch('SWIFT_TENANT'),
+      openstack_project_name: ENV.fetch('SWIFT_TENANT'),
       openstack_api_key: ENV.fetch('SWIFT_PASSWORD'),
       openstack_auth_url: ENV.fetch('SWIFT_AUTH_URL'),
+      openstack_domain_name: ENV['SWIFT_DOMAIN_NAME'] || 'default',
+      openstack_region: ENV['SWIFT_REGION'],
+      openstack_cache_ttl: ENV['SWIFT_CACHE_TTL'] || 60,
     },
     fog_directory: ENV.fetch('SWIFT_CONTAINER'),
     fog_host: ENV.fetch('SWIFT_OBJECT_URL'),

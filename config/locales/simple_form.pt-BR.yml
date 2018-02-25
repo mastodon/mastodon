@@ -1,51 +1,64 @@
 ---
 pt-BR:
   simple_form:
-    labels:
+    hints:
       defaults:
-        avatar: PNG, GIF or JPG. Máximo 2MB. Será reduzido para 120x120px
-        display_name: '<span class="name-counter">%{count}</span> caracteres restantes'
-        header: PNG, GIF or JPG. Máximo 2MB. Será reduzido para 700x335px
-        locked: Requer você aprovação manualmente seguidores e posts padrão de privacidade para seguidores-apenas
-        note: '<span class="note-counter">%{count}</span> caracteres restantes'
+        avatar: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 120x120px
+        display_name:
+          one: <span class="name-counter">1</span> caracter restante
+          other: <span class="name-counter">%{count}</span> caracteres restantes
+        header: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 700x335px
+        locked: Requer aprovação manual de seguidores
+        note:
+          one: <span class="note-counter">1</span> caracter restante
+          other: <span class="note-counter">%{count}</span> caracteres restantes
+        setting_noindex: Afeta seu perfil público e as páginas de suas postagens
       imports:
-        data: Arquivo CSV exportado de outra instancia Mastodon
+        data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
-        otp: Entre com o código de 2 passos do seu telefone ou use os códiogos de recuperação.
+        otp: Insira o código de autenticação do seu celular ou use um dos códigos de recuperação.
+      user:
+        filtered_languages: Selecione os idiomas que devem ser removidos de suas timelines públicas.
     labels:
       defaults:
         avatar: Avatar
-        confirm_new_password: Confirme nova senha
-        confirm_password: Confirme a senha
+        confirm_new_password: Confirmar nova senha
+        confirm_password: Confirmar senha
         current_password: Senha atual
         data: Dados
-        display_name: Nome
-        email: Endereço de email
-        header: Header
-        locale: Linguagem
-        locked: Conta bloqueada
+        display_name: Nome de exibição
+        email: Endereço de e-mail
+        filtered_languages: Idiomas filtrados
+        header: Cabeçalho
+        locale: Idioma
+        locked: Trancar conta
         new_password: Nova senha
-        note: Biografia
-        otp_attempt: Autenticação 2 passos
+        note: Bio
+        otp_attempt: Código de autenticação em dois passos
         password: Senha
-        setting_auto_play_gif: Tocar GIFs animados automaticamente
-        setting_boost_modal: Mostrar dialogo de confirmação antes de fazer boost
-        setting_default_privacy: Postar privacidade
-        severity: Severidade
-        type: Importar tipo
-        username: Usuário
+        setting_auto_play_gif: Reproduzir GIFs automaticamente
+        setting_boost_modal: Mostrar diálogo de confirmação antes de compartilhar postagem
+        setting_default_privacy: Privacidade das postagens
+        setting_default_sensitive: Sempre marcar mídia como sensível
+        setting_delete_modal: Mostrar diálogo de confirmação antes de deletar uma postagem
+        setting_noindex: Não quero ser indexado por mecanismos de busca
+        setting_system_font_ui: Usar a fonte padrão de seu sistema
+        setting_unfollow_modal: Mostrar diálogo de confirmação antes de deixar de seguir alguém
+        severity: Gravidade
+        type: Tipo de importação
+        username: Nome de usuário
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
-        must_be_following: Bloquear notificações de pessoas que você
+        must_be_following: Bloquear notificações de pessoas que você não segue
       notification_emails:
-        digest: Enviar resumo de emails
-        favourite: Enviar email quando alguém favorita um post seu
-        follow: Enviar email quando alguém seguir você
-        follow_request: Enviar email quando alguém requisitar te seguir
-        mention: Enviar email quando alguém mencionar você
-        reblog: Enviar email quando alguém reblogar um post seu
+        digest: Mandar e-mails com relatórios
+        favourite: Mandar um e-mail quando alguém favoritar suas postagens
+        follow: Mandar um e-mail quando alguém te seguir
+        follow_request: Mandar um e-maill quando alguém solicitar ser seu seguidor
+        mention: Mandar um e-mail quando alguém te mencionar
+        reblog: Mandar um e-mail quando alguém compartilhar suas postagens
     'no': 'Não'
     required:
       mark: "*"
-      text: necessário
+      text: obrigatório
     'yes': 'Sim'

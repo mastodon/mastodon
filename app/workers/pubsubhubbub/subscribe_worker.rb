@@ -3,7 +3,7 @@
 class Pubsubhubbub::SubscribeWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'push', retry: 10, unique: :until_executed, dead: false, unique_retry: true
+  sidekiq_options queue: 'push', retry: 10, unique: :until_executed, dead: false
 
   sidekiq_retry_in do |count|
     case count

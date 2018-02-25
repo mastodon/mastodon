@@ -6,15 +6,15 @@
   %link{ rel: 'alternate', type: 'application/json+oembed', href: api_oembed_url(url: account_stream_entry_url(@account, @stream_entry), format: 'json') }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@stream_entry.activity) }/
 
-  %meta{ property: 'og:site_name', content: site_title }/
-  %meta{ property: 'og:type', content: 'article' }/
-  %meta{ property: 'og:title', content: "#{@account.username} on #{site_hostname}" }/
-  %meta{ property: 'og:url', content: account_stream_entry_url(@account, @stream_entry) }/
+  = opengraph 'og:site_name', site_title
+  = opengraph 'og:type', 'article'
+  = opengraph 'og:title', "#{@account.username} on #{site_hostname}"
+  = opengraph 'og:url', account_stream_entry_url(@account, @stream_entry)
 
   = render 'stream_entries/og_description', activity: @stream_entry.activity
   = render 'stream_entries/og_image', activity: @stream_entry.activity, account: @account
 
-  %meta{ property: 'twitter:card', content: 'summary' }/
+  = opengraph 'twitter:card', 'summary_large_image'
 
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
