@@ -54,8 +54,8 @@ body {
 }
 
 // login page.
-body>.container {
-  background: rgba($foresdon-ui-base-color, $foresdon-background-filter-alpha);
+.form-container {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
   border-radius: $foresdon-primary-border-radius;
 
   & ::-webkit-input-placeholder {
@@ -68,6 +68,89 @@ body>.container {
 
   & :-ms-input-placeholder {
     color: $foresdon-ui-primary-color;
+  }
+}
+
+// Permalink
+.landing-strip {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.card {
+  margin-bottom: $foresdon-default-margin-bottom;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & .card-bio {
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  }
+}
+
+.activity-stream-tabs {
+  margin-bottom: $foresdon-default-margin-bottom;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  & a.active {
+    color: $foresdon-ui-primary-color;
+  }
+}
+
+.activity-stream.with-header {
+  color: $white;
+  box-shadow: none;
+
+  & .entry:first-child,
+  & .entry:first-child:last-child,
+  & .entry:first-child:last-child .detailed-status.light,
+  & .entry:first-child:last-child .status.light {
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.activity-stream .entry {
+  margin-bottom: $foresdon-default-margin-bottom;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  & .detailed-status.light,
+  & .status.light {
+    background: none;
+    border: none;
+    & .display-name strong,
+    & .status__content {
+      color: $white;
+    }
+  }
+
+  &:last-child {
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.accounts-grid {
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+  box-shadow: none;
+
+  & .account-grid-card {
+    color: $white;
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-secondary-alpha);
+    border: none;
+    border-radius: $foresdon-primary-border-radius;
+
+    & .display_name {
+      color: $white;
+    }
+
+    & .note {
+      color: $white;
+    }
   }
 }
 
@@ -274,6 +357,7 @@ body>.container {
 
 // Accounts
 .account__header {
+  margin: 0 3px $foresdon-default-margin-bottom 0;
   background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border: none;
   border-radius: $foresdon-primary-border-radius;
@@ -290,7 +374,7 @@ body>.container {
 }
 
 .account__action-bar {
-  margin-bottom: $foresdon-default-margin-bottom;
+  margin: 0 3px $foresdon-default-margin-bottom 0;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border: none;
   border-radius: $foresdon-primary-border-radius;
@@ -312,6 +396,7 @@ body>.container {
 
 // Notifications
 .notification {
+  margin: 0 3px $foresdon-default-margin-bottom 0;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border-radius: $foresdon-primary-border-radius;
 
