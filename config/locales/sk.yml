@@ -491,7 +491,26 @@ sk:
   notification_mailer:
     digest:
       body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi
-        v %{since}
+        od %{since}
+      action: Zobraziť všetky notifikácie
+      mention: '%{name} ťa spomenul/a v:'
+      new_followers_summary:
+        one: Taktiež, získal/a si jedného nového následovníka zatiaľ čo si bol/a preč.
+          Yay!
+        other: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si
+          bol/a preč. Yay!
+      subject:
+        one: 1 nová notifikácia od tvojej poslednej návštevy 🐘
+        other: '%{count} nové notifikácie od tvojej poslednej návštevy 🐘'
+      title: Zatiaľ čo si bol/a preč…
+    favourite:
+      body: 'Tvoj príspevok bol uložený medi obľúbené užívateľa %{name}:'
+      subject: '%{name} si obľúbil/a tvoj príspevok'
+      title: Nové obľúbené
+    follow:
+      body: '%{name} ťa teraz následuje!'
+      subject: '%{name} ťa teraz následuje'
+      title: Nový sledovateľ
   user_mailer:
     welcome:
       final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné
@@ -541,3 +560,16 @@ sk:
     rámci fediversa.
   landing_strip_signup_html: Pokiaľ ešte nemáš, môžeš <a href="%{sign_up_path}">si
     tu vytvoriť účet</a>.
+  lists:
+    errors:
+      limit: Dosiahli ste maximálny možný počet zoznamov
+  media_attachments:
+    validations:
+      images_and_video: K príspevku ktorý už obsahuje obrázky nemôžeš priložiť video
+      too_many: Nemôžeš priložiť viac ako 4 súbory
+  migrations:
+    acct: prezývka@doména nového účtu
+    currently_redirecting: 'Tvoj profil má nastavené presmerovanie na:'
+    proceed: Uložiť
+  moderation:
+    title: Moderovanie
