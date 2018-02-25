@@ -10,7 +10,7 @@ $gold-star: #ca8f04;        // Dark Goldenrod
 // Values from the classic Mastodon UI
 $classic-base-color: #4372f5;         // Midnight Express
 $classic-primary-color: #c21306;      // Echo Blue
-$classic-secondary-color: #d69304;    // Pattens Blue
+$classic-secondary-color: #dd3705;    // Pattens Blue
 $classic-highlight-color: #00920c;    // Summer Sky
 
 // Variables for defaults in UI
@@ -24,7 +24,7 @@ $error-value-color: $error-red !default;
 
 // Tell UI to use selected colors
 $ui-base-color: $classic-base-color !default;                  // Darkest
-$ui-base-lighter-color: lighten($ui-base-color, 15%) !default; // Lighter darkest
+$ui-base-lighter-color: lighten($ui-base-color, 5%) !default; // Lighter darkest
 $ui-primary-color: $classic-primary-color !default;            // Lighter
 $ui-secondary-color: $classic-secondary-color !default;        // Lightest
 $ui-highlight-color: $classic-highlight-color !default;        // Vibrant
