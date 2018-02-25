@@ -4,14 +4,14 @@ class Api::OEmbedController < Api::BaseController
   respond_to :json
 
   def show
-    @stream_entry = find_stream_entry.stream_entry
-    render json: @stream_entry, serializer: OEmbedSerializer, width: maxwidth_or_default, height: maxheight_or_default
+    @status = status_finder.status
+    render json: @status, serializer: OEmbedSerializer, width: maxwidth_or_default, height: maxheight_or_default
   end
 
   private
 
-  def find_stream_entry
-    StreamEntryFinder.new(params[:url])
+  def status_finder
+    StatusFinder.new(params[:url])
   end
 
   def maxwidth_or_default

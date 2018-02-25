@@ -105,6 +105,17 @@ hr:
     reblog:
       body: 'Tvoj status je potaknut od %{name}:'
       subject: "%{name} je potakao tvoj status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Sljedeći
     prev: Prošli

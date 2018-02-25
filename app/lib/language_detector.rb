@@ -20,7 +20,16 @@ class LanguageDetector
   private
 
   def detected_language_code
-    result.language.to_sym if detected_language_reliable?
+    iso6391(result.language).to_sym if detected_language_reliable?
+  end
+
+  def iso6391(bcp47)
+    iso639 = bcp47.split('-').first
+
+    # CLD3 returns grandfathered language code for Hebrew
+    return 'he' if iso639 == 'iw'
+
+    ISO_639.find(iso639).alpha2
   end
 
   def result

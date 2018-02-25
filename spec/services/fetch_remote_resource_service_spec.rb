@@ -30,7 +30,7 @@ describe FetchRemoteResourceService do
 
       _result = subject.call(url)
 
-      expect(account_service).to have_received(:call).with(feed_url, feed_content)
+      expect(account_service).to have_received(:call).with(feed_url, feed_content, nil)
     end
 
     it 'fetches remote statuses for entry types' do
@@ -47,7 +47,7 @@ describe FetchRemoteResourceService do
 
       _result = subject.call(url)
 
-      expect(account_service).to have_received(:call).with(feed_url, feed_content)
+      expect(account_service).to have_received(:call).with(feed_url, feed_content, nil)
     end
   end
 end

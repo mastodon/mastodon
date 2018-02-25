@@ -12,6 +12,8 @@ import {
   unfavourite,
   reblog,
   unreblog,
+  pin,
+  unpin,
 } from '../../actions/interactions';
 import {
   replyCompose,
@@ -87,6 +89,14 @@ export default class Status extends ImmutablePureComponent {
     }
   }
 
+  handlePin = (status) => {
+    if (status.get('pinned')) {
+      this.props.dispatch(unpin(status));
+    } else {
+      this.props.dispatch(pin(status));
+    }
+  }
+
   handleReplyClick = (status) => {
     this.props.dispatch(replyCompose(status, this.context.router.history));
   }
@@ -135,6 +145,10 @@ export default class Status extends ImmutablePureComponent {
 
   handleReport = (status) => {
     this.props.dispatch(initReport(status.get('account'), status));
+  }
+
+  handleEmbed = (status) => {
+    this.props.dispatch(openModal('EMBED', { url: status.get('url') }));
   }
 
   renderChildren (list) {
@@ -187,6 +201,8 @@ export default class Status extends ImmutablePureComponent {
               onDelete={this.handleDeleteClick}
               onMention={this.handleMentionClick}
               onReport={this.handleReport}
+              onPin={this.handlePin}
+              onEmbed={this.handleEmbed}
             />
 
             {descendants}

@@ -1,4 +1,5 @@
 :ruby
+  pinned          ||= false
   include_threads ||= false
   is_predecessor  ||= false
   is_successor    ||= false
@@ -25,6 +26,12 @@
         = link_to TagManager.instance.url_for(status.account), class: 'status__display-name muted' do
           %strong.emojify= display_name(status.account)
         = t('stream_entries.reblogged')
+  - elsif pinned
+    .pre-header
+      .pre-header__icon
+        = fa_icon('thumb-tack fw')
+      %span
+        = t('stream_entries.pinned')
 
   = render (centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status'), status: status.proper
 

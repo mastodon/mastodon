@@ -19,11 +19,11 @@ oc:
       confirmation_instructions:
         subject: "Mercés de confirmar vòstra inscripcion sus %{instance}"
       password_change:
-        subject: 'Mastodon : senhal cambiat'
+        subject: 'Mastodon : senhal cambiat'
       reset_password_instructions:
-        subject: 'Mastodon : instruccions per reïnicializar lo senhal'
+        subject: 'Mastodon : instruccions per reïnicializar lo senhal'
       unlock_instructions:
-        subject: 'Mastodon : instuccions de desblocatge'
+        subject: 'Mastodon : instuccions de desblocatge'
     omniauth_callbacks:
       failure: Fracàs al moment de vos autentificar de %{kind} perque "%{reason}".
       success: Sètz ben autentificat dempuèi lo compte %{kind}.
@@ -34,8 +34,8 @@ oc:
       updated: Vòstre senhal es ben estat cambiat. Sètz ara connectat.
       updated_not_active: Vòstre senhal es ben estat cambiat.
     registrations:
-      destroyed: Adiu ! Vòstra inscripcion es estada anullada amb succès. Esperem vos tornar veire lèu.
-      signed_up: La benvenguda ! Sètz ben marcat al malhum.
+      destroyed: Adiu ! Vòstra inscripcion es estada anullada amb succès. Esperem vos tornar veire lèu.
+      signed_up: La benvenguda ! Sètz ben marcat al malhum.
       signed_up_but_inactive: Sètz ben marcat. Pasmens, avèm pas pogut vos connectar perque vòstre compte es pas encara validat.
       signed_up_but_locked: Sètz ben marcat. Pasmens, avèm pas pogut vos connectar perque vòstre compte es pas encara blocat.
       signed_up_but_unconfirmed: Un messatge amb un ligam de confirmacion es estat enviat a vòstra adreça de corrièl. Clicatz sul ligam per activar vòstre compte. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
@@ -57,5 +57,5 @@ oc:
       not_found: pas trobat
       not_locked: èra pas blocat
       not_saved:
-        one: '1 error defend aquesta %{resource} d’èsser salvagardada :'
-        other: "%{count} errors defendon aquesta %{resource} d’èsser salvagardadas :"
+        one: '1 error defend aquesta %{resource} d’èsser salvagardada :'
+        other: "%{count} errors defendon aquesta %{resource} d’èsser salvagardadas :"

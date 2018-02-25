@@ -28,6 +28,13 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
+    it 'returns JSON with following=true and requested=false' do
+      json = body_as_json
+
+      expect(json[:following]).to be true
+      expect(json[:requested]).to be false
+    end
+
     it 'creates a following relation between user and target user' do
       expect(user.account.following?(other_account)).to be true
     end

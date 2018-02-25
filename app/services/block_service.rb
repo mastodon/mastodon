@@ -12,10 +12,27 @@ class BlockService < BaseService
     block = account.block!(target_account)
 
     BlockWorker.perform_async(account.id, target_account.id)
-    NotificationWorker.perform_async(build_xml(block), account.id, target_account.id) unless target_account.local?
+    create_notification(block) unless target_account.local?
+    block
   end
 
   private
+
+  def create_notification(block)
+    if block.target_account.ostatus?
+      NotificationWorker.perform_async(build_xml(block), block.account_id, block.target_account_id)
+    elsif block.target_account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(block), block.account_id, block.target_account.inbox_url)
+    end
+  end
+
+  def build_json(block)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+      block,
+      serializer: ActivityPub::BlockSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json).sign!(block.account))
+  end
 
   def build_xml(block)
     OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.block_salmon(block))

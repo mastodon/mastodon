@@ -257,6 +257,17 @@
     reblog:
       body: 'Din status ble fremhevd av %{name}:'
       subject: "%{name} fremhevde din status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Neste
     prev: Forrige

@@ -31,7 +31,7 @@ module SignatureVerification
       return
     end
 
-    account = ResolveRemoteAccountService.new.call(signature_params['keyId'].gsub(/\Aacct:/, ''))
+    account = account_from_key_id(signature_params['keyId'])
 
     if account.nil?
       @signed_request_account = nil
@@ -49,6 +49,10 @@ module SignatureVerification
     end
   end
 
+  def request_body
+    @request_body ||= request.raw_post
+  end
+
   private
 
   def build_signed_string(signed_headers)
@@ -57,6 +61,8 @@ module SignatureVerification
     signed_headers.split(' ').map do |signed_header|
       if signed_header == Request::REQUEST_TARGET
         "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
+      elsif signed_header == 'digest'
+        "digest: #{body_digest}"
       else
         "#{signed_header}: #{request.headers[to_header_name(signed_header)]}"
       end
@@ -73,6 +79,10 @@ module SignatureVerification
     (Time.now.utc - time_sent).abs <= 30
   end
 
+  def body_digest
+    "SHA-256=#{Digest::SHA256.base64digest(request_body)}"
+  end
+
   def to_header_name(name)
     name.split(/-/).map(&:capitalize).join('-')
   end
@@ -81,7 +91,16 @@ module SignatureVerification
     signature_params['keyId'].blank? ||
       signature_params['signature'].blank? ||
       signature_params['algorithm'].blank? ||
-      signature_params['algorithm'] != 'rsa-sha256' ||
-      !signature_params['keyId'].start_with?('acct:')
+      signature_params['algorithm'] != 'rsa-sha256'
+  end
+
+  def account_from_key_id(key_id)
+    if key_id.start_with?('acct:')
+      ResolveRemoteAccountService.new.call(key_id.gsub(/\Aacct:/, ''))
+    elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
+      account   = ActivityPub::TagManager.instance.uri_to_resource(key_id, Account)
+      account ||= ActivityPub::FetchRemoteKeyService.new.call(key_id)
+      account
+    end
   end
 end

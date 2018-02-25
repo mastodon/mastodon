@@ -7,6 +7,7 @@
 
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
+  %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 
   %meta{ property: 'og:type', content: 'profile' }/
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
@@ -19,13 +20,21 @@
 
   = render 'header', account: @account
 
+  .activity-stream-tabs
+    = active_link_to t('accounts.posts'), short_account_url(@account)
+    = active_link_to t('accounts.posts_with_replies'), short_account_with_replies_url(@account)
+    = active_link_to t('accounts.media'), short_account_media_url(@account)
+
   - if @statuses.empty?
     .accounts-grid
       = render 'nothing_here'
   - else
     .activity-stream.with-header
+      - if params[:page].to_i.zero?
+        = render partial: 'stream_entries/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
+
       = render partial: 'stream_entries/status', collection: @statuses, as: :status
 
   - if @statuses.size == 20
     .pagination
-      = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), short_account_url(@account, max_id: @statuses.last.id), class: 'next', rel: 'next'
+      = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), @next_url, class: 'next', rel: 'next'

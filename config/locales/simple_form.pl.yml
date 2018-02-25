@@ -16,12 +16,13 @@ pl:
           many: Pozostało <span class="name-counter">%{count}</span> znaków
           one: Pozostał <span class="name-counter">1</span> znak.
           other: Pozostało <span class="name-counter">%{count}</span> znaków
+        setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
       imports:
         data: Plik CSV wyeksportowany z innej instancji Mastodona
       sessions:
-        otp: Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych.
+        otp: Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych
       user:
-        filtered_languages: Wybrane języki nie będą się pojawiać na publicznych osiach czasu.
+        filtered_languages: Wpisy w wybranych językach nie będą pojawiać się na publicznych osiach czasu.
     labels:
       defaults:
         avatar: Awatar
@@ -41,25 +42,25 @@ pl:
         password: Hasło
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
-        setting_default_privacy: Widoczność posta
+        setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
-        setting_delete_modal: Pytaj o potwierdzenie przed usunięciem postu
+        setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
         setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_system_font_ui: Używaj domyślnej czcionki systemu
-        setting_unfollow_modal: Pytaj o potwierdzenie przed usunięciem śledzenia
+        setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem śledzenia
         severity: Priorytet
         type: Typ importu
         username: Nazwa użytkownika
       interactions:
-        must_be_follower: Zablokuj powiadomienia od osób, które Cię nie śledzą
-        must_be_following: Zablokuj powiadomienia od osób, których nie śledzisz
+        must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
+        must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
       notification_emails:
         digest: Wysyłaj podsumowania e-mailem
-        favourite: Powiadom mnie e-mailem gdy ktoś polubi mój status.
-        follow: Powiadom mnie e-mailem gdy ktoś zacznie mnie śledzić.
-        follow_request: Powiadom mnie e-mailem gdy ktoś poprosi o pozwolenie śledzenia mnie.
-        mention: Powiadom mnie e-mailem gdy ktoś mnie wspomni.
-        reblog: Powiadom mnie e-mailem gdy ktoś podbije mój status.
+        favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis
+        follow: Powiadamiaj mnie e-mailem, gdy ktoś zacznie mnie śledzić
+        follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na śledzenie mnie
+        mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
+        reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
     'no': Nie
     required:
       mark: "*"

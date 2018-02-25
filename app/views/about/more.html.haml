@@ -63,5 +63,5 @@
   .footer-links
     .container
       %p
-        = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+        = link_to t('about.source_code'), @instance_presenter.source_url
         = " (#{@instance_presenter.version_number})"

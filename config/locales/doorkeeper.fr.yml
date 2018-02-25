@@ -1,28 +1,14 @@
 ---
 fr:
-  activemodel:
-    errors:
-      models:
-        remote_follow:
-          attributes:
-            acct:
-              blank: Le nom d’utilisateur ne doit pas être vide
   activerecord:
     attributes:
       doorkeeper/application:
         name: Nom
         redirect_uri: L’URL de redirection
+        scope: Portée
+        website: Site Web de l'application
     errors:
-      messages:
-        record_invalid: Données invalides
       models:
-        account:
-          attributes:
-            note:
-              too_long: Description trop longue
-            username:
-              blank: Identifiant vide
-              taken: Identifiant déjà pris
         doorkeeper/application:
           attributes:
             redirect_uri:
@@ -30,17 +16,6 @@ fr:
               invalid_uri: doit être une URL valide.
               relative_uri: doit être une URL absolue.
               secured_uri: doit être une URL HTTP/SSL.
-        user:
-          attributes:
-            email:
-              blank: Courriel vide
-              invalid: Courriel invalide
-              taken: Courriel pris
-            password:
-              blank: Mot de passe vide
-              too_short: Mot de passe trop court
-            password_confirmation:
-              confirmation: Le mot de passe ne correspond pas
   doorkeeper:
     applications:
       buttons:

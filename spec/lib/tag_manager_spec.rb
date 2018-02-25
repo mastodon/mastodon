@@ -157,23 +157,12 @@ RSpec.describe TagManager do
   describe '#uri_for' do
     subject { TagManager.instance.uri_for(target) }
 
-    context 'activity object' do
-      let(:target) { Fabricate(:status, reblog: Fabricate(:status)).stream_entry }
-
-      before { target.update!(created_at: '2000-01-01T00:00:00Z') }
-
-      it 'returns the unique tag for status' do
-        expect(target.object_type).to eq :activity
-        is_expected.to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{target.id}:objectType=Status"
-      end
-    end
-
     context 'comment object' do
       let(:target) { Fabricate(:status, created_at: '2000-01-01T00:00:00Z', reply: true) }
 
       it 'returns the unique tag for status' do
         expect(target.object_type).to eq :comment
-        is_expected.to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{target.id}:objectType=Status"
+        is_expected.to eq target.uri
       end
     end
 
@@ -182,7 +171,7 @@ RSpec.describe TagManager do
 
       it 'returns the unique tag for status' do
         expect(target.object_type).to eq :note
-        is_expected.to eq "tag:cb6e6126.ngrok.io,2000-01-01:objectId=#{target.id}:objectType=Status"
+        is_expected.to eq target.uri
       end
     end
 

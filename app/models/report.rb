@@ -22,6 +22,8 @@ class Report < ApplicationRecord
   scope :unresolved, -> { where(action_taken: false) }
   scope :resolved,   -> { where(action_taken: true) }
 
+  validates :comment, length: { maximum: 1000 }
+
   def statuses
     Status.where(id: status_ids).includes(:account, :media_attachments, :mentions)
   end

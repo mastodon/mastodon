@@ -642,7 +642,6 @@ RSpec.describe Account, type: :model do
       it 'returns remote accounts with followers whose subscription expiration date is past or not given' do
         local = Fabricate(:account, domain: nil)
         matches = [
-          { domain: 'remote', subscription_expires_at: nil },
           { domain: 'remote', subscription_expires_at: '2000-01-01T00:00:00Z' },
         ].map(&method(:Fabricate).curry(2).call(:account))
         matches.each(&local.method(:follow!))

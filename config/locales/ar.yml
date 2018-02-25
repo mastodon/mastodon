@@ -47,16 +47,16 @@ ar:
   datetime:
     distance_in_words:
       about_x_hours: "%{count}سا"
-      about_x_months: "%{count}شهر"
-      about_x_years: "%{count}سنة"
-      almost_x_years: "%{count}سنوات"
-      half_a_minute: Just now
-      less_than_x_minutes: "%{count}د"
+      about_x_months: "%{count} شهر"
+      about_x_years: "%{count} سنة"
+      almost_x_years: "%{count} سنوات"
+      half_a_minute: الآن
+      less_than_x_minutes: "%{count} د"
       less_than_x_seconds: الآن
-      over_x_years: "%{count}سنين"
-      x_days: "%{count}أيام"
+      over_x_years: "%{count} سنين"
+      x_days: "%{count} أيام"
       x_minutes: "%{count}د"
-      x_months: "%{count}شه"
+      x_months: "%{count} شه"
       x_seconds: "%{count}ث"
   exports:
     blocks: قمت بحظر
@@ -94,7 +94,7 @@ ar:
         one: "إشعار واحد منذ زيارتك الأخيرة \U0001F418"
         other: "%{count} إشعارات جديدة منذ زيارتك الأخيرة \U0001F418"
     favourite:
-      body: 'Your status was favourited by %{name}:'
+      body: 'أُعجب %{name} بمنشورك'
       subject: "%{name} favourited your status"
     follow:
       body: "%{name} من متتبعيك الآن !"
@@ -108,6 +108,17 @@ ar:
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: التالي
     prev: السابق
@@ -148,7 +159,7 @@ ar:
     enabled_success: تم تفعيل إثبات الهوية المزدوج بنجاح
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
-    setup: Set up
+    setup: تنشيط
     wrong_code: الرمز الذي أدخلته غير صالح. تحقق من صحة الوقت على الخادم و الجهاز.
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح

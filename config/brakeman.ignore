@@ -3,14 +3,33 @@
     {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
+      "fingerprint": "44d3f14e05d8fbb5b23e13ac02f15aa38b2a2f0f03b9ba76bab7f98e155a4a4e",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/stream_entries/embed.html.haml",
+      "line": 3,
+      "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :centered => true })",
+      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":35,"file":"app/controllers/statuses_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "stream_entries/embed"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
       "fingerprint": "9f31d941f3910dba2e9bfcd81aef4513249bd24c02d0f98e13ad44fdeeccd0e8",
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/admin/accounts/index.html.haml",
-      "line": 32,
+      "line": 63,
       "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => filtered_accounts.page(params[:page]), {})",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"index","line":7,"file":"app/controllers/admin/accounts_controller.rb"}],
+      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"index","line":10,"file":"app/controllers/admin/accounts_controller.rb"}],
       "location": {
         "type": "template",
         "template": "admin/accounts/index"
@@ -42,25 +61,6 @@
     {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
-      "fingerprint": "c417f9d44ab05dd9cf3d5ec9df2324a5036774c151181787b32c4c940623191b",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/stream_entries/embed.html.haml",
-      "line": 2,
-      "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => Account.find_local!(params[:account_username]).stream_entries.where(:activity_type => \"Status\").find(params[:id]).activity_type.downcase, { Account.find_local!(params[:account_username]).stream_entries.where(:activity_type => \"Status\").find(params[:id]).activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).stream_entries.where(:activity_type => \"Status\").find(params[:id]).activity, :centered => true })",
-      "render_path": [{"type":"controller","class":"StreamEntriesController","method":"embed","line":32,"file":"app/controllers/stream_entries_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "stream_entries/embed"
-      },
-      "user_input": "params[:id]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
       "fingerprint": "c5d6945d63264af106d49367228d206aa2f176699ecdce2b98fac101bc6a96cf",
       "check_name": "Render",
       "message": "Render path contains parameter value",
@@ -84,10 +84,10 @@
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/stream_entries/show.html.haml",
-      "line": 19,
+      "line": 23,
       "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(partial => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { :locals => ({ Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :include_threads => true }) })",
-      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":15,"file":"app/controllers/statuses_controller.rb"}],
+      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":20,"file":"app/controllers/statuses_controller.rb"}],
       "location": {
         "type": "template",
         "template": "stream_entries/show"
@@ -97,6 +97,6 @@
       "note": ""
     }
   ],
-  "updated": "2017-05-07 08:26:06 +0900",
-  "brakeman_version": "3.6.1"
+  "updated": "2017-08-30 05:14:04 +0200",
+  "brakeman_version": "3.7.2"
 }

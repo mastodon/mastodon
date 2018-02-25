@@ -7,7 +7,7 @@ class ActivityPub::OutboxesController < Api::BaseController
     @statuses = @account.statuses.permitted_for(@account, current_account).paginate_by_max_id(20, params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses, Status)
 
-    render json: outbox_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter
+    render json: outbox_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 
   private

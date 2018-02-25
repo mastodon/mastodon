@@ -4,6 +4,9 @@
   %td.domain
     - unless account.local?
       = link_to account.domain, admin_accounts_path(by_domain: account.domain)
+  %td.protocol
+    - unless account.local?
+      = account.protocol.humanize
   %td.confirmed
     - if account.local?
       - if account.user_confirmed?

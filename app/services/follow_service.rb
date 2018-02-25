@@ -5,16 +5,16 @@ class FollowService < BaseService
 
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
-  # @param [String] uri User URI to follow in the form of username@domain
+  # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
   def call(source_account, uri)
-    target_account = ResolveRemoteAccountService.new.call(uri)
+    target_account = uri.is_a?(Account) ? uri : ResolveRemoteAccountService.new.call(uri)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
 
-    return if source_account.following?(target_account)
+    return if source_account.following?(target_account) || source_account.requested?(target_account)
 
-    if target_account.locked?
+    if target_account.locked? || target_account.activitypub?
       request_follow(source_account, target_account)
     else
       direct_follow(source_account, target_account)
@@ -28,9 +28,11 @@ class FollowService < BaseService
 
     if target_account.local?
       NotifyService.new.call(target_account, follow_request)
-    else
+    elsif target_account.ostatus?
       NotificationWorker.perform_async(build_follow_request_xml(follow_request), source_account.id, target_account.id)
       AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
+    elsif target_account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), source_account.id, target_account.inbox_url)
     end
 
     follow_request
@@ -62,5 +64,13 @@ class FollowService < BaseService
 
   def build_follow_xml(follow)
     OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_salmon(follow))
+  end
+
+  def build_json(follow_request)
+    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+      follow_request,
+      serializer: ActivityPub::FollowSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json).sign!(follow_request.account))
   end
 end

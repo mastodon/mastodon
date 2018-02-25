@@ -264,6 +264,17 @@ he:
     reblog:
       body: 'חצרוצך הודהד על ידי %{name}:'
       subject: חצרוצך הודהד על ידי%{name}
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: הבא
     prev: הקודם

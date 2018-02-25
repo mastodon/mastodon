@@ -3,7 +3,7 @@
   margin: 0 auto;
   margin-top: 40px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 740px) {
     width: 100%;
     margin: 0;
   }
@@ -44,6 +44,22 @@
   }
 }
 
+.compose-standalone {
+  .compose-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px 0;
+    margin-top: 40px;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 400px) {
+      width: 100%;
+      margin-top: 0;
+      padding: 20px;
+    }
+  }
+}
+
 .account-header {
   width: 400px;
   margin: 0 auto;
@@ -56,7 +72,7 @@
   margin-bottom: -30px;
   margin-top: 40px;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 440px) {
     width: 100%;
     margin: 0;
     margin-bottom: 10px;
@@ -81,10 +97,13 @@
   .name {
     flex: 1 1 auto;
     color: $ui-secondary-color;
+    width: calc(100% - 88px);
 
     .username {
       display: block;
       font-weight: 500;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
 
@@ -92,5 +111,6 @@
     display: block;
     font-size: 32px;
     line-height: 40px;
+    margin-left: 8px;
   }
 }
