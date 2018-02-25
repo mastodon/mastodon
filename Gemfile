@@ -96,6 +96,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
 end
 
+group :production, :test do
+  gem 'private_address_check', '~> 0.4.1'
+end
+
 group :test do
   gem 'capybara', '~> 2.15'
   gem 'climate_control', '~> 0.2'

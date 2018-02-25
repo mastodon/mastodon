@@ -9,6 +9,10 @@ end
 
 Sidekiq.configure_server do |config|
   config.redis = redis_params
+
+  config.server_middleware do |chain|
+    chain.add SidekiqErrorHandler
+  end
 end
 
 Sidekiq.configure_client do |config|

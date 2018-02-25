@@ -38,17 +38,32 @@ describe Request do
   end
 
   describe '#perform' do
-    before do
-      stub_request(:get, 'http://example.com')
-      subject.perform
+    context 'with valid host' do
+      before do
+        stub_request(:get, 'http://example.com')
+        subject.perform
+      end
+
+      it 'executes a HTTP request' do
+        expect(a_request(:get, 'http://example.com')).to have_been_made.once
+      end
+
+      it 'sets headers' do
+        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
+      end
     end
 
-    it 'executes a HTTP request' do
-      expect(a_request(:get, 'http://example.com')).to have_been_made.once
-    end
+    context 'with private host' do
+      around do |example|
+        WebMock.disable!
+        example.run
+        WebMock.enable!
+      end
 
-    it 'sets headers' do
-      expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
+      it 'raises Mastodon::ValidationError' do
+        allow(IPSocket).to receive(:getaddress).with('example.com').and_return('0.0.0.0')
+        expect{ subject.perform }.to raise_error Mastodon::ValidationError
+      end
     end
   end
 end
