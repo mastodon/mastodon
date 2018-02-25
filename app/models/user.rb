@@ -52,7 +52,6 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  devise :pam_authenticatable if Devise.pam_authentication
   devise :omniauthable
 
   belongs_to :account, inverse_of: :user
@@ -115,6 +114,12 @@ class User < ApplicationRecord
     self.account = acc
 
     acc.destroy! unless save
+  end
+
+  def ldap_setup(_attributes)
+    self.confirmed_at = Time.now.utc
+    self.admin = false
+    save!
   end
 
   def confirmed?
@@ -247,17 +252,17 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    return false if Devise.pam_authentication
+    return false if Devise.pam_authentication || Devise.ldap_authentication
     super
   end
 
   def send_reset_password_instructions
-    return false if encrypted_password.blank? && Devise.pam_authentication
+    return false if encrypted_password.blank? && (Devise.pam_authentication || Devise.ldap_authentication)
     super
   end
 
   def reset_password!(new_password, new_password_confirmation)
-    return false if encrypted_password.blank? && Devise.pam_authentication
+    return false if encrypted_password.blank? && (Devise.pam_authentication || Devise.ldap_authentication)
     super
   end
 
@@ -278,6 +283,17 @@ class User < ApplicationRecord
       end
       resource
     end
+  end
+
+  def self.ldap_get_user(attributes = {})
+    resource = joins(:account).find_by(accounts: { username: attributes[Devise.ldap_uid.to_sym].first })
+
+    if resource.blank?
+      resource = new(email: attributes[:mail].first, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first })
+      resource.ldap_setup(attributes)
+    end
+
+    resource
   end
 
   def self.authenticate_with_pam(attributes = {})
