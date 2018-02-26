@@ -22,7 +22,7 @@ $small-breakpoint: 960px;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 2fr;
-    grid-auto-columns: 1fr;
+    grid-auto-columns: 25%;
     grid-auto-rows: max-content;
 
     .column-0 {
@@ -53,7 +53,7 @@ $small-breakpoint: 960px;
   @media screen and (max-width: $small-breakpoint) {
 
     .grid {
-      grid-template-columns: 4fr 6fr;
+      grid-template-columns: 40% 60%;
 
       .column-0 {
         display: none;
