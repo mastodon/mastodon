@@ -494,9 +494,13 @@ namespace :mastodon do
       accounts = accounts.where(domain: ENV['DOMAIN']) if ENV['DOMAIN'].present?
 
       accounts.find_each do |account|
-        account.reset_avatar!
-        account.reset_header!
-        account.save
+        begin
+          account.reset_avatar!
+          account.reset_header!
+          account.save
+        rescue Paperclip::Error
+          puts "Error resetting avatar and header for account #{username}@#{domain}"
+        end
       end
     end
   end
