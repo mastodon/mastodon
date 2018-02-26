@@ -375,6 +375,7 @@ sk:
     view: 'Zobraziť:'
     view_profile: Zobraziť profil
     view_status: Zobraziť status
+    salutation: '%{name},'
   applications:
     created: Aplikácia bola vytvorená úspešne
     destroyed: Aplikáciu sa podarilo odstrániť
@@ -511,6 +512,13 @@ sk:
       body: '%{name} ťa teraz následuje!'
       subject: '%{name} ťa teraz následuje'
       title: Nový sledovateľ
+    follow_request:
+      action: Spravuj žiadosti o sledovanie
+      body: '%{name} žiada povolenie ťa následovať'
+      subject: '%{name} ťa žiadá o možnosť sledovania'
+      title: Nová žiadosť o sledovanie
+    mention:
+      action: Odpovedať
   user_mailer:
     welcome:
       final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné
@@ -571,5 +579,6 @@ sk:
     acct: prezývka@doména nového účtu
     currently_redirecting: 'Tvoj profil má nastavené presmerovanie na:'
     proceed: Uložiť
+    updated_msg: Tvoje nastavenia pre presmerovanie účtu boli úspešne aktualizované!
   moderation:
     title: Moderovanie
