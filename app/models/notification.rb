@@ -14,7 +14,7 @@
 #
 
 class Notification < ApplicationRecord
-  self.inheritance_column = 'sti_type'
+  self.inheritance_column = nil
   include Paginable
   include Cacheable
 
@@ -53,7 +53,7 @@ class Notification < ApplicationRecord
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
   def type
-    @type ||= self[:type].to_sym
+    @type ||= super.to_sym
   end
 
   def target_status
