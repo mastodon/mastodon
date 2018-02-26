@@ -1,4 +1,3 @@
----
 eo:
   simple_form:
     hints:
@@ -6,8 +5,10 @@ eo:
         avatar: En la formato PNG, GIF aŭ JPG. Ĝis 2Mo. Estos malgrandigita al 120x120px
         display_name: 30 signoj pleje
         header: En la formato PNG, GIF aŭ JPG. Ĝis 2Mo. Estos malgrandigita al 700x335px
-        locked: Vi devos aprobi ĉiun peton de sekvado, kaj viaj mesaĝoj estos senŝanĝe nur por viaj sekvantoj.
+        locked: Vi devos aprobi ĉiun peton de sekvado mane
         note: 160 signoj pleje
+        digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis
+          personan mesaĝon en via malĉeesto
       imports:
         data: Dosiero CSV el alia aperaĵo de Mastodon
     labels:
@@ -41,6 +42,6 @@ eo:
         reblog: Sendi retpoŝt-mesaĝon, kiam iu diskonigas mesaĝon de vi
     'no': Ne
     required:
-      mark: "*"
+      mark: '*'
       text: bezonata
     'yes': Jes
