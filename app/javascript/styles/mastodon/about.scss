@@ -1015,93 +1015,54 @@ $small-breakpoint: 960px;
   }
 
   &.tag-page {
-    .features {
-      padding: 30px 0;
+    .grid {
+      @media screen and (min-width: $small-breakpoint) {
+        grid-template-columns: 33% 67%;
+      }
 
-      .container-alt {
-        max-width: 820px;
-
-        #mastodon-timeline {
-          margin-right: 0;
-          border-top-right-radius: 0;
-        }
-
-        .about-mastodon {
-          .about-hashtag {
-            background: darken($ui-base-color, 4%);
-            padding: 0 20px 20px 30px;
-            border-radius: 0 5px 5px 0;
-
-            .brand {
-              padding-top: 20px;
-              margin-bottom: 20px;
-
-              img {
-                height: 48px;
-                width: auto;
-              }
-            }
-
-            p {
-              strong {
-                color: $ui-secondary-color;
-                font-weight: 700;
-              }
-            }
-
-            .cta {
-              margin: 0;
-
-              .button {
-                margin-right: 4px;
-              }
-            }
-          }
-
-          .features-list {
-            margin-left: 30px;
-            margin-right: 10px;
-          }
-        }
+      .column-2 {
+        grid-column: 2;
+        grid-row: 1;
       }
     }
 
-    @media screen and (max-width: 675px) {
-      .features {
-        padding: 10px 0;
+    .brand {
+      text-align: unset;
+      padding: 0;
 
-        .container-alt {
-          display: flex;
-          flex-direction: column;
+      img {
+        height: 48px;
+        width: auto;
+      }
+    }
 
-          #mastodon-timeline {
-            order: 2;
-            flex: 0 0 auto;
-            height: 60vh;
-            margin-bottom: 20px;
-            border-top-right-radius: 4px;
-          }
+    .cta {
+      margin: 0;
 
-          .about-mastodon {
-            order: 1;
-            flex: 0 0 auto;
-            max-width: 100%;
+      .button {
+        margin-right: 4px;
+      }
+    }
 
-            .about-hashtag {
-              background: unset;
-              padding: 0;
-              border-radius: 0;
-
-              .cta {
-                margin: 20px 0;
-              }
-            }
-
-            .features-list {
-              display: none;
-            }
-          }
+    @media screen and (max-width: $column-breakpoint) {
+      .grid {
+        .column-1 {
+          grid-column: 1;
+          grid-row: 2;
         }
+
+        .column-2 {
+          grid-column: 1;
+          grid-row: 1;
+        }
+      }
+
+      .brand {
+        margin: 0;
+      }
+
+      .landing-page__features {
+        display: none;
       }
     }
   }
