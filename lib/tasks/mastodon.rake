@@ -498,7 +498,7 @@ namespace :mastodon do
           account.reset_avatar!
           account.reset_header!
           account.save
-        rescue
+        rescue Paperclip::Error
           puts "Error resetting avatar and header for account #{username}@#{domain}"
         end
       end
