@@ -35,6 +35,8 @@ class Web::NotificationSerializer < ActiveModel::Serializer
         web_url("statuses/#{object.target_status.id}")
       when :reblog
         web_url("statuses/#{object.target_status.id}")
+      when :post
+        web_url("statuses/#{object.target_status.id}")
       end
     end
 
@@ -72,6 +74,8 @@ class Web::NotificationSerializer < ActiveModel::Serializer
       when :favourite
         object.target_status.text
       when :reblog
+        object.target_status.text
+      when :post
         object.target_status.text
       end
     end
@@ -133,6 +137,8 @@ class Web::NotificationSerializer < ActiveModel::Serializer
       I18n.t('push_notifications.favourite.title', name: name)
     when :reblog
       I18n.t('push_notifications.reblog.title', name: name)
+    when :post
+      I18n.t('push_notifications.post.title', name: name)
     end
   end
 

@@ -134,6 +134,15 @@ RSpec.describe NotifyService do
     end
   end
 
+  describe 'posts' do
+    let(:status)   { Fabricate(:status, account: Fabricate(:account)) }
+
+    it 'shows posts by default' do
+      recipient.follow!(sender)
+      is_expected.to change(Notification, :count)
+    end
+  end
+
   describe 'email' do
     before do
       ActionMailer::Base.deliveries.clear

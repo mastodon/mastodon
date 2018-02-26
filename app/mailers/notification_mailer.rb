@@ -54,6 +54,19 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
+  def post(recipient, notification)
+    @me      = recipient
+    @account = notification.from_account
+    @status  = notification.target_status
+
+    return if @me.user.disabled? || @status.nil?
+
+    locale_for_account(@me) do
+      thread_by_conversation(@status.conversation)
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.post.subject', name: @account.acct)
+    end
+  end
+
   def follow_request(recipient, notification)
     @me      = recipient
     @account = notification.from_account

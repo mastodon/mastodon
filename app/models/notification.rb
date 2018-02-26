@@ -6,6 +6,7 @@
 #  id              :integer          not null, primary key
 #  activity_id     :integer
 #  activity_type   :string
+#  type            :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  account_id      :integer
@@ -13,15 +14,17 @@
 #
 
 class Notification < ApplicationRecord
+  self.inheritance_column = nil
   include Paginable
   include Cacheable
 
-  TYPE_CLASS_MAP = {
-    mention:        'Mention',
-    reblog:         'Status',
-    follow:         'Follow',
-    follow_request: 'FollowRequest',
-    favourite:      'Favourite',
+  TYPES = [:mention, :reblog, :post, :follow, :follow_request, :favourite].freeze
+  ACTIVITY_TYPE_DEFAULT_MAP = {
+    'Mention' => :mention,
+    'Status' => :reblog,
+    'Follow' => :follow,
+    'FollowRequest' => :follow_request,
+    'Favourite' => :favourite,
   }.freeze
 
   STATUS_INCLUDES = [:account, :application, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :application, :media_attachments, :tags, mentions: :account]].freeze
@@ -37,19 +40,20 @@ class Notification < ApplicationRecord
   belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id', optional: true
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
-  validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
+  validates :activity_type, inclusion: { in: ACTIVITY_TYPE_DEFAULT_MAP.keys }
+  validates :type, inclusion: { in: TYPES }
 
-  scope :cache_ids, -> { select(:id, :updated_at, :activity_type, :activity_id) }
+  scope :cache_ids, -> { select(:id, :updated_at, :type, :activity_type, :activity_id) }
 
   scope :browserable, ->(exclude_types = []) {
-    types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types + [:follow_request])
-    where(activity_type: types)
+    types = TYPES - (exclude_types.map(&:to_sym) + [:follow_request])
+    where(type: types)
   }
 
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
   def type
-    @type ||= TYPE_CLASS_MAP.invert[activity_type].to_sym
+    @type ||= super.to_sym
   end
 
   def target_status
@@ -60,6 +64,8 @@ class Notification < ApplicationRecord
       favourite&.status
     when :mention
       mention&.status
+    when :post
+      status
     end
   end
 
@@ -80,16 +86,12 @@ class Notification < ApplicationRecord
         item.target_status.account = accounts[item.target_status.account_id] if item.target_status
       end
     end
-
-    private
-
-    def activity_types_from_types(types)
-      types.map { |type| TYPE_CLASS_MAP[type.to_sym] }.compact
-    end
   end
 
   after_initialize :set_from_account
   before_validation :set_from_account
+  after_initialize :set_type
+  before_validation :set_type
 
   private
 
@@ -102,5 +104,9 @@ class Notification < ApplicationRecord
     when 'Mention'
       self.from_account_id = activity&.status&.account_id
     end
+  end
+
+  def set_type
+    self.type = ACTIVITY_TYPE_DEFAULT_MAP[activity_type].to_s if self[:type].blank?
   end
 end

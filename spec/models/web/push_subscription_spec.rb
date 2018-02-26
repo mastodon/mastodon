@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Web::PushSubscription, type: :model do
-  let(:alerts) { { mention: true, reblog: false, follow: true, follow_request: false, favourite: true } }
+  let(:alerts) { { mention: true, reblog: false, follow: true, follow_request: false, favourite: true, post: true } }
   let(:payload_no_alerts) { Web::PushSubscription.new(id: 1, endpoint: 'a', key_p256dh: 'c', key_auth: 'd').as_payload }
   let(:payload_alerts) { Web::PushSubscription.new(id: 1, endpoint: 'a', key_p256dh: 'c', key_auth: 'd', data: { alerts: alerts }).as_payload }
   let(:push_subscription) { Web::PushSubscription.new(data: { alerts: alerts }) }
@@ -23,6 +23,7 @@ RSpec.describe Web::PushSubscription, type: :model do
       expect(push_subscription.send(:pushable?, Notification.new(activity_type: 'Follow'))).to eq true
       expect(push_subscription.send(:pushable?, Notification.new(activity_type: 'FollowRequest'))).to eq false
       expect(push_subscription.send(:pushable?, Notification.new(activity_type: 'Favourite'))).to eq true
+      expect(push_subscription.send(:pushable?, Notification.new(type: :post))).to eq true
     end
   end
 end
