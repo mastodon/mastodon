@@ -273,6 +273,9 @@ ja:
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先のユーザー名
+      hero:
+        desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、インスタンスのサムネイルが使用されます。
+        title: ヒーローイメージ
       peers_api_enabled:
         desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
         title: 接続しているインスタンスのリストを公開する
@@ -289,6 +292,9 @@ ja:
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
+      show_known_fediverse_at_about_page:
+        desc_html: チェックを入れるとプレビュー欄に既知の連合先全てのトゥートを表示します。外すとローカルのトゥートだけ表示します。
+        title: タイムラインプレビューに連合タイムラインを表示する
       show_staff_badge:
         desc_html: ユーザーページにスタッフのバッジを表示します
         title: スタッフバッジを表示する
@@ -363,6 +369,7 @@ ja:
     logout: ログアウト
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
+    or_log_in_with: または次のサービスでログイン
     register: 登録する
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
@@ -412,6 +419,13 @@ ja:
       title: このページは正しくありません
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
+    archive_takeout:
+      date: 日時
+      download: ダウンロード
+      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。"
+      in_progress: 準備中...
+      request: アーカイブをリクエスト
+      size: 容量
     blocks: ブロック
     csv: CSV
     follows: フォロー
@@ -724,6 +738,10 @@ ja:
     setup: 初期設定
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
   user_mailer:
+    backup_ready:
+      explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
+      subject: アーカイブの準備ができました
+      title: アーカイブの取り出し
     welcome:
       edit_profile_action: プロフィールを設定
       edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを非公開にすることができます。

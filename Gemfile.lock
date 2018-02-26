@@ -178,7 +178,6 @@ GEM
     et-orbi (1.0.8)
       tzinfo
     excon (0.59.0)
-    execjs (2.7.0)
     fabrication (2.18.0)
     faker (1.8.4)
       i18n (~> 0.5)
@@ -376,6 +375,7 @@ GEM
     premailer-rails (1.10.1)
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
+    private_address_check (0.4.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -583,8 +583,6 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2017.3)
       tzinfo (>= 1.0.0)
-    uglifier (3.2.0)
-      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
@@ -683,6 +681,7 @@ DEPENDENCIES
   pghero (~> 1.7)
   pkg-config (~> 1.2)
   premailer-rails
+  private_address_check (~> 0.4.1)
   pry-rails (~> 0.3)
   puma (~> 3.10)
   pundit (~> 1.1)
@@ -719,7 +718,6 @@ DEPENDENCIES
   tty-prompt
   twitter-text (~> 1.14)
   tzinfo-data (~> 1.2017)
-  uglifier (~> 3.2)
   webmock (~> 3.0)
   webpacker (~> 3.0)
   webpush

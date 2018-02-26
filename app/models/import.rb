@@ -26,7 +26,7 @@ class Import < ApplicationRecord
 
   validates :type, presence: true
 
-  has_attached_file :data, url: '/system/:hash.:extension', hash_secret: ENV['PAPERCLIP_SECRET']
+  has_attached_file :data
   validates_attachment_content_type :data, content_type: FILE_TYPES
   validates_attachment_presence :data
 end

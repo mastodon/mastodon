@@ -157,7 +157,7 @@ RSpec.describe FeedManager do
     end
   end
 
-  describe '#push' do
+  describe '#push_to_home' do
     it 'trims timelines if they will have more than FeedManager::MAX_ITEMS' do
       account = Fabricate(:account)
       status = Fabricate(:status)
@@ -247,6 +247,39 @@ RSpec.describe FeedManager do
         # The second reblog should also be accepted
         expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be true
       end
+    end
+
+    it "does not push when the given status's reblog is already inserted" do
+      account = Fabricate(:account)
+      reblog = Fabricate(:status)
+      status = Fabricate(:status, reblog: reblog)
+      FeedManager.instance.push_to_home(account, status)
+
+      expect(FeedManager.instance.push_to_home(account, reblog)).to eq false
+    end
+  end
+
+  describe '#push_to_list' do
+    it "does not push when the given status's reblog is already inserted" do
+      list = Fabricate(:list)
+      reblog = Fabricate(:status)
+      status = Fabricate(:status, reblog: reblog)
+      FeedManager.instance.push_to_list(list, status)
+
+      expect(FeedManager.instance.push_to_list(list, reblog)).to eq false
+    end
+  end
+
+  describe '#merge_into_timeline' do
+    it "does not push source account's statuses whose reblogs are already inserted" do
+      account = Fabricate(:account, id: 0)
+      reblog = Fabricate(:status)
+      status = Fabricate(:status, reblog: reblog)
+      FeedManager.instance.push_to_home(account, status)
+
+      FeedManager.instance.merge_into_timeline(account, reblog.account)
+
+      expect(Redis.current.zscore("feed:home:0", reblog.id)).to eq nil
     end
   end
 
