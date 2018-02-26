@@ -233,8 +233,8 @@
 
   a,
   .current,
-  .next,
-  .prev,
+  .newer,
+  .older,
   .page,
   .gap {
     font-size: 14px;
@@ -257,13 +257,13 @@
     cursor: default;
   }
 
-  .prev,
-  .next {
+  .older,
+  .newer {
     text-transform: uppercase;
     color: $ui-secondary-color;
   }
 
-  .prev {
+  .older {
     float: left;
     padding-left: 0;
 
@@ -273,7 +273,7 @@
     }
   }
 
-  .next {
+  .newer {
     float: right;
     padding-right: 0;
 
@@ -295,8 +295,8 @@
       display: none;
     }
 
-    .next,
-    .prev {
+    .newer,
+    .older {
       display: inline-block;
     }
   }
