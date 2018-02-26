@@ -1,8 +1,9 @@
----
 oc:
   about:
-    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
-    about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
+    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>.
+      Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
+    about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures
+      e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
@@ -11,20 +12,28 @@ oc:
     description_headline: Qué es %{domain} ?
     domain_count_after: autras instàncias
     domain_count_before: Connectat a
-    extended_description_html: |
-      <h3>Una bona plaça per las règlas</h3>
+    extended_description_html: '<h3>Una bona plaça per las règlas</h3>
+
       <p>La descripcion longa es pas estada causida pel moment.</p>
+
+      '
     features:
-      humane_approach_body: Amb l’experiéncia dels fracasses d’autres malhums, Mastodon ten per objectiu de lutar contra los abuses dels malhums socials en far de causidas eticas.
+      humane_approach_body: Amb l’experiéncia dels fracasses d’autres malhums, Mastodon
+        ten per objectiu de lutar contra los abuses dels malhums socials en far de
+        causidas eticas.
       humane_approach_title: Un biais mai uman
-      not_a_product_body: Mastodon es pas un malhum comercial. Pas cap de reclama, d’utilizacion de vòstras donadas o d’òrt daurat clavat. I a pas cap d’autoritat centrala.
+      not_a_product_body: Mastodon es pas un malhum comercial. Pas cap de reclama,
+        d’utilizacion de vòstras donadas o d’òrt daurat clavat. I a pas cap d’autoritat
+        centrala.
       not_a_product_title: Sètz una persona, non pas un produit
-      real_conversation_body: Amb 500 caractèrs a vòstra disposicion e un nivèl de confidencialitat per cada publicacion, podètz vos exprimir coma volètz.
+      real_conversation_body: Amb 500 caractèrs a vòstra disposicion e un nivèl de
+        confidencialitat per cada publicacion, podètz vos exprimir coma volètz.
       real_conversation_title: Fach per de conversacions vertadièras
-      within_reach_body: Multiplas aplicacion per iOS, Android, e autras plataformas mercés a un entorn API de bon utilizar, vos permet de gardar lo contacte pertot.
+      within_reach_body: Multiplas aplicacion per iOS, Android, e autras plataformas
+        mercés a un entorn API de bon utilizar, vos permet de gardar lo contacte pertot.
       within_reach_title: Totjorn al costat
     find_another_instance: Trobar mai instàncias
-    generic_description: "%{domain} es un dels servidors del malhum"
+    generic_description: '%{domain} es un dels servidors del malhum'
     hosted_on: Mastodon albergat sus %{domain}
     learn_more: Ne saber mai
     other_instances: Lista d’instàncias
@@ -39,7 +48,7 @@ oc:
     followers: Seguidors
     following: Abonaments
     media: Mèdias
-    moved_html: "%{name} a mudat a %{new_profile_link} :"
+    moved_html: '%{name} a mudat a %{new_profile_link} :'
     nothing_here: I a pas res aquí !
     people_followed_by: Lo mond que %{name} sèc
     people_who_follow: Lo mond que sègon %{name}
@@ -136,29 +145,32 @@ oc:
       web: Web
     action_logs:
       actions:
-        confirm_user: "%{name} confirmèt l’adreça a %{target}"
-        create_custom_emoji: "%{name} mandèt un nòu emoji %{target}"
-        create_domain_block: "%{name} bloquèt lo domeni %{target}"
-        create_email_domain_block: "%{name} botèt a la lista nègra lo domeni de corrièl %{target}"
-        demote_user: "%{name} retragradèt l‘utilizaire %{target}"
-        destroy_domain_block: "%{name} desbloquèt lo domeni %{target}"
-        destroy_email_domain_block: "%{name} botèt a la lista blanca lo domeni de corrièl %{target}"
-        destroy_status: "%{name} levèt l‘estatut a %{target}"
-        disable_2fa_user: "%{name} desactivèt l’autentificacion en dos temps per %{target}"
-        disable_custom_emoji: "%{name} desactivèt l‘emoji %{target}"
-        disable_user: "%{name} desactivèt la connexion per %{target}"
-        enable_custom_emoji: "%{name} activèt l‘emoji %{target}"
-        enable_user: "%{name} activèt la connexion per %{target}"
-        memorialize_account: "%{name} transformèt en memorial la pagina de perfil a %{target}"
-        promote_user: "%{name} promoguèt %{target}"
-        reset_password_user: "%{name} reïnicializèt lo senhal a %{target}"
-        resolve_report: "%{name} anullèt lo rapòrt de %{target}"
-        silence_account: "%{name} metèt en silenci lo compte a %{target}"
-        suspend_account: "%{name} susprenguèt lo compte a %{target}"
-        unsilence_account: "%{name} levèt lo silenci del compte a %{target}"
-        unsuspend_account: "%{name} restabliguèt lo compte a %{target}"
-        update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
-        update_status: "%{name} metèt a jorn l’estatut a %{target}"
+        confirm_user: '%{name} confirmèt l’adreça a %{target}'
+        create_custom_emoji: '%{name} mandèt un nòu emoji %{target}'
+        create_domain_block: '%{name} bloquèt lo domeni %{target}'
+        create_email_domain_block: '%{name} botèt a la lista nègra lo domeni de corrièl
+          %{target}'
+        demote_user: '%{name} retragradèt l‘utilizaire %{target}'
+        destroy_domain_block: '%{name} desbloquèt lo domeni %{target}'
+        destroy_email_domain_block: '%{name} botèt a la lista blanca lo domeni de
+          corrièl %{target}'
+        destroy_status: '%{name} levèt l‘estatut a %{target}'
+        disable_2fa_user: '%{name} desactivèt l’autentificacion en dos temps per %{target}'
+        disable_custom_emoji: '%{name} desactivèt l‘emoji %{target}'
+        disable_user: '%{name} desactivèt la connexion per %{target}'
+        enable_custom_emoji: '%{name} activèt l‘emoji %{target}'
+        enable_user: '%{name} activèt la connexion per %{target}'
+        memorialize_account: '%{name} transformèt en memorial la pagina de perfil
+          a %{target}'
+        promote_user: '%{name} promoguèt %{target}'
+        reset_password_user: '%{name} reïnicializèt lo senhal a %{target}'
+        resolve_report: '%{name} anullèt lo rapòrt de %{target}'
+        silence_account: '%{name} metèt en silenci lo compte a %{target}'
+        suspend_account: '%{name} susprenguèt lo compte a %{target}'
+        unsilence_account: '%{name} levèt lo silenci del compte a %{target}'
+        unsuspend_account: '%{name} restabliguèt lo compte a %{target}'
+        update_custom_emoji: '%{name} metèt a jorn l’emoji %{target}'
+        update_status: '%{name} metèt a jorn l’estatut a %{target}'
       title: Audit dels jornals
     custom_emojis:
       by_domain: Domeni
@@ -192,15 +204,19 @@ oc:
       domain: Domeni
       new:
         create: Crear blocatge
-        hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas, mai aplicarà la moderacion sus aquestes comptes.
+        hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas,
+          mai aplicarà la moderacion sus aquestes comptes.
         severity:
-          desc_html: "<strong>Silenci</strong> farà venir invisibles los estatuts del compte al mond que son pas de seguidors. <strong>Suspendre</strong> levarà tot lo contengut del compte, los mèdias e las donadas de perfil."
+          desc_html: <strong>Silenci</strong> farà venir invisibles los estatuts del
+            compte al mond que son pas de seguidors. <strong>Suspendre</strong> levarà
+            tot lo contengut del compte, los mèdias e las donadas de perfil.
           noop: Cap
           silence: Silenci
           suspend: Suspendre
         title: Nòu blocatge domeni
       reject_media: Regetar los fichièrs mèdias
-      reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
+      reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas
+        de telecargament dins lo futur. Servís pas a res per las suspensions
       severities:
         noop: Cap
         silence: Silenci
@@ -209,7 +225,7 @@ oc:
       show:
         affected_accounts:
           one: Un compte de la basa de donadas tocat
-          other: "%{count} compte de la basa de donadas tocat"
+          other: '%{count} compte de la basa de donadas tocat'
         retroactive:
           silence: Levar lo silenci de totes los comptes d’aqueste domeni
           suspend: Levar la suspension de totes los comptes d’aqueste domeni
@@ -266,10 +282,12 @@ oc:
       view: Veire
     settings:
       activity_api_enabled:
-        desc_html: Nombre d’estatuts publicats, utilizaires actius e novèlas inscripcions en rapòrt setmanièr
+        desc_html: Nombre d’estatuts publicats, utilizaires actius e novèlas inscripcions
+          en rapòrt setmanièr
         title: Publica las estatisticas totalas de l’activitat dels utilizaires
       bootstrap_timeline_accounts:
-        desc_html: Separatz los noms d’utilizaire amb de virgula. Pas que los comptes locals e pas clavats foncionaràn. Se lo camp es void los admins seràn selecionats.
+        desc_html: Separatz los noms d’utilizaire amb de virgula. Pas que los comptes
+          locals e pas clavats foncionaràn. Se lo camp es void los admins seràn selecionats.
         title: Per defaut los nòuvenguts sègon
       contact_information:
         email: Picatz una adreça de corrièl
@@ -279,7 +297,8 @@ oc:
         title: Publica la lista de las instàncias conegudas
       registrations:
         closed_message:
-          desc_html: Afichat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz utilizar de balisas HTML
+          desc_html: Afichat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz
+            utilizar de balisas HTML
           title: Messatge de barradura de las inscripcions
         deletion:
           desc_html: Autorizar lo mond a suprimir lor compte
@@ -294,17 +313,22 @@ oc:
         desc_html: Mostrar lo badge Personal sus la pagina de perfil
         title: Mostrar lo badge personal
       site_description:
-        desc_html: Afichada jos la forma de paragraf sus la pagina d’acuèlh e utilizada coma balisa meta. Podètz utilizar de balisas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Afichada jos la forma de paragraf sus la pagina d’acuèlh e utilizada
+          coma balisa meta. Podètz utilizar de balisas HTML, en particular <code>&lt;a&gt;</code>
+          e <code>&lt;em&gt;</code>.
         title: Descripcion del site
       site_description_extended:
-        desc_html: Afichada sus la pagina d’informacion complementària del site<br>Podètz utilizar de balisas HTML
+        desc_html: Afichada sus la pagina d’informacion complementària del site<br>Podètz
+          utilizar de balisas HTML
         title: Descripcion espandida del site
       site_terms:
-        desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
+        desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz
+          utilizar de balisas HTML
         title: Politica de confidencialitat del site
       site_title: Títol del site
       thumbnail:
-        desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px recomandada
+        desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px
+          recomandada
         title: Miniatura de l’instància
       timeline_preview:
         desc_html: Mostrar lo flux public sus la pagina d’acuèlh
@@ -335,11 +359,11 @@ oc:
     title: Administracion
   admin_mailer:
     new_report:
-      body: "%{reporter} a senhalat %{target}"
+      body: '%{reporter} a senhalat %{target}'
       subject: Novèl senhalament per %{instance} (#%{id})
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
-    salutation: "%{name},"
+    salutation: '%{name},'
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     view: 'Veire :'
     view_profile: Veire lo perfil
@@ -353,21 +377,28 @@ oc:
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
-    agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas de l’instància</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
+    agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas de
+      l’instància</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
     change_password: Seguretat
     delete_account: Suprimir lo compte
-    delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
+    delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o
+      far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
     forgot_password: Senhal oblidat ?
-    invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
+    invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat.
+      Tornatz demandar un geton se vos plai.
     login: Se connectar
     logout: Se desconnectar
     migrate_account: Mudar endacòm mai
-    migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
+    migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre,
+      podètz<a href="%{path}"> o configurar aquí</a>.
     register: Se marcar
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     set_new_password: Picar un nòu senhal
+    providers:
+      cas: CAS
+      saml: SAML
   authorize_follow:
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
@@ -388,7 +419,7 @@ oc:
     - dv
     - ds
     abbr_month_names:
-    - 
+    - None
     - gen
     - feb
     - mar
@@ -410,11 +441,11 @@ oc:
     - divendres
     - dissabte
     formats:
-      default: "%e/%m/%Y"
+      default: '%e/%m/%Y'
       long: Lo %e %B de %Y
-      short: "%e %b. de %Y"
+      short: '%e %b. de %Y'
     month_names:
-    - 
+    - None
     - de genièr
     - de febrièr
     - de març
@@ -473,10 +504,14 @@ oc:
   deletes:
     bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
-    description_html: Aquò suprimirà <strong>definitivament e sens possibilitat de retorn</strong> lo contengut de vòstre compte e lo desactivarà. Lo nom d’utilizaire serà gardat per evitar una futura impostura.
+    description_html: Aquò suprimirà <strong>definitivament e sens possibilitat de
+      retorn</strong> lo contengut de vòstre compte e lo desactivarà. Lo nom d’utilizaire
+      serà gardat per evitar una futura impostura.
     proceed: Suprimir lo compte
     success_msg: Compte ben suprimit
-    warning_html: La supression del contengut d’aquesta instància es sola assegurada. Lo contengut fòrça partejat daissarà probablament de traças. Los servidors fòra-linha e los que vos sègon pas mai auràn pas la mesa a jorn de lor basa de donada.
+    warning_html: La supression del contengut d’aquesta instància es sola assegurada.
+      Lo contengut fòrça partejat daissarà probablament de traças. Los servidors fòra-linha
+      e los que vos sègon pas mai auràn pas la mesa a jorn de lor basa de donada.
     warning_title: Disponibilitat del contengut difusat
   errors:
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
@@ -489,7 +524,9 @@ oc:
     '500':
       content: Un quicomet a pas foncionat coma caliá.
       title: Aquesta pagina es incorrècta
-    noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
+    noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript.
+      O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una
+      aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
     blocks: Personas que blocatz
     csv: CSV
@@ -498,15 +535,21 @@ oc:
     storage: Mèdias gardats
   followers:
     domain: Domeni
-    explanation_html: Se volètz vos assegurar de la confidencialitat de vòstres estatuts, vos cal saber qual sèc vòstre compte. <strong>Vòstres estatuts privats son enviats a totas las instàncias qu’an de mond que vos sègon.</strong>. Benlèu que volètz repassar vòstra lista e tirar los seguidors s’avètz de dobtes tocant las politica de confidencialitat de lor instàncias.
+    explanation_html: Se volètz vos assegurar de la confidencialitat de vòstres estatuts,
+      vos cal saber qual sèc vòstre compte. <strong>Vòstres estatuts privats son enviats
+      a totas las instàncias qu’an de mond que vos sègon.</strong>. Benlèu que volètz
+      repassar vòstra lista e tirar los seguidors s’avètz de dobtes tocant las politica
+      de confidencialitat de lor instàncias.
     followers_count: Nombre de seguidors
     lock_link: Clavar vòstre compte
     purge: Tirar dels seguidors
     success:
       one: Soi a blocar los seguidors d’un domeni…
       other: Soi a blocar los seguidors de %{count} domenis…
-    true_privacy_html: Mèfi que la <strong>vertadièra confidencialitat pòt solament èsser amb un chiframent del cap a la fin (end-to-end)</strong>.
-    unlocked_warning_html: Tot lo mond pòt vos sègre e veire sulpic vòstres estatuts privats. %{lock_link} per poder repassar e regetar los seguidors.
+    true_privacy_html: Mèfi que la <strong>vertadièra confidencialitat pòt solament
+      èsser amb un chiframent del cap a la fin (end-to-end)</strong>.
+    unlocked_warning_html: Tot lo mond pòt vos sègre e veire sulpic vòstres estatuts
+      privats. %{lock_link} per poder repassar e regetar los seguidors.
     unlocked_warning_title: Vòstre compte es pas clavat
   generic:
     changes_saved_msg: Cambiaments ben realizats !
@@ -516,7 +559,8 @@ oc:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
   imports:
-    preface: Podètz importar qualques donadas coma lo mond que seguètz o blocatz a-n aquesta instància d’un fichièr creat d’una autra instància.
+    preface: Podètz importar qualques donadas coma lo mond que seguètz o blocatz a-n
+      aquesta instància d’un fichièr creat d’una autra instància.
     success: Vòstras donadas son ben estadas mandadas e seràn tractadas tre que possible
     types:
       blocking: Lista de blocatge
@@ -537,15 +581,17 @@ oc:
     generate: Generar
     max_uses:
       one: 1 persona
-      other: "%{count} personas"
+      other: '%{count} personas'
     max_uses_prompt: Cap de limit
     prompt: Generatz e partejatz los ligams per donar accès a aquesta instància
     table:
       expires_at: Expirats
       uses: Usatges
     title: Convidar de mond
-  landing_strip_html: "<strong>%{name}</strong> utiliza %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasque sul fediverse."
-  landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
+  landing_strip_html: <strong>%{name}</strong> utiliza %{link_to_root_path}. Podètz
+    lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasque sul fediverse.
+  landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos
+    marcar aquí</a>.
   lists:
     errors:
       limit: Avètz atengut lo maximum de listas
@@ -563,41 +609,43 @@ oc:
   notification_mailer:
     digest:
       action: Veire totas las notificacions
-      body: 'Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra darrièra visita lo %{since} :'
-      mention: "%{name} vos a mencionat dins :"
+      body: 'Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra
+        darrièra visita lo %{since} :'
+      mention: '%{name} vos a mencionat dins :'
       new_followers_summary:
         one: Avètz un nòu seguidor dempuèi vòstra darrièra visita ! Ouà !
-        other: Avètz %{count} nòus seguidors dempuèi vòstra darrièra visita ! Qué crane !
+        other: Avètz %{count} nòus seguidors dempuèi vòstra darrièra visita ! Qué
+          crane !
       subject:
-        one: "Una nòva notificacion dempuèi vòstra darrièra visita \U0001F418"
-        other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
+        one: Una nòva notificacion dempuèi vòstra darrièra visita 🐘
+        other: '%{count} nòvas notificacions dempuèi vòstra darrièra visita 🐘'
       title: Pendent vòstra abséncia…
     favourite:
-      body: "%{name} a mes vòstre estatut en favorit :"
-      subject: "%{name} a mes vòstre estatut en favorit"
+      body: '%{name} a mes vòstre estatut en favorit :'
+      subject: '%{name} a mes vòstre estatut en favorit'
       title: Novèl apondut als favorits
     follow:
-      body: "%{name} vos sèc ara !"
-      subject: "%{name} vos sèc ara"
+      body: '%{name} vos sèc ara !'
+      subject: '%{name} vos sèc ara'
       title: Nòu seguidor
     follow_request:
       action: Gerir las demandas d’abonament
-      body: "%{name} a demandat a vos sègre"
+      body: '%{name} a demandat a vos sègre'
       subject: 'Demanda d’abonament : %{name}'
       title: Novèla demanda d’abonament
     mention:
       action: Respondre
-      body: "%{name} vos a mencionat dins :"
-      subject: "%{name} vos a mencionat"
+      body: '%{name} vos a mencionat dins :'
+      subject: '%{name} vos a mencionat'
       title: Novèla mencion
     reblog:
-      body: "%{name} a tornat partejar vòstre estatut :"
-      subject: "%{name} a tornat partejar vòstre estatut"
+      body: '%{name} a tornat partejar vòstre estatut :'
+      subject: '%{name} a tornat partejar vòstre estatut'
       title: Novèl partatge
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -608,7 +656,7 @@ oc:
   pagination:
     next: Seguent
     prev: Precedent
-    truncate: "&hellip;"
+    truncate: '&hellip;'
   preferences:
     languages: Lengas
     other: Autre
@@ -616,18 +664,18 @@ oc:
     web: Interfàcia Web
   push_notifications:
     favourite:
-      title: "%{name} a mes vòstre estatut en favorit"
+      title: '%{name} a mes vòstre estatut en favorit'
     follow:
-      title: "%{name} vos sèc ara"
+      title: '%{name} vos sèc ara'
     group:
-      title: "%{count} notificacions"
+      title: '%{count} notificacions'
     mention:
       action_boost: Partejar
       action_expand: Ne veire mai
       action_favourite: Ajustar als favorits
-      title: "%{name} vos a mencionat"
+      title: '%{name} vos a mencionat'
     reblog:
-      title: "%{name} a partejat vòstre estatut"
+      title: '%{name} a partejat vòstre estatut'
   remote_follow:
     acct: Picatz vòstre utilizaire@instància que cal utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
@@ -655,7 +703,7 @@ oc:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Session en cors
-    description: "%{browser} sus %{platform}"
+    description: '%{browser} sus %{platform}'
     explanation: Aquí los navigators connectats a vòstre compte Mastodon.
     ip: IP
     platforms:
@@ -712,111 +760,143 @@ oc:
     reblogged: a partejat
     sensitive_content: Contengut sensible
   terms:
-    body_html: |
-      <h2>Politica de confidencialitat</h2>
-
-      <h3 id="collect">Quinas informacions reculhèm ?</h3>
-
-      <p>Collectem informacions sus vos quand vos marcatz sus nòstre site e juntem las donadas quand participatz a nòstre forum en legir, escriure e notar lo contengut partejat aquí.</p>
-
-      <p>Pendent l’inscripcion podèm vos demandar vòstre nom e adreça de corrièl. Podètz çaquelà visitar nòstre site sens vos marcar. Verificarem vòstra adreça amb un messatge donant un ligam unic. Se clicatz sul ligam sauprem qu’avètz lo contraròtle de l’adreça.</p>
-
-      <p>Quand sètz marcat e que publicatz quicòm, enregistrem l’adreça IP d’origina. Podèm tanben salvagardar los jornals del servidor que tenon l’adreça IP de totas las demandas fachas al nòstre servidor.</p>
-
-      <h3 id="use">Qué fasèm de vòstras informacions ?</h3>
-
-      <p>Totas las informacions que collectem de vos pòdon servir dins los cases seguents :</p>
-
-      <ul>
-        <li>Per personalizar vòstre experiéncia &mdash; vòstras informacions nos ajudaràn a respondre melhor a vòstres besonhs individuals.</li>
-        <li>Per melhorar nòstre site &mdash; s’eforcem de longa a melhorar çò que nòstre site ofrís segon las informacions e los comentaris que recebèm de vòstra part.</li>
-        <li>Per melhorar nòstre servici client &mdash; vòstras informacions nos ajudan per respondre amb mai eficacitat a vòstras demandas d’assisténcia.</li>
-        <li>Per enviar periodicament de corrièls &mdash; Podèm utilizar l’adreça qu’avètz donada per vos enviar d’informacions e de notificacions que demandatz tocant de cambiaments dins los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa a una demanda, e/o tota autra question.</li>
-      </ul>
-
-      <h3 id="protect">Cossí protegèm vòstras informacions ?</h3>
-
-      <p>Apliquem tota una mena de mesuras de seguretat per manténer la fisança de vòstras informacions personalas quand las picatz, mandatz, o i accedètz.</p>
-
-      <h3 id="data-retention">Quala es vòstra politica de conservacion de donadas ?</h3>
-
-      <p>Farem esfòrces per :</p>
-
-      <ul>
-        <li>Gardar los jornals del servidor que contenon las adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>
-        <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas mai de 5 ans.</li>
-      </ul>
-
-      <h3 id="cookies">Empleguem de cookies ?</h3>
-
-      <p>Òc-ben. Los cookies son de pichons fichièrs qu’un site o sos provesidors de servicis plaçan dins lo disc dur de vòstre ordenador via lo navigator Web (Se los acceptatz). Aqueles cookies permeton al site de reconéisser vòstre navigator e se tenètz un compte enregistrat de l’associar a vòstre compte.</p>
-
-      <p>Empleguem de cookies per comprendre e enregistrar vòstras preferéncias per vòstras visitas venentas, per recampar de donadas sul trafic del site e las interaccions per dire que posquem ofrir una melhora experiéncia del site e de las aisinas pel futur. Pòt arribar que contractèssem amb de provesidors de servicis tèrces per nos ajudar a comprendre melhor nòstres visitors.  Aqueles provesidors an pas lo drech que d’utilizar las donadas collectadas per nos ajudar a menar e melhorar nòstre afar.</p>
-
-      <h3 id="disclose">Divulguem d’informacions a de tèrces ?</h3>
-
-      <p>Vendèm pas, comercem o qualque transferiment que siasque a de tèrces vòstras informacions personalas identificablas. Aquò inclutz pas los tèrces partits de confisança que nos assiston a menar nòstre site, menar nòstre afar o vos servir, baste que son d’acòrd per gardar aquelas informacions confidencialas. Pòt tanben arribar que liberèssem vòstras informacions quand cresèm qu’es apropriat d’o far per se sometre a la lei, per refortir nòstras politicas, o per protegir los dreches, proprietats o seguritat de qualqu’un o de nosautres. Pasmens es possible que mandèssem d’informacions non-personalas e identificablas de nòstres visitors a d’autres partits per d’utilizacion en marketing, publicitat o un emplec mai.</p>
-
-      <h3 id="third-party">Ligams de tèrces</h3>
-
-      <p>Pòt arribar, a nòstra discrecion, qu’incluguèssem o ofriguèssem  de produches o servicis de tèrces partits sus nòstre site. Aqueles sites tèrces an de politicas de confidencialitats separadas e independentas. En consequéncia avèm pas cap de responsabilitat pel contengut e las activitats d’aqueles sites ligats. Pasmens cerquem de protegir l’integritat de nòstre site e aculhèm los comentaris tocant aqueles sites.</p>
-
-      <h3 id="coppa">Conformitat amb la lei de proteccion de la confidencialitat dels mainatges</h3>
-
-      <p>Nòstre site, nòstres produches e servicis son totes destinats a de monde d’almens 13 ans. S’aqueste servidor se tròba en los Estats Units per acontentar las exigéncias del COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) utilizetz pas aqueste site.</p>
-
-      <h3 id="online">Politica de confidencialitat en linha solament</h3>
-
-      <p>Aquesta politica de confidencialitat s’aplica pas qu’a las informacions collectadas via nòstre site e non pas a las informacions collectadas fòra linha.</p>
-
-      <h3 id="consent">Vòstre consentiment</h3>
-
-      <p>N’utilizant nòstre site, consentètz a nòstra politica de confidencialitat.</p>
-
-      <h3 id="changes">Cambiament dins nòstra politica de confidencialitat</h3>
-
-      <p>Se decidèm de cambiar nòstra politica de confidencialitat, publicarem los cambiaments sus aquesta pagina.</p>
-
-      <p>Aqueste document es jos licéncia CC-BY-SA. Darrièra mesa a jorn lo 31 de mai de 2013</p>
-
-      <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
+    body_html: "<h2>Politica de confidencialitat</h2>\n\n<h3 id=\"collect\">Quinas\
+      \ informacions reculhèm ?</h3>\n\n<p>Collectem informacions sus vos quand vos\
+      \ marcatz sus nòstre site e juntem las donadas quand participatz a nòstre forum\
+      \ en legir, escriure e notar lo contengut partejat aquí.</p>\n\n<p>Pendent l’inscripcion\
+      \ podèm vos demandar vòstre nom e adreça de corrièl. Podètz çaquelà visitar\
+      \ nòstre site sens vos marcar. Verificarem vòstra adreça amb un messatge donant\
+      \ un ligam unic. Se clicatz sul ligam sauprem qu’avètz lo contraròtle de l’adreça.</p>\n\
+      \n<p>Quand sètz marcat e que publicatz quicòm, enregistrem l’adreça IP d’origina.\
+      \ Podèm tanben salvagardar los jornals del servidor que tenon l’adreça IP de\
+      \ totas las demandas fachas al nòstre servidor.</p>\n\n<h3 id=\"use\">Qué fasèm\
+      \ de vòstras informacions ?</h3>\n\n<p>Totas las informacions que collectem\
+      \ de vos pòdon servir dins los cases seguents :</p>\n\n<ul>\n  <li>Per personalizar\
+      \ vòstre experiéncia &mdash; vòstras informacions nos ajudaràn a respondre melhor\
+      \ a vòstres besonhs individuals.</li>\n  <li>Per melhorar nòstre site &mdash;\
+      \ s’eforcem de longa a melhorar çò que nòstre site ofrís segon las informacions\
+      \ e los comentaris que recebèm de vòstra part.</li>\n  <li>Per melhorar nòstre\
+      \ servici client &mdash; vòstras informacions nos ajudan per respondre amb mai\
+      \ eficacitat a vòstras demandas d’assisténcia.</li>\n  <li>Per enviar periodicament\
+      \ de corrièls &mdash; Podèm utilizar l’adreça qu’avètz donada per vos enviar\
+      \ d’informacions e de notificacions que demandatz tocant de cambiaments dins\
+      \ los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa\
+      \ a una demanda, e/o tota autra question.</li>\n</ul>\n\n<h3 id=\"protect\"\
+      >Cossí protegèm vòstras informacions ?</h3>\n\n<p>Apliquem tota una mena de\
+      \ mesuras de seguretat per manténer la fisança de vòstras informacions personalas\
+      \ quand las picatz, mandatz, o i accedètz.</p>\n\n<h3 id=\"data-retention\"\
+      >Quala es vòstra politica de conservacion de donadas ?</h3>\n\n<p>Farem esfòrces\
+      \ per :</p>\n\n<ul>\n  <li>Gardar los jornals del servidor que contenon las\
+      \ adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>\n \
+      \ <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas\
+      \ mai de 5 ans.</li>\n</ul>\n\n<h3 id=\"cookies\">Empleguem de cookies ?</h3>\n\
+      \n<p>Òc-ben. Los cookies son de pichons fichièrs qu’un site o sos provesidors\
+      \ de servicis plaçan dins lo disc dur de vòstre ordenador via lo navigator Web\
+      \ (Se los acceptatz). Aqueles cookies permeton al site de reconéisser vòstre\
+      \ navigator e se tenètz un compte enregistrat de l’associar a vòstre compte.</p>\n\
+      \n<p>Empleguem de cookies per comprendre e enregistrar vòstras preferéncias\
+      \ per vòstras visitas venentas, per recampar de donadas sul trafic del site\
+      \ e las interaccions per dire que posquem ofrir una melhora experiéncia del\
+      \ site e de las aisinas pel futur. Pòt arribar que contractèssem amb de provesidors\
+      \ de servicis tèrces per nos ajudar a comprendre melhor nòstres visitors.  Aqueles\
+      \ provesidors an pas lo drech que d’utilizar las donadas collectadas per nos\
+      \ ajudar a menar e melhorar nòstre afar.</p>\n\n<h3 id=\"disclose\">Divulguem\
+      \ d’informacions a de tèrces ?</h3>\n\n<p>Vendèm pas, comercem o qualque transferiment\
+      \ que siasque a de tèrces vòstras informacions personalas identificablas. Aquò\
+      \ inclutz pas los tèrces partits de confisança que nos assiston a menar nòstre\
+      \ site, menar nòstre afar o vos servir, baste que son d’acòrd per gardar aquelas\
+      \ informacions confidencialas. Pòt tanben arribar que liberèssem vòstras informacions\
+      \ quand cresèm qu’es apropriat d’o far per se sometre a la lei, per refortir\
+      \ nòstras politicas, o per protegir los dreches, proprietats o seguritat de\
+      \ qualqu’un o de nosautres. Pasmens es possible que mandèssem d’informacions\
+      \ non-personalas e identificablas de nòstres visitors a d’autres partits per\
+      \ d’utilizacion en marketing, publicitat o un emplec mai.</p>\n\n<h3 id=\"third-party\"\
+      >Ligams de tèrces</h3>\n\n<p>Pòt arribar, a nòstra discrecion, qu’incluguèssem\
+      \ o ofriguèssem  de produches o servicis de tèrces partits sus nòstre site.\
+      \ Aqueles sites tèrces an de politicas de confidencialitats separadas e independentas.\
+      \ En consequéncia avèm pas cap de responsabilitat pel contengut e las activitats\
+      \ d’aqueles sites ligats. Pasmens cerquem de protegir l’integritat de nòstre\
+      \ site e aculhèm los comentaris tocant aqueles sites.</p>\n\n<h3 id=\"coppa\"\
+      >Conformitat amb la lei de proteccion de la confidencialitat dels mainatges</h3>\n\
+      \n<p>Nòstre site, nòstres produches e servicis son totes destinats a de monde\
+      \ d’almens 13 ans. S’aqueste servidor se tròba en los Estats Units per acontentar\
+      \ las exigéncias del COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"\
+      >Children's Online Privacy Protection Act</a>) utilizetz pas aqueste site.</p>\n\
+      \n<h3 id=\"online\">Politica de confidencialitat en linha solament</h3>\n\n\
+      <p>Aquesta politica de confidencialitat s’aplica pas qu’a las informacions collectadas\
+      \ via nòstre site e non pas a las informacions collectadas fòra linha.</p>\n\
+      \n<h3 id=\"consent\">Vòstre consentiment</h3>\n\n<p>N’utilizant nòstre site,\
+      \ consentètz a nòstra politica de confidencialitat.</p>\n\n<h3 id=\"changes\"\
+      >Cambiament dins nòstra politica de confidencialitat</h3>\n\n<p>Se decidèm de\
+      \ cambiar nòstra politica de confidencialitat, publicarem los cambiaments sus\
+      \ aquesta pagina.</p>\n\n<p>Aqueste document es jos licéncia CC-BY-SA. Darrièra\
+      \ mesa a jorn lo 31 de mai de 2013</p>\n\n<p>Prima adaptacion de la <a href=\"\
+      https://github.com/discourse/discourse\">politica de confidencialitat de Discourse</a>.</p>\n"
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M
   two_factor_authentication:
-    code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
-    description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.
+    code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per
+      confirmar
+    description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos
+      caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar
+      dintrar.
     disable: Desactivar
     enable: Activar
     enabled: Autentificacion en dos temps activada
     enabled_success: L’autentificacion en dos temps es ben activada
     generate_recovery_codes: Generar los còdis de recuperacion
-    instructions_html: "<strong>Escanatz aqueste còdi QR amb Google Authenticator o una aplicacion similària sus vòstre mobil</strong>. A partir d’ara, aquesta aplicacion generarà un geton que vos caldrà picar per vos connectar."
-    lost_recovery_codes: Los còdi de recuperacion vos permeton d’accedir a vòstre compte se perdètz vòstre mobil. S’avètz perdut vòstres còdis de recuperacion los podètz tornar generar aquí. Los ancians còdis seràn pas mai valides.
-    manual_instructions: 'Se podètz pas numerizar lo còdi QR e que vos cal picar lo còdi a la man, vaquí lo còdi en clar :'
+    instructions_html: <strong>Escanatz aqueste còdi QR amb Google Authenticator o
+      una aplicacion similària sus vòstre mobil</strong>. A partir d’ara, aquesta
+      aplicacion generarà un geton que vos caldrà picar per vos connectar.
+    lost_recovery_codes: Los còdi de recuperacion vos permeton d’accedir a vòstre
+      compte se perdètz vòstre mobil. S’avètz perdut vòstres còdis de recuperacion
+      los podètz tornar generar aquí. Los ancians còdis seràn pas mai valides.
+    manual_instructions: 'Se podètz pas numerizar lo còdi QR e que vos cal picar lo
+      còdi a la man, vaquí lo còdi en clar :'
     recovery_codes: Salvar los còdis de recuperacion
     recovery_codes_regenerated: Los còdis de recuperacion son ben estats tornats generar
-    recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
+    recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar
+      un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte.
+      Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los
+      amb vòstres documents importants.
     setup: Paramètres
     wrong_code: Lo còdi picat es invalid ! L’ora es la bona sul servidor e lo mobil ?
   user_mailer:
     welcome:
       edit_profile_action: Configuracion del perfil
-      edit_profile_step: Podètz personalizar lo perfil en mandar un avatard, cambiar l’escais-nom e mai. Se volètz repassar las demandas d’abonaments abans que los nòus seguidors pòscan veire vòstre perfil, podètz clavar vòstre compte.
+      edit_profile_step: Podètz personalizar lo perfil en mandar un avatard, cambiar
+        l’escais-nom e mai. Se volètz repassar las demandas d’abonaments abans que
+        los nòus seguidors pòscan veire vòstre perfil, podètz clavar vòstre compte.
       explanation: Vaquí qualques astúcias per vos preparar
       final_action: Començar de publicar
-      final_step: 'Començatz de publicar ! Quitament s’avètz pas de seguidors los autres pòdon veire vòstres messatges publics, per exemple pel flux d’actualitat local e per las etiquetas. Benlèu que volètz vos presentar amb l’etiquetas #introductions.'
+      final_step: 'Començatz de publicar ! Quitament s’avètz pas de seguidors los
+        autres pòdon veire vòstres messatges publics, per exemple pel flux d’actualitat
+        local e per las etiquetas. Benlèu que volètz vos presentar amb l’etiquetas
+        #introductions.'
       full_handle: Vòstre escais-nom complèt
-      full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos escriure o sègre a partir d’una autra instància.
+      full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos
+        escriure o sègre a partir d’una autra instància.
       review_preferences_action: Cambiar las preferéncias
-      review_preferences_step: Pensatz de configurar vòstras preferéncias, tal coma los corrièls que volètz recebrer o lo nivèl de confidencialitat de vòstres tuts per defaut. O se l’animacion vos dòna pas enveja de rendre, podètz activar la lectura automatica dels GIF.
+      review_preferences_step: Pensatz de configurar vòstras preferéncias, tal coma
+        los corrièls que volètz recebrer o lo nivèl de confidencialitat de vòstres
+        tuts per defaut. O se l’animacion vos dòna pas enveja de rendre, podètz activar
+        la lectura automatica dels GIF.
       subject: Benvengut a Mastodon
-      tip_bridge_html: Se venètz de Twitter, podètz trobar vòstres amics sus Mastodon en utilizant l‘<a href="%{bridge_url}">aplicacion de Pont</a>. Aquò fonciona pas que s’utilizan lo Pont tanben !
-      tip_federated_timeline: Lo flux d’actualitat federat es una vista generala del malhum Mastodon. Mas aquò inclutz solament lo mond que vòstres vesins sègon, doncas es pas complèt.
-      tip_following: Seguètz l’administrator del servidor per defaut. Per trobar de mond mai interessant, agachatz lo flux d’actualitat local e lo global.
-      tip_local_timeline: Lo flux d’actualitat local es una vista del mond de %{instance}. Son vòstres vesins dirèctes !
-      tip_mobile_webapp: Se vòstre navigator mobil nos permet d’apondre Mastodon a l’ecran d‘acuèlh, podètz recebre de notificacions. Aquò se compòrta coma una aplicacion nativa !
+      tip_bridge_html: Se venètz de Twitter, podètz trobar vòstres amics sus Mastodon
+        en utilizant l‘<a href="%{bridge_url}">aplicacion de Pont</a>. Aquò fonciona
+        pas que s’utilizan lo Pont tanben !
+      tip_federated_timeline: Lo flux d’actualitat federat es una vista generala del
+        malhum Mastodon. Mas aquò inclutz solament lo mond que vòstres vesins sègon,
+        doncas es pas complèt.
+      tip_following: Seguètz l’administrator del servidor per defaut. Per trobar de
+        mond mai interessant, agachatz lo flux d’actualitat local e lo global.
+      tip_local_timeline: Lo flux d’actualitat local es una vista del mond de %{instance}.
+        Son vòstres vesins dirèctes !
+      tip_mobile_webapp: Se vòstre navigator mobil nos permet d’apondre Mastodon a
+        l’ecran d‘acuèlh, podètz recebre de notificacions. Aquò se compòrta coma una
+        aplicacion nativa !
       tips: Astúcias
       title: Vos desirem la benvenguda a bòrd %{name} !
   users:
