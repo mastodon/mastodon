@@ -7,7 +7,6 @@ class AddTypeToNotifications < ActiveRecord::Migration[5.1]
         Notification.where(id: ary.map(&:id)).update_all(type: activity_type_map[activity_type])
       end
     end
-    ActiveRecord::Base.logger = nil
     change_column_null :notifications, :type, false
   end
 
