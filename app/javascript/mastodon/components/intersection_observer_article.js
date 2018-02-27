@@ -7,10 +7,13 @@ import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
 export default class IntersectionObserverArticle extends ImmutablePureComponent {
 
   static propTypes = {
-    intersectionObserverWrapper: PropTypes.object,
+    intersectionObserverWrapper: PropTypes.object.isRequired,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     listLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    saveHeightKey: PropTypes.string,
+    cachedHeight: PropTypes.number,
+    onHeightChange: PropTypes.func,
     children: PropTypes.node,
   };
 
@@ -34,13 +37,10 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
   }
 
   componentDidMount () {
-    if (!this.props.intersectionObserverWrapper) {
-      // TODO: enable IntersectionObserver optimization for notification statuses.
-      // These are managed in notifications/index.js rather than status_list.js
-      return;
-    }
-    this.props.intersectionObserverWrapper.observe(
-      this.props.id,
+    const { intersectionObserverWrapper, id } = this.props;
+
+    intersectionObserverWrapper.observe(
+      id,
       this.node,
       this.handleIntersection
     );
@@ -49,20 +49,21 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
   }
 
   componentWillUnmount () {
-    if (this.props.intersectionObserverWrapper) {
-      this.props.intersectionObserverWrapper.unobserve(this.props.id, this.node);
-    }
+    const { intersectionObserverWrapper, id } = this.props;
+    intersectionObserverWrapper.unobserve(id, this.node);
 
     this.componentMounted = false;
   }
 
   handleIntersection = (entry) => {
+    const { onHeightChange, saveHeightKey, id } = this.props;
+
     if (this.node && this.node.children.length !== 0) {
       // save the height of the fully-rendered element
       this.height = getRectFromEntry(entry).height;
 
-      if (this.props.onHeightChange) {
-        this.props.onHeightChange(this.props.status, this.height);
+      if (onHeightChange && saveHeightKey) {
+        onHeightChange(saveHeightKey, id, this.height);
       }
     }
 
@@ -94,16 +95,16 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
   }
 
   render () {
-    const { children, id, index, listLength } = this.props;
+    const { children, id, index, listLength, cachedHeight } = this.props;
     const { isIntersecting, isHidden } = this.state;
 
-    if (!isIntersecting && isHidden) {
+    if (!isIntersecting && (isHidden || cachedHeight)) {
       return (
         <article
           ref={this.handleRef}
           aria-posinset={index}
           aria-setsize={listLength}
-          style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}
+          style={{ height: `${this.height || cachedHeight}px`, opacity: 0, overflow: 'hidden' }}
           data-id={id}
           tabIndex='0'
         >

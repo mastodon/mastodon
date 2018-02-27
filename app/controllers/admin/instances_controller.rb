@@ -14,8 +14,12 @@ module Admin
 
     private
 
+    def filtered_instances
+      InstanceFilter.new(filter_params).results
+    end
+
     def paginated_instances
-      Account.remote.by_domain_accounts.page(params[:page])
+      filtered_instances.page(params[:page])
     end
 
     helper_method :paginated_instances
@@ -26,6 +30,12 @@ module Admin
 
     def subscribeable_accounts
       Account.with_followers.remote.where(domain: params[:by_domain])
+    end
+
+    def filter_params
+      params.permit(
+        :domain_name
+      )
     end
   end
 end

@@ -3,16 +3,7 @@
 
 - content_for :header_tags do
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
-
-  %meta{ property: 'og:site_name', content: site_title }/
-  %meta{ property: 'og:url', content: about_url }/
-  %meta{ property: 'og:type', content: 'website' }/
-  %meta{ property: 'og:title', content: site_hostname }/
-  %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.presence || t('about.about_mastodon_html')) }/
-  %meta{ property: 'og:image', content: asset_pack_path('mastodon_small.jpg', protocol: :request) }/
-  %meta{ property: 'og:image:width', content: '400' }/
-  %meta{ property: 'og:image:height', content: '400' }/
-  %meta{ property: 'twitter:card', content: 'summary' }/
+  = render partial: 'og'
 
 .landing-page
   .header-wrapper.compact

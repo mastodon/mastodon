@@ -145,6 +145,10 @@ export default class StatusContent extends React.PureComponent {
     this._updateStatusLinks();
   }
 
+  componentDidMount () {
+    this._updateStatusLinks();
+  }
+
   componentDidUpdate () {
     this._updateStatusLinks();
   }

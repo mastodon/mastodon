@@ -3,9 +3,10 @@ nl:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Naam
+        name: Naam toepassing
         redirect_uri: Redirect-URI
-        scopes: Scopes
+        scopes: Toestemmingen
+        website: Website toepassing
     errors:
       models:
         doorkeeper/application:
@@ -26,27 +27,31 @@ nl:
       confirmations:
         destroy: Weet je het zeker?
       edit:
-        title: Applicatie bewerken
+        title: Toepassing bewerken
       form:
         error: Oops! Controleer het formulier op fouten
       help:
         native_redirect_uri: Gebruik %{native_redirect_uri} voor lokale tests
         redirect_uri: 'Gebruik één regel per URI. '
-        scopes: Scopes met spaties van elkaar scheiden. Laat leeg om de standaardscopes te gebruiken.
+        scopes: Toestemmingen met spaties van elkaar scheiden. Laat leeg om de standaardtoestemmingen te gebruiken.
       index:
+        application: Toepassing
         callback_url: Callback-URL
+        delete: Verwijderen
         name: Naam
-        new: Nieuwe applicatie
-        title: Jouw applicaties
+        new: Nieuwe toepassing
+        scopes: Toestemmingen
+        show: Tonen
+        title: Jouw toepassingen
       new:
-        title: Nieuwe applicatie
+        title: Nieuwe toepassing 
       show:
         actions: Acties
-        application_id: Applicatie-ID
+        application_id: Client-key
         callback_urls: Callback-URL's
-        scopes: Scopes
-        secret: Secret
-        title: 'Applicatie: %{name}'
+        scopes: Toestemmingen
+        secret: Client-secret
+        title: 'Toepassing: %{name}'
     authorizations:
       buttons:
         authorize: Autoriseren
@@ -54,21 +59,21 @@ nl:
       error:
         title: Er is een fout opgetreden
       new:
-        able_to: Deze applicatie zal in staat zijn om
+        able_to: Deze toepassing zal in staat zijn om
         prompt: "%{client_name} autoriseren om uw account te gebruiken?"
         title: Autorisatie vereist
       show:
-        title: Autorisatie-code
+        title: Copy this authorization code and paste it to the application.
     authorized_applications:
       buttons:
         revoke: Intrekken
       confirmations:
         revoke: Weet je het zeker?
       index:
-        application: Applicatie
+        application: Toepassing 
         created_at: Aangemaakt op
         date_format: "%d-%m-%Y %H:%M:%S"
-        title: Jouw geautoriseerde applicaties
+        title: Jouw geautoriseerde toepassingen 
     errors:
       messages:
         access_denied: De resource-eigenaar of autorisatie-server weigerde het verzoek.
@@ -92,23 +97,23 @@ nl:
     flash:
       applications:
         create:
-          notice: Applicatie aangemaakt.
+          notice: Toepassing aangemaakt.
         destroy:
-          notice: Applicatie verwijderd.
+          notice: Toepassing verwijderd.
         update:
-          notice: Applicatie bewerkt.
+          notice: Toepassing bewerkt.
       authorized_applications:
         destroy:
-          notice: Applicatie ingetrokken.
+          notice: Toepassing ingetrokken.
     layouts:
       admin:
         nav:
-          applications: Applicaties
+          applications: Toepassingen
           home: Home
           oauth2_provider: OAuth2-provider
       application:
         title: OAuth-autorisatie vereist
     scopes:
-      follow: accounts te volgen, te negeren en te blokkeren.
-      read: jouw accountgegevens te lezen
-      write: namens jou berichten te plaatsen
+      follow: accounts volgen, negeren en blokkeren
+      read: berichten lezen
+      write: berichten plaatsen

@@ -60,6 +60,7 @@ en:
       email: E-mail
       feed_url: Feed URL
       followers: Followers
+      followers_url: Followers URL
       follows: Follows
       inbox_url: Inbox URL
       ip: IP
@@ -93,6 +94,7 @@ en:
       resubscribe: Resubscribe
       salmon_url: Salmon URL
       search: Search
+      shared_inbox_url: Shared Inbox URL
       show:
         created_reports: Reports created by this account
         report: report
@@ -141,6 +143,8 @@ en:
     instances:
       account_count: Known accounts
       domain_name: Domain
+      reset: Reset
+      search: Search
       title: Known Instances
     reports:
       action_taken_by: Action taken by
@@ -193,6 +197,9 @@ en:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
       site_title: Instance name
+      thumbnail:
+        desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
+        title: Instance thumbnail
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
@@ -446,6 +453,7 @@ en:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
+      limit: Too many toots pinned
       ownership: Someone else's toot cannot be pinned
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned

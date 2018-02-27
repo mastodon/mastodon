@@ -7,9 +7,9 @@ class ActivityPub::ReplyDistributionWorker
 
   def perform(status_id)
     @status  = Status.find(status_id)
-    @account = @status.thread.account
+    @account = @status.thread&.account
 
-    return if skip_distribution?
+    return if @account.nil? || skip_distribution?
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
       [signed_payload, @status.account_id, inbox_url]

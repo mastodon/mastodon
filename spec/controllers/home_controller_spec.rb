@@ -6,6 +6,7 @@ RSpec.describe HomeController, type: :controller do
   describe 'GET #index' do
     context 'when not signed in' do
       it 'redirects to about page' do
+        @request.path = '/'
         get :index
         expect(response).to redirect_to(about_path)
       end
@@ -13,6 +14,7 @@ RSpec.describe HomeController, type: :controller do
 
     context 'when signed in' do
       let(:user) { Fabricate(:user) }
+
       subject do
         sign_in(user)
         get :index

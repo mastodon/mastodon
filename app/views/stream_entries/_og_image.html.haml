@@ -1,6 +1,20 @@
 - if activity.is_a?(Status) && activity.non_sensitive_with_media?
-  %meta{ property: 'og:image', content: full_asset_url(activity.media_attachments.first.file.url(:small)) }/
+  - activity.media_attachments.each do |media|
+    - if media.image?
+      = opengraph 'og:image', full_asset_url(media.file.url(:original))
+      = opengraph 'og:image:type', media.file_content_type
+      = opengraph 'og:image:width', media.file.meta['original']['width']
+      = opengraph 'og:image:height', media.file.meta['original']['height']
+    - elsif media.video?
+      = opengraph 'og:image', full_asset_url(media.file.url(:small))
+      = opengraph 'og:image:type', 'image/png'
+      = opengraph 'og:image:width', media.file.meta['small']['width']
+      = opengraph 'og:image:height', media.file.meta['small']['height']
+      = opengraph 'og:video', full_asset_url(media.file.url(:original))
+      = opengraph 'og:video:type', media.file_content_type
+      = opengraph 'og:video:width', media.file.meta['small']['width']
+      = opengraph 'og:video:height', media.file.meta['small']['height']
 - else
-  %meta{ property: 'og:image', content: full_asset_url(account.avatar.url(:original)) }/
-  %meta{ property: 'og:image:width', content: '120' }/
-  %meta{ property: 'og:image:height', content: '120' }/
+  = opengraph 'og:image', full_asset_url(account.avatar.url(:original))
+  = opengraph 'og:image:width', '120'
+  = opengraph 'og:image:height','120'

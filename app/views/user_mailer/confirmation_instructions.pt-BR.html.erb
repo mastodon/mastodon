@@ -1,0 +1,12 @@
+<p>Boas vindas, <%= @resource.email %>!</p>
+
+<p>Você acabou de criar uma conta no <%= @instance %>.</p>
+
+<p>Para confirmar o seu cadastro, por favor clique no link a seguir: <br>
+<%= link_to 'Confirmar cadastro', confirmation_url(@resource, confirmation_token: @token) %>
+
+<p>Por favor, leia também os nossos <%= link_to 'termos de serviços', terms_url %>.</p>
+
+<p>Atenciosamente,<p>
+
+<p>A equipe do <%= @instance %></p>

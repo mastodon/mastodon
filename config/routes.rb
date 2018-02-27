@@ -98,6 +98,8 @@ Rails.application.routes.draw do
   resources :media, only: [:show]
   resources :tags,  only: [:show]
 
+  get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
+
   # Remote follow
   resource :authorize_follow, only: [:show, :create]
   resource :share, only: [:show, :create]

@@ -37,29 +37,6 @@
           %th= t('admin.accounts.protocol')
           %td= @account.protocol.humanize
 
-        - if @account.ostatus?
-          %tr
-            %th= t('admin.accounts.feed_url')
-            %td= link_to @account.remote_url, @account.remote_url
-          %tr
-            %th= t('admin.accounts.push_subscription_expires')
-            %td
-              - if @account.subscribed?
-                %time.formatted{ datetime: @account.subscription_expires_at.iso8601, title: l(@account.subscription_expires_at) }
-                  = l @account.subscription_expires_at
-              - else
-                = t('admin.accounts.not_subscribed')
-          %tr
-            %th= t('admin.accounts.salmon_url')
-            %td= link_to @account.salmon_url, @account.salmon_url
-        - elsif @account.activitypub?
-          %tr
-            %th= t('admin.accounts.inbox_url')
-            %td= link_to @account.inbox_url, @account.inbox_url
-          %tr
-            %th= t('admin.accounts.outbox_url')
-            %td= link_to @account.outbox_url, @account.outbox_url
-
       %tr
         %th= t('admin.accounts.follows')
         %td= @account.following_count
@@ -82,29 +59,73 @@
         %th= t('.targeted_reports')
         %td= link_to pluralize(@account.targeted_reports.count, t('.report')), admin_reports_path(target_account_id: @account.id)
 
-%div{ style: 'float: right' }
-  - if @account.local?
-    = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
-    - if @account.user&.otp_required_for_login?
-      = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button'
-  - else
-    - if @account.ostatus?
+%div{ style: 'overflow: hidden' }
+  %div{ style: 'float: right' }
+    - if @account.local?
+      = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
+      - if @account.user&.otp_required_for_login?
+        = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button'
+    - else
+      = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button'
+
+  %div{ style: 'float: left' }
+    - if @account.silenced?
+      = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
+    - else
+      = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
+
+    - if @account.local?
+      - unless @account.user_confirmed?
+        = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button'
+
+    - if @account.suspended?
+      = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
+    - else
+      = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
+
+- unless @account.local?
+  %hr
+  %h3 OStatus
+
+  .table-wrapper
+    %table.table
+      %tbody
+        %tr
+          %th= t('admin.accounts.feed_url')
+          %td= link_to @account.remote_url, @account.remote_url
+        %tr
+          %th= t('admin.accounts.push_subscription_expires')
+          %td
+            - if @account.subscribed?
+              %time.formatted{ datetime: @account.subscription_expires_at.iso8601, title: l(@account.subscription_expires_at) }
+                = l @account.subscription_expires_at
+            - else
+              = t('admin.accounts.not_subscribed')
+        %tr
+          %th= t('admin.accounts.salmon_url')
+          %td= link_to @account.salmon_url, @account.salmon_url
+
+  %div{ style: 'overflow: hidden' }
+    %div{ style: 'float: right' }
       = link_to @account.subscribed? ? t('admin.accounts.resubscribe') : t('admin.accounts.subscribe'), subscribe_admin_account_path(@account.id), method: :post, class: 'button'
       - if @account.subscribed?
         = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative'
-    = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button'
 
-%div{ style: 'float: left' }
-  - if @account.silenced?
-    = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
-  - else
-    = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
+  %hr
+  %h3 ActivityPub
 
-  - if @account.local?
-    - unless @account.user_confirmed?
-      = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button'
-
-  - if @account.suspended?
-    = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
-  - else
-    = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
+  .table-wrapper
+    %table.table
+      %tbody
+        %tr
+          %th= t('admin.accounts.inbox_url')
+          %td= link_to @account.inbox_url, @account.inbox_url
+        %tr
+          %th= t('admin.accounts.outbox_url')
+          %td= link_to @account.outbox_url, @account.outbox_url
+        %tr
+          %th= t('admin.accounts.shared_inbox_url')
+          %td= link_to @account.shared_inbox_url, @account.shared_inbox_url
+        %tr
+          %th= t('admin.accounts.followers_url')
+          %td= link_to @account.followers_url, @account.followers_url

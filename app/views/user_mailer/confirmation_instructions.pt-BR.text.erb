@@ -1,0 +1,12 @@
+Boas vindas, <%= @resource.email %>!
+
+Você acabou de criar uma conta no <%= @instance %>.
+
+Para confirmar o seu cadastro, por favor clique no link a seguir:
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+Por favor, leia também os nossos termos e condições de uso <%= terms_url %>
+
+Atenciosamente,
+
+A equipe do <%= @instance %>
