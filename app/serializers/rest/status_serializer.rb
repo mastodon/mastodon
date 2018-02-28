@@ -3,12 +3,12 @@
 class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
-             :uri, :content, :url, :reblogs_count, :favourites_count
+             :uri, :content, :url, :reblogs_count, :favourites_count,
+             :pinned
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
   attribute :muted, if: :current_user?
-  attribute :pinned, if: :pinnable?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
   belongs_to :application
@@ -72,11 +72,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def pinned
-    if instance_options && instance_options[:relationships]
-      instance_options[:relationships].pins_map[object.id] || false
-    else
-      current_user.account.pinned?(object)
-    end
+    StatusPin.exists?(status: object)
   end
 
   def pinnable?

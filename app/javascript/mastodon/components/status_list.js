@@ -21,6 +21,7 @@ export default class StatusList extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
+    displayPinned: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -75,6 +76,7 @@ export default class StatusList extends ImmutablePureComponent {
           id={statusId}
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
+          displayPinned={other.displayPinned}
         />
       ))
     ) : null;
