@@ -345,3 +345,35 @@
     }
   }
 }
+
+.entry {
+  position: relative;
+
+  .status,
+  .detailed-status {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.line {
+  position: absolute;
+  width: 0;
+  border-left: 4px solid red;
+  z-index: 0;
+
+  &--arriving {
+    top: 0;
+    height: 15px;
+  }
+
+  &--bypassing {
+    height: 100%;
+    top: 0;
+  }
+
+  &--departing {
+    bottom: 0;
+    height: calc(100% - 63px);
+  }
+}
