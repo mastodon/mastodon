@@ -4610,33 +4610,44 @@ a.status-card {
   }
 }
 
-.account-section-headline {
-  color: $ui-base-lighter-color;
+.account__section-headline {
   background: lighten($ui-base-color, 2%);
   border-bottom: 1px solid lighten($ui-base-color, 4%);
-  padding: 15px 10px;
-  font-size: 14px;
-  font-weight: 500;
-  position: relative;
   cursor: default;
+  display: flex;
 
-  &::before,
-  &::after {
+  a {
     display: block;
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 18px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 10px 10px;
-    border-color: transparent transparent lighten($ui-base-color, 4%);
-  }
+    color: $ui-base-lighter-color;
+    padding: 15px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
 
-  &::after {
-    bottom: -1px;
-    border-color: transparent transparent $ui-base-color;
+    &.active {
+      color: $ui-highlight-color;
+
+      &::before,
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        transform: translateX(-50%);
+        border-style: solid;
+        border-width: 0 10px 10px;
+        border-color: transparent transparent lighten($ui-base-color, 4%);
+      }
+
+      &::after {
+        bottom: -1px;
+        border-color: transparent transparent $ui-base-color;
+      }
+    }
   }
 }
 
