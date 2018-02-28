@@ -5,6 +5,7 @@ class ActivityPub::FlagSerializer < ActiveModel::Serializer
   attribute :virtual_object, key: :object
 
   def id
+    # This is nil for now
     ActivityPub::TagManager.instance.uri_for(object)
   end
 

@@ -35,8 +35,6 @@ class ActivityPub::TagManager
       account_status_url(target.account, target)
     when :emoji
       emoji_url(target)
-    when :report
-      # TODO
     end
   end
 

@@ -11,6 +11,8 @@ class ReportService < BaseService
     create_report!
     notify_staff!
     forward_to_origin! if !@target_account.local? && @options[:forward]
+
+    @report
   end
 
   private

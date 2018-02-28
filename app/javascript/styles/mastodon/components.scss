@@ -3891,8 +3891,7 @@ a.status-card {
 
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
-.mute-modal__action-bar,
-.report-modal__action-bar {
+.mute-modal__action-bar {
   display: flex;
   justify-content: space-between;
   background: $ui-secondary-color;
@@ -3936,21 +3935,94 @@ a.status-card {
   vertical-align: middle;
 }
 
+.report-modal {
+  width: 90vw;
+  max-width: 700px;
+}
+
+.report-modal__container {
+  display: flex;
+  border-top: 1px solid $ui-secondary-color;
+
+  @media screen and (max-width: 480px) {
+    flex-wrap: wrap;
+    overflow-y: auto;
+  }
+}
+
 .report-modal__statuses,
 .report-modal__comment {
-  padding: 10px;
+  box-sizing: border-box;
+  width: 50%;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .report-modal__statuses {
+  flex: 1 1 auto;
   min-height: 20vh;
   max-height: 40vh;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media screen and (max-width: 480px) {
+    max-height: 10vh;
+  }
 }
 
 .report-modal__comment {
+  padding: 20px;
+  border-right: 1px solid $ui-secondary-color;
+  max-width: 320px;
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 20px;
+  }
+
   .setting-text {
-    margin-top: 10px;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    color: $ui-base-color;
+    background: $white;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    border: 1px solid $ui-secondary-color;
+    margin-bottom: 20px;
+
+    &:focus {
+      border: 1px solid darken($ui-secondary-color, 8%);
+    }
+  }
+
+  .setting-toggle {
+    margin-top: 20px;
+    margin-bottom: 24px;
+
+    &__label {
+      color: $ui-base-color;
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 10px;
+    max-width: 100%;
+    order: 2;
+
+    .setting-toggle {
+      margin-bottom: 4px;
+    }
   }
 }
 
@@ -4041,6 +4113,10 @@ a.status-card {
       }
     }
   }
+}
+
+.report-modal__target {
+  padding: 20px;
 }
 
 .loading-bar {
