@@ -18,7 +18,7 @@ class ActivityPub::FlagSerializer < ActiveModel::Serializer
   end
 
   def virtual_object
-    ActivityPub::TagManager.instance.uri_for(object.target_account) + object.statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }
+    [ActivityPub::TagManager.instance.uri_for(object.target_account)] + object.statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }
   end
 
   def content

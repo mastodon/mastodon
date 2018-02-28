@@ -4,13 +4,13 @@ class ReportService < BaseService
   def call(source_account, target_account, options = {})
     @source_account = source_account
     @target_account = target_account
-    @status_ids     = options.delete(:status_ids)
-    @comment        = options.delete(:comment)
+    @status_ids     = options.delete(:status_ids) || []
+    @comment        = options.delete(:comment) || ''
     @options        = options
 
     create_report!
     notify_staff!
-    forward_to_origin! if !@target_account.local? && @options[:forward]
+    forward_to_origin! if !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
 
     @report
   end
