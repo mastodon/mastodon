@@ -1,29 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import Link from 'react-router-dom/Link';
+import FoldButton from '../../../components/fold_button';
 
+const messages = defineMessages({
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
+});
+
+@injectIntl
 export default class Announcements extends React.PureComponent {
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     visible: PropTypes.bool.isRequired,
     onToggle: PropTypes.func.isRequired,
     announcements: ImmutablePropTypes.list.isRequired,
   };
 
   render () {
-    const { visible, onToggle, announcements } = this.props;
-    const caretClass = visible ? 'fa fa-caret-down' : 'fa fa-caret-up';
+    const { intl, visible, onToggle, announcements } = this.props;
 
     return (
       <div className='announcements'>
         <div className='compose__extra__header'>
           <i className='fa fa-bell' />
           <FormattedMessage id='announcement.title' defaultMessage='information' />
-          <button className='compose__extra__header__icon' onClick={onToggle} >
-            <i className={caretClass} />
-          </button>
+          <div className='compose__extra__header__fold__icon'>
+            <FoldButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={onToggle} size={20} animate active={visible} />
+          </div>
         </div>
         { visible && (
           <ul>
