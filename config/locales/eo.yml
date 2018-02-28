@@ -16,8 +16,8 @@ eo:
     user_count_after: uzantoj
     user_count_before: Hejmo de
     what_is_mastodon: Kio estas Mastodon?
-    about_hashtag_html: Ĉi tiuj estas la publikaj hupoj markitaj per <strong>#%{hashtag}</strong>.
-      Vi povas interagi kun ili se vi havas konton ie ajn en la Fediverse.
+    about_hashtag_html: Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>.
+      Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
     closed_registrations: Registriĝoj estas nuntempe fermitaj en ĉi tiu nodo. Tamen,
       vi povas trovi alian nodon por fari konton kaj aliri al la sama reto de tie.
     contact_missing: Ne elektita
@@ -66,7 +66,7 @@ eo:
       confirm: Konfirmi
       confirmed: Konfirmita
       disable_two_factor_authentication: Malebligi 2FA
-      display_name: Montri nomon
+      display_name: Montrata nomo
       domain: Domajno
       edit: Redakti
       email: Retpoŝto
@@ -125,7 +125,7 @@ eo:
       enabled: Ebligita
       feed_url: URL de la fluo
       inbox_url: Enira URL
-      login_status: Konekta stato
+      login_status: Ensaluta stato
       memorialize: Ŝanĝi al memoro
       moderation_notes: Kontrolaj notoj
       outbox_url: Elira URL
@@ -151,8 +151,8 @@ eo:
       image_hint: PNG ĝis 50KB
       new:
         title: Aldoni novan propran emoĝion
-      shortcode: Malonga kodo
-      shortcode_hint: Almenaŭ 2 signoj, nur literoj, nombroj kaj substrekoj
+      shortcode: Mallonga kodo
+      shortcode_hint: Almenaŭ 2 signoj, nur literoj, ciferoj kaj substrekoj
       title: Propraj emoĝioj
       upload: Alŝuti
       by_domain: Domajno
@@ -188,8 +188,8 @@ eo:
       severity: Severeco
       show:
         affected_accounts:
-          one: Unu konto en la datumbazo esta afektita
-          other: '%{count} kontoj en la datumbazo esta afektitaj'
+          one: Unu konto en la datumbazo esta influita
+          other: '%{count} kontoj en la datumbazo estas influitaj'
         retroactive:
           silence: Malkaŝi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
           suspend: Malhaltigi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
@@ -249,15 +249,15 @@ eo:
         username: Kontakta uzantnomo
       registrations:
         closed_message:
-          desc_html: Afiŝita sur la hejma paĝo kiam registriĝoj estas fermitaj. Vi
+          desc_html: Montrita sur la hejma paĝo kiam registriĝoj estas fermitaj. Vi
             povas uzi HTML-etikedojn
-          title: Mesaĝo pri fermita registriĝo
+          title: Mesaĝo pri fermitaj registriĝoj
         deletion:
-          desc_html: Permesi al iu ajn forigi ties konton
+          desc_html: Permesi al iu ajn forigi propran konton
           title: Permesi forigi konton
         open:
           desc_html: Permesi iun ajn krei konton
-          title: Malfermi registriĝon
+          title: Malfermi registriĝojn
         min_invite_role:
           disabled: Neniu
           title: Permesi invitojn de
@@ -285,7 +285,7 @@ eo:
         desc_html: Sumo de lokaj mesaĝoj, aktivaj uzantoj, kaj novaj registriĝoj laŭsemajne
         title: Publikigi kunmetitajn statistikojn pri la uzanta agado
       peers_api_enabled:
-        desc_html: Nomoj de domajnoj, kiujn ĉi tiu nodo rekontis en la fediverse
+        desc_html: Nomoj de domajnoj, kiujn ĉi tiu nodo renkontis en la fediverse
         title: Publikigi liston de malkovritaj nodoj
       show_known_fediverse_at_about_page:
         desc_html: Kiam ŝaltita, ĝi montros mesaĝojn de la tuta konata fediverse antaŭvide.
@@ -395,7 +395,7 @@ eo:
     invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida.
       Bonvolu peti novan.
     migrate_account: Movi al alia konto
-    migrate_account_html: Se vi deziras redirekti ĉi tiun konton al alia, vi povas
+    migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas
       <a href="%{path}">agordi ĝin ĉi tie</a>.
     or_log_in_with: Aŭ ensaluti per
     providers:
@@ -407,7 +407,7 @@ eo:
     follow_request: 'Vi sendis peton de sekvado al:'
     following: 'Sukceson! Vi nun sekvas:'
     post_follow:
-      close: Aŭ, vi simple povas fermi ĉi tiun fenestron.
+      close: Aŭ, vi povas simple fermi ĉi tiun fenestron.
       return: Reveni al la profilo de uzanto
       web: Iri al reto
     title: Sekvi %{acct}
@@ -497,7 +497,7 @@ eo:
     follow_request:
       body: '%{name} petis sekvi vin'
       subject: '%{name} petis sekvi vin'
-      action: Pritrakti petojn de sekvado
+      action: Administri petojn de sekvado
       title: Nova peto de sekvado
     mention:
       body: '%{name} menciis vin en:'
@@ -525,7 +525,7 @@ eo:
     truncate: '&hellip;'
   preferences:
     languages: Lingvoj
-    other: Aliaj
+    other: Aliaj aferoj
     publishing: Publikado
     web: Reto
   push_notifications:
@@ -543,20 +543,20 @@ eo:
     reblog:
       title: '%{name} diskonigis vian mesaĝon'
   remote_follow:
-    acct: Enmetu vian uzantnomo@domajno de kiu vi volas sekvi
+    acct: Enmetu vian uzantnomo@domajno de kie vi volas sekvi
     missing_resource: La URL de plusendado ne estis trovita
-    proceed: Daŭrigi por plusendi
+    proceed: Daŭrigi por eksekvi
     prompt: 'Vi eksekvos:'
   sessions:
     activity: Lasta ago
     browser: Retumilo
-    current_session: Nuna sesio
+    current_session: Nuna seanco
     description: '%{browser} en %{platform}'
-    explanation: Ĉi tiuj estas la retumiloj nun ensalutitaj en via Mastodon-konto.
+    explanation: Ĉi tiuj estas la retumiloj nun ensalutintaj al via Mastodon-konto.
     ip: IP
-    revoke: Revoki
-    revoke_success: Sesio sukcese revokita
-    title: Sesioj
+    revoke: Malvalidigi
+    revoke_success: Seanco sukcese malvalidigita
+    title: Seancoj
     browsers:
       alipay: Alipay
       blackberry: Blackberry
@@ -605,7 +605,7 @@ eo:
     migrate: Konta migrado
   statuses:
     open_in_web: Malfermi retumile
-    over_character_limit: limo de %{max} signoj trapasita
+    over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
@@ -725,13 +725,13 @@ eo:
   users:
     invalid_email: La retadreso estas nevalida
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
-    signed_in_as: 'Ensalutita kiel:'
+    signed_in_as: 'Ensalutinta kiel:'
   deletes:
     bad_password_msg: Malĝusta pasvorto
-    confirm_password: Entajpu vian nunan pasvorton por konfirmi vian identecon
+    confirm_password: Enmetu vian nunan pasvorton por konfirmi vian identecon
     description_html: Tio <strong>porĉiame kaj neŝanĝeble</strong> forigos la enhavon
-      de via konto kaj forigos ĝin. Via uzantnomo restos rezervita por eviti postajn
-      trompojn pri identeco.
+      de via konto kaj malaktivigos ĝin. Via uzantnomo restos rezervita por eviti
+      postajn trompojn pri identeco.
     proceed: Forigi konton
     success_msg: Via konto estis sukcese forigita
     warning_html: La forigo de la enhavo estas certa nur por ĉi tiu aparta nodo. Enhavo,
@@ -798,7 +798,7 @@ eo:
       final_step: 'Ekmesaĝu! Eĉ sen sekvantoj, viaj publikaj mesaĝoj povas esti vidataj
         de aliaj, ekzemple en la loka tempolinio kaj en la kradvortoj. Eble vi ŝatus
         prezenti vin per la kradvorto #introductions.'
-      full_handle: Via plena uzantnomo
+      full_handle: Via kompleta uzantnomo
       full_handle_hint: Jen kion vi dirus al viaj amikoj, por ke ili mesaĝu aŭ sekvu
         vin de alia nodo.
       review_preferences_action: Ŝanĝi preferojn
@@ -818,7 +818,7 @@ eo:
       tip_local_timeline: La loka tempolinio estas antaŭvido de la homoj en %{instance}.
         Ĉi tiuj estas viaj apudaj najbaroj!
       tip_mobile_webapp: Se via telefona retumilo proponas al vi aldoni Mastodon al
-        via hejma ekrano, vi povas ricevi puŝ-sciigojn. Tio multmaniere funkcias kiel
+        via hejma ekrano, vi povas ricevi puŝsciigojn. Tio multmaniere funkcias kiel
         operaciuma aplikaĵo!
       tips: Konsiloj
       title: Bonvenon, %{name}!
