@@ -318,11 +318,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Toots",
+        "id": "account.posts"
+      },
+      {
+        "defaultMessage": "Toots with replies",
+        "id": "account.posts_with_replies"
+      },
+      {
         "defaultMessage": "Media",
         "id": "account.media"
       }
     ],
-    "path": "app/javascript/mastodon/features/account_gallery/index.json"
+    "path": "app/javascript/mastodon/features/account_timeline/components/header.json"
   },
   {
     "descriptors": [
@@ -651,6 +659,18 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "People",
+        "id": "search_results.accounts"
+      },
+      {
+        "defaultMessage": "Toots",
+        "id": "search_results.statuses"
+      },
+      {
+        "defaultMessage": "Hashtags",
+        "id": "search_results.hashtags"
+      },
+      {
         "defaultMessage": "{count, number} {count, plural, one {result} other {results}}",
         "id": "search_results.total"
       }
@@ -707,12 +727,16 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Describe for the visually impaired",
+        "id": "upload_form.description"
+      },
+      {
         "defaultMessage": "Undo",
         "id": "upload_form.undo"
       },
       {
-        "defaultMessage": "Describe for the visually impaired",
-        "id": "upload_form.description"
+        "defaultMessage": "Crop",
+        "id": "upload_form.focus"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/upload.json"
@@ -1563,6 +1587,18 @@
       {
         "defaultMessage": "Report {target}",
         "id": "report.target"
+      },
+      {
+        "defaultMessage": "The report will be sent to your instance moderators. You can provide an explanation of why you are reporting this account below:",
+        "id": "report.hint"
+      },
+      {
+        "defaultMessage": "The account is from another server. Send an anonymized copy of the report there as well?",
+        "id": "report.forward_hint"
+      },
+      {
+        "defaultMessage": "Forward to {target}",
+        "id": "report.forward"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/report_modal.json"
