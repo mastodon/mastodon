@@ -13,8 +13,8 @@ module Friends
       ].freeze
 
       def add_default_favourite_tag
-        DEFAULT_TAGS.each do |tag_name|
-          self.favourite_tags.create!(visibility: 'public', tag: Tag.find_or_create_by!(name: tag_name))
+        DEFAULT_TAGS.each_with_index do |tag_name, i|
+          self.favourite_tags.create!(visibility: 'public', tag: Tag.find_or_create_by!(name: tag_name), order: i)
         end
       end
 

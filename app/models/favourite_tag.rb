@@ -8,6 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  visibility :integer          default("public"), not null
+#  order      :integer          default(0), not null
 #
 
 class FavouriteTag < ApplicationRecord
@@ -20,6 +21,9 @@ class FavouriteTag < ApplicationRecord
 
   validates :tag, uniqueness: { scope: :account }
   validates :visibility, presence: true
+  validates :order, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  scope :with_order, -> { order(order: :desc, id: :asc) }
 
   delegate :name, to: :tag
 

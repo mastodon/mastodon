@@ -47,7 +47,7 @@ class Api::V1::FavouriteTagsController < Api::BaseController
   def find_or_init_tag
     Tag.find_or_initialize_by(name: tag_params[:tag])
   end
-  
+
   def find_tag
     Tag.find_by(name: tag_params[:tag])
   end
@@ -59,8 +59,8 @@ class Api::V1::FavouriteTagsController < Api::BaseController
   def favourite_tag_visibility
     tag_params[:visibility].nil? ? 'public' : tag_params[:visibility]
   end
-  
+
   def current_favourite_tags
-    current_account.favourite_tags.order(:id).includes(:tag).map(&:to_json_for_api)
+    current_account.favourite_tags.with_order.includes(:tag).map(&:to_json_for_api)
   end
 end

@@ -1,26 +1,19 @@
 - content_for :page_title do
   = t('settings.favourite_tags')
 
-= simple_form_for @favourite_tag, url: settings_favourite_tags_url do |f|
-  = render 'shared/error_messages', object: @favourite_tag
-  = f.simple_fields_for :tag do |ff|
-    = ff.input :name, placeholder: t('favourite_tags.name_of_tag')
-  = f.input :visibility,
-    label: t('simple_form.labels.defaults.setting_default_privacy'),
-    collection: Status.visibilities.keys[0..1],
-    wrapper: :with_label,
-    include_blank: false,
-    label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), content_tag(:span, I18n.t("statuses.visibilities.#{visibility}_long"), class: 'hint')]) },
-    required: false,
-    as: :radio_buttons,
-    collection_wrapper_tag: 'ul',
-    item_wrapper_tag: 'li'
-  = f.button :button, type: 'submit'
+= render 'form', submit: t('favourite_tags.submit')
 %hr
 
 %table.table
+  %thead
+    %tr
+      %th= t('favourite_tags.name_of_tag')
+      %th= t('simple_form.labels.defaults.setting_default_privacy')
+      %th= t('favourite_tags.order')
+      %th= t('favourite_tags.edit_it')
+      %th= t('favourite_tags.delete_it')
   %tbody
-    - current_account.favourite_tags.order(:id).includes(:tag).each do |fav_tag|
+    - @favourite_tags.each do |fav_tag|
       %tr
         %td
           = fa_icon 'tag'
@@ -28,4 +21,8 @@
         %td
           = I18n.t("statuses.visibilities.#{fav_tag.visibility}")
         %td
-          = table_link_to 'trash', t('favourite_tags.delete'), settings_favourite_tag_path(fav_tag), method: :delete
+          = fav_tag.order
+        %td
+          = table_link_to 'edit', '', edit_settings_favourite_tag_path(fav_tag)
+        %td
+          = table_link_to 'trash', '', settings_favourite_tag_path(fav_tag), method: :delete

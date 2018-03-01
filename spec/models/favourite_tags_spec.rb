@@ -34,6 +34,21 @@ RSpec.describe FavouriteTag, type: :model do
     end
   end
 
+  describe 'scopes' do
+    describe 'with_order' do
+      let(:account) { Fabricate(:account, username: 'favourite') }
+
+      it 'returns an array of recent favourite tags ordered by order and id' do
+        specifieds = [
+          Fabricate(:favourite_tag, account: account, order: 9900),
+          Fabricate(:favourite_tag, account: account, order: 9800),
+          Fabricate(:favourite_tag, account: account, order: 9800),
+        ]
+        expect(account.favourite_tags.with_order.limit(3)).to match_array(specifieds)
+      end
+    end
+  end
+
   describe 'expect to_json_for_api' do
     let(:account) { Fabricate :account }
     let(:tag) { Tag.new(name: 'test_tag') }

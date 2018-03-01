@@ -98,7 +98,7 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
-    resources :favourite_tags, only: [:index, :create, :destroy]
+    resources :favourite_tags, only: [:index, :edit, :create, :update, :destroy]
     resource :migration, only: [:show, :update]
 
     resources :sessions, only: [:destroy]
