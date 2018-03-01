@@ -4579,33 +4579,52 @@ a.status-card {
 /* End Video Player */
 
 .account-gallery__container {
-  margin: -2px;
-  padding: 4px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  padding: 2px;
 }
 
 .account-gallery__item {
-  flex: 1 1 auto;
-  width: calc(100% / 3 - 4px);
-  height: 95px;
-  margin: 2px;
+  flex-grow: 1;
+  width: 50%;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
 
   a {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    margin: 2px;
+    top: 0;
+    left: 0;
     background-color: $base-overlay-background;
     background-size: cover;
     background-position: center;
-    position: relative;
+    position: absolute;
     color: inherit;
     text-decoration: none;
+    border-radius: 4px;
 
     &:hover,
     &:active,
     &:focus {
       outline: 0;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: rgba($base-overlay-background, 0.3);
+        border-radius: 4px;
+      }
     }
   }
 }
