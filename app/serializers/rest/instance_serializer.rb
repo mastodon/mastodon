@@ -4,7 +4,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :uri, :title, :description, :email,
-             :version, :urls, :stats, :thumbnail
+             :version, :urls, :stats, :thumbnail, :admin
 
   def uri
     Rails.configuration.x.local_domain
@@ -20,6 +20,15 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def email
     Setting.site_contact_email
+  end
+
+  def admin
+    username = Setting.site_contact_username
+    if username != ""
+      "#{username}@#{uri}"
+    else
+      ""
+    end
   end
 
   def version
