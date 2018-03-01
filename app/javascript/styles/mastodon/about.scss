@@ -15,8 +15,6 @@ $small-breakpoint: 960px;
   }
 }
 
-
-
 .landing-page {
   .grid {
     display: grid;
@@ -51,7 +49,6 @@ $small-breakpoint: 960px;
   }
 
   @media screen and (max-width: $small-breakpoint) {
-
     .grid {
       grid-template-columns: 40% 60%;
 
@@ -633,8 +630,8 @@ $small-breakpoint: 960px;
       align-items: flex-end;
 
       .information-board__section {
-        flex: 1 0 80px;
-        padding: 0 5px;
+        flex: 1 0 auto;
+        padding: 0 10px;
       }
     }
 
