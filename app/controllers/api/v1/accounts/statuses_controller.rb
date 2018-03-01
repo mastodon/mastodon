@@ -28,9 +28,9 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def account_statuses
     default_statuses.tap do |statuses|
-      statuses.merge!(only_media_scope) if params[:only_media]
-      statuses.merge!(pinned_scope) if params[:pinned]
-      statuses.merge!(no_replies_scope) if params[:exclude_replies]
+      statuses.merge!(only_media_scope) if truthy_param?(:only_media)
+      statuses.merge!(pinned_scope) if truthy_param?(:pinned)
+      statuses.merge!(no_replies_scope) if truthy_param?(:exclude_replies)
     end
   end
 
