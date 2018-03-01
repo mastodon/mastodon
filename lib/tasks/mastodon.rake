@@ -476,8 +476,10 @@ namespace :mastodon do
       time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
 
       MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).find_each do |media|
-        media.file.destroy
-        media.save
+        if media.file.exists?
+          media.file.destroy
+          media.save
+        end
       end
     end
 
