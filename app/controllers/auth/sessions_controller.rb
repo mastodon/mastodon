@@ -37,7 +37,7 @@ class Auth::SessionsController < Devise::SessionsController
     if session[:otp_user_id]
       User.find(session[:otp_user_id])
     elsif user_params[:email]
-      if use_pam? && Devise.check_at_sign && user_params[:email].index('@').nil?
+      if use_seamless_external_login? && Devise.check_at_sign && user_params[:email].index('@').nil?
         User.joins(:account).find_by(accounts: { username: user_params[:email] })
       else
         User.find_for_authentication(email: user_params[:email])

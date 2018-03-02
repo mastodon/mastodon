@@ -4,7 +4,7 @@
 = simple_form_for current_user, url: settings_preferences_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: current_user
 
-  .actions
+  .actions.actions--top
     = f.button :button, t('generic.save_changes'), type: :submit
 
   %h4= t 'preferences.languages'
