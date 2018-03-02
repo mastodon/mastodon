@@ -262,8 +262,8 @@ export default class Video extends React.PureComponent {
     let { width, height } = this.props;
 
     if (inline && containerWidth) {
-      width       = containerWidth;
-      height      = Math.floor(containerWidth / (16/9));
+      width  = containerWidth;
+      height = containerWidth / (16/9);
 
       playerStyle.width  = width;
       playerStyle.height = height;
