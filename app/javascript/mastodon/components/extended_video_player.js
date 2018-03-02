@@ -32,8 +32,8 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
     this.video = c;
   }
 
-  handleClick = ev => {
-    ev.stopPropagation();
+  handleClick = e => {
+    e.stopPropagation();
     const handler = this.props.onClick;
     if (handler) handler();
   }

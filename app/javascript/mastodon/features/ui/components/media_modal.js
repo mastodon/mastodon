@@ -27,7 +27,7 @@ export default class MediaModal extends ImmutablePureComponent {
 
   state = {
     index: null,
-    navigationShown: true,
+    navigationHidden: false,
   };
 
   handleSwipe = (index) => {
@@ -70,15 +70,15 @@ export default class MediaModal extends ImmutablePureComponent {
     return this.state.index !== null ? this.state.index : this.props.index;
   }
 
-  switchNavigation = () => {
-    this.setState({
-      navigationShown: !this.state.navigationShown,
-    });
+  toggleNavigation = () => {
+    this.setState(prevState => ({
+      navigationHidden: !prevState.navigationHidden,
+    }));
   };
 
   render () {
     const { media, intl, onClose } = this.props;
-    const { navigationShown } = this.state;
+    const { navigationHidden } = this.state;
 
     const index = this.getIndex();
     let pagination = [];
@@ -109,7 +109,7 @@ export default class MediaModal extends ImmutablePureComponent {
             height={height}
             alt={image.get('description')}
             key={image.get('url')}
-            onClick={this.switchNavigation}
+            onClick={this.toggleNavigation}
           />
         );
       } else if (image.get('type') === 'gifv') {
@@ -122,7 +122,7 @@ export default class MediaModal extends ImmutablePureComponent {
             height={height}
             key={image.get('preview_url')}
             alt={image.get('description')}
-            onClick={this.switchNavigation}
+            onClick={this.toggleNavigation}
           />
         );
       }
@@ -135,7 +135,7 @@ export default class MediaModal extends ImmutablePureComponent {
     };
 
     const navigationClassName = classNames('media-modal__navigation', {
-      'media-modal__navigation--hidden': !navigationShown,
+      'media-modal__navigation--hidden': navigationHidden,
     });
 
     return (
@@ -148,7 +148,10 @@ export default class MediaModal extends ImmutablePureComponent {
           <div className='media-modal__content'>
             <ReactSwipeableViews
               style={{
-                // on Android Chrome, pixel length of 100vh is mutable
+                // you can't use 100vh, because the viewport height is taller
+                // than the visible part of the document in some mobile
+                // browsers when it's address bar is visible.
+                // https://developers.google.com/web/updates/2016/12/url-bar-resizing
                 height: `${document.body.clientHeight}px`,
               }}
               containerStyle={containerStyle}

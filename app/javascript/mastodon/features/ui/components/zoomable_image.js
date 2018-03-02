@@ -12,7 +12,7 @@ const getMidpoint = (p1, p2) => ({
 const getDistance = (p1, p2) =>
   Math.sqrt(Math.pow(p1.clientX - p2.clientX, 2) + Math.pow(p1.clientY - p2.clientY, 2));
 
-const between = (min, max, value) => Math.min(max, Math.max(min, value));
+const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
 export default class ZoomableImage extends React.PureComponent {
 
@@ -41,10 +41,10 @@ export default class ZoomableImage extends React.PureComponent {
   lastDistance = 0;
 
   componentDidMount () {
-    let handler = this.handleTouchStart.bind(this);
+    let handler = this.handleTouchStart;
     this.container.addEventListener('touchstart', handler);
     this.removers.push(() => this.container.removeEventListener('touchstart', handler));
-    handler = this.handleTouchMove.bind(this);
+    handler = this.handleTouchMove;
     // on Chrome 56+, touch event listeners will default to passive
     // https://www.chromestatus.com/features/5093566007214080
     this.container.addEventListener('touchmove', handler, { passive: false });
@@ -60,28 +60,27 @@ export default class ZoomableImage extends React.PureComponent {
     this.removers = [];
   }
 
-  handleTouchStart = ev => {
-    if (ev.touches.length !== 2) return;
+  handleTouchStart = e => {
+    if (e.touches.length !== 2) return;
 
-    this.lastDistance = getDistance(...ev.touches);
+    this.lastDistance = getDistance(...e.touches);
   }
 
-  handleTouchMove = ev => {
+  handleTouchMove = e => {
     const { scrollTop, scrollHeight, clientHeight } = this.container;
-    if (ev.touches.length === 1
-      && scrollTop !== scrollHeight - clientHeight) {
+    if (e.touches.length === 1 && scrollTop !== scrollHeight - clientHeight) {
       // prevent propagating event to MediaModal
-      ev.stopPropagation();
+      e.stopPropagation();
       return;
     }
-    if (ev.touches.length !== 2) return;
+    if (e.touches.length !== 2) return;
 
-    ev.preventDefault();
-    ev.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
 
-    const distance = getDistance(...ev.touches);
-    const midpoint = getMidpoint(...ev.touches);
-    const scale = between(MIN_SCALE, MAX_SCALE, this.state.scale * distance / this.lastDistance);
+    const distance = getDistance(...e.touches);
+    const midpoint = getMidpoint(...e.touches);
+    const scale = clamp(MIN_SCALE, MAX_SCALE, this.state.scale * distance / this.lastDistance);
 
     this.zoom(scale, midpoint);
 
@@ -102,19 +101,15 @@ export default class ZoomableImage extends React.PureComponent {
     const nextScrollLeft = (scrollLeft + midpoint.x) * nextScale / scale - midpoint.x;
     const nextScrollTop = (scrollTop + midpoint.y) * nextScale / scale - midpoint.y;
 
-    // this.container.scrollLeft = nextScrollLeft;
-    // this.container.scrollTop = nextScrollTop;
-
     this.setState({ scale: nextScale }, () => {
-      // callback
       this.container.scrollLeft = nextScrollLeft;
       this.container.scrollTop = nextScrollTop;
     });
   }
 
-  handleClick = ev => {
+  handleClick = e => {
     // don't propagate event to MediaModal
-    ev.stopPropagation();
+    e.stopPropagation();
     const handler = this.props.onClick;
     if (handler) handler();
   }
