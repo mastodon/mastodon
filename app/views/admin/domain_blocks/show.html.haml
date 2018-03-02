@@ -1,6 +1,8 @@
 - content_for :page_title do
   = t('admin.domain_blocks.show.title', domain: @domain_block.domain)
 
+%h3= t('.undo')
+
 = simple_form_for @domain_block, url: admin_domain_block_path(@domain_block), method: :delete do |f|
 
   - if (@domain_block.noop?)
@@ -18,3 +20,8 @@
 
   .actions
     = f.button :button, t('.undo'), type: :submit
+
+%hr
+
+%h3= t('admin.action_logs.title')
+=render 'admin/action_logs', objects: @domain_block.admin_action_logs

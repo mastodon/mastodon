@@ -19,6 +19,7 @@ class DomainBlock < ApplicationRecord
   validates :domain, presence: true, uniqueness: true
 
   has_many :accounts, foreign_key: :domain, primary_key: :domain
+  has_many :admin_action_logs, as: :target, class_name: 'Admin::ActionLog'
   delegate :count, to: :accounts, prefix: true
 
   def self.blocked?(domain)

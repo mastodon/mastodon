@@ -46,14 +46,7 @@
 
 %hr/
 
-- if !@report.action_taken?
-  %div{ style: 'overflow: hidden' }
-    %div{ style: 'float: right' }
-      = link_to t('admin.reports.silence_account'), admin_report_path(@report, outcome: 'silence'), method: :put, class: 'button'
-      = link_to t('admin.reports.suspend_account'), admin_report_path(@report, outcome: 'suspend'), method: :put, class: 'button'
-    %div{ style: 'float: left' }
-      = link_to t('admin.reports.mark_as_resolved'), admin_report_path(@report, outcome: 'resolve'), method: :put, class: 'button'
-- elsif !@report.action_taken_by_account.nil?
-  %p
-    %strong #{t('admin.reports.action_taken_by')}:
-    = @report.action_taken_by_account.acct
+%p
+  %strong #{t('admin.action_logs.title')}:
+
+= render 'admin/action_logs', objects: @report.admin_action_logs
