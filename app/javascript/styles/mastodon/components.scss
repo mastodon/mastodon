@@ -1878,7 +1878,7 @@
   font-size: 14px;
   font-weight: 500;
   border-bottom: 2px solid lighten($ui-base-color, 8%);
-  transition: all 200ms linear;
+  transition: all 50ms linear;
 
   .fa {
     font-weight: 400;
@@ -1895,7 +1895,6 @@
   &:active {
     @media screen and (min-width: 631px) {
       background: lighten($ui-base-color, 14%);
-      transition: all 100ms linear;
     }
   }
 
@@ -5022,5 +5021,29 @@ noscript {
     height: 100%;
     top: 0;
     left: 0;
+  }
+}
+
+.floating-action-button {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.9375rem;
+  height: 3.9375rem;
+  bottom: 1.3125rem;
+  right: 1.3125rem;
+  background: darken($ui-highlight-color, 3%);
+  color: $white;
+  border-radius: 50%;
+  font-size: 21px;
+  line-height: 21px;
+  text-decoration: none;
+  box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-highlight-color, 7%);
   }
 }
