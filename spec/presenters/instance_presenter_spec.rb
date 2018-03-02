@@ -90,9 +90,7 @@ describe InstancePresenter do
 
   describe "user_count" do
     it "returns the number of site users" do
-      cache = double
-      allow(Rails).to receive(:cache).and_return(cache)
-      allow(cache).to receive(:fetch).with("user_count").and_return(123)
+      Rails.cache.write 'user_count', 123
 
       expect(instance_presenter.user_count).to eq(123)
     end
@@ -100,9 +98,7 @@ describe InstancePresenter do
 
   describe "status_count" do
     it "returns the number of local statuses" do
-      cache = double
-      allow(Rails).to receive(:cache).and_return(cache)
-      allow(cache).to receive(:fetch).with("local_status_count").and_return(234)
+      Rails.cache.write 'local_status_count', 234
 
       expect(instance_presenter.status_count).to eq(234)
     end
@@ -110,9 +106,7 @@ describe InstancePresenter do
 
   describe "domain_count" do
     it "returns the number of known domains" do
-      cache = double
-      allow(Rails).to receive(:cache).and_return(cache)
-      allow(cache).to receive(:fetch).with("distinct_domain_count").and_return(345)
+      Rails.cache.write 'distinct_domain_count', 345
 
       expect(instance_presenter.domain_count).to eq(345)
     end

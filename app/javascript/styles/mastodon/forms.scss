@@ -278,6 +278,11 @@ code {
   .actions {
     margin-top: 30px;
     display: flex;
+
+    &.actions--top {
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
   }
 
   button,

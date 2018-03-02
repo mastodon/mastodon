@@ -53,8 +53,11 @@ module Omniauthable
     private
 
     def user_params_from_auth(auth)
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email             = auth.info.email if email_is_verified && !User.exists?(email: auth.info.email)
+      strategy          = Devise.omniauth_configs[auth.provider.to_sym].strategy
+      assume_verified   = strategy.try(:security).try(:assume_email_is_verified)
+      email_is_verified = auth.info.verified || auth.info.verified_email || assume_verified
+      email             = auth.info.verified_email || auth.info.email
+      email             = email_is_verified && !User.exists?(email: auth.info.email) && email
 
       {
         email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",

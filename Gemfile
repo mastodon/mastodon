@@ -7,7 +7,6 @@ gem 'pkg-config', '~> 1.2'
 
 gem 'puma', '~> 3.10'
 gem 'rails', '~> 5.1.4'
-gem 'uglifier', '~> 3.2'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 0.20'
@@ -20,6 +19,7 @@ gem 'fog-local', '~> 0.4', require: false
 gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder', '~> 0.6'
+gem 'streamio-ffmpeg', '~> 3.0'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.5'
@@ -33,12 +33,14 @@ gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
 gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
+gem 'net-ldap', '~> 0.10', install_if: -> { ENV['LDAP_ENABLED'] == 'true' }
 gem 'omniauth-cas', '~> 1.1', install_if: -> { ENV['CAS_ENABLED'] == 'true' }
-gem 'omniauth-saml', '~> 1.8', install_if: -> { ENV['SAML_ENABLED'] == 'true' }
+gem 'omniauth-saml', '~> 1.10', install_if: -> { ENV['SAML_ENABLED'] == 'true' }
 gem 'omniauth', '~> 1.2'
 
 gem 'doorkeeper', '~> 4.2'
 gem 'fast_blank', '~> 1.0'
+gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
 gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.5'
@@ -76,6 +78,8 @@ gem 'simple-navigation', '~> 4.0'
 gem 'simple_form', '~> 3.4'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'strong_migrations'
+gem 'tty-command'
+gem 'tty-prompt'
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2017'
 gem 'webpacker', '~> 3.0'
@@ -90,6 +94,10 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 3.7'
+end
+
+group :production, :test do
+  gem 'private_address_check', '~> 0.4.1'
 end
 
 group :test do
@@ -112,6 +120,7 @@ group :development do
   gem 'bullet', '~> 5.5'
   gem 'letter_opener', '~> 1.4'
   gem 'letter_opener_web', '~> 1.3'
+  gem 'memory_profiler'
   gem 'rubocop', require: false
   gem 'brakeman', '~> 4.0', require: false
   gem 'bundler-audit', '~> 0.6', require: false

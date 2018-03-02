@@ -92,7 +92,6 @@ RSpec.describe MediaAttachment, type: :model do
     it 'sets meta' do
       expect(media.file.meta["original"]["width"]).to eq 128
       expect(media.file.meta["original"]["height"]).to eq 128
-      expect(media.file.meta["original"]["aspect"]).to eq 1.0
     end
   end
 

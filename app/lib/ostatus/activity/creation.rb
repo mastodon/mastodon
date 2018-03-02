@@ -61,7 +61,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
 
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
-    DistributionWorker.perform_async(status.id) if @options[:override_timestamps]
+    DistributionWorker.perform_async(status.id) if @options[:override_timestamps] || status.within_realtime_window?
 
     status
   end

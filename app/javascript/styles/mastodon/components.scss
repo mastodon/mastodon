@@ -40,14 +40,20 @@
     cursor: default;
   }
 
-  &.button-alternative {
+  &.button-primary,
+  &.button-alternative,
+  &.button-secondary,
+  &.button-alternative-2 {
     font-size: 16px;
     line-height: 36px;
     height: auto;
-    color: $ui-base-color;
-    background: $ui-primary-color;
     text-transform: none;
     padding: 4px 16px;
+  }
+
+  &.button-alternative {
+    color: $ui-base-color;
+    background: $ui-primary-color;
 
     &:active,
     &:focus,
@@ -56,15 +62,20 @@
     }
   }
 
+  &.button-alternative-2 {
+    background: $ui-base-lighter-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-base-lighter-color, 4%);
+    }
+  }
+
   &.button-secondary {
-    font-size: 16px;
-    line-height: 36px;
-    height: auto;
     color: $ui-primary-color;
-    text-transform: none;
     background: transparent;
     padding: 3px 15px;
-    border-radius: 4px;
     border: 1px solid $ui-primary-color;
 
     &:active,
@@ -433,6 +444,34 @@
       min-width: 40%;
       margin: 5px;
 
+      &__actions {
+        background: linear-gradient(180deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        opacity: 0;
+        transition: opacity .1s ease;
+
+        .icon-button {
+          flex: 0 1 auto;
+          color: $ui-secondary-color;
+          font-size: 14px;
+          font-weight: 500;
+          padding: 10px;
+          font-family: inherit;
+
+          &:hover,
+          &:focus,
+          &:active {
+            color: lighten($ui-secondary-color, 4%);
+          }
+        }
+
+        &.active {
+          opacity: 1;
+        }
+      }
+
       &-description {
         position: absolute;
         z-index: 2;
@@ -470,10 +509,6 @@
           opacity: 1;
         }
       }
-
-      .icon-button {
-        mix-blend-mode: difference;
-      }
     }
 
     .compose-form__upload-thumbnail {
@@ -481,8 +516,9 @@
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
-      height: 100px;
+      height: 140px;
       width: 100%;
+      overflow: hidden;
     }
   }
 
@@ -686,12 +722,13 @@
   background: transparent;
   border: 0;
   color: lighten($ui-base-color, 8%);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 11px;
   padding: 0 6px;
   text-transform: uppercase;
-  line-height: inherit;
+  line-height: 20px;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 .status__prepend-icon-wrapper {
@@ -897,6 +934,11 @@
     .emojione {
       width: 24px;
       height: 24px;
+      margin: -1px 0 0;
+    }
+
+    .status__content__spoiler-link {
+      line-height: 24px;
       margin: -1px 0 0;
     }
   }
@@ -1836,7 +1878,7 @@
   font-size: 14px;
   font-weight: 500;
   border-bottom: 2px solid lighten($ui-base-color, 8%);
-  transition: all 200ms linear;
+  transition: all 50ms linear;
 
   .fa {
     font-weight: 400;
@@ -1853,7 +1895,6 @@
   &:active {
     @media screen and (min-width: 631px) {
       background: lighten($ui-base-color, 14%);
-      transition: all 100ms linear;
     }
   }
 
@@ -2208,7 +2249,6 @@
 
 .status-card {
   display: flex;
-  cursor: pointer;
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
@@ -2217,20 +2257,58 @@
   text-decoration: none;
   overflow: hidden;
 
-  &:hover {
-    background: lighten($ui-base-color, 8%);
+  &__actions {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > div {
+      background: rgba($base-shadow-color, 0.6);
+      border-radius: 4px;
+      padding: 12px 9px;
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button,
+    a {
+      display: inline;
+      color: $primary-text-color;
+      background: transparent;
+      border: 0;
+      padding: 0 5px;
+      text-decoration: none;
+      opacity: 0.6;
+      font-size: 18px;
+      line-height: 18px;
+
+      &:hover,
+      &:active,
+      &:focus {
+        opacity: 1;
+      }
+    }
+
+    a {
+      font-size: 19px;
+      position: relative;
+      bottom: -1px;
+    }
   }
 }
 
-.status-card-video,
-.status-card-rich,
-.status-card-photo {
-  margin-top: 14px;
-  overflow: hidden;
+a.status-card {
+  cursor: pointer;
 
-  iframe {
-    width: 100%;
-    height: auto;
+  &:hover {
+    background: lighten($ui-base-color, 8%);
   }
 }
 
@@ -2258,6 +2336,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .status-card__content {
@@ -2279,6 +2358,7 @@
 .status-card__image {
   flex: 0 0 100px;
   background: lighten($ui-base-color, 8%);
+  position: relative;
 }
 
 .status-card.horizontal {
@@ -2304,6 +2384,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background-size: cover;
+  background-position: center center;
 }
 
 .load-more {
@@ -2626,12 +2708,16 @@
   background: $base-overlay-background;
   color: $ui-primary-color;
   border: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
+  border-radius: 4px;
+  appearance: none;
 
   &:hover,
   &:active,
   &:focus {
+    padding: 0;
     color: lighten($ui-primary-color, 8%);
   }
 }
@@ -2644,7 +2730,7 @@
 .media-spoiler__trigger {
   display: block;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .spoiler-button {
@@ -3804,8 +3890,7 @@
 
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
-.mute-modal__action-bar,
-.report-modal__action-bar {
+.mute-modal__action-bar {
   display: flex;
   justify-content: space-between;
   background: $ui-secondary-color;
@@ -3849,21 +3934,94 @@
   vertical-align: middle;
 }
 
+.report-modal {
+  width: 90vw;
+  max-width: 700px;
+}
+
+.report-modal__container {
+  display: flex;
+  border-top: 1px solid $ui-secondary-color;
+
+  @media screen and (max-width: 480px) {
+    flex-wrap: wrap;
+    overflow-y: auto;
+  }
+}
+
 .report-modal__statuses,
 .report-modal__comment {
-  padding: 10px;
+  box-sizing: border-box;
+  width: 50%;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .report-modal__statuses {
+  flex: 1 1 auto;
   min-height: 20vh;
   max-height: 40vh;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media screen and (max-width: 480px) {
+    max-height: 10vh;
+  }
 }
 
 .report-modal__comment {
+  padding: 20px;
+  border-right: 1px solid $ui-secondary-color;
+  max-width: 320px;
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 20px;
+  }
+
   .setting-text {
-    margin-top: 10px;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    color: $ui-base-color;
+    background: $white;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    border: 1px solid $ui-secondary-color;
+    margin-bottom: 20px;
+
+    &:focus {
+      border: 1px solid darken($ui-secondary-color, 8%);
+    }
+  }
+
+  .setting-toggle {
+    margin-top: 20px;
+    margin-bottom: 24px;
+
+    &__label {
+      color: $ui-base-color;
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 10px;
+    max-width: 100%;
+    order: 2;
+
+    .setting-toggle {
+      margin-bottom: 4px;
+    }
   }
 }
 
@@ -3953,6 +4111,15 @@
         font-weight: 700;
       }
     }
+  }
+}
+
+.report-modal__target {
+  padding: 20px;
+
+  .media-modal__close {
+    top: 19px;
+    right: 15px;
   }
 }
 
@@ -4050,6 +4217,7 @@
   box-sizing: border-box;
   margin-top: 8px;
   overflow: hidden;
+  border-radius: 4px;
   position: relative;
   width: 100%;
 }
@@ -4060,10 +4228,13 @@
   display: block;
   float: left;
   position: relative;
+  border-radius: 4px;
+  overflow: hidden;
 
   &.standalone {
     .media-gallery__item-gifv-thumbnail {
       transform: none;
+      top: 0;
     }
   }
 }
@@ -4072,15 +4243,19 @@
   cursor: zoom-in;
   display: block;
   text-decoration: none;
+  color: $ui-secondary-color;
   height: 100%;
   line-height: 0;
 
   &,
   img {
     width: 100%;
-    height: 100%;
+  }
+
+  img {
+    position: relative;
     object-fit: cover;
-    object-position: 50% 20%;
+    height: auto;
   }
 }
 
@@ -4189,7 +4364,7 @@
 
   &.inline {
     video {
-      object-fit: cover;
+      object-fit: contain;
       position: relative;
       top: 50%;
       transform: translateY(-50%);
@@ -4409,65 +4584,104 @@
 /* End Video Player */
 
 .account-gallery__container {
-  margin: -2px;
-  padding: 4px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  padding: 2px;
 }
 
 .account-gallery__item {
+<<<<<<< HEAD
   flex: 1 1 auto;
   width: calc(100% / 3 - 4px);
   height: 95px;
   margin: 2px;
   overflow: hidden;
+=======
+  flex-grow: 1;
+  width: 50%;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+>>>>>>> tootsuite/master
 
   a {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    margin: 2px;
+    top: 0;
+    left: 0;
     background-color: $base-overlay-background;
     background-size: cover;
     background-position: center;
-    position: relative;
+    position: absolute;
     color: inherit;
     text-decoration: none;
+    border-radius: 4px;
 
     &:hover,
     &:active,
     &:focus {
       outline: 0;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: rgba($base-overlay-background, 0.3);
+        border-radius: 4px;
+      }
     }
   }
 }
 
-.account-section-headline {
-  color: $ui-base-lighter-color;
-  background: lighten($ui-base-color, 2%);
-  border-bottom: 1px solid lighten($ui-base-color, 4%);
-  padding: 15px 10px;
-  font-size: 14px;
-  font-weight: 500;
-  position: relative;
+.account__section-headline {
+  background: darken($ui-base-color, 4%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
+  display: flex;
 
-  &::before,
-  &::after {
+  a {
     display: block;
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 18px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 10px 10px;
-    border-color: transparent transparent lighten($ui-base-color, 4%);
-  }
+    flex: 1 1 auto;
+    color: $ui-primary-color;
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
 
-  &::after {
-    bottom: -1px;
-    border-color: transparent transparent $ui-base-color;
+    &.active {
+      color: $ui-secondary-color;
+
+      &::before,
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        transform: translateX(-50%);
+        border-style: solid;
+        border-width: 0 10px 10px;
+        border-color: transparent transparent lighten($ui-base-color, 8%);
+      }
+
+      &::after {
+        bottom: -1px;
+        border-color: transparent transparent $ui-base-color;
+      }
+    }
   }
 }
 
@@ -4787,5 +5001,57 @@ noscript {
 
   .search {
     margin-bottom: 0;
+  }
+}
+
+.focal-point {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+
+  &.dragging {
+    cursor: move;
+  }
+
+  &__reticle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+    background: url('../images/reticle.png') no-repeat 0 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 9999em rgba($base-shadow-color, 0.35);
+  }
+
+  &__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.floating-action-button {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.9375rem;
+  height: 3.9375rem;
+  bottom: 1.3125rem;
+  right: 1.3125rem;
+  background: darken($ui-highlight-color, 3%);
+  color: $white;
+  border-radius: 50%;
+  font-size: 21px;
+  line-height: 21px;
+  text-decoration: none;
+  box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-highlight-color, 7%);
   }
 }

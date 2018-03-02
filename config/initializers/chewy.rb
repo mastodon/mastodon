@@ -9,9 +9,11 @@ Chewy.settings = {
   prefix: prefix,
   enabled: enabled,
   journal: false,
+  sidekiq: { queue: 'pull' },
 }
 
-Chewy.root_strategy = enabled ? :sidekiq : :bypass
+Chewy.root_strategy    = enabled ? :sidekiq : :bypass
+Chewy.request_strategy = enabled ? :sidekiq : :bypass
 
 module Chewy
   class << self
