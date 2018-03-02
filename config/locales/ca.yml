@@ -479,6 +479,9 @@ ca:
       hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia
         pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible
         per qualsevol programari compatible.
+      in_progress: Compilant el teu arxiu...
+      request: Sol·licita el teu arxiu
+      size: Tamany
   followers:
     domain: Domini
     explanation_html: Si desitges garantir la privacitat de les teves publicacions,
@@ -606,6 +609,8 @@ ca:
     next: Endavant
     prev: Enrere
     truncate: '&hellip;'
+    newer: Més recent
+    older: Més vell
   preferences:
     languages: Llengues
     other: Altre
@@ -855,7 +860,14 @@ ca:
         una aplicació nativa en molts aspectes!
       tips: Consells
       title: Benvingut a bord, %{name}!
+    backup_ready:
+      explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara
+        ja està a punt per descàrrega!
+      subject: El teu arxiu està preparat per a descàrrega
+      title: Recollida del arxiu
   users:
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
     signed_in_as: 'Sessió iniciada com a:'
+    seamless_external_login: Has iniciat sessió via un servei extern per tant els
+      ajustos de contrasenya i correu electrònic no estan disponibles.
