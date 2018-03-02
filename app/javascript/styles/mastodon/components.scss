@@ -5026,11 +5026,17 @@ noscript {
   height: 3.9375rem;
   bottom: 1.3125rem;
   right: 1.3125rem;
-  background: $ui-highlight-color;
+  background: darken($ui-highlight-color, 3%);
   color: $white;
   border-radius: 50%;
   font-size: 21px;
   line-height: 21px;
   text-decoration: none;
   box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-highlight-color, 7%);
+  }
 }
