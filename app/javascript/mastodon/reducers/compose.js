@@ -34,7 +34,7 @@ import uuid from '../uuid';
 import { me } from '../initial_state';
 
 const initialState = ImmutableMap({
-  mounted: false,
+  mounted: 0,
   sensitive: false,
   spoiler: false,
   spoiler_text: '',
@@ -159,10 +159,10 @@ export default function compose(state = initialState, action) {
   case STORE_HYDRATE:
     return hydrate(state, action.state.get('compose'));
   case COMPOSE_MOUNT:
-    return state.set('mounted', true);
+    return state.set('mounted', state.get('mounted') + 1);
   case COMPOSE_UNMOUNT:
     return state
-      .set('mounted', false)
+      .set('mounted', Math.max(state.get('mounted') - 1, 0))
       .set('is_composing', false);
   case COMPOSE_SENSITIVITY_CHANGE:
     return state.withMutations(map => {
@@ -265,7 +265,7 @@ export default function compose(state = initialState, action) {
       .set('is_submitting', false)
       .update('media_attachments', list => list.map(item => {
         if (item.get('id') === action.media.id) {
-          return item.set('description', action.media.description);
+          return fromJS(action.media);
         }
 
         return item;

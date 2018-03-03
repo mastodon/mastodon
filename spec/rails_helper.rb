@@ -51,6 +51,8 @@ RSpec.configure do |config|
   end
 
   config.after :each do
+    Rails.cache.clear
+
     keys = Redis.current.keys
     Redis.current.del(keys) if keys.any?
   end

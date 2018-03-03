@@ -65,6 +65,10 @@
     }
   }
 
+  .media-gallery__gifv__label {
+    bottom: 9px;
+  }
+
   .status.light {
     padding: 14px 14px 14px (48px + 14px * 2);
     position: relative;
@@ -142,10 +146,10 @@
 
       a.status__content__spoiler-link {
         color: $primary-text-color;
-        background: $ui-primary-color;
+        background: $ui-base-color;
 
         &:hover {
-          background: lighten($ui-primary-color, 8%);
+          background: lighten($ui-base-color, 8%);
         }
       }
     }
@@ -210,10 +214,10 @@
 
       a.status__content__spoiler-link {
         color: $primary-text-color;
-        background: $ui-primary-color;
+        background: $ui-base-color;
 
         &:hover {
-          background: lighten($ui-primary-color, 8%);
+          background: lighten($ui-base-color, 8%);
         }
       }
     }
@@ -256,16 +260,8 @@
   }
 
   .media-spoiler {
-    background: $ui-primary-color;
-    color: $white;
-    transition: all 100ms linear;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background: darken($ui-primary-color, 5%);
-      color: unset;
-    }
+    background: $ui-base-color;
+    color: $ui-primary-color;
   }
 
   .pre-header {

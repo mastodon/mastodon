@@ -398,6 +398,7 @@ export default class UI extends React.Component {
               <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
 
               <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
+              <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
               <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
               <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
               <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />

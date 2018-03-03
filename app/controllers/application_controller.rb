@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_session
   helper_method :current_theme
   helper_method :single_user_mode?
-  helper_method :use_pam?
+  helper_method :use_seamless_external_login?
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_current_location
-    store_location_for(:user, request.url)
+    store_location_for(:user, request.url) unless request.format == :json
   end
 
   def require_admin!
@@ -76,8 +76,8 @@ class ApplicationController < ActionController::Base
     @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.exists?
   end
 
-  def use_pam?
-    Devise.pam_authentication
+  def use_seamless_external_login?
+    Devise.pam_authentication || Devise.ldap_authentication
   end
 
   def current_account

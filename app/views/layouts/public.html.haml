@@ -2,7 +2,7 @@
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
-  .container= yield
+  .container-alt= yield
   .footer
     - if !user_signed_in? && single_user_mode?
       %span.single-user-login

@@ -178,11 +178,11 @@ export function uploadCompose(files) {
   };
 };
 
-export function changeUploadCompose(id, description) {
+export function changeUploadCompose(id, params) {
   return (dispatch, getState) => {
     dispatch(changeUploadComposeRequest());
 
-    api(getState).put(`/api/v1/media/${id}`, { description }).then(response => {
+    api(getState).put(`/api/v1/media/${id}`, params).then(response => {
       dispatch(changeUploadComposeSuccess(response.data));
     }).catch(error => {
       dispatch(changeUploadComposeFail(id, error));

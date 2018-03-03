@@ -13,8 +13,8 @@ class ActivityPub::CollectionSerializer < ActiveModel::Serializer
   attribute :part_of, if: -> { object.part_of.present? }
 
   has_one :first, if: -> { object.first.present? }
-  has_many :items, key: :items, if: -> { (object.items.present? || page?) && !ordered? }
-  has_many :items, key: :ordered_items, if: -> { (object.items.present? || page?) && ordered? }
+  has_many :items, key: :items, if: -> { (!object.items.nil? || page?) && !ordered? }
+  has_many :items, key: :ordered_items, if: -> { (!object.items.nil? || page?) && ordered? }
 
   def type
     if page?
