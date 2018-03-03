@@ -275,6 +275,9 @@ ko:
       contact_information:
         email: 공개할 메일 주소를 입력
         username: 아이디를 입력
+      hero:
+        desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 인스턴스의 썸네일이 사용 됩니다
+        title: 히어로 이미지
       peers_api_enabled:
         desc_html: 이 인스턴스가 페디버스에서 만났던 도메인 네임들
         title: 발견 된 인스턴스들의 리스트 발행
@@ -291,6 +294,9 @@ ko:
         open:
           desc_html: 계정을 생성할 수 있도록 허용합니다
           title: 신규 계정 등록을 받음
+      show_known_fediverse_at_about_page:
+        desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 툿을 표시합니다. 비활성화시 로컬에 있는 툿만 표시 됩니다.
+        title: 타임라인 프리뷰에 알려진 페디버스 표시하기
       show_staff_badge:
         desc_html: 유저 페이지에 스태프 배지를 표시합니다
         title: 스태프 배지 표시
@@ -356,6 +362,7 @@ ko:
   auth:
     agreement_html: 이 등록으로 <a href="%{rules_path}">이용규약</a> 과 <a href="%{terms_path}">약관</a>에 동의하는 것으로 간주됩니다.
     change_password: 보안
+    confirm_email: 확인 메일 승인
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
@@ -365,6 +372,8 @@ ko:
     logout: 로그아웃
     migrate_account: 계정 옮기기
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
+    or: 또는
+    or_log_in_with: 다른 방법으로 로그인 하려면
     register: 등록하기
     resend_confirmation: 확인 메일을 다시 보내기
     reset_password: 비밀번호 재설정
@@ -414,6 +423,13 @@ ko:
       title: 이 페이지는 잘못되었습니다
     noscript_html: 마스토돈을 사용하기 위해서는 자바스크립트를 켜 주십시오. 아니면 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">네이티브 앱</a> 중 하나를 사용할 수 있습니다.
   exports:
+    archive_takeout:
+      date: 날짜
+      download: 아카이브 다운로드
+      hint_html: 당신의 <strong>툿과 업로드 된 미디어</strong>의 아카이브를 요청할 수 있습니다. 내보내지는 데이터는 ActivityPub 포맷입니다. 호환 되는 모든 소프트웨어에서 읽을 수 있습니다.
+      in_progress: 당신의 아카이브를 컴파일 중입니다…
+      request: 아카이브 요청하기
+      size: 크기
     blocks: 차단
     csv: CSV
     follows: 팔로우
@@ -726,6 +742,10 @@ ko:
     setup: 초기 설정
     wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시간이 일치하는지 확인해 주십시오.
   user_mailer:
+    backup_ready:
+      explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다.
+      subject: 당신의 아카이브를 다운로드 가능합니다
+      title: 아카이브 테이크 아웃
     welcome:
       edit_profile_action: 프로필 설정
       edit_profile_step: 아바타, 헤더를 업로드하고, 사람들에게 표시 될 이름을 바꾸는 것으로 당신의 프로필을 커스텀 할 수 있습니다. 사람들이 당신을 팔로우 하기 전에 리뷰를 거치게 하고 싶다면 계정을 잠그면 됩니다.
@@ -747,4 +767,5 @@ ko:
   users:
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
+    seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
