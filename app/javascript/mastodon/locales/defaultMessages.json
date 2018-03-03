@@ -318,6 +318,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Media",
+        "id": "account.media"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_gallery/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Toots",
         "id": "account.posts"
       },
@@ -684,6 +693,14 @@
         "id": "search.placeholder"
       },
       {
+        "defaultMessage": "Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.",
+        "id": "search_popout.tips.full_text"
+      },
+      {
+        "defaultMessage": "Simple text returns matching display names, usernames and hashtags",
+        "id": "search_popout.tips.text"
+      },
+      {
         "defaultMessage": "Advanced search format",
         "id": "search_popout.search_format"
       },
@@ -698,10 +715,6 @@
       {
         "defaultMessage": "status",
         "id": "search_popout.tips.status"
-      },
-      {
-        "defaultMessage": "Simple text returns matching display names, usernames and hashtags",
-        "id": "search_popout.tips.text"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/search.json"
@@ -1577,6 +1590,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
         "defaultMessage": "Additional comments",
         "id": "report.placeholder"
       },
@@ -1605,10 +1622,6 @@
   },
   {
     "descriptors": [
-      {
-        "defaultMessage": "Compose",
-        "id": "tabs_bar.compose"
-      },
       {
         "defaultMessage": "Home",
         "id": "tabs_bar.home"
