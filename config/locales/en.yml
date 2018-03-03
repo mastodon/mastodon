@@ -370,6 +370,7 @@ en:
     logout: Logout
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
+    or: or
     or_log_in_with: Or log in with
     providers:
       cas: CAS
@@ -554,7 +555,9 @@ en:
           trillion: T
           unit: ''
   pagination:
+    newer: Newer
     next: Next
+    older: Older
     prev: Prev
     truncate: "&hellip;"
   preferences:
@@ -776,4 +779,5 @@ en:
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'

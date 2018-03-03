@@ -4,7 +4,12 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :uri, :title, :description, :email,
-             :version, :urls, :stats, :thumbnail, :max_toot_chars
+             :version, :urls, :stats, :thumbnail, :max_toot_chars,
+             :languages
+
+  has_one :contact_account, serializer: REST::AccountSerializer
+
+  delegate :contact_account, to: :instance_presenter
 
   def uri
     Rails.configuration.x.local_domain
@@ -44,6 +49,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def urls
     { streaming_api: Rails.configuration.x.streaming_api_base_url }
+  end
+
+  def languages
+    [ENV.fetch('DEFAULT_LOCALE', I18n.default_locale)]
   end
 
   private

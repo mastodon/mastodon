@@ -57,6 +57,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             src={video.get('url')}
             width={300}
             height={150}
+            inline
             onOpenVideo={this.handleOpenVideo}
             sensitive={status.get('sensitive')}
           />

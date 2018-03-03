@@ -44,6 +44,8 @@ class ActivityPub::Activity
         ActivityPub::Activity::Accept
       when 'Reject'
         ActivityPub::Activity::Reject
+      when 'Flag'
+        ActivityPub::Activity::Flag
       end
     end
   end
