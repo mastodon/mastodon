@@ -289,6 +289,9 @@ gl:
         open:
           desc_html: Permitir que calquera poida crear unha conta
           title: Abrir rexistro
+      show_known_fediverse_at_about_page:
+        desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
+        title: Mostrar vista previa do fediverso na liña temporal
       show_staff_badge:
         desc_html: Mostrar unha insignia de membresía nunha páxina de usuaria
         title: Mostrar insigna de membresía
@@ -354,6 +357,7 @@ gl:
   auth:
     agreement_html: Rexistrándose acorda seguir <a href="%{rules_path}">as normas da instancia</a> e <a href="%{terms_path}">os termos do servizo</a>.
     change_password: Seguridade
+    confirm_email: Confirmar correo-e
     delete_account: Eliminar conta
     delete_account_html: Se desexa eliminar a súa conta, pode <a href="%{path}">facelo aquí</a>. Pediráselle confirmación.
     didnt_get_confirmation: Non recibeu as instruccións de confirmación?
@@ -363,6 +367,10 @@ gl:
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Si desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
+    or_log_in_with: ou conectar con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rexistro
     resend_confirmation: Voltar a enviar intruccións de confirmación
     reset_password: Restablecer contrasinal
@@ -465,7 +473,7 @@ gl:
       expires_at: Caduca
       uses: Usos
     title: Convidar xente
-  landing_strip_html: "<strong>%{name}</strong> é unha usuaria en %{link_to_root_path}.  Pode seguilas ou interactuar con elas si ten unha conta en algún lugar do fediverso."
+  landing_strip_html: "<strong>%{name}</strong> é unha usuaria en %{link_to_root_path}.  Pode seguila ou interactuar con ela si ten unha conta en algún lugar do fediverso."
   landing_strip_signup_html: Si non, pode <a href="%{sign_up_path}">rexistrarse aquí</a>.
   lists:
     errors:

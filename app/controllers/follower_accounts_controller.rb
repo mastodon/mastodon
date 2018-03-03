@@ -9,6 +9,8 @@ class FollowerAccountsController < ApplicationController
     respond_to do |format|
       format.html do
         use_pack 'public'
+
+        @relationships = AccountRelationshipsPresenter.new(@follows.map(&:account_id), current_user.account_id) if user_signed_in?
       end
 
       format.json do

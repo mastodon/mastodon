@@ -97,32 +97,6 @@
     }
   }
 
-  .controls {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    z-index: 2;
-
-    .icon-button {
-      color: rgba($white, 0.8);
-      text-decoration: none;
-      font-size: 13px;
-      line-height: 13px;
-      font-weight: 500;
-
-      .fa {
-        font-weight: 400;
-        margin-right: 5px;
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: $white;
-      }
-    }
-  }
-
   .roles {
     margin-bottom: 30px;
     padding: 0 15px;
@@ -226,6 +200,40 @@
   }
 }
 
+.card,
+.account-grid-card {
+  .controls {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+
+    .icon-button {
+      color: rgba($white, 0.8);
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 13px;
+      font-weight: 500;
+
+      .fa {
+        font-weight: 400;
+        margin-right: 5px;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $white;
+      }
+    }
+  }
+}
+
+.account-grid-card .controls {
+  left: auto;
+  right: 15px;
+}
+
 .pagination {
   padding: 30px 0;
   text-align: center;
@@ -233,8 +241,8 @@
 
   a,
   .current,
-  .next,
-  .prev,
+  .newer,
+  .older,
   .page,
   .gap {
     font-size: 14px;
@@ -257,13 +265,13 @@
     cursor: default;
   }
 
-  .prev,
-  .next {
+  .older,
+  .newer {
     text-transform: uppercase;
     color: $ui-secondary-color;
   }
 
-  .prev {
+  .older {
     float: left;
     padding-left: 0;
 
@@ -273,7 +281,7 @@
     }
   }
 
-  .next {
+  .newer {
     float: right;
     padding-right: 0;
 
@@ -295,8 +303,8 @@
       display: none;
     }
 
-    .next,
-    .prev {
+    .newer,
+    .older {
       display: inline-block;
     }
   }
@@ -411,13 +419,14 @@
       font-weight: 400;
     }
 
-    .note {
+    .account__header__content {
       padding: 10px 15px;
       padding-top: 15px;
-      box-sizing: border-box;
       color: lighten($ui-base-color, 26%);
       word-wrap: break-word;
-      min-height: 80px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 5.5em;
     }
   }
 }

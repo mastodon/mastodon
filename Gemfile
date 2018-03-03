@@ -7,7 +7,6 @@ gem 'pkg-config', '~> 1.2'
 
 gem 'puma', '~> 3.10'
 gem 'rails', '~> 5.1.4'
-gem 'uglifier', '~> 3.2'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 0.20'
@@ -35,8 +34,9 @@ gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
 gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
+gem 'net-ldap', '~> 0.10', install_if: -> { ENV['LDAP_ENABLED'] == 'true' }
 gem 'omniauth-cas', '~> 1.1', install_if: -> { ENV['CAS_ENABLED'] == 'true' }
-gem 'omniauth-saml', '~> 1.8', install_if: -> { ENV['SAML_ENABLED'] == 'true' }
+gem 'omniauth-saml', '~> 1.10', install_if: -> { ENV['SAML_ENABLED'] == 'true' }
 gem 'omniauth', '~> 1.2'
 
 gem 'doorkeeper', '~> 4.2'
@@ -96,6 +96,10 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 3.7'
+end
+
+group :production, :test do
+  gem 'private_address_check', '~> 0.4.1'
 end
 
 group :test do

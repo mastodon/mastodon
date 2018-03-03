@@ -363,6 +363,9 @@ oc:
     logout: Se desconnectar
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
+    providers:
+      cas: CAS
+      saml: SAML
     register: Se marcar
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
@@ -387,7 +390,7 @@ oc:
     - dv
     - ds
     abbr_month_names:
-    - 
+    - None
     - gen
     - feb
     - mar
@@ -413,7 +416,7 @@ oc:
       long: Lo %e %B de %Y
       short: "%e %b. de %Y"
     month_names:
-    - 
+    - None
     - de genièr
     - de febrièr
     - de març

@@ -145,7 +145,7 @@ nl:
         destroy_status: Toot van %{target} is door %{name} verwijderd
         disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
         disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
-        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
+        disable_user: Aanmelden voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
         enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account: Account %{target} is door %{name} in een in-memoriampagina veranderd
@@ -289,6 +289,9 @@ nl:
         open:
           desc_html: Toestaan dat iedereen een account kan registereren
           title: Open registratie
+      show_known_fediverse_at_about_page:
+        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn als voorbeeld getoond en wanneer uitgeschakeld de lokale tijdljn.
+        title: De globale tijdlijn als voorbeeld tonen
       show_staff_badge:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
@@ -306,8 +309,8 @@ nl:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
         title: Thumbnail Mastodonserver
       timeline_preview:
-        desc_html: Toon de openbare tijdlijn op de startpagina
-        title: Voorbeeld tijdlijn
+        desc_html: Toon een openbare tijdlijn op de landingspagina
+        title: Tijdlijn als voorbeeld tonen
       title: Server-instellingen
     statuses:
       back_to_account: Terug naar accountpagina
@@ -354,6 +357,7 @@ nl:
   auth:
     agreement_html: Wanneer je op registreren klikt ga je akkoord met het opvolgen van <a href="%{rules_path}">de regels van deze server</a> en <a href="%{terms_path}">onze gebruikersvoorwaarden</a>.
     change_password: Beveiliging
+    confirm_email: E-mail bevestigen
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
@@ -363,6 +367,10 @@ nl:
     logout: Afmelden
     migrate_account: Naar een andere account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
+    or_log_in_with: Of aanmelden met
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registreren
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen

@@ -29,16 +29,24 @@ class Api::V1::Timelines::TagController < Api::BaseController
     if @tag.nil?
       []
     else
-      tag_timeline_statuses.paginate_by_max_id(
+      statuses = tag_timeline_statuses.paginate_by_max_id(
         limit_param(DEFAULT_STATUSES_LIMIT),
         params[:max_id],
         params[:since_id]
       )
+
+      if truthy_param?(:only_media)
+        # `SELECT DISTINCT id, updated_at` is too slow, so pluck ids at first, and then select id, updated_at with ids.
+        status_ids = statuses.joins(:media_attachments).distinct(:id).pluck(:id)
+        statuses.where(id: status_ids)
+      else
+        statuses
+      end
     end
   end
 
   def tag_timeline_statuses
-    Status.as_tag_timeline(@tag, current_account, params[:local])
+    Status.as_tag_timeline(@tag, current_account, truthy_param?(:local))
   end
 
   def insert_pagination_headers
@@ -46,7 +54,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:local, :limit).merge(core_params)
+    params.permit(:local, :limit, :only_media).merge(core_params)
   end
 
   def next_path
