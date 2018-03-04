@@ -87,6 +87,8 @@ export default class Header extends ImmutablePureComponent {
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
       info = <span className='account--follows-info'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>;
+    } else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
+      info = <span className='account--follows-info'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>;
     }
 
     if (me !== account.get('id')) {
