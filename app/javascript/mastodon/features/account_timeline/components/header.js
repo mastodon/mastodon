@@ -82,6 +82,7 @@ export default class Header extends ImmutablePureComponent {
         <InnerHeader
           account={account}
           onFollow={this.handleFollow}
+          onBlock={this.handleBlock}
         />
 
         <ActionBar
