@@ -50,6 +50,13 @@ export default class Notifications extends React.PureComponent {
     trackScroll: true,
   };
 
+  componentWillUnmount () {
+    this.handleScrollToBottom.cancel();
+    this.handleScrollToTop.cancel();
+    this.handleScroll.cancel();
+    this.props.dispatch(scrollTopNotifications(false));
+  }
+
   handleScrollToBottom = debounce(() => {
     this.props.dispatch(scrollTopNotifications(false));
     this.props.dispatch(expandNotifications());
