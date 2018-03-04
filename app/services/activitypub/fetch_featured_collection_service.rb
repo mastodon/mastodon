@@ -21,7 +21,9 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   private
 
   def process_items(items)
-    status_ids = items.map { |item| ActivityPub::FetchRemoteStatusService.new.call(value_or_id(item)) unless ActivityPub::TagManager.instance.local_uri?(value_or_id(item)) }
+    status_ids = items.map { |item| value_or_id(item) }
+                      .reject { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }
+                      .map { |uri| ActivityPub::FetchRemoteStatusService.new.call(uri) }
                       .compact
                       .select { |status| status.account_id == @account.id }
                       .map(&:id)
