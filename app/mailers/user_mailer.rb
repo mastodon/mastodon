@@ -11,7 +11,7 @@ class UserMailer < Devise::Mailer
   def confirmation_instructions(user, token, **)
     @resource = user
     @token    = token
-    @instance = Rails.configuration.x.local_domain
+    @instance = Setting.site_hostname_or_domain
 
     return if @resource.disabled?
 
@@ -25,7 +25,7 @@ class UserMailer < Devise::Mailer
   def reset_password_instructions(user, token, **)
     @resource = user
     @token    = token
-    @instance = Rails.configuration.x.local_domain
+    @instance = Setting.site_hostname_or_domain
 
     return if @resource.disabled?
 
@@ -36,7 +36,7 @@ class UserMailer < Devise::Mailer
 
   def password_change(user, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
+    @instance = Setting.site_hostname_or_domain
 
     return if @resource.disabled?
 
@@ -47,7 +47,7 @@ class UserMailer < Devise::Mailer
 
   def email_changed(user, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
+    @instance = Setting.site_hostname_or_domain
 
     return if @resource.disabled?
 
@@ -58,7 +58,7 @@ class UserMailer < Devise::Mailer
 
   def welcome(user)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
+    @instance = Setting.site_hostname_or_domain
 
     return if @resource.disabled?
 
@@ -69,7 +69,7 @@ class UserMailer < Devise::Mailer
 
   def backup_ready(user, backup)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
+    @instance = Setting.site_hostname_or_domain
     @backup   = backup
 
     return if @resource.disabled?

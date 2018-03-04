@@ -6,6 +6,6 @@ module InstanceHelper
   end
 
   def site_hostname
-    @site_hostname ||= Addressable::URI.parse("//#{Rails.configuration.x.local_domain}").display_uri.host
+    Setting.site_hostname_or_domain
   end
 end

@@ -25,7 +25,7 @@ class OEmbedSerializer < ActiveModel::Serializer
   end
 
   def provider_name
-    Rails.configuration.x.local_domain
+    Setting.site_hostname_or_domain
   end
 
   def provider_url

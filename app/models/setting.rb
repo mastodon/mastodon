@@ -13,6 +13,9 @@
 #
 
 class Setting < RailsSettings::Base
+  DISPLAY_DOMAIN = Addressable::URI.parse("//#{Rails.configuration.x.local_domain}").display_uri.host
+  private_constant :DISPLAY_DOMAIN
+
   source Rails.root.join('config', 'settings.yml')
 
   def to_param
@@ -20,6 +23,10 @@ class Setting < RailsSettings::Base
   end
 
   class << self
+    def site_hostname_or_domain
+      Setting.site_hostname.presence || DISPLAY_DOMAIN
+    end
+
     def [](key)
       return super(key) unless rails_initialized?
 

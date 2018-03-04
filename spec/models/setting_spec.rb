@@ -12,6 +12,17 @@ RSpec.describe Setting, type: :model do
     end
   end
 
+  describe '.site_hostname_or_domain' do
+    it 'returns site_hostname if present' do
+      Setting.site_hostname = 'hostname'
+      expect(Setting.site_hostname_or_domain).to eq 'hostname'
+    end
+
+    it 'returns domain if site_hostname is not present' do
+      expect(Setting.site_hostname_or_domain).to eq 'cb6e6126.ngrok.io'
+    end
+  end
+
   describe '.[]' do
     before do
       allow(described_class).to receive(:rails_initialized?).and_return(rails_initialized)
