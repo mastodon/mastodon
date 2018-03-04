@@ -82,6 +82,7 @@ export default class Header extends ImmutablePureComponent {
     }
 
     let info        = '';
+    let mutingInfo  = '';
     let actionBtn   = '';
     let lockedIcon  = '';
 
@@ -89,6 +90,10 @@ export default class Header extends ImmutablePureComponent {
       info = <span className='account--follows-info'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>;
     } else if (me !== account.get('id') && account.getIn(['relationship', 'blocking'])) {
       info = <span className='account--follows-info'><FormattedMessage id='account.blocked' defaultMessage='Blocked' /></span>;
+    }
+
+    if (me !== account.get('id') && account.getIn(['relationship', 'muting'])) {
+      mutingInfo = <span className='account--muting-info'><FormattedMessage id='account.muted' defaultMessage='Muted' /></span>;
     }
 
     if (me !== account.get('id')) {
@@ -134,6 +139,7 @@ export default class Header extends ImmutablePureComponent {
           <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
+          {mutingInfo}
           {actionBtn}
         </div>
       </div>
