@@ -21,7 +21,7 @@ class SharesController < ApplicationController
       current_account: current_account,
       token: current_session.token,
       admin: Account.find_local(Setting.site_contact_username),
-      text: text,
+      compose: { share: params[:web].nil?, text: text },
     }
   end
 

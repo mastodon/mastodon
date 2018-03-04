@@ -54,6 +54,7 @@ const initialState = ImmutableMap({
   default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
+  share: false,
 });
 
 function statusToTextMentions(state, status) {
@@ -147,9 +148,11 @@ const privacyPreference = (a, b) => {
 const hydrate = (state, hydratedState) => {
   state = clearAll(state.merge(hydratedState));
 
-  if (hydratedState.has('text')) {
-    state = state.set('text', hydratedState.get('text'));
-  }
+  ['share', 'text'].forEach(key => {
+    if (hydratedState.has(key)) {
+      state = state.set(key, hydratedState.get(key));
+    }
+  });
 
   return state;
 };
