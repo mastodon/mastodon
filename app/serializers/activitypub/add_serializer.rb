@@ -3,12 +3,8 @@
 class ActivityPub::AddSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :id, :type, :actor, :target
+  attributes :type, :actor, :target
   attribute :proper_object, key: :object
-
-  def id
-    nil
-  end
 
   def type
     'Add'
