@@ -98,6 +98,10 @@ export function Blocks () {
   return import(/* webpackChunkName: "flavours/glitch/async/blocks" */'flavours/glitch/features/blocks');
 }
 
+export function DomainBlocks () {
+  return import(/* webpackChunkName: "flavours/glitch/async/domain_blocks" */'flavours/glitch/features/domain_blocks');
+}
+
 export function Mutes () {
   return import(/* webpackChunkName: "flavours/glitch/async/mutes" */'flavours/glitch/features/mutes');
 }
