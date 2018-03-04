@@ -3,12 +3,8 @@
 class ActivityPub::RemoveSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :id, :type, :actor, :origin
+  attributes :type, :actor, :origin
   attribute :proper_object, key: :object
-
-  def id
-    nil
-  end
 
   def type
     'Remove'
