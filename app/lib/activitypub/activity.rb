@@ -46,6 +46,10 @@ class ActivityPub::Activity
         ActivityPub::Activity::Reject
       when 'Flag'
         ActivityPub::Activity::Flag
+      when 'Add'
+        ActivityPub::Activity::Add
+      when 'Remove'
+        ActivityPub::Activity::Remove
       end
     end
   end
