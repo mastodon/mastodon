@@ -1,6 +1,7 @@
 import api from '../api';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
+import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
 
 import {
@@ -27,6 +28,9 @@ export const COMPOSE_UPLOAD_UNDO     = 'COMPOSE_UPLOAD_UNDO';
 export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
 export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
 export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
+export const COMPOSE_SUGGESTION_TAGS_UPDATE = 'COMPOSE_SUGGESTION_TAGS_UPDATE';
+
+export const COMPOSE_TAG_HISTORY_UPDATE = 'COMPOSE_TAG_HISTORY_UPDATE';
 
 export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
@@ -111,6 +115,7 @@ export function submitCompose() {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      dispatch(insertIntoTagHistory(response.data.tags));
       dispatch(submitComposeSuccess({ ...response.data }));
 
       // To make the app more responsive, immediately get the status into the columns
@@ -273,12 +278,22 @@ const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
 
+const fetchComposeSuggestionsTags = (dispatch, getState, token) => {
+  dispatch(updateSuggestionTags(token));
+};
+
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
-    if (token[0] === ':') {
+    switch (token[0]) {
+    case ':':
       fetchComposeSuggestionsEmojis(dispatch, getState, token);
-    } else {
+      break;
+    case '#':
+      fetchComposeSuggestionsTags(dispatch, getState, token);
+      break;
+    default:
       fetchComposeSuggestionsAccounts(dispatch, getState, token);
+      break;
     }
   };
 };
@@ -308,6 +323,9 @@ export function selectComposeSuggestion(position, token, suggestion) {
       startPosition = position - 1;
 
       dispatch(useEmoji(suggestion));
+    } else if (suggestion[0] === '#') {
+      completion    = suggestion;
+      startPosition = position - 1;
     } else {
       completion    = getState().getIn(['accounts', suggestion, 'acct']);
       startPosition = position;
@@ -321,6 +339,48 @@ export function selectComposeSuggestion(position, token, suggestion) {
     });
   };
 };
+
+export function updateSuggestionTags(token) {
+  return {
+    type: COMPOSE_SUGGESTION_TAGS_UPDATE,
+    token,
+  };
+}
+
+export function updateTagHistory(tags) {
+  return {
+    type: COMPOSE_TAG_HISTORY_UPDATE,
+    tags,
+  };
+}
+
+export function hydrateCompose() {
+  return (dispatch, getState) => {
+    const me = getState().getIn(['meta', 'me']);
+    const history = tagHistory.get(me);
+
+    if (history !== null) {
+      dispatch(updateTagHistory(history));
+    }
+  };
+}
+
+function insertIntoTagHistory(tags) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const oldHistory = state.getIn(['compose', 'tagHistory']);
+    const me = state.getIn(['meta', 'me']);
+    const names = tags.map(({ name }) => name);
+    const intersectedOldHistory = oldHistory.filter(name => !names.includes(name));
+
+    names.push(...intersectedOldHistory.toJS());
+
+    const newHistory = names.slice(0, 1000);
+
+    tagHistory.set(me, newHistory);
+    dispatch(updateTagHistory(newHistory));
+  };
+}
 
 export function mountCompose() {
   return {
