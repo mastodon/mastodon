@@ -1,6 +1,6 @@
 sk:
   about:
-    about_hashtag_html: Toto sú verejné príspevky otagované <strong>#%{tagom}</strong>.
+    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>.
       Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových
       protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
@@ -52,8 +52,8 @@ sk:
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
-    posts: Príspevky
-    posts_with_replies: Príspevky s odpoveďami
+    posts: Tooty
+    posts_with_replies: Toot príspevky s odpoveďami
     remote_follow: Sleduj vzdialeného
     reserved_username: Prihlasovacie meno je rezervované
     roles:
@@ -312,8 +312,8 @@ sk:
           desc_html: Povoliť každému aby si mohli vytvoriť účet
           title: Verejná registrácia
       show_known_fediverse_at_about_page:
-        desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť statusy z
-          celého známeho fediversa. V opačnom prípade tam budú ukázané iba statusy
+        desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť toot statusy
+          z celého známeho fediversa. V opačnom prípade tam budú ukázané iba statusy
           z lokálnej osi.
         title: Ukázať celé známe fediversum ako ukážku osi
       show_staff_badge:
@@ -413,6 +413,7 @@ sk:
     resend_confirmation: Poslať potvrdzujúce pokyny znovu
     reset_password: Resetovať heslo
     set_new_password: Nastaviť nové heslo
+    or: alebo
   authorize_follow:
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
     follow: Následovať
@@ -445,8 +446,9 @@ sk:
     proceed: Vymazať účet
     success_msg: Váš účet bol úspešne vymazaný
     warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je garantované.
-      Obsah ktorý bol zdieľaný široko=ďaleko pravdepodobne zanechá nejaké stopy. Servery
-      ktoré sú offline a tie ktoré vás ignorujú nezaktualizujú svoje databázy.
+      Obsah ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery
+      ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje
+      databázy.
     warning_title: Dostupnosť distribuovaného obsahu
   errors:
     '403': Nemáte dostatočné povolenie na zobrazenie tejto stránky.
@@ -468,6 +470,12 @@ sk:
     follows: Následujete
     mutes: Stíšili ste
     storage: Úložisko médii
+    archive_takeout:
+      date: Dátum
+      download: Stiahni si svoj archív
+      in_progress: Balím tvoj archív...
+      request: Vyžiadaj si tvoj archív
+      size: Veľkosť
   followers:
     domain: Doména
     explanation_html: Pokiaľ chceš zaručiť súkromie svojích príspevkov, musíš mať
