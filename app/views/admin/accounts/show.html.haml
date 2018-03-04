@@ -32,7 +32,7 @@
             - if @account.user_confirmed?
               = fa_icon('check')
         %tr
-          %th= t('admin.accounts.login_status')
+          %th= t('admin.accounts.signin_status')
           %td
             - if @account.user&.disabled?
               = t('admin.accounts.disabled')

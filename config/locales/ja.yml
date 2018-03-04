@@ -84,7 +84,6 @@ ja:
         local: ローカル
         remote: リモート
         title: ロケーション
-      login_status: ログイン
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
       moderation:
@@ -124,6 +123,7 @@ ja:
         created_reports: このアカウントで作られたレポート
         report: レポート
         targeted_reports: このアカウントについてのレポート
+      signin_status: サインイン
       silence: サイレンス
       statuses: トゥート数
       subscribe: 購読する
@@ -145,9 +145,9 @@ ja:
         destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
         disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
         disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
-        disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
+        disable_user: "%{name} さんが %{target} さんのサインインを無効化しました"
         enable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
-        enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
+        enable_user: "%{name} さんが %{target} さんのサインインを有効化しました"
         memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
         promote_user: "%{name} さんが %{target} さんを昇格しました"
         reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
@@ -365,15 +365,15 @@ ja:
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
-    login: ログイン
-    logout: ログアウト
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
-    or_log_in_with: または次のサービスでログイン
+    or_sign_in_with: または次のサービスでサインイン
     register: 登録する
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     set_new_password: 新しいパスワード
+    signin: サインイン
+    signout: サインアウト
   authorize_follow:
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
     follow: フォロー
@@ -498,7 +498,7 @@ ja:
   notification_mailer:
     digest:
       action: 全ての通知を表示
-      body: '最後のログイン（%{since}）からの出来事:'
+      body: '最後のサインイン（%{since}）からの出来事:'
       mention: "%{name} さんがあなたに返信しました:"
       new_followers_summary:
         one: また、離れている間に新たなフォロワーを獲得しました！
@@ -591,7 +591,7 @@ ja:
       weibo: Weibo
     current_session: 現在のセッション
     description: "%{browser} on %{platform}"
-    explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
+    explanation: あなたのMastodonアカウントに現在サインインしているウェブブラウザの一覧です。
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -723,13 +723,13 @@ ja:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
-    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
+    description_html: "<strong>二段階認証</strong>を有効にするとサインイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
     generate_recovery_codes: リカバリーコードを生成
-    instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
+    instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、サインインするときはそのアプリで生成されるコードが必要になります。"
     lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     recovery_codes: リカバリーコード
@@ -763,5 +763,5 @@ ja:
   users:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
-    seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
-    signed_in_as: '下記でログイン中:'
+    seamless_external_signin: あなたは外部サービスを介してサインインしているため、パスワードとメールアドレスの設定は利用できません。
+    signed_in_as: '下記でサインイン中:'

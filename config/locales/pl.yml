@@ -84,7 +84,6 @@ pl:
         local: Lokalne
         remote: Zdalne
         title: Położenie
-      login_status: Stan logowania
       media_attachments: Załączniki multimedialne
       memorialize: Przełącz na „In Memoriam”
       moderation:
@@ -367,11 +366,8 @@ pl:
     didnt_get_confirmation: Nie otrzymałeś instrukcji weryfikacji?
     forgot_password: Nie pamiętasz hasła?
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
-    login: Zaloguj się
-    logout: Wyloguj się
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">skonfigurować to tutaj</a>.
-    or_log_in_with: Lub zaloguj się z użyciem
     providers:
       cas: CAS
       saml: SAML
@@ -774,5 +770,4 @@ pl:
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
-    seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'

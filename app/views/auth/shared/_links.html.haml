@@ -1,6 +1,6 @@
 %ul.no-list
   - if controller_name != 'sessions'
-    %li= link_to t('auth.login'), new_session_path(resource_name)
+    %li= link_to t('auth.signin'), new_session_path(resource_name)
 
   - if devise_mapping.registerable? && controller_name != 'registrations'
     %li= link_to t('auth.register'), new_registration_path(resource_name)

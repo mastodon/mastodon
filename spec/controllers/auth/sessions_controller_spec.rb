@@ -84,7 +84,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
           post :create, params: { user: { email: user.email, password: 'wrongpw' } }
         end
 
-        it 'shows a login error' do
+        it 'shows a signin error' do
           expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: 'Email')
         end
 
@@ -102,7 +102,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
         let(:unconfirmed_user) { user.tap { |u| u.update!(confirmed_at: nil) } }
         let(:accept_language) { 'fr' }
 
-        it 'shows a translated login error' do
+        it 'shows a translated signin error' do
           expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed', locale: accept_language))
         end
       end
@@ -183,7 +183,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
           post :create, params: { user: { otp_attempt: user.current_otp } }, session: { otp_user_id: user.id }
         end
 
-        it 'shows a login error' do
+        it 'shows a signin error' do
           expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
         end
 
@@ -211,7 +211,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
           post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { otp_user_id: user.id }
         end
 
-        it 'shows a login error' do
+        it 'shows a signin error' do
           expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
         end
 

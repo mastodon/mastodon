@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Log in" do
+feature "Sign in" do
   given(:email)        { "test@examle.com" }
   given(:password)     { "password" }
   given(:confirmed_at) { Time.now }
@@ -12,18 +12,18 @@ feature "Log in" do
 
   subject { page }
 
-  scenario "A valid email and password user is able to log in" do
+  scenario "A valid email and password user is able to sign in" do
     fill_in "user_email", with: email
     fill_in "user_password", with: password
-    click_on I18n.t('auth.login')
+    click_on I18n.t('auth.signin')
 
     is_expected.to have_css("div.app-holder")
   end
 
-  scenario "A invalid email and password user is not able to log in" do
+  scenario "A invalid email and password user is not able to sign in" do
     fill_in "user_email", with: "invalid_email"
     fill_in "user_password", with: "invalid_password"
-    click_on I18n.t('auth.login')
+    click_on I18n.t('auth.signin')
 
     is_expected.to have_css(".flash-message", text: failure_message("invalid"))
   end
@@ -31,10 +31,10 @@ feature "Log in" do
   context do
     given(:confirmed_at) { nil }
 
-    scenario "A unconfirmed user is not able to log in" do
+    scenario "A unconfirmed user is not able to sign in" do
       fill_in "user_email", with: email
       fill_in "user_password", with: password
-      click_on I18n.t('auth.login')
+      click_on I18n.t('auth.signin')
 
       is_expected.to have_css(".flash-message", text: failure_message("unconfirmed"))
     end

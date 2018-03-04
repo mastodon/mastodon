@@ -8,7 +8,7 @@
       - if user_signed_in?
         = link_to t('settings.back'), root_url, class: 'webapp-btn'
       - else
-        = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
+        = link_to t('auth.signin'), new_user_session_path, class: 'webapp-btn'
     %li= link_to t('about.about_this'), about_more_path
     %li
       = link_to 'https://joinmastodon.org/' do

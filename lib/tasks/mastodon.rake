@@ -349,8 +349,8 @@ namespace :mastodon do
           user = User.new(admin: true, email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username })
           user.save(validate: false)
 
-          prompt.ok "You can login with the password: #{password}"
-          prompt.warn 'You can change your password once you login.'
+          prompt.ok "You can sign in with the password: #{password}"
+          prompt.warn 'You can change your password once you sign in.'
         end
       else
         prompt.warn 'Nothing saved. Bye!'
@@ -421,7 +421,7 @@ namespace :mastodon do
   end
 
   desc 'Add a user by providing their email, username and initial password.' \
-       'The user will receive a confirmation email, then they must reset their password before logging in.'
+       'The user will receive a confirmation email, then they must reset their password before signing in.'
   task add_user: :environment do
     disable_log_stdout!
 
@@ -532,7 +532,7 @@ namespace :mastodon do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
     end
 
-    desc 'Generates home timelines for users who logged in in the past two weeks'
+    desc 'Generates home timelines for users who signed in in the past two weeks'
     task build: :environment do
       User.active.includes(:account).find_each do |u|
         PrecomputeFeedService.new.call(u.account)

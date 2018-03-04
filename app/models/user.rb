@@ -90,7 +90,7 @@ class User < ApplicationRecord
   attr_accessor :invite_code
 
   def pam_conflict(_)
-    # block pam login tries on traditional account
+    # block pam signin tries on traditional account
     nil
   end
 
@@ -320,7 +320,7 @@ class User < ApplicationRecord
   end
 
   def prepare_returning_user!
-    ActivityTracker.record('activity:logins', id)
+    ActivityTracker.record('activity:signins', id)
     regenerate_feed! if needs_feed_update?
   end
 
