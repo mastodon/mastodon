@@ -57,7 +57,7 @@ export default class Header extends ImmutablePureComponent {
 
     if (!domain) return;
 
-    this.props.onBlockDomain(domain, this.props.account.get('id'));
+    this.props.onBlockDomain(domain);
   }
 
   handleUnblockDomain = () => {
@@ -65,7 +65,7 @@ export default class Header extends ImmutablePureComponent {
 
     if (!domain) return;
 
-    this.props.onUnblockDomain(domain, this.props.account.get('id'));
+    this.props.onUnblockDomain(domain);
   }
 
   render () {

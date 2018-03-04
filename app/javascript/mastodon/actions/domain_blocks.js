@@ -12,12 +12,14 @@ export const DOMAIN_BLOCKS_FETCH_REQUEST = 'DOMAIN_BLOCKS_FETCH_REQUEST';
 export const DOMAIN_BLOCKS_FETCH_SUCCESS = 'DOMAIN_BLOCKS_FETCH_SUCCESS';
 export const DOMAIN_BLOCKS_FETCH_FAIL    = 'DOMAIN_BLOCKS_FETCH_FAIL';
 
-export function blockDomain(domain, accountId) {
+export function blockDomain(domain) {
   return (dispatch, getState) => {
     dispatch(blockDomainRequest(domain));
 
     api(getState).post('/api/v1/domain_blocks', { domain }).then(() => {
-      dispatch(blockDomainSuccess(domain, accountId));
+      const at_domain = '@' + domain;
+      const accounts = getState().get('accounts').filter(item => item.get('acct').endsWith(at_domain)).valueSeq().map(item => item.get('id'));
+      dispatch(blockDomainSuccess(domain, accounts));
     }).catch(err => {
       dispatch(blockDomainFail(domain, err));
     });
@@ -31,11 +33,11 @@ export function blockDomainRequest(domain) {
   };
 };
 
-export function blockDomainSuccess(domain, accountId) {
+export function blockDomainSuccess(domain, accounts) {
   return {
     type: DOMAIN_BLOCK_SUCCESS,
     domain,
-    accountId,
+    accounts,
   };
 };
 
@@ -47,12 +49,14 @@ export function blockDomainFail(domain, error) {
   };
 };
 
-export function unblockDomain(domain, accountId) {
+export function unblockDomain(domain) {
   return (dispatch, getState) => {
     dispatch(unblockDomainRequest(domain));
 
     api(getState).delete('/api/v1/domain_blocks', { params: { domain } }).then(() => {
-      dispatch(unblockDomainSuccess(domain, accountId));
+      const at_domain = '@' + domain;
+      const accounts = getState().get('accounts').filter(item => item.get('acct').endsWith(at_domain)).valueSeq().map(item => item.get('id'));
+      dispatch(unblockDomainSuccess(domain, accounts));
     }).catch(err => {
       dispatch(unblockDomainFail(domain, err));
     });
@@ -66,11 +70,11 @@ export function unblockDomainRequest(domain) {
   };
 };
 
-export function unblockDomainSuccess(domain, accountId) {
+export function unblockDomainSuccess(domain, accounts) {
   return {
     type: DOMAIN_UNBLOCK_SUCCESS,
     domain,
-    accountId,
+    accounts,
   };
 };
 
