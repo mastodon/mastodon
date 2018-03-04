@@ -5,6 +5,7 @@ import alerts from './alerts';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import modal from './modal';
 import user_lists from './user_lists';
+import domain_lists from './domain_lists';
 import accounts from './accounts';
 import accounts_counters from './accounts_counters';
 import statuses from './statuses';
@@ -33,6 +34,7 @@ const reducers = {
   loadingBar: loadingBarReducer,
   modal,
   user_lists,
+  domain_lists,
   status_lists,
   accounts,
   accounts_counters,

@@ -12,6 +12,10 @@ export const DOMAIN_BLOCKS_FETCH_REQUEST = 'DOMAIN_BLOCKS_FETCH_REQUEST';
 export const DOMAIN_BLOCKS_FETCH_SUCCESS = 'DOMAIN_BLOCKS_FETCH_SUCCESS';
 export const DOMAIN_BLOCKS_FETCH_FAIL    = 'DOMAIN_BLOCKS_FETCH_FAIL';
 
+export const DOMAIN_BLOCKS_EXPAND_REQUEST = 'DOMAIN_BLOCKS_EXPAND_REQUEST';
+export const DOMAIN_BLOCKS_EXPAND_SUCCESS = 'DOMAIN_BLOCKS_EXPAND_SUCCESS';
+export const DOMAIN_BLOCKS_EXPAND_FAIL    = 'DOMAIN_BLOCKS_EXPAND_FAIL';
+
 export function blockDomain(domain) {
   return (dispatch, getState) => {
     dispatch(blockDomainRequest(domain));
@@ -116,6 +120,46 @@ export function fetchDomainBlocksSuccess(domains, next) {
 export function fetchDomainBlocksFail(error) {
   return {
     type: DOMAIN_BLOCKS_FETCH_FAIL,
+    error,
+  };
+};
+
+export function expandDomainBlocks() {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['domain_lists', 'blocks', 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandDomainBlocksRequest());
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(expandDomainBlocksSuccess(response.data, next ? next.uri : null));
+    }).catch(err => {
+      dispatch(expandDomainBlocksFail(err));
+    });
+  };
+};
+
+export function expandDomainBlocksRequest() {
+  return {
+    type: DOMAIN_BLOCKS_EXPAND_REQUEST,
+  };
+};
+
+export function expandDomainBlocksSuccess(domains, next) {
+  return {
+    type: DOMAIN_BLOCKS_EXPAND_SUCCESS,
+    domains,
+    next,
+  };
+};
+
+export function expandDomainBlocksFail(error) {
+  return {
+    type: DOMAIN_BLOCKS_EXPAND_FAIL,
     error,
   };
 };
