@@ -86,7 +86,7 @@ export function fetchDomainBlocks() {
   return (dispatch, getState) => {
     dispatch(fetchDomainBlocksRequest());
 
-    api(getState).get().then(response => {
+    api(getState).get('/api/v1/domain_blocks').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(fetchDomainBlocksSuccess(response.data, next ? next.uri : null));
     }).catch(err => {
