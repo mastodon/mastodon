@@ -51,14 +51,13 @@ export default class Notifications extends React.PureComponent {
   };
 
   componentWillUnmount () {
-    this.handleScrollToBottom.cancel();
+    this.handleLoadMore.cancel();
     this.handleScrollToTop.cancel();
     this.handleScroll.cancel();
     this.props.dispatch(scrollTopNotifications(false));
   }
 
-  handleScrollToBottom = debounce(() => {
-    this.props.dispatch(scrollTopNotifications(false));
+  handleLoadMore = debounce(() => {
     this.props.dispatch(expandNotifications());
   }, 300, { leading: true });
 
@@ -143,7 +142,7 @@ export default class Notifications extends React.PureComponent {
         isLoading={isLoading}
         hasMore={hasMore}
         emptyMessage={emptyMessage}
-        onScrollToBottom={this.handleScrollToBottom}
+        onLoadMore={this.handleLoadMore}
         onScrollToTop={this.handleScrollToTop}
         onScroll={this.handleScroll}
         shouldUpdateScroll={shouldUpdateScroll}
