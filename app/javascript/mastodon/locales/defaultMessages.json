@@ -275,6 +275,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Pinned toot",
+        "id": "status.pinned"
+      },
+      {
         "defaultMessage": "{name} boosted",
         "id": "status.reblogged_by"
       }
@@ -479,8 +483,20 @@
         "id": "account.requested"
       },
       {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
+      },
+      {
         "defaultMessage": "Follows you",
         "id": "account.follows_you"
+      },
+      {
+        "defaultMessage": "Blocked",
+        "id": "account.blocked"
+      },
+      {
+        "defaultMessage": "Muted",
+        "id": "account.muted"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
