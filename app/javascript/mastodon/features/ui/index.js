@@ -55,6 +55,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   isComposing: state.getIn(['compose', 'is_composing']),
   hasComposingText: state.getIn(['compose', 'text']) !== '',
+  dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
 });
 
 const keyMap = {
@@ -100,6 +101,7 @@ export default class UI extends React.Component {
     hasComposingText: PropTypes.bool,
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
+    dropdownMenuIsOpen: PropTypes.bool,
   };
 
   state = {
@@ -351,7 +353,7 @@ export default class UI extends React.Component {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children } = this.props;
+    const { children, dropdownMenuIsOpen } = this.props;
 
     const handlers = {
       help: this.handleHotkeyToggleHelp,
@@ -374,7 +376,7 @@ export default class UI extends React.Component {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
-        <div className='ui' ref={this.setRef}>
+        <div className='ui' ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           <TabsBar />
 
           <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width)}>
