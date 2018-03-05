@@ -345,6 +345,7 @@ sk:
         desc_html: Zobrazuje sa na hlavnej stránke. Doporučuje sa rozlišenie aspoň
           600x100px Pokiaľ tu nieje nič dodané, bude nastavený základný orázok tohoto
           serveru
+        title: Obrázok hrdinu
     statuses:
       back_to_account: Späť na účet
       batch:
@@ -476,6 +477,9 @@ sk:
       in_progress: Balím tvoj archív...
       request: Vyžiadaj si tvoj archív
       size: Veľkosť
+      hint_html: Môžeš si opýtať <strong>archív svojích príspevkov a nahratých médií</strong>.
+        Exportované dáta budú v ActivityPub formáte, čítateľné hociakým kompatibilným
+        softvérom.
   followers:
     domain: Doména
     explanation_html: Pokiaľ chceš zaručiť súkromie svojích príspevkov, musíš mať
@@ -586,9 +590,17 @@ sk:
       body: '%{name} ťa spomenul/a v:'
       subject: Boli ste spomenutí užívateľom %{name}
       title: Nové spomenutie
+    reblog:
+      body: 'Tvoj príspevok bol pozdvihnutý užívateľom %{name}:'
+      subject: '%{name} pozdvihli tvoj príspevok'
+      title: Novo pozdvyhnuté
   settings:
     authorized_apps: Autorizované aplikácie
     back: Naspäť na stránku
+    delete: Zmazanie účtu
+    development: Vývoj
+    edit_profile: Upraviť profil
+    export: Exportovať dáta
   user_mailer:
     welcome:
       final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné
@@ -598,3 +610,57 @@ sk:
     invalid_email: Emailová adresa je neplatná
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
     signed_in_as: 'Prihlásený ako:'
+  number:
+    human:
+      decimal_units:
+        format: '%n%u'
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  pagination:
+    newer: Novšie
+    next: Ďalšie
+    older: Staršie
+    prev: Predošlé
+    truncate: '&hellip;'
+  preferences:
+    languages: Jazyky
+    other: Ostatné
+    publishing: Publikovanie
+    web: Web
+  push_notifications:
+    favourite:
+      title: '%{name} si obľúbil/a tvoj príspevok'
+    follow:
+      title: '%{name} ťa teraz následuje'
+    group:
+      title: '%{count} notifikácie'
+    mention:
+      action_boost: Pozdvihni
+      action_expand: Ukáž viac
+      action_favourite: Obľúbené
+      title: '%{name} ťa spomenul/a'
+    reblog:
+      title: '%{name} vyzdvihli tvoj príspevok'
+  remote_follow:
+    acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
+    missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
+    proceed: Začni následovať
+    prompt: 'Budeš sledovať:'
+  sessions:
+    activity: Najnovšia aktivita
+    browser: Prehliadač
+    browsers:
+      alipay: Alipay
+      generic: Neznámy prehliadač
+    current_session: Aktuálna sezóna
+    explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
+    ip: IP adresa
+    platforms:
+      other: neznáma platforma
+    revoke: Zamietni
+    revoke_success: Sezóna úspešne zamietnutá
+    title: Sezóna
