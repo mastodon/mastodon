@@ -273,6 +273,9 @@ gl:
       contact_information:
         email: e-mail de traballo
         username: Nome de usuaria de contacto
+      hero:
+        desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Si non se establece, mostrará a imaxe por omisión da instancia
+        title: Imáxe Heróe
       peers_api_enabled:
         desc_html: Nome de dominio que esta instancia atopou no fediverso
         title: Publicar lista de instancias descubertas
@@ -367,6 +370,7 @@ gl:
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Si desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
+    or: ou
     or_log_in_with: ou conectar con
     providers:
       cas: CAS
@@ -420,6 +424,13 @@ gl:
       title: Esta páxina non é correcta
     noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativas</a> para Mastodon da súa plataforma.
   exports:
+    archive_takeout:
+      date: Data
+      download: Descargue o seu ficheiro
+      hint_html: Pode solicitar un ficheiro cos <strong>seus toots ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o cumpla.
+      in_progress: Xerando o seu ficheiro...
+      request: Solicite o ficheiro
+      size: Tamaño
     blocks: A bloquear
     csv: CSV
     follows: A seguir
@@ -535,7 +546,9 @@ gl:
           trillion: T
           unit: " "
   pagination:
+    newer: Máis novo
     next: Seguinte
+    older: Máis antigo
     prev: Previo
     truncate: "&hellip;"
   preferences:
@@ -732,6 +745,10 @@ gl:
     setup: Configurar
     wrong_code: O código introducido non é válido! Son correctas as horas no dispositivo e o servidor?
   user_mailer:
+    backup_ready:
+      explanation: Solicitou un respaldo completo da súa conta de Mastodon. Xa está listo para descargar!
+      subject: O seu ficheiro xa está listo para descargar
+      title: Leve o ficheiro
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Vostede pode personalizar o seu perfil subindo un avatar, cabeceira, cambiar o seu nome público e aínda máis. Si restrinxe a súa conta pode revisar a conta das personas que solicitan seguilas antes de permitirlles o acceso aos seus toots.
@@ -753,4 +770,5 @@ gl:
   users:
     invalid_email: O enderezo de correo non é válido
     invalid_otp_token: Código de doble-factor non válido
+    seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'

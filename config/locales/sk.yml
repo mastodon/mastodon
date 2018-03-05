@@ -1,7 +1,7 @@
 ---
 sk:
   about:
-    about_hashtag_html: Toto sú verejné tooty otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
+    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O instancii
     closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, existujú ďalšie Mastodon inštancie kde si môžete založiť účet a získať prístup do tej istej siete z tamaď.
@@ -43,11 +43,11 @@ sk:
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
     posts: Tooty
-    posts_with_replies: Tooty s odpoveďami
-    remote_follow: Vzdialené sledovanie
+    posts_with_replies: Toot príspevky s odpoveďami
+    remote_follow: Sleduj vzdialeného
     reserved_username: Prihlasovacie meno je rezervované
     roles:
-      admin: Admin
+      admin: Administrátor
       moderator: Moderátor
     unfollow: Prestať sledovať
   admin:
@@ -273,6 +273,9 @@ sk:
       contact_information:
         email: Pracovný e-mail
         username: Kontaktné užívateľské meno
+      hero:
+        desc_html: Zobrazuje sa na hlavnej stránke. Doporučuje sa rozlišenie aspoň 600x100px Pokiaľ tu nieje nič dodané, bude nastavený základný orázok tohoto serveru
+        title: Obrázok hrdinu
       peers_api_enabled:
         desc_html: Domény na ktoré táto instancia už vo fediverse natrafila
         title: Zverejniť zoznam objavených instancií
@@ -290,7 +293,7 @@ sk:
           desc_html: Povoliť každému aby si mohli vytvoriť účet
           title: Verejná registrácia
       show_known_fediverse_at_about_page:
-        desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť statusy z celého známeho fediversa. V opačnom prípade tam budú ukázané iba statusy z lokálnej osi.
+        desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť toot statusy z celého známeho fediversa. V opačnom prípade tam budú ukázané iba statusy z lokálnej osi.
         title: Ukázať celé známe fediversum ako ukážku osi
       show_staff_badge:
         desc_html: Zobraziť moderátorsku značku na užívateľovej stránke
@@ -367,6 +370,7 @@ sk:
     logout: Odhlásiť sa
     migrate_account: Presunúť sa na iný účet
     migrate_account_html: Pokiaľ si želáte presmerovať tento účet na nejaký iný, môžete <a href="%{path}"> tak urobiť tu</a>.
+    or: alebo
     or_log_in_with: Alebo prihlásiť z
     providers:
       cas: CAS
@@ -404,7 +408,7 @@ sk:
     description_html: Týmto <strong> natrvalo, nenavrátiteľne </strong> vymažeš obsah tvojho účtu, a deaktivuješ ho. Tvoja prezývka ale ostane rezervovaná ako prevencia pred budúcimi impersonáciami.
     proceed: Vymazať účet
     success_msg: Váš účet bol úspešne vymazaný
-    warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je garantované. Obsah ktorý bol zdieľaný široko=ďaleko pravdepodobne zanechá nejaké stopy. Servery ktoré sú offline a tie ktoré vás ignorujú nezaktualizujú svoje databázy.
+    warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je garantované. Obsah ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje databázy.
     warning_title: Dostupnosť distribuovaného obsahu
   errors:
     '403': Nemáte dostatočné povolenie na zobrazenie tejto stránky.
@@ -419,6 +423,13 @@ sk:
       title: Táto stránka nieje v poriadku
     noscript_html: Aby bolo možné používať Mastodon web aplikáciu, prosím povoľte JavaScript. Alebo skúste jednu z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md"> aplikácii </a> dostupných pre vašu platformu.
   exports:
+    archive_takeout:
+      date: Dátum
+      download: Stiahni si svoj archív
+      hint_html: Môžeš si opýtať <strong>archív svojích príspevkov a nahratých médií</strong>. Exportované dáta budú v ActivityPub formáte, čítateľné hociakým kompatibilným softvérom.
+      in_progress: Balím tvoj archív...
+      request: Vyžiadaj si tvoj archív
+      size: Veľkosť
     blocks: Blokujete
     csv: CSV
     follows: Následujete
@@ -518,9 +529,71 @@ sk:
       body: "%{name} ťa spomenul/a v:"
       subject: Boli ste spomenutí užívateľom %{name}
       title: Nové spomenutie
+    reblog:
+      body: 'Tvoj príspevok bol pozdvihnutý užívateľom %{name}:'
+      subject: "%{name} pozdvihli tvoj príspevok"
+      title: Novo pozdvyhnuté
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  pagination:
+    newer: Novšie
+    next: Ďalšie
+    older: Staršie
+    prev: Predošlé
+    truncate: "&hellip;"
+  preferences:
+    languages: Jazyky
+    other: Ostatné
+    publishing: Publikovanie
+    web: Web
+  push_notifications:
+    favourite:
+      title: "%{name} si obľúbil/a tvoj príspevok"
+    follow:
+      title: "%{name} ťa teraz následuje"
+    group:
+      title: "%{count} notifikácie"
+    mention:
+      action_boost: Pozdvihni
+      action_expand: Ukáž viac
+      action_favourite: Obľúbené
+      title: "%{name} ťa spomenul/a"
+    reblog:
+      title: "%{name} vyzdvihli tvoj príspevok"
+  remote_follow:
+    acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
+    missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
+    proceed: Začni následovať
+    prompt: 'Budeš sledovať:'
+  sessions:
+    activity: Najnovšia aktivita
+    browser: Prehliadač
+    browsers:
+      alipay: Alipay
+      generic: Neznámy prehliadač
+    current_session: Aktuálna sezóna
+    explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
+    ip: IP adresa
+    platforms:
+      other: neznáma platforma
+    revoke: Zamietni
+    revoke_success: Sezóna úspešne zamietnutá
+    title: Sezóna
   settings:
     authorized_apps: Autorizované aplikácie
     back: Naspäť na stránku
+    delete: Zmazanie účtu
+    development: Vývoj
+    edit_profile: Upraviť profil
+    export: Exportovať dáta
   user_mailer:
     welcome:
       final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné ostatnými, napríklad na lokálnej osi a pod haštagmi. Môžete sa ostatným predstaviť pod haštagom #introductions.'

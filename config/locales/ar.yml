@@ -188,6 +188,8 @@ ar:
       site_title: إسم مثيل الخادم
       thumbnail:
         title: الصورة الرمزية المصغرة لمثيل الخادوم
+      timeline_preview:
+        desc_html: عرض الخيط العمومي على صفحة الإستقبال
       title: إعدادات الموقع
     statuses:
       back_to_account: العودة إلى صفحة الحساب
@@ -221,11 +223,13 @@ ar:
     change_password: الهوية
     confirm_email: تأكيد عنوان البريد الإلكتروني
     delete_account: حذف حساب
+    delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
     forgot_password: نسيت كلمة المرور ؟
     login: تسجيل الدخول
     logout: خروج
     migrate_account: الإنتقال إلى حساب آخر
+    migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
     providers:
       cas: CAS
@@ -414,6 +418,7 @@ ar:
       weibo: وايبو
     current_session: الجلسة الحالية
     description: "%{browser} على %{platform}"
+    explanation: ها هي قائمة مُتصفِّحات الويب  التي تستخدِم حاليًا حساب ماستدون الخاص بك.
     ip: عنوان الإيبي
     platforms:
       adobe_air: أدوبي إيير
@@ -455,7 +460,8 @@ ar:
       private_long: إعرضه لمتتبعيك فقط
       public: للعامة
       public_long: يمكن للجميع رؤيته
-      unlisted: Public, but do not display on the public timeline
+      unlisted: غير مُدرَج
+      unlisted_long: يُمكن لأيٍ كان رُؤيتَه و لكن لن يُعرَض على الخيوط العامة
   stream_entries:
     click_to_show: إضغط للعرض
     reblogged: رقى
