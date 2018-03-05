@@ -63,4 +63,15 @@ module ApplicationHelper
   def opengraph(property, content)
     tag(:meta, content: content, property: property)
   end
+
+  def optionally_link_string(str)
+    if str =~ FetchLinkCardService::URL_PATTERN
+      url = Addressable::URI.parse(str)
+      link_to(url.display_uri.host, str, target: '_blank', rel: 'me nofollow noopener')
+    else
+      str
+    end
+  rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+    str
+  end
 end

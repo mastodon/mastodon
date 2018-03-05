@@ -23,6 +23,14 @@
     .bio
       .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
 
+      - if account.fields&.size > 0
+        %table.account__header__fields
+          %tbody
+            - account.fields.each_pair do |k, v|
+              %tr
+                %th.emojify= k
+                %td.emojify= optionally_link_string v
+
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }
         = link_to short_account_url(account), class: 'u-url u-uid' do

@@ -44,6 +44,7 @@
 #  memorial                :boolean          default(FALSE), not null
 #  moved_to_account_id     :integer
 #  featured_collection_url :string
+#  fields                  :jsonb
 #
 
 class Account < ApplicationRecord
