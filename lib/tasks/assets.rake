@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 def render_static_page(action, dest:, **opts)
-  I18n.with_locale(ENV['DEFAULT_LOCALE'] || I18n.default_locale) do
-    html = ApplicationController.render(action, opts)
-    File.write(dest, html)
-  end
+  html = ApplicationController.render(action, opts)
+  File.write(dest, html)
 end
 
 namespace :assets do
