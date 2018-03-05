@@ -94,6 +94,8 @@ export default class Header extends ImmutablePureComponent {
 
     if (me !== account.get('id') && account.getIn(['relationship', 'muting'])) {
       mutingInfo = <span className='account--muting-info'><FormattedMessage id='account.muted' defaultMessage='Muted' /></span>;
+    } else if (me !== account.get('id') && account.getIn(['relationship', 'domain_blocking'])) {
+      mutingInfo = <span className='account--muting-info'><FormattedMessage id='account.domain_blocked' defaultMessage='Domain hidden' /></span>;
     }
 
     if (me !== account.get('id')) {
