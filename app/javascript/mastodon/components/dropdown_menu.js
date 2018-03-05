@@ -29,6 +29,10 @@ class DropdownMenu extends React.PureComponent {
     placement: 'bottom',
   };
 
+  state = {
+    mounted: false,
+  };
+
   handleDocumentClick = e => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
@@ -38,6 +42,7 @@ class DropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    this.setState({ mounted: true });
   }
 
   componentWillUnmount () {
@@ -82,11 +87,15 @@ class DropdownMenu extends React.PureComponent {
 
   render () {
     const { items, style, placement, arrowOffsetLeft, arrowOffsetTop } = this.props;
+    const { mounted } = this.state;
 
     return (
       <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
         {({ opacity, scaleX, scaleY }) => (
-          <div className='dropdown-menu' style={{ ...style, opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }} ref={this.setRef}>
+          // It should not be transformed when mounting because the resulting
+          // size will be used to determine the coordinate of the menu by
+          // react-overlays
+          <div className='dropdown-menu' style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
             <div className={`dropdown-menu__arrow ${placement}`} style={{ left: arrowOffsetLeft, top: arrowOffsetTop }} />
 
             <ul>
@@ -124,11 +133,13 @@ export default class Dropdown extends React.PureComponent {
   };
 
   state = {
-    expanded: false,
+    placement: null,
   };
 
-  handleClick = () => {
-    if (!this.state.expanded && this.props.isUserTouching() && this.props.onModalOpen) {
+  handleClick = ({ target }) => {
+    if (this.state.placement) {
+      this.setState({ placement: null });
+    } else if (this.props.isUserTouching() && this.props.onModalOpen) {
       const { status, items } = this.props;
 
       this.props.onModalOpen({
@@ -136,11 +147,10 @@ export default class Dropdown extends React.PureComponent {
         actions: items,
         onClick: this.handleItemClick,
       });
-
-      return;
+    } else {
+      const { top } = target.getBoundingClientRect();
+      this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
     }
-
-    this.setState({ expanded: !this.state.expanded });
   }
 
   handleClose = () => {
@@ -148,7 +158,7 @@ export default class Dropdown extends React.PureComponent {
       this.props.onModalClose();
     }
 
-    this.setState({ expanded: false });
+    this.setState({ placement: null });
   }
 
   handleKeyDown = e => {
@@ -187,21 +197,22 @@ export default class Dropdown extends React.PureComponent {
 
   render () {
     const { icon, items, size, title, disabled } = this.props;
-    const { expanded } = this.state;
+    const { placement } = this.state;
+    const show = placement !== null;
 
     return (
       <div onKeyDown={this.handleKeyDown}>
         <IconButton
           icon={icon}
           title={title}
-          active={expanded}
+          active={show}
           disabled={disabled}
           size={size}
           ref={this.setTargetRef}
           onClick={this.handleClick}
         />
 
-        <Overlay show={expanded} placement='bottom' target={this.findTarget}>
+        <Overlay show={show} placement={placement} target={this.findTarget}>
           <DropdownMenu items={items} onClose={this.handleClose} />
         </Overlay>
       </div>
