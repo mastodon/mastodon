@@ -12,7 +12,7 @@ export default class StatusList extends ImmutablePureComponent {
     scrollKey: PropTypes.string.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
     featuredStatusIds: ImmutablePropTypes.list,
-    onScrollToBottom: PropTypes.func,
+    onLoadMore: PropTypes.func,
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
     trackScroll: PropTypes.bool,
