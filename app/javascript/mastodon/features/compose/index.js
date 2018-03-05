@@ -21,7 +21,7 @@ const messages = defineMessages({
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
-  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
+  signout: { id: 'navigation_bar.signout', defaultMessage: 'Signout' },
 });
 
 const mapStateToProps = state => ({
@@ -80,7 +80,7 @@ export default class Compose extends React.PureComponent {
             <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><i role='img' className='fa fa-fw fa-globe' /></Link>
           )}
           <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><i role='img' className='fa fa-fw fa-cog' /></a>
-          <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)}><i role='img' className='fa fa-fw fa-sign-out' /></a>
+          <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.signout)} aria-label={intl.formatMessage(messages.signout)}><i role='img' className='fa fa-fw fa-sign-out' /></a>
         </nav>
       );
     }

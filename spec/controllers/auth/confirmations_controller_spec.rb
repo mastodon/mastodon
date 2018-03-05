@@ -21,7 +21,7 @@ describe Auth::ConfirmationsController, type: :controller do
         get :show, params: { confirmation_token: 'foobar' }
       end
 
-      it 'redirects to login' do
+      it 'redirects to signin' do
         expect(response).to redirect_to(new_user_session_path)
       end
 
@@ -39,7 +39,7 @@ describe Auth::ConfirmationsController, type: :controller do
         get :show, params: { confirmation_token: 'foobar' }
       end
 
-      it 'redirects to login' do
+      it 'redirects to signin' do
         expect(response).to redirect_to(new_user_session_path)
       end
 

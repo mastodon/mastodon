@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_session
   helper_method :current_theme
   helper_method :single_user_mode?
-  helper_method :use_seamless_external_login?
+  helper_method :use_seamless_external_signin?
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
     @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.exists?
   end
 
-  def use_seamless_external_login?
+  def use_seamless_external_signin?
     Devise.pam_authentication || Devise.ldap_authentication
   end
 

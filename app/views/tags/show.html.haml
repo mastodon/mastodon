@@ -26,7 +26,7 @@
                 - if user_signed_in?
                   = link_to t('settings.back'), root_path, class: 'button button-secondary'
                 - else
-                  = link_to t('auth.login'), new_user_session_path, class: 'button button-secondary'
+                  = link_to t('auth.signin'), new_user_session_path, class: 'button button-secondary'
                 = link_to t('about.learn_more'), about_path, class: 'button button-alternative'
 
             .landing-page__features.landing-page__information
