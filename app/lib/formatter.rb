@@ -71,6 +71,11 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def format_field(account, str)
+    return reformat(str).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
+    encode_and_link_urls(str)
+  end
+
   def linkify(text)
     html = encode_and_link_urls(text)
     html = simple_format(html, {}, sanitize: false)

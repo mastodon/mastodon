@@ -5,7 +5,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   attributes :id, :username, :acct, :display_name, :locked, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
-             :followers_count, :following_count, :statuses_count
+             :followers_count, :following_count, :statuses_count, :fields
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
 
@@ -39,5 +39,13 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def moved_and_not_nested?
     object.moved? && object.moved_to_account.moved_to_account_id.nil?
+  end
+
+  def fields
+    return [] if object.fields.nil?
+
+    object.fields.map do |k, v|
+      { key: k, value: Formatter.instance.format_field(object, v) }
+    end
   end
 end
