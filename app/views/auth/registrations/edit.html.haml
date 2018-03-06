@@ -16,12 +16,9 @@
   - else
     %p.hint= t('users.seamless_external_login')
 
-%hr/
-
 = render 'sessions'
 
 - if open_deletion?
-  %hr/
 
   %h4= t('auth.delete_account')
   %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)
