@@ -6,5 +6,6 @@ class Scheduler::TrendTagScheduler
 
   def perform
     StatusesTag.calc_trend
+    Redis.current.publish('commands', '{"event": "trend_tags"}')
   end
 end
