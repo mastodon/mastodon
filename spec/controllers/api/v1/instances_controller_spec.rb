@@ -24,7 +24,7 @@ RSpec.describe Api::V1::InstancesController, type: :controller do
       get :show
 
       body = JSON.parse(response.body)
-      expect(body['announcement']).to eq 'test_value'
+      expect(body['title']).to eq 'test_value'
     end
   end
 end

@@ -3,7 +3,7 @@
 class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :uri, :title, :description, :announcement,
+  attributes :uri, :title, :description,
              :email, :version, :urls, :stats, :thumbnail
 
   def uri
@@ -16,10 +16,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def description
     Setting.site_description
-  end
-
-  def announcement
-    Setting.admin_announcement
   end
 
   def email
