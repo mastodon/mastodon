@@ -1,7 +1,7 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const webpack = require('webpack');
 const merge = require('webpack-merge');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const sharedConfig = require('./shared.js');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -36,6 +36,8 @@ if (process.env.S3_ENABLED === 'true') {
 }
 
 module.exports = merge(sharedConfig, {
+  mode: 'production',
+
   output: {
     filename: '[name]-[chunkhash].js',
     chunkFilename: '[name]-[chunkhash].js',
@@ -44,19 +46,28 @@ module.exports = merge(sharedConfig, {
   devtool: 'source-map', // separate sourcemap file, suitable for production
   stats: 'normal',
 
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: true,
+
+        uglifyOptions: {
+          mangle: true,
+
+          compress: {
+            warnings: false,
+          },
+
+          output: {
+            comments: false,
+          },
+        },
+      }),
+    ],
+  },
+
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      mangle: true,
-
-      compress: {
-        warnings: false,
-      },
-
-      output: {
-        comments: false,
-      },
-    }),
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: compressionAlgorithm,
