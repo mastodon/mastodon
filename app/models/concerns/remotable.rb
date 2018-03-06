@@ -28,11 +28,7 @@ module Remotable
           matches  = response.headers['content-disposition']&.match(/filename="([^"]*)"/)
           filename = matches.nil? ? parsed_url.path.split('/').last : matches[1]
           basename = SecureRandom.hex(8)
-          begin
-            extname = File.extname(filename)
-          rescue TypeError
-            return
-          end
+          extname = File.extname(filename) unless filename.nil?
 
           send("#{attachment_name}=", StringIO.new(response.to_s))
           send("#{attachment_name}_file_name=", basename + extname)
