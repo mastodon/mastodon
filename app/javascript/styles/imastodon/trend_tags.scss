@@ -1,0 +1,18 @@
+
+/**
+  * features/compose/components/trend_tags
+  */
+
+.trend-tags__fav {
+  color: $ui-base-lighter-color;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  margin-top: -7px;
+  width: 14px;
+  text-align: center;
+
+  &.active {
+    color: $gold-star;
+  }
+}

@@ -1,3 +1,12 @@
+@keyframes rotate_anime {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .compose__extra {
   background: $ui-base-color;
   position: relative;
@@ -31,6 +40,14 @@
     .fa-gear {
       color: $ui-primary-color;
     }
+
+    .fa-repeat {
+      color: $ui-primary-color;
+
+      &.animate {
+        animation: rotate_anime 1s ease 0s 1 normal none;
+      }
+    }
   }
 
   &__fold__icon {
@@ -40,11 +57,31 @@
 }
 
 .compose__extra__body {
+  ol {
+    counter-reset: index;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 6px 10px;
+      position: relative;
+
+      &:before {
+        counter-increment: index;
+        content: counter(index) ".";
+        font-size: 16px;
+        width: 15px;
+        padding: 0 5px;
+        text-align: center;
+      }
+    }
+  }
+
   li {
     display: flex;
     align-items: center;
     padding: 6px 10px;
-    position: relative
+    position: relative;
   }
 
   &__name {
