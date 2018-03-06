@@ -4,6 +4,10 @@ module Paperclip
   class LazyThumbnail < Paperclip::Thumbnail
     def make
       return File.open(@file.path) unless needs_convert?
+
+      min_side = [@current_geometry.width, @current_geometry.height].min
+      options[:geometry] = "#{min_side.to_i}x#{min_side.to_i}#" if @target_geometry.square? && min_side < @target_geometry.width
+
       Paperclip::Thumbnail.make(file, options, attachment)
     end
 

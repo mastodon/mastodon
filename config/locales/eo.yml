@@ -273,6 +273,8 @@ eo:
       contact_information:
         email: Publika retadreso
         username: Kontakta uzantnomo
+      hero:
+        desc_html: Montrata en la ĉefpaĝo. Almenaŭ 600x100px rekomendita. Kiam ne agordita, la bildeto de la nodo estos uzata
       peers_api_enabled:
         desc_html: Nomoj de domajnoj, kiujn ĉi tiu nodo renkontis en la fediverse
         title: Publikigi liston de malkovritaj nodoj
@@ -422,6 +424,13 @@ eo:
       Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
       <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
   exports:
+    archive_takeout:
+      date: Dato
+      download: Elŝuti vian arkivon
+      hint_html: Vi povas peti arkivon de viaj <strong>mesaĝoj kaj alŝutitaj aŭdovidaĵoj</strong>. La eksportitaj datumoj estos en la formato ActivityPub, legebla de ajna konformema programo.
+      in_progress: Kunmetado de via arkivo…
+      request: Peti vian arkivon
+      size: Grandeco
     blocks: Vi blokas
     csv: CSV
     follows: Vi sekvas
@@ -537,7 +546,9 @@ eo:
           trillion: Dn
           unit: " "
   pagination:
+    newer: Pli nova
     next: Sekva
+    older: Malpli nova
     prev: Antaŭa
     truncate: "&hellip;"
   preferences:
@@ -734,6 +745,9 @@ eo:
     setup: Agordi
     wrong_code: La enmetita kodo estis nevalida! Ĉu la servila tempo kaj la aparata tempo ĝustas?
   user_mailer:
+    backup_ready:
+      explanation: Vi petis kompletan arkivon de via Mastodon-konto. Ĝi nun pretas por elŝutado!
+      subject: Via arkivo estas preta por elŝutado
     welcome:
       edit_profile_action: Agordi profilon
       edit_profile_step: Vi povas proprigi vian profilon per alŝuto de profilbildo, fonbildo, ŝanĝo de via afiŝita nomo kaj pli. Se vi ŝatus kontroli novajn sekvantojn antaŭ ol ili rajtas sekvi vin, vi povas ŝlosi vian konton.
@@ -755,4 +769,5 @@ eo:
   users:
     invalid_email: La retadreso estas nevalida
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
+    seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Ensalutinta kiel:'

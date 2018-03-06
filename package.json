@@ -10,10 +10,9 @@
     "build:production": "cross-env RAILS_ENV=production ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "node ./streaming/index.js",
-    "test": "npm run test:lint && npm run test:jest",
+    "test": "yarn run test:lint && yarn run test:jest",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ streaming/",
-    "test:jest": "cross-env NODE_ENV=test jest --coverage",
-    "postinstall": "npm rebuild node-sass"
+    "test:jest": "cross-env NODE_ENV=test jest --coverage"
   },
   "repository": {
     "type": "git",

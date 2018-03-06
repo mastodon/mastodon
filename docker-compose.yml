@@ -55,7 +55,7 @@ services:
     image: gargron/mastodon
     restart: always
     env_file: .env.production
-    command: npm run start
+    command: yarn start
     networks:
       - external_network
       - internal_network
