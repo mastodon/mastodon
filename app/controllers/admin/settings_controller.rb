@@ -11,7 +11,6 @@ module Admin
       site_terms
       open_registrations
       closed_registrations_message
-      admin_announcement
       open_deletion
       timeline_preview
       show_staff_badge

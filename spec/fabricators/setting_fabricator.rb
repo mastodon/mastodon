@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 Fabricator(:setting) do
-  var     "admin_announcement"
+  var     "site_title"
   value   "test_value"
 end
