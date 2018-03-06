@@ -38,7 +38,6 @@ RUN apk -U upgrade \
     libidn \
     libpq \
     nodejs \
-    nodejs-npm \
     protobuf \
     su-exec \
     tini \
