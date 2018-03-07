@@ -28,7 +28,7 @@
         = fa_icon('lock') if account.locked?
 
     - if Setting.show_staff_badge
-      - if false && account.user_admin?
+      - if account.user_admin?
         .roles
           .account-role.admin
             = t 'accounts.roles.admin'
