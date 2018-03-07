@@ -55,6 +55,8 @@ Devise.setup do |config|
     saml_options[:attribute_statements][:uid] = [ENV['SAML_ATTRIBUTES_STATEMENTS_UID']] if ENV['SAML_ATTRIBUTES_STATEMENTS_UID']
     saml_options[:attribute_statements][:email] = [ENV['SAML_ATTRIBUTES_STATEMENTS_EMAIL']] if ENV['SAML_ATTRIBUTES_STATEMENTS_EMAIL']
     saml_options[:attribute_statements][:full_name] = [ENV['SAML_ATTRIBUTES_STATEMENTS_FULL_NAME']] if ENV['SAML_ATTRIBUTES_STATEMENTS_FULL_NAME']
+    saml_options[:attribute_statements][:first_name] = [ENV['SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME']] if ENV['SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME']
+    saml_options[:attribute_statements][:last_name] = [ENV['SAML_ATTRIBUTES_STATEMENTS_LAST_NAME']] if ENV['SAML_ATTRIBUTES_STATEMENTS_LAST_NAME']
     saml_options[:attribute_statements][:verified] = [ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED']] if ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED']
     saml_options[:attribute_statements][:verified_email] = [ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL']] if ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL']
     saml_options[:uid_attribute] = ENV['SAML_UID_ATTRIBUTE'] if ENV['SAML_UID_ATTRIBUTE']
