@@ -20,8 +20,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   private
 
   def process_status
+    status_params = process_status_params
+
     ApplicationRecord.transaction do
-      @status = Status.create!(process_status_params)
+      @status = Status.create!(status_params)
 
       process_tags(@status)
     end

@@ -29,6 +29,8 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     # Skip if the reblogged status is not public
     return if cached_reblog && !(cached_reblog.public_visibility? || cached_reblog.unlisted_visibility?)
 
+    media_attachments = save_media
+
     ApplicationRecord.transaction do
       status = Status.create!(
         uri: id,
@@ -43,7 +45,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         visibility: visibility_scope,
         conversation: find_or_create_conversation,
         thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil,
-        media_attachments: save_media
+        media_attachments: media_attachments
       )
 
       save_mentions(status)
