@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-export default class ClearColumnButton extends React.Component {
+export default class ClearColumnButton extends React.PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,
