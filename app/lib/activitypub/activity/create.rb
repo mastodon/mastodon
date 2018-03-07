@@ -21,9 +21,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def process_status
     media_attachments = process_attachments
+    create_status_params = status_params
+    create_status_params['media_attachments'] = media_attachments
 
     ApplicationRecord.transaction do
-      @status = Status.create!(status_params)
+      @status = Status.create!(create_status_params)
 
       process_tags(@status)
       attach_media(@status, media_attachments)
