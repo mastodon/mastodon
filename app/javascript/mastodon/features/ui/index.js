@@ -406,7 +406,7 @@ export default class UI extends React.PureComponent {
   }
 
   render () {
-    const { width, draggingOver } = this.state;
+    const { draggingOver } = this.state;
     const { children, isComposing, location, dropdownMenuIsOpen } = this.props;
 
     const handlers = {
