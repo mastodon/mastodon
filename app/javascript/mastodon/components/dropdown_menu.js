@@ -8,6 +8,7 @@ import spring from 'react-motion/lib/spring';
 import detectPassiveEvents from 'detect-passive-events';
 
 const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+let id = 0;
 
 class DropdownMenu extends React.PureComponent {
 
@@ -124,8 +125,10 @@ export default class Dropdown extends React.PureComponent {
     status: ImmutablePropTypes.map,
     isUserTouching: PropTypes.func,
     isModalOpen: PropTypes.bool.isRequired,
-    onModalOpen: PropTypes.func,
-    onModalClose: PropTypes.func,
+    onOpen: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    dropdownPlacement: PropTypes.string,
+    openDropdownId: PropTypes.number,
   };
 
   static defaultProps = {
@@ -133,38 +136,28 @@ export default class Dropdown extends React.PureComponent {
   };
 
   state = {
-    placement: null,
+    id: id++,
   };
 
   handleClick = ({ target }) => {
-    if (this.state.placement) {
-      this.setState({ placement: null });
-    } else if (this.props.isUserTouching() && this.props.onModalOpen) {
-      const { status, items } = this.props;
-
-      this.props.onModalOpen({
-        status,
-        actions: items,
-        onClick: this.handleItemClick,
-      });
+    if (this.state.id === this.props.openDropdownId) {
+      this.handleClose();
     } else {
       const { top } = target.getBoundingClientRect();
-      this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
+      const placement = top * 2 < innerHeight ? 'bottom' : 'top';
+
+      this.props.onOpen(this.state.id, this.handleItemClick, placement);
     }
   }
 
   handleClose = () => {
-    if (this.props.onModalClose) {
-      this.props.onModalClose();
-    }
-
-    this.setState({ placement: null });
+    this.props.onClose(this.state.id);
   }
 
   handleKeyDown = e => {
     switch(e.key) {
     case 'Enter':
-      this.handleClick();
+      this.handleClick(e);
       break;
     case 'Escape':
       this.handleClose();
@@ -196,23 +189,22 @@ export default class Dropdown extends React.PureComponent {
   }
 
   render () {
-    const { icon, items, size, title, disabled } = this.props;
-    const { placement } = this.state;
-    const show = placement !== null;
+    const { icon, items, size, title, disabled, dropdownPlacement, openDropdownId } = this.props;
+    const open = this.state.id === openDropdownId;
 
     return (
       <div onKeyDown={this.handleKeyDown}>
         <IconButton
           icon={icon}
           title={title}
-          active={show}
+          active={open}
           disabled={disabled}
           size={size}
           ref={this.setTargetRef}
           onClick={this.handleClick}
         />
 
-        <Overlay show={show} placement={placement} target={this.findTarget}>
+        <Overlay show={open} placement={dropdownPlacement} target={this.findTarget}>
           <DropdownMenu items={items} onClose={this.handleClose} />
         </Overlay>
       </div>
