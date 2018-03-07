@@ -108,7 +108,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_attachments
-    return if @object['attachment'].nil?
+    return [] if @object['attachment'].nil?
 
     media_attachments = []
 
