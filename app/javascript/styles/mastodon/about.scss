@@ -832,8 +832,13 @@ $small-breakpoint: 960px;
   }
 
   &__features {
+    & > p {
+      padding-right: 60px;
+    }
+
     .features-list {
-      margin: 40px 0 !important;
+      margin: 40px 0;
+      margin-top: 30px;
     }
 
     &__action {
@@ -842,16 +847,10 @@ $small-breakpoint: 960px;
   }
 
   .features-list {
-    margin-top: 20px;
-
     .features-list__row {
       display: flex;
       padding: 10px 0;
       justify-content: space-between;
-
-      &:first-child {
-        padding-top: 0;
-      }
 
       .visual {
         flex: 0 0 auto;
@@ -877,6 +876,14 @@ $small-breakpoint: 960px;
           margin-bottom: 0;
         }
       }
+    }
+
+    @media screen and (min-width: $small-breakpoint) {
+      display: grid;
+      grid-gap: 30px;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-columns: 50%;
+      grid-auto-rows: max-content;
     }
   }
 
