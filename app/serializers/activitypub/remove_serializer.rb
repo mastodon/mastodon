@@ -19,6 +19,6 @@ class ActivityPub::RemoveSerializer < ActiveModel::Serializer
   end
 
   def target
-    account_collection_url(object, :featured)
+    account_collection_url(object.account, :featured)
   end
 end
