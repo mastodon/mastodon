@@ -30,18 +30,38 @@ hu:
         data: Adatok
         display_name: Megjelenített név
         email: E-mail cím
+        expires_in: Elévül
         filtered_languages: Szűrt nyelvek
         header: Fejléc
         locale: Nyelv
         locked: Zárt felhasználói fiók
+        max_uses: Felhasználhatóság
         new_password: Új jelszó
         note: Önéletrajz
         otp_attempt: Második-faktor kód
         password: Jelszó
+        setting_auto_play_gif: GIF-ek automatikus lejátszása
+        setting_boost_modal: Megerősítés kérése reblogolás előtt
+        setting_default_privacy: Tülkök alapártelmezett adatvédelmi szintje
+        setting_default_sensitive: Minden médiafájl megjelölése szenzitívként
+        setting_delete_modal: Megerősítés kérése tülk törlése előtt
+        setting_noindex: Megtiltom a keresőmotoroknak, hogy indexeljék a tülkjeimet
+        setting_reduce_motion: Animációk mozgásának csökkentése
+        setting_system_font_ui: Rendszer betűtípusának használata
+        setting_theme: Oldalsablon
+        setting_unfollow_modal: Megerősítés kérése mielőtt abbahagyod valaki követését
+        severity: Súlyosság
+        type: Importálás típusa
         username: Felhasználónév
+      interactions:
+        must_be_follower: Nem követőidtől érkező értesítések tiltása
+        must_be_following: Nem követettjeidtől érkező értesítések tiltása
+        must_be_following_dm: Nem követettjeidtől érkező üzenetek tiltása
       notification_emails:
+        digest: Összevont e-mailek küldése
         favourite: E-mail küldése amikor valaki kedvencnek jelöli az állapotod
         follow: E-mail küldése amikor valaki követni kezd téged
+        follow_request: E-mail küldése amikor valaki követni szeretne téged
         mention: E-mail küldése amikor valaki megemlít téged
         reblog: E-mail küldése amikor valaki reblogolja az állapotod
     'no': Nem

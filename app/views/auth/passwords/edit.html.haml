@@ -4,7 +4,7 @@
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   = render 'shared/error_messages', object: resource
 
-  - if !use_seamless_external_login?? || resource.encrypted_password.present?
+  - if !use_seamless_external_login? || resource.encrypted_password.present?
     = f.input :reset_password_token, as: :hidden
 
     = f.input :password, autofocus: true, placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }

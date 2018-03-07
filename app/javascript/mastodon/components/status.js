@@ -138,7 +138,7 @@ export default class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend;
 
-    const { hidden }     = this.props;
+    const { hidden, featured } = this.props;
     const { isExpanded } = this.state;
 
     let { status, account, ...other } = this.props;
@@ -156,7 +156,14 @@ export default class Status extends ImmutablePureComponent {
       );
     }
 
-    if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    if (featured) {
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-thumb-tack status__prepend-icon' /></div>
+          <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
+        </div>
+      );
+    } else if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
       const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 
       prepend = (
@@ -184,6 +191,7 @@ export default class Status extends ImmutablePureComponent {
                 src={video.get('url')}
                 width={239}
                 height={110}
+                inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
               />

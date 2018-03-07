@@ -167,6 +167,14 @@ class Item extends React.PureComponent {
           vShift = shiftToPoint(widthRatio, (containerHeight * (height / 100)), originalHeight, focusY, true);
         }
 
+        if (originalWidth > originalHeight) {
+          imageStyle.height = '100%';
+          imageStyle.width  = 'auto';
+        } else {
+          imageStyle.height = 'auto';
+          imageStyle.width  = '100%';
+        }
+
         imageStyle.top  = vShift;
         imageStyle.left = hShift;
       } else {
@@ -283,8 +291,9 @@ export default class MediaGallery extends React.PureComponent {
       if (width) {
         style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
       }
+    } else if (width) {
+      style.height = width / (16/9);
     } else {
-      // crop the image
       style.height = height;
     }
 
@@ -309,7 +318,7 @@ export default class MediaGallery extends React.PureComponent {
       if (this.isStandaloneEligible()) {
         children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} />;
       } else {
-        children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} containerWidth={width} containerHeight={height} />);
+        children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} containerWidth={width} containerHeight={style.height} />);
       }
     }
 
