@@ -28,38 +28,6 @@ export default class TrendTags extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.refresh();
-  }
-
-  componentWillUnmount() {
-    this.cancelPolling();
-  }
-
-  componentDidUpdate() {
-    this.setPolling();
-  }
-
-  setPolling = () => {
-    this.cancelPolling();
-    const now = new Date();
-    const min = now.getMinutes();
-    const sec = now.getSeconds();
-    let timeout = (610 - ((min + 5) % 10 * 60 + sec)) % 600 * 1000;
-    if (timeout === 0) {
-      timeout = 600 * 1000;
-    }
-    this.timer = setTimeout(this.refresh, timeout);
-  }
-
-  cancelPolling = () => {
-    if (this.timer !== null) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
-  }
-
-  refresh = () => {
-    this.cancelPolling();
     this.props.refreshTrendTags();
   }
 
