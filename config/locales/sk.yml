@@ -580,9 +580,11 @@ sk:
       alipay: Alipay
       generic: Neznámy prehliadač
     current_session: Aktuálna sezóna
+    description: "%{browser} na %{platform}"
     explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
     ip: IP adresa
     platforms:
+      mac: MacOSX
       other: neznáma platforma
     revoke: Zamietni
     revoke_success: Sezóna úspešne zamietnutá
@@ -594,6 +596,32 @@ sk:
     development: Vývoj
     edit_profile: Upraviť profil
     export: Exportovať dáta
+    followers: Povolení sledovatelia
+    import: Importovať
+    migrate: Presunúť účet
+    notifications: Oznámenia
+    preferences: Možnosti
+    settings: Nastavenia
+    two_factor_authentication: Dvoj-faktorové overenie
+    your_apps: Tvoje aplikácie
+  statuses:
+    open_in_web: Otvor v okne prehliadača
+    over_character_limit: limit počtu %{max} znakov bol presiahnutý
+    pin_errors:
+      ownership: Nemožno pripnúť príspevok od niekoho iného
+      private: Neverejné príspevky nemôžu byť pripnuté
+    show_more: Ukáž viac
+    visibilities:
+      private: Iba pre sledovateľov
+      private_long: Ukáž iba následovateľom
+      public: Verejné
+      public_long: Všetci môžu vidieť
+      unlisted: Nezaradené
+      unlisted_long: Všetci môžu vidieť, ale nieje zaradené do verejnej osi
+  stream_entries:
+    click_to_show: Klikni pre zobrazenie
+    pinned: Pripnutý toot
+    reblogged: vyzdvihnutý
   user_mailer:
     welcome:
       final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné ostatnými, napríklad na lokálnej osi a pod haštagmi. Môžete sa ostatným predstaviť pod haštagom #introductions.'

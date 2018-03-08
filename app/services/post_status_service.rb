@@ -22,6 +22,7 @@ class PostStatusService < BaseService
     media  = validate_media!(options[:media_ids])
     status = nil
     text   = options.delete(:spoiler_text) if text.blank? && options[:spoiler_text].present?
+    text   = '.' if text.blank? && !media.empty?
 
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
