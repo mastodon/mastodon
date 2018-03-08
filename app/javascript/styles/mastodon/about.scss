@@ -194,6 +194,25 @@ $small-breakpoint: 960px;
     }
   }
 
+  .closed-registrations-message {
+    font-family: 'mastodon-font-sans-serif', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: $ui-primary-color;
+    margin-bottom: 40px;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: $ui-highlight-color;
+      text-decoration: underline;
+    }
+  }
+
   em {
     display: inline;
     margin: 0;
