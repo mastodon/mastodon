@@ -1,7 +1,7 @@
 FROM ruby:2.5.0-alpine3.7
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
-      description="Your self-hosted, globally interconnected microblogging community"
+      description="A GNU Social-compatible microblogging server"
 
 ARG UID=991
 ARG GID=991
@@ -73,9 +73,7 @@ RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodo
  && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
  && chown -R mastodon:mastodon /mastodon/public
 
-COPY . /mastodon
-
-RUN chown -R mastodon:mastodon /mastodon
+COPY --chown=mastodon:mastodon . /mastodon
 
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
 
