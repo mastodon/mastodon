@@ -91,37 +91,53 @@ export default class GettingStarted extends ImmutablePureComponent {
       <ColumnLink key='9' icon='question' text={intl.formatMessage(messages.faq)} href='http://faq.imastodon.net/getting-started/' targetWindow='_blank' />
     );
 
-    return (
-      <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
-        <div className='scrollable optionally-scrollable'>
-          <div className='getting-started__wrapper'>
-            <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
-            {navItems}
-            <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-            <ColumnLink icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
-            <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
-            <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
-            <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
-            <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
-          </div>
-
-          <div className='getting-started__footer'>
-            <div className='static-content getting-started'>
-              <p>
-                <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
-              </p>
-              <p>
-                <FormattedMessage
-                   id='getting_started.open_source_notice'
-                   defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-                   values={{ github: <a href={github_url} rel='noopener' target='_blank'>{github_name}</a> }}
-                />
-              </p>
-            </div>
-          </div>
-        </div>
-      </Column>
+    const contents = (
+      <div className='getting-started__wrapper'>
+        <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
+        {navItems}
+        <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
+        <ColumnLink icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
+        <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
+        <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+        <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
+        <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
+      </div>
     );
+
+    const footer = (
+      <div className={multiColumn ? 'getting-started__footer scrollable optionally-scrollable' : 'getting-started__footer'}>
+        <div className='static-content getting-started'>
+          <p>
+            <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
+          </p>
+          <p>
+            <FormattedMessage
+              id='getting_started.open_source_notice'
+              defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
+              values={{ github: <a href={github_url} rel='noopener' target='_blank'>{github_name}</a> }}
+            />
+          </p>
+        </div>
+      </div>
+    );
+
+    if (multiColumn) {
+      return (
+        <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
+          {contents}
+          {footer}
+        </Column>
+      );
+    } else {
+      return (
+        <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
+          <div className='scrollable optionally-scrollable'>
+            {contents}
+            {footer}
+          </div>
+        </Column>
+      );
+    }
   }
 
 }
