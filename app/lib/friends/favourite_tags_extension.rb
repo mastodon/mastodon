@@ -7,14 +7,16 @@ module Friends
       after_create :add_default_favourite_tag
 
       DEFAULT_TAGS = [
-        "みんなのP名刺",
-        "imas_img",
-        "ダイマストドン",
+        "デレラジ",
+        "デレパ",
+        "imasstation",
+        "millionradio",
+        "SideM",
       ].freeze
 
       def add_default_favourite_tag
         DEFAULT_TAGS.each_with_index do |tag_name, i|
-          self.favourite_tags.create!(visibility: 'public', tag: Tag.find_or_create_by!(name: tag_name), order: i)
+          self.favourite_tags.create!(visibility: 'unlisted', tag: Tag.find_or_create_by!(name: tag_name), order: (DEFAULT_TAGS.length - i))
         end
       end
 
