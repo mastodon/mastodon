@@ -1,12 +1,13 @@
 - if @instance_presenter.open_registrations
   = render 'registration'
 - else
-  - if @instance_presenter.closed_registrations_message.blank?
-    %p= t('about.closed_registrations')
-  - else
-    = @instance_presenter.closed_registrations_message.html_safe
+  = link_to t('auth.register_elsewhere'), 'https://joinmastodon.org', class: 'button button-primary'
 
-  = link_to t('auth.register'), 'https://joinmastodon.org', class: 'button button-primary'
+  .closed-registrations-message
+    - if @instance_presenter.closed_registrations_message.blank?
+      %p= t('about.closed_registrations')
+    - else
+      = @instance_presenter.closed_registrations_message.html_safe
 
 .separator-or
   %span= t('auth.or')

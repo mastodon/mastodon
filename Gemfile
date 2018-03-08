@@ -27,15 +27,15 @@ gem 'bootsnap'
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.5'
 gem 'iso-639'
-gem 'chewy', '~> 0.10', git: 'https://github.com/toptal/chewy.git'
+gem 'chewy', '~> 5.0'
 gem 'cld3', '~> 3.2.0'
 gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
 gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
-gem 'net-ldap', '~> 0.10', install_if: -> { ENV['LDAP_ENABLED'] == 'true' }
-gem 'omniauth-cas', '~> 1.1', install_if: -> { ENV['CAS_ENABLED'] == 'true' }
-gem 'omniauth-saml', '~> 1.10', install_if: -> { ENV['SAML_ENABLED'] == 'true' }
+gem 'net-ldap', '~> 0.10'
+gem 'omniauth-cas', '~> 1.1'
+gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.2'
 
 gem 'doorkeeper', '~> 4.2'

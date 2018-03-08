@@ -12,10 +12,9 @@ class Auth::SessionsController < Devise::SessionsController
 
   def new
     Devise.omniauth_configs.each do |provider, config|
-      if config.strategy.redirect_at_sign_in
-        return redirect_to(omniauth_authorize_path(resource_name, provider))
-      end
+      return redirect_to(omniauth_authorize_path(resource_name, provider)) if config.strategy.redirect_at_sign_in
     end
+
     super
   end
 
@@ -57,6 +56,14 @@ class Auth::SessionsController < Devise::SessionsController
     else
       last_url || root_path
     end
+  end
+
+  def after_sign_out_path_for(_resource_or_scope)
+    Devise.omniauth_configs.each_value do |config|
+      return root_path if config.strategy.redirect_at_sign_in
+    end
+
+    super
   end
 
   def two_factor_enabled?

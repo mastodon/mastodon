@@ -359,7 +359,7 @@ en:
     your_token: Your access token
   auth:
     agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
-    change_password: Security
+    change_password: Password
     confirm_email: Confirm email
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -376,8 +376,10 @@ en:
       cas: CAS
       saml: SAML
     register: Sign up
+    register_elsewhere: Sign up on another server
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
+    security: Security
     set_new_password: Set new password
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account

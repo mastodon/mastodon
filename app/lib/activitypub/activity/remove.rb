@@ -2,7 +2,7 @@
 
 class ActivityPub::Activity::Remove < ActivityPub::Activity
   def perform
-    return unless @json['origin'].present? && value_or_id(@json['origin']) == @account.featured_collection_url
+    return unless @json['target'].present? && value_or_id(@json['target']) == @account.featured_collection_url
 
     status = status_from_uri(object_uri)
 

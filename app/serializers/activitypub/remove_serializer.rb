@@ -3,7 +3,7 @@
 class ActivityPub::RemoveSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :type, :actor, :origin
+  attributes :type, :actor, :target
   attribute :proper_object, key: :object
 
   def type
@@ -18,7 +18,7 @@ class ActivityPub::RemoveSerializer < ActiveModel::Serializer
     ActivityPub::TagManager.instance.uri_for(object)
   end
 
-  def origin
-    account_collection_url(object, :featured)
+  def target
+    account_collection_url(object.account, :featured)
   end
 end

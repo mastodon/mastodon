@@ -103,8 +103,10 @@
       - if Setting.timeline_preview
         .column-4.landing-page__information
           .landing-page__features
-            %h3= t 'about.what_is_mastodon'
-            %p= t 'about.about_mastodon_html'
+            .features-list
+              %div
+                %h3= t 'about.what_is_mastodon'
+                %p= t 'about.about_mastodon_html'
 
             = render 'features'
 

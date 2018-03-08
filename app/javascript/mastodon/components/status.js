@@ -7,6 +7,7 @@ import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
+import AttachmentList from './attachment_list';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
@@ -177,9 +178,14 @@ export default class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('media_attachments').size > 0 && !this.props.muted) {
-      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
-
+    if (status.get('media_attachments').size > 0) {
+      if (this.props.muted || status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+        media = (
+          <AttachmentList
+            compact
+            media={status.get('media_attachments')}
+          />
+        );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
 

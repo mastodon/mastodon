@@ -2,6 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Permalink from '../../../components/permalink';
+import { displaySensitiveMedia } from '../../../initial_state';
 
 export default class MediaItem extends ImmutablePureComponent {
 
@@ -9,8 +10,22 @@ export default class MediaItem extends ImmutablePureComponent {
     media: ImmutablePropTypes.map.isRequired,
   };
 
+  state = {
+    visible: !this.props.media.getIn(['status', 'sensitive']) || displaySensitiveMedia,
+  };
+
+  handleClick = () => {
+    if (!this.state.visible) {
+      this.setState({ visible: true });
+      return true;
+    }
+
+    return false;
+  }
+
   render () {
     const { media } = this.props;
+    const { visible } = this.state;
     const status = media.get('status');
     const focusX = media.getIn(['meta', 'focus', 'x']);
     const focusY = media.getIn(['meta', 'focus', 'y']);
@@ -18,21 +33,28 @@ export default class MediaItem extends ImmutablePureComponent {
     const y = ((focusY / -2) + .5) * 100;
     const style = {};
 
-    let content;
+    let label, icon;
 
     if (media.get('type') === 'gifv') {
-      content = <span className='media-gallery__gifv__label'>GIF</span>;
+      label = <span className='media-gallery__gifv__label'>GIF</span>;
     }
 
-    if (!status.get('sensitive')) {
+    if (visible) {
       style.backgroundImage    = `url(${media.get('preview_url')})`;
       style.backgroundPosition = `${x}% ${y}%`;
+    } else {
+      icon = (
+        <span className='account-gallery__item__icons'>
+          <i className='fa fa-eye-slash' />
+        </span>
+      );
     }
 
     return (
       <div className='account-gallery__item'>
-        <Permalink to={`/statuses/${status.get('id')}`} href={status.get('url')} style={style}>
-          {content}
+        <Permalink to={`/statuses/${status.get('id')}`} href={status.get('url')} style={style} onInterceptClick={this.handleClick}>
+          {icon}
+          {label}
         </Permalink>
       </div>
     );

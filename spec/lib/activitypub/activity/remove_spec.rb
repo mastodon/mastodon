@@ -11,7 +11,7 @@ RSpec.describe ActivityPub::Activity::Remove do
       type: 'Add',
       actor: ActivityPub::TagManager.instance.uri_for(sender),
       object: ActivityPub::TagManager.instance.uri_for(status),
-      origin: sender.featured_collection_url,
+      target: sender.featured_collection_url,
     }.with_indifferent_access
   end
 
