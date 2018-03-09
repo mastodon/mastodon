@@ -5,7 +5,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   attributes :uri, :title, :description, :email,
              :version, :urls, :stats, :thumbnail,
-             :languages
+             :languages, :elasticsearch_enabled
 
   has_one :contact_account, serializer: REST::AccountSerializer
 
@@ -49,6 +49,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def languages
     [I18n.default_locale]
+  end
+
+  def elasticsearch_enabled
+    Chewy.enabled?
   end
 
   private
