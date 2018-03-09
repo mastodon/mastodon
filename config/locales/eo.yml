@@ -275,6 +275,7 @@ eo:
         username: Kontakta uzantnomo
       hero:
         desc_html: Montrata en la ĉefpaĝo. Almenaŭ 600x100px rekomendita. Kiam ne agordita, la bildeto de la nodo estos uzata
+        title: Kapbildo
       peers_api_enabled:
         desc_html: Nomoj de domajnoj, kiujn ĉi tiu nodo renkontis en la fediverse
         title: Publikigi liston de malkovritaj nodoj
@@ -358,6 +359,7 @@ eo:
     your_token: Via alira ĵetono
   auth:
     agreement_html: Per registriĝo, vi konsentas kun <a href="%{rules_path}">la reguloj de la nodo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
+    change_password: Pasvorto
     confirm_email: Konfirmi retadreson
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
@@ -368,11 +370,13 @@ eo:
     logout: Elsaluti
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
+    or: aŭ
     or_log_in_with: Aŭ ensaluti per
     providers:
       cas: CAS
       saml: SAML
     register: Registriĝi
+    register_elsewhere: Registriĝi en alia servilo
     resend_confirmation: Resendi la instrukciojn por konfirmi
     reset_password: Ŝanĝi pasvorton
     security: Sekureco
@@ -438,9 +442,9 @@ eo:
     storage: Aŭdovidaĵa konservado
   followers:
     domain: Domajno
-    explanation_html: Se vi volas esti certa pri la privateco de viaj mesaĝoj, vi bezonas esti atenta pri tiuj, kiuj sekvas vin. <strong>Viaj privataj mesaĝoj estas liveritaj al ĉiuj nodoj, kie vi havas sekvantojn</strong>. Eble vi ŝatus kontroli ilin, kaj forigi sekvantojn, se vi ne fidas, ke via privateco estos respektita de la teamo aŭ de la programo de ĉi tiuj nodoj.
+    explanation_html: Se vi volas esti certa pri la privateco de viaj mesaĝoj, vi bezonas esti atenta pri tiuj, kiuj sekvas vin. <strong>Viaj privataj mesaĝoj estas liveritaj al ĉiuj nodoj, kie vi havas sekvantojn</strong>. Eble vi ŝatus kontroli ilin, kaj forigi la sekvantojn de la nodoj, kie vi ne certas ĉu via privateco estos respektita de la tiea teamo aŭ programo.
     followers_count: Nombro de sekvantoj
-    lock_link: Ŝlosi vian konton
+    lock_link: Ŝlosu vian konton
     purge: Forigi el la sekvantoj
     success:
       one: Forigado de sekvantoj el iu domajno...
@@ -748,6 +752,7 @@ eo:
     backup_ready:
       explanation: Vi petis kompletan arkivon de via Mastodon-konto. Ĝi nun pretas por elŝutado!
       subject: Via arkivo estas preta por elŝutado
+      title: Arkiva elŝuto
     welcome:
       edit_profile_action: Agordi profilon
       edit_profile_step: Vi povas proprigi vian profilon per alŝuto de profilbildo, fonbildo, ŝanĝo de via afiŝita nomo kaj pli. Se vi ŝatus kontroli novajn sekvantojn antaŭ ol ili rajtas sekvi vin, vi povas ŝlosi vian konton.
