@@ -58,8 +58,10 @@ Rails.application.routes.draw do
     resources :following, only: [:index], controller: :following_accounts
     resource :follow, only: [:create], controller: :account_follow
     resource :unfollow, only: [:create], controller: :account_unfollow
+
     resource :outbox, only: [:show], module: :activitypub
     resource :inbox, only: [:create], module: :activitypub
+    resources :collections, only: [:show], module: :activitypub
   end
 
   resource :inbox, only: [:create], module: :activitypub

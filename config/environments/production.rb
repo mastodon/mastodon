@@ -101,4 +101,6 @@ Rails.application.configure do
     'X-Clacks-Overhead' => 'GNU Natalie Nguyen'
 
   }
+
+  config.x.otp_secret = ENV.fetch('OTP_SECRET')
 end

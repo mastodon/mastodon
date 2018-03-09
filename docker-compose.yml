@@ -32,7 +32,7 @@ services:
 
   web:
     build: .
-    image: gargron/mastodon
+    image: tootsuite/mastodon
     restart: always
     env_file: .env.production
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
@@ -52,10 +52,10 @@ services:
 
   streaming:
     build: .
-    image: gargron/mastodon
+    image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: npm run start
+    command: yarn start
     networks:
       - external_network
       - internal_network
@@ -67,7 +67,7 @@ services:
 
   sidekiq:
     build: .
-    image: gargron/mastodon
+    image: tootsuite/mastodon
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push

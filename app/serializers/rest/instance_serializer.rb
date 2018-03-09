@@ -52,7 +52,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def languages
-    [ENV.fetch('DEFAULT_LOCALE', I18n.default_locale)]
+    [I18n.default_locale]
   end
 
   private

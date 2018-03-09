@@ -103,8 +103,8 @@ export default class FocalPointModal extends ImmutablePureComponent {
     const height = media.getIn(['meta', 'original', 'height']) || null;
 
     return (
-      <div className='modal-root__modal media-modal'>
-        <div className={classNames('media-modal__content focal-point', { dragging })} ref={this.setRef}>
+      <div className='modal-root__modal video-modal'>
+        <div className={classNames('focal-point', { dragging })} ref={this.setRef}>
           <ImageLoader
             previewSrc={media.get('preview_url')}
             src={media.get('url')}

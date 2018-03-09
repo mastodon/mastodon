@@ -167,6 +167,14 @@ class Item extends React.PureComponent {
           vShift = shiftToPoint(widthRatio, (containerHeight * (height / 100)), originalHeight, focusY, true);
         }
 
+        if (originalWidth > originalHeight) {
+          imageStyle.height = '100%';
+          imageStyle.width  = 'auto';
+        } else {
+          imageStyle.height = 'auto';
+          imageStyle.width  = '100%';
+        }
+
         imageStyle.top  = vShift;
         imageStyle.left = hShift;
       } else {
