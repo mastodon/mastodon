@@ -19,7 +19,12 @@
   = f.input :invite_code, as: :hidden
 
   .actions
-    = f.button :button, t('auth.register'), type: :submit
+    - if ENV['RECAPTCHA_ENABLED'] == 'true'
+      %script(src='https://www.google.com/recaptcha/api.js' async defer)
+      .g-recaptcha{data: {:sitekey => "#{ENV['RECAPTCHA_SITE_KEY']}"}}
+      = f.button :button, t('auth.register'), type: :submit
+    - else
+      = f.button :button, t('auth.register'), type: :submit
 
   %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
 .form-footer= render 'auth/shared/links'
