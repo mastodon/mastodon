@@ -28,7 +28,31 @@ export default class MediaModal extends ImmutablePureComponent {
   state = {
     index: null,
     navigationHidden: false,
+    height: null,
   };
+
+  removers = [];
+
+  componentDidMount () {
+    let handler = this.handleResize;
+    window.addEventListener('resize', handler);
+    this.removers.push(() => window.removeEventListener('resize', handler));
+
+    handler = this.handleKeyUp;
+    window.addEventListener('keyup', handler, false);
+    this.removers.push(() => window.removeEventListener('keyup', handler));
+
+    this.handleResize();
+  }
+
+  componentWillUnmount () {
+    this.removeEventListeners();
+  }
+
+  removeEventListeners () {
+    this.removers.forEach(listeners => listeners());
+    this.removers = [];
+  }
 
   handleSwipe = (index) => {
     this.setState({ index: index % this.props.media.size });
@@ -58,12 +82,8 @@ export default class MediaModal extends ImmutablePureComponent {
     }
   }
 
-  componentDidMount () {
-    window.addEventListener('keyup', this.handleKeyUp, false);
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('keyup', this.handleKeyUp);
+  handleResize = () => {
+    this.setState({ height: `${document.body.clientHeight}px` });
   }
 
   getIndex () {
@@ -78,7 +98,7 @@ export default class MediaModal extends ImmutablePureComponent {
 
   render () {
     const { media, intl, onClose } = this.props;
-    const { navigationHidden } = this.state;
+    const { navigationHidden, height } = this.state;
 
     const index = this.getIndex();
     let pagination = [];
@@ -152,7 +172,7 @@ export default class MediaModal extends ImmutablePureComponent {
                 // than the visible part of the document in some mobile
                 // browsers when it's address bar is visible.
                 // https://developers.google.com/web/updates/2016/12/url-bar-resizing
-                height: `${document.body.clientHeight}px`,
+                height,
               }}
               containerStyle={containerStyle}
               onChangeIndex={this.handleSwipe}
