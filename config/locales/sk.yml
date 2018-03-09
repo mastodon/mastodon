@@ -3,8 +3,8 @@ sk:
   about:
     about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
-    about_this: O instancii
-    closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, existujú ďalšie Mastodon inštancie kde si môžete založiť účet a získať prístup do tej istej siete z tamaď.
+    about_this: O tejto instancii
+    closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne tej istej siete, odtiaľ.
     contact: Kontakt
     contact_missing: Nezadané
     contact_unavailable: Neuvedené
@@ -359,6 +359,7 @@ sk:
     your_token: Váš prístupový token
   auth:
     agreement_html: V rámci registrácie súhlasíte, že sa budete riadiť  <a href="%{rules_path}"> 1 pravidlami tejto instancie</a> 2 a taktiež <a href="%{terms_path}"> 3 našími servisnými podmienkami </a> 4.
+    change_password: Heslo
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
     delete_account_html: Pokiaľ si želáte vymazať svoj účet, môžete tak <a href="%{path}"> 1 urobiť tu</a> 2. Budete požiadaný/á o potvrdenie tohto kroku.
@@ -375,6 +376,7 @@ sk:
       cas: CAS
       saml: SAML
     register: Zaregistrovať sa
+    register_elsewhere: Zaregistruj sa na inom serveri
     resend_confirmation: Poslať potvrdzujúce pokyny znovu
     reset_password: Resetovať heslo
     security: Zabezpečenie
@@ -608,6 +610,7 @@ sk:
     open_in_web: Otvor v okne prehliadača
     over_character_limit: limit počtu %{max} znakov bol presiahnutý
     pin_errors:
+      limit: Už ste si pripli ten najvyšší možný počet príspevkov
       ownership: Nemožno pripnúť príspevok od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
     show_more: Ukáž viac
@@ -622,9 +625,26 @@ sk:
     click_to_show: Klikni pre zobrazenie
     pinned: Pripnutý toot
     reblogged: vyzdvihnutý
+    sensitive_content: Senzitívny obsah
+  terms:
+    title: Podmienky užívania, a pravidlá o súkromí pre %{instance}
+  two_factor_authentication:
+    setup: Nastavenie
   user_mailer:
+    backup_ready:
+      explanation: Vyžiadal/a si si úplnú zálohu tvojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
+      subject: Tvoj archív je pripravený na stiahnutie
+      title: Odber archívu
     welcome:
+      edit_profile_action: Nastav profil
+      explanation: Tu nájdeš nejaké tipy do začiatku
+      final_action: Začni prispievať
       final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné ostatnými, napríklad na lokálnej osi a pod haštagmi. Môžete sa ostatným predstaviť pod haštagom #introductions.'
+      review_preferences_action: Zmeniť nastavenia
+      subject: Vitaj na Mastodone
+      tip_local_timeline: Lokálna os je celkový pohľad na aktivitu užívateľov %{instance}. Toto sú tvoji najbližší susedia!
+      tip_mobile_webapp: Pokiaľ ti prehliadač ponúkne možnosť pridať Mastodon na tvoju obrazovku, môžeš potom dostávať notifikácie skoro ako z natívnej aplikácie!
+      title: Vitaj na palube, %{name}!
   users:
     invalid_email: Emailová adresa je neplatná
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
