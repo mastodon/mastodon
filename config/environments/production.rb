@@ -96,4 +96,6 @@ Rails.application.configure do
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection'       => '1; mode=block',
   }
+
+  config.x.otp_secret = ENV.fetch('OTP_SECRET')
 end

@@ -360,7 +360,7 @@ pl:
     your_token: Twój token dostępu
   auth:
     agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
-    change_password: Bezpieczeństwo
+    change_password: Hasło
     confirm_email: Potwierdź adres e-mail
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -371,13 +371,16 @@ pl:
     logout: Wyloguj się
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">skonfigurować to tutaj</a>.
+    or: lub
     or_log_in_with: Lub zaloguj się z użyciem
     providers:
       cas: CAS
       saml: SAML
     register: Rejestracja
+    register_elsewhere: Zarejestruj się na innym serwerze
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
+    security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
   authorize_follow:
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
@@ -552,7 +555,9 @@ pl:
           trillion: T
           unit: ''
   pagination:
+    newer: Nowsze
     next: Następna
+    older: Starsze
     prev: Poprzednia
     truncate: "&hellip;"
   preferences:

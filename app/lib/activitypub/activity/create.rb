@@ -20,13 +20,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   private
 
   def process_status
-    media_attachments = process_attachments
+    status_params = process_status_params
 
     ApplicationRecord.transaction do
       @status = Status.create!(status_params)
 
       process_tags(@status)
-      attach_media(@status, media_attachments)
     end
 
     resolve_thread(@status)
@@ -40,7 +39,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     status
   end
 
-  def status_params
+  def process_status_params
     {
       uri: @object['id'],
       url: object_url || @object['id'],
@@ -54,6 +53,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       visibility: visibility_from_audience,
       thread: replied_to_status,
       conversation: conversation_from_uri(@object['conversation']),
+      media_attachments: process_attachments.take(4),
     }
   end
 
@@ -108,7 +108,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_attachments
-    return if @object['attachment'].nil?
+    return [] if @object['attachment'].nil?
 
     media_attachments = []
 
@@ -130,13 +130,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     Rails.logger.debug e
 
     media_attachments
-  end
-
-  def attach_media(status, media_attachments)
-    return if media_attachments.blank?
-
-    media = MediaAttachment.where(status_id: nil, id: media_attachments.take(4).map(&:id))
-    media.update(status_id: status.id)
   end
 
   def resolve_thread(status)

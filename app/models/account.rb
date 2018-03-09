@@ -43,6 +43,7 @@
 #  protocol                :integer          default("ostatus"), not null
 #  memorial                :boolean          default(FALSE), not null
 #  moved_to_account_id     :integer
+#  featured_collection_url :string
 #
 
 class Account < ApplicationRecord

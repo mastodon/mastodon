@@ -3,7 +3,7 @@ sk:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 120x120px
+        avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali nejaké osobné správy kým ste boli preč
         display_name:
           one: Ostáva vám <span class="name-counter">1</span> znak
@@ -37,8 +37,8 @@ sk:
         locked: Zamknúť účet
         max_uses: Maximálne možno použiť
         new_password: Nové heslo
-        note: O vás
-        otp_attempt: Dvoj-faktorový (2FA) kód
+        note: O tebe
+        otp_attempt: Dvoj-faktorový overovací (2FA) kód
         password: Heslo
         setting_auto_play_gif: Automaticky prehrávať animované GIFy
         setting_boost_modal: Zobrazovať potvrdzovacie okno pred re-toot
@@ -56,16 +56,16 @@ sk:
         username: Používateľské meno
         username_or_email: Prezívka, alebo Email
       interactions:
-        must_be_follower: Blokovať notifikácie pod používateľov, ktorí vás nesledujú
-        must_be_following: Blokovať notifikácie od ľudí ktorý vás nesledujú
+        must_be_follower: Blokovať notifikácie pod používateľov, ktorí ťa nesledujú
+        must_be_following: Blokovať notifikácie od ľudí ktorí ťa nesledujú
         must_be_following_dm: Blokovať súkromné správy od ľudí ktorých nesleduješ
       notification_emails:
         digest: Posielať súhrnné emaily
         favourite: Poslať email ak niekto označí váš príspevok ako obľúbený
-        follow: Poslať email ak vás niekto začne sledovať
-        follow_request: Poslať email ak vám niekto pošle žiadosť o sledovanie
-        mention: Poslať email ak vás niekto spomenie v svojom príspevku
-        reblog: Poslať email ak niekto re-tootne váš príspevok
+        follow: Poslať email, ak ťa niekto začne následovať
+        follow_request: Zaslať email ak ti niekto pošle žiadosť o sledovanie
+        mention: Poslať email ak ťa niekto spomenie v svojom príspevku
+        reblog: Poslať email ak niekto re-tootne tvoj príspevok
     'no': Nie
     required:
       mark: "*"

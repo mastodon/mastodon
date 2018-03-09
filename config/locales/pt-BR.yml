@@ -273,6 +273,9 @@ pt-BR:
       contact_information:
         email: E-mail
         username: Contate usuário
+      hero:
+        desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
+        title: Imagem do herói
       peers_api_enabled:
         desc_html: Nomes de domínio que essa instância encontrou no fediverso
         title: Publicar lista de instâncias descobertas
@@ -356,7 +359,8 @@ pt-BR:
     your_token: Seu token de acesso
   auth:
     agreement_html: Ao se cadastrar você concorda em seguir <a href="%{rules_path}">as regras da instância</a> e <a href="%{terms_path}">os nossos termos de serviço</a>.
-    change_password: Segurança
+    change_password: Senha
+    confirm_email: Confirmar e-mail
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir a sua conta, você pode <a href="%{path}">prosseguir para cá</a>. Uma confirmação será requisitada.
     didnt_get_confirmation: Não recebeu instruções de confirmação?
@@ -366,9 +370,16 @@ pt-BR:
     logout: Sair
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
+    or: ou
+    or_log_in_with: Ou faça login com
+    providers:
+      cas: CAS
+      saml: SAML
     register: Cadastrar-se
+    register_elsewhere: Cadastrar-se em um outro servidor
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
+    security: Segurança
     set_new_password: Definir uma nova senha
   authorize_follow:
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
@@ -415,6 +426,13 @@ pt-BR:
       title: Esta página não está certa
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativos</a> para o Mastodon em sua plataforma.
   exports:
+    archive_takeout:
+      date: Data
+      download: Baixe o seu arquivo
+      hint_html: Você pode pedir um arquivo dos seus <strong>toots e mídia enviada</strong>. Os dados exportados estarão no formato ActivityPub, que podem ser lidos por qualquer software compatível.
+      in_progress: Preparando seu arquivo...
+      request: Solicitar o seu arquivo
+      size: Tamanho
     blocks: Você bloqueou
     csv: CSV
     follows: Você segue
@@ -530,7 +548,9 @@ pt-BR:
           trillion: T
           unit: ''
   pagination:
+    newer: Mais novo
     next: Próximo
+    older: Mais antigo
     prev: Anterior
     truncate: "&hellip;"
   preferences:
@@ -727,6 +747,10 @@ pt-BR:
     setup: Configurar
     wrong_code: O código inserido é invalido! O horário do servidor e o horário do seu aparelho estão corretos?
   user_mailer:
+    backup_ready:
+      explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
+      subject: Seu arquivo está pronto para ser baixado
+      title: Arquivo "pra viagem"
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Você pode customizar o seu perfil enviando um avatar, uma imagem de topo, mudando seu nome de exibição, dentre outros. Se você gostaria de aprovar novos seguidores antes que eles possam seguir você, você pode trancar a sua conta.
@@ -748,4 +772,5 @@ pt-BR:
   users:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
+    seamless_external_login: Você está logado usando um serviço externo, então configurações de e-mail e password não estão disponíveis.
     signed_in_as: 'Acesso como:'

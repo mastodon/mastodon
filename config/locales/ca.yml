@@ -273,6 +273,9 @@ ca:
       contact_information:
         email: Introdueix una adreça de correu electrònic píblica
         username: Nom d'usuari del contacte
+      hero:
+        desc_html: Es mostra en pàgina frontal. Recomanat 600x100px al menys. Si no es configura es mostrarà el de la instància
+        title: Imatge d’heroi
       peers_api_enabled:
         desc_html: Els noms de domini que ha trobat aquesta instància al fediverse
         title: Publica la llista d'instàncies descobertes
@@ -356,7 +359,7 @@ ca:
     your_token: El teu identificador d'accés
   auth:
     agreement_html: En inscriure't, acceptes seguir <a href="%{rules_path}">els nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
-    change_password: Seguretat
+    change_password: Contrasenya
     confirm_email: Confirmar correu electrònic
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -367,13 +370,16 @@ ca:
     logout: Tanca sessió
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots  <a href="%{path}">configurar aquí</a>.
+    or: o
     or_log_in_with: O inicia sessió amb
     providers:
       cas: CAS
       saml: SAML
     register: Registre
+    register_elsewhere: Registra't en un altre servidor
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
+    security: Seguretat
     set_new_password: Estableix una contrasenya nova
   authorize_follow:
     error: Malauradament, ha ocorregut un error cercant el compte remot
@@ -420,6 +426,13 @@ ca:
       title: Aquesta pàgina no es correcta
     noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
   exports:
+    archive_takeout:
+      date: Data
+      download: Descarrega l’arxiu
+      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible.
+      in_progress: Compilant el teu arxiu...
+      request: Sol·licita el teu arxiu
+      size: Tamany
     blocks: Persones que has blocat
     csv: CSV
     follows: Persones que segueixes
@@ -535,7 +548,9 @@ ca:
           trillion: T
           unit: " "
   pagination:
+    newer: Més recent
     next: Endavant
+    older: Més vell
     prev: Enrere
     truncate: "&hellip;"
   preferences:
@@ -732,6 +747,10 @@ ca:
     setup: Establir
     wrong_code: El codi introduït no és vàlid! És correcta l'hora del servidor i del dispositiu?
   user_mailer:
+    backup_ready:
+      explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per descàrrega!
+      subject: El teu arxiu està preparat per a descàrrega
+      title: Recollida del arxiu
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Pots personalitzar el teu perfil penjant un avatar, un encapçalament, canviant el teu nom de visualització i molt més. Si prefereixes revisar els seguidors nous abans de que et puguin seguir, pots blocar el teu compte.
@@ -753,4 +772,5 @@ ca:
   users:
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
+    seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'

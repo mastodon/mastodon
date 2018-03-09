@@ -17,7 +17,7 @@ export default class ScrollableList extends PureComponent {
 
   static propTypes = {
     scrollKey: PropTypes.string.isRequired,
-    onScrollToBottom: PropTypes.func,
+    onLoadMore: PropTypes.func.isRequired,
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
     trackScroll: PropTypes.bool,
@@ -45,9 +45,11 @@ export default class ScrollableList extends PureComponent {
       const offset = scrollHeight - scrollTop - clientHeight;
       this._oldScrollPosition = scrollHeight - scrollTop;
 
-      if (400 > offset && this.props.onScrollToBottom && !this.props.isLoading) {
-        this.props.onScrollToBottom();
-      } else if (scrollTop < 100 && this.props.onScrollToTop) {
+      if (400 > offset && this.props.onLoadMore && !this.props.isLoading) {
+        this.props.onLoadMore();
+      }
+
+      if (scrollTop < 100 && this.props.onScrollToTop) {
         this.props.onScrollToTop();
       } else if (this.props.onScroll) {
         this.props.onScroll();
@@ -138,7 +140,7 @@ export default class ScrollableList extends PureComponent {
 
   handleLoadMore = (e) => {
     e.preventDefault();
-    this.props.onScrollToBottom();
+    this.props.onLoadMore();
   }
 
   _recentlyMoved () {

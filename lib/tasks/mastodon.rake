@@ -286,6 +286,14 @@ namespace :mastodon do
 
         File.write(Rails.root.join('.env.production'), "# Generated with mastodon:setup on #{Time.now.utc}\n\n" + env.each_pair.map { |key, value| "#{key}=#{value}" }.join("\n") + "\n")
 
+        if using_docker
+          prompt.ok 'Below is your configuration, save it to an .env.production file outside Docker:'
+          prompt.say "\n"
+          prompt.say File.read(Rails.root.join('.env.production'))
+          prompt.say "\n"
+          prompt.ok 'It is also saved within this container so you can proceed with this wizard.'
+        end
+
         prompt.say "\n"
         prompt.say 'Now that configuration is saved, the database schema must be loaded.'
         prompt.warn 'If the database already exists, this will erase its contents.'
@@ -476,10 +484,10 @@ namespace :mastodon do
       time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
 
       MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).find_each do |media|
-        if media.file.exists?
-          media.file.destroy
-          media.save
-        end
+        next unless media.file.exists?
+
+        media.file.destroy
+        media.save
       end
     end
 

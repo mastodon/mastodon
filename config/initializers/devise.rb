@@ -344,7 +344,7 @@ Devise.setup do |config|
     config.check_at_sign          = true
     config.pam_default_suffix     = ENV.fetch('PAM_DEFAULT_SUFFIX') { nil }
     config.pam_default_service    = ENV.fetch('PAM_DEFAULT_SERVICE') { 'rpam' }
-    config.pam_controlled_service = ENV.fetch('PAM_CONTROLLED_SERVICE') { 'rpam' }
+    config.pam_controlled_service = ENV.fetch('PAM_CONTROLLED_SERVICE') { nil }
   end
 
   if ENV['LDAP_ENABLED'] == 'true'

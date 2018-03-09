@@ -56,10 +56,7 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch, { timelineId, loadMore }) => ({
 
-  onScrollToBottom: debounce(() => {
-    dispatch(scrollTopTimeline(timelineId, false));
-    loadMore();
-  }, 300, { leading: true }),
+  onLoadMore: debounce(loadMore, 300, { leading: true }),
 
   onScrollToTop: debounce(() => {
     dispatch(scrollTopTimeline(timelineId, true));

@@ -2,6 +2,7 @@
   = site_hostname
 
 - content_for :header_tags do
+  %link{ rel: 'canonical', href: about_url }/
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
   = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
   = render partial: 'shared/og'
@@ -103,8 +104,10 @@
       - if Setting.timeline_preview
         .column-4.landing-page__information
           .landing-page__features
-            %h3= t 'about.what_is_mastodon'
-            %p= t 'about.about_mastodon_html'
+            .features-list
+              %div
+                %h3= t 'about.what_is_mastodon'
+                %p= t 'about.about_mastodon_html'
 
             = render 'features'
 

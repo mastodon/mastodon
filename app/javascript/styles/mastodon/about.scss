@@ -194,6 +194,28 @@ $small-breakpoint: 960px;
     }
   }
 
+  .closed-registrations-message {
+    margin-top: 20px;
+
+    &,
+    p {
+      text-align: center;
+      font-size: 12px;
+      line-height: 18px;
+      color: $ui-primary-color;
+      margin-bottom: 0;
+
+      a {
+        color: $ui-highlight-color;
+        text-decoration: underline;
+      }
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   em {
     display: inline;
     margin: 0;
@@ -832,8 +854,13 @@ $small-breakpoint: 960px;
   }
 
   &__features {
+    & > p {
+      padding-right: 60px;
+    }
+
     .features-list {
-      margin: 40px 0 !important;
+      margin: 40px 0;
+      margin-top: 30px;
     }
 
     &__action {
@@ -842,16 +869,10 @@ $small-breakpoint: 960px;
   }
 
   .features-list {
-    margin-top: 20px;
-
     .features-list__row {
       display: flex;
       padding: 10px 0;
       justify-content: space-between;
-
-      &:first-child {
-        padding-top: 0;
-      }
 
       .visual {
         flex: 0 0 auto;
@@ -877,6 +898,14 @@ $small-breakpoint: 960px;
           margin-bottom: 0;
         }
       }
+    }
+
+    @media screen and (min-width: $small-breakpoint) {
+      display: grid;
+      grid-gap: 30px;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-columns: 50%;
+      grid-auto-rows: max-content;
     }
   }
 
