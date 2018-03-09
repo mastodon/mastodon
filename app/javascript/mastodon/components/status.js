@@ -11,7 +11,6 @@ import AttachmentList from './attachment_list';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from '../features/ui/util/async-components';
-import { remote_type } from '../remote_media_detector';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 
