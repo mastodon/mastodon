@@ -1,5 +1,5 @@
 Mastodon is available on [GitHub](https://github.com/tootsuite/mastodon)
-and provided thanks to the work of the following GitHub users:
+and provided thanks to the work of the following contributors:
 
 * [Gargron](https://github.com/Gargron)
 * [ykzts](https://github.com/ykzts)
@@ -446,3 +446,5 @@ and provided thanks to the work of the following GitHub users:
 * [walfie](https://github.com/walfie)
 * [y-temp4](https://github.com/y-temp4)
 * [ymmtmdk](https://github.com/ymmtmdk)
+
+This document is provided for informational purposes only. Since it is only updated once per release, the version you are looking at may be currently out of date. To see the full list of contributors, consider looking at the [git history](https://github.com/tootsuite/mastodon/graphs/contributors) instead.
