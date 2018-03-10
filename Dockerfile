@@ -39,7 +39,6 @@ RUN apk -U upgrade \
     libpq \
     nodejs \
     protobuf \
-    su-exec \
     tini \
     tzdata \
  && update-ca-certificates \
