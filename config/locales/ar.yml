@@ -20,6 +20,14 @@ ar:
         مركزيةٍ.
       not_a_product_title: إنك إنسان و لست سلعة
       real_conversation_title: مبني لتحقيق تواصل حقيقي
+      humane_approach_body: تعلُّمًا مِن فشل الشبكات الأخرى، غاية ماستدون هي بلوغ
+        الخيارات الأخلاقية في التصميم لمُحارَبة إسائة إستعمال شبكات التواصل الإجتماعية.
+      real_conversation_body: يُمكنكم التعبير عن آرائكم بكل حرية بفضل 500 حرف و انتقاء
+        دقيق للمحتوى و الوسائط بفضل أدوات التحذير التي هي بين أيديكم.
+      within_reach_body: إبقوا على اتصال دائم بأصدقائكم حيثما كانوا عبر عدة تطبيقات
+        لنظام آي أواس و أندرويد و عدة منصات أخرى بفضل واجهة برمجية للتطبيقات و بيئة
+        صديقة للتطوير.
+      within_reach_title: في مُتناوَل يدك دائمًا
     generic_description: '%{domain} هو سيرفر من بين سيرفرات الشبكة'
     hosted_on: ماستدون مُستضاف على %{domain}
     learn_more: تعلم المزيد
@@ -54,6 +62,7 @@ ar:
       created_at: التاريخ
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح !
       delete: حذف
+      destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح !
     accounts:
       are_you_sure: متأكد ؟
       by_domain: النطاق
@@ -109,6 +118,13 @@ ar:
       title: الحسابات
       username: إسم المستخدم
       web: الويب
+      demote: إنزال الرُتبة الوظيفية
+      promote: ترقية
+      show:
+        created_reports: البلاغات التي أنشأها هذا الحساب
+        report: التقرير
+        targeted_reports: التقريرات التي أُنشِأت ضد هذا الحساب
+      undo_suspension: إلغاء تعليق الحساب
     action_logs:
       actions:
         create_custom_emoji: '%{name} قام برفع إيموجي جديد %{target}'
@@ -124,6 +140,9 @@ ar:
         enable_user: '%{name} لقد قام بتنشيط تسجيل الدخول للمستخدِم %{target}'
         reset_password_user: '%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ
           %{target}'
+        confirm_user: '%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}'
+        create_email_domain_block: '%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}'
+        demote_user: '%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}'
       title: سِجلّ التفتيش و المعاينة
     custom_emojis:
       by_domain: النطاق
@@ -137,6 +156,16 @@ ar:
       shortcode_hint: على الأقل حرفين، و فقط رموز أبجدية عددية و أسطر سفلية
       title: الإيموجي الخاصة
       upload: رفع
+      copied_msg: تم إنشاء نسخة محلية للإيموجي بنجاح
+      copy_failed_msg: فشلت عملية إنشاء نسخة محلية لهذا الإيموجي
+      destroyed_msg: تمت عملية تدمير الإيموجي بنجاح !
+      disabled_msg: تمت عملية تعطيل ذلك الإيموجي بنجاح
+      enabled_msg: تم تنشيط ذاك الإيموجي بنجاح
+      new:
+        title: إضافة إيموجي خاص جديد
+      shortcode: الترميز المُصَغّر
+      update_failed_msg: تعذرت عملية تحذيث ذاك الإيموجي
+      updated_msg: تم تحديث الإيموجي بنجاح !
     domain_blocks:
       add_new: إضافة نطاق جديد
       domain: النطاق
@@ -150,12 +179,15 @@ ar:
         noop: لا شيء
       show:
         undo: إلغاء
+        title: رفع حظر النطاق عن %{domain}
       undo: إلغاء
+      reject_media: رفض ملفات الوسائط
     email_domain_blocks:
       delete: حذف
       domain: النطاق
       new:
         create: إضافة نطاق
+      title: القائمة السوداء للبريد الإلكتروني
     instances:
       account_count: الحسابات المعروفة
       domain_name: النطاق
@@ -167,6 +199,7 @@ ar:
         all: الكل
         available: المتوفرة
         expired: المنتهي صلاحيتها
+        title: التصفية
       title: الدعوات
     reports:
       are_you_sure: هل أنت متأكد ؟
@@ -182,9 +215,11 @@ ar:
       status: الحالة
       title: التقارير
       view: عرض
+      action_taken_by: تم اتخاذ الإجراء مِن طرف
     settings:
       contact_information:
         email: البريد الإلكتروني المهني
+        username: الإتصال بالمستخدِم
       registrations:
         closed_message:
           title: رسالة التسجيلات المقفلة
@@ -252,6 +287,8 @@ ar:
     reset_password: إعادة تعيين كلمة المرور
     security: الهوية
     set_new_password: تعيين كلمة مرور جديدة
+    agreement_html: بقبولك التسجيل فإنك تُصرِّح قبول <a href="%{rules_path}">قواعد
+      مثيل الخادوم</a> و <a href="%{terms_path}">شروط الخدمة التي نوفرها لك</a>.
   authorize_follow:
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
     follow: إتبع
@@ -336,9 +373,9 @@ ar:
     table:
       expires_at: تنتهي مدة صلاحيتها في
     title: دعوة أشخاص
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}.
-    You can follow them or interact with them if you have an account anywhere in the
-    fediverse..
+  landing_strip_html: <strong>%{name}</strong> هو أحد مُستخدِمي %{link_to_root_path}.
+    بإمكانك متابعته أو التواصل معه إن كنت تملك حسابًا أيا كان على البيئة الموحَّدة
+    فيديفرس.
   landing_strip_signup_html: إن كنت لا تملك واحدا، يمكنك <a href="%{sign_up_path}">التسجيل
     مِن هنا</a>.
   lists:
@@ -399,6 +436,8 @@ ar:
     next: التالي
     prev: السابق
     truncate: '&hellip;'
+    newer: الأحدَث
+    older: الأقدَم
   preferences:
     languages: اللغات
     other: إعدادات أخرى
