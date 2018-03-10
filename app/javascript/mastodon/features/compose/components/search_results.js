@@ -40,11 +40,11 @@ export default class SearchResults extends ImmutablePureComponent {
       count += results.get('hashtags').size;
       hashtags = (
         <div className='search-results__section'>
-          {results.get('hashtags').map(hashtag =>
+          {results.get('hashtags').map(hashtag => (
             <Link key={hashtag} className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
               #{hashtag}
             </Link>
-          )}
+          ))}
         </div>
       );
     }

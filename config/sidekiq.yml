@@ -30,3 +30,6 @@
   trend_tag_scheduler:
     cron: '5-55/10 * * * *'
     class: Scheduler::TrendTagScheduler
+  email_scheduler:
+    cron: '0 10 * * 2'
+    class: Scheduler::EmailScheduler

@@ -59,7 +59,7 @@ export default class FoldButton extends IconButton {
     return (
       <Motion defaultStyle={{ rotate: this.props.active ? 180 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? 0 : 180) : 0 }}>
         {({ rotate }) =>
-          <button
+          (<button
             aria-label={title}
             aria-pressed={pressed}
             aria-expanded={expanded}
@@ -70,7 +70,7 @@ export default class FoldButton extends IconButton {
             tabIndex={tabIndex}
           >
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
-          </button>
+          </button>)
         }
       </Motion>
     );

@@ -359,10 +359,12 @@ ja-IM:
       body: "%{reporter} が %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
+    notification_preferences: メール設定の変更
     salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
-    signature: Mastodon %{instance} インスタンスからの通知
     view: 'リンク:'
+    view_profile: プロフィールを表示
+    view_status: あふぅを表示
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
@@ -515,6 +517,7 @@ ja-IM:
     title: モデレーション
   notification_mailer:
     digest:
+      action: 全ての通知を表示
       body: "%{instance} での最後のログインからの出来事:"
       mention: "%{name} さんがあなたにReあふぅしました:"
       new_followers_summary:
@@ -523,21 +526,29 @@ ja-IM:
       subject:
         one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
+      title: あなたがお休みの間…
     favourite:
       body: 'あなたのあふぅが %{name} さんの頭にティンときたようです:'
       subject: "%{name} さんがあなたのあふぅにティンときたようです"
+      title: 新たなティン
     follow:
       body: "%{name} さんにフォローされています！"
       subject: "%{name} さんにフォローされています"
+      title: 新たなフォロワー
     follow_request:
+      action: フォローリクエストの管理
       body: "%{name} さんがあなたにフォローをリクエストしました"
       subject: "%{name} さんからのフォローリクエスト"
+      title: 新たなフォローリクエスト
     mention:
+      action: Reあふぅ
       body: "%{name} さんからReあふぅがありました:"
       subject: "%{name} さんにReあふぅされました"
+      title: 新たなReあふぅ
     reblog:
       body: 'あなたのあふぅが %{name} さんに同意されました:'
       subject: あなたのあふぅが %{name} さんに同意されました。わかるわ
+      title: 新たなわかるわ
   number:
     human:
       decimal_units:
@@ -724,6 +735,8 @@ ja-IM:
 
       <p>オリジナルの出典 <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} 利用規約・プライバシーポリシー"
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -743,6 +756,25 @@ ja-IM:
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     setup: 初期設定
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
+  user_mailer:
+    welcome:
+      edit_profile_action: プロフィールを設定
+      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを非公開にすることができます。
+      explanation: 始めるにあたってのアドバイスです
+      final_action: 始めましょう
+      final_step: 'さあ始めましょう！たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #Pの自己紹介 ハッシュタグを使うといいかもしれません。'
+      full_handle: あなたの正式なユーザー名
+      full_handle_hint: これは別のインスタンスからフォローしてもらったりメッセージのやり取りをする際に、友達に伝えるといいでしょう。
+      review_preferences_action: 設定の変更
+      review_preferences_step: 受け取りたいメールや投稿の公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
+      subject: Mastodon へようこそ
+      tip_bridge_html: もし Twitter から来られたのであれば、<a href="%{bridge_url}">bridge app</a> を使用することで Mastodon での友達のアカウントを探すこともできます。ただし bridge app を使用したことのある相手に限ります！
+      tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じインスタンスの人がフォローしている人だけが含まれるので、それが全てではありません。
+      tip_following: 標準では自動でインスタンスの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
+      tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じインスタンスにいる隣人のようなものです！
+      tip_mobile_webapp: もしモバイル端末のブラウザで Mastodon をホーム画面に追加できる場合、プッシュ通知を受け取ることができます。それはまるでネイティブアプリのように動作します！
+      tips: 豆知識
+      title: ようこそ、 %{name}さん!
   users:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
