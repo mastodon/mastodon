@@ -168,11 +168,13 @@ class Item extends React.PureComponent {
         }
 
         if (originalWidth > originalHeight) {
-          imageStyle.height = '100%';
-          imageStyle.width  = 'auto';
+          imageStyle.height   = '100%';
+          imageStyle.width    = 'auto';
+          imageStyle.minWidth = '100%';
         } else {
-          imageStyle.height = 'auto';
-          imageStyle.width  = '100%';
+          imageStyle.height    = 'auto';
+          imageStyle.width     = '100%';
+          imageStyle.minHeight = '100%';
         }
 
         imageStyle.top  = vShift;

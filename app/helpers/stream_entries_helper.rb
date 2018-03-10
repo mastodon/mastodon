@@ -8,6 +8,27 @@ module StreamEntriesHelper
     account.display_name.presence || account.username
   end
 
+  def account_description(account)
+    prepend_str = [
+      [
+        number_to_human(account.statuses_count, strip_insignificant_zeros: true),
+        t('accounts.posts'),
+      ].join(' '),
+
+      [
+        number_to_human(account.following_count, strip_insignificant_zeros: true),
+        t('accounts.following'),
+      ].join(' '),
+
+      [
+        number_to_human(account.followers_count, strip_insignificant_zeros: true),
+        t('accounts.followers'),
+      ].join(' '),
+    ].join(', ')
+
+    [prepend_str, account.note].join(' · ')
+  end
+
   def stream_link_target
     embedded_view? ? '_blank' : nil
   end

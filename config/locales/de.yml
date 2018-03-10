@@ -60,7 +60,7 @@ de:
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       are_you_sure: Bist du sicher?
-      by_domain: Domain
+      by_domain: Domäne
       confirm: Bestätigen
       confirmed: Bestätigt
       demote: Degradieren
@@ -273,6 +273,9 @@ de:
       contact_information:
         email: Öffentliche E-Mail-Adresse
         username: Profilname für die Kontaktaufnahme
+      hero:
+        desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Instanz-Thumbnail dafür verwendet
+        title: Bild für Startseite
       peers_api_enabled:
         desc_html: Domain-Namen dieser Instanz, die im Fediverse gefunden wurden
         title: Veröffentliche Liste von gefundenen Instanzen
@@ -289,6 +292,9 @@ de:
         open:
           desc_html: Allen erlauben, ein Konto zu erstellen
           title: Registrierung öffnen
+      show_known_fediverse_at_about_page:
+        desc_html: Wenn aktiviert, wird es alle Beiträge aus dem bereits bekannten Teil des Fediversums auf der Startseite anzeigen. Andernfalls werden lokale Beitrage der Instanz angezeigt.
+        title: Verwende öffentliche Zeitleiste für die Vorschau
       show_staff_badge:
         desc_html: Zeige Mitarbeiter-Badge auf Benutzerseite
         title: Zeige Mitarbeiter-Badge
@@ -349,10 +355,12 @@ de:
     invalid_url: Die angegebene URL ist ungültig
     regenerate_token: Zugangs-Token neu erstellen
     token_regenerated: Zugangs-Token neu erstellt
-    warning: Sei mit diesen Daten sehr vorsichtig! Teile sie mit niemandem.
+    warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
     agreement_html: Indem du dich registrierst, erklärst du dich mit den Regeln, die <a href="%{rules_path}">auf dieser Instanz gelten</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
+    change_password: Passwort
+    confirm_email: E-Mail bestätigen
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
@@ -362,7 +370,13 @@ de:
     logout: Abmelden
     migrate_account: Ziehe zu einem anderen Account um
     migrate_account_html: Wenn du es wünschst diesen Account zu einem anderen umzuziehen, dann kannst du <a href="%{path}">es hier einstellen</a>.
+    or: oder
+    or_log_in_with: Oder anmelden mit
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrieren
+    register_elsewhere: Registrieren auf einem anderen Server
     resend_confirmation: Bestätigungs-Mail erneut versenden
     reset_password: Passwort zurücksetzen
     security: Sicherheit
@@ -412,6 +426,13 @@ de:
       title: Diese Seite ist kaputt
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   exports:
+    archive_takeout:
+      date: Datum
+      download: Dein Archiv herunterladen
+      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportieren Daten werden im ActivityPub-Format gespeichert, dass lesbar mit jeder Software ist, die das Format unterstützt.
+      in_progress: Stelle dein Archiv zusammen...
+      request: Dein Archiv anfragen
+      size: Größe
     blocks: Du hast blockiert
     csv: CSV
     follows: Du folgst
@@ -527,7 +548,9 @@ de:
           trillion: T
           unit: ''
   pagination:
+    newer: Neuer
     next: Vorwärts
+    older: Älter
     prev: Zurück
     truncate: "&hellip;"
   preferences:
@@ -652,6 +675,10 @@ de:
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Stimmen Serverzeit und Gerätezeit?
   user_mailer:
+    backup_ready:
+      explanation: Du hast ein vollständiges Backup von deinem Mastodon-Account angefragt. Es kann jetzt heruntergeladen werden!
+      subject: Dein Archiv ist bereit zum Download
+      title: Archiv-Download
     welcome:
       edit_profile_action: Profil einstellen
       edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Follower vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.
@@ -673,4 +700,5 @@ de:
   users:
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
+    seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
