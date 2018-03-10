@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from '../../initial_state';
+import { fetchFollowRequests } from '../../actions/accounts';
+import { List as ImmutableList } from 'immutable';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -35,9 +37,25 @@ const mapStateToProps = state => ({
   columns: state.getIn(['settings', 'columns']),
   github_url: state.getIn(['meta', 'github_url']),
   github_name: state.getIn(['meta', 'github_name']),
+  unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
+  unreadNotifications: state.getIn(['notifications', 'unread']),
 });
 
-@connect(mapStateToProps)
+const mapDispatchToProps = dispatch => ({
+  fetchFollowRequests: () => dispatch(fetchFollowRequests()),
+});
+
+const badgeDisplay = (number, limit) => {
+  if (number === 0) {
+    return undefined;
+  } else if (limit && number >= limit) {
+    return `${limit}+`;
+  } else {
+    return number;
+  }
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 export default class GettingStarted extends ImmutablePureComponent {
 
@@ -48,10 +66,21 @@ export default class GettingStarted extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
     github_url: PropTypes.string.isRequired,
     github_name: PropTypes.string.isRequired,
+    fetchFollowRequests: PropTypes.func.isRequired,
+    unreadFollowRequests: PropTypes.number,
+    unreadNotifications: PropTypes.number,
   };
 
+  componentDidMount () {
+    const { myAccount, fetchFollowRequests } = this.props;
+
+    if (myAccount.get('locked')) {
+      fetchFollowRequests();
+    }
+  }
+
   render () {
-    const { intl, myAccount, columns, multiColumn, github_url, github_name } = this.props;
+    const { intl, myAccount, columns, multiColumn, github_url, github_name, unreadFollowRequests, unreadNotifications } = this.props;
 
     const navItems = [];
 
@@ -61,7 +90,7 @@ export default class GettingStarted extends ImmutablePureComponent {
       }
 
       if (!columns.find(item => item.get('id') === 'NOTIFICATIONS')) {
-        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} to='/notifications' />);
+        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications)} to='/notifications' />);
       }
 
       if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
@@ -79,7 +108,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     );
 
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
     }
 
     if (multiColumn) {

@@ -13,7 +13,7 @@
 class AccountDomainBlock < ApplicationRecord
   include Paginable
 
-  belongs_to :account, required: true
+  belongs_to :account
   validates :domain, presence: true, uniqueness: { scope: :account_id }
 
   after_create  :remove_blocking_cache

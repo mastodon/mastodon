@@ -28,7 +28,7 @@ class ActivityPub::InboxesController < Api::BaseController
   def upgrade_account
     if signed_request_account.ostatus?
       signed_request_account.update(last_webfingered_at: nil)
-      ResolveRemoteAccountWorker.perform_async(signed_request_account.acct)
+      ResolveAccountWorker.perform_async(signed_request_account.acct)
     end
 
     Pubsubhubbub::UnsubscribeWorker.perform_async(signed_request_account.id) if signed_request_account.subscribed?
