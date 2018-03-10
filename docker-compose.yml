@@ -26,6 +26,8 @@ services:
 #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 #    networks:
 #      - internal_network
+#    ports:
+#      - "9200:9200"
 #### Uncomment to enable ES persistance
 ##    volumes:
 ##      - ./elasticsearch:/usr/share/elasticsearch/data
