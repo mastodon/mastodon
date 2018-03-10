@@ -32,7 +32,6 @@ RUN apk -U upgrade \
     ca-certificates \
     ffmpeg \
     file \
-    git \
     icu-libs \
     imagemagick \
     libidn \
