@@ -83,7 +83,7 @@ export default class TrendTags extends React.PureComponent {
             <FoldButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={onToggle} size={20} animate active={visible} />
           </div>
         </div>
-        <Foldable isVisible={visible} fullHeight={trendTags ? trendTags.size * 30 : 0} minHeight={0} >
+        <Foldable isVisible={visible} fullHeight={trendTags ? Math.min(150, trendTags.size * 30) : 0} minHeight={0} >
           <div className='compose__extra__body'>
             <ol>
               {tags}
