@@ -13,13 +13,13 @@ class Api::V1::ReportsController < Api::BaseController
   end
 
   def create
-    @report = current_account.reports.create!(
-      target_account: reported_account,
+    @report = ReportService.new.call(
+      current_account,
+      reported_account,
       status_ids: reported_status_ids,
-      comment: report_params[:comment]
+      comment: report_params[:comment],
+      forward: report_params[:forward]
     )
-
-    User.staff.includes(:account).each { |u| AdminMailer.new_report(u.account, @report).deliver_later }
 
     render json: @report, serializer: REST::ReportSerializer
   end
@@ -39,6 +39,6 @@ class Api::V1::ReportsController < Api::BaseController
   end
 
   def report_params
-    params.permit(:account_id, :comment, status_ids: [])
+    params.permit(:account_id, :comment, :forward, status_ids: [])
   end
 end

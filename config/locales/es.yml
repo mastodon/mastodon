@@ -23,7 +23,6 @@ es:
       real_conversation_title: Hecho para verdaderas conversaciones
       within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas gracias a un ecosistema de APIs amigable al desarrollador para permitirte estar con tus amigos donde sea.
       within_reach_title: Siempre al alcance
-    find_another_instance: Busca otra instancia
     generic_description: "%{domain} es un servidor en la red"
     hosted_on: Mastodon hosteado en %{domain}
     learn_more: Aprende más
@@ -354,7 +353,6 @@ es:
     your_token: Tu token de acceso
   auth:
     agreement_html: Al registrarte, acepta seguir <a href="%{rules_path}">las reglas de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
-    change_password: Cambiar contraseña
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
@@ -367,6 +365,7 @@ es:
     register: Registrarse
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
+    security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
   authorize_follow:
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
@@ -551,7 +550,7 @@ es:
     reblog:
       title: "%{name} boosteó tu estado"
   remote_follow:
-    acct: Ingesa el usuario@dominio de la persona que quieres seguir
+    acct: Ingesa tu usuario@dominio desde el que quieres seguir
     missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'

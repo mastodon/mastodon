@@ -53,11 +53,11 @@ export default class ActionBar extends React.PureComponent {
     let extraInfo = '';
 
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+
     if ('share' in navigator) {
       menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
     }
-    menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.media), to: `/accounts/${account.get('id')}/media` });
+
     menu.push(null);
 
     if (account.get('id') === me) {
@@ -122,7 +122,7 @@ export default class ActionBar extends React.PureComponent {
 
           <div className='account__action-bar-links'>
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
-              <span><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
+              <span><FormattedMessage id='account.posts' defaultMessage='Toots' /></span>
               <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
             </Link>
 

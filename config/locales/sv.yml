@@ -23,7 +23,6 @@ sv:
       real_conversation_title: Byggd för riktiga konversationer
       within_reach_body: Flera appar för iOS, Android och andra plattformar tack vare ett utvecklingsvänligt API-ekosystem gör att du kan hålla kontakten med dina vänner var som helst.
       within_reach_title: Alltid inom räckhåll
-    find_another_instance: Hitta en annan instans
     generic_description: "%{domain} är en server i nätverket"
     hosted_on: Mastodon värd på %{domain}
     learn_more: Lär dig mer
@@ -290,6 +289,9 @@ sv:
         open:
           desc_html: Tillåt alla att skapa ett konto
           title: Öppen registrering
+      show_known_fediverse_at_about_page:
+        desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
+        title: Visa det kända fediverse på tidslinjens förhandsgranskning
       show_staff_badge:
         desc_html: Visa en personalbricka på en användarsida
         title: Visa personalbricka
@@ -354,7 +356,7 @@ sv:
     your_token: Din access token
   auth:
     agreement_html: Genom att registrera dig godkänner du att följa <a href="%{rules_path}">instansens regler</a> och <a href="%{terms_path}">våra användarvillkor</a>.
-    change_password: Säkerhet
+    confirm_email: Bekräfta e-postadress
     delete_account: Ta bort konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     didnt_get_confirmation: Fick inte instruktioner om bekräftelse?
@@ -364,9 +366,14 @@ sv:
     logout: Logga ut
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
+    or_log_in_with: Eller logga in med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrera
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
+    security: Säkerhet
     set_new_password: Skriv in nytt lösenord
   authorize_follow:
     error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot

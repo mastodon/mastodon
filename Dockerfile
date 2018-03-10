@@ -1,14 +1,16 @@
 FROM ruby:2.5.0-alpine3.7
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
-      description="A GNU Social-compatible microblogging server"
+      description="Your self-hosted, globally interconnected microblogging community"
 
-ENV UID=991 GID=991 \
-    RAILS_SERVE_STATIC_FILES=true \
+ARG UID=991
+ARG GID=991
+
+ENV RAILS_SERVE_STATIC_FILES=true \
     RAILS_ENV=production NODE_ENV=production
 
-ARG YARN_VERSION=1.3.2
-ARG YARN_DOWNLOAD_SHA256=6cfe82e530ef0837212f13e45c1565ba53f5199eec2527b85ecbcd88bf26821d
+ARG YARN_VERSION=1.5.1
+ARG YARN_DOWNLOAD_SHA256=cd31657232cf48d57fdbff55f38bfa058d2fb4950450bd34af72dac796af4de1
 ARG LIBICONV_VERSION=1.15
 ARG LIBICONV_DOWNLOAD_SHA256=ccf536620a45458d26ba83887a983b96827001e92a13847b45e4925cc8913178
 
@@ -36,7 +38,6 @@ RUN apk -U upgrade \
     libidn \
     libpq \
     nodejs \
-    nodejs-npm \
     protobuf \
     su-exec \
     tini \
@@ -68,12 +69,16 @@ RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-in
  && yarn --pure-lockfile \
  && yarn cache clean
 
+RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
+ && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
+ && chown -R mastodon:mastodon /mastodon/public
+
 COPY . /mastodon
 
-COPY docker_entrypoint.sh /usr/local/bin/run
-
-RUN chmod +x /usr/local/bin/run
+RUN chown -R mastodon:mastodon /mastodon
 
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
 
-ENTRYPOINT ["/usr/local/bin/run"]
+USER mastodon
+
+ENTRYPOINT ["/sbin/tini", "--"]

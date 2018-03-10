@@ -16,6 +16,8 @@ import {
   COMPOSE_SUGGESTIONS_CLEAR,
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
+  COMPOSE_SUGGESTION_TAGS_UPDATE,
+  COMPOSE_TAG_HISTORY_UPDATE,
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
@@ -34,7 +36,7 @@ import uuid from '../uuid';
 import { me } from '../initial_state';
 
 const initialState = ImmutableMap({
-  mounted: false,
+  mounted: 0,
   sensitive: false,
   spoiler: false,
   spoiler_text: '',
@@ -54,6 +56,7 @@ const initialState = ImmutableMap({
   default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
+  tagHistory: ImmutableList(),
 });
 
 function statusToTextMentions(state, status) {
@@ -87,7 +90,6 @@ function appendMedia(state, media) {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
-    map.update('text', oldText => `${oldText.trim()} ${media.get('text_url')}`);
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
 
@@ -98,12 +100,10 @@ function appendMedia(state, media) {
 };
 
 function removeMedia(state, mediaId) {
-  const media    = state.get('media_attachments').find(item => item.get('id') === mediaId);
   const prevSize = state.get('media_attachments').size;
 
   return state.withMutations(map => {
     map.update('media_attachments', list => list.filterNot(item => item.get('id') === mediaId));
-    map.update('text', text => text.replace(media.get('text_url'), '').trim());
     map.set('idempotencyKey', uuid());
 
     if (prevSize === 1) {
@@ -119,6 +119,18 @@ const insertSuggestion = (state, position, token, completion) => {
     map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
+  });
+};
+
+const updateSuggestionTags = (state, token) => {
+  const prefix = token.slice(1);
+
+  return state.merge({
+    suggestions: state.get('tagHistory')
+      .filter(tag => tag.startsWith(prefix))
+      .slice(0, 4)
+      .map(tag => '#' + tag),
+    suggestion_token: token,
   });
 };
 
@@ -159,10 +171,10 @@ export default function compose(state = initialState, action) {
   case STORE_HYDRATE:
     return hydrate(state, action.state.get('compose'));
   case COMPOSE_MOUNT:
-    return state.set('mounted', true);
+    return state.set('mounted', state.get('mounted') + 1);
   case COMPOSE_UNMOUNT:
     return state
-      .set('mounted', false)
+      .set('mounted', Math.max(state.get('mounted') - 1, 0))
       .set('is_composing', false);
   case COMPOSE_SENSITIVITY_CHANGE:
     return state.withMutations(map => {
@@ -252,6 +264,10 @@ export default function compose(state = initialState, action) {
     return state.set('suggestions', ImmutableList(action.accounts ? action.accounts.map(item => item.id) : action.emojis)).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion);
+  case COMPOSE_SUGGESTION_TAGS_UPDATE:
+    return updateSuggestionTags(state, action.token);
+  case COMPOSE_TAG_HISTORY_UPDATE:
+    return state.set('tagHistory', fromJS(action.tags));
   case TIMELINE_DELETE:
     if (action.id === state.get('in_reply_to')) {
       return state.set('in_reply_to', null);
@@ -265,7 +281,7 @@ export default function compose(state = initialState, action) {
       .set('is_submitting', false)
       .update('media_attachments', list => list.map(item => {
         if (item.get('id') === action.media.id) {
-          return item.set('description', action.media.description);
+          return fromJS(action.media);
         }
 
         return item;

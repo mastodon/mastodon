@@ -3,15 +3,15 @@ cache:
   bundler: true
   yarn: true
   directories:
-  - node_modules
-  - public/assets
-  - public/packs-test
-  - tmp/cache/babel-loader
+    - node_modules
+    - public/assets
+    - public/packs-test
+    - tmp/cache/babel-loader
 dist: trusty
 sudo: false
 branches:
   only:
-  - master
+    - master
 
 notifications:
   email: false
@@ -23,21 +23,20 @@ env:
     - RAILS_ENV=test
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
     - PARALLEL_TEST_PROCESSORS=2
-    - "PATH=$HOME:$PATH"
 
 addons:
   postgresql: 9.4
   apt:
     sources:
-    - trusty-media
-    - sourceline: deb https://dl.yarnpkg.com/debian/ stable main
-      key_url: https://dl.yarnpkg.com/debian/pubkey.gpg
+      - trusty-media
+      - sourceline: deb https://dl.yarnpkg.com/debian/ stable main
+        key_url: https://dl.yarnpkg.com/debian/pubkey.gpg
     packages:
-    - ffmpeg
-    - libicu-dev
-    - libprotobuf-dev
-    - protobuf-compiler
-    - yarn
+      - ffmpeg
+      - libicu-dev
+      - libprotobuf-dev
+      - protobuf-compiler
+      - yarn
 
 rvm:
   - 2.4.2
@@ -53,7 +52,6 @@ install:
 
 before_script:
   - ./bin/rails parallel:create parallel:load_schema parallel:prepare assets:precompile
-  - ln -s /usr/bin/x86_64-linux-gnu-g++-6 "$HOME/g++"
 
 script:
   - travis_retry bundle exec parallel_test spec/ --group-by filesize --type rspec
