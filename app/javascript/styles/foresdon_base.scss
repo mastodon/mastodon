@@ -19,38 +19,22 @@ body {
 .landing-page {
   background: rgba($foresdon-ui-base-color, 0.7);
 
-  & .header-wrapper,
-  & .header-wrapper.compact {
-    background: rgba($foresdon-ui-base-color, 0.4);
+  &__forms {
+    background: rgba($foresdon-ui-base-color, 0.5);
   }
 
-  &>.about-short {
-    background: rgba($foresdon-ui-base-color, 0.9);
+  &__information {
+    background: rgba($foresdon-ui-base-color, 0.5);
   }
 
-  & .header .hero .simple_form,
-  & .header .hero .closed-registrations-message {
-    background: rgba($foresdon-ui-base-color, 0.9);
+  &__call-to-action {
+    background: rgba($foresdon-ui-base-color, 0.5);
   }
 
-  & .features #mastodon-timeline {
+  & #mastodon-timeline {
     background: none;
     box-shadow: none;
   }
-
-  & .header .links {
-      background: none;
-  }
-
-  & .information-board {
-    background: rgba($foresdon-ui-base-color, 0.8);
-
-    & .panel {
-      background: rgba($foresdon-ui-base-color, 0.9);
-      border-radius: $foresdon-primary-border-radius;
-    }
-  }
-
 }
 
 // login page.
@@ -237,6 +221,10 @@ body {
 .drawer__inner {
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border-radius: $foresdon-primary-border-radius;
+
+  &__mastodon {
+    background: none;
+  }
 
   &.darker {
     background: rgba($foresdon-ui-base-color, 0.9);
