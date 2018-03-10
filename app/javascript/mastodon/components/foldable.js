@@ -6,9 +6,9 @@ import spring from 'react-motion/lib/spring';
 const Foldable = ({ fullHeight, minHeight, isVisible, children }) => (
   <Motion defaultStyle={{ height: isVisible ? fullHeight : minHeight }} style={{ height: spring(!isVisible ? minHeight : fullHeight) }}>
     {({ height }) =>
-      <div style={{ height: `${height}px`, overflow: 'hidden' }}>
+      (<div style={{ height: `${height}px`, overflow: 'hidden' }}>
         {children}
-      </div>
+      </div>)
     }
   </Motion>
 );

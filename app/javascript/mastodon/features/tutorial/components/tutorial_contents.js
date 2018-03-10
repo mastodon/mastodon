@@ -245,6 +245,10 @@ export default class TutorialContents extends React.Component {
     });
   }
 
+  tutorialContentsRef = (c) => {
+    this.tutorialContents = c;
+  };
+
   DisplayFirstPage = () => {
     if (this.props.page_number === 1) {
       setTimeout(this.FirstOpacityChange, 1000);
@@ -302,13 +306,9 @@ export default class TutorialContents extends React.Component {
       isLast: this.props.isLast,
     };
 
-    const tutorialContentsRef = (c) => {
-      this.tutorialContents = c;
-    };
-
     return (
       <div className='tutorial-box'>
-        <div className={`tutorial-contents ${this.props.direction}`} style={{ opacity: this.state.opacity, zIndex: this.state.zIndex }} ref={tutorialContentsRef}>
+        <div className={`tutorial-contents ${this.props.direction}`} style={{ opacity: this.state.opacity, zIndex: this.state.zIndex }} ref={this.tutorialContentsRef}>
           <div className='page-one'>
             <PageOne page={this.props.page} />
             <TutorialNav {...constantArgumentsForNavigation} />
