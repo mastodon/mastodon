@@ -147,13 +147,6 @@ export default class MediaModal extends ImmutablePureComponent {
         >
           <div className='media-modal__content'>
             <ReactSwipeableViews
-              style={{
-                // you can't use 100vh, because the viewport height is taller
-                // than the visible part of the document in some mobile
-                // browsers when it's address bar is visible.
-                // https://developers.google.com/web/updates/2016/12/url-bar-resizing
-                height: `${document.body.clientHeight}px`,
-              }}
               containerStyle={containerStyle}
               onChangeIndex={this.handleSwipe}
               onSwitching={this.handleSwitching}
