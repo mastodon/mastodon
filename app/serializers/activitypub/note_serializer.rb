@@ -105,7 +105,26 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     end
 
     def url
-      object.local? ? full_asset_url(object.file.url(:original, false)) : object.remote_url
+      if object.local?
+        if current_server.accepts_link?
+          [
+            {
+              type: 'Link',
+              href: full_asset_url(object.file.url(:original, false)),
+              rel: 'self',
+            },
+            {
+              type: 'Link',
+              href: media_proxy_url(object, :original),
+              rel: 'canonical',
+            },
+          ]
+        else
+          full_asset_url(object.file.url(:original, false))
+        end
+      else
+        object.remote_url
+      end
     end
 
     def focal_point?
