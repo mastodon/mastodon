@@ -114,7 +114,8 @@ class ActivityPub::ProcessAccountService < BaseService
   def url
     return if @json['url'].blank?
 
-    url_candidate = url_to_href(@json['url'], 'text/html')
+    url_candidate = @json['url'].is_a?(Array) ? find_href(@json['url'], 'alternate', 'text/html') : nil
+    url_candidate = first_href(@json['url']) if url_candidate.nil?
 
     if unsupported_uri_scheme?(url_candidate) || mismatching_origin?(url_candidate)
       nil

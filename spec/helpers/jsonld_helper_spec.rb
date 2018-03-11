@@ -65,4 +65,72 @@ describe JsonLdHelper do
       expect(fetch_resource_without_id_validation('https://host/')).to eq({})
     end
   end
+
+  describe '#find_href' do
+    it 'returns href of Link with given rel' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/', 'rel' => 'self' }], 'self')).to eq 'https://example.com/'
+    end
+
+    it 'returns href of Link with rel array including given rel' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/', 'rel' => ['self'] }], 'self')).to eq 'https://example.com/'
+    end
+
+    it 'returns href of Link without rel' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/' }], 'self')).to eq 'https://example.com/'
+    end
+
+    it 'returns nil if Link with given rel is not found' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/', 'rel' => '' }], 'self')).to eq nil
+    end
+
+    it 'returns nil if only Link with rel whose type is invalid is given' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/', 'rel' => {} }], 'self')).to eq nil
+    end
+
+    it 'returns href of Link with given mime type' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/', 'mimeType' => 'text/html' }], nil, 'text/html')).to eq 'https://example.com/'
+    end
+
+    it 'returns href of Link with mime type array including given mime type' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/', 'mimeType' => ['text/html'] }], nil, 'text/html')).to eq 'https://example.com/'
+    end
+
+    it 'returns href of Link without mime type' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/' }], nil, 'text/html')).to eq 'https://example.com/'
+    end
+
+    it 'returns nil if Link with given mime type is not found' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/', 'mimeType' => '' }], nil, 'text/html')).to eq nil
+    end
+
+    it 'returns nil if only Link with mime type whose type is invalid is given' do
+      expect(find_href([{ 'type' => 'Link', 'href' => 'https://example.com/', 'mimeType' => {} }], nil, 'text/html')).to eq nil
+    end
+
+    it 'returns string element' do
+      expect(find_href(['https://example.com/'], 'self', 'text/html')).to eq 'https://example.com/'
+    end
+
+    it 'returns nil if only invalid object is given' do
+      expect(find_href([{}])).to eq nil
+    end
+  end
+
+  describe '#first_href' do
+    it 'returns href given array' do
+      expect(first_href(['https://example.com/'])).to eq 'https://example.com/'
+    end
+
+    it 'returns href given string' do
+      expect(first_href('https://example.com/')).to eq 'https://example.com/'
+    end
+
+    it 'returns href given Link object' do
+      expect(first_href({ 'type' => 'Link', 'href' => 'https://example.com/' })).to eq 'https://example.com/'
+    end
+
+    it 'returns nil given Link object with invalid href' do
+      expect(first_href({ 'type' => 'Link', 'href' => {} })).to eq nil
+    end
+  end
 end

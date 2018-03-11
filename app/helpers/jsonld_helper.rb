@@ -9,21 +9,48 @@ module JsonLdHelper
     value.is_a?(Array) ? value.first : value
   end
 
-  # The url attribute can be a string, an array of strings, or an array of objects.
-  # The objects could include a mimeType. Not-included mimeType means it's text/html.
-  def url_to_href(value, preferred_type = nil)
-    single_value = if value.is_a?(Array) && !value.first.is_a?(String)
-                     value.find { |link| preferred_type.nil? || ((link['mimeType'].presence || 'text/html') == preferred_type) }
-                   elsif value.is_a?(Array)
-                     value.first
-                   else
-                     value
-                   end
+  def find_href(url, rel = nil, type = nil)
+    url = url.lazy.select do |element|
+      case element
+      when Hash
+        [['rel', rel], ['mimeType', type]].all? do |pair|
+          real = element[pair[0]]
+          expected = pair[1]
 
-    if single_value.nil? || single_value.is_a?(String)
-      single_value
-    else
-      single_value['href']
+          if expected.nil?
+            true
+          else
+            case real
+            when Array
+              real.any? do |real_element|
+                real_element.is_a?(String) && real_element.casecmp?(expected)
+              end
+            when String
+              real.casecmp? expected
+            when nil
+              true
+            else
+              false
+            end
+          end
+        end
+      when String
+        true
+      else
+        false
+      end
+    end
+
+    first_href(url)
+  end
+
+  def first_href(object)
+    case object
+    when Hash, String
+      url_element_to_href(object)
+    when Enumerable
+      hrefs = object.lazy.map { |url| url_element_to_href(url) }.reject(&:blank?)
+      hrefs.first
     end
   end
 
@@ -85,5 +112,15 @@ module JsonLdHelper
     request = Request.new(:get, uri)
     request.add_headers('Accept' => 'application/activity+json, application/ld+json')
     request
+  end
+
+  def url_element_to_href(url)
+    case url
+    when String
+      url
+    when Hash
+      href = url['href']
+      href.is_a?(String) ? href : nil
+    end
   end
 end
