@@ -12,26 +12,6 @@ const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
 });
 
-const shiftToPoint = (containerToImageRatio, containerSize, imageSize, focusSize, toMinus) => {
-  const containerCenter = Math.floor(containerSize / 2);
-  const focusFactor     = (focusSize + 1) / 2;
-  const scaledImage     = Math.floor(imageSize / containerToImageRatio);
-
-  let focus = Math.floor(focusFactor * scaledImage);
-
-  if (toMinus) focus = scaledImage - focus;
-
-  let focusOffset = focus - containerCenter;
-
-  const remainder = scaledImage - focus;
-  const containerRemainder = containerSize - containerCenter;
-
-  if (remainder < containerRemainder) focusOffset -= containerRemainder - remainder;
-  if (focusOffset < 0) focusOffset = 0;
-
-  return (focusOffset * -100 / containerSize) + '%';
-};
-
 class Item extends React.PureComponent {
 
   static contextTypes = {
@@ -44,8 +24,6 @@ class Item extends React.PureComponent {
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    containerWidth: PropTypes.number,
-    containerHeight: PropTypes.number,
   };
 
   static defaultProps = {
@@ -84,7 +62,7 @@ class Item extends React.PureComponent {
   }
 
   render () {
-    const { attachment, index, size, standalone, containerWidth, containerHeight } = this.props;
+    const { attachment, index, size, standalone } = this.props;
 
     let width  = 50;
     let height = 100;
@@ -143,45 +121,16 @@ class Item extends React.PureComponent {
 
       const originalUrl    = attachment.get('url');
       const originalWidth  = attachment.getIn(['meta', 'original', 'width']);
-      const originalHeight = attachment.getIn(['meta', 'original', 'height']);
 
       const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
       const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
       const sizes  = hasSize ? `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw` : null;
 
-      const focusX     = attachment.getIn(['meta', 'focus', 'x']);
-      const focusY     = attachment.getIn(['meta', 'focus', 'y']);
-      const imageStyle = {};
-
-      if (originalWidth && originalHeight && containerWidth && containerHeight && focusX && focusY) {
-        const widthRatio  = originalWidth / (containerWidth * (width / 100));
-        const heightRatio = originalHeight / (containerHeight * (height / 100));
-
-        let hShift = 0;
-        let vShift = 0;
-
-        if (widthRatio > heightRatio) {
-          hShift = shiftToPoint(heightRatio, (containerWidth * (width / 100)), originalWidth, focusX);
-        } else if(widthRatio < heightRatio) {
-          vShift = shiftToPoint(widthRatio, (containerHeight * (height / 100)), originalHeight, focusY, true);
-        }
-
-        if (originalWidth > originalHeight) {
-          imageStyle.height   = '100%';
-          imageStyle.width    = 'auto';
-          imageStyle.minWidth = '100%';
-        } else {
-          imageStyle.height    = 'auto';
-          imageStyle.width     = '100%';
-          imageStyle.minHeight = '100%';
-        }
-
-        imageStyle.top  = vShift;
-        imageStyle.left = hShift;
-      } else {
-        imageStyle.height = '100%';
-      }
+      const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
+      const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
+      const x      = ((focusX /  2) + .5) * 100;
+      const y      = ((focusY / -2) + .5) * 100;
 
       thumbnail = (
         <a
@@ -196,7 +145,7 @@ class Item extends React.PureComponent {
             sizes={sizes}
             alt={attachment.get('description')}
             title={attachment.get('description')}
-            style={imageStyle}
+            style={{ objectPosition: `${x}% ${y}%` }}
           />
         </a>
       );
@@ -320,7 +269,7 @@ export default class MediaGallery extends React.PureComponent {
       if (this.isStandaloneEligible()) {
         children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} />;
       } else {
-        children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} containerWidth={width} containerHeight={style.height} />);
+        children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} />);
       }
     }
 

@@ -4315,18 +4315,16 @@ a.status-card {
   display: block;
   text-decoration: none;
   color: $ui-secondary-color;
-  height: 100%;
   line-height: 0;
 
   &,
   img {
+    height: 100%;
     width: 100%;
   }
 
   img {
-    position: relative;
     object-fit: cover;
-    height: auto;
   }
 }
 
@@ -5076,6 +5074,12 @@ noscript {
   }
 }
 
+.focal-point-modal {
+  max-width: 80vw;
+  max-height: 80vh;
+  position: relative;
+}
+
 .focal-point {
   position: relative;
   cursor: pointer;
@@ -5083,6 +5087,14 @@ noscript {
 
   &.dragging {
     cursor: move;
+  }
+
+  img {
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    margin: auto;
   }
 
   &__reticle {
