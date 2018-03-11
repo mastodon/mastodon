@@ -273,6 +273,9 @@ sv:
       contact_information:
         email: Företag E-post
         username: Användarnamn för kontakt
+      hero:
+        desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven faller den tillbaka på instansens miniatyrbild
+        title: Hjältebild
       peers_api_enabled:
         desc_html: Domännamn denna instans har påträffat i fediverse
         title: Publicera lista över upptäckta instanser
@@ -356,6 +359,7 @@ sv:
     your_token: Din access token
   auth:
     agreement_html: Genom att registrera dig godkänner du att följa <a href="%{rules_path}">instansens regler</a> och <a href="%{terms_path}">våra användarvillkor</a>.
+    change_password: Lösenord
     confirm_email: Bekräfta e-postadress
     delete_account: Ta bort konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
@@ -366,11 +370,13 @@ sv:
     logout: Logga ut
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
+    or: eller
     or_log_in_with: Eller logga in med
     providers:
       cas: CAS
       saml: SAML
     register: Registrera
+    register_elsewhere: Registrera dig på en annan server
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     security: Säkerhet
@@ -420,14 +426,21 @@ sv:
       title: Den här sidan är inte korrekt
     noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">inhemska appar</a> för Mastodon för din plattform.
   exports:
+    archive_takeout:
+      date: Datum
+      download: Ladda ner ditt arkiv
+      hint_html: Du kan begära ett arkiv av dina <strong>toots och uppladdad media</strong>. Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel programvara.
+      in_progress: Kompilerar ditt arkiv...
+      request: Efterfråga ditt arkiv
+      size: Storlek
     blocks: Du blockerar
     csv: CSV
     follows: Du följer
     mutes: Du tystar
-    storage: Media lagring
+    storage: Medialagring
   followers:
     domain: Domän
-    explanation_html: Om du vill se integriteten för dina statusar måste du vara medveten om vem som följer dig. <strong>Dina privata statusar levereras till alla instanser där du har följare</strong>. Du kanske vill granska dem och ta bort följare om du inte litar på att din integritet respekteras av staff eller programvaran i instanserna.
+    explanation_html: Om du vill försäkra integriteten av dina statusar måste du vara medveten om vem som följer dig. <strong>Dina privata statusar levereras till alla instanser där du har följare</strong>. Du kanske vill granska och eventuellt ta bort följare om du inte litar på att din integritet respekteras hos medarbetarna eller programvara i dessa instanser.
     followers_count: Antal följare
     lock_link: Lås ditt konto
     purge: Ta bort från följare
@@ -435,7 +448,7 @@ sv:
       one: I processen med soft-blocking följare från en domän ...
       other: I processen med soft-blocking följare från %{count} domäner...
     true_privacy_html: Kom ihåg att <strong>sann integritet kan bara uppnås med end-to-end kryptering</strong>.
-    unlocked_warning_html: Vem som helst kan följa dig omedelbart se dina privata statusar. %{lock_link} för att kunna granska och avvisa följare.
+    unlocked_warning_html: Vem som helst kan följa dig för att omedelbart se dina privata statusar. %{lock_link} för att kunna granska och avvisa följare.
     unlocked_warning_title: Ditt konto är inte låst
   generic:
     changes_saved_msg: Ändringar sparades framgångsrikt!
@@ -448,9 +461,9 @@ sv:
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
     success: Dina uppgifter har laddats upp och kommer nu att behandlas snarast
     types:
-      blocking: Blockering lista
-      following: Följare lista
-      muting: Tystade lista
+      blocking: Lista av blockerade
+      following: Lista av följare
+      muting: Lista av nertystade
     upload: Ladda upp
   in_memoriam_html: Till minne av.
   invites:
@@ -535,7 +548,9 @@ sv:
           trillion: T
           unit: enhet
   pagination:
+    newer: Nyare
     next: Nästa
+    older: Äldre
     prev: Tidigare
     truncate: "&hellip;"
   preferences:
@@ -551,7 +566,7 @@ sv:
     group:
       title: "%{count} meddelanden"
     mention:
-      action_boost: Boosta
+      action_boost: Knuffa
       action_expand: Visa mer
       action_favourite: Favoriter
       title: "%{name} nämnde dig"
@@ -609,7 +624,7 @@ sv:
     delete: Konto radering
     development: Utveckling
     edit_profile: Redigera profil
-    export: Data export
+    export: Exportera data
     followers: Auktoriserade följare
     import: Import
     migrate: Kontoflytt
@@ -625,7 +640,7 @@ sv:
       limit: Du har redan fäst det maximala antalet toots
       ownership: Någon annans toot kan inte fästas
       private: Icke-offentliga toot kan inte fästas
-      reblog: En boost kan inte fästas
+      reblog: Knuffar kan inte fästas
     show_more: Visa mer
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -634,7 +649,7 @@ sv:
       public: Offentlig
       public_long: Alla kan se
       unlisted: Olistade
-      unlisted_long: Alla kan se, men inte listade på offentliga tidslinjer
+      unlisted_long: Alla kan se, men listas inte på offentliga tidslinjer
   stream_entries:
     click_to_show: Klicka för att visa
     pinned: Fäst toot
@@ -717,7 +732,7 @@ sv:
       default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
-    description_html: Om du aktiverar <strong>tvåfaktors autentisering</strong>, loggar in kommer att kräva att du är i besittning av din telefon, vilket kommer att generera tokens för dig att uppge.
+    description_html: Om du aktiverar <strong>tvåstegsautentisering</strong> kommer inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera tokens för dig att uppge.
     disable: Avaktivera
     enable: Aktivera
     enabled: Tvåfaktorsautentisering är aktiverad
@@ -732,9 +747,13 @@ sv:
     setup: Ställ in
     wrong_code: Den angivna koden var ogiltig! Är servertid och enhetstid korrekt?
   user_mailer:
+    backup_ready:
+      explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
+      subject: Ditt arkiv är klart för nedladdning
+      title: Arkivuttagning
     welcome:
       edit_profile_action: Profilinställning
-      edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, rubrik, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
+      edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
       explanation: Här är några tips för att komma igång
       final_action: Börja posta
       final_step: 'Börja posta! Även utan anhängare kan dina offentliga meddelanden ses av andra, till exempel på den lokala tidslinjen och i hashtags. Du får gärna presentera dig via hashtaggen #introductions.'
@@ -753,4 +772,5 @@ sv:
   users:
     invalid_email: E-postadressen är ogiltig
     invalid_otp_token: Ogiltig tvåfaktorkod
+    seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
