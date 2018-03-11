@@ -2515,6 +2515,10 @@ a.status-card {
     flex: 1;
   }
 
+  & > .column-header__back-button {
+    color: $ui-highlight-color;
+  }
+
   &.active {
     box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
 
