@@ -130,6 +130,15 @@ export default class MediaModal extends ImmutablePureComponent {
       return null;
     }).toArray();
 
+    // you can't use 100vh, because the viewport height is taller
+    // than the visible part of the document in some mobile
+    // browsers when it's address bar is visible.
+    // https://developers.google.com/web/updates/2016/12/url-bar-resizing
+    const swipeableViewsStyle = {
+      width: '100%',
+      height: '100%',
+    };
+
     const containerStyle = {
       alignItems: 'center', // center vertically
     };
@@ -145,23 +154,15 @@ export default class MediaModal extends ImmutablePureComponent {
           role='presentation'
           onClick={onClose}
         >
-          <div className='media-modal__content'>
-            <ReactSwipeableViews
-              style={{
-                // you can't use 100vh, because the viewport height is taller
-                // than the visible part of the document in some mobile
-                // browsers when it's address bar is visible.
-                // https://developers.google.com/web/updates/2016/12/url-bar-resizing
-                height: `${document.body.clientHeight}px`,
-              }}
-              containerStyle={containerStyle}
-              onChangeIndex={this.handleSwipe}
-              onSwitching={this.handleSwitching}
-              index={index}
-            >
-              {content}
-            </ReactSwipeableViews>
-          </div>
+          <ReactSwipeableViews
+            style={swipeableViewsStyle}
+            containerStyle={containerStyle}
+            onChangeIndex={this.handleSwipe}
+            onSwitching={this.handleSwitching}
+            index={index}
+          >
+            {content}
+          </ReactSwipeableViews>
         </div>
         <div className={navigationClassName}>
           <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
