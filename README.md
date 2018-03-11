@@ -81,7 +81,7 @@ You can open issues for bugs you've found or features you think are missing. You
 
 ## License
 
-Copyright (C) 2016-2018 Eugen Rochko & Mastodon Contributors
+Copyright (C) 2016-2018 Eugen Rochko & other Mastodon contributors (see AUTHORS.md)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
