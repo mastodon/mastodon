@@ -4315,18 +4315,16 @@ a.status-card {
   display: block;
   text-decoration: none;
   color: $ui-secondary-color;
-  height: 100%;
   line-height: 0;
 
   &,
   img {
+    height: 100%;
     width: 100%;
   }
 
   img {
-    position: relative;
     object-fit: cover;
-    height: auto;
   }
 }
 
