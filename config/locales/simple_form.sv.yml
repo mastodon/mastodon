@@ -1,10 +1,10 @@
+---
 sv:
   simple_form:
     hints:
       defaults:
         avatar: Högst 2 MB. Kommer nedskalas till 400x400px
-        digest: Skickas endast efter en lång period av inaktivitet och endast om du
-          har fått några personliga meddelanden i din frånvaro
+        digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
         display_name:
           one: <span class="name-counter">1</span> tecken kvar
           other: <span class="name-counter">%{count}</span> tecken kvar
@@ -14,15 +14,13 @@ sv:
           one: <span class="note-counter">1</span> tecken kvar
           other: <span class="note-counter">%{count}</span> tecken kvar
         setting_noindex: Påverkar din offentliga profil och statussidor
-        setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är
-          inloggad.
+        setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är inloggad.
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
         otp: Ange tvåfaktorkoden från din telefon eller använd någon av dina återställningskoder.
       user:
-        filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer
-          för dig
+        filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer för dig
     labels:
       defaults:
         avatar: Avatar
@@ -47,6 +45,7 @@ sv:
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot
+        setting_display_sensitive_media: Visa alltid media märkt som känsligt
         setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
@@ -56,7 +55,6 @@ sv:
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
-        setting_display_sensitive_media: Visa alltid media märkt som känsligt
       interactions:
         must_be_follower: Blockera meddelanden från icke-följare
         must_be_following: Blockera meddelanden från personer du inte följer
@@ -70,6 +68,6 @@ sv:
         reblog: Skicka e-post när någon knuffar din status
     'no': Nej
     required:
-      mark: '*'
+      mark: "*"
       text: obligatorisk
     'yes': Ja
