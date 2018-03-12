@@ -244,6 +244,18 @@ namespace :mastodon do
           q.echo false
         end
 
+        env['SMTP_AUTH_METHOD'] = prompt.ask('SMTP authentication:') do |q|
+          q.required
+          q.default 'plain'
+          q.modify :strip
+        end
+
+        env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.ask('SMTP OpenSSL verify mode:') do |q|
+          q.required
+          q.default 'peer'
+          q.modify :strip
+        end
+
         env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|
           q.required true
           q.default "Mastodon <notifications@#{env['LOCAL_DOMAIN']}>"
@@ -261,7 +273,8 @@ namespace :mastodon do
             :user_name            => env['SMTP_LOGIN'].presence,
             :password             => env['SMTP_PASSWORD'].presence,
             :domain               => env['LOCAL_DOMAIN'],
-            :authentication       => :plain,
+            :authentication       => env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
+            :openssl_verify_mode  => env['SMTP_OPENSSL_VERIFY_MODE'],
             :enable_starttls_auto => true,
           }
 
