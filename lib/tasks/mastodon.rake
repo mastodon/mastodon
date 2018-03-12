@@ -302,7 +302,7 @@ namespace :mastodon do
           prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
           prompt.say "\n"
 
-          if cmd.run!({ RAILS_ENV: 'production' }, :rails, 'db:setup').failure?
+          if cmd.run!({ RAILS_ENV: 'production', SAFETY_ASSURED: 1 }, :rails, 'db:setup').failure?
             prompt.say "\n"
             prompt.error 'That failed! Perhaps your configuration is not right'
           else
