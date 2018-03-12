@@ -397,8 +397,8 @@ sk:
       about_x_months: "%{count}mesiace"
       about_x_years: "%{count}rok"
       almost_x_years: "%{count}rok"
-      half_a_minute: Len teraz
-      less_than_x_seconds: Len teraz
+      half_a_minute: Práve teraz
+      less_than_x_seconds: Práve teraz
       over_x_years: "%{count}rok"
       x_days: "%{count}dni"
       x_minutes: ''
@@ -629,6 +629,8 @@ sk:
   terms:
     title: Podmienky užívania, a pravidlá o súkromí pre %{instance}
   two_factor_authentication:
+    enable: Povoliť
+    generate_recovery_codes: Vygeneruj zálohové kódy
     setup: Nastavenie
   user_mailer:
     backup_ready:
@@ -640,12 +642,15 @@ sk:
       explanation: Tu nájdeš nejaké tipy do začiatku
       final_action: Začni prispievať
       final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné ostatnými, napríklad na lokálnej osi a pod haštagmi. Môžete sa ostatným predstaviť pod haštagom #introductions.'
+      full_handle: Adresa tvojho profilu v celom formáte
       review_preferences_action: Zmeniť nastavenia
       subject: Vitaj na Mastodone
       tip_local_timeline: Lokálna os je celkový pohľad na aktivitu užívateľov %{instance}. Toto sú tvoji najbližší susedia!
       tip_mobile_webapp: Pokiaľ ti prehliadač ponúkne možnosť pridať Mastodon na tvoju obrazovku, môžeš potom dostávať notifikácie skoro ako z natívnej aplikácie!
+      tips: Tipy
       title: Vitaj na palube, %{name}!
   users:
     invalid_email: Emailová adresa je neplatná
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
+    seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásený ako:'
