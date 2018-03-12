@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304013859) do
+ActiveRecord::Schema.define(version: 20180310000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -306,6 +306,7 @@ ActiveRecord::Schema.define(version: 20180304013859) do
     t.string "scopes"
     t.bigint "application_id"
     t.bigint "resource_owner_id"
+    t.boolean "reading_notifications", default: false, null: false
     t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
     t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
@@ -509,6 +510,7 @@ ActiveRecord::Schema.define(version: 20180304013859) do
     t.boolean "moderator", default: false, null: false
     t.bigint "invite_id"
     t.string "remember_token"
+    t.bigint "last_read_notification_id", default: 0, null: false
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

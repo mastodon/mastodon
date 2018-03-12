@@ -6,14 +6,13 @@ RSpec.describe Notification, type: :model do
   end
 
   describe '#target_status' do
-    let(:notification) { Fabricate(:notification, activity_type: type, activity: activity) }
+    let(:notification) { Fabricate(:notification, activity: activity) }
     let(:status)       { Fabricate(:status) }
     let(:reblog)       { Fabricate(:status, reblog: status) }
     let(:favourite)    { Fabricate(:favourite, status: status) }
     let(:mention)      { Fabricate(:mention, status: status) }
 
-    context 'type is :reblog' do
-      let(:type)     { :reblog }
+    context 'activity is status' do
       let(:activity) { reblog }
 
       it 'returns status' do
@@ -21,8 +20,7 @@ RSpec.describe Notification, type: :model do
       end
     end
 
-    context 'type is :favourite' do
-      let(:type)     { :favourite }
+    context 'activity is favourite' do
       let(:activity) { favourite }
 
       it 'returns status' do
@@ -30,8 +28,7 @@ RSpec.describe Notification, type: :model do
       end
     end
 
-    context 'type is :mention' do
-      let(:type)     { :mention }
+    context 'activity is mention' do
       let(:activity) { mention }
 
       it 'returns status' do

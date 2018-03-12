@@ -234,9 +234,9 @@ const startWorker = (workerId) => {
       }
     }
 
-    const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
+    req.token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
 
-    accountFromToken(token, req, next);
+    accountFromToken(req.token, req, next);
   };
 
   const PUBLIC_STREAMS = [
@@ -381,6 +381,23 @@ const startWorker = (workerId) => {
     attachCloseHandler(`${redisPrefix}${id}`, listener);
   };
 
+  const streamNotificationEnd = req => {
+    pgPool.connect((err, client, done) => {
+      if (err) {
+        log.error(err);
+        return;
+      }
+
+      client.query('UPDATE users SET last_read_notification_id = (SELECT id FROM notifications ORDER BY id DESC LIMIT 1) FROM oauth_access_tokens WHERE oauth_access_tokens.resource_owner_id = users.id AND oauth_access_tokens.token = $1 AND oauth_access_tokens.reading_notifications', [req.token], err => {
+        done();
+
+        if (err) {
+          log.error(err);
+        }
+      });
+    });
+  };
+
   // Setup stream output to HTTP
   const streamToHttp = (req, res) => {
     const accountId = req.accountId || req.remoteAddress;
@@ -450,11 +467,14 @@ const startWorker = (workerId) => {
 
   app.get('/api/v1/streaming/user', (req, res) => {
     const channel = `timeline:${req.accountId}`;
-    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, subscriptionHeartbeat(channel)));
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, () => {
+      streamNotificationEnd(req);
+      subscriptionHeartbeat(channel);
+    }));
   });
 
   app.get('/api/v1/streaming/user/notification', (req, res) => {
-    streamFrom(`timeline:${req.accountId}`, req, streamToHttp(req, res), streamHttpEnd(req), false, true);
+    streamFrom(`timeline:${req.accountId}`, req, streamToHttp(req, res), streamHttpEnd(req, () => streamNotificationEnd(req)), false, true);
   });
 
   app.get('/api/v1/streaming/public', (req, res) => {
@@ -505,10 +525,13 @@ const startWorker = (workerId) => {
     switch(location.query.stream) {
     case 'user':
       const channel = `timeline:${req.accountId}`;
-      streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
+      streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, () => {
+        streamNotificationEnd(req);
+        subscriptionHeartbeat(channel);
+      }));
       break;
     case 'user:notification':
-      streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(req, ws), false, true);
+      streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(req, ws, () => streamNotificationEnd(req)), false, true);
       break;
     case 'public':
       streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(req, ws), true);

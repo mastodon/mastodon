@@ -35,6 +35,7 @@
 #  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :integer
 #  remember_token            :string
+#  last_read_notification_id :integer          default(0), not null
 #
 
 class User < ApplicationRecord

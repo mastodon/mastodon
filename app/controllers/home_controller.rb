@@ -50,6 +50,7 @@ class HomeController < ApplicationController
       current_account: current_account,
       token: current_session.token,
       admin: Account.find_local(Setting.site_contact_username),
+      unread_notifications: UnreadNotificationsPresenter.new(current_user),
     }
   end
 

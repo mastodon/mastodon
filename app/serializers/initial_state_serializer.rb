@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class InitialStateSerializer < ActiveModel::Serializer
-  attributes :meta, :compose, :accounts,
+  attributes :meta, :compose, :accounts, :unread_notifications,
              :media_attachments, :settings, :push_subscription
 
   has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
+  has_one :unread_notifications, serializer: REST::UnreadNotificationsSerializer
 
   def custom_emojis
     CustomEmoji.local.where(disabled: false)

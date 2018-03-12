@@ -45,7 +45,7 @@ const mapDispatchToProps = dispatch => ({
 const badgeDisplay = (number, limit) => {
   if (number === 0) {
     return undefined;
-  } else if (limit && number >= limit) {
+  } else if (limit && (number === null || number >= limit)) {
     return `${limit}+`;
   } else {
     return number;
@@ -63,7 +63,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
     fetchFollowRequests: PropTypes.func.isRequired,
     unreadFollowRequests: PropTypes.number,
-    unreadNotifications: PropTypes.number,
+    unreadNotifications: ImmutablePropTypes.map.isRequired,
   };
 
   componentDidMount () {
@@ -85,7 +85,7 @@ export default class GettingStarted extends ImmutablePureComponent {
       }
 
       if (!columns.find(item => item.get('id') === 'NOTIFICATIONS')) {
-        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications)} to='/notifications' />);
+        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications.get('count'), unreadNotifications.get('limit'))} to='/notifications' />);
       }
 
       if (!columns.find(item => item.get('id') === 'COMMUNITY')) {

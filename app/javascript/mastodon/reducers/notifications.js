@@ -13,14 +13,18 @@ import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
+import { STORE_HYDRATE } from '../actions/store';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),
   next: null,
-  top: true,
-  unread: 0,
+  top: false,
+  unread: {
+    count: null,
+    limit: null,
+  },
   loaded: false,
   isLoading: true,
 });
@@ -36,7 +40,7 @@ const normalizeNotification = (state, notification) => {
   const top = state.get('top');
 
   if (!top) {
-    state = state.update('unread', unread => unread + 1);
+    state = state.updateIn(['unread', 'count'], count => count === null || count >= 99 ? null : count + 1);
   }
 
   return state.update('items', list => {
@@ -85,7 +89,7 @@ const filterNotifications = (state, relationship) => {
 
 const updateTop = (state, top) => {
   if (top) {
-    state = state.set('unread', 0);
+    state = state.setIn(['unread', 'count'], 0);
   }
 
   return state.set('top', top);
@@ -116,6 +120,8 @@ export default function notifications(state = initialState, action) {
     return filterNotifications(state, action.relationship);
   case NOTIFICATIONS_CLEAR:
     return state.set('items', ImmutableList()).set('next', null);
+  case STORE_HYDRATE:
+    return state.set('unread', action.state.get('unread_notifications'));
   case TIMELINE_DELETE:
     return deleteByStatus(state, action.id);
   default:

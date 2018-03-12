@@ -183,8 +183,17 @@ export function clearNotifications() {
 };
 
 export function scrollTopNotifications(top) {
-  return {
-    type: NOTIFICATIONS_SCROLL_TOP,
-    top,
+  return (dispatch, getState) => {
+    if (top !== getState().getIn(['notifications', 'top'])) {
+      dispatch({
+        type: NOTIFICATIONS_SCROLL_TOP,
+        top,
+      });
+
+      api(getState).patch('/api/v1/notifications/unread', {
+        last_read_id: getState().getIn(['notifications', 'items', 0, 'id']),
+        reading: top,
+      });
+    }
   };
 };

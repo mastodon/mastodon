@@ -266,6 +266,7 @@ Rails.application.routes.draw do
         collection do
           post :clear
           post :dismiss
+          resource :unread, module: :notifications, only: [:show, :update]
         end
       end
 
