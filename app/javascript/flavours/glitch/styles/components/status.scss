@@ -314,18 +314,26 @@
   border-bottom: 1px solid $ui-secondary-color;
   display: flex;
 
-  .status__content {
-    flex: 1 1 auto;
-    padding: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .status-check-box__status {
+    margin: 10px 0 10px 10px;
+    flex: 1;
+
+    .media-gallery {
+      max-width: 250px;
+    }
 
     .status__content {
-      color: #3a3a3a;
-      a {
-        color: #005aa9;
-      }
+      padding: 0;
+      white-space: normal;
+    }
+
+    .video-player {
+      margin-top: 8px;
+      max-width: 250px;
+    }
+
+    .media-gallery__item-thumbnail {
+      cursor: default;
     }
   }
 }
