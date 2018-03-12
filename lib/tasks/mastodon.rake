@@ -291,6 +291,7 @@ namespace :mastodon do
 
           mail = ActionMailer::Base.new.mail to: send_to, subject: 'Test', body: 'Mastodon SMTP configuration works!'
           mail.deliver
+          break
         rescue StandardError => e
           prompt.error 'E-mail could not be sent with this configuration, try again.'
           prompt.error e.message
