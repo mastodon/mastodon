@@ -224,36 +224,43 @@ namespace :mastodon do
       prompt.say "\n"
 
       loop do
-        env['SMTP_SERVER'] = prompt.ask('SMTP server:') do |q|
-          q.required true
-          q.default 'smtp.mailgun.org'
-          q.modify :strip
-        end
+        if prompt.yes?('Do you want to send e-mails from localhost?', default: false)
+          env['SMTP_SERVER'] = 'localhost'
+          env['SMTP_PORT'] = 25
+          env['SMTP_AUTH_METHOD'] = 'none'
+          env['SMTP_OPENSSL_VERIFY_MODE'] = 'none'
+        else
+          env['SMTP_SERVER'] = prompt.ask('SMTP server:') do |q|
+            q.required true
+            q.default 'smtp.mailgun.org'
+            q.modify :strip
+          end
 
-        env['SMTP_PORT'] = prompt.ask('SMTP port:') do |q|
-          q.required true
-          q.default 587
-          q.convert :int
-        end
+          env['SMTP_PORT'] = prompt.ask('SMTP port:') do |q|
+            q.required true
+            q.default 587
+            q.convert :int
+          end
 
-        env['SMTP_LOGIN'] = prompt.ask('SMTP username:') do |q|
-          q.modify :strip
-        end
+          env['SMTP_LOGIN'] = prompt.ask('SMTP username:') do |q|
+            q.modify :strip
+          end
 
-        env['SMTP_PASSWORD'] = prompt.ask('SMTP password:') do |q|
-          q.echo false
-        end
+          env['SMTP_PASSWORD'] = prompt.ask('SMTP password:') do |q|
+            q.echo false
+          end
 
-        env['SMTP_AUTH_METHOD'] = prompt.ask('SMTP authentication:') do |q|
-          q.required
-          q.default 'plain'
-          q.modify :strip
-        end
+          env['SMTP_AUTH_METHOD'] = prompt.ask('SMTP authentication:') do |q|
+            q.required
+            q.default 'plain'
+            q.modify :strip
+          end
 
-        env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.ask('SMTP OpenSSL verify mode:') do |q|
-          q.required
-          q.default 'peer'
-          q.modify :strip
+          env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.ask('SMTP OpenSSL verify mode:') do |q|
+            q.required
+            q.default 'peer'
+            q.modify :strip
+          end
         end
 
         env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|
