@@ -35,6 +35,8 @@ import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrde
 import uuid from '../uuid';
 import { me } from '../initial_state';
 
+const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
+
 const initialState = ImmutableMap({
   mounted: 0,
   sensitive: false,
@@ -135,12 +137,14 @@ const updateSuggestionTags = (state, token) => {
 };
 
 const insertEmoji = (state, position, emojiData) => {
-  const emoji = emojiData.native;
+  const oldText = state.get('text');
+  const needsSpace = emojiData.custom && position > 0 && !allowedAroundShortCode.includes(oldText[position - 1]);
+  const emoji = needsSpace ? ' ' + emojiData.native : emojiData.native;
 
-  return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`);
-    map.set('focusDate', new Date());
-    map.set('idempotencyKey', uuid());
+  return state.merge({
+    text: `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`,
+    focusDate: new Date(),
+    idempotencyKey: uuid(),
   });
 };
 
