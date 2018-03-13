@@ -193,7 +193,7 @@ data.db:
     - id: backup
       schedule: '0 3 * * *'
       command: |
-        PGPASSWORD=${DATA_POSTGRES_PASS} pg_dump -U ${DATA_POSTGRES_USER} -w -Fc -O gonano |
+        PGPASSWORD=${DATA_DB_PASS} pg_dump -U ${DATA_DB_USER} -w -Fc -O gonano |
         gzip |
         curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).sql.gz --data-binary @- &&
         curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |

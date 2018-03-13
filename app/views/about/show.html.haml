@@ -50,7 +50,7 @@
 
               %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
-          .landing-page__call-to-action
+          .landing-page__call-to-action{ dir: 'ltr' }
             .row
               .row__information-board
                 .information-board__section
