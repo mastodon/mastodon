@@ -21,7 +21,8 @@ class ProcessHashtagsService < BaseService
         begin
           status.account.recently_used_tags.create! index: index, tag: tag
         rescue ActiveRecord::RecordNotUnique
-          # The tag was used in some recent session and correctly recorded.
+          Rails.logger.debug "Tag #{tag.name} was used by @#{status.account.username} at the same time."
+          Rails.logger.debug "Refusing to create recently_used_tags entry again."
         end
       end
 

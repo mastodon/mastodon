@@ -359,8 +359,9 @@ ActiveRecord::Schema.define(version: 20180310000000) do
     t.integer "index", null: false
     t.bigint "account_id", null: false
     t.string "tag_id", null: false
-    t.index ["account_id", "index"], name: "index_recently_used_tags_on_account_id_and_index", unique: true
+    t.index ["account_id", "index"], name: "index_recently_used_tags_on_account_id_and_index"
     t.index ["account_id", "tag_id"], name: "index_recently_used_tags_on_account_id_and_tag_id", unique: true
+    t.index ["tag_id"], name: "index_recently_used_tags_on_tag_id"
   end
 
   create_table "reports", force: :cascade do |t|

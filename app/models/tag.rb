@@ -11,7 +11,7 @@
 
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
-  has_many :recently_used_tags, inverse_of: :tag, primary_key: :name
+  has_many :recently_used_tags, dependent: :delete_all, inverse_of: :tag, primary_key: :name
 
   HASHTAG_NAME_RE = '[[:word:]_]*[[:alpha:]_·][[:word:]_]*'
   HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i

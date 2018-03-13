@@ -44,4 +44,3 @@ export default class Settings {
 }
 
 export const pushNotificationsSetting = new Settings('mastodon_push_notification_data');
-export const tagHistory = new Settings('mastodon_tag_history');
