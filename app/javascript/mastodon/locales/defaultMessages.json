@@ -768,8 +768,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Mark media as sensitive",
-        "id": "compose_form.sensitive"
+        "defaultMessage": "Media is marked as sensitive",
+        "id": "compose_form.sensitive.marked"
+      },
+      {
+        "defaultMessage": "Media is not marked as sensitive",
+        "id": "compose_form.sensitive.unmarked"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/sensitive_button_container.json"
@@ -777,8 +781,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Hide text behind warning",
-        "id": "compose_form.spoiler"
+        "defaultMessage": "Text is hidden behind warning",
+        "id": "compose_form.spoiler.marked"
+      },
+      {
+        "defaultMessage": "Text is not hidden",
+        "id": "compose_form.spoiler.unmarked"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/spoiler_button_container.json"
