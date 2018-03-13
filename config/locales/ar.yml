@@ -1,6 +1,7 @@
 ---
 ar:
   about:
+    about_hashtag_html: هذه هي الرسائل العامة مع الكلمات الدلالية  <strong> 1#%{hashtag}</strong>. يمكنك التفاعل معهم إذا كان لديك حساب في أي مكان على الإنترنت المتحد.
     about_mastodon_html: ماستدون شبكة إجتماعية <em>حرة و مفتوحة المصدر</em>. هو بديل <em>لامركزي</em> لمنصات تجارية ، يمكنك من تجنب احتكار شركة واحدة للإتصالات الخاصة بك. يمكنك اختيار أي خادم تثق فيه. أيهما تختار، يمكنك التفاعل مع أي شخص آخر على الشبكة. يمكن لأي شخص تنصيب و تشغيل خادم ماستدون خاص به والمشاركة في <em>الشبكات الاجتماعية</em> بكل شفافية.
     about_this: عن مثيل الخادوم هذا
     closed_registrations: التسجيلات في مثيل الخادوم هذا مُغلقة حاليًا.
@@ -10,6 +11,9 @@ ar:
     description_headline: ما هو %{domain}?
     domain_count_after: خوادم أخرى
     domain_count_before: متصل بـ
+    extended_description_html: |
+      <h3>مكان جيد للقواعد</h3>
+      <p>لا يوجد تفصيل طويل حتى الآن.</p>
     features:
       humane_approach_body: تعلُّمًا مِن فشل الشبكات الأخرى، غاية ماستدون هي بلوغ الخيارات الأخلاقية في التصميم لمُحارَبة إسائة إستعمال شبكات التواصل الإجتماعية.
       humane_approach_title: أسلوب يعيد الإعتبار للإنسان
@@ -73,13 +77,16 @@ ar:
       followers: المتابِعون
       followers_url: عنوان رابط المتابِعين
       follows: يتابع
+      inbox_url: رابط صندوق الوارد
       ip: عنوان الإيبي
       location:
         all: الكل
         local: المحلي
         remote: عن بُعد
         title: الموقع
+      login_status: وضع الدخول
       media_attachments: الوسائط المرفقة
+      memorialize: تحول إلى صفحة للذاكرة
       moderation:
         all: الكل
         silenced: تم كتمه
@@ -88,17 +95,22 @@ ar:
       moderation_notes: ملاحظات الإشراف
       most_recent_activity: آخر نشاط حديث
       most_recent_ip: أحدث عنوان إيبي
+      not_subscribed: غير مشترك
       order:
         alphabetic: أبجديًا
         most_recent: الأحدث
         title: الترتيب
+      outbox_url: رابط صندوق الصادر
+      perform_full_suspension: تعطيل الحساب بالكامل
       profile_url: رابط الملف الشخصي
       promote: ترقية
       protocol: البروتوكول
       public: عمومي
+      push_subscription_expires: انتهاء الاشتراك ”PuSH“
       redownload: تحديث الصورة الرمزية
       reset: إعادة التعيين
       reset_password: إعادة ضبط كلمة السر
+      resubscribe: اشترك مرة أخرى
       role: التصريحات
       roles:
         admin: مدير
@@ -111,9 +123,13 @@ ar:
         created_reports: البلاغات التي أنشأها هذا الحساب
         report: التقرير
         targeted_reports: التقريرات التي أُنشِأت ضد هذا الحساب
+      silence: سكتهم
       statuses: المنشورات
+      subscribe: اشترك
       title: الحسابات
+      undo_silenced: رفع الصمت
       undo_suspension: إلغاء تعليق الحساب
+      unsubscribe: إلغاء الاشتراك
       username: إسم المستخدم
       web: الويب
     action_logs:
