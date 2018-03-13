@@ -79,6 +79,8 @@ class Request
   end
 
   def user_agent
+    root_url = 'https://joinmastodon.org/'
+
     @user_agent ||= "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::Version}; +#{root_url})"
   end
 
