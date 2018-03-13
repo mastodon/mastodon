@@ -37,7 +37,7 @@ class SearchService < BaseService
   end
 
   def perform_hashtags_search!
-    Tag.search_for(query.gsub(/\A#/, ''), limit)
+    TagSearchService.new.call(query, limit, account)
   end
 
   def default_results

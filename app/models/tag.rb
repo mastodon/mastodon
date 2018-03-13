@@ -11,6 +11,7 @@
 
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
+  has_many :recently_used_tags, inverse_of: :tag, primary_key: :name
 
   HASHTAG_NAME_RE = '[[:word:]_]*[[:alpha:]_·][[:word:]_]*'
   HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
@@ -22,9 +23,9 @@ class Tag < ApplicationRecord
   end
 
   class << self
-    def search_for(term, limit = 5)
+    def search_for(term)
       pattern = sanitize_sql_like(term.strip) + '%'
-      Tag.where('lower(name) like lower(?)', pattern).order(:name).limit(limit)
+      Tag.where('lower(name) like lower(?)', pattern)
     end
   end
 end

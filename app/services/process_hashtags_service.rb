@@ -9,5 +9,23 @@ class ProcessHashtagsService < BaseService
     end
 
     status.update(sensitive: true) if tags.include?('nsfw')
+
+    if status.local?
+      status.account.recently_used_tags.where(tag: status.tags).delete_all
+      last = status.account.recently_used_tags.order(:id).last
+      index = last.nil? ? 0 : last.index
+
+      status.tags.each do |tag|
+        index += 1
+
+        begin
+          status.account.recently_used_tags.create! index: index, tag: tag
+        rescue ActiveRecord::RecordNotUnique
+          # The tag was used in some recent session and correctly recorded.
+        end
+      end
+
+      status.account.recently_used_tags.where('index < ?', index - 1000).delete_all
+    end
   end
 end
