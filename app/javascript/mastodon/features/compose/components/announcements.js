@@ -23,7 +23,7 @@ export default class Announcements extends React.PureComponent {
     const { intl, visible, onToggle, announcements } = this.props;
 
     return (
-      <div className='announcements'>
+      <div className='compose__extra'>
         <div className='compose__extra__header'>
           <i className='fa fa-bell' />
           <FormattedMessage id='announcement.title' defaultMessage='information' />
@@ -32,7 +32,7 @@ export default class Announcements extends React.PureComponent {
           </div>
         </div>
         { visible && (
-          <ul>
+          <ul className='announcements'>
             {announcements.map((announcement, idx) => (
               <li key={idx}>
                 <div className='announcements__body'>
