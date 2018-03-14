@@ -23,7 +23,6 @@ es:
       real_conversation_title: Hecho para verdaderas conversaciones
       within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas gracias a un ecosistema de APIs amigable al desarrollador para permitirte estar con tus amigos donde sea.
       within_reach_title: Siempre al alcance
-    find_another_instance: Busca otra instancia
     generic_description: "%{domain} es un servidor en la red"
     hosted_on: Mastodon hosteado en %{domain}
     learn_more: Aprende más
@@ -274,6 +273,8 @@ es:
       contact_information:
         email: Correo de trabajo
         username: Nombre de usuario
+      hero:
+        desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
       peers_api_enabled:
         desc_html: Nombres de dominio que esta instancia ha encontrado en el fediverso
         title: Publicar lista de instancias descubiertas
@@ -290,6 +291,9 @@ es:
         open:
           desc_html: Permite a cualquiera a registrar una cuenta
           title: Registro abierto
+      show_known_fediverse_at_about_page:
+        desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
+        title: Mostrar fediverso conocido en la vista previa de la historia
       show_staff_badge:
         desc_html: Mostrar un parche de staff en la página de un usuario
         title: Mostrar parche de staff
@@ -354,7 +358,8 @@ es:
     your_token: Tu token de acceso
   auth:
     agreement_html: Al registrarte, acepta seguir <a href="%{rules_path}">las reglas de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
-    change_password: Cambiar contraseña
+    change_password: Contraseña
+    confirm_email: Confirmar email
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
@@ -364,9 +369,16 @@ es:
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
+    or: o
+    or_log_in_with: O inicia sesión con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrarse
+    register_elsewhere: Registrarse en otro servidor
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
+    security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
   authorize_follow:
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
@@ -413,6 +425,13 @@ es:
       title: Esta página no es correcta
     noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">aplicaciones nativas</a> para Mastodon para tu plataforma.
   exports:
+    archive_takeout:
+      date: Fecha
+      download: Descargar tu archivo
+      hint_html: Puedes solicitar un archivo de tus <strong>toots y materiales subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
+      in_progress: Recopilando tu archivo...
+      request: Solicitar tu archivo
+      size: Tamaño
     blocks: Personas que has bloqueado
     csv: CSV
     follows: Personas que sigues
@@ -528,7 +547,9 @@ es:
           trillion: T
           unit: ''
   pagination:
+    newer: Más nuevo
     next: Próximo
+    older: Más antiguo
     prev: Anterior
     truncate: "&hellip;"
   preferences:
@@ -551,7 +572,7 @@ es:
     reblog:
       title: "%{name} boosteó tu estado"
   remote_follow:
-    acct: Ingesa el usuario@dominio de la persona que quieres seguir
+    acct: Ingesa tu usuario@dominio desde el que quieres seguir
     missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
@@ -725,23 +746,30 @@ es:
     setup: Configurar
     wrong_code: "¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?"
   user_mailer:
+    backup_ready:
+      explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
+      subject: Tu archivo está preparado para descargar
+      title: Recogida del archivo
     welcome:
       edit_profile_action: Configurar el perfil
-      explanation: Aquí hay algunos consejos para iniciar
+      edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, cabecera, cambiando tu nombre para mostrar y más. Si te gustaría revisar seguidores antes de autorizarlos a que te sigan, puedes bloquear tu cuenta.
+      explanation: Aquí hay algunos consejos para empezar
       final_action: Empezar a publicar
       final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea de tiempo local y con "hashtags". Podrías querer introducirte con el "hashtag" #introductions.'
       full_handle: Su sobrenombre completo
       full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan enviarte mensajes o seguirte desde otra instancia.
       review_preferences_action: Cambiar preferencias
-      review_preferences_step: Asegurate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
+      review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
       subject: Bienvenido a Mastodon
       tip_bridge_html: Si esta viniendo desde Twitter, puedes encontrar a tus amigos en Mastodon usando la <a href="%{bridge_url}">aplicación puente</a>. Aunque solo funciona si ellos también usaron la aplicación puente!
+      tip_federated_timeline: La historia federada es una vista de toda la red Mastodon conocida. Sólo incluye gente a la que se han suscrito personas de tu instancia, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
       tips: Tips
-      title: Bienvenido a bordo, %{name}!
+      title: Te damos la bienvenida a bordo, %{name}!
   users:
     invalid_email: La dirección de correo es incorrecta
     invalid_otp_token: Código de dos factores incorrecto
+    seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'

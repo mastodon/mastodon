@@ -36,6 +36,8 @@ class Form::AdminSettings
     :activity_api_enabled=,
     :peers_api_enabled,
     :peers_api_enabled=,
+    :show_known_fediverse_at_about_page,
+    :show_known_fediverse_at_about_page=,
     to: Setting
   )
 end

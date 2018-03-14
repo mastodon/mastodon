@@ -29,7 +29,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     # Skip if the reblogged status is not public
     return if cached_reblog && !(cached_reblog.public_visibility? || cached_reblog.unlisted_visibility?)
 
-    media_attachments = save_media
+    media_attachments = save_media.take(4)
 
     ApplicationRecord.transaction do
       status = Status.create!(
@@ -44,12 +44,12 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         language: content_language,
         visibility: visibility_scope,
         conversation: find_or_create_conversation,
-        thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil
+        thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil,
+        media_attachments: media_attachments
       )
 
       save_mentions(status)
       save_hashtags(status)
-      attach_media(status, media_attachments)
       save_emojis(status)
     end
 
@@ -61,7 +61,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
 
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
-    DistributionWorker.perform_async(status.id) if @options[:override_timestamps]
+    DistributionWorker.perform_async(status.id) if @options[:override_timestamps] || status.within_realtime_window?
 
     status
   end
@@ -157,13 +157,6 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     end
 
     media_attachments
-  end
-
-  def attach_media(parent, media_attachments)
-    return if media_attachments.blank?
-
-    media = MediaAttachment.where(status_id: nil, id: media_attachments.take(4).map(&:id))
-    media.update(status_id: parent.id)
   end
 
   def save_emojis(parent)
