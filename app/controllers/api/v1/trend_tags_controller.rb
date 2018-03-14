@@ -5,8 +5,8 @@ class Api::V1::TrendTagsController < Api::BaseController
 
   def show
     trend_score = {
-      'updated_at' => redis.hget('trend_tag', 'updated_at'),
-      'score' => JSON.parse(redis.hget('trend_tag', 'score').presence || '{}'),
+      'updated_at' => redis.hget('trend_tags_management_data', 'updated_at'),
+      'score' => redis.zrevrange('trend_tags', 0, -1, withscores: true).to_h,
     }
     render json: trend_score
   end

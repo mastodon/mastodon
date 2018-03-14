@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 require 'sidekiq-scheduler'
 
-class Scheduler::TrendTagScheduler
+class Scheduler::TrendTagsUpdateScheduler
   include Sidekiq::Worker
 
   def perform
-    StatusesTag.calc_trend
+    StatusesTag.update_trend_tags
     Redis.current.publish('commands', '{"event": "trend_tags"}')
   end
 end

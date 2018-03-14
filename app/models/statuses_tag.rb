@@ -9,25 +9,32 @@
 
 class StatusesTag < ApplicationRecord
   class << self
-    def calc_trend
-      unless redis.exists('trend_tag')
-        redis.hset('trend_tag', 'updated_at', Time.now.utc.iso8601)
+
+    def update_trend_tags
+      unless redis.exists('trend_tags_management_data')
+        redis.hset('trend_tags_management_data', 'updated_at', Time.now.utc.iso8601)
       end
-      level_l = JSON.parse(redis.hget('trend_tag', 'level_L').presence || '{}')
-      trend_l = JSON.parse(redis.hget('trend_tag', 'trend_L').presence || '{}')
+      level_l = get_previous_data('trend_tags_management_data', 'level_L')
+      trend_l = get_previous_data('trend_tags_management_data', 'trend_L')
       now = aggregate_tags_in
 
       score, level_now, trend_now = calc_score(level_l, trend_l, now)
-      redis.hmset('trend_tag', 'updated_at', Time.now.utc.iso8601, 'score', score.to_json, 'level_L', level_now.to_json, 'trend_L', trend_now.to_json)
+      redis.del('trend_tags')
+      redis.zadd('trend_tags', score) unless score.empty?
+      redis.hmset('trend_tags_management_data', 'updated_at', Time.now.utc.iso8601, 'level_L', level_now.to_json, 'trend_L', trend_now.to_json)
     end
 
     private
+
+    def get_previous_data(key, field)
+      return JSON.parse(redis.hget(key, field).presence || '{}')
+    end
 
     # Double Exponential Smoothing
     def calc_score(level_l, trend_l, now)
       level_now = {}
       trend_now = {}
-      trend_score = {}
+      trend_score = []
       tag_keys(level_l, now).each do |k|
         l_l = level_l[k].to_f
         t_l = trend_l[k].to_f
@@ -40,7 +47,7 @@ class StatusesTag < ApplicationRecord
         end
         level_now[k] = sl.round(3)
         trend_now[k] = st.round(3)
-        trend_score[tag[:name]] = (sl + st).round(2)
+        trend_score << [(sl + st).round(2), tag[:name]]
       end
       [trend_score, level_now, trend_now]
     end
