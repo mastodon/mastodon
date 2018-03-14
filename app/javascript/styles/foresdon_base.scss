@@ -19,6 +19,15 @@ body {
 .landing-page {
   background: rgba($foresdon-ui-base-color, 0.7);
 
+  & .header-wrapper,
+  & .header-wrapper.compact {
+    background: rgba($foresdon-ui-base-color, 0.5);
+  }
+
+  & .information-board {
+    background: rgba($foresdon-ui-base-color, 0.9);
+  }
+
   &__forms {
     background: rgba($foresdon-ui-base-color, 0.5);
   }
@@ -34,6 +43,14 @@ body {
   & #mastodon-timeline {
     background: none;
     box-shadow: none;
+  }
+
+  @media screen and (max-width: 675px) {
+    .header {
+      .links {
+        background: rgba($foresdon-ui-base-color, 0.5);
+      }
+    }
   }
 }
 
