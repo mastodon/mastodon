@@ -160,6 +160,7 @@ ru:
         update_status: "%{name} изменил(а) статус пользователя %{target}"
       title: Журнал событий
     custom_emojis:
+      by_domain: Домен
       copied_msg: Локальная копия эмодзи успешно создана
       copy: Скопироват
       copy_failed_msg: Не удалось создать локальную копию эмодзи
@@ -342,6 +343,7 @@ ru:
     salutation: "%{name},"
     settings: 'Изменить настройки e-mail: %{link}'
     view: 'Просмотр:'
+    view_profile: Просмотреть профиль
     view_status: Просмотреть статус
   applications:
     created: Приложение успешно создано
@@ -353,6 +355,8 @@ ru:
     your_token: Ваш токен доступа
   auth:
     agreement_html: Создавая аккаунт, вы соглашаетесь с <a href="%{rules_path}">правилами узла</a> и <a href="%{terms_path}">нашими условиями обслуживания</a>.
+    change_password: Пароль
+    confirm_email: Подтвердите email
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
@@ -362,7 +366,10 @@ ru:
     logout: Выйти
     migrate_account: Перенести аккаунт
     migrate_account_html: Если Вы хотите перенести этот аккаунт на другой, вы можете <a href="%{path}">сделать это здесь</a>.
+    or: или
+    or_log_in_with: Или войти с помощью
     register: Зарегистрироваться
+    register_elsewhere: Зарегистрироваться на другом сервере
     resend_confirmation: Повторить отправку инструкции для подтверждения
     reset_password: Сбросить пароль
     security: Изменить пароль
@@ -412,6 +419,13 @@ ru:
       title: Страница неверна
     noscript_html: Для работы с Mastodon, пожалуйста, включите JavaScript. Кроме того, вы можете использовать одно из <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">приложений</a> Mastodon для Вашей платформы.
   exports:
+    archive_takeout:
+      date: Дата
+      download: Скачать ваш архив
+      hint_html: Вы можете запросить архив своих <strong>статусов и загруженных медиа-файлов</strong>. Экспортированные данные будут в формате ActivityPub, который можно прочесть любой соответствующей программой.
+      in_progress: Собирается ваш архив...
+      request: Запросить ваш архив
+      size: Размер
     blocks: Список блокировки
     csv: CSV
     follows: Подписки
@@ -483,33 +497,40 @@ ru:
     title: Модерация
   notification_mailer:
     digest:
-      body: 'Кратко о пропущенном Вами на %{instance} с Вашего последнего захода %{since}:'
+      action: Просмотреть все уведомления
+      body: Кратко о пропущенных Вами сообщениях с Вашего последнего захода %{since}
       mention: "%{name} упомянул(а) Вас в:"
       new_followers_summary:
         few: У Вас появилось %{count} новых подписчика! Отлично!
         many: У Вас появилось %{count} новых подписчиков! Отлично!
-        one: У Вас появился новый подписчик! Ура!
-        other: У Вас появилось %{count} новых подписчиков! Отлично!
+        one: Также, пока вас не было, у Вас появился новый подписчик! Ура!
+        other: Также, пока вас не было, у Вас появилось %{count} новых подписчиков! Отлично!
       subject:
         few: "%{count} новых уведомления с Вашего последнего захода \U0001F418"
         many: "%{count} новых уведомлений с Вашего последнего захода \U0001F418"
         one: "1 новое уведомление с Вашего последнего захода \U0001F418"
         other: "%{count} новых уведомлений с Вашего последнего захода \U0001F418"
+      title: В ваше отсутствие…
     favourite:
       body: 'Ваш статус понравился %{name}:'
       subject: "%{name} понравился Ваш статус"
     follow:
       body: "%{name} теперь подписан(а) на Вас!"
       subject: "%{name} теперь подписан(а) на Вас"
+      title: Новый подписчик
     follow_request:
       body: "%{name} запросил Вас о подписке"
       subject: "%{name} хочет подписаться на Вас"
+      title: Новый запрос о подписке
     mention:
+      action: Ответить
       body: 'Вас упомянул(а) %{name} в:'
       subject: Вы были упомянуты %{name}
+      title: Новое упоминание
     reblog:
       body: 'Ваш статус был продвинут %{name}:'
       subject: "%{name} продвинул(а) Ваш статус"
+      title: Новое продвижение
   number:
     human:
       decimal_units:
@@ -522,7 +543,9 @@ ru:
           trillion: трлн
           unit: ''
   pagination:
+    newer: Новее
     next: След
+    older: Старше
     prev: Пред
     truncate: "&hellip;"
   preferences:
@@ -687,6 +710,18 @@ ru:
     recovery_instructions_html: В случае утери доступа к Вашему телефону Вы можете использовать один из кодов восстановления, указанных ниже, чтобы вернуть доступ к аккаунту. Держите коды восстановления в безопасности, например, распечатав их и храня с другими важными документами.
     setup: Настроить
     wrong_code: Введенный код неверен! Правильно ли установлены серверное время и время устройства?
+  user_mailer:
+    backup_ready:
+      explanation: Вы запросили полный архив вашего аккаунта Mastodon. Он готов к загрузке!
+      subject: Ваш архив готов к загрузке
+      title: Вынос архива
+    welcome:
+      edit_profile_action: Настроить профиль
+      final_action: Начать постить
+      review_preferences_action: Изменить настройки
+      subject: Добро пожаловать на Mastodon
+      tips: Советы
+      title: Добро пожаловать на борт, %{name}!
   users:
     invalid_email: Введенный e-mail неверен
     invalid_otp_token: Введен неверный код

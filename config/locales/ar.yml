@@ -1,6 +1,7 @@
 ---
 ar:
   about:
+    about_hashtag_html: هذه هي الرسائل العامة مع الكلمات الدلالية  <strong> 1#%{hashtag}</strong>. يمكنك التفاعل معهم إذا كان لديك حساب في أي مكان على الإنترنت المتحد.
     about_mastodon_html: ماستدون شبكة إجتماعية <em>حرة و مفتوحة المصدر</em>. هو بديل <em>لامركزي</em> لمنصات تجارية ، يمكنك من تجنب احتكار شركة واحدة للإتصالات الخاصة بك. يمكنك اختيار أي خادم تثق فيه. أيهما تختار، يمكنك التفاعل مع أي شخص آخر على الشبكة. يمكن لأي شخص تنصيب و تشغيل خادم ماستدون خاص به والمشاركة في <em>الشبكات الاجتماعية</em> بكل شفافية.
     about_this: عن مثيل الخادوم هذا
     closed_registrations: التسجيلات في مثيل الخادوم هذا مُغلقة حاليًا.
@@ -10,11 +11,18 @@ ar:
     description_headline: ما هو %{domain}?
     domain_count_after: خوادم أخرى
     domain_count_before: متصل بـ
+    extended_description_html: |
+      <h3>مكان جيد للقواعد</h3>
+      <p>لا يوجد تفصيل طويل حتى الآن.</p>
     features:
+      humane_approach_body: تعلُّمًا مِن فشل الشبكات الأخرى، غاية ماستدون هي بلوغ الخيارات الأخلاقية في التصميم لمُحارَبة إسائة إستعمال شبكات التواصل الإجتماعية.
       humane_approach_title: أسلوب يعيد الإعتبار للإنسان
       not_a_product_body: ماستدون ليس شبكة تجارية. لا يحتوي على إعلانات و لا يقوم باستغلال البيانات و لا هو بِبُستان مُسيَّج. لا تحكم فيه وليس له أية هيئةٍ مركزيةٍ.
       not_a_product_title: إنك إنسان و لست سلعة
+      real_conversation_body: يُمكنكم التعبير عن آرائكم بكل حرية بفضل 500 حرف و انتقاء دقيق للمحتوى و الوسائط بفضل أدوات التحذير التي هي بين أيديكم.
       real_conversation_title: مبني لتحقيق تواصل حقيقي
+      within_reach_body: إبقوا على اتصال دائم بأصدقائكم حيثما كانوا عبر عدة تطبيقات لنظام آي أواس و أندرويد و عدة منصات أخرى بفضل واجهة برمجية للتطبيقات و بيئة صديقة للتطوير.
+      within_reach_title: في مُتناوَل يدك دائمًا
     generic_description: "%{domain} هو سيرفر من بين سيرفرات الشبكة"
     hosted_on: ماستدون مُستضاف على %{domain}
     learn_more: تعلم المزيد
@@ -49,11 +57,13 @@ ar:
       created_at: التاريخ
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح !
       delete: حذف
+      destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح !
     accounts:
       are_you_sure: متأكد ؟
       by_domain: النطاق
       confirm: تأكيد
       confirmed: مؤكَّد
+      demote: إنزال الرُتبة الوظيفية
       disable: تعطيل
       disable_two_factor_authentication: تعطيل 2FA
       disabled: معطَّل
@@ -67,13 +77,16 @@ ar:
       followers: المتابِعون
       followers_url: عنوان رابط المتابِعين
       follows: يتابع
+      inbox_url: رابط صندوق الوارد
       ip: عنوان الإيبي
       location:
         all: الكل
         local: المحلي
         remote: عن بُعد
         title: الموقع
+      login_status: وضع الدخول
       media_attachments: الوسائط المرفقة
+      memorialize: تحول إلى صفحة للذاكرة
       moderation:
         all: الكل
         silenced: تم كتمه
@@ -82,16 +95,22 @@ ar:
       moderation_notes: ملاحظات الإشراف
       most_recent_activity: آخر نشاط حديث
       most_recent_ip: أحدث عنوان إيبي
+      not_subscribed: غير مشترك
       order:
         alphabetic: أبجديًا
         most_recent: الأحدث
         title: الترتيب
+      outbox_url: رابط صندوق الصادر
+      perform_full_suspension: تعطيل الحساب بالكامل
       profile_url: رابط الملف الشخصي
+      promote: ترقية
       protocol: البروتوكول
       public: عمومي
+      push_subscription_expires: انتهاء الاشتراك ”PuSH“
       redownload: تحديث الصورة الرمزية
       reset: إعادة التعيين
       reset_password: إعادة ضبط كلمة السر
+      resubscribe: اشترك مرة أخرى
       role: التصريحات
       roles:
         admin: مدير
@@ -100,31 +119,57 @@ ar:
         user: مستخدِم
       salmon_url: عنوان رابط سالمون Salmon
       search: البحث
+      show:
+        created_reports: البلاغات التي أنشأها هذا الحساب
+        report: التقرير
+        targeted_reports: التقريرات التي أُنشِأت ضد هذا الحساب
+      silence: سكتهم
       statuses: المنشورات
+      subscribe: اشترك
       title: الحسابات
+      undo_silenced: رفع الصمت
+      undo_suspension: إلغاء تعليق الحساب
+      unsubscribe: إلغاء الاشتراك
       username: إسم المستخدم
       web: الويب
     action_logs:
       actions:
+        confirm_user: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
         create_custom_emoji: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
+        create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
+        demote_user: "%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}"
         destroy_domain_block: "%{name} قام بإلغاء الحجب عن النطاق %{target}"
+        disable_2fa_user: "%{name} لقد قام  بتعطيل ميزة المصادقة بخطوتين للمستخدم %{target}"
         disable_custom_emoji: "%{name} قام بتعطيل الإيموجي %{target}"
+        disable_user: "%{name} لقد قام بتعطيل تسجيل الدخول للمستخدِم %{target}"
         enable_custom_emoji: "%{name} قام بتنشيط الإيموجي %{target}"
+        enable_user: "%{name} لقد قام بتنشيط تسجيل الدخول للمستخدِم %{target}"
         promote_user: "%{name} قام بترقية المستخدم %{target}"
+        reset_password_user: "%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ %{target}"
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
       title: سِجلّ التفتيش و المعاينة
     custom_emojis:
       by_domain: النطاق
+      copied_msg: تم إنشاء نسخة محلية للإيموجي بنجاح
       copy: نسخ
+      copy_failed_msg: فشلت عملية إنشاء نسخة محلية لهذا الإيموجي
       created_msg: تم إنشاء الإيموجي بنجاح !
       delete: حذف
+      destroyed_msg: تمت عملية تدمير الإيموجي بنجاح !
       disable: تعطيل
+      disabled_msg: تمت عملية تعطيل ذلك الإيموجي بنجاح
       emoji: إيموجي
       enable: تفعيل
+      enabled_msg: تم تنشيط ذاك الإيموجي بنجاح
       image_hint: ملف PNG إلى غاية حجم 50 ك.ب
+      new:
+        title: إضافة إيموجي خاص جديد
+      shortcode: الترميز المُصَغّر
       shortcode_hint: على الأقل حرفين، و فقط رموز أبجدية عددية و أسطر سفلية
       title: الإيموجي الخاصة
+      update_failed_msg: تعذرت عملية تحذيث ذاك الإيموجي
+      updated_msg: تم تحديث الإيموجي بنجاح !
       upload: رفع
     domain_blocks:
       add_new: إضافة نطاق جديد
@@ -135,9 +180,11 @@ ar:
           noop: لا شيء
           silence: كتم
         title: حجب نطاق جديد
+      reject_media: رفض ملفات الوسائط
       severities:
         noop: لا شيء
       show:
+        title: رفع حظر النطاق عن %{domain}
         undo: إلغاء
       undo: إلغاء
     email_domain_blocks:
@@ -145,6 +192,7 @@ ar:
       domain: النطاق
       new:
         create: إضافة نطاق
+      title: القائمة السوداء للبريد الإلكتروني
     instances:
       account_count: الحسابات المعروفة
       domain_name: النطاق
@@ -156,8 +204,10 @@ ar:
         all: الكل
         available: المتوفرة
         expired: المنتهي صلاحيتها
+        title: التصفية
       title: الدعوات
     reports:
+      action_taken_by: تم اتخاذ الإجراء مِن طرف
       are_you_sure: هل أنت متأكد ؟
       comment:
         label: تعليق
@@ -174,6 +224,7 @@ ar:
     settings:
       contact_information:
         email: البريد الإلكتروني المهني
+        username: الإتصال بالمستخدِم
       registrations:
         closed_message:
           title: رسالة التسجيلات المقفلة
@@ -221,6 +272,7 @@ ar:
     regenerate_token: إعادة توليد رمز النفاذ
     your_token: رمز نفاذك
   auth:
+    agreement_html: بقبولك التسجيل فإنك تُصرِّح قبول <a href="%{rules_path}">قواعد مثيل الخادوم</a> و <a href="%{terms_path}">شروط الخدمة التي نوفرها لك</a>.
     confirm_email: تأكيد عنوان البريد الإلكتروني
     delete_account: حذف حساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
@@ -275,6 +327,11 @@ ar:
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
   exports:
+    archive_takeout:
+      download: تنزيل نسخة لحسابك
+      hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة تبويقاتك و الوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق.
+      in_progress: عملية جمع نسخة لبيانات حسابك جارية …
+      request: طلب نسخة لحسابك
     blocks: قمت بحظر
     csv: CSV
     follows: أنت تتبع
@@ -314,7 +371,7 @@ ar:
     table:
       expires_at: تنتهي مدة صلاحيتها في
     title: دعوة أشخاص
-  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.."
+  landing_strip_html: "<strong>%{name}</strong> هو أحد مُستخدِمي %{link_to_root_path}. بإمكانك متابعته أو التواصل معه إن كنت تملك حسابًا أيا كان على البيئة الموحَّدة فيديفرس."
   landing_strip_signup_html: إن كنت لا تملك واحدا، يمكنك <a href="%{sign_up_path}">التسجيل مِن هنا</a>.
   lists:
     errors:
@@ -371,7 +428,9 @@ ar:
           trillion: T
           unit: ''
   pagination:
+    newer: الأحدَث
     next: التالي
+    older: الأقدَم
     prev: السابق
     truncate: "&hellip;"
   preferences:
@@ -488,6 +547,10 @@ ar:
     recovery_codes_regenerated: تم إعادة توليد رموز الإسترجاع الإحتياطية بنجاح
     setup: تنشيط
     wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز ؟
+  user_mailer:
+    backup_ready:
+      subject: نسخة بيانات حسابك جاهزة للتنزيل
+      title: المغادرة بأرشيف الحساب
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: الرمز الثنائي غير صالح

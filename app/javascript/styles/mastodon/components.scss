@@ -2515,6 +2515,10 @@ a.status-card {
     flex: 1;
   }
 
+  & > .column-header__back-button {
+    color: $ui-highlight-color;
+  }
+
   &.active {
     box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
 
@@ -3418,8 +3422,12 @@ a.status-card {
   img,
   canvas,
   video {
-    max-width: 100vw;
-    max-height: 100vh;
+    max-width: 100%;
+    /*
+    put margins on top and bottom of image to avoid the screen coverd by
+    image.
+     */
+    max-height: 80%;
     width: auto;
     height: auto;
     margin: auto;
@@ -3430,11 +3438,6 @@ a.status-card {
     display: block;
     background: url('../images/void.png') repeat;
     object-fit: contain;
-  }
-
-  .react-swipeable-view-container {
-    width: 100vw;
-    height: 100%;
   }
 }
 
@@ -4311,18 +4314,16 @@ a.status-card {
   display: block;
   text-decoration: none;
   color: $ui-secondary-color;
-  height: 100%;
   line-height: 0;
 
   &,
   img {
+    height: 100%;
     width: 100%;
   }
 
   img {
-    position: relative;
     object-fit: cover;
-    height: auto;
   }
 }
 
@@ -5072,6 +5073,12 @@ noscript {
   }
 }
 
+.focal-point-modal {
+  max-width: 80vw;
+  max-height: 80vh;
+  position: relative;
+}
+
 .focal-point {
   position: relative;
   cursor: pointer;
@@ -5079,6 +5086,14 @@ noscript {
 
   &.dragging {
     cursor: move;
+  }
+
+  img {
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    margin: auto;
   }
 
   &__reticle {

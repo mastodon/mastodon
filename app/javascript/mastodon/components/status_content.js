@@ -154,7 +154,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
