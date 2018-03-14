@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20180304013859) do
     t.integer "order", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
 
   create_table "backups", force: :cascade do |t|
     t.bigint "user_id"
