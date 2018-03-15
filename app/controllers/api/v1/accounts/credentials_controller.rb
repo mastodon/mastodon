@@ -32,7 +32,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
       :sensitive
     )
     sensitive = source_params.key?(:sensitive) ? source_params[:sensitive] : object.user.setting_default_sensitive
-    return ActionController::Parameters.new(
+    ActionController::Parameters.new(
       user: {
         setting_default_privacy: source_params.key?(:privacy) ? source_params[:privacy] : object.user.setting_default_privacy,
         setting_default_sensitive: sensitive ? '1' : '0', # database doesn't like boolean values for default_sensitive
