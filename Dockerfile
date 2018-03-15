@@ -26,6 +26,7 @@ RUN apk -U upgrade \
     postgresql-dev \
     protobuf-dev \
     python \
+    git \
  && apk add \
     ca-certificates \
     ffmpeg \
@@ -63,5 +64,7 @@ RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-in
 RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
  && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
  && chown -R mastodon:mastodon /mastodon/public
+
+COPY . /mastodon
 
 RUN chmod +x /mastodon/boot.sh

@@ -5,11 +5,16 @@ services:
     image: postgres:9.6-alpine
     ports:
       - "5432:5432"
+    networks:
+      - external_network
+      - internal_network
     volumes:
     - /var/data/docker-data/catgram-postgres:/var/lib/postgresql/data
 
   redis:
     image: redis:4.0-alpine
+    networks:
+      - internal_network
     volumes:
     - /var/data/docker-data/catgram-redis:/data
 
@@ -19,6 +24,9 @@ services:
     command: /mastodon/boot_dev.sh web
     volumes:
     - ".:/mastodon"
+    networks:
+      - external_network
+      - internal_network
     ports:
       - "3000:3000"
       - "3035:3035"
@@ -34,6 +42,9 @@ services:
     - ".:/mastodon"
     ports:
       - "4000:4000"
+    networks:
+      - external_network
+      - internal_network
     depends_on:
       - db
       - redis
@@ -42,9 +53,16 @@ services:
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     env_file: .env.development
     command: /mastodon/boot_dev.sh sidekiq
-    
+    networks:
+      - external_network
+      - internal_network
     volumes:
     - ".:/mastodon"
     depends_on:
       - db
       - redis
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
