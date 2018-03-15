@@ -313,8 +313,8 @@ const startWorker = (workerId) => {
 
 
     const content_filter = payload => {
-      const allowedWords = [/猫/,/ねこ/,/cat/];
-      const allowedDomains = [/cat/,/mstdn\.jp/];
+      const allowedWords = [/猫/,/ねこ/,/cat/,/kitt/];
+      const allowedDomains = [/cat/,/mstdn\.jp/,/kitt/];
 
       var refused = true;
       if(typeof payload.content === 'string' ) {
@@ -339,9 +339,9 @@ const startWorker = (workerId) => {
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message);
 
-      if (typeof payload !== 'number') {
+      if (needsFiltering && typeof payload !== 'number') {
         if(!content_filter(payload)) {
-          log.verbose(req.requestId, 'No cat! filtered!: ' + JSON.stringify(payload));
+          log.verbose(req.requestId, 'No cat! filtered!: ' + payload.content);
           return;
         }
       }
