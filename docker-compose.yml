@@ -5,11 +5,26 @@ services:
     image: postgres:9.6-alpine
     volumes:
     - /var/data/docker-data/catgram-postgres:/var/lib/postgresql/data
+    networks:
+      - internal_network
 
   redis:
     image: redis:4.0-alpine
     volumes:
     - /var/data/docker-data/catgram-redis:/data
+    networks:
+      - internal_network
+
+#  es:
+#    restart: always
+#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.3
+#    environment:
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#    networks:
+#      - internal_network
+#### Uncomment to enable ES persistance
+##    volumes:
+##      - ./elasticsearch:/usr/share/elasticsearch/data
 
   web:
     build: .
@@ -17,11 +32,15 @@ services:
     restart: always
     env_file: .env.production
     command: /mastodon/web_boot.sh
+    networks:
+      - external_network
+      - internal_network
     ports:
       - "3000:3000"
     depends_on:
       - db
       - redis
+#      - es
     volumes:
       - ./public/packs:/mastodon/public/packs
       - ./public/system:/mastodon/public/system
@@ -31,7 +50,10 @@ services:
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
-    command: npm run start
+    command: yarn start
+    networks:
+      - external_network
+      - internal_network
     ports:
       - "4000:4000"
     depends_on:
@@ -47,6 +69,14 @@ services:
     depends_on:
       - db
       - redis
+    networks:
+      - external_network
+      - internal_network
     volumes:
       - ./public/packs:/mastodon/public/packs
       - ./public/system:/mastodon/public/system
+
+networks:
+  external_network:
+  internal_network:
+    internal: true

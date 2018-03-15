@@ -1,23 +1,6 @@
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
   .card__illustration
-    - unless account.memorial? || account.moved?
-      - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
-        .controls
-          - if current_account.following?(account)
-            = link_to account_unfollow_path(account), data: { method: :post }, class: 'icon-button' do
-              = fa_icon 'user-times'
-              = t('accounts.unfollow')
-          - else
-            = link_to account_follow_path(account), data: { method: :post }, class: 'icon-button' do
-              = fa_icon 'user-plus'
-              = t('accounts.follow')
-      - elsif !user_signed_in?
-        .controls
-          .remote-follow
-            = link_to account_remote_follow_path(account), class: 'icon-button' do
-              = fa_icon 'user-plus'
-              = t('accounts.remote_follow')
-
+    = render 'accounts/follow_button', account: account
     .avatar= image_tag account.avatar.url(:original), class: 'u-photo'
 
   .card__bio

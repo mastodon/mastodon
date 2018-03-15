@@ -6,7 +6,7 @@ hu:
       send_instructions: Pár percen belül kapni fogsz egy e-mailt az e-mail címed megerősítéséhez szükséges lépésekről.
       send_paranoid_instructions: Ha az e-mail címed létezik az adatbázisunkban, pár percen belül kapni fogsz egy e-mailt az e-mail címed megerősítéséhez szükséges lépésekről.
     failure:
-      already_authenticated: Már bejelentkeztél
+      already_authenticated: Már bejelentkeztél.
       inactive: Fiókod még nem lett aktiválva.
       invalid: Helytelen %{authentication_keys} vagy jelszó.
       last_attempt: Már csak egy próbálkozásod maradt mielőtt a fiókod lezárásra kerül.
@@ -17,11 +17,32 @@ hu:
       unconfirmed: A folytatás előtt meg kell erősítened az e-mail címed.
     mailer:
       confirmation_instructions:
+        action: Erősítsd meg az e-mail címedet
+        explanation: Ezzel az e-mail címmel kezdeményeztek regisztrációt a(z) %{host} oldalon. Csak egy kattintás, és a felhasználói fiókdat aktiváljuk. Ha a regisztrációt nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
+        extra_html: Kérjük tekintsd át a <a href="%{terms_path}">az instancia szabályzatát</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
         subject: 'Mastodon: Megerősítési lépések'
+        title: E-mail cím megerősítése
+      email_changed:
+        explanation: 'A fiókodhoz tartozó e-mail címet az alábbira módosítod:'
+        extra: Ha nem te kezdeményezted a fiókodhoz tartozó e-mail cím módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot az instanciád adminisztrátorával.
+        subject: 'Mastodon: a fiókodhoz tartozó e-mail címet megváltoztattuk'
+        title: Új e-mail cím
       password_change:
+        explanation: A fiókodhoz tartozó jelszót megváltoztattuk.
+        extra: Ha nem te kezdeményezted a fiókodhoz tartozó jelszó módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot az instanciád adminisztrátorával.
         subject: 'Mastodon: Jelszó megváltoztatva'
+        title: Sikeres jelszó-módosítás
+      reconfirmation_instructions:
+        explanation: Az e-mail cím megváltoztatásához meg kell erősítened az új címet.
+        extra: Amennyiben nem te kezdeményezted a módosítást, kérjük tekintsd ezt az e-mailt tárgytalannak. A Mastodon fiókodhoz tartozó e-mail címed változatlan marad mindaddig, amíg rá nem kattintasz a fenti linkre.
+        subject: 'Mastodon: erősítsd meg a(z) %{instance} instanciához tartozó e-mail címed'
+        title: E-mail cím megerősítése
       reset_password_instructions:
+        action: Jelszó módosítása
+        explanation: A fiókodhoz tartozó jelszó módosítását kezdeményezted.
+        extra: Amennyiben nem te kezdeményezted a módosítást, kérjük tekintsd ezt az e-mailt tárgytalannak. A Mastodon fiókodhoz tartozó jelszavad változatlan marad mindaddig, amíg újat nem hozol létre a fenti linkre kattintva.
         subject: 'Mastodon: Jelszó visszaállítási lépések'
+        title: Jelszó visszaállítása
       unlock_instructions:
         subject: 'Mastodon: Feloldási lépések'
     omniauth_callbacks:

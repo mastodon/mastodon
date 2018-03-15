@@ -10,7 +10,7 @@ const messages = defineMessages({
   close: { id: 'bundle_modal_error.close', defaultMessage: 'Close' },
 });
 
-class BundleModalError extends React.Component {
+class BundleModalError extends React.PureComponent {
 
   static propTypes = {
     onRetry: PropTypes.func.isRequired,

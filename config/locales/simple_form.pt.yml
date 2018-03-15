@@ -3,50 +3,69 @@ pt:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF ou JPG. No máximo 2MB. Vai ser reduzido para 120x120px
-        display_name: No máximo 30 caracteres
-        header: PNG, GIF or JPG. No máximo 2MB. Vai ser reduzido para 700x335px
-        locked: Requer que manualmente aproves seguidores e torna o default dos teus posts para privados (apenas seguidores)
-        note: No máximo 160 caracteres
+        avatar: PNG, GIF or JPG. Arquivos até 2MB. Vão ser reduzidos para 400x400px
+        digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
+        display_name:
+          one: <span class="name-counter">1</span> caracter restante
+          other: <span class="name-counter">%{count}</span> caracteres restantes
+        header: PNG, GIF or JPG. Arquivos até 2MB. Vão ser reduzidos para 700x335px
+        locked: Requer aprovação manual de seguidores
+        note:
+          one: <span class="note-counter">1</span> caracter restante
+          other: <span class="note-counter">%{count}</span> caracteres restantes
+        setting_noindex: Afecta o teu perfil público e as páginas das tuas publicações
+        setting_theme: Afecta a aparência do Mastodon quando entras na tua conta em qualquer dispositivo.
       imports:
-        data: Ficheiro CSV exportado de outra instância do Mastodon
+        data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
-        otp: Insere o código de autenticação em dois passos do teu telefone ou utiliza um código de recuperação de acesso.
+        otp: Inserir o código de autenticação de dois factores do teu telemóvel ou usa um dos códigos de recuperação.
+      user:
+        filtered_languages: Seleciona os idiomas que devem ser removidos das tuas timelines públicas
     labels:
       defaults:
         avatar: Imagem de Perfil
-        confirm_new_password: Confirme nova palavra-passe
-        confirm_password: Confirme a palavra-passe
+        confirm_new_password: Confirmar nova palavra-passe
+        confirm_password: Confirmar palavra-passe
         current_password: Palavra-passe actual
-        data: Data
-        display_name: Nome
-        email: Endereço de email
+        data: Dados
+        display_name: Nome Público
+        email: Endereço de e-mail
+        expires_in: Expira em
+        filtered_languages: Idiomas filtrados
         header: Cabeçalho
-        locale: Língua
-        locked: Tornar conta privada
+        locale: Idioma
+        locked: Trancar conta
+        max_uses: Número máximo de utilizações
         new_password: Nova palavra-passe
         note: Biografia
         otp_attempt: Código de autenticação em dois passos
         password: Palavra-passe
-        setting_boost_modal: Pedir confirmação antes de partilhar um post
-        setting_default_privacy: Privacidade padrão de posts
-        setting_default_sensitive: Marcar sempre media como sensível
-        setting_reduce_motion: Reduzir movimento em animações
-        severity: Severity
-        type: Import type
-        username: Utilizador
+        setting_auto_play_gif: Reproduzir GIFs automaticamente
+        setting_boost_modal: Solicitar confirmação antes de partilhar uma publicação
+        setting_default_privacy: Privacidade da publicação
+        setting_default_sensitive: Sempre marcar media como sensível
+        setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
+        setting_noindex: Não quero ser indexado por motores de pesquisa
+        setting_reduce_motion: Reduz movimento em animações
+        setting_system_font_ui: Usar a fonte padrão do teu sistema
+        setting_theme: Tema do site
+        setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
+        severity: Gravidade
+        type: Tipo de importação
+        username: Nome de utilizador
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
+        must_be_following_dm: Bloquear mensagens directas de pessoas que tu não segues
       notification_emails:
-        digest: Enviar um email da actividade nesta instância
-        favourite: Enviar email quando alguém adiciona um post teu aos favoritos
-        follow: Enviar email quando alguém te segue
-        follow_request: Enviar um email quando alguém solicitar ser o teu seguidor
-        mention: Enviar email quando alguém te menciona
-        reblog: Enviar email quando alguém partilhar um post teu
+        digest: Enviar e-mails de resumo
+        favourite: Enviar e-mail quando alguém adiciona uma publicação tua aos favoritos
+        follow: Enviar e-mail quando alguém te segue
+        follow_request: Enviar e-mail quando alguém solicita ser teu seguidor
+        mention: Enviar e-mail quando alguém te menciona
+        reblog: Enviar e-mail quando alguém partilha uma publicação tua
     'no': Não
     required:
       mark: "*"
-      text: necessário
+      text: obrigatório
     'yes': Sim

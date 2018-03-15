@@ -26,9 +26,11 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
+    match '/auth/finish_signup' => 'auth/confirmations#finish_signup', via: [:get, :patch], as: :finish_signup
   end
 
   devise_for :users, path: 'auth', controllers: {
+    omniauth_callbacks: 'auth/omniauth_callbacks',
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',
     passwords:          'auth/passwords',
@@ -58,8 +60,10 @@ Rails.application.routes.draw do
     resources :following, only: [:index], controller: :following_accounts
     resource :follow, only: [:create], controller: :account_follow
     resource :unfollow, only: [:create], controller: :account_unfollow
+
     resource :outbox, only: [:show], module: :activitypub
     resource :inbox, only: [:create], module: :activitypub
+    resources :collections, only: [:show], module: :activitypub
   end
 
   resource :inbox, only: [:create], module: :activitypub
@@ -76,7 +80,7 @@ Rails.application.routes.draw do
     resource :notifications, only: [:show, :update]
     resource :import, only: [:show, :create]
 
-    resource :export, only: [:show]
+    resource :export, only: [:show, :create]
     namespace :exports, constraints: { format: :csv } do
       resources :follows, only: :index, controller: :following_accounts
       resources :blocks, only: :index, controller: :blocked_accounts
@@ -103,7 +107,10 @@ Rails.application.routes.draw do
     resources :sessions, only: [:destroy]
   end
 
-  resources :media,  only: [:show]
+  resources :media, only: [:show] do
+    get :player
+  end
+
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]

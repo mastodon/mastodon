@@ -91,17 +91,19 @@ class FetchLinkCardService < BaseService
 
     case @card.type
     when 'link'
-      @card.image = URI.parse(embed.thumbnail_url) if embed.respond_to?(:thumbnail_url)
+      @card.image_remote_url = embed.thumbnail_url if embed.respond_to?(:thumbnail_url)
     when 'photo'
       return false unless embed.respond_to?(:url)
-      @card.embed_url = embed.url
-      @card.image     = URI.parse(embed.url)
-      @card.width     = embed.width.presence  || 0
-      @card.height    = embed.height.presence || 0
+
+      @card.embed_url        = embed.url
+      @card.image_remote_url = embed.url
+      @card.width            = embed.width.presence  || 0
+      @card.height           = embed.height.presence || 0
     when 'video'
-      @card.width  = embed.width.presence  || 0
-      @card.height = embed.height.presence || 0
-      @card.html   = Formatter.instance.sanitize(embed.html, Sanitize::Config::MASTODON_OEMBED)
+      @card.width            = embed.width.presence  || 0
+      @card.height           = embed.height.presence || 0
+      @card.html             = Formatter.instance.sanitize(embed.html, Sanitize::Config::MASTODON_OEMBED)
+      @card.image_remote_url = embed.thumbnail_url if embed.respond_to?(:thumbnail_url)
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no
       return false
@@ -130,12 +132,12 @@ class FetchLinkCardService < BaseService
                                                scrolling: 'no',
                                                frameborder: '0')
     else
-      @card.type             = :link
-      @card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
+      @card.type = :link
     end
 
-    @card.title       = meta_property(page, 'og:title').presence || page.at_xpath('//title')&.content || ''
-    @card.description = meta_property(page, 'og:description').presence || meta_property(page, 'description') || ''
+    @card.title            = meta_property(page, 'og:title').presence || page.at_xpath('//title')&.content || ''
+    @card.description      = meta_property(page, 'og:description').presence || meta_property(page, 'description') || ''
+    @card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
 
     return if @card.title.blank? && @card.html.blank?
 

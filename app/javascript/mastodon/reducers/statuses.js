@@ -15,6 +15,8 @@ import {
   CONTEXT_FETCH_SUCCESS,
   STATUS_MUTE_SUCCESS,
   STATUS_UNMUTE_SUCCESS,
+  STATUS_REVEAL,
+  STATUS_HIDE,
 } from '../actions/statuses';
 import {
   TIMELINE_REFRESH_SUCCESS,
@@ -54,16 +56,21 @@ const normalizeStatus = (state, status) => {
     normalStatus.reblog = status.reblog.id;
   }
 
-  const searchContent = [status.spoiler_text, status.content].join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  // Only calculate these values when status first encountered
+  // Otherwise keep the ones already in the reducer
+  if (!state.has(status.id)) {
+    const searchContent = [status.spoiler_text, status.content].join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
 
-  const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
-    obj[`:${emoji.shortcode}:`] = emoji;
-    return obj;
-  }, {});
+    const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
+      obj[`:${emoji.shortcode}:`] = emoji;
+      return obj;
+    }, {});
 
-  normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-  normalStatus.contentHtml = emojify(normalStatus.content, emojiMap);
-  normalStatus.spoilerHtml = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''), emojiMap);
+    normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+    normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
+    normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''), emojiMap);
+    normalStatus.hidden       = normalStatus.sensitive;
+  }
 
   return state.update(status.id, ImmutableMap(), map => map.mergeDeep(fromJS(normalStatus)));
 };
@@ -111,6 +118,14 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.id, 'muted'], true);
   case STATUS_UNMUTE_SUCCESS:
     return state.setIn([action.id, 'muted'], false);
+  case STATUS_REVEAL:
+    return state.withMutations(map => {
+      action.ids.forEach(id => map.setIn([id, 'hidden'], false));
+    });
+  case STATUS_HIDE:
+    return state.withMutations(map => {
+      action.ids.forEach(id => map.setIn([id, 'hidden'], true));
+    });
   case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:
   case CONTEXT_FETCH_SUCCESS:

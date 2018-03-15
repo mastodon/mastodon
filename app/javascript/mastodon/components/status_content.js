@@ -24,7 +24,12 @@ export default class StatusContent extends React.PureComponent {
   };
 
   _updateStatusLinks () {
-    const node  = this.node;
+    const node = this.node;
+
+    if (!node) {
+      return;
+    }
+
     const links = node.querySelectorAll('a');
 
     for (var i = 0; i < links.length; ++i) {
@@ -115,6 +120,10 @@ export default class StatusContent extends React.PureComponent {
   render () {
     const { status } = this.props;
 
+    if (status.get('content').length === 0) {
+      return null;
+    }
+
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
     const content = { __html: status.get('contentHtml') };
@@ -145,7 +154,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}

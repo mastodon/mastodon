@@ -23,7 +23,6 @@ en:
       real_conversation_title: Built for real conversation
       within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
       within_reach_title: Always within reach
-    find_another_instance: Find another instance
     generic_description: "%{domain} is one server in the network"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
@@ -274,6 +273,9 @@ en:
       contact_information:
         email: Business e-mail
         username: Contact username
+      hero:
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
+        title: Hero image
       peers_api_enabled:
         desc_html: Domain names this instance has encountered in the fediverse
         title: Publish list of discovered instances
@@ -290,6 +292,9 @@ en:
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
+      show_known_fediverse_at_about_page:
+        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
+        title: Show known fediverse on timeline preview
       show_staff_badge:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
@@ -354,7 +359,8 @@ en:
     your_token: Your access token
   auth:
     agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
-    change_password: Security
+    change_password: Password
+    confirm_email: Confirm email
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
@@ -364,9 +370,16 @@ en:
     logout: Logout
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
+    or: or
+    or_log_in_with: Or log in with
+    providers:
+      cas: CAS
+      saml: SAML
     register: Sign up
+    register_elsewhere: Sign up on another server
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
+    security: Security
     set_new_password: Set new password
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
@@ -413,6 +426,13 @@ en:
       title: This page is not correct
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">native apps</a> for Mastodon for your platform.
   exports:
+    archive_takeout:
+      date: Date
+      download: Download your archive
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in ActivityPub format, readable by any compliant software.
+      in_progress: Compiling your archive...
+      request: Request your archive
+      size: Size
     blocks: You block
     csv: CSV
     follows: You follow
@@ -528,7 +548,9 @@ en:
           trillion: T
           unit: ''
   pagination:
+    newer: Newer
     next: Next
+    older: Older
     prev: Prev
     truncate: "&hellip;"
   preferences:
@@ -725,6 +747,10 @@ en:
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
   user_mailer:
+    backup_ready:
+      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      subject: Your archive is ready for download
+      title: Archive takeout
     welcome:
       edit_profile_action: Setup profile
       edit_profile_step: You can customize your profile by uploading an avatar, header, changing your display name and more. If you’d like to review new followers before they’re allowed to follow you, you can lock your account.
@@ -746,4 +772,5 @@ en:
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'

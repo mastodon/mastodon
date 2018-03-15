@@ -23,7 +23,6 @@ pl:
       real_conversation_title: Zaprojektowany do prawdziwych rozmów
       within_reach_body: Wiele aplikacji dla Androida, iOS i innych platform dzięki przyjaznemu programistom API sprawia, że możesz utrzymywać kontakt ze znajomymi praktycznie wszędzie.
       within_reach_title: Zawsze w Twoim zasięgu
-    find_another_instance: Znajdź inną instancję
     generic_description: "%{domain} jest jednym z serwerów sieci"
     hosted_on: Mastodon uruchomiony na %{domain}
     learn_more: Dowiedz się więcej
@@ -275,6 +274,9 @@ pl:
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
+      hero:
+        desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji.
+        title: Obraz bohatera
       peers_api_enabled:
         desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
         title: Publikuj listę znanych instancji
@@ -291,6 +293,9 @@ pl:
         open:
           desc_html: Pozwól każdemu na założenie konta
           title: Otwarta rejestracja
+      show_known_fediverse_at_about_page:
+        desc_html: Jeśli włączone, podgląd instancji będzie wyświetlał wpisy z całego Fediwersum. W innym przypadku, będą wyświetlane tylko lokalne wpisy.
+        title: Pokazuj wszystkie znane wpisy na podglądzie instancji
       show_staff_badge:
         desc_html: Pokazuj odznakę uprawnień na stronie profilu użytkownika
         title: Pokazuj odznakę administracji
@@ -355,7 +360,8 @@ pl:
     your_token: Twój token dostępu
   auth:
     agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
-    change_password: Bezpieczeństwo
+    change_password: Hasło
+    confirm_email: Potwierdź adres e-mail
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
     didnt_get_confirmation: Nie otrzymałeś instrukcji weryfikacji?
@@ -365,9 +371,16 @@ pl:
     logout: Wyloguj się
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">skonfigurować to tutaj</a>.
+    or: lub
+    or_log_in_with: Lub zaloguj się z użyciem
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rejestracja
+    register_elsewhere: Zarejestruj się na innym serwerze
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
+    security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
   authorize_follow:
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
@@ -410,10 +423,17 @@ pl:
       title: Sprawdzanie bezpieczeństwa nie powiodło się
     '429': Uduszono
     '500':
-      content: Przepraszamy, coś poszło nie tak…
+      content: Przepraszamy, coś poszło nie tak, po naszej stronie.
       title: Ta strona jest nieprawidłowa
     noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   exports:
+    archive_takeout:
+      date: Data
+      download: Pobierz swoje archiwum
+      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, obsługiwanym przez odpowiednie programy.
+      in_progress: Tworzenie archiwum…
+      request: Uzyskaj archiwum
+      size: Rozmiar
     blocks: Zablokowani
     csv: CSV
     follows: Śledzeni
@@ -535,7 +555,9 @@ pl:
           trillion: T
           unit: ''
   pagination:
+    newer: Nowsze
     next: Następna
+    older: Starsze
     prev: Poprzednia
     truncate: "&hellip;"
   preferences:
@@ -732,6 +754,10 @@ pl:
     setup: Skonfiguruj
     wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
   user_mailer:
+    backup_ready:
+      explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ono dostępne do pobrania
+      subject: Twoje archiwum jest gotowe do pobrania
+      title: Odbiór archiwum
     welcome:
       edit_profile_action: Skonfiguruj profil
       edit_profile_step: Możesz dostować profil wysyłając awatar, obraz nagłówka, zmieniając wyświetlaną nazwę i wiele więcej. Jeżeli chcesz, możesz zablokować konto, aby kontrolować, kto może Cię śledzić.
@@ -753,4 +779,5 @@ pl:
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'

@@ -1,13 +1,20 @@
 - content_for :page_title do
-  = display_name(@account)
+  = "#{display_name(@account)} (@#{@account.username})"
 
 - content_for :header_tags do
+  %meta{ name: 'description', content: account_description(@account) }/
+
   - if @account.user&.setting_noindex
     %meta{ name: 'robots', content: 'noindex' }/
 
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
+
+  - if @older_url
+    %link{ rel: 'next', href: @older_url }/
+  - if @newer_url
+    %link{ rel: 'prev', href: @newer_url }/
 
   = opengraph 'og:type', 'profile'
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
@@ -39,6 +46,9 @@
 
       = render partial: 'stream_entries/status', collection: @statuses, as: :status
 
-  - if @statuses.size == 20
+  - if @newer_url || @older_url
     .pagination
-      = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), @next_url, class: 'next', rel: 'next'
+      - if @older_url
+        = link_to safe_join([fa_icon('chevron-left'), t('pagination.older')], ' '), @older_url, class: 'older', rel: 'next'
+      - if @newer_url
+        = link_to safe_join([t('pagination.newer'), fa_icon('chevron-right')], ' '), @newer_url, class: 'newer', rel: 'prev'

@@ -14,6 +14,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  def update_resource(resource, params)
+    params[:password] = nil if Devise.pam_authentication && resource.encrypted_password.blank?
+    super
+  end
+
   def build_resource(hash = nil)
     super(hash)
 

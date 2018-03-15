@@ -19,5 +19,5 @@
           %li= link_to t('about.other_instances'), 'https://joinmastodon.org/'
 
   .extended-description
-    .container
+    .container-alt
       = @instance_presenter.site_terms.html_safe.presence || t('terms.body_html')
