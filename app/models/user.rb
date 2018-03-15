@@ -96,7 +96,7 @@ class User < ApplicationRecord
 
   def pam_conflict?
     return false unless Devise.pam_authentication
-    encrypted_password.present? && is_pam_account?
+    encrypted_password.present? && pam_managed_user?
   end
 
   def pam_get_name
