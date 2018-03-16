@@ -254,7 +254,7 @@
   }
 
   .notification__message {
-    margin: -10px 0px 10px 32px;
+    margin: -10px 0px 10px 0;
   }
 }
 
@@ -287,7 +287,7 @@
   overflow: hidden;
 }
 
-.status__info .status__display-name {
+.status__info__account .status__display-name {
   display: block;
   max-width: 100%;
   padding-right: 25px;
@@ -304,10 +304,15 @@
   flex: none;
   position: relative;
   color: lighten($ui-base-color, 26%);
+  margin-left: auto;
 
   .status__visibility-icon {
     padding-left: 6px;
   }
+}
+
+.status__info__account {
+  display: flex;
 }
 
 .status-check-box {
@@ -526,6 +531,12 @@
       background: lighten($ui-base-color, 29%);
       text-decoration: none;
     }
+  }
+
+  .status__content {
+    margin-top: -15px;
+    margin-bottom: 0;
+    padding-top: 0;
   }
 }
 

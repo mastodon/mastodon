@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import StatusPrepend from './status_prepend';
 import StatusHeader from './status_header';
+import StatusIcons from './status_icons';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -392,23 +393,31 @@ export default class Status extends ImmutablePureComponent {
           ref={handleRef}
           tabIndex='0'
         >
-          {prepend && account ? (
-            <StatusPrepend
-              type={prepend}
-              account={account}
-              parseClick={parseClick}
-              notificationId={this.props.notificationId}
+          <header className='status__info'>
+            {prepend && account ? (
+              <StatusPrepend
+                type={prepend}
+                account={account}
+                parseClick={parseClick}
+                notificationId={this.props.notificationId}
+              />
+            ) : null}
+            {!muted ? (
+              <StatusHeader
+                status={status}
+                friend={account}
+                collapsed={isExpanded === false}
+                parseClick={parseClick}
+              />
+            ) : null}
+            <StatusIcons
+              status={status}
+              mediaIcon={mediaIcon}
+              collapsible={settings.getIn(['collapsed', 'enabled'])}
+              collapsed={isExpanded === false}
+              setExpansion={setExpansion}
             />
-          ) : null}
-          <StatusHeader
-            status={status}
-            friend={account}
-            mediaIcon={mediaIcon}
-            collapsible={settings.getIn(['collapsed', 'enabled'])}
-            collapsed={isExpanded === false}
-            parseClick={parseClick}
-            setExpansion={setExpansion}
-          />
+          </header>
           <StatusContent
             status={status}
             media={media}
@@ -418,7 +427,7 @@ export default class Status extends ImmutablePureComponent {
             parseClick={parseClick}
             disabled={!router}
           />
-          {isExpanded !== false ? (
+          {isExpanded !== false && !muted ? (
             <StatusActionBar
               {...other}
               status={status}
