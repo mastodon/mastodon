@@ -17,7 +17,7 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
 
   return {
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], ImmutableList()),
-    featuredStatusIds: state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], ImmutableList()),
+    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], ImmutableList()),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore: !!state.getIn(['timelines', `account:${path}`, 'next']),
   };
@@ -40,14 +40,18 @@ export default class AccountTimeline extends ImmutablePureComponent {
     const { params: { accountId }, withReplies } = this.props;
 
     this.props.dispatch(fetchAccount(accountId));
-    this.props.dispatch(refreshAccountFeaturedTimeline(accountId));
+    if (!withReplies) {
+      this.props.dispatch(refreshAccountFeaturedTimeline(accountId));
+    }
     this.props.dispatch(refreshAccountTimeline(accountId, withReplies));
   }
 
   componentWillReceiveProps (nextProps) {
     if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
       this.props.dispatch(fetchAccount(nextProps.params.accountId));
-      this.props.dispatch(refreshAccountFeaturedTimeline(nextProps.params.accountId));
+      if (!nextProps.withReplies) {
+        this.props.dispatch(refreshAccountFeaturedTimeline(nextProps.params.accountId));
+      }
       this.props.dispatch(refreshAccountTimeline(nextProps.params.accountId, nextProps.params.withReplies));
     }
   }
