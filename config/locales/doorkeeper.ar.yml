@@ -4,7 +4,9 @@ ar:
     attributes:
       doorkeeper/application:
         name: التسمية
-        redirect_uri: Redirect URI
+        redirect_uri: عنوان التحويل
+        scopes: المجالات
+        website: تطبيق الويب
     errors:
       models:
         doorkeeper/application:
@@ -30,12 +32,16 @@ ar:
         error: عفوا ! تحقق من خُلوّ الاستمارة من الأخطاء من فضلك
       help:
         native_redirect_uri: إستخدم %{native_redirect_uri} للاختبار و التجريب محليا
-        redirect_uri: إستخدم خطا واحدا لكل رابط.
-        scopes: Separate scopes with spaces. Leave blank to use the default scopes.
+        redirect_uri: إستخدم خطا واحدا لكل رابط
+        scopes: تقسيم المجالات بمسافات بيضاء. بدون تحديد قيمة يعني ذلك استخدام المجالات الإفتراضية.
       index:
+        application: تطبيق
         callback_url: رابط رد النداء
+        delete: حذف
         name: التسمية
         new: تطبيق جديد
+        scopes: المجالات
+        show: عرض
         title: تطبيقاتك
       new:
         title: تطبيق جديد
@@ -43,7 +49,7 @@ ar:
         actions: Actions
         application_id: معرف التطبيق
         callback_urls: روابط رد النداء
-        scopes: Scopes
+        scopes: المجالات
         secret: السر
         title: 'تطبيق : %{name}'
     authorizations:
@@ -54,10 +60,10 @@ ar:
         title: حدث هناك خطأ
       new:
         able_to: يُخوَّل لهذا التطبيق القيام بـ
-        prompt: طلبَ تطبيق %{client_name} تصريحا لاستعمال حسابك.
+        prompt: طلبَ تطبيق %{client_name} تصريحا لاستعمال حسابك
         title: إذن بالتصريح
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: قم بنسخ رمز المصادقة و إلصاقه على التطبيق.
     authorized_applications:
       buttons:
         revoke: إبطال التصريح
@@ -67,24 +73,18 @@ ar:
         application: التطبيق
         created_at: صُرّح له في
         date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Scopes
+        scopes: المجالات
         title: تطبيقاتك المرخص لها
     errors:
       messages:
-        access_denied: The resource owner or authorization server denied the request.
-        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
-        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
-        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
-        invalid_redirect_uri: The redirect uri included is not valid.
-        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
-        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
-        invalid_scope: The requested scope is invalid, unknown, or malformed.
+        access_denied: لقد رفض مالك المَورِدِ أو تصريح السيرفر طلبك.
+        invalid_client: فشلت المصادقة مع العميل لأنه العميل مجهول أو لغياب المصادقة ضمن العميل أو أنّ أسلوب المصادقة غير مدعومة.
+        invalid_redirect_uri: إنّ عنوان إعادة التحويل غير صالح.
+        invalid_scope: المجال المطلوب غير صحيح أو مجهول أو مُعبَّر عنه بشكل خاطئ.
         invalid_token:
           expired: إنتهت فترة صلاحيته رمز المصادقة
           revoked: تم إبطال رمز المصادقة
           unknown: رمز المصادقة غير صالح
-        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
-        server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
         temporarily_unavailable: تعذر على خادم التفويض معالجة الطلب و ذلك بسبب زيادة مؤقتة في التحميل أو عملية صيانة مبرمجة على الخادم.
         unauthorized_client: لا يصرح للعميل بتنفيذ هذا الطلب باستخدام هذه الطريقة.
         unsupported_grant_type: هذا النوع من منح التصريح غير معتمد في خادم الترخيص.

@@ -3,6 +3,7 @@
 #
 # Table name: imports
 #
+#  id                :integer          not null, primary key
 #  type              :integer          not null
 #  approved          :boolean          default(FALSE), not null
 #  created_at        :datetime         not null
@@ -12,7 +13,6 @@
 #  data_file_size    :integer
 #  data_updated_at   :datetime
 #  account_id        :integer          not null
-#  id                :integer          not null, primary key
 #
 
 class Import < ApplicationRecord
@@ -20,13 +20,13 @@ class Import < ApplicationRecord
 
   self.inheritance_column = false
 
-  belongs_to :account, required: true
+  belongs_to :account
 
   enum type: [:following, :blocking, :muting]
 
   validates :type, presence: true
 
-  has_attached_file :data, url: '/system/:hash.:extension', hash_secret: ENV['PAPERCLIP_SECRET']
+  has_attached_file :data
   validates_attachment_content_type :data, content_type: FILE_TYPES
   validates_attachment_presence :data
 end

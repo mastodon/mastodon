@@ -1,0 +1,31 @@
+- i ||= 0
+
+%table.email-table{ cellspacing: 0, cellpadding: 0, dir: 'ltr' }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell{ class: i.zero? ? 'content-start' : nil }
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded.status
+                              %table.status-header{ cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td{ align: 'left', width: 48 }
+                                      = image_tag full_asset_url(status.account.avatar.url), alt:''
+                                    %td{ align: 'left' }
+                                      %bdi= display_name(status.account)
+                                      = "@#{status.account.acct}"
+
+                              %div{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
+                                = Formatter.instance.format(status)
+
+                              %p.status-footer
+                                = link_to l(status.created_at), web_url("statuses/#{status.id}")

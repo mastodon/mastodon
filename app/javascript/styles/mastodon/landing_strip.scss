@@ -1,4 +1,5 @@
-.landing-strip {
+.landing-strip,
+.memoriam-strip {
   background: rgba(darken($ui-base-color, 7%), 0.8);
   color: $ui-primary-color;
   font-weight: 400;
@@ -11,6 +12,12 @@
   strong,
   a {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   a {
@@ -27,5 +34,78 @@
 
   @media screen and (max-width: 740px) {
     margin-bottom: 0;
+  }
+}
+
+.memoriam-strip {
+  background: rgba($base-shadow-color, 0.7);
+}
+
+.moved-strip {
+  padding: 14px;
+  border-radius: 4px;
+  background: rgba(darken($ui-base-color, 7%), 0.8);
+  color: $ui-secondary-color;
+  font-weight: 400;
+  margin-bottom: 20px;
+
+  strong,
+  a {
+    font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &.mention {
+      text-decoration: none;
+
+      span {
+        text-decoration: none;
+      }
+
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__message {
+    margin-bottom: 15px;
+
+    .fa {
+      margin-right: 5px;
+      color: $ui-primary-color;
+    }
+  }
+
+  &__card {
+    .detailed-status__display-avatar {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .detailed-status__display-name {
+      margin-bottom: 0;
+      text-decoration: none;
+
+      span {
+        color: $ui-highlight-color;
+        font-weight: 400;
+      }
+    }
   }
 }

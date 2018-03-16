@@ -1,5 +1,5 @@
-import * as WebPushSubscription from './web_push_subscription';
-import Mastodon from './containers/mastodon';
+import * as registerPushNotifications from './actions/push_notifications';
+import { default as Mastodon, store } from './containers/mastodon';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ready from './ready';
@@ -25,7 +25,7 @@ function main() {
     if (process.env.NODE_ENV === 'production') {
       // avoid offline in dev mode because it's harder to debug
       require('offline-plugin/runtime').install();
-      WebPushSubscription.register();
+      store.dispatch(registerPushNotifications.register());
     }
     perf.stop('main()');
   });

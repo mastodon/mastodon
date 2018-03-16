@@ -3,8 +3,8 @@ fr:
   simple_form:
     hints:
       defaults:
-        avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 120x120px
-        digest: Envoyé après une longue période d’inactivité et contient un résumé des notifications que vous avez reçues pendant votre absence
+        avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 400x400px
+        digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
         display_name:
           one: <span class="name-counter">1</span> caractère restant
           other: <span class="name-counter">%{count}</span> caractères restants
@@ -30,10 +30,12 @@ fr:
         data: Données
         display_name: Nom public
         email: Adresse courriel
+        expires_in: Expire après
         filtered_languages: Langues filtrées
         header: Image d’en-tête
         locale: Langue
         locked: Verrouiller le compte
+        max_uses: Nombre maximum d'utilisations
         new_password: Nouveau mot de passe
         note: Présentation
         otp_attempt: Code d’identification à deux facteurs
@@ -43,17 +45,20 @@ fr:
         setting_default_privacy: Confidentialité des statuts
         setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Afficher une fenêtre de confirmation avant de supprimer un pouet
+        setting_display_sensitive_media: Toujours afficher les médias marqués comme sensibles
         setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_reduce_motion: Réduire la vitesse des animations
         setting_system_font_ui: Utiliser la police par défaut du système
         setting_theme: Thème du site
         setting_unfollow_modal: Afficher une fenêtre de confirmation avant de vous désabonner d’un compte
-        severity: Séverité
+        severity: Sévérité
         type: Type d’import
         username: Identifiant
+        username_or_email: Nom d'utilisateur ou courriel
       interactions:
         must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Masquer les notifications des personnes que vous ne suivez pas
+        must_be_following_dm: Bloquer les messages directs des personnes que vous ne suivez pas
       notification_emails:
         digest: Envoyer des courriels récapitulatifs
         favourite: Envoyer un courriel lorsque quelqu’un ajoute mes statuts à ses favoris

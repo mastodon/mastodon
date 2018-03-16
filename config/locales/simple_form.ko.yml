@@ -3,7 +3,8 @@ ko:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF 혹은 JPG. 최대 2MB. 120x120px로 다운스케일 됨
+        avatar: PNG, GIF 혹은 JPG. 최대 2MB. 400x400px로 다운스케일 될 것임
+        digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
         display_name:
           one: <span class="name-counter">1</span> 글자 남음
           other: <span class="name-counter">%{count}</span> 글자 남음
@@ -17,9 +18,9 @@ ko:
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
-        otp: 2단계 인증 코드를 휴대전화를 보고 입력하거나, 복구 코드 중 하나를 사용
+        otp: 2단계 인증 코드를 휴대전화를 보고 입력하거나, 복구 코드 중 하나를 사용하세요.
       user:
-        filtered_languages: 선택된 언어가 공개 타임라인에서 제외 될 것입니다.
+        filtered_languages: 선택된 언어가 공개 타임라인에서 제외 될 것입니다
     labels:
       defaults:
         avatar: 아바타
@@ -29,9 +30,12 @@ ko:
         data: 데이터
         display_name: 표시되는 이름
         email: 이메일 주소
+        expires_in: 만료시각
+        filtered_languages: 숨긴 언어들
         header: 헤더
         locale: 언어
         locked: 계정 잠금
+        max_uses: 사용 횟수 제한
         new_password: 새로운 비밀번호 입력
         note: 자기소개
         otp_attempt: 2단계 인증 코드
@@ -42,6 +46,7 @@ ko:
         setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
         setting_delete_modal: 툿 삭제 전 확인 창을 표시
         setting_noindex: 검색엔진의 인덱싱을 거절
+        setting_reduce_motion: 애니메이션 줄이기
         setting_system_font_ui: 시스템의 초기 설정 폰트를 사용
         setting_theme: 사이트 테마
         setting_unfollow_modal: 언팔로우 전 언팔로우 확인 표시
@@ -51,6 +56,7 @@ ko:
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
+        must_be_following_dm: 내가 팔로우 하지 않은 사람에게서 오는 다이렉트메시지를 차단
       notification_emails:
         digest: 요약 이메일 보내기
         favourite: 누군가 내 상태를 즐겨찾기로 등록했을 때 이메일 보내기

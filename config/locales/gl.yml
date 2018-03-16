@@ -1,0 +1,776 @@
+---
+gl:
+  about:
+    about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Pode interactuar con elas si ten unha conta nalgures do fediverso.
+    about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.
+    about_this: Sobre
+    closed_registrations: O rexistro en esta instancia está pechado en este intre. Porén! Pode atopar unha instancia diferente para obter unha conta e ter acceso exactamente a misma rede desde alí.
+    contact: Contacto
+    contact_missing: Non establecido
+    contact_unavailable: N/A
+    description_headline: Qué é %{domain}?
+    domain_count_after: outras instancias
+    domain_count_before: Conectada a
+    extended_description_html: |
+      <h3>Un bo lugar para regras</h3>
+      <p>A descrición extendida aínda non se proporcionou.</p>
+    features:
+      humane_approach_body: Aprendendo dos erros de outras redes, Mastodon intenta tomar decisións éticas de deseño para loitar contra os usos incorrectos da rede.
+      humane_approach_title: Unha aproximación máis humana
+      not_a_product_body: Mastodon non é unha rede comercial. Sen anuncios, sen minería de datos, sen xardíns privados. Non hai autoridade centralizada.
+      not_a_product_title: Vostede é unha persona, non un producto
+      real_conversation_body: Con 500 caracteres a súa disposición e soporte para contido ao por menor e avisos sobre o contido, pode expresarse vostede do xeito que queira.
+      real_conversation_title: Construído para conversacións reais
+      within_reach_body: Existen múltiples aplicativos para iOS, Android e outras plataformas grazas a un entorno API amigable para o desenvolvedor que lle permite estar ao tanto cos seus amigos en calquer lugar.
+      within_reach_title: Sempre en contacto
+    generic_description: "%{domain} é un servidor na rede"
+    hosted_on: Mastodon aloxado en %{domain}
+    learn_more: Coñeza máis
+    other_instances: Listado de instancias
+    source_code: Código fonte
+    status_count_after: estados
+    status_count_before: Quen escribeu
+    user_count_after: usuarias
+    user_count_before: Inicio de
+    what_is_mastodon: Qué é Mastodon?
+  accounts:
+    follow: Seguir
+    followers: Seguidoras
+    following: Seguindo
+    media: Medios
+    moved_html: "%{name} mudouse a %{new_profile_link}:"
+    nothing_here: Nada por aquí!
+    people_followed_by: Personas que segue %{name}
+    people_who_follow: Personas que seguen a %{name}
+    posts: Mensaxes
+    posts_with_replies: Toots e respostas
+    remote_follow: Seguimento remoto
+    reserved_username: O nome de usuaria está reservado
+    roles:
+      admin: Admin
+      moderator: Mod
+    unfollow: Deixar de seguir
+  admin:
+    account_moderation_notes:
+      account: Moderador
+      create: Crear
+      created_at: Data
+      created_msg: Nota a moderación creada con éxito!
+      delete: Eliminar
+      destroyed_msg: Nota a moderación destruída con éxito!
+    accounts:
+      are_you_sure: Está segura?
+      by_domain: Dominio
+      confirm: Confirmar
+      confirmed: Confirmado
+      demote: Degradar
+      disable: Deshabilitar
+      disable_two_factor_authentication: Deshabilitar 2FA
+      disabled: Deshabilitado
+      display_name: Mostrar nome
+      domain: Dominio
+      edit: Editar
+      email: E-mail
+      enable: Habilitar
+      enabled: Habilitado
+      feed_url: URL fonte
+      followers: Seguidoras
+      followers_url: URL das seguidoras
+      follows: Segue
+      inbox_url: URL da Caixa de entrada
+      ip: IP
+      location:
+        all: Todo
+        local: Local
+        remote: Remoto
+        title: Lugar
+      login_status: Estado da conexión
+      media_attachments: Anexos de medios
+      memorialize: Convertir a lembranza
+      moderation:
+        all: Todo
+        silenced: Acalado
+        suspended: Suspendido
+        title: Moderación
+      moderation_notes: Notas de moderación
+      most_recent_activity: Actividade máis recente
+      most_recent_ip: IP máis recente
+      not_subscribed: Non suscrita
+      order:
+        alphabetic: Alfabética
+        most_recent: Máis recente
+        title: Orde
+      outbox_url: URL caixa de saída
+      perform_full_suspension: Suspender completamente
+      profile_url: URL do perfil
+      promote: Promocionar
+      protocol: Protocolo
+      public: Público
+      push_subscription_expires: A suscrición PuSH caduca
+      redownload: Actualizar avatar
+      reset: Restablecer
+      reset_password: Restablecer contrasinal
+      resubscribe: Voltar a suscribir
+      role: Permisos
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        staff: Membresía
+        user: Usuaria
+      salmon_url: URL Salmon
+      search: Busca
+      shared_inbox_url: URL da caixa de entrada compartida
+      show:
+        created_reports: Informes creados por esta conta
+        report: informar
+        targeted_reports: Informes feitos sobre esta conta
+      silence: Acalar
+      statuses: Estados
+      subscribe: Subscribir
+      title: Contas
+      undo_silenced: Desfacer acalar
+      undo_suspension: Desfacer suspensión
+      unsubscribe: Non subscribir
+      username: Nome de usuaria
+      web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} comfirmou o enderezo de correo da usuaria %{target}"
+        create_custom_emoji: "%{name} subeu un novo emoji %{target}"
+        create_domain_block: "%{name} bloqueou o dominio %{target}"
+        create_email_domain_block: "%{name} engadeu a lista negra o dominio de correo %{target}"
+        demote_user: "%{name} degradou a usuaria %{target}"
+        destroy_domain_block: "%{name} desbloqueou o dominio %{target}"
+        destroy_email_domain_block: "%{name} meteu na lista blanca de correo o dominio %{target}"
+        destroy_status: "%{name} eliminou o estado de %{target}"
+        disable_2fa_user: "%{name} deshabilitou o requerimento 2FA para usuaria %{target}"
+        disable_custom_emoji: "%{name} deshabilitou emoji %{target}"
+        disable_user: "%{name} deshabilitou a conexión para a usuaria  %{target}"
+        enable_custom_emoji: "%{name} habilitou emoji %{target}"
+        enable_user: "%{name} habilitou a conexión para a usuaria %{target}"
+        memorialize_account: "%{name} converteu a conta de  %{target} nunha páxina para a lembranza"
+        promote_user: "%{name} promoveu a usuaria %{target}"
+        reset_password_user: "%{name} restableceu o contrasinal da usuaria %{target}"
+        resolve_report: "%{name} rexeitou o informe %{target}"
+        silence_account: "%{name} acalou a conta de %{target}"
+        suspend_account: "%{name} suspendeu a conta de %{target}"
+        unsilence_account: "%{name} deulle voz a conta de %{target}"
+        unsuspend_account: "%{name} activou a conta de %{target}"
+        update_custom_emoji: "%{name} actualizou emoji %{target}"
+        update_status: "%{name} actualizou un estado de %{target}"
+      title: Rexistro de auditoría
+    custom_emojis:
+      by_domain: Dominio
+      copied_msg: Creouse con éxito unha copia local dos emoji
+      copy: Copiar
+      copy_failed_msg: Non se puido facer copia local de ese emoji
+      created_msg: Creou o emoji con satisfactoriamente!
+      delete: Eliminar
+      destroyed_msg: Emojo destruído satisfactoriamente!
+      disable: Deshabilitar
+      disabled_msg: Deshabilitouse correctamente ese emoji
+      emoji: Emoji
+      enable: Habilitar
+      enabled_msg: Habilitouse correctamente ese emoji
+      image_hint: PNG ate 50KB
+      listed: Listado
+      new:
+        title: Engadir novo emoji personalizado
+      overwrite: Sobrescribir
+      shortcode: Código corto
+      shortcode_hint: Cando menos 2 caracteres, só caracteres alfanuméricos e subliñados
+      title: Emojis personalizados
+      unlisted: Non listado
+      update_failed_msg: Non se puido actualizar ese emoji
+      updated_msg: Actualizouse correctamente o emoji!
+      upload: Subir
+    domain_blocks:
+      add_new: Engadir novo
+      created_msg: Estase a procesar o bloqueo do dominio
+      destroyed_msg: Desfixose a acción de bloqueo de dominio
+      domain: Dominio
+      new:
+        create: Crear bloque
+        hint: O bloqueo do dominio non previrá a creación de entradas de contas na base de datos, pero aplicará de xeito retroactivo e automático regras específicas de moderación sobre esas contas.
+        severity:
+          desc_html: "<strong>Silenciar</strong> fará invisibles as mensaxes das contas para calquera que non os siga. <strong>Suspender</strong> eliminará todo o contido das contas, ficheiros de medios, e datos de perfil. Utilice <strong>Ningún</strong> si só quere rexeitar ficheiros de medios."
+          noop: Ningún
+          silence: Silenciar
+          suspend: Suspender
+        title: Novo bloqueo de dominio
+      reject_media: Rexeitar ficheiros de medios
+      reject_media_hint: Eliminar ficheiros de medios almacenados localmente e rexeita descargalos no futuro. Irrelevante para as suspensións
+      severities:
+        noop: Ningún
+        silence: Silenciar
+        suspend: Suspender
+      severity: Severidade
+      show:
+        affected_accounts:
+          one: Afectoulle a unha conta na base de datos
+          other: Afectoulle a %{count} contas na base de datos
+        retroactive:
+          silence: Non silenciar todas as contas existentes de este dominio
+          suspend: Non suspender todas as contas existentes de este dominio
+        title: Desfacer o bloqueo de dominio para %{domain}
+        undo: Desfacer
+      title: Bloqueos de domino
+      undo: Desfacer
+    email_domain_blocks:
+      add_new: Engadir novo
+      created_msg: Engadeuse correctamente o dominio de email a lista negra
+      delete: Eliminar
+      destroyed_msg: Eliminouse correctamente o dominio de e-mail da lista negra
+      domain: Dominio
+      new:
+        create: Engadir dominio
+        title: Nova entrada la lista negra de e-mail
+      title: Lista negra de E-mail
+    instances:
+      account_count: Contas coñecidas
+      domain_name: Dominio
+      reset: Restablecer
+      search: Buscar
+      title: Instancias coñecidas
+    invites:
+      filter:
+        all: Todo
+        available: Dispoñible
+        expired: Cadudado
+        title: Filtro
+      title: Convida
+    reports:
+      action_taken_by: Acción tomada por
+      are_you_sure: Está segura?
+      comment:
+        label: Comentario
+        none: Nada
+      delete: Eliminar
+      id: ID
+      mark_as_resolved: Marcar como resolto
+      nsfw:
+        'false': Non agochar anexos de medios
+        'true': Agochar anexos de medios
+      report: 'Informe #%{id}'
+      report_contents: Contidos
+      reported_account: Conta reportada
+      reported_by: Reportada por
+      resolved: Resolto
+      silence_account: Acalar conta
+      status: Estado
+      suspend_account: Suspender conta
+      target: Obxetivo
+      title: Informes
+      unresolved: Non resolto
+      view: Vista
+    settings:
+      activity_api_enabled:
+        desc_html: Conta de estados publicados localmente, usuarias activas, e novos rexistros por semana
+        title: Publicar estatísticas agregadas sobre a actividade da usuaria
+      bootstrap_timeline_accounts:
+        desc_html: Separar múltiples nomes de usuaria con vírgulas. Só funcionarán as contas locais non bloqueadas. Si baldeiro, por omisión son todos os local admin.
+        title: Seguimentos por omisión para novas usuarias
+      contact_information:
+        email: e-mail de traballo
+        username: Nome de usuaria de contacto
+      hero:
+        desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Si non se establece, mostrará a imaxe por omisión da instancia
+        title: Imáxe Heróe
+      peers_api_enabled:
+        desc_html: Nome de dominio que esta instancia atopou no fediverso
+        title: Publicar lista de instancias descubertas
+      registrations:
+        closed_message:
+          desc_html: Mostrado na páxina de portada cando o rexistro está pechado. Pode utilizar etiquetas HTML
+          title: Mensaxe de rexistro pechado
+        deletion:
+          desc_html: Permitirlle a calquera que elimine a súa conta
+          title: Abrir o borrado da conta
+        min_invite_role:
+          disabled: Ninguén
+          title: Permitir convites por
+        open:
+          desc_html: Permitir que calquera poida crear unha conta
+          title: Abrir rexistro
+      show_known_fediverse_at_about_page:
+        desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
+        title: Mostrar vista previa do fediverso na liña temporal
+      show_staff_badge:
+        desc_html: Mostrar unha insignia de membresía nunha páxina de usuaria
+        title: Mostrar insigna de membresía
+      site_description:
+        desc_html: Parágrafo de presentación na páxina principal e nas meta etiquetas. Pode utilizar etiquetas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        title: Descrición da instancia
+      site_description_extended:
+        desc_html: Un bo lugar para o seu código de conducta, regras, guías e outras cousas que distingan a súa instancia. Pode utilizar etiquetas HTML
+        title: Información extendida da personalización
+      site_terms:
+        desc_html: Pode escribir a súa propia política de intimidade, termos de servizo ou aclaracións legais. Pode utilizar etiquetas HTML
+        title: Termos de servizo personalizados
+      site_title: Nome da instancia
+      thumbnail:
+        desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
+        title: Icona da instancia
+      timeline_preview:
+        desc_html: Mostrar liña de tempo pública na páxina de inicio
+        title: vista previa da liña temporal
+      title: Axustes do sitio
+    statuses:
+      back_to_account: Voltar a páxina da conta
+      batch:
+        delete: Eliminar
+        nsfw_off: NSFW apagado
+        nsfw_on: NSFW acendido
+      execute: Executar
+      failed_to_execute: Fallou a execución
+      media:
+        hide: Agochar medios
+        show: Mostar medios
+        title: Medios
+      no_media: Sen medios
+      title: Estados da conta
+      with_media: con medios
+    subscriptions:
+      callback_url: URL de chamada
+      confirmed: Confirmado
+      expires_in: Caduca en
+      last_delivery: Última entrega
+      title: WebSub
+      topic: Asunto
+    title: Administración
+  admin_mailer:
+    new_report:
+      body: "%{reporter} informou sobre %{target}"
+      subject: Novo informe sobre %{instance} (#%{id})
+  application_mailer:
+    notification_preferences: Cambiar os axustes de correo-e
+    salutation: "%{name},"
+    settings: 'Mudar as preferencias de e-mail: %{link}'
+    view: 'Vista:'
+    view_profile: Ver perfil
+    view_status: Ver estado
+  applications:
+    created: Creouse con éxito este aplicativo
+    destroyed: Eliminouse con éxito o aplicativo
+    invalid_url: A URL proporcionada non é válida
+    regenerate_token: Votar a xenerar o testemuño de acceso
+    token_regenerated: Rexenerouse con éxito o testemuño de acceso
+    warning: Teña moito tino con estos datos. Nunca os comparta con ninguén!
+    your_token: O seu testemuño de acceso
+  auth:
+    agreement_html: Rexistrándose acorda seguir <a href="%{rules_path}">as normas da instancia</a> e <a href="%{terms_path}">os termos do servizo</a>.
+    change_password: Contrasinal
+    confirm_email: Confirmar correo-e
+    delete_account: Eliminar conta
+    delete_account_html: Se desexa eliminar a súa conta, pode <a href="%{path}">facelo aquí</a>. Pediráselle confirmación.
+    didnt_get_confirmation: Non recibeu as instruccións de confirmación?
+    forgot_password: Esqueceu o contrasinal?
+    invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
+    login: Conectar
+    logout: Desconectar
+    migrate_account: Mover a unha conta diferente
+    migrate_account_html: Si desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
+    or: ou
+    or_log_in_with: ou conectar con
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Rexistro
+    register_elsewhere: Rexístrese en outro servidor
+    resend_confirmation: Voltar a enviar intruccións de confirmación
+    reset_password: Restablecer contrasinal
+    security: Seguridade
+    set_new_password: Establecer novo contrasinal
+  authorize_follow:
+    error: Desgraciadamente, algo fallou ao buscar a conta remota
+    follow: Seguir
+    follow_request: 'Enviou unha petición de seguimento a:'
+    following: 'Parabéns! Está a seguir a:'
+    post_follow:
+      close: Ou, pode pechar esta ventá.
+      return: Voltar ao perfil da usuaria
+      web: Ir a web
+    title: Seguir %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mes"
+      about_x_years: "%{count}a"
+      almost_x_years: "%{count}a"
+      half_a_minute: Agora
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Agora
+      over_x_years: "%{count}a"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mes"
+      x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Bo intento, hackers! Contrasinal incorrecto
+    confirm_password: Introduza o seu contrasinal para verificar a súa identidade
+    description_html: Esto eliminará de xeito <strong>permanente e irreversible</strong> o contido da súa conta e será desactivada. O seu nome de usuaria permanecerá reservado para evitar futuras confusións de identidades.
+    proceed: Eliminar conta
+    success_msg: A súa conta eliminouse correctamente
+    warning_html: Só se garantiza a eliminación de contido de esta instancia. O contido que foi compartido con outras instancias é probable que deixe rastros. O servidores fora de liña e servidores que se desuscribiron das súas actualizacións non actualizarán as súas bases de datos.
+    warning_title: Dispoñibilidade do contido espallado
+  errors:
+    '403': Non ten permiso para ver esta páxina.
+    '404': A páxina que está a buscar non existe.
+    '410': A páxina que busca xa non existe.
+    '422':
+      content: Fallou a verificación de seguridade. Está bloqueando as cookies?
+      title: Fallou a verficación de seguridade
+    '429': Acelerado
+    '500':
+      content: Sentímolo, pero algo do noso lado falloou.
+      title: Esta páxina non é correcta
+    noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativas</a> para Mastodon da súa plataforma.
+  exports:
+    archive_takeout:
+      date: Data
+      download: Descargue o seu ficheiro
+      hint_html: Pode solicitar un ficheiro cos <strong>seus toots ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o cumpla.
+      in_progress: Xerando o seu ficheiro...
+      request: Solicite o ficheiro
+      size: Tamaño
+    blocks: A bloquear
+    csv: CSV
+    follows: A seguir
+    mutes: Acalou
+    storage: Almacenamento de medios
+  followers:
+    domain: Dominio
+    explanation_html: Se quere asegurar a intimidade dos seus estados, debe ser consciente de quen a está a seguir. <strong>Os seus estados privados son enviados a todas as instancias onde ten seguidoras</strong>. Podería querer revisalas, e elminar seguidoras si non confía que a súa intimidade sexa respetada polos administradores ou o software de esa instancia.
+    followers_count: Número de seguidoras
+    lock_link: Bloquear a súa conta
+    purge: Eliminar das seguidoras
+    success:
+      one: En proceso de bloquear seguidoras de un dominio...
+      other: No proceso de bloquear seguidoras de %{count} dominios...
+    true_privacy_html: Por favor teña en conta que <strong>a verdadeira intimidade só pode ser conseguida con cifrado de extremo-a-extremo</strong>.
+    unlocked_warning_html: Calquera pode seguila para inmediatamente ver os seus estados privados. %{lock_link} para poder revisar e rexeitar seguidoras.
+    unlocked_warning_title: A súa conta non está pechada
+  generic:
+    changes_saved_msg: Cambios gardados correctamente!!
+    powered_by: a funcionar grazas a %{link}
+    save_changes: Gardar cambios
+    validation_errors:
+      one: Algo non está ben de todo! Por favor revise abaixo o erro
+      other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
+  imports:
+    preface: Pode importar os datos que exportou de outra instancia, tales como a lista de usuarias que está a seguir ou bloquear.
+    success: Os seus datos foron correctamente subidos e serán procesados ao momento
+    types:
+      blocking: Lista de bloqueo
+      following: Lista de seguimento
+      muting: Lista de usuarias acaladas
+    upload: Subir
+  in_memoriam_html: Lembranzas.
+  invites:
+    delete: Desactivar
+    expired: Caducou
+    expires_in:
+      '1800': 30 minutos
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '86400': 1 día
+    expires_in_prompt: Nunca
+    generate: Xerar
+    max_uses:
+      one: 1 uso
+      other: "%{count} usos"
+    max_uses_prompt: Sen límite
+    prompt: Xerar e compartir ligazóns con outras para permitir acceso a esta instancia
+    table:
+      expires_at: Caduca
+      uses: Usos
+    title: Convidar xente
+  landing_strip_html: "<strong>%{name}</strong> é unha usuaria en %{link_to_root_path}.  Pode seguila ou interactuar con ela si ten unha conta en algún lugar do fediverso."
+  landing_strip_signup_html: Si non, pode <a href="%{sign_up_path}">rexistrarse aquí</a>.
+  lists:
+    errors:
+      limit: Acadou o número máximo de listas
+  media_attachments:
+    validations:
+      images_and_video: Non pode anexar un vídeo a un estado que xa contén imaxes
+      too_many: Non pode anexar máis de 4 ficheiros
+  migrations:
+    acct: nomeusuaria@dominio da nova conta
+    currently_redirecting: 'O seu perfil está listo para redirixir a:'
+    proceed: Gardar
+    updated_msg: O axuste de migración da conta actualizouse correctamente!
+  moderation:
+    title: Moderación
+  notification_mailer:
+    digest:
+      action: Ver todas as notificacións
+      body: Aquí ten un breve resumo das mensaxes publicadas desde a súa última visita en %{since}
+      mention: "%{name} mencionouna en:"
+      new_followers_summary:
+        one: Ademáis, ten unha nova seguidora desde entón! Ben!
+        other: Ademáis, obtivo %{count} novas seguidoras desde entón! Tremendo!
+      subject:
+        one: "1 nova notificación desde a súa última visita \U0001F418"
+        other: "%{count} novas notificacións desde a súa última visita \U0001F418"
+      title: Na súa ausencia…
+    favourite:
+      body: 'O seu estado foi marcado favorito por %{name}:'
+      subject: "%{name} marcou favorito o seu estado"
+      title: Nova favorita
+    follow:
+      body: "%{name} agora está a seguila!"
+      subject: "%{name} agora está a seguila"
+      title: Nova seguidora
+    follow_request:
+      action: Xestionar peticións de seguimento
+      body: "%{name} solicitou poder seguila"
+      subject: 'Seguidora pendente: %{name}'
+      title: Nova petición de seguimento
+    mention:
+      action: Respostar
+      body: 'Foi mencionada por %{name} en:'
+      subject: Vostede foi mencionada por %{name}
+      title: Nova mención
+    reblog:
+      body: 'O seu estado foi promocionado por %{name}:'
+      subject: "%{name} promoveu o seu estado"
+      title: Nova promoción
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: " "
+  pagination:
+    newer: Máis novo
+    next: Seguinte
+    older: Máis antigo
+    prev: Previo
+    truncate: "&hellip;"
+  preferences:
+    languages: Idiomas
+    other: Outro
+    publishing: Publicando
+    web: Web
+  push_notifications:
+    favourite:
+      title: "%{name} marcou favorito o seu estado"
+    follow:
+      title: "%{name} agora está a seguila"
+    group:
+      title: "%{count} notificacións"
+    mention:
+      action_boost: Promover
+      action_expand: Mostar máis
+      action_favourite: Favorito
+      title: "%{name} mencionouna"
+    reblog:
+      title: "%{name} promoveu un dos seus estados"
+  remote_follow:
+    acct: Introduza o seu nomedeusuaria@dominio desde onde quere facer seguimento
+    missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
+    proceed: Proceda para seguir
+    prompt: 'Vostede vai seguir:'
+  sessions:
+    activity: Última actividade
+    browser: Navegador
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Navegador descoñecido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Navegador Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: Navegador QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Sesión actual
+    description: "%{browser} en %{platform}"
+    explanation: Estos son os navegadores web nos que actualmente ten sesión aberta.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: plataforma descoñecida
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revocar
+    revoke_success: A sesión revocouse con éxito
+    title: Sesións
+  settings:
+    authorized_apps: Apps autorizados
+    back: Voltar a Mastodon
+    delete: Eliminación da conta
+    development: Desenvolvemento
+    edit_profile: Editar perfil
+    export: Exportar datos
+    followers: Seguidoras autorizadas
+    import: Importar
+    migrate: Migrar conta
+    notifications: Notificacións
+    preferences: Preferencias
+    settings: Axustes
+    two_factor_authentication: Validar Doble Factor
+    your_apps: Os seus aplicativos
+  statuses:
+    open_in_web: Abrir na web
+    over_character_limit: Excedeu o límite de caracteres %{max}
+    pin_errors:
+      limit: Xa fixou o número máximo permitido de mensaxes
+      ownership: Non pode fixar a mensaxe de outra usuaria
+      private: As mensaxes non-públicas non poden ser fixadas
+      reblog: Non se poden fixar as mensaxes promovidas
+    show_more: Mostrar máis
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Só seguidoras
+      private_long: Mostrar só as seguidoras
+      public: Público
+      public_long: Visible para calquera
+      unlisted: Non listado
+      unlisted_long: Visible para calquera, pero non listado en liñas de tempo públicas
+  stream_entries:
+    click_to_show: Pulse para mostrar
+    pinned: Mensaxe fixada
+    reblogged: promocionada
+    sensitive_content: Contido sensible
+  terms:
+    body_html: |
+      <h2>Política de intimidade</h2>
+
+      <h3 id="collect">Qué información recollemos?</h3>
+
+      <p>Recollemos información sobre vostede cando se rexistra no noso sitio web e recollemos datos cando participa no foro lendo, escribindo e evaluando o contido compartido aquí. </p>
+
+      <p>Cando se rexistra no noso sitio, podería solicitarselle o seu nome e enderezo de correo electrónico. Vostede podería, porén, visitar o noso sitio sin rexistrarse. O seu enderezo de correo será verificado con un correo con unha ligazón única. Si esa ligazón é visitada, saberemos que vostede controla ese enderezo de correo.</p>
+
+      <p>Cando se rexistra e publica, almacenamos o enderezo IP desde onde publicou. Poderiamos tamén gardar rexistros do servidor que inclúan a IP de cada petición ao realizada ao servidor. </p>
+
+      <h3 id="use">Con qué fin utilizamos a súa información?</h3>
+
+      <p>Toda a información recollida de vostede podería ser utilizada dos seguintes xeitos:</p>
+
+      <ul>
+        <li>Para individualizar a súa experiencia  &mdash; a súa información axúdanos a respostar mellor as súas necesidades individuais.</li>
+        <li>Para mellorar o noso sitio &mdash;esforzámonos en mellorar o que ofrece o noso sitio baseándonos na información e críticas que vostede nos proporciona.</li>
+        <li>Para mellorar o servizo ao cliente &mdash;a súa información axúdanos a respostar máis eficientemente as súas peticións de servizo ao cliente e axuda.</li>
+        <li>Para enviar correos electrónicos periodicamente &mdash; O enderezo de correo que nos proporciona podería ser utilizado para enviarlle información, notificacións que solicitou sobre cambios ou asuntos  ou en resposta ao ser nome de usuaria, responder a enquisas, e/ou outras peticións ou cuestións.</li>
+      </ul>
+
+      <h3 id="protect">Cómo protexemos a súa información?</h3>
+
+      <p>Implementamos varias medidas de seguridade para manter a seguiridade da súa información personal cando introduce, envía ou accede a súa información personal.</p>
+
+      <h3 id="data-retention">Qué é a política de retención dos seus datos?</h3>
+
+      <p>Faremos un sincero esforzo para:</p>
+
+      <ul>
+        <li>Manter rexistros do sistema con enderezos IP de todas as peticións feitas a este servidor no seu nome non máis de 90 días.</li>
+        <li>Manter os enderezos IP asociados a usuarias rexistradas e as súas mensaxes non máis de 5 anos. </li>
+      </ul>
+
+      <h3 id="cookies">Utilizamos cookies?</h3>
+
+      <p>Si. As cookies son pequenos ficheiros que un sitio ou o seu proveedor de servizo transfire ao disco duro da súa computadora a través do navegador web (se vostede o permite). Estas cookies permiten ao sitio recoñer o seu navegador e, si ten unha conta rexistrada, asocialo coa súa conta.</p>
+
+      <p>Utilizamos cookies para comprender e gardar as súas preferencias para futuras visitas e compilar datos agregados sobre o tráfico do sitio e interacción co sitio de tal xeito que no futuro poidamos ofrecer unha mellor experiencia de uso do sitio e ferramentas. Poderiamos contratar servizos de terceiros para axudarnos a entender mellor as nosas visitantes. Estos proveedores de servizo non teñen permiso para utilizar a información recollida no noso nome excepto para axudarnos a xestionar e mellorar o noso negocio. </p>
+
+      <h3 id="disclose">Mostramos información a terceiros alleos?</h3>
+
+      <p>Non vendemos, nin negociamos con, ou transmitimos de outros xeitos a axentes terceiros alleos a información que a información que a identifica personalmente. Esto non inclúe terceiros de confianza que non axudan a operar o sitio, xestionar o negocio, ou servila, así estas partes se comprometan coa confidencialidade dos datos. Poderiamos  revelar a súa información cando creamos que facelo así é axeitado para cumplir coa lei, cumplir coas normas do sitio ou protexer os nosos dereitos, propiedades ou seguridade e os de outras. Porén, non se proporcionará información identificable a terceiros para publicidade, márquetin ou outros usos.</p>
+
+      <h3 id="third-party">Ligazóns a terceiros</h3>
+
+      <p>De xeito ocasional, a nosa discreción, poderiamos incluír ofertas de productos e servizos de terceiros no noso sitio. Estos sitios de terceiros teñen políticas de intimidade propias. Polo tanto non temos responsabilidade ou obligacións polo contido e actividades de esos sitios. Con todo, procuramos protexer a integridade do noso sitio e agradecemos calquer opinión e crítica sobre estos sitios.</p>
+
+      <h3 id="coppa">Cumplimento coa Children's Online Privacy Protection Act</h3>
+
+      <p>O noso sitio, productos e servizos están dirixidos as personas con 13 anos como mínimo. Si este servidor está en USA e vostede ten menos de 13 anos, a requerimento da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) non utilice este sitio web.</p>
+
+      <h3 id="online">Política de intimidade só en liña</h3>
+
+      <p>Esta política de intimidade aplícase só a información recollida no noso sitio e non a información recollida fora de liña. </p>
+
+      <h3 id="consent">O seu consentimento</h3>
+
+      <p>Utilizando o noso sitio, vostede acepta esta política de intimidade.</p>
+
+      <h3 id="changes">Cambios na política de intimidade</h3>
+
+      <p>Si decidimos cambiar a nosa política de intimidade publicaremos esos cambios en esta páxina.</p>
+
+      <p>Este documento ten licenza CC-BY-SA. Foi actualizado o 31 de maio de 2013.</p>
+
+      <p>Adaptado do orixinal <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "%{instance} Termos do Servizo e Política de Intimidade"
+  themes:
+    default: Mastodon
+  time:
+    formats:
+      default: "%d %b, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
+    description_html: Si habilita a <strong>autenticación de doble factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.
+    disable: Deshabilitar
+    enable: Habilitar
+    enabled: A autenticación de doble-factor está habilitada
+    enabled_success: Habilitouse con éxito a autenticación de doble-factor
+    generate_recovery_codes: Xerar códigos de recuperación
+    instructions_html: "<strong>Escanee este código QR en Google Authenticator ou aplicativo TOTP similar no seu teléfono</strong>. Desde agora, este aplicativo xerará testemuños que vostede deberá introducir ao conectarse."
+    lost_recovery_codes: Os códigos de recuperación permítenlle recuperar o acceso a súa conta si perde o teléfono. Si perde os códigos de recuperación, pode restauralos aquí. Os seus códigos de recuperación anteriores serán invalidados.
+    manual_instructions: 'Si non pode escanear o código QR e precisa introducilo manualmente, aquí está o testemuño secreto en texto plano:'
+    recovery_codes: Códigos de recuperación do respaldo
+    recovery_codes_regenerated: Códigos de recuperación xerados correctamente
+    recovery_instructions_html: Si perdese o acceso ao seu teléfono, pode utilizar un dos códigos inferiores de recuperación para recuperar o acceso a súa conta. <strong>Garde os códigos en lugar seguro</strong>. Por exemplo, pode imprimilos e gardalos xunto con outros documentos importantes.
+    setup: Configurar
+    wrong_code: O código introducido non é válido! Son correctas as horas no dispositivo e o servidor?
+  user_mailer:
+    backup_ready:
+      explanation: Solicitou un respaldo completo da súa conta de Mastodon. Xa está listo para descargar!
+      subject: O seu ficheiro xa está listo para descargar
+      title: Leve o ficheiro
+    welcome:
+      edit_profile_action: Configurar perfil
+      edit_profile_step: Vostede pode personalizar o seu perfil subindo un avatar, cabeceira, cambiar o seu nome público e aínda máis. Si restrinxe a súa conta pode revisar a conta das personas que solicitan seguilas antes de permitirlles o acceso aos seus toots.
+      explanation: Aquí ten alunhas endereitas para ir aprendendo
+      final_action: Comece a publicar
+      final_step: 'Publique! Incluso sin seguidoras as súas mensaxes serán vistas por outras, por exemplo na liña temporal local e nas etiquetas. Podería presentarse no #fediverso utilizando a etiqueta #introductions.'
+      full_handle: O seu alcume completo
+      full_handle_hint: Esto é o que lle dirá aos seus amigos para que poidan seguila ou enviarlle mensaxes desde outra instancia.
+      review_preferences_action: Cambiar preferencias
+      review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
+      subject: Benvida a Mastodon
+      tip_bridge_html: Si chega desde a Twitter, pode atopar aos seus amigos en Mastodon utilizando o <a href="%{bridge_url}">aplicativo ponte</a>. Só funciona si eles tamén utilizan o aplicativo ponte!
+      tip_federated_timeline: A liña temporal federada é unha visión ampla da rede Mastodon. Pero so inclúe xente a que segue xente que vostede segue, así que non é completa.
+      tip_following: Por omisión vostede segue ao Admin do seu servidor. Para atopar máis xente interesante, mire nas liñas temporais local e federada.
+      tip_local_timeline: A liña temporal local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!
+      tip_mobile_webapp: Si o navegador móbil lle ofrece engadir Mastodon a pantalla de inicio, pode recibir notificacións push. En moitos aspectos comportarase como un aplicativo nativo!
+      tips: Consellos
+      title: Benvida, %{name}!
+  users:
+    invalid_email: O enderezo de correo non é válido
+    invalid_otp_token: Código de doble-factor non válido
+    seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
+    signed_in_as: 'Rexistrada como:'

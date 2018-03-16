@@ -9,7 +9,8 @@ import spring from 'react-motion/lib/spring';
 import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  title: { id: 'compose_form.sensitive', defaultMessage: 'Mark media as sensitive' },
+  marked: { id: 'compose_form.sensitive.marked', defaultMessage: 'Media is marked as sensitive' },
+  unmarked: { id: 'compose_form.sensitive.unmarked', defaultMessage: 'Media is not marked as sensitive' },
 });
 
 const mapStateToProps = state => ({
@@ -47,10 +48,10 @@ class SensitiveButton extends React.PureComponent {
             'compose-form__sensitive-button--visible': visible,
           });
           return (
-            <div className={className} style={{ transform: `translateZ(0) scale(${scale})` }}>
+            <div className={className} style={{ transform: `scale(${scale})` }}>
               <IconButton
                 className='compose-form__sensitive-button__icon'
-                title={intl.formatMessage(messages.title)}
+                title={intl.formatMessage(active ? messages.marked : messages.unmarked)}
                 icon={icon}
                 onClick={onClick}
                 size={18}

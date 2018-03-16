@@ -3,7 +3,8 @@ ru:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF или JPG. Максимально 2MB. Будет уменьшено до 120x120px
+        avatar: PNG, GIF или JPG. Максимально 2MB. Будет уменьшено до 400x400px
+        digest: Отсылается после долгого периода неактивности с общей информацией упоминаний, полученных в Ваше отсутствие
         display_name:
           few: Осталось <span class="name-counter">%{count}</span> символа
           many: Осталось <span class="name-counter">%{count}</span> символов
@@ -17,6 +18,7 @@ ru:
           one: Остался <span class="name-counter">1</span> символ
           other: Осталось <span class="name-counter">%{count}</span> символов
         setting_noindex: Относится к Вашему публичному профилю и страницам статусов
+        setting_theme: Влияет на внешний вид Mastodon при выполненном входе в аккаунт.
       imports:
         data: Файл CSV, экспортированный с другого узла Mastodon
       sessions:
@@ -32,10 +34,12 @@ ru:
         data: Данные
         display_name: Показываемое имя
         email: Адрес e-mail
+        expires_in: Срок действия
         filtered_languages: Фильтруемые языки
         header: Заголовок
         locale: Язык
         locked: Сделать аккаунт приватным
+        max_uses: Макс. число использований
         new_password: Новый пароль
         note: О Вас
         otp_attempt: Двухфакторный код
@@ -46,7 +50,9 @@ ru:
         setting_default_sensitive: Всегда отмечать медиаконтент как чувствительный
         setting_delete_modal: Показывать диалог подтверждения перед удалением
         setting_noindex: Отказаться от индексации в поисковых машинах
+        setting_reduce_motion: Уменьшить движение в анимации
         setting_system_font_ui: Использовать шрифт системы по умолчанию
+        setting_theme: Тема сайта
         setting_unfollow_modal: Показывать диалог подтверждения перед тем, как отписаться от аккаунта
         severity: Строгость
         type: Тип импорта
@@ -54,6 +60,7 @@ ru:
       interactions:
         must_be_follower: Заблокировать уведомления не от подписчиков
         must_be_following: Заблокировать уведомления от людей, на которых Вы не подписаны
+        must_be_following_dm: Заблокировать личные сообщения от людей, на которых Вы не подписаны
       notification_emails:
         digest: Присылать дайджест по e-mail
         favourite: Уведомлять по e-mail, когда кому-то нравится Ваш статус

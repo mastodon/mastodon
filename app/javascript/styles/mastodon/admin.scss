@@ -105,6 +105,16 @@
       margin-bottom: 30px;
     }
 
+    h4 {
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 500;
+      color: $ui-primary-color;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
+    }
+
     h6 {
       font-size: 16px;
       color: $ui-secondary-color;
@@ -121,6 +131,12 @@
       strong {
         color: $primary-text-color;
         font-weight: 500;
+
+        @each $lang in $cjk-langs {
+          &:lang(#{$lang}) {
+            font-weight: 700;
+          }
+        }
       }
     }
 
@@ -222,6 +238,12 @@
       font-weight: 500;
       text-transform: uppercase;
       font-size: 12px;
+
+      @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
     }
 
     a {
@@ -265,6 +287,12 @@
     font-size: 14px;
     line-height: 18px;
     color: $ui-secondary-color;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   .account-card {
@@ -345,5 +373,124 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.log-entry {
+  margin-bottom: 8px;
+  line-height: 20px;
+
+  &__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background: $ui-base-color;
+    color: $ui-primary-color;
+    border-radius: 4px 4px 0 0;
+    font-size: 14px;
+    position: relative;
+  }
+
+  &__avatar {
+    margin-right: 10px;
+
+    .avatar {
+      display: block;
+      margin: 0;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__content {
+    max-width: calc(100% - 90px);
+  }
+
+  &__title {
+    word-wrap: break-word;
+  }
+
+  &__timestamp {
+    color: lighten($ui-base-color, 34%);
+  }
+
+  &__extras {
+    background: lighten($ui-base-color, 6%);
+    border-radius: 0 0 4px 4px;
+    padding: 10px;
+    color: $ui-primary-color;
+    font-family: 'mastodon-font-monospace', monospace;
+    font-size: 12px;
+    word-wrap: break-word;
+    min-height: 20px;
+  }
+
+  &__icon {
+    font-size: 28px;
+    margin-right: 10px;
+    color: lighten($ui-base-color, 34%);
+  }
+
+  &__icon__overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    &.positive {
+      background: $success-green;
+    }
+
+    &.negative {
+      background: $error-red;
+    }
+
+    &.neutral {
+      background: $ui-highlight-color;
+    }
+  }
+
+  a,
+  .username,
+  .target {
+    color: $ui-secondary-color;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .diff-old {
+    color: $error-red;
+  }
+
+  .diff-neutral {
+    color: $ui-secondary-color;
+  }
+
+  .diff-new {
+    color: $success-green;
+  }
+}
+
+.name-tag {
+  display: flex;
+  align-items: center;
+
+  .avatar {
+    display: block;
+    margin: 0;
+    margin-right: 5px;
+    border-radius: 50%;
+  }
+
+  .username {
+    font-weight: 500;
   }
 }

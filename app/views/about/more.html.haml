@@ -8,51 +8,36 @@
 .landing-page
   .header-wrapper.compact
     .header
-      .container.links
-        .brand
-          = link_to root_url do
-            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+      = render 'links'
 
-        %ul.nav
-          %li
-            - if user_signed_in?
-              = link_to t('settings.back'), root_url, class: 'webapp-btn'
-            - else
-              = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
-          %li= link_to t('about.about_this'), about_more_path
-          %li
-            = link_to 'https://joinmastodon.org/' do
-              = "#{t('about.other_instances')}"
-              %i.fa.fa-external-link{ style: 'padding-left: 5px;' }
-
-      .container.hero
+      .container-alt.hero
         .heading
           %h3= t('about.description_headline', domain: site_hostname)
           %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
   .information-board
-    .container
-      .information-board-sections
-        .section
+    .container-alt
+      .information-board__sections
+        .information-board__section
           %span= t 'about.user_count_before'
           %strong= number_with_delimiter @instance_presenter.user_count
           %span= t 'about.user_count_after'
-        .section
+        .information-board__section
           %span= t 'about.status_count_before'
           %strong= number_with_delimiter @instance_presenter.status_count
           %span= t 'about.status_count_after'
-        .section
+        .information-board__section
           %span= t 'about.domain_count_before'
           %strong= number_with_delimiter @instance_presenter.domain_count
           %span= t 'about.domain_count_after'
       = render 'contact', contact: @instance_presenter
 
   .extended-description
-    .container
+    .container-alt
       = @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
 
   .footer-links
-    .container
+    .container-alt
       %p
         = link_to t('about.source_code'), @instance_presenter.source_url
         = " (#{@instance_presenter.version_number})"

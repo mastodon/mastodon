@@ -14,20 +14,24 @@ import {
   pin,
   unpin,
 } from '../actions/interactions';
+import { blockAccount } from '../actions/accounts';
 import {
-  blockAccount,
-  muteAccount,
-} from '../actions/accounts';
-import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
+  muteStatus,
+  unmuteStatus,
+  deleteStatus,
+  hideStatus,
+  revealStatus,
+} from '../actions/statuses';
+import { initMuteModal } from '../actions/mutes';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { boostModal, deleteModal } from '../initial_state';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
-  muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
 });
 
 const makeMapStateToProps = () => {
@@ -35,10 +39,6 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.id),
-    me: state.getIn(['meta', 'me']),
-    boostModal: state.getIn(['meta', 'boost_modal']),
-    deleteModal: state.getIn(['meta', 'delete_modal']),
-    autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
 
   return mapStateToProps;
@@ -58,7 +58,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
-      if (e.shiftKey || !this.boostModal) {
+      if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
         dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
@@ -87,7 +87,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onDelete (status) {
-    if (!this.deleteModal) {
+    if (!deleteModal) {
       dispatch(deleteStatus(status.get('id')));
     } else {
       dispatch(openModal('CONFIRM', {
@@ -123,11 +123,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onMute (account) {
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.mute.message' defaultMessage='Are you sure you want to mute {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.muteConfirm),
-      onConfirm: () => dispatch(muteAccount(account.get('id'))),
-    }));
+    dispatch(initMuteModal(account));
   },
 
   onMuteConversation (status) {
@@ -135,6 +131,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(unmuteStatus(status.get('id')));
     } else {
       dispatch(muteStatus(status.get('id')));
+    }
+  },
+
+  onToggleHidden (status) {
+    if (status.get('hidden')) {
+      dispatch(revealStatus(status.get('id')));
+    } else {
+      dispatch(hideStatus(status.get('id')));
     }
   },
 

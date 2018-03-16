@@ -3,7 +3,8 @@ oc:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en 120x120px
+        avatar: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en 400x400px
+        digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
         display_name:
           one: Demòra encara <span class="name-counter">1</span> caractèr
           other: Demòran encara <span class="name-counter">%{count}</span> caractèrs
@@ -13,7 +14,7 @@ oc:
           one: Demòra encara <span class="name-counter">1</span> caractèr
           other: Demòran encara <span class="name-counter">%{count}</span> caractèrs
         setting_noindex: Aquò es destinat a vòstre perfil public e vòstra pagina d’estatuts
-        setting_theme: Aquò càmbia lo tèma grafic de Mastodon quand sètz connectat qualque siaque lo periferic.
+        setting_theme: Aquò càmbia lo tèma grafic de Mastodon quand sètz connectat qual que siasque lo periferic.
       imports:
         data: Fichièr CSV exportat d’una autra instància Mastodon
       sessions:
@@ -29,10 +30,12 @@ oc:
         data: Data
         display_name: Escais
         email: Corrièl
+        expires_in: Expira aprèp
         filtered_languages: Lengas filtradas
         header: Bandièra
         locale: Lenga
         locked: Far venir lo compte privat
+        max_uses: Limit d’utilizacion
         new_password: Nòu senhal
         note: Bio
         otp_attempt: Còdi Two-factor
@@ -44,7 +47,7 @@ oc:
         setting_delete_modal: Afichar una fenèstra de confirmacion abans de suprimir un estatut
         setting_noindex: Èsser pas indexat pels motors de recèrca
         setting_reduce_motion: Reduire la velocitat de las animacions
-        setting_system_font_ui: Utilizar la policia Font del sisèma
+        setting_system_font_ui: Utilizar la polissa del sisèma
         setting_theme: Tèma del site
         setting_unfollow_modal: Afichar una confirmacion abans de quitar de sègre qualqu’un
         severity: Severitat
@@ -53,6 +56,7 @@ oc:
       interactions:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas
+        must_be_following_dm: Blocar los messatges del monde que seguètz pas
       notification_emails:
         digest: Enviar un corrièl recapitulatiu
         favourite: Enviar un corrièl quand qualqu’un plaça vòstre estatut en favorit

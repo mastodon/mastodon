@@ -1,54 +1,98 @@
 ---
 he:
   about:
+    about_hashtag_html: אלו סטטוסים פומביים המתוייגים בתור<strong>#%{hashtag}</strong>. ניתן להגיב, להדהד או לחבב אותם אם יש לך חשבון בכל מקום בפדרציה.
     about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
     about_this: אודות שרת זה
     closed_registrations: הרשמות סגורות לשרת זה לעת עתה.
     contact: צור קשר
+    contact_missing: אין
+    contact_unavailable: לא רלוונטי/חסר
     description_headline: מהו %{domain}?
     domain_count_after: שרתים אחרים
     domain_count_before: מחובר אל
+    extended_description_html: |
+      <h3>מקום טוב לכללים</h3>
+      <p>התיאור המורחב טרם הוגדר.</p>
+    features:
+      humane_approach_body: מתוך למידה מכשלים של רשתות אחרות, מסטודון מכוונת להחלטות תכנוניות אתיות שנאבקות בשימוש לרעה של מדיה חברתית.
+      humane_approach_title: גישה הומאנית יותר
+      not_a_product_body: מסטודון איננה רשת מסחרית. אין פרסום, אין כריית מידע, אין גנים סגורים. אין סמכות מרכזית.
+      not_a_product_title: את(ה) אדם, לא מוצר
+      real_conversation_body: עם 500 תווים לרשותך, ואפשרויות פרטניות לאזהרות תוכן והסתרת מדיה, יש לך את החופש להתבטא כרצונך.
+      real_conversation_title: בנוי לשיחות אמתיות
+      within_reach_body: שלל אפליקציות עבור iOS, אנדרואיד ופלטפורמות אחרות שיאפשרו לך לשמור על קשר עם חברים בכל מקום, תודות למערכת מנשקי תוכנה ידידותיים למפתחים.
+      within_reach_title: תמיד במרחק נגיעה
+    generic_description: "%{domain} הוא שרת אחד בתוך הרשת"
+    hosted_on: מסטודון שיושב בכתובת %{domain}
+    learn_more: מידע נוסף
     other_instances: שרתים אחרים
     source_code: קוד מקור
     status_count_after: הודעות
     status_count_before: שכתבו
     user_count_after: משתמשים
     user_count_before: ביתם של
+    what_is_mastodon: מה זה מסטודון?
   accounts:
     follow: לעקוב
     followers: עוקבים
     following: נעקבים
+    media: מדיה
+    moved_html: "%{name} עבר(ה) אל %{new_profile_link}:"
     nothing_here: אין פה שום דבר!
     people_followed_by: הנעקבים של %{name}
     people_who_follow: העוקבים של %{name}
     posts: הודעות
+    posts_with_replies: חצרוצים ותגובות
     remote_follow: מעקב מרחוק
+    reserved_username: שם המשתמש שמור
+    roles:
+      admin: מנהל
+      moderator: מנחה
     unfollow: הפסקת מעקב
   admin:
+    account_moderation_notes:
+      account: מנחה דיון
+      create: ליצור
+      created_at: תאריך
+      created_msg: הודעת מנחה נוצרה בהצלחה!
+      delete: למחוק
+      destroyed_msg: הודעת מנחה נמחקה בהצלחה!
     accounts:
       are_you_sure: בטוח?
-      confirm: אשר
+      by_domain: שם מתחם
+      confirm: אישור
       confirmed: אושר
+      demote: הורדה בדרגה
+      disable: לחסום
       disable_two_factor_authentication: ביטול הזדהות דו-שלבית
+      disabled: נחסם
       display_name: שם לתצוגה
       domain: תחום
       edit: עריכה
       email: דוא"ל
+      enable: לאפשר
+      enabled: מאופשר
       feed_url: כתובת פיד
       followers: עוקבים
+      followers_url: כתובת עוקבים
       follows: נעקבים
+      inbox_url: כתובת תיבה נכנסת
       ip: כתובת IP
       location:
         all: הכל
         local: מקומי
         remote: מרחוק
         title: מיקום
+      login_status: מצב חיבור
       media_attachments: תוספות מדיה
+      memorialize: הפוך לדף זכרון
       moderation:
         all: הכל
         silenced: מושתקים
         suspended: מושהים
         title: ניהול קהילה
+      moderation_notes: הודעות מנחה
       most_recent_activity: פעילות עדכנית
       most_recent_ip: כתובות אחרונות
       not_subscribed: לא רשום
@@ -56,25 +100,49 @@ he:
         alphabetic: אלפביתי
         most_recent: עדכני
         title: סידור
+      outbox_url: כתובת תיבת דואר יוצא
       perform_full_suspension: ביצוע השעייה מלאה
       profile_url: כתובת פרופיל
+      promote: להעלות בדרגה
+      protocol: פרטיכל
       public: פומבי
       push_subscription_expires: הרשמה להודעות בדחיפה פגה
+      redownload: לקריאה מחדש של האווטאר
       reset: איפוס
       reset_password: אתחול סיסמא
+      resubscribe: להרשם מחדש
+      role: הרשאות
+      roles:
+        admin: מנהל מערכת
+        moderator: מנחה דיונים
+        user: משתמש(ת)
       salmon_url: כתובת סלמון
       search: חיפוש
+      shared_inbox_url: תיבה משותפת לדואר נכנס
       show:
         created_reports: דיווחים מאת חשבון זה
         report: דו"ח
         targeted_reports: דיווחים נגד חשבון זה
       silence: השתקה
       statuses: הודעות
+      subscribe: הרשמה
       title: חשבונות
       undo_silenced: ביטול השתקה
       undo_suspension: ביטול השעייה
+      unsubscribe: הפסקת הרשמה
       username: שם משתמש
       web: רשת
+    action_logs:
+      actions:
+        confirm_user: יש אישור מאת %{name} על כתובת הדוא"ל של %{target}
+        create_custom_emoji: "%{name} תרמה/תרם אמוג'י חדש %{target}"
+        create_domain_block: "%{name} חסמה/חסם את שם המתחם %{target}"
+        create_email_domain_block: מתחם דוא"ל %{target} הוסף לרשימה השחורה ע"י %{name}
+        demote_user: '%{name} הורד(ה) בדרגה ע"י %{target}'
+        destroy_domain_block: החסימה על מתחם %{target} הוסרה ע"י %{name}
+        destroy_email_domain_block: מתחם דוא"ל %{target} הוכנס לרשימה הלבנה ע"י %{name}
+        destroy_status: ההודעה של  %{target} הוסרה ע"י %{name}
+        disable_2fa_user: אימות דו שלבי של  %{target} הוסר ע"י %{name}
     domain_blocks:
       add_new: הוספת חדש
       created_msg: חסימת שרת בתהליך
@@ -84,12 +152,12 @@ he:
         create: יצירת חסימה
         hint: חסימת השרת לא תמנע יצירת רישומי חשבון במסד הנתונים, אבל תבצע פעולות ניהול קהילה מסוימות על חשבונות אלו אוטומטית ורטרואקטיבית.
         severity:
-          desc_html: "<strong>השתקה</strong> תחביא הודעות מחשבון זה לכל מי שלא עוקב אחריו. <strong>השעייה</strong> תסיר מהשרת את כל התוכן, מדיה ותכונות הפרופיל שמקושרות לחשבון זה."
+          desc_html: "<strong>השתקה</strong> תחביא הודעות מחשבון זה לכל מי שלא עוקב אחריו. <strong>השעייה</strong> תסיר מהשרת את כל התוכן, מדיה ותכונות הפרופיל שמקושרות לחשבון זה. <strong>כלום</strong> כדי לחסום קבצי מדיה בלבד."
           silence: השתקה
           suspend: השעייה
         title: חסימת שרת חדשה
       reject_media: חסימת קבצי מדיה
-      reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות.
+      reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות
       severities:
         silence: השתקה
         suspend: השעייה
@@ -143,7 +211,7 @@ he:
         open:
           title: הרשמה פתוחה
       site_description:
-        desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא.<br>ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code>&lt;a&gt;</code> ו־<code>&lt;em&gt;</code>.
+        desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא. ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code> &lt; a&gt; </code> ו־<code> &lt; em&gt; </code> .
         title: תיאור האתר
       site_description_extended:
         desc_html: מוצג על עמוד המידע הנוסף<br>ניתן להשתמש בתגיות HTML
@@ -155,17 +223,15 @@ he:
       confirmed: מאושר
       expires_in: פג תוקף ב-
       last_delivery: משלוח אחרון
-      title: WebSub
+      title: מנוי WebSub
       topic: נושא
     title: ניהול
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
-    signature: התראות מסטודון מקהילת %{instance}
     view: 'תצוגה:'
   applications:
     invalid_url: כתובת הקישורית אינה חוקית
   auth:
-    change_password: החלפת סיסמא
     didnt_get_confirmation: לא התקבלו הוראות אימות?
     forgot_password: הנשתכחה סיסמתך?
     login: כניסה
@@ -173,6 +239,7 @@ he:
     register: הרשמה
     resend_confirmation: שלח הוראות אימות בשנית
     reset_password: איפוס סיסמא
+    security: החלפת סיסמא
     set_new_password: שינוי סיסמא
   authorize_follow:
     error: למרבה הצער, היתה שגיאה בחיפוש החשבון המרוחק
@@ -323,7 +390,7 @@ he:
     lost_recovery_codes: קודי האחזור מאפשרים אחזור גישה לחשבון במידה ומכשירך אבד. במידה וקודי האחזור אבדו, ניתן לייצרם מחדש כאן. תוקף קודי האחזור הישנים יפוג.
     manual_instructions: 'במידה ולא ניתן לסרוק את קוד ה-QR אלא יש צורך להקליד אותו ידנית, להלן סוד כמוס בלתי מוצפן:'
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
-    recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. נא לשמור על קודי הגישה במקום בטוח )לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות(
+    recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
     setup: הכנה
     wrong_code: הקוד שהוזן שגוי! האם הזמן בשרת והזמן במכשירך נכונים?
   users:

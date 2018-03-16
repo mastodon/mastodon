@@ -11,7 +11,7 @@ export default class NavigationBar extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
-    onClose: PropTypes.func.isRequired,
+    onClose: PropTypes.func,
   };
 
   render () {

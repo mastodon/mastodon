@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
+  PAGE_SIZE = 20
+
   include AccountControllerConcern
-  include SignatureVerification
+
+  before_action :set_cache_headers
 
   def show
     respond_to do |format|
@@ -15,21 +18,25 @@ class AccountsController < ApplicationController
         end
 
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
-        @statuses        = filtered_statuses.paginate_by_max_id(20, params[:max_id], params[:since_id])
+        @statuses        = filtered_status_page(params)
         @statuses        = cache_collection(@statuses, Status)
-        @next_url        = next_url unless @statuses.empty?
+        unless @statuses.empty?
+          @older_url        = older_url if @statuses.last.id > filtered_statuses.last.id
+          @newer_url        = newer_url if @statuses.first.id < filtered_statuses.first.id
+        end
       end
 
       format.atom do
-        @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
+        @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id])
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? }))
       end
 
       format.json do
-        render json: @account,
-               serializer: ActivityPub::ActorSerializer,
-               adapter: ActivityPub::Adapter,
-               content_type: 'application/activity+json'
+        skip_session!
+
+        render_cached_json(['activitypub', 'actor', @account.cache_key], content_type: 'application/activity+json') do
+          ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
+        end
       end
     end
   end
@@ -67,13 +74,22 @@ class AccountsController < ApplicationController
     @account = Account.find_local!(params[:username])
   end
 
-  def next_url
+  def older_url
+    ::Rails.logger.info("older: max_id #{@statuses.last.id}, url #{pagination_url(max_id: @statuses.last.id)}")
+    pagination_url(max_id: @statuses.last.id)
+  end
+
+  def newer_url
+    pagination_url(min_id: @statuses.first.id)
+  end
+
+  def pagination_url(max_id: nil, min_id: nil)
     if media_requested?
-      short_account_media_url(@account, max_id: @statuses.last.id)
+      short_account_media_url(@account, max_id: max_id, min_id: min_id)
     elsif replies_requested?
-      short_account_with_replies_url(@account, max_id: @statuses.last.id)
+      short_account_with_replies_url(@account, max_id: max_id, min_id: min_id)
     else
-      short_account_url(@account, max_id: @statuses.last.id)
+      short_account_url(@account, max_id: max_id, min_id: min_id)
     end
   end
 
@@ -83,5 +99,13 @@ class AccountsController < ApplicationController
 
   def replies_requested?
     request.path.ends_with?('/with_replies')
+  end
+
+  def filtered_status_page(params)
+    if params[:min_id].present?
+      filtered_statuses.paginate_by_min_id(PAGE_SIZE, params[:min_id]).reverse
+    else
+      filtered_statuses.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id]).to_a
+    end
   end
 end

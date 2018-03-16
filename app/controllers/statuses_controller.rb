@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class StatusesController < ApplicationController
+  include SignatureAuthentication
   include Authorization
 
   layout 'public'
@@ -10,6 +11,7 @@ class StatusesController < ApplicationController
   before_action :set_link_headers
   before_action :check_account_suspension
   before_action :redirect_to_original, only: [:show]
+  before_action :set_cache_headers
 
   def show
     respond_to do |format|
@@ -21,19 +23,21 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        render json: @status,
-               serializer: ActivityPub::NoteSerializer,
-               adapter: ActivityPub::Adapter,
-               content_type: 'application/activity+json'
+        skip_session! unless @stream_entry.hidden?
+
+        render_cached_json(['activitypub', 'note', @status.cache_key], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
+          ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
+        end
       end
     end
   end
 
   def activity
-    render json: @status,
-           serializer: ActivityPub::ActivitySerializer,
-           adapter: ActivityPub::Adapter,
-           content_type: 'application/activity+json'
+    skip_session!
+
+    render_cached_json(['activitypub', 'activity', @status.cache_key], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
+      ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter)
+    end
   end
 
   def embed

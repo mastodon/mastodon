@@ -42,7 +42,12 @@ http {
             try_files $uri @rails;
         }
 
-        location ~ ^/(assets|system/media_attachments/files|system/accounts/avatars) {
+        location /sw.js {
+            add_header Cache-Control "public, max-age=0";
+            try_files $uri @rails;
+        }
+
+        location ~ ^/(emoji|packs|system/media_attachments/files|system/accounts/avatars) {
             add_header Cache-Control "public, max-age=31536000, immutable";
             try_files $uri @rails;
         }
@@ -53,15 +58,21 @@ http {
             proxy_pass_header Server;
 
             proxy_pass http://rails;
-            proxy_buffering off;
+            proxy_buffering on;
             proxy_redirect off;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection $connection_upgrade;
 
+            proxy_cache CACHE;
+            proxy_cache_valid 200 7d;
+            proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+
             tcp_nodelay on;
         }
     }
+
+    proxy_cache_path /data/var/cache/nginx levels=1:2 keys_zone=CACHE:10m inactive=7d max_size=1g;
 
     error_page 500 501 502 503 504 /500.html;
 }

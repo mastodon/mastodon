@@ -3,7 +3,7 @@ es:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nombre
+        name: Nombre de aplicación
         redirect_uri: URI para redirección
         scopes: Ámbitos
         website: Sitio web
@@ -36,7 +36,7 @@ es:
         scopes: Separe los ámbitos con espacios. Déjelo en blanco para utilizar los ámbitos por defecto.
       index:
         application: Aplicación
-        callback_url: Callback URL
+        callback_url: URL de callback
         delete: Eliminar
         name: Nombre
         new: Nueva aplicación
@@ -48,7 +48,7 @@ es:
       show:
         actions: Acciones
         application_id: Id de la aplicación
-        callback_urls: Callback URLs
+        callback_urls: URLs de callback
         scopes: Ámbitos
         secret: Secreto
         title: 'Aplicación: %{name}'
@@ -63,7 +63,7 @@ es:
         prompt: La aplicación %{client_name} solicita tener acceso a su cuenta
         title: Se requiere autorización
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Copia este código de autorización y pégalo en la aplicación.
     authorized_applications:
       buttons:
         revoke: Revocar
@@ -83,12 +83,12 @@ es:
         invalid_grant: La concesión de autorización ofrecida es inválida, venció, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La URI de redirección incluida no es válida.
         invalid_request: En la petición falta un parámetro necesario o incluye un valor de parámetro no soportado o tiene otro tipo de formato incorrecto.
-        invalid_resource_owner: Las credenciales del propietario del recurso proporcionado no son válidas, o el propietario del recurso no puede ser encontrado.
+        invalid_resource_owner: Las credenciales proporcionadas del propietario del recurso no son válidas, o el propietario del recurso no puede ser encontrado
         invalid_scope: El ámbito pedido es inválido, desconocido o erróneo.
         invalid_token:
-          expired: El identificador de acceso finalizó.
-          revoked: El identificador de acceso fue revocado.
-          unknown: El identificador de acceso es inválido.
+          expired: El autentificador de acceso expiró
+          revoked: El autentificador de acceso fue revocado
+          unknown: El autentificador de acceso es inválido
         resource_owner_authenticator_not_configured: El propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_authenticator está sin configurar.
         server_error: El servidor de la autorización entontró una condición inesperada que le impidió cumplir con la solicitud.
         temporarily_unavailable: El servidor de la autorización es actualmente incapaz de manejar la petición debido a una sobrecarga temporal o un trabajo de mantenimiento del servidor.

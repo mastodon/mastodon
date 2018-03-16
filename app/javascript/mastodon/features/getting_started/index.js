@@ -7,6 +7,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { me } from '../../initial_state';
+import { fetchFollowRequests } from '../../actions/accounts';
+import { List as ImmutableList } from 'immutable';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -24,28 +27,57 @@ const messages = defineMessages({
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  keyboard_shortcuts: { id: 'navigation_bar.keyboard_shortcuts', defaultMessage: 'Keyboard shortcuts' },
 });
 
 const mapStateToProps = state => ({
-  me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
+  myAccount: state.getIn(['accounts', me]),
   columns: state.getIn(['settings', 'columns']),
+  unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
+  unreadNotifications: state.getIn(['notifications', 'unread']),
 });
 
-@connect(mapStateToProps)
+const mapDispatchToProps = dispatch => ({
+  fetchFollowRequests: () => dispatch(fetchFollowRequests()),
+});
+
+const badgeDisplay = (number, limit) => {
+  if (number === 0) {
+    return undefined;
+  } else if (limit && number >= limit) {
+    return `${limit}+`;
+  } else {
+    return number;
+  }
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 export default class GettingStarted extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    me: ImmutablePropTypes.map.isRequired,
+    myAccount: ImmutablePropTypes.map.isRequired,
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
+    fetchFollowRequests: PropTypes.func.isRequired,
+    unreadFollowRequests: PropTypes.number,
+    unreadNotifications: PropTypes.number,
   };
 
-  render () {
-    const { intl, me, columns, multiColumn } = this.props;
+  componentDidMount () {
+    const { myAccount, fetchFollowRequests } = this.props;
 
-    let navItems = [];
+    if (myAccount.get('locked')) {
+      fetchFollowRequests();
+    }
+  }
+
+  render () {
+    const { intl, myAccount, columns, multiColumn, unreadFollowRequests, unreadNotifications } = this.props;
+
+    const navItems = [];
 
     if (multiColumn) {
       if (!columns.find(item => item.get('id') === 'HOME')) {
@@ -53,7 +85,7 @@ export default class GettingStarted extends ImmutablePureComponent {
       }
 
       if (!columns.find(item => item.get('id') === 'NOTIFICATIONS')) {
-        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} to='/notifications' />);
+        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications)} to='/notifications' />);
       }
 
       if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
@@ -65,19 +97,20 @@ export default class GettingStarted extends ImmutablePureComponent {
       }
     }
 
-    navItems = navItems.concat([
+    navItems.push(
       <ColumnLink key='4' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
-      <ColumnLink key='5' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />,
-    ]);
+      <ColumnLink key='5' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+    );
 
-    if (me.get('locked')) {
-      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
+    if (myAccount.get('locked')) {
+      navItems.push(<ColumnLink key='6' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
     }
 
-    navItems = navItems.concat([
-      <ColumnLink key='7' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
-      <ColumnLink key='8' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
-    ]);
+    if (multiColumn) {
+      navItems.push(<ColumnLink key='7' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />);
+    }
+
+    navItems.push(<ColumnLink key='8' icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />);
 
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
@@ -85,24 +118,24 @@ export default class GettingStarted extends ImmutablePureComponent {
           <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
           {navItems}
           <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-          <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
+          <ColumnLink icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
+          <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
+          <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
           <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
           <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
         </div>
 
-        <div className='getting-started__footer scrollable optionally-scrollable'>
-          <div className='static-content getting-started'>
-            <p>
-              <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
-            </p>
-            <p>
-              <FormattedMessage
-                id='getting_started.open_source_notice'
-                defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-                values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
-              />
-            </p>
-          </div>
+        <div className='static-content getting-started'>
+          <p>
+            <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
+          </p>
+          <p>
+            <FormattedMessage
+              id='getting_started.open_source_notice'
+              defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
+              values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
+            />
+          </p>
         </div>
       </Column>
     );

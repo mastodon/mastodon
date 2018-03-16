@@ -16,9 +16,9 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     return if actor_id.nil? || !trustworthy_attribution?(@json['id'], actor_id)
 
     actor = ActivityPub::TagManager.instance.uri_to_resource(actor_id, Account)
-    actor = ActivityPub::FetchRemoteAccountService.new.call(actor_id, id: true) if actor.nil?
+    actor = ActivityPub::FetchRemoteAccountService.new.call(actor_id, id: true) if actor.nil? || needs_update(actor)
 
-    return if actor.suspended?
+    return if actor.nil? || actor.suspended?
 
     ActivityPub::Activity.factory(activity_json, actor).perform
   end
@@ -30,7 +30,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   end
 
   def actor_id
-    first_of_value(@json['attributedTo'])
+    value_or_id(first_of_value(@json['attributedTo']))
   end
 
   def trustworthy_attribution?(uri, attributed_to)
@@ -42,6 +42,10 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   end
 
   def expected_type?
-    %w(Note Article).include? @json['type']
+    (ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES).include? @json['type']
+  end
+
+  def needs_update(actor)
+    actor.possibly_stale?
   end
 end

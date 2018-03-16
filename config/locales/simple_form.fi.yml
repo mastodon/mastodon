@@ -3,42 +3,44 @@ fi:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF tai JPG. Korkeintaan 2MB. Skaalataan kokoon 120x120px
+        avatar: PNG, GIF tai JPG. Korkeintaan 2MB. Skaalataan kokoon 400x400px
+        digest: Lähetetään vain pitkän poissaolon jälkeen, ja vain jos olet vastaanottanut yksityisviestejä poissaolosi aikana.
         display_name: Korkeintaan 30 merkkiä
         header: PNG, GIF tai JPG. Korkeintaan 2MB. Skaalataan kokoon 700x335px
-        locked: Vaatii sinun manuaalisesti hyväksymään seuraajat ja asettaa julkaisujen yksityisyyden vain seuraajille
+        locked: Vaatii sinun manuaalisesti hyväksymään seuraajat, ja asettaa julkaisujen yksityisyyden vain seuraajille
         note: Korkeintaan 160 merkkiä
       imports:
         data: CSV tiedosto tuotu toiselta Mastodon palvelimelta
     labels:
       defaults:
-        avatar: Avatar
+        avatar: Profiilikuva
         confirm_new_password: Varmista uusi salasana
         confirm_password: Varmista salasana
         current_password: Nykyinen salasana
         data: Data
         display_name: Näykyvä nimi
         email: Sähköpostiosoite
-        header: Header
+        header: Otsake
         locale: Kieli
         locked: Tee tilistä yksityinen
+        max_uses: Max käyttökerrat
         new_password: Uusi salasana
         note: Bio
         otp_attempt: Kaksivaiheinen koodi
         password: Salasana
         setting_default_privacy: Julkaisun yksityisyys
-        type: Tuonti tyyppi
+        type: Tuontityyppi
         username: Käyttäjänimi
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä joita et seuraa
       notification_emails:
-        digest: Send digest e-mails
-        favourite: Lähetä s-posti kun joku tykkää statuksestasi
-        follow: Lähetä s-posti kun joku seuraa sinua
-        follow_request: Lähetä s-posti kun joku pyytää seurata sinua
-        mention: Lähetä s-posti kun joku mainitsee sinut
-        reblog: Lähetä s-posti kun joku buustaa julkaisusi
+        digest: Lähetä koosteviestejä sähköpostilla
+        favourite: Lähetä sähköposti, kun joku tykkää statuksestasi
+        follow: Lähetä sähköposti, kun joku seuraa sinua
+        follow_request: Lähetä sähköposti, kun joku pyytää seurata sinua
+        mention: Lähetä sähköposti, kun joku mainitsee sinut
+        reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
     'no': Ei
     required:
       mark: "*"

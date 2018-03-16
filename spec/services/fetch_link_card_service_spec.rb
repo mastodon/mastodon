@@ -15,6 +15,8 @@ RSpec.describe FetchLinkCardService do
     stub_request(:head, 'http://example.com/日本語').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
     stub_request(:get, 'http://example.com/日本語').to_return(request_fixture('sjis.txt'))
     stub_request(:head, 'https://github.com/qbi/WannaCry').to_return(status: 404)
+    stub_request(:head, 'http://example.com/test-').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
+    stub_request(:get, 'http://example.com/test-').to_return(request_fixture('idn.txt'))
 
     subject.call(status)
   end
@@ -61,6 +63,14 @@ RSpec.describe FetchLinkCardService do
       it 'works with Japanese path string' do
         expect(a_request(:get, 'http://example.com/日本語')).to have_been_made.at_least_once
         expect(status.preview_cards.first.title).to eq("SJISのページ")
+      end
+    end
+
+    context do
+      let(:status) { Fabricate(:status, text: 'test http://example.com/test-') }
+
+      it 'works with a URL ending with a hyphen' do
+        expect(a_request(:get, 'http://example.com/test-')).to have_been_made.at_least_once
       end
     end
   end

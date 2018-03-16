@@ -6,8 +6,8 @@ class Api::BaseController < ApplicationController
 
   include RateLimitHeaders
 
-  skip_before_action :verify_authenticity_token
   skip_before_action :store_current_location
+  protect_from_forgery with: :null_session
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
@@ -51,6 +51,10 @@ class Api::BaseController < ApplicationController
     [params[:limit].to_i.abs, default_limit * 2].min
   end
 
+  def truthy_param?(key)
+    ActiveModel::Type::Boolean.new.cast(params[key])
+  end
+
   def current_resource_owner
     @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
@@ -71,20 +75,5 @@ class Api::BaseController < ApplicationController
 
   def render_empty
     render json: {}, status: 200
-  end
-
-  def set_maps(statuses) # rubocop:disable Style/AccessorMethodName
-    if current_account.nil?
-      @reblogs_map    = {}
-      @favourites_map = {}
-      @mutes_map      = {}
-      return
-    end
-
-    status_ids       = statuses.compact.flat_map { |s| [s.id, s.reblog_of_id] }.uniq
-    conversation_ids = statuses.compact.map(&:conversation_id).compact.uniq
-    @reblogs_map     = Status.reblogs_map(status_ids, current_account)
-    @favourites_map  = Status.favourites_map(status_ids, current_account)
-    @mutes_map       = Status.mutes_map(conversation_ids, current_account)
   end
 end

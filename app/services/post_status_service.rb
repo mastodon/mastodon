@@ -13,7 +13,7 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @return [Status]
-  def call(account, text, in_reply_to = nil, options = {})
+  def call(account, text, in_reply_to = nil, **options)
     if options[:idempotency].present?
       existing_id = redis.get("idempotency:status:#{account.id}:#{options[:idempotency]}")
       return Status.find(existing_id) if existing_id
@@ -21,17 +21,18 @@ class PostStatusService < BaseService
 
     media  = validate_media!(options[:media_ids])
     status = nil
+    text   = options.delete(:spoiler_text) if text.blank? && options[:spoiler_text].present?
+    text   = '.' if text.blank? && !media.empty?
 
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
+                                        media_attachments: media || [],
                                         thread: in_reply_to,
                                         sensitive: options[:sensitive],
                                         spoiler_text: options[:spoiler_text] || '',
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
                                         language: LanguageDetector.instance.detect(text, account),
                                         application: options[:application])
-
-      attach_media(status, media)
     end
 
     process_mentions_service.call(status)
@@ -64,17 +65,12 @@ class PostStatusService < BaseService
     media
   end
 
-  def attach_media(status, media)
-    return if media.nil?
-    media.update(status_id: status.id)
-  end
-
   def process_mentions_service
-    @process_mentions_service ||= ProcessMentionsService.new
+    ProcessMentionsService.new
   end
 
   def process_hashtags_service
-    @process_hashtags_service ||= ProcessHashtagsService.new
+    ProcessHashtagsService.new
   end
 
   def redis

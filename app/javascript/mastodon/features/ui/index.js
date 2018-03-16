@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
@@ -19,6 +20,7 @@ import {
   Compose,
   Status,
   GettingStarted,
+  KeyboardShortcuts,
   PublicTimeline,
   CommunityTimeline,
   AccountTimeline,
@@ -33,22 +35,32 @@ import {
   FollowRequests,
   GenericNotFound,
   FavouritedStatuses,
+  ListTimeline,
   Blocks,
   Mutes,
   PinnedStatuses,
+  Lists,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
+import { me } from '../../initial_state';
+import { defineMessages, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 
+const messages = defineMessages({
+  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
+});
+
 const mapStateToProps = state => ({
-  me: state.getIn(['meta', 'me']),
   isComposing: state.getIn(['compose', 'is_composing']),
+  hasComposingText: state.getIn(['compose', 'text']) !== '',
+  dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
 });
 
 const keyMap = {
+  help: '?',
   new: 'n',
   search: 's',
   forceNew: 'option+n',
@@ -74,9 +86,93 @@ const keyMap = {
   goToMuted: 'g m',
 };
 
+class SwitchingColumnsArea extends React.PureComponent {
+
+  static propTypes = {
+    children: PropTypes.node,
+    location: PropTypes.object,
+    onLayoutChange: PropTypes.func.isRequired,
+  };
+
+  state = {
+    mobile: isMobile(window.innerWidth),
+  };
+
+  componentWillMount () {
+    window.addEventListener('resize', this.handleResize, { passive: true });
+  }
+
+  componentDidUpdate (prevProps) {
+    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
+      this.node.handleChildrenContentChange();
+    }
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = debounce(() => {
+    // The cached heights are no longer accurate, invalidate
+    this.props.onLayoutChange();
+
+    this.setState({ mobile: isMobile(window.innerWidth) });
+  }, 500, {
+    trailing: true,
+  });
+
+  setRef = c => {
+    this.node = c.getWrappedInstance().getWrappedInstance();
+  }
+
+  render () {
+    const { children } = this.props;
+    const { mobile } = this.state;
+
+    return (
+      <ColumnsAreaContainer ref={this.setRef} singleColumn={mobile}>
+        <WrappedSwitch>
+          <Redirect from='/' to='/getting-started' exact />
+          <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+          <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+          <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
+          <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
+          <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
+          <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
+          <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
+
+          <WrappedRoute path='/notifications' component={Notifications} content={children} />
+          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+          <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
+
+          <WrappedRoute path='/statuses/new' component={Compose} content={children} />
+          <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
+          <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
+          <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
+
+          <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
+          <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
+          <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
+          <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
+          <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
+
+          <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
+          <WrappedRoute path='/blocks' component={Blocks} content={children} />
+          <WrappedRoute path='/mutes' component={Mutes} content={children} />
+          <WrappedRoute path='/lists' component={Lists} content={children} />
+
+          <WrappedRoute component={GenericNotFound} content={children} />
+        </WrappedSwitch>
+      </ColumnsAreaContainer>
+    );
+  }
+
+}
+
 @connect(mapStateToProps)
+@injectIntl
 @withRouter
-export default class UI extends React.Component {
+export default class UI extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -86,23 +182,31 @@ export default class UI extends React.Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     isComposing: PropTypes.bool,
-    me: PropTypes.string,
+    hasComposingText: PropTypes.bool,
     location: PropTypes.object,
+    intl: PropTypes.object.isRequired,
+    dropdownMenuIsOpen: PropTypes.bool,
   };
 
   state = {
-    width: window.innerWidth,
     draggingOver: false,
   };
 
-  handleResize = debounce(() => {
+  handleBeforeUnload = (e) => {
+    const { intl, isComposing, hasComposingText } = this.props;
+
+    if (isComposing && hasComposingText) {
+      // Setting returnValue to any string causes confirmation dialog.
+      // Many browsers no longer display this text to users,
+      // but we set user-friendly message for other browsers, e.g. Edge.
+      e.returnValue = intl.formatMessage(messages.beforeUnload);
+    }
+  }
+
+  handleLayoutChange = () => {
     // The cached heights are no longer accurate, invalidate
     this.props.dispatch(clearHeight());
-
-    this.setState({ width: window.innerWidth });
-  }, 500, {
-    trailing: true,
-  });
+  }
 
   handleDragEnter = (e) => {
     e.preventDefault();
@@ -169,7 +273,7 @@ export default class UI extends React.Component {
   }
 
   componentWillMount () {
-    window.addEventListener('resize', this.handleResize, { passive: true });
+    window.addEventListener('beforeunload', this.handleBeforeUnload, false);
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
@@ -190,27 +294,8 @@ export default class UI extends React.Component {
     };
   }
 
-  shouldComponentUpdate (nextProps) {
-    if (nextProps.isComposing !== this.props.isComposing) {
-      // Avoid expensive update just to toggle a class
-      this.node.classList.toggle('is-composing', nextProps.isComposing);
-
-      return false;
-    }
-
-    // Why isn't this working?!?
-    // return super.shouldComponentUpdate(nextProps, nextState);
-    return true;
-  }
-
-  componentDidUpdate (prevProps) {
-    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      this.columnsAreaNode.handleChildrenContentChange();
-    }
-  }
-
   componentWillUnmount () {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('beforeunload', this.handleBeforeUnload);
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
@@ -220,10 +305,6 @@ export default class UI extends React.Component {
 
   setRef = c => {
     this.node = c;
-  }
-
-  setColumnsAreaRef = c => {
-    this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
   }
 
   handleHotkeyNew = e => {
@@ -276,6 +357,14 @@ export default class UI extends React.Component {
     this.hotkeys = c;
   }
 
+  handleHotkeyToggleHelp = () => {
+    if (this.props.location.pathname === '/keyboard-shortcuts') {
+      this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/keyboard-shortcuts');
+    }
+  }
+
   handleHotkeyGoToHome = () => {
     this.context.router.history.push('/timelines/home');
   }
@@ -305,7 +394,7 @@ export default class UI extends React.Component {
   }
 
   handleHotkeyGoToProfile = () => {
-    this.context.router.history.push(`/accounts/${this.props.me}`);
+    this.context.router.history.push(`/accounts/${me}`);
   }
 
   handleHotkeyGoToBlocked = () => {
@@ -317,10 +406,11 @@ export default class UI extends React.Component {
   }
 
   render () {
-    const { width, draggingOver } = this.state;
-    const { children } = this.props;
+    const { draggingOver } = this.state;
+    const { children, isComposing, location, dropdownMenuIsOpen } = this.props;
 
     const handlers = {
+      help: this.handleHotkeyToggleHelp,
       new: this.handleHotkeyNew,
       search: this.handleHotkeySearch,
       forceNew: this.handleHotkeyForceNew,
@@ -340,39 +430,12 @@ export default class UI extends React.Component {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
-        <div className='ui' ref={this.setRef}>
+        <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           <TabsBar />
 
-          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width)}>
-            <WrappedSwitch>
-              <Redirect from='/' to='/getting-started' exact />
-              <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
-              <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
-              <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
-              <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
-              <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
-
-              <WrappedRoute path='/notifications' component={Notifications} content={children} />
-              <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
-              <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
-
-              <WrappedRoute path='/statuses/new' component={Compose} content={children} />
-              <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
-              <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
-              <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
-
-              <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
-              <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
-              <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
-              <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
-
-              <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
-              <WrappedRoute path='/blocks' component={Blocks} content={children} />
-              <WrappedRoute path='/mutes' component={Mutes} content={children} />
-
-              <WrappedRoute component={GenericNotFound} content={children} />
-            </WrappedSwitch>
-          </ColumnsAreaContainer>
+          <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
+            {children}
+          </SwitchingColumnsArea>
 
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />

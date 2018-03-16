@@ -7,7 +7,7 @@ RSpec.describe Api::V1::MutesController, type: :controller do
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'follow') }
 
   before do
-    Fabricate(:mute, account: user.account)
+    Fabricate(:mute, account: user.account, hide_notifications: false)
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 

@@ -24,14 +24,14 @@ defineMessages({
 const fetchRelatedRelationships = (dispatch, notifications) => {
   const accountIds = notifications.filter(item => item.type === 'follow').map(item => item.account.id);
 
-  if (accountIds > 0) {
+  if (accountIds.length > 0) {
     dispatch(fetchRelationships(accountIds));
   }
 };
 
 const unescapeHTML = (html) => {
   const wrapper = document.createElement('div');
-  html = html.replace(/<br \/>|<br>|\n/, ' ');
+  html = html.replace(/<br \/>|<br>|\n/g, ' ');
   wrapper.innerHTML = html;
   return wrapper.textContent;
 };

@@ -9,7 +9,7 @@ pl:
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
     description_headline: Czym jest %{domain}?
-    domain_count_after: instancji
+    domain_count_after: instancjami
     domain_count_before: Serwer połączony z
     extended_description_html: |
       <h3>Dobre miejsce na zasady użytkowania</h3>
@@ -23,7 +23,6 @@ pl:
       real_conversation_title: Zaprojektowany do prawdziwych rozmów
       within_reach_body: Wiele aplikacji dla Androida, iOS i innych platform dzięki przyjaznemu programistom API sprawia, że możesz utrzymywać kontakt ze znajomymi praktycznie wszędzie.
       within_reach_title: Zawsze w Twoim zasięgu
-    find_another_instance: Znajdź inną instancję
     generic_description: "%{domain} jest jednym z serwerów sieci"
     hosted_on: Mastodon uruchomiony na %{domain}
     learn_more: Dowiedz się więcej
@@ -39,15 +38,17 @@ pl:
     followers: Śledzących
     following: Śledzi
     media: Zawartość multimedialna
+    moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
     posts: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
     remote_follow: Śledź zdalnie
-    reserved_username: Ta nazwa użytkownika jest zarezerwowana.
+    reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
+      moderator: Moderator
     unfollow: Przestań śledzić
   admin:
     account_moderation_notes:
@@ -59,13 +60,19 @@ pl:
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       are_you_sure: Jesteś tego pewien?
+      by_domain: Domena
       confirm: Potwierdź
       confirmed: Potwierdzono
+      demote: Degraduj
+      disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
+      disabled: Dezaktywowano
       display_name: Wyświetlana nazwa
       domain: Domena
       edit: Edytuj
       email: Adres e-mail
+      enable: Aktywuj
+      enabled: Aktywowano
       feed_url: Adres kanału
       followers: Śledzący
       followers_url: Adres śledzących
@@ -77,7 +84,9 @@ pl:
         local: Lokalne
         remote: Zdalne
         title: Położenie
+      login_status: Stan logowania
       media_attachments: Załączniki multimedialne
+      memorialize: Przełącz na „In Memoriam”
       moderation:
         all: Wszystkie
         silenced: Wyciszone
@@ -94,6 +103,7 @@ pl:
       outbox_url: Adres skrzynki nadawczej
       perform_full_suspension: Całkowicie zawieś
       profile_url: Adres profilu
+      promote: Podnieś uprawnienia
       protocol: Protokół
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
@@ -101,6 +111,12 @@ pl:
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
+      role: Uprawnienia
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        staff: Ekipa
+        user: Użytkownik
       salmon_url: Adres Salmon
       search: Szukaj
       shared_inbox_url: Adres udostępnianej skrzynki
@@ -109,7 +125,7 @@ pl:
         report: zgłoszeń
         targeted_reports: Zgłoszenia dotyczące tego użytkownika
       silence: Wycisz
-      statuses: Statusy
+      statuses: Wpisy
       subscribe: Subskrybuj
       title: Konta
       undo_silenced: Cofnij wyciszenie
@@ -117,7 +133,34 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    action_logs:
+      actions:
+        confirm_user: "%{name} potwierdził adres e-mail użytkownika %{target}"
+        create_custom_emoji: "%{name} dodał nowe emoji %{target}"
+        create_domain_block: "%{name} zablokował domenę %{target}"
+        create_email_domain_block: "%{name} dodał domenę e-mail %{target} na czarną listę"
+        demote_user: "%{name} zdegradował użytkownika %{target}"
+        destroy_domain_block: "%{name} odblokował domenę %{target}"
+        destroy_email_domain_block: "%{name} usunął domenę e-mail %{target} z czarnej listy"
+        destroy_status: "%{name} usunął wpis użytkownika %{target}"
+        disable_2fa_user: "%{name} wyłączył uwierzytelnianie dwustopniowe użytkownikowi %{target}"
+        disable_custom_emoji: "%{name} wyłączył emoji %{target}"
+        disable_user: "%{name} zablokował możliwość logowania użytkownikowi %{target}"
+        enable_custom_emoji: "%{name} włączył emoji %{target}"
+        enable_user: "%{name} przywrócił możliwość logowania użytkownikowi %{target}"
+        memorialize_account: "%{name} nadał kontu %{target} status in memoriam"
+        promote_user: "%{name} podniósł uprawnienia użytkownikowi %{target}"
+        reset_password_user: "%{name} przywrócił hasło użytkownikowi %{target}"
+        resolve_report: "%{name} odrzucił zgłoszenie %{target}"
+        silence_account: "%{name} wyciszył konto %{target}"
+        suspend_account: "%{name} zawiesił konto %{target}"
+        unsilence_account: "%{name} cofnął wyciszenie konta %{target}"
+        unsuspend_account: "%{name} cofnął zawieszenie konta %{target}"
+        update_custom_emoji: "%{name} zaktualizował emoji %{target}"
+        update_status: "%{name} zaktualizował wpis użytkownika %{target}"
+      title: Dziennik działań administracyjnych
     custom_emojis:
+      by_domain: Domeny
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
       copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
@@ -130,12 +173,17 @@ pl:
       enable: Włącz
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
+      listed: Widoczne
       new:
         title: Dodaj nowe niestandardowe emoji
+      overwrite: Zastąp
       shortcode: Shortcode
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
-      upload: Wyślij
+      unlisted: Niewidoczne
+      update_failed_msg: Nie udało się zaktualizować emoji
+      updated_msg: Pomyślnie zaktualizowano emoji!
+      upload: Dodaj
     domain_blocks:
       add_new: Dodaj nową
       created_msg: Blokada domen jest przetwarzana
@@ -145,7 +193,7 @@ pl:
         create: Utwórz blokadę
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
-          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika widoczne tylko dla osób, które go śledzą. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika."
+          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika widoczne tylko dla osób, które go śledzą. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
           noop: Nic nie rób
           silence: Wycisz
           suspend: Zawieś
@@ -185,6 +233,13 @@ pl:
       reset: Przywróć
       search: Szukaj
       title: Znane instancje
+    invites:
+      filter:
+        all: Wszystkie
+        available: Dostępne
+        expired: Wygasłe
+        title: Filtruj
+      title: Zaproszenia
     reports:
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
@@ -203,19 +258,28 @@ pl:
       reported_by: Zgłaszający
       resolved: Rozwiązane
       silence_account: Wycisz konto
-      status: Status
+      status: Stan
       suspend_account: Zawieś konto
       target: Cel
       title: Zgłoszenia
       unresolved: Nierozwiązane
       view: Wyświetl
     settings:
+      activity_api_enabled:
+        desc_html: Liczy publikowane lokalnie wpisy, aktywnych użytkowników i nowe rejestracje w ciągu danego tygodnia
+        title: Publikuj zbiorowe statystyki o aktywności użytkowników
       bootstrap_timeline_accounts:
         desc_html: Oddzielaj nazwy użytkowników przecinkami. Działa tylko dla niezablokowanych kont w obrębie instancji. Jeżeli puste, zostaną użyte konta administratorów instancji.
-        title: Domyślne obserwacje nowych użytkowników
+        title: Domyślnie obserwowani użytkownicy
       contact_information:
         email: Służbowy adres e-mail
         username: Nazwa użytkownika do kontaktu
+      hero:
+        desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura instancji.
+        title: Obraz bohatera
+      peers_api_enabled:
+        desc_html: Nazwy domen, z którymi ta instancja wchodziła w interakcje
+        title: Publikuj listę znanych instancji
       registrations:
         closed_message:
           desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji nie jest dostępna. Możesz korzystać z tagów HTML
@@ -223,9 +287,18 @@ pl:
         deletion:
           desc_html: Pozwól każdemu na usunięcie konta
           title: Możliwość usunięcia
+        min_invite_role:
+          disabled: Nikt
+          title: Kto może zapraszać użytkowników
         open:
           desc_html: Pozwól każdemu na założenie konta
           title: Otwarta rejestracja
+      show_known_fediverse_at_about_page:
+        desc_html: Jeśli włączone, podgląd instancji będzie wyświetlał wpisy z całego Fediwersum. W innym przypadku, będą wyświetlane tylko lokalne wpisy.
+        title: Pokazuj wszystkie znane wpisy na podglądzie instancji
+      show_staff_badge:
+        desc_html: Pokazuj odznakę uprawnień na stronie profilu użytkownika
+        title: Pokazuj odznakę administracji
       site_description:
         desc_html: Akapit wprowadzający, widoczny na stronie głównej i znacznikach meta. Możesz korzystać z tagów HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis instancji
@@ -237,7 +310,7 @@ pl:
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa instancji
       thumbnail:
-        desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli.'
+        desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli'
         title: Miniatura instancji
       timeline_preview:
         desc_html: Wyświetlaj publiczną oś czasu na stronie widocznej dla niezalogowanych
@@ -256,7 +329,7 @@ pl:
         show: Pokaż zawartość multimedialną
         title: Media
       no_media: Bez zawartości multimedialnej
-      title: Statusy konta
+      title: Wpisy konta
       with_media: Z zawartością multimedialną
     subscriptions:
       callback_url: URL zwrotny
@@ -271,10 +344,12 @@ pl:
       body: Użytkownik %{reporter} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
-    signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
+    view_profile: Wyświetl profil
+    view_status: Wyświetl wpis
   applications:
     created: Pomyślnie utworzono aplikację
     destroyed: Pomyślnie usunięto aplikację
@@ -284,8 +359,9 @@ pl:
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
     your_token: Twój token dostępu
   auth:
-    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">naszymi zasadami użytkowania</a> i <a href="%{terms_path}">polityką prywatności</a>.
-    change_password: Bezpieczeństwo
+    agreement_html: Rejestrując się, oświadczasz, że zapoznałeś się z <a href="%{rules_path}">informacjami o instancji</a> i <a href="%{terms_path}">zasadami korzystania z usługi</a>.
+    change_password: Hasło
+    confirm_email: Potwierdź adres e-mail
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
     didnt_get_confirmation: Nie otrzymałeś instrukcji weryfikacji?
@@ -293,9 +369,18 @@ pl:
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
     login: Zaloguj się
     logout: Wyloguj się
+    migrate_account: Przenieś konto
+    migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">skonfigurować to tutaj</a>.
+    or: lub
+    or_log_in_with: Lub zaloguj się z użyciem
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rejestracja
+    register_elsewhere: Zarejestruj się na innym serwerze
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
+    security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
   authorize_follow:
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
@@ -332,16 +417,23 @@ pl:
   errors:
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
     '404': Strona, którą próbujesz odwiedzić, nie istnieje.
-    '410': Strona, którą próbujesz odwiedzić, już nie istnieje.
+    '410': Strona, którą próbujesz odwiedzić, przestała istnieć.
     '422':
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
     '429': Uduszono
     '500':
-      content: Przepraszamy, coś poszło nie tak…
+      content: Przepraszamy, coś poszło nie tak, po naszej stronie.
       title: Ta strona jest nieprawidłowa
     noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   exports:
+    archive_takeout:
+      date: Data
+      download: Pobierz swoje archiwum
+      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, obsługiwanym przez odpowiednie programy.
+      in_progress: Tworzenie archiwum…
+      request: Uzyskaj archiwum
+      size: Rozmiar
     blocks: Zablokowani
     csv: CSV
     follows: Śledzeni
@@ -349,7 +441,7 @@ pl:
     storage: Urządzenie przechowujące dane
   followers:
     domain: Domena
-    explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje statusy, musisz kontrolować, kto śledzi Twój profil. <strong>Twoje prywatne statusy są dostarczane na te instancje, na których jesteś śledzony</strong>. Możesz sprawdzać, kto Cię śledzi i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
+    explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje wpisy, musisz kontrolować, kto śledzi Twój profil. <strong>Twoje prywatne wpisy są dostarczane na te instancje, na których jesteś śledzony</strong>. Możesz sprawdzać, kto Cię śledzi i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
     followers_count: Liczba śledzących
     lock_link: Zablokuj swoje konto
     purge: Przestań śledzić
@@ -357,7 +449,7 @@ pl:
       one: W trakcie usuwania śledzących z jednej domeny…
       other: W trakcie usuwania śledzących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
-    unlocked_warning_html: Każdy może Cię śledzić, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
+    unlocked_warning_html: Każdy może Cię śledzić, aby natychmiastowo zobaczyć twoje wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
     unlocked_warning_title: Twoje konto nie jest zablokowane
   generic:
     changes_saved_msg: Ustawienia zapisane!
@@ -374,41 +466,83 @@ pl:
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
+  in_memoriam_html: Ku pamięci.
+  invites:
+    delete: Wygaś
+    expired: Wygasły
+    expires_in:
+      '1800': 30 minutach
+      '21600': 6 godzinach
+      '3600': godzinie
+      '43200': 12 godzinach
+      '86400': dobie
+    expires_in_prompt: Nigdy
+    generate: Wygeneruj
+    max_uses:
+      few: "%{count} użycia"
+      many: "%{count} użyć"
+      one: jedno użycie
+      other: "%{count} użyć"
+    max_uses_prompt: Bez ograniczenia
+    prompt: Wygeneruj odnośniki i udostępnij je innym, aby pozwolić na rejestrację na instancji
+    table:
+      expires_at: Wygaśnie po
+      uses: Użycia
+    title: Zaproś użytkowników
   landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersum."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  lists:
+    errors:
+      limit: Przekroczyłeś maksymalną liczbę utworzonych list
   media_attachments:
     validations:
-      images_and_video: Nie możesz załączyć pliku wideo do statusu, który zawiera już zdjęcia
+      images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
       too_many: Nie możesz załączyć więcej niż 4 plików
+  migrations:
+    acct: nazwa@domena nowego konta
+    currently_redirecting: 'Obecnie Twoje konto przekierowuje do:'
+    proceed: Zapisz
+    updated_msg: Pomyślnie zaktualizowano ustawienia migracji Twojego konta!
+  moderation:
+    title: Moderacja
   notification_mailer:
     digest:
-      body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'
+      action: Wyświetl wszystkie powiadomienia
+      body: Oto krótkie podsumowanie wiadomości, które ominęły Cię od Twojej ostatniej wizyty (%{since})
       mention: "%{name} wspomniał o Tobie w:"
       new_followers_summary:
         few: "(%{count}) nowe osoby śledzą Cię!"
         many: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
-        one: Śledzi Cię nowa osoba! Gratulacje!
-        other: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
+        one: Dodatkowo, w czasie nieobecności zaczęła śledzić Cię jedna osoba Gratulacje!
+        other: Dodatkowo, zaczęło Cię śledzić %{count} nowych osób! Wspaniale!
       subject:
         few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
         many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
         one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
         other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
+      title: W trakcie Twojej nieobecności…
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'
       subject: "%{name} lubi Twój wpis"
+      title: Nowe polubienie
     follow:
       body: "%{name} Cię śledzi!"
       subject: "%{name} Cię śledzi"
+      title: Nowy śledzący
     follow_request:
+      action: Zarządzaj prośbami o możliwość śledzenia
       body: "%{name} poprosił o możliwość śledzenia Cię"
       subject: 'Prośba o możliwość śledzenia: %{name}'
+      title: Nowa prośba o możliwość śledzenia
     mention:
+      action: Odpowiedz
       body: "%{name} wspomniał o Tobie w:"
       subject: "%{name} wspomniał o Tobie"
+      title: Nowe wspomnienie o Tobie
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
+      title: Nowe podbicie
   number:
     human:
       decimal_units:
@@ -421,7 +555,9 @@ pl:
           trillion: T
           unit: ''
   pagination:
+    newer: Nowsze
     next: Następna
+    older: Starsze
     prev: Poprzednia
     truncate: "&hellip;"
   preferences:
@@ -431,7 +567,7 @@ pl:
     web: Sieć
   push_notifications:
     favourite:
-      title: "%{name} dodał Twój status do ulubionych"
+      title: "%{name} dodał Twój wpis do ulubionych"
     follow:
       title: "%{name} zaczął Cię śledzić"
     group:
@@ -442,7 +578,7 @@ pl:
       action_favourite: Dodaj do ulubionych
       title: "%{name} wspomniał o Tobie"
     reblog:
-      title: "%{name} podbił Twój status"
+      title: "%{name} podbił Twój wpis"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -456,12 +592,14 @@ pl:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: nieznana przeglądarka
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Przeglądarka Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -496,6 +634,7 @@ pl:
     export: Eksportowanie danych
     followers: Autoryzowani śledzący
     import: Importowanie danych
+    migrate: Migracja konta
     notifications: Powiadomienia
     preferences: Preferencje
     settings: Ustawienia
@@ -505,11 +644,12 @@ pl:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
-      limit: Nie możesz przypiąć więcej wpisów
+      limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
     show_more: Pokaż więcej
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą
@@ -610,10 +750,34 @@ pl:
     manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
     recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
-    recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.
+    recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
     setup: Skonfiguruj
     wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
+  user_mailer:
+    backup_ready:
+      explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ono dostępne do pobrania
+      subject: Twoje archiwum jest gotowe do pobrania
+      title: Odbiór archiwum
+    welcome:
+      edit_profile_action: Skonfiguruj profil
+      edit_profile_step: Możesz dostować profil wysyłając awatar, obraz nagłówka, zmieniając wyświetlaną nazwę i wiele więcej. Jeżeli chcesz, możesz zablokować konto, aby kontrolować, kto może Cię śledzić.
+      explanation: Kilka wskazówek, które pomogą Ci rozpocząć
+      final_action: Zacznij pisać
+      final_step: 'Zacznij tworzyć! Nawet jeżeli nikt Cię nie śledzi, Twoje publiczne wiadomości będą widziane przez innych, na przykład na lokalnej osi czasu i w hashtagach. Możesz też utworzyć wpis wprowadzający używając hashtagu #introductions.'
+      full_handle: Twój pełny adres
+      full_handle_hint: Ten adres możesz podać znajomym, aby mogli skontaktować się z Tobą lub zacząć śledzić z innej instancji.
+      review_preferences_action: Zmień ustawienia
+      review_preferences_step: Upewnij się, że zmieniłeś ustawienia, takie jak maile, które chciałbyś otrzymywać lub domyślne opcje prywatności. Jeżeli nie masz choroby lokomocyjnej, możesz włączyć automatyczne odtwarzanie animacji GIF.
+      subject: Witaj w Mastodonie
+      tip_bridge_html: Jeżeli przybywasz z Twittera, możesz znaleźć znajomych na Mastodonie używając <a href="%{bridge_url}">aplikacji mostku</a>. Działa to tylko, jeżeli oni również z niej korzystali!
+      tip_federated_timeline: Oś czasu federacji przedstawia całą sieć Mastodona. Wyświetla tylko wpisy osób, które śledzą użytkownicy Twojej instancji, więc nie jest kompletna.
+      tip_following: Domyślnie śledzisz administratora/ów swojej instancji. Aby znaleźć więcej ciekawych ludzi, zajrzyj na lokalną i federalną oś czasu.
+      tip_local_timeline: Lokalna oś czasu przedstawia osoby z %{instance}. To Twoi najbliżsi sąsiedzi!
+      tip_mobile_webapp: Jeżeli Twoja przeglądarka pozwala na dodanie Mastodona na ekran główny, będziesz otrzymywać natychmiastowe powiadomienia. Działa to prawie jak natywna aplikacja!
+      tips: Wskazówki
+      title: Witaj na pokładzie, %{name}!
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'

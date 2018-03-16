@@ -23,6 +23,9 @@ export const STATUS_UNMUTE_REQUEST = 'STATUS_UNMUTE_REQUEST';
 export const STATUS_UNMUTE_SUCCESS = 'STATUS_UNMUTE_SUCCESS';
 export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
 
+export const STATUS_REVEAL = 'STATUS_REVEAL';
+export const STATUS_HIDE   = 'STATUS_HIDE';
+
 export function fetchStatusRequest(id, skipLoading) {
   return {
     type: STATUS_FETCH_REQUEST,
@@ -213,5 +216,27 @@ export function unmuteStatusFail(id, error) {
     type: STATUS_UNMUTE_FAIL,
     id,
     error,
+  };
+};
+
+export function hideStatus(ids) {
+  if (!Array.isArray(ids)) {
+    ids = [ids];
+  }
+
+  return {
+    type: STATUS_HIDE,
+    ids,
+  };
+};
+
+export function revealStatus(ids) {
+  if (!Array.isArray(ids)) {
+    ids = [ids];
+  }
+
+  return {
+    type: STATUS_REVEAL,
+    ids,
   };
 };

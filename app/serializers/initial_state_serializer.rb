@@ -7,7 +7,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
 
   def custom_emojis
-    CustomEmoji.local
+    CustomEmoji.local.where(disabled: false)
   end
 
   def meta
@@ -17,15 +17,17 @@ class InitialStateSerializer < ActiveModel::Serializer
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
       admin: object.admin&.id&.to_s,
+      search_enabled: Chewy.enabled?,
     }
 
     if object.current_account
-      store[:me]             = object.current_account.id.to_s
-      store[:unfollow_modal] = object.current_account.user.setting_unfollow_modal
-      store[:boost_modal]    = object.current_account.user.setting_boost_modal
-      store[:delete_modal]   = object.current_account.user.setting_delete_modal
-      store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
-      store[:reduce_motion]  = object.current_account.user.setting_reduce_motion
+      store[:me]                      = object.current_account.id.to_s
+      store[:unfollow_modal]          = object.current_account.user.setting_unfollow_modal
+      store[:boost_modal]             = object.current_account.user.setting_boost_modal
+      store[:delete_modal]            = object.current_account.user.setting_delete_modal
+      store[:auto_play_gif]           = object.current_account.user.setting_auto_play_gif
+      store[:display_sensitive_media] = object.current_account.user.setting_display_sensitive_media
+      store[:reduce_motion]           = object.current_account.user.setting_reduce_motion
     end
 
     store

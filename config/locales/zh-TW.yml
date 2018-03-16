@@ -55,7 +55,7 @@ zh-TW:
       perform_full_suspension: 進行停權
       profile_url: 個人檔案網址
       public: 公開
-      push_subscription_expires: PuSH 訂閱逾期
+      push_subscription_expires: 推播訂閱過期
       salmon_url: Salmon URL
       silence: 靜音
       statuses: 狀態
@@ -123,22 +123,23 @@ zh-TW:
     title: 管理介面
   application_mailer:
     settings: 修改信箱設定︰ %{link}
-    signature: 來自 %{instance} 的 Mastodon 通知
     view: 進入瀏覽︰
   applications:
     invalid_url: 網址不正確
   auth:
-    change_password: 登入資訊
     didnt_get_confirmation: 沒有收到驗證信？
     forgot_password: 忘記密碼？
     login: 登入
     logout: 登出
+    migrate_account: 轉移到另一個帳號
+    migrate_account_html: 想要將這個帳號指向另一個帳號可到<a href="%{path}">到這裡設定</a>。
     register: 註冊
     resend_confirmation: 重寄驗證信
     reset_password: 重設密碼
+    security: 登入資訊
     set_new_password: 設定新密碼
   authorize_follow:
-    error: 對不起，尋找這個跨站使用者的過程發生錯誤
+    error: 對不起，搜尋遠端使用者出現錯誤
     follow: 關注
     title: 關注 %{acct}
   datetime:
@@ -165,7 +166,16 @@ zh-TW:
     blocks: 您封鎖的使用者
     csv: CSV
     follows: 您關注的使用者
+    mutes: 您靜音的使用者
     storage: 儲存空間大小
+  followers:
+    domain: 網域
+    explanation_html: 為確保個人隱私，您必須知道有哪些使用者正關注你。<strong>您的私密內容會被發送到所有您有被關注的服務站上</strong>。如果您不信任這些服務站的管理者，您可以選擇檢查或刪除您的關注者。
+    followers_count: 關注者數
+    lock_link: 鎖住你的帳號
+    purge: 移除關注者
+    unlocked_warning_html: 所有人都可以關注並檢索你的隱藏狀態。%{lock_link}以檢查或拒絕關注。
+    unlocked_warning_title: 你的帳號是公開的
   generic:
     changes_saved_msg: 已成功儲存修改
     powered_by: 網站由 %{link} 開發
@@ -179,6 +189,7 @@ zh-TW:
     types:
       blocking: 您封鎖的使用者名單
       following: 您關注的使用者名單
+      muting: 您靜音的使用者名單
     upload: 上傳
   landing_strip_html: "<strong>%{name}</strong> 是一個在 %{link_to_root_path} 的使用者。只要您有任何 Mastodon 服務站、或者聯盟網站的帳號，便可以跨站關注此站使用者，或者與他們互動。"
   landing_strip_signup_html: 如果您沒有這些帳號，歡迎在<a href="%{sign_up_path}">這裡註冊</a>。
@@ -231,15 +242,26 @@ zh-TW:
     missing_resource: 無法找到資源
     proceed: 下一步
     prompt: 您希望關注︰
+  sessions:
+    activity: 最近活動
+    browser: 瀏覽器
+    current_session: 目前的 session
+    description: "%{platform} 上的 %{browser}"
+    explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
+    revoke: 取消
+    revoke_success: Session 取消成功。
   settings:
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
+    development: 開發
     edit_profile: 修改個人資料
     export: 匯出
+    followers: 授權追蹤者
     import: 匯入
+    notifications: 通知
     preferences: 偏好設定
     settings: 設定
-    two_factor_authentication: 雙因子認證
+    two_factor_authentication: 兩階段認證
   statuses:
     open_in_web: 以網頁開啟
     over_character_limit: 超過了 %{max} 字的限制
@@ -257,14 +279,14 @@ zh-TW:
       default: "%Y年%-m月%d日 %H:%M"
   two_factor_authentication:
     code_hint: 請輸入您認證器產生的代碼，以進行認證
-    description_html: 當您啟用<strong>雙因子認證</strong>後，您登入時將需要使您手機、或其他種類認證器產生的代碼。
+    description_html: 啟用<strong>兩階段認證</strong>後，登入時將需要使手機、或其他種類認證器產生的代碼。
     disable: 停用
     enable: 啟用
-    enabled_success: 已成功啟用雙因子認證
-    instructions_html: "<strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在雙因子認證啟用後，您登入時將須要使用此應用程式產生的認證碼。"
+    enabled_success: 已成功啟用兩階段認證
+    instructions_html: "<strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在兩階段認證啟用後，您登入時將須要使用此應用程式產生的認證碼。"
     manual_instructions: 如果您無法掃描 QR 圖形碼，請手動輸入︰
     setup: 設定
     wrong_code: 您輸入的認證碼並不正確！可能伺服器時間和您手機不一致，請檢查您手機的時間，或與本站管理員聯絡。
   users:
     invalid_email: 信箱地址格式不正確
-    invalid_otp_token: 雙因子認證碼不正確
+    invalid_otp_token: 兩階段認證碼不正確

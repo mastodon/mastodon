@@ -1,0 +1,73 @@
+---
+sk:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
+        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali nejaké osobné správy kým ste boli preč
+        display_name:
+          one: Ostáva vám <span class="name-counter">1</span> znak
+          other: Ostáva vám <span class="name-counter">%{count}</span> znakov
+        header: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 700x335px
+        locked: Musíte manuálne schváliť sledujúcich
+        note:
+          one: Ostáva vám <span class="note-counter">1</span> znak
+          other: Ostáva vám <span class="note-counter">%{count}</span>znakov
+        setting_noindex: Ovplyvňuje profil  a správy tak, že ich nebude možné nájsť vyhľadávaním
+        setting_theme: Ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého zariadenia.
+      imports:
+        data: CSV súbor vyexportovaný z inej Mastodon inštancie
+      sessions:
+        otp: Vložte 2FA kód z telefónu alebo použite jeden z vašich obnovovacích kódov.
+      user:
+        filtered_languages: Zaškrtnuté jazyky vám nebudú zobrazené vo verejnej časovej osi
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Opäť vaše nové heslo pre potvrdenie
+        confirm_password: Potvrďte heslo
+        current_password: Súčasné heslo
+        data: Dáta
+        display_name: Meno
+        email: Emailová adresa
+        expires_in: Expirovať po
+        filtered_languages: Filtrované jazyky
+        header: Obrázok v hlavičke
+        locale: Jazyk
+        locked: Zamknúť účet
+        max_uses: Maximálne možno použiť
+        new_password: Nové heslo
+        note: O tebe
+        otp_attempt: Dvoj-faktorový overovací (2FA) kód
+        password: Heslo
+        setting_auto_play_gif: Automaticky prehrávať animované GIFy
+        setting_boost_modal: Zobrazovať potvrdzovacie okno pred re-toot
+        setting_default_privacy: Nastavenie súkromia príspevkov
+        setting_default_sensitive: Označiť každý obrázok/video/súbor ako chúlostivý
+        setting_delete_modal: Zobrazovať potvrdzovacie okno pred zmazaním toot-u
+        setting_display_sensitive_media: Vždy zobrazovať médiá označované ako senzitívne
+        setting_noindex: Nezaradzovať vaše príspevky do indexácie pre vyhľadávanie
+        setting_reduce_motion: Redukovať pohyb v animáciách
+        setting_system_font_ui: Použiť základné systémové písmo
+        setting_theme: Vzhľad
+        setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania iného používateľa
+        severity: Závažnosť
+        type: Typ importu
+        username: Používateľské meno
+        username_or_email: Prezívka, alebo Email
+      interactions:
+        must_be_follower: Blokovať notifikácie pod používateľov, ktorí ťa nesledujú
+        must_be_following: Blokovať notifikácie od ľudí ktorí ťa nesledujú
+        must_be_following_dm: Blokovať súkromné správy od ľudí ktorých nesleduješ
+      notification_emails:
+        digest: Posielať súhrnné emaily
+        favourite: Poslať email ak niekto označí váš príspevok ako obľúbený
+        follow: Poslať email, ak ťa niekto začne následovať
+        follow_request: Zaslať email ak ti niekto pošle žiadosť o sledovanie
+        mention: Poslať email ak ťa niekto spomenie v svojom príspevku
+        reblog: Poslať email ak niekto re-tootne tvoj príspevok
+    'no': Nie
+    required:
+      mark: "*"
+      text: povinné
+    'yes': Áno

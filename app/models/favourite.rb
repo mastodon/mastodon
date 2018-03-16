@@ -3,18 +3,20 @@
 #
 # Table name: favourites
 #
+#  id         :integer          not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  account_id :integer          not null
-#  id         :integer          not null, primary key
 #  status_id  :integer          not null
 #
 
 class Favourite < ApplicationRecord
   include Paginable
 
-  belongs_to :account, inverse_of: :favourites, required: true
-  belongs_to :status,  inverse_of: :favourites, counter_cache: true, required: true
+  update_index('statuses#status', :status) if Chewy.enabled?
+
+  belongs_to :account, inverse_of: :favourites
+  belongs_to :status,  inverse_of: :favourites, counter_cache: true
 
   has_one :notification, as: :activity, dependent: :destroy
 

@@ -2,70 +2,135 @@
   = site_hostname
 
 - content_for :header_tags do
+  %link{ rel: 'canonical', href: about_url }/
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
   = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
   = render partial: 'shared/og'
 
-.landing-page
-  .header-wrapper
-    .mascot-container
-      = image_tag asset_pack_path('elephant-fren.png'), alt: '', role: 'presentation', class: 'mascot'
-
-    .header
-      .container.links
+.landing-page.alternative
+  .container
+    .grid
+      .column-0
         .brand
           = link_to root_url do
             = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
 
-        %ul.nav
-          %li
-            - if user_signed_in?
-              = link_to t('settings.back'), root_url, class: 'webapp-btn'
-            - else
-              = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
-          %li= link_to t('about.about_this'), about_more_path
-          %li
-            = link_to 'https://joinmastodon.org/' do
-              = "#{t('about.other_instances')}"
-              %i.fa.fa-external-link{ style: 'padding-left: 5px;' }
-
-      .container.hero
-        .floats
-          %div{ role: 'presentation', class: 'float-1' }
-          %div{ role: 'presentation', class: 'float-2' }
-          %div{ role: 'presentation', class: 'float-3' }
-        .heading
-          %h1
-            = @instance_presenter.site_title
-            %small= t 'about.hosted_on', domain: site_hostname
-        - if @instance_presenter.open_registrations
-          = render 'registration'
-        - else
-          .closed-registrations-message
-            %div
-              - if @instance_presenter.closed_registrations_message.blank?
-                %p= t('about.closed_registrations')
-              - else
-                = @instance_presenter.closed_registrations_message.html_safe
-            = link_to t('about.find_another_instance'), 'https://joinmastodon.org/', class: 'button button-alternative button--block'
-
-  .about-short
-    .container
-      %h3= t('about.description_headline', domain: site_hostname)
-      %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
-
-  .features
-    .container
       - if Setting.timeline_preview
-        #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
+        .column-1
+          .landing-page__forms
+            .brand
+              = link_to root_url do
+                = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
 
-      .about-mastodon
-        %h3= t 'about.what_is_mastodon'
-        %p= t 'about.about_mastodon_html'
-        = link_to t('about.learn_more'), 'https://joinmastodon.org/', class: 'button button-secondary'
-        = render 'features'
-  .footer-links
-    .container
-      %p
-        = link_to t('about.source_code'), @instance_presenter.source_url
-        = " (#{@instance_presenter.version_number})"
+            = render 'forms'
+
+      - else
+        .column-1.non-preview
+          .landing-page__forms
+            .brand
+              = link_to root_url do
+                = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+
+            = render 'forms'
+
+      - if Setting.timeline_preview
+        .column-2
+          .landing-page__hero
+            = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
+
+          .landing-page__information
+            .landing-page__short-description
+              .row
+                .landing-page__logo
+                  = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
+
+                %h1
+                  = @instance_presenter.site_title
+                  %small!= t 'about.hosted_on', domain: content_tag(:span, site_hostname)
+
+              %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+
+          .landing-page__call-to-action{ dir: 'ltr' }
+            .row
+              .row__information-board
+                .information-board__section
+                  %span= t 'about.user_count_before'
+                  %strong= number_with_delimiter @instance_presenter.user_count
+                  %span= t 'about.user_count_after'
+                .information-board__section
+                  %span= t 'about.status_count_before'
+                  %strong= number_with_delimiter @instance_presenter.status_count
+                  %span= t 'about.status_count_after'
+              .row__mascot
+                .landing-page__mascot
+                  = image_tag asset_pack_path('elephant_ui_plane.svg')
+
+      - else
+        .column-2.non-preview
+          .landing-page__hero
+            = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
+
+          .landing-page__information
+            .landing-page__short-description
+              .row
+                .landing-page__logo
+                  = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
+
+                %h1
+                  = @instance_presenter.site_title
+                  %small!= t 'about.hosted_on', domain: content_tag(:span, site_hostname)
+
+              %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+
+          .landing-page__call-to-action
+            .row
+              .row__information-board
+                .information-board__section
+                  %span= t 'about.user_count_before'
+                  %strong= number_with_delimiter @instance_presenter.user_count
+                  %span= t 'about.user_count_after'
+                .information-board__section
+                  %span= t 'about.status_count_before'
+                  %strong= number_with_delimiter @instance_presenter.status_count
+                  %span= t 'about.status_count_after'
+              .row__mascot
+                .landing-page__mascot
+                  = image_tag asset_pack_path('elephant_ui_plane.svg')
+
+      - if Setting.timeline_preview
+        .column-3
+          #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
+
+      - if Setting.timeline_preview
+        .column-4.landing-page__information
+          .landing-page__features
+            .features-list
+              %div
+                %h3= t 'about.what_is_mastodon'
+                %p= t 'about.about_mastodon_html'
+
+            = render 'features'
+
+            .landing-page__features__action
+              = link_to t('about.learn_more'), 'https://joinmastodon.org/', class: 'button button-alternative'
+
+          .landing-page__footer
+            %p
+              = link_to t('about.source_code'), @instance_presenter.source_url
+              = " (#{@instance_presenter.version_number})"
+
+      - else
+        .column-4.non-preview.landing-page__information
+          .landing-page__features
+            %h3= t 'about.what_is_mastodon'
+            %p= t 'about.about_mastodon_html'
+
+            = render 'features'
+
+            .landing-page__features__action
+              = link_to t('about.learn_more'), 'https://joinmastodon.org/', class: 'button button-alternative'
+
+          .landing-page__footer
+            %p
+              = link_to t('about.source_code'), @instance_presenter.source_url
+              = " (#{@instance_presenter.version_number})"

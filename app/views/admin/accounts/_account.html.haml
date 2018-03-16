@@ -4,22 +4,14 @@
   %td.domain
     - unless account.local?
       = link_to account.domain, admin_accounts_path(by_domain: account.domain)
-  %td.protocol
-    - unless account.local?
-      = account.protocol.humanize
-  %td.confirmed
+  %td
     - if account.local?
-      - if account.user_confirmed?
-        %i.fa.fa-check
+      - if account.user.nil?
+        = t("admin.accounts.moderation.suspended")
       - else
-        %i.fa.fa-times
-  %td.subscribed
-    - if account.local?
-      = t('admin.accounts.location.local')
-    - elsif account.subscribed?
-      %i.fa.fa-check
+        = t("admin.accounts.roles.#{account.user.role}")
     - else
-      %i.fa.fa-times
+      = account.protocol.humanize
   %td
     = table_link_to 'circle', t('admin.accounts.web'), web_path("accounts/#{account.id}")
     = table_link_to 'globe', t('admin.accounts.public'), TagManager.instance.url_for(account)

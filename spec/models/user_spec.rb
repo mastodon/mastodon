@@ -148,6 +148,14 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#confirm' do
+    it 'sets email to unconfirmed_email' do
+      user = Fabricate.build(:user, confirmed_at: Time.now.utc, unconfirmed_email: 'new-email@example.com')
+      user.confirm
+      expect(user.email).to eq 'new-email@example.com'
+    end
+  end
+
   describe '#disable_two_factor!' do
     it 'saves false for otp_required_for_login' do
       user = Fabricate.build(:user, otp_required_for_login: true)
@@ -177,27 +185,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#setting_auto_play_gif' do
-    it 'returns auto-play gif setting' do
+  describe 'settings' do
+    it 'is instance of Settings::ScopedSettings' do
       user = Fabricate(:user)
-      user.settings[:auto_play_gif] = false
-      expect(user.setting_auto_play_gif).to eq false
-    end
-  end
-  
-  describe '#setting_system_font_ui' do
-    it 'returns system font ui setting' do
-      user = Fabricate(:user)
-      user.settings[:system_font_ui] = false
-      expect(user.setting_system_font_ui).to eq false
-    end
-  end
-
-  describe '#setting_boost_modal' do
-    it 'returns boost modal setting' do
-      user = Fabricate(:user)
-      user.settings[:boost_modal] = false
-      expect(user.setting_boost_modal).to eq false
+      expect(user.settings).to be_kind_of Settings::ScopedSettings
     end
   end
 
@@ -216,22 +207,6 @@ RSpec.describe User, type: :model do
     it "returns 'public' if user has not configured default privacy setting and account is not locked" do
       user = Fabricate(:user, account: Fabricate(:account, locked: false))
       expect(user.setting_default_privacy).to eq 'public'
-    end
-  end
-
-  describe '#setting_unfollow_modal' do
-    it 'returns unfollow modal setting' do
-      user = Fabricate(:user)
-      user.settings[:unfollow_modal] = true
-      expect(user.setting_unfollow_modal).to eq true
-    end
-  end
-
-  describe '#setting_delete_modal' do
-    it 'returns delete modal setting' do
-      user = Fabricate(:user)
-      user.settings[:delete_modal] = false
-      expect(user.setting_delete_modal).to eq false
     end
   end
 
@@ -304,6 +279,49 @@ RSpec.describe User, type: :model do
       app.update!(owner: nil)
 
       expect(user.token_for_app(app)).to be_nil
+    end
+  end
+
+  describe '#role' do
+    it 'returns admin for admin' do
+      user = User.new(admin: true)
+      expect(user.role).to eq 'admin'
+    end
+
+    it 'returns moderator for moderator' do
+      user = User.new(moderator: true)
+      expect(user.role).to eq 'moderator'
+    end
+
+    it 'returns user otherwise' do
+      user = User.new
+      expect(user.role).to eq 'user'
+    end
+  end
+
+  describe '#role?' do
+    it 'returns false when invalid role requested' do
+      user = User.new(admin: true)
+      expect(user.role?('disabled')).to be false
+    end
+
+    it 'returns true when exact role match' do
+      user  = User.new
+      mod   = User.new(moderator: true)
+      admin = User.new(admin: true)
+
+      expect(user.role?('user')).to be true
+      expect(mod.role?('moderator')).to be true
+      expect(admin.role?('admin')).to be true
+    end
+
+    it 'returns true when role higher than needed' do
+      mod   = User.new(moderator: true)
+      admin = User.new(admin: true)
+
+      expect(mod.role?('user')).to be true
+      expect(admin.role?('user')).to be true
+      expect(admin.role?('moderator')).to be true
     end
   end
 end

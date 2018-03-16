@@ -1,0 +1,146 @@
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.hero
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center.padded
+                              %table.hero-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td
+                                      = image_tag full_pack_url('icon_done.png'), alt: ''
+
+                              %h1= t 'user_mailer.welcome.title', name: @resource.account.username
+                              %p.lead= t 'user_mailer.welcome.explanation'
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.content-start
+                  .email-row
+                    .col-3
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.input-cell.text-center.padded-bottom
+                              %h5= t 'user_mailer.welcome.full_handle'
+                              %table.input{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td= "@#{@resource.account.username}@#{@instance}"
+                    .col-3
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell
+                              %p= t 'user_mailer.welcome.full_handle_hint', instance: @instance
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.content-start.border-top
+                  .email-row
+                    .col-4
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded
+                              = t 'user_mailer.welcome.edit_profile_step'
+                    .col-2
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded
+                              %table.button.button-small{ align: 'left', cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td.button-primary
+                                      = link_to settings_profile_url do
+                                        %span= t 'user_mailer.welcome.edit_profile_action'
+              %tr
+                %td.content-cell
+                  .email-row
+                    .col-4
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded
+                              = t 'user_mailer.welcome.review_preferences_step'
+                    .col-2
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded
+                              %table.button.button-small{ align: 'left', cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td.button-primary
+                                      = link_to settings_preferences_url do
+                                        %span= t 'user_mailer.welcome.review_preferences_action'
+              %tr
+                %td.content-cell.padded-bottom
+                  .email-row
+                    .col-4
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded
+                              = t 'user_mailer.welcome.final_step'
+                    .col-2
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded
+                              %table.button.button-small{ align: 'left', cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td.button-primary
+                                      = link_to web_url do
+                                        %span= t 'user_mailer.welcome.final_action'
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.border-top
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.padded
+                              %h5= t 'user_mailer.welcome.tips'
+                              %ul
+                                %li
+                                  %span= t 'user_mailer.welcome.tip_mobile_webapp'
+                                %li
+                                  %span= t 'user_mailer.welcome.tip_bridge_html', bridge_url: 'https://bridge.joinmastodon.org'
+                                %li
+                                  %span= t 'user_mailer.welcome.tip_following'
+                                %li
+                                  %span= t 'user_mailer.welcome.tip_local_timeline', instance: @instance
+                                %li
+                                  %span= t 'user_mailer.welcome.tip_federated_timeline'

@@ -25,7 +25,7 @@
 
 = simple_form_for @application, url: settings_application_path(@application), method: :put do |f|
   = render 'fields', f: f
-    
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
 

@@ -4,13 +4,13 @@ import { scrollTopTimeline } from '../../../actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
+import { me } from '../../../initial_state';
 
 const makeGetStatusIds = () => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
   (state, { type }) => state.getIn(['timelines', type, 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
-  (state)           => state.getIn(['meta', 'me']),
-], (columnSettings, statusIds, statuses, me) => {
+], (columnSettings, statusIds, statuses) => {
   const rawRegex = columnSettings.getIn(['regex', 'body'], '').trim();
   let regex      = null;
 
@@ -47,6 +47,7 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, { timelineId }) => ({
     statusIds: getStatusIds(state, { type: timelineId }),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
+    isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore: !!state.getIn(['timelines', timelineId, 'next']),
   });
 
@@ -55,10 +56,7 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch, { timelineId, loadMore }) => ({
 
-  onScrollToBottom: debounce(() => {
-    dispatch(scrollTopTimeline(timelineId, false));
-    loadMore();
-  }, 300, { leading: true }),
+  onLoadMore: debounce(loadMore, 300, { leading: true }),
 
   onScrollToTop: debounce(() => {
     dispatch(scrollTopTimeline(timelineId, true));

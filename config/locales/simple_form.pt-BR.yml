@@ -3,7 +3,8 @@ pt-BR:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 120x120px
+        avatar: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 400x400px
+        digest: Enviado após um longo período de inatividade com um resumo das menções que você recebeu em sua ausência
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
@@ -13,12 +14,13 @@ pt-BR:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
         setting_noindex: Afeta seu perfil público e as páginas de suas postagens
+        setting_theme: Afeta a aparência do Mastodon quando em sua conta em qualquer aparelho.
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
         otp: Insira o código de autenticação do seu celular ou use um dos códigos de recuperação.
       user:
-        filtered_languages: Selecione os idiomas que devem ser removidos de suas timelines públicas.
+        filtered_languages: Selecione os idiomas que devem ser removidos de suas timelines públicas
     labels:
       defaults:
         avatar: Avatar
@@ -28,10 +30,12 @@ pt-BR:
         data: Dados
         display_name: Nome de exibição
         email: Endereço de e-mail
+        expires_in: Expira em
         filtered_languages: Idiomas filtrados
         header: Cabeçalho
         locale: Idioma
         locked: Trancar conta
+        max_uses: Número máximo de usos
         new_password: Nova senha
         note: Bio
         otp_attempt: Código de autenticação em dois passos
@@ -41,15 +45,20 @@ pt-BR:
         setting_default_privacy: Privacidade das postagens
         setting_default_sensitive: Sempre marcar mídia como sensível
         setting_delete_modal: Mostrar diálogo de confirmação antes de deletar uma postagem
+        setting_display_sensitive_media: Sempre mostrar mídia marcada como sensível
         setting_noindex: Não quero ser indexado por mecanismos de busca
+        setting_reduce_motion: Reduz movimento em animações
         setting_system_font_ui: Usar a fonte padrão de seu sistema
+        setting_theme: Tema do site
         setting_unfollow_modal: Mostrar diálogo de confirmação antes de deixar de seguir alguém
         severity: Gravidade
         type: Tipo de importação
         username: Nome de usuário
+        username_or_email: Nome de usuário ou e-mail
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que você não segue
+        must_be_following_dm: Bloquear mensagens diretas de pessoas que você não segue
       notification_emails:
         digest: Mandar e-mails com relatórios
         favourite: Mandar um e-mail quando alguém favoritar suas postagens

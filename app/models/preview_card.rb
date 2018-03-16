@@ -21,6 +21,7 @@
 #  height             :integer          default(0), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  embed_url          :string           default(""), not null
 #
 
 class PreviewCard < ApplicationRecord
@@ -32,7 +33,7 @@ class PreviewCard < ApplicationRecord
 
   has_and_belongs_to_many :statuses
 
-  has_attached_file :image, styles: { original: '280x280>' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :image, styles: { original: { geometry: '400x400>', file_geometry_parser: FastGeometryParser } }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
   include Remotable
@@ -57,10 +58,11 @@ class PreviewCard < ApplicationRecord
 
     return if file.nil?
 
-    geo         = Paperclip::Geometry.from_file(file)
-    self.width  = geo.width.to_i
-    self.height = geo.height.to_i
-  rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-    nil
+    width, height = FastImage.size(file.path)
+
+    return nil if width.nil?
+
+    self.width  = width
+    self.height = height
   end
 end

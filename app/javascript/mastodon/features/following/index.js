@@ -8,7 +8,7 @@ import {
   fetchFollowing,
   expandFollowing,
 } from '../../actions/accounts';
-import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll-4';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import HeaderContainer from '../account_timeline/containers/header_container';
@@ -80,7 +80,7 @@ export default class Following extends ImmutablePureComponent {
         <ScrollContainer scrollKey='following'>
           <div className='scrollable' onScroll={this.handleScroll}>
             <div className='following'>
-              <HeaderContainer accountId={this.props.params.accountId} />
+              <HeaderContainer accountId={this.props.params.accountId} hideTabs />
               {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
               {loadMore}
             </div>

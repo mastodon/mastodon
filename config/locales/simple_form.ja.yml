@@ -3,20 +3,20 @@ ja:
   simple_form:
     hints:
       defaults:
-        avatar: 2MBまでのPNGやGIF、JPGが利用可能です。120x120pxまで縮小されます。
-        digest: 長期間ログインしなかった際、その期間に受け取った返信の要約を受け取ることができます。
+        avatar: 2MBまでのPNGやGIF、JPGが利用可能です。400x400pxまで縮小されます
+        digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
-        header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます。
+        header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます
         locked: フォロワーを手動で承認する必要があります
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
       imports:
-        data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい。
+        data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
         otp: 携帯電話に表示された2段階認証コードを入力するか、生成したリカバリーコードを使用してください。
       user:
-        filtered_languages: 選択した言語があなたの公開タイムラインから取り除かれます。
+        filtered_languages: 選択した言語があなたの公開タイムラインから取り除かれます
     labels:
       defaults:
         avatar: アイコン
@@ -26,10 +26,12 @@ ja:
         data: データ
         display_name: 表示名
         email: メールアドレス
+        expires_in: 有効期限
         filtered_languages: 除外する言語
         header: ヘッダー
         locale: 言語
         locked: 非公開アカウントにする
+        max_uses: 使用できる回数
         new_password: 新しいパスワード
         note: プロフィール
         otp_attempt: 二段階認証コード
@@ -39,6 +41,7 @@ ja:
         setting_default_privacy: 投稿の公開範囲
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
+        setting_display_sensitive_media: 閲覧注意としてマークされたメディアも常に表示する
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
@@ -47,9 +50,11 @@ ja:
         severity: 重大性
         type: インポートする項目
         username: ユーザー名
+        username_or_email: ユーザー名またはメールアドレス
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
+        must_be_following_dm: フォローしていないユーザーからのダイレクトメッセージをブロック
       notification_emails:
         digest: タイムラインからピックアップしてメールで通知する
         favourite: お気に入りに登録された時にメールで通知する

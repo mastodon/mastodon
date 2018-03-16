@@ -16,8 +16,30 @@
 
       - if @account.local?
         %tr
+          %th= t('admin.accounts.role')
+          %td
+            - if @account.user.nil?
+              = t("admin.accounts.moderation.suspended")
+            - else
+              = t("admin.accounts.roles.#{@account.user&.role}")
+            = table_link_to 'angle-double-up', t('admin.accounts.promote'), promote_admin_account_role_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:promote, @account.user)
+            = table_link_to 'angle-double-down', t('admin.accounts.demote'), demote_admin_account_role_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:demote, @account.user)
+        %tr
           %th= t('admin.accounts.email')
-          %td= @account.user_email
+          %td
+            = @account.user_email
+
+            - if @account.user_confirmed?
+              = fa_icon('check')
+        %tr
+          %th= t('admin.accounts.login_status')
+          %td
+            - if @account.user&.disabled?
+              = t('admin.accounts.disabled')
+              = table_link_to 'unlock', t('admin.accounts.enable'), enable_admin_account_path(@account.id), method: :post if can?(:enable, @account.user)
+            - else
+              = t('admin.accounts.enabled')
+              = table_link_to 'lock', t('admin.accounts.disable'), disable_admin_account_path(@account.id), method: :post if can?(:disable, @account.user)
         %tr
           %th= t('admin.accounts.most_recent_ip')
           %td= @account.user_current_sign_in_ip
@@ -62,28 +84,30 @@
 %div{ style: 'overflow: hidden' }
   %div{ style: 'float: right' }
     - if @account.local?
-      = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
+      = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button' if can?(:reset_password, @account.user)
       - if @account.user&.otp_required_for_login?
-        = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button'
+        = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
+      - unless @account.memorial?
+        = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button' if can?(:memorialize, @account)
     - else
-      = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button'
+      = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button' if can?(:redownload, @account)
 
   %div{ style: 'float: left' }
     - if @account.silenced?
-      = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
+      = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button' if can?(:unsilence, @account)
     - else
-      = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
+      = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button' if can?(:silence, @account)
 
     - if @account.local?
       - unless @account.user_confirmed?
-        = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button'
+        = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button' if can?(:confirm, @account.user)
 
     - if @account.suspended?
-      = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
+      = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button' if can?(:unsuspend, @account)
     - else
-      = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
+      = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button' if can?(:suspend, @account)
 
-- unless @account.local?
+- if !@account.local? && @account.hub_url.present?
   %hr
   %h3 OStatus
 
@@ -107,10 +131,11 @@
 
   %div{ style: 'overflow: hidden' }
     %div{ style: 'float: right' }
-      = link_to @account.subscribed? ? t('admin.accounts.resubscribe') : t('admin.accounts.subscribe'), subscribe_admin_account_path(@account.id), method: :post, class: 'button'
+      = link_to @account.subscribed? ? t('admin.accounts.resubscribe') : t('admin.accounts.subscribe'), subscribe_admin_account_path(@account.id), method: :post, class: 'button' if can?(:subscribe, @account)
       - if @account.subscribed?
-        = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative'
+        = link_to t('admin.accounts.unsubscribe'), unsubscribe_admin_account_path(@account.id), method: :post, class: 'button negative' if can?(:unsubscribe, @account)
 
+- if !@account.local? && @account.inbox_url.present?
   %hr
   %h3 ActivityPub
 

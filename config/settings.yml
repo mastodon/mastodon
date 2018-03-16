@@ -16,12 +16,15 @@ defaults: &defaults
   open_registrations: true
   closed_registrations_message: ''
   open_deletion: true
+  min_invite_role: 'admin'
   timeline_preview: true
+  show_staff_badge: true
   default_sensitive: false
   unfollow_modal: false
   boost_modal: false
   delete_modal: true
   auto_play_gif: false
+  display_sensitive_media: false
   reduce_motion: false
   system_font_ui: false
   noindex: false
@@ -36,6 +39,7 @@ defaults: &defaults
   interactions:
     must_be_follower: false
     must_be_following: false
+    must_be_following_dm: false
   reserved_usernames:
     - admin
     - support
@@ -44,7 +48,9 @@ defaults: &defaults
     - webmaster
     - administrator
   bootstrap_timeline_accounts: ''
-
+  activity_api_enabled: true
+  peers_api_enabled: true
+  show_known_fediverse_at_about_page: true
 development:
   <<: *defaults
 

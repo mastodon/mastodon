@@ -3,49 +3,63 @@ zh-CN:
   simple_form:
     hints:
       defaults:
-        avatar: 最大 2MB，限 PNG, GIF 或 JPG 格式，将缩到 120x120px
-        display_name: 不起过 30 个字符
-        header: 最大 2MB，限 PNG, GIF 或 JPG 格式，将缩到 700x335px
-        locked: 默认仅向粉丝公开嘟文，需要手工批准粉丝关注请求。
-        note: 最多 160 个字符
+        avatar: 文件大小限制 2MB，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 400×400px
+        digest: 仅在你长时间未登录，且收到了私信时发送
+        display_name: 还能输入 <span class="name-counter">%{count}</span> 个字符
+        header: 文件大小限制 2MB，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 700×335px
+        locked: 你需要手动审核所有关注请求
+        note: 还能输入 <span class="note-counter">%{count}</span> 个字符
+        setting_noindex: 此设置会影响到你的公开个人资料以及嘟文页面
+        setting_theme: 此设置会影响到你从任意设备登录时 Mastodon 的显示样式
       imports:
-        data: 从其他服务器节点导出的 CSV 文件
+        data: 请上传从其他 Mastodon 实例导出的 CSV 文件
       sessions:
-        otp: 输入你手机生成的两步验证码，或者恢复代码。
+        otp: 输入你手机上生成的双重认证码，或者任意一个恢复代码。
       user:
-        filtered_languages: 下列被选择的语言的嘟文将不会出现在你的公共时间轴上。
+        filtered_languages: 被勾选语言的嘟文将不会出现在你的公共时间轴上
     labels:
       defaults:
         avatar: 头像
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
         current_password: 当前密码
-        data: 数据
-        display_name: 显示名
-        email: 邮箱
-        filtered_languages: 屏蔽下列语言的嘟文
-        header: 个人页面顶部
+        data: 数据文件
+        display_name: 昵称
+        email: 电子邮件地址
+        expires_in: 失效时间
+        filtered_languages: 语言过滤
+        header: 个人资料页横幅图片
         locale: 语言
-        locked: 隐私模式（锁嘟）
+        locked: 保护你的帐户（锁嘟）
+        max_uses: 最大使用次数
         new_password: 新密码
         note: 简介
-        otp_attempt: 两步认证码
+        otp_attempt: 双重认证代码
         password: 密码
+        setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
-        setting_default_privacy: 嘟文默认隐私度
-        severity: 等级
+        setting_default_privacy: 嘟文默认可见范围
+        setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容
+        setting_delete_modal: 在删除嘟文前询问我
+        setting_noindex: 禁止搜索引擎建立索引
+        setting_reduce_motion: 降低过渡动画效果
+        setting_system_font_ui: 使用系统默认字体
+        setting_theme: 站点主题
+        setting_unfollow_modal: 在取消关注前询问我
+        severity: 级别
         type: 导入数据类型
         username: 用户名
       interactions:
-        must_be_follower: 隐藏没有关注你的用户的通知
-        must_be_following: 隐藏你不关注的用户的通知
+        must_be_follower: 屏蔽来自未关注我的用户的通知
+        must_be_following: 屏蔽来自我未关注的用户的通知
+        must_be_following_dm: 屏蔽来自我未关注的用户的私信
       notification_emails:
         digest: 发送摘要邮件
-        favourite: 当有用户赞了你的嘟文时，发电邮通知
-        follow: 当有用户关注你时，发电邮通知
-        follow_request: 当有用户要求关注你时，发电邮通知
-        mention: 当有用户在嘟文中提及你时，发电邮通知
-        reblog: 当有用户转嘟了你的嘟文时，发电邮通知
+        favourite: 当有用户收藏了我的嘟文时，发送电子邮件提醒我
+        follow: 当有用户关注我时，发送电子邮件提醒我
+        follow_request: 当有用户向我发送关注请求时，发送电子邮件提醒我
+        mention: 当有用户在嘟文中提及我时，发送电子邮件提醒我
+        reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
     'no': 否
     required:
       mark: "*"

@@ -1,8 +1,8 @@
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
-[![Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
-[![Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][code_climate]
+[![Build Status](https://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
 
 [travis]: https://travis-ci.org/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
@@ -17,9 +17,10 @@ Click on the screenshot below to watch a demo of the UI:
 
 **Ruby on Rails** is used for the back-end, while **React.js** and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
-If you would like, you can [support the development of this project on Patreon][patreon]. Alternatively, you can donate to this BTC address: `17j2g7vpgHhLuXhN4bueZFCvdxxieyRVWd`
+If you would like, you can [support the development of this project on Patreon][patreon] or [Liberapay][liberapay]. Alternatively, you can donate to this BTC address: `17j2g7vpgHhLuXhN4bueZFCvdxxieyRVWd`
 
 [patreon]: https://www.patreon.com/user?u=619786
+[liberapay]: https://liberapay.com/Mastodon/
 
 ---
 
@@ -77,6 +78,16 @@ There are guides in the documentation repository for [deploying on various platf
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. [Here are the guidelines for code contributions](CONTRIBUTING.md)
 
 **IRC channel**: #mastodon on irc.freenode.net
+
+## License
+
+Copyright (C) 2016-2018 Eugen Rochko & other Mastodon contributors (see AUTHORS.md)
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 ---
 

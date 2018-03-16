@@ -1,0 +1,63 @@
+---
+sr-Latn:
+  devise:
+    confirmations:
+      confirmed: Adresa Vaše e-pošte je uspešno potvrđena.
+      send_instructions: U roku od nekoliko minuta primićete e-poštu sa uputstvom za potvrdu Vašeg naloga. Molimo proverite i spam fasciklu ako niste primili poruku.
+      send_paranoid_instructions: Ukoliko se adresa Vaše e-pošte nalazi u našoj bazi, u roku od nekoliko minuta primićete poruku sa uputstvom kako da potvrdite Vaš nalog. Molimo proverite i spam fasciklu ako niste primili poruku.
+    failure:
+      already_authenticated: Već ste prijavljeni.
+      inactive: Vaš nalog još nije aktiviran.
+      invalid: Neispravan %{authentication_keys} ili lozinka.
+      last_attempt: Imate još jedan pokušaj pre nego što Vaš nalog bude zaključan.
+      locked: Vaš nalog je zaključan.
+      not_found_in_database: Neispravan %{authentication_keys} ili lozinka.
+      timeout: Vreme trajanja Vaše sesije je isteklo. Za nastavak prijavite se ponovo.
+      unauthenticated: Za nastavak se morate prijaviti ili registrovati.
+      unconfirmed: Pre nastavka morate potvrditi svoj nalog.
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodont: Uputstvo za potvrdu korisničkog naloga na instanci %{instance}'
+      password_change:
+        subject: 'Mastodont: Lozinka promenjena'
+      reset_password_instructions:
+        subject: 'Mastodont: Uputstvo za resetovanje lozinke'
+      unlock_instructions:
+        subject: 'Mastodont: Uputstvo za otključavanje korisničkog naloga'
+    omniauth_callbacks:
+      failure: Nismo u mogućnosti autorizovati Vas sa %{kind} nalogom zbog "%{reason}".
+      success: Uspešna autorizacija sa %{kind} naloga.
+    passwords:
+      no_token: Ne možete pristupiti ovoj stranici ako niste pratili vezu u imejlu za resetovanje lozinke. Ukoliko ste pratili vezu za resetovanje lozinke u poruci, molimo Vas da proverite da li ste koristili punu adresu.
+      send_instructions: U roku od nekoliko minuta primitićete poruku sa uputstvom za promenu Vaše lozinke. Molimo proverite i spam fasciklu ako niste primili poruku.
+      send_paranoid_instructions: Ukoliko se adresa Vaše e-pošte nalazi u našoj bazi, u roku od nekoliko minuta primićete poruku sa uputstvom za promenu Vaše lozinke. Molimo proverite i spam fasciklu ako niste primili poruku.
+      updated: Vaša lozinka je uspešno promenjena. Sada ste prijavljeni.
+      updated_not_active: Vaša lozinka nije uspešno promenjena.
+    registrations:
+      destroyed: Ćao! Vaš nalog je uspešno obrisan. Nadamo se da ćete se uskoro vratiti.
+      signed_up: Dobrodošli! Uspešno ste se registrovali.
+      signed_up_but_inactive: Uspešno ste se registrovali. Nažalost ne možete se prijaviti zato što Vaš nalog još nije aktiviran.
+      signed_up_but_locked: Uspešno ste se registrovali. Nažalost ne možete se prijaviti zato što je Vaš nalog zaključan.
+      signed_up_but_unconfirmed: Poruka za potvrdu Vašeg naloga je poslata na Vašu imejl adresu. Kliknite na vezu u imejlu da potvrdite svoj nalog. Molimo proverite i spam fasciklu ako niste primili poruku.
+      update_needs_confirmation: Uspešno ste ažurirali svoj nalog, ali treba da potvrdimo novu adresu Vaše e-pošte. Molimo Vas da proverite e-poštu i pratite link za potvrdu nove adrese Vaše e-pošte.
+      updated: Vaš nalog je uspešno ažuriran.
+    sessions:
+      already_signed_out: Uspešno ste se odjavili.
+      signed_in: Uspešno ste se prijavili.
+      signed_out: Uspešno ste se odjavili.
+    unlocks:
+      send_instructions: U roku od nekoliko minuta primićete imejl sa uputstvom za otključavanje Vašeg naloga. Molimo proverite i spam fasciklu ako niste primili poruku.
+      send_paranoid_instructions: koliko se adresa Vaše e-pošte nalazi u našoj bazi, u roku od nekoliko minuta primićete poruku sa uputstvom kako da otključate Vaš nalog. Molimo proverite i spam fasciklu ako niste primili poruku.
+      unlocked: Vaš nalog je uspešno otključan. Molimo Vas da se prijavite da biste nastavili.
+  errors:
+    messages:
+      already_confirmed: je već potvrđen, molimo Vas da se prijavite
+      confirmation_period_expired: je trebao biti potvrđen tokom perioda %{period}, molimo Vas da zatražite novi
+      expired: je istekao, molimo Vas da zatražite novi
+      not_found: nije pronađeno
+      not_locked: nije zaključan
+      not_saved:
+        few: "%{count} greške sprečavaju %{resource}a:"
+        many: "%{count} grešaka sprečavaju %{resource}a:"
+        one: '1 greška sprečava %{resource}a:'
+        other: "%{count} grešaka sprečavaju %{resource}a:"

@@ -26,34 +26,42 @@ class FeedManager
     end
   end
 
-  def push(timeline_type, account, status)
-    return false unless add_to_feed(timeline_type, account, status)
-
-    trim(timeline_type, account.id)
-
-    PushUpdateWorker.perform_async(account.id, status.id) if push_update_required?(timeline_type, account.id)
-
+  def push_to_home(account, status)
+    return false unless add_to_feed(:home, account.id, status)
+    trim(:home, account.id)
+    PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}") if push_update_required?("timeline:#{account.id}")
     true
   end
 
-  def unpush(timeline_type, account, status)
-    return false unless remove_from_feed(timeline_type, account, status)
+  def unpush_from_home(account, status)
+    return false unless remove_from_feed(:home, account.id, status)
+    Redis.current.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    true
+  end
 
-    payload = Oj.dump(event: :delete, payload: status.id.to_s)
-    Redis.current.publish("timeline:#{account.id}", payload)
+  def push_to_list(list, status)
+    return false unless add_to_feed(:list, list.id, status)
+    trim(:list, list.id)
+    PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}") if push_update_required?("timeline:list:#{list.id}")
+    true
+  end
 
+  def unpush_from_list(list, status)
+    return false unless remove_from_feed(:list, list.id, status)
+    Redis.current.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
 
   def trim(type, account_id)
     timeline_key = key(type, account_id)
-    reblog_key = key(type, account_id, 'reblogs')
+    reblog_key   = key(type, account_id, 'reblogs')
+
     # Remove any items past the MAX_ITEMS'th entry in our feed
     redis.zremrangebyrank(timeline_key, '0', (-(FeedManager::MAX_ITEMS + 1)).to_s)
 
     # Get the score of the REBLOG_FALLOFF'th item in our feed, and stop
     # tracking anything after it for deduplication purposes.
-    falloff_rank = FeedManager::REBLOG_FALLOFF - 1
+    falloff_rank  = FeedManager::REBLOG_FALLOFF - 1
     falloff_range = redis.zrevrange(timeline_key, falloff_rank, falloff_rank, with_scores: true)
     falloff_score = falloff_range&.first&.last&.to_i || 0
 
@@ -69,10 +77,6 @@ class FeedManager
     end
   end
 
-  def push_update_required?(timeline_type, account_id)
-    timeline_type != :home || redis.get("subscribed:timeline:#{account_id}").present?
-  end
-
   def merge_into_timeline(from_account, into_account)
     timeline_key = key(:home, into_account.id)
     query        = from_account.statuses.limit(FeedManager::MAX_ITEMS / 4)
@@ -84,28 +88,28 @@ class FeedManager
 
     query.each do |status|
       next if status.direct_visibility? || filter?(:home, status, into_account)
-      add_to_feed(:home, into_account, status)
+      add_to_feed(:home, into_account.id, status)
     end
 
     trim(:home, into_account.id)
   end
 
   def unmerge_from_timeline(from_account, into_account)
-    timeline_key = key(:home, into_account.id)
+    timeline_key      = key(:home, into_account.id)
     oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
 
     from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_home_score).reorder(nil).find_each do |status|
-      remove_from_feed(:home, into_account, status)
+      remove_from_feed(:home, into_account.id, status)
     end
   end
 
   def clear_from_timeline(account, target_account)
-    timeline_key = key(:home, account.id)
+    timeline_key        = key(:home, account.id)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
-    target_statuses = Status.where(id: timeline_status_ids, account: target_account)
+    target_statuses     = Status.where(id: timeline_status_ids, account: target_account)
 
     target_statuses.each do |status|
-      unpush(:home, account, status)
+      unpush_from_home(account, status)
     end
   end
 
@@ -122,7 +126,7 @@ class FeedManager
 
       statuses.each do |status|
         next if filter_from_home?(status, account)
-        added += 1 if add_to_feed(:home, account, status)
+        added += 1 if add_to_feed(:home, account.id, status)
       end
 
       break unless added.zero?
@@ -135,6 +139,10 @@ class FeedManager
 
   def redis
     Redis.current
+  end
+
+  def push_update_required?(timeline_id)
+    redis.exists("subscribed:#{timeline_id}")
   end
 
   def filter_from_home?(status, receiver_id)
@@ -151,14 +159,15 @@ class FeedManager
 
     return true if Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?
 
-    if status.reply? && !status.in_reply_to_account_id.nil?                                                              # Filter out if it's a reply
-      should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists? # and I'm not following the person it's a reply to
-      should_filter &&= receiver_id != status.in_reply_to_account_id                                                     # and it's not a reply to me
-      should_filter &&= status.account_id != status.in_reply_to_account_id                                               # and it's not a self-reply
+    if status.reply? && !status.in_reply_to_account_id.nil?                                                                      # Filter out if it's a reply
+      should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists?         # and I'm not following the person it's a reply to
+      should_filter &&= receiver_id != status.in_reply_to_account_id                                                             # and it's not a reply to me
+      should_filter &&= status.account_id != status.in_reply_to_account_id                                                       # and it's not a self-reply
       return should_filter
-    elsif status.reblog?                                                                                                 # Filter out a reblog
-      should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me
-      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?  # or the author's domain is blocked
+    elsif status.reblog?                                                                                                         # Filter out a reblog
+      should_filter   = Follow.where(account_id: receiver_id, target_account_id: status.account_id, show_reblogs: false).exists? # if the reblogger's reblogs are suppressed
+      should_filter ||= Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?                # or if the author of the reblogged status is blocking me
+      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?          # or the author's domain is blocked
       return should_filter
     end
 
@@ -182,9 +191,9 @@ class FeedManager
   # added, and false if it was not added to the feed. Note that this is
   # an internal helper: callers must call trim or push updates if
   # either action is appropriate.
-  def add_to_feed(timeline_type, account, status)
-    timeline_key = key(timeline_type, account.id)
-    reblog_key   = key(timeline_type, account.id, 'reblogs')
+  def add_to_feed(timeline_type, account_id, status)
+    timeline_key = key(timeline_type, account_id)
+    reblog_key   = key(timeline_type, account_id, 'reblogs')
 
     if status.reblog?
       # If the original status or a reblog of it is within
@@ -195,6 +204,7 @@ class FeedManager
       return false if !rank.nil? && rank < FeedManager::REBLOG_FALLOFF
 
       reblog_rank = redis.zrevrank(reblog_key, status.reblog_of_id)
+
       if reblog_rank.nil?
         # This is not something we've already seen reblogged, so we
         # can just add it to the feed (and note that we're
@@ -205,11 +215,19 @@ class FeedManager
         # Another reblog of the same status was already in the
         # REBLOG_FALLOFF most recent statuses, so we note that this
         # is an "extra" reblog, by storing it in reblog_set_key.
-        reblog_set_key = key(timeline_type, account.id, "reblogs:#{status.reblog_of_id}")
+        reblog_set_key = key(timeline_type, account_id, "reblogs:#{status.reblog_of_id}")
         redis.sadd(reblog_set_key, status.id)
         return false
       end
     else
+      # A reblog may reach earlier than the original status because of the
+      # delay of the worker deliverying the original status, the late addition
+      # by merging timelines, and other reasons.
+      # If such a reblog already exists, just do not re-insert it into the feed.
+      rank = redis.zrevrank(reblog_key, status.id)
+
+      return false unless rank.nil?
+
       redis.zadd(timeline_key, status.id, status.id)
     end
 
@@ -220,8 +238,8 @@ class FeedManager
   # with reblogs, and returning true if a status was removed. As with
   # `add_to_feed`, this does not trigger push updates, so callers must
   # do so if appropriate.
-  def remove_from_feed(timeline_type, account, status)
-    timeline_key = key(timeline_type, account.id)
+  def remove_from_feed(timeline_type, account_id, status)
+    timeline_key = key(timeline_type, account_id)
 
     if status.reblog?
       # 1. If the reblogging status is not in the feed, stop.
@@ -229,7 +247,7 @@ class FeedManager
       return false if status_rank.nil?
 
       # 2. Remove reblog from set of this status's reblogs.
-      reblog_set_key = key(timeline_type, account.id, "reblogs:#{status.reblog_of_id}")
+      reblog_set_key = key(timeline_type, account_id, "reblogs:#{status.reblog_of_id}")
 
       redis.srem(reblog_set_key, status.id)
       # 3. Re-insert another reblog or original into the feed if one
@@ -244,7 +262,7 @@ class FeedManager
       # (outside conditional)
     else
       # If the original is getting deleted, no use for reblog references
-      redis.del(key(timeline_type, account.id, "reblogs:#{status.id}"))
+      redis.del(key(timeline_type, account_id, "reblogs:#{status.id}"))
     end
 
     redis.zrem(timeline_key, status.id)

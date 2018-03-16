@@ -1,22 +1,6 @@
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
   .card__illustration
-    - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
-      .controls
-        - if current_account.following?(account)
-          = link_to account_unfollow_path(account), data: { method: :post }, class: 'icon-button' do
-            = fa_icon 'user-times'
-            = t('accounts.unfollow')
-        - else
-          = link_to account_follow_path(account), data: { method: :post }, class: 'icon-button' do
-            = fa_icon 'user-plus'
-            = t('accounts.follow')
-    - elsif !user_signed_in?
-      .controls
-        .remote-follow
-          = link_to account_remote_follow_path(account), class: 'icon-button' do
-            = fa_icon 'user-plus'
-            = t('accounts.remote_follow')
-
+    = render 'accounts/follow_button', account: account
     .avatar= image_tag account.avatar.url(:original), class: 'u-photo'
 
   .card__bio
@@ -26,10 +10,15 @@
         %span @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
 
-    - if account.user_admin?
-      .roles
-        .account-role
-          = t 'accounts.roles.admin'
+    - if Setting.show_staff_badge
+      - if account.user_admin?
+        .roles
+          .account-role.admin
+            = t 'accounts.roles.admin'
+      - elsif account.user_moderator?
+        .roles
+          .account-role.moderator
+            = t 'accounts.roles.moderator'
 
     .bio
       .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)

@@ -17,11 +17,32 @@ ja:
       unconfirmed: 続行するにはメールアドレスを確認する必要があります。
     mailer:
       confirmation_instructions:
+        action: メールアドレスの確認
+        explanation: このメールアドレスで%{host}にアカウントを作成しました。有効にするまであと一歩です。もし心当たりがない場合、申し訳ありませんがこのメールを無視してください。
+        extra_html: また <a href="%{terms_path}">インスタンスのルール</a> と <a href="%{policy_path}">利用規約</a> もお読みください。
         subject: 'Mastodon: メールアドレスの確認'
+        title: メールアドレスの確認
+      email_changed:
+        explanation: 'アカウントのメールアドレスは以下のように変更されます:'
+        extra: メールアドレスの変更を行っていない場合、他の誰かがあなたのアカウントにアクセスした可能性があります。すぐにパスワードを変更するか、アカウントがロックされている場合はインスタンス管理者に連絡してください。
+        subject: 'Mastodon: メールアドレスの変更'
+        title: 新しいメールアドレス
       password_change:
+        explanation: パスワードが変更されました。
+        extra: パスワードの変更を行っていない場合、他の誰かがあなたのアカウントにアクセスした可能性があります。すぐにパスワードを変更するか、アカウントがロックされている場合はインスタンス管理者に連絡してください。
         subject: 'Mastodon: パスワードが変更されました'
+        title: パスワードの変更
+      reconfirmation_instructions:
+        explanation: メールアドレスを変更するため新しいアドレスを確認してください。
+        extra: この変更に心当たりがない場合、このメールを無視してください。上記リンク先にアクセスするまでアカウントのメールアドレスは変更されません。
+        subject: 'Mastodon: %{instance}のメールを確認する'
+        title: メールアドレスの確認
       reset_password_instructions:
+        action: パスワードの変更
+        explanation: あなたのアカウントに対しパスワードの再発行が要求されました。
+        extra: この要求に心当たりがない場合、このメールを無視してください。上記リンク先にアクセスし新しいものを作成するまでパスワードは変更されません。
         subject: 'Mastodon: パスワード再発行'
+        title: パスワード再発行
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
     omniauth_callbacks:
@@ -35,7 +56,7 @@ ja:
       updated_not_active: パスワードは正常に更新されました。
     registrations:
       destroyed: アカウントの作成はキャンセルされました。またのご利用をお待ちしています。
-      signed_up: アカウントの作成が完了しました。Mastodonへようこそ！
+      signed_up: アカウントの作成が完了しました。Mastodonへようこそ。
       signed_up_but_inactive: アカウントの作成が完了しました。しかし、アカウントが有効化されていないためログインできませんでした。
       signed_up_but_locked: アカウントの作成が完了しました。しかし、アカウントがロックされているためログインできませんでした。
       signed_up_but_unconfirmed: メールアドレスの確認用のリンクが入力したメールアドレスに送信されました。メール内のリンクをクリックしてアカウントを有効化してください。
@@ -51,11 +72,11 @@ ja:
       unlocked: アカウントロックは正常に解除されました。続行するにはログインしてください。
   errors:
     messages:
-      already_confirmed: は確認されました。ログインを試してください。
-      confirmation_period_expired: "%{period}以内に確認が必要です。再度試してください。"
-      expired: は期限切れです。再度試してください。
-      not_found: 見つかりません。
-      not_locked: ロックされていません。
+      already_confirmed: は確認されました。ログインを試してください
+      confirmation_period_expired: "%{period}以内に確認が必要です。再度試してください"
+      expired: は期限切れです。再度試してください
+      not_found: 見つかりません
+      not_locked: ロックされていません
       not_saved:
         one: エラーが発生したため、%{resource}の保存に失敗しました。
-        other: "%{count}個のエラーが発生したため、保存に失敗しました。 %{resource}"
+        other: "%{count}個のエラーが発生したため、%{resource}の保存に失敗しました:"

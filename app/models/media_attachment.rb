@@ -10,12 +10,12 @@
 #  file_file_size    :integer
 #  file_updated_at   :datetime
 #  remote_url        :string           default(""), not null
-#  account_id        :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  shortcode         :string
 #  type              :integer          default("image"), not null
 #  file_meta         :json
+#  account_id        :integer
 #  description       :text
 #
 
@@ -32,7 +32,18 @@ class MediaAttachment < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
 
-  IMAGE_STYLES = { original: '1280x1280>', small: '400x400>' }.freeze
+  IMAGE_STYLES = {
+    original: {
+      geometry: '1280x1280>',
+      file_geometry_parser: FastGeometryParser,
+    },
+
+    small: {
+      geometry: '400x400>',
+      file_geometry_parser: FastGeometryParser,
+    },
+  }.freeze
+
   VIDEO_STYLES = {
     small: {
       convert_options: {
@@ -45,8 +56,8 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  belongs_to :account, inverse_of: :media_attachments
-  belongs_to :status,  inverse_of: :media_attachments
+  belongs_to :account, inverse_of: :media_attachments, optional: true
+  belongs_to :status,  inverse_of: :media_attachments, optional: true
 
   has_attached_file :file,
                     styles: ->(f) { file_styles f },
@@ -78,6 +89,24 @@ class MediaAttachment < ApplicationRecord
 
   def to_param
     shortcode
+  end
+
+  def focus=(point)
+    return if point.blank?
+
+    x, y = (point.is_a?(Enumerable) ? point : point.split(',')).map(&:to_f)
+
+    meta = file.instance_read(:meta) || {}
+    meta['focus'] = { 'x' => x, 'y' => y }
+
+    file.instance_write(:meta, meta)
+  end
+
+  def focus
+    x = file.meta['focus']['x']
+    y = file.meta['focus']['y']
+
+    "#{x},#{y}"
   end
 
   before_create :prepare_description, unless: :local?
@@ -157,24 +186,40 @@ class MediaAttachment < ApplicationRecord
   end
 
   def populate_meta
-    meta = {}
+    meta = file.instance_read(:meta) || {}
 
     file.queued_for_write.each do |style, file|
-      begin
-        geo = Paperclip::Geometry.from_file file
-
-        meta[style] = {
-          width: geo.width.to_i,
-          height: geo.height.to_i,
-          size: "#{geo.width.to_i}x#{geo.height.to_i}",
-          aspect: geo.width.to_f / geo.height.to_f,
-        }
-      rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-        meta[style] = {}
-      end
+      meta[style] = style == :small || image? ? image_geometry(file) : video_metadata(file)
     end
 
     meta
+  end
+
+  def image_geometry(file)
+    width, height = FastImage.size(file.path)
+
+    return {} if width.nil?
+
+    {
+      width:  width,
+      height: height,
+      size: "#{width}x#{height}",
+      aspect: width.to_f / height.to_f,
+    }
+  end
+
+  def video_metadata(file)
+    movie = FFMPEG::Movie.new(file.path)
+
+    return {} unless movie.valid?
+
+    {
+      width: movie.width,
+      height: movie.height,
+      frame_rate: movie.frame_rate,
+      duration: movie.duration,
+      bitrate: movie.bitrate,
+    }
   end
 
   def appropriate_extension

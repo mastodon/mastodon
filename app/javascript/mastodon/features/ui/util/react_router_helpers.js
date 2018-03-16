@@ -7,11 +7,19 @@ import BundleColumnError from '../components/bundle_column_error';
 import BundleContainer from '../containers/bundle_container';
 
 // Small wrapper to pass multiColumn to the route components
-export const WrappedSwitch = ({ multiColumn, children }) => (
-  <Switch>
-    {React.Children.map(children, child => React.cloneElement(child, { multiColumn }))}
-  </Switch>
-);
+export class WrappedSwitch extends React.PureComponent {
+
+  render () {
+    const { multiColumn, children } = this.props;
+
+    return (
+      <Switch>
+        {React.Children.map(children, child => React.cloneElement(child, { multiColumn }))}
+      </Switch>
+    );
+  }
+
+}
 
 WrappedSwitch.propTypes = {
   multiColumn: PropTypes.bool,
@@ -27,14 +35,19 @@ export class WrappedRoute extends React.Component {
     component: PropTypes.func.isRequired,
     content: PropTypes.node,
     multiColumn: PropTypes.bool,
-  }
+    componentParams: PropTypes.object,
+  };
+
+  static defaultProps = {
+    componentParams: {},
+  };
 
   renderComponent = ({ match }) => {
-    const { component, content, multiColumn } = this.props;
+    const { component, content, multiColumn, componentParams } = this.props;
 
     return (
       <BundleContainer fetchComponent={component} loading={this.renderLoading} error={this.renderError}>
-        {Component => <Component params={match.params} multiColumn={multiColumn}>{content}</Component>}
+        {Component => <Component params={match.params} multiColumn={multiColumn} {...componentParams}>{content}</Component>}
       </BundleContainer>
     );
   }

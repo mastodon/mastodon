@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class AccountSearchService < BaseService
-  attr_reader :query, :limit, :resolve, :account
+  attr_reader :query, :limit, :options, :account
 
-  def call(query, limit, resolve = false, account = nil)
-    @query = query
-    @limit = limit
-    @resolve = resolve
+  def call(query, limit, account = nil, options = {})
+    @query   = query.strip
+    @limit   = limit
+    @options = options
     @account = account
 
     search_service_results
@@ -18,14 +18,14 @@ class AccountSearchService < BaseService
     return [] if query_blank_or_hashtag? || limit < 1
 
     if resolving_non_matching_remote_account?
-      [ResolveRemoteAccountService.new.call("#{query_username}@#{query_domain}")].compact
+      [ResolveAccountService.new.call("#{query_username}@#{query_domain}")].compact
     else
       search_results_and_exact_match.compact.uniq.slice(0, limit)
     end
   end
 
   def resolving_non_matching_remote_account?
-    resolve && !exact_match && !domain_is_local?
+    options[:resolve] && !exact_match && !domain_is_local?
   end
 
   def search_results_and_exact_match
@@ -58,12 +58,16 @@ class AccountSearchService < BaseService
     @_domain_is_local ||= TagManager.instance.local_domain?(query_domain)
   end
 
+  def search_from
+    options[:following] && account ? account.following : Account
+  end
+
   def exact_match
     @_exact_match ||= begin
       if domain_is_local?
-        Account.find_local(query_username)
+        search_from.find_local(query_username)
       else
-        Account.find_remote(query_username, query_domain)
+        search_from.find_remote(query_username, query_domain)
       end
     end
   end
@@ -79,7 +83,7 @@ class AccountSearchService < BaseService
   end
 
   def advanced_search_results
-    Account.advanced_search_for(terms_for_query, account, limit)
+    Account.advanced_search_for(terms_for_query, account, limit, options[:following])
   end
 
   def simple_search_results

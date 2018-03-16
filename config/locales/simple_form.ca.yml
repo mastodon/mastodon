@@ -3,54 +3,69 @@ ca:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF o JPG. Màxim 2MB. Serà escalat a 120x120px
+        avatar: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 400x400px
+        digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
         display_name:
-          one: <span class="name-counter">1</span> character left
-          other: <span class="name-counter">%{count}</span> characters left
-        header: PNG, GIF o JPG. Màxim 2MB. Serà escalat a 700x335px
-        locked: Requereix que aprovis manualment seguidors i les publicacions seran mostrades només als teus seguidors
+          one: <span class="name-counter">1</span> càracter restant
+          other: <span class="name-counter">%{count}</span> càracters restans
+        header: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 700x335px
+        locked: Requereix que aprovis manualment els seguidors
         note:
-          one: <span class="note-counter">1</span> character left
-          other: <span class="note-counter">%{count}</span> characters left
+          one: <span class="note-counter">1</span> càracter restant
+          other: <span class="note-counter">%{count}</span> caràcters restants
+        setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
+        setting_theme: Afecta l'aspecte de Mastodon quan es visita des de qualsevol dispositiu.
       imports:
-        data: Arxiu CSV exportat desde una altra instància de Mastodon
+        data: Fitxer CSV exportat des de una altra instància de Mastodon
       sessions:
         otp: Introdueix el codi de dos factors des del teu telèfon o utilitza un dels teus codis de recuperació.
       user:
-        filtered_languages: Els idiomes seleccionats seran eliminats de les línies de temps públiques.
+        filtered_languages: Les llengües seleccionades s'eliminaran de les línies de temps públiques
     labels:
       defaults:
         avatar: Avatar
-        confirm_new_password: Confirmar nova contrasenya
-        confirm_password: Confirmar contrasenya
+        confirm_new_password: Confirma la contrasenya nova
+        confirm_password: Confirma la contrasenya
         current_password: Contrasenya actual
         data: Informació
-        display_name: Mostrar nom
-        email: Direcció de correu electrònic
-        header: Img. capçalera
-        locale: Idioma
-        locked: Fer privat aquest compte
-        new_password: Nova contrasenya
+        display_name: Nom visible
+        email: Adreça de correu electrònic
+        expires_in: Expira després
+        filtered_languages: Llengües filtrades
+        header: Capçalera
+        locale: Llengua
+        locked: Fes aquest compte privat
+        max_uses: Nombre màxim d'usos
+        new_password: Contrasenya nova
         note: Biografia
         otp_attempt: Codi de dos factors
         password: Contrasenya
-        setting_auto_play_gif: Auto-reproducció de GIFs animats
-        setting_boost_modal: Mostrar finestra de confirmació abans d'un Retoot
-        setting_default_privacy: Privacitat de publicacions
-        setting_delete_modal: Mostrar finestra de confirmació abans d'esborrar un toot
+        setting_auto_play_gif: Reproducció automàtica de GIFs animats
+        setting_boost_modal: Mostra la finestra de confirmació abans d'un retoot
+        setting_default_privacy: Privacitat de les publicacions
+        setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles
+        setting_delete_modal: Mostra la finestra de confirmació abans de suprimir un toot
+        setting_display_sensitive_media: Mostra sempre els elements multimèdia marcats com a sensibles
+        setting_noindex: Desactivació de la indexació del motor de cerca
+        setting_reduce_motion: Redueix el moviment en animacions
+        setting_system_font_ui: Utilitza el tipus de lletra predeterminat del sistema
+        setting_theme: Tema del lloc
+        setting_unfollow_modal: Mostra el diàleg de confirmació abans de deixar de seguir a algú
         severity: Severitat
-        type: Importar tipus
-        username: Nom d´usuari
+        type: Importa el tipus
+        username: Nom d'usuari
+        username_or_email: Nom d'usuari o adreça electrònica
       interactions:
-        must_be_follower: Bloquejar notificacions de persones que no et segueixen
-        must_be_following: Bloquejar notificacions de persones que no segueixes
+        must_be_follower: Blocar les notificacions de persones que no et segueixen
+        must_be_following: Bloca les notificacions de persones que no segueixes
+        must_be_following_dm: Bloca els missatges directes de persones que no segueixes
       notification_emails:
-        digest: Enviar resum de correus electrònics
-        favourite: Enviar correu electrònic quan algú marqui com a favorit en la teva publicació
-        follow: Enviar correu electrònic quan algú et segueixi
-        follow_request: Enviar correu electrònic quan algú sol·liciti seguir-te
-        mention: Enviar correu electrònic quan algú et mencioni
-        reblog: Enviar correu electrònic quan algú comparteixi la seva publicació
+        digest: Envia un resum per correu electrònic
+        favourite: Envia un correu electrònic si algú marca com a preferit el teu estat
+        follow: Envia un correu electrònic si algú et segueix
+        follow_request: Envia un correu electrònic si algú sol·licita seguir-te
+        mention: Envia un correu electrònic si algú et menciona
+        reblog: Envia un correu electrònic si algú comparteix el teu estat
     'no': 'No'
     required:
       mark: "*"

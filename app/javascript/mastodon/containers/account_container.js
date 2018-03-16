@@ -12,6 +12,8 @@ import {
   unmuteAccount,
 } from '../actions/accounts';
 import { openModal } from '../actions/modal';
+import { initMuteModal } from '../actions/mutes';
+import { unfollowModal } from '../initial_state';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
@@ -22,8 +24,6 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     account: getAccount(state, props.id),
-    me: state.getIn(['meta', 'me']),
-    unfollowModal: state.getIn(['meta', 'unfollow_modal']),
   });
 
   return mapStateToProps;
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
-      if (this.unfollowModal) {
+      if (unfollowModal) {
         dispatch(openModal('CONFIRM', {
           message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
           confirm: intl.formatMessage(messages.unfollowConfirm),
@@ -59,10 +59,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (account.getIn(['relationship', 'muting'])) {
       dispatch(unmuteAccount(account.get('id')));
     } else {
-      dispatch(muteAccount(account.get('id')));
+      dispatch(initMuteModal(account));
     }
   },
 
+
+  onMuteNotifications (account, notifications) {
+    dispatch(muteAccount(account.get('id'), notifications));
+  },
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Account));

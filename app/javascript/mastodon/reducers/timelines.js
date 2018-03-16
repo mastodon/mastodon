@@ -30,7 +30,7 @@ const initialTimeline = ImmutableMap({
   items: ImmutableList(),
 });
 
-const normalizeTimeline = (state, timeline, statuses, next) => {
+const normalizeTimeline = (state, timeline, statuses, next, isPartial) => {
   const oldIds    = state.getIn([timeline, 'items'], ImmutableList());
   const ids       = ImmutableList(statuses.map(status => status.get('id'))).filter(newId => !oldIds.includes(newId));
   const wasLoaded = state.getIn([timeline, 'loaded']);
@@ -40,7 +40,8 @@ const normalizeTimeline = (state, timeline, statuses, next) => {
     mMap.set('loaded', true);
     mMap.set('isLoading', false);
     if (!hadNext) mMap.set('next', next);
-    mMap.set('items', wasLoaded ? ids.concat(oldIds) : ids);
+    mMap.set('items', wasLoaded ? ids.concat(oldIds) : oldIds.concat(ids));
+    mMap.set('isPartial', isPartial);
   }));
 };
 
@@ -55,7 +56,7 @@ const appendNormalizedTimeline = (state, timeline, statuses, next) => {
   }));
 };
 
-const updateTimeline = (state, timeline, status, references) => {
+const updateTimeline = (state, timeline, status) => {
   const top        = state.getIn([timeline, 'top']);
   const ids        = state.getIn([timeline, 'items'], ImmutableList());
   const includesId = ids.includes(status.get('id'));
@@ -70,7 +71,6 @@ const updateTimeline = (state, timeline, status, references) => {
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     if (!top) mMap.set('unread', unread + 1);
     if (top && ids.size > 40) newIds = newIds.take(20);
-    if (status.getIn(['reblog', 'id'], null) !== null) newIds = newIds.filterNot(item => references.includes(item));
     mMap.set('items', newIds.unshift(status.get('id')));
   }));
 };
@@ -125,11 +125,11 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_EXPAND_FAIL:
     return state.update(action.timeline, initialTimeline, map => map.set('isLoading', false));
   case TIMELINE_REFRESH_SUCCESS:
-    return normalizeTimeline(state, action.timeline, fromJS(action.statuses), action.next);
+    return normalizeTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial);
   case TIMELINE_EXPAND_SUCCESS:
     return appendNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next);
   case TIMELINE_UPDATE:
-    return updateTimeline(state, action.timeline, fromJS(action.status), action.references);
+    return updateTimeline(state, action.timeline, fromJS(action.status));
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
   case ACCOUNT_BLOCK_SUCCESS:

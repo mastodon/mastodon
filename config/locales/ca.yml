@@ -1,31 +1,31 @@
 ---
 ca:
   about:
-    about_mastodon_html: Mastodon és un servidor de xarxa social <em>lliure i de codi obert</em>. Una alternativa <em>descentralitzada</em> a plataformes comercials, que evita el risc que una única companyia monopolitzi la teva comunicació. Qualsevol pot executar Mastodon i participar sense problemes en la <em>xarxa social</em>.
-    about_this: Sobre aquesta instància
-    closed_registrations: Els registres estan actualment tancats en aquesta instància.
+    about_hashtag_html: Aquests són toots públics etiquetats amb <strong>#%{hashtag}</strong>. Pots interactuar amb ells si tens un compte a qualsevol lloc del fediverse.
+    about_mastodon_html: Mastodon és una xarxa social basada en protocols web oberts i en programari lliure i de codi obert. Està descentralitzat com el correu electrònic.
+    about_this: Quant a
+    closed_registrations: Actualment, el registre està tancat en aquesta instància. Malgrat això! Pots trobar una altra instància per fer-te un compte i obtenir accés a la mateixa xarxa des d'allà.
     contact: Contacte
     contact_missing: No configurat
-    contact_unavailable: N/A
+    contact_unavailable: N/D
     description_headline: Què es %{domain}?
     domain_count_after: altres instàncies
-    domain_count_before: Connectat a
+    domain_count_before: Connectada a
     extended_description_html: |
       <h3>Un bon lloc per les regles</h3>
       <p>Encara no s'ha configurat la descripció ampliada.</p>
     features:
-      humane_approach_body: Aprenent dels errors d'altres xarxes, Mastodon té com a objectiu fer ètiques eleccions de disseny per combatre el mal ús de les xarxes socials.
+      humane_approach_body: Aprenent dels errors d'altres xarxes, Mastodon té com a objectiu fer eleccions ètiques de disseny per a combatre el mal ús de les xarxes socials.
       humane_approach_title: Un enfocament més humà
-      not_a_product_body: Mastodon no és una xarxa comercial. Sense publicitat, sense mineria de dades, sense jardins amurallats. No hi ha autoritat central.
+      not_a_product_body: Mastodon no és una xarxa comercial. Sense publicitat, sense mineria de dades, sense jardins emmurallats. No hi ha cap autoritat central.
       not_a_product_title: Ets una persona, no un producte
       real_conversation_body: Amb 500 caràcters a la teva disposició i suport per a continguts granulars i avisos multimèdia, pots expressar-te de la manera que vulguis.
       real_conversation_title: Construït per a converses reals
-      within_reach_body: Diverses aplicacions per a iOS, Android i altres plataformes gràcies a un ecosistema API amable amb el desenvolupador, et permet mantenir-te al dia amb els teus amics en qualsevol lloc..
+      within_reach_body: Diverses aplicacions per a iOS, Android i altres plataformes gràcies a un ecosistema API amable amb el desenvolupador, et permet mantenir-te al dia amb els amics en qualsevol lloc..
       within_reach_title: Sempre a l'abast
-    find_another_instance: Troba altres instàncies
     generic_description: "%{domain} és un servidor a la xarxa"
     hosted_on: Mastodon allotjat a %{domain}
-    learn_more: Aprèn més
+    learn_more: Més informació
     other_instances: Altres instàncies
     source_code: Codi font
     status_count_after: estats
@@ -34,41 +34,65 @@ ca:
     user_count_before: Tenim
     what_is_mastodon: Què és Mastodon?
   accounts:
-    follow: Seguir
+    follow: Segueix
     followers: Seguidors
     following: Seguint
+    media: Mèdia
+    moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
     nothing_here: No hi ha res aquí!
-    people_followed_by: Usuaris a qui %{name} segueix
-    people_who_follow: Usuaris que segueixn a %{name}
+    people_followed_by: Usuaris seguits per %{name}
+    people_who_follow: Usuaris que segueixen %{name}
     posts: Toots
-    remote_follow: Seguir
+    posts_with_replies: Toots i respostes
+    remote_follow: Seguiment remot
     reserved_username: El nom d'usuari està reservat
-    unfollow: Deixar de seguir
+    roles:
+      admin: Administrador
+      moderator: Moderador
+    unfollow: Deixa de seguir
   admin:
+    account_moderation_notes:
+      account: Moderador
+      create: Crea
+      created_at: Data
+      created_msg: La nota de moderació s'ha creat correctament!
+      delete: Suprimeix
+      destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
-      are_you_sure: Estàs segur?
+      are_you_sure: N'estàs segur?
+      by_domain: Domini
       confirm: Confirma
       confirmed: Confirmat
-      disable_two_factor_authentication: Desactivar 2FA
+      demote: Degrada
+      disable: Inhabilita
+      disable_two_factor_authentication: Desactiva 2FA
+      disabled: Inhabilitat
       display_name: Nom de visualització
       domain: Domini
-      edit: Editar
-      email: E-mail
-      feed_url: URL del feed
+      edit: Edita
+      email: Correu electrònic
+      enable: Habilita
+      enabled: Habilitat
+      feed_url: URL del canal
       followers: Seguidors
+      followers_url: URL dels seguidors
       follows: Segueix
+      inbox_url: URL de la safata d'entrada
       ip: IP
       location:
         all: Tot
         local: Local
         remote: Remot
         title: Localització
+      login_status: Estat d'accés
       media_attachments: Adjunts multimèdia
+      memorialize: Converteix-lo en memorial
       moderation:
         all: Tot
         silenced: Silenciat
         suspended: Suspès
         title: Moderació
+      moderation_notes: Notes de moderació
       most_recent_activity: Activitat més recent
       most_recent_ip: IP més recent
       not_subscribed: No subscrit
@@ -76,113 +100,217 @@ ca:
         alphabetic: Alfabètic
         most_recent: Més recent
         title: Ordre
-      perform_full_suspension: Aplicar suspensió completa
+      outbox_url: URL de la bústia de sortida
+      perform_full_suspension: Aplica una suspensió completa
       profile_url: URL del perfil
+      promote: Promociona
+      protocol: Protocol
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
-      redownload: Refrescar avatar
-      reset: Reajustar
-      reset_password: Restablir la contrasenya
-      resubscribe: Resubscribir
+      redownload: Actualitza l'avatar
+      reset: Reinicialitza
+      reset_password: Restableix la contrasenya
+      resubscribe: Torna a subscriure
+      role: Permisos
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        staff: Personal
+        user: Usuari
       salmon_url: URL Salmon
       search: Cerca
+      shared_inbox_url: URL de la safata d'entrada compartida
       show:
         created_reports: Informes creats per aquest compte
         report: informe
         targeted_reports: Informes realitzats sobre aquest compte
       silence: Silenci
       statuses: Estats
-      subscribe: Subscribir
+      subscribe: Subscriu
       title: Comptes
-      undo_silenced: Desfer silenci
-      undo_suspension: Desfer suspensió
-      unsubscribe: Donar-se de baixa
+      undo_silenced: Deixa de silenciar
+      undo_suspension: Desfés la suspensió
+      unsubscribe: Cancel·la la subscripció
       username: Nom d'usuari
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
+        create_custom_emoji: "%{name} ha pujat un nou emoji %{target}"
+        create_domain_block: "%{name} ha blocat el domini %{target}"
+        create_email_domain_block: "%{name} ha afegit a la llista negra el domini del correu electrònic %{target}"
+        demote_user: "%{name} ha degradat l'usuari %{target}"
+        destroy_domain_block: "%{name} ha desblocat el domini %{target}"
+        destroy_email_domain_block: "%{name} ha afegit a la llista negra el domini de correu electrònic %{target}"
+        destroy_status: "%{name} eliminat l'estat per %{target}"
+        disable_2fa_user: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
+        disable_custom_emoji: "%{name} ha desactivat l'emoji %{target}"
+        disable_user: "%{name} ha desactivat l'accés per a l'usuari %{target}"
+        enable_custom_emoji: "%{name} ha activat l'emoji %{target}"
+        enable_user: "%{name} ha activat l'accés per a l'usuari %{target}"
+        memorialize_account: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
+        promote_user: "%{name} ha promogut l'usuari %{target}"
+        reset_password_user: "%{name} ha restablert la contrasenya de l'usuari %{target}"
+        resolve_report: "%{name} ha descartat l'informe %{target}"
+        silence_account: "%{name} ha silenciat el compte de %{target}"
+        suspend_account: "%{name} ha suspès el compte de %{target}"
+        unsilence_account: "%{name} ha silenciat el compte de %{target}"
+        unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
+        update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
+        update_status: "%{name} estat actualitzat per %{target}"
+      title: Registre d'auditoria
+    custom_emojis:
+      by_domain: Domini
+      copied_msg: S'ha creat correctament la còpia local de l'emoji
+      copy: Copia
+      copy_failed_msg: No s'ha pogut fer una còpia local d'aquest emoji
+      created_msg: Emoji creat amb èxit!
+      delete: Suprimeix
+      destroyed_msg: Emojo s'ha destruït amb èxit!
+      disable: Inhabilita
+      disabled_msg: S'ha inhabilitat l'emoji amb èxit
+      emoji: Emoji
+      enable: Habilita
+      enabled_msg: S'ha habilitat amb èxit emoji
+      image_hint: PNG de fins a 50 KB
+      listed: Enumerat
+      new:
+        title: Afegeix emoji personalitzat nou
+      overwrite: Sobreescriure
+      shortcode: Codi curt
+      shortcode_hint: Com a mínim 2 caràcters, només caràcters alfanumèrics i guions baixos
+      title: Emojis personalitzats
+      unlisted: Sense classificar
+      update_failed_msg: No s'ha pogut actualitzar aquest emoji
+      updated_msg: Emoji s'ha actualitzat correctament!
+      upload: Carrega
     domain_blocks:
-      add_new: Afegir nou
+      add_new: Afegeix
       created_msg: El bloqueig de domini ara s'està processant
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
       new:
-        create: Crear bloqueig
-        hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s´aplicaran mètodes de moderació específics sobre aquests comptes
+        create: Crea un bloqueig
+        hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s'aplicaran de manera retroactiva mètodes de moderació específics sobre aquests comptes.
         severity:
-          desc_html: "<strong>Silenci</strong> farà les publicacions del compte invisibles a tothom que no l'estigui seguint. Suspendre eliminarà tots els continguts, multimèdia i les dades del perfil del compte."
+          desc_html: "<strong>Silenci</strong> farà les publicacions del compte invisibles a tothom que no l'estigui seguint. <strong>La suspensió</strong> eliminarà tots els continguts, multimèdia i les dades del perfil del compte. Usa <strong>Cap</strong> si només vols rebutjar el fitxers multimèdia."
           noop: Cap
           silence: Silenci
-          suspend: Suspendre
-        title: Nou bloqueig de domini
-      reject_media: Rebutjar arxius multimèdia
-      reject_media_hint: Elimina arxius multimèdia emmagatzamats localment i impideix descarregar cap en el futur. Irrellevant per suspensions
+          suspend: Suspensió
+        title: Bloqueig de domini nou
+      reject_media: Rebutja els fitxers multimèdia
+      reject_media_hint: Elimina els fitxers multimèdia emmagatzemats localment i impedeix baixar-ne cap en el futur. Irrellevant en les suspensions
       severities:
         noop: Cap
         silence: Silenci
-        suspend: Suspendre
+        suspend: Suspensió
       severity: Severitat
       show:
         affected_accounts:
           one: Un compte afectat en la base de dades
           other: "%{count} comptes afectats en la base de dades"
         retroactive:
-          silence: Desfer el silenci a tots els comptes existents d'aquest domini
-          suspend: Desfer la suspensió de tots els comptes d'aquest domini
-        title: Desfer el bloqueig de domini de %{domain}
-        undo: Desfer
+          silence: Desfés el silenci a tots els comptes existents d'aquest domini
+          suspend: Desfés la suspensió de tots els comptes d'aquest domini
+        title: Desfés el bloqueig de domini de %{domain}
+        undo: Desfés
       title: Bloquejos de domini
-      undo: Desfer
+      undo: Desfés
+    email_domain_blocks:
+      add_new: Afegeix
+      created_msg: S'ha creat el bloc de domini de correu electrònic
+      delete: Suprimeix
+      destroyed_msg: S'ha eliminat correctament el bloc del domini de correu
+      domain: Domini
+      new:
+        create: Afegeix un domini
+        title: Nova adreça de correu en la llista negra
+      title: Llista negra de correus electrònics
     instances:
       account_count: Comptes coneguts
       domain_name: Domini
+      reset: Restableix
+      search: Cerca
       title: Instàncies conegudes
+    invites:
+      filter:
+        all: Totes
+        available: Disponible
+        expired: Caducat
+        title: Filtre
+      title: Convida
     reports:
       action_taken_by: Mesures adoptades per
-      are_you_sure: Estàs segur?
+      are_you_sure: N'estàs segur?
       comment:
         label: Comentari
         none: Cap
-      delete: Esborra
+      delete: Suprimeix
       id: ID
       mark_as_resolved: Marca com a resolt
       nsfw:
-        'false': NSFW OFF
-        'true': NSFW ON
+        'false': Mostra els fitxers multimèdia adjunts
+        'true': Amaga els fitxers multimèdia adjunts
       report: 'Informe #%{id}'
-      report_contents: Continguts
+      report_contents: Contingut
       reported_account: Compte reportat
       reported_by: Reportat per
       resolved: Resolt
-      silence_account: Silenciar compte
+      silence_account: Silencia el compte
       status: Estat
-      suspend_account: Suspendre compte
+      suspend_account: Suspèn el compte
       target: Objectiu
       title: Informes
       unresolved: No resolt
-      view: Vista
+      view: Visualització
     settings:
+      activity_api_enabled:
+        desc_html: Compte d'estatus publicats localment, usuaris actius i registres nous en períodes setmanals
+        title: Publica estadístiques agregades sobre l'activitat de l'usuari
+      bootstrap_timeline_accounts:
+        desc_html: Separa diversos noms d'usuari amb comes. Només funcionaran els comptes locals i desblocats. El valor predeterminat quan està buit és tots els administradors locals.
+        title: El seguiment per defecte per als usuaris nous
       contact_information:
-        email: Introduir una adreça de correu electrònic pùblica
-        username: Introduir un nom d'usuari
+        email: Introdueix una adreça de correu electrònic píblica
+        username: Nom d'usuari del contacte
+      hero:
+        desc_html: Es mostra en pàgina frontal. Recomanat 600x100px al menys. Si no es configura es mostrarà el de la instància
+        title: Imatge d’heroi
+      peers_api_enabled:
+        desc_html: Els noms de domini que ha trobat aquesta instància al fediverse
+        title: Publica la llista d'instàncies descobertes
       registrations:
         closed_message:
-          desc_html: Apareix en la primera pàgina quan es tanquen els registres<br>Pot utilitzar etiquetes HTML
+          desc_html: Apareix en la primera pàgina quan es tanquen els registres. Pots utilitzar etiquetes HTML
           title: Missatge de registre tancat
         deletion:
-          desc_html: Permet a qualsevol esborrar el seu compte
-          title: Obrir la supressió del compte
+          desc_html: Permet a qualsevol usuari d'esborrar el seu compte
+          title: Obre la supressió del compte
+        min_invite_role:
+          disabled: Ningú
+          title: Permet les invitacions de
         open:
           desc_html: Permet que qualsevol pugui crear un compte
           title: Registre obert
+      show_known_fediverse_at_about_page:
+        desc_html: Quan s'activa, mostrarà tots els toots de tot el fedivers conegut en vista prèvia. En cas contrari, només es mostraran toots locals.
+        title: Mostra el fedivers conegut en vista prèvia de la línia de temps
+      show_staff_badge:
+        desc_html: Mostra una insígnia de personal en la pàgina d'usuari
+        title: Mostra insígnia de personal
       site_description:
-        desc_html: Es mostra com un paràgraf a la pàgina principal i s'utilitza com una etiqueta meta.<br>Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
-        title: Descripció del lloc
+        desc_html: Paràgraf introductori a la pàgina principal i en etiquetes meta. Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
+        title: Descripció de la instància
       site_description_extended:
-        desc_html: Un bon lloc per al vostre codi de conducta, regles, directrius i altres coses que distingeixen la vostra instància. Podeu utilitzar etiquetes HTML
-        title: Descripció estesa del lloc
+        desc_html: Un bon lloc per al codi de conducta, regles, directrius i altres coses que distingeixen la vostra instància. Pots utilitzar etiquetes HTML
+        title: Descripció ampliada del lloc
       site_terms:
         desc_html: Pots escriure la teva pròpia política de privadesa, els termes del servei o d'altres normes legals. Pots utilitzar etiquetes HTML
         title: Termes del servei personalitzats
-      site_title: Títol del lloc
+      site_title: Nom de la instància
+      thumbnail:
+        desc_html: S'utilitza per obtenir visualitzacions prèvies a través d'OpenGraph i API. Es recomana 1200x630px
+        title: Miniatura de la Instància
       timeline_preview:
         desc_html: Mostra la línia de temps pública a la pàgina inicial
         title: Vista prèvia de la línia de temps
@@ -190,156 +318,224 @@ ca:
     statuses:
       back_to_account: Torna a la pàgina del compte
       batch:
-        delete: Esborra
+        delete: Suprimeix
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
       execute: Executa
       failed_to_execute: No s'ha pogut executar
       media:
-        hide: Amaga multimèdia
-        show: Mostra multimèdia
-        title: Multimèdia
-      no_media: Sense multimèdia
+        hide: Amaga el contingut multimèdia
+        show: Mostra el contingut multimèdia
+        title: Contingut multimèdia
+      no_media: Sense contingut multimèdia
       title: Estats del compte
-      with_media: Amb multimèdia
+      with_media: Amb contingut multimèdia
     subscriptions:
-      callback_url: Callback URL
+      callback_url: URL de retorn
       confirmed: Confirmat
       expires_in: Expira en
       last_delivery: Últim lliurament
       title: WebSub
-      topic: Tòpic
+      topic: Tema
     title: Administració
   admin_mailer:
     new_report:
       body: "%{reporter} ha informat de %{target}"
-      subject: Nou informe per a %{instance} (#%{id})
+      subject: Informe nou per a %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
-    settings: 'Canviar preferències de correu: %{link}'
-    signature: Notificacions de Mastodon desde %{instance}
-    view: 'Vista:'
+    settings: 'Canvia les preferències de correu: %{link}'
+    view: 'Visualització:'
+    view_profile: Mostra el perfil
+    view_status: Mostra l'estat
   applications:
-    invalid_url: La URL proporcionada es incorrecte
+    created: L'aplicació s'ha creat correctament
+    destroyed: L'aplicació s'ha suprimit correctament
+    invalid_url: L'URL proporcionat no és correcte
+    regenerate_token: Torna a generar l'identificador d'accés
+    token_regenerated: L'identificador d'accés s'ha generat correctament
+    warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
+    your_token: El teu identificador d'accés
   auth:
-    agreement_html: En inscriure't, acceptes <a href="%{rules_path}">les nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
-    change_password: Canviar contrasenya
-    delete_account: Esborrar el compte
-    delete_account_html: Si vols esborrar el teu compte pots <a href="%{path}">fer-ho aquí</a>. S'et demanarà confirmació.
-    didnt_get_confirmation: No vas rebre el correu de confirmació?
+    agreement_html: En inscriure't, acceptes seguir <a href="%{rules_path}">els nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
+    change_password: Contrasenya
+    confirm_email: Confirmar correu electrònic
+    delete_account: Suprimeix el compte
+    delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
+    didnt_get_confirmation: No has rebut el correu de confirmació?
     forgot_password: Has oblidat la contrasenya?
-    invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o caducat. Siusplau torna-ho a provar..
-    login: Iniciar sessió
-    logout: Tancar sessió
-    register: Enregistrarse
-    resend_confirmation: Tornar a enviar el correu de confirmació
-    reset_password: Restablir contrasenya
-    set_new_password: Establir nova contrasenya
+    invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
+    login: Inicia sessió
+    logout: Tanca sessió
+    migrate_account: Mou a un compte diferent
+    migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots  <a href="%{path}">configurar aquí</a>.
+    or: o
+    or_log_in_with: O inicia sessió amb
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Registre
+    register_elsewhere: Registra't en un altre servidor
+    resend_confirmation: Torna a enviar el correu de confirmació
+    reset_password: Restableix la contrasenya
+    security: Seguretat
+    set_new_password: Estableix una contrasenya nova
   authorize_follow:
-    error: Malauradament, ha ocorregut un error buscant el compte remot
-    follow: Seguir
-    follow_request: 'Heu enviat una sol·licitud de seguiment a:'
-    following: 'Èxit! Ara segueixes:'
+    error: Malauradament, ha ocorregut un error cercant el compte remot
+    follow: Segueix
+    follow_request: 'Has enviat una sol·licitud de seguiment a:'
+    following: 'Perfecte! Ara segueixes:'
     post_follow:
       close: O bé, pots tancar aquesta finestra.
       return: Torna al perfil de l'usuari
-      web: Anar a la web
-    title: Seguir %{acct}
+      web: Vés a la web
+    title: Segueix %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}m"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
+      about_x_hours: "%{count} h"
+      about_x_months: "%{count} mesos"
+      about_x_years: "%{count} anys"
+      almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
       less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Ara mateix
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}m"
-      x_seconds: "%{count}s"
+      over_x_years: "%{count} anys"
+      x_days: "%{count} dies"
+      x_minutes: "%{count} min"
+      x_months: "%{count} mesos"
+      x_seconds: "%{count} s"
   deletes:
-    bad_password_msg: Bon intent hackers! Contrasenya incorrecta
-    confirm_password: Introdueix la contrasenya actual per verificar la teva identitat
+    bad_password_msg: Bon intent hackers! La contrasenya no és correcta
+    confirm_password: Introdueix la contrasenya actual per a verificar la identitat
     description_html: Això eliminarà de forma <strong>irreversible i permanent</strong> el contingut del teu compte i el desactivarà. El teu nom d'usuari romandrà reservat per evitar que algú volgués fer-se passar per tu.
-    proceed: Esborrar el compte
-    success_msg: El teu compte s'ha eliminat correctament
-    warning_html: Només està garantida l'eliminació d'aquesta particular instància. El contingut que ha estat àmpliament compartit que deixi petjades. Els servidors fora de línia i els que ja no estan subscrits no actualitzaran les seves bases de dades.
+    proceed: Suprimeix el compte
+    success_msg: El compte s'ha eliminat correctament
+    warning_html: Només és garantida l'eliminació d'aquesta particular instància. El contingut que s'ha compartit àmpliament deixa petjades. Els servidors fora de línia i els que ja no estan subscrits no actualitzaran les seves bases de dades.
     warning_title: Disponibilitat de contingut disseminat
   errors:
-    '403': No tens permís per veure aquesta pàgina.
-    '404': La pàgina que estàs buscant no existeix.
-    '410': La pàgina que estaves buscant ja no existeix.
+    '403': No tens permís per a veure aquesta pàgina.
+    '404': La pàgina que estàs cercant no existeix.
+    '410': La pàgina que estàs cercant ja no existeix.
     '422':
-      content: La verificació de seguretat ha fallat. Bloquejes les galetes?
+      content: La verificació de seguretat ha fallat. Tens les galetes blocades?
       title: La verificació de seguretat ha fallat
     '429': Estrangulat
-    noscript_html: Per utilitzar Mastodon si us plau activa JavaScript.
+    '500':
+      content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
+      title: Aquesta pàgina no es correcta
+    noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
   exports:
-    blocks: Persones que has bloquejat
+    archive_takeout:
+      date: Data
+      download: Descarrega l’arxiu
+      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible.
+      in_progress: Compilant el teu arxiu...
+      request: Sol·licita el teu arxiu
+      size: Tamany
+    blocks: Persones que has blocat
     csv: CSV
     follows: Persones que segueixes
-    mutes: Persones apagades (muted)
+    mutes: Persones silenciades
     storage: Emmagatzematge
   followers:
     domain: Domini
-    explanation_html: Si desitges garantir la privacitat de les teves publicacions, has de ser conscient de qui t'està seguint. <strong> Les teves publicacions privades es lliuren a totes les instàncies on es té seguidors </ strong>. És possible que vulguis revisar-los i eliminar seguidors si no confies en que la teva privacitat sigui respectada pel personal o el programari d'aquests casos
+    explanation_html: Si desitges garantir la privacitat de les teves publicacions, has de ser conscient de qui t'està seguint. <strong> Les publicacions privades es lliuren a totes les instàncies on tens seguidors </strong>. És possible que vulguis revisar-los i eliminar seguidors si no confies en que la teva privacitat sigui respectada pel personal o el programari d'aquestes instàncies.
     followers_count: Nombre de seguidors
-    lock_link: Bloqueja el teu compte
-    purge: Eliminar de seguidors
+    lock_link: Bloca el teu compte
+    purge: Elimina dels seguidors
     success:
       one: En el procés de bloqueig suau de seguidors d'un domini...
       other: En el procés de bloqueig suau de seguidors de %{count} dominis...
-    true_privacy_html: Si us plau considera que <strong>la autèntica privacitat només es pot aconseguir amb xifrat d'extrem a extrem</strong>.
-    unlocked_warning_html: Tothom pot seguir-te per veure inmediatament les teves publicacions privades. %{lock_link} per poder revisar i rebutjar seguidors.
-    unlocked_warning_title: El teu compte no està bloquejat
+    true_privacy_html: Considera que <strong>la autèntica privacitat només es pot aconseguir amb xifratge d'extrem a extrem</strong>.
+    unlocked_warning_html: Tothom pot seguir-te per a veure inmediatament les teves publicacions privades. %{lock_link} per poder revisar i rebutjar seguidors.
+    unlocked_warning_title: El teu compte no està blocat
   generic:
-    changes_saved_msg: Canvis guardats amb èxit!
-    powered_by: powered by %{link}
-    save_changes: Guardar canvis
+    changes_saved_msg: Els canvis s'han desat correctament!
+    powered_by: amb tecnologia %{link}
+    save_changes: Desa els canvis
     validation_errors:
-      one: Alguna cosa no esta bé! Si us plau, revisi l'error
-      other: Alguna cosa no esta bé! Si us plau, revisi %{count} errors més a baix
+      one: Alguna cosa no va bé! Si us plau, revisa l'error
+      other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
   imports:
-    preface: Pots importar algunes dades, com ara totes les persones que estàs seguint o bloquejant, en el teu compte en aquesta instància, desde arxius exportats desde una altra instància.
-    success: Dades rebudes correctament i seran processades en breu
+    preface: Pots importar algunes dades, com ara totes les persones que estàs seguint o blocant, en el teu compte en aquesta instància, des de fitxers exportats en una altra instància.
+    success: Les dades s'han rebut correctament i es processaran en breu
     types:
-      blocking: Llista de bloqueajats
+      blocking: Llista de blocats
       following: Llista de seguits
       muting: Llista d'apagats
     upload: Carregar
+  in_memoriam_html: En Memòria.
+  invites:
+    delete: Desactivar
+    expired: Caducat
+    expires_in:
+      '1800': 30 minuts
+      '21600': 6 hores
+      '3600': 1 hora
+      '43200': 12 hores
+      '86400': 1 dia
+    expires_in_prompt: Mai
+    generate: Genera
+    max_uses:
+      one: 1 ús
+      other: "%{count} usos"
+    max_uses_prompt: Sense limit
+    prompt: Genera i comparteix enllaços amb altres persones per donar accés a aquesta instància
+    table:
+      expires_at: Caduca
+      uses: Usos
+    title: Convida persones
   landing_strip_html: "<strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse."
   landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
+  lists:
+    errors:
+      limit: Has assolit la quantitat màxima de llistes
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
-      too_many: No es poden adjuntar més de 4 arxius
+      too_many: No es poden adjuntar més de 4 fitxers
+  migrations:
+    acct: usuari@domini del nou compte
+    currently_redirecting: 'El teu perfil està configurat com a redirecció a:'
+    proceed: Desa
+    updated_msg: La configuració de la migració del compte s'ha actualitzat correctament!
+  moderation:
+    title: Moderació
   notification_mailer:
     digest:
-      body: 'Un resum del que et vas perdre en %{instance} desde la teva darrera visita el %{since}:'
+      action: Veure totes les notificacions
+      body: Un resum del que et vas perdre en %{instance} desde la darrera visita el %{since}
       mention: "%{name} t'ha mencionat en:"
       new_followers_summary:
-        one: Visca!. Algú més t´ha començat a seguir
-        other: Genial!. T'han seguit %{count} noves persones
+        one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
+        other: A més, has adquirit %{count} nous seguidors mentre estaves fora! Increïble!
       subject:
-        one: "1 nova notificació desde la teva darrera visita \U0001F418"
-        other: "%{count} noves notificacions desde la teva darrera visita \U0001F418"
+        one: "1 notificació nova des de la darrera visita \U0001F418"
+        other: "%{count} notificacions noves des de la darrera visita \U0001F418"
+      title: Durant la teva absència…
     favourite:
-      body: 'El teu estat ha estat marcat com a favorit per %{name}:'
+      body: "%{name} ha marcat com a favorit el teu estat:"
       subject: "%{name} ha marcat com a favorit el teu estat"
+      title: Favorit nou
     follow:
-      body: "¡%{name} t'està seguint!"
+      body: "%{name} t'està seguint!"
       subject: "%{name} t'està seguint"
+      title: Seguidor nou
     follow_request:
+      action: Gestiona les sol·licituds de seguiment
       body: "%{name} ha sol·licitat seguir-te"
       subject: 'Seguidor pendent: %{name}'
+      title: Nova sol·licitud de seguiment
     mention:
-      body: 'Has estat mencionat per %{name} en:'
-      subject: Has estat mencionat per %{name}
+      action: Respon
+      body: "%{name} t'ha mencionat en:"
+      subject: "%{name} t'ha mencionat"
+      title: Menció nova
     reblog:
-      body: "%{name} ha retootejat el teu estat"
+      body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha retootejat el teu estat"
+      title: Nou impuls
   number:
     human:
       decimal_units:
@@ -348,31 +544,38 @@ ca:
           billion: B
           million: M
           quadrillion: Q
-          thousand: K
+          thousand: m
           trillion: T
-          unit: ''
+          unit: " "
   pagination:
-    next: Pròxim
-    prev: Anterior
+    newer: Més recent
+    next: Endavant
+    older: Més vell
+    prev: Enrere
     truncate: "&hellip;"
+  preferences:
+    languages: Llengues
+    other: Altre
+    publishing: Publicació
+    web: Web
   push_notifications:
     favourite:
-      title: "%{name} ha afavorit el teu estat"
+      title: "%{name} ha marcat com a preferit el teu estat"
     follow:
       title: "%{name} ara et segueix"
     group:
       title: "%{count} notificacions"
     mention:
-      action_boost: Boost
-      action_expand: Mostra més
-      action_favourite: Favorit
+      action_boost: Retooteja
+      action_expand: Mostra'n més
+      action_favourite: Preferit
       title: "%{name} t'ha mencionat"
     reblog:
       title: "%{name} t'ha retootejat"
   remote_follow:
-    acct: Escriu el usuari@domini de la persona que vols seguir
-    missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per el compte.
-    proceed: Procedir a seguir
+    acct: Escriu el teu usuari@domini des del qual vols seguir
+    missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte
+    proceed: Comença a seguir
     prompt: 'Seguiràs a:'
   sessions:
     activity: Última activitat
@@ -382,12 +585,14 @@ ca:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navegador desconegut
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Altre
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -395,7 +600,7 @@ ca:
       weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
-    explanation: Aquests són els navegadors web que actualment han iniciat la sessió al teu compte de Mastodon.
+    explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -415,53 +620,157 @@ ca:
     title: Sessions
   settings:
     authorized_apps: Aplicacions autoritzades
-    back: Tornar al inici
+    back: Torna a l'inici
     delete: Eliminació del compte
+    development: Desenvolupament
     edit_profile: Editar perfil
     export: Exportar informació
     followers: Seguidors autoritzats
     import: Importar
+    migrate: Migració del compte
+    notifications: Notificacions
     preferences: Preferències
     settings: Configuració
     two_factor_authentication: Autenticació de dos factors
+    your_apps: Les teves aplicacions
   statuses:
-    open_in_web: Obrir en la web
+    open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
+    pin_errors:
+      limit: Ja has fixat el màxim nombre de toots
+      ownership: El toot d'algú altre no es pot fixar
+      private: No es pot fixar el toot no públic
+      reblog: No es pot fixar un impuls
     show_more: Mostrar més
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Només seguidors
-      private_long: Només mostrar a seguidors
+      private_long: Mostra només als seguidors
       public: Públic
       public_long: Tothom pot veure-ho
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en la història federada
   stream_entries:
     click_to_show: Clic per mostrar
-    reblogged: retooteado
+    pinned: Toot fixat
+    reblogged: ha impulsat
     sensitive_content: Contingut sensible
   terms:
-    body_html: "<h2>Política de privacitat</h2>\n\n<h3 id=\"collect\">Quina informació recollim?</h3>\n\n<p>Recopilem informació teva quan et registres en aquesta instància i recopilem dades quan participes en el fòrum llegint, escrivint i avaluant el contingut aquí compartit.</p>\n\n<p>En registrar-te en aquesta instància, se't pot demanar que introduexisu el teu nom i l'adreça de correu electrònic. També pots visitar el nostre lloc sense registrar-te. La teva adreça de correu electrònic es verificarà mitjançant un correu electrònic que conté un enllaç únic. Si es visita aquest enllaç, sabem que controles l'adreça de correu electrònic.</p>\n\n<p>Quan es registra i publica, registrem l'adreça IP de la qual es va originar la publicació. També podrem conservar els registres del servidor que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</p>\n\n<h3 id=\"use\">Per a què utilitzem la teva informació?</h3>\n\n<p>Qualsevol de la informació que recopilem de tu pot utilitzar-se d'una de les maneres següents:</p>\n\n<ul>\n  <li>Per a personalitzar la teva experiència &mdash; la teva informació ens ajuda a respondre millor a les teves necessitats individuals.</li>\n  <li>Per millorar el nostre lloc &mdash; ens esforcem contínuament per millorar les nostres ofertes de llocs basats en la informació i els comentaris que rebem de tu.</li>\n  <li>Per millorar el servei al client &mdash; la teva informació ens ajuda a respondre més eficaçment a les teves sol·licituds de servei al client i a les necessitats de suport.</li>\n  <li>Per enviar correus electrònics periòdics &mdash; l'adreça electrònica que proporcionis es pot utilitzar per enviar-te informació, notificacions que sol·licitis sobre canvis en temes o en resposta al teu nom d'usuari, respondre a les consultes i/o altres sol·licituds o preguntes.</li>\n</ul>\n\n<h3 id=\"protect\">Com protegim la teva informació?</h3>\n\n<p>Implementem diverses mesures de seguretat per mantenir la seguretat de la teva informació personal quan introdueixes, envies o accedeixes a la teva informació personal.</p>\n\n<h3 id=\"data-retention\">Quina és la nostre política de retenció de dades?</h3>\n\n<p>Farem un esforç de bona fe per a:</p>\n\n<ul>\n  <li>Conserva els registres de servidor que continguin l'adreça IP de totes les sol·licituds a aquest servidor no més de 90 dies.</li>\n  <li>Conserva les adreces IP associades als usuaris registrats i les seves publicacions no més de 5 anys.</li>\n</ul>\n\n<h3 id=\"cookies\">Utilitzem galetes?</h3>\n\n<p>Sí. Les cookies són fitxers petits que un lloc o el proveïdor de serveis transfereix al disc dur del vostre ordinador a través del navegador web (si ho permet). Aquestes galetes permeten al lloc reconèixer el vostre navegador i, si teniu un compte registrat, associar-lo al vostre compte registrat.</p>\n\n<p>Utilitzem cookies per comprendre i desar les vostres preferències per a futures visites i compilar dades agregades sobre el trànsit del lloc i la interacció del lloc, de manera que podrem oferir millors experiències i eines del lloc en el futur. Podem contractar amb proveïdors de serveis de tercers per ajudar-nos a comprendre millor els visitants del nostre lloc. Aquests proveïdors de serveis no estan autoritzats a utilitzar la informació recollida en nom nostre, excepte per ajudar-nos a dur a terme i millorar el nostre negoci.</p>\n\n<h3 id=\"disclose\">Publiquem informació al exterior?</h3>\n\n<p>No venem, comercialitzem ni transmetem a tercers la vostra informació d'identificació personal. Això no inclou tercers de confiança que ens ajudin a operar el nostre lloc, a dur a terme el nostre negoci o a fer-ho, sempre que aquestes parts acceptin mantenir confidencial aquesta informació. També podem publicar la vostra informació quan creiem que l'alliberament és apropiat per complir amb la llei, fer complir les polítiques del nostre lloc o protegir els nostres drets o altres drets, propietat o seguretat. No obstant això, la informació de visitant que no sigui personalment identificable es pot proporcionar a altres parts per a la comercialització, la publicitat o altres usos.</p>  \n\n<h3 id=\"third-party\">Vincles de tercers</h3>\n\n<p>De tant en tant, segons el nostre criteri, podem incloure o oferir productes o serveis de tercers al nostre lloc. Aquests llocs de tercers tenen polítiques de privadesa separades i independents. Per tant, no tenim responsabilitat ni responsabilitat civil pel contingut i les activitats d'aquests llocs enllaçats. No obstant això, busquem protegir la integritat del nostre lloc i donem la benvinguda a qualsevol comentari sobre aquests llocs.</p>\n\n<h3 id=\"coppa\">Compliment de la Llei de protecció de la privacitat en línia dels nens</h3>\n\n<p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i teniu menys de 13 anys, segons els requisits de COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\">Children's Online Privacy Protection Act</a>) no feu servir aquest lloc.</p>\n\n<h3 id=\"online\">Només la política de privacitat en línia</h3>\n\n<p>Aquesta política de privacitat en línia només s'aplica a la informació recopilada a través del nostre lloc i no a la informació recopilada fora de línia.</p>\n\n<h3 id=\"consent\">El vostre consentiment</h3>\n\n<p>En utilitzar el nostre lloc, accepta la política de privadesa del nostre lloc web.</p>\n\n<h3 id=\"changes\">Canvis a la nostra política de privacitat</h3>\n\n<p>Si decidim canviar la nostra política de privadesa, publicarem aquests canvis en aquesta pàgina.</p>\n\n<p>Aquest document és CC-BY-SA. Es va actualitzar per última vegada el 31 de maig de 2013.</p>\n\n<p>Originalment adaptat a la <a href=\"https://github.com/discourse/discourse\">política de privadesa del Discurs</a>.</p>\n"
+    body_html: |
+      <h2>Política de privacitat</h2>
+
+      <h3 id="collect">Quina informació recollim?</h3>
+
+      <p>Recopilem informació teva quan et registres en aquesta instància i recopilem dades quan participes en el fòrum llegint, escrivint i avaluant el contingut aquí compartit.</p>
+
+      <p>En registrar-te en aquesta instància, se't pot demanar que introduexis el teu nom i l'adreça de correu electrònic. També pots visitar el nostre lloc sense registrar-te. La teva adreça de correu electrònic es verificarà mitjançant un correu electrònic que conté un enllaç únic. Si es visita aquest enllaç, sabem que controles l'adreça de correu electrònic.</p>
+
+      <p>Quan es registra i publica, registrem l'adreça IP de la qual es va originar la publicació. També podrem conservar els registres del servidor que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</p>
+
+      <h3 id="use">Per a què utilitzem la teva informació?</h3>
+
+      <p>Qualsevol de la informació que recopilem de tu pot utilitzar-se d'una de les maneres següents:</p>
+
+      <ul>
+        <li>Per a personalitzar la teva experiència &mdash; la teva informació ens ajuda a respondre millor a les teves necessitats individuals.</li>
+        <li>Per millorar el nostre lloc &mdash; ens esforcem contínuament per millorar les nostres ofertes de llocs basats en la informació i els comentaris que rebem de tu.</li>
+        <li>Per millorar el servei al client &mdash; la teva informació ens ajuda a respondre més eficaçment a les teves sol·licituds de servei al client i a les necessitats de suport.</li>
+        <li>Per enviar correus electrònics periòdics &mdash; l'adreça electrònica que proporcionis es pot utilitzar per enviar-te informació, notificacions que sol·licitis sobre canvis en temes o en resposta al teu nom d'usuari, respondre a les consultes i/o altres sol·licituds o preguntes.</li>
+      </ul>
+
+      <h3 id="protect">Com protegim la teva informació?</h3>
+
+      <p>Implementem diverses mesures de seguretat per mantenir la seguretat de la teva informació personal quan introdueixes, envies o accedeixes a la teva informació personal.</p>
+
+      <h3 id="data-retention">Quina és la nostre política de retenció de dades?</h3>
+
+      <p>Farem un esforç de bona fe per a:</p>
+
+      <ul>
+        <li>Conserva els registres de servidor que continguin l'adreça IP de totes les sol·licituds a aquest servidor no més de 90 dies.</li>
+        <li>Conserva les adreces IP associades als usuaris registrats i les seves publicacions no més de 5 anys.</li>
+      </ul>
+
+      <h3 id="cookies">Utilitzem galetes?</h3>
+
+      <p>Sí. Les cookies són fitxers petits que un lloc o el proveïdor de serveis transfereix al disc dur del vostre ordinador a través del navegador web (si ho permet). Aquestes galetes permeten al lloc reconèixer el vostre navegador i, si teniu un compte registrat, associar-lo al vostre compte registrat.</p>
+
+      <p>Utilitzem cookies per comprendre i desar les vostres preferències per a futures visites i compilar dades agregades sobre el trànsit del lloc i la interacció del lloc, de manera que podrem oferir millors experiències i eines del lloc en el futur. Podem contractar amb proveïdors de serveis de tercers per ajudar-nos a comprendre millor els visitants del nostre lloc. Aquests proveïdors de serveis no estan autoritzats a utilitzar la informació recollida en nom nostre, excepte per ajudar-nos a dur a terme i millorar el nostre negoci.</p>
+
+      <h3 id="disclose">Publiquem informació al exterior?</h3>
+
+      <p>No venem, comercialitzem ni transmetem a tercers la vostra informació d'identificació personal. Això no inclou tercers de confiança que ens ajudin a operar el nostre lloc, a dur a terme el nostre negoci o a fer-ho, sempre que aquestes parts acceptin mantenir confidencial aquesta informació. També podem publicar la vostra informació quan creiem que l'alliberament és apropiat per complir amb la llei, fer complir les polítiques del nostre lloc o protegir els nostres drets o altres drets, propietat o seguretat. No obstant això, la informació de visitant que no sigui personalment identificable es pot proporcionar a altres parts per a la comercialització, la publicitat o altres usos.</p>
+
+      <h3 id="third-party">Vincles de tercers</h3>
+
+      <p>De tant en tant, segons el nostre criteri, podem incloure o oferir productes o serveis de tercers al nostre lloc. Aquests llocs de tercers tenen polítiques de privadesa separades i independents. Per tant, no tenim responsabilitat ni responsabilitat civil pel contingut i les activitats d'aquests llocs enllaçats. No obstant això, busquem protegir la integritat del nostre lloc i donem la benvinguda a qualsevol comentari sobre aquests llocs.</p>
+
+      <h3 id="coppa">Compliment de la Llei de protecció de la privacitat en línia dels nens</h3>
+
+      <p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i teniu menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no feu servir aquest lloc.</p>
+
+      <h3 id="online">Només la política de privacitat en línia</h3>
+
+      <p>Aquesta política de privacitat en línia només s'aplica a la informació recopilada a través del nostre lloc i no a la informació recopilada fora de línia.</p>
+
+      <h3 id="consent">El vostre consentiment</h3>
+
+      <p>En utilitzar el nostre lloc, accepta la política de privadesa del nostre lloc web.</p>
+
+      <h3 id="changes">Canvis a la nostra política de privacitat</h3>
+
+      <p>Si decidim canviar la nostra política de privadesa, publicarem aquests canvis en aquesta pàgina.</p>
+
+      <p>Aquest document és CC-BY-SA. Es va actualitzar per última vegada el 31 de maig de 2013.</p>
+
+      <p>Originalment adaptat a la <a href="https://github.com/discourse/discourse">política de privadesa del Discurs</a>.</p>
     title: "%{instance} Condicions del servei i política de privadesa"
+  themes:
+    default: Mastodont
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Introdueix el codi generat per l'aplicació autenticadora per a confirmar
-    description_html: Si habilites la <strong>autenticació de dos factors</strong>, et caldrà tenir el teu telèfon, que generarà tokens per a que puguis iniciar sessió.
-    disable: Deshabilitarr
-    enable: Habilitar
+    description_html: Si habilites l'<strong>autenticació de dos factors</strong>, et caldrà tenir el teu telèfon, que generarà tokens per a que puguis iniciar sessió.
+    disable: Desactiva
+    enable: Activa
     enabled: Autenticació de dos factors activada
-    enabled_success: Autenticació de dos factors activada amb èxit
-    generate_recovery_codes: Generar codis de recuperació
+    enabled_success: Autenticació de dos factors activada correctament
+    generate_recovery_codes: Genera codis de recuperació
     instructions_html: "<strong>Escaneja aquest codi QR desde Google Authenticator o una aplicació similar del teu telèfon</strong>. Desde ara, aquesta aplicació generarà tokens que tens que ingresar quan volguis iniciar sessió."
-    lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els teus codis de recuperació els pots regenerar aquí. Els codis de recuperació anteriors seran anul·lats.
-    manual_instructions: 'Si no pots escanejar el codi QR code i necessites introduir-lo manualment, aquí tens el secret en text plà:'
+    lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els codis de recuperació els pots tornar a generar aquí. Els codis de recuperació anteriors s'anul·laran.
+    manual_instructions: 'Si no pots escanejar el codi QR code i necessites introduir-lo manualment, aquí tens el secret en text pla:'
     recovery_codes: Codis de recuperació de còpia de seguretat
     recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
-    recovery_instructions_html: Si alguna vegada perds l'accéss al telèfon pots utilitzar un dels codis de recuperació a continuació per recuperar l'accés al teu compte. Cal mantenir els codis de recuperació en lloc segur, per exemple imprimint-los i guardar-los amb altres documents importants.
+    recovery_instructions_html: Si mai perds l'accéss al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     setup: Establir
-    wrong_code: El codi introduït es invalid! Es correcta la hora del servidor i del dispositiu?
+    wrong_code: El codi introduït no és vàlid! És correcta l'hora del servidor i del dispositiu?
+  user_mailer:
+    backup_ready:
+      explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per descàrrega!
+      subject: El teu arxiu està preparat per a descàrrega
+      title: Recollida del arxiu
+    welcome:
+      edit_profile_action: Configurar perfil
+      edit_profile_step: Pots personalitzar el teu perfil penjant un avatar, un encapçalament, canviant el teu nom de visualització i molt més. Si prefereixes revisar els seguidors nous abans de que et puguin seguir, pots blocar el teu compte.
+      explanation: Aquests són alguns consells per començar
+      final_action: Comença a publicar
+      final_step: 'Comença a publicar! Fins i tot sense seguidors, els altres poden veure els teus missatges públics, per exemple, a la línia de temps local i a les etiquetes ("hashtags"). És possible que vulguis presentar-te amb l''etiqueta #introductions.'
+      full_handle: El teu nom d'usuari sencer
+      full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te missatges o seguir-te des d'una altra instància.
+      review_preferences_action: Canviar preferències
+      review_preferences_step: Assegura't d'establir les teves preferències, com ara els correus electrònics que vols rebre o el nivell de privadesa per defecte que t'agradaria que tinguin les teves entrades. Si no tens malaltia de moviment, pots optar per habilitar la reproducció automàtica de GIF.
+      subject: Benvingut/da a Mastodon
+      tip_bridge_html: Si vens de Twitter, pots trobar els teus amics a Mastodon mitjançant l'aplicació <a href="%{bridge_url}"> bridge </a>. Només funciona si també ells usen aquesta aplicació pont!
+      tip_federated_timeline: La línia de temps federada és el cabal principal de la xarxa Mastodon. Però només inclou les persones a les quals els teus veïns estan subscrits, de manera que no està complet.
+      tip_following: Per defecte segueixes als administradors del servidor. Per trobar més persones interessants, consulta les línies de temps local i federada.
+      tip_local_timeline: La línia de temps local és la vista del flux de publicacions dels usuaris de %{instance}. Aquests usuaris són els teus veïns més propers!
+      tip_mobile_webapp: Si el teu navegador del mòbil t'ofereix afegir Mastodon a la teva pantalla d'inici, podràs rebre notificacions "push". Es comporta com una aplicació nativa en molts aspectes!
+      tips: Consells
+      title: Benvingut a bord, %{name}!
   users:
-    invalid_email: La direcció de correu es incorrecte
-    invalid_otp_token: Codi de dos factors incorrecte
+    invalid_email: L'adreça de correu no és correcta
+    invalid_otp_token: El codi de dos factors no és correcte
+    seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'

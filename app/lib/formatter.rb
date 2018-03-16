@@ -9,7 +9,7 @@ class Formatter
 
   include ActionView::Helpers::TextHelper
 
-  def format(status, options = {})
+  def format(status, **options)
     if status.reblog?
       prepend_reblog = status.reblog.account.acct
       status         = status.proper
@@ -18,6 +18,8 @@ class Formatter
     end
 
     raw_content = status.text
+
+    return '' if raw_content.blank?
 
     unless status.local?
       html = reformat(raw_content)
@@ -51,12 +53,7 @@ class Formatter
 
   def simplified_format(account)
     return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
-
-    html = encode_and_link_urls(account.note)
-    html = simple_format(html, {}, sanitize: false)
-    html = html.delete("\n")
-
-    html.html_safe # rubocop:disable Rails/OutputSafety
+    linkify(account.note)
   end
 
   def sanitize(html, config)
@@ -66,6 +63,14 @@ class Formatter
   def format_spoiler(status)
     html = encode(status.spoiler_text)
     html = encode_custom_emojis(html, status.emojis)
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def linkify(text)
+    html = encode_and_link_urls(text)
+    html = simple_format(html, {}, sanitize: false)
+    html = html.delete("\n")
+
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
@@ -89,20 +94,28 @@ class Formatter
     end
   end
 
+  def count_tag_nesting(tag)
+    if tag[1] == '/' then -1
+    elsif tag[-2] == '/' then 0
+    else 1
+    end
+  end
+
   def encode_custom_emojis(html, emojis)
     return html if emojis.empty?
 
     emoji_map = emojis.map { |e| [e.shortcode, full_asset_url(e.image.url(:static))] }.to_h
 
     i                     = -1
-    inside_tag            = false
+    tag_open_index        = nil
     inside_shortname      = false
     shortname_start_index = -1
+    invisible_depth       = 0
 
     while i + 1 < html.size
       i += 1
 
-      if inside_shortname && html[i] == ':'
+      if invisible_depth.zero? && inside_shortname && html[i] == ':'
         shortcode = html[shortname_start_index + 1..i - 1]
         emoji     = emoji_map[shortcode]
 
@@ -116,12 +129,18 @@ class Formatter
         end
 
         inside_shortname = false
-      elsif inside_tag && html[i] == '>'
-        inside_tag = false
+      elsif tag_open_index && html[i] == '>'
+        tag = html[tag_open_index..i]
+        tag_open_index = nil
+        if invisible_depth.positive?
+          invisible_depth += count_tag_nesting(tag)
+        elsif tag == '<span class="invisible">'
+          invisible_depth = 1
+        end
       elsif html[i] == '<'
-        inside_tag       = true
+        tag_open_index   = i
         inside_shortname = false
-      elsif !inside_tag && html[i] == ':'
+      elsif !tag_open_index && html[i] == ':'
         inside_shortname      = true
         shortname_start_index = i
       end
@@ -154,10 +173,10 @@ class Formatter
   end
 
   def link_to_url(entity)
-    normalized_url = Addressable::URI.parse(entity[:url]).normalize
-    html_attrs     = { target: '_blank', rel: 'nofollow noopener' }
+    url        = Addressable::URI.parse(entity[:url])
+    html_attrs = { target: '_blank', rel: 'nofollow noopener' }
 
-    Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), normalized_url, html_attrs)
+    Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), url, html_attrs)
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     encode(entity[:url])
   end

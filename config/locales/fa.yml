@@ -23,7 +23,6 @@ fa:
       real_conversation_title: برای گفتگوهای واقعی
       within_reach_body: اپ‌های متنوع برای iOS، اندروید، و سیستم‌های دیگر به خاطر وجود یک اکوسیستم API دوستانه برای برنامه‌نویسان. از همه جا با دوستان خود ارتباط داشته باشید.
       within_reach_title: همیشه در دسترس
-    find_another_instance: یافتن سرورهای دیگر
     generic_description: "%{domain} یک سرور روی شبکه است"
     hosted_on: ماستدون، میزبانی‌شده روی %{domain}
     learn_more: بیشتر بدانید
@@ -39,6 +38,7 @@ fa:
     followers: پیگیران
     following: پی می‌گیرد
     media: عکس و ویدیو
+    moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
     nothing_here: این‌جا چیزی نیست!
     people_followed_by: کسانی که %{name} پی می‌گیرد
     people_who_follow: کسانی که %{name} را پی می‌گیرند
@@ -48,6 +48,7 @@ fa:
     reserved_username: این نام کاربری در دسترس نیست
     roles:
       admin: مدیر
+      moderator: ناظم
     unfollow: پایان پیگیری
   admin:
     account_moderation_notes:
@@ -59,13 +60,19 @@ fa:
       destroyed_msg: یادداشت مدیر با موفقیت پاک شد!
     accounts:
       are_you_sure: آیا مطمئن هستید؟
+      by_domain: دامین
       confirm: تأیید
       confirmed: تأیید شد
+      demote: تنزل‌دادن
+      disable: غیرفعال
       disable_two_factor_authentication: غیرفعال‌سازی ورود دومرحله‌ای
+      disabled: غیرفعال
       display_name: نمایش به نام
       domain: دامین
       edit: ویرایش
       email: ایمیل
+      enable: فعال
+      enabled: فعال
       feed_url: نشانی فید
       followers: پیگیران
       followers_url: نشانی پیگیران
@@ -77,7 +84,9 @@ fa:
         local: محلی
         remote: غیرمستقیم
         title: مکان
+      login_status: وضعیت ورود
       media_attachments: ضمیمه‌های تصویری
+      memorialize: تبدیل به یادمان
       moderation:
         all: همه
         silenced: بی‌صدا شده
@@ -94,6 +103,7 @@ fa:
       outbox_url: نشانی صندوق خروجی
       perform_full_suspension: انجام تعلیق کامل
       profile_url: نشانی نمایه
+      promote: ترفیع‌دادن
       protocol: پروتکل
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
@@ -101,6 +111,12 @@ fa:
       reset: بازنشانی
       reset_password: بازنشانی رمز
       resubscribe: اشتراک دوباره
+      role: اجازه‌ها
+      roles:
+        admin: مدیر
+        moderator: ناظم
+        staff: کارمند
+        user: کاربر
       salmon_url: نشانی Salmon
       search: جستجو
       shared_inbox_url: نشانی صندوق ورودی مشترک
@@ -117,7 +133,34 @@ fa:
       unsubscribe: لغو اشتراک
       username: نام کاربری
       web: وب
+    action_logs:
+      actions:
+        confirm_user: "%{name} نشانی ایمیل کاربر %{target} را تأیید کرد"
+        create_custom_emoji: "%{name} شکلک تازهٔ %{target} را بارگذاشت"
+        create_domain_block: "%{name} دامین %{target} را مسدود کرد"
+        create_email_domain_block: "%{name} دامین ایمیل %{target} را مسدود کرد"
+        demote_user: "%{name} مقام کاربر %{target} را تنزل داد"
+        destroy_domain_block: "%{name} دامین %{target} را باز کرد"
+        destroy_email_domain_block: "%{name} دامین ایمیل %{target} را باز کرد"
+        destroy_status: "%{name} نوشته‌ای از %{target} را پاک کرد"
+        disable_2fa_user: "%{name} اجبار ورود دومرحله‌ای را برای کاربر %{target} غیرفعال کرد"
+        disable_custom_emoji: "%{name} شکلک %{target} را غیرفعال کرد"
+        disable_user: "%{name} ورود را برای کاربر %{target} غیرفعال کرد"
+        enable_custom_emoji: "%{name} شکلک %{target} را فعال کرد"
+        enable_user: "%{name} ورود را برای کاربر %{target} فعال کرد"
+        memorialize_account: "%{name} حساب کاربر %{target} را تبدیل به صفحهٔ یادمان کرد"
+        promote_user: "%{name} کاربر %{target} را ترفیع داد"
+        reset_password_user: "%{name} رمز کاربر %{target} را بازنشاند"
+        resolve_report: "%{name} گزارش %{target} را نادیده گرفت"
+        silence_account: "%{name} حساب کاربر %{target} را خاموش (بی‌صدا) کرد"
+        suspend_account: "%{name} حساب کاربر %{target} را تعلیق کرد"
+        unsilence_account: "%{name} حساب کاربر %{target} را روشن (باصدا) کرد"
+        unsuspend_account: "%{name} حساب کاربر %{target} را از تعلیق خارج کرد"
+        update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
+        update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
+      title: سیاههٔ بازرسی
     custom_emojis:
+      by_domain: دامین
       copied_msg: نسخهٔ محلی شکلک با موفقیت ساخته شد
       copy: نسخه‌برداری
       copy_failed_msg: نشد که نسخهٔ محلی این شکلک ساخته شود
@@ -130,11 +173,16 @@ fa:
       enable: فعال‌سازی
       enabled_msg: این شکلک با موفقیت فعال شد
       image_hint: پروندهٔ PNG حداکثر 50KB
+      listed: فهرست‌شده
       new:
         title: افزودن شکلک سفارشی
+      overwrite: بازنویسی
       shortcode: کد کوتاه
       shortcode_hint: دست‌کم ۲ نویسه و تنها شامل حروف، اعداد و زیرخط
       title: شکلک‌های سفارشی
+      unlisted: فهرست‌نشده
+      update_failed_msg: این شکلک نتوانست به‌روز شود
+      updated_msg: شکلک با موفقیت به‌روز شد!
       upload: بارگذاری
     domain_blocks:
       add_new: افزودن تازه
@@ -145,7 +193,7 @@ fa:
         create: مسدودسازی
         hint: مسدودسازی دامین جلوی فهرست‌شدن حساب‌ها در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
         severity:
-          desc_html: "<strong>بی‌صداکردن</strong> یک حساب نوشته‌های آن را برای همه (به جز پیگیرانش) ناپدید می‌کند. <strong>معلق‌کردن</strong> حساب همهٔ نوشته‌ها، تصویرها، و اطلاعات حساب را پاک می‌کند."
+          desc_html: "<strong>بی‌صداکردن</strong> یک حساب نوشته‌های آن را برای همه (به جز پیگیرانش) ناپدید می‌کند. <strong>معلق‌کردن</strong> حساب همهٔ نوشته‌ها، تصویرها، و اطلاعات حساب را پاک می‌کند. اگر فقط می‌خواهید جلوی تصویرها و ویدیوها را بگیرید <strong>هیچ</strong> را برگزینید."
           noop: هیچ
           silence: بی‌صداکردن
           suspend: معلق‌کردن
@@ -184,6 +232,13 @@ fa:
       reset: بازنشانی
       search: جستجو
       title: سرورهای شناخته‌شده
+    invites:
+      filter:
+        all: همه
+        available: در دسترس
+        expired: منقضی‌شده
+        title: فیلتر
+      title: دعوت‌ها
     reports:
       action_taken_by: انجام‌دهنده
       are_you_sure: آیا مطمئن هستید؟
@@ -222,11 +277,17 @@ fa:
         deletion:
           desc_html: هر کسی بتواند حساب خود را پاک کند
           title: فعال‌سازی پاک‌کردن حساب
+        min_invite_role:
+          disabled: هیچ کس
+          title: اجازهٔ دعوت به
         open:
           desc_html: همه بتوانند حساب باز کنند
           title: امکان ثبت نام
+      show_staff_badge:
+        desc_html: نمایش علامت همکار روی صفحهٔ کاربر
+        title: نمایش علامت همکار
       site_description:
-        desc_html: روی صفحهٔ اصلی نمایش می‌یابد و همچنین به عنوان تگ‌های HTML.<br>می‌توانید HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
+        desc_html: معرفی کوتاهی که روی صفحهٔ اصلی و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. می‌توانید HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: دربارهٔ سایت
       site_description_extended:
         desc_html: جای خوبی برای نوشتن سیاست‌های کاربری، قانون‌ها، راهنماها، و هر چیزی که ویژهٔ این سرور است. تگ‌های HTML هم مجاز است
@@ -270,9 +331,8 @@ fa:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
       subject: گزارش تازه‌ای برای %{instance} (#%{id})
   application_mailer:
-    salutation: "%{name},"
+    salutation: "%{name}،"
     settings: 'تغییر تنظیمات ایمیل: %{link}'
-    signature: اعلان‌های ماستدون از %{instance}
     view: 'نمایش:'
   applications:
     created: برنامه با موفقیت ساخته شد
@@ -283,18 +343,20 @@ fa:
     warning: خیلی مواظب این اطلاعات باشید و آن را به هیچ کس ندهید!
     your_token: کد دسترسی شما
   auth:
-    agreement_html: پیش از عضو شدن باید <a href="%{rules_path}">شرایط استفاده</a> و <a href="%{terms_path}">سیاست رازداری</a> ما را بپذیرید.
-    change_password: امنیت
+    agreement_html: پیش از عضو شدن باید <a href="%{rules_path}">قوانین این سرور</a> و <a href="%{terms_path}">شرایط استفادهٔ</a> ما را بپذیرید.
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
     forgot_password: رمزتان را گم کرده‌اید؟
-    invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
+    invalid_reset_password_token: کد بازنشانی رمز نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
     login: ورود
     logout: خروج
+    migrate_account: نقل مکان به یک حساب دیگر
+    migrate_account_html: اگر می‌خواهید این حساب را به حساب دیگری منتقل کنید، <a href="%{path}">این‌جا را کلیک کنید</a>.
     register: عضو شوید
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
     reset_password: بازنشانی رمز
+    security: امنیت
     set_new_password: تعیین رمز تازه
   authorize_follow:
     error: متأسفانه حین یافتن آن حساب خطایی رخ داد
@@ -339,7 +401,7 @@ fa:
     '500':
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
-    noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید یک اپ ماستدون را به‌کار ببرید.
+    noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">یک اپ ماستدون</a> را به‌کار ببرید.
   exports:
     blocks: حساب‌های مسدودشده
     csv: CSV
@@ -373,12 +435,43 @@ fa:
       following: فهرست پی‌گیری‌ها
       muting: فهرست بی‌صداشده‌ها
     upload: بارگذاری
+  in_memoriam_html: به یادبود.
+  invites:
+    delete: غیرفعال‌سازی
+    expired: منقضی‌شده
+    expires_in:
+      '1800': ۳۰ دقیقه
+      '21600': ۶ ساعت
+      '3600': ۱ ساعت
+      '43200': ۱۲ ساعت
+      '86400': ۱ روز
+    expires_in_prompt: هیچ وقت
+    generate: ساختن
+    max_uses:
+      one: ۱ بار
+      other: "%{count} بار"
+    max_uses_prompt: نامحدود
+    prompt: با ساختن و اشتراک‌گذاری یک پیوند، اجازهٔ دسترسی به این سرور را به دیگران بدهید
+    table:
+      expires_at: تاریخ انقضا
+      uses: استفاده‌ها
+    title: دعوت دیگران
   landing_strip_html: "<strong>%{name}</strong> کاربری روی %{link_to_root_path} است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید."
   landing_strip_signup_html: اگر هنوز حسابی ندارید <a href="%{sign_up_path}">این‌جا حساب باز کنید</a>.
+  lists:
+    errors:
+      limit: از این بیشتر نمی‌شود فهرست داشت
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
       too_many: نمی‌توان بیشتر از ۴ تصویر بارگذاری کرد
+  migrations:
+    acct: username@domain حساب تازه
+    currently_redirecting: 'نمایهٔ شما منتقل می‌شود به:'
+    proceed: ذخیره
+    updated_msg: تنظیمات نقل مکان حساب شما با موفقیت به‌روز شد!
+  moderation:
+    title: مدیریت
   notification_mailer:
     digest:
       body: 'خلاصه‌ای از آن‌چه از زمان آخرین بازدید شما در %{since} روی %{instance} رخ داد :'
@@ -491,6 +584,7 @@ fa:
     export: برون‌سپاری داده‌ها
     followers: پیگیران مورد تأیید
     import: درون‌ریزی
+    migrate: انتقال حساب
     notifications: اعلان‌ها
     preferences: ترجیحات
     settings: تنظیمات
@@ -500,11 +594,12 @@ fa:
     open_in_web: بازکردن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
     pin_errors:
-      limit: نوشته‌های ثابت بیش از حد
+      limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
       private: نوشته‌های غیرعمومی را نمی‌توان ثابت کرد
       reblog: بازبوق‌ها را نمی‌توان ثابت کرد
     show_more: نمایش
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: خصوصی
       private_long: نمایش تنها به پیگیران
@@ -588,13 +683,13 @@ fa:
       <p>این نوشته اقتباسی است از <a href="https://github.com/discourse/discourse">سیاست رازداری Discourse</a>.</p>
     title: شرایط استفاده و سیاست رازداری %{instance}
   themes:
-    default: Mastodon
+    default: ماستدون
   time:
     formats:
       default: "%d %b %Y, %H:%M"
   two_factor_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
-    description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد
+    description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد.
     disable: غیرفعال‌کردن
     enable: فعال‌کردن
     enabled: ورود دومرحله‌ای فعال است
@@ -605,7 +700,7 @@ fa:
     manual_instructions: 'اگر نمی‌توانید کدها را اسکن کنید و باید آن‌ها را دستی وارد کنید، متن کد امنیتی این‌جاست:'
     recovery_codes: پشتیبان‌گیری از کدهای بازیابی
     recovery_codes_regenerated: کدهای بازیابی با موفقیت ساخته شدند
-    recovery_instructions_html: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای بازیابی زیر کنترل حساب خود را به دست بگیرید. این کدها را در جای امنی نگه دارید، مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید
+    recovery_instructions_html: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای بازیابی زیر کنترل حساب خود را به دست بگیرید. <strong>این کدها را در جای امنی نگه دارید.</strong> مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید
     setup: راه اندازی
     wrong_code: کدی که وارد کردید نامعتبر بود! آیا ساعت سرور و ساعت دستگاه شما درست تنظیم شده‌اند؟
   users:

@@ -9,32 +9,53 @@ oc:
       already_authenticated: Sètz ja connectat.
       inactive: Vòstre compte es pas encara activat.
       invalid: Corrièl o senhal invalid.
-      last_attempt: Vos demòra un ensag abans que vòstre compte siasgue blocat.
+      last_attempt: Vos demòra un ensag abans que vòstre compte siasque blocat.
       locked: Vòstre compte es blocat.
       not_found_in_database: Corrièl o senhal invalid.
-      timeout: Vòstra session s’a acabat. Mercés de vos tornar connectar per contunhar.
+      timeout: Vòstra session a expirat. Mercés de vos tornar connectar per contunhar.
       unauthenticated: Vos cal vos connectar o marcar abans de contunhar.
       unconfirmed: Vos cal confirmar vòstra adreça de corrièl abans de contunhar.
     mailer:
       confirmation_instructions:
-        subject: Mercés de confirmar vòstra inscripcion sus %{instance}
+        action: Verificar l’adreça de corrièl
+        explanation: Venètz de crear un compte sus %{host} amb aquesta adreça de corrièl. Vos manca pas qu’un clic per l’activar. S’èra pas vosautre mercés de far pas cas a aqueste messatge.
+        extra_html: Pensatz tanben de gaitar <a href="%{terms_path}">las règlas de l’instància</a> e <a href="%{policy_path}">nòstres tèrmes e condicions d’utilizacion</a>.
+        subject: 'Mastodon : consignas de confirmacion per %{instance}'
+        title: Verificatz l’adreça de corrièl
+      email_changed:
+        explanation: 'L’adreça per aqueste compte es ara :'
+        extra: S’avètz pas demandat aqueste cambiament d’adreça, poiriá arribar que qualqu’un mai aguèsse agut accès a vòstre compte. Mercés de cambiar sulpic vòstre senhal o de contactar vòstre administrator d’instància se l’accès a vòstre compte vos es barrat.
+        subject: 'Mastodon : corrièl cambiat'
+        title: Nòva adreça de corrièl
       password_change:
+        explanation: Lo senhal per vòstre compte a cambiat.
+        extra: S’avètz pas demandat aqueste cambiament de senhal, poiriá arribar que qualqu’un mai aguèsse agut accès a vòstre compte. Mercés de cambiar sulpic vòstre senhal o de contactar vòstre administrator d’instància se l’accès a vòstre compte vos es barrat.
         subject: Mastodon : senhal cambiat
+        title: Senhal cambiat
+      reconfirmation_instructions:
+        explanation: Confirmar la nòva adreça per cambiar lo corrièl.
+        extra: S’avètz pas res demandat, fasquètz pas cas a aqueste corrièl. Vòstre corrièl per Mastodon cambiarà pas se clicatz pas lo ligam dessús.
+        subject: 'Mastodon : confirmatz l’adreça per %{instance}'
+        title: Verificatz l’adreça de corrièl
       reset_password_instructions:
-        subject: Mastodon : instruccions per reïnicializar lo senhal
+        action: Cambiament de senhal
+        explanation: Avètz demandat un nòu senhal per vòstre compte.
+        extra: S’avètz pas res demandat, fasquètz pas cas a aqueste corrièl. Vòstre senhal cambiarà pas se clicatz pas lo ligam e que ne causissètz pas un novèl.
+        subject: Mastodon : consignas per reïnicializar lo senhal
+        title: Reïnicializacion del senhal
       unlock_instructions:
-        subject: Mastodon : instuccions de desblocatge
+        subject: Mastodon : consignas de desblocatge
     omniauth_callbacks:
       failure: Fracàs al moment de vos autentificar de %{kind} perque "%{reason}".
       success: Sètz ben autentificat dempuèi lo compte %{kind}.
     passwords:
       no_token: Podètz pas accedir a aquesta pagina sens venir d’un corriel de reïnicializacion de senhal. S’es lo cas, mercés de verificar qu’avètz ben utilizat l’URL donada de manièra complèta.
-      send_instructions: Recebretz un corrièl amb las instruccions per reĩnicializar vòstre senhal dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
+      send_instructions: Recebretz un corrièl amb las consignas per reĩnicializar vòstre senhal dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
       send_paranoid_instructions: Se vòstra adreça de corrièl existís dins nòstra basa de donadas, recebretz un ligam per reĩnicializar vòstre senhal dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
       updated: Vòstre senhal es ben estat cambiat. Sètz ara connectat.
       updated_not_active: Vòstre senhal es ben estat cambiat.
     registrations:
-      destroyed: Adiu ! Vòstra inscripcion es estada anullada amb succès. Esperem vos tornar veire lèu.
+      destroyed: Adieu-siatz ! Vòstra inscripcion es estada anullada amb succès. Esperem vos tornar veire lèu.
       signed_up: La benvenguda ! Sètz ben marcat al malhum.
       signed_up_but_inactive: Sètz ben marcat. Pasmens, avèm pas pogut vos connectar perque vòstre compte es pas encara validat.
       signed_up_but_locked: Sètz ben marcat. Pasmens, avèm pas pogut vos connectar perque vòstre compte es pas encara blocat.
@@ -46,8 +67,8 @@ oc:
       signed_in: Connectat amb succès.
       signed_out: Desconnectat amb succès.
     unlocks:
-      send_instructions: Recebretz un corrièl amb las instruccions per o desblocar dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
-      send_paranoid_instructions: Se vòstre compte existís recebretz un corrièl amb las instruccions per o desblocar dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
+      send_instructions: Recebretz un corrièl amb las consignas per o desblocar dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
+      send_paranoid_instructions: Se vòstre compte existís recebretz un corrièl amb las consignas per o desblocar dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
       unlocked: Vòstre compte es estat desblocat amb succès. Mercés de vos connectar per contunhar.
   errors:
     messages:

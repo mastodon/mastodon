@@ -23,8 +23,7 @@ ja:
       real_conversation_title: 本当のコミュニケーションのために
       within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
       within_reach_title: いつでも身近に
-    find_another_instance: 他のインスタンスを探す
-    generic_description: "%{domain} は、Mastodon インスタンスの一つです。"
+    generic_description: "%{domain} は、Mastodon インスタンスの一つです"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
     other_instances: 他のインスタンス
@@ -39,33 +38,41 @@ ja:
     followers: フォロワー
     following: フォロー中
     media: メディア
-    nothing_here: 何もありません
+    moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
+    nothing_here: 何もありません！
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
     posts: トゥート
     posts_with_replies: トゥートと返信
     remote_follow: リモートフォロー
-    reserved_username: このユーザー名は予約されています。
+    reserved_username: このユーザー名は予約されています
     roles:
       admin: Admin
+      moderator: Mod
     unfollow: フォロー解除
   admin:
     account_moderation_notes:
       account: モデレータ
       create: 書き込む
       created_at: 日付
-      created_msg: モデレーションメモを書き込みました
+      created_msg: モデレーションメモを書き込みました！
       delete: 削除
-      destroyed_msg: モデレーションメモを削除しました
+      destroyed_msg: モデレーションメモを削除しました！
     accounts:
       are_you_sure: 本当に実行しますか？
+      by_domain: ドメイン
       confirm: 確認
       confirmed: 確認済み
+      demote: 降格
+      disable: 無効化
       disable_two_factor_authentication: 二段階認証を無効にする
+      disabled: 無効
       display_name: 表示名
       domain: ドメイン
       edit: 編集
       email: E-mail
+      enable: 有効化
+      enabled: 有効
       feed_url: フィードURL
       followers: フォロワー数
       followers_url: Followers URL
@@ -77,7 +84,9 @@ ja:
         local: ローカル
         remote: リモート
         title: ロケーション
+      login_status: ログイン
       media_attachments: 添付されたメディア
+      memorialize: 追悼アカウント化
       moderation:
         all: すべて
         silenced: サイレンス中
@@ -94,6 +103,7 @@ ja:
       outbox_url: Outbox URL
       perform_full_suspension: 完全に活動停止させる
       profile_url: プロフィールURL
+      promote: 昇格
       protocol: プロトコル
       public: パブリック
       push_subscription_expires: PuSH購読期限
@@ -101,6 +111,12 @@ ja:
       reset: リセット
       reset_password: パスワード再設定
       resubscribe: 再講読
+      role: 役割
+      roles:
+        admin: 管理者
+        moderator: モデレーター
+        staff: スタッフ
+        user: ユーザー
       salmon_url: Salmon URL
       search: 検索
       shared_inbox_url: Shared Inbox URL
@@ -117,24 +133,56 @@ ja:
       unsubscribe: 購読の解除
       username: ユーザー名
       web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
+        create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
+        create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
+        demote_user: "%{name} さんが %{target} さんを降格しました"
+        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
+        destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
+        disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
+        disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
+        disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
+        enable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
+        enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
+        memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
+        promote_user: "%{name} さんが %{target} さんを昇格しました"
+        reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
+        resolve_report: "%{name} さんがレポート %{target} を解決済みにしました"
+        silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
+        suspend_account: "%{name} さんが %{target} さんを停止しました"
+        unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
+        unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
+        update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        update_status: "%{name} さんが %{target} さんの投稿を更新しました"
+      title: 操作履歴
     custom_emojis:
+      by_domain: ドメイン
       copied_msg: 絵文字のコピーをローカルに作成しました
       copy: コピー
       copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
-      created_msg: 絵文字の追加に成功しました
+      created_msg: 絵文字の追加に成功しました！
       delete: 削除
-      destroyed_msg: 絵文字の削除に成功しました
+      destroyed_msg: 絵文字の削除に成功しました！
       disable: 無効化
       disabled_msg: 絵文字を無効化しました
       emoji: 絵文字
       enable: 有効化
       enabled_msg: 絵文字を有効化しました
-      image_hint: 50KBまでのPNG画像を利用できます。
+      image_hint: 50KBまでのPNG画像を利用できます
+      listed: 収載
       new:
         title: 新規カスタム絵文字の追加
+      overwrite: 上書き
       shortcode: ショートコード
-      shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます。
+      shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます
       title: カスタム絵文字
+      unlisted: 未収載
+      update_failed_msg: 絵文字を更新できませんでした
+      updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
     domain_blocks:
       add_new: 新規追加
@@ -145,13 +193,13 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルの拒否は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
       reject_media: メディアファイルを拒否
-      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です。
+      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       severities:
         noop: なし
         silence: サイレンス
@@ -170,20 +218,27 @@ ja:
       undo: 元に戻す
     email_domain_blocks:
       add_new: 新規追加
-      created_msg: 処理を完了しました
+      created_msg: ブラックリストに追加しました
       delete: 消去
-      destroyed_msg: 消去しました
+      destroyed_msg: ブラックリストから外しました
       domain: ドメイン
       new:
-        create: ブロックを作成
-        title: 新規メールドメインブロック
-      title: メールドメインブロック
+        create: ドメインを追加
+        title: メールアドレス用ブラックリスト新規追加
+      title: メールブラックリスト
     instances:
       account_count: 既知のアカウント数
       domain_name: ドメイン名
       reset: リセット
       search: 検索
       title: 既知のインスタンス
+    invites:
+      filter:
+        all: すべて
+        available: 使用可能
+        expired: 期限切れ
+        title: フィルター
+      title: 招待
     reports:
       action_taken_by: レポート処理者
       are_you_sure: 本当に実行しますか？
@@ -209,34 +264,52 @@ ja:
       unresolved: 未解決
       view: 表示
     settings:
+      activity_api_enabled:
+        desc_html: 週ごとのローカルに投稿されたトゥート数、アクティブなユーザー数、新規登録者数
+        title: ユーザーアクティビティに関する統計を公開する
       bootstrap_timeline_accounts:
         desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
         title: 新規ユーザーが自動フォローするアカウント
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先のユーザー名
+      hero:
+        desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、インスタンスのサムネイルが使用されます
+        title: ヒーローイメージ
+      peers_api_enabled:
+        desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
+        title: 接続しているインスタンスのリストを公開する
       registrations:
         closed_message:
-          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます。
+          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
           title: 新規登録停止時のメッセージ
         deletion:
           desc_html: 誰でも自分のアカウントを削除できるようにします
           title: アカウント削除を受け付ける
+        min_invite_role:
+          disabled: 誰も許可しない
+          title: 招待の作成を許可
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
+      show_known_fediverse_at_about_page:
+        desc_html: チェックを入れるとプレビュー欄に既知の連合先全てのトゥートを表示します。外すとローカルのトゥートだけ表示します。
+        title: タイムラインプレビューに連合タイムラインを表示する
+      show_staff_badge:
+        desc_html: ユーザーページにスタッフのバッジを表示します
+        title: スタッフバッジを表示する
       site_description:
         desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: インスタンスの説明
       site_description_extended:
-        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます。
+        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
         title: カスタム詳細説明
       site_terms:
-        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます。
+        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
         title: カスタム利用規約
       site_title: インスタンスの名前
       thumbnail:
-        desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です。
+        desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
         title: インスタンスのサムネイル
       timeline_preview:
         desc_html: ランディングページに公開タイムラインを表示します
@@ -270,21 +343,24 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
+    notification_preferences: メール設定の変更
     salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
-    signature: Mastodon %{instance} インスタンスからの通知
-    view: リンク
+    view: 'リンク:'
+    view_profile: プロフィールを表示
+    view_status: トゥートを表示
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
     invalid_url: URLが無効です
     regenerate_token: アクセストークンの再生成
     token_regenerated: アクセストークンが再生成されました
-    warning: このデータは気をつけて取り扱ってください。不特定多数の人と共有しないでください！
+    warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
-    agreement_html: 登録すると <a href="%{rules_path}">利用規約</a> と <a href="%{terms_path}">プライバシーポリシー</a> に同意したことになります。
-    change_password: セキュリティ
+    agreement_html: 登録すると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">利用規約</a> に従うことに同意したことになります。
+    change_password: パスワード
+    confirm_email: メールアドレスの確認
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
@@ -292,17 +368,26 @@ ja:
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
     login: ログイン
     logout: ログアウト
+    migrate_account: 別のアカウントに引っ越す
+    migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
+    or: または
+    or_log_in_with: または次のサービスでログイン
+    providers:
+      cas: CAS
+      saml: SAML
     register: 登録する
+    register_elsewhere: 他のインスタンスで新規登録
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
+    security: セキュリティ
     set_new_password: 新しいパスワード
   authorize_follow:
-    error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました。
+    error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
     follow: フォロー
     follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
     following: '成功！ あなたは現在以下のアカウントをフォローしています:'
     post_follow:
-      close: またはこのウィンドウを閉じます
+      close: またはこのウィンドウを閉じます。
       return: ユーザーのプロフィールに戻る
       web: Web を開く
     title: "%{acct} をフォロー"
@@ -322,7 +407,7 @@ ja:
       x_seconds: "%{count}秒"
   deletes:
     bad_password_msg: パスワードが違います
-    confirm_password: 本人確認のため、現在のパスワードを入力してください。
+    confirm_password: 本人確認のため、現在のパスワードを入力してください
     description_html: あなたのアカウントに含まれるコンテンツは全て削除され、アカウントは無効化されます。これは恒久的なもので、<strong>取り消すことはできません</strong>。なりすましを防ぐために、同じユーザー名で再度登録することはできなくなります。
     proceed: アカウントを削除する
     success_msg: アカウントは正常に削除されました
@@ -335,12 +420,19 @@ ja:
     '422':
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
-    '429': リクエストの制限に達しました。
+    '429': リクエストの制限に達しました
     '500':
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
+    archive_takeout:
+      date: 日時
+      download: ダウンロード
+      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。"
+      in_progress: 準備中...
+      request: アーカイブをリクエスト
+      size: 容量
     blocks: ブロック
     csv: CSV
     follows: フォロー
@@ -350,60 +442,100 @@ ja:
     domain: ドメイン
     explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
     followers_count: フォロワー数
-    lock_link: 非公開アカウント
+    lock_link: 非公開アカウントにする
     purge: フォロワーから削除する
     success:
       one: 1個のドメインからソフトブロックするフォロワーを処理中...
       other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
     true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
     unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
-    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません。
+    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません
   generic:
-    changes_saved_msg: 正常に変更されました
+    changes_saved_msg: 正常に変更されました！
     powered_by: powered by %{link}
     save_changes: 変更を保存
     validation_errors:
-      one: エラーが発生しました。以下のエラーを確認してください。
-      other: エラーが発生しました。以下の%{count}個のエラーを確認してください。
+      one: エラーが発生しました！ 以下のエラーを確認してください
+      other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   imports:
     preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
-    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください。
+    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
       blocking: ブロックしたアカウントリスト
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
+  in_memoriam_html: 故人を偲んで。
+  invites:
+    delete: 無効化
+    expired: 期限切れ
+    expires_in:
+      '1800': 30 分
+      '21600': 6 時間
+      '3600': 1 時間
+      '43200': 12 時間
+      '86400': 1 日
+    expires_in_prompt: 無期限
+    generate: 作成
+    max_uses:
+      one: '1'
+      other: "%{count}"
+    max_uses_prompt: 無制限
+    prompt: リンクを生成・共有してこのインスタンスへの新規登録を受け付けることができます
+    table:
+      expires_at: 有効期限
+      uses: 使用
+    title: 新規ユーザーの招待
   landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
   landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  lists:
+    errors:
+      limit: リストの上限に達しました
   media_attachments:
     validations:
-      images_and_video: 既に画像が追加されているため、動画を追加することはできません。
-      too_many: 追加できるファイルは4つまでです。
+      images_and_video: 既に画像が追加されているため、動画を追加することはできません
+      too_many: 追加できるファイルは4つまでです
+  migrations:
+    acct: 引っ越し先の ユーザー名@ドメイン
+    currently_redirecting: 'あなたのプロフィールは引っ越し先が設定されています:'
+    proceed: 保存
+    updated_msg: アカウントの引っ越し設定を更新しました！
+  moderation:
+    title: モデレーション
   notification_mailer:
     digest:
-      body: "%{instance} での最後のログインからの出来事:"
+      action: 全ての通知を表示
+      body: '最後のログイン（%{since}）からの出来事:'
       mention: "%{name} さんがあなたに返信しました:"
       new_followers_summary:
-        one: 新たなフォロワーを獲得しました！
-        other: "%{count} 人の新たなフォロワーを獲得しました！"
+        one: また、離れている間に新たなフォロワーを獲得しました！
+        other: また、離れている間に%{count} 人の新たなフォロワーを獲得しました！
       subject:
         one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
+      title: 不在の間に…
     favourite:
-      body: 'あなたのトゥートが %{name} さんにお気に入り登録されました:'
-      subject: "%{name} さんがあなたのトゥートをお気に入りに登録しました"
+      body: "%{name} さんにお気に入り登録された、あなたのトゥートがあります:"
+      subject: "%{name} さんにお気に入りに登録されました"
+      title: 新たなお気に入り登録
     follow:
-      body: "%{name} さんにフォローされています"
+      body: "%{name} さんにフォローされています！"
       subject: "%{name} さんにフォローされています"
+      title: 新たなフォロワー
     follow_request:
+      action: フォローリクエストの管理
       body: "%{name} さんがあなたにフォローをリクエストしました"
       subject: "%{name} さんからのフォローリクエスト"
+      title: 新たなフォローリクエスト
     mention:
+      action: 返信
       body: "%{name} さんから返信がありました:"
       subject: "%{name} さんに返信されました"
+      title: 新たな返信
     reblog:
-      body: 'あなたのトゥートが %{name} さんにブーストされました:'
-      subject: あなたのトゥートが %{name} さんにブーストされました
+      body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
+      subject: "%{name} さんにブーストされました"
+      title: 新たなブースト
   number:
     human:
       decimal_units:
@@ -416,7 +548,9 @@ ja:
           trillion: T
           unit: ''
   pagination:
+    newer: 新しいトゥート
     next: 次
+    older: 以前のトゥート
     prev: 前
     truncate: "&hellip;"
   preferences:
@@ -451,12 +585,14 @@ ja:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: 不明なブラウザ
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -491,6 +627,7 @@ ja:
     export: データのエクスポート
     followers: 信頼済みのインスタンス
     import: データのインポート
+    migrate: アカウントの引っ越し
     notifications: 通知
     preferences: ユーザー設定
     settings: 設定
@@ -500,11 +637,12 @@ ja:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      limit: 固定されているトゥートが多すぎます
+      limit: 固定されているトゥートの上限に達しました
       ownership: 他人のトゥートを固定することはできません
       private: 非公開のトゥートを固定することはできません
       reblog: ブーストされたトゥートを固定することはできません
     show_more: もっと見る
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: 非公開
       private_long: フォロワーにのみ表示されます
@@ -515,7 +653,7 @@ ja:
   stream_entries:
     click_to_show: クリックして表示
     pinned: 固定されたトゥート
-    reblogged: さんにブーストされました
+    reblogged: さんがブースト
     sensitive_content: 閲覧注意
   terms:
     body_html: |
@@ -593,7 +731,7 @@ ja:
     formats:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 確認するには認証アプリで表示されたコードを入力してください。
+    code_hint: 確認するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効
@@ -604,11 +742,35 @@ ja:
     lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     recovery_codes: リカバリーコード
-    recovery_codes_regenerated: リカバリーコードが再生成されました。
+    recovery_codes_regenerated: リカバリーコードが再生成されました
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     setup: 初期設定
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
+  user_mailer:
+    backup_ready:
+      explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
+      subject: アーカイブの準備ができました
+      title: アーカイブの取り出し
+    welcome:
+      edit_profile_action: プロフィールを設定
+      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを非公開にすることができます。
+      explanation: 始めるにあたってのアドバイスです
+      final_action: 始めましょう
+      final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #introductions ハッシュタグを使うといいかもしれません。'
+      full_handle: あなたの正式なユーザー名
+      full_handle_hint: これは別のインスタンスからフォローしてもらったりメッセージのやり取りをする際に、友達に伝えるといいでしょう。
+      review_preferences_action: 設定の変更
+      review_preferences_step: 受け取りたいメールや投稿の公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
+      subject: Mastodon へようこそ
+      tip_bridge_html: もし Twitter から来られたのであれば、<a href="%{bridge_url}">bridge app</a> を使用することで Mastodon での友達のアカウントを探すこともできます。ただし bridge app を使用したことのある相手に限ります！
+      tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じインスタンスの人がフォローしている人だけが含まれるので、それが全てではありません。
+      tip_following: 標準では自動でインスタンスの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
+      tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じインスタンスにいる隣人のようなものです！
+      tip_mobile_webapp: もしモバイル端末のブラウザで Mastodon をホーム画面に追加できる場合、プッシュ通知を受け取ることができます。それはまるでネイティブアプリのように動作します！
+      tips: 豆知識
+      title: ようこそ、%{name} ！
   users:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
+    seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
