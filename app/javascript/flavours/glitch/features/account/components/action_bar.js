@@ -53,11 +53,11 @@ export default class ActionBar extends React.PureComponent {
     let extraInfo = '';
 
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+
     if ('share' in navigator) {
       menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
     }
-    menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.media), to: `/accounts/${account.get('id')}/media` });
+
     menu.push(null);
 
     if (account.get('id') === me) {
