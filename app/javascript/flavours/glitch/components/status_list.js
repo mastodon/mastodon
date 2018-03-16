@@ -11,6 +11,7 @@ export default class StatusList extends ImmutablePureComponent {
   static propTypes = {
     scrollKey: PropTypes.string.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
+    featuredStatusIds: ImmutablePropTypes.list,
     onScrollToBottom: PropTypes.func,
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
@@ -50,7 +51,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, ...other }  = this.props;
+    const { statusIds, featuredStatusIds, ...other }  = this.props;
     const { isLoading, isPartial } = other;
 
     if (isPartial) {
@@ -68,8 +69,8 @@ export default class StatusList extends ImmutablePureComponent {
       );
     }
 
-    const scrollableContent = (isLoading || statusIds.size > 0) ? (
-      statusIds.map((statusId) => (
+    let scrollableContent = (isLoading || statusIds.size > 0) ? (
+      statusIds.map(statusId => (
         <StatusContainer
           key={statusId}
           id={statusId}
@@ -78,6 +79,18 @@ export default class StatusList extends ImmutablePureComponent {
         />
       ))
     ) : null;
+
+    if (scrollableContent && featuredStatusIds) {
+      scrollableContent = featuredStatusIds.map(statusId => (
+        <StatusContainer
+          key={`f-${statusId}`}
+          id={statusId}
+          featured
+          onMoveUp={this.handleMoveUp}
+          onMoveDown={this.handleMoveDown}
+        />
+      )).concat(scrollableContent);
+    }
 
     return (
       <ScrollableList {...other} ref={this.setRef}>
