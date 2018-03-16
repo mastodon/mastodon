@@ -28,7 +28,6 @@ export default class ColumnHeader extends React.PureComponent {
     active: PropTypes.bool,
     localSettings : ImmutablePropTypes.map,
     multiColumn: PropTypes.bool,
-    focusable: PropTypes.bool,
     showBackButton: PropTypes.bool,
     notifCleaning: PropTypes.bool, // true only for the notification column
     notifCleaningActive: PropTypes.bool,
@@ -40,10 +39,6 @@ export default class ColumnHeader extends React.PureComponent {
     onClick: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
-
-  static defaultProps = {
-    focusable: true,
-  }
 
   state = {
     collapsed: true,
@@ -91,7 +86,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { intl, icon, active, children, pinned, onPin, multiColumn, focusable, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive } = this.props;
+    const { intl, icon, active, children, pinned, onPin, multiColumn, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive } = this.props;
     const { collapsed, animating, animatingNCD } = this.state;
 
     let title = this.props.title;
@@ -172,11 +167,13 @@ export default class ColumnHeader extends React.PureComponent {
 
     return (
       <div className={wrapperClassName}>
-        <h1 tabIndex={focusable ? 0 : null} role='button' className={buttonClassName} aria-label={title} onClick={this.handleTitleClick}>
-          <i className={`fa fa-fw fa-${icon} column-header__icon`} />
-          <span className='column-header__title'>
-            {title}
-          </span>
+        <h1 className={buttonClassName}>
+          <button onClick={this.handleTitleClick}>
+            <i className={`fa fa-fw fa-${icon} column-header__icon`} />
+            <span className='column-header__title'>
+              {title}
+            </span>
+          </button>
           <div className='column-header__buttons'>
             {backButton}
             { notifCleaning ? (
