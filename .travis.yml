@@ -55,5 +55,5 @@ before_script:
 
 script:
   - travis_retry bundle exec parallel_test spec/ --group-by filesize --type rspec
-  - yarn test
+  - yarn run test:jest
   - bundle exec i18n-tasks check-normalized && bundle exec i18n-tasks unused
