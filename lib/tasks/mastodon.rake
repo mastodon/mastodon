@@ -472,7 +472,7 @@ namespace :mastodon do
 
         if user.save
           prompt.ok 'User created and confirmation mail sent to the user\'s email address.'
-          prompt.ok "Here is the random password generated for the user: #{password}"
+          prompt.ok "Here is the random password generated for the user: #{user.password}"
         else
           prompt.warn 'User was not created because of the following errors:'
 
