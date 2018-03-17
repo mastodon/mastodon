@@ -29,6 +29,10 @@ module StreamEntriesHelper
     [prepend_str, account.note].join(' · ')
   end
 
+  def hide_opengraph_preview?
+    params.key?(:no_preview)
+  end
+
   def stream_link_target
     embedded_view? ? '_blank' : nil
   end

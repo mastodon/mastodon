@@ -9,13 +9,14 @@
   %link{ rel: 'alternate', type: 'application/json+oembed', href: api_oembed_url(url: account_stream_entry_url(@account, @stream_entry), format: 'json') }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@stream_entry.activity) }/
 
-  = opengraph 'og:site_name', site_title
-  = opengraph 'og:type', 'article'
-  = opengraph 'og:title', "#{@account.display_name.presence || @account.username} on #{site_hostname}"
-  = opengraph 'og:url', account_stream_entry_url(@account, @stream_entry)
+  - unless hide_opengraph_preview?
+    = opengraph 'og:site_name', site_title
+    = opengraph 'og:type', 'article'
+    = opengraph 'og:title', "#{display_name(@account)} on #{site_hostname}"
+    = opengraph 'og:url', account_stream_entry_url(@account, @stream_entry)
 
-  = render 'stream_entries/og_description', activity: @stream_entry.activity
-  = render 'stream_entries/og_image', activity: @stream_entry.activity, account: @account
+    = render 'stream_entries/og_description', activity: @stream_entry.activity
+    = render 'stream_entries/og_image', activity: @stream_entry.activity, account: @account
 
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
