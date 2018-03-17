@@ -32,11 +32,13 @@ RUN apk -U upgrade \
     ca-certificates \
     ffmpeg \
     file \
+    git \
     icu-libs \
     imagemagick \
     libidn \
     libpq \
     nodejs \
+    nodejs-npm \
     protobuf \
     tini \
     tzdata \
