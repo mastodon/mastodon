@@ -52,9 +52,14 @@ export default class AccountTimeline extends ImmutablePureComponent {
     }
   }
 
-  handleLoadMore = () => {
+  handleLoadMore = options => {
     if (!this.props.isLoading && this.props.hasMore) {
-      this.props.dispatch(expandAccountTimeline(this.props.params.accountId, this.props.withReplies));
+      const optionsWithReplies = {
+        passive: options && options.passive,
+        withReplies: this.props.withReplies,
+      };
+
+      this.props.dispatch(expandAccountTimeline(this.props.params.accountId, optionsWithReplies));
     }
   }
 

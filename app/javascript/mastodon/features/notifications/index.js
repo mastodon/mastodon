@@ -57,8 +57,8 @@ export default class Notifications extends React.PureComponent {
     this.props.dispatch(scrollTopNotifications(false));
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandNotifications());
+  handleLoadMore = debounce(options => {
+    this.props.dispatch(expandNotifications(options));
   }, 300, { leading: true });
 
   handleScrollToTop = debounce(() => {

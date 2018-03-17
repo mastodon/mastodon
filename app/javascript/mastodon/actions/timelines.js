@@ -136,7 +136,7 @@ export function refreshTimelineFail(timeline, error, skipLoading) {
   };
 };
 
-export function expandTimeline(timelineId, path, params = {}) {
+export function expandTimeline(timelineId, path, { passive = false, params = {} } = {}) {
   return (dispatch, getState) => {
     const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
     const ids      = timeline.get('items', ImmutableList());
@@ -154,18 +154,18 @@ export function expandTimeline(timelineId, path, params = {}) {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null));
     }).catch(error => {
-      dispatch(expandTimelineFail(timelineId, error));
+      dispatch(expandTimelineFail(timelineId, error, { passive }));
     });
   };
 };
 
-export const expandHomeTimeline         = () => expandTimeline('home', '/api/v1/timelines/home');
-export const expandPublicTimeline       = () => expandTimeline('public', '/api/v1/timelines/public');
-export const expandCommunityTimeline    = () => expandTimeline('community', '/api/v1/timelines/public', { local: true });
-export const expandAccountTimeline      = (accountId, withReplies) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies });
-export const expandAccountMediaTimeline = accountId => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
-export const expandHashtagTimeline      = hashtag => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
-export const expandListTimeline         = id => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
+export const expandHomeTimeline         = options => expandTimeline('home', '/api/v1/timelines/home', options);
+export const expandPublicTimeline       = options => expandTimeline('public', '/api/v1/timelines/public', options);
+export const expandCommunityTimeline    = ({ passive } = {}) => expandTimeline('community', '/api/v1/timelines/public', { passive, params: { local: true } });
+export const expandAccountTimeline      = (accountId, { passive, withReplies } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { passive, params: { exclude_replies: !withReplies } });
+export const expandAccountMediaTimeline = (accountId, options) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { options, params: { only_media: true } });
+export const expandHashtagTimeline      = (hashtag, options) => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`, options);
+export const expandListTimeline         = (id, options) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, options);
 
 export function expandTimelineRequest(timeline) {
   return {
@@ -183,11 +183,12 @@ export function expandTimelineSuccess(timeline, statuses, next) {
   };
 };
 
-export function expandTimelineFail(timeline, error) {
+export function expandTimelineFail(timeline, error, options) {
   return {
     type: TIMELINE_EXPAND_FAIL,
     timeline,
     error,
+    passive: options && options.passive,
   };
 };
 

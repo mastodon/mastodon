@@ -70,8 +70,8 @@ export default class PublicTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandPublicTimeline());
+  handleLoadMore = options => {
+    this.props.dispatch(expandPublicTimeline(options));
   }
 
   render () {

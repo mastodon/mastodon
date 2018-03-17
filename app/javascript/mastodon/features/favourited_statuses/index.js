@@ -62,8 +62,8 @@ export default class Favourites extends ImmutablePureComponent {
     this.column = c;
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandFavouritedStatuses());
+  handleLoadMore = debounce(options => {
+    this.props.dispatch(expandFavouritedStatuses(options));
   }, 300, { leading: true })
 
   render () {

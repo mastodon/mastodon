@@ -55,8 +55,8 @@ export default class HomeTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandHomeTimeline());
+  handleLoadMore = options => {
+    this.props.dispatch(expandHomeTimeline(options));
   }
 
   componentDidMount () {

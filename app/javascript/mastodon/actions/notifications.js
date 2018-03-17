@@ -123,7 +123,7 @@ export function refreshNotificationsFail(error, skipLoading) {
   };
 };
 
-export function expandNotifications() {
+export function expandNotifications(options) {
   return (dispatch, getState) => {
     const items  = getState().getIn(['notifications', 'items'], ImmutableList());
 
@@ -144,7 +144,7 @@ export function expandNotifications() {
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
     }).catch(error => {
-      dispatch(expandNotificationsFail(error));
+      dispatch(expandNotificationsFail(error, options));
     });
   };
 };
@@ -165,9 +165,10 @@ export function expandNotificationsSuccess(notifications, next) {
   };
 };
 
-export function expandNotificationsFail(error) {
+export function expandNotificationsFail(error, options) {
   return {
     type: NOTIFICATIONS_EXPAND_FAIL,
+    passive: options && options.passive,
     error,
   };
 };

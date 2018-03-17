@@ -1,31 +1,46 @@
+import { debounce } from 'lodash';
 import { showAlert } from '../actions/alerts';
 
 const defaultFailSuffix = 'FAIL';
+let lastOnLine = true;
+
+addEventListener('online', () => lastOnLine = true);
 
 export default function errorsMiddleware() {
-  return ({ dispatch }) => next => action => {
-    if (action.type && !action.skipAlert) {
-      const isFail = new RegExp(`${defaultFailSuffix}$`, 'g');
+  return ({ dispatch }) => {
+    const alertOffline = debounce(() => dispatch(showAlert('Zzz…', 'Device is offline')), 1024, { leading: true });
 
-      if (action.type.match(isFail)) {
-        if (action.error.response) {
-          const { data, status, statusText } = action.error.response;
+    return next => action => {
+      if (action.type && !action.skipAlert) {
+        const isFail = new RegExp(`${defaultFailSuffix}$`, 'g');
 
-          let message = statusText;
-          let title   = `${status}`;
+        if (action.type.match(isFail)) {
+          if (action.error.response) {
+            const { data, status, statusText } = action.error.response;
 
-          if (data.error) {
-            message = data.error;
+            let message = statusText;
+            let title   = `${status}`;
+
+            if (data.error) {
+              message = data.error;
+            }
+
+            dispatch(showAlert(title, message));
+          } else {
+            if (navigator.onLine) {
+              dispatch(showAlert('Oops!', 'An unexpected error occurred.'));
+            } else if (lastOnLine) {
+              lastOnLine = false;
+              alertOffline.cancel();
+              alertOffline();
+            } else if (!action.passive) {
+              alertOffline();
+            }
           }
-
-          dispatch(showAlert(title, message));
-        } else {
-          console.error(action.error);
-          dispatch(showAlert('Oops!', 'An unexpected error occurred.'));
         }
       }
-    }
 
-    return next(action);
+      return next(action);
+    };
   };
 };

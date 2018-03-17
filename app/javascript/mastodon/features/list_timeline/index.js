@@ -83,9 +83,9 @@ export default class ListTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
+  handleLoadMore = options => {
     const { id } = this.props.params;
-    this.props.dispatch(expandListTimeline(id));
+    this.props.dispatch(expandListTimeline(id, options));
   }
 
   handleEditClick = () => {

@@ -81,8 +81,8 @@ export default class HashtagTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandHashtagTimeline(this.props.params.id));
+  handleLoadMore = options => {
+    this.props.dispatch(expandHashtagTimeline(this.props.params.id, options));
   }
 
   render () {

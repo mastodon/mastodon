@@ -46,8 +46,8 @@ export default class CommunityTimeline extends React.PureComponent {
     }
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandCommunityTimeline());
+  handleLoadMore = options => {
+    this.props.dispatch(expandCommunityTimeline(options));
   }
 
   render () {
