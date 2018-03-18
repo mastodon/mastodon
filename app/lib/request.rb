@@ -96,8 +96,8 @@ class Request
       def open(host, *args)
         outer_e = nil
         Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
-          raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
           begin
+            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
             return super address.ip_address, *args
           rescue => e
             outer_e = e
