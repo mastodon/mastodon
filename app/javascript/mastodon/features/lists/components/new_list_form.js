@@ -11,8 +11,8 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  value: state.getIn(['listEditor', 'title']),
-  disabled: state.getIn(['listEditor', 'isSubmitting']),
+  value: state.listEditor.get('title'),
+  disabled: state.listEditor.get('isSubmitting'),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -7,9 +7,9 @@ import { debounce } from 'lodash';
 import { me } from '../../../initial_state';
 
 const makeGetStatusIds = () => createSelector([
-  (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
-  (state, { type }) => state.getIn(['timelines', type, 'items'], ImmutableList()),
-  (state)           => state.get('statuses'),
+  (state, { type }) => state.settings.get(type, ImmutableMap()),
+  (state, { type }) => state.timelines.get([type, 'items'], ImmutableList()),
+  (state)           => state.statuses,
 ], (columnSettings, statusIds, statuses) => {
   const rawRegex = columnSettings.getIn(['regex', 'body'], '').trim();
   let regex      = null;
@@ -46,9 +46,9 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { timelineId }) => ({
     statusIds: getStatusIds(state, { type: timelineId }),
-    isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
-    isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
-    hasMore: !!state.getIn(['timelines', timelineId, 'next']),
+    isLoading: state.timelines.getIn([timelineId, 'isLoading'], true),
+    isPartial: state.timelines.getIn([timelineId, 'isPartial'], false),
+    hasMore: !!state.timelines.getIn([timelineId, 'next']),
   });
 
   return mapStateToProps;

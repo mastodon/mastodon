@@ -16,9 +16,9 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'favourites', 'items']),
-  isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
-  hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
+  statusIds: state.status_lists.getIn(['favourites', 'items']),
+  isLoading: state.status_lists.getIn(['favourites', 'isLoading'], true),
+  hasMore: !!state.status_lists.getIn(['favourites', 'next']),
 });
 
 @connect(mapStateToProps)

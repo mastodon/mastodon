@@ -6,7 +6,7 @@ export const STATUS_CARD_FETCH_FAIL    = 'STATUS_CARD_FETCH_FAIL';
 
 export function fetchStatusCard(id) {
   return (dispatch, getState) => {
-    if (getState().getIn(['cards', id], null) !== null) {
+    if (getState().cards.get(id, null) !== null) {
       return;
     }
 

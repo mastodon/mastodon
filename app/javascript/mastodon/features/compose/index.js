@@ -25,8 +25,8 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  columns: state.getIn(['settings', 'columns']),
-  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
+  columns: state.settings.get('columns'),
+  showSearch: state.search.get('submitted') && !state.search.get('hidden'),
 });
 
 @connect(mapStateToProps)

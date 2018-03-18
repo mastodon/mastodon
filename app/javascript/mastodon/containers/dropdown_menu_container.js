@@ -5,9 +5,9 @@ import DropdownMenu from '../components/dropdown_menu';
 import { isUserTouching } from '../is_mobile';
 
 const mapStateToProps = state => ({
-  isModalOpen: state.get('modal').modalType === 'ACTIONS',
-  dropdownPlacement: state.getIn(['dropdown_menu', 'placement']),
-  openDropdownId: state.getIn(['dropdown_menu', 'openId']),
+  isModalOpen: state.modal.modalType === 'ACTIONS',
+  dropdownPlacement: state.dropdown_menu.get('placement'),
+  openDropdownId: state.dropdown_menu.get('openId'),
 });
 
 const mapDispatchToProps = (dispatch, { status, items }) => ({

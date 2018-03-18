@@ -3,7 +3,7 @@ import { changeSetting, saveSettings } from './settings';
 
 export function showOnboardingOnce() {
   return (dispatch, getState) => {
-    const alreadySeen = getState().getIn(['settings', 'onboarded']);
+    const alreadySeen = getState().settings.get('onboarded');
 
     if (!alreadySeen) {
       dispatch(openModal('ONBOARDING'));

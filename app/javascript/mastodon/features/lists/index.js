@@ -18,7 +18,7 @@ const messages = defineMessages({
   subheading: { id: 'lists.subheading', defaultMessage: 'Your lists' },
 });
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => {
+const getOrderedLists = createSelector([state => state.lists], lists => {
   if (!lists) {
     return lists;
   }

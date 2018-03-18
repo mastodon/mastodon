@@ -38,8 +38,8 @@ const unescapeHTML = (html) => {
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
-    const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
-    const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
+    const showAlert = getState().settings.getIn(['notifications', 'alerts', notification.type], true);
+    const playSound = getState().settings.getIn(['notifications', 'sounds', notification.type], true);
 
     dispatch({
       type: NOTIFICATIONS_UPDATE,
@@ -65,12 +65,12 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
   };
 };
 
-const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
+const excludeTypesFromSettings = state => state.settings.getIn(['notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
 
 export function refreshNotifications() {
   return (dispatch, getState) => {
     const params = {};
-    const ids    = getState().getIn(['notifications', 'items']);
+    const ids    = getState().notifications.get('items');
 
     let skipLoading = false;
 
@@ -78,7 +78,7 @@ export function refreshNotifications() {
       params.since_id = ids.first().get('id');
     }
 
-    if (getState().getIn(['notifications', 'loaded'])) {
+    if (getState().notifications.get('loaded')) {
       skipLoading = true;
     }
 
@@ -125,9 +125,9 @@ export function refreshNotificationsFail(error, skipLoading) {
 
 export function expandNotifications() {
   return (dispatch, getState) => {
-    const items  = getState().getIn(['notifications', 'items'], ImmutableList());
+    const items  = getState().notifications.get('items', ImmutableList());
 
-    if (getState().getIn(['notifications', 'isLoading']) || items.size === 0) {
+    if (getState().notifications.get('isLoading') || items.size === 0) {
       return;
     }
 

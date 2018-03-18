@@ -55,8 +55,8 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.params.statusId),
-    ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
-    descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
+    ancestorsIds: state.contexts.getIn(['ancestors', props.params.statusId]),
+    descendantsIds: state.contexts.getIn(['descendants', props.params.statusId]),
   });
 
   return mapStateToProps;

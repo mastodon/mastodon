@@ -172,9 +172,9 @@ PageSix.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  myAccount: state.getIn(['accounts', me]),
-  admin: state.getIn(['accounts', state.getIn(['meta', 'admin'])]),
-  domain: state.getIn(['meta', 'domain']),
+  myAccount: state.accounts.get(me),
+  admin: state.accounts.get(state.meta.get('admin')),
+  domain: state.meta.get('domain'),
 });
 
 @connect(mapStateToProps)

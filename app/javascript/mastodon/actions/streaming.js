@@ -14,7 +14,7 @@ const { messages } = getLocale();
 export function connectTimelineStream (timelineId, path, pollingRefresh = null) {
 
   return connectStream (path, pollingRefresh, (dispatch, getState) => {
-    const locale = getState().getIn(['meta', 'locale']);
+    const locale = getState().meta.get('locale');
     return {
       onConnect() {
         dispatch(connectTimeline(timelineId));

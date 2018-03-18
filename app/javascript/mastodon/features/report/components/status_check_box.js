@@ -27,8 +27,8 @@ export default class StatusCheckBox extends React.PureComponent {
     if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
 
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        const video = status.getIn(['media_attachments', 0]);
+      } else if (status.media_attachments.getIn([0, 'type']) === 'video') {
+        const video = status.media_attachments.get(0);
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >

@@ -4,7 +4,7 @@ import { me } from '../../../initial_state';
 
 const mapStateToProps = state => {
   return {
-    account: state.getIn(['accounts', me]),
+    account: state.accounts.get(me),
   };
 };
 

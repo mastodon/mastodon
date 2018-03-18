@@ -57,7 +57,7 @@ export function register () {
     dispatch(setBrowserSupport(supportsPushNotifications));
 
     if (me && !pushNotificationsSetting.get(me)) {
-      const alerts = getState().getIn(['push_notifications', 'alerts']);
+      const alerts = getState().push_notifications.get('alerts');
       if (alerts) {
         pushNotificationsSetting.set(me, { alerts: alerts });
       }
@@ -76,7 +76,7 @@ export function register () {
             // We have a subscription, check if it is still valid
             const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
             const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
-            const serverEndpoint = getState().getIn(['push_notifications', 'subscription', 'endpoint']);
+            const serverEndpoint = getState().push_notifications.get(['subscription', 'endpoint']);
 
             // If the VAPID public key did not change and the endpoint corresponds
             // to the endpoint saved in the backend, the subscription is valid
@@ -132,7 +132,7 @@ export function register () {
 
 export function saveSettings() {
   return (_, getState) => {
-    const state = getState().get('push_notifications');
+    const state = getState().push_notifications;
     const subscription = state.get('subscription');
     const alerts = state.get('alerts');
     const data = { alerts };

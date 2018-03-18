@@ -17,8 +17,8 @@ import ColumnBackButton from '../../components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'following', props.params.accountId, 'items']),
-  hasMore: !!state.getIn(['user_lists', 'following', props.params.accountId, 'next']),
+  accountIds: state.user_lists.getIn(['following', props.params.accountId, 'items']),
+  hasMore: !!state.user_lists.getIn(['following', props.params.accountId, 'next']),
 });
 
 @connect(mapStateToProps)

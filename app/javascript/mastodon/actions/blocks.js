@@ -44,7 +44,7 @@ export function fetchBlocksFail(error) {
 
 export function expandBlocks() {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'blocks', 'next']);
+    const url = getState().user_lists.getIn(['blocks', 'next']);
 
     if (url === null) {
       return;

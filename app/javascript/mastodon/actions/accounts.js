@@ -68,7 +68,7 @@ export function fetchAccount(id) {
   return (dispatch, getState) => {
     dispatch(fetchRelationships([id]));
 
-    if (getState().getIn(['accounts', id], null) !== null) {
+    if (getState().accounts.get(id, null) !== null) {
       return;
     }
 
@@ -107,7 +107,7 @@ export function fetchAccountFail(id, error) {
 
 export function followAccount(id, reblogs = true) {
   return (dispatch, getState) => {
-    const alreadyFollowing = getState().getIn(['relationships', id, 'following']);
+    const alreadyFollowing = getState().relationships.getIn([id, 'following']);
     dispatch(followAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/follow`, { reblogs }).then(response => {
@@ -123,7 +123,7 @@ export function unfollowAccount(id) {
     dispatch(unfollowAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/unfollow`).then(response => {
-      dispatch(unfollowAccountSuccess(response.data, getState().get('statuses')));
+      dispatch(unfollowAccountSuccess(response.data, getState().statuses));
     }).catch(error => {
       dispatch(unfollowAccountFail(error));
     });
@@ -180,7 +180,7 @@ export function blockAccount(id) {
 
     api(getState).post(`/api/v1/accounts/${id}/block`).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
-      dispatch(blockAccountSuccess(response.data, getState().get('statuses')));
+      dispatch(blockAccountSuccess(response.data, getState().statuses));
     }).catch(error => {
       dispatch(blockAccountFail(id, error));
     });
@@ -249,7 +249,7 @@ export function muteAccount(id, notifications) {
 
     api(getState).post(`/api/v1/accounts/${id}/mute`, { notifications }).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
-      dispatch(muteAccountSuccess(response.data, getState().get('statuses')));
+      dispatch(muteAccountSuccess(response.data, getState().statuses));
     }).catch(error => {
       dispatch(muteAccountFail(id, error));
     });
@@ -353,7 +353,7 @@ export function fetchFollowersFail(id, error) {
 
 export function expandFollowers(id) {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'followers', id, 'next']);
+    const url = getState().user_lists.getIn(['followers', id, 'next']);
 
     if (url === null) {
       return;
@@ -437,7 +437,7 @@ export function fetchFollowingFail(id, error) {
 
 export function expandFollowing(id) {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'following', id, 'next']);
+    const url = getState().user_lists.getIn(['following', id, 'next']);
 
     if (url === null) {
       return;
@@ -482,7 +482,7 @@ export function expandFollowingFail(id, error) {
 
 export function fetchRelationships(accountIds) {
   return (dispatch, getState) => {
-    const loadedRelationships = getState().get('relationships');
+    const loadedRelationships = getState().relationships;
     const newAccountIds = accountIds.filter(id => loadedRelationships.get(id, null) === null);
 
     if (newAccountIds.length === 0) {
@@ -557,7 +557,7 @@ export function fetchFollowRequestsFail(error) {
 
 export function expandFollowRequests() {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'follow_requests', 'next']);
+    const url = getState().user_lists.getIn(['follow_requests', 'next']);
 
     if (url === null) {
       return;

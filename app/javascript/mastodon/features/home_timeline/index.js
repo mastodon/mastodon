@@ -15,8 +15,8 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
-  isPartial: state.getIn(['timelines', 'home', 'isPartial'], false),
+  hasUnread: state.timelines.getIn(['home', 'unread']) > 0,
+  isPartial: state.timelines.getIn(['home', 'isPartial'], false),
 });
 
 @connect(mapStateToProps)

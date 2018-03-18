@@ -3,7 +3,7 @@ import ColumnSettings from '../components/column_settings';
 import { changeSetting } from '../../../actions/settings';
 
 const mapStateToProps = state => ({
-  settings: state.getIn(['settings', 'community']),
+  settings: state.settings.get('community'),
 });
 
 const mapDispatchToProps = dispatch => ({

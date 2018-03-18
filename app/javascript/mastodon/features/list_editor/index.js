@@ -11,9 +11,9 @@ import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 
 const mapStateToProps = state => ({
-  title: state.getIn(['listEditor', 'title']),
-  accountIds: state.getIn(['listEditor', 'accounts', 'items']),
-  searchAccountIds: state.getIn(['listEditor', 'suggestions', 'items']),
+  title: state.listEditor.get('title'),
+  accountIds: state.listEditor.getIn(['accounts', 'items']),
+  searchAccountIds: state.listEditor.getIn(['suggestions', 'items']),
 });
 
 const mapDispatchToProps = dispatch => ({

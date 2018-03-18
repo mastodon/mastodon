@@ -3,7 +3,7 @@ import ColumnSettings from '../../community_timeline/components/column_settings'
 import { changeSetting } from '../../../actions/settings';
 
 const mapStateToProps = state => ({
-  settings: state.getIn(['settings', 'public']),
+  settings: state.settings.get('public'),
 });
 
 const mapDispatchToProps = dispatch => ({

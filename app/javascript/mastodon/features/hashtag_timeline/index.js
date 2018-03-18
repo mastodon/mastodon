@@ -13,7 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
 
 const mapStateToProps = (state, props) => ({
-  hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
+  hasUnread: state.timelines.getIn([`hashtag:${props.params.id}`, 'unread']) > 0,
 });
 
 @connect(mapStateToProps)

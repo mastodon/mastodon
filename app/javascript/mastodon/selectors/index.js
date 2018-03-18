@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import { List as ImmutableList } from 'immutable';
 
-const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
-const getAccountCounters     = (state, id) => state.getIn(['accounts_counters', id], null);
-const getAccountRelationship = (state, id) => state.getIn(['relationships', id], null);
-const getAccountMoved        = (state, id) => state.getIn(['accounts', state.getIn(['accounts', id, 'moved'])]);
+const getAccountBase         = (state, id) => state.accounts.get(id, null);
+const getAccountCounters     = (state, id) => state.accounts_counters.get(id, null);
+const getAccountRelationship = (state, id) => state.relationships.get(id, null);
+const getAccountMoved        = (state, id) => state.accounts.get(state.accounts.getIn([id, 'moved']));
 
 export const makeGetAccount = () => {
   return createSelector([getAccountBase, getAccountCounters, getAccountRelationship, getAccountMoved], (base, counters, relationship, moved) => {
@@ -22,10 +22,10 @@ export const makeGetAccount = () => {
 export const makeGetStatus = () => {
   return createSelector(
     [
-      (state, id) => state.getIn(['statuses', id]),
-      (state, id) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
-      (state, id) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
-      (state, id) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
+      (state, id) => state.statuses.get(id),
+      (state, id) => state.statuses.get(state.statuses.getIn([id, 'reblog'])),
+      (state, id) => state.accounts.get(state.statuses.getIn([id, 'account'])),
+      (state, id) => state.accounts.get(state.statuses.getIn([state.statuses.getIn([id, 'reblog']), 'account'])),
     ],
 
     (statusBase, statusReblog, accountBase, accountReblog) => {
@@ -47,7 +47,7 @@ export const makeGetStatus = () => {
   );
 };
 
-const getAlertsBase = state => state.get('alerts');
+const getAlertsBase = state => state.alerts;
 
 export const getAlerts = createSelector([getAlertsBase], (base) => {
   let arr = [];
@@ -70,15 +70,15 @@ export const getAlerts = createSelector([getAlertsBase], (base) => {
 export const makeGetNotification = () => {
   return createSelector([
     (_, base)             => base,
-    (state, _, accountId) => state.getIn(['accounts', accountId]),
+    (state, _, accountId) => state.accounts.get(accountId),
   ], (base, account) => {
     return base.set('account', account);
   });
 };
 
 export const getAccountGallery = createSelector([
-  (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], ImmutableList()),
-  state       => state.get('statuses'),
+  (state, id) => state.timelines.getIn([`account:${id}:media`, 'items'], ImmutableList()),
+  state       => state.statuses,
 ], (statusIds, statuses) => {
   let medias = ImmutableList();
 

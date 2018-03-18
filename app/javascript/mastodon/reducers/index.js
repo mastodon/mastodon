@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux-immutable';
+import { combineReducers } from 'redux';
 import dropdown_menu from './dropdown_menu';
 import timelines from './timelines';
 import meta from './meta';

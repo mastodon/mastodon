@@ -10,7 +10,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  value: state.getIn(['listEditor', 'suggestions', 'value']),
+  value: state.listEditor.getIn(['suggestions', 'value']),
 });
 
 const mapDispatchToProps = dispatch => ({
