@@ -693,6 +693,16 @@ sk:
     enable: Povoliť
     generate_recovery_codes: Vygeneruj zálohové kódy
     setup: Nastavenie
+    enabled: Dvoj-faktorové overovanie je povolené
+    enabled_success: Dvoj-faktorové overovanie bolo úspešne povolené
+    lost_recovery_codes: Zálohové kódy ti umožnia dostať sa k svojmu účtu ak stratíš
+      telefón. Pokiaľ si stratila svoje zálohové kódy, môžeš si ich tu znovu vygenerovať.
+      Tvoje staré zálohové kódy budú zneplatnené.
+    manual_instructions: 'Pokiaľ nemôžeš oskenovať daný QR kód, a potrebuješ ho zadať
+      ručne, tu je tajomstvo v textovom formáte:'
+    recovery_codes: Zálohuj kódy pre obnovu
+    recovery_codes_regenerated: Zálohové kódy boli úspešne zvova vygenerované
+    wrong_code: Zadaný kód bol neplatný. Je serverový čas a čas na zariadení správny?
   user_mailer:
     backup_ready:
       explanation: Vyžiadal/a si si úplnú zálohu tvojho Mastodon účtu. Táto záloha
@@ -723,6 +733,12 @@ sk:
       tip_following: Správcu servera následuješ automaticky. Môžeš ale nájsť mnoho
         iných zaujímavých ľudí ak prezrieš tak lokálnu, ako aj globálne federovanú
         os.
+      edit_profile_step: Profil si môžeš prispôsobiť nahratím portrétu a hlavičky,
+        môžeš upraviť svoje meno a viac. Pokiaľ chceš preverovať nových následovateľov
+        predtým než ťa budú môcť sledovať, môžeš uzamknúť svoj účet.
+      tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice.
+        Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje
+        úplne celistvá.
   users:
     invalid_email: Emailová adresa je neplatná
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
