@@ -394,22 +394,24 @@ export default class Status extends ImmutablePureComponent {
           tabIndex='0'
         >
           <header className='status__info'>
-            {prepend && account ? (
-              <StatusPrepend
-                type={prepend}
-                account={account}
-                parseClick={parseClick}
-                notificationId={this.props.notificationId}
-              />
-            ) : null}
-            {!muted ? (
-              <StatusHeader
-                status={status}
-                friend={account}
-                collapsed={isExpanded === false}
-                parseClick={parseClick}
-              />
-            ) : null}
+            <span>
+              {prepend && account ? (
+                <StatusPrepend
+                  type={prepend}
+                  account={account}
+                  parseClick={parseClick}
+                  notificationId={this.props.notificationId}
+                />
+              ) : null}
+              {!muted ? (
+                <StatusHeader
+                  status={status}
+                  friend={account}
+                  collapsed={isExpanded === false}
+                  parseClick={parseClick}
+                />
+              ) : null}
+            </span>
             <StatusIcons
               status={status}
               mediaIcon={mediaIcon}

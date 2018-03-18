@@ -294,17 +294,15 @@
 }
 
 .status__info {
-  position: relative;
+  display: flex;
   padding: 2px 0 5px;
   font-size: 15px;
   line-height: 24px;
 }
 
 .status__info__icons {
-  position: absolute;
+  margin-left: auto;
   color: lighten($ui-base-color, 26%);
-  top: 0;
-  right: 0;
 
   .status__visibility-icon {
     padding-left: 6px;
