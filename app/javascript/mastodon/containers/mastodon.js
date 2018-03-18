@@ -1,4 +1,6 @@
 import React from 'react';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
@@ -18,6 +20,8 @@ addLocaleData(localeData);
 export const store = configureStore();
 const hydrateAction = hydrateStore(initialState);
 store.dispatch(hydrateAction);
+
+const persistor = persistStore(store);
 
 export default class Mastodon extends React.PureComponent {
 
@@ -57,11 +61,13 @@ export default class Mastodon extends React.PureComponent {
     return (
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
-          <BrowserRouter basename='/web'>
-            <ScrollContext>
-              <Route path='/' component={UI} />
-            </ScrollContext>
-          </BrowserRouter>
+          <PersistGate persistor={persistor}>
+            <BrowserRouter basename='/web'>
+              <ScrollContext>
+                <Route path='/' component={UI} />
+              </ScrollContext>
+            </BrowserRouter>
+          </PersistGate>
         </Provider>
       </IntlProvider>
     );
