@@ -61,7 +61,7 @@ describe Request do
       end
 
       it 'raises Mastodon::ValidationError' do
-        allow(IPSocket).to receive(:getaddress).with('example.com').and_return('0.0.0.0')
+        allow(Addrinfo).to receive(:foreach).with('example.com', nil, nil, :SOCK_STREAM).and_return([Addrinfo.tcp('0.0.0.0', nil), Addrinfo.tcp('2001:db8::face', nil)])
         expect{ subject.perform }.to raise_error Mastodon::ValidationError
       end
     end
