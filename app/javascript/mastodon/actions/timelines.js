@@ -1,3 +1,4 @@
+import { importFetchedStatus, importFetchedStatuses } from './importer';
 import api, { getLinks } from '../api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
@@ -43,6 +44,8 @@ export function updateTimeline(timeline, status) {
         parent = getState().getIn(['statuses', parent.get('in_reply_to_id')]);
       }
     }
+
+    dispatch(importFetchedStatus(status));
 
     dispatch({
       type: TIMELINE_UPDATE,
@@ -109,6 +112,7 @@ export function refreshTimeline(timelineId, path, params = {}) {
         dispatch(refreshTimelineSuccess(timelineId, [], skipLoading, null, true));
       } else {
         const next = getLinks(response).refs.find(link => link.rel === 'next');
+        dispatch(importFetchedStatuses(response.data));
         dispatch(refreshTimelineSuccess(timelineId, response.data, skipLoading, next ? next.uri : null, false));
       }
     }).catch(error => {
@@ -152,6 +156,7 @@ export function expandTimeline(timelineId, path, params = {}) {
 
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null));
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error));

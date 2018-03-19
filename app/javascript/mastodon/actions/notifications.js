@@ -2,6 +2,12 @@ import api, { getLinks } from '../api';
 import { List as ImmutableList } from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
+import {
+  importFetchedAccount,
+  importFetchedAccounts,
+  importFetchedStatus,
+  importFetchedStatuses,
+} from './importer';
 import { defineMessages } from 'react-intl';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
@@ -41,11 +47,12 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
     const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
 
+    dispatch(importFetchedAccount(notification.account));
+    dispatch(importFetchedStatus(notification.status));
+
     dispatch({
       type: NOTIFICATIONS_UPDATE,
       notification,
-      account: notification.account,
-      status: notification.status,
       meta: playSound ? { sound: 'boop' } : undefined,
     });
 
@@ -89,6 +96,9 @@ export function refreshNotifications() {
     api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
+      dispatch(importFetchedAccounts(response.data.map(item => item.account)));
+      dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+
       dispatch(refreshNotificationsSuccess(response.data, skipLoading, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
     }).catch(error => {
@@ -108,8 +118,6 @@ export function refreshNotificationsSuccess(notifications, skipLoading, next) {
   return {
     type: NOTIFICATIONS_REFRESH_SUCCESS,
     notifications,
-    accounts: notifications.map(item => item.account),
-    statuses: notifications.map(item => item.status).filter(status => !!status),
     skipLoading,
     next,
   };
@@ -141,6 +149,10 @@ export function expandNotifications() {
 
     api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data.map(item => item.account)));
+      dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
     }).catch(error => {
@@ -159,8 +171,6 @@ export function expandNotificationsSuccess(notifications, next) {
   return {
     type: NOTIFICATIONS_EXPAND_SUCCESS,
     notifications,
-    accounts: notifications.map(item => item.account),
-    statuses: notifications.map(item => item.status).filter(status => !!status),
     next,
   };
 };
