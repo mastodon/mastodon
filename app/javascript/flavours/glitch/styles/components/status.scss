@@ -290,7 +290,6 @@
 .status__info__account .status__display-name {
   display: block;
   max-width: 100%;
-  padding-right: 25px;
 }
 
 .status__info {
@@ -298,10 +297,16 @@
   padding: 2px 0 5px;
   font-size: 15px;
   line-height: 24px;
+
+  > span {
+    overflow: hidden;
+  }
 }
 
 .status__info__icons {
   margin-left: auto;
+  display: flex;
+  align-items: baseline;
   color: lighten($ui-base-color, 26%);
 
   .status__visibility-icon {
