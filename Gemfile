@@ -33,7 +33,9 @@ gem 'cld3', '~> 3.2.0'
 gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
-gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
+group :pam_authentication, optional: true do
+  gem 'devise_pam_authenticatable2', '~> 9.0'
+end
 gem 'net-ldap', '~> 0.10'
 gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'

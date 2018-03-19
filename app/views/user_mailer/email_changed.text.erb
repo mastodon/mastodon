@@ -4,6 +4,6 @@
 
 <%= t 'devise.mailer.email_changed.explanation' %>
 
-<%= @resource.unconfirmed_email %>
+<%= @resource.try(:unconfirmed_email) ? @resource.unconfirmed_email : @resource.email %>
 
 <%= t 'devise.mailer.email_changed.extra' %>
