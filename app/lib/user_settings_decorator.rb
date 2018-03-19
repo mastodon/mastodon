@@ -8,7 +8,7 @@ class UserSettingsDecorator
   end
 
   def update(settings)
-    @settings = settings
+    @settings = decoerce_values(settings)
     process_update
   end
 
@@ -92,6 +92,19 @@ class UserSettingsDecorator
 
   def coerce_values(params_hash)
     params_hash.transform_values { |x| x == '1' }
+  end
+
+  def decoerce_values(params_hash)
+    params_hash.transform_values do |x|
+      case x
+      when 'true'
+        '1'
+      when 'false'
+        '0'
+      else
+        x
+      end
+    end
   end
 
   def change?(key)
