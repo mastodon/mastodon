@@ -52,6 +52,8 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  devise :pam_authenticatable if ENV['PAM_ENABLED'] == 'true'
+
   devise :omniauthable
 
   belongs_to :account, inverse_of: :user
@@ -278,7 +280,11 @@ class User < ApplicationRecord
       if resource.blank?
         resource = new(email: attributes[:email])
         if Devise.check_at_sign && !resource[:email].index('@')
-          resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}"
+          if (email = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false))
+            resource[:email] = email
+          else
+            resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}"
+          end
         end
       end
       resource
