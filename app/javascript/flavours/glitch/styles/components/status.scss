@@ -289,21 +289,24 @@
 .status__info__account .status__display-name {
   display: block;
   max-width: 100%;
-  padding-right: 25px;
 }
 
 .status__info {
-  position: relative;
+  display: flex;
   padding: 2px 0 5px;
   font-size: 15px;
   line-height: 24px;
+
+  > span {
+    overflow: hidden;
+  }
 }
 
 .status__info__icons {
-  position: absolute;
+  margin-left: auto;
+  display: flex;
+  align-items: baseline;
   color: lighten($ui-base-color, 26%);
-  top: 0;
-  right: 0;
 
   .status__visibility-icon {
     padding-left: 6px;
