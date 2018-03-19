@@ -17,7 +17,11 @@ module Localized
   end
 
   def default_locale
-    request_locale || I18n.default_locale
+    if ENV['DEFAULT_LOCALE'].present?
+      I18n.default_locale
+    else
+      request_locale || I18n.default_locale
+    end
   end
 
   def request_locale
