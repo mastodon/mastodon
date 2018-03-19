@@ -34,6 +34,10 @@ export default class StatusPrepend extends React.PureComponent {
       </a>
     );
     switch (type) {
+    case 'featured':
+      return (
+        <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
+      );
     case 'reblogged_by':
       return (
         <FormattedMessage
@@ -67,11 +71,11 @@ export default class StatusPrepend extends React.PureComponent {
     const { type } = this.props;
 
     return !type ? null : (
-      <aside className={type === 'reblogged_by' ? 'status__prepend' : 'notification__message'}>
-        <div className={type === 'reblogged_by' ? 'status__prepend-icon-wrapper' : 'notification__favourite-icon-wrapper'}>
+      <aside className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend' : 'notification__message'}>
+        <div className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend-icon-wrapper' : 'notification__favourite-icon-wrapper'}>
           <i
             className={`fa fa-fw fa-${
-              type === 'favourite' ? 'star star-icon' : 'retweet'
+              type === 'favourite' ? 'star star-icon' : (type === 'featured' ? 'thumb-tack' : 'retweet')
             } status__prepend-icon`}
           />
         </div>
