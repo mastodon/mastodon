@@ -269,26 +269,22 @@ class User < ApplicationRecord
   end
 
   def self.pam_get_user(attributes = {})
-    if attributes[:email]
-      resource =
-        if Devise.check_at_sign && !attributes[:email].index('@')
-          joins(:account).find_by(accounts: { username: attributes[:email] })
-        else
-          find_by(email: attributes[:email])
-        end
-
-      if resource.blank?
-        resource = new(email: attributes[:email])
-        if Devise.check_at_sign && !resource[:email].index('@')
-          if (email = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false))
-            resource[:email] = email
-          else
-            resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}"
-          end
-        end
+    return nil unless attributes[:email]
+    resource =
+      if Devise.check_at_sign && !attributes[:email].index('@')
+        joins(:account).find_by(accounts: { username: attributes[:email] })
+      else
+        find_by(email: attributes[:email])
       end
-      resource
+
+    if resource.blank?
+      resource = new(email: attributes[:email])
+      if Devise.check_at_sign && !resource[:email].index('@')
+        resource[:email] = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false)
+        resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}" unless resource[:email]
+      end
     end
+    resource
   end
 
   def self.ldap_get_user(attributes = {})
