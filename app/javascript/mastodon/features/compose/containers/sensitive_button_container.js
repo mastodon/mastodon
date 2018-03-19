@@ -14,9 +14,9 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  visible: state.getIn(['compose', 'media_attachments']).size > 0,
-  active: state.getIn(['compose', 'sensitive']),
-  disabled: state.getIn(['compose', 'spoiler']),
+  visible: state.compose.get('media_attachments').size > 0,
+  active: state.compose.get('sensitive'),
+  disabled: state.compose.get('spoiler'),
 });
 
 const mapDispatchToProps = dispatch => ({

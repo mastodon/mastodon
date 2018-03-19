@@ -16,10 +16,10 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
   const path = withReplies ? `${accountId}:with_replies` : accountId;
 
   return {
-    statusIds: state.getIn(['timelines', `account:${path}`, 'items'], ImmutableList()),
-    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], ImmutableList()),
-    isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
-    hasMore: !!state.getIn(['timelines', `account:${path}`, 'next']),
+    statusIds: state.timelines.getIn([`account:${path}`, 'items'], ImmutableList()),
+    featuredStatusIds: withReplies ? ImmutableList() : state.timelines.getIn([`account:${accountId}:pinned`, 'items'], ImmutableList()),
+    isLoading: state.timelines.getIn([`account:${path}`, 'isLoading']),
+    hasMore: !!state.timelines.getIn([`account:${path}`, 'next']),
   };
 };
 

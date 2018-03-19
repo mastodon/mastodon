@@ -32,15 +32,15 @@ export function refreshTimelineSuccess(timeline, statuses, skipLoading, next, pa
 
 export function updateTimeline(timeline, status) {
   return (dispatch, getState) => {
-    const references = status.reblog ? getState().get('statuses').filter((item, itemId) => (itemId === status.reblog.id || item.get('reblog') === status.reblog.id)).map((_, itemId) => itemId) : [];
+    const references = status.reblog ? getState().statuses.filter((item, itemId) => (itemId === status.reblog.id || item.get('reblog') === status.reblog.id)).map((_, itemId) => itemId) : [];
     const parents = [];
 
     if (status.in_reply_to_id) {
-      let parent = getState().getIn(['statuses', status.in_reply_to_id]);
+      let parent = getState().statuses.get(status.in_reply_to_id);
 
       while (parent && parent.get('in_reply_to_id')) {
         parents.push(parent.get('id'));
-        parent = getState().getIn(['statuses', parent.get('in_reply_to_id')]);
+        parent = getState().statuses.get(parent.get('in_reply_to_id'));
       }
     }
 
@@ -63,9 +63,9 @@ export function updateTimeline(timeline, status) {
 
 export function deleteFromTimelines(id) {
   return (dispatch, getState) => {
-    const accountId  = getState().getIn(['statuses', id, 'account']);
-    const references = getState().get('statuses').filter(status => status.get('reblog') === id).map(status => [status.get('id'), status.get('account')]);
-    const reblogOf   = getState().getIn(['statuses', id, 'reblog'], null);
+    const accountId  = getState().statuses.getIn([id, 'account']);
+    const references = getState().statuses.filter(status => status.get('reblog') === id).map(status => [status.get('id'), status.get('account')]);
+    const reblogOf   = getState().statuses.getIn([id, 'reblog'], null);
 
     dispatch({
       type: TIMELINE_DELETE,
@@ -87,7 +87,7 @@ export function refreshTimelineRequest(timeline, skipLoading) {
 
 export function refreshTimeline(timelineId, path, params = {}) {
   return function (dispatch, getState) {
-    const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
+    const timeline = getState().timelines.get(timelineId, ImmutableMap());
 
     if (timeline.get('isLoading') || (timeline.get('online') && !timeline.get('isPartial'))) {
       return;
@@ -138,7 +138,7 @@ export function refreshTimelineFail(timeline, error, skipLoading) {
 
 export function expandTimeline(timelineId, path, params = {}) {
   return (dispatch, getState) => {
-    const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
+    const timeline = getState().timelines.get(timelineId, ImmutableMap());
     const ids      = timeline.get('items', ImmutableList());
 
     if (timeline.get('isLoading') || ids.size === 0) {

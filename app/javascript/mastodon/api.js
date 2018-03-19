@@ -21,7 +21,7 @@ ready(setCSRFHeader);
 
 export default getState => axios.create({
   headers: Object.assign(csrfHeader, getState ? {
-    'Authorization': `Bearer ${getState().getIn(['meta', 'access_token'], '')}`,
+    'Authorization': `Bearer ${getState().meta.get('access_token', '')}`,
   } : {}),
 
   transformResponse: [function (data) {

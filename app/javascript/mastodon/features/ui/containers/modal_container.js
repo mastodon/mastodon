@@ -3,8 +3,8 @@ import { closeModal } from '../../../actions/modal';
 import ModalRoot from '../components/modal_root';
 
 const mapStateToProps = state => ({
-  type: state.get('modal').modalType,
-  props: state.get('modal').modalProps,
+  type: state.modal.modalType,
+  props: state.modal.modalProps,
 });
 
 const mapDispatchToProps = dispatch => ({

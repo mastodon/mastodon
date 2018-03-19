@@ -8,8 +8,8 @@ import { me } from '../../../initial_state';
 const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\w*[a-zA-Z·]\w*)/i;
 
 const mapStateToProps = state => ({
-  needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
-  hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
+  needsLockWarning: state.compose.get('privacy') === 'private' && !state.accounts.getIn([me, 'locked']),
+  hashtagWarning: state.compose.get('privacy') !== 'public' && APPROX_HASHTAG_RE.test(state.compose.get('text')),
 });
 
 const WarningWrapper = ({ needsLockWarning, hashtagWarning }) => {

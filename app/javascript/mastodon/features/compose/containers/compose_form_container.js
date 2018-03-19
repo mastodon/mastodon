@@ -12,18 +12,18 @@ import {
 } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
-  text: state.getIn(['compose', 'text']),
-  suggestion_token: state.getIn(['compose', 'suggestion_token']),
-  suggestions: state.getIn(['compose', 'suggestions']),
-  spoiler: state.getIn(['compose', 'spoiler']),
-  spoiler_text: state.getIn(['compose', 'spoiler_text']),
-  privacy: state.getIn(['compose', 'privacy']),
-  focusDate: state.getIn(['compose', 'focusDate']),
-  preselectDate: state.getIn(['compose', 'preselectDate']),
-  is_submitting: state.getIn(['compose', 'is_submitting']),
-  is_uploading: state.getIn(['compose', 'is_uploading']),
-  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
-  anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+  text: state.compose.get('text'),
+  suggestion_token: state.compose.get('suggestion_token'),
+  suggestions: state.compose.get('suggestions'),
+  spoiler: state.compose.get('spoiler'),
+  spoiler_text: state.compose.get('spoiler_text'),
+  privacy: state.compose.get('privacy'),
+  focusDate: state.compose.get('focusDate'),
+  preselectDate: state.compose.get('preselectDate'),
+  is_submitting: state.compose.get('is_submitting'),
+  is_uploading: state.compose.get('is_uploading'),
+  showSearch: state.search.get('submitted') && !state.search.get('hidden'),
+  anyMedia: state.compose.get('media_attachments').size > 0,
 });
 
 const mapDispatchToProps = (dispatch) => ({

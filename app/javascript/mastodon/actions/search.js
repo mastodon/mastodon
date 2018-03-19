@@ -24,7 +24,7 @@ export function clearSearch() {
 
 export function submitSearch() {
   return (dispatch, getState) => {
-    const value = getState().getIn(['search', 'value']);
+    const value = getState().search.get('value');
 
     if (value.length === 0) {
       return;

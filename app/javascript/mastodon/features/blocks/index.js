@@ -16,7 +16,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['user_lists', 'blocks', 'items']),
+  accountIds: state.user_lists.getIn(['blocks', 'items']),
 });
 
 @connect(mapStateToProps)

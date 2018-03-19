@@ -48,7 +48,7 @@ export function fetchMutesFail(error) {
 
 export function expandMutes() {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'mutes', 'next']);
+    const url = getState().user_lists.getIn(['mutes', 'next']);
 
     if (url === null) {
       return;

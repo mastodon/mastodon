@@ -20,8 +20,8 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, props) => ({
-  list: state.getIn(['lists', props.params.id]),
-  hasUnread: state.getIn(['timelines', `list:${props.params.id}`, 'unread']) > 0,
+  list: state.lists.get(props.params.id),
+  hasUnread: state.timelines.getIn([`list:${props.params.id}`, 'unread']) > 0,
 });
 
 @connect(mapStateToProps)

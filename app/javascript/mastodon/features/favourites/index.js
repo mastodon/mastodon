@@ -11,7 +11,7 @@ import ColumnBackButton from '../../components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId]),
+  accountIds: state.user_lists.getIn(['favourited_by', props.params.statusId]),
 });
 
 @connect(mapStateToProps)

@@ -16,8 +16,8 @@ import LoadMore from '../../components/load_more';
 
 const mapStateToProps = (state, props) => ({
   medias: getAccountGallery(state, props.params.accountId),
-  isLoading: state.getIn(['timelines', `account:${props.params.accountId}:media`, 'isLoading']),
-  hasMore: !!state.getIn(['timelines', `account:${props.params.accountId}:media`, 'next']),
+  isLoading: state.timelines.getIn([`account:${props.params.accountId}:media`, 'isLoading']),
+  hasMore: !!state.timelines.getIn([`account:${props.params.accountId}:media`, 'next']),
 });
 
 @connect(mapStateToProps)

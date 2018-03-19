@@ -12,8 +12,8 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  settings: state.getIn(['settings', 'notifications']),
-  pushSettings: state.get('push_notifications'),
+  settings: state.settings.get('notifications'),
+  pushSettings: state.push_notifications,
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({

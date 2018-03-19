@@ -43,10 +43,10 @@ export function submitReport() {
     dispatch(submitReportRequest());
 
     api(getState).post('/api/v1/reports', {
-      account_id: getState().getIn(['reports', 'new', 'account_id']),
-      status_ids: getState().getIn(['reports', 'new', 'status_ids']),
-      comment: getState().getIn(['reports', 'new', 'comment']),
-      forward: getState().getIn(['reports', 'new', 'forward']),
+      account_id: getState().reports.getIn(['new', 'account_id']),
+      status_ids: getState().reports.getIn(['new', 'status_ids']),
+      comment: getState().reports.getIn(['new', 'comment']),
+      forward: getState().reports.getIn(['new', 'forward']),
     }).then(response => {
       dispatch(closeModal());
       dispatch(submitReportSuccess(response.data));

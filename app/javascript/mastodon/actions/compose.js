@@ -62,7 +62,7 @@ export function replyCompose(status, router) {
       status: status,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
+    if (!getState().compose.get('mounted')) {
       router.push('/statuses/new');
     }
   };
@@ -87,7 +87,7 @@ export function mentionCompose(account, router) {
       account: account,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
+    if (!getState().compose.get('mounted')) {
       router.push('/statuses/new');
     }
   };
@@ -95,8 +95,8 @@ export function mentionCompose(account, router) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
-    const status = getState().getIn(['compose', 'text'], '');
-    const media  = getState().getIn(['compose', 'media_attachments']);
+    const status = getState().compose.get('text', '');
+    const media  = getState().compose.get('media_attachments');
 
     if ((!status || !status.length) && media.size === 0) {
       return;
@@ -106,14 +106,14 @@ export function submitCompose() {
 
     api(getState).post('/api/v1/statuses', {
       status,
-      in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
+      in_reply_to_id: getState().compose.get('in_reply_to', null),
       media_ids: media.map(item => item.get('id')),
-      sensitive: getState().getIn(['compose', 'sensitive']),
-      spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
-      visibility: getState().getIn(['compose', 'privacy']),
+      sensitive: getState().compose.get('sensitive'),
+      spoiler_text: getState().compose.get('spoiler_text', ''),
+      visibility: getState().compose.get('privacy'),
     }, {
       headers: {
-        'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
+        'Idempotency-Key': getState().compose.get('idempotencyKey'),
       },
     }).then(function (response) {
       dispatch(insertIntoTagHistory(response.data.tags));
@@ -122,9 +122,9 @@ export function submitCompose() {
       // To make the app more responsive, immediately get the status into the columns
 
       const insertOrRefresh = (timelineId, refreshAction) => {
-        if (getState().getIn(['timelines', timelineId, 'online'])) {
+        if (getState().timelines.getIn([timelineId, 'online'])) {
           dispatch(updateTimeline(timelineId, { ...response.data }));
-        } else if (getState().getIn(['timelines', timelineId, 'loaded'])) {
+        } else if (getState().timelines.getIn([timelineId, 'loaded'])) {
           dispatch(refreshAction());
         }
       };
@@ -163,7 +163,7 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
-    if (getState().getIn(['compose', 'media_attachments']).size > 3) {
+    if (getState().compose.get(['media_attachments']).size > 3) {
       return;
     }
 
@@ -328,7 +328,7 @@ export function selectComposeSuggestion(position, token, suggestion) {
       completion    = suggestion;
       startPosition = position - 1;
     } else {
-      completion    = getState().getIn(['accounts', suggestion, 'acct']);
+      completion    = getState().accounts.suggestion.get('acct');
       startPosition = position;
     }
 
@@ -357,7 +357,7 @@ export function updateTagHistory(tags) {
 
 export function hydrateCompose() {
   return (dispatch, getState) => {
-    const me = getState().getIn(['meta', 'me']);
+    const me = getState().meta.get('me');
     const history = tagHistory.get(me);
 
     if (history !== null) {
@@ -369,8 +369,8 @@ export function hydrateCompose() {
 function insertIntoTagHistory(tags) {
   return (dispatch, getState) => {
     const state = getState();
-    const oldHistory = state.getIn(['compose', 'tagHistory']);
-    const me = state.getIn(['meta', 'me']);
+    const oldHistory = state.compose.get('tagHistory');
+    const me = state.meta.get('me');
     const names = tags.map(({ name }) => name);
     const intersectedOldHistory = oldHistory.filter(name => !names.includes(name));
 

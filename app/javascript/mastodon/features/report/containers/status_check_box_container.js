@@ -4,8 +4,8 @@ import { toggleStatusReport } from '../../../actions/reports';
 import { Set as ImmutableSet } from 'immutable';
 
 const mapStateToProps = (state, { id }) => ({
-  status: state.getIn(['statuses', id]),
-  checked: state.getIn(['reports', 'new', 'status_ids'], ImmutableSet()).includes(id),
+  status: state.statuses.get(id),
+  checked: state.reports.getIn(['new', 'status_ids'], ImmutableSet()).includes(id),
 });
 
 const mapDispatchToProps = (dispatch, { id }) => ({

@@ -11,9 +11,9 @@ import { toggleHideNotifications } from '../../../actions/mutes';
 
 const mapStateToProps = state => {
   return {
-    isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
-    account: state.getIn(['mutes', 'new', 'account']),
-    notifications: state.getIn(['mutes', 'new', 'notifications']),
+    isSubmitting: state.reports.getIn(['new', 'isSubmitting']),
+    account: state.mutes.getIn(['new', 'account']),
+    notifications: state.mutes.getIn(['new', 'notifications']),
   };
 };
 

@@ -54,9 +54,9 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  isComposing: state.getIn(['compose', 'is_composing']),
-  hasComposingText: state.getIn(['compose', 'text']) !== '',
-  dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
+  isComposing: state.compose.get('is_composing'),
+  hasComposingText: state.compose.get('text') !== '',
+  dropdownMenuIsOpen: state.dropdown_menu.get('openId') !== null,
 });
 
 const keyMap = {

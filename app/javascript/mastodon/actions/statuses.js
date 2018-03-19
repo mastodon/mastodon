@@ -36,7 +36,7 @@ export function fetchStatusRequest(id, skipLoading) {
 
 export function fetchStatus(id) {
   return (dispatch, getState) => {
-    const skipLoading = getState().getIn(['statuses', id], null) !== null;
+    const skipLoading = getState().statuses.get(id, null) !== null;
 
     dispatch(fetchContext(id));
     dispatch(fetchStatusCard(id));

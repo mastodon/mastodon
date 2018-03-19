@@ -32,10 +32,10 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  myAccount: state.getIn(['accounts', me]),
-  columns: state.getIn(['settings', 'columns']),
-  unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
-  unreadNotifications: state.getIn(['notifications', 'unread']),
+  myAccount: state.accounts.get(me),
+  columns: state.settings.get('columns'),
+  unreadFollowRequests: state.user_lists.getIn(['follow_requests', 'items'], ImmutableList()).size,
+  unreadNotifications: state.notifications.get('unread'),
 });
 
 const mapDispatchToProps = dispatch => ({
