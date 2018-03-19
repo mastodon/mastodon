@@ -4,6 +4,8 @@
     [
       "env",
       {
+        "debug": true,
+        "exclude": ["transform-async-to-generator", "transform-regenerator"],
         "loose": true,
         "modules": false,
         "targets": {
