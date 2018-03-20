@@ -94,9 +94,16 @@ class Request
   class Socket < TCPSocket
     class << self
       def open(host, *args)
-        address = IPSocket.getaddress(host)
-        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address)
-        super address, *args
+        outer_e = nil
+        Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
+          begin
+            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
+            return super address.ip_address, *args
+          rescue => e
+            outer_e = e
+          end
+        end
+        raise outer_e if outer_e
       end
 
       alias new open
