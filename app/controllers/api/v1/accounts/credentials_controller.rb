@@ -27,13 +27,11 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   def user_settings_params
     return nil unless params.key?(:source)
 
-    source_params = params.require(:source).permit(
-      :privacy,
-      :sensitive
-    )
+    source_params = params.require(:source)
+
     {
-      'setting_default_privacy' => source_params.key?(:privacy) ? source_params[:privacy] : object.user.setting_default_privacy,
-      'setting_default_sensitive' => source_params.key?(:sensitive) ? source_params[:sensitive] : object.user.setting_default_sensitive,
+      'setting_default_privacy' => source_params.fetch(:privacy, @account.user.setting_default_privacy),
+      'setting_default_sensitive' => source_params.fetch(:sensitive, @account.user.setting_default_sensitive),
     }
   end
 end
