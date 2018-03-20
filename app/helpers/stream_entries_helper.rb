@@ -40,16 +40,16 @@ module StreamEntriesHelper
       end
     end
 
-    text = attachments.to_a.reject { |_, value| value.zero? }.map { |key, value| t("statuses.attached.#{key}", count: value) }.join(' · ')
+    text = attachments.to_a.reject { |_, value| value.zero? }.map { |key, value| t("statuses.attached.#{key}", count: value, default: t("statuses.attached.#{key}", locale: :en)) }.join(' · ')
 
     return if text.blank?
 
-    t('statuses.attached.description', attached: text)
+    t('statuses.attached.description', attached: text, default: t('statuses.attached.description', locale: :en))
   end
 
   def status_text_summary(status)
     return if status.spoiler_text.blank?
-    t('statuses.content_warning', warning: status.spoiler_text)
+    t('statuses.content_warning', warning: status.spoiler_text, default: t('statuses.content_warning', locale: :en))
   end
 
   def status_description(status)
