@@ -12,7 +12,16 @@ class ActivityPub::DeliveryWorker
     @source_account = Account.find(source_account_id)
     @inbox_url      = inbox_url
 
-    perform_request
+    begin
+      perform_request
+    rescue HTTP::StateError => e
+      if @inbox_url.start_with?('https://')
+        raise e
+      else
+        @inbox_url = @inbox_url.gsub(/\Ahttp:\/\//, 'https://')
+        retry
+      end
+    end
 
     raise Mastodon::UnexpectedResponseError, @response unless response_successful?
 
