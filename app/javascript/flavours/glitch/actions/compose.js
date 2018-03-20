@@ -1,4 +1,5 @@
 import api from 'flavours/glitch/util/api';
+import { CancelToken } from 'axios';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from 'flavours/glitch/util/emoji/emoji_mart_search_light';
 import { useEmoji } from './emojis';
@@ -10,6 +11,8 @@ import {
   refreshPublicTimeline,
   refreshDirectTimeline,
 } from './timelines';
+
+let cancelFetchComposeSuggestionsAccounts;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_CYCLE_ELEFRIEND = 'COMPOSE_CYCLE_ELEFRIEND';
@@ -278,13 +281,22 @@ export function undoUploadCompose(media_id) {
 };
 
 export function clearComposeSuggestions() {
+  if (cancelFetchComposeSuggestionsAccounts) {
+    cancelFetchComposeSuggestionsAccounts();
+  }
   return {
     type: COMPOSE_SUGGESTIONS_CLEAR,
   };
 };
 
 const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => {
+  if (cancelFetchComposeSuggestionsAccounts) {
+    cancelFetchComposeSuggestionsAccounts();
+  }
   api(getState).get('/api/v1/accounts/search', {
+    cancelToken: new CancelToken(cancel => {
+      cancelFetchComposeSuggestionsAccounts = cancel;
+    }),
     params: {
       q: token.slice(1),
       resolve: false,
