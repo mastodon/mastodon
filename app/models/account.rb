@@ -221,7 +221,7 @@ class Account < ApplicationRecord
   end
 
   def to_param
-    username
+    username.gsub('.', '-')
   end
 
   def excluded_from_timeline_account_ids
