@@ -90,6 +90,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     include RoutingHelper
 
     attributes :type, :media_type, :url, :name
+    attribute :focal_point, if: :focal_point?
 
     def type
       'Document'
@@ -105,6 +106,14 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
 
     def url
       object.local? ? full_asset_url(object.file.url(:original, false)) : object.remote_url
+    end
+
+    def focal_point?
+      object.file.meta.is_a?(Hash) && object.file.meta['focus'].is_a?(Hash)
+    end
+
+    def focal_point
+      [object.file.meta['focus']['x'], object.file.meta['focus']['y']]
     end
   end
 

@@ -23,7 +23,6 @@ ja-IM:
       real_conversation_title: 本当のコミュニケーションのために
       within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
       within_reach_title: いつでも身近に
-    find_another_instance: 他のインスタンスを探す
     generic_description: "%{domain} は、Mastodon インスタンスの一つです"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
@@ -287,7 +286,7 @@ ja-IM:
       view: 表示
     settings:
       activity_api_enabled:
-        desc_html: ローカルに投稿されたあふぅ数、アクティブなユーザー数、週ごとの新規登録者数
+        desc_html: 週ごとのローカルに投稿されたあふぅ数、アクティブなユーザー数、新規登録者数
         title: ユーザーアクティビティに関する統計を公開する
       bootstrap_timeline_accounts:
         desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
@@ -295,6 +294,9 @@ ja-IM:
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先のユーザー名
+      hero:
+        desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、インスタンスのサムネイルが使用されます
+        title: ヒーローイメージ
       peers_api_enabled:
         desc_html: 連合内でこのインスタンスが遭遇したドメインの名前
         title: 接続しているインスタンスのリストを公開する
@@ -311,6 +313,9 @@ ja-IM:
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
+      show_known_fediverse_at_about_page:
+        desc_html: チェックを入れるとプレビュー欄に既知のライブステージ全てのトゥートを表示します。外すと楽屋のあふぅだけ表示します。
+        title: タイムラインプレビューにライブステージを表示する
       show_staff_badge:
         desc_html: ユーザーページにスタッフのバッジを表示します
         title: スタッフバッジを表示する
@@ -376,6 +381,7 @@ ja-IM:
   auth:
     agreement_html: 登録すると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">利用規約</a> に従うことに同意したことになります。
     change_password: セキュリティ
+    confirm_email: メールアドレスの確認
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
@@ -385,9 +391,16 @@ ja-IM:
     logout: ログアウト
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
+    or: または
+    or_log_in_with: または次のサービスでログイン
+    providers:
+      cas: CAS
+      saml: SAML
     register: 登録する
+    register_elsewhere: 他のインスタンスで新規登録
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
+    security: セキュリティ
     set_new_password: 新しいパスワード
   authorize_follow:
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
@@ -434,6 +447,13 @@ ja-IM:
       title: このページは正しくありません
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodonネイティブアプリ</a>を探すことができます。
   exports:
+    archive_takeout:
+      date: 日時
+      download: ダウンロード
+      hint_html: "<strong>あふぅとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。"
+      in_progress: 準備中...
+      request: アーカイブをリクエスト
+      size: 容量
     blocks: ブロック
     csv: CSV
     follows: フォロー
@@ -455,7 +475,7 @@ ja-IM:
     domain: ドメイン
     explanation_html: あなたのあふぅのプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベートあふぅは、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
     followers_count: フォロワー数
-    lock_link: 非公開アカウント
+    lock_link: 非公開アカウントにする
     purge: フォロワーから削除する
     success:
       one: 1個のドメインからソフトブロックするフォロワーを処理中...
@@ -561,7 +581,9 @@ ja-IM:
           trillion: T
           unit: ''
   pagination:
+    newer: 新しいあふぅ
     next: 次
+    older: 以前のあふぅ
     prev: 前
     truncate: "&hellip;"
   preferences:
@@ -596,12 +618,14 @@ ja-IM:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: 不明なブラウザ
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -757,12 +781,16 @@ ja-IM:
     setup: 初期設定
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
   user_mailer:
+    backup_ready:
+      explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
+      subject: アーカイブの準備ができました
+      title: アーカイブの取り出し
     welcome:
       edit_profile_action: プロフィールを設定
       edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを非公開にすることができます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
-      final_step: 'さあ始めましょう！たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #Pの自己紹介 ハッシュタグを使うといいかもしれません。'
+      final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #Pの自己紹介 ハッシュタグを使うといいかもしれません。'
       full_handle: あなたの正式なユーザー名
       full_handle_hint: これは別のインスタンスからフォローしてもらったりメッセージのやり取りをする際に、友達に伝えるといいでしょう。
       review_preferences_action: 設定の変更
@@ -774,8 +802,9 @@ ja-IM:
       tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じインスタンスにいる隣人のようなものです！
       tip_mobile_webapp: もしモバイル端末のブラウザで Mastodon をホーム画面に追加できる場合、プッシュ通知を受け取ることができます。それはまるでネイティブアプリのように動作します！
       tips: 豆知識
-      title: ようこそ、 %{name}さん!
+      title: ようこそ、%{name} ！
   users:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
+    seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'

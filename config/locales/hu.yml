@@ -23,7 +23,6 @@ hu:
       real_conversation_title: Valódi beszélgetésekre tervezve
       within_reach_body: A fejlesztőbarát API-nak köszönhetően számos iOS, Android és egyéb platformra írt alkalmazás teszi lehetővé, hogy bármikor, bárhonnan részt vehess a társalgásban.
       within_reach_title: Mindig elérhetőnek lenni
-    find_another_instance: További instanciák keresése
     generic_description: "%{domain} csak egy a számtalan szerver közül a föderációban"
     hosted_on: "%{domain} Mastodon instancia"
     learn_more: Tudj meg többet
@@ -159,7 +158,7 @@ hu:
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_custom_emoji: "%{name} frissítette az alábbi hangulatjelet: %{target}"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
-      title: Audit log
+      title: Audit napló
     custom_emojis:
       by_domain: Domain
       copied_msg: Sikeresen létrehoztuk a hangulatjel helyi másolatát
@@ -354,7 +353,6 @@ hu:
     your_token: Hozzáférési kulcsod
   auth:
     agreement_html: A feliratkozással elfogatod az <a href="%{rules_path}">instancia szabályzatát</a> és a <a href="%{terms_path}">felhasználási feltételeket</a>.
-    change_password: Biztonság
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
@@ -367,6 +365,7 @@ hu:
     register: Regisztráció
     resend_confirmation: Megerősítési lépések újraküldése
     reset_password: Jelszó visszaállítása
+    security: Biztonság
     set_new_password: Új jelszó beállítása
   authorize_follow:
     error: Hiba történt a távoli felhasználó keresésekor
@@ -432,7 +431,7 @@ hu:
     unlocked_warning_title: A fiókod jelenleg nem privát
   generic:
     changes_saved_msg: Változások sikeresen elmentve!
-    powered_by: powered by %{link}
+    powered_by: működteti a %{link}
     save_changes: Változások mentése
     validation_errors:
       one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
@@ -634,6 +633,76 @@ hu:
     reblogged: reblogolt
     sensitive_content: Szenzitív tartalom
   terms:
+    body_html: |
+      <h2>Adatvédelmi és adatkezelési nyilatkozat</h2>
+
+      <h3 id="collect">Milyen információt gyűjtünk?</h3>
+
+      <p>Az oldalra történő regisztráció és a szolgáltatás használata - olvasás, tartalom létrehozása, tartalommegosztás - során információt gyűjtünk veled kapcsolatban.</p>
+
+      <p>A regisztráció során kérhetjük nevedet és e-mail címedet. Az oldalt természetesen regisztráció nélkül is felkeresheted. Az e-mail címed megerősítése egy egyedi információt tartalmazó link segítségével történik. Mondott linkre kattintva ellenőrizzük, hogy valóban te vagy a cím kezelője.</p>
+
+      <p>Regisztrált felhasználók esetében tülkök írásakor rögzítjük a felhasználó IP-címét. A szerver napjófájlja szintén tárolhatja ezt az IP-címet, valamint a szerverre érkező minden kérés küldő-oldali IP-címét.</p>
+
+      <h3 id="use">Mire használjuk a begyűjtött információt?</h3>
+
+      <p>Minden begyűjtött információt az alábbi okokból használhatunk fel:</p>
+
+      <ul>
+        <li>A felhasználói élmény személyre szabásához &mdash; a tőled gyűjtött információ segítségével biztosíthatjuk számodra az egyedi igényeknek történő megfelelést.</li>
+        <li>Szolgáltatásunk fejlesztéséhez &mdash; folyamatosan igyekszünk fejlődni és jobbá válni, és ezt a tőled kapott adatok és visszajelzések is nagyban segítik.</li>
+        <li>Az ügyféltámogatás fejlesztéséhez &mdash; a gyűjtött adatok segítségével hatékonyabban támogathatjuk felhasználóinkat, ha azok segítségre szorulnak.</li>
+        <li>E-mail értesítések küldéséhez &mdash; a megadott e-mail címedre küldjük ki az általad igényelt értesítéseket, a szolgáltatásra vonatkozó információkat és a válaszokat a tőled beérkező megkeresésekre.</li>
+      </ul>
+
+      <h3 id="protect">Hogyan védjük a tőled gyűjtött információt?</h3>
+
+      <p>Bitonsági mechanizmusok egész sorát vetjük be annak érdekében, hogy biztosítsuk a tőled származó személyes és használatai adatok és információk biztonságát.</p>
+
+      <h3 id="data-retention">Meddig tároljuk a tőled származó adatokat?</h3>
+
+      <p>Minden tőlünk telhetőt megteszünk annak érdekében, hogy</p>
+
+      <ul>
+        <li>a szerver naplófájljaiban tárolt, a szerverre érkező kérések küldő-oldali IP-címét maximum 90 napig,</li>
+        <li>a regisztrált felhasználók tülkjeinek eredeti IP-címét pedig maximum 5 évig</li>
+      </ul>
+
+      <p>tároljuk.</p>
+
+      <h3 id="cookies">Használunk-e sütiket?</h3>
+
+      <p>Igen. A sütik olyan kisméretű fájlok, amelyeket a szolgáltatások vagy internet-szolgáltatók küldenek a felhasználó számítógépére a böngészőn keresztül (természetesen csak abban az esetben, ha a felhasználó ezt engedélyezi). Oldalunk ezen sütik segítségével ismerik fel a böngésződet és - amennyiben rendelkezel nálunk fiókkal - kötik össze azt a felhasználói fiókoddal.</p>
+
+      <p>A sütik segítségével jobban megérthetjük használati szokásaidat, eltárolhatjuk beállításaidat következő látogatásodig, valamint így mérhetjük az oldal látogatottságát és használatát, mely adatok segítenek abban, hogy jobbá tehessük az általunk nyújtott szolgáltatást. Esetenként harmadik féllel is kapcsolatba léphetünk a kinyert használati adatok jobb megértése érdekében. Ezen harmadik felek számára azonban az adatok használata szigorú feltételekhez kötött: kizárólag az engedélyünkkel és királólag a mi szolgáltatásunk fejlesztésével összefüggésben használhatják azokat.</p>
+
+      <h3 id="disclose">Milyen információt adunk ki külső szereplőknek?</h3>
+
+      <p>Soha, semmilyen körülmények között nem adunk ki, át vagy el külső szereplőknek olyan adatot, amelynek segítségével egyes felhasználóink egyedileg azonosíthatók. Ez nem vonatkozik olyan harmadik felekre, melyek jelen szolgáltatás üzemeltetésében, javításában vagy támogatásában segítségünkre vannak &ndash; ezeket a feleket azonban titoktartási szerződés köti mondott adatokkal kapcsolatban. A gyűjtött adatokat ezen felül megfelelő meghagyás megléte esetén kiadhatjuk a törvény és a rendfenntartás képviselőinek, amennyiben ezen adatoknak jog-, élet- vagy vagyonvédelmi jelentőségük van. Hirdetési- és marketing-, valamint egyéb, a fentiekben nem érintett célból csak olyan adatok adhatók ki, amelyek nem teszik lehetővé az egyes felhasználók egyedi azonosítását.</p>
+
+      <h3 id="third-party">Harmadik felekre mutató hivatkozások</h3>
+
+      <p>Esetenként elhelyezhetünk harmadik fél által ajánlott termékekre vagy szolgáltatásokra mutató hivatkozásokat az oldalon. Ezen harmadik feleknek saját, tőlünk független adatvédelmi és adatkezelési nyilatkozatuk van. Ennek értelmében az oldal üzemeltetői semmilyen felelősséget nem tudnak vállalni az ezen harmadik fél által üzemeltetett oldalak viselkedésével és tartalmával kapcsolatban. Ugyanakkor arra törekszünk, hogy mindenben saját felhasználóink érdekeit képviseljük, így minden, a fenti harmadik felekkel kacsolatos visszejelzést szívesen veszünk.</p>
+
+      <h3 id="coppa">Megfelelés a Gyermekek Online Adatvédelméről Szóló Rendeletnek</h3>
+
+      <p>Az oldal, valamint az azon keresztül nyújtott szolgáltatás a 13 éven felülieket célozza. Amennyiben ez a szerver az Amerikai Egyesült Államok területén található és te nem vagy még 13 éves, a COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Gyermekek Online Adatvédelméről Szóló Rendelet</a>) értelmében kérjük ne használd ezt az oldalt és szolgáltatást.
+
+      <h3 id="online">Az adatvédelmi és adatkezelési nyilatkozat hatálya</h3>
+
+      <p>Jelen adatvédelmi és adatkezelési nyilatkozat kizárólag az oldalunkon keresztül gyűjtött online adatokra vonatkozik, offline módon gyűjtött adatokra nem terjed ki.</p>
+
+      <h3 id="consent">Használói beleegyezés</h3>
+
+      <p>Az oldal és a szolgáltatás használatával elfogadottnak tekinted jelen adatvédelmi és adatkezelési nyilatkozatot.</p>
+
+      <h3 id="changes">A nyilatkozat módosításairól</h3>
+
+      <p>Amennyiben a jövőben módosítjuk jelen adatvédelmi és adatkezelési nyilatkozatunkat, a módosított szöveg ugyanezen oldalon lesz megtalálható.</p>
+
+      <p>Jelen dokumentum a CC-BY-SA licenc alatt érhető el. Angol eredetijének utolsó módosítása: 2013. május 31.</p>
+
+      <p>A dokumetum a <a href="https://github.com/discourse/discourse">Discourse adatvédelmi és adatkezelési nyilatkozatán</a> alapul.</p>
     title: "%{instance} Felhasználási feltételek és Adatkezelési nyilatkozat"
   themes:
     default: Mastodon
@@ -662,3 +731,20 @@ hu:
       edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt láthatják a tülkjeid, itt tudod a fiókodat zárttá tenni.'
       explanation: Néhány tipp a kezdeti lépésekhez
       final_action: Kezdj tülkölni
+      final_step: 'Kezdj tülkölni! Publikus üzeneteid még követők híján is megjelennek másoknak, például a helyi időfolyamban és a címkéknél. Kezdd például azzal, hogy bemutatkozol: használd a #bemutatkozas és az #introductions címkét a tülködben.'
+      full_handle: Teljes felhasználóneved
+      full_handle_hint: Ez az, amit megadhatsz másoknak, hogy üzenhessenek neked vagy követhessenek téged más instanciákról.
+      review_preferences_action: Beállítások módosítása
+      review_preferences_step: Tekintsd át beállításaidat, például hogy milyen értesítéseket kérsz emailben vagy hogy alapértelmezettként mi legyen a tülkjeid adatvédelmi beállítása. Ha nem vagy szédülős alkat, azt is engedélyezheted, hogy automatikusan lejátsszuk a GIF-eket.
+      subject: Üdvözöl a Mastodon
+      tip_bridge_html: Ha a Twitterről érkezel, használhatod <a href="%{bridge_url}">alkalmazásunkat</a>, amellyel megtalálhatod Twitteres barátaidat a Mastodonon. Az alkalmazás csak azon barátaidat tudja megtalálni, akik maguk is használták azt!
+      tip_federated_timeline: A nyilvános időfolyam a Mastodon ütőere, ahol minden tülk összefolyik. Nem teljes ugyan, mert csak azokat az emberek fogod látni, akiket instanciád többi felhasználója követ.
+      tip_following: Alapértelmezettként instanciád adminisztrátorait követed. Látogasd meg a helyi és a nyilvános időfolyamot, hogy más érdekes emberekre is rátalálj.
+      tip_local_timeline: A helyi időfolyam a saját instanciád (%{instance}) ütőere. Ezek a kedves emberek itt mind a szomszédaid!
+      tip_mobile_webapp: Ha a böngésződ lehetővé teszi, hogy kezdőképernyődhöz add a Mastodont, még értesítéseket is fogsz kapni &ndash; akárcsak egy igazi alkalmazás esetében!
+      tips: Tippek
+      title: Üdv a fedélzeten, %{name}!
+  users:
+    invalid_email: A megadott e-mail cím helytelen
+    invalid_otp_token: Érvénytelen ellenőrző kód
+    signed_in_as: Bejelentkezve mint

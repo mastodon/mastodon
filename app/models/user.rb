@@ -34,15 +34,17 @@
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :integer
+#  remember_token            :string
 #
 
 class User < ApplicationRecord
   include Settings::Extend
+  include Omniauthable
 
   ACTIVE_DURATION = 14.days
 
   devise :two_factor_authenticatable,
-         otp_secret_encryption_key: ENV['OTP_SECRET']
+         otp_secret_encryption_key: Rails.configuration.x.otp_secret
 
   devise :two_factor_backupable,
          otp_number_of_backup_codes: 10
@@ -50,11 +52,14 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  devise :omniauthable
+
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
+  has_many :backups, inverse_of: :user
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
@@ -79,10 +84,43 @@ class User < ApplicationRecord
   has_many :session_activations, dependent: :destroy
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme,
+           :reduce_motion, :system_font_ui, :noindex, :theme, :display_sensitive_media,
            to: :settings, prefix: :setting, allow_nil: false
 
   attr_accessor :invite_code
+
+  def pam_conflict(_)
+    # block pam login tries on traditional account
+    nil
+  end
+
+  def pam_conflict?
+    return false unless Devise.pam_authentication
+    encrypted_password.present? && is_pam_account?
+  end
+
+  def pam_get_name
+    return account.username if account.present?
+    super
+  end
+
+  def pam_setup(_attributes)
+    acc = Account.new(username: pam_get_name)
+    acc.save!(validate: false)
+
+    self.email = "#{acc.username}@#{find_pam_suffix}" if email.nil? && find_pam_suffix
+    self.confirmed_at = Time.now.utc
+    self.admin = false
+    self.account = acc
+
+    acc.destroy! unless save
+  end
+
+  def ldap_setup(_attributes)
+    self.confirmed_at = Time.now.utc
+    self.admin = false
+    save!
+  end
 
   def confirmed?
     confirmed_at.present?
@@ -211,6 +249,56 @@ class User < ApplicationRecord
   def invite_code=(code)
     self.invite  = Invite.find_by(code: code) unless code.blank?
     @invite_code = code
+  end
+
+  def password_required?
+    return false if Devise.pam_authentication || Devise.ldap_authentication
+    super
+  end
+
+  def send_reset_password_instructions
+    return false if encrypted_password.blank? && (Devise.pam_authentication || Devise.ldap_authentication)
+    super
+  end
+
+  def reset_password!(new_password, new_password_confirmation)
+    return false if encrypted_password.blank? && (Devise.pam_authentication || Devise.ldap_authentication)
+    super
+  end
+
+  def self.pam_get_user(attributes = {})
+    if attributes[:email]
+      resource =
+        if Devise.check_at_sign && !attributes[:email].index('@')
+          joins(:account).find_by(accounts: { username: attributes[:email] })
+        else
+          find_by(email: attributes[:email])
+        end
+
+      if resource.blank?
+        resource = new(email: attributes[:email])
+        if Devise.check_at_sign && !resource[:email].index('@')
+          resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}"
+        end
+      end
+      resource
+    end
+  end
+
+  def self.ldap_get_user(attributes = {})
+    resource = joins(:account).find_by(accounts: { username: attributes[Devise.ldap_uid.to_sym].first })
+
+    if resource.blank?
+      resource = new(email: attributes[:mail].first, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first })
+      resource.ldap_setup(attributes)
+    end
+
+    resource
+  end
+
+  def self.authenticate_with_pam(attributes = {})
+    return nil unless Devise.pam_authentication
+    super
   end
 
   protected

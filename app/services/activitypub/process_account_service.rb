@@ -27,6 +27,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
+    check_featured_collection! if @account.featured_collection_url.present?
 
     @account
   rescue Oj::ParseError
@@ -57,14 +58,15 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_immediate_attributes!
-    @account.inbox_url        = @json['inbox'] || ''
-    @account.outbox_url       = @json['outbox'] || ''
-    @account.shared_inbox_url = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
-    @account.followers_url    = @json['followers'] || ''
-    @account.url              = url || @uri
-    @account.display_name     = @json['name'] || ''
-    @account.note             = @json['summary'] || ''
-    @account.locked           = @json['manuallyApprovesFollowers'] || false
+    @account.inbox_url               = @json['inbox'] || ''
+    @account.outbox_url              = @json['outbox'] || ''
+    @account.shared_inbox_url        = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
+    @account.followers_url           = @json['followers'] || ''
+    @account.featured_collection_url = @json['featured'] || ''
+    @account.url                     = url || @uri
+    @account.display_name            = @json['name'] || ''
+    @account.note                    = @json['summary'] || ''
+    @account.locked                  = @json['manuallyApprovesFollowers'] || false
   end
 
   def set_fetchable_attributes!
@@ -83,6 +85,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def after_key_change!
     RefollowWorker.perform_async(@account.id)
+  end
+
+  def check_featured_collection!
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id)
   end
 
   def image_url(key)

@@ -18,6 +18,9 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
                                 github_url: 'someurl',
                                 github_name: 'somename',
                                 thumbnail: nil,
+                                hero: nil,
+                                user_count: 0,
+                                status_count: 0,
                                 closed_registrations_message: 'yes')
     assign(:instance_presenter, instance_presenter)
     render

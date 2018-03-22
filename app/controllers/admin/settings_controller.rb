@@ -16,9 +16,11 @@ module Admin
       show_staff_badge
       bootstrap_timeline_accounts
       thumbnail
+      hero
       min_invite_role
       activity_api_enabled
       peers_api_enabled
+      show_known_fediverse_at_about_page
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -28,10 +30,12 @@ module Admin
       show_staff_badge
       activity_api_enabled
       peers_api_enabled
+      show_known_fediverse_at_about_page
     ).freeze
 
     UPLOAD_SETTINGS = %w(
       thumbnail
+      hero
     ).freeze
 
     def edit

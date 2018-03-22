@@ -10,6 +10,6 @@
   = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }
 
   .actions
-    = f.button :button, t('auth.register'), type: :submit, class: 'button button-alternative'
+    = f.button :button, t('auth.register'), type: :submit, class: 'button button-primary'
 
   %p.hint.subtle-hint=t('auth.agreement_html', rules_path: about_more_path, terms_path: terms_path)
