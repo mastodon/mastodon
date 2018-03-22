@@ -48,6 +48,13 @@ describe Request do
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
+      it 'executes a HTTP request when the first address is private' do
+        allow(Addrinfo).to receive(:foreach).with('example.com', nil, nil, :SOCK_STREAM)
+                                            .and_yield(Addrinfo.new(["AF_INET", 0, "example.com", "0.0.0.0"], :PF_INET, :SOCK_STREAM))
+                                            .and_yield(Addrinfo.new(["AF_INET6", 0, "example.com", "2001:4860:4860::8844"], :PF_INET6, :SOCK_STREAM))
+        expect(a_request(:get, 'http://example.com')).to have_been_made.once
+      end
+
       it 'sets headers' do
         expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
       end
@@ -61,7 +68,9 @@ describe Request do
       end
 
       it 'raises Mastodon::ValidationError' do
-        allow(IPSocket).to receive(:getaddress).with('example.com').and_return('0.0.0.0')
+        allow(Addrinfo).to receive(:foreach).with('example.com', nil, nil, :SOCK_STREAM)
+                                            .and_yield(Addrinfo.new(["AF_INET", 0, "example.com", "0.0.0.0"], :PF_INET, :SOCK_STREAM))
+                                            .and_yield(Addrinfo.new(["AF_INET6", 0, "example.com", "2001:db8::face"], :PF_INET6, :SOCK_STREAM))
         expect{ subject.perform }.to raise_error Mastodon::ValidationError
       end
     end
