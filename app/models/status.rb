@@ -185,7 +185,7 @@ class Status < ApplicationRecord
 
     def as_public_timeline(account = nil, local_only = false)
       query = timeline_scope(local_only).without_replies
-              .where('(text like ? or text like ? or text like ? or statuses.uri like ? or statuses.uri like ?)', '%猫%', '%ねこ%', '%cat%', '%cat%', '%kitt%', '%mstdn.jp%')
+              .where('(text like ? or text like ? or text like ? or text like ? or statuses.uri like ? or statuses.uri like ?)', '%猫%', '%ねこ%', '%cat%', '%kitt%', '%cat%', '%mstdn.jp%')
 
       apply_timeline_filters(query, account, local_only)
     end
