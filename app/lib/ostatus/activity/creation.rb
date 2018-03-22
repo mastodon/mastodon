@@ -45,7 +45,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         visibility: visibility_scope,
         conversation: find_or_create_conversation,
         thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil,
-        media_attachments: media_attachments
+        media_attachment_ids: media_attachments.map(&:id)
       )
 
       save_mentions(status)
