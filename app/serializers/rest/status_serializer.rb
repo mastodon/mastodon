@@ -87,7 +87,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def ordered_mentions
-    object.mentions.order(:id)
+    object.mentions.to_a.sort_by(&:id)
   end
 
   class ApplicationSerializer < ActiveModel::Serializer
