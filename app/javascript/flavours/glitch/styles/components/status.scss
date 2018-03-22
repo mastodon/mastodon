@@ -154,7 +154,6 @@
   padding: 8px 10px;
   position: relative;
   height: auto;
-  min-height: 48px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
 
@@ -245,10 +244,20 @@
       height: 20px;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin: 0;
+      padding-top: 0;
 
       a:hover {
         text-decoration: none;
       }
+    }
+
+    .notification__message {
+      margin-bottom: 0;
+    }
+
+    .status__info .notification__message > span {
+      white-space: nowrap;
     }
   }
 
@@ -293,19 +302,23 @@
 
 .status__info {
   display: flex;
-  padding: 2px 0 5px;
   font-size: 15px;
-  line-height: 24px;
 
   > span {
+    text-overflow: ellipsis;
     overflow: hidden;
+  }
+
+  .notification__message > span {
+    word-wrap: break-word;
   }
 }
 
 .status__info__icons {
   margin-left: auto;
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  height: 1em;
   color: lighten($ui-base-color, 26%);
 
   .status__visibility-icon {
@@ -541,12 +554,6 @@
       background: lighten($ui-base-color, 29%);
       text-decoration: none;
     }
-  }
-
-  .status__content {
-    margin-top: -15px;
-    margin-bottom: 0;
-    padding-top: 0;
   }
 }
 

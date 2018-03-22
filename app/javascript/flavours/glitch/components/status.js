@@ -403,7 +403,7 @@ export default class Status extends ImmutablePureComponent {
                   notificationId={this.props.notificationId}
                 />
               ) : null}
-              {!muted ? (
+              {!muted || isExpanded !== false ? (
                 <StatusHeader
                   status={status}
                   friend={account}
@@ -429,7 +429,7 @@ export default class Status extends ImmutablePureComponent {
             parseClick={parseClick}
             disabled={!router}
           />
-          {isExpanded !== false && !muted ? (
+          {isExpanded !== false || !muted ? (
             <StatusActionBar
               {...other}
               status={status}
