@@ -76,12 +76,12 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def exclude_types
-    val = params.permit(exclude_types: [])[:exclude_types] || []
+    val = params.permit(:limit, :max_id, :since_id, exclude_types: [])[:exclude_types] || []
     val = [val] unless val.is_a?(Enumerable)
     val
   end
 
   def pagination_params(core_params)
-    params.permit(:limit, exclude_types: []).merge(core_params)
+    params.permit(:limit, :max_id, :since_id, exclude_types: []).merge(core_params)
   end
 end

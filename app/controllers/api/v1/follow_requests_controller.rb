@@ -71,6 +71,6 @@ class Api::V1::FollowRequestsController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
+    params.permit(:limit, :max_id, :since_id).merge(core_params)
   end
 end
