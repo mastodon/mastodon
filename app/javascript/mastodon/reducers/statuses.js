@@ -10,9 +10,7 @@ import {
   STATUS_REVEAL,
   STATUS_HIDE,
 } from '../actions/statuses';
-import {
-  TIMELINE_DELETE,
-} from '../actions/timelines';
+import { TIMELINE_DELETE } from '../actions/timelines';
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 

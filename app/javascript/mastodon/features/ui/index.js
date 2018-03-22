@@ -10,7 +10,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose } from '../../actions/compose';
-import { refreshHomeTimeline } from '../../actions/timelines';
+import { expandHomeTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import { clearHeight } from '../../actions/height_cache';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
@@ -284,7 +284,7 @@ export default class UI extends React.PureComponent {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
-    this.props.dispatch(refreshHomeTimeline());
+    this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(refreshNotifications());
   }
 
