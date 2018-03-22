@@ -13,7 +13,7 @@ module AccountFinderConcern
     end
 
     def find_local(username)
-      find_remote(username, nil)
+      find_remote(username.gsub('-', '.'), nil)
     end
 
     def find_remote(username, domain)
