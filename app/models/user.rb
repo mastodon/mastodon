@@ -44,7 +44,7 @@ class User < ApplicationRecord
   ACTIVE_DURATION = 14.days
 
   devise :two_factor_authenticatable,
-         otp_secret_encryption_key: ENV['OTP_SECRET']
+         otp_secret_encryption_key: Rails.configuration.x.otp_secret
 
   devise :two_factor_backupable,
          otp_number_of_backup_codes: 10
@@ -52,7 +52,8 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  devise :pam_authenticatable if Devise.pam_authentication
+  devise :pam_authenticatable if ENV['PAM_ENABLED'] == 'true'
+
   devise :omniauthable
 
   belongs_to :account, inverse_of: :user
@@ -60,6 +61,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
+  has_many :backups, inverse_of: :user
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
@@ -96,7 +98,7 @@ class User < ApplicationRecord
 
   def pam_conflict?
     return false unless Devise.pam_authentication
-    encrypted_password.present? && is_pam_account?
+    encrypted_password.present? && pam_managed_user?
   end
 
   def pam_get_name
@@ -114,6 +116,12 @@ class User < ApplicationRecord
     self.account = acc
 
     acc.destroy! unless save
+  end
+
+  def ldap_setup(_attributes)
+    self.confirmed_at = Time.now.utc
+    self.admin = false
+    save!
   end
 
   def confirmed?
@@ -246,37 +254,48 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    return false if Devise.pam_authentication
+    return false if Devise.pam_authentication || Devise.ldap_authentication
     super
   end
 
   def send_reset_password_instructions
-    return false if encrypted_password.blank? && Devise.pam_authentication
+    return false if encrypted_password.blank? && (Devise.pam_authentication || Devise.ldap_authentication)
     super
   end
 
   def reset_password!(new_password, new_password_confirmation)
-    return false if encrypted_password.blank? && Devise.pam_authentication
+    return false if encrypted_password.blank? && (Devise.pam_authentication || Devise.ldap_authentication)
     super
   end
 
   def self.pam_get_user(attributes = {})
-    if attributes[:email]
-      resource =
-        if Devise.check_at_sign && !attributes[:email].index('@')
-          joins(:account).find_by(accounts: { username: attributes[:email] })
-        else
-          find_by(email: attributes[:email])
-        end
-
-      if resource.blank?
-        resource = new(email: attributes[:email])
-        if Devise.check_at_sign && !resource[:email].index('@')
-          resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}"
-        end
+    return nil unless attributes[:email]
+    resource =
+      if Devise.check_at_sign && !attributes[:email].index('@')
+        joins(:account).find_by(accounts: { username: attributes[:email] })
+      else
+        find_by(email: attributes[:email])
       end
-      resource
+
+    if resource.blank?
+      resource = new(email: attributes[:email])
+      if Devise.check_at_sign && !resource[:email].index('@')
+        resource[:email] = Rpam2.getenv(resource.find_pam_service, attributes[:email], attributes[:password], 'email', false)
+        resource[:email] = "#{attributes[:email]}@#{resource.find_pam_suffix}" unless resource[:email]
+      end
     end
+    resource
+  end
+
+  def self.ldap_get_user(attributes = {})
+    resource = joins(:account).find_by(accounts: { username: attributes[Devise.ldap_uid.to_sym].first })
+
+    if resource.blank?
+      resource = new(email: attributes[:mail].first, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first })
+      resource.ldap_setup(attributes)
+    end
+
+    resource
   end
 
   def self.authenticate_with_pam(attributes = {})

@@ -100,7 +100,7 @@ export default class Compose extends React.PureComponent {
             {multiColumn && <div className='mastodon' />}
             {multiColumn && (
               <div className='drawer__inner__mastodon'>
-                <img alt='' src={elephantUIPlane} />
+                <img alt='' draggable='false' src={elephantUIPlane} />
               </div>
             )}
           </div>

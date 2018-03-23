@@ -38,17 +38,41 @@ describe Request do
   end
 
   describe '#perform' do
-    before do
-      stub_request(:get, 'http://example.com')
-      subject.perform
+    context 'with valid host' do
+      before do
+        stub_request(:get, 'http://example.com')
+        subject.perform
+      end
+
+      it 'executes a HTTP request' do
+        expect(a_request(:get, 'http://example.com')).to have_been_made.once
+      end
+
+      it 'executes a HTTP request when the first address is private' do
+        allow(Addrinfo).to receive(:foreach).with('example.com', nil, nil, :SOCK_STREAM)
+                                            .and_yield(Addrinfo.new(["AF_INET", 0, "example.com", "0.0.0.0"], :PF_INET, :SOCK_STREAM))
+                                            .and_yield(Addrinfo.new(["AF_INET6", 0, "example.com", "2001:4860:4860::8844"], :PF_INET6, :SOCK_STREAM))
+        expect(a_request(:get, 'http://example.com')).to have_been_made.once
+      end
+
+      it 'sets headers' do
+        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
+      end
     end
 
-    it 'executes a HTTP request' do
-      expect(a_request(:get, 'http://example.com')).to have_been_made.once
-    end
+    context 'with private host' do
+      around do |example|
+        WebMock.disable!
+        example.run
+        WebMock.enable!
+      end
 
-    it 'sets headers' do
-      expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
+      it 'raises Mastodon::ValidationError' do
+        allow(Addrinfo).to receive(:foreach).with('example.com', nil, nil, :SOCK_STREAM)
+                                            .and_yield(Addrinfo.new(["AF_INET", 0, "example.com", "0.0.0.0"], :PF_INET, :SOCK_STREAM))
+                                            .and_yield(Addrinfo.new(["AF_INET6", 0, "example.com", "2001:db8::face"], :PF_INET6, :SOCK_STREAM))
+        expect{ subject.perform }.to raise_error Mastodon::ValidationError
+      end
     end
   end
 end

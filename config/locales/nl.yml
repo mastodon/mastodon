@@ -23,7 +23,6 @@ nl:
       real_conversation_title: Voor echte gesprekken gemaakt
       within_reach_body: Meerdere apps voor iOS, Android en andere platformen, met dank aan het ontwikkelaarsvriendelijke API-systeem, zorgen ervoor dat je overal op de hoogte blijft.
       within_reach_title: Altijd binnen bereik
-    find_another_instance: Vind een andere server
     generic_description: "%{domain} is een server in het Mastodonnetwerk"
     hosted_on: Mastodon op %{domain}
     learn_more: Meer leren
@@ -146,7 +145,7 @@ nl:
         destroy_status: Toot van %{target} is door %{name} verwijderd
         disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
         disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
-        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
+        disable_user: Aanmelden voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
         enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account: Account %{target} is door %{name} in een in-memoriampagina veranderd
@@ -274,6 +273,9 @@ nl:
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
         username: Vul een gebruikersnaam in
+      hero:
+        desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
+        title: Hero-afbeelding
       peers_api_enabled:
         desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
         title: Lijst van bekende servers publiceren
@@ -290,6 +292,9 @@ nl:
         open:
           desc_html: Toestaan dat iedereen een account kan registereren
           title: Open registratie
+      show_known_fediverse_at_about_page:
+        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn als voorbeeld getoond en wanneer uitgeschakeld de lokale tijdljn.
+        title: De globale tijdlijn als voorbeeld tonen
       show_staff_badge:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
@@ -307,8 +312,8 @@ nl:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
         title: Thumbnail Mastodonserver
       timeline_preview:
-        desc_html: Toon de openbare tijdlijn op de startpagina
-        title: Voorbeeld tijdlijn
+        desc_html: Toon een openbare tijdlijn op de voorpagina
+        title: Tijdlijn als voorbeeld tonen
       title: Server-instellingen
     statuses:
       back_to_account: Terug naar accountpagina
@@ -354,7 +359,8 @@ nl:
     your_token: Jouw toegangscode
   auth:
     agreement_html: Wanneer je op registreren klikt ga je akkoord met het opvolgen van <a href="%{rules_path}">de regels van deze server</a> en <a href="%{terms_path}">onze gebruikersvoorwaarden</a>.
-    change_password: Beveiliging
+    change_password: Wachtwoord
+    confirm_email: E-mail bevestigen
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
@@ -364,9 +370,16 @@ nl:
     logout: Afmelden
     migrate_account: Naar een andere account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
+    or: of
+    or_log_in_with: Of aanmelden met
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registreren
+    register_elsewhere: Op een andere server registreren
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen
+    security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
   authorize_follow:
     error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
@@ -413,6 +426,13 @@ nl:
       title: Er is iets mis
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon-app</a> zoeken voor jouw platform.
   exports:
+    archive_takeout:
+      date: Datum
+      download: Jouw archief downloaden
+      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen.
+      in_progress: Jouw archief wordt samengesteld...
+      request: Jouw archief opvragen
+      size: Omvang
     blocks: Jij blokkeert
     csv: CSV
     follows: Jij volgt
@@ -528,7 +548,9 @@ nl:
           trillion: T
           unit: " "
   pagination:
+    newer: Nieuwer
     next: Volgende
+    older: Ouder
     prev: Vorige
     truncate: "&hellip;"
   preferences:
@@ -725,6 +747,10 @@ nl:
     setup: Instellen
     wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
   user_mailer:
+    backup_ready:
+      explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
+      subject: Jouw archief staat klaar om te worden gedownload
+      title: Archief ophalen
     welcome:
       edit_profile_action: Profiel instellen
       edit_profile_step: Je kunt jouw profiel aanpassen door een avatar (profielfoto) en omslagfoto te uploaden, jouw weergavenaam in te stellen en iets over jezelf te vertellen. Wanneer je nieuwe volgers eerst wilt goedkeuren, kun je jouw account besloten maken.
@@ -746,4 +772,5 @@ nl:
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+    seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
