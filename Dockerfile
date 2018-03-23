@@ -84,4 +84,5 @@ VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
 
 USER mastodon
 
+ENV LD_PRELOAD=/lib/stack-fix.so
 ENTRYPOINT ["/sbin/tini", "--"]
