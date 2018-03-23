@@ -1,6 +1,11 @@
 #!/bin/sh
 
-ln -sf /volumes/catgram-assets/assets /mastodon/public/assets
-ln -sf /volumes/catgram-assets/packs /mastodon/public/packs
+LINK=/mastodon/public/assets
+test -d $LINK && test ! -L $LINK && rm -rf $LINK
+ln -sf /volumes/catgram-assets/assets $LINK
+
+LINK=/mastodon/public/packs
+test -d $LINK && test ! -L $LINK && rm -rf $LINK
+ln -sf /volumes/catgram-assets/packs $LINK
 
 $@
