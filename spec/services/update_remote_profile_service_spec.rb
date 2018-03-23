@@ -56,4 +56,29 @@ RSpec.describe UpdateRemoteProfileService do
       expect(remote_account.reload.note).to eq 'Software engineer, free time musician and ＤＩＧＩＴＡＬ ＳＰＯＲＴＳ enthusiast. Likes cats. Warning: May contain memes'
     end
   end
+
+  context 'with updated details from a domain set to reject media' do
+    let(:remote_account) { Fabricate(:account, username: 'bob', domain: 'example.com') }
+    let!(:domain_block) { Fabricate(:domain_block, domain: 'example.com', reject_media: true) }
+
+    before do
+      subject.call(xml, remote_account)
+    end
+
+    it 'does not the avatar remote url' do
+      expect(remote_account.reload.avatar_remote_url).to be_nil
+    end
+
+    it 'sets display name' do
+      expect(remote_account.reload.display_name).to eq 'ＤＩＧＩＴＡＬ ＣＡＴ'
+    end
+
+    it 'sets note' do
+      expect(remote_account.reload.note).to eq 'Software engineer, free time musician and ＤＩＧＩＴＡＬ ＳＰＯＲＴＳ enthusiast. Likes cats. Warning: May contain memes'
+    end
+
+    it 'does not set store the avatar' do
+      expect(remote_account.reload.avatar_file_name).to be_nil
+    end
+  end
 end

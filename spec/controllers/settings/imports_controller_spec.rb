@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Settings::ImportsController, type: :controller do
+  render_views
 
   before do
     sign_in Fabricate(:user), scope: :user
@@ -16,7 +17,7 @@ RSpec.describe Settings::ImportsController, type: :controller do
   describe 'POST #create' do
     it 'redirects to settings path with successful following import' do
       service = double(call: nil)
-      allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+      allow(ResolveAccountService).to receive(:new).and_return(service)
       post :create, params: {
         import: {
           type: 'following',
@@ -29,7 +30,7 @@ RSpec.describe Settings::ImportsController, type: :controller do
 
     it 'redirects to settings path with successful blocking import' do
       service = double(call: nil)
-      allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+      allow(ResolveAccountService).to receive(:new).and_return(service)
       post :create, params: {
         import: {
           type: 'blocking',

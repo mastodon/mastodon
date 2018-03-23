@@ -1,0 +1,18 @@
+%tr
+  %td.username
+    = account.username
+  %td.domain
+    - unless account.local?
+      = link_to account.domain, admin_accounts_path(by_domain: account.domain)
+  %td
+    - if account.local?
+      - if account.user.nil?
+        = t("admin.accounts.moderation.suspended")
+      - else
+        = t("admin.accounts.roles.#{account.user.role}")
+    - else
+      = account.protocol.humanize
+  %td
+    = table_link_to 'circle', t('admin.accounts.web'), web_path("accounts/#{account.id}")
+    = table_link_to 'globe', t('admin.accounts.public'), TagManager.instance.url_for(account)
+    = table_link_to 'pencil', t('admin.accounts.edit'), admin_account_path(account.id)

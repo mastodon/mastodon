@@ -1,15 +1,21 @@
+- content_for :page_title do
+  = t('statuses.title', name: display_name(@account), quote: truncate(@stream_entry.activity.spoiler_text.presence || @stream_entry.activity.text, length: 50, omission: '…', escape: false))
+
 - content_for :header_tags do
+  - if @account.user&.setting_noindex
+    %meta{ name: 'robots', content: 'noindex' }/
+
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_stream_entry_url(@account, @stream_entry, format: 'atom') }/
   %link{ rel: 'alternate', type: 'application/json+oembed', href: api_oembed_url(url: account_stream_entry_url(@account, @stream_entry), format: 'json') }/
+  %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@stream_entry.activity) }/
 
-  %meta{ property: 'og:site_name', content: site_title }/
-  %meta{ property: 'og:type', content: 'article' }/
-  %meta{ property: 'og:title', content: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
+  = opengraph 'og:site_name', site_title
+  = opengraph 'og:type', 'article'
+  = opengraph 'og:title', "#{display_name(@account)} (@#{@account.local_username_and_domain})"
+  = opengraph 'og:url', short_account_status_url(@account, @stream_entry)
 
   = render 'stream_entries/og_description', activity: @stream_entry.activity
   = render 'stream_entries/og_image', activity: @stream_entry.activity, account: @account
-
-  %meta{ property: 'twitter:card', content: 'summary' }/
 
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }

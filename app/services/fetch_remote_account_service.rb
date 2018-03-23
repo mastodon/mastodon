@@ -1,39 +1,34 @@
 # frozen_string_literal: true
 
 class FetchRemoteAccountService < BaseService
-  def call(url, prefetched_body = nil)
+  include AuthorExtractor
+
+  def call(url, prefetched_body = nil, protocol = :ostatus)
     if prefetched_body.nil?
-      atom_url, body = FetchAtomService.new.call(url)
+      resource_url, resource_options, protocol = FetchAtomService.new.call(url)
     else
-      atom_url = url
-      body     = prefetched_body
+      resource_url     = url
+      resource_options = { prefetched_body: prefetched_body }
     end
 
-    return nil if atom_url.nil?
-    process_atom(atom_url, body)
+    case protocol
+    when :ostatus
+      process_atom(resource_url, **resource_options)
+    when :activitypub
+      ActivityPub::FetchRemoteAccountService.new.call(resource_url, **resource_options)
+    end
   end
 
   private
 
-  def process_atom(url, body)
-    xml = Nokogiri::XML(body)
+  def process_atom(url, prefetched_body:)
+    xml = Nokogiri::XML(prefetched_body)
     xml.encoding = 'utf-8'
 
-    email = xml.at_xpath('//xmlns:author/xmlns:email').try(:content)
-    if email.nil?
-      url_parts = Addressable::URI.parse(url)
-      username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
-      domain    = url_parts.host
-    else
-      username, domain = email.split('@')
-    end
+    account = author_from_xml(xml.at_xpath('/xmlns:feed', xmlns: OStatus::TagManager::XMLNS), false)
 
-    return nil if username.nil? || domain.nil?
-
-    Rails.logger.debug "Going to webfinger #{username}@#{domain}"
-
-    account = FollowRemoteAccountService.new.call("#{username}@#{domain}")
     UpdateRemoteProfileService.new.call(xml, account) unless account.nil?
+
     account
   rescue TypeError
     Rails.logger.debug "Unparseable URL given: #{url}"

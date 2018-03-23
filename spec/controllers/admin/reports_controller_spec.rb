@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Admin::ReportsController do
+  render_views
+
   let(:user) { Fabricate(:user, admin: true) }
   before do
     sign_in user, scope: :user
@@ -8,27 +10,38 @@ describe Admin::ReportsController do
 
   describe 'GET #index' do
     it 'returns http success with no filters' do
-      allow(Report).to receive(:unresolved).and_return(Report.all)
+      specified = Fabricate(:report, action_taken: false)
+      Fabricate(:report, action_taken: true)
+
       get :index
 
+      reports = assigns(:reports).to_a
+      expect(reports.size).to eq 1
+      expect(reports[0]).to eq specified
       expect(response).to have_http_status(:success)
-      expect(Report).to have_received(:unresolved)
     end
 
     it 'returns http success with resolved filter' do
-      allow(Report).to receive(:resolved).and_return(Report.all)
+      specified = Fabricate(:report, action_taken: true)
+      Fabricate(:report, action_taken: false)
+
       get :index, params: { resolved: 1 }
 
+      reports = assigns(:reports).to_a
+      expect(reports.size).to eq 1
+      expect(reports[0]).to eq specified
+
       expect(response).to have_http_status(:success)
-      expect(Report).to have_received(:resolved)
     end
   end
 
   describe 'GET #show' do
-    it 'returns http success' do
+    it 'renders report' do
       report = Fabricate(:report)
 
       get :show, params: { id: report }
+
+      expect(assigns(:report)).to eq report
       expect(response).to have_http_status(:success)
     end
   end

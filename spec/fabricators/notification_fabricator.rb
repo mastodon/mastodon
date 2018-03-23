@@ -1,4 +1,4 @@
 Fabricator(:notification) do
   activity_id   1
-  activity_type "MyString"
+  activity_type 'Favourite'
 end

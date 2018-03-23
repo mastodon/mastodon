@@ -5,19 +5,23 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
+  force_ssl if: :https_enabled?
 
   include Localized
+  include UserTrackingConcern
 
   helper_method :current_account
+  helper_method :current_session
+  helper_method :current_theme
   helper_method :single_user_mode?
+  helper_method :use_seamless_external_login?
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from Mastodon::NotPermittedError, with: :forbidden
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
-  before_action :set_user_activity
   before_action :check_suspension, if: :user_signed_in?
 
   def raise_not_found
@@ -26,57 +30,67 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def https_enabled?
+    Rails.env.production?
+  end
+
   def store_current_location
-    store_location_for(:user, request.url)
+    store_location_for(:user, request.url) unless request.format == :json
   end
 
   def require_admin!
     redirect_to root_path unless current_user&.admin?
   end
 
-  def set_user_activity
-    return unless !current_user.nil? && (current_user.current_sign_in_at.nil? || current_user.current_sign_in_at < 24.hours.ago)
-
-    # Mark user as signed-in today
-    current_user.update_tracked_fields(request)
-
-    # If the sign in is after a two week break, we need to regenerate their feed
-    RegenerationWorker.perform_async(current_user.account_id) if current_user.last_sign_in_at < 14.days.ago
+  def require_staff!
+    redirect_to root_path unless current_user&.staff?
   end
 
   def check_suspension
-    head 403 if current_user.account.suspended?
+    forbidden if current_user.account.suspended?
+  end
+
+  def after_sign_out_path_for(_resource_or_scope)
+    new_user_session_path
   end
 
   protected
 
+  def forbidden
+    respond_with_error(403)
+  end
+
   def not_found
-    respond_to do |format|
-      format.any  { head 404 }
-      format.html { render 'errors/404', layout: 'error', status: 404 }
-    end
+    respond_with_error(404)
   end
 
   def gone
-    respond_to do |format|
-      format.any  { head 410 }
-      format.html { render 'errors/410', layout: 'error', status: 410 }
-    end
+    respond_with_error(410)
   end
 
   def unprocessable_entity
-    respond_to do |format|
-      format.any  { head 422 }
-      format.html { render 'errors/422', layout: 'error', status: 422 }
-    end
+    respond_with_error(422)
   end
 
   def single_user_mode?
-    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.first
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.exists?
+  end
+
+  def use_seamless_external_login?
+    Devise.pam_authentication || Devise.ldap_authentication
   end
 
   def current_account
     @current_account ||= current_user.try(:account)
+  end
+
+  def current_session
+    @current_session ||= SessionActivation.find_by(session_id: cookies.signed['_session_id'])
+  end
+
+  def current_theme
+    return Setting.default_settings['theme'] unless Themes.instance.names.include? current_user&.setting_theme
+    current_user.setting_theme
   end
 
   def cache_collection(raw, klass)
@@ -95,11 +109,43 @@ class ApplicationController < ActionController::Base
     unless uncached_ids.empty?
       uncached = klass.where(id: uncached_ids).with_includes.map { |item| [item.id, item] }.to_h
 
-      uncached.values.each do |item|
+      uncached.each_value do |item|
         Rails.cache.write(item.cache_key, item)
       end
     end
 
     raw.map { |item| cached_keys_with_value[item.cache_key] || uncached[item.id] }.compact
+  end
+
+  def respond_with_error(code)
+    respond_to do |format|
+      format.any  { head code }
+      format.html do
+        set_locale
+        render "errors/#{code}", layout: 'error', status: code
+      end
+    end
+  end
+
+  def render_cached_json(cache_key, **options)
+    options[:expires_in] ||= 3.minutes
+    cache_key              = cache_key.join(':') if cache_key.is_a?(Enumerable)
+    cache_public           = options.key?(:public) ? options.delete(:public) : true
+    content_type           = options.delete(:content_type) || 'application/json'
+
+    data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
+      yield.to_json
+    end
+
+    expires_in options[:expires_in], public: cache_public
+    render json: data, content_type: content_type
+  end
+
+  def set_cache_headers
+    response.headers['Vary'] = 'Accept'
+  end
+
+  def skip_session!
+    request.session_options[:skip] = true
   end
 end

@@ -1,7 +1,18 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: domain_blocks
+#
+#  id           :integer          not null, primary key
+#  domain       :string           default(""), not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  severity     :integer          default("silence")
+#  reject_media :boolean          default(FALSE), not null
+#
 
 class DomainBlock < ApplicationRecord
-  enum severity: [:silence, :suspend]
+  enum severity: [:silence, :suspend, :noop]
 
   attr_accessor :retroactive
 
@@ -12,5 +23,13 @@ class DomainBlock < ApplicationRecord
 
   def self.blocked?(domain)
     where(domain: domain, severity: :suspend).exists?
+  end
+
+  before_validation :normalize_domain
+
+  private
+
+  def normalize_domain
+    self.domain = TagManager.instance.normalize_domain(domain)
   end
 end

@@ -1,0 +1,119 @@
+---
+he:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: שם
+        redirect_uri: קישורית הפניה
+        scopes: תחומים
+        website: אתר יישום
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: לא יכול להכיל מקטע.
+              invalid_uri: חייב להכיל קישורית בת-תוקף.
+              relative_uri: חייב להיות קישורית אבסולוטית.
+              secured_uri: חייב להיות קישורית מאובטחת מסוג HTTPS.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: אישור
+        cancel: ביטול
+        destroy: השמדה
+        edit: עריכה
+        submit: שליחה
+      confirmations:
+        destroy: בטוח?
+      edit:
+        title: עריכת ישום
+      form:
+        error: אופס! נא לבדוק את הטופס לשגיאות אפשריות
+      help:
+        native_redirect_uri: שימוש ב %{native_redirect_uri} לבדיקות מקומיות
+        redirect_uri: שימוש בשורה אחת לכל קישורית
+        scopes: יש להפריד תחומים בעזרת רווחים. נה להשאיר ריק על מנת להשתמש בתחום ברירת המחדל.
+      index:
+        application: יישום
+        callback_url: כתובת גישה חוזרת (Callback URL)
+        delete: למחוק
+        name: שם
+        new: ישום חדש
+        scopes: תחומים
+        show: להציג
+        title: ישומך
+      new:
+        title: ישום חדש
+      show:
+        actions: פעולות
+        application_id: זהות ישום
+        callback_urls: כתובות לקריאה חוזרת (Callback URLs)
+        scopes: תחומים
+        secret: סוד
+        title: 'ישום: %{name}'
+    authorizations:
+      buttons:
+        authorize: הרשאה
+        deny: מניעה
+      error:
+        title: התרחשה שגיאה
+      new:
+        able_to: יוכל
+        prompt: ישום %{client_name} מבקש גישה לחשבונך
+        title: נדרשת הרשאה
+      show:
+        title: יש להעתיק את קוד ההרשאה הזה ולהדביקו ביישום שביקש אותו.
+    authorized_applications:
+      buttons:
+        revoke: ביטול
+      confirmations:
+        revoke: בטוח?
+      index:
+        application: ישום
+        created_at: מאושר
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: תחומים
+        title: ישומיך המאושרים
+    errors:
+      messages:
+        access_denied: בעלי המשאב או שרת ההרשאה דחו את הבקשה.
+        credential_flow_not_configured: התהליך "Resource Owner Password Credentials" נכשל בשל חוסר בתצורת Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: הרשאת הלקוח נכשלה עקב לקוח שאינו ידוע, חוסר בהרשאת לקוח או שיטת הרשאה שאינה נתמכת.
+        invalid_grant: חוזה ההרשאה המצורף אינו חוקי, אינו תקף, מבוטל, או שאינו מתאים לקישורית ההפניה שבשימוש על ידי בקשת ההרשאה, או שהופק על ידי לקוח אחר.
+        invalid_redirect_uri: קישורית ההפניה המצורפת אינה חוקית.
+        invalid_request: הבקשה חסרה פרמטר נדרש, מכילה פרמטר עם ערך שאיננו נתמך, או שתצורתה שגויה.
+        invalid_resource_owner: הרשאות בעלי המשאב שהוזנו אינן חוקיות, או שלא ניתן למצוא את בעלי המשאב
+        invalid_scope: התחום המבוקש אינו חוקי, אינו ידוע, או שתצורותו שגויה.
+        invalid_token:
+          expired: פג תוקף אסימון הגישה
+          revoked: בוטל תוקף אסימון הגישה
+          unknown: אסימון הגישה אינו חוקי
+        resource_owner_authenticator_not_configured: חיפוש בעלי המשאב נכשל מכיוון שתצורת Doorkeeper.configure.resource_owner_authenticator לא הושלמה.
+        server_error: שרת ההרשאות נתקל במצב בלתי צפוי, שמונע ממנו להשלים את הבקשה.
+        temporarily_unavailable: שרת ההרשאות לא מסוגל לטפל בבקשה בעת זו עקב עומס זמני או עקב תחזוקה של השרת.
+        unauthorized_client: הלקוח אינו מאושר להגיש בקשה זו בשיטה זו.
+        unsupported_grant_type: סוג חוזה הרשאה זה אינו נתמך על ידי שרת ההרשאות.
+        unsupported_response_type: שרת ההרשאות לא תומך בסוג תגובה זה.
+    flash:
+      applications:
+        create:
+          notice: הישום נוצר.
+        destroy:
+          notice: הישום נמחק.
+        update:
+          notice: הישום עודכן.
+      authorized_applications:
+        destroy:
+          notice: הישום בוטל.
+    layouts:
+      admin:
+        nav:
+          applications: ישומים
+          oauth2_provider: ספק OAuth2
+      application:
+        title: נדרשת הרשאת OAuth
+    scopes:
+      follow: לעקוב, לחסום, להסיר חסימה ולהפסיק לעקוב אחרי חשבונות
+      read: לקרוא את המידע שבחשבונך
+      write: להפיץ הודעות בשמך

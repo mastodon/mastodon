@@ -1,4 +1,1 @@
-- if activity.is_a?(Status) && activity.spoiler_text?
-  %meta{ property: 'og:description', content: activity.spoiler_text }/
-- else
-  %meta{ property: 'og:description', content: activity.content }/
+= opengraph 'og:description', status_description(activity)

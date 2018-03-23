@@ -1,3 +1,3 @@
 Fabricator(:tag) do
-  name "MyString"
+  name { sequence(:hashtag) { |i| "#{Faker::Lorem.word}#{i}" } }
 end

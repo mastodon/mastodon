@@ -1,5 +1,17 @@
 language: ruby
-cache: bundler
+cache:
+  bundler: true
+  yarn: true
+  directories:
+    - node_modules
+    - public/assets
+    - public/packs-test
+    - tmp/cache/babel-loader
+dist: trusty
+sudo: false
+branches:
+  only:
+    - master
 
 notifications:
   email: false
@@ -9,33 +21,39 @@ env:
     - LOCAL_DOMAIN=cb6e6126.ngrok.io
     - LOCAL_HTTPS=true
     - RAILS_ENV=test
-    - CXX=g++-4.8
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - PARALLEL_TEST_PROCESSORS=2
+
 addons:
   postgresql: 9.4
+  apt:
+    sources:
+      - trusty-media
+      - sourceline: deb https://dl.yarnpkg.com/debian/ stable main
+        key_url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    packages:
+      - ffmpeg
+      - libicu-dev
+      - libprotobuf-dev
+      - protobuf-compiler
+      - yarn
 
 rvm:
-  - 2.3.4
-  - 2.4.1
+  - 2.4.2
+  - 2.5.0
 
 services:
   - redis-server
 
-bundler_args: --without development production --retry=3 --jobs=3
-
-before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get -qq update
-  - sudo apt-get -qq install g++-4.8
 install:
   - nvm install
-  - npm install -g yarn
-  - bundle install
+  - bundle install --path=vendor/bundle --without development production --retry=3 --jobs=16
   - yarn install
 
 before_script:
-  - bundle exec rails db:create db:migrate
+  - ./bin/rails parallel:create parallel:load_schema parallel:prepare assets:precompile
 
 script:
-  - bundle exec rspec
-  - npm test
-  - i18n-tasks unused
+  - travis_retry bundle exec parallel_test spec/ --group-by filesize --type rspec
+  - yarn run test:jest
+  - bundle exec i18n-tasks check-normalized && bundle exec i18n-tasks unused

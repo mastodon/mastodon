@@ -1,0 +1,721 @@
+---
+sr:
+  about:
+    about_hashtag_html: Ово су јавни статуси таговани са <strong>#%{hashtag}</strong>. Можете одговарати на њих ако имате налог било где у федиверсу.
+    about_mastodon_html: Мастодонт је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
+    about_this: О инстанци
+    closed_registrations: Регистрације су тренутно затворене на овој инстанци. Ипак! Можете наћи другу инстанцу на којој ћете направити налог и одатле добити приступ истој овој мрежи.
+    contact: Контакт
+    contact_missing: Није постављено
+    contact_unavailable: N/A
+    description_headline: Шта је %{domain}?
+    domain_count_after: остале инстанце
+    domain_count_before: Повезан на
+    extended_description_html: |
+      <h3>Добро место за правила</h3>
+      <p>Проширени опис који још није постављен.</p>
+    features:
+      humane_approach_body: Учећи од грешака са осталих мрежа, а да би се борио против злоупотреба на друштвеним мрежама, Мастодонт покушава да прави што етичкије одлуке приликом развоја.
+      humane_approach_title: Хуманији приступ
+      not_a_product_body: Мастодонт није комерцијална мрежа. Нема реклама, нема скупљања приватних података, нема заштићених делова. Нема централног ауторитета.
+      not_a_product_title: Ви сте особа, не производ
+      real_conversation_body: Са 500 карактера на располагању и подршком за грануларнији садржај и упозорења на осетљивији садржај, можете се изразити како год желите.
+      real_conversation_title: Прављен за прави разговор
+      within_reach_body: Више апликација за iOS, Андроид, као и друге платформе захваљујући екосистему добрих API-ја ће Вам омогућити да останете у контакту са пријатељима свуда.
+      within_reach_title: Увек у контакту
+    generic_description: "%{domain} је сервер на мрежи"
+    hosted_on: Мастодонт хостован на %{domain}
+    learn_more: Сазнајте више
+    other_instances: Листа инстанци
+    source_code: Изворни код
+    status_count_after: статуса
+    status_count_before: Који су написали
+    user_count_after: корисника
+    user_count_before: Дом за
+    what_is_mastodon: Шта је Мастодонт?
+  accounts:
+    follow: Follow
+    followers: Followers
+    following: Following
+    media: Мултимедија
+    moved_html: "%{name} је померен на %{new_profile_link}:"
+    nothing_here: Овде нема ништа!
+    people_followed_by: Људи које %{name} прати
+    people_who_follow: Људи који прате %{name}
+    posts: Тутови
+    posts_with_replies: Тутови и одговори
+    remote_follow: Удаљена праћења
+    reserved_username: Корисничко име је резервисано
+    roles:
+      admin: Администратор
+      moderator: Модератор
+    unfollow: Отпрати
+  admin:
+    account_moderation_notes:
+      account: Модератор
+      create: Направи
+      created_at: Датум
+      created_msg: Модераторска белешка успешно направљена!
+      delete: Обриши
+      destroyed_msg: Модераторска белешка успешно обрисана!
+    accounts:
+      are_you_sure: Да ли сте сигурни?
+      by_domain: Домен
+      confirm: Потврди
+      confirmed: Потврђено
+      demote: Ражалуј
+      disable: Искључи
+      disable_two_factor_authentication: Искључи 2FA
+      disabled: Искључена
+      display_name: Приказано име
+      domain: Домен
+      edit: Измени
+      email: Е-пошта
+      enable: Укључи
+      enabled: Укључено
+      feed_url: Адреса довода
+      followers: Пратиоци
+      followers_url: Адреса пратиоца
+      follows: Праћени
+      inbox_url: Адреса сандучета
+      ip: IP
+      location:
+        all: Све
+        local: Локалне
+        remote: Удаљене
+        title: Локација
+      login_status: Статус пријаве
+      media_attachments: Мултимедијални прилози
+      memorialize: Пребаци у in memoriam
+      moderation:
+        all: Сви
+        silenced: Ућуткани
+        suspended: Суспендовани
+        title: Модерација
+      moderation_notes: Модераторске белешке
+      most_recent_activity: Најскорија активност
+      most_recent_ip: Најскорија IP адреса
+      not_subscribed: Није претплаћен
+      order:
+        alphabetic: Абецедни
+        most_recent: Најскорији
+        title: Редослед
+      outbox_url: Одлазно сандуче
+      perform_full_suspension: Изврши комплетно искључење
+      profile_url: Адреса профила
+      promote: Унапреди
+      protocol: Протокол
+      public: Јавно
+      push_subscription_expires: PuSH subscription expires
+      redownload: Освежи аватар
+      reset: Ресетуј
+      reset_password: Ресетуј лозинку
+      resubscribe: Поново се претплати
+      role: Овлашћења
+      roles:
+        admin: Администратор
+        moderator: Модератор
+        staff: Особље
+        user: Корисник
+      salmon_url: Salmon адреса
+      search: Претрага
+      shared_inbox_url: Адреса дељеног сандучета
+      show:
+        created_reports: Пријаве које је направио овај налог
+        report: пријава
+        targeted_reports: Пријаве направљене о овом налогу
+      silence: Ућуткај
+      statuses: Статуси
+      subscribe: Претплати се
+      title: Налози
+      undo_silenced: Укини ћутање
+      undo_suspension: Укини суспензију
+      unsubscribe: Укини претплату
+      username: Корисничко име
+      web: Веб
+    action_logs:
+      actions:
+        confirm_user: "%{name} је потврдио адресу е-поште корисника %{target}"
+        create_custom_emoji: "%{name} је отпремио нови емотикон %{target}"
+        create_domain_block: "%{name} је блокирао домен %{target}"
+        create_email_domain_block: "%{name} је ставио на црну листу домен е-поште %{target}"
+        demote_user: "%{name} је ражаловао корисника %{target}"
+        destroy_domain_block: "%{name} је одблокирао домен %{target}"
+        destroy_email_domain_block: "%{name} је ставио на белу листу домен е-поште %{target}"
+        destroy_status: "%{name} је уклонио статус корисника %{target}"
+        disable_2fa_user: "%{name} је искључио обавезну двофакторску идентификацију за корисника %{target}"
+        disable_custom_emoji: "%{name} је онемогућио емотикон %{target}"
+        disable_user: "%{name} је онемогућио пријављивање кориснику %{target}"
+        enable_custom_emoji: "%{name} је омогућио емотикон %{target}"
+        enable_user: "%{name} је омогућио пријављивање за корисника %{target}"
+        memorialize_account: "%{name} је претворио страну налога %{target} као in memoriam страну"
+        promote_user: "%{name} је унапредио корисника %{target}"
+        reset_password_user: "%{name} је ресетовао лозинку кориснику %{target}"
+        resolve_report: "%{name} је одбацио пријаву %{target}"
+        silence_account: "%{name} је ућуткао налог %{target}"
+        suspend_account: "%{name} је суспендовао налог %{target}"
+        unsilence_account: "%{name} је укинуо ћутање налогу %{target}"
+        unsuspend_account: "%{name} је укинуо суспензију налогу %{target}"
+        update_custom_emoji: "%{name} је изменио емотикон %{target}"
+        update_status: "%{name} је изменио статус корисника %{target}"
+      title: Записник
+    custom_emojis:
+      by_domain: Домен
+      copied_msg: Успешно направљена локална копија емотикона
+      copy: Копирај
+      copy_failed_msg: Не могу да направим локалну копију тог емотикона
+      created_msg: Емотикон успешно направљен!
+      delete: Обриши
+      destroyed_msg: Емотикон успешно обрисан!
+      disable: Онемогући
+      disabled_msg: Емотикон успешно онемогућен
+      emoji: Емотикон
+      enable: Омогући
+      enabled_msg: Емотикон успешно омогућен
+      image_hint: PNG до 50KB
+      listed: Излистан
+      new:
+        title: Додај нови произвољни емотикон
+      overwrite: Препиши
+      shortcode: Пречица
+      shortcode_hint: Најмање 2 карактера, дозвољени су само слова, бројеви и доње црте
+      title: Произвољни емотикони
+      unlisted: Неизлистан
+      update_failed_msg: Не могу да ажурирам овај емотикон
+      updated_msg: емотикон успешно ажуриран!
+      upload: Отпреми
+    domain_blocks:
+      add_new: Додај нови
+      created_msg: Блокирање домена се обрађује
+      destroyed_msg: Блокирање домена је опозвано
+      domain: Домен
+      new:
+        create: Направи блокаду
+        hint: Блокирање домена неће спречити прављење налога у бази, али ће ретроактивно и аутоматски применити одређене модераторске методе над тим налозима.
+        severity:
+          desc_html: "<strong>Ућуткавање</strong> ће све статусе овог налога учинити невидиљивим за све, осим за оне који налог већ прате. <strong>Суспензија</strong> ће уклонити сав садржај налога, сву мултимедију, и профилне податке. Користите <strong>Ништа</strong> ако само желите да одбаците мултимедијалне фајлове."
+          noop: Ништа
+          silence: Ућуткавање
+          suspend: Суспензија
+        title: Ново блокирање домена
+      reject_media: Одбаци мултимедију
+      reject_media_hint: Уклања локално ускладиштене мултимедијске фајлове и одбија да их скида на даље. Небитно је за суспензију.
+      severities:
+        noop: Ништа
+        silence: Ућуткавање
+        suspend: Суспензија
+      severity: Оштрина
+      show:
+        affected_accounts:
+          few: Утиче на %{count} налога у бази
+          many: Утиче на %{count} налога у бази
+          one: Утиче на један налог у бази
+          other: Утиче на %{count} налога у бази
+        retroactive:
+          silence: Угаси ућуткивање за све постојеће налоге са овог домена
+          suspend: Угаси суспензије за све постојеће налоге са овог домена
+        title: Поништи блокаду домена за домен %{domain}
+        undo: Поништи
+      title: Блокаде домена
+      undo: Поништи
+    email_domain_blocks:
+      add_new: Додај новуAdd new
+      created_msg: Успешно додао домен е-поште на црну листу
+      delete: Уклони
+      destroyed_msg: Успешно уклоњен домен е-поште са црне листе
+      domain: Домен
+      new:
+        create: Додај домен
+        title: Нова ставка у црној листи е-пошти
+      title: Црна листа адреса е-поште
+    instances:
+      account_count: Познати налози
+      domain_name: Домен
+      reset: Ресетуј
+      search: Претрага
+      title: Познате инстанце
+    invites:
+      filter:
+        all: Све
+        available: Активне
+        expired: Истекле
+        title: Филтер
+      title: Позивнице
+    reports:
+      action_taken_by: Акцију извео
+      are_you_sure: Да ли сте сигурни?
+      comment:
+        label: Коментар
+        none: Ништа
+      delete: Обриши
+      id: ID
+      mark_as_resolved: Означи као решен
+      nsfw:
+        'false': Откриј медијске прилоге
+        'true': Сакриј медијске прилоге
+      report: 'Пријава #%{id}'
+      report_contents: Садржај
+      reported_account: Пријављени налог
+      reported_by: Пријавио
+      resolved: Решени
+      silence_account: Ућуткај налог
+      status: Статус
+      suspend_account: Суспендуј налог
+      target: Циљ
+      title: Пријаве
+      unresolved: Нерешени
+      view: Погледај
+    settings:
+      bootstrap_timeline_accounts:
+        desc_html: Одвојите више корисничких имена зарезом. Ради само за локалне и откључане налоге. Ако је празно, онда се односи на све локалне администраторе.
+        title: Налози за аутоматско запраћивање за нове кориснике
+      contact_information:
+        email: Пословна е-пошта
+        username: Контакт корисничко име
+      registrations:
+        closed_message:
+          desc_html: Приказује се на главној страни када је инстанца затворена за регистрације. Можете користити HTML тагове
+          title: Порука о затвореној регистрацији
+        deletion:
+          desc_html: Дозволи свима да могу да обришу свој налог
+          title: Отвори брисање налога
+        min_invite_role:
+          disabled: Нико
+          title: Само преко позивнице
+        open:
+          desc_html: Дозволи свакоме да креира налог
+          title: Отворена регистрација
+      show_staff_badge:
+        desc_html: Прикажи беџ особља на корисничкој страни
+        title: Прикажи беџ особља
+      site_description:
+        desc_html: Уводни пасус на насловној страни и у meta HTML таговима. Можете користити HTML тагове, конкретно <code>&lt;a&gt;</code> и <code>&lt;em&gt;</code>.
+        title: Опис инстанце
+      site_description_extended:
+        desc_html: Добро место за ваш код понашања, правила, смернице и друге ствари по којима се Ваша инстанца разликује. Можете користити HTML тагове
+        title: Произвољне додатне информације
+      site_terms:
+        desc_html: Можете писати Вашу политику приватности, услове коришћења и остале легалне ствари. Можете користити HTML тагове
+        title: Произвољни услови коришћења
+      site_title: Име инстанце
+      thumbnail:
+        desc_html: Користи се за прегледе кроз OpenGraph и API. Препоручује се 1200x630px
+        title: Сличица инстанце
+      timeline_preview:
+        desc_html: Прикажи јавну лајну на почетној страни
+        title: Преглед лајне
+      title: Поставке сајта
+    statuses:
+      back_to_account: Назад на страну налога
+      batch:
+        delete: Обриши
+        nsfw_off: NSFW искључен
+        nsfw_on: NSFW укључен
+      execute: Изврши
+      failed_to_execute: Неуспело извршавање
+      media:
+        hide: Сакриј мултимедију
+        show: Прикажи мултимедију
+        title: Мултимедија
+      no_media: Без мултимедије
+      title: Статуси налога
+      with_media: Са мултимедијом
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Потврђено
+      expires_in: Истиче за
+      last_delivery: Последња достава
+      title: WebSub
+      topic: Topic
+    title: Администрација
+  admin_mailer:
+    new_report:
+      body: "%{reporter} је пријавио %{target}"
+      subject: Нова пријава за %{instance} (#%{id})
+  application_mailer:
+    salutation: "%{name},"
+    settings: 'Промени подешавања е-поште: %{link}'
+    view: 'Погледај:'
+  applications:
+    created: Апликација успешно направљена
+    destroyed: Апликација успешно обрисана
+    invalid_url: Дата адреса није исправна
+    regenerate_token: Рекреирај приступни токен
+    token_regenerated: Приступни токен успешно рекреиран
+    warning: Опрезно са овим подацима. Никад је не делите ни са ким!
+    your_token: Ваш приступни токен
+  auth:
+    agreement_html: Приступањем инстанци се слажете са <a href="%{rules_path}">правилима инстанце</a> и <a href="%{terms_path}">условима коришћења</a>.
+    delete_account: Обриши налог
+    delete_account_html: Ако желите да обришете Ваш налог, можете <a href="%{path}">наставити овде</a>. Бићете упитани да потврдите.
+    didnt_get_confirmation: Нисте добили поруку са упутствима за потврду налога?
+    forgot_password: Заборавили сте лозинку?
+    invalid_reset_password_token: Токен за ресетовање лозинке је неисправан или је истекао. Затражите нови.
+    login: Пријави се
+    logout: Одјава
+    migrate_account: Помери у други налог
+    migrate_account_html: Ако желите да преусмерите овај налог на неки други, можете то <a href="%{path}">подесити овде</a>.
+    register: Региструј се
+    resend_confirmation: Пошаљи поруку са упутствима о потврди налога поново
+    reset_password: Ресетуј лозинку
+    security: Безбедност
+    set_new_password: Постави нову лозинку
+  authorize_follow:
+    error: Нажалост, десила се грешка при тражењу удаљеног налога
+    follow: Запрати
+    follow_request: 'Послали сте захтев за праћењен за:'
+    following: 'Сјајно! Сада пратите:'
+    post_follow:
+      close: Или можете затворити овај прозор.
+      return: Врати се на профил овог корисника
+      web: Иди на веб
+    title: Запрати %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}месец"
+      about_x_years: "%{count}год"
+      almost_x_years: "%{count}год"
+      half_a_minute: Управо сад
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Управо сад
+      over_x_years: "%{count}год"
+      x_days: "%{count}д"
+      x_minutes: "%{count}m"
+      x_months: "%{count}месец"
+      x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Добар покушај, хакери! Неисправна лозинка
+    confirm_password: Унесите тренутну лозинку да бисмо проверили Ваш идентитет
+    description_html: Ово ће <strong>трајно, бесповратно</strong> уклонити садржај са Вашеф налога и деактивирати га. Ваше корисничко име ће остати резервисано да се спречи да се неко не представља као Ви сутра.
+    proceed: Обриши налог
+    success_msg: Ваш налог је успешно обрисан
+    warning_html: Гарантовано је само брисање садржаја са ове инстанце. Садржај који је дељен даље ће вероватно да остави неке трагове. Недоступни и угашени сервери, као и сервери који су одјављени од примања статуса од Вас, неће ажурирати своје базе.
+    warning_title: Доступност расејаног садржаја
+  errors:
+    '403': Немате дозвола да видите ову страну.
+    '404': Страна коју сте тражили не постоји.
+    '410': Страна коју сте тражили више не постоји.
+    '422':
+      content: Security verification failed. Are you blocking cookies?
+      title: Security verification failed
+    '429': Успоред
+    '500':
+      content: Извињавамо се, нешто је пошло по злу са ове стране.
+      title: Страна није исправна
+    noscript_html: Да бисте користили Мастодонт веб апликацију, омогућите JavaScript. У супротном, пробајте неку од <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">оригиналних апликација</a> за Мастодонт за Вашу платформу.
+  exports:
+    blocks: Блокирали сте
+    csv: CSV
+    follows: Пратите
+    mutes: Ућуткали сте
+    storage: Мултимедијално складиште
+  followers:
+    domain: Домен
+    explanation_html: Ако желите да осигурате приватност Ваших статуса, морате бити свесни ко Вас прати. <strong>Ваши приватни статуси се шаљу на све инстанце на којима имате пратиоце</strong>. Можда желите да их прегледате и да уклоните оне пратиоце на оним инстанцама за које немате поверења да ће поштовати Вашу приватност.
+    followers_count: Број пратилаца
+    lock_link: Закључајте налог
+    purge: Уклони из пратиоца
+    success:
+      few: У процесу блокирања пратиоца са %{count} домена...
+      many: У процесу блокирања пратиоца са %{count} домена...
+      one: У процесу блокирања пратиоца са једног домена...
+      other: У процесу блокирања пратиоца са %{count} домена...
+    true_privacy_html: Запамтите да се <strong>права приватност може постићи само шифровањем са краја на крај</strong>.
+    unlocked_warning_html: Свако може да Вас запрати да одмах види Ваше приватне статусе. %{lock_link} да бисте прегледали и одбацили пратиоце.
+    unlocked_warning_title: Ваш налог није закључан
+  generic:
+    changes_saved_msg: Измене успешно сачуване!
+    powered_by: омогућио %{link}
+    save_changes: Сними измене
+    validation_errors:
+      few: Нешто није баш како треба! Прегледајте %{count} грешке испод
+      many: Нешто није баш како треба! Прегледајте %{count} грешака испод
+      one: Нешто није баш како треба! Прегледајте грешке испод
+      other: Нешто није баш како треба! Прегледајте %{count} грешака испод
+  imports:
+    preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
+    success: Ваши подаци су успешно отпремљени и биће обрађени ускоро
+    types:
+      blocking: Листа блокирања
+      following: Листа пратилаца
+      muting: Листа ућутканих
+    upload: Отпреми
+  in_memoriam_html: In Memoriam.
+  invites:
+    delete: Деактивирај
+    expired: Истекло
+    expires_in:
+      '1800': 30 минута
+      '21600': 6 сати
+      '3600': 1 сад
+      '43200': 12 сати
+      '86400': 1 дан
+    expires_in_prompt: Никад
+    generate: Генериши
+    max_uses:
+      few: "%{count} коришћења"
+      many: "%{count} коришћења"
+      one: 1 коришћење
+      other: "%{count} коришћења"
+    max_uses_prompt: Без ограничења
+    prompt: Генериши и подели линкове са другима да им одобрите приступ овој инстанци
+    table:
+      expires_at: Истиче
+      uses: Коришћења
+    title: Позови људе
+  landing_strip_html: "<strong>%{name}</strong> је корисник на %{link_to_root_path}. Можете га запратити или комуницирати са њим ако имте налог било где у федиверсу."
+  landing_strip_signup_html: Ако немате, можете се <a href="%{sign_up_path}">регистровати овде</a>.
+  lists:
+    errors:
+      limit: Достигли сте лимит броја листи
+  media_attachments:
+    validations:
+      images_and_video: Не може да се прикачи видео на статус који већ има слике
+      too_many: Не може се прикачити више од 4 фајла
+  migrations:
+    acct: корисник@домен новог налога
+    currently_redirecting: 'Профил Вам је подешен да преусмерава на :'
+    proceed: Сачувај
+    updated_msg: Пребацивање поставки Вашег налога успешно измењено!
+  moderation:
+    title: Модерација
+  notification_mailer:
+    digest:
+      body: 'Ево кратак преглед шта сте пропустили на инстанци %{instance} од последње посете од %{since}:'
+      mention: "%{name} Вас је поменуо у:"
+      new_followers_summary:
+        few: Добили сте %{count} нова пратиоца! Сјајно!
+        many: Добили сте %{count} нових пратиоца! Сјајно!
+        one: Добили сте једног новог пратиоца! Јеее!
+        other: Добили сте %{count} нових пратиоца! Сјајно!
+      subject:
+        few: "%{count} нова обавештења од последње посете \U0001F418"
+        many: "%{count} нових обавештења од последње посете \U0001F418"
+        one: "1 ново обавештење од последње посете \U0001F418"
+        other: "%{count} нових обавештења од последње посете \U0001F418"
+    favourite:
+      body: "%{name} је поставио као омиљен Ваш статус:"
+      subject: "%{name} је поставио као омиљен Ваш статус"
+    follow:
+      body: "%{name} Вас је запратио!"
+      subject: "%{name} Вас је запратио"
+    follow_request:
+      body: "%{name} је затражио да Вас запрати"
+      subject: 'Пратиоци на чекању: %{name}'
+    mention:
+      body: "%{name} Вас је поменуо у:"
+      subject: "%{name} Вас је поменуо"
+    reblog:
+      body: "%{name} Вам је подржао(ла) статус:"
+      subject: "%{name} је подржао(ла) Ваш статус"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
+  pagination:
+    next: Следећи
+    prev: Претходни
+    truncate: "&hellip;"
+  preferences:
+    languages: Језици
+    other: Остали
+    publishing: Објављивање
+    web: Веб
+  push_notifications:
+    favourite:
+      title: "%{name} је ставио Ваш статус за омиљени"
+    follow:
+      title: "%{name} Вас је запратио"
+    group:
+      title: "%{count} обавештења"
+    mention:
+      action_boost: Подржи
+      action_expand: Прикажи још
+      action_favourite: Омиљени
+      title: "%{name} Вас је поменуо"
+    reblog:
+      title: "%{name} је подржао(ла) Ваш статус"
+  remote_follow:
+    acct: Унесите Ваш корисник@домен са кога желите да пратите
+    missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
+    proceed: Наставите да запратите
+    prompt: 'Запратите ће:'
+  sessions:
+    activity: Последња активност
+    browser: Веб читач
+    browsers:
+      alipay: Alipay
+      blackberry: Блекбери
+      chrome: Хром
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Непознати веб читач
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Опера
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Сафари
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Тренутна сесија
+    description: "%{browser} са %{platform}"
+    explanation: Ово су тренутно пријављени веб читачи на Ваш Мастодонт налог.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air-а
+      android: Андроида
+      blackberry: Блекберија
+      chrome_os: Хром ОС-а
+      firefox_os: Фајерфокс ОС-а
+      ios: iOS
+      linux: Линукса
+      mac: Mac-а
+      other: непознате платформе
+      windows: Виндоуза
+      windows_mobile: Виндоуз мобилног
+      windows_phone: Виндоуз телефона
+    revoke: Опозови
+    revoke_success: Сесија успешно опозвана
+    title: Сесије
+  settings:
+    authorized_apps: Ауторизоване апликације
+    back: Назад на Мастодонта
+    delete: Брисање налога
+    development: Развој
+    edit_profile: Измена профила
+    export: Извоз података
+    followers: Ауторизовани пратиоци
+    import: Увоз
+    migrate: Пребацивање налога
+    notifications: Обавештења
+    preferences: Подешавања
+    settings: Поставке
+    two_factor_authentication: Двофакторска идентификација
+    your_apps: Ваше апликације
+  statuses:
+    open_in_web: Отвори у вебу
+    over_character_limit: ограничење од %{max} карактера прекорачено
+    pin_errors:
+      limit: Већ имате прикачен највећи број тутова
+      ownership: Туђи тутови не могу да се прикаче
+      private: Тутови који нису јавни не могу да се прикаче
+      reblog: Подршка не може да се прикачи
+    show_more: Прикажи још
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Само пратиоци
+      private_long: Само прикажи пратиоцима
+      public: Јавно
+      public_long: Свако може да види
+      unlisted: Неизлистано
+      unlisted_long: Свако може да види, али није излистано на јавним лајнама
+  stream_entries:
+    click_to_show: Кликни да видиш
+    pinned: Прикачени тут
+    reblogged: подржано
+    sensitive_content: Осетљив садржај
+  terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+
+      <h3 id="collect">What information do we collect?</h3>
+
+      <p>We collect information from you when you register on our site and gather data when you participate in the forum by reading, writing, and evaluating the content shared here.</p>
+
+      <p>When registering on our site, you may be asked to enter your name and e-mail address. You may, however, visit our site without registering. Your e-mail address will be verified by an email containing a unique link. If that link is visited, we know that you control the e-mail address.</p>
+
+      <p>When registered and posting, we record the IP address that the post originated from. We also may retain server logs which include the IP address of every request to our server.</p>
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in one of the following ways:</p>
+
+      <ul>
+        <li>To personalize your experience &mdash; your information helps us to better respond to your individual needs.</li>
+        <li>To improve our site &mdash; we continually strive to improve our site offerings based on the information and feedback we receive from you.</li>
+        <li>To improve customer service &mdash; your information helps us to more effectively respond to your customer service requests and support needs.</li>
+        <li>To send periodic emails &mdash; The email address you provide may be used to send you information, notifications that you request about changes to topics or in response to your user name, respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.</p>
+
+      <h3 id="data-retention">What is your data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+        <li>Retain server logs containing the IP address of all requests to this server no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users and their posts no more than 5 years.</li>
+      </ul>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our business.</p>
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.</p>
+
+      <h3 id="third-party">Third party links</h3>
+
+      <p>Occasionally, at our discretion, we may include or offer third party products or services on our site. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.</p>
+
+      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+
+      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <h3 id="online">Online Privacy Policy Only</h3>
+
+      <p>This online privacy policy applies only to information collected through our site and not to information collected offline.</p>
+
+      <h3 id="consent">Your Consent</h3>
+
+      <p>By using our site, you consent to our web site privacy policy.</p>
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated May 31, 2013.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: Услови коришћења и политика приватности инстанце %{instance}
+  themes:
+    default: Мастодонт
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Унесите код са Ваше апликације за проверу идентитета да потврдите
+    description_html: Ако укључите <strong>двофакторску идентификацију</strong>, мораћете да имате телефон са собом да бисте могли да се пријавите. Телефон ће онда генерисати токене за Вашу пријаву.
+    disable: Искључи
+    enable: Укључи
+    enabled: Двофакторска идентификација је укључена
+    enabled_success: Двофакторска идентификација је успешно укључена
+    generate_recovery_codes: Генериши кодове за опоравак
+    instructions_html: "<strong>Скенирајте овај QR код у Google Authenticator или некој сличној TOTP апликацији на Вашем телефону</strong>. Од сада, та апликација ће Вам генерисати токене које морате унети да бисте се пријавили."
+    lost_recovery_codes: Кодови за опоравак Вам омогућавају да повратите приступ налогу ако изгубите телефон. Ако изгубите кодове за опоравак, можете их регенерисати овде. Од тог тренутка, стари кодови за опоравак више не важе.
+    manual_instructions: 'Уколико не можете да скенирате QR код и морате га унесете ручно, ево је огољена шифра:'
+    recovery_codes: Направите резерву кодова за опоравак
+    recovery_codes_regenerated: Кодови за опоравак успешно регенерисани
+    recovery_instructions_html: Ако икада изгубите приступ телефону, можете искористити кодове за опоравак дате испод да повратите приступ налогу. <strong>Држите кодове за опоравак на сигурном</strong>. На пример, одштампајте их и чувајте их са осталим важним документима.
+    setup: Намештање
+    wrong_code: Унесени код није исправан! Да ли су времена на серверу и на уређају исправна?
+  users:
+    invalid_email: Адреса е-поште није исправна
+    invalid_otp_token: Неисправни двофакторски код
+    signed_in_as: 'Пријављен као:'

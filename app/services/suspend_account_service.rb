@@ -1,31 +1,46 @@
 # frozen_string_literal: true
 
 class SuspendAccountService < BaseService
-  def call(account)
+  def call(account, **options)
     @account = account
+    @options = options
 
-    purge_content
-    purge_profile
-    unsubscribe_push_subscribers
+    purge_user!
+    purge_profile!
+    purge_content!
+    unsubscribe_push_subscribers!
   end
 
   private
 
-  def purge_content
-    @account.statuses.reorder(nil).find_each do |status|
-      # This federates out deletes to previous followers
-      RemoveStatusService.new.call(status)
+  def purge_user!
+    if @options[:remove_user]
+      @account.user&.destroy
+    else
+      @account.user&.disable!
     end
-
-    @account.media_attachments.destroy_all
-    @account.stream_entries.destroy_all
-    @account.notifications.destroy_all
-    @account.favourites.destroy_all
-    @account.active_relationships.destroy_all
-    @account.passive_relationships.destroy_all
   end
 
-  def purge_profile
+  def purge_content!
+    ActivityPub::RawDistributionWorker.perform_async(delete_actor_json, @account.id) if @account.local?
+
+    @account.statuses.reorder(nil).find_in_batches do |statuses|
+      BatchedRemoveStatusService.new.call(statuses)
+    end
+
+    [
+      @account.media_attachments,
+      @account.stream_entries,
+      @account.notifications,
+      @account.favourites,
+      @account.active_relationships,
+      @account.passive_relationships,
+    ].each do |association|
+      destroy_all(association)
+    end
+  end
+
+  def purge_profile!
     @account.suspended    = true
     @account.display_name = ''
     @account.note         = ''
@@ -34,7 +49,21 @@ class SuspendAccountService < BaseService
     @account.save!
   end
 
-  def unsubscribe_push_subscribers
-    @account.subscriptions.destroy_all
+  def unsubscribe_push_subscribers!
+    destroy_all(@account.subscriptions)
+  end
+
+  def destroy_all(association)
+    association.in_batches.destroy_all
+  end
+
+  def delete_actor_json
+    payload = ActiveModelSerializers::SerializableResource.new(
+      @account,
+      serializer: ActivityPub::DeleteActorSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json
+
+    Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account))
   end
 end

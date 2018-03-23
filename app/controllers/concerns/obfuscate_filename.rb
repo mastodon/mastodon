@@ -4,19 +4,13 @@ module ObfuscateFilename
   extend ActiveSupport::Concern
 
   class_methods do
-    def obfuscate_filename(*args)
-      before_action { obfuscate_filename(*args) }
+    def obfuscate_filename(path)
+      before_action do
+        file = params.dig(*path)
+        next if file.nil?
+
+        file.original_filename = SecureRandom.hex(8) + File.extname(file.original_filename)
+      end
     end
-  end
-
-  def obfuscate_filename(path)
-    file = params.dig(*path)
-    return if file.nil?
-
-    file.original_filename = secure_token + File.extname(file.original_filename)
-  end
-
-  def secure_token(length = 16)
-    SecureRandom.hex(length / 2)
   end
 end

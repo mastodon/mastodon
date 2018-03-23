@@ -64,6 +64,15 @@ RSpec.describe PostStatusService do
     expect(status.application).to eq application
   end
 
+  it 'creates a status with a language set' do
+    account = Fabricate(:account)
+    text = 'This is an English text.'
+
+    status = subject.call(account, text)
+
+    expect(status.language).to eq 'en'
+  end
+
   it 'processes mentions' do
     mention_service = double(:process_mentions_service)
     allow(mention_service).to receive(:call)
@@ -88,16 +97,18 @@ RSpec.describe PostStatusService do
     expect(hashtags_service).to have_received(:call).with(status)
   end
 
-  it 'pings PuSH hubs' do
+  it 'gets distributed' do
     allow(DistributionWorker).to receive(:perform_async)
     allow(Pubsubhubbub::DistributionWorker).to receive(:perform_async)
+    allow(ActivityPub::DistributionWorker).to receive(:perform_async)
+
     account = Fabricate(:account)
 
     status = subject.call(account, "test status update")
 
     expect(DistributionWorker).to have_received(:perform_async).with(status.id)
-    expect(Pubsubhubbub::DistributionWorker).
-      to have_received(:perform_async).with(status.stream_entry.id)
+    expect(Pubsubhubbub::DistributionWorker).to have_received(:perform_async).with(status.stream_entry.id)
+    expect(ActivityPub::DistributionWorker).to have_received(:perform_async).with(status.id)
   end
 
   it 'crawls links' do
@@ -164,7 +175,14 @@ RSpec.describe PostStatusService do
     )
   end
 
-  def create_status_with_options(options = {})
-    subject.call(Fabricate(:account), "test", nil, options)
+  it 'returns existing status when used twice with idempotency key' do
+    account = Fabricate(:account)
+    status1 = subject.call(account, 'test', nil, idempotency: 'meepmeep')
+    status2 = subject.call(account, 'test', nil, idempotency: 'meepmeep')
+    expect(status2.id).to eq status1.id
+  end
+
+  def create_status_with_options(**options)
+    subject.call(Fabricate(:account), 'test', nil, options)
   end
 end

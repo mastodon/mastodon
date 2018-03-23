@@ -1,32 +1,43 @@
 - content_for :page_title do
-  #{Rails.configuration.x.local_domain}
+  = site_hostname
 
-.wrapper.thicc
-  .sidebar-layout
-    .main
-      .panel
-        %h2= Rails.configuration.x.local_domain
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = render partial: 'shared/og'
 
-        - unless @instance_presenter.site_description.blank?
-          %p= @instance_presenter.site_description.html_safe
+.landing-page
+  .header-wrapper.compact
+    .header
+      = render 'links'
 
-      .information-board
-        .section
+      .container-alt.hero
+        .heading
+          %h3= t('about.description_headline', domain: site_hostname)
+          %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+
+  .information-board
+    .container-alt
+      .information-board__sections
+        .information-board__section
           %span= t 'about.user_count_before'
           %strong= number_with_delimiter @instance_presenter.user_count
           %span= t 'about.user_count_after'
-        .section
+        .information-board__section
           %span= t 'about.status_count_before'
           %strong= number_with_delimiter @instance_presenter.status_count
           %span= t 'about.status_count_after'
-        .section
+        .information-board__section
           %span= t 'about.domain_count_before'
           %strong= number_with_delimiter @instance_presenter.domain_count
           %span= t 'about.domain_count_after'
+      = render 'contact', contact: @instance_presenter
 
-      - unless @instance_presenter.site_extended_description.blank?
-        .panel= @instance_presenter.site_extended_description.html_safe
+  .extended-description
+    .container-alt
+      = @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
 
-    .sidebar
-      = render partial: 'contact', object: @instance_presenter
-      = render 'links'
+  .footer-links
+    .container-alt
+      %p
+        = link_to t('about.source_code'), @instance_presenter.source_url
+        = " (#{@instance_presenter.version_number})"

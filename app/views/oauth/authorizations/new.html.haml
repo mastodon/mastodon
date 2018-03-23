@@ -7,7 +7,7 @@
 
     %p
       = t('doorkeeper.authorizations.new.able_to')
-      = @pre_auth.scopes.map { |scope| t(scope, scope: [:doorkeeper, :scopes]) }.map { |s| "<strong>#{s}</strong>"}.to_sentence.html_safe
+      != @pre_auth.scopes.map { |scope| t(scope, scope: [:doorkeeper, :scopes]) }.map { |s| "<strong>#{s}</strong>" }.to_sentence
 
   = form_tag oauth_authorization_path, method: :post, class: 'simple_form' do
     = hidden_field_tag :client_id, @pre_auth.client.uid

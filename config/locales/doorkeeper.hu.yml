@@ -5,6 +5,8 @@ hu:
       doorkeeper/application:
         name: Név
         redirect_uri: Visszairányító URI
+        scopes: Hatáskör
+        website: Az alkalmazás weboldala
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@ hu:
         redirect_uri: Egy sor URI-nként
         scopes: A nézeteket szóközzel válaszd el. Hagyd üresen az alapértelmezett nézetekhez.
       index:
+        application: Alkalmazás
         callback_url: Callback URL
+        delete: Eltávolítás
         name: Név
         new: Új alkalmazás
+        scopes: Hatáskör
+        show: Mutat
         title: Alkalmazásod
       new:
         title: Új alkalmazás
@@ -57,7 +63,7 @@ hu:
         prompt: "%{client_name} nevű alkalmazás engedélyt kér a fiókodhoz való hozzáféréshez."
         title: Engedély szükséges
       show:
-        title: Engedély kódja
+        title: Copy this authorization code and paste it to the application.
     authorized_applications:
       buttons:
         revoke: Visszavonás
@@ -67,6 +73,7 @@ hu:
         application: Alkalmazás
         created_at: Készítve
         date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Hatáskör
         title: Engedélyezett alkalmazásaid
     errors:
       messages:
@@ -84,7 +91,7 @@ hu:
           unknown: Hozzáférési kulcs érvénytelen
         resource_owner_authenticator_not_configured: Erőforrás tulajdonos keresés megszakadt, ugyanis a Doorkeeper.configure.resource_owner_authenticator beállítatlan.
         server_error: Hitelesítő szervert váratlan esemény érte, mely meggátolta a kérés teljesítését.
-        temporarily_unavailable: A hitelesítő szerver jelenleg nem tudja teljesíteni a kérést egy átmeneti túlterheltség vagy a kiszolgáló karbantartása miatt. 
+        temporarily_unavailable: A hitelesítő szerver jelenleg nem tudja teljesíteni a kérést egy átmeneti túlterheltség vagy a kiszolgáló karbantartása miatt.
         unauthorized_client: A kliens nincs feljogosítva a kérés teljesítésére.
         unsupported_grant_type: A hitelesítés módja nem támogatott a hitelesítő kiszolgálón.
         unsupported_response_type: A hitelesítő kiszolgáló nem támogatja ezt a választ.

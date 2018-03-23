@@ -1,32 +1,17 @@
 ---
 bg:
   about:
-    about_mastodon: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
+    about_mastodon_html: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
     about_this: За тази инстанция
-    apps: Приложения
-    business_email: 'Служебен e-mail:'
     closed_registrations: В момента регистрациите за тази инстанция са затворени.
     contact: За контакти
     description_headline: Какво е %{domain}?
     domain_count_after: други инстанции
     domain_count_before: Свързани към
-    features:
-      api: Отворено API за приложения и услуги
-      blocks: Богат на инструменти за блокиране и заглушаване
-      characters: Публикации от 500 символа
-      chronology: Публикациите се показват хронологично
-      ethics: 'Етичен дизайн: без реклами и проследяване'
-      gifv: GIFV комплекти и кратки видео клипове
-      privacy: Настройване на поверителността за всяка публикация
-      public: Публични канали
-    features_headline: Какво откроява Mastodon
-    get_started: Първи стъпки
-    links: Връзки
     other_instances: Други инстанции
     source_code: Програмен код
     status_count_after: публикации
     status_count_before: Написали
-    terms: Условия
     user_count_after: потребители
     user_count_before: Дом на
   accounts:
@@ -41,12 +26,10 @@ bg:
     unfollow: Не следвай
   application_mailer:
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
-    signature: Mastodon известия от %{instance}
     view: 'Преглед:'
   applications:
     invalid_url: Предоставеният URL е невалиден
   auth:
-    change_password: Идентификационни данни
     didnt_get_confirmation: Не получих инструкции за потвърждение
     forgot_password: Забравих си паролата
     login: Влизане
@@ -54,11 +37,11 @@ bg:
     register: Регистрация
     resend_confirmation: Изпрати отново инструкции за потвърждение
     reset_password: Подновяване на паролата
+    security: Идентификационни данни
     set_new_password: Задай нова парола
   authorize_follow:
     error: Възникна грешка в откриването на потребителя
     follow: Последвай
-    prompt_html: "(<strong>%{self}</strong>), молбата ти беше изпратена до:"
     title: Последвай %{acct}
   datetime:
     distance_in_words:
@@ -93,7 +76,8 @@ bg:
       blocking: Списък на блокираните
       following: Списък на последователите
     upload: Качване
-  landing_strip_html: <strong>%{name}</strong> е потребител от <strong>%{domain}</strong>. Можеш да ги следваш, или да контактуваш с тях, ако имаш акаунт където и да е из федерираната вселена на Mastodon. Ако нямаш акаунт, можеш да си <a href="%{sign_up_path}">създадеш ето тук</a>.
+  landing_strip_html: "<strong>%{name}</strong> е потребител от %{link_to_root_path}. Можеш да ги следваш, или да контактуваш с тях, ако имаш акаунт където и да е из федерираната вселена на Mastodon."
+  landing_strip_signup_html: Ако нямаш акаунт, можеш да си <a href="%{sign_up_path}">създадеш ето тук</a>.
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
@@ -123,6 +107,17 @@ bg:
     reblog:
       body: 'Твоята публикация беше споделена от %{name}:'
       subject: "%{name} сподели публикацията ти"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
   pagination:
     next: Напред
     prev: Назад
@@ -139,7 +134,7 @@ bg:
     import: Импортиране
     preferences: Предпочитания
     settings: Настройки
-    two_factor_auth: Двустепенно удостоверяване
+    two_factor_authentication: Двустепенно удостоверяване
   statuses:
     open_in_web: Отвори в уеб
     over_character_limit: прехвърлен лимит от %{max} символа
@@ -155,7 +150,7 @@ bg:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     description_html: При активация на <strong>двустепенно удостоверяване</strong>, за да влезеш в приложението, ще трябва да използваш телефона си. През него ще се генерира код, който да въвеждаш при влизане.
     disable: Деактивирай
     enable: Активирай

@@ -1,0 +1,16 @@
+---
+pl:
+  activerecord:
+    attributes:
+      user:
+        email: adres e-mail
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: może składać się tylko z liter, cyfr i podkreślników
+        status:
+          attributes:
+            reblog:
+              taken: status już istnieje

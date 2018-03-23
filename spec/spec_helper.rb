@@ -1,10 +1,14 @@
 require 'simplecov'
 
+GC.disable
+
 SimpleCov.start 'rails' do
   add_group 'Services', 'app/services'
   add_group 'Presenters', 'app/presenters'
   add_group 'Validators', 'app/validators'
 end
+
+gc_counter = -1
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -21,12 +25,25 @@ RSpec.configure do |config|
     end
   end
 
-  config.before :each do
-    stub_request(:post, 'https://fcm.googleapis.com/fcm/send').to_return(status: 200, body: '')
+  config.before :suite do
+    Chewy.strategy(:bypass)
   end
 
   config.after :suite do
+    gc_counter = 0
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+  end
+
+  config.after :each do
+    gc_counter += 1
+
+    if gc_counter > 19
+      GC.enable
+      GC.start
+      GC.disable
+
+      gc_counter = 0
+    end
   end
 end
 

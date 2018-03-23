@@ -1,47 +1,45 @@
 # frozen_string_literal: true
 
 class FetchRemoteStatusService < BaseService
-  def call(url, prefetched_body = nil)
+  include AuthorExtractor
+
+  def call(url, prefetched_body = nil, protocol = :ostatus)
     if prefetched_body.nil?
-      atom_url, body = FetchAtomService.new.call(url)
+      resource_url, resource_options, protocol = FetchAtomService.new.call(url)
     else
-      atom_url = url
-      body     = prefetched_body
+      resource_url     = url
+      resource_options = { prefetched_body: prefetched_body }
     end
 
-    return nil if atom_url.nil?
-    process_atom(atom_url, body)
+    case protocol
+    when :ostatus
+      process_atom(resource_url, **resource_options)
+    when :activitypub
+      ActivityPub::FetchRemoteStatusService.new.call(resource_url, **resource_options)
+    end
   end
 
   private
 
-  def process_atom(url, body)
+  def process_atom(url, prefetched_body:)
     Rails.logger.debug "Processing Atom for remote status at #{url}"
 
-    xml = Nokogiri::XML(body)
+    xml = Nokogiri::XML(prefetched_body)
     xml.encoding = 'utf-8'
 
-    account = extract_author(url, xml)
+    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS))
+    domain  = Addressable::URI.parse(url).normalized_host
 
-    return nil if account.nil?
+    return nil unless !account.nil? && confirmed_domain?(domain, account)
 
-    statuses = ProcessFeedService.new.call(body, account)
-
+    statuses = ProcessFeedService.new.call(prefetched_body, account)
     statuses.first
-  end
-
-  def extract_author(url, xml)
-    url_parts = Addressable::URI.parse(url)
-    username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
-    domain    = url_parts.host
-
-    return nil if username.nil?
-
-    Rails.logger.debug "Going to webfinger #{username}@#{domain}"
-
-    return FollowRemoteAccountService.new.call("#{username}@#{domain}")
   rescue Nokogiri::XML::XPath::SyntaxError
     Rails.logger.debug 'Invalid XML or missing namespace'
     nil
+  end
+
+  def confirmed_domain?(domain, account)
+    account.domain.nil? || domain.casecmp(account.domain).zero? || domain.casecmp(Addressable::URI.parse(account.remote_url.presence || account.uri).normalized_host).zero?
   end
 end

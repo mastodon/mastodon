@@ -2,7 +2,13 @@
 
 module Settings
   module Exports
-    class FollowingAccountsController < BaseController
+    class FollowingAccountsController < ApplicationController
+      include ExportControllerConcern
+
+      def index
+        send_export_file
+      end
+
       private
 
       def export_data

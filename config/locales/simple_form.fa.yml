@@ -1,0 +1,71 @@
+---
+fa:
+  simple_form:
+    hints:
+      defaults:
+        avatar: یکی از قالب‌های PNG یا  GIF یا JPG. بیشترین اندازه ۲ مگابایت. تصویر به اندازهٔ ۱۲۰×۱۲۰ پیکسل تبدیل خواهد شد
+        digest: پس از مدت طولانی عدم فعالیت فرستاده می‌شود، شامل خلاصه‌ای از مواردی که در نبودتان از شما نام برده شده
+        display_name:
+          one: <span class="name-counter">1</span> حرف باقی مانده
+          other: <span class="name-counter">%{count}</span> حرف باقی مانده
+        header: یکی از قالب‌های PNG یا  GIF یا JPG. بیشترین اندازه ۲ مگابایت. تصویر به اندازهٔ ۳۳۵×۷۰۰ پیکسل تبدیل خواهد شد
+        locked: باید پیگیران تازه را خودتان تأیید کنید. حریم خصوصی پیش‌فرض نوشته‌ها را روی پیگیران تنظیم می‌کند
+        note:
+          one: <span class="note-counter">1</span> حرف باقی مانده
+          other: <span class="note-counter">%{count}</span> حرف باقی مانده
+        setting_noindex: روی نمایهٔ عمومی و صفحهٔ نوشته‌های شما تأثیر می‌گذارد
+        setting_theme: ظاهر ماستدون را وقتی که از هر دستگاهی به آن وارد می‌شوید تعیین می‌کند.
+      imports:
+        data: پروندهٔ CSV که از سرور ماستدون دیگری برون‌سپاری شده
+      sessions:
+        otp: کد تأیید دومرحله‌ای را از تلفن خود وارد کنید یا یکی از کدهای بازیابی را به کار ببرید.
+      user:
+        filtered_languages: زبان‌های انتخاب‌شده از فهرست عمومی نوشته‌هایی که می‌بینید حذف می‌شوند
+    labels:
+      defaults:
+        avatar: تصویر نمایه
+        confirm_new_password: تأیید رمز تازه
+        confirm_password: تأیید رمز
+        current_password: رمز فعلی
+        data: داده‌ها
+        display_name: نمایش به نام
+        email: نشانی ایمیل
+        expires_in: تاریخ انقضا
+        filtered_languages: زبان‌های فیلترشده
+        header: تصویر زمینه
+        locale: زبان
+        locked: خصوصی‌کردن حساب
+        max_uses: بیشترین شمار استفاده
+        new_password: رمز تازه
+        note: دربارهٔ شما
+        otp_attempt: کد ورود دومرحله‌ای
+        password: رمز
+        setting_auto_play_gif: پخش خودکار تصویرهای متحرک
+        setting_boost_modal: نمایش پیغام تأیید پیش از بازبوقیدن
+        setting_default_privacy: حریم خصوصی نوشته‌ها
+        setting_default_sensitive: همیشه تصاویر را به عنوان حساس علامت بزن
+        setting_delete_modal: پیش از پاک کردن یک نوشته پیغام تأیید نشان بده
+        setting_noindex: درخواست از موتورهای جستجو برای لغو فهرست‌سازی
+        setting_reduce_motion: کاستن از حرکت در پویانمایی‌ها
+        setting_system_font_ui: به‌کاربردن قلم پیش‌فرض سیستم
+        setting_theme: تم سایت
+        setting_unfollow_modal: نمایش پیغام تأیید پیش از لغو پیگیری دیگران
+        severity: شدت
+        type: نوع درون‌ریزی
+        username: نام کاربری (تنها حروف انگلیسی)
+      interactions:
+        must_be_follower: مسدودکردن اعلان‌های همه به جز پیگیران
+        must_be_following: مسدودکردن اعلان‌های کسانی که شما پی نمی‌گیرید
+        must_be_following_dm: مسدودکردن پیغام‌های خصوصی کسانی که شما پی نمی‌گیرید
+      notification_emails:
+        digest: خلاصه‌کردن چند اعلان در یک ایمیل
+        favourite: وقتی کسی نوشتهٔ شما پسندید ایمیل بفرست
+        follow: وقتی کسی پیگیر شما شد ایمیل بفرست
+        follow_request: وقتی کسی درخواست پیگیری کرد ایمیل بفرست
+        mention: وقتی کسی از شما نام برد ایمیل بفرست
+        reblog: وقتی کسی نوشتهٔ شما را بازبوقید ایمیل بفرست
+    'no': خیر
+    required:
+      mark: "*"
+      text: ضروری
+    'yes': بله

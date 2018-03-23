@@ -1,18 +1,36 @@
 - content_for :page_title do
   = "##{@tag.name}"
 
-.compact-header
-  %h1<
-    = link_to site_title, root_path
-    %small= "##{@tag.name}"
+- content_for :header_tags do
+  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
+  = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
+  = render 'og'
 
-- if @statuses.empty?
-  .accounts-grid
-    = render partial: 'accounts/nothing_here'
-- else
-  .activity-stream.h-feed
-    = render partial: 'stream_entries/status', collection: @statuses, as: :status
+.landing-page.tag-page.alternative
+  .features
+    .container
+      .grid
+        .column-1
+          #mastodon-timeline{ data: { props: Oj.dump(default_props.merge(hashtag: @tag.name)) } }
 
-- if @statuses.size == 20
-  .pagination
-    = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), tag_url(@tag, max_id: @statuses.last.id), class: 'next', rel: 'next'
+        .column-2
+          .about-mastodon
+            .about-hashtag.landing-page__information
+              .brand
+                = link_to root_url do
+                  = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+
+              %p= t 'about.about_hashtag_html', hashtag: @tag.name
+
+              .cta
+                - if user_signed_in?
+                  = link_to t('settings.back'), root_path, class: 'button button-secondary'
+                - else
+                  = link_to t('auth.login'), new_user_session_path, class: 'button button-secondary'
+                = link_to t('about.learn_more'), about_path, class: 'button button-alternative'
+
+            .landing-page__features.landing-page__information
+              %h3= t 'about.what_is_mastodon'
+              %p= t 'about.about_mastodon_html'
+
+              = render 'features'

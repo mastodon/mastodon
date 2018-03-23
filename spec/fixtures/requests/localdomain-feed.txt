@@ -1,0 +1,57 @@
+HTTP/1.1 200 OK
+Date: Thu, 20 Apr 2017 07:36:08 GMT
+Content-Type: application/atom+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: Mastodon
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Link: <https://social.sitedethib.com/.well-known/webfinger?resource=acct%3AThib%40sitedethib.com>; rel="lrdd"; type="application/xrd+xml", <https://social.sitedethib.com/users/Thib.atom>; rel="alternate"; type="application/atom+xml"
+Vary: Accept-Encoding
+ETag: W/"1fa54baac599205a1e54c136dea2b671"
+Cache-Control: max-age=0, private, must-revalidate
+Set-Cookie: _mastodon_session=Vk5XbERyQ0NscjJhdEw1eVEyY3JwQTlBVThObUJ1N3NFcVlJaCtpNU5FSmZlTzFIZ2FqSzhVY1lneFlLQ1haNkh1SDM5L0FSdnFLTGwwTnhJMy9qWWI5aWRnM1NOU1NLTmtuamR5cG5Ebm8vekFNL20ydGkxYXFXU2FwVTF1NnctLXdxdFhNVFA2VmlFVm5BY25QU2N1clE9PQ%3D%3D--47e86fed56f94d3998bfc3837af8de93ec8c104e; path=/; secure; HttpOnly
+X-Request-Id: 071ec889-04fb-4efa-b55e-81eb90772b50
+X-Runtime: 1.173933
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:media="http://purl.org/syndication/atommedia" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:mastodon="http://mastodon.social/schema/1.0">
+  <id>https://webdomain.com/users/foo.atom</id>
+  <title>foo</title>
+  <subtitle>foo</subtitle>
+  <updated>2017-04-08T15:38:58Z</updated>
+  <logo>https://quitter.no/avatar/7477-300-20160211190340.png</logo>
+  <author>
+    <id>https://webdomain.com/users/foo</id>
+    <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+    <uri>https://webdomain.com/users/foo</uri>
+    <name>foo</name>
+    <email>foo@localdomain.com</email>
+    <summary>foo</summary>
+    <link rel="alternate" type="text/html" href="https://webdomain.com/@foo"/>
+    <link rel="avatar" type="image/jpeg" media:width="120" media:height="120" href="https://quitter.no/avatar/7477-300-20160211190340.png"/>
+    <poco:preferredUsername>foo</poco:preferredUsername>
+    <poco:displayName>foo</poco:displayName>
+    <poco:note>foo</poco:note>
+    <mastodon:scope>public</mastodon:scope>
+  </author>
+  <link rel="alternate" type="text/html" href="https://webdomain.com/@foo"/>
+  <link rel="self" type="application/atom+xml" href="https://webdomain.com/users/foo.atom"/>
+  <link rel="hub" href="https://webdomain.com/api/push"/>
+  <link rel="salmon" href="https://webdomain.com/api/salmon/1"/>
+  <entry>
+    <id>tag:localdomain.com,2017-04-19:objectId=12774:objectType=Status</id>
+    <published>2017-04-19T22:28:01Z</published>
+    <updated>2017-04-19T22:28:01Z</updated>
+    <title>New status by foo</title>
+    <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+    <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+    <content type="html" xml:lang="fr">&lt;p&gt;Meh, ça foire l&amp;apos;attribution des boosts.&lt;br /&gt;Faudra que je corrige ça…&lt;/p&gt;</content>
+    <mastodon:scope>unlisted</mastodon:scope>
+    <link rel="alternate" type="text/html" href="https://webdomain.com/users/foo/updates/93"/>
+    <link rel="self" type="application/atom+xml" href="https://webdomain.com/users/foo/updates/93.atom"/>
+    <thr:in-reply-to ref="tag:localdomain.com,2017-04-19:objectId=12658:objectType=Status" href="https://webdomain.com/@foo/12658"/>
+  </entry>
+</feed>
