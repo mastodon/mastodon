@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import {
-  refreshPublicTimeline,
-  expandPublicTimeline,
-} from '../../actions/timelines';
+import { expandPublicTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
@@ -55,7 +52,7 @@ export default class PublicTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
-    dispatch(refreshPublicTimeline());
+    dispatch(expandPublicTimeline());
     this.disconnect = dispatch(connectPublicStream());
   }
 
@@ -70,8 +67,8 @@ export default class PublicTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandPublicTimeline());
+  handleLoadMore = maxId => {
+    this.props.dispatch(expandPublicTimeline({ maxId }));
   }
 
   render () {
@@ -95,7 +92,7 @@ export default class PublicTimeline extends React.PureComponent {
 
         <StatusListContainer
           timelineId='public'
-          loadMore={this.handleLoadMore}
+          onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}
           emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />}
