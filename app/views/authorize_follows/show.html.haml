@@ -3,6 +3,8 @@
 
 .form-container
   .follow-prompt
+    - if current_account.following?(@account)
+      %h2= t('authorize_follow.already_following')
     = render 'card', account: @account
 
   - unless current_account.following?(@account)
