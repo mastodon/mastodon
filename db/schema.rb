@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304013859) do
+ActiveRecord::Schema.define(version: 20180310000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -274,12 +274,12 @@ ActiveRecord::Schema.define(version: 20180304013859) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "activity_id"
-    t.string "activity_type"
+    t.bigint "activity_id", null: false
+    t.string "activity_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "from_account_id"
+    t.bigint "account_id", null: false
+    t.bigint "from_account_id", null: false
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
     t.index ["account_id", "id"], name: "index_notifications_on_account_id_and_id", order: { id: :desc }
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
