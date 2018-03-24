@@ -49,11 +49,11 @@ const normalizeNotification = (state, notification) => {
 };
 
 const normalizeNotifications = (state, notifications, next) => {
-  let items    = ImmutableList();
+  let newItems    = ImmutableList();
   const loaded = state.get('loaded');
 
   notifications.forEach((n, i) => {
-    items = items.set(i, notificationToMap(n));
+    newItems = newItems.set(i, notificationToMap(n));
   });
 
   if (state.get('next') === null) {
@@ -61,7 +61,7 @@ const normalizeNotifications = (state, notifications, next) => {
   }
 
   return state
-    .update('items', list => loaded ? items.concat(list) : list.concat(items))
+    .update('items', oldItems => loaded ? newItems.concat(oldItems) : oldItems.concat(newItems))
     .set('loaded', true)
     .set('isLoading', false);
 };
