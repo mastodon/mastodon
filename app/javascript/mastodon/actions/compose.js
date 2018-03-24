@@ -4,6 +4,7 @@ import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
 import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
+import { importFetchedAccounts } from './importer';
 
 import {
   updateTimeline,
@@ -282,6 +283,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
       limit: 4,
     },
   }).then(response => {
+    dispatch(importFetchedAccounts(response.data));
     dispatch(readyComposeSuggestionsAccounts(token, response.data));
   });
 }, 200, { leading: true, trailing: true });
