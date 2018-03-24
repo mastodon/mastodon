@@ -361,42 +361,50 @@ body {
 }
 
 // Accounts
-.account__header {
-  margin: 0 3px $foresdon-default-margin-bottom 0;
-  background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
-  border: none;
-  border-radius: $foresdon-primary-border-radius;
-  margin-bottom: 3px;
-
-  & > div {
-    background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
-    border-radius: $foresdon-primary-border-radius;
-  }
-}
-.account__action-bar__tab {
-  background: none;
-  border: none;
-}
-
-.account__action-bar {
-  margin: 0 3px $foresdon-default-margin-bottom 0;
-  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
-  border: none;
-  border-radius: $foresdon-primary-border-radius;
-  margin-bottom: 3px;
-}
-
-.account-section-headline {
-  color: $foresdon-ui-primary-color;
-  background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
-  border-radius: $foresdon-primary-border-radius;
-}
-
 .account {
   margin-bottom: $foresdon-default-margin-bottom;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border: none;
   border-radius: $foresdon-primary-border-radius;
+
+  &__header {
+    margin: 0 3px $foresdon-default-margin-bottom 0;
+    background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border: none;
+    border-radius: $foresdon-primary-border-radius;
+    margin-bottom: 3px;
+  
+    & > div {
+      background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+      border-radius: $foresdon-primary-border-radius;
+    }
+  }
+
+  &__action-bar__tab {
+    background: none;
+    border: none;
+  }
+  
+  &__action-bar {
+    margin: 0 3px $foresdon-default-margin-bottom 0;
+    background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border: none;
+    border-radius: $foresdon-primary-border-radius;
+    margin-bottom: 3px;
+  }
+  
+
+  &__section-headline {
+    margin-bottom: 3px;
+    color: $foresdon-ui-primary-color;
+    background-color: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+    border-style: none;
+    border-radius: $foresdon-primary-border-radius;
+
+    & a.active::before, & a.active::after {
+      opacity: 0.3;
+    }
+  }
 }
 
 // Notifications
