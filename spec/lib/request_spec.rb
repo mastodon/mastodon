@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'securerandom'
 
 describe Request do
   subject { Request.new(:get, 'http://example.com') }
@@ -64,6 +65,12 @@ describe Request do
         expect_any_instance_of(HTTP::Client).to receive(:close)
         expect { |block| subject.perform &block }.to yield_control
       end
+
+      it 'returns response which implements body_with_limit' do
+        subject.perform do |response|
+          expect(response).to respond_to :body_with_limit
+        end
+      end
     end
 
     context 'with private host' do
@@ -79,6 +86,48 @@ describe Request do
                                             .and_yield(Addrinfo.new(["AF_INET6", 0, "example.com", "2001:db8::face"], :PF_INET6, :SOCK_STREAM))
         expect{ subject.perform }.to raise_error Mastodon::ValidationError
       end
+    end
+  end
+
+  describe "response's body_with_limit method" do
+    it 'rejects body more than 1 megabyte by default' do
+      stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes))
+      expect { subject.perform { |response| response.body_with_limit } }.to raise_error Mastodon::LengthValidationError
+    end
+
+    it 'accepts body less than 1 megabyte by default' do
+      stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.kilobytes))
+      expect { subject.perform { |response| response.body_with_limit } }.not_to raise_error
+    end
+
+    it 'rejects body by given size' do
+      stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.kilobytes))
+      expect { subject.perform { |response| response.body_with_limit(1.kilobyte) } }.to raise_error Mastodon::LengthValidationError
+    end
+
+    it 'rejects too large chunked body' do
+      stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes), headers: { 'Transfer-Encoding' => 'chunked' })
+      expect { subject.perform { |response| response.body_with_limit } }.to raise_error Mastodon::LengthValidationError
+    end
+
+    it 'rejects too large monolithic body' do
+      stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes), headers: { 'Content-Length' => 2.megabytes })
+      expect { subject.perform { |response| response.body_with_limit } }.to raise_error Mastodon::LengthValidationError
+    end
+
+    it 'uses binary encoding if Content-Type does not tell encoding' do
+      stub_request(:any, 'http://example.com').to_return(body: '', headers: { 'Content-Type' => 'text/html' })
+      expect(subject.perform { |response| response.body_with_limit.encoding }).to eq Encoding::BINARY
+    end
+
+    it 'uses binary encoding if Content-Type tells unknown encoding' do
+      stub_request(:any, 'http://example.com').to_return(body: '', headers: { 'Content-Type' => 'text/html; charset=unknown' })
+      expect(subject.perform { |response| response.body_with_limit.encoding }).to eq Encoding::BINARY
+    end
+
+    it 'uses encoding specified by Content-Type' do
+      stub_request(:any, 'http://example.com').to_return(body: '', headers: { 'Content-Type' => 'text/html; charset=UTF-8' })
+      expect(subject.perform { |response| response.body_with_limit.encoding }).to eq Encoding::UTF_8
     end
   end
 end

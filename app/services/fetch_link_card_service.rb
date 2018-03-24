@@ -45,7 +45,7 @@ class FetchLinkCardService < BaseService
 
     Request.new(:get, @url).perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'
-        @html = res.to_s
+        @html = res.body_with_limit
         @html_charset = res.charset
       else
         @html = nil
