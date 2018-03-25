@@ -10,8 +10,8 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose } from '../../actions/compose';
-import { refreshHomeTimeline } from '../../actions/timelines';
-import { refreshNotifications } from '../../actions/notifications';
+import { expandHomeTimeline } from '../../actions/timelines';
+import { expandNotifications } from '../../actions/notifications';
 import { clearHeight } from '../../actions/height_cache';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
@@ -284,8 +284,8 @@ export default class UI extends React.PureComponent {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
-    this.props.dispatch(refreshHomeTimeline());
-    this.props.dispatch(refreshNotifications());
+    this.props.dispatch(expandHomeTimeline());
+    this.props.dispatch(expandNotifications());
   }
 
   componentDidMount () {

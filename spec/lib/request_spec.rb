@@ -39,12 +39,10 @@ describe Request do
 
   describe '#perform' do
     context 'with valid host' do
-      before do
-        stub_request(:get, 'http://example.com')
-        subject.perform
-      end
+      before { stub_request(:get, 'http://example.com') }
 
       it 'executes a HTTP request' do
+        expect { |block| subject.perform &block }.to yield_control
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
@@ -52,11 +50,19 @@ describe Request do
         allow(Addrinfo).to receive(:foreach).with('example.com', nil, nil, :SOCK_STREAM)
                                             .and_yield(Addrinfo.new(["AF_INET", 0, "example.com", "0.0.0.0"], :PF_INET, :SOCK_STREAM))
                                             .and_yield(Addrinfo.new(["AF_INET6", 0, "example.com", "2001:4860:4860::8844"], :PF_INET6, :SOCK_STREAM))
+
+        expect { |block| subject.perform &block }.to yield_control
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
       it 'sets headers' do
+        expect { |block| subject.perform &block }.to yield_control
         expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
+      end
+
+      it 'closes underlaying connection' do
+        expect_any_instance_of(HTTP::Client).to receive(:close)
+        expect { |block| subject.perform &block }.to yield_control
       end
     end
 

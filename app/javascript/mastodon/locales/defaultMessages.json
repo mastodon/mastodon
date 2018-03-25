@@ -326,7 +326,7 @@
         "id": "account.posts"
       },
       {
-        "defaultMessage": "Toots with replies",
+        "defaultMessage": "Toots and replies",
         "id": "account.posts_with_replies"
       },
       {
@@ -1734,5 +1734,18 @@
       }
     ],
     "path": "app/javascript/mastodon/features/video/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Oops!",
+        "id": "alert.unexpected.title"
+      },
+      {
+        "defaultMessage": "An unexpected error occurred.",
+        "id": "alert.unexpected.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/middleware/errors.json"
   }
 ]
