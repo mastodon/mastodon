@@ -634,6 +634,15 @@ gl:
     two_factor_authentication: Validar Doble Factor
     your_apps: Os seus aplicativos
   statuses:
+    attached:
+      description: 'Axenado: %{attached}'
+      image:
+        one: "%{count} imaxe"
+        other: "%{count} imaxes"
+      video:
+        one: "%{count}  vídeo"
+        other: "%{count} vídeos"
+    content_warning: 'Aviso sobre o contido: %{warning}'
     open_in_web: Abrir na web
     over_character_limit: Excedeu o límite de caracteres %{max}
     pin_errors:

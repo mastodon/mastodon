@@ -14,8 +14,7 @@ Paperclip::Attachment.default_options.merge!(
 )
 
 if ENV['S3_ENABLED'] == 'true'
-  require 'aws-sdk'
-  Aws.eager_autoload!(services: %w(S3))
+  require 'aws-sdk-s3'
 
   s3_region   = ENV.fetch('S3_REGION')   { 'us-east-1' }
   s3_protocol = ENV.fetch('S3_PROTOCOL') { 'https' }

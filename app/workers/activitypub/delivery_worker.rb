@@ -12,11 +12,10 @@ class ActivityPub::DeliveryWorker
     @source_account = Account.find(source_account_id)
     @inbox_url      = inbox_url
 
-    perform_request
+    perform_request do |response|
+      raise Mastodon::UnexpectedResponseError, response unless response_successful? response
+    end
 
-    raise Mastodon::UnexpectedResponseError, @response unless response_successful?
-
-    @response.connection&.close
     failure_tracker.track_success!
   rescue => e
     failure_tracker.track_failure!
@@ -31,12 +30,12 @@ class ActivityPub::DeliveryWorker
     request.add_headers(HEADERS)
   end
 
-  def perform_request
-    @response = build_request.perform
+  def perform_request(&block)
+    build_request.perform(&block)
   end
 
-  def response_successful?
-    @response.code > 199 && @response.code < 300
+  def response_successful?(response)
+    response.code > 199 && response.code < 300
   end
 
   def failure_tracker

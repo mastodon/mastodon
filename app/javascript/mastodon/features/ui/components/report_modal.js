@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeReportComment, changeReportForward, submitReport } from '../../../actions/reports';
-import { refreshAccountTimeline } from '../../../actions/timelines';
+import { expandAccountTimeline } from '../../../actions/timelines';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { makeGetAccount } from '../../../selectors';
@@ -64,12 +64,12 @@ export default class ReportModal extends ImmutablePureComponent {
   }
 
   componentDidMount () {
-    this.props.dispatch(refreshAccountTimeline(this.props.account.get('id')));
+    this.props.dispatch(expandAccountTimeline(this.props.account.get('id')));
   }
 
   componentWillReceiveProps (nextProps) {
     if (this.props.account !== nextProps.account && nextProps.account) {
-      this.props.dispatch(refreshAccountTimeline(nextProps.account.get('id')));
+      this.props.dispatch(expandAccountTimeline(nextProps.account.get('id')));
     }
   }
 

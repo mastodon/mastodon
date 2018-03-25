@@ -634,6 +634,15 @@ ca:
     two_factor_authentication: Autenticació de dos factors
     your_apps: Les teves aplicacions
   statuses:
+    attached:
+      description: 'Adjunt: %{attached}'
+      image:
+        one: "%{count} imatge"
+        other: "%{count} imatges"
+      video:
+        one: "%{count} vídeo"
+        other: "%{count} vídeos"
+    content_warning: 'Avís de contingut: %{warning}'
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
