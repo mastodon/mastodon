@@ -1,7 +1,7 @@
 zh-TW:
   devise:
     confirmations:
-      confirmed: 信箱驗證成功
+      confirmed: 您的電子郵件地址確認成功。
       send_instructions: 您將會在幾分鐘內收到驗證信。
       send_paranoid_instructions: 如果您的電子信箱已經存在於我們的資料庫，您將會在幾分鐘內收到信，確認您電子信箱的指示。
     failure:
@@ -9,7 +9,7 @@ zh-TW:
       inactive: 您的帳號尚未啟用。
       invalid: 不正確的 %{authentication_keys} 或密碼。
       last_attempt: 若您再次嘗試失敗，我們將鎖定您的帳號，以策安全。
-      locked: 您的帳號已被鎖定
+      locked: 您的帳號已被鎖定。
       not_found_in_database: 不正確的 %{authentication_keys} 或密碼。
       timeout: 您的登入階段已經逾期，請重新登入以繼續使用。
       unauthenticated: 您必須先登入或註冊，以繼續使用。
