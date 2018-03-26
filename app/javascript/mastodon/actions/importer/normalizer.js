@@ -10,6 +10,10 @@ export function normalizeAccount(account) {
   account.display_name_html = emojify(escapeTextContentForBrowser(displayName));
   account.note_emojified = emojify(account.note);
 
+  if (account.moved) {
+    account.moved = account.moved.id;
+  }
+
   return account;
 }
 
