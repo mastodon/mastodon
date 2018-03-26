@@ -57,7 +57,7 @@ class Pubsubhubbub::ConfirmationWorker
 
   def callback_get_with_params
     Request.new(:get, subscription.callback_url, params: callback_params).perform do |response|
-      @callback_response_body = response.body.to_s
+      @callback_response_body = response.body_with_limit
     end
   end
 

@@ -38,13 +38,14 @@ class FetchAtomService < BaseService
     return nil if response.code != 200
 
     if response.mime_type == 'application/atom+xml'
-      [@url, { prefetched_body: response.to_s }, :ostatus]
+      [@url, { prefetched_body: response.body_with_limit }, :ostatus]
     elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(response.mime_type)
-      json = body_to_json(response.to_s)
+      body = response.body_with_limit
+      json = body_to_json(body)
       if supported_context?(json) && json['type'] == 'Person' && json['inbox'].present?
-        [json['id'], { prefetched_body: response.to_s, id: true }, :activitypub]
+        [json['id'], { prefetched_body: body, id: true }, :activitypub]
       elsif supported_context?(json) && json['type'] == 'Note'
-        [json['id'], { prefetched_body: response.to_s, id: true }, :activitypub]
+        [json['id'], { prefetched_body: body, id: true }, :activitypub]
       else
         @unsupported_activity = true
         nil
@@ -61,7 +62,7 @@ class FetchAtomService < BaseService
   end
 
   def process_html(response)
-    page = Nokogiri::HTML(response.to_s)
+    page = Nokogiri::HTML(response.body_with_limit)
 
     json_link = page.xpath('//link[@rel="alternate"]').find { |link| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link['type']) }
     atom_link = page.xpath('//link[@rel="alternate"]').find { |link| link['type'] == 'application/atom+xml' }

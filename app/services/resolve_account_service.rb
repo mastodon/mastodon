@@ -181,7 +181,7 @@ class ResolveAccountService < BaseService
 
     @atom_body = Request.new(:get, atom_url).perform do |response|
       raise Mastodon::UnexpectedResponseError, response unless response.code == 200
-      response.to_s
+      response.body_with_limit
     end
   end
 
