@@ -18,7 +18,7 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
              else
                Request.new(:get, url).perform do |res|
                  raise OEmbed::NotFound, url if res.code != 200 || res.mime_type != 'text/html'
-                 Nokogiri::HTML(res.to_s)
+                 Nokogiri::HTML(res.body_with_limit)
                end
              end
 
