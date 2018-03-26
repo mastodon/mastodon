@@ -6,7 +6,7 @@ class UniqueUsernameValidator < ActiveModel::Validator
 
     normalized_username = account.username.downcase.delete('.')
 
-    scope = Account.where(domain: nil, username: normalized_username)
+    scope = Account.where(domain: nil).where('lower(username) = ?', normalized_username)
     scope = scope.where.not(id: account.id) if account.persisted?
 
     account.errors.add(:username, :taken) if scope.exists?
