@@ -162,6 +162,8 @@ ar:
         reset_password_user: '%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ
           %{target}'
         update_custom_emoji: '%{name} قام بتحديث الإيموجي %{target}'
+        destroy_email_domain_block: قام %{name} بإضافة نطاق البريد الإلكتروني %{target}
+          إلى اللائحة البيضاء
       title: سِجلّ التفتيش و المعاينة
     custom_emojis:
       by_domain: النطاق
@@ -457,7 +459,7 @@ ar:
     next: التالي
     older: الأقدَم
     prev: السابق
-    truncate: '&hellip;'
+    truncate: و
   preferences:
     languages: اللغات
     other: إعدادات أخرى
