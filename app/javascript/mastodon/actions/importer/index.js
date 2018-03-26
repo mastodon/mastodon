@@ -39,7 +39,7 @@ export function importFetchedAccounts(accounts) {
     pushUnique(normalAccounts, normalizeAccount(account));
 
     if (account.moved) {
-      processAccount(account);
+      processAccount(account.moved);
     }
   }
 
