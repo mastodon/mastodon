@@ -82,7 +82,7 @@ const expandNormalizedNotifications = (state, notifications, next) => {
 };
 
 const filterNotifications = (state, relationship) => {
-  return state.update('items', list => list.filterNot(item => item.get('account') === relationship.id));
+  return state.update('items', list => list.filterNot(item => item !== null && item.get('account') === relationship.id));
 };
 
 const updateTop = (state, top) => {
@@ -94,7 +94,7 @@ const updateTop = (state, top) => {
 };
 
 const deleteByStatus = (state, statusId) => {
-  return state.update('items', list => list.filterNot(item => item.get('status') === statusId));
+  return state.update('items', list => list.filterNot(item => item !== null && item.get('status') === statusId));
 };
 
 export default function notifications(state = initialState, action) {
