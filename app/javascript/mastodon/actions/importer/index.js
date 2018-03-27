@@ -1,4 +1,4 @@
-import { putAccounts, putStatuses } from '../../db/modifier';
+import { putAccounts, putStatuses } from '../../storage/modifier';
 import { normalizeAccount, normalizeStatus } from './normalizer';
 
 export const ACCOUNT_IMPORT = 'ACCOUNT_IMPORT';
