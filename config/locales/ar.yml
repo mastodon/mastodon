@@ -144,6 +144,7 @@ ar:
       unsubscribe: إلغاء الاشتراك
       username: إسم المستخدم
       web: الويب
+      shared_inbox_url: رابط الصندوق المُشترَك للبريد الوارد
     action_logs:
       actions:
         confirm_user: '%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}'
@@ -164,6 +165,13 @@ ar:
         update_custom_emoji: '%{name} قام بتحديث الإيموجي %{target}'
         destroy_email_domain_block: قام %{name} بإضافة نطاق البريد الإلكتروني %{target}
           إلى اللائحة البيضاء
+        destroy_status: لقد قام %{name} بحذف منشور %{target}
+        memorialize_account: لقد قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
+        silence_account: لقد قام %{name} بكتم حساب %{target}
+        suspend_account: لقد قام %{name} بتعليق حساب %{target}
+        unsilence_account: لقد قام %{name} بإلغاء الكتم عن حساب %{target}
+        unsuspend_account: لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}
+        update_status: لقد قام %{name} بتحديث منشور %{target}
       title: سِجلّ التفتيش و المعاينة
     custom_emojis:
       by_domain: النطاق
@@ -187,6 +195,8 @@ ar:
       update_failed_msg: تعذرت عملية تحذيث ذاك الإيموجي
       updated_msg: تم تحديث الإيموجي بنجاح !
       upload: رفع
+      overwrite: إعادة الكتابة
+      unlisted: غير مدرج
     domain_blocks:
       add_new: إضافة نطاق جديد
       domain: النطاق
@@ -195,20 +205,36 @@ ar:
         severity:
           noop: لا شيء
           silence: كتم
+          suspend: تعليق
         title: حجب نطاق جديد
       reject_media: رفض ملفات الوسائط
       severities:
         noop: لا شيء
+        silence: إخفاء أو كتم
+        suspend: تعليق
       show:
         title: رفع حظر النطاق عن %{domain}
         undo: إلغاء
+        affected_accounts:
+          other: هناك %{count} حسابات في قاعدة البيانات متأثرة بذلك
+        retroactive:
+          silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
+          suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
       undo: إلغاء
+      created_msg: إنّ حجب النطاق حيز التشغيل
+      destroyed_msg: تم إلغاء الحجب المفروض على النطاق
+      severity: الشدة
+      title: حظر النطاقات
     email_domain_blocks:
       delete: حذف
       domain: النطاق
       new:
         create: إضافة نطاق
+        title: إضافة نطاق بريد جديد إلى اللائحة السوداء
       title: القائمة السوداء للبريد الإلكتروني
+      add_new: إضافة
+      created_msg: لقد دخل حظر نطاق البريد الإلكتروني حيّز الخدمة
+      destroyed_msg: تم حذف نطاق البريد الإلكتروني من اللائحة السوداء بنجاح
     instances:
       account_count: الحسابات المعروفة
       domain_name: النطاق
@@ -232,11 +258,20 @@ ar:
       id: معرّف ID
       nsfw:
         'true': إخفاء الوسائط المرفقة
+        'false': الكشف عن الصور
       report_contents: المحتويات
       reported_by: أبلغ عنه من طرف
       status: الحالة
       title: التقارير
       view: عرض
+      mark_as_resolved: إعتبار التقرير كمحلول
+      report: 'التقرير #%{id}'
+      reported_account: حساب مبلّغ عنه
+      resolved: معالجة
+      silence_account: كتم و إخفاء الحساب
+      suspend_account: فرض تعليق على الحساب
+      target: الهدف
+      unresolved: غير معالجة
     settings:
       contact_information:
         email: البريد الإلكتروني المهني
@@ -259,6 +294,14 @@ ar:
       timeline_preview:
         desc_html: عرض الخيط العمومي على صفحة الإستقبال
       title: إعدادات الموقع
+      bootstrap_timeline_accounts:
+        title: الإشتراكات الإفتراضية للمستخدمين الجدد
+      hero:
+        title: الصورة الرأسية
+      peers_api_enabled:
+        desc_html: أسماء النطاقات التي إلتقى بها مثيل الخادوم على البيئة الموحَّدة
+          فيديفرس
+        title: نشر عدد مثيلات الخوادم التي تم مصادفتها
     statuses:
       back_to_account: العودة إلى صفحة الحساب
       batch:
