@@ -1,6 +1,6 @@
 import api from '../api';
-import asyncDB from '../db/async';
-import { evictStatus } from '../db/modifier';
+import asyncDB from '../storage/db';
+import { evictStatus } from '../storage/modifier';
 
 import { deleteFromTimelines } from './timelines';
 import { fetchStatusCard } from './cards';

@@ -3436,6 +3436,19 @@ a.status-card {
   width: 100%;
   height: 100%;
   position: relative;
+
+  .extended-video-player {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    video {
+      max-width: $media-modal-media-max-width;
+      max-height: $media-modal-media-max-height;
+    }
+  }
 }
 
 .media-modal__closer {
@@ -4411,8 +4424,8 @@ a.status-card {
   border-radius: 4px;
 
   video {
-    height: 100%;
-    width: 100%;
+    max-width: 100vw;
+    max-height: 80vh;
     z-index: 1;
   }
 
