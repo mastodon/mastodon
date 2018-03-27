@@ -56,10 +56,10 @@ self.addEventListener('fetch', function(event) {
         const fetched = await fetch(event.request);
 
         if (fetched.ok) {
-          await cache.put(event.request.url, fetched);
+          await cache.put(event.request.url, fetched.clone());
         }
 
-        return fetched.clone();
+        return fetched;
       }
 
       return cached;
