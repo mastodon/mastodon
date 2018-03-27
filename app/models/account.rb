@@ -55,7 +55,6 @@ class Account < ApplicationRecord
   include AccountHeader
   include AccountInteractions
   include Attachmentable
-  include Remotable
   include Paginable
 
   MAX_NOTE_LENGTH = 500

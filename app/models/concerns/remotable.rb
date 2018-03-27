@@ -3,8 +3,8 @@
 module Remotable
   extend ActiveSupport::Concern
 
-  included do
-    attachment_definitions.each_key do |attachment_name|
+  class_methods do
+    def remotable_attachment(attachment_name, limit)
       attribute_name  = "#{attachment_name}_remote_url".to_sym
       method_name     = "#{attribute_name}=".to_sym
       alt_method_name = "reset_#{attachment_name}!".to_sym
@@ -33,7 +33,7 @@ module Remotable
                         File.extname(filename)
                       end
 
-            send("#{attachment_name}=", StringIO.new(response.to_s))
+            send("#{attachment_name}=", StringIO.new(response.body_with_limit(limit)))
             send("#{attachment_name}_file_name=", basename + extname)
 
             self[attribute_name] = url if has_attribute?(attribute_name)
