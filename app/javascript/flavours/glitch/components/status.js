@@ -302,16 +302,16 @@ export default class Status extends ImmutablePureComponent {
       background = status.getIn(['account', 'header']);
     }
 
-    //  This handles our media attachments. Note that we don't show media on
-    //  muted (notification) statuses. If the media type is unknown, then we
-    //  simply ignore it.
+    //  This handles our media attachments.
+    //  If a media file is of unknwon type or if the status is muted
+    //  (notification), we show a list of links instead of embedded media.
 
     //  After we have generated our appropriate media element and stored it in
     //  `media`, we snatch the thumbnail to use as our `background` if media
     //  backgrounds for collapsed statuses are enabled.
     attachments = status.get('media_attachments');
-    if (attachments.size > 0 && !muted) {
-      if (attachments.some(item => item.get('type') === 'unknown')) {  //  Media type is 'unknown'
+    if (attachments.size > 0) {
+      if (muted || attachments.some(item => item.get('type') === 'unknown')) {
         media = (
           <AttachmentList
             compact

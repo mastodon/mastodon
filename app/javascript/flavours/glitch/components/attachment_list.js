@@ -19,11 +19,15 @@ export default class AttachmentList extends ImmutablePureComponent {
       return (
         <div className='attachment-list compact'>
           <ul className='attachment-list__list'>
-            {media.map(attachment => (
-              <li key={attachment.get('id')}>
-                <a href={attachment.get('remote_url')} target='_blank' rel='noopener'><i className='fa fa-link' /> {filename(attachment.get('remote_url'))}</a>
-              </li>
-            ))}
+            {media.map(attachment => {
+              const displayUrl = attachment.get('remote_url') || attachment.get('url');
+
+              return (
+                <li key={attachment.get('id')}>
+                  <a href={displayUrl} target='_blank' rel='noopener'><i className='fa fa-link' /> {filename(displayUrl)}</a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       );
@@ -36,11 +40,13 @@ export default class AttachmentList extends ImmutablePureComponent {
         </div>
 
         <ul className='attachment-list__list'>
-          {media.map(attachment =>
-            (<li key={attachment.get('id')}>
-              <a href={attachment.get('remote_url')} target='_blank' rel='noopener'>{filename(attachment.get('remote_url'))}</a>
+          const displayUrl = attachment.get('remote_url') || attachment.get('url');
+
+          {media.map(attachment => {
+            return (<li key={attachment.get('id')}>
+              <a href={displayUrl} target='_blank' rel='noopener'>{filename(displayUrl)}</a>
             </li>)
-          )}
+          })}
         </ul>
       </div>
     );
