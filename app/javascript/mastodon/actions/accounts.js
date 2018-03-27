@@ -1,5 +1,5 @@
 import api, { getLinks } from '../api';
-import asyncDB from '../db/async';
+import asyncDB from '../storage/db';
 import { importAccount, importFetchedAccount, importFetchedAccounts } from './importer';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
