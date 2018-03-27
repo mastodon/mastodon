@@ -642,6 +642,11 @@ sk:
     browsers:
       alipay: Alipay
       generic: Neznámy prehliadač
+      chrome: Google Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Mozilla Firefox
+      ie: Internet Explorer
     current_session: Aktuálna sezóna
     description: '%{browser} na %{platform}'
     explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
@@ -704,6 +709,9 @@ sk:
     setup: Nastavenie
     wrong_code: Zadaný kód bol neplatný. Je serverový čas a čas na zariadení správny?
     disable: Zakáž
+    description_html: Ak povolíš <strong> dvoj-faktorové overovanie</strong>, na prihlásenie
+      potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš
+      zadať.
   user_mailer:
     backup_ready:
       explanation: Vyžiadal/a si si úplnú zálohu tvojho Mastodon účtu. Táto záloha
