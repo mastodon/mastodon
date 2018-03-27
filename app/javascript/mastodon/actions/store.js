@@ -1,5 +1,6 @@
 import { Iterable, fromJS } from 'immutable';
 import { hydrateCompose } from './compose';
+import { importFetchedAccounts } from './importer';
 
 export const STORE_HYDRATE = 'STORE_HYDRATE';
 export const STORE_HYDRATE_LAZY = 'STORE_HYDRATE_LAZY';
@@ -18,5 +19,6 @@ export function hydrateStore(rawState) {
     });
 
     dispatch(hydrateCompose());
+    dispatch(importFetchedAccounts(Object.values(rawState.accounts)));
   };
 };

@@ -740,6 +740,24 @@ namespace :mastodon do
       LinkCrawlWorker.push_bulk status_ids
     end
 
+    desc 'Find case-insensitive username duplicates of local users'
+    task find_duplicate_usernames: :environment do
+      include RoutingHelper
+
+      disable_log_stdout!
+
+      duplicate_masters = Account.find_by_sql('SELECT * FROM accounts WHERE id IN (SELECT min(id) FROM accounts WHERE domain IS NULL GROUP BY lower(username) HAVING count(*) > 1)')
+      pastel = Pastel.new
+
+      duplicate_masters.each do |account|
+        puts pastel.yellow("First of their name: ") + pastel.bold(account.username) + " (#{admin_account_url(account.id)})"
+
+        Account.where('lower(username) = ?', account.username.downcase).where.not(id: account.id).each do |duplicate|
+          puts "  " + pastel.red("Duplicate: ") + admin_account_url(duplicate.id)
+        end
+      end
+    end
+
     desc 'Remove all home feed regeneration markers'
     task remove_regeneration_markers: :environment do
       keys = Redis.current.keys('account:*:regeneration')
@@ -777,7 +795,7 @@ namespace :mastodon do
         progress_bar.increment
 
         begin
-          res = Request.new(:head, account.uri).perform
+          code = Request.new(:head, account.uri).perform(&:code)
         rescue StandardError
           # This could happen due to network timeout, DNS timeout, wrong SSL cert, etc,
           # which should probably not lead to perceiving the account as deleted, so
@@ -785,7 +803,7 @@ namespace :mastodon do
           next
         end
 
-        if [404, 410].include?(res.code)
+        if [404, 410].include?(code)
           if options[:force]
             SuspendAccountService.new.call(account)
             account.destroy

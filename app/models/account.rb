@@ -55,7 +55,6 @@ class Account < ApplicationRecord
   include AccountHeader
   include AccountInteractions
   include Attachmentable
-  include Remotable
   include Paginable
 
   enum protocol: [:ostatus, :activitypub]

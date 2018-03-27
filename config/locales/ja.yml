@@ -382,6 +382,7 @@ ja:
     security: セキュリティ
     set_new_password: 新しいパスワード
   authorize_follow:
+    already_following: あなたは既にこのアカウントをフォローしています
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
     follow: フォロー
     follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
@@ -634,6 +635,15 @@ ja:
     two_factor_authentication: 二段階認証
     your_apps: アプリ
   statuses:
+    attached:
+      description: '添付: %{attached}'
+      image:
+        one: "%{count} 枚の画像"
+        other: "%{count} 枚の画像"
+      video:
+        one: "%{count} 枚の動画"
+        other: "%{count} 枚の動画"
+    content_warning: '閲覧注意: %{warning}'
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:

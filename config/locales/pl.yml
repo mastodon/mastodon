@@ -383,6 +383,7 @@ pl:
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
   authorize_follow:
+    already_following: Już śledzisz to konto
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
     follow: Śledź
     follow_request: 'Wysłano prośbę o pozwolenie na śledzenie:'
@@ -475,6 +476,7 @@ pl:
       '21600': 6 godzinach
       '3600': godzinie
       '43200': 12 godzinach
+      '604800': 1 tygodniu
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
@@ -641,6 +643,19 @@ pl:
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     your_apps: Twoje aplikacje
   statuses:
+    attached:
+      description: 'Przytwierdzony: %{attached}'
+      image:
+        few: "%{count} obrazy"
+        many: "%{count} obrazów"
+        one: "%{count} obraz"
+        other: "%{count} obrazów"
+      video:
+        few: "%{count} filmy"
+        many: "%{count} filmów"
+        one: "%{count} film"
+        other: "%{count} filmów"
+    content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:

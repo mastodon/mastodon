@@ -4,13 +4,8 @@ import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
 import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
-
-import {
-  updateTimeline,
-  refreshHomeTimeline,
-  refreshCommunityTimeline,
-  refreshPublicTimeline,
-} from './timelines';
+import { importFetchedAccounts } from './importer';
+import { updateTimeline } from './timelines';
 
 let cancelFetchComposeSuggestionsAccounts;
 
@@ -124,19 +119,17 @@ export function submitCompose() {
 
       // To make the app more responsive, immediately get the status into the columns
 
-      const insertOrRefresh = (timelineId, refreshAction) => {
-        if (getState().getIn(['timelines', timelineId, 'online'])) {
+      const insertIfOnline = (timelineId) => {
+        if (getState().getIn(['timelines', timelineId, 'items', 0]) !== null) {
           dispatch(updateTimeline(timelineId, { ...response.data }));
-        } else if (getState().getIn(['timelines', timelineId, 'loaded'])) {
-          dispatch(refreshAction());
         }
       };
 
-      insertOrRefresh('home', refreshHomeTimeline);
+      insertIfOnline('home');
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        insertOrRefresh('community', refreshCommunityTimeline);
-        insertOrRefresh('public', refreshPublicTimeline);
+        insertIfOnline('community');
+        insertIfOnline('public');
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -282,6 +275,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
       limit: 4,
     },
   }).then(response => {
+    dispatch(importFetchedAccounts(response.data));
     dispatch(readyComposeSuggestionsAccounts(token, response.data));
   });
 }, 200, { leading: true, trailing: true });

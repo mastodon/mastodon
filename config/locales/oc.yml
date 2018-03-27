@@ -193,7 +193,7 @@ oc:
         create: Crear blocatge
         hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas, mai aplicarà la moderacion sus aquestes comptes.
         severity:
-          desc_html: "<strong>Silenci</strong> farà venir invisibles los estatuts del compte al mond que son pas de seguidors. <strong>Suspendre</strong> levarà tot lo contengut del compte, los mèdias e las donadas de perfil."
+          desc_html: "<strong>Silenci</strong> farà venir invisibles los estatuts del compte al monde que son pas de seguidors. <strong>Suspendre</strong> levarà tot lo contengut del compte, los mèdias e las donadas de perfil. Utilizatz <strong>Cap</strong> se volètz regetar totes los mèdias."
           noop: Cap
           silence: Silenci
           suspend: Suspendre
@@ -273,6 +273,9 @@ oc:
       contact_information:
         email: Picatz una adreça de corrièl
         username: Picatz un nom d’utilizaire
+      hero:
+        desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge de l’instància serà mostrat
+        title: Imatge de l’eròi
       peers_api_enabled:
         desc_html: Noms de domeni qu’aquesta instància a trobats pel fediverse
         title: Publica la lista de las instàncias conegudas
@@ -289,6 +292,9 @@ oc:
         open:
           desc_html: Autorizar lo mond a se marcar
           title: Inscripcions
+      show_known_fediverse_at_about_page:
+        desc_html: Un còp activat mostrarà los tuts de totes los fediverse dins l’apercebut. Autrament mostrarà pas que los tuts locals.
+        title: Mostrar los fediverse coneguts dins l’apercebut del flux
       show_staff_badge:
         desc_html: Mostrar lo badge Personal sus la pagina de perfil
         title: Mostrar lo badge personal
@@ -353,6 +359,8 @@ oc:
     your_token: Vòstre geton d’accès
   auth:
     agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas de l’instància</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
+    change_password: Senhal
+    confirm_email: Confirmar lo corrièl
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
@@ -362,10 +370,13 @@ oc:
     logout: Se desconnectar
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
+    or: o
+    or_log_in_with: O autentificatz-vos amb
     providers:
       cas: CAS
       saml: SAML
     register: Se marcar
+    register_elsewhere: Se marcar endacòm mai
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     security: Seguretat
@@ -493,6 +504,13 @@ oc:
       title: Aquesta pagina es incorrècta
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
+    archive_takeout:
+      date: Data
+      download: Telecargar vòstre archiu
+      hint_html: Podètz demandar un archiu de vòstres <strong>tuts e mèdias enviats</strong>. Las donadas exportadas seràn al format ActivityPub, ligible pels logicials compatibles.
+      in_progress: Complilacion de vòstre archiu...
+      request: Demandar vòstre archiu
+      size: Talha
     blocks: Personas que blocatz
     csv: CSV
     follows: Personas que seguètz
@@ -565,7 +583,7 @@ oc:
   notification_mailer:
     digest:
       action: Veire totas las notificacions
-      body: 'Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra darrièra visita lo %{since} :'
+      body: Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra darrièra visita lo %{since}
       mention: "%{name} vos a mencionat dins :"
       new_followers_summary:
         one: Avètz un nòu seguidor dempuèi vòstra darrièra visita ! Ouà !
@@ -608,7 +626,9 @@ oc:
           trillion: T
           unit: ''
   pagination:
+    newer: Mai recent
     next: Seguent
+    older: Mai ancian
     prev: Precedent
     truncate: "&hellip;"
   preferences:
@@ -692,6 +712,14 @@ oc:
     two_factor_authentication: Autentificacion en dos temps
     your_apps: Vòstras aplicacions
   statuses:
+    attached:
+      description: 'Ajustat : %{attached}'
+      image:
+        one: "%{count} imatge"
+        other: "%{count} imatges"
+      video:
+        one: "%{count} vidèo"
+        other: "%{count} vidèos"
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
@@ -799,10 +827,14 @@ oc:
     manual_instructions: 'Se podètz pas numerizar lo còdi QR e que vos cal picar lo còdi a la man, vaquí lo còdi en clar :'
     recovery_codes: Salvar los còdis de recuperacion
     recovery_codes_regenerated: Los còdis de recuperacion son ben estats tornats generar
-    recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
+    recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. <strong>Gardatz los còdis en seguretat</strong>, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
     setup: Paramètres
     wrong_code: Lo còdi picat es invalid ! L’ora es la bona sul servidor e lo mobil ?
   user_mailer:
+    backup_ready:
+      explanation: Avètz demandat una salvagarda complèta de vòstre compte Mastodon. Es prèsta per telecargament !
+      subject: Vòstre archiu es prèst per telecargament
+      title: Archiu per emportar
     welcome:
       edit_profile_action: Configuracion del perfil
       edit_profile_step: Podètz personalizar lo perfil en mandar un avatard, cambiar l’escais-nom e mai. Se volètz repassar las demandas d’abonaments abans que los nòus seguidors pòscan veire vòstre perfil, podètz clavar vòstre compte.
@@ -824,4 +856,5 @@ oc:
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
+    seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'

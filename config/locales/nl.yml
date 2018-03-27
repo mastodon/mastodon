@@ -634,6 +634,15 @@ nl:
     two_factor_authentication: Tweestapsverificatie
     your_apps: Jouw toepassingen
   statuses:
+    attached:
+      description: 'Bijlagen: %{attached}'
+      image:
+        one: "%{count} afbeelding"
+        other: "%{count} afbeeldingen"
+      video:
+        one: "%{count} video"
+        other: "%{count} video's"
+    content_warning: 'Tekstwaarschuwing: %{warning}'
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
