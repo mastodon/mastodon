@@ -6,6 +6,7 @@ import StatusHeader from './status_header';
 import StatusIcons from './status_icons';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
+import AttachmentList from './attachment_list';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
@@ -311,7 +312,12 @@ export default class Status extends ImmutablePureComponent {
     attachments = status.get('media_attachments');
     if (attachments.size > 0 && !muted) {
       if (attachments.some(item => item.get('type') === 'unknown')) {  //  Media type is 'unknown'
-        /*  Do nothing  */
+        media = (
+          <AttachmentList
+            compact
+            media={status.get('media_attachments')}
+          />
+        );
       } else if (attachments.getIn([0, 'type']) === 'video') {  //  Media type is 'video'
         const video = status.getIn(['media_attachments', 0]);
 
