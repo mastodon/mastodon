@@ -24,6 +24,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
+    onToggleHidden: PropTypes.func.isRequired,
+    expanded: PropTypes.bool,
   };
 
   handleAccountClick = (e) => {
@@ -41,7 +43,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
-    const { expanded, setExpansion, settings } = this.props;
+    const { expanded, onToggleHidden, settings } = this.props;
 
     let media           = '';
     let mediaIcon       = null;
@@ -115,7 +117,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           mediaIcon={mediaIcon}
           expanded={expanded}
           collapsed={false}
-          setExpansion={setExpansion}
+          onExpandedToggle={onToggleHidden}
         />
 
         <div className='detailed-status__meta'>

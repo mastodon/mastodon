@@ -23,11 +23,12 @@ export default class ColumnHeader extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    title: PropTypes.node.isRequired,
-    icon: PropTypes.string.isRequired,
+    title: PropTypes.node,
+    icon: PropTypes.string,
     active: PropTypes.bool,
     localSettings : ImmutablePropTypes.map,
     multiColumn: PropTypes.bool,
+    extraButton: PropTypes.node,
     showBackButton: PropTypes.bool,
     notifCleaning: PropTypes.bool, // true only for the notification column
     notifCleaningActive: PropTypes.bool,
@@ -86,7 +87,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { intl, icon, active, children, pinned, onPin, multiColumn, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive } = this.props;
+    const { intl, icon, active, children, pinned, onPin, multiColumn, extraButton, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive } = this.props;
     const { collapsed, animating, animatingNCD } = this.state;
 
     let title = this.props.title;
@@ -162,18 +163,26 @@ export default class ColumnHeader extends React.PureComponent {
     }
 
     if (children || multiColumn) {
-      collapseButton = <button className={collapsibleButtonClassName} aria-label={formatMessage(collapsed ? messages.show : messages.hide)} aria-pressed={collapsed ? 'false' : 'true'} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
+      collapseButton = <button className={collapsibleButtonClassName} title={formatMessage(collapsed ? messages.show : messages.hide)} aria-label={formatMessage(collapsed ? messages.show : messages.hide)} aria-pressed={collapsed ? 'false' : 'true'} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
     }
+
+    const hasTitle = icon && title;
 
     return (
       <div className={wrapperClassName}>
         <h1 className={buttonClassName}>
-          <button onClick={this.handleTitleClick}>
-            <i className={`fa fa-fw fa-${icon} column-header__icon`} />
-            {title}
-          </button>
+          {hasTitle && (
+            <button onClick={this.handleTitleClick}>
+              <i className={`fa fa-fw fa-${icon} column-header__icon`} />
+              {title}
+            </button>
+          )}
+
+          {!hasTitle && backButton}
+
           <div className='column-header__buttons'>
-            {backButton}
+            {hasTitle && backButton}
+            {extraButton}
             { notifCleaning ? (
               <button
                 aria-label={msgEnterNotifCleaning}

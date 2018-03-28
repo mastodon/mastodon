@@ -12,7 +12,7 @@ export default class StatusContent extends React.PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
     collapsed: PropTypes.bool,
-    setExpansion: PropTypes.func,
+    onExpandedToggle: PropTypes.func,
     media: PropTypes.element,
     mediaIcon: PropTypes.string,
     parseClick: PropTypes.func,
@@ -112,8 +112,8 @@ export default class StatusContent extends React.PureComponent {
   handleSpoilerClick = (e) => {
     e.preventDefault();
 
-    if (this.props.setExpansion) {
-      this.props.setExpansion(!this.props.expanded);
+    if (this.props.onExpandedToggle) {
+      this.props.onExpandedToggle();
     } else {
       this.setState({ hidden: !this.state.hidden });
     }
@@ -132,7 +132,7 @@ export default class StatusContent extends React.PureComponent {
       disabled,
     } = this.props;
 
-    const hidden = this.props.setExpansion ? !this.props.expanded : this.state.hidden;
+    const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
     const content = { __html: status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };

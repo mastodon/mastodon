@@ -47,10 +47,11 @@ export default class Status extends ImmutablePureComponent {
     onMoveDown: PropTypes.func,
     getScrollPosition: PropTypes.func,
     updateScrollBottom: PropTypes.func,
+    expanded: PropTypes.bool,
   };
 
   state = {
-    isExpanded: false,
+    isExpanded: this.props.expanded,
     isCollapsed: false,
     autoCollapsed: false,
   }
@@ -92,6 +93,9 @@ export default class Status extends ImmutablePureComponent {
       nextProps.collapse !== this.props.collapse &&
       nextProps.collapse !== undefined
     ) this.setCollapsed(nextProps.collapse);
+    if (nextProps.expanded !== this.props.expanded &&
+      nextProps.expanded !== undefined
+    ) this.setExpansion(nextProps.expanded);
   }
 
   //  When mounting, we just check to see if our status should be collapsed,
@@ -465,7 +469,7 @@ export default class Status extends ImmutablePureComponent {
             media={media}
             mediaIcon={mediaIcon}
             expanded={isExpanded}
-            setExpansion={setExpansion}
+            onExpandedToggle={this.handleExpandedToggle}
             parseClick={parseClick}
             disabled={!router}
           />
