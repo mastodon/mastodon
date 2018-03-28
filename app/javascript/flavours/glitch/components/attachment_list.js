@@ -40,12 +40,14 @@ export default class AttachmentList extends ImmutablePureComponent {
         </div>
 
         <ul className='attachment-list__list'>
-          const displayUrl = attachment.get('remote_url') || attachment.get('url');
-
           {media.map(attachment => {
-            return (<li key={attachment.get('id')}>
-              <a href={displayUrl} target='_blank' rel='noopener'>{filename(displayUrl)}</a>
-            </li>)
+            const displayUrl = attachment.get('remote_url') || attachment.get('url');
+
+            return (
+              <li key={attachment.get('id')}>
+                <a href={displayUrl} target='_blank' rel='noopener'>{filename(displayUrl)}</a>
+              </li>
+            );
           })}
         </ul>
       </div>
