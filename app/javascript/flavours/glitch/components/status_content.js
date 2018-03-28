@@ -131,10 +131,6 @@ export default class StatusContent extends React.PureComponent {
       disabled,
     } = this.props;
 
-    if (status.get('content').length === 0) {
-      return null;
-    }
-
     const hidden = this.props.setExpansion ? !this.props.expanded : this.state.hidden;
 
     const content = { __html: status.get('contentHtml') };
