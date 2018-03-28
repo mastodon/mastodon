@@ -142,7 +142,7 @@ export function putAccounts(records) {
     oncomplete();
   }).then(records => {
     evictAccountsByRecords(records);
-    asyncCache.then(cache => cache.addAll(newURLs));
+    asyncCache.then(cache => cache.addAll(newURLs.map(url => new Request(url, { mode: 'no-cors' }))));
   });
 }
 

@@ -54,8 +54,9 @@ self.addEventListener('fetch', function(event) {
 
       if (cached === undefined) {
         const fetched = await fetch(event.request);
+        const control = fetched.headers.get('Cache-Control');
 
-        if (fetched.ok) {
+        if (control !== null && !/no-cache/i.test(control)) {
           await cache.put(event.request.url, fetched.clone());
         }
 
