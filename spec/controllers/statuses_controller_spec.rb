@@ -42,6 +42,14 @@ describe StatusesController do
       end
     end
 
+    context 'JSON of status which requires server information to serialize is requested' do
+      it 'returns http success' do
+        status = Fabricate(:status, media_attachments: [Fabricate(:media_attachment)])
+        get :show, format: :json, params: { account_username: status.account.username, id: status }
+        expect(response).to have_http_status :success
+      end
+    end
+
     context 'account is not suspended and status is permitted' do
       it 'assigns @account' do
         status = Fabricate(:status)

@@ -263,6 +263,33 @@ RSpec.describe ActivityPub::Activity::Create do
       end
     end
 
+    context 'with media attachments with canonical urls' do
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          type: 'Note',
+          content: 'Lorem ipsum',
+          attachment: [
+            {
+              type: 'Document',
+              mediaType: 'image/png',
+              url: [
+                { type: 'Link', href: 'http://example.com/attachment.png', rel: 'self' },
+                { type: 'Link', href: 'http://example.com/canonical.png', rel: 'canonical' },
+              ],
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.media_attachments.map(&:remote_url)).to include('http://example.com/canonical.png')
+      end
+    end
+
     context 'with hashtags' do
       let(:object_json) do
         {

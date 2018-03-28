@@ -113,15 +113,31 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     media_attachments = []
 
     as_array(@object['attachment']).each do |attachment|
-      next if unsupported_media_type?(attachment['mediaType']) || attachment['url'].blank?
+      type = attachment['mediaType']
+      url = attachment['url']
 
-      href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-      media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['name'].presence, focus: attachment['focalPoint'])
+      next if unsupported_media_type?(type)
+
+      href = url.is_a?(Array) ? find_href(url, 'self', type) : nil
+      href = first_href(url) if href.nil?
+      next if href.blank?
+
+      canonical_href = url.is_a?(Array) ? find_href(url, 'canonical') : nil
+
+      normalized_href = Addressable::URI.parse(href).normalize.to_s
+      normalized_canonical_href = canonical_href.nil? ? nil : Addressable::URI.parse(canonical_href).normalize.to_s
+
+      media_attachment = MediaAttachment.create(
+        account: @account,
+        remote_url: normalized_canonical_href || normalized_href,
+        description: attachment['name'].presence,
+        focus: attachment['focalPoint']
+      )
       media_attachments << media_attachment
 
       next if skip_download?
 
-      media_attachment.file_remote_url = href
+      media_attachment.file_remote_url = normalized_href
       media_attachment.save
     end
 
@@ -207,7 +223,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def object_url
     return if @object['url'].blank?
 
-    url_candidate = url_to_href(@object['url'], 'text/html')
+    url = @object['url']
+
+    url_candidate = find_href(url, 'alternate', 'text/html')
+    url_candidate = first_href(url) if url_candidate.nil?
 
     if invalid_origin?(url_candidate)
       nil

@@ -30,8 +30,10 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       return if ActivityPub::TagManager.instance.local_uri?(object_uri)
 
       ActivityPub::FetchRemoteStatusService.new.call(object_uri, id: true)
-    elsif @object['url'].present?
-      ::FetchRemoteStatusService.new.call(@object['url'])
+    else
+      href = @object['url'].is_a?(Array) ? find_href(@object['url'], 'self', 'application/activity+json') : nil
+      href = first_href(@object['url']) if href.nil?
+      ::FetchRemoteStatusService.new.call(href) if href.present?
     end
   end
 

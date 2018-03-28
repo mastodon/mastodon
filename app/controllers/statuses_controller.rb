@@ -26,7 +26,7 @@ class StatusesController < ApplicationController
         skip_session! unless @stream_entry.hidden?
 
         render_cached_json(['activitypub', 'note', @status.cache_key], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
-          ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
+          ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter, scope: Server.new(request.user_agent), scope_name: :current_server)
         end
       end
     end
