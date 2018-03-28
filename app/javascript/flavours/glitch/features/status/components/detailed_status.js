@@ -114,6 +114,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           media={media}
           mediaIcon={mediaIcon}
           expanded={expanded}
+          collapsed={false}
           setExpansion={setExpansion}
         />
 

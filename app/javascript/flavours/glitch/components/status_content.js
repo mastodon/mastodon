@@ -11,6 +11,7 @@ export default class StatusContent extends React.PureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
+    collapsed: PropTypes.bool,
     setExpansion: PropTypes.func,
     media: PropTypes.element,
     mediaIcon: PropTypes.string,
@@ -64,7 +65,7 @@ export default class StatusContent extends React.PureComponent {
   }
 
   onLinkClick = (e) => {
-    if (this.props.expanded === false) {
+    if (this.props.collapsed) {
       if (this.props.parseClick) this.props.parseClick(e);
     }
   }
@@ -112,7 +113,7 @@ export default class StatusContent extends React.PureComponent {
     e.preventDefault();
 
     if (this.props.setExpansion) {
-      this.props.setExpansion(this.props.expanded ? null : true);
+      this.props.setExpansion(!this.props.expanded);
     } else {
       this.setState({ hidden: !this.state.hidden });
     }

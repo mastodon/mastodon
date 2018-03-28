@@ -76,7 +76,7 @@ export default class Status extends ImmutablePureComponent {
 
   state = {
     fullscreen: false,
-    isExpanded: null,
+    isExpanded: false,
   };
 
   componentWillMount () {
@@ -96,7 +96,7 @@ export default class Status extends ImmutablePureComponent {
 
   handleExpandedToggle = () => {
     if (this.props.status.get('spoiler_text')) {
-      this.setExpansion(this.state.isExpanded ? null : true);
+      this.setExpansion(!this.state.isExpanded);
     }
   };
 
@@ -292,7 +292,7 @@ export default class Status extends ImmutablePureComponent {
   }
 
   setExpansion = value => {
-    this.setState({ isExpanded: value ? true : null });
+    this.setState({ isExpanded: value });
   }
 
   setRef = c => {

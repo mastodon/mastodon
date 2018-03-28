@@ -50,7 +50,8 @@ export default class Status extends ImmutablePureComponent {
   };
 
   state = {
-    isExpanded: null,
+    isExpanded: false,
+    isCollapsed: false,
     autoCollapsed: false,
   }
 
@@ -71,6 +72,7 @@ export default class Status extends ImmutablePureComponent {
 
   updateOnStates = [
     'isExpanded',
+    'isCollapsed',
   ]
 
   //  If our settings have changed to disable collapsed statuses, then we
@@ -83,18 +85,18 @@ export default class Status extends ImmutablePureComponent {
   //  uncollapse our status accordingly.
   componentWillReceiveProps (nextProps) {
     if (!nextProps.settings.getIn(['collapsed', 'enabled'])) {
-      if (this.state.isExpanded === false) {
-        this.setExpansion(null);
+      if (this.state.isCollapsed) {
+        this.setCollapsed(false);
       }
     } else if (
       nextProps.collapse !== this.props.collapse &&
       nextProps.collapse !== undefined
-    ) this.setExpansion(nextProps.collapse ? false : null);
+    ) this.setCollapsed(nextProps.collapse);
   }
 
   //  When mounting, we just check to see if our status should be collapsed,
   //  and collapse it if so. We don't need to worry about whether collapsing
-  //  is enabled here, because `setExpansion()` already takes that into
+  //  is enabled here, because `setCollapsed()` already takes that into
   //  account.
 
   //  The cases where a status should be collapsed are:
@@ -138,7 +140,7 @@ export default class Status extends ImmutablePureComponent {
         return false;
       }
     }()) {
-      this.setExpansion(false);
+      this.setCollapsed(true);
       // Hack to fix timeline jumps on second rendering when auto-collapsing
       this.setState({ autoCollapsed: true });
     }
@@ -164,23 +166,26 @@ export default class Status extends ImmutablePureComponent {
     }
   }
 
-  //  `setExpansion()` sets the value of `isExpanded` in our state. It takes
-  //  one argument, `value`, which gives the desired value for `isExpanded`.
-  //  The default for this argument is `null`.
+  //  `setCollapsed()` sets the value of `isCollapsed` in our state, that is,
+  //  whether the toot is collapsed or not.
 
-  //  `setExpansion()` automatically checks for us whether toot collapsing
+  //  `setCollapsed()` automatically checks for us whether toot collapsing
   //  is enabled, so we don't have to.
+  setCollapsed = (value) => {
+    if (this.props.settings.getIn(['collapsed', 'enabled'])) {
+      this.setState({ isCollapsed: value });
+      if (value) {
+        this.setExpansion(false);
+      }
+    } else {
+      this.setState({ isCollapsed: false });
+    }
+  }
+
   setExpansion = (value) => {
-    switch (true) {
-    case value === undefined || value === null:
-      this.setState({ isExpanded: null });
-      break;
-    case !value && this.props.settings.getIn(['collapsed', 'enabled']):
-      this.setState({ isExpanded: false });
-      break;
-    case !!value:
-      this.setState({ isExpanded: true });
-      break;
+    this.setState({ isExpanded: value });
+    if (value) {
+      this.setCollapsed(false);
     }
   }
 
@@ -192,7 +197,7 @@ export default class Status extends ImmutablePureComponent {
   parseClick = (e, destination) => {
     const { router } = this.context;
     const { status } = this.props;
-    const { isExpanded } = this.state;
+    const { isCollapsed } = this.state;
     if (!router) return;
     if (destination === undefined) {
       destination = `/statuses/${
@@ -200,9 +205,9 @@ export default class Status extends ImmutablePureComponent {
       }`;
     }
     if (e.button === 0) {
-      if (isExpanded === false) this.setExpansion(null);
+      if (isCollapsed) this.setCollapsed(false);
       else if (e.shiftKey) {
-        this.setExpansion(false);
+        this.setCollapsed(true);
         document.getSelection().removeAllRanges();
       } else router.history.push(destination);
       e.preventDefault();
@@ -219,7 +224,7 @@ export default class Status extends ImmutablePureComponent {
 
   handleExpandedToggle = () => {
     if (this.props.status.get('spoiler_text')) {
-      this.setExpansion(this.state.isExpanded ? null : true);
+      this.setExpansion(!this.state.isExpanded);
     }
   };
 
@@ -278,6 +283,7 @@ export default class Status extends ImmutablePureComponent {
       handleRef,
       parseClick,
       setExpansion,
+      setCollapsed,
     } = this;
     const { router } = this.context;
     const {
@@ -294,7 +300,7 @@ export default class Status extends ImmutablePureComponent {
       hidden,
       ...other
     } = this.props;
-    const { isExpanded } = this.state;
+    const { isExpanded, isCollapsed } = this.state;
     let background = null;
     let attachments = null;
     let media = null;
@@ -413,8 +419,8 @@ export default class Status extends ImmutablePureComponent {
     };
 
     const computedClass = classNames('status', `status-${status.get('visibility')}`, {
-      collapsed: isExpanded === false,
-      'has-background': isExpanded === false && background,
+      collapsed: isCollapsed,
+      'has-background': isCollapsed && background,
       muted,
     }, 'focusable');
 
@@ -422,7 +428,7 @@ export default class Status extends ImmutablePureComponent {
       <HotKeys handlers={handlers}>
         <div
           className={computedClass}
-          style={isExpanded === false && background ? { backgroundImage: `url(${background})` } : null}
+          style={isCollapsed && background ? { backgroundImage: `url(${background})` } : null}
           {...selectorAttribs}
           ref={handleRef}
           tabIndex='0'
@@ -437,11 +443,11 @@ export default class Status extends ImmutablePureComponent {
                   notificationId={this.props.notificationId}
                 />
               ) : null}
-              {!muted || isExpanded !== false ? (
+              {!muted || !isCollapsed ? (
                 <StatusHeader
                   status={status}
                   friend={account}
-                  collapsed={isExpanded === false}
+                  collapsed={isCollapsed}
                   parseClick={parseClick}
                 />
               ) : null}
@@ -450,8 +456,8 @@ export default class Status extends ImmutablePureComponent {
               status={status}
               mediaIcon={mediaIcon}
               collapsible={settings.getIn(['collapsed', 'enabled'])}
-              collapsed={isExpanded === false}
-              setExpansion={setExpansion}
+              collapsed={isCollapsed}
+              setCollapsed={setCollapsed}
             />
           </header>
           <StatusContent
@@ -463,7 +469,7 @@ export default class Status extends ImmutablePureComponent {
             parseClick={parseClick}
             disabled={!router}
           />
-          {isExpanded !== false || !muted ? (
+          {!isCollapsed || !muted ? (
             <StatusActionBar
               {...other}
               status={status}
