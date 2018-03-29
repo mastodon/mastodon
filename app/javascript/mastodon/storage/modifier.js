@@ -4,7 +4,10 @@ import { autoPlayGif } from '../initial_state';
 const accountAssetKeys = ['avatar', 'avatar_static', 'header', 'header_static'];
 const avatarKey = autoPlayGif ? 'avatar' : 'avatar_static';
 const limit = 1024;
-const asyncCache = caches.open('mastodon-system');
+
+// ServiceWorker and Cache API is not available on iOS 11
+// https://webkit.org/status/#specification-service-workers
+const asyncCache = window.caches ? caches.open('mastodon-system') : Promise.reject();
 
 function put(name, objects, onupdate, oncreate) {
   return asyncDB.then(db => new Promise((resolve, reject) => {
