@@ -43,7 +43,9 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
 
     dispatch(importFetchedAccount(notification.account));
-    dispatch(importFetchedStatus(notification.status));
+    if (notification.status) {
+      dispatch(importFetchedStatus(notification.status));
+    }
 
     dispatch({
       type: NOTIFICATIONS_UPDATE,
