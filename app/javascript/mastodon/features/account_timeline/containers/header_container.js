@@ -9,7 +9,10 @@ import {
   unblockAccount,
   unmuteAccount,
 } from '../../../actions/accounts';
-import { mentionCompose } from '../../../actions/compose';
+import {
+  mentionCompose,
+  directCompose,
+} from '../../../actions/compose';
 import { initMuteModal } from '../../../actions/mutes';
 import { initReport } from '../../../actions/reports';
 import { openModal } from '../../../actions/modal';
@@ -65,6 +68,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
+  },
+
+  onDirect (account, router) {
+    dispatch(directCompose(account, router));
   },
 
   onReblogToggle (account) {
