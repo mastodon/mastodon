@@ -9,7 +9,10 @@ import {
   unblockAccount,
   unmuteAccount,
 } from 'flavours/glitch/actions/accounts';
-import { mentionCompose } from 'flavours/glitch/actions/compose';
+import {
+  mentionCompose,
+  directCompose
+} from 'flavours/glitch/actions/compose';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -65,6 +68,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
+  },
+
+  onDirect (account, router) {
+    dispatch(directCompose(account, router));
+  },
+
+  onDirect (account, router) {
+    dispatch(directCompose(account, router));
   },
 
   onReblogToggle (account) {

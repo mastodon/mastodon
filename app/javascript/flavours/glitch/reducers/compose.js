@@ -5,6 +5,7 @@ import {
   COMPOSE_CYCLE_ELEFRIEND,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
+  COMPOSE_DIRECT,
   COMPOSE_MENTION,
   COMPOSE_SUBMIT_REQUEST,
   COMPOSE_SUBMIT_SUCCESS,
@@ -323,6 +324,12 @@ export default function compose(state = initialState, action) {
   case COMPOSE_MENTION:
     return state
       .update('text', text => `${text}@${action.account.get('acct')} `)
+      .set('focusDate', new Date())
+      .set('idempotencyKey', uuid());
+  case COMPOSE_DIRECT:
+    return state
+      .update('text', text => `${text}@${action.account.get('acct')} `)
+      .set('privacy', 'direct')
       .set('focusDate', new Date())
       .set('idempotencyKey', uuid());
   case COMPOSE_SUGGESTIONS_CLEAR:

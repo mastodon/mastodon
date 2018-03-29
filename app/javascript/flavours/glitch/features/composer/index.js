@@ -39,6 +39,7 @@ import ComposerTextarea from './textarea';
 import ComposerUploadForm from './upload_form';
 import ComposerWarning from './warning';
 import ComposerHashtagWarning from './hashtag_warning';
+import ComposerDirectWarning from './direct_warning';
 
 //  Utils.
 import { countableText } from 'flavours/glitch/util/counter';
@@ -326,6 +327,7 @@ class Composer extends React.Component {
           onSubmit={handleSubmit}
           text={spoilerText}
         />
+        {privacy === 'direct' ? <ComposerDirectWarning /> : null}
         {privacy === 'private' && amUnlocked ? <ComposerWarning /> : null}
         {privacy !== 'public' && APPROX_HASHTAG_RE.test(text) ? <ComposerHashtagWarning /> : null}
         {replyContent ? (
