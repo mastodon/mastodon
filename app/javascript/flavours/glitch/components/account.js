@@ -99,7 +99,7 @@ export default class Account extends ImmutablePureComponent {
             {hidingNotificationsButton}
           </Fragment>
         );
-      } else if (!account.get('moved')) {
+      } else if (!account.get('moved') || following) {
         buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
       }
     }
