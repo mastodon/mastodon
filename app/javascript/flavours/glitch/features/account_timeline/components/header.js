@@ -7,6 +7,7 @@ import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
+import MovedNote from './moved_note';
 
 export default class Header extends ImmutablePureComponent {
 
@@ -76,6 +77,8 @@ export default class Header extends ImmutablePureComponent {
 
     return (
       <div className='account-timeline__header'>
+        {account.get('moved') && <MovedNote from={account} to={account.get('moved')} />}
+
         <InnerHeader
           account={account}
           onFollow={this.handleFollow}
