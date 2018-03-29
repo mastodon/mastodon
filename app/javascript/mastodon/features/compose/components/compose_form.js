@@ -146,7 +146,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     const { intl, onPaste, showSearch, anyMedia } = this.props;
     const disabled = this.props.is_submitting;
     const text     = [this.props.spoiler_text, countableText(this.props.text)].join('');
-    const disabledButton = disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0 && !anyMedia);
+    const disabledButton = disabled || this.props.is_uploading || length(text) > 5000 || (text.length !== 0 && text.trim().length === 0 && !anyMedia);
     let publishText = '';
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
@@ -200,7 +200,7 @@ export default class ComposeForm extends ImmutablePureComponent {
             <SensitiveButtonContainer />
             <SpoilerButtonContainer />
           </div>
-          <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
+          <div className='character-counter__wrapper'><CharacterCounter max={5000} text={text} /></div>
         </div>
 
         <div className='compose-form__publish'>
