@@ -38,6 +38,7 @@ import {
   FavouritedStatuses,
   ListTimeline,
   Blocks,
+  DomainBlocks,
   Mutes,
   PinnedStatuses,
   Lists,
@@ -440,6 +441,7 @@ export default class UI extends React.Component {
 
               <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
               <WrappedRoute path='/blocks' component={Blocks} content={children} />
+              <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
               <WrappedRoute path='/mutes' component={Mutes} content={children} />
               <WrappedRoute path='/lists' component={Lists} content={children} />
               <WrappedRoute path='/getting-started-misc' component={GettingStartedMisc} content={children} />

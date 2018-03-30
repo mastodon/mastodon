@@ -14,6 +14,7 @@ const messages = defineMessages({
   subheading: { id: 'column.subheading', defaultMessage: 'Miscellaneous options' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
   show_me_around: { id: 'getting_started.onboarding', defaultMessage: 'Show me around' },
@@ -49,6 +50,7 @@ export default class gettingStartedMisc extends ImmutablePureComponent {
           <ColumnLink key='20' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
           <ColumnLink key='21' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
           <ColumnLink key='22' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+          <ColumnLink icon='ban' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />
           <ColumnLink key='23' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
           <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
           <ColumnLink icon='hand-o-right' text={intl.formatMessage(messages.show_me_around)} onClick={this.openOnboardingModal} />
