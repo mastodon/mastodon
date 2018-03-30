@@ -19,7 +19,7 @@ class ResolveURLService < BaseService
     case type
     when 'Person'
       FetchRemoteAccountService.new.call(atom_url, body, protocol)
-    when 'Note'
+    when 'Note', 'Article', 'Image', 'Video'
       FetchRemoteStatusService.new.call(atom_url, body, protocol)
     end
   end
