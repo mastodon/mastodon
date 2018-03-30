@@ -14,7 +14,7 @@ class Settings::ProfilesController < ApplicationController
   def show; end
 
   def update
-    if UpdateAccountService.new.call(@account, account_params)
+    if account_params.present? && UpdateAccountService.new.call(@account, account_params)
       ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
       redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg')
     else
@@ -25,7 +25,7 @@ class Settings::ProfilesController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:display_name, :note, :avatar, :header, :locked)
+    params[:account]&.permit(:display_name, :note, :avatar, :header, :locked)
   end
 
   def set_account
