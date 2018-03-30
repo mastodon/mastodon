@@ -12,6 +12,7 @@ module Admin
 
     def set_pack
       use_pack 'admin'
+      use_pack 'public'
     end
   end
 end
