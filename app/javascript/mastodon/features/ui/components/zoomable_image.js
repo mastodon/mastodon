@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hammer from 'hammerjs';
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
-
-const getMidpoint = (p1, p2) => ({
-  x: (p1.clientX + p2.clientX) / 2,
-  y: (p1.clientY + p2.clientY) / 2,
-});
-
-const getDistance = (p1, p2) =>
-  Math.sqrt(Math.pow(p1.clientX - p2.clientX, 2) + Math.pow(p1.clientY - p2.clientY, 2));
+const DOUBLE_TAP_SCALE = 2;
 
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
@@ -37,22 +31,56 @@ export default class ZoomableImage extends React.PureComponent {
   removers = [];
   container = null;
   image = null;
-  lastTouchEndTime = 0;
-  lastDistance = 0;
+  lastScale = null;
+  zoomCenter = null;
 
   componentDidMount () {
-    let handler = this.handleTouchStart;
-    this.container.addEventListener('touchstart', handler);
-    this.removers.push(() => this.container.removeEventListener('touchstart', handler));
-    handler = this.handleTouchMove;
-    // on Chrome 56+, touch event listeners will default to passive
-    // https://www.chromestatus.com/features/5093566007214080
-    this.container.addEventListener('touchmove', handler, { passive: false });
-    this.removers.push(() => this.container.removeEventListener('touchend', handler));
+    // register pinch event handlers to the container
+    let hammer = new Hammer.Manager(this.container, {
+      // required to make container scrollable by touch
+      touchAction: 'pan-x pan-y',
+    });
+    hammer.add(new Hammer.Pinch());
+    hammer.on('pinchstart', this.handlePinchStart);
+    hammer.on('pinchmove', this.handlePinchMove);
+    this.removers.push(() => hammer.off('pinchstart pinchmove'));
+
+    // register tap event handlers
+    hammer = new Hammer.Manager(this.image);
+    // NOTE the order of adding is also the order of gesture recognition
+    hammer.add(new Hammer.Tap({ event: 'doubletap', taps: 2 }));
+    hammer.add(new Hammer.Tap());
+    // prevent the 'tap' event handler be fired on double tap
+    hammer.get('tap').requireFailure('doubletap');
+    // NOTE 'tap' and 'doubletap' events are fired by touch and *mouse*
+    hammer.on('tap', this.handleTap);
+    hammer.on('doubletap', this.handleDoubleTap);
+    this.removers.push(() => hammer.off('tap doubletap'));
   }
 
   componentWillUnmount () {
     this.removeEventListeners();
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (!this.zoomCenter) return;
+
+    const { x: cx, y: cy } = this.zoomCenter;
+    const { scale: prevScale } = prevState;
+    const { scale: nextScale } = this.state;
+    const { scrollLeft, scrollTop } = this.container;
+
+    // math memo:
+    // x = (scrollLeft + cx) / scrollWidth
+    // x' = (nextScrollLeft + cx) / nextScrollWidth
+    // scrollWidth = clientWidth * prevScale
+    // scrollWidth' = clientWidth * nextScale
+    // Solve x = x' for nextScrollLeft
+    const nextScrollLeft = (scrollLeft + cx) * nextScale / prevScale - cx;
+    const nextScrollTop = (scrollTop + cy) * nextScale / prevScale - cy;
+
+    this.container.scrollLeft = nextScrollLeft;
+    this.container.scrollTop = nextScrollTop;
   }
 
   removeEventListeners () {
@@ -60,58 +88,38 @@ export default class ZoomableImage extends React.PureComponent {
     this.removers = [];
   }
 
-  handleTouchStart = e => {
-    if (e.touches.length !== 2) return;
-
-    this.lastDistance = getDistance(...e.touches);
-  }
-
-  handleTouchMove = e => {
-    const { scrollTop, scrollHeight, clientHeight } = this.container;
-    if (e.touches.length === 1 && scrollTop !== scrollHeight - clientHeight) {
-      // prevent propagating event to MediaModal
-      e.stopPropagation();
-      return;
-    }
-    if (e.touches.length !== 2) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    const distance = getDistance(...e.touches);
-    const midpoint = getMidpoint(...e.touches);
-    const scale = clamp(MIN_SCALE, MAX_SCALE, this.state.scale * distance / this.lastDistance);
-
-    this.zoom(scale, midpoint);
-
-    this.lastMidpoint = midpoint;
-    this.lastDistance = distance;
-  }
-
-  zoom(nextScale, midpoint) {
-    const { scale } = this.state;
-    const { scrollLeft, scrollTop } = this.container;
-
-    // math memo:
-    // x = (scrollLeft + midpoint.x) / scrollWidth
-    // x' = (nextScrollLeft + midpoint.x) / nextScrollWidth
-    // scrollWidth = clientWidth * scale
-    // scrollWidth' = clientWidth * nextScale
-    // Solve x = x' for nextScrollLeft
-    const nextScrollLeft = (scrollLeft + midpoint.x) * nextScale / scale - midpoint.x;
-    const nextScrollTop = (scrollTop + midpoint.y) * nextScale / scale - midpoint.y;
-
-    this.setState({ scale: nextScale }, () => {
-      this.container.scrollLeft = nextScrollLeft;
-      this.container.scrollTop = nextScrollTop;
-    });
-  }
-
   handleClick = e => {
-    // don't propagate event to MediaModal
+    // prevent the click event propagated to parent
     e.stopPropagation();
+
+    // the tap event handler is executed at the same time by touch and mouse,
+    // so we don't need to execute the onClick handler here
+  }
+
+  handlePinchStart = () => {
+    this.lastScale = this.state.scale;
+  }
+
+  handlePinchMove = e => {
+    const scale = clamp(MIN_SCALE, MAX_SCALE, this.lastScale * e.scale);
+    this.zoom(scale, e.center);
+  }
+
+  handleTap = () => {
     const handler = this.props.onClick;
     if (handler) handler();
+  }
+
+  handleDoubleTap = e => {
+    if (this.state.scale === MIN_SCALE)
+      this.zoom(DOUBLE_TAP_SCALE, e.center);
+    else
+      this.zoom(MIN_SCALE, e.center);
+  }
+
+  zoom (scale, center) {
+    this.zoomCenter = center;
+    this.setState({ scale });
   }
 
   setContainerRef = c => {
@@ -126,6 +134,18 @@ export default class ZoomableImage extends React.PureComponent {
     const { alt, src } = this.props;
     const { scale } = this.state;
     const overflow = scale === 1 ? 'hidden' : 'scroll';
+    const marginStyle = {
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transform: `scale(${scale})`,
+      transformOrigin: '0 0',
+    };
 
     return (
       <div
@@ -133,17 +153,18 @@ export default class ZoomableImage extends React.PureComponent {
         ref={this.setContainerRef}
         style={{ overflow }}
       >
-        <img
-          role='presentation'
-          ref={this.setImageRef}
-          alt={alt}
-          src={src}
-          style={{
-            transform: `scale(${scale})`,
-            transformOrigin: '0 0',
-          }}
-          onClick={this.handleClick}
-        />
+        <div
+          className='zoomable-image__margin'
+          style={marginStyle}
+        >
+          <img
+            ref={this.setImageRef}
+            role='presentation'
+            alt={alt}
+            src={src}
+            onClick={this.handleClick}
+          />
+        </div>
       </div>
     );
   }

@@ -44,7 +44,7 @@ class FetchAtomService < BaseService
       json = body_to_json(body)
       if supported_context?(json) && json['type'] == 'Person' && json['inbox'].present?
         [json['id'], { prefetched_body: body, id: true }, :activitypub]
-      elsif supported_context?(json) && json['type'] == 'Note'
+      elsif supported_context?(json) && expected_type?(json)
         [json['id'], { prefetched_body: body, id: true }, :activitypub]
       else
         @unsupported_activity = true
@@ -59,6 +59,10 @@ class FetchAtomService < BaseService
         process_html(response)
       end
     end
+  end
+
+  def expected_type?(json)
+    (ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES).include? json['type']
   end
 
   def process_html(response)

@@ -1001,6 +1001,30 @@
   }
 }
 
+.domain {
+  padding: 10px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  .domain__domain-name {
+    flex: 1 1 auto;
+    display: block;
+    color: $primary-text-color;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.domain__wrapper {
+  display: flex;
+}
+
+.domain_buttons {
+  height: 18px;
+  padding: 10px;
+  white-space: nowrap;
+}
+
 .account {
   padding: 10px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -1459,9 +1483,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   img {
     max-width: $media-modal-media-max-width;
