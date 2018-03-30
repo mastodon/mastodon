@@ -60,6 +60,7 @@ const mapStateToProps = state => ({
   layout: state.getIn(['local_settings', 'layout']),
   isWide: state.getIn(['local_settings', 'stretch']),
   navbarUnder: state.getIn(['local_settings', 'navbar_under']),
+  dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
 });
 
 const keyMap = {
@@ -111,6 +112,7 @@ export default class UI extends React.Component {
     hasComposingText: PropTypes.bool,
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
+    dropdownMenuIsOpen: PropTypes.bool,
   };
 
   state = {
@@ -366,7 +368,7 @@ export default class UI extends React.Component {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children, layout, isWide, navbarUnder } = this.props;
+    const { children, layout, isWide, navbarUnder, dropdownMenuIsOpen } = this.props;
 
     const columnsClass = layout => {
       switch (layout) {
@@ -407,7 +409,7 @@ export default class UI extends React.Component {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef}>
-        <div className={className} ref={this.setRef}>
+        <div className={className} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           {navbarUnder ? null : (<TabsBar />)}
 
           <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width, layout)}>
