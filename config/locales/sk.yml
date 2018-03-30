@@ -679,6 +679,7 @@ sk:
       limit: Už ste si pripli ten najvyšší možný počet príspevkov
       ownership: Nemožno pripnúť príspevok od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
+      reblog: Pozdvihnutie sa nedá pripnúť
     show_more: Ukáž viac
     visibilities:
       private: Iba pre sledovateľov
@@ -687,6 +688,15 @@ sk:
       public_long: Všetci môžu vidieť
       unlisted: Nezaradené
       unlisted_long: Všetci môžu vidieť, ale nieje zaradené do verejnej osi
+    attached:
+      description: 'Priložené: %{attached}'
+      image:
+        one: '%{count} obrázok'
+        other: '%{count} obrázkov'
+      video:
+        one: '%{count} video'
+        other: '%{count} videí'
+    content_warning: 'Varovanie o obsahu: %{warning}'
   stream_entries:
     click_to_show: Klikni pre zobrazenie
     pinned: Pripnutý toot
@@ -712,6 +722,11 @@ sk:
     description_html: Ak povolíš <strong> dvoj-faktorové overovanie</strong>, na prihlásenie
       potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš
       zadať.
+    code_hint: Pre potvrdenie teraz zadaj kód vygenerovaný pomocou tvojej overovacej
+      aplikácie
+    instructions_html: <strong>Naskenuj tento QR kód do Google Autentikátora, alebo
+      do podobnej TOTP aplikácie pomocou svojho telefónu.</strong> Od tejto chvíle
+      bude táto aplikácia pre teba generovať kódy ktoré musíš zadať aby si sa prihlásil/a.
   user_mailer:
     backup_ready:
       explanation: Vyžiadal/a si si úplnú zálohu tvojho Mastodon účtu. Táto záloha
@@ -756,3 +771,6 @@ sk:
     signed_in_as: 'Prihlásený ako:'
   themes:
     default: Mastodon
+  time:
+    formats:
+      default: '%b %d, %R, %H:%M'
