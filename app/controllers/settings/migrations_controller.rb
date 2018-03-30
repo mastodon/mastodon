@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::MigrationsController < ApplicationController
-  layout 'admin'
-
-  before_action :authenticate_user!
-
+class Settings::MigrationsController < Settings::BaseController
   def show
     @migration = Form::Migration.new(account: current_account.moved_to_account)
   end
