@@ -39,20 +39,24 @@
       - else
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
       ·
-    - if status.direct_visibility?
-      %span<
-        = fa_icon('envelope')
-    - elsif status.private_visibility?
-      %span<
-        = fa_icon('lock')
-    - else
+    - if status.public_visibility? || status.unlisted_visibility?
       %span<
         = fa_icon('retweet')
         %span= status.reblogs_count
-    ·
+      ·
     %span<
       = fa_icon('star')
       %span= status.favourites_count
+    ·
+    %span<
+      - if status.public_visibility?
+        = fa_icon('globe')
+      - elsif status.unlisted_visibility?
+        = fa_icon('unlock-alt')
+      - elsif status.direct_visibility?
+        = fa_icon('envelope')
+      - elsif status.private_visibility?
+        = fa_icon('lock')
 
     - if user_signed_in?
       ·
