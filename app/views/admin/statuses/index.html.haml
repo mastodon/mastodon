@@ -36,7 +36,7 @@
         .batch-checkbox
           = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
         .activity-stream.activity-stream-headless
-          .entry= render 'stream_entries/simple_status', status: status
+          .entry= render 'stream_entries/status', status: status
         .account-status__actions
           - unless status.media_attachments.empty?
             = link_to admin_account_status_path(@account.id, status, current_params.merge(status: { sensitive: !status.sensitive })), method: :patch, class: 'icon-button nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
