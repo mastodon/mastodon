@@ -4,6 +4,15 @@
       = link_to TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener' do
         %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       %data.dt-published{ value: status.created_at.to_time.iso8601 }
+      %span.status__visibility<
+        - if status.public_visibility?
+          = fa_icon('globe')
+        - elsif status.unlisted_visibility?
+          = fa_icon('unlock-alt')
+        - elsif status.direct_visibility?
+          = fa_icon('envelope')
+        - elsif status.private_visibility?
+          = fa_icon('lock')
 
     = link_to TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
       .status__avatar
