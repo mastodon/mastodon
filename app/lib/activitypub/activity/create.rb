@@ -79,6 +79,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
 
     status.tags << hashtag
+  rescue ActiveRecord::RecordInvalid
+    nil
   end
 
   def process_mention(tag, status)
