@@ -213,7 +213,7 @@ export default class ComposeForm extends ImmutablePureComponent {
           <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabledButton} block /></div>
         </div>
 
-        <div className='compose_form__utilBtns'>
+        <div className='compose-form__utilBtns'>
           <Button className='compose_form__utilBtns-fukumoku' text={intl.formatMessage(messages.utilBtns_fukumoku)} onClick={this.handleOnFukumokuSubmit} block />
         </div>
       </div>
