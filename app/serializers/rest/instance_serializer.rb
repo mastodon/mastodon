@@ -16,7 +16,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def title
-    Setting.site_title
+    Setting.site_hostname_or_domain
   end
 
   def description
