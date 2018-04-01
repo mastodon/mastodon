@@ -256,10 +256,11 @@ namespace :mastodon do
             q.modify :strip
           end
 
-          env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.ask('SMTP OpenSSL verify mode:') do |q|
-            q.required
-            q.default 'peer'
-            q.modify :strip
+          if prompt.yes?('Do you want to use a client certificate to authenticate to the server?', default: false)
+            env['SMTP_OPENSSL_VERIFY_MODE'] = 'peer'
+            prompt.ask('Path to the client certificate:') do |q|
+              q.required
+              q.modify :strip
           end
         end
 
