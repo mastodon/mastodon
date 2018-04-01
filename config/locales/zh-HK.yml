@@ -160,6 +160,8 @@ zh-HK:
     forgot_password: 忘記了密碼？
     login: 登入
     logout: 登出
+    migrate_account: 轉移到另一個帳號
+    migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     register: 登記
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
@@ -275,6 +277,14 @@ zh-HK:
     missing_resource: 無法找到你用戶的轉接網址
     proceed: 下一步
     prompt: 你希望關注︰
+  sessions:
+    activity: 最近活動
+    browser: 瀏覽器
+    current_session: 目前的 session
+    description: "%{platform} 上的 %{browser}"
+    explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
+    revoke: 取消
+    revoke_success: Session 取消成功。
   settings:
     authorized_apps: 授權應用程式
     back: 回到 Mastodon
