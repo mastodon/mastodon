@@ -644,6 +644,7 @@
   overflow: hidden;
   white-space: pre-wrap;
   padding-top: 2px;
+  overflow-y: auto;
 
   &:focus {
     outline: 0;
@@ -714,6 +715,14 @@
       display: block;
     }
   }
+}
+
+.reply-indicator__content {
+  max-height: 9ex;
+}
+
+.status__content {
+  max-height: 17ex;
 }
 
 .status__content__spoiler-link {
