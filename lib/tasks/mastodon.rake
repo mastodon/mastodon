@@ -256,11 +256,7 @@ namespace :mastodon do
             q.modify :strip
           end
 
-          env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.ask('SMTP OpenSSL verify mode:') do |q|
-            q.required
-            q.default 'peer'
-            q.modify :strip
-          end
+          env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.select('SMTP OpenSSL verify mode:', %w(none peer client_once fail_if_no_peer_cert))
         end
 
         env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|
