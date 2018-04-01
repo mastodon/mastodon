@@ -43,7 +43,7 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:local, :limit).merge(core_params)
+    params.permit(:local, :limit, :max_id, :since_id).merge(core_params)
   end
 
   def next_path
