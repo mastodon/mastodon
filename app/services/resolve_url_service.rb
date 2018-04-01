@@ -17,7 +17,7 @@ class ResolveURLService < BaseService
 
   def process_url
     case type
-    when 'Person'
+    when 'Application', 'Group', 'Organization', 'Person', 'Service'
       FetchRemoteAccountService.new.call(atom_url, body, protocol)
     when 'Note', 'Article', 'Image', 'Video'
       FetchRemoteStatusService.new.call(atom_url, body, protocol)
