@@ -172,6 +172,7 @@ ar:
         unsilence_account: لقد قام %{name} بإلغاء الكتم عن حساب %{target}
         unsuspend_account: لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}
         update_status: لقد قام %{name} بتحديث منشور %{target}
+        resolve_report: قام %{name} بإلغاء التقرير المُرسَل مِن طرف %{target}
       title: سِجلّ التفتيش و المعاينة
     custom_emojis:
       by_domain: النطاق
@@ -197,6 +198,7 @@ ar:
       upload: رفع
       overwrite: إعادة الكتابة
       unlisted: غير مدرج
+      listed: مُدرَج
     domain_blocks:
       add_new: إضافة نطاق جديد
       domain: النطاق
@@ -281,9 +283,12 @@ ar:
           title: رسالة التسجيلات المقفلة
         deletion:
           desc_html: السماح لأي مستخدم إغلاق حسابه
+          title: السماح بحذف الحسابات
         open:
           desc_html: السماح للجميع بإنشاء حساب
           title: فتح التسجيل
+        min_invite_role:
+          disabled: لا أحد
       site_description:
         title: وصف مثيل الخادوم
       site_terms:
@@ -293,6 +298,7 @@ ar:
         title: الصورة الرمزية المصغرة لمثيل الخادوم
       timeline_preview:
         desc_html: عرض الخيط العمومي على صفحة الإستقبال
+        title: مُعاينة الخيط العام
       title: إعدادات الموقع
       bootstrap_timeline_accounts:
         title: الإشتراكات الإفتراضية للمستخدمين الجدد
@@ -302,6 +308,13 @@ ar:
         desc_html: أسماء النطاقات التي إلتقى بها مثيل الخادوم على البيئة الموحَّدة
           فيديفرس
         title: نشر عدد مثيلات الخوادم التي تم مصادفتها
+      activity_api_enabled:
+        desc_html: عدد المنشورات المحلية و المستخدمين النشطين و التسجيلات الأسبوعية
+          الجديدة
+      show_known_fediverse_at_about_page:
+        title: إظهار الفيديفرس الموحَّد في خيط المُعايَنة
+      site_description_extended:
+        title: الوصف المُفصّل للموقع
     statuses:
       back_to_account: العودة إلى صفحة الحساب
       batch:
@@ -312,10 +325,14 @@ ar:
         title: الوسائط
       title: منشورات الحساب
       with_media: بالوسائط
+      execute: تفعيل
+      failed_to_execute: خطأ في التفعيل
     subscriptions:
       confirmed: مؤكَّد
       expires_in: تنتهي مدة صلاحيتها في
       topic: الموضوع
+      last_delivery: آخر إيداع
+      title: WebSub
     title: الإدارة
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
@@ -330,6 +347,7 @@ ar:
     invalid_url: إن الرابط المقدم غير صالح
     regenerate_token: إعادة توليد رمز النفاذ
     your_token: رمز نفاذك
+    warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين !
   auth:
     agreement_html: بقبولك التسجيل فإنك تُصرِّح قبول <a href="%{rules_path}">قواعد
       مثيل الخادوم</a> و <a href="%{terms_path}">شروط الخدمة التي نوفرها لك</a>.
@@ -354,6 +372,8 @@ ar:
     security: الهوية
     set_new_password: إدخال كلمة مرور جديدة
     change_password: الكلمة السرية
+    or: أو
+    register_elsewhere: التسجيل على خادوم آخَر
   authorize_follow:
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
     follow: إتبع
@@ -363,6 +383,7 @@ ar:
       return: العودة إلى الملف الشخصي للمستخدم
       web: واصل إلى الويب
     title: إتباع %{acct}
+    following: 'مرحى ! أنت الآن تتبع :'
   datetime:
     distance_in_words:
       about_x_hours: '%{count}سا'
@@ -389,6 +410,9 @@ ar:
     '500':
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
+    '422':
+      content: فشل التحقق الآمن. ربما منعتَ كعكات الكوكيز ؟
+      title: فشِل التحقق الآمن
   exports:
     archive_takeout:
       download: تنزيل نسخة لحسابك
@@ -397,10 +421,13 @@ ar:
         و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق.
       in_progress: عملية جمع نسخة لبيانات حسابك جارية …
       request: طلب نسخة لحسابك
+      date: التاريخ
+      size: الحجم
     blocks: قمت بحظر
     csv: CSV
     follows: أنت تتبع
     storage: ذاكرة التخزين
+    mutes: قُمتَ بكتم
   followers:
     domain: النطاق
     followers_count: عدد المتابِعين
@@ -437,7 +464,12 @@ ar:
     max_uses_prompt: بلا حدود
     table:
       expires_at: تنتهي مدة صلاحيتها في
+      uses: يستخدِم
     title: دعوة أشخاص
+    max_uses:
+      one: إستعمال واحد
+      other: '%{count} استخدامات'
+    prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادوم هذا
   landing_strip_html: <strong>%{name}</strong> هو أحد مُستخدِمي %{link_to_root_path}.
     بإمكانك متابعته أو التواصل معه إن كنت تملك حسابًا أيا كان على البيئة الموحَّدة
     فيديفرس.
@@ -636,3 +668,6 @@ ar:
     invalid_otp_token: الرمز الثنائي غير صالح
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة
       السرية و البريد الإلكتروني غير متوفرة.
+  admin_mailer:
+    new_report:
+      body: قام %{reporter} بالإبلاغ عن %{target}
