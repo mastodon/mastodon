@@ -67,6 +67,8 @@ export default class StatusActionBar extends ImmutablePureComponent {
     navigator.share({
       text: this.props.status.get('search_index'),
       url: this.props.status.get('url'),
+    }).catch((e) => {
+      if (e.name !== 'AbortError') console.error(e);
     });
   }
 
