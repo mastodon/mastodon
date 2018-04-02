@@ -333,7 +333,7 @@ eo:
     subscriptions:
       callback_url: Revena URL
       confirmed: Konfirmita
-      expires_in: Eksvalidiĝas en
+      expires_in: Eksvalidiĝas je
       last_delivery: Lasta livero
       title: WebSub
       topic: Temo
@@ -485,7 +485,7 @@ eo:
     max_uses_prompt: Neniu limo
     prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu nodo
     table:
-      expires_at: Eksvalidiĝas
+      expires_at: Eksvalidiĝas je
       uses: Uzoj
     title: Inviti homojn
   landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la fediverse."
@@ -636,6 +636,15 @@ eo:
     two_factor_authentication: Dufaktora aŭtentigo
     your_apps: Viaj aplikaĵoj
   statuses:
+    attached:
+      description: 'Ligita: %{attached}'
+      image:
+        one: "%{count} bildo"
+        other: "%{count} bildoj"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoj"
+    content_warning: 'Enhava averto: %{warning}'
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
