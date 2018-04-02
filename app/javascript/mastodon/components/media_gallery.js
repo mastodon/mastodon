@@ -10,6 +10,7 @@ import { autoPlayGif, displaySensitiveMedia } from '../initial_state';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
+  sensitive: { defaultMessage: 'Sensitive', id: 'media_gallery.sensitive' },
 });
 
 class Item extends React.PureComponent {
@@ -271,9 +272,21 @@ export default class MediaGallery extends React.PureComponent {
 
     return (
       <div className='media-gallery' style={style} ref={this.handleRef}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--visible': visible })}>
-          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
-        </div>
+        {visible ? (
+          <div className='sensitive-info'>
+            <IconButton
+              icon='eye'
+              onClick={this.handleOpen}
+              overlay
+              title={intl.formatMessage(messages.toggle_visible)}
+            />
+            {sensitive ? (
+              <span className='sensitive-marker'>
+                <FormattedMessage {...messages.sensitive} />
+              </span>
+            ) : null}
+          </div>
+        ) : null}
 
         {children}
       </div>

@@ -35,7 +35,7 @@ delegate(document, '.media-spoiler-show-button', 'click', () => {
 });
 
 delegate(document, '.media-spoiler-hide-button', 'click', () => {
-  [].forEach.call(document.querySelectorAll('.spoiler-button.spoiler-button--visible button'), (element) => {
+  [].forEach.call(document.querySelectorAll('.sensitive-info button'), (element) => {
     element.click();
   });
 });
