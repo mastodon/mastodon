@@ -18,4 +18,9 @@
         = fa_icon('camera')
         = report.media_attachments.count
   %td
+    - if report.assigned_account.nil?
+      \-
+    - else
+      = link_to report.assigned_account.acct, admin_account_path(report.assigned_account.id)
+  %td
     = table_link_to 'circle', t('admin.reports.view'), admin_report_path(report)
