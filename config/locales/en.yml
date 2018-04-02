@@ -154,9 +154,9 @@ en:
         memorialize_account: "%{name} turned %{target}'s account into a memoriam page"
         promote_user: "%{name} promoted user %{target}"
         remove_avatar_user: "%{name} removed %{target}'s avatar"
+        reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} reset password of user %{target}"
         resolve_report: "%{name} resolved report %{target}"
-        reopen_report: "%{name} reopened report %{target}"
         silence_account: "%{name} silenced %{target}'s account"
         suspend_account: "%{name} suspended %{target}'s account"
         unassigned_report: "%{name} unassigned report %{target}"
@@ -245,6 +245,9 @@ en:
         expired: Expired
         title: Filter
       title: Invites
+    report_notes:
+      created_msg: Moderation note successfully created!
+      destroyed_msg: Moderation note successfully destroyed!
     reports:
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
@@ -258,10 +261,10 @@ en:
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
-        label: Notes
         create: Add Note
         create_and_resolve: Resolve with Note
         delete: Delete
+        label: Notes
       nsfw:
         'false': Unhide media attachments
         'true': Hide media attachments
@@ -281,9 +284,6 @@ en:
       unresolved: Unresolved
       updated_at: Updated
       view: View
-    report_notes:
-      created_msg: Moderation note successfully created!
-      destroyed_msg: Moderation note successfully destroyed!
     settings:
       activity_api_enabled:
         desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
