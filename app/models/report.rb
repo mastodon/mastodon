@@ -12,12 +12,14 @@
 #  account_id                 :integer          not null
 #  action_taken_by_account_id :integer
 #  target_account_id          :integer          not null
+#  assigned_account_id        :integer
 #
 
 class Report < ApplicationRecord
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
   belongs_to :action_taken_by_account, class_name: 'Account', optional: true
+  belongs_to :assigned_account, class_name: 'Account', optional: true
 
   scope :unresolved, -> { where(action_taken: false) }
   scope :resolved,   -> { where(action_taken: true) }

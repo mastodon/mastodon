@@ -24,6 +24,12 @@ module Admin
 
     def process_report
       case params[:outcome].to_s
+      when 'assign_to_self'
+        @report.update!(assigned_account_id: current_account.id)
+        log_action :assigned_to_self, @report
+      when 'unassign'
+        @report.update!(assigned_account_id: nil)
+        log_action :unassigned, @report
       when 'resolve'
         @report.update!(action_taken_by_current_attributes)
         log_action :resolve, @report

@@ -4,6 +4,27 @@
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
+.table-wrapper
+  %table.table.inline-table
+    %tbody
+      %tr
+        %th= t('admin.reports.updated_at')
+        %td{colspan: 2}
+          %time.formatted{ datetime: @report.updated_at.iso8601 }
+      - if !@report.action_taken?
+        %tr
+          %th= t('admin.reports.assigned')
+          %td
+            - if @report.assigned_account.nil?
+              \-
+            - else
+              = link_to @report.assigned_account.acct, admin_account_path(@report.assigned_account.id)
+          %td{style: "text-align: right"}
+            - if @report.assigned_account != current_user.account
+              = table_link_to 'user', t('admin.reports.assign_to_self'), admin_report_path(@report, outcome: 'assign_to_self'), method: :put
+            - if !@report.assigned_account.nil?
+              = table_link_to 'trash', t('admin.reports.unassign'), admin_report_path(@report, outcome: 'unassign'), method: :put
+
 .report-accounts
   .report-accounts__item
     %strong= t('admin.reports.reported_account')

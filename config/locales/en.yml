@@ -137,6 +137,7 @@ en:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} assigned report %{target} to themselves"
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
@@ -157,6 +158,7 @@ en:
         resolve_report: "%{name} dismissed report %{target}"
         silence_account: "%{name} silenced %{target}'s account"
         suspend_account: "%{name} suspended %{target}'s account"
+        unassigned_report: "%{name} unassigned report %{target}"
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_custom_emoji: "%{name} updated emoji %{target}"
@@ -245,6 +247,8 @@ en:
     reports:
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
+      assign_to_self: Assign to me
+      assigned: Assigned Moderator
       comment:
         label: Comment
         none: None
@@ -264,7 +268,9 @@ en:
       suspend_account: Suspend account
       target: Target
       title: Reports
+      unassign: Unassign
       unresolved: Unresolved
+      updated_at: Updated
       view: View
     settings:
       activity_api_enabled:
