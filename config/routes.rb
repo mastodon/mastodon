@@ -137,6 +137,8 @@ Rails.application.routes.draw do
       resources :reported_statuses, only: [:create, :update, :destroy]
     end
 
+    resources :report_notes, only: [:create, :destroy]
+
     resources :accounts, only: [:index, :show] do
       member do
         post :subscribe

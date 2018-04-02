@@ -11,6 +11,8 @@ module Admin
 
     def show
       authorize @report, :show?
+      @report_note = @report.notes.new
+      @report_notes = @report.notes.latest
       @form = Form::StatusBatch.new
     end
 

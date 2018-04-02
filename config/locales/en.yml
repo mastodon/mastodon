@@ -255,6 +255,10 @@ en:
       delete: Delete
       id: ID
       mark_as_resolved: Mark as resolved
+      notes:
+        label: Notes
+        create: Add Note
+        delete: Delete
       nsfw:
         'false': Unhide media attachments
         'true': Hide media attachments
@@ -265,6 +269,7 @@ en:
       resolved: Resolved
       silence_account: Silence account
       status: Status
+      statuses: Reported Toots
       suspend_account: Suspend account
       target: Target
       title: Reports
@@ -272,6 +277,9 @@ en:
       unresolved: Unresolved
       updated_at: Updated
       view: View
+    report_notes:
+      created_msg: Moderation note successfully created!
+      destroyed_msg: Moderation note successfully destroyed!
     settings:
       activity_api_enabled:
         desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
