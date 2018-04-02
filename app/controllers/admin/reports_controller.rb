@@ -19,7 +19,12 @@ module Admin
     def update
       authorize @report, :update?
       process_report
-      redirect_to admin_report_path(@report)
+
+      if @report.action_taken?
+        redirect_to admin_reports_path, notice: I18n.t('admin.reports.resolved_msg')
+      else
+        redirect_to admin_report_path(@report)
+      end
     end
 
     private
