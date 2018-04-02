@@ -48,11 +48,13 @@ module Admin
         log_action :resolve, @report
         log_action :suspend, @report.target_account
         resolve_all_target_account_reports
+        @report.reload
       when 'silence'
         @report.target_account.update!(silenced: true)
         log_action :resolve, @report
         log_action :silence, @report.target_account
         resolve_all_target_account_reports
+        @report.reload
       else
         raise ActiveRecord::RecordNotFound
       end
