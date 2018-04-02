@@ -76,7 +76,7 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
+    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def authorize_if_got_token
