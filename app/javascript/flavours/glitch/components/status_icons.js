@@ -12,10 +12,6 @@ import VisibilityIcon from './status_visibility_icon';
 const messages = defineMessages({
   collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
-  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
-  direct: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
 @injectIntl
