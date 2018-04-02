@@ -10,6 +10,8 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
+  has_many :virtual_tags, key: :tag
+
   attribute :moved_to, if: :moved?
 
   class EndpointsSerializer < ActiveModel::Serializer
@@ -101,7 +103,14 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
     object.locked
   end
 
+  def virtual_tags
+    object.emojis
+  end
+
   def moved_to
     ActivityPub::TagManager.instance.uri_for(object.moved_to_account)
+  end
+
+  class CustomEmojiSerializer < ActivityPub::EmojiSerializer
   end
 end

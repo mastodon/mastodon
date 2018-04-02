@@ -95,6 +95,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/domain.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Load more",
         "id": "status.load_more"
       }
@@ -297,6 +306,19 @@
       }
     ],
     "path": "app/javascript/mastodon/containers/account_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Hide entire domain",
+        "id": "confirmations.domain_block.confirm"
+      },
+      {
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
+        "id": "confirmations.domain_block.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/containers/domain_container.json"
   },
   {
     "descriptors": [
@@ -852,6 +874,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Hidden domains",
+        "id": "column.domain_blocks"
+      },
+      {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/domain_blocks/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Favourites",
         "id": "column.favourites"
       }
@@ -929,6 +964,10 @@
       {
         "defaultMessage": "Blocked users",
         "id": "navigation_bar.blocks"
+      },
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "navigation_bar.domain_blocks"
       },
       {
         "defaultMessage": "Muted users",

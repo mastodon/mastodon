@@ -352,6 +352,10 @@ class Account < ApplicationRecord
     end
   end
 
+  def emojis
+    CustomEmoji.from_text(note, domain)
+  end
+
   before_create :generate_keys
   before_validation :normalize_domain
   before_validation :prepare_contents, if: :local?

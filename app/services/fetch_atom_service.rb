@@ -42,7 +42,7 @@ class FetchAtomService < BaseService
     elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(response.mime_type)
       body = response.body_with_limit
       json = body_to_json(body)
-      if supported_context?(json) && json['type'] == 'Person' && json['inbox'].present?
+      if supported_context?(json) && ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES.include?(json['type']) && json['inbox'].present?
         [json['id'], { prefetched_body: body, id: true }, :activitypub]
       elsif supported_context?(json) && expected_type?(json)
         [json['id'], { prefetched_body: body, id: true }, :activitypub]
