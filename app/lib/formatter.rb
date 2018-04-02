@@ -87,7 +87,6 @@ class Formatter
 
   def encode_and_link_urls(html, accounts = nil)
     entities = Extractor.extract_entities_with_indices(html, extract_url_without_protocol: false)
-
     rewrite(html.dup, entities) do |entity|
       if entity[:url]
         link_to_url(entity)
@@ -188,7 +187,9 @@ class Formatter
 
   def link_to_mention(entity, linkable_accounts)
     acct = entity[:screen_name]
+    username, domain = acct.split('@')
 
+    return link_to_twitter(username) if domain == 'twitter.com'
     return link_to_account(acct) unless linkable_accounts
 
     account = linkable_accounts.find { |item| TagManager.instance.same_acct?(item.acct, acct) }
@@ -206,6 +207,10 @@ class Formatter
 
   def link_to_hashtag(entity)
     hashtag_html(entity[:hashtag])
+  end
+
+  def link_to_twitter(username)
+    "<span class=\"h-card\"><a href=\"https://twitter.com/#{username}\" target=\"blank\" rel=\"noopener noreferrer\" class=\"u-url mention\">@<span>#{username}@twitter.com</span></a></span>"
   end
 
   def link_html(url)
