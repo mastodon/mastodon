@@ -32,6 +32,9 @@ module Admin
       when 'unassign'
         @report.update!(assigned_account_id: nil)
         log_action :unassigned, @report
+      when 'reopen'
+        @report.update!(action_taken: false, action_taken_by_account_id: nil)
+        log_action :reopen, @report
       when 'resolve'
         @report.update!(action_taken_by_current_attributes)
         log_action :resolve, @report

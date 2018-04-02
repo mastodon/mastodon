@@ -4,13 +4,15 @@
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
-- if !@report.action_taken?
-  %div{ style: 'overflow: hidden; margin-bottom: 20px' }
+%div{ style: 'overflow: hidden; margin-bottom: 20px' }
+  - if !@report.action_taken?
     %div{ style: 'float: right' }
       = link_to t('admin.reports.silence_account'), admin_report_path(@report, outcome: 'silence'), method: :put, class: 'button'
       = link_to t('admin.reports.suspend_account'), admin_report_path(@report, outcome: 'suspend'), method: :put, class: 'button'
     %div{ style: 'float: left' }
       = link_to t('admin.reports.mark_as_resolved'), admin_report_path(@report, outcome: 'resolve'), method: :put, class: 'button'
+  - else
+    = link_to t('admin.reports.mark_as_unresolved'), admin_report_path(@report, outcome: 'reopen'), method: :put, class: 'button'
 
 .table-wrapper
   %table.table.inline-table
@@ -24,6 +26,7 @@
         %td{colspan: 2}
           - if @report.action_taken?
             = t('admin.reports.resolved')
+            = table_link_to 'envelope-open', t('admin.reports.reopen'), admin_report_path(@report, outcome: 'reopen'), method: :put
           - else
             = t('admin.reports.unresolved')
       - if !@report.action_taken_by_account.nil?

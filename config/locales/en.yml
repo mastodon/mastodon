@@ -155,7 +155,8 @@ en:
         promote_user: "%{name} promoted user %{target}"
         remove_avatar_user: "%{name} removed %{target}'s avatar"
         reset_password_user: "%{name} reset password of user %{target}"
-        resolve_report: "%{name} dismissed report %{target}"
+        resolve_report: "%{name} resolved report %{target}"
+        reopen_report: "%{name} reopened report %{target}"
         silence_account: "%{name} silenced %{target}'s account"
         suspend_account: "%{name} suspended %{target}'s account"
         unassigned_report: "%{name} unassigned report %{target}"
@@ -255,6 +256,7 @@ en:
       delete: Delete
       id: ID
       mark_as_resolved: Mark as resolved
+      mark_as_unresolved: Mark as unresolved
       notes:
         label: Notes
         create: Add Note
@@ -267,6 +269,7 @@ en:
       reported_account: Reported account
       reported_by: Reported by
       resolved: Resolved
+      resolved_msg: Report successfully resolved!
       silence_account: Silence account
       status: Status
       statuses: Reported Toots
