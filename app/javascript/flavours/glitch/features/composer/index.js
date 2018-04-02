@@ -150,6 +150,9 @@ const handlers = {
     const {
       onChangeText,
       onSubmit,
+      isSubmitting,
+      isUploading,
+      anyMedia,
       text,
     } = this.props;
 
@@ -157,6 +160,11 @@ const handlers = {
     //  state before submitting.
     if (onChangeText && text !== value) {
       onChangeText(value);
+    }
+
+    // Submit disabled:
+    if (isSubmitting || isUploading || (!!text.length && !text.trim().length && !anyMedia)) {
+      return;
     }
 
     //  Submits the status.
