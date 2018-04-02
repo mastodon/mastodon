@@ -13,7 +13,7 @@
 
 class ReportNote < ApplicationRecord
   belongs_to :account
-  belongs_to :report
+  belongs_to :report, inverse_of: :notes
 
   scope :latest, -> { reorder('created_at ASC') }
 
