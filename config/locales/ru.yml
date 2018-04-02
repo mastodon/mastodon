@@ -477,15 +477,15 @@ ru:
       '21600': 6 часов
       '3600': 1 час
       '43200': 12 часов
-      '86400': 1 день
       '604800': 1 неделю
+      '86400': 1 день
     expires_in_prompt: Никогда
     generate: Сгенерировать
     max_uses:
-      one: 1 исп.
-      other: "%{count} исп."
       few: "%{count} исп."
       many: "%{count} исп."
+      one: 1 исп.
+      other: "%{count} исп."
     max_uses_prompt: Без лимита
     prompt: Генерируйте и делитесь ссылками с другими, чтобы предоставить им доступ к этому узлу.
     table:
@@ -647,14 +647,14 @@ ru:
     attached:
       description: 'Вложение: %{attached}'
       image:
-        one: "%{count} изображение"
         few: "%{count} изображения"
         many: "%{count} изображений"
+        one: "%{count} изображение"
         other: "%{count} изображений"
       video:
-        one: "%{count} видео"
         few: "%{count} видео"
         many: "%{count} видео"
+        one: "%{count} видео"
         other: "%{count} видео"
     content_warning: 'Спойлер: %{warning}'
     open_in_web: Открыть в WWW
