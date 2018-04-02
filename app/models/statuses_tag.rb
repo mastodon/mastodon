@@ -72,7 +72,7 @@ class StatusesTag < ApplicationRecord
     end
 
     def status_ids_in(time_range)
-      Status.where(created_at: time_range, local: true).map(&:id)
+      Status.where(created_at: time_range).local.with_public_or_unlisted_visibility.map(&:id)
     end
 
     def redis
