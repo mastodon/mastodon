@@ -51,9 +51,14 @@ class Formatter
     strip_tags(text)
   end
 
-  def simplified_format(account)
-    return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
-    linkify(account.note)
+  def simplified_format(account, **options)
+    html = if account.local?
+             linkify(account.note)
+           else
+             reformat(account.note)
+           end
+    html = encode_custom_emojis(html, CustomEmoji.from_text(account.note, account.domain)) if options[:custom_emojify]
+    html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def sanitize(html, config)

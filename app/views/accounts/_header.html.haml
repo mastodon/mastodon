@@ -21,7 +21,7 @@
             = t 'accounts.roles.moderator'
 
     .bio
-      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)
+      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }
