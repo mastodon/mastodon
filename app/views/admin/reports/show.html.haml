@@ -89,14 +89,14 @@
 
 %h3= t('admin.reports.notes.label')
 
-.table-wrapper
-  %table.table
-    %thead
-      %tr
-        %th
-        %th
-    %tbody
-      = render @report_notes
+- if @report_notes.count > 0
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th
+      %tbody
+        = render @report_notes
 
 = simple_form_for @report_note, url: admin_report_notes_path do |f|
   = render 'shared/error_messages', object: @report_note
