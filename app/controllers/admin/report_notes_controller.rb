@@ -10,7 +10,14 @@ module Admin
       @report_note = current_account.report_notes.new(resource_params)
 
       if @report_note.save
-        redirect_to admin_report_path(@report_note.report_id), notice: I18n.t('admin.report_notes.created_msg')
+        if params[:create_and_resolve]
+          @report_note.report.update!(action_taken: true, action_taken_by_account_id: current_account.id)
+          log_action :resolve, @report_note.report
+
+          redirect_to admin_reports_path, notice: I18n.t('admin.reports.resolved_msg')
+        else
+          redirect_to admin_report_path(@report_note.report_id), notice: I18n.t('admin.report_notes.created_msg')
+        end
       else
         @report       = @report_note.report
         @report_notes = @report.notes.latest
