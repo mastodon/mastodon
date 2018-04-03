@@ -93,6 +93,7 @@ export default class Video extends React.PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
+    reveal: PropTypes.bool,
     startTime: PropTypes.number,
     onOpenVideo: PropTypes.func,
     onCloseVideo: PropTypes.func,
@@ -110,7 +111,7 @@ export default class Video extends React.PureComponent {
     fullscreen: false,
     hovered: false,
     muted: false,
-    revealed: !this.props.sensitive || displaySensitiveMedia,
+    revealed: !this.props.sensitive || this.props.reveal || displaySensitiveMedia,
   };
 
   setPlayerRef = c => {

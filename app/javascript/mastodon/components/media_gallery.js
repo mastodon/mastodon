@@ -183,6 +183,7 @@ export default class MediaGallery extends React.PureComponent {
 
   static propTypes = {
     sensitive: PropTypes.bool,
+    reveal: PropTypes.bool,
     standalone: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
     size: PropTypes.object,
@@ -196,7 +197,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !this.props.sensitive || displaySensitiveMedia,
+    visible: !this.props.sensitive || this.props.reveal || displaySensitiveMedia,
   };
 
   componentWillReceiveProps (nextProps) {
