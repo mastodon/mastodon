@@ -60,6 +60,7 @@ ja:
       destroyed_msg: モデレーションメモを削除しました！
     accounts:
       are_you_sure: 本当に実行しますか？
+      avatar: アイコン
       by_domain: ドメイン
       confirm: 確認
       confirmed: 確認済み
@@ -108,6 +109,7 @@ ja:
       public: パブリック
       push_subscription_expires: PuSH購読期限
       redownload: アバターの更新
+      remove_avatar: アイコンを削除
       reset: リセット
       reset_password: パスワード再設定
       resubscribe: 再講読
@@ -135,6 +137,7 @@ ja:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} さんがレポート %{target} を自身の担当に割り当てました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
@@ -150,10 +153,13 @@ ja:
         enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
         memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
         promote_user: "%{name} さんが %{target} さんを昇格しました"
+        remove_avatar_user: "%{name} さんが %{target} さんのアイコンを削除しました"
+        reopen_report: "%{name} さんがレポート %{target} を再び開きました"
         reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
         resolve_report: "%{name} さんがレポート %{target} を解決済みにしました"
         silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account: "%{name} さんが %{target} さんを停止しました"
+        unassigned_report: "%{name} さんがレポート %{target} の担当を外しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
@@ -239,29 +245,45 @@ ja:
         expired: 期限切れ
         title: フィルター
       title: 招待
+    report_notes:
+      created_msg: モデレーションメモを書き込みました！
+      destroyed_msg: モデレーションメモを削除しました！
     reports:
       action_taken_by: レポート処理者
       are_you_sure: 本当に実行しますか？
+      assign_to_self: 担当になる
+      assigned: 担当者
       comment:
         label: コメント
         none: なし
       delete: 削除
       id: ID
       mark_as_resolved: 解決済みとしてマーク
+      mark_as_unresolved: 未解決として再び開く
+      notes:
+        create: 書き込む
+        create_and_resolve: 書き込み、解決済みにする
+        delete: 削除
+        label: メモ
       nsfw:
         'false': NSFW オフ
         'true': NSFW オン
+      reopen: 再び開く
       report: レポート#%{id}
       report_contents: 内容
       reported_account: 報告対象アカウント
       reported_by: 報告者
       resolved: 解決済み
+      resolved_msg: レポートを解決済みにしました！
       silence_account: アカウントをサイレンス
       status: ステータス
+      statuses: 通報されたトゥート
       suspend_account: アカウントを停止
       target: ターゲット
       title: レポート
+      unassign: 担当を外す
       unresolved: 未解決
+      updated_at: 更新日時
       view: 表示
     settings:
       activity_api_enabled:
@@ -475,6 +497,7 @@ ja:
       '21600': 6 時間
       '3600': 1 時間
       '43200': 12 時間
+      '604800': 1 週間
       '86400': 1 日
     expires_in_prompt: 無期限
     generate: 作成
