@@ -22,7 +22,6 @@ class Report < ApplicationRecord
   belongs_to :assigned_account, class_name: 'Account', optional: true
 
   has_many :notes, class_name: 'ReportNote', foreign_key: :report_id, inverse_of: :report, dependent: :destroy
-  has_many :history, as: :target, class_name: 'Admin::ActionLog', foreign_key: :target_id, foreign_type: :target_type, dependent: :destroy
 
   scope :unresolved, -> { where(action_taken: false) }
   scope :resolved,   -> { where(action_taken: true) }
@@ -59,5 +58,17 @@ class Report < ApplicationRecord
 
   def unresolved?
     !action_taken?
+  end
+
+  def history
+    report_log = Admin::ActionLog.where(target_type: 'Report', target_id: id).unscope(:order)
+    target_account_log = Admin::ActionLog.where(target_type: 'Account', target_id: target_account_id).unscope(:order)
+    statuses_log = Admin::ActionLog.where(target_type: 'Status', target_id: status_ids).unscope(:order)
+
+    sql = Admin::ActionLog.connection.unprepared_statement {
+      "((#{report_log.to_sql}) UNION ALL (#{target_account_log.to_sql}) UNION ALL (#{statuses_log.to_sql})) as admin_action_logs"
+    }
+
+    Admin::ActionLog.from(sql)
   end
 end
