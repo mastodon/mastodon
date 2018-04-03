@@ -28,7 +28,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
-    check_featured_collection! if @account.featured_collection_url.present?
+    check_featured_collection! if @account&.featured_collection_url&.present?
 
     @account
   rescue Oj::ParseError

@@ -265,7 +265,7 @@ export default function compose(state = initialState, action) {
       .set('idempotencyKey', uuid());
   case COMPOSE_DIRECT:
     return state
-      .update('text', text => `${text}@${action.account.get('acct')} `)
+      .update('text', text => `@${action.account.get('acct')} `)
       .set('privacy', 'direct')
       .set('focusDate', new Date())
       .set('idempotencyKey', uuid());
