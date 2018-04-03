@@ -22,6 +22,7 @@ class Report < ApplicationRecord
   belongs_to :assigned_account, class_name: 'Account', optional: true
 
   has_many :notes, class_name: 'ReportNote', foreign_key: :report_id, inverse_of: :report, dependent: :destroy
+  has_many :history, as: :target, class_name: 'Admin::ActionLog', foreign_key: :target_id, foreign_type: :target_type, dependent: :destroy
 
   scope :unresolved, -> { where(action_taken: false) }
   scope :resolved,   -> { where(action_taken: true) }

@@ -116,3 +116,9 @@
     - else
       = f.submit t('admin.reports.notes.create_and_unresolve'), name: :create_and_unresolve, class: 'button report-note__button'
     = f.submit t('admin.reports.notes.create'), class: 'button report-note__button'
+
+- if @report_history.length > 0
+  %h3= t('admin.reports.history')
+
+  %ul
+    = render @report_history

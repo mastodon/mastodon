@@ -26,6 +26,7 @@ module Admin
       else
         @report       = @report_note.report
         @report_notes = @report.notes.latest
+        @report_history = @report.history
         @form = Form::StatusBatch.new
 
         render template: 'admin/reports/show'

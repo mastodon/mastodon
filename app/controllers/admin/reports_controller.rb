@@ -13,6 +13,7 @@ module Admin
       authorize @report, :show?
       @report_note = @report.notes.new
       @report_notes = @report.notes.latest
+      @report_history = @report.history
       @form = Form::StatusBatch.new
     end
 
