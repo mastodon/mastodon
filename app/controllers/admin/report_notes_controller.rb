@@ -11,10 +11,15 @@ module Admin
 
       if @report_note.save
         if params[:create_and_resolve]
-          @report_note.report.update!(action_taken: true, action_taken_by_account_id: current_account.id)
+          @report_note.report.resolve!(current_account)
           log_action :resolve, @report_note.report
 
           redirect_to admin_reports_path, notice: I18n.t('admin.reports.resolved_msg')
+        elsif params[:create_and_unresolve]
+          @report_note.report.unresolve!
+          log_action :resolve, @report_note.report
+
+          redirect_to admin_report_path(@report_note.report_id), notice: I18n.t('admin.report_notes.created_msg')
         else
           redirect_to admin_report_path(@report_note.report_id), notice: I18n.t('admin.report_notes.created_msg')
         end

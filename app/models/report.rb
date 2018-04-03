@@ -39,4 +39,24 @@ class Report < ApplicationRecord
   def media_attachments
     MediaAttachment.where(status_id: status_ids)
   end
+
+  def assign_to_self!(current_account)
+    update!(assigned_account_id: current_account.id)
+  end
+
+  def unassign!
+    update!(assigned_account_id: nil)
+  end
+
+  def resolve!(acting_account)
+    update!(action_taken: true, action_taken_by_account_id: acting_account.id)
+  end
+
+  def unresolve!
+    update!(action_taken: false, action_taken_by_account_id: nil)
+  end
+
+  def unresolved?
+    !action_taken?
+  end
 end
