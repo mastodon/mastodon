@@ -17,7 +17,7 @@ module Admin
           redirect_to admin_reports_path, notice: I18n.t('admin.reports.resolved_msg')
         elsif params[:create_and_unresolve]
           @report_note.report.unresolve!
-          log_action :resolve, @report_note.report
+          log_action :reopen, @report_note.report
 
           redirect_to admin_report_path(@report_note.report_id), notice: I18n.t('admin.report_notes.created_msg')
         else
