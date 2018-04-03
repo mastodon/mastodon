@@ -8,6 +8,8 @@ $ui-highlight-color: #2b90d9;
 $simple-background-color: #123b59;
 $primary-text-color: black;
 
+$account-background-color: white;
+
 // Import defaults
 @import 'application';
 
@@ -57,7 +59,7 @@ button.icon-button i.fa-retweet {
 
 // Change the default color used on some parts of the profile pages
 .activity-stream-tabs {
-  background: white;
+  background: $account-background-color;
 
   a {
     &.active {
@@ -68,7 +70,7 @@ button.icon-button i.fa-retweet {
 
 .activity-stream {
   .entry {
-    background: white;
+    background: $account-background-color;
   }
 
   .status.light {
