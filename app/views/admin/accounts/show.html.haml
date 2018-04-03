@@ -14,6 +14,14 @@
         %th= t('admin.accounts.display_name')
         %td= @account.display_name
 
+      %tr
+        %th= t('admin.accounts.avatar')
+        %th
+          = link_to @account.avatar.url(:original) do
+            = image_tag @account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
+          - if @account.local? && @account.avatar?
+            = table_link_to 'trash', t('admin.accounts.remove_avatar'), remove_avatar_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_avatar, @account)
+
       - if @account.local?
         %tr
           %th= t('admin.accounts.role')

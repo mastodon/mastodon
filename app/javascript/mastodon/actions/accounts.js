@@ -103,7 +103,7 @@ export function fetchAccount(id) {
       dispatch(importFetchedAccount(response.data));
     })).then(() => {
       dispatch(fetchAccountSuccess());
-    }, error => {
+    }).catch(error => {
       dispatch(fetchAccountFail(id, error));
     });
   };

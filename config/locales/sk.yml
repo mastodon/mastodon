@@ -580,7 +580,12 @@ sk:
     browser: Prehliadač
     browsers:
       alipay: Alipay
+      chrome: Google Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Mozilla Firefox
       generic: Neznámy prehliadač
+      ie: Internet Explorer
     current_session: Aktuálna sezóna
     description: "%{browser} na %{platform}"
     explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
@@ -607,12 +612,22 @@ sk:
     two_factor_authentication: Dvoj-faktorové overenie
     your_apps: Tvoje aplikácie
   statuses:
+    attached:
+      description: 'Priložené: %{attached}'
+      image:
+        one: "%{count} obrázok"
+        other: "%{count} obrázkov"
+      video:
+        one: "%{count} video"
+        other: "%{count} videí"
+    content_warning: 'Varovanie o obsahu: %{warning}'
     open_in_web: Otvor v okne prehliadača
     over_character_limit: limit počtu %{max} znakov bol presiahnutý
     pin_errors:
       limit: Už ste si pripli ten najvyšší možný počet príspevkov
       ownership: Nemožno pripnúť príspevok od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
+      reblog: Pozdvihnutie sa nedá pripnúť
     show_more: Ukáž viac
     visibilities:
       private: Iba pre sledovateľov
@@ -628,11 +643,20 @@ sk:
     sensitive_content: Senzitívny obsah
   terms:
     title: Podmienky užívania, a pravidlá o súkromí pre %{instance}
+  themes:
+    default: Mastodon
+  time:
+    formats:
+      default: "%b %d, %R, %H:%M"
   two_factor_authentication:
+    code_hint: Pre potvrdenie teraz zadaj kód vygenerovaný pomocou tvojej overovacej aplikácie
+    description_html: Ak povolíš <strong> dvoj-faktorové overovanie</strong>, na prihlásenie potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš zadať.
+    disable: Zakáž
     enable: Povoliť
     enabled: Dvoj-faktorové overovanie je povolené
     enabled_success: Dvoj-faktorové overovanie bolo úspešne povolené
     generate_recovery_codes: Vygeneruj zálohové kódy
+    instructions_html: "<strong>Naskenuj tento QR kód do Google Autentikátora, alebo do podobnej TOTP aplikácie pomocou svojho telefónu.</strong> Od tejto chvíle bude táto aplikácia pre teba generovať kódy ktoré musíš zadať aby si sa prihlásil/a."
     lost_recovery_codes: Zálohové kódy ti umožnia dostať sa k svojmu účtu ak stratíš telefón. Pokiaľ si stratila svoje zálohové kódy, môžeš si ich tu znovu vygenerovať. Tvoje staré zálohové kódy budú zneplatnené.
     manual_instructions: 'Pokiaľ nemôžeš oskenovať daný QR kód, a potrebuješ ho zadať ručne, tu je tajomstvo v textovom formáte:'
     recovery_codes: Zálohuj kódy pre obnovu

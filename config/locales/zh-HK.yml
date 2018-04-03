@@ -101,7 +101,7 @@ zh-HK:
         most_recent: 按時間
         title: 排序
       outbox_url: 寄件箱（Outbox）URL
-      perform_full_suspension: 實行完全暫停
+      perform_full_suspension: 完全停權
       profile_url: 個人檔案 URL
       promote: 升任
       protocol: 協議
@@ -272,6 +272,9 @@ zh-HK:
       contact_information:
         email: 輸入一個公開的電郵地址
         username: 輸入用戶名稱
+      hero:
+        desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖。
+        title: 主題圖片
       peers_api_enabled:
         desc_html: 現時本服務站在網絡中已發現的域名
         title: 公開已知服務站的列表
@@ -288,6 +291,9 @@ zh-HK:
         open:
           desc_html: 允許所有人建立帳戶
           title: 開放註冊
+      show_known_fediverse_at_about_page:
+        desc_html: 如果開啟，就會在時間軸預覽顯示跨站文章，否則就只會顯示本站文章。
+        title: 在時間軸預覽顯示跨站文章
       show_staff_badge:
         desc_html: 在個人資料頁上顯示管理人員標誌
         title: 顯示管理人員標誌
@@ -352,6 +358,8 @@ zh-HK:
     your_token: token
   auth:
     agreement_html: 登記即表示你同意遵守<a href="%{rules_path}">本服務站的規則</a>和<a href="%{terms_path}">使用條款</a>。
+    change_password: 密碼
+    confirm_email: 確認電郵
     delete_account: 刪除帳戶
     delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     didnt_get_confirmation: 沒有收到確認指示電郵？
@@ -361,7 +369,13 @@ zh-HK:
     logout: 登出
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
+    or: 或
+    or_log_in_with: 或登入於
+    providers:
+      cas: CAS
+      saml: SAML
     register: 登記
+    register_elsewhere: 在其他服務站登記
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
     security: 登入資訊
@@ -411,6 +425,13 @@ zh-HK:
       title: 這個頁面有問題
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 應用</a>。
   exports:
+    archive_takeout:
+      date: 日期
+      download: 下載檔案
+      hint_html: 你可以下載包含你的<strong>文章和媒體</strong>的檔案。資料以 ActivityPub 格式儲存，可用於相容的軟體。
+      in_progress: 檔案製作中...
+      request: 下載檔案
+      size: 檔案大小
     blocks: 被你封鎖的用戶
     csv: CSV
     follows: 你所關注的用戶
@@ -524,7 +545,9 @@ zh-HK:
           trillion: T
           unit: ''
   pagination:
+    newer: 較新
     next: 下一頁
+    older: 較舊
     prev: 上一頁
     truncate: "……"
   preferences:
@@ -606,6 +629,11 @@ zh-HK:
     two_factor_authentication: 雙重認證
     your_apps: 你的應用程式
   statuses:
+    attached:
+      description: 附件： %{attached}
+      image: "%{count} 張圖片"
+      video: "%{count} 段影片"
+    content_warning: 'Content warning: %{warning}'
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:
@@ -670,4 +698,5 @@ zh-HK:
   users:
     invalid_email: 電郵地址格式不正確
     invalid_otp_token: 雙重認證確認碼不正確
+    seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：
