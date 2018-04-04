@@ -322,6 +322,11 @@ $small-breakpoint: 960px;
     border: 0;
     border-bottom: 1px solid rgba($ui-base-lighter-color, .6);
     margin: 20px 0;
+
+    &.spacer {
+      height: 1px;
+      border: 0;
+    }
   }
 
   .container-alt {
