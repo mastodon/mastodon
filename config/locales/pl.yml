@@ -4,6 +4,7 @@ pl:
     about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
+    administered_by: 'Administrowana przez:'
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
     contact_missing: Nie ustawiono
@@ -60,6 +61,7 @@ pl:
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       are_you_sure: Jesteś tego pewien?
+      avatar: Awatar
       by_domain: Domena
       confirm: Potwierdź
       confirmed: Potwierdzono
@@ -108,6 +110,7 @@ pl:
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież awatar
+      remove_avatar: Usun awatar
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
@@ -135,6 +138,7 @@ pl:
       web: Sieć
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} przypisał sobie zgłoszenie %{target}"
         confirm_user: "%{name} potwierdził adres e-mail użytkownika %{target}"
         create_custom_emoji: "%{name} dodał nowe emoji %{target}"
         create_domain_block: "%{name} zablokował domenę %{target}"
@@ -150,10 +154,13 @@ pl:
         enable_user: "%{name} przywrócił możliwość logowania użytkownikowi %{target}"
         memorialize_account: "%{name} nadał kontu %{target} status in memoriam"
         promote_user: "%{name} podniósł uprawnienia użytkownikowi %{target}"
+        remove_avatar_user: "%{name} usunął awatar użytkownikowi %{target}"
+        reopen_report: "%{name} otworzył ponownie zgłoszenie %{target}"
         reset_password_user: "%{name} przywrócił hasło użytkownikowi %{target}"
-        resolve_report: "%{name} odrzucił zgłoszenie %{target}"
+        resolve_report: "%{name} rozwiązał zgłoszenie %{target}"
         silence_account: "%{name} wyciszył konto %{target}"
         suspend_account: "%{name} zawiesił konto %{target}"
+        unassigned_report: "%{name} cofnął przypisanie zgłoszenia %{target}"
         unsilence_account: "%{name} cofnął wyciszenie konta %{target}"
         unsuspend_account: "%{name} cofnął zawieszenie konta %{target}"
         update_custom_emoji: "%{name} zaktualizował emoji %{target}"
@@ -240,15 +247,26 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
+    report_notes:
+      created_msg: Pomyslnie utworzono notatkę moderacyjną.
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
     reports:
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
+      assign_to_self: Przypisz do siebie
+      assigned: Przypisany moderator
       comment:
-        label: Komentarz
+        label: Komentarz do zgłoszenia
         none: Brak
       delete: Usuń
       id: ID
       mark_as_resolved: Oznacz jako rozwiązane
+      mark_as_unresolved: Oznacz jako nierozwiązane
+      notes:
+        create: Utwórz notatkę
+        create_and_resolve: Rozwiąż i pozostaw notatkę
+        delete: Usuń
+        label: Notatki
       nsfw:
         'false': Nie oznaczaj jako NSFW
         'true': Oznaczaj jako NSFW
@@ -257,12 +275,16 @@ pl:
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
       resolved: Rozwiązane
+      resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       silence_account: Wycisz konto
       status: Stan
+      statuses: Zgłoszone wpisy
       suspend_account: Zawieś konto
       target: Cel
       title: Zgłoszenia
+      unassign: Cofnij przypisanie
       unresolved: Nierozwiązane
+      updated_at: Zaktualizowano
       view: Wyświetl
     settings:
       activity_api_enabled:
