@@ -681,6 +681,54 @@ $small-breakpoint: 960px;
       margin-bottom: 0;
     }
 
+    .account {
+      border-bottom: 0;
+      padding: 0;
+
+      &__display-name {
+        align-items: center;
+        display: flex;
+        margin-right: 5px;
+      }
+
+      div.account__display-name {
+        &:hover {
+          .display-name strong {
+            text-decoration: none;
+          }
+        }
+
+        .account__avatar {
+          cursor: default;
+        }
+      }
+
+      &__avatar-wrapper {
+        margin-left: 0;
+        flex: 0 0 auto;
+      }
+
+      &__avatar {
+        width: 44px;
+        height: 44px;
+        background-size: 44px 44px;
+      }
+
+      .display-name {
+        font-size: 15px;
+
+        &__account {
+          font-size: 14px;
+        }
+      }
+    }
+
+    @media screen and (max-width: $small-breakpoint) {
+      .contact {
+        margin-top: 30px;
+      }
+    }
+
     @media screen and (max-width: $column-breakpoint) {
       padding: 25px 20px;
     }
