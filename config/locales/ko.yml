@@ -361,6 +361,7 @@ ko:
     your_token: 액세스 토큰
   auth:
     agreement_html: 이 등록으로 <a href="%{rules_path}">이용규약</a> 과 <a href="%{terms_path}">약관</a>에 동의하는 것으로 간주됩니다.
+    change_password: 패스워드
     confirm_email: 확인 메일 승인
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
@@ -373,7 +374,11 @@ ko:
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
     or: 또는
     or_log_in_with: 다른 방법으로 로그인 하려면
+    providers:
+      cas: CAS
+      saml: SAML
     register: 등록하기
+    register_elsewhere: 다른 인스턴스에서 가입
     resend_confirmation: 확인 메일을 다시 보내기
     reset_password: 비밀번호 재설정
     security: 보안
@@ -545,7 +550,9 @@ ko:
           trillion: T
           unit: ''
   pagination:
+    newer: 새로운 툿
     next: 다음
+    older: 오래된 툿
     prev: 이전
     truncate: "&hellip;"
   preferences:
@@ -629,6 +636,15 @@ ko:
     two_factor_authentication: 2단계 인증
     your_apps: 애플리케이션
   statuses:
+    attached:
+      description: '첨부: %{attached}'
+      image:
+        one: "%{count} 이미지"
+        other: "%{count} 이미지"
+      video:
+        one: "%{count} 영상"
+        other: "%{count} 영상"
+    content_warning: '열람 주의: %{warning}'
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
