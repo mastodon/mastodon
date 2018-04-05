@@ -219,6 +219,7 @@ ar:
         undo: إلغاء
         affected_accounts:
           other: هناك %{count} حسابات في قاعدة البيانات متأثرة بذلك
+          one: هناك حساب واحد متأثر في قاعدة البيانات
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
           suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
@@ -281,6 +282,8 @@ ar:
       registrations:
         closed_message:
           title: رسالة التسجيلات المقفلة
+          desc_html: يتم عرضه على الصفحة الرئيسية عندما يتم غلق تسجيل الحسابات الجديدة.
+            يمكنكم إستخدام علامات الأيتش تي أم أل HTML
         deletion:
           desc_html: السماح لأي مستخدم إغلاق حسابه
           title: السماح بحذف الحسابات
@@ -289,6 +292,7 @@ ar:
           title: فتح التسجيل
         min_invite_role:
           disabled: لا أحد
+          title: المستخدِمون المصرح لهم لإرسال الدعوات
       site_description:
         title: وصف مثيل الخادوم
       site_terms:
@@ -311,6 +315,7 @@ ar:
       activity_api_enabled:
         desc_html: عدد المنشورات المحلية و المستخدمين النشطين و التسجيلات الأسبوعية
           الجديدة
+        title: نشر مُجمل الإحصائيات عن نشاط المستخدمين
       show_known_fediverse_at_about_page:
         title: إظهار الفيديفرس الموحَّد في خيط المُعايَنة
       site_description_extended:
