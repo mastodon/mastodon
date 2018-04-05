@@ -4,6 +4,7 @@ pl:
     about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
+    administered_by: 'Administrowana przez:'
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
     contact_missing: Nie ustawiono
@@ -60,6 +61,7 @@ pl:
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       are_you_sure: Jesteś tego pewien?
+      avatar: Awatar
       by_domain: Domena
       confirm: Potwierdź
       confirmed: Potwierdzono
@@ -108,6 +110,7 @@ pl:
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież awatar
+      remove_avatar: Usun awatar
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
@@ -135,6 +138,7 @@ pl:
       web: Sieć
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} przypisał sobie zgłoszenie %{target}"
         confirm_user: "%{name} potwierdził adres e-mail użytkownika %{target}"
         create_custom_emoji: "%{name} dodał nowe emoji %{target}"
         create_domain_block: "%{name} zablokował domenę %{target}"
@@ -150,10 +154,13 @@ pl:
         enable_user: "%{name} przywrócił możliwość logowania użytkownikowi %{target}"
         memorialize_account: "%{name} nadał kontu %{target} status in memoriam"
         promote_user: "%{name} podniósł uprawnienia użytkownikowi %{target}"
+        remove_avatar_user: "%{name} usunął awatar użytkownikowi %{target}"
+        reopen_report: "%{name} otworzył ponownie zgłoszenie %{target}"
         reset_password_user: "%{name} przywrócił hasło użytkownikowi %{target}"
-        resolve_report: "%{name} odrzucił zgłoszenie %{target}"
+        resolve_report: "%{name} rozwiązał zgłoszenie %{target}"
         silence_account: "%{name} wyciszył konto %{target}"
         suspend_account: "%{name} zawiesił konto %{target}"
+        unassigned_report: "%{name} cofnął przypisanie zgłoszenia %{target}"
         unsilence_account: "%{name} cofnął wyciszenie konta %{target}"
         unsuspend_account: "%{name} cofnął zawieszenie konta %{target}"
         update_custom_emoji: "%{name} zaktualizował emoji %{target}"
@@ -240,15 +247,26 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
+    report_notes:
+      created_msg: Pomyslnie utworzono notatkę moderacyjną.
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
     reports:
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
+      assign_to_self: Przypisz do siebie
+      assigned: Przypisany moderator
       comment:
-        label: Komentarz
+        label: Komentarz do zgłoszenia
         none: Brak
       delete: Usuń
       id: ID
       mark_as_resolved: Oznacz jako rozwiązane
+      mark_as_unresolved: Oznacz jako nierozwiązane
+      notes:
+        create: Utwórz notatkę
+        create_and_resolve: Rozwiąż i pozostaw notatkę
+        delete: Usuń
+        label: Notatki
       nsfw:
         'false': Nie oznaczaj jako NSFW
         'true': Oznaczaj jako NSFW
@@ -257,12 +275,16 @@ pl:
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
       resolved: Rozwiązane
+      resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       silence_account: Wycisz konto
       status: Stan
+      statuses: Zgłoszone wpisy
       suspend_account: Zawieś konto
       target: Cel
       title: Zgłoszenia
+      unassign: Cofnij przypisanie
       unresolved: Nierozwiązane
+      updated_at: Zaktualizowano
       view: Wyświetl
     settings:
       activity_api_enabled:
@@ -678,74 +700,6 @@ pl:
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość
   terms:
-    body_html: |
-      <h2>Polityka prywatności</h2>
-
-      <h3 id="collect">Jakie informacje zbieramy?</h3>
-
-      <p>Zbieramy informacje podane przy rejestracji i treści utworzone w trakcie korzystania z serwisu.</p>
-
-      <p>Podczas rejestracji, możesz otrzymać prośbę o podanie adresu e-mail. Możesz jednak odwiedzać stronę bez rejestracji. Adres zostanie zweryfikowany przez kliknięcie w link wysłany w wiadomości. Dzięki temu wiemy, że jesteś właścicielem tego adresu.</p>
-
-      <p>Podczas rejestracji i tworzenia wpisów, Twój adres IP jest zapisywany na naszych serwerach. Możemy też przechowywać adres IP użyty przy każdej operacji w serwisie.</p>
-
-      <h3 id="use">Jak wykorzystujemy zebrane informacje?</h3>
-
-      <p>Zebrane informacje mogą zostać w jednym z następujących celach:</p>
-
-      <ul>
-        <li>Aby poprawić wrażenia &mdash; informacje o Tobie pomagają w dostosowywaniu serwisu do Twoich potrzeb.</li>
-        <li>Aby usprawnić stronę &mdash; nieustannie staramy się ulepszyć stronę na podstawie informacji o Tobie i Twoich opinii.</li>
-        <li>Aby usprawnić obsługę klienta &mdash; informacje pomogą obsłudze klienta utrzymywać kontakt z Tobą.</li>
-        <li>Aby okazjonalnie wysyłać wiadomości e-mail &mdash; Na podany adres e-mail mogą zostać wysłane wiadomości o wspomnieniu o Tobie we wpisach, przejrzeniu Twojego zgłoszenia i innych interakcji z Tobą.</li>
-      </ul>
-
-      <h3 id="protect">Jak zabezpieczamy dane?</h3>
-
-      <p>Korzystamy z wielu zabezpieczeń, aby utrudnić osobom niepowołanym dostęp do danych, które wprowadzasz, publikujesz i czytasz.</p>
-
-      <h3 id="data-retention">Jak długo przechowujecie dane?</h3>
-
-      <p>Dołożymy wszelkich starań, aby przechowywać:</p>
-
-      <ul>
-        <li>dzienniki serwera zawierające adresy IP przypisane do każdych operacji nie dłużej niż 90 dni.</li>
-        <li>adresy IP przypisane do użytkowników i ich wpisów nie dłużej niż 5 lat.</li>
-      </ul>
-
-      <h3 id="cookies">Czy używamy plików cookies?</h3>
-
-      <p>Tak. Pliki cookies (zwane często ciasteczkami) są małymi zbiorami danych przechowywanych na Twoim dysku przez stronę internetową, aby rozpoznawać przeglądarkę i powiązać ją (jeżeli jesteś zarejestrowany/a) z Twoim kontem, jeżeli na to pozwolisz.</p>
-
-      <p>Możemy używać ciasteczek, aby skonfigurować stronę na podstawie zapisanych preferencji, oraz dostosować ją do potrzeb innych użytkowników. Możemy korzystać z usług firm trzecich pomagających w zrozumieniu potrzeb użytkownika. Te usługi nie mogą korzystać ze zdobytych danych w celach innych niż analiza pomagająca ulepszać ten serwis.</p>
-
-      <h3 id="disclose">Czy przekazujecie dane podmiotów trzecim?</h3>
-
-      <p>Nie dokonujemy transakcji danych pozwalających na identyfikację Twojej osoby umieszczonych na tym serwisie. Nie oznacza to, że nie przekazujemy ich zaufanym podmiotom, które korzystają z nich poufnie. Możemy jednak udostępniać dane, jeżeli jest to wymagane prawnie, lub dla utrzymania bezpieczeństwa strony i innych użytkowników. W celach marketingowych (i podobnych) mogą zostać użyte jedynie dane niepozwalające na identyfikację osoby.</p>
-
-      <h3 id="third-party">Odnośniki do treści stron trzecich</h3>
-
-      <p>Czasem na stronie mogą pojawić się odnośniki do stron trzecich. Mają one odrębne regulaminy i politykę prywatności. Nie odpowiadamy więc za zawartość tych stron. Dokładamy jednak wszelkich starań, aby nie stanowiły one zagrożenia, prosimy jednak o opinie na temat ich wykorzystania.</p>
-
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
-
-      <p>Ta strona i usługa jest przeznaczona dla osób, które ukończyły 13 lat. Jeżeli serwer znajduje się na terenie USA i nie masz ukończonych 13 lat, zgodnie z amerykańską ustawą COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) nie możesz korzystać z tego serwisu.</p>
-
-      <h3 id="online">Polityka prywatności dotyczy tylko Internetu</h3>
-
-      <p>Ta polityka prywatności dotyczy jedynie danych zbieranych w Internecie, nie tych, które przechowywane są na Twoim komputerze, np. pliki cookies.</p>
-
-      <h3 id="consent">Wyrażenie zgody</h3>
-
-      <p>Korzystanie ze strony jest równoznaczne z akceptacją naszej polityki prywatności.</p>
-
-      <h3 id="changes">Zmiany w naszej polityce prywatności</h3>
-
-      <p>Jeżeli zdecydujemy się na zmiany w polityce prywatności, zmiany pojawią się na tej stronie.</p>
-
-      <p>Dokument jest dostępny na licencji CC-BY-SA. Ostatnio modyfikowany 31 maja 2013, przetłumaczony 4 lipca 2017. Tłumaczenie (mimo dołożenia wszelkich starań) może nie być w pełni poprawne.</p>
-
-      <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
   themes:
     default: Mastodon
