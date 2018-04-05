@@ -386,12 +386,6 @@ RSpec.describe OStatus::AtomSerializer do
         expect(entry.category[:term]).to eq 'tag'
       end
 
-      it 'appends category element for NSFW if status is sensitive' do
-        status = Fabricate(:status, sensitive: true)
-        entry = OStatus::AtomSerializer.new.entry(status.stream_entry)
-        expect(entry.category[:term]).to eq 'nsfw'
-      end
-
       it 'appends link elements for media attachments' do
         file = attachment_fixture('attachment.jpg')
         media_attachment = Fabricate(:media_attachment, file: file)
