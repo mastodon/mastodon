@@ -61,6 +61,11 @@ deploy.config:
   before_live:
     web.web:
       - bundle exec rake db:migrate:setup
+      - |-
+          if [[ "${ES_ENABLED}" != "false" ]]
+          then
+            bundle exec rake chewy:deploy
+          fi
 
 
 web.web:
@@ -196,6 +201,32 @@ data.db:
         PGPASSWORD=${DATA_DB_PASS} pg_dump -U ${DATA_DB_USER} -w -Fc -O gonano |
         gzip |
         curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).sql.gz -X POST -T - >&2
+        curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
+        sed 's/,/\n/g' |
+        grep ${HOSTNAME} |
+        sort |
+        head -n-${BACKUP_COUNT:-1} |
+        sed 's/.*: \?"\(.*\)".*/\1/' |
+        while read file
+        do
+          curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
+        done
+
+
+data.elastic:
+  image: nanobox/elasticsearch:5
+
+  cron:
+    - id: backup
+      schedule: '0 3 * * *'
+      command: |
+        id=$(cat /proc/sys/kernel/random/uuid)
+        curl -X PUT -H "Content-Type: application/json" "127.0.0.1:9200/_snapshot/${id}" -d "{\"type\": \"fs\",\"settings\": {\"location\": \"/var/tmp/${id}\",\"compress\": true}}"
+        curl -X PUT -H "Content-Type: application/json" "127.0.0.1:9200/_snapshot/${id}/backup?wait_for_completion=true&pretty"
+        tar -cz -C "/var/tmp/${id}" . |
+        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).tgz -X POST -T - >&2
+        curl -X DELETE -H "Content-Type: application/json" "127.0.0.1:9200/_snapshot/${id}"
+        rm -rf "/var/tmp/${id}"
         curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
         sed 's/,/\n/g' |
         grep ${HOSTNAME} |

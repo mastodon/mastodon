@@ -22,12 +22,13 @@ class ActivityPub::ProcessAccountService < BaseService
 
         create_account if @account.nil?
         update_account
+        process_tags(@account)
       end
     end
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
-    check_featured_collection! if @account.featured_collection_url.present?
+    check_featured_collection! if @account&.featured_collection_url&.present?
 
     @account
   rescue Oj::ParseError
@@ -186,5 +187,32 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def lock_options
     { redis: Redis.current, key: "process_account:#{@uri}" }
+  end
+
+  def process_tags(account)
+    return if @json['tag'].blank?
+    as_array(@json['tag']).each do |tag|
+      case tag['type']
+      when 'Emoji'
+        process_emoji tag, account
+      end
+    end
+  end
+
+  def process_emoji(tag, _account)
+    return if skip_download?
+    return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
+
+    shortcode = tag['name'].delete(':')
+    image_url = tag['icon']['url']
+    uri       = tag['id']
+    updated   = tag['updated']
+    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
+
+    return unless emoji.nil? || emoji.updated_at >= updated
+
+    emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
+    emoji.image_remote_url = image_url
+    emoji.save
   end
 end

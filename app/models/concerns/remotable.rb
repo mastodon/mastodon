@@ -3,8 +3,8 @@
 module Remotable
   extend ActiveSupport::Concern
 
-  included do
-    attachment_definitions.each_key do |attachment_name|
+  class_methods do
+    def remotable_attachment(attachment_name, limit)
       attribute_name  = "#{attachment_name}_remote_url".to_sym
       method_name     = "#{attribute_name}=".to_sym
       alt_method_name = "reset_#{attachment_name}!".to_sym
@@ -21,23 +21,23 @@ module Remotable
         return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[attribute_name] == url
 
         begin
-          response = Request.new(:get, url).perform
+          Request.new(:get, url).perform do |response|
+            next if response.code != 200
 
-          return if response.code != 200
+            matches  = response.headers['content-disposition']&.match(/filename="([^"]*)"/)
+            filename = matches.nil? ? parsed_url.path.split('/').last : matches[1]
+            basename = SecureRandom.hex(8)
+            extname = if filename.nil?
+                        ''
+                      else
+                        File.extname(filename)
+                      end
 
-          matches  = response.headers['content-disposition']&.match(/filename="([^"]*)"/)
-          filename = matches.nil? ? parsed_url.path.split('/').last : matches[1]
-          basename = SecureRandom.hex(8)
-          extname = if filename.nil?
-                      ''
-                    else
-                      File.extname(filename)
-                    end
+            send("#{attachment_name}=", StringIO.new(response.body_with_limit(limit)))
+            send("#{attachment_name}_file_name=", basename + extname)
 
-          send("#{attachment_name}=", StringIO.new(response.to_s))
-          send("#{attachment_name}_file_name=", basename + extname)
-
-          self[attribute_name] = url if has_attribute?(attribute_name)
+            self[attribute_name] = url if has_attribute?(attribute_name)
+          end
         rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
           nil

@@ -1,5 +1,6 @@
 import api from '../api';
 import { fetchRelationships } from './accounts';
+import { importFetchedAccounts, importFetchedStatuses } from './importer';
 
 export const SEARCH_CHANGE = 'SEARCH_CHANGE';
 export const SEARCH_CLEAR  = 'SEARCH_CLEAR';
@@ -38,6 +39,14 @@ export function submitSearch() {
         resolve: true,
       },
     }).then(response => {
+      if (response.data.accounts) {
+        dispatch(importFetchedAccounts(response.data.accounts));
+      }
+
+      if (response.data.statuses) {
+        dispatch(importFetchedStatuses(response.data.statuses));
+      }
+
       dispatch(fetchSearchSuccess(response.data));
       dispatch(fetchRelationships(response.data.accounts.map(item => item.id)));
     }).catch(error => {
@@ -56,8 +65,6 @@ export function fetchSearchSuccess(results) {
   return {
     type: SEARCH_FETCH_SUCCESS,
     results,
-    accounts: results.accounts,
-    statuses: results.statuses,
   };
 };
 
