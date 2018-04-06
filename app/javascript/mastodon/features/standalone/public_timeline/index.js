@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../../ui/containers/status_list_container';
 import {
-  refreshCommunityTimeline,
-  expandCommunityTimeline,
+  refreshPublicTimeline,
+  expandPublicTimeline,
 } from '../../../actions/timelines';
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
@@ -35,7 +35,7 @@ export default class PublicTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
-    dispatch(refreshCommunityTimeline());
+    dispatch(refreshPublicTimeline());
     this.disconnect = dispatch(connectCommunityStream());
   }
 
@@ -47,7 +47,7 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   handleLoadMore = () => {
-    this.props.dispatch(expandCommunityTimeline());
+    this.props.dispatch(expandPublicTimeline());
   }
 
   render () {
@@ -56,13 +56,13 @@ export default class PublicTimeline extends React.PureComponent {
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
-          icon='users'
+          icon='globe'
           title={intl.formatMessage(messages.title)}
           onClick={this.handleHeaderClick}
         />
 
         <StatusListContainer
-          timelineId='community'
+          timelineId='public'
           loadMore={this.handleLoadMore}
           scrollKey='standalone_public_timeline'
           trackScroll={false}
