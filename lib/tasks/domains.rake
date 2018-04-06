@@ -4,11 +4,9 @@ require 'net/https'
 require 'json'
 
 def block_domain(domain, severity, reject_media)
-  puts "blocking #{ domain }"
+  puts "blocking #{domain}"
   domain_block = DomainBlock.new(domain: domain, severity: severity.to_sym, reject_media: reject_media)
-  if domain_block.save
-    DomainBlockWorker.perform_async(domain_block.id)
-  end
+  DomainBlockWorker.perform_async(domain_block.id) if domain_block.save
 end
 
 namespace :domains do
