@@ -6,6 +6,7 @@ import { showOnboardingOnce } from 'flavours/glitch/actions/onboarding';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
 import UI from 'flavours/glitch/features/ui';
+import { fetchCustomEmojis } from 'flavours/glitch/actions/custom_emojis';
 import { hydrateStore } from 'flavours/glitch/actions/store';
 import { connectUserStream } from 'flavours/glitch/actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
@@ -18,6 +19,9 @@ addLocaleData(localeData);
 export const store = configureStore();
 const hydrateAction = hydrateStore(initialState);
 store.dispatch(hydrateAction);
+
+// load custom emojis
+store.dispatch(fetchCustomEmojis());
 
 export default class Mastodon extends React.PureComponent {
 
