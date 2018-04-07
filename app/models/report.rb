@@ -61,27 +61,28 @@ class Report < ApplicationRecord
   end
 
   def history
-    report_log = Admin::ActionLog.where(
-      target_type: 'Report',
-      target_id: id,
-      created_at: created_at..updated_at
-    ).unscope(:order)
+    time_range = created_at..updated_at
 
-    target_account_log = Admin::ActionLog.where(
-      target_type: 'Account',
-      target_id: target_account_id,
-      created_at: created_at..updated_at
-    ).unscope(:order)
+    sql = [
+      Admin::ActionLog.where(
+        target_type: 'Report',
+        target_id: id,
+        created_at: time_range
+      ).unscope(:order),
 
-    statuses_log = Admin::ActionLog.where(
-      target_type: 'Status',
-      target_id: status_ids,
-      created_at: created_at..updated_at
-    ).unscope(:order)
+      Admin::ActionLog.where(
+        target_type: 'Account',
+        target_id: target_account_id,
+        created_at: time_range
+      ).unscope(:order),
 
-    query = "((#{report_log.to_sql}) UNION ALL (#{target_account_log.to_sql}) UNION ALL (#{statuses_log.to_sql})) as admin_action_logs"
-    sql = Admin::ActionLog.connection.unprepared_statement(query)
+      Admin::ActionLog.where(
+        target_type: 'Status',
+        target_id: status_ids,
+        created_at: time_range
+      ).unscope(:order),
+    ].map { |query| "(#{query.to_sql})" }.join(' UNION ALL ')
 
-    Admin::ActionLog.from(sql)
+    Admin::ActionLog.from("(#{sql}) AS admin_action_logs")
   end
 end
