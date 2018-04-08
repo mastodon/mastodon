@@ -66,7 +66,13 @@ button.icon-button i.fa-retweet {
   }
 }
 
-// Change the default color used on some parts of the profile pages
+// Change the default color used for the text in an empty column or on the error column
+.empty-column-indicator,
+.error-column {
+  color: darken($ui-base-color, 60%);
+}
+
+// Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
   background: $account-background-color;
 
@@ -91,6 +97,32 @@ button.icon-button i.fa-retweet {
       strong {
         color: $primary-text-color;
       }
+    }
+
+  }
+}
+
+.accounts-grid {
+  .account-grid-card {
+
+    .controls {
+      .icon-button {
+        color: $ui-secondary-color;
+      }
+    }
+
+    .name {
+      a {
+        color: $primary-text-color;
+      }
+    }
+
+    .username {
+      color: $ui-secondary-color;
+    }
+
+    .account__header__content {
+      color: $primary-text-color;
     }
 
   }
