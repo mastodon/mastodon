@@ -55,7 +55,7 @@ button.icon-button i.fa-retweet {
   }
 }
 
-// Change the default color of the compose form warning
+// Change the default color of several parts of the compose form
 .compose-form {
   .compose-form__warning {
     color: lighten($ui-secondary-color, 65%);
@@ -63,6 +63,14 @@ button.icon-button i.fa-retweet {
 
   strong {
     color: lighten($ui-secondary-color, 65%);
+  }
+
+  .autosuggest-textarea__textarea,
+  .spoiler-input__input {
+    color: darken($ui-base-color, 80%);
+    &::placeholder {
+      color: darken($ui-base-color, 70%);
+    }
   }
 }
 
