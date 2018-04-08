@@ -35,9 +35,9 @@ export default class DetailedStatus extends ImmutablePureComponent {
     e.stopPropagation();
   }
 
-  // handleOpenVideo = startTime => {
-  //   this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
-  // }
+  handleOpenVideo = startTime => {
+    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
+  }
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
@@ -61,7 +61,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             sensitive={status.get('sensitive')}
             letterbox={settings.getIn(['media', 'letterbox'])}
             fullwidth={settings.getIn(['media', 'fullwidth'])}
-            onOpenVideo={this.props.onOpenVideo}
+            onOpenVideo={this.handleOpenVideo}
             autoplay
           />
         );
