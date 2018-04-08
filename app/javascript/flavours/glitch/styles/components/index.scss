@@ -355,14 +355,19 @@
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  &.image-loader--loading {
-    display: flex;
-    align-content: center;
+  .image-loader__preview-canvas {
+    max-width: $media-modal-media-max-width;
+    max-height: $media-modal-media-max-height;
+    background: url('~images/void.png') repeat;
+    object-fit: contain;
+  }
 
-    .image-loader__preview-canvas {
-      filter: blur(2px);
-    }
+  &.image-loader--loading .image-loader__preview-canvas {
+    filter: blur(2px);
   }
 
   &.image-loader--amorphous .image-loader__preview-canvas {
@@ -375,7 +380,16 @@
   width: 100%;
   height: 100%;
   display: flex;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: $media-modal-media-max-width;
+    max-height: $media-modal-media-max-height;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
 }
 
 .dropdown {

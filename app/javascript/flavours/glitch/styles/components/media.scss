@@ -167,27 +167,6 @@
   width: 100%;
   height: 100%;
   position: relative;
-
-  img,
-  canvas,
-  video {
-    max-width: 100%;
-    /*
-    put margins on top and bottom of image to avoid the screen coverd by
-    image.
-     */
-    max-height: 80%;
-    width: auto;
-    height: auto;
-    margin: auto;
-  }
-
-  img,
-  canvas {
-    display: block;
-    background: url('~images/void.png') repeat;
-    object-fit: contain;
-  }
 }
 
 .media-modal__closer {
