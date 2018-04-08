@@ -171,8 +171,12 @@
   img,
   canvas,
   video {
-    max-width: 100vw;
-    max-height: 100vh;
+    max-width: 100%;
+    /*
+    put margins on top and bottom of image to avoid the screen coverd by
+    image.
+     */
+    max-height: 80%;
     width: auto;
     height: auto;
     margin: auto;
@@ -183,11 +187,6 @@
     display: block;
     background: url('~images/void.png') repeat;
     object-fit: contain;
-  }
-
-  .react-swipeable-view-container {
-    width: 100vw;
-    height: 100%;
   }
 }
 
