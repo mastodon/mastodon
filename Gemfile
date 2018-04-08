@@ -90,8 +90,6 @@ gem 'webpush'
 gem 'json-ld-preloaded', '~> 2.2.1'
 gem 'rdf-normalize', '~> 0.3.1'
 
-gem 'nyaaaan', '~> 0.1.3'
-
 group :development, :test do
   gem 'fabrication', '~> 2.18'
   gem 'fuubar', '~> 2.2'
@@ -141,4 +139,4 @@ group :production do
   gem 'redis-rails', '~> 5.0'
 end
 
-gem 'nyaaaan', '~> 0.1.2'
+gem 'nyaaaan', '~> 0.1.3'
