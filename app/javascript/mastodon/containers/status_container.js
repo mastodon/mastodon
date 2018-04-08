@@ -4,6 +4,7 @@ import Status from '../components/status';
 import { makeGetStatus } from '../selectors';
 import {
   replyCompose,
+  quoteCompose,
   mentionCompose,
 } from '../actions/compose';
 import {
@@ -64,6 +65,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
       }
     }
+  },
+
+  onQuote (status, router) {
+    dispatch(quoteCompose(status, router));
   },
 
   onFavourite (status) {

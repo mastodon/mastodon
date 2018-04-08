@@ -599,24 +599,35 @@
 }
 
 .reply-indicator {
+  background: $ui-primary-color;
+}
+
+.quote-indicator {
+  background: $success-green;
+}
+
+.reply-indicator,
+.quote-indicator {
   border-radius: 4px 4px 0 0;
   position: relative;
   bottom: -2px;
-  background: $ui-primary-color;
   padding: 10px;
 }
 
-.reply-indicator__header {
+.reply-indicator__header,
+.quote-indicator__header {
   margin-bottom: 5px;
   overflow: hidden;
 }
 
-.reply-indicator__cancel {
+.reply-indicator__cancel,
+.quote-indicator__cancel {
   float: right;
   line-height: 24px;
 }
 
-.reply-indicator__display-name {
+.reply-indicator__display-name,
+.quote-indicator__display-name {
   color: $ui-base-color;
   display: block;
   max-width: 100%;
@@ -626,7 +637,8 @@
   text-decoration: none;
 }
 
-.reply-indicator__display-avatar {
+.reply-indicator__display-avatar,
+.quote-indicator__display-avatar {
   float: left;
   margin-right: 5px;
 }
@@ -636,7 +648,8 @@
 }
 
 .status__content,
-.reply-indicator__content {
+.reply-indicator__content,
+.quote-indicator__content {
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
@@ -992,7 +1005,8 @@
   margin-left: 6px;
 }
 
-.reply-indicator__content {
+.reply-indicator__content,
+.quote-indicator__content {
   color: $ui-base-color;
   font-size: 14px;
 
