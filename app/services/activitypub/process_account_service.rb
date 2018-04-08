@@ -23,10 +23,10 @@ class ActivityPub::ProcessAccountService < BaseService
         create_account if @account.nil?
         update_account
         process_tags
-      else
-        return
       end
     end
+
+    return if @account.nil?
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
