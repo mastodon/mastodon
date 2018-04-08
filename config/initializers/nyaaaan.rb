@@ -3,7 +3,7 @@ Nyaaaan.setup do |status|
     # 社会性フィルター機能	
     nyaaaan = Nyaaaan::Lang.new('[ 　\n]?#(社会性フィルター)[ 　\n]?', [	
       {	
-        pattern: '死ね',	
+        pattern: '死',	
         replace: 'にゃーん'	
       },	
       
@@ -25,7 +25,12 @@ Nyaaaan.setup do |status|
       {	
         pattern: 'キチガイ',	
         replace: 'にゃーん'	
-      },	      
+      },
+      
+      {
+        pattern: '殺',
+        replace: 'にゃーん'
+      },
     ])	
     status = nyaaaan.convert(status) if nyaaaan.match(status)	
     status	
