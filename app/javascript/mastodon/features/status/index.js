@@ -20,6 +20,7 @@ import {
 } from '../../actions/interactions';
 import {
   replyCompose,
+  quoteCompose,
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
@@ -230,6 +231,10 @@ class Status extends ImmutablePureComponent {
         this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
       }
     }
+  }
+
+  handleQuoteClick = (status) => {
+    this.props.dispatch(quoteCompose(status, this.context.router.history));
   }
 
   handleDeleteClick = (status, history, withRedraft = false) => {
@@ -499,6 +504,7 @@ class Status extends ImmutablePureComponent {
                   onReply={this.handleReplyClick}
                   onFavourite={this.handleFavouriteClick}
                   onReblog={this.handleReblogClick}
+                  onQuote={this.handleQuoteClick}
                   onDelete={this.handleDeleteClick}
                   onDirect={this.handleDirectClick}
                   onMention={this.handleMentionClick}
