@@ -18,6 +18,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   belongs_to :reblog, serializer: REST::StatusSerializer
   belongs_to :application, if: :show_application?
   belongs_to :account, serializer: REST::AccountSerializer
+  belongs_to :quote, serializer: REST::StatusSerializer
 
   has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
   has_many :ordered_mentions, key: :mentions

@@ -22,6 +22,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
     blurhash: { 'toot' => 'http://joinmastodon.org/ns#', 'blurhash' => 'toot:blurhash' },
     discoverable: { 'toot' => 'http://joinmastodon.org/ns#', 'discoverable' => 'toot:discoverable' },
     voters_count: { 'toot' => 'http://joinmastodon.org/ns#', 'votersCount' => 'toot:votersCount' },
+    quoteUrl: { 'quoteUrl' => 'as:quoteUrl' },
   }.freeze
 
   def self.default_key_transform

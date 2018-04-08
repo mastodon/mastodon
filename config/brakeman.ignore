@@ -125,14 +125,14 @@
       "fingerprint": "67afc0d5f7775fa5bd91d1912e1b5505aeedef61876347546fa20f92fd6915e6",
       "check_name": "Render",
       "message": "Render path contains parameter value",
-      "file": "app/views/stream_entries/embed.html.haml",
+      "file": "app/views/statuses/embed.html.haml",
       "line": 3,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :centered => true, :autoplay => ActiveModel::Type::Boolean.new.cast(params[:autoplay]) })",
-      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":63,"file":"app/controllers/statuses_controller.rb","rendered":{"name":"stream_entries/embed","file":"/home/eugr/Projects/mastodon/app/views/stream_entries/embed.html.haml"}}],
+      "code": "render(action => \"statuses/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :centered => true, :autoplay => ActiveModel::Type::Boolean.new.cast(params[:autoplay]) })",
+      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":63,"file":"app/controllers/statuses_controller.rb","rendered":{"name":"statuses/embed","file":"/home/eugr/Projects/mastodon/app/views/statuses/embed.html.haml"}}],
       "location": {
         "type": "template",
-        "template": "stream_entries/embed"
+        "template": "statuses/embed"
       },
       "user_input": "params[:id]",
       "confidence": "Weak",
@@ -282,14 +282,14 @@
       "fingerprint": "fbd0fc59adb5c6d44b60e02debb31d3af11719f534c9881e21435bbff87404d6",
       "check_name": "Render",
       "message": "Render path contains parameter value",
-      "file": "app/views/stream_entries/show.html.haml",
+      "file": "app/views/statuses/show.html.haml",
       "line": 23,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(partial => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { :locals => ({ Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :include_threads => true }) })",
-      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":34,"file":"app/controllers/statuses_controller.rb","rendered":{"name":"stream_entries/show","file":"/home/eugr/Projects/mastodon/app/views/stream_entries/show.html.haml"}}],
+      "code": "render(partial => \"stat/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { :locals => ({ Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :include_threads => true }) })",
+      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":34,"file":"app/controllers/statuses_controller.rb","rendered":{"name":"statuses/show","file":"/home/eugr/Projects/mastodon/app/views/statuses/show.html.haml"}}],
       "location": {
         "type": "template",
-        "template": "stream_entries/show"
+        "template": "statuses/show"
       },
       "user_input": "params[:id]",
       "confidence": "Weak",

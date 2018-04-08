@@ -1,0 +1,18 @@
+.status.quote-status{ dataurl:  ActivityPub::TagManager.instance.url_for(status) }
+  = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
+    .status__avatar
+      %div
+        = image_tag status.account.avatar(:original), width: 18, height: 18, alt: '', class: 'u-photo'
+    %span.display-name
+      %strong.p-name.emojify= display_name(status.account, custom_emojify: true)
+      %span= acct(status.account)
+
+  .status__content.p-name.emojify<
+    - if status.spoiler_text?
+      %p{ style: 'margin-bottom: 0' }<
+        %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
+        %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
+    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }>
+      %p>= Formatter.instance.format_in_quote(status, custom_emojify: true)
+    - unless status.media_attachments.empty?
+      %div{ data: { component: 'MediaGallery', props: Oj.dump(height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }, quote: true) }}

@@ -22,6 +22,7 @@ import {
 } from '../../actions/interactions';
 import {
   replyCompose,
+  quoteCompose,
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
@@ -31,6 +32,8 @@ import {
   deleteStatus,
   hideStatus,
   revealStatus,
+  hideQuote,
+  revealQuote,
 } from '../../actions/statuses';
 import {
   unblockAccount,
@@ -251,6 +254,10 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleQuoteClick = (status) => {
+    this.props.dispatch(quoteCompose(status, this.context.router.history));
+  }
+
   handleDeleteClick = (status, history, withRedraft = false) => {
     const { dispatch, intl } = this.props;
 
@@ -314,6 +321,14 @@ class Status extends ImmutablePureComponent {
       this.props.dispatch(revealStatus(status.get('id')));
     } else {
       this.props.dispatch(hideStatus(status.get('id')));
+    }
+  }
+
+  handleQuoteToggleHidden = (status) => {
+    if (status.get('quote_hidden')) {
+      this.props.dispatch(revealQuote(status.get('id')));
+    } else {
+      this.props.dispatch(hideQuote(status.get('id')));
     }
   }
 
@@ -550,6 +565,7 @@ class Status extends ImmutablePureComponent {
                   domain={domain}
                   showMedia={this.state.showMedia}
                   onToggleMediaVisibility={this.handleToggleMediaVisibility}
+                  onQuoteToggleHidden={this.handleQuoteToggleHidden}
                 />
 
                 <ActionBar
@@ -559,6 +575,7 @@ class Status extends ImmutablePureComponent {
                   onFavourite={this.handleFavouriteClick}
                   onReblog={this.handleReblogClick}
                   onBookmark={this.handleBookmarkClick}
+                  onQuote={this.handleQuoteClick}
                   onDelete={this.handleDeleteClick}
                   onDirect={this.handleDirectClick}
                   onMention={this.handleMentionClick}
