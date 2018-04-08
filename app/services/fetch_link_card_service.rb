@@ -76,7 +76,7 @@ class FetchLinkCardService < BaseService
 
   def bad_url?(uri)
     # Avoid local instance URLs and invalid URLs
-    uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
+    uri.host.blank? || (TagManager.instance.local_url?(uri.to_s) && uri.to_s !~ %r(/users/[\w_-]+/statuses/\w+)) || !%w(http https).include?(uri.scheme)
   end
 
   # rubocop:disable Naming/MethodParameterName
@@ -132,7 +132,7 @@ class FetchLinkCardService < BaseService
       # Most providers rely on <script> tags, which is a no-no
       return false
     end
-
+    
     @card.save_with_optional_image!
   end
 

@@ -38,6 +38,8 @@ export default class StatusContent extends React.PureComponent {
     }
 
     const links = node.querySelectorAll('a');
+    const QuoteUrlFormat = /(?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/users\/[\w-_]+(\/statuses\/\w+)/;
+    const quote = node.innerText.match(new RegExp(`\\[(\\w+)\\]\\[${QuoteUrlFormat.source}\\]`));
 
     for (var i = 0; i < links.length; ++i) {
       let link = links[i];
@@ -45,6 +47,12 @@ export default class StatusContent extends React.PureComponent {
         continue;
       }
       link.classList.add('status-link');
+
+      if (quote) {
+        if (link.href.match(QuoteUrlFormat)) {
+          link.addEventListener('click', this.onQuoteClick.bind(this, quote[1]), false);
+        }
+      }
 
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
@@ -122,6 +130,15 @@ export default class StatusContent extends React.PureComponent {
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.history.push(`/timelines/tag/${hashtag}`);
+    }
+  }
+
+  onQuoteClick = (statusId, e) => {
+    let statusUrl = `/statuses/${statusId}`;
+
+    if (this.context.router && e.button === 0) {
+      e.preventDefault();
+      this.context.router.history.push(statusUrl);
     }
   }
 
