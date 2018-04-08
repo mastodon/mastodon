@@ -1,3 +1,4 @@
+import { freeStorage } from '../storage/modifier';
 import './web_push_notifications';
 
 function openSystemCache() {
@@ -42,8 +43,10 @@ self.addEventListener('fetch', function(event) {
 
     event.respondWith(asyncResponse.then(async response => {
       if (response.ok || response.type === 'opaqueredirect') {
-        const cache = await asyncCache;
-        await cache.delete('/');
+        await Promise.all([
+          asyncCache.then(cache => cache.delete('/')),
+          indexedDB.deleteDatabase('mastodon'),
+        ]);
       }
 
       return response;
@@ -56,7 +59,11 @@ self.addEventListener('fetch', function(event) {
         const fetched = await fetch(event.request);
 
         if (fetched.ok) {
-          await cache.put(event.request.url, fetched.clone());
+          try {
+            await cache.put(event.request.url, fetched.clone());
+          } finally {
+            freeStorage();
+          }
         }
 
         return fetched;

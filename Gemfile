@@ -35,6 +35,7 @@ gem 'devise-two-factor', '~> 3.0'
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.0'
 end
+
 gem 'net-ldap', '~> 0.10'
 gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
@@ -79,6 +80,7 @@ gem 'sidekiq-bulk', '~>0.1.1'
 gem 'simple-navigation', '~> 4.0'
 gem 'simple_form', '~> 3.4'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
+gem 'stoplight', '~> 2.1.3'
 gem 'strong_migrations'
 gem 'tty-command'
 gem 'tty-prompt'
