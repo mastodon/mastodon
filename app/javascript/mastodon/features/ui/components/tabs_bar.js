@@ -8,6 +8,7 @@ import { isUserTouching } from '../../../is_mobile';
 export const links = [
   <NavLink className='tabs-bar__link primary' to='/timelines/home' data-preview-title-id='column.home' data-preview-icon='home' ><i className='fa fa-fw fa-home' /><FormattedMessage id='tabs_bar.home' defaultMessage='Home' /></NavLink>,
   <NavLink className='tabs-bar__link primary' to='/notifications' data-preview-title-id='column.notifications' data-preview-icon='bell' ><i className='fa fa-fw fa-bell' /><FormattedMessage id='tabs_bar.notifications' defaultMessage='Notifications' /></NavLink>,
+  <NavLink className='tabs-bar__link primary' to='/search' data-preview-title-id='tabs_bar.search' data-preview-icon='bell' ><i className='fa fa-fw fa-search' /><FormattedMessage id='tabs_bar.search' defaultMessage='Search' /></NavLink>,
 
   <NavLink className='tabs-bar__link secondary' to='/timelines/public/local' data-preview-title-id='column.community' data-preview-icon='users' ><i className='fa fa-fw fa-users' /><FormattedMessage id='tabs_bar.local_timeline' defaultMessage='Local' /></NavLink>,
   <NavLink className='tabs-bar__link secondary' exact to='/timelines/public' data-preview-title-id='column.public' data-preview-icon='globe' ><i className='fa fa-fw fa-globe' /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></NavLink>,
