@@ -90,7 +90,7 @@ export default class Compose extends React.PureComponent {
       <div className='drawer'>
         {header}
 
-        <SearchContainer />
+        {(multiColumn || isSearchPage) && <SearchContainer /> }
 
         <div className='drawer__pager'>
           <div className='drawer__inner' onFocus={this.onFocus}>
