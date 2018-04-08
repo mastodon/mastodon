@@ -45,6 +45,8 @@ module Admin::ActionLogsHelper
       log.recorded_changes.slice('domain', 'visible_in_picker')
     elsif log.target_type == 'User' && [:promote, :demote].include?(log.action)
       log.recorded_changes.slice('moderator', 'admin')
+    elsif log.target_type == 'User' && [:change_email].include?(log.action)
+      log.recorded_changes.slice('email', 'unconfirmed_email')
     elsif log.target_type == 'DomainBlock'
       log.recorded_changes.slice('severity', 'reject_media')
     elsif log.target_type == 'Status' && log.action == :update
