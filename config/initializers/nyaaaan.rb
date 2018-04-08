@@ -11,7 +11,21 @@ Nyaaaan.setup do |status|
         pattern: 'くたばれ',	
         replace: 'にゃーん'	
       },	
-  	
+      
+      {	
+        pattern: 'アスペ',	
+        replace: 'にゃーん'	
+      },	
+      
+      {	
+        pattern: 'ガイジ',	
+        replace: 'にゃーん'	
+      },
+      
+      {	
+        pattern: 'キチガイ',	
+        replace: 'にゃーん'	
+      },	      
     ])	
     status = nyaaaan.convert(status) if nyaaaan.match(status)	
     status	
