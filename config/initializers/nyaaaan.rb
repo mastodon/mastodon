@@ -6,6 +6,11 @@ Nyaaaan.setup do |status|
         pattern: '死ね',	
         replace: 'にゃーん'	
       },	
+      
+      {	
+        pattern: 'くたばれ',	
+        replace: 'にゃーん'	
+      },	
   	
     ])	
     status = nyaaaan.convert(status) if nyaaaan.match(status)	
