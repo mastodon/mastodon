@@ -75,7 +75,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         );
         mediaIcon = 'picture-o';
       }
-    } else media = <CardContainer statusId={status.get('id')} />;
+    } else media = <CardContainer onOpenMedia={this.props.onOpenMedia} statusId={status.get('id')} />;
 
     if (status.get('application')) {
       applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;

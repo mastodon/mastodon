@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import punycode from 'punycode';
 import classnames from 'classnames';
@@ -24,6 +25,7 @@ export default class Card extends React.PureComponent {
   static propTypes = {
     card: ImmutablePropTypes.map,
     maxDescription: PropTypes.number,
+    onOpenMedia: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -32,6 +34,27 @@ export default class Card extends React.PureComponent {
 
   state = {
     width: 0,
+  };
+
+  handlePhotoClick = () => {
+    const { card, onOpenMedia } = this.props;
+
+    onOpenMedia(
+      Immutable.fromJS([
+        {
+          type: 'image',
+          url: card.get('url'),
+          description: card.get('title'),
+          meta: {
+            original: {
+              width: card.get('width'),
+              height: card.get('height'),
+            },
+          },
+        },
+      ]),
+      0
+    );
   };
 
   renderLink () {
@@ -73,9 +96,16 @@ export default class Card extends React.PureComponent {
     const { card } = this.props;
 
     return (
-      <a href={card.get('url')} className='status-card-photo' target='_blank' rel='noopener'>
-        <img src={card.get('url')} alt={card.get('title')} width={card.get('width')} height={card.get('height')} />
-      </a>
+      <img
+        className='status-card-photo'
+        onClick={this.handlePhotoClick}
+        role='button'
+        tabIndex='0'
+        src={card.get('url')}
+        alt={card.get('title')}
+        width={card.get('width')}
+        height={card.get('height')}
+      />
     );
   }
 
