@@ -38,6 +38,7 @@ export default class Compose extends React.PureComponent {
     columns: ImmutablePropTypes.list.isRequired,
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
+    isSearchPage: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
