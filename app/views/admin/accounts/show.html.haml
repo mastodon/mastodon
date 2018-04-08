@@ -36,9 +36,12 @@
           %th= t('admin.accounts.email')
           %td
             = @account.user_email
-
             - if @account.user_confirmed?
               = fa_icon('check')
+        - if @account.user_unconfirmed_email.present?
+          %th= t('admin.accounts.unconfirmed_email')
+          %td
+            = @account.user_unconfirmed_email
         %tr
           %th= t('admin.accounts.login_status')
           %td
