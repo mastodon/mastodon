@@ -23,7 +23,6 @@ fr:
       real_conversation_title: Construit pour de vraies conversations
       within_reach_body: Grâce à l’existence d’un environnement API accueillant pour les développeur·se·s, de multiples applications pour iOS, Android et d’autres plateformes vous permettent de rester en contact avec vos ami·e·s où que vous soyez.
       within_reach_title: Toujours à portée de main
-    find_another_instance: Trouver une autre instance
     generic_description: "%{domain} est seulement un serveur du réseau"
     hosted_on: Instance Mastodon hébergée par %{domain}
     learn_more: En savoir plus
@@ -39,7 +38,7 @@ fr:
     followers: Abonné⋅e⋅s
     following: Abonnements
     media: Médias
-    moved_html: "%{name} a déménagé vers %{new_profile_link} :"
+    moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
@@ -274,6 +273,9 @@ fr:
       contact_information:
         email: Entrez une adresse courriel publique
         username: Entrez un nom d’utilisateur⋅ice
+      hero:
+        desc_html: Affichée sur la page d'accueil. Au moins 600x100px recommandé. Lorsqu'elle n'est pas définie, se rabat sur la vignette de l'instance
+        title: Image d'en-tête
       peers_api_enabled:
         desc_html: Noms des domaines que cette instance a découvert dans le fediverse
         title: Publier la liste des instances découvertes
@@ -290,11 +292,14 @@ fr:
         open:
           desc_html: Autoriser tout le monde à créer un compte
           title: Ouvrir les inscriptions
+      show_known_fediverse_at_about_page:
+        desc_html: Lorsque l'option est activée, les pouets provenant de toutes les instances connues sont affichés dans la prévisualisation. Si non, seuls les pouets locaux sont affichés.
+        title: Afficher le fediverse connu dans la prévisualisation du fil
       show_staff_badge:
         desc_html: Montrer un badge de responsable sur une page utilisateur
         title: Montrer un badge de responsable
       site_description:
-        desc_html: Paragraphe introductif sur la page d'accueil et dans les balises meta. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Paragraphe introductif sur la page d'accueil et dans les méta-balises. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du site
       site_description_extended:
         desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
@@ -354,7 +359,7 @@ fr:
     your_token: Votre jeton d’accès
   auth:
     agreement_html: En vous inscrivant, vous souscrivez <a href="%{rules_path}">aux règles de l’instance</a> et à <a href="%{terms_path}">nos conditions d’utilisation</a>.
-    change_password: Sécurité
+    change_password: Mot de passe
     confirm_email: Confirmer mon adresse mail
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
@@ -365,10 +370,16 @@ fr:
     logout: Se déconnecter
     migrate_account: Déplacer vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
+    or: ou
     or_log_in_with: Ou authentifiez-vous avec
+    providers:
+      cas: CAS
+      saml: SAML
     register: S’inscrire
+    register_elsewhere: S'inscrire sur un autre serveur
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
+    security: Sécurité
     set_new_password: Définir le nouveau mot de passe
   authorize_follow:
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
@@ -415,6 +426,13 @@ fr:
       title: Cette page n’est pas correcte
     noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l'une des <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">applications natives</a> pour Mastodon pour votre plate-forme.
   exports:
+    archive_takeout:
+      date: Date
+      download: Télécharger votre archive
+      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible.
+      in_progress: Élaboration de votre archive....
+      request: Demandez vos archives
+      size: Taille
     blocks: Vous bloquez
     csv: CSV
     follows: Vous suivez
@@ -447,7 +465,7 @@ fr:
       following: Liste d’utilisateur⋅ice⋅s suivi⋅e⋅s
       muting: Liste d’utilisateur⋅ice⋅s que vous masquez
     upload: Importer
-  in_memoriam_html: In Memoriam.
+  in_memoriam_html: En mémoire de.
   invites:
     delete: Désactiver
     expired: Expiré
@@ -530,7 +548,9 @@ fr:
           trillion: T
           unit: ''
   pagination:
+    newer: Plus récent
     next: Suivant
+    older: Plus ancien
     prev: Précédent
     truncate: "&hellip;"
   preferences:
@@ -614,6 +634,14 @@ fr:
     two_factor_authentication: Identification à deux facteurs
     your_apps: Vos applications
   statuses:
+    attached:
+      description: 'Attaché : %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} vidéo"
+        other: "%{count} vidéos"
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
     pin_errors:
@@ -632,78 +660,10 @@ fr:
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
   stream_entries:
     click_to_show: Cliquer pour afficher
-    pinned: Statut épinglé
-    reblogged: partagé
+    pinned: Pouet épinglé
+    reblogged: a partagé
     sensitive_content: Contenu sensible
   terms:
-    body_html: |
-      <h2>Politique de confidentialité</h2>
-
-      <h3 id="collect">Quelles données collectons-nous ?</h3>
-
-      <p>Nous collectons des données lorsque vous vous enregistrez sur notre site et les récoltons lorsque vous participez dans le forum en lisant, écrivant, et évaluant le contenu partagé ici.</p>
-
-      <p>Lors de l’enregistrement sur notre site, il peut vous être demandé de renseigner votre nom et adresse électronique. Vous pouvez, cependant, visiter notre site sans inscription. Votre adresse électronique devra être vérifiée grâce à un courriel contenant un lien unique. Si ce lien est visité, nous savons que vous contrôlez cette adresse.</p>
-
-      <p>Lors de l’inscription et de la publication de statuts, nous enregistrons l’adresse IP de laquelle les statuts proviennent. Nous pouvons également conserver des historiques serveurs qui contiendront l’adresse IP de chaque requête adressée à notre serveur.</p>
-
-      <h3 id="use">Que faisons-nous avec vos données ?</h3>
-
-      <p>Toute information que nous collectons pourra être utilisée d’une des manières suivantes :</p>
-
-      <ul>
-        <li>Pour personnaliser votre expérience &mdash; vos données nous aident à mieux répondre à vos besoins individuels.</li>
-        <li>Pour améliorer notre site &mdash; nous faisons tout notre possible pour améliorer notre site en fonction des données, retours et suggestions que nous recevons.</li>
-        <li>Afin d’améliorer le support client &mdash; vos données nous aident à mieux répondre à vos requêtes et demandes de support.</li>
-        <li>Afin d’envoyer des courriels à intervalles réguliers &mdash; l’adresse électronique que vous renseignez peut être utilisée pour vous envoyer des données et notifications concernant des changements ou en réponse à votre nom d’utilisateur⋅ice, en réponse à vos demandes et/ou autres requêtes ou questions</li>
-      </ul>
-
-      <h3 id="protect">Comment protégeons-nous vos données ?</h3>
-
-      <p>Nous appliquons une multitude de mesures afin de maintenir la sécurité de vos données personnelles lorsque vous entrez, soumettez, ou accédez à ces dernières.</p>
-
-      <h3 id="data-retention">Quelle est notre politique de conservation des données ?</h3>
-
-      <p>Nous nous efforçons de :</p>
-
-      <ul>
-        <li>ne pas garder les historiques serveurs contenant l’adresse IP de chaque requête adressée à ce serveur plus de 90 jours ;</li>
-        <li>ne pas conserver les adresses IP associées aux utilisateur⋅trices et leur contenu plus de 5 ans.</li>
-      </ul>
-
-      <h3 id="cookies">Utilisons-nous des « cookies » ?</h3>
-
-      <p>Oui. Les cookies sont de petits fichiers qu’un site ou prestataires de services transfèrent sur le disque dur de votre ordinateur par le biais de votre navigateur Web (si ce dernier le permet). Ces cookies permettent au site de reconnaître votre navigateur et, si vous disposez d’un compte, de l’associer à celui-ci.</p>
-
-      <p>Nous utilisons les cookies pour enregistrer vos préférences pour de futures visites, compiler des données agrégées à propos du trafic et des interactions effectuées sur le site afin de proposer une meilleure expérience dans le futur. Nous pouvons contracter les services de tiers afin de nous aider à mieux comprendre les visiteurs de notre site. Ces tiers ont l’autorisation d’utiliser ces données seulement à des fins d’améliorations.</p>
-
-      <h3 id="disclose">Divulguons-nous des données à des tiers ?</h3>
-
-      <p>Nous n’échangeons pas, ne vendons pas ni effectuons de quelconques transferts avec des tiers d’informations permettant de vous identifier personnellement. Cela n’inclut pas les tiers de confiance qui nous aident à gérer notre entreprise et à vous servir tant que ces tiers s’accordent à garder lesdites informations confidentielles. Nous pouvons être amenés à délivrer vos informations lorsque jugé adéquat afin de respecter la loi, d’appliquer la politique de notre site, ou afin de protéger nos droits, ceux des autres, notre propriété ou sécurité. Cependant, aucune information permettant l’identification de nos visiteur⋅euse⋅s ne sera divulguée à des fins publicitaires, commerciales ou tout autre usage.</p>
-
-      <h3 id="third-party">Liens vers des tiers</h3>
-
-      <p>Nous pouvons être amenés à inclure ou offrir les services ou produits de tiers sur notre site. Ces tiers possèdent leur propre politique de confidentialité. Nous ne sommes donc pas responsables du contenu ou activités desdits tiers. Néanmoins, nous cherchons à protéger l’intégrité de notre site et sommes ouverts à toute remarque concernant ces tiers.</p>
-
-      <h3 id="coppa" lang="en">Children's Online Privacy Protection Act</h3>
-
-      <p>Notre site, nos produits et services sont tous destinés à l’usage de personnes âgées de 13 ans ou plus. Si ce serveur est hébergé aux États-Unis et que vous êtes âgé⋅e de moins de 13 ans, au vu du COPPA (<a href="https://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act"><i lang="en">Children's Online Privacy Protection Act</i></a>) n’utilisez pas ce site.</p>
-
-      <h3 id="online">Politique de confidentialité en ligne</h3>
-
-      <p>Cette politique de confidentialité en ligne s'applique uniquement aux informations collectées par le biais de notre site et non aux informations collectées hors ligne.</p>
-
-      <h3 id="consent">Votre consentement</h3>
-
-      <p>En utilisant notre site, vous consentez à la présente politique de confidentialité.</p>
-
-      <h3 id="changes">Changements de notre politique de confidentialité</h3>
-
-      <p>Si nous décidons d’apporter des changements à notre politique de confidentialité, nous les publierons sur cette page.</p>
-
-      <p>Ce document est distribué sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 31 mai 2013. Il a été traduit en français en juillet 2017.</p>
-
-      <p>Originellement adapté à partir de la politique de confidentialité de <a href="https://github.com/discourse/discourse">Discourse</a>.</p>
     title: "%{instance} Conditions d’utilisations et politique de confidentialité"
   themes:
     default: Mastodon
@@ -727,6 +687,10 @@ fr:
     setup: Installer
     wrong_code: Les codes entrés sont incorrects ! L’heure du serveur et celle de votre appareil sont-elles correctes ?
   user_mailer:
+    backup_ready:
+      explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
+      subject: Votre archive est prête à être téléchargée
+      title: Retrait de l'archive
     welcome:
       edit_profile_action: Configuration du profil
       edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d'en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux abonnés avant qu'ils ne soient autorisés à vous suivre, vous pouvez verrouiller votre compte.
@@ -738,7 +702,7 @@ fr:
       review_preferences_action: Modifier les préférences
       review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n'avez pas le mal des transports, vous pouvez choisir d'activer la lecture automatique GIF.
       subject: Bienvenue sur Mastodon
-      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos amis sur Mastodon en utilisant le <a href="%{bridge_url}"> 1bridge app</a> 2. Cela ne fonctionne que s'ils ont aussi utilisé cette application !
+      tip_bridge_html: Si vous venez de Twitter, vous pouvez retrouver vos amis sur Mastodon en utilisant le <a href="%{bridge_url}">bridge app</a>. Cela ne fonctionne que s'ils ont aussi utilisé cette application !
       tip_federated_timeline: La chronologie fédérée est une vue en direct du réseau Mastodon. Mais elle n'inclut que les personnes auxquelles vos voisin·es sont abonné·es, donc elle n'est pas complète.
       tip_following: Vous suivez les administrateurs et administratrices de votre serveur par défaut. Pour trouver d'autres personnes intéressantes, consultez les chronologies locales et fédérées.
       tip_local_timeline: La chronologie locale est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
@@ -748,4 +712,5 @@ fr:
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'

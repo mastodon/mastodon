@@ -1,7 +1,7 @@
 run.config:
   engine: ruby
   engine.config:
-    runtime: ruby-2.4
+    runtime: ruby-2.5
 
   extra_packages:
     # basic servers:
@@ -10,6 +10,7 @@ run.config:
 
     # for images:
     - ImageMagick
+    - jemalloc
 
     # for videos:
     - ffmpeg3
@@ -37,7 +38,7 @@ run.config:
     - yarn.lock
 
   extra_steps:
-    - envsubst < .env.nanobox > .env
+    - cp .env.nanobox .env
     - yarn
 
   fs_watch: true
@@ -47,7 +48,7 @@ deploy.config:
   extra_steps:
     - NODE_ENV=production bundle exec rake assets:precompile
   transform:
-    - "sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' /app/.env.nanobox | envsubst > /app/.env.production"
+    - "envsubst < /app/.env.nanobox > /app/.env.production"
     - |-
         if [ -z "$LOCAL_DOMAIN" ]
         then
@@ -60,6 +61,11 @@ deploy.config:
   before_live:
     web.web:
       - bundle exec rake db:migrate:setup
+      - |-
+          if [[ "${ES_ENABLED}" != "false" ]]
+          then
+            bundle exec rake chewy:deploy
+          fi
 
 
 web.web:
@@ -186,21 +192,47 @@ worker.cron_only:
 
 
 data.db:
-  image: nanobox/postgresql:9.5
+  image: nanobox/postgresql:9.6
 
   cron:
     - id: backup
       schedule: '0 3 * * *'
       command: |
-        PGPASSWORD=${DATA_POSTGRES_PASS} pg_dump -U ${DATA_POSTGRES_USER} -w -Fc -O gonano |
+        PGPASSWORD=${DATA_DB_PASS} pg_dump -U ${DATA_DB_USER} -w -Fc -O gonano |
         gzip |
-        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).sql.gz --data-binary @- &&
+        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).sql.gz -X POST -T - >&2
         curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
-        json_pp |
+        sed 's/,/\n/g' |
         grep ${HOSTNAME} |
         sort |
         head -n-${BACKUP_COUNT:-1} |
-        sed 's/.*: "\(.*\)".*/\1/' |
+        sed 's/.*: \?"\(.*\)".*/\1/' |
+        while read file
+        do
+          curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
+        done
+
+
+data.elastic:
+  image: nanobox/elasticsearch:5
+
+  cron:
+    - id: backup
+      schedule: '0 3 * * *'
+      command: |
+        id=$(cat /proc/sys/kernel/random/uuid)
+        curl -X PUT -H "Content-Type: application/json" "127.0.0.1:9200/_snapshot/${id}" -d "{\"type\": \"fs\",\"settings\": {\"location\": \"/var/tmp/${id}\",\"compress\": true}}"
+        curl -X PUT -H "Content-Type: application/json" "127.0.0.1:9200/_snapshot/${id}/backup?wait_for_completion=true&pretty"
+        tar -cz -C "/var/tmp/${id}" . |
+        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).tgz -X POST -T - >&2
+        curl -X DELETE -H "Content-Type: application/json" "127.0.0.1:9200/_snapshot/${id}"
+        rm -rf "/var/tmp/${id}"
+        curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
+        sed 's/,/\n/g' |
+        grep ${HOSTNAME} |
+        sort |
+        head -n-${BACKUP_COUNT:-1} |
+        sed 's/.*: \?"\(.*\)".*/\1/' |
         while read file
         do
           curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
@@ -208,19 +240,19 @@ data.db:
 
 
 data.redis:
-  image: nanobox/redis:3.0
+  image: nanobox/redis:4.0
 
   cron:
     - id: backup
       schedule: '0 3 * * *'
       command: |
-        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).rdb --data-binary @/data/var/db/redis/dump.rdb &&
+        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).rdb -X POST -T /data/var/db/redis/dump.rdb >&2
         curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
-        json_pp |
+        sed 's/,/\n/g' |
         grep ${HOSTNAME} |
         sort |
         head -n-${BACKUP_COUNT:-1} |
-        sed 's/.*: "\(.*\)".*/\1/' |
+        sed 's/.*: \?"\(.*\)".*/\1/' |
         while read file
         do
           curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
@@ -234,14 +266,14 @@ data.storage:
     - id: backup
       schedule: '0 3 * * *'
       command: |
-        tar cz -C /data/var/db/unfs/ |
-        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).tgz --data-binary @- &&
+        tar cz -C /data/var/db/unfs/ . |
+        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).tgz -X POST -T - >&2
         curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
-        json_pp |
+        sed 's/,/\n/g' |
         grep ${HOSTNAME} |
         sort |
         head -n-${BACKUP_COUNT:-1} |
-        sed 's/.*: "\(.*\)".*/\1/' |
+        sed 's/.*: \?"\(.*\)".*/\1/' |
         while read file
         do
           curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE

@@ -23,7 +23,6 @@ pt-BR:
       real_conversation_title: Feito para conversas reais
       within_reach_body: Vários apps para iOS, Android e outras plataformas graças a um ecossistema de API amigável para desenvolvedores permitem que você possa se manter atualizado sobre seus amigos de qualquer lugar.
       within_reach_title: Sempre ao seu alcance
-    find_another_instance: Encontre outra instância
     generic_description: "%{domain} é um servidor na rede"
     hosted_on: Mastodon hospedado em %{domain}
     learn_more: Saiba mais
@@ -274,6 +273,9 @@ pt-BR:
       contact_information:
         email: E-mail
         username: Contate usuário
+      hero:
+        desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
+        title: Imagem do herói
       peers_api_enabled:
         desc_html: Nomes de domínio que essa instância encontrou no fediverso
         title: Publicar lista de instâncias descobertas
@@ -357,7 +359,8 @@ pt-BR:
     your_token: Seu token de acesso
   auth:
     agreement_html: Ao se cadastrar você concorda em seguir <a href="%{rules_path}">as regras da instância</a> e <a href="%{terms_path}">os nossos termos de serviço</a>.
-    change_password: Segurança
+    change_password: Senha
+    confirm_email: Confirmar e-mail
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir a sua conta, você pode <a href="%{path}">prosseguir para cá</a>. Uma confirmação será requisitada.
     didnt_get_confirmation: Não recebeu instruções de confirmação?
@@ -367,9 +370,16 @@ pt-BR:
     logout: Sair
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
+    or: ou
+    or_log_in_with: Ou faça login com
+    providers:
+      cas: CAS
+      saml: SAML
     register: Cadastrar-se
+    register_elsewhere: Cadastrar-se em um outro servidor
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
+    security: Segurança
     set_new_password: Definir uma nova senha
   authorize_follow:
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
@@ -416,6 +426,13 @@ pt-BR:
       title: Esta página não está certa
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">apps nativos</a> para o Mastodon em sua plataforma.
   exports:
+    archive_takeout:
+      date: Data
+      download: Baixe o seu arquivo
+      hint_html: Você pode pedir um arquivo dos seus <strong>toots e mídia enviada</strong>. Os dados exportados estarão no formato ActivityPub, que podem ser lidos por qualquer software compatível.
+      in_progress: Preparando seu arquivo...
+      request: Solicitar o seu arquivo
+      size: Tamanho
     blocks: Você bloqueou
     csv: CSV
     follows: Você segue
@@ -531,7 +548,9 @@ pt-BR:
           trillion: T
           unit: ''
   pagination:
+    newer: Mais novo
     next: Próximo
+    older: Mais antigo
     prev: Anterior
     truncate: "&hellip;"
   preferences:
@@ -615,6 +634,15 @@ pt-BR:
     two_factor_authentication: Autenticação em dois passos
     your_apps: Seus aplicativos
   statuses:
+    attached:
+      description: 'Anexado: %{attached}'
+      image:
+        one: "%{count} imagem"
+        other: "%{count} imagens"
+      video:
+        one: "%{count} vídeo"
+        other: "%{count} vídeos"
+    content_warning: 'Aviso de conteúdo: %{warning}'
     open_in_web: Abrir na web
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
@@ -634,77 +662,9 @@ pt-BR:
   stream_entries:
     click_to_show: Clique para mostrar
     pinned: Toot fixado
-    reblogged: compartilhado
+    reblogged: compartilhou
     sensitive_content: Conteúdo sensível
   terms:
-    body_html: |
-      <h2>Política de privacidade</h2>
-
-      <h3 id="collect">Que informações nós coletamos?</h3>
-
-      <p>Coletamos informações quando você se cadastra em nosso site e capturamos dados quando você participa do fórum lendo, escrevendo e analisando o conteúdo aqui compartilhado.</p>
-
-      <p>Quando você se registrar em nosso site, será requisitado que você ceda seu nome e endereço de e-mail. Você pode, porém, visitar nosso site sem se cadastrar. Seu endereço de e-mail será verificado por uma mensagem contendo um link único. Se este link for visitado, saberemos que você controla este endereço de e-mail.</p>
-
-      <p>Quando registrado e postando, nós gravamos o endereço de IP de onde a postagem se originou. Nós também podemos reter logs de serviores que incluem o endereço de IP em cada requisição para o nosso servidor.</p>
-
-      <h3 id="use">Para que usamos essas informações?</h3>
-
-      <p>Quaisquer das informações que coletamos podem ser usadas das seguintes formas:</p>
-
-      <ul>
-        <li>Para personalizar a sua experiência &mdash; suas informações nos ajudam a nos adequar melhor às suas necessidades individuais.</li>
-        <li>Para melhorar nosso site &mdash; nós continuamente nos esforçamos para aprimorar nosso site baseados na informação e no feedback que recebemos de você.</li>
-        <li>Para aprimorar o serviço ao consumidor &mdash; suas informações nos ajudam a responder efetivamente às suas requisições e solicitações por suporte.</li>
-        <li>Para mandar e-mails periódicos &mdash; O endereço de e-mail que você forneceu pode ser usado para lhe enviar informações, notificações que você requisitar sobre mudanças a determinados tópicos ou menções ao seu nome de usuário, responder requisições e/ou solicitações e perguntas.</li>
-      </ul>
-
-      <h3 id="protect">Como protegemos as suas informações?</h3>
-
-      <p>Nós implementamos uma variedade de medidas de segurança para manter a segurança de suas informações pessoais quando você insere, submete ou acessa as suas informações pessoais.</p>
-
-      <h3 id="data-retention">Qual a sua política de retenção de dados?</h3>
-
-      <p>Faremos esforços de boa fé para:</p>
-
-      <ul>
-        <li>Reter logs de servidor contendo o endereço IP de todas as requisições a este servidor por não mais que 90 dias.</li>
-        <li>Reter os endereços IP associados a usuários cadastrados e suas postagens por não mais que 5 anos.</li>
-      </ul>
-
-      <h3 id="cookies">Nós usamos cookies?</h3>
-
-      <p>Sim. Cookies são pequenos arquivos que um site ou o provedor de serviço transfere para o armazenamento interno de seu computador através de seu navegador (se você permitir). Estes cookies habilitam o site para reconhecer o seu navegador e, se você ter um cadastro, associá-lo a esta conta.</p>
-
-      <p>Nós usamos cookies para entender e salvar as suas preferências para futuras visitas e compilar dados agregados sobre o tráfego do site para que possamos oferecer melhores experiências e ferramentas no futuro. Nós podemos contratar serviços de terceiros para nos auxiliar a entender melhor nossos visitantes. Estes provedores de serviço não são autoriza usar as informações coletadas em nosso nome exceto para nos ajudar a conduzir e aprimorar nosso funcionamento.</p>
-
-      <h3 id="disclose">Nós revelamos informações para terceiros?</h3>
-
-      <p>Nós não vendemos, tocamos ou transferimos para terceiros informações pessoais que te identificam. Isso não inclui partes em que confiamos para nos ajudar a operar nosso site, conduzir nosso funcionamento ou servir você desde que estes terceiros concordem em manter essas informações em segredo. Nós também podemos prover as suas informações para obedecer ordens judiciais, reforçar nossas políticas ou proteger nossos direitos ou de outrem, propriedades ou segurança. Entretanto, informações pessoais não identificáveis podem ser enviadas para outras partes para marketing, propaganda e outros usos.</p>
-
-      <h3 id="third-party">Links de terceiros</h3>
-
-      <p>Ocasionalmente, à nossa discrição, podemos icluir ou oferecer produtos ou serviços de terceiros em nosso site. Estes terceiros têm políticas de privacidade separadas e independentes. Nós, portanto, não nos responsabilizamos pelo conteúdo e atividades destes sites de terceiros. Occasionally, at our discretion, we may include or offer third party products or services on our site. Não obstante, nós procuramos proteger a integridade de nosso site e todo feedback sobre estes sites de terceiros é bem-vindo.</p>
-
-      <h3 id="coppa">Obediência ao Ato de Proteção da Privacidade Online de Crianças</h3>
-
-      <p>Nosso site, produtos e serviços são todos direcionados a pessoas que têm pelo menos 13 anos de idade. Se este servidor estiver nos EUA, e você tiver menos de 13 anos, pelos requerimentos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não use este site.</p>
-
-      <h3 id="online">Política de Apenas Privacidade Online</h3>
-
-      <p>Esta política de privacidade online se aplica somente a informações coletadas por nosso site e não a informações coletadas offline.</p>
-
-      <h3 id="consent">Seu Consentimento</h3>
-
-      <p>Usando o nosso site, você concorda com a nossa política de privacidade.</p>
-
-      <h3 id="changes">Mudanças em nossa Política de Privacidade</h3>
-
-      <p>Se decidirmos mudar a nossa política de privacidade, publicaremos as mudanças nesta página.</p>
-
-      <p>Este documento é CC-BY-SA. A sua última atualização aconteceu em 31 de maio de 2013.</p>
-
-      <p>Originalmente adaptado da <a href="https://github.com/discourse/discourse">política de privacidade do Discourse</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
     default: Mastodon
@@ -728,6 +688,10 @@ pt-BR:
     setup: Configurar
     wrong_code: O código inserido é invalido! O horário do servidor e o horário do seu aparelho estão corretos?
   user_mailer:
+    backup_ready:
+      explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
+      subject: Seu arquivo está pronto para ser baixado
+      title: Arquivo "pra viagem"
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Você pode customizar o seu perfil enviando um avatar, uma imagem de topo, mudando seu nome de exibição, dentre outros. Se você gostaria de aprovar novos seguidores antes que eles possam seguir você, você pode trancar a sua conta.
@@ -745,8 +709,9 @@ pt-BR:
       tip_local_timeline: A timeline local é uma visão contínua das pessoas que estão em %{instance}. Esses são seus vizinhos próximos!
       tip_mobile_webapp: Se o seu navegador móvel oferecer a opção de adicionar Mastodon à tela inicial, você pode receber notificações push. Vai funcionar quase como um aplicativo nativo!
       tips: Dicas
-      title: Boas-vindas à bordo, %{name}!
+      title: Boas-vindas a bordo, %{name}!
   users:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
+    seamless_external_login: Você está logado usando um serviço externo, então configurações de e-mail e password não estão disponíveis.
     signed_in_as: 'Acesso como:'

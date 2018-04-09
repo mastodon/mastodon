@@ -5,6 +5,8 @@ zh-HK:
       doorkeeper/application:
         name: 名稱
         redirect_uri: 轉接 URI
+        scopes: 權限範圍
+        website: 應用網站
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@ zh-HK:
         redirect_uri: 每行輸入一個 URI
         scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍
       index:
+        application: 應用
         callback_url: 回傳網址
+        delete: 刪除
         name: 名稱
         new: 新增應用程式
+        scopes: 權限範圍
+        show: 顯示
         title: 你的應用程式
       new:
         title: 新增應用程式

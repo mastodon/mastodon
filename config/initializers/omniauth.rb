@@ -4,10 +4,12 @@ end
 
 Devise.setup do |config|
   # Devise omniauth strategies
+  options = {}
+  options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true'
 
   # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'
-    cas_options = {}
+    cas_options = options
     cas_options[:url] = ENV['CAS_URL'] if ENV['CAS_URL']
     cas_options[:host] = ENV['CAS_HOST'] if ENV['CAS_HOST']
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
@@ -18,7 +20,7 @@ Devise.setup do |config|
     cas_options[:login_url] = ENV['CAS_LOGIN_URL'] if ENV['CAS_LOGIN_URL']
     cas_options[:uid_field] = ENV['CAS_UID_FIELD'] || 'user' if ENV['CAS_UID_FIELD']
     cas_options[:ca_path] = ENV['CAS_CA_PATH'] if ENV['CAS_CA_PATH']
-    cas_options[:disable_ssl_verification] = ENV['CAS_DISABLE_SSL_VERIFICATION'] == 'true' if ENV['CAS_DISABLE_SSL_VERIFICATION']
+    cas_options[:disable_ssl_verification] = ENV['CAS_DISABLE_SSL_VERIFICATION'] == 'true'
     cas_options[:uid_key] = ENV['CAS_UID_KEY'] || 'user'
     cas_options[:name_key] = ENV['CAS_NAME_KEY'] || 'name'
     cas_options[:email_key] = ENV['CAS_EMAIL_KEY'] || 'email'
@@ -33,7 +35,7 @@ Devise.setup do |config|
 
   # SAML strategy
   if ENV['SAML_ENABLED'] == 'true'
-    saml_options = {}
+    saml_options = options
     saml_options[:assertion_consumer_service_url] = ENV['SAML_ACS_URL'] if ENV['SAML_ACS_URL']
     saml_options[:issuer] = ENV['SAML_ISSUER'] if ENV['SAML_ISSUER']
     saml_options[:idp_sso_target_url] = ENV['SAML_IDP_SSO_TARGET_URL']  if ENV['SAML_IDP_SSO_TARGET_URL']
@@ -48,10 +50,15 @@ Devise.setup do |config|
     saml_options[:security] = {}
     saml_options[:security][:want_assertions_signed] = ENV['SAML_SECURITY_WANT_ASSERTION_SIGNED'] == 'true'
     saml_options[:security][:want_assertions_encrypted] = ENV['SAML_SECURITY_WANT_ASSERTION_ENCRYPTED'] == 'true'
+    saml_options[:security][:assume_email_is_verified] = ENV['SAML_SECURITY_ASSUME_EMAIL_IS_VERIFIED'] == 'true'
     saml_options[:attribute_statements] = {}
     saml_options[:attribute_statements][:uid] = [ENV['SAML_ATTRIBUTES_STATEMENTS_UID']] if ENV['SAML_ATTRIBUTES_STATEMENTS_UID']
     saml_options[:attribute_statements][:email] = [ENV['SAML_ATTRIBUTES_STATEMENTS_EMAIL']] if ENV['SAML_ATTRIBUTES_STATEMENTS_EMAIL']
     saml_options[:attribute_statements][:full_name] = [ENV['SAML_ATTRIBUTES_STATEMENTS_FULL_NAME']] if ENV['SAML_ATTRIBUTES_STATEMENTS_FULL_NAME']
+    saml_options[:attribute_statements][:first_name] = [ENV['SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME']] if ENV['SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME']
+    saml_options[:attribute_statements][:last_name] = [ENV['SAML_ATTRIBUTES_STATEMENTS_LAST_NAME']] if ENV['SAML_ATTRIBUTES_STATEMENTS_LAST_NAME']
+    saml_options[:attribute_statements][:verified] = [ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED']] if ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED']
+    saml_options[:attribute_statements][:verified_email] = [ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL']] if ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL']
     saml_options[:uid_attribute] = ENV['SAML_UID_ATTRIBUTE'] if ENV['SAML_UID_ATTRIBUTE']
     config.omniauth :saml, saml_options
   end

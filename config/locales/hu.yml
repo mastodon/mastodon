@@ -23,7 +23,6 @@ hu:
       real_conversation_title: Valódi beszélgetésekre tervezve
       within_reach_body: A fejlesztőbarát API-nak köszönhetően számos iOS, Android és egyéb platformra írt alkalmazás teszi lehetővé, hogy bármikor, bárhonnan részt vehess a társalgásban.
       within_reach_title: Mindig elérhetőnek lenni
-    find_another_instance: További instanciák keresése
     generic_description: "%{domain} csak egy a számtalan szerver közül a föderációban"
     hosted_on: "%{domain} Mastodon instancia"
     learn_more: Tudj meg többet
@@ -159,7 +158,7 @@ hu:
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_custom_emoji: "%{name} frissítette az alábbi hangulatjelet: %{target}"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
-      title: Audit log
+      title: Audit napló
     custom_emojis:
       by_domain: Domain
       copied_msg: Sikeresen létrehoztuk a hangulatjel helyi másolatát
@@ -354,7 +353,6 @@ hu:
     your_token: Hozzáférési kulcsod
   auth:
     agreement_html: A feliratkozással elfogatod az <a href="%{rules_path}">instancia szabályzatát</a> és a <a href="%{terms_path}">felhasználási feltételeket</a>.
-    change_password: Biztonság
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
@@ -367,6 +365,7 @@ hu:
     register: Regisztráció
     resend_confirmation: Megerősítési lépések újraküldése
     reset_password: Jelszó visszaállítása
+    security: Biztonság
     set_new_password: Új jelszó beállítása
   authorize_follow:
     error: Hiba történt a távoli felhasználó keresésekor
@@ -432,7 +431,7 @@ hu:
     unlocked_warning_title: A fiókod jelenleg nem privát
   generic:
     changes_saved_msg: Változások sikeresen elmentve!
-    powered_by: powered by %{link}
+    powered_by: működteti a %{link}
     save_changes: Változások mentése
     validation_errors:
       one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
@@ -662,3 +661,20 @@ hu:
       edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt láthatják a tülkjeid, itt tudod a fiókodat zárttá tenni.'
       explanation: Néhány tipp a kezdeti lépésekhez
       final_action: Kezdj tülkölni
+      final_step: 'Kezdj tülkölni! Publikus üzeneteid még követők híján is megjelennek másoknak, például a helyi időfolyamban és a címkéknél. Kezdd például azzal, hogy bemutatkozol: használd a #bemutatkozas és az #introductions címkét a tülködben.'
+      full_handle: Teljes felhasználóneved
+      full_handle_hint: Ez az, amit megadhatsz másoknak, hogy üzenhessenek neked vagy követhessenek téged más instanciákról.
+      review_preferences_action: Beállítások módosítása
+      review_preferences_step: Tekintsd át beállításaidat, például hogy milyen értesítéseket kérsz emailben vagy hogy alapértelmezettként mi legyen a tülkjeid adatvédelmi beállítása. Ha nem vagy szédülős alkat, azt is engedélyezheted, hogy automatikusan lejátsszuk a GIF-eket.
+      subject: Üdvözöl a Mastodon
+      tip_bridge_html: Ha a Twitterről érkezel, használhatod <a href="%{bridge_url}">alkalmazásunkat</a>, amellyel megtalálhatod Twitteres barátaidat a Mastodonon. Az alkalmazás csak azon barátaidat tudja megtalálni, akik maguk is használták azt!
+      tip_federated_timeline: A nyilvános időfolyam a Mastodon ütőere, ahol minden tülk összefolyik. Nem teljes ugyan, mert csak azokat az emberek fogod látni, akiket instanciád többi felhasználója követ.
+      tip_following: Alapértelmezettként instanciád adminisztrátorait követed. Látogasd meg a helyi és a nyilvános időfolyamot, hogy más érdekes emberekre is rátalálj.
+      tip_local_timeline: A helyi időfolyam a saját instanciád (%{instance}) ütőere. Ezek a kedves emberek itt mind a szomszédaid!
+      tip_mobile_webapp: Ha a böngésződ lehetővé teszi, hogy kezdőképernyődhöz add a Mastodont, még értesítéseket is fogsz kapni &ndash; akárcsak egy igazi alkalmazás esetében!
+      tips: Tippek
+      title: Üdv a fedélzeten, %{name}!
+  users:
+    invalid_email: A megadott e-mail cím helytelen
+    invalid_otp_token: Érvénytelen ellenőrző kód
+    signed_in_as: Bejelentkezve mint

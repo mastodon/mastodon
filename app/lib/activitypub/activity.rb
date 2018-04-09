@@ -44,6 +44,12 @@ class ActivityPub::Activity
         ActivityPub::Activity::Accept
       when 'Reject'
         ActivityPub::Activity::Reject
+      when 'Flag'
+        ActivityPub::Activity::Flag
+      when 'Add'
+        ActivityPub::Activity::Add
+      when 'Remove'
+        ActivityPub::Activity::Remove
       end
     end
   end
@@ -74,7 +80,7 @@ class ActivityPub::Activity
 
     # Only continue if the status is supposed to have
     # arrived in real-time
-    return unless @options[:override_timestamps]
+    return unless @options[:override_timestamps] || status.within_realtime_window?
 
     distribute_to_followers(status)
   end

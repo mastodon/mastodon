@@ -21,6 +21,6 @@ class Api::V1::Accounts::RelationshipsController < Api::BaseController
   end
 
   def account_ids
-    @_account_ids ||= Array(params[:id]).map(&:to_i)
+    Array(params[:id]).map(&:to_i)
   end
 end

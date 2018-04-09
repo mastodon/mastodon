@@ -43,17 +43,18 @@
 #  protocol                :integer          default("ostatus"), not null
 #  memorial                :boolean          default(FALSE), not null
 #  moved_to_account_id     :integer
+#  featured_collection_url :string
 #
 
 class Account < ApplicationRecord
-  MENTION_RE = /(?<=^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.]+[a-z0-9_]+)?/i
+  MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
 
   include AccountAvatar
   include AccountFinderConcern
   include AccountHeader
   include AccountInteractions
   include Attachmentable
-  include Remotable
   include Paginable
 
   enum protocol: [:ostatus, :activitypub]
@@ -67,7 +68,8 @@ class Account < ApplicationRecord
   validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
-  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? }
+  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? }
+  validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
@@ -92,6 +94,8 @@ class Account < ApplicationRecord
   # Report relationships
   has_many :reports
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
+
+  has_many :report_notes, dependent: :destroy
 
   # Moderation notes
   has_many :account_moderation_notes, dependent: :destroy
@@ -346,6 +350,10 @@ class Account < ApplicationRecord
 
       [textsearch, query]
     end
+  end
+
+  def emojis
+    CustomEmoji.from_text(note, domain)
   end
 
   before_create :generate_keys

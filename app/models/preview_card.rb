@@ -26,6 +26,7 @@
 
 class PreviewCard < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
+  LIMIT = 1.megabytes
 
   self.inheritance_column = false
 
@@ -33,14 +34,14 @@ class PreviewCard < ApplicationRecord
 
   has_and_belongs_to_many :statuses
 
-  has_attached_file :image, styles: { original: '400x400>' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :image, styles: { original: { geometry: '400x400>', file_geometry_parser: FastGeometryParser } }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
-  include Remotable
 
   validates :url, presence: true, uniqueness: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
-  validates_attachment_size :image, less_than: 1.megabytes
+  validates_attachment_size :image, less_than: LIMIT
+  remotable_attachment :image, LIMIT
 
   before_save :extract_dimensions, if: :link?
 
@@ -58,10 +59,11 @@ class PreviewCard < ApplicationRecord
 
     return if file.nil?
 
-    geo         = Paperclip::Geometry.from_file(file)
-    self.width  = geo.width.to_i
-    self.height = geo.height.to_i
-  rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-    nil
+    width, height = FastImage.size(file.path)
+
+    return nil if width.nil?
+
+    self.width  = width
+    self.height = height
   end
 end

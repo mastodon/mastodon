@@ -4,23 +4,67 @@
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
+%div{ style: 'overflow: hidden; margin-bottom: 20px' }
+  - if !@report.action_taken?
+    %div{ style: 'float: right' }
+      = link_to t('admin.reports.silence_account'), admin_report_path(@report, outcome: 'silence'), method: :put, class: 'button'
+      = link_to t('admin.reports.suspend_account'), admin_report_path(@report, outcome: 'suspend'), method: :put, class: 'button'
+    %div{ style: 'float: left' }
+      = link_to t('admin.reports.mark_as_resolved'), admin_report_path(@report, outcome: 'resolve'), method: :put, class: 'button'
+  - else
+    = link_to t('admin.reports.mark_as_unresolved'), admin_report_path(@report, outcome: 'reopen'), method: :put, class: 'button'
+
+.table-wrapper
+  %table.table.inline-table
+    %tbody
+      %tr
+        %th= t('admin.reports.updated_at')
+        %td{colspan: 2}
+          %time.formatted{ datetime: @report.updated_at.iso8601 }
+      %tr
+        %th= t('admin.reports.status')
+        %td{colspan: 2}
+          - if @report.action_taken?
+            = t('admin.reports.resolved')
+            = table_link_to 'envelope-open', t('admin.reports.reopen'), admin_report_path(@report, outcome: 'reopen'), method: :put
+          - else
+            = t('admin.reports.unresolved')
+      - if !@report.action_taken_by_account.nil?
+        %tr
+          %th= t('admin.reports.action_taken_by')
+          %td= @report.action_taken_by_account.acct
+      - else
+        %tr
+          %th= t('admin.reports.assigned')
+          %td
+            - if @report.assigned_account.nil?
+              \-
+            - else
+              = link_to @report.assigned_account.acct, admin_account_path(@report.assigned_account.id)
+          %td{style: "text-align: right"}
+            - if @report.assigned_account != current_user.account
+              = table_link_to 'user', t('admin.reports.assign_to_self'), admin_report_path(@report, outcome: 'assign_to_self'), method: :put
+            - if !@report.assigned_account.nil?
+              = table_link_to 'trash', t('admin.reports.unassign'), admin_report_path(@report, outcome: 'unassign'), method: :put
+
 .report-accounts
   .report-accounts__item
-    %strong= t('admin.reports.reported_account')
+    %h3= t('admin.reports.reported_account')
     = render 'authorize_follows/card', account: @report.target_account, admin: true
     = render 'admin/accounts/card', account: @report.target_account
   .report-accounts__item
-    %strong= t('admin.reports.reported_by')
+    %h3= t('admin.reports.reported_by')
     = render 'authorize_follows/card', account: @report.account, admin: true
     = render 'admin/accounts/card', account: @report.account
 
-%p
-  %strong= t('admin.reports.comment.label')
-  \:
-  = simple_format(@report.comment.presence || t('admin.reports.comment.none'))
+%h3= t('admin.reports.comment.label')
+
+= simple_format(@report.comment.presence || t('admin.reports.comment.none'))
 
 - unless @report.statuses.empty?
   %hr/
+
+  %h3= t('admin.reports.statuses')
 
   = form_for(@form, url: admin_report_reported_statuses_path(@report.id)) do |f|
     .batch-form-box
@@ -46,14 +90,20 @@
 
 %hr/
 
-- if !@report.action_taken?
-  %div{ style: 'overflow: hidden' }
-    %div{ style: 'float: right' }
-      = link_to t('admin.reports.silence_account'), admin_report_path(@report, outcome: 'silence'), method: :put, class: 'button'
-      = link_to t('admin.reports.suspend_account'), admin_report_path(@report, outcome: 'suspend'), method: :put, class: 'button'
-    %div{ style: 'float: left' }
-      = link_to t('admin.reports.mark_as_resolved'), admin_report_path(@report, outcome: 'resolve'), method: :put, class: 'button'
-- elsif !@report.action_taken_by_account.nil?
-  %p
-    %strong #{t('admin.reports.action_taken_by')}:
-    = @report.action_taken_by_account.acct
+%h3= t('admin.reports.notes.label')
+
+- if @report_notes.length > 0
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th
+      %tbody
+        = render @report_notes
+
+= simple_form_for @report_note, url: admin_report_notes_path do |f|
+  = render 'shared/error_messages', object: @report_note
+  = f.input :content
+  = f.hidden_field :report_id
+  = f.button :button, t('admin.reports.notes.create'), type: :submit
+  = f.button :button, t('admin.reports.notes.create_and_resolve'), type: :submit, name: :create_and_resolve

@@ -1,5 +1,6 @@
 import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
+import { importFetchedAccounts } from './importer';
 import { openModal } from './modal';
 
 export const MUTES_FETCH_REQUEST = 'MUTES_FETCH_REQUEST';
@@ -19,6 +20,7 @@ export function fetchMutes() {
 
     api(getState).get('/api/v1/mutes').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedAccounts(response.data));
       dispatch(fetchMutesSuccess(response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => dispatch(fetchMutesFail(error)));
@@ -58,6 +60,7 @@ export function expandMutes() {
 
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedAccounts(response.data));
       dispatch(expandMutesSuccess(response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => dispatch(expandMutesFail(error)));

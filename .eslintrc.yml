@@ -13,6 +13,7 @@ plugins:
 - react
 - jsx-a11y
 - import
+- promise
 
 parserOptions:
   sourceType: module
@@ -152,3 +153,5 @@ rules:
     - "app/javascript/**/__tests__/**"
   import/no-unresolved: error
   import/no-webpack-loader-syntax: error
+
+  promise/catch-or-return: error

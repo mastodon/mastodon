@@ -3,44 +3,67 @@ fi:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF tai JPG. Korkeintaan 2MB. Skaalataan kokoon 120x120px
+        avatar: PNG, GIF tai JPG. Korkeintaan 2MB. Skaalataan kokoon 400x400px
+        digest: Lähetetään vain pitkän poissaolon jälkeen, ja vain jos olet vastaanottanut yksityisviestejä poissaolosi aikana
         display_name: Korkeintaan 30 merkkiä
         header: PNG, GIF tai JPG. Korkeintaan 2MB. Skaalataan kokoon 700x335px
-        locked: Vaatii sinun manuaalisesti hyväksymään seuraajat ja asettaa julkaisujen yksityisyyden vain seuraajille
+        locked: Vaatii sinua manuaalisesti hyväksymään seuraajat
         note: Korkeintaan 160 merkkiä
+        setting_noindex: Vaikuttaa julkiseen profiiliisi ja statuspäivityksiisi
+        setting_theme: Vaikuttaa siihen, miltä Mastodon näyttää kun olet kirjautuneena milllä tahansa laitteella.
       imports:
-        data: CSV tiedosto tuotu toiselta Mastodon palvelimelta
+        data: CSV tiedosto, joka on tuotu toiselta Mastodon-palvelimelta
+      sessions:
+        otp: Syötä kaksivaiheisen tunnistuksen koodi puhelimestasi tai käytä yhtä palautuskoodeistasi.
+      user:
+        filtered_languages: Valitut kielet suodatetaan julkisilta aikajanoilta
     labels:
       defaults:
-        avatar: Avatar
+        avatar: Profiilikuva
         confirm_new_password: Varmista uusi salasana
         confirm_password: Varmista salasana
         current_password: Nykyinen salasana
         data: Data
-        display_name: Näykyvä nimi
+        display_name: Nimimerkki
         email: Sähköpostiosoite
-        header: Header
+        expires_in: Vanhentuu
+        filtered_languages: Suodatetut kielet
+        header: Otsakekuva
         locale: Kieli
         locked: Tee tilistä yksityinen
+        max_uses: Max käyttökerrat
         new_password: Uusi salasana
-        note: Bio
+        note: Kuvaus
         otp_attempt: Kaksivaiheinen koodi
         password: Salasana
+        setting_auto_play_gif: Animoitujen GIFfien automaattitoisto
+        setting_boost_modal: Näytä vahvistusikkuna ennen boostausta
         setting_default_privacy: Julkaisun yksityisyys
-        type: Tuonti tyyppi
+        setting_default_sensitive: Merkitse media aina arkaluontoiseksi
+        setting_delete_modal: Näytä vahvistusikkuna ennen töötin poistamista
+        setting_display_sensitive_media: Näytä aina arkaluontoiseksi merkitty media
+        setting_noindex: Jättäydy pois hakukoneindeksoinnista
+        setting_reduce_motion: Vähennä liikettä animaatioissa
+        setting_system_font_ui: Käytä käyttöjärjestelmän oletusfonttia
+        setting_theme: Sivuston teema
+        setting_unfollow_modal: Näytä vahvistusikkuna ennen seuraamisen lopettamista
+        severity: Vakavuusaste
+        type: Tuontityyppi
         username: Käyttäjänimi
+        username_or_email: Käyttäjänimi tai sähköposti
       interactions:
-        must_be_follower: Estä ilmoitukset käyttäjiltä jotka eivät seuraa sinua
-        must_be_following: Estä ilmoitukset käyttäjiltä joita et seuraa
+        must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
+        must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
+        must_be_following_dm: Estä suorat viestit ihmisiltä, joita et seuraa
       notification_emails:
-        digest: Send digest e-mails
-        favourite: Lähetä s-posti kun joku tykkää statuksestasi
-        follow: Lähetä s-posti kun joku seuraa sinua
-        follow_request: Lähetä s-posti kun joku pyytää seurata sinua
-        mention: Lähetä s-posti kun joku mainitsee sinut
-        reblog: Lähetä s-posti kun joku buustaa julkaisusi
+        digest: Lähetä koosteviestejä sähköpostilla
+        favourite: Lähetä sähköposti, kun joku tykkää statuksestasi
+        follow: Lähetä sähköposti, kun joku seuraa sinua
+        follow_request: Lähetä sähköposti, kun joku pyytää seurata sinua
+        mention: Lähetä sähköposti, kun joku mainitsee sinut
+        reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
     'no': Ei
     required:
       mark: "*"
-      text: vaaditaan
+      text: pakollinen tieto
     'yes': Kyllä
