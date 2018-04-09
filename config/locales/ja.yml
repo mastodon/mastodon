@@ -4,6 +4,7 @@ ja:
     about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
+    administered_by: '管理者:'
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     contact_missing: 未設定
@@ -601,6 +602,10 @@ ja:
     missing_resource: リダイレクト先が見つかりませんでした
     proceed: フォローする
     prompt: 'フォローしようとしています:'
+  remote_unfollow:
+    error: エラー
+    title: タイトル
+    unfollowed: フォロー解除しました
   sessions:
     activity: 最後のアクティビティ
     browser: ブラウザ
@@ -704,11 +709,11 @@ ja:
 
       <h3 id="use">情報を何に使用しますか？</h3>
 
-      <p>このサイトで収集した情報は次のような方法に使用することがあります:</p>
+      <p>収集した情報は次の用途に使用されることがあります:</p>
 
       <ul>
-        <li>Mastodonのコア機能の提供。ログインしている間他の人と投稿によってのみ交流することができます。You can only interact with other people's content and post your own content when you are logged in.例えば、他の人をフォローし自分専用のホームタイムラインで彼らの投稿をまとめて読むことができます。</li>
-        <li>コミュニティの維持。例えばBAN回避目的の複数登録者やその他違反者を判断するため、IPアドレスを既知のものと比較します。To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+        <li>Mastodonのコア機能の提供。ログインしている間に限り他の人と投稿によって交流することができます。例えば、他の人をフォローし自分専用のホームタイムラインで彼らの投稿をまとめて読むことができます。</li>
+        <li>コミュニティの維持。例えばIPアドレスを既知のものと比較することでBAN回避目的の複数登録者やその他違反者を判別します。</li>
         <li>あなたの提供したメールアドレスは他の人があなたの投稿とやりとりしたり、メッセージを送ることについての通知や、お問い合わせやその他要求・質問への対応に使用することがあります。</li>
       </ul>
 
@@ -716,7 +721,7 @@ ja:
 
       <h3 id="protect">情報をどのように保護しますか？</h3>
 
-      <p>私たちはあなたが入力・送信したりあなたの情報にアクセスする際に安全を保つため、さまざまなセキュリティ上の対策を実施します。中でもブラウザーセッションだけでなくアプリケーションとAPI間の通信もSSLによって保護され、パスワードは強力な不可逆アルゴリズムでハッシュ化されます。二段階認証を有効にすることでアカウントへのアクセスをさらに安全にすることができます。</p>
+      <p>私たちはあなたが入力・送信したりあなたの情報にアクセスする際に安全を保つため、さまざまなセキュリティ上の対策を実施します。特にブラウザーセッションだけでなくアプリケーションとAPI間の通信もSSLによって保護され、パスワードは強力な不可逆アルゴリズムでハッシュ化されます。二段階認証を有効にすることでアカウントへのアクセスをさらに安全にすることができます。</p>
 
       <hr class="spacer" />
 
@@ -731,7 +736,7 @@ ja:
 
       <p>あなたは投稿・添付メディア・プロフィール画像・ヘッダー画像を含む自身のデータのアーカイブを要求しダウンロードできます。</p>
 
-      <p>あなたはいつでもアカウントの削除を要求できます。削除は取り消すことができません。You may irreversibly delete your account at any time.</p>
+      <p>あなたはいつでもアカウントの削除を要求できます。削除は取り消すことができません。</p>
 
       <hr class="spacer"/>
 
@@ -739,7 +744,7 @@ ja:
 
       <p>はい。クッキーは (あなたが許可した場合に) WebサイトやサービスがWebブラウザーを介してコンピューターに保存する小さなファイルです。使用することで Web サイトがブラウザーを識別し、登録済みのアカウントがある場合関連付けます。</p>
 
-      <p>私たちは将来の訪問のために設定を保存し呼び出す用途にクッキーを使用します。We use cookies to understand and save your preferences for future visits.</p>
+      <p>私たちは将来の訪問のために設定を保存し呼び出す用途にクッキーを使用します。</p>
 
       <hr class="spacer" />
 
@@ -755,7 +760,7 @@ ja:
 
       <h3 id="coppa">児童オンラインプライバシー保護法の遵守</h3>
 
-      <p>当サイト・製品・サービスは13歳以上の人を対象としています。サーバーが米国にあり、あなたが13歳以下の場合、COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act - 児童オンラインプライバシー保護法</a>) により当サイトを使用できません。</p>
+      <p>当サイト・製品・サービスは13歳以上の人を対象としています。サーバーが米国にあり、あなたが13歳未満の場合、COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a> - 児童オンラインプライバシー保護法) により当サイトを使用できません。</p>
 
       <hr class="spacer" />
 
@@ -763,7 +768,7 @@ ja:
 
       <p>プライバシーポリシーの変更を決定した場合、このページに変更点を掲載します。</p>
 
-      <p>この文章のライセンスは CC-BY-SA です。最終更新日は2018年3月7日です。</p>
+      <p>この文章のライセンスはCC-BY-SAです。最終更新日は2018年3月7日です。</p>
 
       <p>オリジナルの出典: <a href="https://github.com/discourse/discourse">Discourse privacy policy</a></p>
     title: "%{instance} 利用規約・プライバシーポリシー"
