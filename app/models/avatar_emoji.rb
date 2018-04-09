@@ -32,6 +32,10 @@ class AvatarEmoji
     "#<AvatarEmoji shortcode: #{shortcode}, account_id: #{account.id}>"
   end
 
+  def visible_in_picker
+    true
+  end
+
   SHORTCODE_RE_FRAGMENT = /@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
 
   SCAN_RE = /:#{SHORTCODE_RE_FRAGMENT}:/x
