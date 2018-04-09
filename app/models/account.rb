@@ -341,6 +341,10 @@ class Account < ApplicationRecord
       end
     end
 
+    def search_by_hashtags(hashtags)
+      where("note <> '' AND (array_remove(xpath('//a[contains(@class, \"hashtag\")]//text()', note::xml)::text[], '#')) @> ARRAY[?]", hashtags)
+    end
+
     private
 
     def generate_query_for_search(terms)
