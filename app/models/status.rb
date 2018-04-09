@@ -162,6 +162,10 @@ class Status < ApplicationRecord
     CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
   end
 
+  def avatar_emojis
+    AvatarEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+  end
+
   after_create_commit :store_uri, if: :local?
   after_create_commit :update_statistics, if: :local?
 
