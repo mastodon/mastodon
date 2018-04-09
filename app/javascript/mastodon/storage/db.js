@@ -1,15 +1,14 @@
-import { me } from '../initial_state';
-
-export default new Promise((resolve, reject) => {
+export default () => new Promise((resolve, reject) => {
+  // ServiceWorker is required to synchronize the login state.
   // Microsoft Edge 17 does not support getAll according to:
   // Catalog of standard and vendor APIs across browsers - Microsoft Edge Development
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/catalog/?q=specName%3Aindexeddb
-  if (!me || !('getAll' in IDBObjectStore.prototype)) {
+  if (!('caches' in self && 'getAll' in IDBObjectStore.prototype)) {
     reject();
     return;
   }
 
-  const request = indexedDB.open('mastodon:' + me);
+  const request = indexedDB.open('mastodon');
 
   request.onerror = reject;
   request.onsuccess = ({ target }) => resolve(target.result);

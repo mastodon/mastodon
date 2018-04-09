@@ -28,6 +28,10 @@ describe Api::V1::Accounts::CredentialsController do
             note: "Hi!\n\nToot toot!",
             avatar: fixture_file_upload('files/avatar.gif', 'image/gif'),
             header: fixture_file_upload('files/attachment.jpg', 'image/jpeg'),
+            source: {
+              privacy: 'unlisted',
+              sensitive: true,
+            }
           }
         end
 
@@ -42,6 +46,8 @@ describe Api::V1::Accounts::CredentialsController do
           expect(user.account.note).to eq("Hi!\n\nToot toot!")
           expect(user.account.avatar).to exist
           expect(user.account.header).to exist
+          expect(user.setting_default_privacy).to eq('unlisted')
+          expect(user.setting_default_sensitive).to eq(true)
         end
 
         it 'queues up an account update distribution' do
