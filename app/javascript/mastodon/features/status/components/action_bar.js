@@ -114,6 +114,7 @@ export default class ActionBar extends React.PureComponent {
 
     if (publicStatus) {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+      menu.push(null);
     }
 
     if (me === status.getIn(['account', 'id'])) {
