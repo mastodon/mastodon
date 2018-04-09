@@ -146,6 +146,8 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
+          <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
+
           <WrappedRoute path='/statuses/new' component={Compose} content={children} />
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
           <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
