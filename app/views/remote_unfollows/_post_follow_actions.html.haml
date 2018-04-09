@@ -1,0 +1,4 @@
+.post-follow-actions
+  %div= link_to t('authorize_follow.post_follow.web'), web_url("accounts/#{@account.id}"), class: 'button button--block'
+  %div= link_to t('authorize_follow.post_follow.return'), TagManager.instance.url_for(@account), class: 'button button--block'
+  %div= t('authorize_follow.post_follow.close')

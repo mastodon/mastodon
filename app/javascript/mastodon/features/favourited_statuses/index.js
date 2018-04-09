@@ -9,6 +9,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import StatusList from '../../components/status_list';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { debounce } from 'lodash';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
@@ -16,6 +17,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   statusIds: state.getIn(['status_lists', 'favourites', 'items']),
+  isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });
 
@@ -30,6 +32,7 @@ export default class Favourites extends ImmutablePureComponent {
     columnId: PropTypes.string,
     multiColumn: PropTypes.bool,
     hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -59,12 +62,12 @@ export default class Favourites extends ImmutablePureComponent {
     this.column = c;
   }
 
-  handleScrollToBottom = () => {
+  handleLoadMore = debounce(() => {
     this.props.dispatch(expandFavouritedStatuses());
-  }
+  }, 300, { leading: true })
 
   render () {
-    const { intl, statusIds, columnId, multiColumn, hasMore } = this.props;
+    const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -85,7 +88,8 @@ export default class Favourites extends ImmutablePureComponent {
           statusIds={statusIds}
           scrollKey={`favourited_statuses-${columnId}`}
           hasMore={hasMore}
-          onScrollToBottom={this.handleScrollToBottom}
+          isLoading={isLoading}
+          onLoadMore={this.handleLoadMore}
         />
       </Column>
     );

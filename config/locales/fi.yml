@@ -3,16 +3,32 @@ fi:
   about:
     about_mastodon_html: Mastodon on <em>vapaa, avoimeen lähdekoodiin perustuva</em> sosiaalinen verkosto. <em>Hajautettu</em> vaihtoehto kaupallisille alustoille, se välttää eiskit yhden yrityksen monopolisoinnin sinun viestinnässäsi. Valitse palvelin mihin luotat &mdash; minkä tahansa valitset, voit vuorovaikuttaa muiden kanssa. Kuka tahansa voi luoda Mastodon palvelimen ja ottaa osaa <em>sosiaaliseen verkkoon</em> saumattomasti.
     about_this: Tietoja tästä palvelimesta
+    closed_registrations: Rekisteröityminen tässä instanssissa on juuri nyt suljettu. Mutta! Voit yhdistää täysin samaan, yhteiseen verkostoon rekisteröitymällä jossain toisessa instanssissa.
     contact: Ota yhteyttä
+    contact_missing: Ei asetettu
+    contact_unavailable: Ei saatavilla
     description_headline: Mikä on %{domain}?
     domain_count_after: muuhun palvelimeen
     domain_count_before: Yhdistyneenä
+    extended_description_html: |
+      <h3>Hyvä paikka säännöille</h3>
+      <p>Pidennettyä kuvausta ei ole vielä asetettu.</p>
+    features:
+      humane_approach_body: Muiden verkostojen virheistä oppien, Mastodon pyrkii tekemään eettisiä valintoja suunnittelussa taistellakseen sosiaalisen median väärinkäyttöä vastaan.
+      humane_approach_title: Humaanimpi lähestymistapa
+      not_a_product_body: Mastodon ei ole kaupallinen verkosto. Ei mainoksia, ei tiedonlouhintaa, ei suljettuja sisäpiirejä. Mastodonissa ei ole keskitettyä auktoriteettiä.
+      not_a_product_title: Olet henkilö, et tuote
+      real_conversation_title: Rakennettu oikealle keskustelulle
+      within_reach_body: Kehittäjäystävällisen rajapintaekosysteemin ansiosta useita appeja Androidille, iOS:lle ja muille alustoille, jotka mahdollistavat yhteydenpidon ystäviesi kanssa missä vain.
+      within_reach_title: Aina lähellä
+    learn_more: Lisätietoja
     other_instances: Muut palvelimet
     source_code: Lähdekoodi
     status_count_after: statusta
     status_count_before: Ovat luoneet
     user_count_after: käyttäjälle
     user_count_before: Koti
+    what_is_mastodon: Mikä on Mastodon?
   accounts:
     follow: Seuraa
     followers: Seuraajat
@@ -22,15 +38,35 @@ fi:
     people_who_follow: Henkilöt jotka seuraa %{name}
     posts: Postaukset
     remote_follow: Etäseuranta
+    reserved_username: Käyttäjänimi on varattu
+    roles:
+      admin: Ylläpitäjä
     unfollow: Lopeta seuraaminen
+  admin:
+    account_moderation_notes:
+      account: Moderaattori
+      create: Luo
+      created_at: Päiväys
+      created_msg: Moderointimerkintä luotu onnistuneesti!
+      delete: Poista
+      destroyed_msg: Moderointimerkintä tuhottu onnistuneesti!
+    accounts:
+      are_you_sure: Oletko varma?
+      confirm: Hyväksy
+      confirmed: Hyväksytty
+      disable: Poista käytöstä
+      disable_two_factor_authentication: Poista 2FA käytöstä
+      disabled: Poistettu käytöstä
+      edit: Muokkaa
+      email: Sähköposti
+      followers: Seuraajat
+      followers_url: Seuraajat URL
   application_mailer:
     settings: 'Muokkaa sähköpostiasetuksia: %{link}'
-    signature: Mastodon-ilmoituksia palvelimelta %{instance}
     view: 'Katso:'
   applications:
     invalid_url: Annettu URL on väärä
   auth:
-    change_password: Tunnukset
     didnt_get_confirmation: Etkö saanut varmennusohjeita?
     forgot_password: Unohditko salasanasi?
     login: Kirjaudu sisään
@@ -38,6 +74,7 @@ fi:
     register: Rekisteröidy
     resend_confirmation: Lähetä varmennusohjeet uudestaan
     reset_password: Palauta salasana
+    security: Tunnukset
     set_new_password: Aseta uusi salasana
   authorize_follow:
     error: Valitettavasti tapahtui virhe etätilin haussa.
@@ -70,7 +107,7 @@ fi:
       one: Jokin ei ole viellä oikein! Katso virhe alapuolelta.
       other: Jokin ei ole viellä oikein! Katso %{count} virhettä alapuolelta.
   imports:
-    preface: Voit tuoda tiettyä dataa kaikista ihmisistä joita seuraat tai estät tilillesi tälle palvelimelle tiedostoista, jotka on luotu toisella palvelimella
+    preface: Voit tuoda tiettyä dataa kaikista ihmisistä joita seuraat tai estät tilillesi tälle palvelimelle tiedostoista, jotka on luotu toisella palvelimella.
     success: Datasi on onnistuneesti ladattu ja käsitellään pian
     types:
       blocking: Estetyt lista
@@ -83,8 +120,8 @@ fi:
       body: 'Tässä on pieni yhteenveto palvelimelta %{instance} viimeksi kun olit paikalla %{since}:'
       mention: "%{name} mainitsi sinut:"
       new_followers_summary:
-        one: Olet saanut yhden uuden seuraajan! Jee!
-        other: Olet saanut %{count} uutta seuraajaa! Loistavaa!
+        one: Olet myös saanut yhden uuden seuraajan poissaollessasi! Jee!
+        other: Olet saanut %{count} uutta seuraajaa poissaollessasi! Loistavaa!
       subject:
         one: "1 uusi ilmoitus viimeisen käyntisi jälkeen \U0001F418"
         other: "%{count} uutta ilmoitusta viimeisen käyntisi jälkeen \U0001F418"
@@ -147,7 +184,7 @@ fi:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
-    description_html: Jos otat käyttöön <strong>kaksivaiheisen tunnistuksen</stron>, kirjautumiseen vaaditaan puhelin, joka voi luoda tokeneita kirjautumista varten.
+    description_html: Jos otat käyttöön <strong>kaksivaiheisen tunnistuksen</strong>, kirjautumiseen vaaditaan puhelin, joka voi luoda tokeneita kirjautumista varten.
     disable: Poista käytöstä
     enable: Ota käyttöön
     instructions_html: "<strong>Skannaa tämä QR-koodi Google Authenticator- tai vastaavaan sovellukseen puhelimellasi</strong>. Tästä hetkestä lähtien ohjelma luo koodin, mikä sinun tarvitsee syöttää sisäänkirjautuessa."

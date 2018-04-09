@@ -4,6 +4,7 @@ class AuthorizeFollowsController < ApplicationController
   layout 'modal'
 
   before_action :authenticate_user!
+  before_action :set_body_classes
 
   def show
     @account = located_account || render(:error)
@@ -40,7 +41,7 @@ class AuthorizeFollowsController < ApplicationController
   end
 
   def account_from_remote_follow
-    ResolveRemoteAccountService.new.call(acct_without_prefix)
+    ResolveAccountService.new.call(acct_without_prefix)
   end
 
   def acct_param_is_url?
@@ -57,5 +58,9 @@ class AuthorizeFollowsController < ApplicationController
 
   def acct_params
     params.fetch(:acct, '')
+  end
+
+  def set_body_classes
+    @body_classes = 'modal-layout'
   end
 end

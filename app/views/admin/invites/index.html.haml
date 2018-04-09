@@ -1,6 +1,14 @@
 - content_for :page_title do
   = t('admin.invites.title')
 
+.filters
+  .filter-subset
+    %strong= t('admin.invites.filter.title')
+    %ul
+      %li= filter_link_to t('admin.invites.filter.all'), available: nil, expired: nil
+      %li= filter_link_to t('admin.invites.filter.available'), available: 1, expired: nil
+      %li= filter_link_to t('admin.invites.filter.expired'), available: nil, expired: 1
+
 - if policy(:invite).create?
   %p= t('invites.prompt')
 

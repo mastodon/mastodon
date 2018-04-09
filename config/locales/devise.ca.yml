@@ -7,21 +7,42 @@ ca:
       send_paranoid_instructions: Si l'adreça de correu electrònic existeix en la nostra base de dades, en pocs minuts rebràs un correu electrònic amb instruccions sobre com confirmar l'adreça de correu.
     failure:
       already_authenticated: Ja estàs registrat.
-      inactive: el teu compte encara no s'ha activat.
+      inactive: El teu compte encara no s'ha activat.
       invalid: "%{authentication_keys} o contrasenya no són vàlids."
       last_attempt: Tens un intent més, abans que es bloqui el compte.
-      locked: el compte s'ha blocat.
+      locked: El compte s'ha blocat.
       not_found_in_database: "%{authentication_keys} o contrasenya no vàlids."
-      timeout: la sessió ha expirat. Incia sessió una altra vegada per a continuar.
+      timeout: La sessió ha expirat. Inicia sessió una altra vegada per a continuar.
       unauthenticated: Cal iniciar sessió o registrar-se abans de continuar.
       unconfirmed: Has de confirmar l'adreça de correu electrònic abans de continuar.
     mailer:
       confirmation_instructions:
+        action: Verifica l'adreça de correu
+        explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic de l'activació. Si no fos així, ignora aquest correu electrònic.
+        extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles de la instància</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
         subject: 'Mastodon: Instruccions de confirmació'
+        title: Verifica l'adreça de correu
+      email_changed:
+        explanation: 'L''adreça de correu del teu compte s''està canviant a:'
+        extra: Si no has canviat el teu correu electrònic, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador de la instància si no pots accedir al teu compte.
+        subject: 'Mastodon: s''ha canviat l''adreça electrònica'
+        title: Adreça de correu electrònic nova
       password_change:
+        explanation: S'ha canviat la contrasenya del teu compte.
+        extra: Si no has canviat el teu correu electrònic, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador de la instància si no pots accedir al teu compte.
         subject: 'Mastodon: Contrasenya canviada'
+        title: Contrasenya canviada
+      reconfirmation_instructions:
+        explanation: Confirma la nova adreça per canviar el teu correu electrònic.
+        extra: Si no has iniciat aquest canvi, ignora aquest correu electrònic. L'adreça electrònica del compte de Mastodon no canviarà fins que accedeixis a l'enllaç de dalt.
+        subject: 'Mastodon: Confirma el correu electrònic per a %{instance}'
+        title: Verifica l'adreça de correu electrònic
       reset_password_instructions:
+        action: Canviar contrasenya
+        explanation: Has sol·licitat una contrasenya nova per al teu compte.
+        extra: Si no ho has sol·licitat, ignora aquest correu electrònic. La teva contrasenya no canviarà fins que accedeixis a l'enllaç de dalt i creis un de nou.
         subject: 'Mastodon: Instruccions per a reiniciar contrassenya'
+        title: Contrasenya restablerta
       unlock_instructions:
         subject: 'Mastodon: Instruccions per a desblocar'
     omniauth_callbacks:

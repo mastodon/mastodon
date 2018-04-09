@@ -34,7 +34,7 @@ module Admin::ActionLogsHelper
       link_to attributes['domain'], "https://#{attributes['domain']}"
     when 'Status'
       tmp_status = Status.new(attributes)
-      link_to tmp_status.account.acct, TagManager.instance.url_for(tmp_status)
+      link_to tmp_status.account&.acct || "##{tmp_status.account_id}", TagManager.instance.url_for(tmp_status)
     end
   end
 
@@ -86,7 +86,7 @@ module Admin::ActionLogsHelper
       opposite_verbs?(log) ? 'negative' : 'positive'
     when :update, :reset_password, :disable_2fa, :memorialize
       'neutral'
-    when :demote, :silence, :disable, :suspend
+    when :demote, :silence, :disable, :suspend, :remove_avatar, :reopen
       'negative'
     when :destroy
       opposite_verbs?(log) ? 'positive' : 'negative'

@@ -32,7 +32,7 @@ nl:
         error: Oops! Controleer het formulier op fouten
       help:
         native_redirect_uri: Gebruik %{native_redirect_uri} voor lokale tests
-        redirect_uri: 'Gebruik één regel per URI. '
+        redirect_uri: Gebruik één regel per URI
         scopes: Toestemmingen met spaties van elkaar scheiden. Laat leeg om de standaardtoestemmingen te gebruiken.
       index:
         application: Toepassing
@@ -60,10 +60,10 @@ nl:
         title: Er is een fout opgetreden
       new:
         able_to: Deze toepassing zal in staat zijn om
-        prompt: "%{client_name} autoriseren om uw account te gebruiken?"
+        prompt: "%{client_name} autoriseren om jouw account te gebruiken"
         title: Autorisatie vereist
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Kopieer deze autorisatiecode en plak het in de toepassing.
     authorized_applications:
       buttons:
         revoke: Intrekken
@@ -73,6 +73,7 @@ nl:
         application: Toepassing
         created_at: Aangemaakt op
         date_format: "%d-%m-%Y %H:%M:%S"
+        scopes: Toestemmingen
         title: Jouw geautoriseerde toepassingen
     errors:
       messages:
@@ -82,18 +83,18 @@ nl:
         invalid_grant: De verstrekte autorisatie is ongeldig, verlopen, ingetrokken, komt niet overeen met de redirect-URI die is opgegeven of werd uitgegeven aan een andere client.
         invalid_redirect_uri: De opgegeven redirect-URI is ongeldig.
         invalid_request: Het verzoek mist een vereiste parameter, bevat een niet ondersteunde parameterwaarde of is anderszins onjuist.
-        invalid_resource_owner: De verstrekte resource-eigenaargegevens zijn ogeldig of de resource-eigenaar kan niet worden gevonden.
-        invalid_scope: De opgevraagde scope is ongeldig, onbekend of onjuist.
+        invalid_resource_owner: De verstrekte resource-eigenaargegevens zijn ongeldig of de resource-eigenaar kan niet worden gevonden
+        invalid_scope: De opgevraagde toestemming is ongeldig, onbekend of onjuist.
         invalid_token:
-          expired: Het toegangssleutel is verlopen
-          revoked: Het toegangssleutel is geweigerd
-          unknown: Het toegangssleutel is ongeldig
+          expired: Toegangscode verlopen
+          revoked: Toegangscode ingetrokken
+          unknown: Toegangscode ongeldig
         resource_owner_authenticator_not_configured: Het opzoeken van de resource-eigenaar is mislukt omdat Doorkeeper.configure.resource_owner_authenticator niet is ingesteld.
         server_error: De autorisatieserver is is een onverwachte situatie tegengekomen die het verzoek verhinderde.
         temporarily_unavailable: De autorisatieserver is momenteel niet in staat het verzoek te behandelen als gevolg van een tijdelijke overbelasting of onderhoud aan de server.
         unauthorized_client: De client is niet bevoegd om dit verzoek op deze manier uit te voeren.
-        unsupported_grant_type: Het type autorisatie wordt niet door de autorisatieserver ondersteund
-        unsupported_response_type: De autorisatieserver ondersteund dit antwoordtype niet
+        unsupported_grant_type: Het type autorisatie wordt niet door de autorisatieserver ondersteund.
+        unsupported_response_type: De autorisatieserver ondersteund dit antwoordtype niet.
     flash:
       applications:
         create:

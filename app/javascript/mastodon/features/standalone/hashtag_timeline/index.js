@@ -2,12 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../../ui/containers/status_list_container';
-import {
-  refreshHashtagTimeline,
-  expandHashtagTimeline,
-} from '../../../actions/timelines';
+import { expandHashtagTimeline } from '../../../actions/timelines';
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
+import { connectHashtagStream } from '../../../actions/streaming';
 
 @connect()
 export default class HashtagTimeline extends React.PureComponent {
@@ -28,22 +26,19 @@ export default class HashtagTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch, hashtag } = this.props;
 
-    dispatch(refreshHashtagTimeline(hashtag));
-
-    this.polling = setInterval(() => {
-      dispatch(refreshHashtagTimeline(hashtag));
-    }, 10000);
+    dispatch(expandHashtagTimeline(hashtag));
+    this.disconnect = dispatch(connectHashtagStream(hashtag));
   }
 
   componentWillUnmount () {
-    if (typeof this.polling !== 'undefined') {
-      clearInterval(this.polling);
-      this.polling = null;
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandHashtagTimeline(this.props.hashtag));
+  handleLoadMore = maxId => {
+    this.props.dispatch(expandHashtagTimeline(this.props.hashtag, { maxId }));
   }
 
   render () {
@@ -61,7 +56,7 @@ export default class HashtagTimeline extends React.PureComponent {
           trackScroll={false}
           scrollKey='standalone_hashtag_timeline'
           timelineId={`hashtag:${hashtag}`}
-          loadMore={this.handleLoadMore}
+          onLoadMore={this.handleLoadMore}
         />
       </Column>
     );

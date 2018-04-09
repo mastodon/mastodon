@@ -21,6 +21,10 @@
       "description": "The secret key base",
       "generator": "secret"
     },
+    "OTP_SECRET": {
+      "description": "One-time password secret",
+      "generator": "secret"
+    },
     "SINGLE_USER_MODE": {
       "description": "Should the instance run in single user mode? (Disable registrations, redirect to front page)",
       "value": "false",

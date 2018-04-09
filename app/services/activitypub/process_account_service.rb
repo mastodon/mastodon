@@ -6,7 +6,7 @@ class ActivityPub::ProcessAccountService < BaseService
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json)
-    return if json['inbox'].blank?
+    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id'])
 
     @json        = json
     @uri         = @json['id']
@@ -16,17 +16,19 @@ class ActivityPub::ProcessAccountService < BaseService
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        @account        = Account.find_by(uri: @uri)
+        @account        = Account.find_remote(@username, @domain)
         @old_public_key = @account&.public_key
         @old_protocol   = @account&.protocol
 
         create_account if @account.nil?
         update_account
+        process_tags(@account)
       end
     end
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
+    check_featured_collection! if @account&.featured_collection_url&.present?
 
     @account
   rescue Oj::ParseError
@@ -57,14 +59,15 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_immediate_attributes!
-    @account.inbox_url        = @json['inbox'] || ''
-    @account.outbox_url       = @json['outbox'] || ''
-    @account.shared_inbox_url = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
-    @account.followers_url    = @json['followers'] || ''
-    @account.url              = url || @uri
-    @account.display_name     = @json['name'] || ''
-    @account.note             = @json['summary'] || ''
-    @account.locked           = @json['manuallyApprovesFollowers'] || false
+    @account.inbox_url               = @json['inbox'] || ''
+    @account.outbox_url              = @json['outbox'] || ''
+    @account.shared_inbox_url        = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
+    @account.followers_url           = @json['followers'] || ''
+    @account.featured_collection_url = @json['featured'] || ''
+    @account.url                     = url || @uri
+    @account.display_name            = @json['name'] || ''
+    @account.note                    = @json['summary'] || ''
+    @account.locked                  = @json['manuallyApprovesFollowers'] || false
   end
 
   def set_fetchable_attributes!
@@ -74,7 +77,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
-    @account.moved_to_account  = moved_account         if @json['movedTo'].present?
+    @account.moved_to_account  = @json['movedTo'].present? ? moved_account : nil
   end
 
   def after_protocol_change!
@@ -83,6 +86,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def after_key_change!
     RefollowWorker.perform_async(@account.id)
+  end
+
+  def check_featured_collection!
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id)
   end
 
   def image_url(key)
@@ -108,11 +115,20 @@ class ActivityPub::ProcessAccountService < BaseService
   def url
     return if @json['url'].blank?
 
-    value = first_of_value(@json['url'])
+    url_candidate = url_to_href(@json['url'], 'text/html')
 
-    return value if value.is_a?(String)
+    if unsupported_uri_scheme?(url_candidate) || mismatching_origin?(url_candidate)
+      nil
+    else
+      url_candidate
+    end
+  end
 
-    value['href']
+  def mismatching_origin?(url)
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@uri).host
+
+    !haystack.casecmp(needle).zero?
   end
 
   def outbox_total_items
@@ -171,5 +187,32 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def lock_options
     { redis: Redis.current, key: "process_account:#{@uri}" }
+  end
+
+  def process_tags(account)
+    return if @json['tag'].blank?
+    as_array(@json['tag']).each do |tag|
+      case tag['type']
+      when 'Emoji'
+        process_emoji tag, account
+      end
+    end
+  end
+
+  def process_emoji(tag, _account)
+    return if skip_download?
+    return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
+
+    shortcode = tag['name'].delete(':')
+    image_url = tag['icon']['url']
+    uri       = tag['id']
+    updated   = tag['updated']
+    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
+
+    return unless emoji.nil? || emoji.updated_at >= updated
+
+    emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
+    emoji.image_remote_url = image_url
+    emoji.save
   end
 end

@@ -1,0 +1,82 @@
+---
+gl:
+  devise:
+    confirmations:
+      confirmed: O seu enderezo de email foi confirmado con éxito.
+      send_instructions: Nuns minutos recibirá un correo electrónico con instruccións sobre como confirmar o seu enderezo de correo.  Comprobe por favor o cartafol de spam se non recibe este correo.
+      send_paranoid_instructions: Si o seu enderezo existe na nosa base de datos, recibirá nuns minutos un correo con instruccións sobre como confirmar o enderezo de correo. Por favor comprobe o cartafol de spam si non recibe este correo.
+    failure:
+      already_authenticated: Xa está conectada.
+      inactive: A súa conta aínda non foi activada.
+      invalid: Contrasinal ou %{authentication_keys} non válidos.
+      last_attempt: Quédalle un intento antes de que a conta sexa bloqueada.
+      locked: A súa conta foi bloqueada.
+      not_found_in_database: Contrasinal ou %{authentication_keys} non válidos.
+      timeout: Caducou a sesión. Por favor conéctese de novo para seguir.
+      unauthenticated: Precisa rexistrarse ou conectarse para continuar.
+      unconfirmed: Debe confirmar o seu enderezo de correo antes de continuar.
+    mailer:
+      confirmation_instructions:
+        action: Validar enderezo de correo-e
+        explanation: Creou unha conta en %{host} con este enderezo de correo. Está a punto de activalo, si non foi vostede quen fixo a petición, por favor ignore este correo.
+        extra_html: Por favor, lea tamén <a href="%{terms_path}">as normas da instancia</a> e <a href="%{policy_path}">os termos do servizo</a>.
+        subject: 'Mastodon: Instruccións de confirmación para %{instance}'
+        title: Verificar enderezo de correo-e
+      email_changed:
+        explanation: 'O seu enderezo de correo para esta conta foi cambiado a:'
+        extra: Si non fixo a petición de cambio de correo-e é probable que alguén obtivese acceso a súa conta. Por favor, cambie o contrasinal inmediatamente ou contacte coa administración da instancia si non ten acceso a súa conta.
+        subject: 'Mastodon: email cambiado'
+        title: Novo enderezo de correo
+      password_change:
+        explanation: Cambiouse o contrasinal da súa conta.
+        extra: Si non cambio o contrasinal, é probable que alguén obtivese acceso a súa conta. Por favor cambie o contrasinal inmediatamente ou contacte coa administración da instancia si non ten acceso a súa conta.
+        subject: 'Mastodon: contrasinal cambiado'
+        title: Contrainal cambiado
+      reconfirmation_instructions:
+        explanation: Confirme o novo enderezo para cambiar o correo-e.
+        extra: Si vostede non fixo esta petición, ignore este correo por favor. Este enderezo de correo-e para a conta Mastodon non cambiará ate que acceda a ligazón superior.
+        subject: 'Mastodon: Confirme email para %{instance}'
+        title: Verificación do enderezo de correo-e
+      reset_password_instructions:
+        action: Cambiar contrasinal
+        explanation: Solicitou un novo contrasinal para a súa conta.
+        extra: Si non fixo esta solicitude, por favor ignore este correo. O seu contrasinal non cambiará ate que acceda a ligazón superior e cree unha nova.
+        subject: 'Mastodon: Instruccións para restablecer o contrasinal'
+        title: Restablecer contrasinal
+      unlock_instructions:
+        subject: 'Mastodon: Instruccións para desbloquear'
+    omniauth_callbacks:
+      failure: Non podemos autenticala desde %{kind} porque "%{reason}".
+      success: Autenticouse con éxito desde a conta %{kind}.
+    passwords:
+      no_token: Non pode acceder a esta páxina vindo desde un correo de restablecemento de contrasinal. Si vostede chega desde un correo de restablecemento de contrasinal, por favor asegúrese de que utiliza o URL completo proporcionado.
+      send_instructions: Si o seu enderezo de correo existe na nosa base de datos,  nuns minutos recibirá unha ligazón para recuperar o contrasinal. Por favor comprobe o seu cartafol de spam si non recibe este correo.
+      send_paranoid_instructions: Si o seu enderezo de correo existe na nosa base de datos, recibirá nuns minutos unha ligazón para recuperar o contrasinal. Por favor comprobe o seu cartafol de spam si non recibe este correo.
+      updated: Cambiou o contrasinal con éxito. Agora xa está conectada.
+      updated_not_active: Cambiouse o seu contrasinal correctamente.
+    registrations:
+      destroyed: Adeus! A súa conta cancelouse con éxito. Agardamos vela de novo.
+      signed_up: Ben vida! Rexistrouse con éxito.
+      signed_up_but_inactive: Rexistrouse correctamente. Porén, aínda non podemos conectala porque a súa conta aínda non foi activada.
+      signed_up_but_locked: Rexistrouse correctamente. Porén, non podemos conectala porque a conta está bloqueada.
+      signed_up_but_unconfirmed: Foi enviada unha mensaxe con unha ligazón de confirmación ao seu enderezo electrónico. Por favor siga a ligazón para activar a súa conta. Por favor comprobe o cartafol de spam si non recibe este correo.
+      update_needs_confirmation: Actualizou a súa conta correctamente, pero precisamos verificar o seu enderezo. Por favor comprobe o seu email e siga a ligazón de confirmación para confirmar o seu novo enderezo. Por favor comprobe o cartafol de spam si non recibe este correo.
+      updated: A súa conta foi actualizada correctamente.
+    sessions:
+      already_signed_out: Desconectouse con éxito.
+      signed_in: Conectouse correctamente.
+      signed_out: Desconectouse correctamente.
+    unlocks:
+      send_instructions: Recibirá nuns minutos un correo con instrucións sobre como desbloquear a súa conta. Por favor comprobe o cartafol de spam si non recibe este correo.
+      send_paranoid_instructions: Si a conta existe, recibirá un correo nuns minutos sobre como desbloquear a súa conta. Por favor comprobe o cartafol de spam si non recibe este correo.
+      unlocked: A súa conta foi desbloqueada correctamente. Por favor, conéctese para continuar.
+  errors:
+    messages:
+      already_confirmed: xa foi confirmada, por favor intente conectarse
+      confirmation_period_expired: precisa ser confirmada en %{period}, por favor solicite unha nova
+      expired: caducou, por favor solicite unha nova
+      not_found: non se atopou
+      not_locked: non foi bloqueada
+      not_saved:
+        one: '1 erro evitou que %{resource} fose gardada:'
+        other: "%{count} erros evitaron que %{resource} fose gardada:"

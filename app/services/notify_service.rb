@@ -29,7 +29,7 @@ class NotifyService < BaseService
   end
 
   def blocked_reblog?
-    false
+    @recipient.muting_reblogs?(@notification.from_account)
   end
 
   def blocked_follow_request?
@@ -54,7 +54,7 @@ class NotifyService < BaseService
   end
 
   def response_to_recipient?
-    @notification.target_status.in_reply_to_account_id == @recipient.id
+    @notification.target_status.in_reply_to_account_id == @recipient.id && @notification.target_status.thread&.direct_visibility?
   end
 
   def optional_non_following_and_direct?

@@ -4,6 +4,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   respond_to :json
 
   before_action :require_user!
+  protect_from_forgery with: :exception
 
   def create
     params.require(:subscription).require(:endpoint)
@@ -27,6 +28,8 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
         mention: alerts_enabled,
       },
     }
+
+    data.deep_merge!(params[:data]) if params[:data]
 
     web_subscription = ::Web::PushSubscription.create!(
       endpoint: params[:subscription][:endpoint],

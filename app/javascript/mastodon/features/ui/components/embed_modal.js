@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import axios from 'axios';
+import api from '../../../api';
 
 @injectIntl
 export default class EmbedModal extends ImmutablePureComponent {
@@ -10,6 +10,7 @@ export default class EmbedModal extends ImmutablePureComponent {
   static propTypes = {
     url: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
+    onError: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   }
 
@@ -23,7 +24,7 @@ export default class EmbedModal extends ImmutablePureComponent {
 
     this.setState({ loading: true });
 
-    axios.post('/api/web/embed', { url }).then(res => {
+    api().post('/api/web/embed', { url }).then(res => {
       this.setState({ loading: false, oembed: res.data });
 
       const iframeDocument = this.iframe.contentWindow.document;
@@ -35,6 +36,8 @@ export default class EmbedModal extends ImmutablePureComponent {
       iframeDocument.body.style.margin = 0;
       this.iframe.width  = iframeDocument.body.scrollWidth;
       this.iframe.height = iframeDocument.body.scrollHeight;
+    }).catch(error => {
+      this.props.onError(error);
     });
   }
 

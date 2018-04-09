@@ -26,7 +26,7 @@ describe SearchService do
       context 'that does not find anything' do
         it 'returns the empty results' do
           service = double(call: nil)
-          allow(FetchRemoteResourceService).to receive(:new).and_return(service)
+          allow(ResolveURLService).to receive(:new).and_return(service)
           results = subject.call(@query, 10)
 
           expect(service).to have_received(:call).with(@query)
@@ -38,7 +38,7 @@ describe SearchService do
         it 'includes the account in the results' do
           account = Account.new
           service = double(call: account)
-          allow(FetchRemoteResourceService).to receive(:new).and_return(service)
+          allow(ResolveURLService).to receive(:new).and_return(service)
 
           results = subject.call(@query, 10)
           expect(service).to have_received(:call).with(@query)
@@ -50,7 +50,7 @@ describe SearchService do
         it 'includes the status in the results' do
           status = Status.new
           service = double(call: status)
-          allow(FetchRemoteResourceService).to receive(:new).and_return(service)
+          allow(ResolveURLService).to receive(:new).and_return(service)
 
           results = subject.call(@query, 10)
           expect(service).to have_received(:call).with(@query)
@@ -68,7 +68,7 @@ describe SearchService do
           allow(AccountSearchService).to receive(:new).and_return(service)
 
           results = subject.call(query, 10)
-          expect(service).to have_received(:call).with(query, 10, false, nil)
+          expect(service).to have_received(:call).with(query, 10, nil, resolve: false)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end

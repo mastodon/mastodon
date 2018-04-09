@@ -3,18 +3,18 @@ sv:
   simple_form:
     hints:
       defaults:
-        avatar: Högst 2 MB. Kommer nedskalas till 120x120px
-        digest: Skickas efter en lång period av inaktivitet med en sammanfattning av anmärkningar du har fått under din frånvaro
+        avatar: Högst 2 MB. Kommer nedskalas till 400x400px
+        digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
         display_name:
           one: <span class="name-counter">1</span> tecken kvar
           other: <span class="name-counter">%{count}</span> tecken kvar
         header: NG, GIF eller JPG. Högst 2 MB. Kommer nedskalas till 700x335px
-        locked: Kräver dig att manuellt godkänna följare
+        locked: Kräver att du manuellt godkänner följare
         note:
           one: <span class="note-counter">1</span> tecken kvar
           other: <span class="note-counter">%{count}</span> tecken kvar
-        setting_noindex: Påverkar din offentliga profil och status sidor
-        setting_theme: Påverkar hur Mastodon ser ut när du är inloggad från vilken enhet som helst.
+        setting_noindex: Påverkar din offentliga profil och statussidor
+        setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är inloggad.
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
@@ -30,32 +30,38 @@ sv:
         data: Data
         display_name: Visningsnamn
         email: E-postadress
+        expires_in: Förfaller efter
         filtered_languages: Filtrerade språk
-        header: Rubrik
+        header: Bakgrundsbild
         locale: Språk
         locked: Lås konto
+        max_uses: Högst antal  användningar
         new_password: Nytt lösenord
         note: Biografi
-        otp_attempt: Tvåfaktorkod
+        otp_attempt: Tvåstegslösenord
         password: Lösenord
         setting_auto_play_gif: Auto-play animerade GIF-filer
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
-        setting_delete_modal: Visa bekräftelse innan du raderar en toot
+        setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot
+        setting_display_sensitive_media: Visa alltid media märkt som känsligt
         setting_noindex: Uteslutning av sökmotorindexering
+        setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
         setting_theme: Sidans tema
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
         severity: Strikthet
         type: Importtyp
         username: Användarnamn
+        username_or_email: Användarnamn eller e-mail
       interactions:
         must_be_follower: Blockera meddelanden från icke-följare
         must_be_following: Blockera meddelanden från personer du inte följer
+        must_be_following_dm: Blockera direktmeddelanden från personer du inte följer
       notification_emails:
         digest: Skicka sammandrag via e-post
-        favourite: Skicka e-post när någon favoriterar din status
+        favourite: Skicka e-post när någon favoriserar din status
         follow: Skicka e-post när någon följer dig
         follow_request: Skicka e-post när någon begär att följa dig
         mention: Skicka e-post när någon nämner dig

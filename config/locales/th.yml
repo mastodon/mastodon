@@ -153,12 +153,10 @@ th:
     title: แอดมิน
   application_mailer:
     settings: 'เปลี่ยนอีเมล์ preferences: %{link}'
-    signature: ฟอร์มการแจ้งเตือนแมสโทดอน %{instance}
     view: 'วิว:'
   applications:
     invalid_url: URL ที่ระบุไม่ถูกตั้ง
   auth:
-    change_password: Credentials
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: คุณลืมพาสเวริ์ดใช่ัม้ย?
     login: ล๊อคอิน
@@ -166,6 +164,7 @@ th:
     register: สมัคร
     resend_confirmation: ส่งขั้นตอนวิธีการยืนยันใหม่อีกครั้ง
     reset_password: เปลี่ยนรหัสผ่าน
+    security: Credentials
     set_new_password: ตั้งรหัสผ่านใหม่
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account

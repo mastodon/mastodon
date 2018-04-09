@@ -90,7 +90,7 @@ module.exports = merge(sharedConfig, {
         '**/*.woff',
       ],
       ServiceWorker: {
-        entry: path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'),
+        entry: `imports-loader?process.env=>${encodeURIComponent(JSON.stringify(process.env))}!${encodeURI(path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'))}`,
         cacheName: 'mastodon',
         output: '../assets/sw.js',
         publicPath: '/sw.js',

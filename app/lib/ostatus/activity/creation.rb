@@ -26,6 +26,11 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     cached_reblog = reblog
     status = nil
 
+    # Skip if the reblogged status is not public
+    return if cached_reblog && !(cached_reblog.public_visibility? || cached_reblog.unlisted_visibility?)
+
+    media_attachments = save_media.take(4)
+
     ApplicationRecord.transaction do
       status = Status.create!(
         uri: id,
@@ -39,12 +44,12 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         language: content_language,
         visibility: visibility_scope,
         conversation: find_or_create_conversation,
-        thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil
+        thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil,
+        media_attachment_ids: media_attachments.map(&:id)
       )
 
       save_mentions(status)
       save_hashtags(status)
-      save_media(status)
       save_emojis(status)
     end
 
@@ -56,7 +61,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
 
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
-    DistributionWorker.perform_async(status.id) if @options[:override_timestamps]
+    DistributionWorker.perform_async(status.id) if @options[:override_timestamps] || status.within_realtime_window?
 
     status
   end
@@ -126,18 +131,20 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     ProcessHashtagsService.new.call(parent, tags)
   end
 
-  def save_media(parent)
-    do_not_download = DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
+  def save_media
+    do_not_download = DomainBlock.find_by(domain: @account.domain)&.reject_media?
+    media_attachments = []
 
     @xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: OStatus::TagManager::XMLNS).each do |link|
       next unless link['href']
 
-      media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
+      media = MediaAttachment.where(status: nil, remote_url: link['href']).first_or_initialize(account: @account, status: nil, remote_url: link['href'])
       parsed_url = Addressable::URI.parse(link['href']).normalize
 
       next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
 
       media.save
+      media_attachments << media
 
       next if do_not_download
 
@@ -148,6 +155,8 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         next
       end
     end
+
+    media_attachments
   end
 
   def save_emojis(parent)

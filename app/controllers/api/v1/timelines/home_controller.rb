@@ -9,7 +9,11 @@ class Api::V1::Timelines::HomeController < Api::BaseController
 
   def show
     @statuses = load_statuses
-    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
+
+    render json: @statuses,
+           each_serializer: REST::StatusSerializer,
+           relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id),
+           status: regeneration_in_progress? ? 206 : 200
   end
 
   private
@@ -39,7 +43,7 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:local, :limit).merge(core_params)
+    params.slice(:local, :limit).permit(:local, :limit).merge(core_params)
   end
 
   def next_path
@@ -56,5 +60,9 @@ class Api::V1::Timelines::HomeController < Api::BaseController
 
   def pagination_since_id
     @statuses.first.id
+  end
+
+  def regeneration_in_progress?
+    Redis.current.exists("account:#{current_account.id}:regeneration")
   end
 end

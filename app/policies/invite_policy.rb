@@ -10,7 +10,7 @@ class InvitePolicy < ApplicationPolicy
   end
 
   def destroy?
-    owner? || staff?
+    owner? || (Setting.min_invite_role == 'admin' ? admin? : staff?)
   end
 
   private

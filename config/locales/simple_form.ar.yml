@@ -3,47 +3,63 @@ ar:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF أو JPG. على الأكثر 2 ميغابيت . سوف يتم تصغيرها إلى 120x120px
-        display_name: <span class="name-counter">%{count}</span> أحرف متبقية
-        header: PNG, GIF or JPG. على الأكثر 2 ميغابيت . سوف يتم تصغيرها إلى 700x335px
-        locked: يتطلب منك الموافقة يدويا على كل طلب للإشتراك بحسابك و منشوراتك تعرض لمتابعيك فقط دون غيرهم
-        note: <span class="note-counter">%{count}</span> أحرف متبقية
+        avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 400x400px
+        digest: تُرسَل إليك بعد مُضيّ مدة مِن خمول نشاطك و فقط إذا ما تلقيت رسائل شخصية مباشِرة أثناء فترة غيابك مِن الشبكة
+        header: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير 2MB. سيتم تصغيره إلى 700x335px
+        locked: يتطلب منك الموافقة يدويا على طلبات المتابعة
+        setting_noindex: ذلك يؤثر على حالة ملفك الشخصي و صفحاتك
+        setting_theme: ذلك يؤثر على الشكل الذي سيبدو عليه ماستدون عندما تقوم بالدخول مِن أي جهاز.
       imports:
-        data: ملف CSV تم تصديره من خادوم مثيل  آخر لماستدون
+        data: ملف CSV تم تصديره مِن مثيل خادوم ماستدون آخر
       sessions:
-        otp: أدخل الرمز الثنائي من هاتفك أو استخدم أحد رموز الاسترداد.
+        otp: قم بإدخال رمز المصادقة بخطوتين مِن هاتفك أو إستخدم أحد رموز النفاذ الإحتياطية.
+      user:
+        filtered_languages: سوف يتم تصفية و إخفاء اللغات المختارة من خيوطك العمومية
     labels:
       defaults:
         avatar: الصورة الرمزية
-        confirm_new_password: تأكيد كلمة المرور الجديدة
-        confirm_password: تأكيد كلمة المرور
-        current_password: كلمة المرور الحالية
+        confirm_new_password: تأكيد كلمة السر الجديدة
+        confirm_password: تأكيد كلمة السر
+        current_password: كلمة السر الحالية
         data: البيانات
-        display_name: الاسم الذي يتم عرضه
+        display_name: الإسم المعروض
         email: عنوان البريد الإلكتروني
-        header: رأس الصفحة
+        expires_in: تنتهي مدة صلاحيته بعد
+        filtered_languages: اللغات التي تم تصفيتها
+        header: الرأسية
         locale: اللغة
-        locked: إجعل حسابك خاصًا
-        new_password: كلمة مرور جديدة
+        locked: تجميد الحساب
+        max_uses: عدد مرات استخدام الرابط
+        new_password: كلمة السر الجديدة
         note: السيرة الذاتية
-        otp_attempt: الرمز الثنائي
-        password: كلمة المرور
-        setting_auto_play_gif: تشغيل صور جيف المتحركة تلقائي
-        setting_boost_modal: إظهار مربع حوار التأكيد قبل القيام بالترقية
+        otp_attempt: رمز المصادقة بخطوتين
+        password: كلمة السر
+        setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
+        setting_boost_modal: إظهار مربع حوار للتأكيد قبل ترقية أي تبويق
         setting_default_privacy: خصوصية المنشور
-        severity: الشدة
-        type: نوع الإستيراد
-        username: اسم المستخدم
+        setting_default_sensitive: إعتبر الوسائط دائما كمحتوى حساس
+        setting_delete_modal: إظهار مربع حوار للتأكيد قبل حذف أي تبويق
+        setting_display_sensitive_media: دائمًا إظهار الوسائط الحساسة
+        setting_noindex: عدم السماح لمحركات البحث بفهرسة ملفك الشخصي
+        setting_reduce_motion: تخفيض عدد الصور في الوسائط المتحركة
+        setting_system_font_ui: إستخدم الخطوط الإفتراضية للنظام
+        setting_theme: سمة الموقع
+        setting_unfollow_modal: إظهار مربع حوار للتأكيد قبل إلغاء متابعة أي حساب
+        severity: القوّة
+        type: صيغة الإستيراد
+        username: إسم المستخدم
+        username_or_email: إسم المستخدم أو كلمة السر
       interactions:
-        must_be_follower: حظر اشعارات الأشخاص الذين لا يتبعونك
-        must_be_following: حظر اشعارات الأشخاص الذين لا تتبعهم
+        must_be_follower: حظر الإخطارات القادمة من حسابات لا تتبعك
+        must_be_following: حظر الإخطارات القادمة من الحسابات التي لا تتابعها
+        must_be_following_dm: حظر الرسائل المباشرة القادمة من طرف أشخاص لا تتبعهم
       notification_emails:
-        digest: إرسال رسائل بريد إلكتروني ملخصة
-        favourite: إبعث بريداً إلكترونياً عندما يعجب احدهم بمنشورك
-        follow: إبعث بريداً إلكترونياً عندما يتبعك أحد
-        follow_request: إبعث بريداً إلكترونياً عند تلقيك طلب بالمتابعة
-        mention: إبعث بريداً إلكترونياً عندما يشار إليك
-        reblog: إبعث بريداً إلكترونياً عندما يُرقّي احدهم منشورك
+        digest: إرسال ملخصات عبر البريد الإلكتروني
+        favourite: إبعث بريداً إلكترونيًا عندما يُعجَب أحدهم بمنشورك
+        follow: إبعث بريداً إلكترونيًا عندما يتبعك أحد
+        follow_request: إبعث بريدا إلكترونيا عندما يقوم أحدهم بإرسال طلب بالمتابعة
+        mention: إبعث بريداً إلكترونيًا عندما يُشير إليك أو يذكُرك أحدهم
+        reblog: إبعث بريداً إلكترونيًا عندما يقوم أحدهم بترقية منشورك
     'no': لا
     required:
       mark: "*"

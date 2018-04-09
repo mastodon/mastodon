@@ -1,0 +1,43 @@
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.hero
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center.padded
+                              %table.hero-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                                %tbody
+                                  %tr
+                                    %td
+                                      = image_tag full_pack_url('icon_person_add.png'), alt: ''
+
+                              %h1= t 'notification_mailer.follow.title'
+                              %p.lead= t('notification_mailer.follow.body', name: @account.acct)
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.content-start
+                  %table.column{ cellspacing: 0, cellpadding: 0 }
+                    %tbody
+                      %tr
+                        %td.column-cell.button-cell
+                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                            %tbody
+                              %tr
+                                %td.button-primary
+                                  = link_to web_url("accounts/#{@account.id}") do
+                                    %span= t 'application_mailer.view_profile'

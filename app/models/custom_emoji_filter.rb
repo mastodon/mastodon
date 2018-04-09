@@ -27,6 +27,8 @@ class CustomEmojiFilter
       CustomEmoji.remote
     when 'by_domain'
       CustomEmoji.where(domain: value)
+    when 'shortcode'
+      CustomEmoji.where(shortcode: value)
     else
       raise "Unknown filter: #{key}"
     end

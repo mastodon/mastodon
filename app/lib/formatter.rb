@@ -9,7 +9,7 @@ class Formatter
 
   include ActionView::Helpers::TextHelper
 
-  def format(status, options = {})
+  def format(status, **options)
     if status.reblog?
       prepend_reblog = status.reblog.account.acct
       status         = status.proper
@@ -18,6 +18,8 @@ class Formatter
     end
 
     raw_content = status.text
+
+    return '' if raw_content.blank?
 
     unless status.local?
       html = reformat(raw_content)
@@ -49,13 +51,13 @@ class Formatter
     strip_tags(text)
   end
 
-  def simplified_format(account)
-    return reformat(account.note).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
-
-    html = encode_and_link_urls(account.note)
-    html = simple_format(html, {}, sanitize: false)
-    html = html.delete("\n")
-
+  def simplified_format(account, **options)
+    html = if account.local?
+             linkify(account.note)
+           else
+             reformat(account.note)
+           end
+    html = encode_custom_emojis(html, CustomEmoji.from_text(account.note, account.domain)) if options[:custom_emojify]
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
@@ -66,6 +68,14 @@ class Formatter
   def format_spoiler(status)
     html = encode(status.spoiler_text)
     html = encode_custom_emojis(html, status.emojis + status.avatar_emojis)
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def linkify(text)
+    html = encode_and_link_urls(text)
+    html = simple_format(html, {}, sanitize: false)
+    html = html.delete("\n")
+
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
@@ -168,10 +178,10 @@ class Formatter
   end
 
   def link_to_url(entity)
-    normalized_url = Addressable::URI.parse(entity[:url]).normalize
-    html_attrs     = { target: '_blank', rel: 'nofollow noopener' }
+    url        = Addressable::URI.parse(entity[:url])
+    html_attrs = { target: '_blank', rel: 'nofollow noopener' }
 
-    Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), normalized_url, html_attrs)
+    Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), url, html_attrs)
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     encode(entity[:url])
   end

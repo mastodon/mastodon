@@ -99,7 +99,7 @@ module Mastodon
     # default - The default value for the column.
     # null - When set to `true` the column will allow NULL values.
     #        The default is to not allow NULL values.
-    def add_timestamps_with_timezone(table_name, options = {})
+    def add_timestamps_with_timezone(table_name, **options)
       options[:null] = false if options[:null].nil?
 
       [:created_at, :updated_at].each do |column_name|
@@ -134,7 +134,7 @@ module Mastodon
     #     add_concurrent_index :users, :some_column
     #
     # See Rails' `add_index` for more info on the available arguments.
-    def add_concurrent_index(table_name, column_name, options = {})
+    def add_concurrent_index(table_name, column_name, **options)
       if transaction_open?
         raise 'add_concurrent_index can not be run inside a transaction, ' \
           'you can disable transactions by calling disable_ddl_transaction! ' \
@@ -158,7 +158,7 @@ module Mastodon
     #     remove_concurrent_index :users, :some_column
     #
     # See Rails' `remove_index` for more info on the available arguments.
-    def remove_concurrent_index(table_name, column_name, options = {})
+    def remove_concurrent_index(table_name, column_name, **options)
       if transaction_open?
         raise 'remove_concurrent_index can not be run inside a transaction, ' \
           'you can disable transactions by calling disable_ddl_transaction! ' \
@@ -182,7 +182,7 @@ module Mastodon
     #     remove_concurrent_index :users, "index_X_by_Y"
     #
     # See Rails' `remove_index` for more info on the available arguments.
-    def remove_concurrent_index_by_name(table_name, index_name, options = {})
+    def remove_concurrent_index_by_name(table_name, index_name, **options)
       if transaction_open?
         raise 'remove_concurrent_index_by_name can not be run inside a transaction, ' \
           'you can disable transactions by calling disable_ddl_transaction! ' \

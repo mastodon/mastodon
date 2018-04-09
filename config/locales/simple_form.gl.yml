@@ -1,0 +1,73 @@
+---
+gl:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF ou JPG. Como moito 2MB. Será reducida ate 400x400px
+        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
+        display_name:
+          one: <span class="name-counter">1</span> caracter restante
+          other: <span class="name-counter">%{count}</span> caracteres restantes
+        header: PNG, GIF ou JPG. Como moito 2MB. Será reducida a 700x335px
+        locked: Require que vostede aprove as seguidoras de xeito manual
+        note:
+          one: <span class="note-counter">1</span> caracter restante
+          other: <span class="note-counter">%{count}</span> caracteres restantes
+        setting_noindex: Afecta ao seu perfil público e páxinas de estado
+        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
+      imports:
+        data: Ficheiro CSV exportado desde outra instancia Mastodon
+      sessions:
+        otp: Introduza o código de Doble-Factor desde o seu teléfono ou utilice un dos seus códigos de recuperación.
+      user:
+        filtered_languages: Os idiomas marcados filtraranse das liñas temporais públicas para vostede
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Confirme o novo contrasinal
+        confirm_password: Confirme o contrasinal
+        current_password: Contrasinal actual
+        data: Data
+        display_name: Nome mostrado
+        email: enderezo correo electrónico
+        expires_in: Caducidade despois de
+        filtered_languages: Idiomas filtrados
+        header: Cabezallo
+        locale: Idioma
+        locked: Protexer conta
+        max_uses: Número máximo de usos
+        new_password: Novo contrasinal
+        note: Sobre vostede
+        otp_attempt: Código de Doble-Factor
+        password: Contrasinal
+        setting_auto_play_gif: Reprodución automática de GIFs animados
+        setting_boost_modal: Pedir confirmación antes de promocionar
+        setting_default_privacy: Intimidade da publicación
+        setting_default_sensitive: Marcar sempre multimedia como sensible
+        setting_delete_modal: Solicitar confirmación antes de eliminar unha mensaxe
+        setting_display_sensitive_media: Mostrar sempre os medios marcados como sensibles
+        setting_noindex: Pedir non aparecer nas buscas dos motores de busca
+        setting_reduce_motion: Reducir o movemento nas animacións
+        setting_system_font_ui: Utilizar a tipografía por defecto do sistema
+        setting_theme: Decorado da instancia
+        setting_unfollow_modal: Solicitar confirmación antes de deixar de seguir alguén
+        severity: Severidade
+        type: Tipo de importación
+        username: Nome de usuaria
+        username_or_email: Nome de usuaria ou Correo-e
+      interactions:
+        must_be_follower: Bloquear as notificacións de non-seguidoras
+        must_be_following: Bloquea as notificacións de personas que non segue
+        must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
+      notification_emails:
+        digest: Enviar correos con resumos
+        favourite: Enviar un correo cando alguén marca como favorita unha das súas publicacións
+        follow: Enviar un correo cando alguén a segue
+        follow_request: Enviar un correo cando alguén solicita seguila
+        mention: Enviar un correo cando alguén a menciona
+        reblog: Enviar un correo cando alguén promociona a súa mensaxe
+    'no': Non
+    required:
+      mark: "*"
+      text: requerido
+    'yes': Si

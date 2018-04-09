@@ -159,14 +159,15 @@ class FeedManager
 
     return true if Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?
 
-    if status.reply? && !status.in_reply_to_account_id.nil?                                                              # Filter out if it's a reply
-      should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists? # and I'm not following the person it's a reply to
-      should_filter &&= receiver_id != status.in_reply_to_account_id                                                     # and it's not a reply to me
-      should_filter &&= status.account_id != status.in_reply_to_account_id                                               # and it's not a self-reply
+    if status.reply? && !status.in_reply_to_account_id.nil?                                                                      # Filter out if it's a reply
+      should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists?         # and I'm not following the person it's a reply to
+      should_filter &&= receiver_id != status.in_reply_to_account_id                                                             # and it's not a reply to me
+      should_filter &&= status.account_id != status.in_reply_to_account_id                                                       # and it's not a self-reply
       return should_filter
-    elsif status.reblog?                                                                                                 # Filter out a reblog
-      should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me
-      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?  # or the author's domain is blocked
+    elsif status.reblog?                                                                                                         # Filter out a reblog
+      should_filter   = Follow.where(account_id: receiver_id, target_account_id: status.account_id, show_reblogs: false).exists? # if the reblogger's reblogs are suppressed
+      should_filter ||= Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?                # or if the author of the reblogged status is blocking me
+      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?          # or the author's domain is blocked
       return should_filter
     end
 
@@ -219,6 +220,14 @@ class FeedManager
         return false
       end
     else
+      # A reblog may reach earlier than the original status because of the
+      # delay of the worker deliverying the original status, the late addition
+      # by merging timelines, and other reasons.
+      # If such a reblog already exists, just do not re-insert it into the feed.
+      rank = redis.zrevrank(reblog_key, status.id)
+
+      return false unless rank.nil?
+
       redis.zadd(timeline_key, status.id, status.id)
     end
 

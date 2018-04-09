@@ -14,6 +14,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  def update_resource(resource, params)
+    params[:password] = nil if Devise.pam_authentication && resource.encrypted_password.blank?
+    super
+  end
+
   def build_resource(hash = nil)
     super(hash)
 
@@ -35,6 +40,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def after_inactive_sign_up_path_for(_resource)
     new_user_session_path
+  end
+
+  def after_update_path_for(_resource)
+    edit_user_registration_path
   end
 
   def check_enabled_registrations

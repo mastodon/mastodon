@@ -4,7 +4,7 @@
 # Table name: invites
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
+#  user_id    :integer          not null
 #  code       :string           default(""), not null
 #  expires_at :datetime
 #  max_uses   :integer
@@ -14,8 +14,11 @@
 #
 
 class Invite < ApplicationRecord
-  belongs_to :user, required: true
+  belongs_to :user
   has_many :users, inverse_of: :invite
+
+  scope :available, -> { where(expires_at: nil).or(where('expires_at >= ?', Time.now.utc)) }
+  scope :expired, -> { where.not(expires_at: nil).where('expires_at < ?', Time.now.utc) }
 
   before_validation :set_code
 
@@ -27,11 +30,15 @@ class Invite < ApplicationRecord
   end
 
   def valid_for_use?
-    (max_uses.nil? || uses < max_uses) && (expires_at.nil? || expires_at >= Time.now.utc)
+    (max_uses.nil? || uses < max_uses) && !expired?
   end
 
   def expire!
     touch(:expires_at)
+  end
+
+  def expired?
+    !expires_at.nil? && expires_at < Time.now.utc
   end
 
   private
