@@ -32,6 +32,9 @@ module Mastodon
       [to_a.join('.'), flags].join
     end
 
+    alias version_number to_s
+    module_function :version_number
+
     def source_base_url
       'https://github.com/tootsuite/mastodon'
     end
