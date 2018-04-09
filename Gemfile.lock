@@ -71,6 +71,7 @@ GEM
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -185,6 +186,7 @@ GEM
     fast_blank (1.0.0)
     fastimage (2.1.1)
     ffi (1.9.23)
+    ffi (1.9.23-x86-mingw32)
     fog-core (1.45.0)
       builder
       excon (~> 0.58)
@@ -313,6 +315,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     msgpack (1.2.4)
+    msgpack (1.2.4-x86-mingw32)
     multi_json (1.13.1)
     multipart-post (2.0.0)
     necromancer (0.4.0)
@@ -322,6 +325,8 @@ GEM
     net-ssh (4.2.0)
     nio4r (2.3.0)
     nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
+    nokogiri (1.8.2-x86-mingw32)
       mini_portile2 (~> 2.3.0)
     nokogumbo (1.5.0)
       nokogiri
@@ -365,6 +370,7 @@ GEM
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
     pg (0.21.0)
+    pg (0.21.0-x86-mingw32)
     pghero (1.7.0)
       activerecord
     pkg-config (1.2.9)
@@ -590,6 +596,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    unf_ext (0.0.7.5-x86-mingw32)
     unicode-display_width (1.3.0)
     uniform_notifier (1.11.0)
     warden (1.2.7)
@@ -614,6 +621,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
