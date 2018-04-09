@@ -141,4 +141,4 @@ group :production do
   gem 'redis-rails', '~> 5.0'
 end
 
-gem 'mastodon_cthulhu'
+gem 'mastodon_cthulhu', '~> 0.1.1'
