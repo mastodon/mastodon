@@ -28,7 +28,7 @@ class PostStatusService < BaseService
       status = account.statuses.create!(text: text,
                                         media_attachments: media || [],
                                         thread: in_reply_to,
-                                        sensitive: options[:sensitive],
+                                        sensitive: (options[:sensitive].nil? ? account.user&.setting_default_sensitive : options[:sensitive]),
                                         spoiler_text: options[:spoiler_text] || '',
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
                                         language: LanguageDetector.instance.detect(text, account),
