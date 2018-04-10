@@ -244,6 +244,9 @@ Rails.application.routes.draw do
           resource :favourite, only: :create
           post :unfavourite, to: 'favourites#destroy'
 
+          resource :bookmark, only: :create
+          post :unbookmark, to: 'bookmarks#destroy'
+
           resource :mute, only: :create
           post :unmute, to: 'mutes#destroy'
 
@@ -278,6 +281,7 @@ Rails.application.routes.draw do
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index]
       resources :favourites,   only: [:index]
+      resources :bookmarks,    only: [:index]
       resources :reports,      only: [:create]
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
