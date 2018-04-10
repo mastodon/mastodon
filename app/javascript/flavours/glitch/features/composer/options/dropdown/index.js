@@ -29,7 +29,7 @@ const handlers = {
     } = this.handlers;
     switch (key) {
     case 'Enter':
-      handleToggle();
+      handleToggle(key);
       break;
     case 'Escape':
       handleClose();
@@ -79,7 +79,7 @@ const handlers = {
   },
 
   //  Toggles opening and closing the dropdown.
-  handleToggle () {
+  handleToggle ({ target }) {
     const { handleMakeModal } = this.handlers;
     const { onModalOpen } = this.props;
     const { open } = this.state;
@@ -98,6 +98,8 @@ const handlers = {
       }
     }
 
+    const { top } = target.getBoundingClientRect();
+    this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
     //  Otherwise, we just set our state to open.
     this.setState({ open: !open });
   },
@@ -129,6 +131,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     this.state = {
       needsModalUpdate: false,
       open: false,
+      placement: null,
     };
   }
 
@@ -161,7 +164,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       onChange,
       value,
     } = this.props;
-    const { open } = this.state;
+    const { open, placement } = this.state;
     const computedClass = classNames('composer--options--dropdown', {
       active,
       open,
@@ -188,7 +191,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
         />
         <Overlay
           containerPadding={20}
-          placement='bottom'
+          placement={placement}
           show={open}
           target={this}
         >

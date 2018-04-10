@@ -13,7 +13,6 @@ import { assignHandlers } from 'flavours/glitch/util/react_helpers';
 
 //  Handlers.
 const handlers = {
-
   //  When the document is clicked elsewhere, we close the dropdown.
   handleDocumentClick ({ target }) {
     const { node } = this;
@@ -45,6 +44,10 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
     //  Instance variables.
     this.node = null;
+
+    this.state = {
+      mounted: false,
+    };
   }
 
   //  On mounting, we add our listeners.
@@ -52,6 +55,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     const { handleDocumentClick } = this.handlers;
     document.addEventListener('click', handleDocumentClick, false);
     document.addEventListener('touchend', handleDocumentClick, withPassive);
+    this.setState({ mounted: true });
   }
 
   //  On unmounting, we remove our listeners.
@@ -63,6 +67,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
   //  Rendering.
   render () {
+    const { mounted } = this.state;
     const { handleRef } = this.handlers;
     const {
       items,
@@ -87,13 +92,16 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
         }}
       >
         {({ opacity, scaleX, scaleY }) => (
+          // It should not be transformed when mounting because the resulting
+          // size will be used to determine the coordinate of the menu by
+          // react-overlays
           <div
             className='composer--options--dropdown--content'
             ref={handleRef}
             style={{
               ...style,
               opacity: opacity,
-              transform: `scale(${scaleX}, ${scaleY})`,
+              transform: mounted ? `scale(${scaleX}, ${scaleY})` : null,
             }}
           >
             {items ? items.map(
