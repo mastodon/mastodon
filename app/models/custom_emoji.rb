@@ -58,5 +58,9 @@ class CustomEmoji < ApplicationRecord
 
       where(shortcode: shortcodes, domain: domain, disabled: false)
     end
+
+    def search(shortcode)
+      where('"custom_emojis"."shortcode" ILIKE ?', "%#{shortcode}%")
+    end
   end
 end
