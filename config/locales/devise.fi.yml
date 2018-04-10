@@ -41,7 +41,7 @@ fi:
           ei vaihdeta, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden salasanan.
         title: Salasanan vaihto
       unlock_instructions:
-        subject: 'Mastodon: Avauksen ohjeet'
+        subject: 'Mastodon: Ohjeet lukituksen poistoon'
       email_changed:
         explanation: 'Tilin sähköpostiosoitteeksi vaihdetaan:'
         extra: Jos et vaihtanut sähköpostiosoitettasi, joku muu on todennäköisesti
@@ -56,48 +56,48 @@ fi:
         subject: 'Mastodon: Vahvista sähköpostiosoite - %{instance}'
         title: Vahvista sähköpostiosoite
     omniauth_callbacks:
-      failure: Varmennus %{kind} epäonnistui koska "%{reason}".
-      success: Onnistuneesti varmennettu %{kind} tilillä.
+      failure: Tunnistautuminen lähteestä %{kind} ei onnistunut, koska "%{reason}".
+      success: Tunnistautuminen tililtä %{kind} onnistui.
     passwords:
-      no_token: Et pääse tälle sivulle ilman salasanan vaihto sähköpostia. Jos tulet
-        tämmöisestä postista, varmista että sinulla on täydellinen URL.
-      send_instructions: Jos sähköpostisi on meidän tietokannassa, saat pian ohjeet
-        salasanan palautukseen.
-      send_paranoid_instructions: Jos sähköpostisi on meidän tietokannassa, saat pian
-        ohjeet salasanan palautukseen.
-      updated: Salasanasi vaihdettu onnistuneesti. Olet nyt kirjautunut sisään.
-      updated_not_active: Salasanasi vaihdettu onnistuneesti.
+      no_token: Tälle sivulle pääsee vain salasananvaihtoviestin kautta. Jos tiedät
+        tulevasi salasananvaihtoviestin kautta, varmista, että käytät koko viestissä
+        mainittua URL-osoitetta.
+      send_instructions: Jos sähköpostiosoite on tietokannassamme, siihen lähetetään
+        pian linkki salasanan vaihtoon. Jos et saa viestiä, tarkista roskapostikansio.
+      send_paranoid_instructions: Jos sähköpostiosoite on tietokannassamme, siihen
+        lähetetään pian linkki salasanan vaihtoon. Jos et saa viestiä, tarkista roskapostikansio.
+      updated: Salasanan vaihto onnistui. Olet nyt kirjautunut sisään.
+      updated_not_active: Salasanan vaihto onnistui.
     registrations:
-      destroyed: Näkemiin! Tilisi on onnistuneesti peruttu. Toivottavasti näemme joskus
-        uudestaan.
-      signed_up: Tervetuloa! Rekisteröitymisesi onnistu.
-      signed_up_but_inactive: Olet onnistuneesti rekisteröitynyt, mutta emme voi kirjata
-        sinua sisään koska tiliäsi ei ole viellä aktivoitu.
-      signed_up_but_locked: Olet onnistuneesti rekisteröitynyt, mutta emme voi kirjata
-        sinua sisään koska tilisi on lukittu.
-      signed_up_but_unconfirmed: Varmistuslinkki on lähetty sähköpostiisi. Seuraa
-        sitä jotta tilisi voidaan aktivoida.
-      update_needs_confirmation: Tilisi on onnistuneesti päivitetty, mutta meidän
-        tarvitsee vahvistaa sinun uusi sähköpostisi. Tarkista sähköpostisi ja seuraa
-        viestissä tullutta linkkiä varmistaaksesi uuden osoitteen..
-      updated: Tilisi on onnistuneesti päivitetty.
+      destroyed: Tilisi on poistettu. Näkemiin ja tervetuloa uudelleen!
+      signed_up: Tervetuloa! Rekisteröityminen onnistui.
+      signed_up_but_inactive: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata
+        sinua sisään, sillä tiliäsi ei ole vielä aktivoitu.
+      signed_up_but_locked: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata
+        sinua sisään, sillä tilisi on lukittu.
+      signed_up_but_unconfirmed: Sähköpostiosoitteeseesi on lähetetty vahvistuslinkki.
+        Aktivoi tili seuraamalla linkkiä. Jos et saanut viestiä, tarkista roskapostikansio.
+      update_needs_confirmation: Tilin päivitys onnistui, mutta uusi sähköpostiosoite
+        on vahvistettava. Tarkista sähköpostisi ja vahvista uusi sähköpostiosoite
+        seuraamalla vahvistuslinkkiä. Jos et saanut viestiä, tarkista roskapostikansio.
+      updated: Tilin päivitys onnistui.
     sessions:
-      already_signed_out: Ulos kirjautuminen onnistui.
+      already_signed_out: Uloskirjautuminen onnistui.
       signed_in: Sisäänkirjautuminen onnistui.
-      signed_out: Ulos kirjautuminen onnistui.
+      signed_out: Uloskirjautuminen onnistui.
     unlocks:
-      send_instructions: Saat sähköpostiisi pian ohjeet, jolla voit avata tilisi uudestaan.
-      send_paranoid_instructions: Jos tilisi on olemassa, saat sähköpostiisi pian
-        ohjeet tilisi avaamiseen.
-      unlocked: Tilisi on avattu onnistuneesti. Kirjaudu normaalisti sisään.
+      send_instructions: Saat pian sähköpostitse ohjeet tilin lukituksen poistoon.
+        Jos et saanut viestiä, tarkista roskapostikansio.
+      send_paranoid_instructions: Jos tili on olemassa, saat pian sähköpostitse ohjeet
+        tilin lukituksen poistoon. Jos et saanut viestiä, tarkista roskapostikansio.
+      unlocked: Tilin lukituksen poisto onnistui. Jatka kirjautumalla sisään.
   errors:
     messages:
-      already_confirmed: on jo varmistettu. Yritä kirjautua sisään
-      confirmation_period_expired: pitää varmistaa %{period} sisällä, ole hyvä ja
-        pyydä uusi
-      expired: on erääntynyt, ole hyvä ja pyydä uusi
+      already_confirmed: on jo vahvistettu. Yritä kirjautua sisään
+      confirmation_period_expired: on vahvistettava %{period} sisällä. Pyydä uusi
+      expired: on vanhentunut. Pyydä uusi
       not_found: ei löydy
       not_locked: ei ollut lukittu
       not_saved:
-        one: '1 virhe esti %{resource} tallennuksen:'
-        other: '%{count} virhettä esti %{resource} tallennuksen:'
+        one: '1 virhe esti kohteen %{resource} tallennuksen:'
+        other: '%{count} virhettä esti kohteen %{resource} tallennuksen:'
