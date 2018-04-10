@@ -80,6 +80,7 @@ class Account < ApplicationRecord
   has_many :stream_entries, inverse_of: :account, dependent: :destroy
   has_many :statuses, inverse_of: :account, dependent: :destroy
   has_many :favourites, inverse_of: :account, dependent: :destroy
+  has_many :bookmarks, inverse_of: :account, dependent: :destroy
   has_many :mentions, inverse_of: :account, dependent: :destroy
   has_many :notifications, inverse_of: :account, dependent: :destroy
 
