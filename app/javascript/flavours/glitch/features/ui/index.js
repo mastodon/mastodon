@@ -36,6 +36,7 @@ import {
   FollowRequests,
   GenericNotFound,
   FavouritedStatuses,
+  BookmarkedStatuses,
   ListTimeline,
   Blocks,
   DomainBlocks,
@@ -426,6 +427,7 @@ export default class UI extends React.Component {
               <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
               <WrappedRoute path='/notifications' component={Notifications} content={children} />
               <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+              <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
               <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
               <WrappedRoute path='/statuses/new' component={Drawer} content={children} />
