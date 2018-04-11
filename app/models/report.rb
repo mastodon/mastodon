@@ -39,4 +39,50 @@ class Report < ApplicationRecord
   def media_attachments
     MediaAttachment.where(status_id: status_ids)
   end
+
+  def assign_to_self!(current_account)
+    update!(assigned_account_id: current_account.id)
+  end
+
+  def unassign!
+    update!(assigned_account_id: nil)
+  end
+
+  def resolve!(acting_account)
+    update!(action_taken: true, action_taken_by_account_id: acting_account.id)
+  end
+
+  def unresolve!
+    update!(action_taken: false, action_taken_by_account_id: nil)
+  end
+
+  def unresolved?
+    !action_taken?
+  end
+
+  def history
+    time_range = created_at..updated_at
+
+    sql = [
+      Admin::ActionLog.where(
+        target_type: 'Report',
+        target_id: id,
+        created_at: time_range
+      ).unscope(:order),
+
+      Admin::ActionLog.where(
+        target_type: 'Account',
+        target_id: target_account_id,
+        created_at: time_range
+      ).unscope(:order),
+
+      Admin::ActionLog.where(
+        target_type: 'Status',
+        target_id: status_ids,
+        created_at: time_range
+      ).unscope(:order),
+    ].map { |query| "(#{query.to_sql})" }.join(' UNION ALL ')
+
+    Admin::ActionLog.from("(#{sql}) AS admin_action_logs")
+  end
 end
