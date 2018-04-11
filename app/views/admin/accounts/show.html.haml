@@ -36,9 +36,13 @@
           %th= t('admin.accounts.email')
           %td
             = @account.user_email
-
             - if @account.user_confirmed?
               = fa_icon('check')
+            = table_link_to 'edit', t('admin.accounts.change_email.label'), admin_account_change_email_path(@account.id) if can?(:change_email, @account.user)
+        - if @account.user_unconfirmed_email.present?
+          %th= t('admin.accounts.unconfirmed_email')
+          %td
+            = @account.user_unconfirmed_email
         %tr
           %th= t('admin.accounts.login_status')
           %td

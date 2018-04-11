@@ -4,27 +4,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import StatusContainer from '../containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import LoadMore from './load_more';
+import LoadGap from './load_gap';
 import ScrollableList from './scrollable_list';
 import { FormattedMessage } from 'react-intl';
-
-class LoadGap extends ImmutablePureComponent {
-
-  static propTypes = {
-    disabled: PropTypes.bool,
-    maxId: PropTypes.string,
-    onClick: PropTypes.func.isRequired,
-  };
-
-  handleClick = () => {
-    this.props.onClick(this.props.maxId);
-  }
-
-  render () {
-    return <LoadMore onClick={this.handleClick} disabled={this.props.disabled} />;
-  }
-
-}
 
 export default class StatusList extends ImmutablePureComponent {
 
