@@ -5,6 +5,10 @@ class UserPolicy < ApplicationPolicy
     staff? && !record.staff?
   end
 
+  def change_email?
+    staff? && !record.staff?
+  end
+
   def disable_2fa?
     admin? && !record.staff?
   end

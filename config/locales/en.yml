@@ -63,6 +63,13 @@ en:
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
+      change_email:
+        changed_msg: Account email successfully changed!
+        current_email: Current Email
+        label: Change Email
+        new_email: New Email
+        submit: Change Email
+        title: Change Email for %{username}
       confirm: Confirm
       confirmed: Confirmed
       demote: Demote
@@ -131,6 +138,7 @@ en:
       statuses: Statuses
       subscribe: Subscribe
       title: Accounts
+      unconfirmed_email: Unconfirmed E-mail
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
       unsubscribe: Unsubscribe
@@ -139,6 +147,7 @@ en:
     action_logs:
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
+        change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
@@ -247,8 +256,8 @@ en:
         title: Filter
       title: Invites
     report_notes:
-      created_msg: Moderation note successfully created!
-      destroyed_msg: Moderation note successfully destroyed!
+      created_msg: Report note successfully created!
+      destroyed_msg: Report note successfully deleted!
     reports:
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
@@ -257,15 +266,20 @@ en:
       comment:
         label: Report Comment
         none: None
+      created_at: Reported
       delete: Delete
+      history: Moderation History
       id: ID
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
         create: Add Note
         create_and_resolve: Resolve with Note
+        create_and_unresolve: Reopen with Note
         delete: Delete
-        label: Notes
+        label: Moderator Notes
+        new_label: Add Moderator Note
+        placeholder: Describe what actions have been taken, or any other updates to this report…
       nsfw:
         'false': Unhide media attachments
         'true': Hide media attachments

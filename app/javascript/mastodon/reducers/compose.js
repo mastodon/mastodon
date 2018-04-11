@@ -259,16 +259,18 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_PROGRESS:
     return state.set('progress', Math.round((action.loaded / action.total) * 100));
   case COMPOSE_MENTION:
-    return state
-      .update('text', text => `${text}@${action.account.get('acct')} `)
-      .set('focusDate', new Date())
-      .set('idempotencyKey', uuid());
+    return state.withMutations(map => {
+      map.update('text', text => [text.trim(), `@${action.account.get('acct')} `].filter((str) => str.length !== 0).join(' '));
+      map.set('focusDate', new Date());
+      map.set('idempotencyKey', uuid());
+    });
   case COMPOSE_DIRECT:
-    return state
-      .update('text', text => `@${action.account.get('acct')} `)
-      .set('privacy', 'direct')
-      .set('focusDate', new Date())
-      .set('idempotencyKey', uuid());
+    return state.withMutations(map => {
+      map.update('text', text => [text.trim(), `@${action.account.get('acct')} `].filter((str) => str.length !== 0).join(' '));
+      map.set('privacy', 'direct');
+      map.set('focusDate', new Date());
+      map.set('idempotencyKey', uuid());
+    });
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:

@@ -124,6 +124,7 @@ class Account < ApplicationRecord
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
   delegate :email,
+           :unconfirmed_email,
            :current_sign_in_ip,
            :current_sign_in_at,
            :confirmed?,
