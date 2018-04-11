@@ -18,6 +18,10 @@ EXPOSE 3000 4000
 
 WORKDIR /mastodon
 
+RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
+ && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
+ && chown -R mastodon:mastodon /mastodon/public
+
 RUN apk -U upgrade \
  && apk add -t build-dependencies \
     build-base \
@@ -62,23 +66,17 @@ RUN apk -U upgrade \
  && cd /mastodon \
  && rm -rf /tmp/* /var/cache/apk/*
 
-COPY Gemfile Gemfile.lock package.json yarn.lock .yarnclean /mastodon/
+USER mastodon
+
+COPY --chown=mastodon:mastodon Gemfile Gemfile.lock package.json yarn.lock .yarnclean /mastodon/
 
 RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-include=/usr/local/include \
  && bundle install -j$(getconf _NPROCESSORS_ONLN) --deployment --without test development \
  && yarn --pure-lockfile \
  && yarn cache clean
 
-RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
- && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
- && chown -R mastodon:mastodon /mastodon/public
-
-COPY . /mastodon
-
-RUN chown -R mastodon:mastodon /mastodon
+COPY --chown=mastodon:mastodon . /mastodon
 
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
-
-USER mastodon
 
 ENTRYPOINT ["/sbin/tini", "--"]
