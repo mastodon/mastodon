@@ -63,6 +63,13 @@ ja:
       are_you_sure: 本当に実行しますか？
       avatar: アイコン
       by_domain: ドメイン
+      change_email:
+        changed_msg: メールアドレスの変更に成功しました！
+        current_email: 現在のメールアドレス
+        label: メールアドレスを変更
+        new_email: 新しいメールアドレス
+        submit: Change Email
+        title: "%{username} さんのメールアドレスを変更"
       confirm: 確認
       confirmed: 確認済み
       demote: 降格
@@ -72,7 +79,7 @@ ja:
       display_name: 表示名
       domain: ドメイン
       edit: 編集
-      email: E-mail
+      email: メールアドレス
       enable: 有効化
       enabled: 有効
       feed_url: フィードURL
@@ -131,6 +138,7 @@ ja:
       statuses: トゥート数
       subscribe: 購読する
       title: アカウント
+      unconfirmed_email: 確認待ちのメールアドレス
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
       unsubscribe: 購読の解除
@@ -139,6 +147,7 @@ ja:
     action_logs:
       actions:
         assigned_to_self_report: "%{name} さんがレポート %{target} を自身の担当に割り当てました"
+        change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
@@ -247,8 +256,8 @@ ja:
         title: フィルター
       title: 招待
     report_notes:
-      created_msg: モデレーションメモを書き込みました！
-      destroyed_msg: モデレーションメモを削除しました！
+      created_msg: レポートメモを書き込みました！
+      destroyed_msg: レポートメモを削除しました！
     reports:
       action_taken_by: レポート処理者
       are_you_sure: 本当に実行しますか？
@@ -257,15 +266,20 @@ ja:
       comment:
         label: コメント
         none: なし
+      created_at: レポート日時
       delete: 削除
+      history: モデレーション履歴
       id: ID
       mark_as_resolved: 解決済みとしてマーク
       mark_as_unresolved: 未解決として再び開く
       notes:
         create: 書き込む
         create_and_resolve: 書き込み、解決済みにする
+        create_and_unresolve: 書き込み、未解決として開く
         delete: 削除
-        label: メモ
+        label: モデレーターメモ
+        new_label: モデレーターメモの追加
+        placeholder: このレポートに取られた措置やその他更新を記述してください
       nsfw:
         'false': NSFW オフ
         'true': NSFW オン
