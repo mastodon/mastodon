@@ -34,7 +34,7 @@ class PreviewCard < ApplicationRecord
 
   has_and_belongs_to_many :statuses
 
-  has_attached_file :image, styles: { original: { geometry: '400x400>', file_geometry_parser: FastGeometryParser } }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :image, styles: { original: { geometry: '400x400>', format: 'jpg', file_geometry_parser: FastGeometryParser } }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
 
