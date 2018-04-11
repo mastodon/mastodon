@@ -6,7 +6,8 @@
     background: $simple-background-color;
 
     .detailed-status.light,
-    .status.light {
+    .status.light,
+    .more.light {
       border-bottom: 1px solid $ui-secondary-color;
       animation: none;
     }
@@ -288,6 +289,17 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  .more {
+    color: $classic-primary-color;
+    display: block;
+    padding: 14px;
+    text-align: center;
+
+    &:not(:hover) {
+      text-decoration: none;
     }
   }
 }
