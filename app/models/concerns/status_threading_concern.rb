@@ -3,8 +3,8 @@
 module StatusThreadingConcern
   extend ActiveSupport::Concern
 
-  def ancestors(account = nil)
-    find_statuses_from_tree_path(ancestor_ids, account)
+  def ancestors(limit, account = nil)
+    find_statuses_from_tree_path(ancestor_ids(limit), account)
   end
 
   def descendants(account = nil)
@@ -13,14 +13,21 @@ module StatusThreadingConcern
 
   private
 
-  def ancestor_ids
-    Rails.cache.fetch("ancestors:#{id}") do
-      ancestor_statuses.pluck(:id)
+  def ancestor_ids(limit)
+    key = "ancestors:#{id}"
+    ancestors = Rails.cache.fetch(key)
+
+    if ancestors.nil? || ancestors[:limit] < limit
+      ids = ancestor_statuses(limit).pluck(:id).reverse!
+      Rails.cache.write key, limit: limit, ids: ids
+      ids
+    else
+      ancestors[:ids].last(limit)
     end
   end
 
-  def ancestor_statuses
-    Status.find_by_sql([<<-SQL.squish, id: in_reply_to_id])
+  def ancestor_statuses(limit)
+    Status.find_by_sql([<<-SQL.squish, id: in_reply_to_id, limit: limit])
       WITH RECURSIVE search_tree(id, in_reply_to_id, path)
       AS (
         SELECT id, in_reply_to_id, ARRAY[id]
@@ -34,7 +41,8 @@ module StatusThreadingConcern
       )
       SELECT id
       FROM search_tree
-      ORDER BY path DESC
+      ORDER BY path
+      LIMIT :limit
     SQL
   end
 

@@ -14,6 +14,10 @@
   entry_classes = h_class + ' ' + mf_classes + ' ' + style_classes
 
 - if status.reply? && include_threads
+  - if @next_ancestor
+    .entry{ class: entry_classes }
+      = link_to short_account_status_url(@next_ancestor.account.username, @next_ancestor), class: 'more light'  do
+        = t('statuses.show_more')
   = render partial: 'stream_entries/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id }
 
 .entry{ class: entry_classes }
