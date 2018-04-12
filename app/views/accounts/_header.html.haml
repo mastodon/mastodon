@@ -23,7 +23,7 @@
     .bio
       .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
 
-      - unless account.fields&.size&.zero?
+      - unless account.fields.nil? || account.fields.empty?
         %table.account__header__fields
           %tbody
             - account.fields.each_pair do |k, v|
