@@ -50,6 +50,7 @@ services:
       - ./public/assets:/mastodon/public/assets
       - ./public/packs:/mastodon/public/packs
       - ./public/system:/mastodon/public/system
+      - ./tmp:/mastodon/tmp
 
   streaming:
     build: .
