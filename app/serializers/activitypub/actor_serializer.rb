@@ -11,6 +11,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
   has_many :virtual_tags, key: :tag
+  has_many :virtual_attachments, key: :attachment
 
   attribute :moved_to, if: :moved?
 
@@ -105,6 +106,16 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   def virtual_tags
     object.emojis
+  end
+
+  def virtual_attachments
+    object.fields.to_a.map do |key, value|
+      {
+        type: 'PropertyValue',
+        name: key,
+        value: Formatter.instance.format_field(object, value),
+      }
+    end
   end
 
   def moved_to
