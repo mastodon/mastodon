@@ -11,6 +11,7 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
     time: PropTypes.number,
     controls: PropTypes.bool.isRequired,
     muted: PropTypes.bool.isRequired,
+    onClick: PropTypes.func,
   };
 
   handleLoadedData = () => {
@@ -31,6 +32,12 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
     this.video = c;
   }
 
+  handleClick = e => {
+    e.stopPropagation();
+    const handler = this.props.onClick;
+    if (handler) handler();
+  }
+
   render () {
     const { src, muted, controls, alt } = this.props;
 
@@ -46,6 +53,7 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
           muted={muted}
           controls={controls}
           loop={!controls}
+          onClick={this.handleClick}
         />
       </div>
     );

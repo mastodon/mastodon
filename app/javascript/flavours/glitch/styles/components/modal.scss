@@ -2,29 +2,6 @@
   background: lighten($ui-base-color, 8%);
 }
 
-.modal-container__nav {
-  align-items: center;
-  background: rgba($base-overlay-background, 0.5);
-  box-sizing: border-box;
-  border: 0;
-  color: $primary-text-color;
-  cursor: pointer;
-  display: flex;
-  font-size: 24px;
-  height: 100%;
-  padding: 30px 15px;
-  position: absolute;
-  top: 0;
-}
-
-.modal-container__nav--left {
-  left: -61px;
-}
-
-.modal-container__nav--right {
-  right: -61px;
-}
-
 .modal-root {
   transition: opacity 0.3s linear;
   will-change: opacity;
