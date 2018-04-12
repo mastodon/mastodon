@@ -244,11 +244,11 @@ class Account < ApplicationRecord
     end
 
     def domains
-      reorder(nil).pluck('distinct accounts.domain')
+      reorder(nil).pluck(Arel.sql('distinct accounts.domain'))
     end
 
     def inboxes
-      urls = reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
+      urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
       DeliveryFailureTracker.filter(urls)
     end
 
