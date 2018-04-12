@@ -36,6 +36,7 @@ services:
     restart: always
     env_file: .env.production
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    user: "${UID:-991}:${GID:-991}"
     networks:
       - external_network
       - internal_network
