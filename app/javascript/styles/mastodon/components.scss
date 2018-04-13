@@ -5178,7 +5178,7 @@ noscript {
 }
 
 .account__header .account__header__fields {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 20px;
   overflow: hidden;
   border-collapse: collapse;
@@ -5202,8 +5202,9 @@ noscript {
 
   th {
     color: $ui-primary-color;
-    background: lighten($ui-base-color, 13%);
+    background: darken($ui-base-color, 4%);
     max-width: 120px;
+    font-weight: 500;
   }
 
   td {

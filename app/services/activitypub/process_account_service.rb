@@ -127,7 +127,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def property_values
     return unless @json['attachment'].is_a?(Array)
-    @json['attachment'].select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| [attachment['name'], attachment['value']] }.to_h
+    @json['attachment'].select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
   end
 
   def mismatching_origin?(url)

@@ -109,13 +109,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def virtual_attachments
-    object.fields.to_a.map do |key, value|
-      {
-        type: 'PropertyValue',
-        name: key,
-        value: Formatter.instance.format_field(object, value),
-      }
-    end
+    object.fields
   end
 
   def moved_to
@@ -123,5 +117,17 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer
+  end
+
+  class Account::FieldSerializer < ActiveModel::Serializer
+    attributes :type, :name, :value
+
+    def type
+      'PropertyValue'
+    end
+
+    def value
+      Formatter.instance.format_field(object.account, object.value)
+    end
   end
 end

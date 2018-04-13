@@ -13,7 +13,7 @@ export function normalizeAccount(account) {
   if (account.fields) {
     account.fields = account.fields.map(pair => ({
       ...pair,
-      key_emojified: emojify(escapeTextContentForBrowser(pair.key)),
+      name_emojified: emojify(escapeTextContentForBrowser(pair.name)),
       value_emojified: emojify(pair.value),
     }));
   }
