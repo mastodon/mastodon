@@ -99,11 +99,11 @@
 
 %hr{ class: "section-break"}/
 
-%h3= t('admin.reports.notes.label')
+%h3= t('admin.reports.history')
 
-- if @report_notes.length > 0
+- if @report.history.length > 0
   %ul
-    = render @report_notes
+    = render @report.history
 
 %h4= t('admin.reports.notes.new_label')
 = form_for @report_note, url: admin_report_notes_path, html: { class: 'report-note__form' } do |f|
@@ -116,9 +116,3 @@
     - else
       = f.submit t('admin.reports.notes.create_and_unresolve'), name: :create_and_unresolve, class: 'button report-note__button'
     = f.submit t('admin.reports.notes.create'), class: 'button report-note__button'
-
-- if @report_history.length > 0
-  %h3= t('admin.reports.history')
-
-  %ul
-    = render @report_history

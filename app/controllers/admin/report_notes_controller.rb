@@ -26,8 +26,6 @@ module Admin
 
         redirect_to admin_report_path(@report), notice: I18n.t('admin.report_notes.created_msg')
       else
-        @report_notes = @report.notes.latest
-        @report_history = @report.history
         @form = Form::StatusBatch.new
 
         render template: 'admin/reports/show'
