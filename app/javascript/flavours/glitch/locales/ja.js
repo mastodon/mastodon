@@ -62,6 +62,10 @@ const messages = {
   'advanced_options.threaded_mode.short': 'スレッドモード',
   'advanced_options.threaded_mode.long': '投稿時に自動的に返信するように設定します',
   'advanced_options.threaded_mode.tooltip': 'スレッドモードを有効にする',
+
+  'navigation_bar.direct': 'ダイレクトメッセージ',
+  'navigation_bar.bookmarks': 'ブックマーク',
+  'column.bookmarks': 'ブックマーク'
 };
 
 export default Object.assign({}, inherited, messages);
