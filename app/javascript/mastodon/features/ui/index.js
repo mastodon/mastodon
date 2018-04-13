@@ -37,6 +37,7 @@ import {
   FavouritedStatuses,
   ListTimeline,
   Blocks,
+  DomainBlocks,
   Mutes,
   PinnedStatuses,
   Lists,
@@ -145,6 +146,8 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
+          <WrappedRoute path='/search' component={Compose} content={children} componentParams={{ isSearchPage: true }} />
+
           <WrappedRoute path='/statuses/new' component={Compose} content={children} />
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
           <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
@@ -158,6 +161,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
           <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
           <WrappedRoute path='/blocks' component={Blocks} content={children} />
+          <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
           <WrappedRoute path='/mutes' component={Mutes} content={children} />
           <WrappedRoute path='/lists' component={Lists} content={children} />
 

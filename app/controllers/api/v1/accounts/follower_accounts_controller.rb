@@ -63,6 +63,6 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
+    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

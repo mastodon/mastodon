@@ -5,6 +5,7 @@ import { makeGetStatus } from '../selectors';
 import {
   replyCompose,
   mentionCompose,
+  directCompose,
 } from '../actions/compose';
 import {
   reblog,
@@ -27,6 +28,7 @@ import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, deleteModal } from '../initial_state';
+import { showAlertForError } from '../actions/alerts';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -83,7 +85,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onEmbed (status) {
-    dispatch(openModal('EMBED', { url: status.get('url') }));
+    dispatch(openModal('EMBED', {
+      url: status.get('url'),
+      onError: error => dispatch(showAlertForError(error)),
+    }));
   },
 
   onDelete (status) {
@@ -96,6 +101,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         onConfirm: () => dispatch(deleteStatus(status.get('id'))),
       }));
     }
+  },
+
+  onDirect (account, router) {
+    dispatch(directCompose(account, router));
   },
 
   onMention (account, router) {

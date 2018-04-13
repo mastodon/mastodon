@@ -333,7 +333,7 @@ eo:
     subscriptions:
       callback_url: Revena URL
       confirmed: Konfirmita
-      expires_in: Eksvalidiĝas en
+      expires_in: Eksvalidiĝas je
       last_delivery: Lasta livero
       title: WebSub
       topic: Temo
@@ -485,7 +485,7 @@ eo:
     max_uses_prompt: Neniu limo
     prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu nodo
     table:
-      expires_at: Eksvalidiĝas
+      expires_at: Eksvalidiĝas je
       uses: Uzoj
     title: Inviti homojn
   landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la fediverse."
@@ -636,6 +636,15 @@ eo:
     two_factor_authentication: Dufaktora aŭtentigo
     your_apps: Viaj aplikaĵoj
   statuses:
+    attached:
+      description: 'Ligita: %{attached}'
+      image:
+        one: "%{count} bildo"
+        other: "%{count} bildoj"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoj"
+    content_warning: 'Enhava averto: %{warning}'
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
@@ -658,74 +667,6 @@ eo:
     reblogged: diskonigita
     sensitive_content: Tikla enhavo
   terms:
-    body_html: |
-      <h2>Privateca politiko</h2>
-
-      <h3 id="collect">Kiujn informojn ni kolektas?</h3>
-
-      <p>Ni kolektas informojn de vi, kiam vi registriĝas en nia retejo aŭ partoprenas en la forumo per legado, skribado, kaj traktado de la enhavo diskonigita ĉi tie.</p>
-
-      <p>En registriĝo, ni povas peti al vi vian nomon kaj retadreson. Vi tamen povas viziti nian retejon sen registriĝo. Via retadreso estos validigita per retmesaĝo, kiu enhavos unikan ligilon. Se tiu ligilo estas vizitita, ni scios ke vi regas la retadreson.</p>
-
-      <p>Post registriĝo, ni registras la IP-adreson de tiu, kiu kreas mesaĝon. Ni ankaŭ povas konservi servilan historion, en kiu troviĝas la IP-adreso de ĉiu peto al nia servilo.</p>
-
-      <h3 id="use">Por kio ni uzas viajn informojn?</h3>
-
-      <p>Ajna informo, kiun ni kolektas povas esti uzata por unu el tiuj celoj:</p>
-
-      <ul>
-        <li>Proprigi vian sperton &mdash; viaj informoj helpas nin pli bone respondi al viaj propraj bezonoj.</li>
-        <li>Plibonigi nian retejon &mdash; ni daŭre klopodas por plibonigi nian retejon uzante la informojn kaj komentojn, kiujn ni ricevas de vi.</li>
-        <li>Plibonigi nian helpon al klientoj &mdash; viaj informoj helpas nin pli bone respondi al klientaj petoj kaj al subtenaj bezonoj.</li>
-        <li>Sendi periodajn retmesaĝojn &mdash; La retadreso, kiun vi donas al ni, povas esti uzata por sendi al vi informojn kaj sciigojn, kiujn vi volas ricevi pri ŝanĝoj rilate al apartaj temoj, aŭ responde al via uzantnomo, al petoj kaj al demandoj.</li>
-      </ul>
-
-      <h3 id="protect">Kiel ni protektas viajn informojn?</h3>
-
-      <p>Ni realigis diversajn sekurigajn procedojn por konservi la sekurecon de viaj personaj informoj kiam vi enmetas, sendas, aŭ aliras viajn personajn informojn.</p>
-
-      <h3 id="data-retention">Kio estas nia politiko pri konservado de datumoj?</h3>
-
-      <p>Ni honeste klopodas:</p>
-
-      <ul>
-        <li>Ne konservi servilan historion, kiu enhavas la IP-adresojn de ĉiuj petoj, dum pli ol 90 tagoj.</li>
-        <li>Ne konservi la IP-adresojn de registritaj uzantoj kaj de iliaj mesaĝoj dum pli ol 5 jaroj.</li>
-      </ul>
-
-      <h3 id="cookies">Ĉu ni uzas kuketojn?</h3>
-
-      <p>Jes. Kuketoj estas etaj dosieroj, kiujn retejo aŭ ĝia servo donas al la memoro de via komputilo, per via retumilo (se vi permesas tion). Ĉi tiuj kuketoj ebligas al la retejo rekoni vian retumilon, kaj se vi havas registritan konton, ligas ĝin al via registrita konto.</p>
-
-      <p>Ni uzas kuketojn por kompreni kaj konservi viajn preferojn por postaj vizitoj, kaj kunmeti informojn pri reteja trafiko kaj interago, por ke ni povu doni pli bonan retejan sperton kaj pli bonajn ilojn estonte. Ni povas kontrakti kun eksteraj servoj por helpi nin pli bone kompreni la vizitantojn de la retejo. Ĉi tiuj eksteraj servoj ne rajtas uzi la informojn, kiujn ni kolektis, krom por helpi nin regi kaj plibonigi nian komercon.</p>
-
-      <h3 id="disclose">Ĉu ni disdonas informojn al eksteraj personoj?</h3>
-
-      <p>Ni ne vendas, interŝanĝas aŭ transdonas al eksteraj personoj viajn persone identigeblajn informojn. Ĉi tio ne inkludas la eksterajn servojn, kiujn ni fidas, kiuj helpas nin funkciigi nian retejon, regi nian komercon, aŭ servi vin, kiom longe tiuj personoj konsentas pri la sekura konservado de ĉi tiuj informoj. Ni ankaŭ povas disdoni viajn informojn, kiam ni pensas ke tio estas nepra por respekti leĝojn, por respektigi la politikojn de nia retejo, aŭ por protekti la rajtojn, posedaĵojn, kaj sekurecon de ni kaj de aliaj. Tamen, informoj de vizitantoj, kiuj ne identigas personojn, povas esti donitaj al eksteraj personoj por merkatado, reklamado, aŭ aliaj uzoj.</p>
-
-      <h3 id="third-party">Eksteraj ligiloj</h3>
-
-      <p>Foje, laŭ nia elekto, ni povas enmeti aŭ oferti eksterajn produktojn aŭ servojn en nia retejo. Ĉi tiuj eksteraj retejoj havas apartajn kaj sendependajn privatecajn politikojn. Tial, ni havas nek responsojn nek devigojn rilate al la enhavoj kaj agadoj de ĉi tiuj ligitaj retejoj. Tamen, ni celas protekti tiujn, kiuj uzas nian retejon, kaj bonvenigas ajnan komenton pri ĉi tiuj retejoj.</p>
-
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
-
-      <p>Niaj retejo, produktoj kaj servoj estas por tiuj, kiuj havas almenaŭ 13 jarojn. Se ĉi tiu servilo estas en Usono, kaj vi havas malpli ol 13 jarojn, pro la postuloj de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) ne uzu ĉi tiun retejon.</p>
-
-      <h3 id="online">Privateca politiko nur rete</h3>
-
-      <p>Ĉi tiu privateca politiko validas nur por informoj kolektitaj per nia retejo kaj ne por informoj kolektitaj eksterrete.</p>
-
-      <h3 id="consent">Via konsento</h3>
-
-      <p>Per uzado de nia retejo, vi konsentas kun nia reta privateca politiko.</p>
-
-      <h3 id="changes">Ŝanĝoj al nia privateca politiko</h3>
-
-      <p>Se ni decidas ŝanĝi nian privatecan politikon, ni afiŝos tiujn ŝanĝojn en ĉi tiu paĝo.</p>
-
-      <p>Ĉi tiu dokumento estas laŭ permeso CC-BY-SA. Ĝi estis laste ĝisdatigita je 2018-02-27.</p>
-
-      <p>Originale adaptita el la <a href="https://github.com/discourse/discourse">privateca politiko de Discourse</a>.</p>
     title: Uzkondiĉoj kaj privateca politiko de %{instance}
   themes:
     default: Mastodon

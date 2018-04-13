@@ -2,6 +2,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Oops!",
+        "id": "alert.unexpected.title"
+      },
+      {
+        "defaultMessage": "An unexpected error occurred.",
+        "id": "alert.unexpected.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/actions/alerts.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{name} mentioned you",
         "id": "notification.mention"
       }
@@ -95,6 +108,24 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/domain.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Load more",
+        "id": "status.load_more"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/load_gap.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Load more",
         "id": "status.load_more"
       }
@@ -174,6 +205,10 @@
       {
         "defaultMessage": "Delete",
         "id": "status.delete"
+      },
+      {
+        "defaultMessage": "Direct message @{name}",
+        "id": "status.direct"
       },
       {
         "defaultMessage": "Mention @{name}",
@@ -301,6 +336,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Hide entire domain",
+        "id": "confirmations.domain_block.confirm"
+      },
+      {
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
+        "id": "confirmations.domain_block.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/containers/domain_container.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "confirmations.delete.confirm"
       },
@@ -379,6 +427,10 @@
       {
         "defaultMessage": "Mention @{name}",
         "id": "account.mention"
+      },
+      {
+        "defaultMessage": "Direct message @{name}",
+        "id": "account.direct"
       },
       {
         "defaultMessage": "Edit profile",
@@ -804,6 +856,10 @@
       {
         "defaultMessage": "This toot won't be listed under any hashtag as it is unlisted. Only public toots can be searched by hashtag.",
         "id": "compose_form.hashtag_warning"
+      },
+      {
+        "defaultMessage": "This toot will only be visible to all the mentioned users.",
+        "id": "compose_form.direct_message_warning"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/warning_container.json"
@@ -840,6 +896,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/compose/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "column.domain_blocks"
+      },
+      {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/domain_blocks/index.json"
   },
   {
     "descriptors": [
@@ -921,6 +990,10 @@
       {
         "defaultMessage": "Blocked users",
         "id": "navigation_bar.blocks"
+      },
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "navigation_bar.domain_blocks"
       },
       {
         "defaultMessage": "Muted users",
@@ -1311,6 +1384,10 @@
         "id": "status.delete"
       },
       {
+        "defaultMessage": "Direct message @{name}",
+        "id": "status.direct"
+      },
+      {
         "defaultMessage": "Mention @{name}",
         "id": "status.mention"
       },
@@ -1656,6 +1733,10 @@
       {
         "defaultMessage": "Notifications",
         "id": "tabs_bar.notifications"
+      },
+      {
+        "defaultMessage": "Search",
+        "id": "tabs_bar.search"
       },
       {
         "defaultMessage": "Local",

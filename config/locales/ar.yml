@@ -119,6 +119,7 @@ ar:
         user: مستخدِم
       salmon_url: عنوان رابط سالمون Salmon
       search: البحث
+      shared_inbox_url: رابط الصندوق المُشترَك للبريد الوارد
       show:
         created_reports: البلاغات التي أنشأها هذا الحساب
         report: التقرير
@@ -140,14 +141,23 @@ ar:
         create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
         demote_user: "%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}"
         destroy_domain_block: "%{name} قام بإلغاء الحجب عن النطاق %{target}"
+        destroy_email_domain_block: قام %{name} بإضافة نطاق البريد الإلكتروني %{target} إلى اللائحة البيضاء
+        destroy_status: لقد قام %{name} بحذف منشور %{target}
         disable_2fa_user: "%{name} لقد قام  بتعطيل ميزة المصادقة بخطوتين للمستخدم %{target}"
         disable_custom_emoji: "%{name} قام بتعطيل الإيموجي %{target}"
         disable_user: "%{name} لقد قام بتعطيل تسجيل الدخول للمستخدِم %{target}"
         enable_custom_emoji: "%{name} قام بتنشيط الإيموجي %{target}"
         enable_user: "%{name} لقد قام بتنشيط تسجيل الدخول للمستخدِم %{target}"
+        memorialize_account: لقد قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user: "%{name} قام بترقية المستخدم %{target}"
         reset_password_user: "%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ %{target}"
+        resolve_report: قام %{name} بإلغاء التقرير المُرسَل مِن طرف %{target}
+        silence_account: لقد قام %{name} بكتم حساب %{target}
+        suspend_account: لقد قام %{name} بتعليق حساب %{target}
+        unsilence_account: لقد قام %{name} بإلغاء الكتم عن حساب %{target}
+        unsuspend_account: لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
+        update_status: لقد قام %{name} بتحديث منشور %{target}
       title: سِجلّ التفتيش و المعاينة
     custom_emojis:
       by_domain: النطاق
@@ -163,35 +173,54 @@ ar:
       enable: تفعيل
       enabled_msg: تم تنشيط ذاك الإيموجي بنجاح
       image_hint: ملف PNG إلى غاية حجم 50 ك.ب
+      listed: مُدرَج
       new:
         title: إضافة إيموجي خاص جديد
+      overwrite: إعادة الكتابة
       shortcode: الترميز المُصَغّر
       shortcode_hint: على الأقل حرفين، و فقط رموز أبجدية عددية و أسطر سفلية
       title: الإيموجي الخاصة
+      unlisted: غير مدرج
       update_failed_msg: تعذرت عملية تحذيث ذاك الإيموجي
       updated_msg: تم تحديث الإيموجي بنجاح !
       upload: رفع
     domain_blocks:
       add_new: إضافة نطاق جديد
+      created_msg: إنّ حجب النطاق حيز التشغيل
+      destroyed_msg: تم إلغاء الحجب المفروض على النطاق
       domain: النطاق
       new:
         create: إنشاء حظر
         severity:
           noop: لا شيء
           silence: كتم
+          suspend: تعليق
         title: حجب نطاق جديد
       reject_media: رفض ملفات الوسائط
       severities:
         noop: لا شيء
+        silence: إخفاء أو كتم
+        suspend: تعليق
+      severity: الشدة
       show:
+        affected_accounts:
+          other: هناك %{count} حسابات في قاعدة البيانات متأثرة بذلك
+        retroactive:
+          silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
+          suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
         title: رفع حظر النطاق عن %{domain}
         undo: إلغاء
+      title: حظر النطاقات
       undo: إلغاء
     email_domain_blocks:
+      add_new: إضافة
+      created_msg: لقد دخل حظر نطاق البريد الإلكتروني حيّز الخدمة
       delete: حذف
+      destroyed_msg: تم حذف نطاق البريد الإلكتروني من اللائحة السوداء بنجاح
       domain: النطاق
       new:
         create: إضافة نطاق
+        title: إضافة نطاق بريد جديد إلى اللائحة السوداء
       title: القائمة السوداء للبريد الإلكتروني
     instances:
       account_count: الحسابات المعروفة
@@ -214,27 +243,52 @@ ar:
         none: لا شيء
       delete: حذف
       id: معرّف ID
+      mark_as_resolved: إعتبار التقرير كمحلول
       nsfw:
+        'false': الكشف عن الصور
         'true': إخفاء الوسائط المرفقة
+      report: 'التقرير #%{id}'
       report_contents: المحتويات
+      reported_account: حساب مُبلّغ عنه
       reported_by: أبلغ عنه من طرف
+      resolved: معالجة
+      silence_account: كتم و إخفاء الحساب
       status: الحالة
+      suspend_account: فرض تعليق على الحساب
+      target: الهدف
       title: التقارير
+      unresolved: غير معالجة
       view: عرض
     settings:
+      activity_api_enabled:
+        desc_html: عدد المنشورات المحلية و المستخدمين النشطين و التسجيلات الأسبوعية الجديدة
+      bootstrap_timeline_accounts:
+        title: الإشتراكات الإفتراضية للمستخدمين الجدد
       contact_information:
         email: البريد الإلكتروني المهني
         username: الإتصال بالمستخدِم
+      hero:
+        title: الصورة الرأسية
+      peers_api_enabled:
+        desc_html: أسماء النطاقات التي إلتقى بها مثيل الخادوم على البيئة الموحَّدة فيديفرس
+        title: نشر عدد مثيلات الخوادم التي تم مصادفتها
       registrations:
         closed_message:
           title: رسالة التسجيلات المقفلة
         deletion:
           desc_html: السماح لأي مستخدم إغلاق حسابه
+          title: السماح بحذف الحسابات
+        min_invite_role:
+          disabled: لا أحد
         open:
           desc_html: السماح للجميع بإنشاء حساب
           title: فتح التسجيل
+      show_known_fediverse_at_about_page:
+        title: إظهار الفيديفرس الموحَّد في خيط المُعايَنة
       site_description:
         title: وصف مثيل الخادوم
+      site_description_extended:
+        title: الوصف المُفصّل للموقع
       site_terms:
         title: شروط الخدمة المخصصة
       site_title: إسم مثيل الخادم
@@ -242,11 +296,14 @@ ar:
         title: الصورة الرمزية المصغرة لمثيل الخادوم
       timeline_preview:
         desc_html: عرض الخيط العمومي على صفحة الإستقبال
+        title: مُعاينة الخيط العام
       title: إعدادات الموقع
     statuses:
       back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
+      execute: تفعيل
+      failed_to_execute: خطأ في التفعيل
       media:
         hide: إخفاء الوسائط
         show: إظهار الوسائط
@@ -256,8 +313,13 @@ ar:
     subscriptions:
       confirmed: مؤكَّد
       expires_in: تنتهي مدة صلاحيتها في
+      last_delivery: آخر إيداع
+      title: WebSub
       topic: الموضوع
     title: الإدارة
+  admin_mailer:
+    new_report:
+      body: قام %{reporter} بالإبلاغ عن %{target}
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
     salutation: "%{name}،"
@@ -270,6 +332,7 @@ ar:
     destroyed: تم حذف التطبيق بنجاح
     invalid_url: إن الرابط المقدم غير صالح
     regenerate_token: إعادة توليد رمز النفاذ
+    warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين !
     your_token: رمز نفاذك
   auth:
     agreement_html: بقبولك التسجيل فإنك تُصرِّح قبول <a href="%{rules_path}">قواعد مثيل الخادوم</a> و <a href="%{terms_path}">شروط الخدمة التي نوفرها لك</a>.
@@ -283,11 +346,13 @@ ar:
     logout: خروج
     migrate_account: الإنتقال إلى حساب آخر
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
+    or: أو
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
     providers:
       cas: CAS
       saml: SAML
     register: إنشاء حساب
+    register_elsewhere: التسجيل على خادوم آخَر
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
     security: الهوية
@@ -296,6 +361,7 @@ ar:
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
     follow: إتبع
     follow_request: 'لقد قمت بإرسال طلب متابعة إلى :'
+    following: 'مرحى ! أنت الآن تتبع :'
     post_follow:
       close: أو يمكنك إغلاق هذه النافذة.
       return: العودة إلى الملف الشخصي للمستخدم
@@ -324,18 +390,24 @@ ar:
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
     '410': إنّ الصفحة التي تبحث عنها لم تعد موجودة.
+    '422':
+      content: فشل التحقق الآمن. ربما منعتَ كعكات الكوكيز ؟
+      title: فشِل التحقق الآمن
     '500':
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
   exports:
     archive_takeout:
+      date: التاريخ
       download: تنزيل نسخة لحسابك
       hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة تبويقاتك و الوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق.
       in_progress: عملية جمع نسخة لبيانات حسابك جارية …
       request: طلب نسخة لحسابك
+      size: الحجم
     blocks: قمت بحظر
     csv: CSV
     follows: أنت تتبع
+    mutes: قُمتَ بكتم
     storage: ذاكرة التخزين
   followers:
     domain: النطاق
@@ -368,9 +440,14 @@ ar:
       '86400': يوم واحد
     expires_in_prompt: أبدا
     generate: توليد
+    max_uses:
+      one: إستعمال واحد
+      other: "%{count} استخدامات"
     max_uses_prompt: بلا حدود
+    prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادوم هذا
     table:
       expires_at: تنتهي مدة صلاحيتها في
+      uses: يستخدِم
     title: دعوة أشخاص
   landing_strip_html: "<strong>%{name}</strong> هو أحد مُستخدِمي %{link_to_root_path}. بإمكانك متابعته أو التواصل معه إن كنت تملك حسابًا أيا كان على البيئة الموحَّدة فيديفرس."
   landing_strip_signup_html: إن كنت لا تملك واحدا، يمكنك <a href="%{sign_up_path}">التسجيل مِن هنا</a>.
@@ -433,7 +510,7 @@ ar:
     next: التالي
     older: الأقدَم
     prev: السابق
-    truncate: "&hellip;"
+    truncate: و
   preferences:
     languages: اللغات
     other: إعدادات أخرى

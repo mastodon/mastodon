@@ -9,7 +9,10 @@ import {
   unblockAccount,
   unmuteAccount,
 } from '../../../actions/accounts';
-import { mentionCompose } from '../../../actions/compose';
+import {
+  mentionCompose,
+  directCompose,
+} from '../../../actions/compose';
 import { initMuteModal } from '../../../actions/mutes';
 import { initReport } from '../../../actions/reports';
 import { openModal } from '../../../actions/modal';
@@ -67,6 +70,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(mentionCompose(account, router));
   },
 
+  onDirect (account, router) {
+    dispatch(directCompose(account, router));
+  },
+
   onReblogToggle (account) {
     if (account.getIn(['relationship', 'showing_reblogs'])) {
       dispatch(followAccount(account.get('id'), false));
@@ -87,16 +94,16 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onBlockDomain (domain, accountId) {
+  onBlockDomain (domain) {
     dispatch(openModal('CONFIRM', {
       message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.' values={{ domain: <strong>{domain}</strong> }} />,
       confirm: intl.formatMessage(messages.blockDomainConfirm),
-      onConfirm: () => dispatch(blockDomain(domain, accountId)),
+      onConfirm: () => dispatch(blockDomain(domain)),
     }));
   },
 
-  onUnblockDomain (domain, accountId) {
-    dispatch(unblockDomain(domain, accountId));
+  onUnblockDomain (domain) {
+    dispatch(unblockDomain(domain));
   },
 
 });
