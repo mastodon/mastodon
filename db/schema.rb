@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402040909) do
+ActiveRecord::Schema.define(version: 20180410220657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,16 @@ ActiveRecord::Schema.define(version: 20180402040909) do
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "status_id"], name: "index_bookmarks_on_account_id_and_status_id", unique: true
+    t.index ["account_id"], name: "index_bookmarks_on_account_id"
+    t.index ["status_id"], name: "index_bookmarks_on_status_id"
   end
 
   create_table "conversation_mutes", force: :cascade do |t|
@@ -562,6 +572,8 @@ ActiveRecord::Schema.define(version: 20180402040909) do
   add_foreign_key "backups", "users", on_delete: :nullify
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
+  add_foreign_key "bookmarks", "accounts", on_delete: :cascade
+  add_foreign_key "bookmarks", "statuses", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade

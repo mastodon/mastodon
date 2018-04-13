@@ -8,6 +8,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
   attribute :muted, if: :current_user?
+  attribute :bookmarked, if: :current_user?
   attribute :pinned, if: :pinnable?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
@@ -68,6 +69,14 @@ class REST::StatusSerializer < ActiveModel::Serializer
       instance_options[:relationships].mutes_map[object.conversation_id] || false
     else
       current_user.account.muting_conversation?(object.conversation)
+    end
+  end
+
+  def bookmarked
+    if instance_options && instance_options[:bookmarks]
+      instance_options[:bookmarks].bookmarks_map[object.id] || false
+    else
+      current_user.account.bookmarked?(object)
     end
   end
 

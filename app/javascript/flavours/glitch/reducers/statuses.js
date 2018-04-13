@@ -7,6 +7,10 @@ import {
   FAVOURITE_SUCCESS,
   FAVOURITE_FAIL,
   UNFAVOURITE_SUCCESS,
+  BOOKMARK_REQUEST,
+  BOOKMARK_SUCCESS,
+  BOOKMARK_FAIL,
+  UNBOOKMARK_SUCCESS,
   PIN_SUCCESS,
   UNPIN_SUCCESS,
 } from 'flavours/glitch/actions/interactions';
@@ -35,6 +39,10 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from 'flavours/glitch/actions/favourites';
+import {
+  BOOKMARKED_STATUSES_FETCH_SUCCESS,
+  BOOKMARKED_STATUSES_EXPAND_SUCCESS,
+} from 'flavours/glitch/actions/bookmarks';
 import {
   PINNED_STATUSES_FETCH_SUCCESS,
 } from 'flavours/glitch/actions/pin_statuses';
@@ -112,6 +120,8 @@ export default function statuses(state = initialState, action) {
   case UNREBLOG_SUCCESS:
   case FAVOURITE_SUCCESS:
   case UNFAVOURITE_SUCCESS:
+  case BOOKMARK_SUCCESS:
+  case UNBOOKMARK_SUCCESS:
   case PIN_SUCCESS:
   case UNPIN_SUCCESS:
     return normalizeStatus(state, action.response);
@@ -119,6 +129,10 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.status.get('id'), 'favourited'], true);
   case FAVOURITE_FAIL:
     return state.setIn([action.status.get('id'), 'favourited'], false);
+  case BOOKMARK_REQUEST:
+    return state.setIn([action.status.get('id'), 'bookmarked'], true);
+  case BOOKMARK_FAIL:
+    return state.setIn([action.status.get('id'), 'bookmarked'], false);
   case REBLOG_REQUEST:
     return state.setIn([action.status.get('id'), 'reblogged'], true);
   case REBLOG_FAIL:
@@ -134,6 +148,8 @@ export default function statuses(state = initialState, action) {
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
+  case BOOKMARKED_STATUSES_FETCH_SUCCESS:
+  case BOOKMARKED_STATUSES_EXPAND_SUCCESS:
   case PINNED_STATUSES_FETCH_SUCCESS:
   case SEARCH_FETCH_SUCCESS:
     return normalizeStatuses(state, action.statuses);

@@ -32,6 +32,14 @@ export const UNPIN_REQUEST = 'UNPIN_REQUEST';
 export const UNPIN_SUCCESS = 'UNPIN_SUCCESS';
 export const UNPIN_FAIL    = 'UNPIN_FAIL';
 
+export const BOOKMARK_REQUEST = 'BOOKMARK_REQUEST';
+export const BOOKMARK_SUCCESS = 'BOOKMARKED_SUCCESS';
+export const BOOKMARK_FAIL    = 'BOOKMARKED_FAIL';
+
+export const UNBOOKMARK_REQUEST = 'UNBOOKMARKED_REQUEST';
+export const UNBOOKMARK_SUCCESS = 'UNBOOKMARKED_SUCCESS';
+export const UNBOOKMARK_FAIL    = 'UNBOOKMARKED_FAIL';
+
 export function reblog(status) {
   return function (dispatch, getState) {
     dispatch(reblogRequest(status));
@@ -169,6 +177,76 @@ export function unfavouriteSuccess(status, response) {
 export function unfavouriteFail(status, error) {
   return {
     type: UNFAVOURITE_FAIL,
+    status: status,
+    error: error,
+  };
+};
+
+export function bookmark(status) {
+  return function (dispatch, getState) {
+    dispatch(bookmarkRequest(status));
+
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/bookmark`).then(function (response) {
+      dispatch(bookmarkSuccess(status, response.data));
+    }).catch(function (error) {
+      dispatch(bookmarkFail(status, error));
+    });
+  };
+};
+
+export function unbookmark(status) {
+  return (dispatch, getState) => {
+    dispatch(unbookmarkRequest(status));
+
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/unbookmark`).then(response => {
+      dispatch(unbookmarkSuccess(status, response.data));
+    }).catch(error => {
+      dispatch(unbookmarkFail(status, error));
+    });
+  };
+};
+
+export function bookmarkRequest(status) {
+  return {
+    type: BOOKMARK_REQUEST,
+    status: status,
+  };
+};
+
+export function bookmarkSuccess(status, response) {
+  return {
+    type: BOOKMARK_SUCCESS,
+    status: status,
+    response: response,
+  };
+};
+
+export function bookmarkFail(status, error) {
+  return {
+    type: BOOKMARK_FAIL,
+    status: status,
+    error: error,
+  };
+};
+
+export function unbookmarkRequest(status) {
+  return {
+    type: UNBOOKMARK_REQUEST,
+    status: status,
+  };
+};
+
+export function unbookmarkSuccess(status, response) {
+  return {
+    type: UNBOOKMARK_SUCCESS,
+    status: status,
+    response: response,
+  };
+};
+
+export function unbookmarkFail(status, error) {
+  return {
+    type: UNBOOKMARK_FAIL,
     status: status,
     error: error,
   };
