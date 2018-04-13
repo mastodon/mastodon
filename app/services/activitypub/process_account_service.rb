@@ -22,13 +22,15 @@ class ActivityPub::ProcessAccountService < BaseService
 
         create_account if @account.nil?
         update_account
-        process_tags(@account)
+        process_tags
       end
     end
 
+    return if @account.nil?
+
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
-    check_featured_collection! if @account&.featured_collection_url&.present?
+    check_featured_collection! if @account.featured_collection_url.present?
 
     @account
   rescue Oj::ParseError
@@ -189,17 +191,18 @@ class ActivityPub::ProcessAccountService < BaseService
     { redis: Redis.current, key: "process_account:#{@uri}" }
   end
 
-  def process_tags(account)
+  def process_tags
     return if @json['tag'].blank?
+
     as_array(@json['tag']).each do |tag|
       case tag['type']
       when 'Emoji'
-        process_emoji tag, account
+        process_emoji tag
       end
     end
   end
 
-  def process_emoji(tag, _account)
+  def process_emoji(tag)
     return if skip_download?
     return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
 
