@@ -136,16 +136,21 @@ class Item extends React.PureComponent {
     let thumbnail = '';
 
     if (attachment.get('type') === 'image') {
-      const previewUrl = attachment.get('preview_url');
+      const previewUrl   = attachment.get('preview_url');
       const previewWidth = attachment.getIn(['meta', 'small', 'width']);
 
-      const originalUrl = attachment.get('url');
-      const originalWidth = attachment.getIn(['meta', 'original', 'width']);
+      const originalUrl    = attachment.get('url');
+      const originalWidth  = attachment.getIn(['meta', 'original', 'width']);
 
       const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
       const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
-      const sizes = hasSize ? `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw` : null;
+      const sizes  = hasSize ? `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw` : null;
+
+      const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
+      const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
+      const x      = ((focusX /  2) + .5) * 100;
+      const y      = ((focusY / -2) + .5) * 100;
 
       thumbnail = (
         <a
@@ -154,7 +159,14 @@ class Item extends React.PureComponent {
           onClick={this.handleClick}
           target='_blank'
         >
-          <img className={letterbox ? 'letterbox' : null} src={previewUrl} srcSet={srcSet} sizes={sizes} alt={attachment.get('description')} title={attachment.get('description')} />
+          <img
+            className={letterbox ? 'letterbox' : null}
+            src={previewUrl}
+            srcSet={srcSet}
+            sizes={sizes}
+            alt={attachment.get('description')}
+            title={attachment.get('description')}
+            style={{ objectPosition: `${x}% ${y}%` }} />
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
@@ -226,7 +238,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   handleRef = (node) => {
-    if (node && this.isStandaloneEligible()) {
+    if (node /*&& this.isStandaloneEligible()*/) {
       // offsetWidth triggers a layout, so only calculate when we need to
       this.setState({
         width: node.offsetWidth,
