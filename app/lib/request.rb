@@ -11,7 +11,7 @@ class Request
   def initialize(verb, url, **options)
     @verb    = verb
     @url     = Addressable::URI.parse(url).normalize
-    @options = options.merge(socket_class: Socket)
+    @options = options.merge(socket_class: Socket).merge(Rails.configuration.x.http_client_proxy)
     @headers = {}
 
     set_common_headers!
@@ -127,21 +127,23 @@ class Request
   end
 
   class Socket < TCPSocket
-    class << self
-      def open(host, *args)
-        outer_e = nil
-        Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
-          begin
-            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
-            return super address.ip_address, *args
-          rescue => e
-            outer_e = e
+    if Rails.configuration.x.http_client_proxy.empty?
+      class << self
+        def open(host, *args)
+          outer_e = nil
+          Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
+            begin
+              raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
+              return super address.ip_address, *args
+            rescue => e
+              outer_e = e
+            end
           end
+          raise outer_e if outer_e
         end
-        raise outer_e if outer_e
-      end
 
-      alias new open
+        alias new open
+      end
     end
   end
 
