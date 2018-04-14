@@ -6,7 +6,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from 'flavours/glitch/util/is_mobile';
 import classNames from 'classnames';
-import { autoPlayGif } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, displaySensitiveMedia } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   hidden: {
@@ -208,7 +208,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !this.props.sensitive,
+    visible: !this.props.sensitive || displaySensitiveMedia,
   };
 
   componentWillReceiveProps (nextProps) {
