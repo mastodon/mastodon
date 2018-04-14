@@ -48,7 +48,7 @@ install:
   - yarn install
 
 before_script:
-  - ./bin/rails parallel:create parallel:load_schema parallel:prepare assets:precompile
+  - travis_wait ./bin/rails parallel:create parallel:load_schema parallel:prepare assets:precompile
 
 script:
   - travis_retry bundle exec parallel_test spec/ --group-by filesize --type rspec
