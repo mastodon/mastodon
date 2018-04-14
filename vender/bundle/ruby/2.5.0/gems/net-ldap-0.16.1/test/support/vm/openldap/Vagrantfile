@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.hostname = "rubyldap.com"
+
+  config.vm.box = "hashicorp/precise64"
+
+  config.vm.network "private_network", type: :dhcp
+  config.vm.network "forwarded_port", guest: 389, host: 9389
+
+  config.ssh.forward_agent = true
+
+  config.vm.provision "shell", inline: "apt-get update; exec env /vagrant_data/script/install-openldap"
+
+  config.vm.synced_folder "../../../..", "/vagrant_data"
+
+  config.vm.provider "vmware_fusion" do |vb, override|
+    override.vm.box = "hashicorp/precise64"
+    vb.memory = 4596
+    vb.vmx["displayname"] = "integration tests vm"
+    vb.vmx["numvcpus"] = "2"
+  end
+
+  config.vm.provider "virtualbox" do |vb, override|
+    vb.memory = 4096
+    vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+    vb.customize ["modifyvm", :id, "--chipset", "ich9"]
+    vb.customize ["modifyvm", :id, "--vram", "16"]
+  end
+end

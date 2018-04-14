@@ -1,0 +1,77 @@
+= Erubi
+
+Erubi is a ERB template engine for ruby. It is a simplified fork of Erubis, using
+the same basic algorithm, with the following differences:
+
+* Handles postfix conditionals when using escaping (e.g. <tt><%= foo if bar %></tt>)
+* Supports frozen_string_literal: true in templates via :freeze option
+* Works with ruby's --enable-frozen-string-literal option
+* Automatically freezes strings for template text when ruby optimizes it (on ruby 2.1+)
+* Escapes ' (apostrophe) when escaping for better XSS protection 
+* Has 6x faster escaping on ruby 2.3+ by using cgi/escape
+* Has 86% smaller memory footprint
+* Does no monkey patching (Erubis adds a method to Kernel)
+* Uses an immutable design (all options passed to the constructor, which returns a frozen object)
+* Has simpler internals (1 file, <150 lines of code)
+* Is not dead (Erubis hasn't been updated since 2011)
+
+It is not designed with Erubis API compatibility in mind, though most Erubis
+ERB syntax works, with the following exceptions:
+
+* No support for <tt><%===</tt> for debug output
+
+= Installation
+
+  gem install erubi
+
+= Source Code
+
+Source code is available on GitHub at https://github.com/jeremyevans/erubi
+
+= Usage
+
+Erubi only has built in support for retrieving the generated source for a
+file:
+
+  require 'erubi'
+  eval(Erubi::Engine.new(File.read('filename.erb')).src)
+
+Most users will probably use Erubi via Rails or Tilt.  Erubi is the default
+erb template handler in Tilt 2.0.6+ and Rails 5.1+.
+
+== Capturing
+
+Erubi does not support capturing block output into the template by default.
+However, it comes with an +erubi/capture_end+ file that supports capturing
+via <tt><%|=</tt> and <tt><%|==</tt> tags which are closed with a
+<tt><%|</tt> tag:
+
+  <%|= form do %>
+    <input>
+  <%| end %>
+
+This offers similar functionality to that offered by Rails' <tt><%=</tt>
+tags, but without the corner cases with that approach (which are due to
+attempting to parse ruby code via a regexp).  Similar to the <tt><%=</tt>
+and <tt><%==</tt> tags, <tt><%|=</tt> captures by default and
+<tt><%|==</tt> captures and escapes by default, but this can be reversed
+via the +:escape_capture+ or +:escape+ options.
+
+To use the capture_end support with tilt:
+
+  require 'tilt'
+  require 'erubi/capture_end'
+  Tilt.new("filename.erb", :engine_class=>Erubi::CaptureEndEngine).render
+
+= Reporting Bugs
+
+The bug tracker is located at https://github.com/jeremyevans/erubi/issues
+
+= License
+
+MIT
+
+= Authors
+
+Jeremy Evans <code@jeremyevans.net>
+kuwata-lab.com

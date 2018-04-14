@@ -1,0 +1,49 @@
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ox-2.9.0/ext/ox
+/home/mastodon/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180408-28175-1sxxam6.rb extconf.rb
+>>>>> Creating Makefile for ruby version 2.5.1 on x86_64-linux <<<<<
+creating Makefile
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ox-2.9.0/ext/ox
+make "DESTDIR=" clean
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ox-2.9.0/ext/ox
+make "DESTDIR="
+compiling base64.c
+compiling builder.c
+compiling cache.c
+compiling cache8.c
+compiling dump.c
+compiling err.c
+err.c: In function 'ox_err_raise':
+err.c:25:1: warning: function might be candidate for attribute 'noreturn' [-Wsuggest-attribute=noreturn]
+ ox_err_raise(Err e) {
+ ^
+err.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+compiling gen_load.c
+compiling hash_load.c
+compiling obj_load.c
+compiling ox.c
+ox.c: In function '_ox_raise_error':
+ox.c:1522:1: warning: function might be candidate for attribute 'noreturn' [-Wsuggest-attribute=noreturn]
+ _ox_raise_error(const char *msg, const char *xml, const char *current, const char* file, int line) {
+ ^
+ox.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+compiling parse.c
+compiling sax.c
+compiling sax_as.c
+compiling sax_buf.c
+compiling sax_hint.c
+compiling special.c
+linking shared-object ox.so
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ox-2.9.0/ext/ox
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 ox.so ./.gem.20180408-28175-1isb6xf

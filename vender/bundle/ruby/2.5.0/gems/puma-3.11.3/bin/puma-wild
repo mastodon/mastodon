@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+#
+# Copyright (c) 2014 Evan Phoenix
+#
+
+require 'rubygems'
+
+gems = ARGV.shift
+
+inc = ""
+
+if gems == "-I"
+  inc = ARGV.shift
+  $LOAD_PATH.concat inc.split(":")
+  gems = ARGV.shift
+end
+
+gems.split(",").each do |s|
+  name, ver = s.split(":",2)
+  gem name, ver
+end
+
+module Puma; end
+
+Puma.const_set("WILD_ARGS", ["-I", inc, gems])
+
+require 'puma/cli'
+
+cli = Puma::CLI.new ARGV
+
+cli.run

@@ -1,0 +1,58 @@
+module Elasticsearch
+  module API
+    <%- @module_namespace.each_with_index do |name, i| -%>
+    <%= '  '*i %>module <%= name == 'xpack' ? 'XPack' : name.capitalize %>
+    <%- end -%>
+    <%= '  '*@namespace_depth %>module Actions
+
+      <%= '  '*@namespace_depth %># <%= @spec['description'] || 'TODO: Description' %>
+      <%= '  '*@namespace_depth %>#
+<%# URL parts -%>
+      <%- @spec['url']['parts'].each do |name,info| -%>
+      <%- info['type'] = 'String' if info['type'] == 'enum' # Rename 'enums' to 'strings' -%>
+      <%= '  '*@namespace_depth + "# @option arguments [#{info['type'] ? info['type'].capitalize : 'String'}] :#{name} #{info['description'] ? info['description'].strip : '[TODO]'}" + ( info['required'] ? ' (*Required*)' : '' ) -%><%= " (options: #{info['options'].join(', '.strip)})" if info['options'] -%>
+      <%= "\n" -%>
+      <%- end -%>
+<%# Body -%>
+<%= '  '*(@namespace_depth+3) + '# @option arguments [Hash] :body ' + (@spec['body']['description'] ? @spec['body']['description'].strip : 'TODO: Description') + (@spec['body']['required'] ? ' (*Required*)' : '') + "\n" if @spec['body'] -%>
+<%# URL parameters -%>
+      <%- @spec['url']['params'].each do |name,info| -%>
+      <%- info['type'] = 'String' if info['type'] == 'enum' # Rename 'enums' to 'strings' -%>
+      <%= '  '*@namespace_depth + "# @option arguments [#{info['type'] ? info['type'].capitalize : 'String'}] :#{name} #{info['description'] ? info['description'].strip : '[TODO]'}" -%><%= " (options: #{info['options'].join(', ')})" if info['options'] -%>
+      <%=  "\n" -%>
+      <%- end if @spec['url']['parts'] -%>
+      <%= '  '*@namespace_depth -%>#
+<%# Documentation link -%>
+      <%= '  '*@namespace_depth %># @see <%= @spec['documentation'] ? @spec['documentation'] : "[TODO]" %>
+      <%= '  '*@namespace_depth %>#
+<%# Method definition -%>
+      <%= '  '*@namespace_depth -%>def <%= @method_name %>(arguments={})
+<%# Required arguments -%>
+      <%- @spec['url']['parts'].select { |name, info| info['required'] }.each do |name, info| -%>
+      <%= '  '*(@namespace_depth+1) + "raise ArgumentError, \"Required argument '#{name}' missing\" unless arguments[:#{name}]" + "\n" -%>
+      <%- end -%>
+<%- if @spec['body'] && @spec['body']['required'] -%>
+      <%= '  '*(@namespace_depth+1) + "raise ArgumentError, \"Required argument 'body' missing\" unless arguments[:body]" + "\n" -%>
+<%- end -%>
+<%# Method, path, params, body  -%>
+      <%- unless @spec['url']['params'].empty? -%>
+      <%= '  '*@namespace_depth %>  valid_params = [
+      <%= '  '*(@namespace_depth+2) %><%= @spec['url']['params'].keys.map { |k| ":#{k}" }.join(",\n#{'  '*(@namespace_depth+5)}") %> ]
+      <%- end -%>
+      <%= '  '*@namespace_depth %>  method = <%= @http_method %>
+      <%= '  '*@namespace_depth %>  path   = "<%= @http_path %>"
+      <%- unless @spec['url']['params'].empty? -%>
+      <%= '  '*@namespace_depth %>  params = Elasticsearch::API::Utils.__validate_and_extract_params arguments, valid_params
+      <%- else -%>
+      <%= '  '*@namespace_depth %>  params = {}
+      <%- end -%>
+      <%= '  '*@namespace_depth %>  body   = <%= @spec['body'].nil? ? 'nil' : 'arguments[:body]' %>
+<%# Perform request %>
+      <%= '  '*@namespace_depth %>  perform_request(method, path, params, body).body
+      <%= '  '*@namespace_depth %>end
+      <%- @namespace_depth.downto(1) do |i| -%>
+      <%= '  '*(i-1) %>end
+      <%- end if @namespace_depth > 0 -%>
+    end
+  end
+end

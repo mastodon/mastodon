@@ -1,0 +1,845 @@
+name  :curl get
+raw   :"GET /test HTTP/1.1\r\nUser-Agent: curl/7.18.0 (i486-pc-linux-gnu) libcurl/7.18.0 OpenSSL/0.9.8g zlib/1.2.3.3 libidn/1.1\r\nHost: 0.0.0.0=5000\r\nAccept: */*\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/test
+request_url :/test
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "User-Agent": "curl/7.18.0 (i486-pc-linux-gnu) libcurl/7.18.0 OpenSSL/0.9.8g zlib/1.2.3.3 libidn/1.1"}
+header_1 :{ "Host": "0.0.0.0=5000"}
+header_2 :{ "Accept": "*/*"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :firefox get
+raw   :"GET /favicon.ico HTTP/1.1\r\nHost: 0.0.0.0=5000\r\nUser-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9) Gecko/2008061015 Firefox/3.0\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: en-us,en;q=0.5\r\nAccept-Encoding: gzip,deflate\r\nAccept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7\r\nKeep-Alive: 300\r\nConnection: keep-alive\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/favicon.ico
+request_url :/favicon.ico
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Host": "0.0.0.0=5000"}
+header_1 :{ "User-Agent": "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9) Gecko/2008061015 Firefox/3.0"}
+header_2 :{ "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
+header_3 :{ "Accept-Language": "en-us,en;q=0.5"}
+header_4 :{ "Accept-Encoding": "gzip,deflate"}
+header_5 :{ "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.7"}
+header_6 :{ "Keep-Alive": "300"}
+header_7 :{ "Connection": "keep-alive"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :dumbfuck
+raw   :"GET /dumbfuck HTTP/1.1\r\naaaaaaaaaaaaa:++++++++++\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/dumbfuck
+request_url :/dumbfuck
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "aaaaaaaaaaaaa": "++++++++++"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :fragment in url
+raw   :"GET /forums/1/topics/2375?page=1#posts-17408 HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/forums/1/topics/2375
+request_url :/forums/1/topics/2375?page=1#posts-17408
+fragment    :posts-17408
+query_string:page=1
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :get no headers no body
+raw   :"GET /get_no_headers_no_body/world HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/get_no_headers_no_body/world
+request_url :/get_no_headers_no_body/world
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :get one header no body
+raw   :"GET /get_one_header_no_body HTTP/1.1\r\nAccept: */*\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/get_one_header_no_body
+request_url :/get_one_header_no_body
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Accept": "*/*"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :get funky content length body hello
+raw   :"GET /get_funky_content_length_body_hello HTTP/1.0\r\nconTENT-Length: 5\r\n\r\nHELLO"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/get_funky_content_length_body_hello
+request_url :/get_funky_content_length_body_hello
+fragment    :
+query_string:
+body        :"HELLO"
+body_size   :0
+header_0 :{ "conTENT-Length": "5"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :0
+
+name  :post identity body world
+raw   :"POST /post_identity_body_world?q=search#hey HTTP/1.1\r\nAccept: */*\r\nTransfer-Encoding: identity\r\nContent-Length: 5\r\n\r\nWorld"
+type  :HTTP_REQUEST
+method: HTTP_POST
+status_code :0
+request_path:/post_identity_body_world
+request_url :/post_identity_body_world?q=search#hey
+fragment    :hey
+query_string:q=search
+body        :"World"
+body_size   :0
+header_0 :{ "Accept": "*/*"}
+header_1 :{ "Transfer-Encoding": "identity"}
+header_2 :{ "Content-Length": "5"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :post - chunked body: all your base are belong to us
+raw   :"POST /post_chunked_all_your_base HTTP/1.1\r\nTransfer-Encoding: chunked\r\n\r\n1e\r\nall your base are belong to us\r\n0\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_POST
+status_code :0
+request_path:/post_chunked_all_your_base
+request_url :/post_chunked_all_your_base
+fragment    :
+query_string:
+body        :"all your base are belong to us"
+body_size   :0
+header_0 :{ "Transfer-Encoding": "chunked"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :two chunks ; triple zero ending
+raw   :"POST /two_chunks_mult_zero_end HTTP/1.1\r\nTransfer-Encoding: chunked\r\n\r\n5\r\nhello\r\n6\r\n world\r\n000\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_POST
+status_code :0
+request_path:/two_chunks_mult_zero_end
+request_url :/two_chunks_mult_zero_end
+fragment    :
+query_string:
+body        :"hello world"
+body_size   :0
+header_0 :{ "Transfer-Encoding": "chunked"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :chunked with trailing headers. blech.
+raw   :"POST /chunked_w_trailing_headers HTTP/1.1\r\nTransfer-Encoding: chunked\r\n\r\n5\r\nhello\r\n6\r\n world\r\n0\r\nVary: *\r\nContent-Type: text/plain\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_POST
+status_code :0
+request_path:/chunked_w_trailing_headers
+request_url :/chunked_w_trailing_headers
+fragment    :
+query_string:
+body        :"hello world"
+body_size   :0
+header_0 :{ "Transfer-Encoding": "chunked"}
+header_1 :{ "Vary": "*"}
+header_2 :{ "Content-Type": "text/plain"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :with bullshit after the length
+raw   :"POST /chunked_w_bullshit_after_length HTTP/1.1\r\nTransfer-Encoding: chunked\r\n\r\n5; ihatew3;whatthefuck=aretheseparametersfor\r\nhello\r\n6; blahblah; blah\r\n world\r\n0\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_POST
+status_code :0
+request_path:/chunked_w_bullshit_after_length
+request_url :/chunked_w_bullshit_after_length
+fragment    :
+query_string:
+body        :"hello world"
+body_size   :0
+header_0 :{ "Transfer-Encoding": "chunked"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :with quotes
+raw   :"GET /with_\"stupid\"_quotes?foo=\"bar\" HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/with_"stupid"_quotes
+request_url :/with_"stupid"_quotes?foo="bar"
+fragment    :
+query_string:foo="bar"
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :apachebench get
+raw   :"GET /test HTTP/1.0\r\nHost: 0.0.0.0:5000\r\nUser-Agent: ApacheBench/2.3\r\nAccept: */*\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/test
+request_url :/test
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Host": "0.0.0.0:5000"}
+header_1 :{ "User-Agent": "ApacheBench/2.3"}
+header_2 :{ "Accept": "*/*"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :0
+
+name  :query url with question mark
+raw   :"GET /test.cgi?foo=bar?baz HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/test.cgi
+request_url :/test.cgi?foo=bar?baz
+fragment    :
+query_string:foo=bar?baz
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :newline prefix get
+raw   :"\r\nGET /test HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/test
+request_url :/test
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :upgrade request
+raw   :"GET /demo HTTP/1.1\r\nHost: example.com\r\nConnection: Upgrade\r\nSec-WebSocket-Key2: 12998 5 Y3 1  .P00\r\nSec-WebSocket-Protocol: sample\r\nUpgrade: WebSocket\r\nSec-WebSocket-Key1: 4 @1  46546xW%0l 1 5\r\nOrigin: http://example.com\r\n\r\nHot diggity dogg"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/demo
+request_url :/demo
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Host": "example.com"}
+header_1 :{ "Connection": "Upgrade"}
+header_2 :{ "Sec-WebSocket-Key2": "12998 5 Y3 1  .P00"}
+header_3 :{ "Sec-WebSocket-Protocol": "sample"}
+header_4 :{ "Upgrade": "WebSocket"}
+header_5 :{ "Sec-WebSocket-Key1": "4 @1  46546xW%0l 1 5"}
+header_6 :{ "Origin": "http://example.com"}
+should_keep_alive         :1
+upgrade                   :"Hot diggity dogg"
+http_major                :1
+http_minor                :1
+
+name  :connect request
+raw   :"CONNECT 0-home0.netscape.com:443 HTTP/1.0\r\nUser-agent: Mozilla/1.1N\r\nProxy-authorization: basic aGVsbG86d29ybGQ=\r\n\r\nsome data\r\nand yet even more data"
+type  :HTTP_REQUEST
+method: HTTP_CONNECT
+status_code :0
+request_path:
+request_url :0-home0.netscape.com:443
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "User-agent": "Mozilla/1.1N"}
+header_1 :{ "Proxy-authorization": "basic aGVsbG86d29ybGQ="}
+should_keep_alive         :0
+upgrade                   :"some data\r\nand yet even more data"
+http_major                :1
+http_minor                :0
+
+name  :report request
+raw   :"REPORT /test HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_REPORT
+status_code :0
+request_path:/test
+request_url :/test
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :request with no http version
+raw   :"GET /\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/
+request_url :/
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :0
+http_major                :0
+http_minor                :9
+
+name  :m-search request
+raw   :"M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nST: \"ssdp:all\"\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_MSEARCH
+status_code :0
+request_path:*
+request_url :*
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "HOST": "239.255.255.250:1900"}
+header_1 :{ "MAN": ""ssdp:discover""}
+header_2 :{ "ST": ""ssdp:all""}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :line folding in header value
+raw   :"GET / HTTP/1.1\r\nLine1:   abc\r\n	def\r\n ghi\r\n		jkl\r\n  mno \r\n	 	qrs\r\nLine2: 	 line2	\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:/
+request_url :/
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Line1": "abcdefghijklmno qrs"}
+header_1 :{ "Line2": "line2	"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :host terminated by a query string
+raw   :"GET http://hypnotoad.org?hail=all HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:
+request_url :http://hypnotoad.org?hail=all
+fragment    :
+query_string:hail=all
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :host:port terminated by a query string
+raw   :"GET http://hypnotoad.org:1234?hail=all HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:
+request_url :http://hypnotoad.org:1234?hail=all
+fragment    :
+query_string:hail=all
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :host:port terminated by a space
+raw   :"GET http://hypnotoad.org:1234 HTTP/1.1\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_GET
+status_code :0
+request_path:
+request_url :http://hypnotoad.org:1234
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :PATCH request
+raw   :"PATCH /file.txt HTTP/1.1\r\nHost: www.example.com\r\nContent-Type: application/example\r\nIf-Match: \"e0023aa4e\"\r\nContent-Length: 10\r\n\r\ncccccccccc"
+type  :HTTP_REQUEST
+method: UNKNOWN
+status_code :0
+request_path:/file.txt
+request_url :/file.txt
+fragment    :
+query_string:
+body        :"cccccccccc"
+body_size   :0
+header_0 :{ "Host": "www.example.com"}
+header_1 :{ "Content-Type": "application/example"}
+header_2 :{ "If-Match": ""e0023aa4e""}
+header_3 :{ "Content-Length": "10"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :connect caps request
+raw   :"CONNECT HOME0.NETSCAPE.COM:443 HTTP/1.0\r\nUser-agent: Mozilla/1.1N\r\nProxy-authorization: basic aGVsbG86d29ybGQ=\r\n\r\n"
+type  :HTTP_REQUEST
+method: HTTP_CONNECT
+status_code :0
+request_path:
+request_url :HOME0.NETSCAPE.COM:443
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "User-agent": "Mozilla/1.1N"}
+header_1 :{ "Proxy-authorization": "basic aGVsbG86d29ybGQ="}
+should_keep_alive         :0
+upgrade                   :""
+http_major                :1
+http_minor                :0
+
+name  :eat CRLF between requests, no "Connection: close" header
+raw   :"POST / HTTP/1.1\r\nHost: www.example.com\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 4\r\n\r\nq=42\r\n"
+type  :HTTP_REQUEST
+method: HTTP_POST
+status_code :0
+request_path:/
+request_url :/
+fragment    :
+query_string:
+body        :"q=42"
+body_size   :0
+header_0 :{ "Host": "www.example.com"}
+header_1 :{ "Content-Type": "application/x-www-form-urlencoded"}
+header_2 :{ "Content-Length": "4"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :eat CRLF between requests even if "Connection: close" is set
+raw   :"POST / HTTP/1.1\r\nHost: www.example.com\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 4\r\nConnection: close\r\n\r\nq=42\r\n"
+type  :HTTP_REQUEST
+method: HTTP_POST
+status_code :0
+request_path:/
+request_url :/
+fragment    :
+query_string:
+body        :"q=42"
+body_size   :0
+header_0 :{ "Host": "www.example.com"}
+header_1 :{ "Content-Type": "application/x-www-form-urlencoded"}
+header_2 :{ "Content-Length": "4"}
+header_3 :{ "Connection": "close"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :PURGE request
+raw   :"PURGE /file.txt HTTP/1.1\r\nHost: www.example.com\r\n\r\n"
+type  :HTTP_REQUEST
+method: UNKNOWN
+status_code :0
+request_path:/file.txt
+request_url :/file.txt
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Host": "www.example.com"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :google 301
+raw   :"HTTP/1.1 301 Moved Permanently\r\nLocation: http://www.google.com/\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Sun, 26 Apr 2009 11:11:49 GMT\r\nExpires: Tue, 26 May 2009 11:11:49 GMT\r\nX-$PrototypeBI-Version: 1.6.0.3\r\nCache-Control: public, max-age=2592000\r\nServer: gws\r\nContent-Length:  219  \r\n\r\n<HTML><HEAD><meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<TITLE>301 Moved</TITLE></HEAD><BODY>\n<H1>301 Moved</H1>\nThe document has moved\n<A HREF=\"http://www.google.com/\">here</A>.\r\n</BODY></HTML>\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :301
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :"<HTML><HEAD><meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<TITLE>301 Moved</TITLE></HEAD><BODY>\n<H1>301 Moved</H1>\nThe document has moved\n<A HREF=\"http://www.google.com/\">here</A>.\r\n</BODY></HTML>\r\n"
+body_size   :0
+header_0 :{ "Location": "http://www.google.com/"}
+header_1 :{ "Content-Type": "text/html; charset=UTF-8"}
+header_2 :{ "Date": "Sun, 26 Apr 2009 11:11:49 GMT"}
+header_3 :{ "Expires": "Tue, 26 May 2009 11:11:49 GMT"}
+header_4 :{ "X-$PrototypeBI-Version": "1.6.0.3"}
+header_5 :{ "Cache-Control": "public, max-age=2592000"}
+header_6 :{ "Server": "gws"}
+header_7 :{ "Content-Length": "219  "}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :no content-length response
+raw   :"HTTP/1.1 200 OK\r\nDate: Tue, 04 Aug 2009 07:59:32 GMT\r\nServer: Apache\r\nX-Powered-By: Servlet/2.5 JSP/2.1\r\nContent-Type: text/xml; charset=utf-8\r\nConnection: close\r\n\r\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <SOAP-ENV:Body>\n    <SOAP-ENV:Fault>\n       <faultcode>SOAP-ENV:Client</faultcode>\n       <faultstring>Client Error</faultstring>\n    </SOAP-ENV:Fault>\n  </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <SOAP-ENV:Body>\n    <SOAP-ENV:Fault>\n       <faultcode>SOAP-ENV:Client</faultcode>\n       <faultstring>Client Error</faultstring>\n    </SOAP-ENV:Fault>\n  </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>"
+body_size   :0
+header_0 :{ "Date": "Tue, 04 Aug 2009 07:59:32 GMT"}
+header_1 :{ "Server": "Apache"}
+header_2 :{ "X-Powered-By": "Servlet/2.5 JSP/2.1"}
+header_3 :{ "Content-Type": "text/xml; charset=utf-8"}
+header_4 :{ "Connection": "close"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :404 no headers no body
+raw   :"HTTP/1.1 404 Not Found\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :404
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :301 no response phrase
+raw   :"HTTP/1.1 301\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :301
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :200 trailing space on chunked body
+raw   :"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nTransfer-Encoding: chunked\r\n\r\n25  \r\nThis is the data in the first chunk\r\n\r\n1C\r\nand this is the second one\r\n\r\n0  \r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :"This is the data in the first chunk\r\nand this is the second one\r\n"
+body_size   :65
+header_0 :{ "Content-Type": "text/plain"}
+header_1 :{ "Transfer-Encoding": "chunked"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :no carriage ret
+raw   :"HTTP/1.1 200 OK\nContent-Type: text/html; charset=utf-8\nConnection: close\n\nthese headers are from http://news.ycombinator.com/"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :"these headers are from http://news.ycombinator.com/"
+body_size   :0
+header_0 :{ "Content-Type": "text/html; charset=utf-8"}
+header_1 :{ "Connection": "close"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :proxy connection
+raw   :"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length: 11\r\nProxy-Connection: close\r\nDate: Thu, 31 Dec 2009 20:55:48 +0000\r\n\r\nhello world"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :"hello world"
+body_size   :0
+header_0 :{ "Content-Type": "text/html; charset=UTF-8"}
+header_1 :{ "Content-Length": "11"}
+header_2 :{ "Proxy-Connection": "close"}
+header_3 :{ "Date": "Thu, 31 Dec 2009 20:55:48 +0000"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :underscore header key
+raw   :"HTTP/1.1 200 OK\r\nServer: DCLK-AdSvr\r\nContent-Type: text/xml\r\nContent-Length: 0\r\nDCLK_imp: v7;x;114750856;0-0;0;17820020;0/0;21603567/21621457/1;;~okv=;dcmt=text/xml;;~cs=o\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Server": "DCLK-AdSvr"}
+header_1 :{ "Content-Type": "text/xml"}
+header_2 :{ "Content-Length": "0"}
+header_3 :{ "DCLK_imp": "v7;x;114750856;0-0;0;17820020;0/0;21603567/21621457/1;;~okv=;dcmt=text/xml;;~cs=o"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :bonjourmadame.fr
+raw   :"HTTP/1.0 301 Moved Permanently\r\nDate: Thu, 03 Jun 2010 09:56:32 GMT\r\nServer: Apache/2.2.3 (Red Hat)\r\nCache-Control: public\r\nPragma: \r\nLocation: http://www.bonjourmadame.fr/\r\nVary: Accept-Encoding\r\nContent-Length: 0\r\nContent-Type: text/html; charset=UTF-8\r\nConnection: keep-alive\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :301
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Date": "Thu, 03 Jun 2010 09:56:32 GMT"}
+header_1 :{ "Server": "Apache/2.2.3 (Red Hat)"}
+header_2 :{ "Cache-Control": "public"}
+header_3 :{ "Pragma": ""}
+header_4 :{ "Location": "http://www.bonjourmadame.fr/"}
+header_5 :{ "Vary": "Accept-Encoding"}
+header_6 :{ "Content-Length": "0"}
+header_7 :{ "Content-Type": "text/html; charset=UTF-8"}
+header_8 :{ "Connection": "keep-alive"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :0
+
+name  :field underscore
+raw   :"HTTP/1.1 200 OK\r\nDate: Tue, 28 Sep 2010 01:14:13 GMT\r\nServer: Apache\r\nCache-Control: no-cache, must-revalidate\r\nExpires: Mon, 26 Jul 1997 05:00:00 GMT\r\n.et-Cookie: PlaxoCS=1274804622353690521; path=/; domain=.plaxo.com\r\nVary: Accept-Encoding\r\n_eep-Alive: timeout=45\r\n_onnection: Keep-Alive\r\nTransfer-Encoding: chunked\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n0\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Date": "Tue, 28 Sep 2010 01:14:13 GMT"}
+header_1 :{ "Server": "Apache"}
+header_2 :{ "Cache-Control": "no-cache, must-revalidate"}
+header_3 :{ "Expires": "Mon, 26 Jul 1997 05:00:00 GMT"}
+header_4 :{ ".et-Cookie": "PlaxoCS=1274804622353690521; path=/; domain=.plaxo.com"}
+header_5 :{ "Vary": "Accept-Encoding"}
+header_6 :{ "_eep-Alive": "timeout=45"}
+header_7 :{ "_onnection": "Keep-Alive"}
+header_8 :{ "Transfer-Encoding": "chunked"}
+header_9 :{ "Content-Type": "text/html"}
+header_10 :{ "Connection": "close"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :non-ASCII in status line
+raw   :"HTTP/1.1 500 Oriëntatieprobleem\r\nDate: Fri, 5 Nov 2010 23:07:12 GMT+2\r\nContent-Length: 0\r\nConnection: close\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :500
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Date": "Fri, 5 Nov 2010 23:07:12 GMT+2"}
+header_1 :{ "Content-Length": "0"}
+header_2 :{ "Connection": "close"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :http version 0.9
+raw   :"HTTP/0.9 200 OK\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :0
+http_major                :0
+http_minor                :9
+
+name  :neither content-length nor transfer-encoding response
+raw   :"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nhello world"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :"hello world"
+body_size   :0
+header_0 :{ "Content-Type": "text/plain"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :HTTP/1.0 with keep-alive and EOF-terminated 200 status
+raw   :"HTTP/1.0 200 OK\r\nConnection: keep-alive\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Connection": "keep-alive"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :0
+
+name  :HTTP/1.0 with keep-alive and a 204 status
+raw   :"HTTP/1.0 204 No content\r\nConnection: keep-alive\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :204
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Connection": "keep-alive"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :0
+
+name  :HTTP/1.1 with an EOF-terminated 200 status
+raw   :"HTTP/1.1 200 OK\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :HTTP/1.1 with a 204 status
+raw   :"HTTP/1.1 204 No content\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :204
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+
+name  :HTTP/1.1 with a 204 status and keep-alive disabled
+raw   :"HTTP/1.1 204 No content\r\nConnection: close\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :204
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Connection": "close"}
+should_keep_alive         :0
+http_major                :1
+http_minor                :1
+
+name  :HTTP/1.1 with chunked endocing and a 200 response
+raw   :"HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\n"
+type  :HTTP_RESPONSE
+method: HTTP_DELETE
+status_code :200
+request_path:
+request_url :
+fragment    :
+query_string:
+body        :""
+body_size   :0
+header_0 :{ "Transfer-Encoding": "chunked"}
+should_keep_alive         :1
+http_major                :1
+http_minor                :1
+

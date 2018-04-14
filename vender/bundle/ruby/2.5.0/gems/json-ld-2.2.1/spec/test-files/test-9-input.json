@@ -1,0 +1,12 @@
+[{
+  "@id": "http://example.com/id1",
+  "@type": ["http://example.com/t1"],
+  "http://example.com/term": [
+    {"@value": "v1", "@language": "de"},
+    {"@value": "v2", "@type": "http://example.com/t2"},
+    {"@value": "v3", "@language": "en"},
+    {"@list": [1, 2]},
+    {"@value": "v5"},
+    {"@value": "plain literal"}
+  ]
+}]

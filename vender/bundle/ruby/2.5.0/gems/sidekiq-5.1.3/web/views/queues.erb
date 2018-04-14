@@ -1,0 +1,30 @@
+<h3><%= t('Queues') %></h3>
+
+<div class="table_container">
+  <table class="queues table table-hover table-bordered table-striped table-white">
+    <thead>
+      <th><%= t('Queue') %></th>
+      <th><%= t('Size') %></th>
+      <th><%= t('Latency') %></th>
+      <th><%= t('Actions') %></th>
+    </thead>
+    <% @queues.each do |queue| %>
+      <tr>
+        <td>
+          <a href="<%= root_path %>queues/<%= CGI.escape(queue.name) %>"><%= h queue.name %></a>
+          <% if queue.paused? %>
+            <span class="label label-danger"><%= t('Paused') %></span>
+          <% end %>
+        </td>
+        <td><%= number_with_delimiter(queue.size) %> </td>
+        <td><%= number_with_delimiter(queue.latency.round(2)) %> </td>
+        <td class="delete-confirm">
+          <form action="<%=root_path %>queues/<%= CGI.escape(queue.name) %>" method="post">
+            <%= csrf_tag %>
+            <input class="btn btn-danger btn-xs" type="submit" name="delete" value="<%= t('Delete') %>" data-confirm="<%= t('AreYouSureDeleteQueue', :queue => h(queue.name)) %>" />
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

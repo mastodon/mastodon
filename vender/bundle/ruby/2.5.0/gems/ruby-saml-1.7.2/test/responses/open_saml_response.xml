@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml2p:Response xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" Destination="https://example.hello.com/access/saml" ID="jVFQbyEpSfUwqhZtJtarIaGoshwuAQMDwLoiMhzJXsv" InResponseTo="cfeooghajnhofcmogakmlhpkohnmikicnfhdnjlc" IssueInstant="2011-06-21T13:54:38.661Z" Version="2.0">
+  <saml2:Issuer xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">https://idm.orademo.com</saml2:Issuer>
+  <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <ds:SignedInfo>
+      <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+      <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+      <ds:Reference URI="#jVFQbyEpSfUwqhZtJtarIaGoshwuAQMDwLoiMhzJXsv">
+        <ds:Transforms>
+          <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+          <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#">
+            <ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="xs"/>
+          </ds:Transform>
+        </ds:Transforms>
+        <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <ds:DigestValue>uHuSry39P16Yh7srS32xESmj4Lw=</ds:DigestValue>
+      </ds:Reference>
+    </ds:SignedInfo>
+    <ds:SignatureValue>fdghdfggfd=</ds:SignatureValue>
+    <ds:KeyInfo>
+      <ds:X509Data>
+        <ds:X509Certificate>dfghjkl</ds:X509Certificate>
+      </ds:X509Data>
+    </ds:KeyInfo>
+  </ds:Signature>
+  <saml2p:Status>
+    <saml2p:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+  </saml2p:Status>
+  <saml2:Assertion xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" ID="emmCjammnYdAbMWDuMAJeZvQIMBayeeYqqwvQoDclKE" IssueInstant="2011-06-21T13:54:38.676Z" Version="2.0">
+    <saml2:Issuer>https://idm.orademo.com</saml2:Issuer>
+    <saml2:Subject>
+      <saml2:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" NameQualifier="idp.example.org">someone@example.org</saml2:NameID>
+      <saml2:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <saml2:SubjectConfirmationData InResponseTo="cfeooghajnhofcmogakmlhpkohnmikicnfhdnjlc" NotOnOrAfter="2011-06-21T14:09:38.676Z" Recipient="https://example.hello.com/access/saml"/>
+      </saml2:SubjectConfirmation>
+    </saml2:Subject>
+    <saml2:Conditions NotBefore="2011-06-21T13:54:38.683Z" NotOnOrAfter="2011-06-21T14:09:38.683Z">
+      <saml2:AudienceRestriction>
+        <saml2:Audience>hello.com</saml2:Audience>
+      </saml2:AudienceRestriction>
+    </saml2:Conditions>
+    <saml2:AuthnStatement AuthnInstant="2011-06-21T13:54:38.685Z" SessionIndex="perdkjfskdjfksdiertusfsdfsddeurtherukjdfgkdffg">
+      <saml2:AuthnContext>
+        <saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml2:AuthnContextClassRef>
+      </saml2:AuthnContext>
+    </saml2:AuthnStatement>
+    <saml2:AttributeStatement>
+      <saml2:Attribute Name="FirstName">
+        <saml2:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Someone</saml2:AttributeValue>
+      </saml2:Attribute>
+      <saml2:Attribute Name="LastName">
+        <saml2:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Special</saml2:AttributeValue>
+      </saml2:Attribute>
+    </saml2:AttributeStatement>
+  </saml2:Assertion>
+</saml2p:Response>

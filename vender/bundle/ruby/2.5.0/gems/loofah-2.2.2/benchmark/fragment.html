@@ -1,0 +1,96 @@
+<div id="top_parent"></div>
+
+<div id="jump">
+        <a href="#main-articles">Stories</a>
+        <br>
+        <a href="#blocks">Slash Boxes</a>
+        <br>
+        <a href="#comments">Comments</a>
+</div>
+<a name="topothepage"></a>
+<div id="doc3" class="yui-t6 index2 mainpage ac   ">
+	<div id="hd" >
+		<div id="logo" >
+
+			
+			
+			<h1><a href="//slashdot.org"><span>Slashdot</span></a></h1>
+			<div id="slogan"><h2>News for nerds, stuff that matters</h2></div>
+		</div>
+		<a href="#articles" class="hidden">Jump to articles</a>
+		<div class="nav">
+			<ul>
+			
+				
+                                
+				<li><a href="//slashdot.org/submit.pl" title="Submit a story to Slashdot">Submit Story</a></li>
+                                <li><a href="//slashdot.org/help" title="Frequently asked questions on Slashdot">Help</a></li>
+				<li><a href="//slashdot.org/login.pl" onclick="show_login_box(); return false;">Log In</a></li>
+			
+			</ul>
+		</div>
+	
+		
+
+		
+
+		<div id="fh_picker_search" style="display: block;">
+		<form method="get" action="//slashdot.org/index2.pl">
+			<fieldset class="mode-filter mode-anon">
+				<legend>Search</legend>
+				
+				
+				<input class="query" type="text" name="fhfilter" value="" id="searchquery">						<input type="button" class="setfhfilter" value="Filter" id="viewsearch" style="display:none">					<input type="submit" class="setsearchfilter" value="Search" id="fhsearch" style="display:none">
+					<noscript><input type="submit" class="setsearchfilter" value="Search"></noscript>
+					
+					<script type="text/javascript">
+					var slash_search;
+						$(function(){
+							if (has_hose()) {
+							var	$search_text	= $any('searchquery'),
+								$panel			= $search_text.closest('fieldset');
+								$search_buttons	= $('#viewsearch,#fhsearch'),
+								ws				= /\s+/;
+
+							
+
+							// The search buttons set the firehose option named by their class.
+							$search_buttons.
+								click(function(){
+									var which=this.className;
+									$search_text.each(function(){
+										firehose_set_options(which, this.value);
+									});
+									return false;
+								});
+
+							// Provide a globally available function that does whatever clicking the search button would do.
+							slash_search = function( query ){
+								query!==undefined && $search_text.val(query);
+								$search_buttons.filter(':visible:first').click();
+							};
+
+							$search_text.
+								keydown(function( e ){	// ESCAPE restores the filter in-effect.
+									if ( e.which == $.ui.keyCode.ESCAPE ) {
+										$search_text.val(firehose_settings.fhfilter||'');
+										return true;
+									}
+									if ( e.which == $.ui.keyCode.ENTER ) {
+										slash_search();
+										return false;
+									}
+								});
+	
+							$(document).
+								bind('firehose-setting-setfhfilter firehose-setting-setsearchfilter', function( e, new_query ){
+									$('fieldset input[type=text]').each(function(){
+										$(this).blur().val(new_query);
+									});
+								}).
+								bind('set-options.firehose', function( e, data ){
+									data.select_section && $panel.toggleClass('mode-filter', data.id!=='unsaved');
+								});
+						}
+					});
+					</script>

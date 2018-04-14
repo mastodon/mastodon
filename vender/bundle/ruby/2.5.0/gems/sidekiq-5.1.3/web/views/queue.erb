@@ -1,0 +1,45 @@
+<header class="row">
+  <div class="col-sm-5">
+    <h3>
+      <%= t('CurrentMessagesInQueue', :queue => h(@name)) %>
+      <% if @queue.paused? %>
+        <span class="label label-danger"><%= t('Paused') %></span>
+      <% end %>
+    </h3>
+  </div>
+  <div class="col-sm-4 pull-right flip">
+    <%= erb :_paging, locals: { url: "#{root_path}queues/#{CGI.escape(@name)}" } %>
+  </div>
+</header>
+<div class="table_container">
+  <table class="queue table table-hover table-bordered table-striped">
+    <thead>
+      <th><%= t('Job') %></th>
+      <th><%= t('Arguments') %></th>
+      <th></th>
+    </thead>
+    <% @messages.each_with_index do |msg, index| %>
+      <tr>
+        <td><%= h(msg.display_class) %></td>
+        <td>
+          <% a = msg.display_args %>
+          <% if a.inspect.size > 100 %>
+            <span class="worker_<%= index %>"><%= h(a.inspect[0..100]) + "... " %></span>
+            <button data-toggle="collapse" data-target=".worker_<%= index %>" class="btn btn-default btn-xs"><%= t('ShowAll') %></button>
+            <div class="toggle worker_<%= index %>"><%= display_args(a) %></div>
+          <% else %>
+            <%= display_args(msg.display_args) %>
+          <% end %>
+        </td>
+        <td>
+          <form action="<%= root_path %>queues/<%= CGI.escape(@name) %>/delete" method="post">
+            <%= csrf_tag %>
+            <input name="key_val" value="<%= h msg.value %>" type="hidden" />
+            <input class="btn btn-danger btn-xs" type="submit" name="delete" value="<%= t('Delete') %>" data-confirm="<%= t('AreYouSure') %>" />
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<%= erb :_paging, locals: { url: "#{root_path}queues/#{@name}" } %>

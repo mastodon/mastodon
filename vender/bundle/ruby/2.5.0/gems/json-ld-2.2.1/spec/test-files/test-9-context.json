@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "id1": "http://example.com/id1",
+    "t1": "http://example.com/t1",
+    "t2": "http://example.com/t2",
+    "term1": "http://example.com/term",
+    "term2": {"@id": "http://example.com/term", "@type": "t2"},
+    "term3": {"@id": "http://example.com/term", "@language": "en"},
+    "term4": {"@id": "http://example.com/term", "@container": "@list"},
+    "term5": {"@id": "http://example.com/term", "@language": null},
+    "@language": "de"
+  }
+}

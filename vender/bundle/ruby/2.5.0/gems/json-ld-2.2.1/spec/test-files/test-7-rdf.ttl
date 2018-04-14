@@ -1,0 +1,14 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ [ a foaf:Person;
+    foaf:homepage "http://example.com/manu/";
+    foaf:name "Manu"] .
+
+ [ a foaf:Person;
+    foaf:homepage "http://example.com/eve/";
+    foaf:name "Eve"] .
+
+ [ a foaf:Person;
+    foaf:homepage "http://example.com/bob/";
+    foaf:name "Bob"] .

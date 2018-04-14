@@ -1,0 +1,11 @@
+language: ruby
+rvm: 2.2.4
+cache: bundler
+sudo: false
+script: TRAVIS_CI=1 bundle exec rake test
+before_script:
+  - psql -c 'create database pghero_test;' -U postgres
+notifications:
+  email:
+    on_success: never
+    on_failure: change

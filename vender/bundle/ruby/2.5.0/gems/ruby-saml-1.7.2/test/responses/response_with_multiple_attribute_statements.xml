@@ -1,0 +1,72 @@
+<samlp:Response xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="GOSAMLR12901174571794" Version="2.0" IssueInstant="2010-11-18T21:57:37Z" Destination="{recipient}">
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/></samlp:Status>
+  <saml:Assertion xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="2.0" ID="pfxa46574df-b3b0-a06a-23c8-636413198772" IssueInstant="2010-11-18T21:57:37Z">
+    <saml:Issuer>https://app.onelogin.com/saml/metadata/13590</saml:Issuer>
+    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+      <ds:SignedInfo>
+        <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+        <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+        <ds:Reference URI="#pfxa46574df-b3b0-a06a-23c8-636413198772">
+          <ds:Transforms>
+            <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+            <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+          </ds:Transforms>
+          <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+          <ds:DigestValue>pJQ7MS/ek4KRRWGmv/H43ReHYMs=</ds:DigestValue>
+        </ds:Reference>
+      </ds:SignedInfo>
+      <ds:SignatureValue>yiveKcPdDpuDNj6shrQ3ABwr/cA3CryD2phG/xLZszKWxU5/mlaKt8ewbZOdKKvtOs2pHBy5Dua3k94AF+zxGyel5gOowmoyXJr+AOr+kPO0vli1V8o3hPPUZwRgSX6Q9pS1CqQghKiEasRyylqqJUaPYzmOzOE8/XlMkwiWmO0=</ds:SignatureValue>
+      <ds:KeyInfo>
+        <ds:X509Data>
+          <ds:X509Certificate>MIIBrTCCAaGgAwIBAgIBATADBgEAMGcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRUwEwYDVQQHDAxTYW50YSBNb25pY2ExETAPBgNVBAoMCE9uZUxvZ2luMRkwFwYDVQQDDBBhcHAub25lbG9naW4uY29tMB4XDTEwMDMwOTA5NTg0NVoXDTE1MDMwOTA5NTg0NVowZzELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFTATBgNVBAcMDFNhbnRhIE1vbmljYTERMA8GA1UECgwIT25lTG9naW4xGTAXBgNVBAMMEGFwcC5vbmVsb2dpbi5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAOjSu1fjPy8d5w4QyL1+zd4hIw1Mkkff4WY/TLG8OZkU5YTSWmmHPD5kvYH5uoXS/6qQ81qXpR2wV8CTowZJULg09ddRdRn8Qsqj1FyOC5slE3y2bZ2oFua72of/49fpujnFT6KnQ61CBMqlDoTQqOT62vGJ8nP6MZWvA6sxqud5AgMBAAEwAwYBAAMBAA==</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </ds:Signature>
+    <saml:Subject>
+      <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">support@onelogin.com</saml:NameID>
+      <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <saml:SubjectConfirmationData NotOnOrAfter="2010-11-18T22:02:37Z" Recipient="{recipient}"/></saml:SubjectConfirmation>
+    </saml:Subject>
+    <saml:Conditions NotBefore="2010-11-18T21:52:37Z" NotOnOrAfter="2010-11-18T22:02:37Z">
+      <saml:AudienceRestriction>
+        <saml:Audience>{audience}</saml:Audience>
+      </saml:AudienceRestriction>
+    </saml:Conditions>
+    <saml:AuthnStatement AuthnInstant="2010-11-18T21:57:37Z" SessionNotOnOrAfter="2010-11-19T21:57:37Z" SessionIndex="_531c32d283bdff7e04e487bcdbc4dd8d">
+      <saml:AuthnContext>
+        <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</saml:AuthnContextClassRef>
+      </saml:AuthnContext>
+    </saml:AuthnStatement>
+    <saml:AttributeStatement>
+      <saml:Attribute Name="surname">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">smith</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="another_value">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">value1</saml:AttributeValue>
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">value2</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="role">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">role1</saml:AttributeValue>
+      </saml:Attribute>
+    </saml:AttributeStatement>
+    <saml:AttributeStatement>
+      <saml:Attribute Name="firstname">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">bob</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="role">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">role2</saml:AttributeValue>
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">role3</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="attribute_with_nil_value">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+      </saml:Attribute>
+      <saml:Attribute Name="attribute_with_nils_and_empty_strings">
+        <saml:AttributeValue/>
+        <saml:AttributeValue>valuePresent</saml:AttributeValue>
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="1"/>
+      </saml:Attribute>
+    </saml:AttributeStatement>
+  </saml:Assertion>
+</samlp:Response>

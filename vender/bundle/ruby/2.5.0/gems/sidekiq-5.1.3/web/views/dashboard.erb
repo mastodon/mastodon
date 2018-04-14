@@ -1,0 +1,75 @@
+<script type="text/javascript" src="<%= root_path %>javascripts/dashboard.js"></script>
+<div class= "dashboard clearfix">
+  <h3 >
+    <%= t('Dashboard') %>
+    <span class="beacon">
+      <span class="ring"></span>
+      <span class="dot"></span>
+    </span>
+  </h3>
+  <div class="interval-slider ltr">
+    <span class="interval-slider-label"><%= t('PollingInterval') %>:</span>
+    <span class="current-interval">5 sec</span>
+    <br/>
+    <input type="range" min="2000" max="20000" step="1000" value="5000"/>
+  </div>
+</div>
+
+<div class="row chart">
+  <div id="realtime" data-processed-label="<%= t('Processed') %>" data-failed-label="<%= t('Failed') %>"></div>
+  <div id="realtime-legend"></div>
+</div>
+
+<div class="row chart">
+  <h5>
+    <span class="history-heading"><%= t('History') %></span>
+    <a href="<%= root_path %>?days=7" class="history-graph <%= "active" if params[:days] == "7" %>"><%= t('OneWeek') %></a>
+    <a href="<%= root_path %>" class="history-graph <%= "active" if params[:days].nil? || params[:days] == "30" %>"><%= t('OneMonth') %></a>
+    <a href="<%= root_path %>?days=90" class="history-graph <%= "active" if params[:days] == "90" %>"><%= t('ThreeMonths') %></a>
+    <a href="<%= root_path %>?days=180" class="history-graph <%= "active" if params[:days] == "180" %>"><%= t('SixMonths') %></a>
+  </h5>
+
+  <div id="history" data-processed-label="<%= t('Processed') %>" data-failed-label="<%= t('Failed') %>" data-processed="<%= h Sidekiq.dump_json(@processed_history) %>" data-failed="<%= h Sidekiq.dump_json(@failed_history) %>" data-update-url="<%= root_path %>stats"></div>
+  <div id="history-legend"></div>
+</div>
+
+<br/>
+<h5>Redis</h5>
+<div class="redis-wrapper">
+  <div class="stats-container">
+    <% if @redis_info.fetch("redis_version", nil) %>
+      <div class="stat">
+        <h3 class="redis_version"><%= @redis_info.fetch("redis_version") %></h3>
+        <p><%= t('Version') %></p>
+      </div>
+    <% end %>
+
+    <% if @redis_info.fetch("uptime_in_days", nil) %>
+      <div class="stat">
+        <h3 class="uptime_in_days"><%= @redis_info.fetch("uptime_in_days") %></h3>
+        <p><%= t('Uptime') %></p>
+      </div>
+    <% end %>
+
+    <% if @redis_info.fetch("connected_clients", nil) %>
+      <div class="stat">
+        <h3 class="connected_clients"><%= @redis_info.fetch("connected_clients") %></h3>
+        <p><%= t('Connections') %></p>
+      </div>
+    <% end %>
+
+    <% if @redis_info.fetch("used_memory_human", nil) %>
+      <div class="stat">
+        <h3 class="used_memory_human"><%= @redis_info.fetch("used_memory_human") %></h3>
+        <p><%= t('MemoryUsage') %></p>
+      </div>
+    <% end %>
+
+    <% if @redis_info.fetch("used_memory_peak_human", nil) %>
+      <div class="stat">
+        <h3 class="used_memory_peak_human"><%= @redis_info.fetch("used_memory_peak_human") %></h3>
+        <p><%= t('PeakMemoryUsage') %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

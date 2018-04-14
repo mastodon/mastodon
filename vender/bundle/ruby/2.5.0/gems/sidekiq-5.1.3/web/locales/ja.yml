@@ -1,0 +1,80 @@
+# elements like %{queue} are variables and should not be translated
+ja:
+  Dashboard: ダッシュボード
+  Status: 状態
+  Time: 時間
+  Namespace: ネームスペース
+  Realtime: リアルタイム
+  History: 履歴
+  Busy: 実行中
+  Processed: 完了
+  Failed: 失敗
+  Scheduled: 予定
+  Retries: 再試行
+  Enqueued: 待機状態
+  Worker: 動作中の作業
+  LivePoll: ポーリング開始
+  StopPolling: ポーリング停止
+  Queue: キュー
+  Class: クラス
+  Job: ジョブ
+  Arguments: 引数
+  Extras: エクストラ
+  Started: 開始
+  ShowAll: 全て見せる
+  CurrentMessagesInQueue: <span class='title'>%{queue}</span>に メッセージがあります
+  Delete: 削除
+  AddToQueue: キューに追加
+  AreYouSureDeleteJob: このジョブを削除しますか？
+  AreYouSureDeleteQueue: この %{queue} キューを削除しますか?
+  Queues: キュー
+  Size: サイズ
+  Actions: アクション
+  NextRetry: 再試行
+  RetryCount: 再試行
+  RetryNow: 今すぐ再試行
+  LastRetry: 再試行履歴
+  OriginallyFailed: 失敗
+  AreYouSure: よろしいですか？
+  DeleteAll: 全て削除
+  RetryAll: 全て再試行
+  NoRetriesFound: 再試行するジョブはありません
+  Error: エラー
+  ErrorClass: エラークラス
+  ErrorMessage: エラーメッセージ
+  ErrorBacktrace: エラーバックトレース
+  GoBack: ← 戻る
+  NoScheduledFound: 予定されたジョブはありません
+  When: いつ
+  ScheduledJobs: 予定されたジョブ
+  idle: アイドル
+  active: アクティブ
+  Version: バージョン
+  Connections: 接続
+  MemoryUsage: メモリー使用量
+  PeakMemoryUsage: 最大メモリー使用量
+  Uptime: 連続稼働時間 (日)
+  OneWeek: 1 週
+  OneMonth: 1 ヶ月
+  ThreeMonths: 3 ヶ月
+  SixMonths: 6 ヶ月
+  Batches: バッチ
+  Failures: 失敗
+  DeadJobs: デッドジョブ
+  NoDeadJobsFound: デッドジョブはありません
+  Dead: デッド
+  Processes: プロセス
+  Thread: スレッド
+  Threads: スレッド
+  Jobs: ジョブ
+  Paused: 一時停止中
+  Stop: 停止
+  Quiet: 処理終了
+  StopAll: すべて停止
+  QuietAll: すべて処理終了
+  PollingInterval: ポーリング間隔
+  Plugins: プラグイン
+  NotYetEnqueued: キューに入っていません
+  CreatedAt: 作成日時
+  BackToApp: アプリに戻る
+  Latency: レイテンシ

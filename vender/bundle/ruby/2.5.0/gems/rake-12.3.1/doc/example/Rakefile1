@@ -1,0 +1,38 @@
+# Example Rakefile -*- ruby -*-
+
+task :default => [:main]
+
+file "a.o" => ["a.c"] do |t|
+  src = t.name.sub(/\.o$/, '.c')
+  sh "gcc #{src} -c -o #{t.name}"
+end
+
+file "b.o" => ["b.c"] do |t|
+  src = t.name.sub(/\.o$/, '.c')
+  sh "gcc #{src} -c -o #{t.name}"
+end
+
+file "main.o" => ["main.c"] do |t|
+  src = t.name.sub(/\.o$/, '.c')
+  sh "gcc #{src} -c -o #{t.name}"
+end
+
+OBJFILES = ["a.o", "b.o", "main.o"]
+task :obj => OBJFILES
+
+file "main" => OBJFILES do |t|
+  sh "gcc -o #{t.name} main.o a.o b.o"
+end
+
+task :clean do
+  rm_f FileList['*.o']
+  Dir['*~'].each { |fn| rm_f fn }
+end
+
+task :clobber => [:clean] do
+  rm_f "main"
+end
+
+task :run => ["main"] do
+  sh "./main"
+end

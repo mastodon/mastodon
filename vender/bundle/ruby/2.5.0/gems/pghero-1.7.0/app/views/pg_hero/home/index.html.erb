@@ -1,0 +1,366 @@
+<div id="status">
+  <% if @replica %>
+    <div class="alert alert-<%= @good_replication_lag ? "success" : "warning" %>">
+      <% if @good_replication_lag %>
+        Healthy replication lag
+      <% else %>
+        High replication lag
+      <% end %>
+      <span class="tiny"><%= number_with_delimiter((@replication_lag * 1000).round) %> ms</span>
+    </div>
+  <% end %>
+  <div class="alert alert-<%= @long_running_queries.empty? ? "success" : "warning" %>">
+    <% if @long_running_queries.any? %>
+      <%= pluralize(@long_running_queries.size, "long running query") %>
+    <% else %>
+      No long running queries
+    <% end %>
+    <% if @autovacuum_queries.any? %>
+      <span class="tiny"><%= @autovacuum_queries.size %> autovacuum</span>
+    <% end %>
+  </div>
+  <% if @extended %>
+    <div class="alert alert-<%= @good_cache_rate ? "success" : "warning" %>">
+      <% if @good_cache_rate %>
+        Cache hit rate above <%= @database.cache_hit_rate_threshold %>%
+      <% else %>
+        Low cache hit rate
+      <% end %>
+    </div>
+  <% end %>
+  <div class="alert alert-<%= @good_total_connections ? "success" : "warning" %>">
+    <% if @good_total_connections %>
+      Number of connections healthy
+    <% else %>
+      High number of connections
+    <% end %>
+    <span class="tiny"><%= @total_connections %></span>
+  </div>
+  <div class="alert alert-<%= @transaction_id_danger.empty? ? "success" : "warning" %>">
+    <% if @transaction_id_danger.any? %>
+      <%= pluralize(@transaction_id_danger.size, "table") %> not vacuuming properly
+    <% else %>
+      Vacuuming healthy
+    <% end %>
+  </div>
+  <div class="alert alert-<%= @sequence_danger.empty? ? "success" : "warning" %>">
+    <% if @sequence_danger.any? %>
+      <%= pluralize(@sequence_danger.size, "columns") %> approaching overflow
+    <% else %>
+      No columns near integer overflow
+    <% end %>
+  </div>
+  <div class="alert alert-<%= @invalid_indexes.empty? ? "success" : "warning" %>">
+    <% if @invalid_indexes.any? %>
+      <%= pluralize(@invalid_indexes.size, "invalid index", "invalid indexes") %>
+    <% else %>
+      No invalid indexes
+    <% end %>
+  </div>
+  <% if @duplicate_indexes %>
+    <div class="alert alert-<%= @duplicate_indexes.empty? ? "success" : "warning" %>">
+      <% if @duplicate_indexes.any? %>
+        <%= pluralize(@duplicate_indexes.size, "duplicate index", "duplicate indexes") %>
+      <% else %>
+        No duplicate indexes
+      <% end %>
+    </div>
+  <% end %>
+  <% if @database.suggested_indexes_enabled? %>
+    <div class="alert alert-<%= @suggested_indexes.empty? ? "success" : "warning" %>">
+      <% if @suggested_indexes.any? %>
+        <%= pluralize(@suggested_indexes.size, "suggested index", "suggested indexes") %>
+      <% else %>
+        No suggested indexes
+      <% end %>
+    </div>
+  <% end %>
+  <div class="alert alert-<%= @query_stats_enabled && @slow_queries.empty? ? "success" : "warning" %>">
+    <% if !@query_stats_enabled %>
+      Query stats must be enabled for slow queries
+    <% elsif @slow_queries.any? %>
+      <%= pluralize(@slow_queries.size, "slow query") %>
+    <% else %>
+      No slow queries
+    <% end %>
+  </div>
+  <% if @extended %>
+    <div class="alert alert-<%= @unused_indexes.empty? ? "success" : "warning" %>">
+      <% if @unused_indexes.any? %>
+        <%= pluralize(@unused_indexes.size, "unused index", "unused indexes") %>
+      <% else %>
+        No unused indexes
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% if @replica && !@good_replication_lag %>
+  <div class="content">
+    <h1>High Replication Lag</h1>
+
+    <p><%= pluralize(@replication_lag.round, "second") %></p>
+  </div>
+<% end %>
+
+<% if @long_running_queries.any? %>
+  <div class="content">
+    <%= button_to "Kill All", kill_long_running_queries_path, class: "btn btn-danger", style: "float: right;" %>
+    <h1>Long Running Queries</h1>
+
+    <%= render partial: "live_queries_table", locals: {queries: @long_running_queries} %>
+  </div>
+<% end %>
+
+<% if @extended && !@good_cache_rate %>
+  <div class="content">
+    <h1>Low Cache Hit Rate</h1>
+
+    <p>
+      Index Hit Rate: <%= (@index_hit_rate * 100).round(1) %>%
+      <br />
+      Table Hit Rate: <%= (@table_hit_rate * 100).round(1) %>%
+    </p>
+
+    <p>
+      The cache hit rate <%= link_to "should be above 99%", "https://devcenter.heroku.com/articles/understanding-postgres-data-caching", target: "_blank" %> in most cases.  You can often increase this by adding more memory.
+      <!-- TODO better suggestions -->
+    </p>
+  </div>
+<% end %>
+
+<% if !@good_total_connections %>
+  <div class="content">
+    <h1>High Number of Connections</h1>
+    <p><%= pluralize(@total_connections, "connection") %></p>
+
+    <p><%= link_to "Use connection pooling", "http://www.craigkerstiens.com/2014/05/22/on-connection-pooling/", target: "_blank" %> for better performance. <%= link_to "PgBouncer", "https://wiki.postgresql.org/wiki/PgBouncer", target: "_blank" %> is a solid option.</p>
+
+    <%= render partial: "connections_table", locals: {connection_sources: @database.connection_sources(by_database_and_user: true).first(10)} %>
+  </div>
+<% end %>
+
+<% if @transaction_id_danger.any? %>
+  <div class="content">
+    <h2>Vacuuming Needed</h2>
+    <p>The database <strong>will shutdown</strong> when there are fewer than 1,000,000 transactions left. <%= link_to "Read more", "http://www.postgresql.org/docs/9.1/static/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND", target: "_blank" %>.</p>
+    <p>For each table, run:</p>
+    <code><pre>VACUUM FREEZE VERBOSE table;</pre></code>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Table</th>
+          <th style="width: 20%;">Transactions Left</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @transaction_id_danger.each do |query| %>
+          <tr>
+            <td><%= query["table"] %></td>
+            <td><%= number_with_delimiter(query["transactions_before_shutdown"]) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% if @sequence_danger.any? %>
+  <div class="content">
+    <h2>Columns Near Overflow</h2>
+    <p>Consider changing columns to bigint to support a larger range of values.</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th style="width: 20%;">Type</th>
+          <th style="width: 20%;">Values Left</th>
+          <th style="width: 10%;">% Left</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sequence_danger.sort_by { |s| [s["table"], s["column"]] }.each do |query| %>
+          <tr>
+            <td>
+              <%= query["table"] %>.<%= query["column"] %>
+            </td>
+            <td>
+              <%= query["column_type"] %>
+            </td>
+            <td>
+              <%= number_with_delimiter(query["max_value"].to_i - query["last_value"].to_i) %>
+            </td>
+            <td>
+              <%= number_to_percentage((query["max_value"].to_i - query["last_value"].to_i) * 100.0 / query["max_value"].to_i, precision: 2, significant: true) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% if @invalid_indexes.any? %>
+  <div class="content">
+    <h1>Invalid Indexes</h1>
+
+    <p>These indexes exist, but can’t be used. You should recreate them.</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @invalid_indexes.each do |query| %>
+          <tr>
+            <td><%= query["index"] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% if @duplicate_indexes && @duplicate_indexes.any? %>
+  <div class="content">
+    <h1>Duplicate Indexes</h1>
+
+    <p>
+      These indexes exist, but aren’t needed. Remove them
+      <% if @show_migrations %>
+      <a href="javascript: void(0);" onclick="document.getElementById('migration2').style.display = 'block';">with a migration</a>
+      <% end %>
+      for faster writes.
+    </p>
+
+    <div id="migration2" style="display: none;">
+      <pre>rails g migration remove_unneeded_indexes</pre>
+      <p>And paste</p>
+      <pre style="overflow: scroll; white-space: pre; word-break: normal;"><% @duplicate_indexes.each do |query| %>
+remove_index <%= query["unneeded_index"]["table"].to_sym.inspect %>, name: <%= query["unneeded_index"]["name"].to_s.inspect %><% end %></pre>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @duplicate_indexes.each do |index| %>
+          <% unneeded_index = index["unneeded_index"] %>
+          <% covering_index = index["covering_index"] %>
+          <tr>
+            <td style="padding-top: 15px; padding-bottom: 5px;">
+              On <%= unneeded_index["table"] %>
+              <pre><%= unneeded_index["name"] %> (<%= unneeded_index["columns"].join(", ") %>)</pre>
+              is covered by
+              <pre><%= covering_index["name"] %> (<%= covering_index["columns"].join(", ") %>)</pre>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% if @suggested_indexes.any? %>
+  <div class="content">
+    <h1>Suggested Indexes</h1>
+    <p>
+      Add indexes to speed up queries.
+      <% if @show_migrations %>
+      Here’s a
+      <a href="javascript: void(0);" onclick="document.getElementById('migration3').style.display = 'block';">migration</a> to help.
+      <% end %>
+    </p>
+
+    <div id="migration3" style="display: none;">
+      <pre>rails g migration add_suggested_indexes</pre>
+      <p>And paste</p>
+      <pre style="overflow: scroll; white-space: pre; word-break: normal;">commit_db_transaction
+<% @suggested_indexes.each do |index| %>
+<% if index[:using] && index[:using] != "btree" %>
+connection.execute("CREATE INDEX CONCURRENTLY ON <%= index[:table] %><% if index[:using] %> USING <%= index[:using] %><% end %> (<%= index[:columns].join(", ") %>)")
+<% else %>
+add_index <%= index[:table].to_sym.inspect %>, [<%= index[:columns].map(&:to_sym).map(&:inspect).join(", ") %>], algorithm: :concurrently<% end %>
+<% end %></pre>
+    </div>
+
+    <% @suggested_indexes.each_with_index do |index, i| %>
+      <hr />
+      <%= render partial: "suggested_index", locals: {index: index, details: index[:details]} %>
+      <p>to speed up</p>
+      <%= render partial: "queries_table", locals: {queries: index[:queries].map { |q| @query_stats_by_query[q] }, suggested_indexes: false} %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !@query_stats_enabled %>
+  <div class="content">
+    <h1>Query Stats</h1>
+
+    <% if @query_stats_available && !@query_stats_extension_enabled %>
+      <p>
+        Query stats are available but not enabled.
+        <%= button_to "Enable", enable_query_stats_path, class: "btn btn-info" %>
+      </p>
+    <% else %>
+      <p>Make them available by adding the following lines to <code>postgresql.conf</code>:</p>
+      <pre>shared_preload_libraries = 'pg_stat_statements'
+pg_stat_statements.track = all</pre>
+      <p>Restart the server for the changes to take effect.</p>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @query_stats_enabled && @slow_queries.any? %>
+  <div class="content">
+    <h1>Slow Queries</h1>
+
+    <p>Slow queries take <%= @database.slow_query_ms %> ms or more on average and have been called at least <%= @database.slow_query_calls %> times.</p>
+    <p><%= link_to "Explain queries", explain_path %> to see where to add indexes.</p>
+
+    <%= render partial: "queries_table", locals: {queries: @slow_queries} %>
+  </div>
+<% end %>
+
+<% if @extended && @unused_indexes.any? %>
+  <div class="content">
+    <h1>Unused Indexes</h1>
+
+    <p>
+      Unused indexes cause unnecessary overhead. Remove them
+      <% if @show_migrations %>
+        <a href="javascript: void(0);" onclick="document.getElementById('migration').style.display = 'block';">with a migration</a>
+      <% end %>
+      for faster writes.
+    </p>
+
+    <div id="migration" style="display: none;">
+      <pre>rails g migration remove_unused_indexes</pre>
+      <p>And paste</p>
+      <pre style="overflow: scroll; white-space: pre; word-break: normal;"><% @unused_indexes.each do |query| %>
+remove_index <%= query["table"].to_sym.inspect %>, name: <%= query["index"].to_s.inspect %><% end %></pre>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th style="width: 20%;">Index Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @unused_indexes.each do |query| %>
+          <tr>
+            <td><%= query["index"] %><div class="text-muted">on <%= query["table"] %></div></td>
+            <td><%= query["index_size"] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

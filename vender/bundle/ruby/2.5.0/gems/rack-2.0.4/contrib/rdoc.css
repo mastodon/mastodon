@@ -1,0 +1,412 @@
+/* Forked from the Darkfish templates rdoc.css file, much hacked, probably
+ * imperfect */
+
+html { max-width: 960px; margin: 0 auto; }
+body {
+  font: 14px "Helvetica Neue", Helvetica, Tahoma, sans-serif;
+}
+body.file-popup {
+  font-size: 90%;
+  margin-left: 0;
+}
+
+h1 {
+  color: #4183C4;
+}
+
+:link,
+:visited {
+  color: #4183C4;
+  text-decoration: none;
+}
+:link:hover,
+:visited:hover {
+  border-bottom: 1px dotted #4183C4;
+}
+
+pre, pre.description {
+  font: 12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+  padding: 1em;
+  overflow: auto;
+  line-height: 1.4;
+}
+
+/* @group Generic Classes */
+
+.initially-hidden {
+  display: none;
+}
+
+#search-field {
+  width: 98%;
+}
+
+.missing-docs {
+  font-size: 120%;
+  background: white url(images/wrench_orange.png) no-repeat 4px center;
+  color: #ccc;
+  line-height: 2em;
+  border: 1px solid #d00;
+  opacity: 1;
+  text-indent: 24px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+.target-section {
+  border: 2px solid #dcce90;
+  border-left-width: 8px;
+  background: #fff3c2;
+}
+
+/* @end */
+
+/* @group Index Page, Standalone file pages */
+.indexpage ul {
+  line-height: 160%;
+  list-style: none;
+}
+.indexpage ul :link,
+.indexpage ul :visited {
+  font-size: 16px;
+}
+
+.indexpage li {
+  padding-left: 20px;
+}
+
+.indexpage ul > li {
+  background: url(images/bullet_black.png) no-repeat left 4px;
+}
+.indexpage li.method {
+  background: url(images/plugin.png) no-repeat left 4px;
+}
+.indexpage li.module {
+  background: url(images/package.png) no-repeat left 4px;
+}
+.indexpage li.class {
+  background: url(images/ruby.png) no-repeat left 4px;
+}
+.indexpage li.file {
+  background: url(images/page_white_text.png) no-repeat left 4px;
+}
+.indexpage li li {
+  background: url(images/tag_blue.png) no-repeat left 4px;
+}
+.indexpage li .toc-toggle {
+  width: 16px;
+  height: 16px;
+  background: url(images/add.png) no-repeat;
+}
+
+.indexpage li .toc-toggle.open {
+  background: url(images/delete.png) no-repeat;
+}
+
+/* @end */
+
+/* @group Top-Level Structure */
+
+.project-section, #file-metadata, #class-metadata {
+  display: block;
+  background: #f5f5f5;
+  margin-bottom: 1em;
+  padding: 0.5em;
+}
+.project-section h3, #file-metadata h3, #class-metadata h3 {
+  margin: 0;
+}
+
+#metadata {
+  float: left;
+  width: 280px;
+}
+
+#documentation {
+  margin: 2em 1em 2em 300px;
+}
+
+#validator-badges {
+  clear: both;
+  margin: 1em 1em 2em;
+  font-size: smaller;
+}
+
+/* @end */
+
+/* @group Metadata Section */
+
+#metadata ul,
+#metadata dl,
+#metadata p {
+  padding: 0px;
+  list-style: none;
+}
+
+dl.svninfo {
+  color: #666;
+  margin: 0;
+}
+dl.svninfo dt {
+  font-weight: bold;
+}
+
+ul.link-list li {
+  white-space: nowrap;
+}
+ul.link-list .type {
+  font-size: 8px;
+  text-transform: uppercase;
+  color: white;
+  background: #969696;
+}
+
+/* @end */
+
+/* @group Documentation Section */
+
+.note-list {
+  margin: 8px 0;
+}
+
+.label-list {
+  margin: 8px 1.5em;
+  border: 1px solid #ccc;
+}
+.description .label-list {
+  font-size: 14px;
+}
+
+.note-list dt {
+  font-weight: bold;
+}
+.note-list dd {
+}
+
+.label-list dt {
+  font-weight: bold;
+  background: #ddd;
+}
+.label-list dd {
+}
+.label-list dd + dt,
+.note-list dd + dt {
+  margin-top: 0.7em;
+}
+
+#documentation .section {
+  font-size: 90%;
+}
+
+#documentation h2.section-header {
+  color: #333;
+  font-size: 175%;
+}
+
+.documentation-section-title {
+  position: relative;
+}
+.documentation-section-title .section-click-top {
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  font-size: 10px;
+  visibility: hidden;
+}
+
+.documentation-section-title:hover .section-click-top {
+  visibility: visible;
+}
+
+#documentation h3.section-header {
+  color: #333;
+  font-size: 150%;
+}
+
+#constants-list > dl,
+#attributes-list > dl {
+  margin: 1em 0 2em;
+  border: 0;
+}
+#constants-list > dl dt,
+#attributes-list > dl dt {
+  font-weight: bold;
+  font-family: Monaco, "Andale Mono";
+  background: inherit;
+}
+#constants-list > dl dt a,
+#attributes-list > dl dt a {
+  color: inherit;
+}
+#constants-list > dl dd,
+#attributes-list > dl dd {
+  margin: 0 0 1em 0;
+  color: #666;
+}
+
+.documentation-section h2 {
+  position: relative;
+}
+
+.documentation-section h2 a {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 12px;
+  color: #9b9877;
+  visibility: hidden;
+}
+
+.documentation-section h2:hover a {
+  visibility: visible;
+}
+
+/* @group Method Details */
+
+#documentation .method-source-code {
+  display: none;
+}
+
+#documentation .method-detail {
+  margin: 0.2em 0.2em;
+  padding: 0.5em;
+}
+#documentation .method-detail:hover {
+  background-color: #f5f5f5;
+}
+#documentation .method-heading {
+  cursor: pointer;
+  position: relative;
+  font-size: 125%;
+  line-height: 125%;
+  font-weight: bold;
+  color: #333;
+  background: url(images/brick.png) no-repeat left bottom;
+  padding-left: 20px;
+}
+#documentation .method-heading :link,
+#documentation .method-heading :visited {
+  color: inherit;
+}
+#documentation .method-click-advice {
+  position: absolute;
+  right: 5px;
+  font-size: 10px;
+  color: #aaa;
+  visibility: hidden;
+  background: url(images/zoom.png) no-repeat right 5px;
+  padding-right: 20px;
+  overflow: show;
+}
+#documentation .method-heading:hover .method-click-advice {
+  visibility: visible;
+}
+
+#documentation .method-alias .method-heading {
+  color: #666;
+  background: url(images/brick_link.png) no-repeat left bottom;
+}
+
+#documentation .method-description,
+#documentation .aliases {
+  margin: 0 20px;
+  color: #666;
+}
+
+#documentation .method-description p,
+#documentation .aliases p {
+  line-height: 1.2em;
+}
+
+#documentation .aliases {
+  font-style: italic;
+  cursor: default;
+}
+#documentation .method-description p {
+  margin-bottom: 0.5em;
+}
+#documentation .method-description ul {
+  margin-left: 1.5em;
+}
+
+#documentation .attribute-method-heading {
+  background: url(images/tag_green.png) no-repeat left bottom;
+}
+#documentation #attribute-method-details .method-detail:hover {
+  background-color: transparent;
+  cursor: default;
+}
+#documentation .attribute-access-type {
+  font-size: 60%;
+  text-transform: uppercase;
+  vertical-align: super;
+}
+
+.method-section .method-source-code {
+  background: white;
+}
+
+/* @group Source Code */
+
+.ruby-constant .ruby-keyword .ruby-ivar .ruby-operator .ruby-identifier
+.ruby-node .ruby-comment .ruby-regexp .ruby-value {
+  background: transparent;
+}
+
+/* Thanks GitHub!!! */
+.ruby-constant   { color: #458; font-weight: bold; }
+.ruby-keyword    { color: black; font-weight: bold; }
+.ruby-ivar       { color: teal; }
+.ruby-operator   { color: #000; }
+.ruby-identifier { color: black; }
+.ruby-node       { color: red; }
+.ruby-comment    { color: #998; font-weight: bold; }
+.ruby-regexp     { color: #009926; }
+.ruby-value      { color: #099; }
+.ruby-string     { color: red; }
+
+/* @group search results */
+
+#search-section .section-header {
+  margin: 0;
+  padding: 0;
+}
+
+#search-results {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#search-results h1 {
+  font-size: 1em;
+  font-weight: normal;
+  text-shadow: none;
+}
+
+#search-results .current {
+  background: #eee;
+}
+
+#search-results li {
+  list-style: none;
+  line-height: 1em;
+  padding: 0.5em;
+  border-bottom: 1px solid black;
+}
+
+#search-results .search-namespace {
+  font-weight: bold;
+}
+
+#search-results li em {
+  background: yellow;
+  font-style: normal;
+}
+
+#search-results pre {
+  margin: 0.5em;
+}

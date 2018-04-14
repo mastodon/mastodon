@@ -1,0 +1,24 @@
+bundler_args: --without development
+before_install:
+  - gem update --system
+  - gem update bundler
+cache: bundler
+env:
+  global:
+    - JRUBY_OPTS="$JRUBY_OPTS --debug"
+language: ruby
+rvm:
+  - jruby-9000
+  - 2.1.10 # EOL Soon
+  - 2.2.6
+  - 2.3.3
+  - 2.4.0
+  - 2.5.0
+  - jruby-head
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: jruby-head
+    - rvm: ruby-head
+  fast_finish: true
+sudo: false

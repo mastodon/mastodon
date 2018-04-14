@@ -1,0 +1,432 @@
+[
+
+"", [],
+
+"/*/*///** /* **/*//* ", [
+	"/", "*", "/"
+],
+
+"red", [
+	["ident", "red"]
+],
+
+"  \t\t\r\n\nRed ", [
+	" ", ["ident", "Red"], " "
+],
+
+"red/* CDC */-->", [
+	["ident", "red"], "-->"
+],
+
+"red-->/* Not CDC */", [
+	["ident", "red--"], ">"
+],
+
+"\\- red0 -red --red -\\-red\\ blue 0red -0red \u0000red _Red .red rêd r\\êd \u007F\u0080\u0081", [
+	["ident", "-"], " ",
+	["ident", "red0"], " ",
+	["ident", "-red"], " ",
+	["ident", "--red"], " ",
+	["ident", "--red blue"], " ",
+	["dimension", "0", 0, "integer", "red"], " ",
+	["dimension", "-0", 0, "integer", "red"], " ",
+	["ident", "\uFFFDred"], " ",
+	["ident", "_Red"], " ",
+	".", ["ident", "red"], " ",
+	["ident", "rêd"], " ",
+	["ident", "rêd"], " ",
+	"\u007F", ["ident", "\u0080\u0081"]
+],
+
+"\\30red \\00030 red \\30\r\nred \\0000000red \\1100000red \\red \\r ed \\.red \\ red \\\nred \\376\\37 6\\000376\\0000376\\", [
+	["ident", "0red"], " ",
+	["ident", "0red"], " ",
+	["ident", "0red"], " ",
+	["ident", "\uFFFD0red"], " ",
+	["ident", "\uFFFD0red"], " ",
+	["ident", "red"], " ",
+	["ident", "r"], " ", ["ident", "ed"], " ",
+	["ident", ".red"], " ",
+	["ident", " red"], " ",
+	"\\", " ", ["ident", "red"], " ",
+	["ident", "Ͷ76Ͷ76\uFFFD"]
+],
+
+"rgba0() -rgba() --rgba() -\\-rgba() 0rgba() -0rgba() _rgba() .rgba() rgbâ() \\30rgba() rgba () @rgba() #rgba()", [
+	["function", "rgba0"], " ",
+	["function", "-rgba"], " ",
+	["function", "--rgba"], " ",
+	["function", "--rgba"], " ",
+	["dimension", "0", 0, "integer", "rgba"], ["()"], " ",
+	["dimension", "-0", 0, "integer", "rgba"], ["()"], " ",
+	["function", "_rgba"], " ",
+	".", ["function", "rgba"], " ",
+	["function", "rgbâ"], " ",
+	["function", "0rgba"], " ",
+	["ident", "rgba"], " ", ["()"], " ",
+	["at-keyword", "rgba"], ["()"], " ",
+	["hash", "rgba", "id"], ["()"]
+],
+
+"@media0 @-Media @--media @-\\-media @0media @-0media @_media @.media @medİa @\\30 media\\", [
+	["at-keyword", "media0"], " ",
+	["at-keyword", "-Media"], " ",
+	["at-keyword", "--media"], " ",
+	["at-keyword", "--media"], " ",
+	"@", ["dimension", "0", 0, "integer", "media"], " ",
+	"@", ["dimension", "-0", 0, "integer", "media"], " ",
+	["at-keyword", "_media"], " ",
+	"@", ".", ["ident", "media"], " ",
+	["at-keyword", "medİa"], " ",
+	["at-keyword", "0media\uFFFD"]
+],
+
+"#red0 #-Red #--red #-\\-red #0red #-0red #_Red #.red #rêd #êrd #\\.red\\", [
+	["hash", "red0", "id"], " ",
+	["hash", "-Red", "id"], " ",
+	["hash", "--red", "id"], " ",
+	["hash", "--red", "id"], " ",
+	["hash", "0red", "unrestricted"], " ",
+	["hash", "-0red", "unrestricted"], " ",
+	["hash", "_Red", "id"], " ",
+	"#", ".", ["ident", "red"], " ",
+	["hash", "rêd", "id"], " ",
+	["hash", "êrd", "id"], " ",
+	["hash", ".red\uFFFD", "id"]
+],
+
+"p[example=\"\\\nfoo(int x) {\\\n   this.x = x;\\\n}\\\n\"]", [
+	["ident", "p"], ["[]",
+		["ident", "example"], "=", ["string", "foo(int x) {   this.x = x;}"]
+	]
+],
+
+"'' 'Lorem \"îpsum\"' 'a\\\nb' 'a\nb 'eof", [
+	["string", ""], " ",
+	["string", "Lorem \"îpsum\""], " ",
+	["string", "ab"], " ",
+	["error", "bad-string"], " ", ["ident", "b"], " ",
+	["string", "eof"]
+],
+
+"\"\" \"Lorem 'îpsum'\" \"a\\\nb\" \"a\nb \"eof", [
+	["string", ""], " ",
+	["string", "Lorem 'îpsum'"], " ",
+	["string", "ab"], " ",
+	["error", "bad-string"], " ", ["ident", "b"], " ",
+	["string", "eof"]
+],
+
+"\"Lo\\rem \\130 ps\\u m\" '\\376\\37 6\\000376\\0000376\\", [
+	["string", "Lorem İpsu m"], " ",
+	["string", "Ͷ76Ͷ76"]
+],
+
+"url( '') url('Lorem \"îpsum\"'\n) url('a\\\nb' ) url('a\nb) url('eof", [
+	["function", "url", " ", ["string", ""]], " ",
+	["function", "url", ["string", "Lorem \"îpsum\""], " "], " ",
+	["function", "url", ["string", "ab"], " "], " ",
+	["function", "url", ["error", "bad-string"], " ", ["ident", "b"]], " ",
+	["function", "url", ["string", "eof"]]
+],
+
+"url(", [
+	["url", ""]
+],
+
+"url( \t", [
+	["url", ""]
+],
+
+"url(\"\") url(\"Lorem 'îpsum'\"\n) url(\"a\\\nb\" ) url(\"a\nb) url(\"eof", [
+	["function", "url", ["string", ""]], " ",
+	["function", "url", ["string", "Lorem 'îpsum'"], " "], " ",
+	["function", "url", ["string", "ab"], " "], " ",
+	["function", "url", ["error", "bad-string"], " ", ["ident", "b"]], " ",
+	["function", "url", ["string", "eof"]]
+],
+
+"url(\"Lo\\rem \\130 ps\\u m\") url('\\376\\37 6\\000376\\0000376\\", [
+	["function", "url", ["string", "Lorem İpsu m"]], " ",
+	["function", "url", ["string", "Ͷ76Ͷ76"]]
+],
+
+"URL(foo) Url(foo) ûrl(foo) url (foo) url\\ (foo) url(\t 'foo' ", [
+	["url", "foo"], " ",
+	["url", "foo"], " ",
+	["function", "ûrl", ["ident", "foo"]], " ",
+	["ident", "url"], " ", ["()", ["ident", "foo"]], " ",
+	["function", "url ", ["ident", "foo"]], " ",
+	["function", "url", " ", ["string", "foo"], " "]
+],
+
+"url('a' b) url('c' d)", [
+	["function", "url", ["string", "a"], " ", ["ident", "b"]], " ",
+	["function", "url", ["string", "c"], " ", ["ident", "d"]]
+],
+
+"url('a\nb) url('c\n", [
+	["function", "url", ["error", "bad-string"], " ", ["ident", "b"]], " ",
+	["function", "url", ["error", "bad-string"], " "]
+],
+
+"url() url( \t) url(\n Foô\\030\n!\n) url(\na\nb\n) url(a\\ b) url(a(b) url(a\\(b) url(a'b) url(a\\'b) url(a\"b) url(a\\\"b) url(a\nb) url(a\\\nb) url(a\\a b) url(a\\", [
+	["url", ""], " ",
+	["url", ""], " ",
+	["url", "Foô0!"], " ",
+	["error", "bad-url"], " ",
+	["url", "a b"], " ",
+	["error", "bad-url"], " ",
+	["url", "a(b"], " ",
+	["error", "bad-url"], " ",
+	["url", "a'b"], " ",
+	["error", "bad-url"], " ",
+	["url", "a\"b"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["url", "a\nb"], " ",
+	["url", "a\uFFFD"]
+],
+
+"url(\u0000!#$%&*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\u0080\u0081\u009e\u009f\u00a0\u00a1\u00a2", [
+	["url", "\uFFFD!#$%&*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\u0080\u0081\u009e\u009f\u00a0¡¢"]
+],
+
+"url(\u0001) url(\u0002) url(\u0003) url(\u0004) url(\u0005) url(\u0006) url(\u0007) url(\u0008) url(\u000b) url(\u000e) url(\u000f) url(\u0010) url(\u0011) url(\u0012) url(\u0013) url(\u0014) url(\u0015) url(\u0016) url(\u0017) url(\u0018) url(\u0019) url(\u001a) url(\u001b) url(\u001c) url(\u001d) url(\u001e) url(\u001f) url(\u007f)", [
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"], " ",
+	["error", "bad-url"]
+],
+
+"12 +34 -45 .67 +.89 -.01 2.3 +45.0 -0.67", [
+	["number", "12", 12, "integer"], " ",
+	["number", "+34", 34, "integer"], " ",
+	["number", "-45", -45, "integer"], " ",
+	["number", ".67", 0.67, "number"], " ",
+	["number", "+.89", 0.89, "number"], " ",
+	["number", "-.01", -0.01, "number"], " ",
+	["number", "2.3", 2.3, "number"], " ",
+	["number", "+45.0", 45, "number"], " ",
+	["number", "-0.67", -0.67, "number"]
+],
+
+"12e2 +34e+1 -45E-0 .68e+3 +.79e-1 -.01E2 2.3E+1 +45.0e6 -0.67e0", [
+	["number", "12e2", 1200, "number"], " ",
+	["number", "+34e+1", 340, "number"], " ",
+	["number", "-45E-0", -45, "number"], " ",
+	["number", ".68e+3", 680, "number"], " ",
+	["number", "+.79e-1", 0.079, "number"], " ",
+	["number", "-.01E2", -1, "number"], " ",
+	["number", "2.3E+1", 23, "number"], " ",
+	["number", "+45.0e6", 45000000, "number"], " ",
+	["number", "-0.67e0", -0.67, "number"]
+],
+
+"3. /* Decimal point must have following digits */", [
+	["number", "3", 3, "integer"], ".", " "
+],
+
+"3\\65-2 /* Scientific notation E can not be escaped */", [
+	["dimension", "3", 3, "integer", "e-2"], " "
+],
+
+"3e-2.1 /* Integer exponents only */", [
+	["number", "3e-2", 0.03, "number"],
+	["number", ".1", 0.1, "number"], " "
+],
+
+"12% +34% -45% .67% +.89% -.01% 2.3% +45.0% -0.67%", [
+	["percentage", "12", 12, "integer"], " ",
+	["percentage", "+34", 34, "integer"], " ",
+	["percentage", "-45", -45, "integer"], " ",
+	["percentage", ".67", 0.67, "number"], " ",
+	["percentage", "+.89", 0.89, "number"], " ",
+	["percentage", "-.01", -0.01, "number"], " ",
+	["percentage", "2.3", 2.3, "number"], " ",
+	["percentage", "+45.0", 45, "number"], " ",
+	["percentage", "-0.67", -0.67, "number"]
+],
+
+"12e2% +34e+1% -45E-0% .68e+3% +.79e-1% -.01E2% 2.3E+1% +45.0e6% -0.67e0%", [
+	["percentage", "12e2", 1200, "number"], " ",
+	["percentage", "+34e+1", 340, "number"], " ",
+	["percentage", "-45E-0", -45, "number"], " ",
+	["percentage", ".68e+3", 680, "number"], " ",
+	["percentage", "+.79e-1", 0.079, "number"], " ",
+	["percentage", "-.01E2", -1, "number"], " ",
+	["percentage", "2.3E+1", 23, "number"], " ",
+	["percentage", "+45.0e6", 45000000, "number"], " ",
+	["percentage", "-0.67e0", -0.67, "number"]
+],
+
+"12\\% /* Percent sign can not be escaped */", [
+	["dimension", "12", 12, "integer", "%"], " "
+],
+
+"12px +34px -45px .67px +.89px -.01px 2.3px +45.0px -0.67px", [
+	["dimension", "12", 12, "integer", "px"], " ",
+	["dimension", "+34", 34, "integer", "px"], " ",
+	["dimension", "-45", -45, "integer", "px"], " ",
+	["dimension", ".67", 0.67, "number", "px"], " ",
+	["dimension", "+.89", 0.89, "number", "px"], " ",
+	["dimension", "-.01", -0.01, "number", "px"], " ",
+	["dimension", "2.3", 2.3, "number", "px"], " ",
+	["dimension", "+45.0", 45, "number", "px"], " ",
+	["dimension", "-0.67", -0.67, "number", "px"]
+],
+
+"12e2px +34e+1px -45E-0px .68e+3px +.79e-1px -.01E2px 2.3E+1px +45.0e6px -0.67e0px", [
+	["dimension", "12e2", 1200, "number", "px"], " ",
+	["dimension", "+34e+1", 340, "number", "px"], " ",
+	["dimension", "-45E-0", -45, "number", "px"], " ",
+	["dimension", ".68e+3", 680, "number", "px"], " ",
+	["dimension", "+.79e-1", 0.079, "number", "px"], " ",
+	["dimension", "-.01E2", -1, "number", "px"], " ",
+	["dimension", "2.3E+1", 23, "number", "px"], " ",
+	["dimension", "+45.0e6", 45000000, "number", "px"], " ",
+	["dimension", "-0.67e0", -0.67, "number", "px"]
+],
+
+"12red0 12.0-red 12--red 12-\\-red 120red 12-0red 12\u0000red 12_Red 12.red 12rêd", [
+	["dimension", "12", 12, "integer", "red0"], " ",
+	["dimension", "12.0", 12, "number", "-red"], " ",
+	["dimension", "12", 12, "integer", "--red"], " ",
+	["dimension", "12", 12, "integer", "--red"], " ",
+	["dimension", "120", 120, "integer", "red"], " ",
+	["number", "12", 12, "integer"], ["dimension", "-0", 0, "integer", "red"], " ",
+	["dimension", "12", 12, "integer", "\uFFFDred"], " ",
+	["dimension", "12", 12, "integer", "_Red"], " ",
+	["number", "12", 12, "integer"], ".", ["ident", "red"], " ",
+	["dimension", "12", 12, "integer", "rêd"]
+],
+
+"u+1 U+10 U+100 U+1000 U+10000 U+100000 U+1000000", [
+    ["unicode-range", 1, 1], " ",
+    ["unicode-range", 16, 16], " ",
+    ["unicode-range", 256, 256], " ",
+    ["unicode-range", 4096, 4096], " ",
+    ["unicode-range", 65536, 65536], " ",
+    ["unicode-range", 1048576, 1048576], " ",
+    ["unicode-range", 1048576, 1048576], ["number", "0", 0, "integer"]
+],
+
+"u+? u+1? U+10? U+100? U+1000? U+10000? U+100000?", [
+    ["unicode-range", 0, 15], " ",
+    ["unicode-range", 16, 31], " ",
+    ["unicode-range", 256, 271], " ",
+    ["unicode-range", 4096, 4111], " ",
+    ["unicode-range", 65536, 65551], " ",
+    ["unicode-range", 1048576, 1048591], " ",
+    ["unicode-range", 1048576, 1048576], "?"
+],
+
+"u+?? U+1?? U+10?? U+100?? U+1000?? U+10000??", [
+    ["unicode-range", 0, 255], " ",
+    ["unicode-range", 256, 511], " ",
+    ["unicode-range", 4096, 4351], " ",
+    ["unicode-range", 65536, 65791], " ",
+    ["unicode-range", 1048576, 1048831], " ",
+    ["unicode-range", 1048576, 1048591], "?"
+],
+
+"u+??? U+1??? U+10??? U+100??? U+1000???", [
+    ["unicode-range", 0, 4095], " ",
+    ["unicode-range", 4096, 8191], " ",
+    ["unicode-range", 65536, 69631], " ",
+    ["unicode-range", 1048576, 1052671], " ",
+    ["unicode-range", 1048576, 1048831], "?"
+],
+
+"u+???? U+1???? U+10???? U+100????", [
+    ["unicode-range", 0, 65535], " ",
+    ["unicode-range", 65536, 131071], " ",
+    ["unicode-range", 1048576, 1114111], " ",
+    ["unicode-range", 1048576, 1052671], "?"
+],
+
+"u+????? U+1????? U+10?????", [
+    ["unicode-range", 0, 1048575], " ",
+    ["unicode-range", 1048576, 2097151], " ",
+    ["unicode-range", 1048576, 1114111], "?"
+],
+
+"u+?????? U+1??????", [
+    ["unicode-range", 0, 16777215], " ",
+    ["unicode-range", 1048576, 2097151], "?"
+],
+
+"u+1-2 U+100000-2 U+1000000-2 U+10-200000", [
+    ["unicode-range", 1, 2], " ",
+    ["unicode-range", 1048576, 2], " ",
+    ["unicode-range", 1048576, 1048576], ["number", "0", 0, "integer"],
+        ["number", "-2", -2, "integer"], " ",
+    ["unicode-range", 16, 2097152]
+],
+
+"ù+12 Ü+12 u +12 U+ 12 U+12 - 20 U+1?2 U+1?-50", [
+    ["ident", "ù"], ["number", "+12", 12, "integer"], " ",
+    ["ident", "Ü"], ["number", "+12", 12, "integer"], " ",
+    ["ident", "u"], " ", ["number", "+12", 12, "integer"], " ",
+    ["ident", "U"], "+", " ", ["number", "12", 12, "integer"], " ",
+    ["unicode-range", 18, 18], " ", "-", " ", ["number", "20", 20, "integer"], " ",
+    ["unicode-range", 16, 31], ["number", "2", 2, "integer"], " ",
+    ["unicode-range", 16, 31], ["number", "-50", -50, "integer"]
+],
+
+"~=|=^=$=*=||<!------> |/**/| ~/**/=", [
+	"~=", "|=", "^=", "$=", "*=", "||", "<!--", ["ident", "----"], ">",
+	" ", "|", "|", " ", "~", "="
+],
+
+"a:not([href^=http\\:],  [href ^=\t'https\\:'\n]) { color: rgba(0%, 100%, 50%); }", [
+	["ident", "a"], ":", ["function", "not",
+		["[]",
+			["ident", "href"], "^=", ["ident", "http:"]
+		], ",", " ", ["[]",
+			["ident", "href"], " ", "^=", " ", ["string", "https:"], " "
+		]
+	], " ", ["{}",
+		" ", ["ident", "color"], ":", " ", ["function", "rgba",
+			["percentage", "0", 0, "integer"], ",", " ",
+			["percentage", "100", 100, "integer"], ",", " ",
+			["percentage", "50", 50, "integer"]
+		], ";", " "
+	]
+],
+
+"@media print { (foo]{bar) }baz", [
+	["at-keyword", "media"], " ", ["ident", "print"], " ", ["{}",
+		" ", ["()",
+			["ident", "foo"], ["error", "]"], ["{}",
+				["ident", "bar"], ["error", ")"], " "
+			], ["ident", "baz"]
+		]
+	]
+]
+
+]

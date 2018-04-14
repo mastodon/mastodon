@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="pfx0a3cfa31-f178-71f2-9b94-ad4047591acc" Version="2.0" IssueInstant="2012-04-04T07:33:10.921Z" Destination="https://example.com/endpoint">
+  <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">idp.example.com</saml:Issuer>
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+  </samlp:Status>
+  <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" IssueInstant="2012-04-04T07:33:10.923Z" ID="unsigned-assertion">
+    <saml:Issuer>idp.myexample.org</saml:Issuer><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+  <ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+    <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+  <ds:Reference URI="#pfx7fca52d6-8991-5d99-3147-4f9d7c278d78"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>FA0AbR4w9oYdx7MFjERARVJAHps=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>GDH5jhCNX9PFxW+71SOJPyusAOwzECwmd57NDhvA/VKWHnV3PpvpNkOLyamoBNdZ4qxponnobg2zneLESrFnLJdJ1cgs51YvtBJTxKoA7oZMMNKReZFST8g7pDdrBC82n5rTdzxclaJkpwz1yjcho3K3TjxK+gU1svVrEKMUwyo=</ds:SignatureValue>
+<ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIICGzCCAYQCCQCNNcQXom32VDANBgkqhkiG9w0BAQUFADBSMQswCQYDVQQGEwJVUzELMAkGA1UECBMCSU4xFTATBgNVBAcTDEluZGlhbmFwb2xpczERMA8GA1UEChMIT25lTG9naW4xDDAKBgNVBAsTA0VuZzAeFw0xNDA0MjMxODQxMDFaFw0xNTA0MjMxODQxMDFaMFIxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJJTjEVMBMGA1UEBxMMSW5kaWFuYXBvbGlzMREwDwYDVQQKEwhPbmVMb2dpbjEMMAoGA1UECxMDRW5nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDo6m+QZvYQ/xL0ElLgupK1QDcYL4f5PckwsNgS9pUvV7fzTqCHk8ThLxTk42MQ2McJsOeUJVP728KhymjFCqxgP4VuwRk9rpAl0+mhy6MPdyjyA6G14jrDWS65ysLchK4t/vwpEDz0SQlEoG1kMzllSm7zZS3XregA7DjNaUYQqwIDAQABMA0GCSqGSIb3DQEBBQUAA4GBALM2vGCiQ/vm+a6v40+VX2zdqHA2Q/1vF1ibQzJ54MJCOVWvs+vQXfZFhdm0OPM2IrDU7oqvKPqP6xOAeJK6H0yP7M4YL3fatSvIYmmfyXC9kt3Svz/NyrHzPhUnJ0ye/sUSXxnzQxwcm/9PwAqrQaA3QpQkH57ybF/OoryPe+2h</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature>
+    <saml:Subject>
+      <saml:NameID NameQualifier="idp.example.com" Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">victim@example.com</saml:NameID>
+      <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <saml:SubjectConfirmationData Recipient="https://example.com/endpoint" InResponseTo="_f7201940-6055-012f-3bc1-782bcb13c426"/>
+      </saml:SubjectConfirmation>
+    </saml:Subject>
+    <saml:Conditions NotBefore="2012-04-04T07:28:11.442Z" NotOnOrAfter="2012-04-04T07:38:11.442Z">
+      <saml:AudienceRestriction>
+        <saml:Audience>example.com</saml:Audience>
+      </saml:AudienceRestriction>
+    </saml:Conditions>
+    <saml:AuthnStatement AuthnInstant="2012-04-04T07:33:11.442Z">
+      <saml:AuthnContext>
+        <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
+      </saml:AuthnContext>
+    </saml:AuthnStatement>
+  </saml:Assertion>
+  <foo>
+  <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" IssueInstant="2012-04-04T07:33:10.923Z" ID="pfx7fca52d6-8991-5d99-3147-4f9d7c278d78">
+    <saml:Issuer>idp.myexample.org</saml:Issuer>
+    <saml:Subject>
+      <saml:NameID NameQualifier="idp.example.com" Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">someone@example.org</saml:NameID>
+      <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <saml:SubjectConfirmationData Recipient="https://example.com/endpoint" InResponseTo="_f7201940-6055-012f-3bc1-782bcb13c426"/>
+      </saml:SubjectConfirmation>
+    </saml:Subject>
+    <saml:Conditions NotBefore="2012-04-04T07:28:11.442Z" NotOnOrAfter="2012-04-04T07:38:11.442Z">
+      <saml:AudienceRestriction>
+        <saml:Audience>example.com</saml:Audience>
+      </saml:AudienceRestriction>
+    </saml:Conditions>
+    <saml:AuthnStatement AuthnInstant="2012-04-04T07:33:11.442Z">
+      <saml:AuthnContext>
+        <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
+      </saml:AuthnContext>
+    </saml:AuthnStatement>
+  </saml:Assertion>
+  </foo>
+</samlp:Response>

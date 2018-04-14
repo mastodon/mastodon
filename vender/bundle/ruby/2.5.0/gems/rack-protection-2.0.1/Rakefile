@@ -1,0 +1,72 @@
+# encoding: utf-8
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+
+begin
+  require 'bundler'
+  Bundler::GemHelper.install_tasks
+rescue LoadError => e
+  $stderr.puts e
+end
+
+desc "run specs"
+task(:spec) { ruby '-S rspec spec' }
+
+namespace :doc do
+  task :readmes do
+    Dir.glob 'lib/rack/protection/*.rb' do |file|
+      excluded_files = %w[lib/rack/protection/base.rb lib/rack/protection/version.rb]
+      next if excluded_files.include?(file)
+      doc  = File.read(file)[/^  module Protection(\n)+(    #[^\n]*\n)*/m].scan(/^ *#(?!#) ?(.*)\n/).join("\n")
+      file = "doc/#{file[4..-4].tr("/_", "-")}.rdoc"
+      Dir.mkdir "doc" unless File.directory? "doc"
+      puts "writing #{file}"
+      File.open(file, "w") { |f| f << doc }
+    end
+  end
+
+  task :index do
+    doc = File.read("README.md")
+    file = "doc/rack-protection-readme.md"
+    Dir.mkdir "doc" unless File.directory? "doc"
+    puts "writing #{file}"
+    File.open(file, "w") { |f| f << doc }
+  end
+
+  task :all => [:readmes, :index]
+end
+
+desc "generate documentation"
+task :doc => 'doc:all'
+
+desc "generate gemspec"
+task 'rack-protection.gemspec' do
+  require 'rack/protection/version'
+  content = File.binread 'rack-protection.gemspec'
+
+  # fetch data
+  fields = {
+    :authors => `git shortlog -sn`.force_encoding('utf-8').scan(/[^\d\s].*/),
+    :email   => ["mail@zzak.io", "konstantin.haase@gmail.com"],
+    :files   => %w(License README.md Rakefile Gemfile rack-protection.gemspec) + Dir['lib/**/*']
+  }
+
+  # insert data
+  fields.each do |field, values|
+    updated = "  s.#{field} = ["
+    updated << values.map { |v| "\n    %p" % v }.join(',')
+    updated << "\n  ]"
+    content.sub!(/  s\.#{field} = \[\n(    .*\n)*  \]/, updated)
+  end
+
+  # set version
+  content.sub! /(s\.version.*=\s+).*/, "\\1\"#{Rack::Protection::VERSION}\""
+
+  # escape unicode
+  content.gsub!(/./) { |c| c.bytesize > 1 ? "\\u{#{c.codepoints.first.to_s(16)}}" : c }
+
+  File.open('rack-protection.gemspec', 'w') { |f| f << content }
+end
+
+task :gemspec => 'rack-protection.gemspec'
+task :default => :spec
+task :test    => :spec

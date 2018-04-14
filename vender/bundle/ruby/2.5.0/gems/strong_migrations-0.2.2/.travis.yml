@@ -1,0 +1,20 @@
+language: ruby
+rvm:
+  - 2.4.1
+gemfile:
+  - Gemfile
+  - test/gemfiles/activerecord50.gemfile
+  - test/gemfiles/activerecord42.gemfile
+script: bundle exec rake test
+before_script:
+  - psql -c 'create database strong_migrations_test;' -U postgres
+  - mysql -e 'create database strong_migrations_test;'
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+matrix:
+  include:
+    - gemfile: test/gemfiles/mysql2.gemfile
+      env: ADAPTER=mysql2
+      rvm: 2.4.1

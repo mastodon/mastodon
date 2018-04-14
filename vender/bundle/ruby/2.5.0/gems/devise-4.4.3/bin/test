@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+$: << File.expand_path(File.expand_path('../../test', __FILE__))
+
+require 'bundler/setup'
+begin
+  require 'rails/test_unit/minitest_plugin'
+rescue LoadError
+  exec 'rake'
+end
+
+Rails::TestUnitReporter.executable = 'bin/test'
+
+exit Minitest.run(ARGV)

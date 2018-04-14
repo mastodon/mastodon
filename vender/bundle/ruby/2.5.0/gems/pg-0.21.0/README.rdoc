@@ -1,0 +1,168 @@
+= pg
+
+home :: https://bitbucket.org/ged/ruby-pg
+mirror :: https://github.com/ged/ruby-pg
+docs :: http://deveiate.org/code/pg
+
+{<img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/ged/ruby-pg">}[https://gitter.im/ged/ruby-pg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge]
+
+
+== Description
+
+Pg is the Ruby interface to the {PostgreSQL RDBMS}[http://www.postgresql.org/].
+
+It works with {PostgreSQL 9.1 and later}[http://www.postgresql.org/support/versioning/].
+
+A small example usage:
+
+  #!/usr/bin/env ruby
+
+  require 'pg'
+
+  # Output a table of current connections to the DB
+  conn = PG.connect( dbname: 'sales' )
+  conn.exec( "SELECT * FROM pg_stat_activity" ) do |result|
+    puts "     PID | User             | Query"
+    result.each do |row|
+      puts " %7d | %-16s | %s " %
+        row.values_at('procpid', 'usename', 'current_query')
+    end
+  end
+
+== Build Status
+
+{<img src="https://travis-ci.org/ged/ruby-pg.svg?branch=master" alt="Build Status Travis-CI" />}[https://travis-ci.org/ged/ruby-pg]
+{<img src="https://ci.appveyor.com/api/projects/status/at4g4swb2cd4xji7/branch/master?svg=true" alt="Build Status Appveyor" />}[https://ci.appveyor.com/project/ged/ruby-pg]
+
+
+== Requirements
+
+* Ruby 2.2
+* PostgreSQL 9.1.x or later (with headers, -dev packages, etc).
+
+It usually work with earlier versions of Ruby/PostgreSQL as well, but those are
+not regularly tested.
+
+
+== How To Install
+
+Install via RubyGems:
+
+    gem install pg
+
+You may need to specify the path to the 'pg_config' program installed with
+Postgres:
+
+    gem install pg -- --with-pg-config=<path to pg_config>
+
+If you're installing via Bundler, you can provide compile hints like so:
+
+    bundle config build.pg --with-pg-config=<path to pg_config>
+
+See README-OS_X.rdoc for more information about installing under MacOS X, and
+README-Windows.rdoc for Windows build/installation instructions.
+
+There's also {a Google+ group}[http://goo.gl/TFy1U] and a
+{mailing list}[http://groups.google.com/group/ruby-pg] if you get stuck, or just
+want to chat about something.
+
+If you want to install as a signed gem, the public certs of the gem signers
+can be found in {the `certs` directory}[https://bitbucket.org/ged/ruby-pg/src/tip/certs/]
+of the repository.
+
+
+== Type Casts
+
+Pg can optionally type cast result values and query parameters in Ruby or
+native C code. This can speed up data transfers to and from the database,
+because String allocations are reduced and conversions in (slower) Ruby code
+can be omitted.
+
+Very basic type casting can be enabled by:
+
+    conn.type_map_for_results = PG::BasicTypeMapForResults.new conn
+    # ... this works for result value mapping:
+    conn.exec("select 1, now(), '{2,3}'::int[]").values
+        # => [[1, 2014-09-21 20:51:56 +0200, [2, 3]]]
+
+    conn.type_map_for_queries = PG::BasicTypeMapForQueries.new conn
+    # ... and this for param value mapping:
+    conn.exec_params("SELECT $1::text, $2::text, $3::text", [1, 1.23, [2,3]]).values
+        # => [["1", "1.2300000000000000E+00", "{2,3}"]]
+
+But Pg's type casting is highly customizable. That's why it's divided into
+2 layers:
+
+=== Encoders / Decoders (ext/pg_*coder.c, lib/pg/*coder.rb)
+
+This is the lower layer, containing encoding classes that convert Ruby
+objects for transmission to the DBMS and decoding classes to convert
+received data back to Ruby objects. The classes are namespaced according
+to their format and direction in PG::TextEncoder, PG::TextDecoder,
+PG::BinaryEncoder and PG::BinaryDecoder.
+
+It is possible to assign a type OID, format code (text or binary) and
+optionally a name to an encoder or decoder object. It's also possible
+to build composite types by assigning an element encoder/decoder.
+PG::Coder objects can be used to set up a PG::TypeMap or alternatively
+to convert single values to/from their string representation.
+
+=== PG::TypeMap and derivations (ext/pg_type_map*.c, lib/pg/type_map*.rb)
+
+A TypeMap defines which value will be converted by which encoder/decoder.
+There are different type map strategies, implemented by several derivations
+of this class. They can be chosen and configured according to the particular
+needs for type casting. The default type map is PG::TypeMapAllStrings.
+
+A type map can be assigned per connection or per query respectively per
+result set. Type maps can also be used for COPY in and out data streaming.
+See PG::Connection#copy_data .
+
+== Contributing
+
+To report bugs, suggest features, or check out the source with Mercurial,
+{check out the project page}[http://bitbucket.org/ged/ruby-pg]. If you prefer
+Git, there's also a {Github mirror}[https://github.com/ged/ruby-pg].
+
+After checking out the source, run:
+
+    $ rake newb
+
+This task will install any missing dependencies, run the tests/specs, and
+generate the API documentation.
+
+The current maintainers are Michael Granger <ged@FaerieMUD.org> and
+Lars Kanis <lars@greiz-reinsdorf.de>.
+
+
+== Copying
+
+Copyright (c) 1997-2016 by the authors.
+
+* Jeff Davis <ruby-pg@j-davis.com>
+* Guy Decoux (ts) <decoux@moulon.inra.fr>
+* Michael Granger <ged@FaerieMUD.org>
+* Lars Kanis <lars@greiz-reinsdorf.de>
+* Dave Lee
+* Eiji Matsumoto <usagi@ruby.club.or.jp>
+* Yukihiro Matsumoto <matz@ruby-lang.org>
+* Noboru Saitou <noborus@netlab.jp>
+
+You may redistribute this software under the same terms as Ruby itself; see
+https://www.ruby-lang.org/en/about/license.txt or the BSDL file in the source
+for details.
+
+Portions of the code are from the PostgreSQL project, and are distributed
+under the terms of the PostgreSQL license, included in the file POSTGRES.
+
+Portions copyright LAIKA, Inc.
+
+
+== Acknowledgments
+
+See Contributors.rdoc for the many additional fine people that have contributed
+to this library over the years.
+
+We are thankful to the people at the ruby-list and ruby-dev mailing lists.
+And to the people who developed PostgreSQL.
+

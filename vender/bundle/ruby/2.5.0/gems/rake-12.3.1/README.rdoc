@@ -1,0 +1,156 @@
+= RAKE -- Ruby Make
+
+home :: https://github.com/ruby/rake
+bugs :: https://github.com/ruby/rake/issues
+docs :: https://ruby.github.io/rake
+build status :: {<img src="https://travis-ci.org/ruby/rake.svg?branch=master" alt="travis-ci">}[https://travis-ci.org/ruby/rake] {<img src="https://ci.appveyor.com/api/projects/status/github/ruby/rake?branch=master&svg=true" alt="appveyor">}[https://ci.appveyor.com/project/ruby/rake]
+
+== Description
+
+Rake is a Make-like program implemented in Ruby. Tasks and dependencies are
+specified in standard Ruby syntax.
+
+Rake has the following features:
+
+* Rakefiles (rake's version of Makefiles) are completely defined in
+  standard Ruby syntax.  No XML files to edit.  No quirky Makefile
+  syntax to worry about (is that a tab or a space?)
+
+* Users can specify tasks with prerequisites.
+
+* Rake supports rule patterns to synthesize implicit tasks.
+
+* Flexible FileLists that act like arrays but know about manipulating
+  file names and paths.
+
+* A library of prepackaged tasks to make building rakefiles easier. For example,
+  tasks for building tarballs. (Formerly
+  tasks for building RDoc, Gems, and publishing to FTP were included in rake but they're now
+  available in RDoc, RubyGems, and rake-contrib respectively.)
+
+* Supports parallel execution of tasks.
+
+== Installation
+
+=== Gem Installation
+
+Download and install rake with the following.
+
+  gem install rake
+
+== Usage
+
+=== Simple Example
+
+First, you must write a "Rakefile" file which contains the build rules. Here's
+a simple example:
+
+  task default: %w[test]
+
+  task :test do
+    ruby "test/unittest.rb"
+  end
+
+This Rakefile has two tasks:
+
+* A task named "test", which -- upon invocation -- will run a unit test file
+  in Ruby.
+* A task named "default". This task does nothing by itself, but it has exactly
+  one dependency, namely the "test" task. Invoking the "default" task will
+  cause Rake to invoke the "test" task as well.
+
+Running the "rake" command without any options will cause it to run the
+"default" task in the Rakefile:
+
+  % ls
+  Rakefile     test/
+  % rake
+  (in /home/some_user/Projects/rake)
+  ruby test/unittest.rb
+  ....unit test output here...
+
+Type "rake --help" for all available options.
+
+== Resources
+
+=== Rake Information
+
+* {Rake command-line}[rdoc-ref:doc/command_line_usage.rdoc]
+* {Writing Rakefiles}[rdoc-ref:doc/rakefile.rdoc]
+* The original {Rake announcement}[rdoc-ref:doc/rational.rdoc]
+* Rake {glossary}[rdoc-ref:doc/glossary.rdoc]
+
+=== Presentations and Articles about Rake
+
+* Avdi Grimm's rake series:
+  1. {Rake Basics}[http://devblog.avdi.org/2014/04/21/rake-part-1-basics/]
+  2. {Rake File Lists}[http://devblog.avdi.org/2014/04/22/rake-part-2-file-lists/]
+  3. {Rake Rules}[http://devblog.avdi.org/2014/04/23/rake-part-3-rules/]
+  4. {Rake Pathmap}[http://devblog.avdi.org/2014/04/24/rake-part-4-pathmap/]
+  5. {File Operations}[http://devblog.avdi.org/2014/04/25/rake-part-5-file-operations/]
+  6. {Clean and Clobber}[http://devblog.avdi.org/2014/04/28/rake-part-6-clean-and-clobber/]
+  7. {MultiTask}[http://devblog.avdi.org/2014/04/29/rake-part-7-multitask/]
+* {Jim Weirich's 2003 RubyConf presentation}[http://web.archive.org/web/20140221123354/http://onestepback.org/articles/buildingwithrake/]
+* Martin Fowler's article on Rake: http://martinfowler.com/articles/rake.html
+
+== Other Make Re-envisionings ...
+
+Rake is a late entry in the make replacement field.  Here are links to
+other projects with similar (and not so similar) goals.
+
+* http://directory.fsf.org/wiki/Bras -- Bras, one of earliest
+  implementations of "make in a scripting language".
+* http://www.a-a-p.org -- Make in Python
+* http://ant.apache.org -- The Ant project
+* http://search.cpan.org/search?query=PerlBuildSystem -- The Perl Build System
+* http://www.rubydoc.info/gems/rant/0.5.7/frames -- Rant, another Ruby make tool.
+
+== Credits
+
+[<b>Jim Weirich</b>] Who originally created Rake.
+
+[<b>Ryan Dlugosz</b>] For the initial conversation that sparked Rake.
+
+[<b>Nobuyoshi Nakada <nobu@ruby-lang.org></b>] For the initial patch for rule support.
+
+[<b>Tilman Sauerbeck <tilman@code-monkey.de></b>] For the recursive rule patch.
+
+[<b>Eric Hodel</b>] For aid in maintaining rake.
+
+[<b>Hiroshi SHIBATA</b>] Maintainer of Rake 10.X and Rake 11.X
+
+== License
+
+Rake is available under an MIT-style license.
+
+:include: MIT-LICENSE
+
+---
+
+= Other stuff
+
+Author::   Jim Weirich <jim.weirich@gmail.com>
+Requires:: Ruby 2.0.0 or later
+License::  Copyright Jim Weirich.
+           Released under an MIT-style license.  See the MIT-LICENSE
+           file included in the distribution.
+
+== Warranty
+
+This software is provided "as is" and without any express or implied
+warranties, including, without limitation, the implied warranties of
+merchantability and fitness for a particular purpose.
+
+== Historical
+
+Rake was originally created by Jim Weirich, who unfortunately passed away in
+February 2014. This repository was originally hosted at
+{github.com/jimweirich/rake}[https://github.com/jimweirich/rake/], however
+with his passing, has been moved to {ruby/rake}[https://github.com/ruby/rake].
+
+You can view Jim's last commit here:
+https://github.com/jimweirich/rake/tree/336559f28f55bce418e2ebcc0a57548dcbac4025
+
+You can {read more about Jim}[https://en.wikipedia.org/wiki/Jim_Weirich] at Wikipedia.
+
+Thank you for this great tool, Jim. We'll remember you.

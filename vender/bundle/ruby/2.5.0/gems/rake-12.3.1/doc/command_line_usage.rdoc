@@ -1,0 +1,158 @@
+= Rake Command Line Usage
+
+Rake is invoked from the command line using:
+
+    % rake [options ...]  [VAR=VALUE ...]  [targets ...]
+
+Options are:
+
+[<tt><em>name</em>=<em>value</em></tt>]
+    Set the environment variable <em>name</em> to <em>value</em>
+    during the execution of the <b>rake</b> command.  You can access
+    the value by using ENV['<em>name</em>'].
+
+[<tt>--all</tt> (-A)]
+    Used in combination with the -T and -D options, will force
+    those options to show all the tasks, even the ones without comments.
+
+[<tt>--backtrace</tt>{=_output_} (-n)]
+    Enable a full backtrace (i.e. like --trace, but without the task
+    tracing details). The _output_ parameter is optional, but if
+    specified it controls where the backtrace output is sent. If
+    _output_ is <tt>stdout</tt>, then backtrace output is directed to
+    standard output. If _output_ is <tt>stderr</tt>, or if it is
+    missing, then the backtrace output is sent to standard error.
+
+[<tt>--comments</tt>]
+    Used in combination with the -W options to force the output to
+    contain commented options only. This is the reverse of
+    <tt>--all</tt>.
+
+[<tt>--describe</tt> _pattern_ (-D)]
+    Describe the tasks (matching optional PATTERN), then exit.
+
+[<tt>--dry-run</tt> (-n)]
+    Do a dry run.  Print the tasks invoked and executed, but do not
+    actually execute any of the actions.
+
+[<tt>--execute</tt> _code_ (-e)]
+    Execute some Ruby code and exit.
+
+[<tt>--execute-print</tt> _code_ (-p)]
+    Execute some Ruby code, print the result, and exit.
+
+[<tt>--execute-continue</tt> _code_ (-E)]
+    Execute some Ruby code, then continue with normal task processing.
+
+[<tt>--help</tt>  (-H)]
+    Display some help text and exit.
+
+[<tt>--jobs</tt> _number_  (-j)]
+
+    Specifies the maximum number of concurrent threads allowed. Rake
+    will allocate threads as needed up to this maximum number.
+
+    If omitted, Rake will attempt to estimate the number of CPUs on
+    the system and add 4 to that number.
+
+    The concurrent threads are used to execute the <tt>multitask</tt>
+    prerequisites. Also see the <tt>-m</tt> option which turns all
+    tasks into multitasks.
+
+    Sample values:
+       (no -j)   : Allow up to (# of CPUs + 4) number of threads
+       --jobs    : Allow unlimited number of threads
+       --jobs=1  : Allow only one thread (the main thread)
+       --jobs=16 : Allow up to 16 concurrent threads
+
+[<tt>--job-stats</tt> _level_]
+
+    Display job statistics at the completion of the run. By default,
+    this will display the requested number of active threads (from the
+    -j options) and the maximum number of threads in play at any given
+    time.
+
+    If the optional _level_ is <tt>history</tt>, then a complete trace
+    of task history will be displayed on standard output.
+
+[<tt>--libdir</tt> _directory_  (-I)]
+    Add _directory_ to the list of directories searched for require.
+
+[<tt>--multitask</tt> (-m)]
+    Treat all tasks as multitasks. ('make/drake' semantics)
+
+[<tt>--nosearch</tt>  (-N)]
+    Do not search for a Rakefile in parent directories.
+
+[<tt>--prereqs</tt>  (-P)]
+    Display a list of all tasks and their immediate prerequisites.
+
+[<tt>--quiet</tt> (-q)]
+    Do not echo commands from FileUtils.
+
+[<tt>--rakefile</tt> _filename_ (-f)]
+    Use _filename_ as the name of the rakefile. The default rakefile
+    names are +rakefile+ and +Rakefile+ (with +rakefile+ taking
+    precedence). If the rakefile is not found in the current
+    directory, +rake+ will search parent directories for a match. The
+    directory where the Rakefile is found will become the current
+    directory for the actions executed in the Rakefile.
+
+[<tt>--rakelibdir</tt> _rakelibdir_ (-R)]
+    Auto-import any .rake files in RAKELIBDIR. (default is 'rakelib')
+
+[<tt>--require</tt> _name_ (-r)]
+    Require _name_ before executing the Rakefile.
+
+[<tt>--rules</tt>]
+    Trace the rules resolution.
+
+[<tt>--silent (-s)</tt>]
+    Like --quiet, but also suppresses the 'in directory' announcement.
+
+[<tt>--suppress-backtrace _pattern_ </tt>]
+    Line matching the regular expression _pattern_ will be removed
+    from the backtrace output. Note that the --backtrace option is the
+    full backtrace without these lines suppressed.
+
+[<tt>--system</tt> (-g)]
+    Use the system wide (global) rakefiles. The project Rakefile is
+    ignored. By default, the system wide rakefiles are used only if no
+    project Rakefile is found. On Unix-like system, the system wide
+    rake files are located in $HOME/.rake. On a windows system they
+    are stored in $APPDATA/Rake.
+
+[<tt>--no-system</tt> (-G)]
+    Use the project level Rakefile, ignoring the system-wide (global)
+    rakefiles.
+
+[<tt>--tasks</tt> <em>pattern</em> (-T)]
+    Display a list of the major tasks and their comments.  Comments
+    are defined using the "desc" command.  If a pattern is given, then
+    only tasks matching the pattern are displayed.
+
+[<tt>--trace</tt>{=_output_} (-t)]
+    Turn on invoke/execute tracing. Also enable full backtrace on
+    errors. The _output_ parameter is optional, but if specified it
+    controls where the trace output is sent. If _output_ is
+    <tt>stdout</tt>, then trace output is directed to standard output.
+    If _output_ is <tt>stderr</tt>, or if it is missing, then trace
+    output is sent to standard error.
+
+[<tt>--verbose</tt> (-v)]
+    Echo the Sys commands to standard output.
+
+[<tt>--version</tt> (-V)]
+    Display the program version and exit.
+
+[<tt>--where</tt> <em>pattern</em> (-W)]
+    Display tasks that match <em>pattern</em> and the file and line
+    number where the task is defined. By default this option will
+    display all tasks, not just the tasks that have descriptions.
+
+[<tt>--no-deprecation-warnings</tt> (-X)]
+    Do not display the deprecation warnings.
+
+In addition, any command line option of the form
+<em>VAR</em>=<em>VALUE</em> will be added to the environment hash
+<tt>ENV</tt> and may be tested in the Rakefile.

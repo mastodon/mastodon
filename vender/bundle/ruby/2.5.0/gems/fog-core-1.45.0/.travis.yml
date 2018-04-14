@@ -1,0 +1,46 @@
+language: ruby
+
+rvm:
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - jruby-head
+
+sudo: false
+dist: trusty
+
+script: bundle exec rake travis
+
+matrix:
+  fast_finish: true
+  include:
+    - rvm: 1.8.7
+      gemfile: Gemfile.1.8.7
+    - rvm: jruby-18mode
+      gemfile: Gemfile.1.8.7
+    - rvm: 1.9.3
+      gemfile: Gemfile.1.9.3
+    - rvm: jruby-19mode
+      gemfile: Gemfile.1.9.3
+    - rvm: 2.1
+      gemfile: Gemfile
+      env: COVERAGE=true
+    - rvm: jruby-head
+      gemfile: Gemfile
+  allow_failures:
+    - rvm: jruby-head
+    - rvm: jruby9k
+
+notifications:
+  email: false
+  irc:
+    channels:
+      - "irc.freenode.org#ruby-fog"
+    template:
+    - "[#%{build_number}] %{message} %{build_url}"
+    - "[#%{build_number}] %{commit} on %{branch} by %{author}"
+    - "[#%{build_number}] %{compare_url}"
+    on_success: always
+    on_failure: always
+    use_notice: false

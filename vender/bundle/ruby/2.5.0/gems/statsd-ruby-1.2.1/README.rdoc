@@ -1,0 +1,75 @@
+= statsd-ruby {<img src="https://secure.travis-ci.org/reinh/statsd.png" />}[http://travis-ci.org/reinh/statsd]
+
+A Ruby client for {StatsD}[https://github.com/etsy/statsd]
+
+= Installing
+
+Bundler:
+  gem "statsd-ruby"
+
+= Basic Usage
+
+  # Set up a global Statsd client for a server on localhost:9125
+  $statsd = Statsd.new 'localhost', 9125
+
+  # Send some stats
+  $statsd.increment 'garets'
+  $statsd.timing 'glork', 320
+  $statsd.gauge 'bork', 100
+
+  # Use {#time} to time the execution of a block
+  $statsd.time('account.activate') { @account.activate! }
+
+  # Create a namespaced statsd client and increment 'account.activate'
+  statsd = Statsd.new('localhost').tap{|sd| sd.namespace = 'account'}
+  statsd.increment 'activate'
+
+= Testing
+
+Run the specs with <tt>rake spec</tt>
+
+Run the specs and include live integration specs with <tt>LIVE=true rake spec</tt>. Note: This will test over a real UDP socket.
+
+= Performance
+
+* A short note about DNS: If you use a dns name for the host option, then you will want to use a local caching dns service for optimial performance (e.g. nscd).
+
+== Contributing to statsd
+
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Contributors
+
+* Rein Henrichs
+* Ray Krueger
+* Jeremy Kemper
+* Ryan Tomayko
+* Gabriel Burt
+* Rick Olson
+* Trae Robrock
+* Corey Donohoe
+* James Tucker
+* Dotan Nahum
+* Eric Chapweske
+* Hannes Georg
+* John Nunemaker
+* Mahesh Murthy
+* Manu J
+* Matt Sanford
+* Nate Bird
+* Noah Lorang
+* Oscar Del Ben
+* Peter Mounce
+* Ray Krueger
+* Reed Lipman
+* Thomas Whaples
+
+== Copyright
+
+Copyright (c) 2011, 2012, 2013 Rein Henrichs. See LICENSE.txt for further details.

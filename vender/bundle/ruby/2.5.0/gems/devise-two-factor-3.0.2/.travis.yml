@@ -1,0 +1,28 @@
+sudo: false
+language: ruby
+cache: bundler
+before_install:
+  - gem update --system
+  - gem update bundler
+gemfile:
+  - Gemfile
+  - gemfiles/rails_4_1.gemfile
+  - gemfiles/rails_4_2.gemfile
+  - gemfiles/rails_5_0.gemfile
+  - gemfiles/rails_5_1.gemfile
+rvm:
+  - "2.1"
+  - "2.2"
+  - "2.3.4"
+  - "2.4.0"
+  - "2.4.1"
+matrix:
+  exclude:
+    - rvm: "2.1"
+      gemfile: gemfiles/rails_5_0.gemfile
+    - rvm: "2.2"
+      gemfile: gemfiles/rails_5_0.gemfile
+    - rvm: "2.1"
+      gemfile: gemfiles/rails_5_1.gemfile
+    - rvm: "2.2"
+      gemfile: gemfiles/rails_5_1.gemfile

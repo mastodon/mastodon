@@ -1,0 +1,214 @@
+---
+pt:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'A validação falhou: %{errors}'
+        restrict_dependent_destroy:
+          has_many: Não pode ser eliminado por existirem dependências de %{record}
+          has_one: Não pode ser eliminado por existir uma dependência de %{record}
+  date:
+    abbr_day_names:
+    - Dom
+    - Seg
+    - Ter
+    - Qua
+    - Qui
+    - Sex
+    - Sáb
+    abbr_month_names:
+    -
+    - Jan
+    - Fev
+    - Mar
+    - Abr
+    - Mai
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Out
+    - Nov
+    - Dez
+    day_names:
+    - Domingo
+    - Segunda-feira
+    - Terça-feira
+    - Quarta-feira
+    - Quinta-feira
+    - Sexta-feira
+    - Sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
+    month_names:
+    -
+    - Janeiro
+    - Fevereiro
+    - Março
+    - Abril
+    - Maio
+    - Junho
+    - Julho
+    - Agosto
+    - Setembro
+    - Outubro
+    - Novembro
+    - Dezembro
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente 1 hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente 1 mês
+        other: aproximadamente %{count} meses
+      about_x_years:
+        one: aproximadamente 1 ano
+        other: aproximadamente %{count} anos
+      almost_x_years:
+        one: quase 1 ano
+        other: quase %{count} anos
+      half_a_minute: meio minuto
+      less_than_x_minutes:
+        one: menos de um minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: mais de 1 ano
+        other: mais de %{count} anos
+      x_days:
+        one: 1 dia
+        other: "%{count} dias"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mês
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+      x_years:
+        one: 1 ano
+        other: "%{count} anos"
+    prompts:
+      day: Dia
+      hour: Hora
+      minute: Minuto
+      month: Mês
+      second: Segundo
+      year: Ano
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: tem de ser aceite
+      blank: não pode estar em branco
+      confirmation: não coincide com a confirmação
+      empty: não pode estar vazio
+      equal_to: tem de ser igual a %{count}
+      even: tem de ser par
+      exclusion: é reservado
+      greater_than: tem de ser maior que %{count}
+      greater_than_or_equal_to: tem de ser maior ou igual a %{count}
+      inclusion: não está incluído na lista
+      invalid: é inválido
+      less_than: tem de ser menor que %{count}
+      less_than_or_equal_to: tem de ser menor ou igual a %{count}
+      model_invalid: 'A validação falhou: %{errors}'
+      not_a_number: não é um número
+      not_an_integer: tem de ser um inteiro
+      odd: tem de ser ímpar
+      other_than: tem de ser diferente de %{count}
+      present: não pode estar em branco
+      required: é obrigatório
+      taken: não está disponível
+      too_long: é demasiado grande (o máximo é de %{count} caracteres)
+      too_short: é demasiado pequeno (o mínimo é de %{count} caracteres)
+      wrong_length: comprimento errado (deve ter %{count} caracteres)
+    template:
+      body: 'Por favor, verifique os seguintes campos:'
+      header:
+        one: '1 erro impediu guardar este %{model}'
+        other: '%{count} erros impediram guardar este %{model}'
+  helpers:
+    select:
+      prompt: Por favor seleccione
+    submit:
+      create: Criar %{model}
+      submit: Gravar %{model}
+      update: Actualizar %{model}
+  number:
+    currency:
+      format:
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: mil milhões
+            other: mil milhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: mil biliões
+            other: mil biliões
+          thousand: mil
+          trillion:
+            one: bilião
+            other: biliões
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", e"
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%A, %d de %B de %Y, %H:%Mh"
+      long: "%A, %d de %B de %Y, %H:%Mh"
+      short: "%d/%m, %H:%M hs"
+    pm: pm

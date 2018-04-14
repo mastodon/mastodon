@@ -1,0 +1,25 @@
+#! /usr/bin/env ruby
+
+require "date"
+
+dir = ARGV[0] || raise("ERROR: arg1 must be dir")
+
+Dir.chdir dir
+
+files_and_times = {}
+Dir["*.patch"].sort.each do |filename|
+  dateline = `cat #{filename} | grep "Date:"`
+  datestr = dateline.split("Date:").last.strip
+  time = DateTime.parse datestr
+  files_and_times[filename] = time
+end
+
+count = 0
+files_and_times.sort_by {|k,v| v}.each do |filename, time|
+  count += 1
+  _, patch_name = filename.split("-", 2)
+  new_filename = sprintf("%4.4d-%s", count, patch_name)
+  printf "mv -f %s %s # %s\n", filename, new_filename, time
+end
+
+STDERR.print "\n**\n** REMEMBER TO UPDATE THE Manifest.txt FILE\n**\n"

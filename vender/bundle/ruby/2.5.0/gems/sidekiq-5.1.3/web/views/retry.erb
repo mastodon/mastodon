@@ -1,0 +1,34 @@
+<%= erb :_job_info, locals: { job: @retry, type: :retry } %>
+
+<h3><%= t('Error') %></h3>
+<div class="table_container">
+  <table class="error table table-bordered table-striped">
+    <tbody>
+      <tr>
+        <th><%= t('ErrorClass') %></th>
+        <td>
+          <code><%= h @retry['error_class'] %></code>
+        </td>
+      </tr>
+      <tr>
+        <th><%= t('ErrorMessage') %></th>
+        <td><%= h(@retry['error_message']) %></td>
+      </tr>
+      <% if !@retry['error_backtrace'].nil? %>
+        <tr>
+          <th><%= t('ErrorBacktrace') %></th>
+          <td>
+            <code><%= @retry['error_backtrace'].join("<br/>") %></code>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<form class="form-horizontal" action="<%= root_path %>retries/<%= job_params(@retry, @retry.score) %>" method="post">
+  <%= csrf_tag %>
+  <a class="btn btn-default" href="<%= root_path %>retries"><%= t('GoBack') %></a>
+  <input class="btn btn-primary" type="submit" name="retry" value="<%= t('RetryNow') %>" />
+  <input class="btn btn-danger" type="submit" name="delete" value="<%= t('Delete') %>" />
+</form>

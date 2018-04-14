@@ -1,0 +1,43 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    allocation_stats (0.1.5)
+    ast (2.3.0)
+    json (1.8.3)
+    metaclass (0.0.4)
+    minitest (5.9.0)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
+    parser (2.3.1.2)
+      ast (~> 2.2)
+    power_assert (0.3.0)
+    powerpack (0.1.1)
+    rainbow (2.1.0)
+    rake (11.2.2)
+    rdoc (4.2.2)
+      json (~> 1.4)
+    rubocop (0.41.0)
+      parser (>= 2.3.1.1, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-progressbar (1.8.1)
+    test-unit (3.2.0)
+      power_assert
+    unicode-display_width (1.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  allocation_stats
+  minitest
+  mocha
+  rake
+  rdoc
+  rubocop
+  test-unit
+
+BUNDLED WITH
+   1.12.2

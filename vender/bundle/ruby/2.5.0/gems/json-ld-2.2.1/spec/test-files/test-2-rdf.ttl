@@ -1,0 +1,14 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ex: <http://example.org/vocab#> .
+
+<http://example.org/library> a ex:Library;
+   ex:contains <http://example.org/library/the-republic> .
+
+<http://example.org/library/the-republic> a ex:Book;
+   ex:contains <http://example.org/library/the-republic#introduction>;
+   dc:creator "Plato";
+   dc:title "The Republic" .
+
+<http://example.org/library/the-republic#introduction> a ex:Chapter;
+   dc:description "An introductory chapter on The Republic.";
+   dc:title "The Introduction" .

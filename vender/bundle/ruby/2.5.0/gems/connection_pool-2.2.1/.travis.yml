@@ -1,0 +1,14 @@
+---
+sudo: false
+cache: bundler
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.6
+  - 2.2.2
+  - jruby
+  - rbx-2
+notifications:
+  email:
+    - drbrain@segment7.net

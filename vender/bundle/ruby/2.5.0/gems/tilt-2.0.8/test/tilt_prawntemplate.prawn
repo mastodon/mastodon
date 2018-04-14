@@ -1,0 +1,1 @@
+pdf.text "Hello Template!"

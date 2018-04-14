@@ -1,0 +1,28 @@
+---
+engines:
+  bundler-audit:
+    enabled: false
+  fixme:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - ruby
+  rubocop:
+    enabled: true
+ratings:
+  paths:
+    - lib/**
+    - bin/**
+    - "**.rb"
+exclude_paths:
+  - Gemfile
+  - "*.gemspec"
+  - Appraisals
+  - spec/**/*.rb
+  - gemfiles/**/*
+  - rails_example/**/*
+  - redis/**/*
+  - tmp/**/*
+

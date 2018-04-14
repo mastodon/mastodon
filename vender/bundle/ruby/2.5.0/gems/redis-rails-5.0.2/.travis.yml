@@ -1,0 +1,14 @@
+language: ruby
+before_install: gem install bundler
+script: 'bundle exec rake'
+rvm:
+  - 2.2
+  - 2.3
+  - 2.4.0
+  - ruby-head
+  - jruby-head
+
+matrix:
+  allow_failures:
+    - rvm: jruby-head
+    - rvm: ruby-head

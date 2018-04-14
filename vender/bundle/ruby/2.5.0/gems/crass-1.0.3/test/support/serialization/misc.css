@@ -1,0 +1,9 @@
+/* mangled !important */
+.foo {
+    display: none  /**/ ! IMPORTANT    /*  */ ;
+}
+
+/* An+B */
+li:nth-child(even of li:not(.filtered)) {
+    background-color: black;
+}

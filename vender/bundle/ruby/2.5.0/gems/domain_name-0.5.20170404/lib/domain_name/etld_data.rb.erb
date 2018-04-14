@@ -1,0 +1,11 @@
+class DomainName
+  ETLD_DATA_DATE = '<%= etld_data_date.utc.strftime('%Y-%m-%dT%H:%M:%SZ') %>'
+
+  ETLD_DATA = {
+<% etld_data.each_pair { |key, value| %>    <%= key.inspect %> => <%= value.inspect %>,
+<% } %>  }
+
+  def self.etld_data
+    ETLD_DATA
+  end
+end

@@ -1,0 +1,11 @@
+<header>
+  <h1>Template is missing</h1>
+</header>
+
+<div id="container">
+  <h2><%= h @exception.message %></h2>
+
+  <%= render template: "rescues/_source" %>
+  <%= render template: "rescues/_trace" %>
+  <%= render template: "rescues/_request_and_response" %>
+</div>

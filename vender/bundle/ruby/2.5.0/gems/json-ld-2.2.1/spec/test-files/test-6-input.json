@@ -1,0 +1,10 @@
+{
+  "@context": {
+    "":       "http://manu.sporny.org/",
+    "foaf":   "http://xmlns.com/foaf/0.1/"
+  },
+  "@id":       "http://example.org/people#joebob",
+  "@type":          "foaf:Person",
+  "foaf:name":      "Joe Bob",
+  "foaf:nick":      { "@list": [ "joe", "bob", "jaybe" ] }
+}

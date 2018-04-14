@@ -1,0 +1,22 @@
+language: ruby
+before_install:
+  - gem update --system
+  - gem update bundler
+bundler_args: --without=extras
+script: rspec spec
+sudo: false
+rvm:
+  - '2.1.10'
+  - '2.2.6'
+  - '2.3.3'
+  - '2.4.0'
+  - jruby-9.1.6.0
+  # - rbx-2
+  ### ALLOWED FAILURES ###
+  # see how compatible we are with dev versions, but do not fail the build
+  - ruby-head
+  - jruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head

@@ -1,0 +1,208 @@
+---
+be:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Памылкі валідацыі: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Нельга выдаліць запіс, таму што існуе залежнасць %{record}
+          has_many: Нельга выдаліць запіс, таму што існуюць залежнасці %{record}
+  date:
+    abbr_day_names:
+    - Пан
+    - Аўт
+    - Сер
+    - Чцв
+    - Пят
+    - Суб
+    - Ндз
+    abbr_month_names:
+    -
+    - Сту
+    - Лют
+    - Сак
+    - Кра
+    - Тра
+    - Чэр
+    - Ліп
+    - Жні
+    - Вер
+    - Кас
+    - Ліс
+    - Сне
+    day_names:
+    - Нядзеля
+    - Панядзелак
+    - Аўторак
+    - Серада
+    - Чацвер
+    - Пятніца
+    - Субота
+    formats:
+      default: "%d-%m-%Y"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+    -
+    - Студзень
+    - Люты
+    - Сакавік
+    - Красавік
+    - Травень
+    - Чэрвень
+    - Ліпень
+    - Жнівень
+    - Верасень
+    - Кастрычнік
+    - Лістапад
+    - Снежань
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: каля 1 гадзіны
+        other: каля %{count} гадзін
+      about_x_months:
+        one: каля 1 месяца
+        other: каля %{count} месяцаў
+      about_x_years:
+        one: каля 1 года
+        other: каля %{count} гадоў
+      almost_x_years:
+        one: амаль 1 год
+        other: амаль %{count} гадоў
+      half_a_minute: палова хвіліны
+      less_than_x_minutes:
+        one: меней за 1 хвіліну
+        other: меней за %{count} хвілін
+      less_than_x_seconds:
+        one: меней за 1 секунду
+        other: меней за %{count} секундаў
+      over_x_years:
+        one: болей за 1 год
+        other: болей за %{count} гадоў
+      x_days:
+        one: 1 дзень
+        other: "%{count} дзён"
+      x_minutes:
+        one: 1 хвіліна
+        other: "%{count} хвілін"
+      x_months:
+        one: 1 месяц
+        other: "%{count} месяцаў"
+      x_seconds:
+        one: 1 секунда
+        other: "%{count} секундаў"
+    prompts:
+      day: Дзень
+      hour: Гадзіна
+      minute: Хвіліна
+      month: Месяц
+      second: Секунда
+      year: Год
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: трэба прыняць
+      blank: не можа быць пустым
+      present: павінна быць пустым
+      confirmation: не супадае з %{attribute}
+      empty: не можа быць пустым
+      equal_to: павінна быць роўным %{count}
+      even: павінна быць цотным
+      exclusion: мае зарэзерваванае значэнне
+      greater_than: павінна быць болей за %{count}
+      greater_than_or_equal_to: павінна быць болей ці роўным %{count}
+      inclusion: значэнне не уключана ў спіс
+      invalid: няправільнае значэнне
+      less_than: павінна быць меней за %{count}
+      less_than_or_equal_to: павінна быць меней ці роўным %{count}
+      not_a_number: гэта не лічба
+      not_an_integer: павінна быць цэлай лічбай
+      odd: павінна быць няцотным
+      taken: ўжо занята
+      too_long:
+        one: занадта доўгі (максімум 1 сімвал)
+        other: занадта доўгі (максімум %{count} сімвалаў)
+      too_short:
+        one: занадта кароткі (мінімум 1 сімвал)
+        other: занадта кароткі (мінімум %{count} сімвалаў)
+      wrong_length:
+        one: няправільная даўжыня (павінен быць 1 сімвал)
+        other: няправільная даўжыня (павінны быць %{count} сімвалаў)
+      other_than: павінна адрознівацца ад %{count}
+    template:
+      body: 'Узніклі праблемы з наступнымі палямі:'
+      header:
+        one: не атрымалася захаваць %{model} з-за 1 памылкі
+        other: не атрымалася захаваць %{model} з-за %{count} памылак
+  helpers:
+    select:
+      prompt: Калі ласка, абярыце
+    submit:
+      create: Стварыць %{model}
+      submit: Захаваць %{model}
+      update: Абнавіць %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: мільярд
+          million: мільён
+          quadrillion: квадрыльён
+          thousand: тысяча
+          trillion: трыльён
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Байт
+            other: Байтаў
+          gb: ГБ
+          kb: КБ
+          mb: МБ
+          tb: ТБ
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: " і "
+      two_words_connector: " і "
+      words_connector: ", "
+  time:
+    am: раніцы
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: вечара

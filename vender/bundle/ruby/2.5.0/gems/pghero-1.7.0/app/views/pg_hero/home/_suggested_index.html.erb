@@ -1,0 +1,18 @@
+<% if index && !details[:covering_index] %>
+  <% unless @debug %>
+    <div style="float: right; color: #f0ad4e; margin-top: 0px; padding: 10px; cursor: pointer;" onclick="document.getElementById('details-<%= index.object_id %>').style.display = 'block'; this.style.display = 'none';">Details</div>
+  <% end %>
+  <code><pre style="color: #eee; background-color: #333;">CREATE INDEX CONCURRENTLY ON <%= index[:table] %><% if index[:using] %> USING <%= index[:using] %><% end %> (<%= index[:columns].join(", ") %>)</pre></code>
+<% end %>
+<div id="details-<%= index.object_id %>" style="<%= "display: none;" unless @debug %>">
+  <code><pre style="color: #f0ad4e; background-color: #333;"><% if details[:explanation] %><%= details[:explanation] %>
+<% end %><% if details[:row_estimates] %>Rows: <%= details[:rows] %>
+Row progression: <%= details[:row_progression].to_a.join(", ") %>
+
+Row estimates
+<%= details[:row_estimates].to_a.map { |k, v| "- #{k}: #{v}" }.join("\n") %><% end %><% if details[:table_indexes] %>
+
+Existing indexes
+<% details[:table_indexes].sort_by { |i| [PgHero.truthy?(i["primary"]) ? 0 : 1, i["columns"]] }.each do |i3| %>- <%= i3["columns"].join(", ") %><% if i3["using"] != "btree" %> <%= i3["using"].to_s.upcase %><% end %><% if PgHero.truthy?(i3["primary"]) %> PRIMARY<% elsif PgHero.truthy?(i3["unique"]) %> UNIQUE<% end %>
+<% end %><% end %></pre></code>
+</div>

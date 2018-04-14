@@ -1,0 +1,70 @@
+have_library: checking for -lidn... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lidn  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: 
+14: int t(void) { ; return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for idna.h... -------------------- yes
+
+"gcc -E -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <idna.h>
+/* end */
+
+--------------------
+
+have_header: checking for punycode.h... -------------------- yes
+
+"gcc -E -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <punycode.h>
+/* end */
+
+--------------------
+
+have_header: checking for stringprep.h... -------------------- yes
+
+"gcc -E -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <stringprep.h>
+/* end */
+
+--------------------
+

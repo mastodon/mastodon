@@ -1,0 +1,11 @@
+before_install:
+  - gem install bundler
+
+rvm:
+  - 2.2.6
+  - 2.3.3
+
+gemfile:
+  - gemfiles/rails-4-2-stable.gemfile
+  - gemfiles/rails-4-1-stable.gemfile
+  - gemfiles/rails-3-2-stable.gemfile

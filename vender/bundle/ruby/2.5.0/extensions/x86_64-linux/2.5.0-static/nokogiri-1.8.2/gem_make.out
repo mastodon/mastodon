@@ -1,0 +1,297 @@
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nokogiri-1.8.2/ext/nokogiri
+/home/mastodon/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180408-28175-1ikisb9.rb extconf.rb
+checking if the C compiler accepts ... yes
+Building nokogiri using packaged libraries.
+Using mini_portile version 2.3.0
+checking for gzdopen() in -lz... yes
+checking for iconv... yes
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxml2-2.9.7.
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+
+Note, however, that nokogiri is not fully compatible with arbitrary
+versions of libxml2 provided by OS/package vendors.
+************************************************************************
+Extracting libxml2-2.9.7.tar.gz into tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.7... OK
+Running 'configure' for libxml2 2.9.7... OK
+Running 'compile' for libxml2 2.9.7... OK
+Running 'install' for libxml2 2.9.7... OK
+Activating libxml2 2.9.7 (from /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7)...
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxslt-1.1.32.
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+************************************************************************
+Extracting libxslt-1.1.32.tar.gz into tmp/x86_64-pc-linux-gnu/ports/libxslt/1.1.32... OK
+Running 'configure' for libxslt 1.1.32... OK
+Running 'compile' for libxslt 1.1.32... OK
+Running 'install' for libxslt 1.1.32... OK
+Activating libxslt 1.1.32 (from /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32)...
+checking for -llzma... no
+checking for xmlParseDoc() in libxml/parser.h... yes
+checking for xsltParseStylesheetDoc() in libxslt/xslt.h... yes
+checking for exsltFuncRegister() in libexslt/exslt.h... yes
+checking for xmlHasFeature()... yes
+checking for xmlFirstElementChild()... yes
+checking for xmlRelaxNGSetParserStructuredErrors()... yes
+checking for xmlRelaxNGSetParserStructuredErrors()... yes
+checking for xmlRelaxNGSetValidStructuredErrors()... yes
+checking for xmlSchemaSetValidStructuredErrors()... yes
+checking for xmlSchemaSetParserStructuredErrors()... yes
+creating Makefile
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nokogiri-1.8.2/ext/nokogiri
+make "DESTDIR=" clean
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nokogiri-1.8.2/ext/nokogiri
+make "DESTDIR="
+compiling html_document.c
+compiling html_element_description.c
+In file included from /home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby.h:33:0,
+                 from ./nokogiri.h:33,
+                 from ./html_element_description.h:4,
+                 from html_element_description.c:1:
+html_element_description.c: In function 'get_description':
+html_element_description.c:252:40: warning: cast discards '__attribute__((const))' qualifier from pointer target type [-Wcast-qual]
+   return Data_Wrap_Struct(klass, 0, 0, (void *)description);
+                                        ^
+/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/ruby.h:1145:34: note: in definition of macro 'Data_Wrap_Struct'
+     rb_data_object_wrap((klass),(sval),(RUBY_DATA_FUNC)(mark),(RUBY_DATA_FUNC)(free))
+                                  ^
+html_element_description.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+compiling html_entity_lookup.c
+compiling html_sax_parser_context.c
+compiling html_sax_push_parser.c
+compiling nokogiri.c
+compiling xml_attr.c
+compiling xml_attribute_decl.c
+compiling xml_cdata.c
+xml_cdata.c: In function 'new':
+xml_cdata.c:28:3: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+   content_str_len = (content_str == NULL) ? 0 : strlen(content_str);
+   ^
+In file included from ./nokogiri.h:5:0,
+                 from ./xml_cdata.h:4,
+                 from xml_cdata.c:1:
+/usr/include/string.h:395:15: note: expected 'const char *' but argument is of type 'const xmlChar *'
+ extern size_t strlen (const char *__s)
+               ^
+xml_cdata.c:28:55: warning: conversion to 'int' from 'size_t' may alter its value [-Wconversion]
+   content_str_len = (content_str == NULL) ? 0 : strlen(content_str);
+                                                       ^
+xml_cdata.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+compiling xml_comment.c
+compiling xml_document.c
+xml_document.c: In function 'set_encoding':
+xml_document.c:182:12: warning: cast discards '__attribute__((const))' qualifier from pointer target type [-Wcast-qual]
+       free((char *) doc->encoding); /* this may produce a gcc cast warning */
+            ^
+xml_document.c: In function 'canonicalize':
+xml_document.c:535:15: warning: cast discards '__attribute__((const))' qualifier from pointer target type [-Wcast-qual]
+       ns[i] = (xmlChar*) ptr;
+               ^
+xml_document.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+compiling xml_document_fragment.c
+compiling xml_dtd.c
+compiling xml_element_content.c
+compiling xml_element_decl.c
+compiling xml_encoding_handler.c
+compiling xml_entity_decl.c
+compiling xml_entity_reference.c
+compiling xml_io.c
+compiling xml_libxml2_hacks.c
+compiling xml_namespace.c
+xml_namespace.c: In function 'dealloc_namespace':
+xml_namespace.c:17:13: warning: cast discards '__attribute__((const))' qualifier from pointer target type [-Wcast-qual]
+     xmlFree((xmlChar *)ns->href);
+             ^
+xml_namespace.c:20:13: warning: cast discards '__attribute__((const))' qualifier from pointer target type [-Wcast-qual]
+     xmlFree((xmlChar *)ns->prefix);
+             ^
+xml_namespace.c: In function 'part_of_an_xpath_node_set_eh':
+xml_namespace.c:67:3: warning: passing argument 1 of 'Nokogiri_namespace_eh' from incompatible pointer type [enabled by default]
+   return (node->next && ! Nokogiri_namespace_eh(node->next));
+   ^
+xml_namespace.c:27:5: note: expected 'xmlNodePtr' but argument is of type 'struct _xmlNs *'
+ int Nokogiri_namespace_eh(xmlNodePtr node)
+     ^
+xml_namespace.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+compiling xml_node.c
+xml_node.c: In function 'reparent_node_with':
+xml_node.c:170:7: warning: enumeration value 'XML_ATTRIBUTE_NODE' not handled in switch [-Wswitch]
+       switch (reparentee->type) {
+       ^
+xml_node.c:170:7: warning: enumeration value 'XML_ENTITY_NODE' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_DOCUMENT_FRAG_NODE' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_NOTATION_NODE' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_HTML_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_DTD_NODE' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_ELEMENT_DECL' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_ATTRIBUTE_DECL' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_ENTITY_DECL' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_NAMESPACE_DECL' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_XINCLUDE_START' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_XINCLUDE_END' not handled in switch [-Wswitch]
+xml_node.c:170:7: warning: enumeration value 'XML_DOCB_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_ATTRIBUTE_NODE' not handled in switch [-Wswitch]
+       switch (reparentee->type) {
+       ^
+xml_node.c:188:7: warning: enumeration value 'XML_ENTITY_NODE' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_DOCUMENT_TYPE_NODE' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_DOCUMENT_FRAG_NODE' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_NOTATION_NODE' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_HTML_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_DTD_NODE' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_ELEMENT_DECL' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_ATTRIBUTE_DECL' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_ENTITY_DECL' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_NAMESPACE_DECL' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_XINCLUDE_START' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_XINCLUDE_END' not handled in switch [-Wswitch]
+xml_node.c:188:7: warning: enumeration value 'XML_DOCB_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_ELEMENT_NODE' not handled in switch [-Wswitch]
+       switch (reparentee->type) {
+       ^
+xml_node.c:199:7: warning: enumeration value 'XML_ATTRIBUTE_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_CDATA_SECTION_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_ENTITY_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_PI_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_COMMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_DOCUMENT_TYPE_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_DOCUMENT_FRAG_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_NOTATION_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_HTML_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_DTD_NODE' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_ELEMENT_DECL' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_ATTRIBUTE_DECL' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_ENTITY_DECL' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_NAMESPACE_DECL' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_XINCLUDE_START' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_XINCLUDE_END' not handled in switch [-Wswitch]
+xml_node.c:199:7: warning: enumeration value 'XML_DOCB_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_CDATA_SECTION_NODE' not handled in switch [-Wswitch]
+     switch (parent->type) {
+     ^
+xml_node.c:167:5: warning: enumeration value 'XML_ENTITY_NODE' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_PI_NODE' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_COMMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_DOCUMENT_TYPE_NODE' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_NOTATION_NODE' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_DTD_NODE' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_ELEMENT_DECL' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_ATTRIBUTE_DECL' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_ENTITY_DECL' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_NAMESPACE_DECL' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_XINCLUDE_START' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_XINCLUDE_END' not handled in switch [-Wswitch]
+xml_node.c:167:5: warning: enumeration value 'XML_DOCB_DOCUMENT_NODE' not handled in switch [-Wswitch]
+xml_node.c: In function 'get':
+xml_node.c:847:11: warning: cast discards '__attribute__((const))' qualifier from pointer target type [-Wcast-qual]
+   colon = (xmlChar *)xmlStrchr(attribute, (const xmlChar)':');
+           ^
+xml_node.c:865:11: warning: cast discards '__attribute__((const))' qualifier from pointer target type [-Wcast-qual]
+   xmlFree((void *)attribute);
+           ^
+xml_node.c:869:11: warning: cast discards '__attribute__((const))' qualifier from pointer target type [-Wcast-qual]
+   xmlFree((void *)value);
+           ^
+xml_node.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+compiling xml_node_set.c
+compiling xml_processing_instruction.c
+compiling xml_reader.c
+compiling xml_relax_ng.c
+compiling xml_sax_parser.c
+compiling xml_sax_parser_context.c
+compiling xml_sax_push_parser.c
+compiling xml_schema.c
+compiling xml_syntax_error.c
+compiling xml_text.c
+compiling xml_xpath_context.c
+compiling xslt_stylesheet.c
+xslt_stylesheet.c: In function 'initFunc':
+xslt_stylesheet.c:217:5: warning: passing argument 1 of 'rb_data_object_get' makes integer from pointer without a cast [enabled by default]
+     Data_Get_Struct(ctxt->style->_private, nokogiriXsltStylesheetTuple,
+     ^
+In file included from /home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby.h:33:0,
+                 from ./nokogiri.h:33,
+                 from ./xslt_stylesheet.h:4,
+                 from xslt_stylesheet.c:1:
+/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/ruby.h:1354:1: note: expected 'VALUE' but argument is of type 'void *'
+ rb_data_object_get(VALUE obj)
+ ^
+xslt_stylesheet.c: In function 'shutdownFunc':
+xslt_stylesheet.c:230:5: warning: passing argument 1 of 'rb_data_object_get' makes integer from pointer without a cast [enabled by default]
+     Data_Get_Struct(ctxt->style->_private, nokogiriXsltStylesheetTuple,
+     ^
+In file included from /home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby.h:33:0,
+                 from ./nokogiri.h:33,
+                 from ./xslt_stylesheet.h:4,
+                 from xslt_stylesheet.c:1:
+/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/ruby.h:1354:1: note: expected 'VALUE' but argument is of type 'void *'
+ rb_data_object_get(VALUE obj)
+ ^
+xslt_stylesheet.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+linking shared-object nokogiri/nokogiri.so
+Cleaning files only used during build.
+rm -rf /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nokogiri-1.8.2/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports
+rm -rf /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nokogiri-1.8.2/ports
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nokogiri-1.8.2/ext/nokogiri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 nokogiri.so ./.gem.20180408-28175-1gb1n0a/nokogiri

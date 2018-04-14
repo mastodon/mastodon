@@ -1,0 +1,71 @@
+=== 1.7.1 (2018-03-05)
+
+* Make whitespace handling for <%# %> tags more compatible with Erubis (jeremyevans) (#14)
+
+=== 1.7.0 (2017-10-09)
+
+* Fix escaping in erubi/capture_end, the setting was previously inverted (jeremyevans) (#10)
+
+=== 1.6.1 (2017-06-27)
+
+* Fix usage on newer versions of JRuby 9.1 (jeremyevans)
+
+=== 1.6.0 (2017-02-27)
+
+* Use cgi/escape if available for 6x faster HTML escaping (k0kubun, jeremyevans) (#4)
+
+=== 1.5.0 (2017-01-26)
+
+* Drop tilt/erubi file, as tilt now ships with Erubi support (jeremyevans)
+
+* Drop erubi/capture file, Erubi::CaptureEngine support (jeremyevans)
+
+=== 1.4.0 (2017-01-20)
+
+* Allow postambles to depend on internal state of engine (jeremyevans)
+
+* Allow overriding of behavior for <%= and <%== tags to depend on which indicator was used (jeremyevans)
+
+* Make whitespace handling for <% %> tags more compatible with Erubis for subclasses overriding add_text (jeremyevans)
+
+=== 1.3.0 (2016-12-29)
+
+* Support :capture=>:explicit option in tilt support to use Erubi::CaptureEndEngine (jeremyevans)
+
+* Add erubi/capture_end containing Erubi::CaptureEndEngine, allowing <%|= and <%|== for opening capture tags, and <%| for closing capture tags (jeremyevans)
+
+=== 1.2.1 (2016-11-21)
+
+* Don't automatically freeze template text strings on ruby 1.9 or 2.0 (jeremyevans)
+
+=== 1.2.0 (2016-11-21)
+
+* Engine#src now returns a frozen string (jeremyevans)
+
+* Automatically freeze template text strings on ruby 2.1+, reducing garbage generated (jeremyevans)
+
+* Allow overriding of behavior for <%= and <%== tags (ujifgc) (#1)
+
+=== 1.1.0 (2016-11-14)
+
+* Add :ensure option to supporting restoring bufvar to original value (jeremyevans)
+
+* Don't have tilt support require erb (jeremyevans)
+
+* Support :engine_class option in tilt support to override engine class used (jeremyevans)
+
+* Support :capture option in tilt support to use Erubi::CaptureEngine (jeremyevans)
+
+* Add erubi/capture file containing Erubi::CaptureEngine, allowing <%|= and <%|== for capture (and escaping) blocks in templates (jeremyevans)
+
+* Raise ArgumentError if template source code contains indicators matched by regexp but not handled (jeremyevans)
+
+* Add :bufval option to support arbitrary buffer values (jeremyevans)
+
+* Add :regexp option to specify regexp used for scanning (jeremyevans)
+
+* Add :src option to specify initial template source (jeremyevans)
+
+=== 1.0.0 (2016-11-10)
+
+* Initial Public Release

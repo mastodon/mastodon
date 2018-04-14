@@ -1,0 +1,304 @@
+= Rack, a modular Ruby webserver interface {<img src="https://secure.travis-ci.org/rack/rack.svg" alt="Build Status" />}[http://travis-ci.org/rack/rack] {<img src="https://gemnasium.com/rack/rack.svg" alt="Dependency Status" />}[https://gemnasium.com/rack/rack]
+
+Rack provides a minimal, modular, and adaptable interface for developing
+web applications in Ruby.  By wrapping HTTP requests and responses in
+the simplest way possible, it unifies and distills the API for web
+servers, web frameworks, and software in between (the so-called
+middleware) into a single method call.
+
+The exact details of this are described in the Rack specification,
+which all Rack applications should conform to.
+
+== Supported web servers
+
+The included *handlers* connect all kinds of web servers to Rack:
+* WEBrick
+* FCGI
+* CGI
+* SCGI
+* LiteSpeed
+* Thin
+
+These web servers include Rack handlers in their distributions:
+* Ebb
+* Fuzed
+* Glassfish v3
+* Phusion Passenger (which is mod_rack for Apache and for nginx)
+* Puma
+* Reel
+* Unicorn
+* unixrack
+* uWSGI
+* yahns
+
+Any valid Rack app will run the same on all these handlers, without
+changing anything.
+
+== Supported web frameworks
+
+These frameworks include Rack adapters in their distributions:
+* Camping
+* Coset
+* Espresso
+* Halcyon
+* Mack
+* Maveric
+* Merb
+* Racktools::SimpleApplication
+* Ramaze
+* Ruby on Rails
+* Rum
+* Sinatra
+* Sin
+* Vintage
+* Waves
+* Wee
+* ... and many others.
+
+== Available middleware
+
+Between the server and the framework, Rack can be customized to your
+applications needs using middleware, for example:
+* Rack::URLMap, to route to multiple applications inside the same process.
+* Rack::CommonLogger, for creating Apache-style logfiles.
+* Rack::ShowException, for catching unhandled exceptions and
+  presenting them in a nice and helpful way with clickable backtrace.
+* Rack::File, for serving static files.
+* ...many others!
+
+All these components use the same interface, which is described in
+detail in the Rack specification.  These optional components can be
+used in any way you wish.
+
+== Convenience
+
+If you want to develop outside of existing frameworks, implement your
+own ones, or develop middleware, Rack provides many helpers to create
+Rack applications quickly and without doing the same web stuff all
+over:
+* Rack::Request, which also provides query string parsing and
+  multipart handling.
+* Rack::Response, for convenient generation of HTTP replies and
+  cookie handling.
+* Rack::MockRequest and Rack::MockResponse for efficient and quick
+  testing of Rack application without real HTTP round-trips.
+
+== rack-contrib
+
+The plethora of useful middleware created the need for a project that
+collects fresh Rack middleware.  rack-contrib includes a variety of
+add-on components for Rack and it is easy to contribute new modules.
+
+* https://github.com/rack/rack-contrib
+
+== rackup
+
+rackup is a useful tool for running Rack applications, which uses the
+Rack::Builder DSL to configure middleware and build up applications
+easily.
+
+rackup automatically figures out the environment it is run in, and
+runs your application as FastCGI, CGI, or WEBrick---all from the
+same configuration.
+
+== Quick start
+
+Try the lobster!
+
+Either with the embedded WEBrick starter:
+
+    ruby -Ilib lib/rack/lobster.rb
+
+Or with rackup:
+
+    bin/rackup -Ilib example/lobster.ru
+
+By default, the lobster is found at http://localhost:9292.
+
+== Installing with RubyGems
+
+A Gem of Rack is available at rubygems.org.  You can install it with:
+
+    gem install rack
+
+I also provide a local mirror of the gems (and development snapshots)
+at my site:
+
+    gem install rack --source http://chneukirchen.org/releases/gems/
+
+== Running the tests
+
+Testing Rack requires the bacon testing framework:
+
+    bundle install --without extra # to be able to run the fast tests
+
+Or:
+
+    bundle install # this assumes that you have installed native extensions!
+
+There is a rake-based test task:
+
+    rake test       tests all the tests
+
+The testsuite has no dependencies outside of the core Ruby
+installation and bacon.
+
+To run the test suite completely, you need:
+
+  * fcgi
+  * memcache-client
+  * thin
+
+The full set of tests test FCGI access with lighttpd (on port
+9203) so you will need lighttpd installed as well as the FCGI
+libraries and the fcgi gem:
+
+Download and install lighttpd:
+
+    http://www.lighttpd.net/download
+
+Installing the FCGI libraries:
+
+    curl -O http://www.fastcgi.com/dist/fcgi-2.4.0.tar.gz
+    tar xzvf fcgi-2.4.0.tar.gz
+    cd fcgi-2.4.0
+    ./configure --prefix=/usr/local
+    make
+    sudo make install
+    cd ..
+
+Installing the Ruby fcgi gem:
+
+    gem install fcgi
+
+Furthermore, to test Memcache sessions, you need memcached (will be
+run on port 11211) and memcache-client installed.
+
+== Configuration
+
+Several parameters can be modified on Rack::Utils to configure Rack behaviour.
+
+e.g:
+
+    Rack::Utils.key_space_limit = 128
+
+=== key_space_limit
+
+The default number of bytes to allow a single parameter key to take up.
+This helps prevent a rogue client from flooding a Request.
+
+Default to 65536 characters (4 kiB in worst case).
+
+=== multipart_part_limit
+
+The maximum number of parts a request can contain.
+Accepting too many part can lead to the server running out of file handles.
+
+The default is 128, which means that a single request can't upload more than 128 files at once.
+
+Set to 0 for no limit.
+
+Can also be set via the RACK_MULTIPART_PART_LIMIT environment variable.
+
+== History
+
+See <https://github.com/rack/rack/blob/master/HISTORY.md>.
+
+== Contact
+
+Please post bugs, suggestions and patches to
+the bug tracker at <https://github.com/rack/rack/issues>.
+
+Please post security related bugs and suggestions to the core team at
+<https://groups.google.com/group/rack-core> or rack-core@googlegroups.com. This
+list is not public. Due to wide usage of the library, it is strongly preferred
+that we manage timing in order to provide viable patches at the time of
+disclosure. Your assistance in this matter is greatly appreciated.
+
+Mailing list archives are available at
+<https://groups.google.com/group/rack-devel>.
+
+Git repository (send Git patches to the mailing list):
+* https://github.com/rack/rack
+* http://git.vuxu.org/cgi-bin/gitweb.cgi?p=rack-github.git
+
+You are also welcome to join the #rack channel on irc.freenode.net.
+
+== Thanks
+
+The Rack Core Team, consisting of
+
+* Christian Neukirchen (chneukirchen[https://github.com/chneukirchen])
+* James Tucker (raggi[https://github.com/raggi])
+* Josh Peek (josh[https://github.com/josh])
+* José Valim (josevalim[https://github.com/josevalim])
+* Michael Fellinger (manveru[https://github.com/manveru])
+* Aaron Patterson (tenderlove[https://github.com/tenderlove])
+* Santiago Pastorino (spastorino[https://github.com/spastorino])
+* Konstantin Haase (rkh[https://github.com/rkh])
+
+and the Rack Alumnis
+
+* Ryan Tomayko (rtomayko[https://github.com/rtomayko])
+* Scytrin dai Kinthra (scytrin[https://github.com/scytrin])
+
+would like to thank:
+
+* Adrian Madrid, for the LiteSpeed handler.
+* Christoffer Sawicki, for the first Rails adapter and Rack::Deflater.
+* Tim Fletcher, for the HTTP authentication code.
+* Luc Heinrich for the Cookie sessions, the static file handler and bugfixes.
+* Armin Ronacher, for the logo and racktools.
+* Alex Beregszaszi, Alexander Kahn, Anil Wadghule, Aredridel, Ben
+  Alpert, Dan Kubb, Daniel Roethlisberger, Matt Todd, Tom Robinson,
+  Phil Hagelberg, S. Brent Faulkner, Bosko Milekic, Daniel Rodríguez
+  Troitiño, Genki Takiuchi, Geoffrey Grosenbach, Julien Sanchez, Kamal
+  Fariz Mahyuddin, Masayoshi Takahashi, Patrick Aljordm, Mig, Kazuhiro
+  Nishiyama, Jon Bardin, Konstantin Haase, Larry Siden, Matias
+  Korhonen, Sam Ruby, Simon Chiang, Tim Connor, Timur Batyrshin, and
+  Zach Brock for bug fixing and other improvements.
+* Eric Wong, Hongli Lai, Jeremy Kemper for their continuous support
+  and API improvements.
+* Yehuda Katz and Carl Lerche for refactoring rackup.
+* Brian Candler, for Rack::ContentType.
+* Graham Batty, for improved handler loading.
+* Stephen Bannasch, for bug reports and documentation.
+* Gary Wright, for proposing a better Rack::Response interface.
+* Jonathan Buch, for improvements regarding Rack::Response.
+* Armin Röhrl, for tracking down bugs in the Cookie generator.
+* Alexander Kellett for testing the Gem and reviewing the announcement.
+* Marcus Rückert, for help with configuring and debugging lighttpd.
+* The WSGI team for the well-done and documented work they've done and
+  Rack builds up on.
+* All bug reporters and patch contributors not mentioned above.
+
+== Copyright
+
+Copyright (C) 2007, 2008, 2009, 2010 Christian Neukirchen <http://purl.org/net/chneukirchen>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+== Links
+
+Rack:: <https://rack.github.io/>
+Official Rack repositories:: <https://github.com/rack>
+Rack Bug Tracking:: <https://github.com/rack/rack/issues>
+rack-devel mailing list:: <https://groups.google.com/group/rack-devel>
+Rack's Rubyforge project:: <http://rubyforge.org/projects/rack>
+
+Christian Neukirchen:: <http://chneukirchen.org/>

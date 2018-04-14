@@ -1,0 +1,436 @@
+/*
+ *= require ./jquery.nouislider
+ *= require_self
+ */
+
+body {
+  margin: 0;
+  padding: 20px;
+  background-color: #eee;
+}
+
+body, textarea {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+}
+
+a, a:visited, a:active {
+  color: #428bca;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  table-layout: fixed;
+}
+
+th {
+  text-align: left;
+  border-bottom: solid 2px #ddd;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+h1, p {
+  margin-bottom: 20px;
+}
+
+h3 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+table td, table th {
+  padding: 8px;
+}
+
+td {
+  border-top: solid 1px #ddd;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  border: solid 1px #ddd;
+  padding: 10px;
+}
+
+hr {
+  border: none;
+  height: 0;
+  border-top: solid 1px #ddd;
+  margin-bottom: 15px;
+}
+
+.container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-muted {
+  color: #999;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.percent {
+  color: #999;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+.user {
+  color: #999;
+  font-size: 12px;
+  float: right;
+  line-height: 20px;
+}
+
+.tiny {
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+#status, .content, .alert {
+  margin-bottom: 20px;
+}
+
+.content {
+  padding: 20px 20px 1px 20px;
+  background-color: #fff;
+}
+
+.queries td {
+  vertical-align: middle;
+}
+
+#status div {
+  margin-bottom: 0;
+}
+
+#slider-container {
+  padding: 6px 140px 20px 140px;
+}
+
+.queries-table th a {
+  color: inherit;
+}
+
+#slider {
+  margin-bottom: 20px;
+}
+
+#range-start {
+  min-height: 20px;
+}
+
+#range-end {
+  float: right;
+}
+
+.queries-info {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* nav */
+
+.nav a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 12px 20px;
+}
+
+.nav li.active a {
+  background-color: #ddd;
+}
+
+.nav a:hover {
+  background-color: #ddd;
+}
+
+.nav li.active-database a {
+  color: #999;
+}
+
+.nav-header {
+  font-weight: bold;
+  color: #333;
+  padding: 12px 20px 12px 0;
+  margin: 0;
+}
+
+/* buttons */
+
+.btn {
+  display: inline-block;
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+}
+
+.btn-info {
+  background-color: #5bc0de;
+}
+
+/* alerts */
+
+.alert {
+  padding: 12px 20px;
+  color: #fff;
+}
+
+.alert-info {
+  background-color: #5bc0de;
+}
+
+.alert-success {
+  background-color: #5cb85c;
+}
+
+.alert-warning {
+  background-color: #f0ad4e;
+}
+
+.alert-danger {
+  background-color: #d9534f;
+}
+
+.alert a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.button_to, .button_to div {
+  display: inline;
+}
+
+/*
+  Simple Grid
+  Learn More - http://dallasbass.com/simple-grid-a-lightweight-responsive-css-grid/
+  Project Page - http://thisisdallas.github.com/Simple-Grid/
+  Author - Dallas Bass
+  Site - dallasbass.com
+*/
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+}
+
+[class*='col-'] {
+  float: left;
+  padding-right: 20px;
+}
+
+[class*='col-']:last-of-type {
+  padding-right: 0px;
+}
+
+.grid {
+  width: 100%;
+
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.grid-pad {
+  padding: 20px 0 0px 20px;
+}
+
+.grid-pad > [class*='col-']:last-of-type {
+  padding-right: 20px;
+}
+
+.push-right {
+  float: right;
+}
+
+/* Content Columns */
+
+.col-1-1 {
+  width: 100%;
+}
+.col-2-3, .col-8-12 {
+  width: 66.66%;
+}
+
+.col-1-2, .col-6-12 {
+  width: 50%;
+}
+
+.col-1-3, .col-4-12 {
+  width: 33.33%;
+}
+
+.col-1-4, .col-3-12 {
+  width: 25%;
+}
+
+.col-1-5 {
+  width: 20%;
+}
+
+.col-1-6, .col-2-12 {
+  width: 16.667%;
+}
+
+.col-1-7 {
+  width: 14.28%;
+}
+
+.col-1-8 {
+  width: 12.5%;
+}
+
+.col-1-9 {
+  width: 11.1%;
+}
+
+.col-1-10 {
+  width: 10%;
+}
+
+.col-1-11 {
+  width: 9.09%;
+}
+
+.col-1-12 {
+  width: 8.33%
+}
+
+/* Layout Columns */
+
+.col-11-12 {
+  width: 91.66%
+}
+
+.col-10-12 {
+  width: 83.333%;
+}
+
+.col-9-12 {
+  width: 75%;
+}
+
+.col-5-12 {
+  width: 41.66%;
+}
+
+.col-7-12 {
+  width: 58.33%
+}
+
+@media handheld, only screen and (max-width: 767px) {
+
+
+  .grid {
+    width: 100%;
+    min-width: 0;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  [class*='col-'] {
+    width: auto;
+    float: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+}
+
+.noUi-connect {
+  box-shadow: none;
+  background: #5bc0de;
+}
+
+.noUi-handle {
+  box-shadow: none;
+}
+
+.noUi-target {
+  box-shadow: none;
+  border-color: #eee;
+}
+
+.noUi-background {
+  box-shadow: none;
+  background-color: #eee;
+}
+
+.noUi-origin {
+  border-radius: 0;
+}
+
+#periods {
+  text-align: center;
+}
+
+#periods a {
+  margin-right: 20px;
+}
+
+.chart {
+  height: 300px;
+  line-height: 300px;
+  text-align: center;
+  color: #999;
+}

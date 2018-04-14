@@ -1,0 +1,35 @@
+<div class="content">
+  <h1>Connections</h1>
+
+  <p><%= pluralize(@total_connections, "connection") %></p>
+
+  <% if @total_connections > 0 %>
+    <h3>By Database</h3>
+
+    <% top_connections = Hash.new(0) %>
+    <% @connection_sources.each do |source| %>
+      <% top_connections[source["database"]] += source["total_connections"].to_i %>
+    <% end %>
+    <% top_connections = top_connections.sort_by { |k, v| [-v, k] } %>
+
+    <div id="chart-1" class="chart" style="height: 260px; line-height: 260px; margin-bottom: 20px;">Loading...</div>
+    <script>
+      new Chartkick.PieChart("chart-1", <%= json_escape(top_connections.to_json).html_safe %>);
+    </script>
+
+    <h3>By User</h3>
+
+    <% top_connections = Hash.new(0) %>
+    <% @connection_sources.each do |source| %>
+      <% top_connections[source["user"]] += source["total_connections"].to_i %>
+    <% end %>
+    <% top_connections = top_connections.sort_by { |k, v| [-v, k] } %>
+
+    <div id="chart-2" class="chart" style="height: 260px; line-height: 260px; margin-bottom: 20px;">Loading...</div>
+    <script>
+      new Chartkick.PieChart("chart-2", <%= json_escape(top_connections.to_json).html_safe %>);
+    </script>
+
+    <%= render partial: "connections_table", locals: {connection_sources: @connection_sources} %>
+  <% end %>
+</div>

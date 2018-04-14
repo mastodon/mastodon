@@ -1,0 +1,67 @@
+== 0.5.0
+
+  * Only send relation modifiers to ActiveRecord if they apply (don't send #order, #limit, #offset unless specified)
+    Fixes plataformatec/devise#2711, ianwhite/orm_adapter#22
+
+== 0.4.1
+
+  * Adds activerecord 4 to the test suite
+
+== 0.4.0
+
+  * Adds :limit, and :offset options to #find_all [Fred Wu]
+
+== 0.3.0
+
+  * Removes OrmAdapter::Base.model_classes and friends.  This is a BC breaking change if you use .model_classes [Ian White]
+  * Add note about the scope of ORM Adapter re: model instance methods
+
+== 0.2.0
+
+  * Normalise :id in find conditions [Tim Galeckas, Ian White]
+  * Allow find_first and find_all to take no arguments [Tim Galeckas, Ian White]
+
+== 0.1.0
+
+  * Add #destroy(object) to the API [Fred Wu]
+
+
+== 0.0.7
+
+  * Lazy load Active Record [José Valim]
+
+
+== 0.0.6
+
+  * Active Record 3.1 association compatibility [Ian White]
+  * Compatibility with mongoid master wrt. OrmAdapter::Base#get [Frank Wöckener]. Closes #9 [Ian White]
+
+
+== 0.0.5
+
+  * Adds Mongo Mapper adapter [Luke Cunningham]
+
+
+== 0.0.4
+
+  * Adds ability to order results from #find_first and #find_all [Ian White]
+  * Rationalise development dependencies and release process [Ian White]
+
+
+== 0.0.3
+
+  * ActiveRecord's OrmAdapter handles non standard foreign key names [Ian White]
+  * fix ruby 1.9.2 problems. [Ian White]
+    - removes "can't add a new key into hash during iteration" problem with ActiveRecord OrmAdapter
+    - removes problem with rspec 2 mocks interacting with ruby 1.9.2 #to_ary
+
+
+== 0.0.2
+
+  * Add #get to the API. Ensure both #get and #get! complies with to_key requirements. [José Valim]
+  * Extract tests into shared example. Give instructions on how to write a new adapter. [Ian White]
+
+
+== 0.0.1
+
+  * Initial release [Ian White, José Valim]

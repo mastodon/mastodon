@@ -1,0 +1,151 @@
+= Why rake?
+
+Ok, let me state from the beginning that I never intended to write this
+code.  I'm not convinced it is useful, and I'm not convinced anyone
+would even be interested in it.  All I can say is that Why's onion truck
+must by been passing through the Ohio valley.
+
+What am I talking about? ... A Ruby version of Make.
+
+See, I can sense you cringing already, and I agree.  The world certainly
+doesn't need yet another reworking of the "make" program.  I mean, we
+already have "ant".  Isn't that enough?
+
+It started yesterday.  I was helping a coworker fix a problem in one of
+the Makefiles we use in our project.  Not a particularly tough problem,
+but during the course of the conversation I began lamenting some of the
+shortcomings of make.  In particular, in one of my makefiles I wanted to
+determine the name of a file dynamically and had to resort to some
+simple scripting (in Ruby) to make it work.  "Wouldn't it be nice if you
+could just use Ruby inside a Makefile" I said.
+
+My coworker (a recent convert to Ruby) agreed, but wondered what it
+would look like.  So I sketched the following on the whiteboard...
+
+    "What if you could specify the make tasks in Ruby, like this ..."
+
+      task "build" do
+        java_compile(...args, etc ...)
+      end
+
+    "The task function would register "build" as a target to be made,
+    and the block would be the action executed whenever the build
+    system determined that it was time to do the build target."
+
+We agreed that would be cool, but writing make from scratch would be WAY
+too much work.  And that was the end of that!
+
+... Except I couldn't get the thought out of my head.  What exactly
+would be needed to make the about syntax work as a make file?  Hmmm, you
+would need to register the tasks, you need some way of specifying
+dependencies between tasks, and some way of kicking off the process.
+Hey!  What if we did ... and fifteen minutes later I had a working
+prototype of Ruby make, complete with dependencies and actions.
+
+I showed the code to my coworker and we had a good laugh.  It was just
+about a page worth of code that reproduced an amazing amount of the
+functionality of make.  We were both truly stunned with the power of
+Ruby.
+
+But it didn't do everything make did.  In particular, it didn't have
+timestamp based file dependencies (where a file is rebuilt if any of its
+prerequisite files have a later timestamp).  Obviously THAT would be a
+pain to add and so Ruby Make would remain an interesting experiment.
+
+... Except as I walked back to my desk, I started thinking about what
+file based dependencies would really need.  Rats!  I was hooked again,
+and by adding a new class and two new methods, file/timestamp
+dependencies were implemented.
+
+Ok, now I was really hooked.  Last night (during CSI!) I massaged the
+code and cleaned it up a bit.  The result is a bare-bones replacement
+for make in exactly 100 lines of code.
+
+For the curious, you can see it at ...
+* doc/proto_rake.rdoc
+
+Oh, about the name.  When I wrote the example Ruby Make task on my
+whiteboard, my coworker exclaimed "Oh! I have the perfect name: Rake ...
+Get it?  Ruby-Make. Rake!"  He said he envisioned the tasks as leaves
+and Rake would clean them up  ... or something like that.  Anyways, the
+name stuck.
+
+Some quick examples ...
+
+A simple task to delete backup files ...
+
+   task :clean do
+     Dir['*~'].each {|fn| rm fn rescue nil}
+   end
+
+Note that task names are symbols (they are slightly easier to type
+than quoted strings ... but you may use quoted string if you would
+rather). Rake makes the methods of the FileUtils module directly
+available, so we take advantage of the <tt>rm</tt> command.  Also note
+the use of "rescue nil" to trap and ignore errors in the <tt>rm</tt>
+command.
+
+To run it, just type "rake clean".  Rake will automatically find a
+Rakefile in the current directory (or above!) and will invoke the
+targets named on the command line.  If there are no targets explicitly
+named, rake will invoke the task "default".
+
+Here's another task with dependencies ...
+
+   task :clobber => [:clean] do
+     rm_r "tempdir"
+   end
+
+Task :clobber depends upon task :clean, so :clean will be run before
+:clobber is executed.
+
+Files are specified by using the "file" command.  It is similar to the
+task command, except that the task name represents a file, and the task
+will be run only if the file doesn't exist, or if its modification time
+is earlier than any of its prerequisites.
+
+Here is a file based dependency that will compile "hello.cc" to
+"hello.o".
+
+   file "hello.cc"
+   file "hello.o" => ["hello.cc"] do |t|
+     srcfile = t.name.sub(/\.o$/, ".cc")
+     sh %{g++ #{srcfile} -c -o #{t.name}}
+   end
+
+I normally specify file tasks with string (rather than symbols).  Some
+file names can't be represented by symbols.  Plus it makes the
+distinction between them more clear to the casual reader.
+
+Currently writing a task for each and every file in the project would be
+tedious at best.  I envision a set of libraries to make this job
+easier.  For instance, perhaps something like this ...
+
+   require 'rake/ctools'
+   Dir['*.c'].each do |fn|
+     c_source_file(fn)
+   end
+
+where "c_source_file" will create all the tasks need to compile all the
+C source files in a directory.  Any number of useful libraries could be
+created for rake.
+
+That's it.  There's no documentation (other than whats in this
+message).  Does this sound interesting to anyone?  If so, I'll continue
+to clean it up and write it up and publish it on RAA.  Otherwise, I'll
+leave it as an interesting exercise and a tribute to the power of Ruby.
+
+Why /might/ rake be interesting to Ruby programmers.  I don't know,
+perhaps ...
+
+* No weird make syntax (only weird Ruby syntax :-)
+* No need to edit or read XML (a la ant)
+* Platform independent build scripts.
+* Will run anywhere Ruby exists, so no need to have "make" installed.
+  If you stay away from the "sys" command and use things like
+  'ftools', you can have a perfectly platform independent
+  build script.  Also rake is only 100 lines of code, so it can
+  easily be packaged along with the rest of your code.
+
+So ... Sorry for the long rambling message.  Like I said, I never
+intended to write this code at all.

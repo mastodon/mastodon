@@ -1,0 +1,2 @@
+rspec ./spec/job_spec.rb:465 # Rufus::Scheduler::Job :mutex :mutex => [ array_of_mutex_names_or_instances ] prevents concurrent executions
+rspec ./spec/scheduler_spec.rb:534 # Rufus::Scheduler#running_jobs(:tag/:tags => x) returns a list of running jobs filtered by tag

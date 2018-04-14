@@ -1,0 +1,19 @@
+sudo: false
+language: ruby
+cache: bundler
+matrix:
+  fast_finish: true
+  include:
+  - rvm: 2.0.0
+  - rvm: 2.1
+  - rvm: 2.2
+  - rvm: 2.3.0
+  - rvm: jruby
+  - rvm: rbx
+  allow_failures:
+    - rvm: jruby
+  exclude:
+    - rvm: 1.9.3
+addons:
+  code_climate:
+    repo_token: 5dcb75d5b6c58e2a5f6dc850eb2c1d4e0dbf262e69981db00b765a66bfc9ef10

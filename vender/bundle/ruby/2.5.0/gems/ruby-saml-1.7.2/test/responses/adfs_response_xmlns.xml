@@ -1,0 +1,45 @@
+<samlp:Response Consent='urn:oasis:names:tc:SAML:2.0:consent:unspecified' Destination='https://someone.example.com/endpoint' ID='_0263a07b-205f-479c-90fc-7495715ecbbf' InResponseTo='_fc4a34b0-7efb-012e-caae-782bcb13bb38' IssueInstant='2011-06-22T12:49:30.348Z' Version='2.0' xmlns:samlp='urn:oasis:names:tc:SAML:2.0:protocol'>
+  <Issuer xmlns='urn:oasis:names:tc:SAML:2.0:assertion'>http://login.example.com/issuer</Issuer>
+  <samlp:Status>
+    <samlp:StatusCode Value='urn:oasis:names:tc:SAML:2.0:status:Success'/>
+  </samlp:Status>
+  <Assertion ID='_721b4a5a-d7e1-4861-9754-a9b197b6f9ab' IssueInstant='2011-06-22T12:49:30.348Z' Version='2.0' xmlns='urn:oasis:names:tc:SAML:2.0:assertion'>
+    <Issuer>http://login.example.com/issuer</Issuer>
+    <Signature xmlns='http://www.w3.org/2000/09/xmldsig#'>
+      <SignedInfo>
+        <CanonicalizationMethod Algorithm='http://www.w3.org/2001/10/xml-exc-c14n#'/>
+        <SignatureMethod Algorithm='http://www.w3.org/2001/04/xmldsig-more#rsa-sha256'/>
+        <Reference URI='#_721b4a5a-d7e1-4861-9754-a9b197b6f9ab'>
+          <Transforms>
+            <Transform Algorithm='http://www.w3.org/2000/09/xmldsig#enveloped-signature'/>
+            <Transform Algorithm='http://www.w3.org/2001/10/xml-exc-c14n#'/>
+          </Transforms>
+          <DigestMethod Algorithm='http://www.w3.org/2001/04/xmlenc#sha256'/>
+          <DigestValue>5mUndDm7OQSGNYVTevsJw3JRVZiwvlDnR2nprJ+6Mhc=</DigestValue>
+        </Reference>
+      </SignedInfo>
+      <SignatureValue>Ck3p/BPGWEY4PCkMuQv1q4ZkOTwIJletF8eXVsS00JWVakW07FBMRehtjDBOzQ3yN+nJFqoLs8Za1wFCZoW//kAlhchR5XVDr3dv/8GDtZHGrDgfSMxT+IO0HCVY80bzpq/LYUJhRVHTl+CReBvr2Crj5iHf5uTTsV+rm8YycFH0ZmT/2Ve2UqDrvmGrW3/nzM9NfAVCkFbu/rVvqfa/H3Hf3zW8DxO1g5FAeMp5mT0d4c5Yi3UD2vHaiSI3ITOJF7o/sc/WGCW7KDFLn/ewviDGkXiPy56P8BUFLQTciUhD5ONvtithSOCtHTDyPU3Sg52P6X+3oLCdsPc9/J247g==</SignatureValue>
+      <KeyInfo xmlns='http://www.w3.org/2000/09/xmldsig#'>
+        <X509Data>
+          <X509Certificate>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURPVENDQWlHZ0F3SUJBZ0lCQWpBTkJna3Foa2lHOXcwQkFRc0ZBREJDTVJNd0VRWUtDWkltaVpQeUxHUUIKR1JZRGIzSm5NUmt3RndZS0NaSW1pWlB5TEdRQkdSWUpjblZpZVMxc1lXNW5NUkF3RGdZRFZRUUREQWRTZFdKNQpJRU5CTUI0WERURTBNRGd3TmpJeE1UTXhPRm9YRFRFMU1EZ3dOakl4TVRNeE9Gb3dTekVUTUJFR0NnbVNKb21UCjhpeGtBUmtXQTI5eVp6RVpNQmNHQ2dtU0pvbVQ4aXhrQVJrV0NYSjFZbmt0YkdGdVp6RVpNQmNHQTFVRUF3d1EKVW5WaWVTQmpaWEowYVdacFkyRjBaVENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQgpBT0E4RW85TjI3bFNyWjF6WVcrTVNveDFMbjIyaCtFMEZKVWkzUXVpem4xakFuL3JlOVdGV3krUjRPMzFkM1BRCmM4dUVocmZiaE8yaGFNemE1UnVhZ25WWnE0UWpUTE0wKzhpbzJlN0QySzNocHhlMjd5QTNHcXI5QkZrYzl2dVgKOWxEcGp6TCtiekJnV3AyRUN0Y3NjbVQzcjBCbTJydVVhTDVIT0NCTFlibUE3OVk5UEdBb3Z4cDAxS041VG5QSgpXYnJBaTJpUFhRd05meVhxNHg4dDhzUG1tcWhWcU1odDFhYks4cWw1cC9aRm41LzVvLzlCaGFPbkxuQ1FaeFlmCnd2QUhwSkVRRFlLMk03TFdCWlVhYVJCOHVCOEJ6WHc2ZkpHbUxnM0JZRmVoSUVwVmZIbHRmd2w3NmZESUFmQXMKR0dWN2FtRzJFaUpCSFoxc0UxaDczaXNDQXdFQUFhTXhNQzh3RGdZRFZSMFBBUUgvQkFRREFnZUFNQjBHQTFVZApEZ1FXQkJTYVNZS2Y4NlJhOFl4VGVRUExTcDJtUkQwWGdqQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFJckhSCjQwRzk4WHl2Wk8yQ1ZrRjRxN0wvTTZNa0FELzlTajdmc2JoTE5tU2NXaHBaUGZPdWpBMEtndjJrSkt4OWRRb2MKZ1NNS2F2amVHL0dFZ3NBM3BnVEhHZWQ1SW16UjNGMUpuNVlVbmt0Z1ROREhSVjRDTTM5WEx1S1J4VzlVNUN2OAp1dGg1U1JSeVFFMGJ2a0RhOEZNUW9TVW9XSW9yZG94WmE0ZkhkYXFabmswdzF5VUg5cE9EdTFnRGJpTE9jWS91CjNPT0t5ZVFReWwwbzVZSTY5RnhReG81aFQwc3drWkNwTDAvTmlxWFlDdFR3aXpiRHc5M0xIN0V0VjRaUGlpaDQKRE1KYVJSUTlKcm1zaHp0enpqdzBmd2VuTmY0U096cFBTVmp2YXFTUkVPWjg2NTgwUG5HUHJyOFMyNGNwSGt2OQpqbFpjZHRic2NYTjhIS3NsT2c9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==</X509Certificate>
+        </X509Data>
+      </KeyInfo>
+    </Signature>
+    <Subject>
+      <NameID Format='urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'>hello@example.com</NameID>
+      <SubjectConfirmation Method='urn:oasis:names:tc:SAML:2.0:cm:bearer'>
+        <SubjectConfirmationData InResponseTo='_fc4a34b0-7efb-012e-caae-782bcb13bb38' NotOnOrAfter='2011-06-22T12:54:30.348Z' Recipient='https://someone.example.com/endpoint'/>
+      </SubjectConfirmation>
+    </Subject>
+    <Conditions NotBefore='2011-06-22T12:49:30.332Z' NotOnOrAfter='2011-06-22T13:49:30.332Z'>
+      <AudienceRestriction>
+        <Audience>example.com</Audience>
+      </AudienceRestriction>
+    </Conditions>
+    <AuthnStatement AuthnInstant='2011-06-22T12:49:30.112Z' SessionIndex='_721b4a5a-d7e1-4861-9754-a9b197b6f9ab'>
+      <AuthnContext>
+        <AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</AuthnContextClassRef>
+      </AuthnContext>
+    </AuthnStatement>
+  </Assertion>
+</samlp:Response>

@@ -1,0 +1,23 @@
+<div class="content">
+  <% if @query_stats_enabled %>
+    <%= button_to "Reset", reset_query_stats_path, class: "btn btn-danger", style: "float: right;" %>
+  <% end %>
+
+  <h1 style="float: left;">Queries</h1>
+
+  <% if @historical_query_stats_enabled %>
+    <%= render partial: "query_stats_slider" %>
+  <% end %>
+
+  <% if @query_stats_enabled %>
+    <% if @error %>
+      <div class="alert alert-danger">Cannot understand start or end time.</div>
+    <% elsif @query_stats.any? || @historical_query_stats_enabled %>
+      <%= render partial: "queries_table", locals: {queries: @query_stats, sort_headers: true} %>
+    <% else %>
+      <p>Stats are not available yet. Come back soon!</p>
+    <% end %>
+  <% else %>
+    <p>Query stats are not enabled.</p>
+  <% end %>
+</div>

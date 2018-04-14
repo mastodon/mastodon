@@ -1,0 +1,22 @@
+install:
+  - SET PATH=C:\Ruby%RUBYVER%\bin;%PATH%
+  - SET RAKEOPT=-rdevkit
+  - ps: |
+      if ($env:RUBYVER -like "*head*") {
+        $(new-object net.webclient).DownloadFile("https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-head/rubyinstaller-$env:RUBYVER.exe", "$pwd/ruby-setup.exe")
+        cmd /c ruby-setup.exe /verysilent /dir=C:/Ruby$env:RUBYVER
+      }
+  - ridk version
+  - gem --version
+  - gem install bundler --quiet --no-ri --no-rdoc
+  - bundle install
+build: off
+build_script:
+  - bundle exec rake compile || bundle exec rake compile
+test_script:
+  - bundle exec rake test
+environment:
+  matrix:
+    - RUBYVER: "head-x64"
+    - RUBYVER: 24
+    - RUBYVER: 25-x64

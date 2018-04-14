@@ -1,0 +1,24 @@
+language: ruby
+script: 'bundle exec rake'
+gemfile:
+  - gemfiles/Gemfile.activesupport-3.x
+  - gemfiles/Gemfile.activesupport-4.x
+  - gemfiles/Gemfile.activesupport-5.x
+rvm:
+  - 2.0
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - ruby-head
+  - jruby-head
+services:
+  - redis-server
+matrix:
+  allow_failures:
+    - rvm: jruby-head
+    - rvm: ruby-head
+    - rvm: 2.0
+      gemfile: gemfiles/Gemfile.activesupport-5.x
+    - rvm: 2.1
+      gemfile: gemfiles/Gemfile.activesupport-5.x

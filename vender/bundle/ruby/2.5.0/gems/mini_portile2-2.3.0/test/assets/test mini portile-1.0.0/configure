@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+ruby -e "p ARGV" -- "$@" > configure.txt
+
+cat <<EOT >Makefile
+all:
+	ruby -e "p ARGV" -- "\$@" > compile.txt
+install:
+	ruby -e "p ARGV" -- "\$@" > install.txt
+EOT

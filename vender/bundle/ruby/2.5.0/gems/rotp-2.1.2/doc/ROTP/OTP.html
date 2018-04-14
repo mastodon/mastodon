@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: ROTP::OTP</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (O)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../ROTP.html" title="ROTP (module)">ROTP</a></span></span>
+     &raquo; 
+    <span class="title">OTP</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: ROTP::OTP
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ROTP::OTP</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/rotp/otp.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="HOTP.html" title="ROTP::HOTP (class)">HOTP</a></span>, <span class='object_link'><a href="TOTP.html" title="ROTP::TOTP (class)">TOTP</a></span></p>
+</div>
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#digest-instance_method" title="#digest (instance method)">- (Object) <strong>digest</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute digest.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#digits-instance_method" title="#digits (instance method)">- (Object) <strong>digits</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute digits.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#secret-instance_method" title="#secret (instance method)">- (Object) <strong>secret</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute secret.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#byte_secret-instance_method" title="#byte_secret (instance method)">- (Object) <strong>byte_secret</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_otp-instance_method" title="#generate_otp (instance method)">- (Object) <strong>generate_otp</strong>(count) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (OTP) <strong>initialize</strong>(s, options = {}) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Params: secret in base32.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#int_to_bytestring-instance_method" title="#int_to_bytestring (instance method)">- (Object) <strong>int_to_bytestring</strong>(int, padding = 8) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="ROTP::OTP (class)">OTP</a></span></tt>) <strong>initialize</strong>(s, options = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Params: secret in base32
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rotp/otp.rb', line 6</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='s identifier id'>s</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='@digits ivar id'>@digits</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:digits</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='integer val'>6</span>
+  <span class='@digest ivar id'>@digest</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:digest</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='string val'>&quot;sha1&quot;</span>
+  <span class='@secret ivar id'>@secret</span> <span class='assign token'>=</span> <span class='s identifier id'>s</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="digest-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="digest-instance_method">
+  
+    - (<tt>Object</tt>) <strong>digest</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute digest
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rotp/otp.rb', line 3</span>
+
+<span class='def def kw'>def</span> <span class='digest identifier id'>digest</span>
+  <span class='@digest ivar id'>@digest</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="digits-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="digits-instance_method">
+  
+    - (<tt>Object</tt>) <strong>digits</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute digits
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rotp/otp.rb', line 3</span>
+
+<span class='def def kw'>def</span> <span class='digits identifier id'>digits</span>
+  <span class='@digits ivar id'>@digits</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="secret-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="secret-instance_method">
+  
+    - (<tt>Object</tt>) <strong>secret</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute secret
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rotp/otp.rb', line 3</span>
+
+<span class='def def kw'>def</span> <span class='secret identifier id'>secret</span>
+  <span class='@secret ivar id'>@secret</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="byte_secret-instance_method">
+  
+    - (<tt>Object</tt>) <strong>byte_secret</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rotp/otp.rb', line 27</span>
+
+<span class='def def kw'>def</span> <span class='byte_secret identifier id'>byte_secret</span>
+  <span class='Base32 constant id'>Base32</span><span class='dot token'>.</span><span class='decode identifier id'>decode</span><span class='lparen token'>(</span><span class='@secret ivar id'>@secret</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="generate_otp-instance_method">
+  
+    - (<tt>Object</tt>) <strong>generate_otp</strong>(count) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rotp/otp.rb', line 12</span>
+
+<span class='def def kw'>def</span> <span class='generate_otp identifier id'>generate_otp</span><span class='lparen token'>(</span><span class='count identifier id'>count</span><span class='rparen token'>)</span>
+  <span class='hmac identifier id'>hmac</span> <span class='assign token'>=</span> <span class='OpenSSL constant id'>OpenSSL</span><span class='colon2 op'>::</span><span class='HMAC constant id'>HMAC</span><span class='dot token'>.</span><span class='digest identifier id'>digest</span><span class='lparen token'>(</span>
+    <span class='OpenSSL constant id'>OpenSSL</span><span class='colon2 op'>::</span><span class='Digest constant id'>Digest</span><span class='colon2 op'>::</span><span class='Digest constant id'>Digest</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='digest identifier id'>digest</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+    <span class='byte_secret identifier id'>byte_secret</span><span class='comma token'>,</span>
+    <span class='int_to_bytestring identifier id'>int_to_bytestring</span><span class='lparen token'>(</span><span class='count identifier id'>count</span><span class='rparen token'>)</span>
+  <span class='rparen token'>)</span>
+
+  <span class='offset identifier id'>offset</span> <span class='assign token'>=</span> <span class='hmac identifier id'>hmac</span><span class='lbrack token'>[</span><span class='integer val'>19</span><span class='rbrack token'>]</span> <span class='bitand op'>&amp;</span> <span class='integer val'>0xf</span>
+  <span class='code identifier id'>code</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='hmac identifier id'>hmac</span><span class='lbrack token'>[</span><span class='offset identifier id'>offset</span><span class='rbrack token'>]</span> <span class='bitand op'>&amp;</span> <span class='integer val'>0x7f</span><span class='rparen token'>)</span> <span class='lshft op'>&lt;&lt;</span> <span class='integer val'>24</span> <span class='bitor op'>|</span>
+    <span class='lparen token'>(</span><span class='hmac identifier id'>hmac</span><span class='lbrack token'>[</span><span class='offset identifier id'>offset</span> <span class='plus op'>+</span> <span class='integer val'>1</span><span class='rbrack token'>]</span> <span class='bitand op'>&amp;</span> <span class='integer val'>0xff</span><span class='rparen token'>)</span> <span class='lshft op'>&lt;&lt;</span> <span class='integer val'>16</span> <span class='bitor op'>|</span>
+    <span class='lparen token'>(</span><span class='hmac identifier id'>hmac</span><span class='lbrack token'>[</span><span class='offset identifier id'>offset</span> <span class='plus op'>+</span> <span class='integer val'>2</span><span class='rbrack token'>]</span> <span class='bitand op'>&amp;</span> <span class='integer val'>0xff</span><span class='rparen token'>)</span> <span class='lshft op'>&lt;&lt;</span> <span class='integer val'>8</span> <span class='bitor op'>|</span>
+    <span class='lparen token'>(</span><span class='hmac identifier id'>hmac</span><span class='lbrack token'>[</span><span class='offset identifier id'>offset</span> <span class='plus op'>+</span> <span class='integer val'>3</span><span class='rbrack token'>]</span> <span class='bitand op'>&amp;</span> <span class='integer val'>0xff</span><span class='rparen token'>)</span>
+  <span class='code identifier id'>code</span> <span class='mod op'>%</span> <span class='integer val'>10</span> <span class='pow op'>**</span> <span class='digits identifier id'>digits</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="int_to_bytestring-instance_method">
+  
+    - (<tt>Object</tt>) <strong>int_to_bytestring</strong>(int, padding = 8) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rotp/otp.rb', line 31</span>
+
+<span class='def def kw'>def</span> <span class='int_to_bytestring identifier id'>int_to_bytestring</span><span class='lparen token'>(</span><span class='int identifier id'>int</span><span class='comma token'>,</span> <span class='padding identifier id'>padding</span> <span class='assign token'>=</span> <span class='integer val'>8</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='until until kw'>until</span> <span class='int identifier id'>int</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+    <span class='result identifier id'>result</span> <span class='lshft op'>&lt;&lt;</span> <span class='lparen token'>(</span><span class='int identifier id'>int</span> <span class='bitand op'>&amp;</span> <span class='integer val'>0x</span><span class='FF constant id'>FF</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='chr identifier id'>chr</span>
+    <span class='int identifier id'>int</span> <span class='opasgn op'>&gt;&gt;=</span>  <span class='integer val'>8</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span><span class='dot token'>.</span><span class='reverse identifier id'>reverse</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='dot token'>.</span><span class='rjust identifier id'>rjust</span><span class='lparen token'>(</span><span class='integer val'>8</span><span class='comma token'>,</span> <span class='integer val'>0</span><span class='dot token'>.</span><span class='chr identifier id'>chr</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Feb 13 12:31:40 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

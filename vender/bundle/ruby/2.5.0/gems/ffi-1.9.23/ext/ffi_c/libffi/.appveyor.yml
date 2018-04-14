@@ -1,0 +1,48 @@
+shallow_clone: true
+
+# We're currently only testing 64-bit libffi built with Microsoft's
+# tools.
+# This matrix should be expanded to include at least:
+#  32- and 64-bit gcc/cygwin
+#  32- and 64-bit gcc/mingw
+#  32- and 64-bit clang/mingw
+#  and perhaps more.
+
+image: Visual Studio 2013
+platform:
+  - x64
+
+environment:
+  global:
+    CYG_ROOT: C:/cygwin
+    CYG_CACHE: C:/cygwin/var/cache/setup
+    CYG_MIRROR: http://mirrors.kernel.org/sourceware/cygwin/
+  matrix:
+    - VSVER: 12
+
+install:
+  - ps: >-
+      If ($env:Platform -Match "x86") {
+          $env:VCVARS_PLATFORM="x86"
+          $env:BUILD="x86-pc-cygwin"
+          $env:HOST="x86-pc-windows"
+        } Else {
+          $env:VCVARS_PLATFORM="amd64"
+          $env:BUILD="x86_64-pc-cygwin"
+          $env:HOST="x86_64-pc-winnt"
+      }
+  - 'appveyor DownloadFile http://cygwin.com/setup-x86.exe -FileName setup.exe'
+  - 'setup.exe -qnNdO -R "%CYG_ROOT%" -s "%CYG_MIRROR%" -l "%CYG_CACHE%" -P dejagnu >NUL'
+  - '%CYG_ROOT%/bin/bash -lc "cygcheck -dc cygwin"'
+  - ps: $env:VSCOMNTOOLS=(Get-Content ("env:VS" + "$env:VSVER" + "0COMNTOOLS"))
+  - echo "Using Visual Studio %VSVER%.0 at %VSCOMNTOOLS%"
+  - call "%VSCOMNTOOLS%\..\..\VC\vcvarsall.bat" %VCVARS_PLATFORM%
+
+build_script:
+  - c:\cygwin\bin\sh -lc "(cd $OLDPWD; ./autogen.sh;)"
+  - c:\cygwin\bin\sh -lc "(cd $OLDPWD; ./configure CC='/cygdrive/c/projects/libffi/msvcc.sh -m64' CXX='/cygdrive/c/projects/libffi/msvcc.sh -m64' LD=link CPP='cl -nologo -EP' --build=$BUILD --host=$HOST; cp src/x86/ffitarget.h include; make;)"
+
+# FIXME: "make check" currently fails.  It just looks like msvcc needs
+# to learn about -L and -l options.  If you add "make check; cat `find
+# ./ -name libffi.log" to the end of that build command you'll see
+# what I mean.

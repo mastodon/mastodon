@@ -1,0 +1,39 @@
+PATH
+  remote: .
+  specs:
+    http_parser.rb (0.6.0.beta.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    benchmark_suite (0.8.0)
+    diff-lcs (1.1.2)
+    ffi (1.0.11)
+    ffi (1.0.11-java)
+    json (1.8.0)
+    json (1.8.0-java)
+    rake (0.9.2)
+    rake-compiler (0.7.9)
+      rake
+    rspec (2.4.0)
+      rspec-core (~> 2.4.0)
+      rspec-expectations (~> 2.4.0)
+      rspec-mocks (~> 2.4.0)
+    rspec-core (2.4.0)
+    rspec-expectations (2.4.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.4.0)
+    yajl-ruby (1.1.0)
+
+PLATFORMS
+  java
+  ruby
+
+DEPENDENCIES
+  benchmark_suite
+  ffi
+  http_parser.rb!
+  json (>= 1.4.6)
+  rake-compiler (>= 0.7.9)
+  rspec (>= 2.0.1)
+  yajl-ruby (>= 0.8.1)

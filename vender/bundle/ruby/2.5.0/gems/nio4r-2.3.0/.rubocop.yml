@@ -1,0 +1,74 @@
+AllCops:
+  TargetRubyVersion: 2.2
+  DisplayCopNames: true
+
+#
+# Lint
+#
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Lint/Loop:
+  Enabled: false
+
+#
+# Metrics
+#
+
+Metrics/AbcSize:
+  Max: 35
+
+Metrics/BlockLength:
+  Max: 128
+
+Metrics/ClassLength:
+  Max: 128
+
+Metrics/LineLength:
+  Max: 128
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 50
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+#
+# Performance
+#
+
+Performance/RegexpMatch:
+  Enabled: false
+
+#
+# Style
+#
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/GlobalVars:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/TrivialAccessors:
+  Enabled: false

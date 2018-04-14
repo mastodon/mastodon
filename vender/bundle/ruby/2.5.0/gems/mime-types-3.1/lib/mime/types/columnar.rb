@@ -1,0 +1,1 @@
+require 'mime/types'

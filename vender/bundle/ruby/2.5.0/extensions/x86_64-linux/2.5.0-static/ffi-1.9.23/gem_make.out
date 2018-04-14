@@ -1,0 +1,49 @@
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ffi-1.9.23/ext/ffi_c
+/home/mastodon/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180408-28175-p6yxet.rb extconf.rb
+checking for ffi_call() in -lffi... yes
+checking for ffi_closure_alloc()... yes
+checking for ffi_raw_call()... yes
+checking for ffi_prep_raw_closure()... yes
+checking for shlwapi.h... no
+checking for rb_thread_blocking_region()... no
+checking for rb_thread_call_with_gvl()... yes
+checking for rb_thread_call_without_gvl()... yes
+checking for ffi_prep_cif_var()... yes
+creating extconf.h
+creating Makefile
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ffi-1.9.23/ext/ffi_c
+make "DESTDIR=" clean
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ffi-1.9.23/ext/ffi_c
+make "DESTDIR="
+compiling AbstractMemory.c
+compiling ArrayType.c
+compiling Buffer.c
+compiling Call.c
+compiling Closure.c
+compiling DataConverter.c
+compiling DynamicLibrary.c
+compiling Function.c
+compiling FunctionInfo.c
+compiling LastError.c
+compiling LongDouble.c
+compiling MappedType.c
+compiling MemoryPointer.c
+compiling MethodHandle.c
+compiling Platform.c
+compiling Pointer.c
+compiling Struct.c
+compiling StructByReference.c
+compiling StructByValue.c
+compiling StructLayout.c
+compiling Thread.c
+compiling Type.c
+compiling Types.c
+compiling Variadic.c
+compiling ffi.c
+linking shared-object ffi_c.so
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ffi-1.9.23/ext/ffi_c
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 ffi_c.so ./.gem.20180408-28175-17ej3rc

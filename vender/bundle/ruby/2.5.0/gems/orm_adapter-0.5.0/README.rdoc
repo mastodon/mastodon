@@ -1,0 +1,74 @@
+= ORM Adapter {<img src="https://secure.travis-ci.org/ianwhite/orm_adapter.png?branch=master" alt="Build Status" />}[http://travis-ci.org/ianwhite/orm_adapter]
+
+Provides a single point of entry for popular ruby ORMs.  Its target audience is gem authors who want to support more than one ORM.
+
+== Example of use
+
+  require 'orm_adapter'
+
+  User # is it an ActiveRecord, DM Resource, MongoMapper or MongoId Document?
+
+  User.to_adapter.find_first :name => 'Fred' # we don't care!
+
+  user_model = User.to_adapter
+  user_model.get!(1)                      # find a record by id
+  user_model.find_first(:name => 'fred')  # find first fred
+  user_model.find_first(:level => 'awesome', :id => 23)
+                                          # find user 23, only if it's level is awesome
+  user_model.find_all                     # find all users
+  user_model.find_all(:name => 'fred')    # find all freds
+  user_model.find_all(:order => :name)    # find all freds, ordered by name
+  user_model.create!(:name => 'fred')     # create a fred
+  user_model.destroy(object)              # destroy the user object
+
+
+@see OrmAdapter::Base for more details of the supported API
+
+== Supported ORMs
+
+Currently supported ORMs are *ActiveRecord*, *DataMapper*, *MongoMapper*, and *MongoId*.
+
+We welcome you to write new adapters as gems. ORM Adapter will stay focused in having these major ORMs working.
+
+To write an adapter look at <tt>lib/orm_adapter/adapters/active_record.rb</tt> for an example of implementation.  To see how to test it, look at <tt>spec/orm_adapter/example_app_shared.rb</tt>, <tt>spec/orm_adapter/adapters/active_record_spec.rb</tt>.  You'll need to require the target ORM in <tt>spec/spec_helper.rb</tt>
+
+
+== Goals
+
+ORM Adapter's goal is to support a minimum API used by most of the plugins that needs agnosticism beyond Active Model.
+
+ORM Adapter will support only basic methods, as +get+, +find_first+, <tt>create!</tt> and so forth. It is not ORM Adapter's goal to support different query constructions, handle table joins, etc.
+
+ORM adapter provides a consistent API for these basic class or 'factory' methods. It does not attempt to unify the behaviour of model instances returned by these methods.  This means that unifying the behaviour of methods such as `model.save`, and `model.valid?` is beyond the scope of orm_adapter.
+
+If you need complex queries, we recommend you to subclass ORM Adapters in your plugin and extend it expressing these query conditions as part of your domain logic.
+
+== History
+
+orm_adapter is an extraction from {pickle}[http://github.com/ianwhite/pickle] by {Ian White}[http://github.com/ianwhite].  Pickle's orm adapter included work by {Daniel Neighman}[http://github.com/hassox], {Josh Bassett}[http://github.com/nullobject], {Marc Lee}[http://github.com/maleko], and {Sebastian Zuchmanski}[http://github.com/sebcioz].
+
+{José Valim}[http://github.com/josevalim] suggested the extraction, and worked on the first release with Ian.
+
+{Luke Cunningham}[http://github.com/icaruswings] contributes the Mongo Mapper adapter.
+
+{Fred Wu}[http://github.com/fredwu] contributes the #destroy methods, and :limit, :offset options for #find_all
+
+{Tim Galeckas}[http://github.com/timgaleckas]
+
+== Development
+
+To run the specs, you can start from the last known good set of gem dependencies in Gemfile.lock.development:
+
+  git clone http://github.com/ianwhite/orm_adapter
+  cd orm_adapter
+  bundle install
+  bundle exec rake spec
+
+To run specs for different versions of ORMs, you can specify a gemfile from the `gemfiles` directory, e.g.
+
+  BUNDLE_GEMFILE=gemiles/activerecord4.gemfile bundle install
+  BUNDLE_GEMFILE=gemiles/activerecord4.gemfile bundle exec rake spec
+
+== Copyright
+
+Copyright (c) 2010-2013 Ian White and José Valim. See LICENSE for details.

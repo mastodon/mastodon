@@ -1,0 +1,246 @@
+.navbar-right {
+    float: left !important;
+}
+
+footer .edits {
+  margin-right: unset;
+  margin-left: 40px;
+}
+
+.summary_bar .status {
+  margin-left: unset;
+  margin-right: 10px;
+}
+@media (max-width: 767px) and (min-width: 400px) {
+  .summary_bar ul .desc {
+    text-align: right;
+  }
+  .summary_bar ul .count {
+    text-align: left;
+  }
+}
+@media (max-width: 979px) and (min-width: 768px) {
+}
+.summary_bar ul .count {
+  float: left;
+}
+
+form .btn {
+  margin-right: unset;
+  margin-left: 5px;
+}
+
+form .btn-group .btn {
+  margin-right: unset;
+  margin-left: 1px;
+}
+
+@media (max-width: 768px) {
+  .navbar.navbar-fixed-top ul {
+    margin-right: unset;
+    margin-left: -15px!important;
+  }
+}
+
+@media (width: 768px) {
+  .navbar .poll-wrapper {
+    margin: 4px 0 0 4px;
+  }
+
+  .navbar .dropdown-menu a {
+    text-align: right;
+  }
+}
+
+.navbar-footer .navbar ul.nav a.navbar-brand {
+  padding: 0 0 0 15px;
+}
+
+.navbar-fixed-bottom li {
+  margin-right: unset;
+  margin-left: 20px;
+}
+
+.status-active {
+  background-position: 100% 0;
+}
+
+.status-idle {
+  background-position: 100% -54px;
+}
+
+.stat {
+  float: right;
+  margin-right: unset;
+  margin-left: 20px;
+}
+
+.stat:last-child {
+  margin-left: 0;
+}
+
+@media (max-width: 767px) {
+  .stat {
+    float: right;
+    margin-right: unset;
+    margin-left: 10px;
+    text-align: right;
+  }
+  .stat h3{
+    float: left;
+    margin: 5px 5px 5px 10px;
+  }
+  .stat p{
+    font-size: 1em;
+    margin: 5px 10px 5px 5px;
+  }
+}
+
+/* Dashboard
+********************************** */
+div.dashboard h3 {
+  float: right;
+}
+
+div.interval-slider {
+  float: left;
+}
+
+#realtime-legend,
+#history-legend {
+  text-align: right;
+  float: left;
+}
+#realtime-legend .timestamp,
+#history-legend .timestamp {
+  text-align: left;
+}
+#realtime-legend .line,
+#history-legend .line {
+  margin: 0 20px 0 0;
+}
+#realtime-legend .swatch,
+#history-legend .swatch {
+  margin: 0 0 0 8px;
+}
+
+/* Beacon
+********************************** */
+
+.beacon .dot,
+.beacon .ring {
+  right: 50%;
+}
+
+.beacon .dot {
+  margin: -5px -5px 0 0;
+}
+
+.beacon .ring {
+  margin: -14px -14px 0 0;
+}
+
+.history-heading {
+  padding-right: unset;
+  padding-left: 15px;
+}
+
+@media (max-width: 767px) {
+  .navbar.navbar-fixed-top ul {
+    margin-left: 0;
+  }
+
+  .navbar.navbar-fixed-top li {
+    margin-left: 0;
+  }
+
+  .navbar.navbar-fixed-bottom ul {
+    margin-left: 0;
+  }
+
+  .navbar.navbar-fixed-bottom li {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar-footer .navbar ul.nav a.navbar-brand {
+    padding-right: unset;
+    padding-left: 5px;
+  }
+}
+
+/* Rickshaw */
+
+.rickshaw_graph .detail .x_label.left {
+    right: 0
+}
+.rickshaw_graph .detail .x_label.right {
+    left: 0
+}
+.rickshaw_graph .detail .item.left {
+    right: 0
+}
+.rickshaw_graph .detail .item.right {
+    left: 0
+}
+.rickshaw_graph .detail .item.left:after {
+    left: 0;
+    right: -5px;
+    border-right-color: unset;
+    border-left-color: rgba(0, 0, 0, .8);
+    border-right-width: 0;
+    border-left-width: unset;
+}
+.rickshaw_graph .detail .item.right:after {
+    right: 0;
+    left: -5px;
+    border-left-color: unset;
+    border-right-color: rgba(0, 0, 0, .8);
+    border-left-width: 0;
+    border-right-width: unset;
+}
+.rickshaw_graph .detail .dot {
+    margin-right: -3px;
+    margin-left: unset;
+}
+.rickshaw_graph .x_tick {
+    border-left: unset;
+    border-right: 1px dotted rgba(0, 0, 0, .2);
+}
+.rickshaw_graph .x_tick .title {
+    margin-right: 3px;
+    margin-left: unset;
+}
+.rickshaw_annotation_timeline .annotation {
+    margin-right: -2px;
+    margin-left: unset;
+}
+.rickshaw_graph .annotation_line {
+    border-right: 2px solid rgba(0, 0, 0, .3);
+    border-left: unset;
+}
+.rickshaw_annotation_timeline .annotation .content {
+    left: unset;
+    right: -11px;
+}
+.rickshaw_graph .x_tick.glow .title,
+.rickshaw_graph .y_ticks.glow text {
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, .1), -1px -1px 0 rgba(255, 255, 255, .1), -1px 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1), 0 -1px 0 rgba(255, 255, 255, .1), -1px 0 0 rgba(255, 255, 255, .1), 1px 0 0 rgba(255, 255, 255, .1), 1px -1px 0 rgba(255, 255, 255, .1)
+}
+.rickshaw_graph .x_tick.inverse .title,
+.rickshaw_graph .y_ticks.inverse text {
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .8), -1px -1px 0 rgba(0, 0, 0, .8), -1px 1px 0 rgba(0, 0, 0, .8), 0 1px 0 rgba(0, 0, 0, .8), 0 -1px 0 rgba(0, 0, 0, .8), -1px 0 0 rgba(0, 0, 0, .8), 1px 0 0 rgba(0, 0, 0, .8), 1px -1px 0 rgba(0, 0, 0, .8)
+}
+.rickshaw_legend .line {
+    padding-left: 15px;
+    padding-right: unset;
+}
+.rickshaw_legend .line .swatch {
+    margin-left: 3px;
+    margin-right: unset;
+}
+.rickshaw_legend .action {
+    margin-left: .2em;
+    margin-right: unset;
+}

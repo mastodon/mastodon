@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Documentation by YARD 0.6.4</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1 id='rotp__the_ruby_one_time_password_library'>ROTP - The Ruby One Time Password Library</h1>
+
+<h3 id='installation'>Installation</h3>
+
+<pre class="code"><span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rotp identifier id'>rotp</span>
+</pre>
+
+<h3 id='use'>Use</h3>
+
+<h4 id='time_based_otps'>Time based OTP&#8217;s</h4>
+
+<pre class="code"><span class='totp identifier id'>totp</span> <span class='assign token'>=</span> <span class='ROTP constant id'>ROTP</span><span class='colon2 op'>::</span><span class='TOTP constant id'>TOTP</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;base32secretkey&quot;</span><span class='rparen token'>)</span>
+<span class='totp identifier id'>totp</span><span class='dot token'>.</span><span class='now identifier id'>now</span> <span class='comment val'># =&gt; 492039</span>
+<span class='totp identifier id'>totp</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='plus op'>+</span> <span class='integer val'>30</span><span class='rparen token'>)</span> <span class='comment val'># =&gt; 102922</span>
+</pre>
+
+<h4 id='counter_based_otps'>Counter based OTP&#8217;s</h4>
+
+<pre class="code"><span class='hotp identifier id'>hotp</span> <span class='assign token'>=</span> <span class='ROTP constant id'>ROTP</span><span class='colon2 op'>::</span><span class='HOTP constant id'>HOTP</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;base32secretkey&quot;</span><span class='rparen token'>)</span>
+<span class='hotp identifier id'>hotp</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span> <span class='comment val'># =&gt; 492039</span>
+<span class='hotp identifier id'>hotp</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='rparen token'>)</span> <span class='comment val'># =&gt; 234092</span>
+<span class='hotp identifier id'>hotp</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='integer val'>2</span><span class='rparen token'>)</span> <span class='comment val'># =&gt; 209834</span>
+</pre>
+
+<h4 id='generating_a_base32_secret_key'>Generating a Base32 Secret key</h4>
+
+<pre class="code"><span class='ROTP constant id'>ROTP</span><span class='dot token'>.</span><span class='random_base32 identifier id'>random_base32</span> <span class='comment val'># returns a 16 character base32 secret. Compatible with Google Authenticator</span>
+</pre>
+
+<h4 id='google_authenticator_interop'>Google Authenticator Interop</h4>
+
+<p>The library works with the Google Authenticator iPhone and Android app, and also includes the ability to generate provisioning URI&#8217;s for use with the QR Code scanner built into the app.</p>
+
+<pre class="code"><span class='hotp identifier id'>hotp</span><span class='dot token'>.</span><span class='provisioning_uri identifier id'>provisioning_uri</span> <span class='comment val'># =&gt; 'otpauth://totp/alice@google.com?secret=JBSWY3DPEHPK3PXP'</span>
+</pre>
+
+<p>This can then be rendered as a QR Code which can then be scanned and added to the users list of OTP credentials.</p></div></div>
+    
+    <div id="footer">
+  Generated on Sun Feb 13 12:31:40 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

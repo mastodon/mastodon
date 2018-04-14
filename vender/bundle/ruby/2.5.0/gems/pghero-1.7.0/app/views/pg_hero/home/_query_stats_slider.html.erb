@@ -1,0 +1,16 @@
+<div id="slider-container">
+  <div id="slider"></div>
+  <div id="range-end"></div>
+  <div id="range-start"></div>
+</div>
+
+<script>
+  var sort = <%= @sort.to_json.html_safe %>;
+  var minAverageTime = <%= @min_average_time.to_json %>;
+  var minCalls = <%= @min_calls.to_json %>;
+  var debug = <%= @debug.to_json %>;
+  var startAt = <%= params[:start_at] ? @start_at.to_i * 1000 : "null" %>;
+  var endAt = <%= @end_at.to_i %> * 1000;
+
+  initSlider();
+</script>

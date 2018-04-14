@@ -1,0 +1,8 @@
+require 'test_helper'
+<% module_namespacing do -%>
+class <%= class_name %>WorkerTest < <% if defined? Minitest::Test %>Minitest::Test<% else %>MiniTest::Unit::TestCase<% end %>
+  def test_example
+    skip "add some examples to (or delete) #{__FILE__}"
+  end
+end
+<% end -%>

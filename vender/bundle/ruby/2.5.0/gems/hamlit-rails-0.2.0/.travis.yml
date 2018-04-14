@@ -1,0 +1,16 @@
+language: ruby
+cache: bundler
+before_install: "gem install bundler"
+rvm:
+  - 2.0.0
+  - 2.1.0
+  - 2.2.0
+gemfile:
+  - gemfiles/rails_4_0.gemfile
+  - gemfiles/rails_4_1.gemfile
+  - gemfiles/rails_4_2.gemfile
+  - gemfiles/rails_latest.gemfile
+addons:
+  code_climate:
+    repo_token: b310674f6c6c6e6b425087fd4bfd38b2f6def3afc8db24009ad23372140d0ef4
+script: "bundle exec rake test"

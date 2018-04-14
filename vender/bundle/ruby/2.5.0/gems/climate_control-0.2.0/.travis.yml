@@ -1,0 +1,11 @@
+rvm:
+  - 2.2.6
+  - 2.3.3
+  - 2.4.0
+before_install:
+  - gem update --system
+  - gem update bundler
+install: "bundle install"
+branches:
+  only:
+    - master

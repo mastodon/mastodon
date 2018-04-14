@@ -1,0 +1,16 @@
+language: ruby
+
+matrix:
+  include:
+    - rvm: 1.8.7
+      gemfile: gemfiles/Gemfile-1.8.7
+    - rvm: jruby-18mode
+      gemfile: gemfiles/Gemfile-1.8.7
+    - rvm: 1.9.3
+      gemfile: Gemfile
+    - rvm: jruby-19mode
+      gemfile: Gemfile
+    - rvm: 2.0.0
+      gemfile: Gemfile
+    - rvm: 2.1.0
+      gemfile: Gemfile

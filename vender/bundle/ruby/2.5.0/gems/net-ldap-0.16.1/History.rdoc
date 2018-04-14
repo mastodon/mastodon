@@ -1,0 +1,324 @@
+=== Net::LDAP 0.16.1
+
+* Send DN and newPassword with password_modify request {#271}[https://github.com/ruby-ldap/ruby-net-ldap/pull/271]
+
+=== Net::LDAP 0.16.0
+
+* Sasl fix {#281}[https://github.com/ruby-ldap/ruby-net-ldap/pull/281]
+* enable TLS hostname validation {#279}[https://github.com/ruby-ldap/ruby-net-ldap/pull/279]
+* update rubocop to 0.42.0 {#278}[https://github.com/ruby-ldap/ruby-net-ldap/pull/278]
+
+=== Net::LDAP 0.15.0
+
+* Respect connect_timeout when establishing SSL connections {#273}[https://github.com/ruby-ldap/ruby-net-ldap/pull/273]
+
+=== Net::LDAP 0.14.0
+
+* Normalize the encryption parameter passed to the LDAP constructor {#264}[https://github.com/ruby-ldap/ruby-net-ldap/pull/264]
+* Update Docs: Net::LDAP now requires ruby >= 2 {#261}[https://github.com/ruby-ldap/ruby-net-ldap/pull/261]
+* fix symbol proc {#255}[https://github.com/ruby-ldap/ruby-net-ldap/pull/255]
+* fix trailing commas {#256}[https://github.com/ruby-ldap/ruby-net-ldap/pull/256]
+* fix deprecated hash methods {#254}[https://github.com/ruby-ldap/ruby-net-ldap/pull/254]
+* fix space after comma {#253}[https://github.com/ruby-ldap/ruby-net-ldap/pull/253]
+* fix space inside brackets {#252}[https://github.com/ruby-ldap/ruby-net-ldap/pull/252]
+* Rubocop style fixes {#249}[https://github.com/ruby-ldap/ruby-net-ldap/pull/249]
+* Lazy initialize Net::LDAP::Connection's internal socket {#235}[https://github.com/ruby-ldap/ruby-net-ldap/pull/235]
+* Support for rfc3062 Password Modify, closes #163 {#178}[https://github.com/ruby-ldap/ruby-net-ldap/pull/178]
+
+=== Net::LDAP 0.13.0
+
+Avoid this release for because of an backwards incompatibility in how encryption
+is initialized https://github.com/ruby-ldap/ruby-net-ldap/pull/264. We did not
+yank it because people have already worked around it.
+
+* Set a connect_timeout for the creation of a socket {#243}[https://github.com/ruby-ldap/ruby-net-ldap/pull/243]
+* Update bundler before installing gems with bundler {#245}[https://github.com/ruby-ldap/ruby-net-ldap/pull/245]
+* Net::LDAP#encryption accepts string {#239}[https://github.com/ruby-ldap/ruby-net-ldap/pull/239]
+* Adds correct UTF-8 encoding to Net::BER::BerIdentifiedString {#242}[https://github.com/ruby-ldap/ruby-net-ldap/pull/242]
+* Remove 2.3.0-preview since ruby-head already is included {#241}[https://github.com/ruby-ldap/ruby-net-ldap/pull/241]
+* Drop support for ruby 1.9.3 {#240}[https://github.com/ruby-ldap/ruby-net-ldap/pull/240]
+* Fixed capitalization of StartTLSError {#234}[https://github.com/ruby-ldap/ruby-net-ldap/pull/234]
+
+=== Net::LDAP 0.12.1
+
+* Whitespace formatting cleanup {#236}[https://github.com/ruby-ldap/ruby-net-ldap/pull/236]
+* Set operation result if LDAP server is not accessible {#232}[https://github.com/ruby-ldap/ruby-net-ldap/pull/232]
+
+=== Net::LDAP 0.12.0
+
+* DRY up connection handling logic {#224}[https://github.com/ruby-ldap/ruby-net-ldap/pull/224]
+* Define auth adapters {#226}[https://github.com/ruby-ldap/ruby-net-ldap/pull/226]
+* add slash to attribute value filter {#225}[https://github.com/ruby-ldap/ruby-net-ldap/pull/225]
+* Add the ability to provide a list of hosts for a connection {#223}[https://github.com/ruby-ldap/ruby-net-ldap/pull/223]
+* Specify the port of LDAP server by giving INTEGRATION_PORT {#221}[https://github.com/ruby-ldap/ruby-net-ldap/pull/221]
+* Correctly set BerIdentifiedString values to UTF-8  {#212}[https://github.com/ruby-ldap/ruby-net-ldap/pull/212]
+* Raise Net::LDAP::ConnectionRefusedError when new connection is refused. {#213}[https://github.com/ruby-ldap/ruby-net-ldap/pull/213]
+* obscure auth password upon #inspect, added test, closes #216 {#217}[https://github.com/ruby-ldap/ruby-net-ldap/pull/217]
+* Fixing incorrect error class name {#207}[https://github.com/ruby-ldap/ruby-net-ldap/pull/207]
+* Travis update {#205}[https://github.com/ruby-ldap/ruby-net-ldap/pull/205]
+* Remove obsolete rbx-19mode from Travis {#204}[https://github.com/ruby-ldap/ruby-net-ldap/pull/204]
+* mv "sudo" from script/install-openldap to .travis.yml {#199}[https://github.com/ruby-ldap/ruby-net-ldap/pull/199]
+* Remove meaningless shebang {#200}[https://github.com/ruby-ldap/ruby-net-ldap/pull/200]
+* Fix Travis CI build {#202}[https://github.com/ruby-ldap/ruby-net-ldap/pull/202]
+* README.rdoc: fix travis link {#195}[https://github.com/ruby-ldap/ruby-net-ldap/pull/195]
+
+=== Net::LDAP 0.11
+* Major enhancements:
+  * #183 Specific errors subclassing Net::LDAP::Error
+* Bug fixes:
+  * #176 Fix nil tls options
+  * #184 Search guards against nil queued reads. Connection#unescape handles numerics
+* Code clean-up:
+  * #180 Refactor connection establishment
+
+=== Net::LDAP 0.10.1
+* Bug fixes:
+  * Fix Integer BER encoding of signed values
+
+=== Net::LDAP 0.10.0
+* Major enhancements:
+  * Accept SimpleTLS/StartTLS encryption options (compatible with `OpenSSL::SSL::SSLContext#set_params`)
+* Bug fixes:
+  * Parse filter strings with square and curly braces (`[]` and `{}`)
+  * Handle connection timeout errors (`Errno::ETIMEDOUT` raised as `Net::LDAP::LdapError`)
+* Testing changes:
+  * Add integration tests for StartTLS connections to OpenLDAP
+* Meta changes:
+  * Update Gem release tooling (remove Hoe, use Rake)
+  * Fix Gem release date
+
+=== Net::LDAP 0.9.0
+* Major changes:
+  * Dropped support for ruby 1.8.7, ruby >= 1.9.3 now required
+* Major enhancements:
+  * Add support for search time limit parameter
+  * Instrument received messages, PDU parsing
+* Minor enhancments:
+  * Add support for querying ActiveDirectory capabilities from root dse
+* Bug fixes:
+  * Fix reads for multiple concurrent requests with shared, open connections mixing up the results
+  * Fix search size option
+  * Fix BER encoding bug
+* Code clean-up:
+  * Added integration test suite
+  * Switch to minitest
+
+* Details
+  * #150 Support querying ActiveDirectory capabilities when searching root dse
+  * #142 Encode true as xFF
+  * #124, #145, #146, #152 Cleanup gemspec
+  * #138, #144 Track response messages by message id
+  * #141 Magic number/constant cleanup
+  * #119, #129, #130, #132, #133, #137 Integration tests
+  * #115 Search timeout support
+  * #140 Fix search size option
+  * #139 Cleanup and inline documentation for Net::LDAP::Connection#search
+  * #131 Instrumentation
+  * #116 Refactor Connection#write
+  * #126 Update gitignore
+  * #128 Fix whitespace
+  * #113, #121 Switch to minitest
+  * #123 Base64 encoded dn
+  * #114 Separate file for Net::LDAP::Connection
+  * #104 Parse version spec in LDIF datasets
+  * #106 ldap.modify doc fixes
+  * #111 Fix test deprecations
+
+=== Net::LDAP 0.5.0 / 2013-07-22
+* Major changes:
+  * Required Ruby version is >=1.9.3
+* Major enhancements:
+  * Added alias dereferencing (@ngwilson)
+  * BER now unescapes characters that are already escaped in the source string (@jzinn)
+  * BerIdentifiedString will now fall back to ASCII-8 encoding if the source Ruby object cannot be encoded in UTF-8 (@lfu)
+* Bug fixes:
+  * Fixed nil variable error when following a reference response (@cmdrclueless)
+  * Fixed FilterParser unable to parse multibyte strings (@satoryu)
+  * Return ConverterNotFound when dealing with a potentially corrupt data response (@jamuc)
+
+=== Net::LDAP 0.3.1 / 2012-02-15
+* Bug Fixes:
+  * Bundler should now work again
+
+=== Net::LDAP 0.3.0 / 2012-02-14
+* Major changes:
+  * Now uses UTF-8 strings instead of ASCII-8 per the LDAP RFC
+* Major Enhancements:
+  * Adding continuation reference processing
+* Bug Fixes:
+  * Fixes usupported object type #139
+  * Fixes Net::LDAP namespace errors
+  * Return nil instead of an empty array if the search fails
+
+=== Net::LDAP 0.2.2 / 2011-03-26
+* Bug Fixes:
+  * Fixed the call to Net::LDAP.modify_ops from Net::LDAP#modify.
+
+=== Net::LDAP 0.2.1 / 2011-03-23
+* Bug Fixes:
+  * Net::LDAP.modify_ops was broken and is now fixed.
+
+=== Net::LDAP 0.2 / 2011-03-22
+* Major Enhancements:
+  * Net::LDAP::Filter changes:
+    * Filters can only be constructed using our custom constructors (eq, ge,
+      etc.). Cleaned up the code to reflect the private new.
+    * Fixed #to_ber to output a BER representation for :ne filters. Simplified
+      the BER construction for substring matching.
+    * Added Filter.join(left, right), Filter.intersect(left, right), and
+      Filter.negate(filter) to match Filter#&, Filter#|, and Filter#~@ to
+      prevent those operators from having problems with the private new.
+    * Added Filter.present and Filter.present? aliases for the method
+      previously only known as Filter.pres.
+    * Added Filter.escape to escape strings for use in filters, based on
+      rfc4515.
+    * Added Filter.equals, Filter.begins, Filter.ends and Filter.contains,
+      which automatically escape input for use in a filter string.
+    * Cleaned up Net::LDAP::Filter::FilterParser to handle branches better.
+      Fixed some of the regular expressions to be more canonically defined.
+    * Correctly handles single-branch branches.
+    * Cleaned up the string representation of Filter objects.
+    * Added experimental support for RFC4515 extensible matching (e.g.,
+      "(cn:caseExactMatch:=Fred Flintstone)"); provided by "nowhereman".
+  * Net::LDAP::DN class representing an automatically escaping/unescaping
+    distinguished name for LDAP queries.
+* Minor Enhancements:
+  * SSL capabilities will be enabled or disabled based on whether we can load
+    OpenSSL successfully or not.
+  * Moved the core class extensions extensions from being in the Net::LDAP
+    hierarchy to the Net::BER hierarchy as most of the methods therein are
+    related to BER-encoding values. This will make extracting Net::BER from
+    Net::LDAP easier in the future.
+  * Added some unit tests for the BER core extensions.
+  * Paging controls are only sent where they are supported.
+* Documentation Changes:
+  * Core class extension methods under Net::BER.
+  * Extensive changes to Net::BER documentation.
+  * Cleaned up some rdoc oddities, suppressed empty documentation sections
+    where possible.
+  * Added a document describing how to contribute to Net::LDAP most
+    effectively.
+  * Added a document recognizing contributors to Net::LDAP.
+* Extended unit testing:
+  * Added some unit tests for the BER core extensions.
+  * The LDIF test data file was split for Ruby 1.9 regexp support.
+  * Added a cruisecontrol.rb task.
+  * Converted some test/unit tests to specs.
+* Code clean-up:
+  * Made the formatting of code consistent across all files.
+  * Removed Net::BER::BERParser::TagClasses as it does not appear to be used.
+  * Replaced calls to #to_a with calls to Kernel#Array; since Ruby 1.8.3, the
+    default #to_a implementation has been deprecated and should be replaced
+    either with calls to Kernel#Array or [value].flatten(1).
+  * Modified #add and #modify to return a Pdu#result_code instead of a
+    Pdu#result. This may be changed in Net::LDAP 1.0 to return the full
+    Pdu#result, but if we do so, it will be that way for all LDAP calls
+    involving Pdu objects.
+  * Renamed Net::LDAP::Psw to Net::LDAP::Password with a corresponding filename
+    change.
+  * Removed the stub file lib/net/ldif.rb and class Net::LDIF.
+* Project Management:
+  * Changed the license from Ruby + GPL to MIT with the agreement of the
+    original author (Francis Cianfrocca) and the named contributors. Versions
+    prior to 0.2.0 are still available under the Ruby + GPL license.
+
+=== Net::LDAP 0.1.1 / 2010-03-18
+* Fixing a critical problem with sockets.
+
+=== Net::LDAP 0.1 / 2010-03-17
+* Small fixes throughout, more to come.
+* Ruby 1.9 support added.
+* Ruby 1.8.6 and below support removed. If we can figure out a compatible way
+  to reintroduce this, we will.
+* New maintainers, new project repository location. Please see the README.txt.
+
+=== Net::LDAP 0.0.5 / 2009-03-xx
+* 13 minor enhancements:
+  * Added Net::LDAP::Entry#to_ldif
+  * Supported rootDSE searches with a new API.
+  * Added [preliminary (still undocumented) support for SASL authentication.
+  * Supported several constructs from the server side of the LDAP protocol.
+  * Added a "consuming" String#read_ber! method.
+  * Added some support for SNMP data-handling.
+  * Belatedly added a patch contributed by Kouhei Sutou last October.
+    The patch adds start_tls support.
+  * Added Net::LDAP#search_subschema_entry
+  * Added Net::LDAP::Filter#parse_ber, which constructs Net::LDAP::Filter
+    objects directly from BER objects that represent search filters in
+    LDAP SearchRequest packets.
+  * Added Net::LDAP::Filter#execute, which allows arbitrary processing
+    based on LDAP filters.
+  * Changed Net::LDAP::Entry so it can be marshalled and unmarshalled.
+    Thanks to an anonymous feature requester who only left the name
+    "Jammy."
+  * Added support for binary values in Net::LDAP::Entry LDIF conversions
+    and marshalling.
+  * Migrated to 'hoe' as the new project droid.
+* 14 bugs fixed:
+  * Silenced some annoying warnings in filter.rb. Thanks to "barjunk"
+    for pointing this out.
+  * Some fairly extensive performance optimizations in the BER parser.
+  * Fixed a bug in Net::LDAP::Entry::from_single_ldif_string noticed by
+    Matthias Tarasiewicz.
+  * Removed an erroneous LdapError value, noticed by Kouhei Sutou.
+  * Supported attributes containing blanks (cn=Babs Jensen) to
+    Filter#construct. Suggested by an anonymous Rubyforge user.
+  * Added missing syntactic support for Filter ANDs, NOTs and a few other
+    things.
+  * Extended support for server-reported error messages. This was provisionally
+    added to Net::LDAP#add, and eventually will be added to other methods.
+  * Fixed bug in Net::LDAP#bind. We were ignoring the passed-in auth parm.
+    Thanks to Kouhei Sutou for spotting it.
+  * Patched filter syntax to support octal \XX codes. Thanks to Kouhei Sutou
+    for the patch.
+  * Applied an additional patch from Kouhei.
+  * Allowed comma in filter strings, suggested by Kouhei.
+  * 04Sep07, Changed four error classes to inherit from StandardError rather
+    Exception, in order to be friendlier to irb. Suggested by Kouhei.
+  * Ensure connections are closed. Thanks to Kristian Meier.
+  * Minor bug fixes here and there.
+
+=== Net::LDAP 0.0.4 / 2006-08-15
+* Undeprecated Net::LDAP#modify. Thanks to Justin Forder for
+  providing the rationale for this.
+* Added a much-expanded set of special characters to the parser
+  for RFC-2254 filters. Thanks to Andre Nathan.
+* Changed Net::LDAP#search so you can pass it a filter in string form.
+  The conversion to a Net::LDAP::Filter now happens automatically.
+* Implemented Net::LDAP#bind_as (preliminary and subject to change).
+  Thanks for Simon Claret for valuable suggestions and for helping test.
+* Fixed bug in Net::LDAP#open that was preventing #open from being
+  called more than one on a given Net::LDAP object.
+
+=== Net::LDAP 0.0.3 / 2006-07-26
+* Added simple TLS encryption.
+  Thanks to Garett Shulman for suggestions and for helping test.
+
+=== Net::LDAP 0.0.2 / 2006-07-12
+* Fixed malformation in distro tarball and gem.
+* Improved documentation.
+* Supported "paged search control."
+* Added a range of API improvements.
+* Thanks to Andre Nathan, andre@digirati.com.br, for valuable
+  suggestions.
+* Added support for LE and GE search filters.
+* Added support for Search referrals.
+* Fixed a regression with openldap 2.2.x and higher caused
+  by the introduction of RFC-2696 controls. Thanks to Andre
+  Nathan for reporting the problem.
+* Added support for RFC-2254 filter syntax.
+
+=== Net::LDAP 0.0.1 / 2006-05-01
+* Initial release.
+* Client functionality is near-complete, although the APIs
+  are not guaranteed and may change depending on feedback
+  from the community.
+* We're internally working on a Ruby-based implementation
+  of a full-featured, production-quality LDAP server,
+  which will leverage the underlying LDAP and BER functionality
+  in Net::LDAP.
+* Please tell us if you would be interested in seeing a public
+  release of the LDAP server.
+* Grateful acknowledgement to Austin Ziegler, who reviewed
+  this code and provided the release framework, including
+  minitar.

@@ -1,0 +1,31 @@
+= Builder 1.2.4 Released.
+
+Added a "CDATA" method to the XML Markup builder (from Josh Knowles).
+
+== What is Builder?
+
+Builder::XmlMarkup allows easy programmatic creation of XML markup.
+For example:
+
+  builder = Builder::XmlMarkup.new(:target=>STDOUT, :indent=>2)
+  builder.person { |b| b.name("Jim"); b.phone("555-1234") }
+  puts builder.target!
+
+will generate:
+
+  <person>
+    <name>Jim</name>
+    <phone>555-1234</phone>
+  </person>
+
+== Availability
+
+The easiest way to get and install builder is via RubyGems ...
+
+  gem install builder    (you may need root/admin privileges)
+
+== Thanks
+
+* Josh Knowles for the cdata! patch.
+
+-- Jim Weirich

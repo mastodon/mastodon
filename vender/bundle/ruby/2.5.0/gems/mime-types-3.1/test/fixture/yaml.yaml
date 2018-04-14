@@ -1,0 +1,55 @@
+---
+- !ruby/object:MIME::Type
+  content-type: application/smil
+  encoding: 8bit
+  extensions:
+  - smi
+  - smil
+  obsolete: true
+  use-instead: application/smil+xml
+  registered: true
+- !ruby/object:MIME::Type
+  content-type: audio/vnd.qcelp
+  encoding: base64
+  extensions:
+  - qcp
+  obsolete: true
+  use-instead: audio/QCELP
+  registered: true
+- !ruby/object:MIME::Type
+  content-type: image/bmp
+  encoding: base64
+  extensions:
+  - bmp
+  obsolete: true
+  use-instead: image/x-bmp
+  registered: false
+- !ruby/object:MIME::Type
+  content-type: application/acad
+  encoding: base64
+  registered: false
+- !ruby/object:MIME::Type
+  content-type: audio/webm
+  encoding: base64
+  extensions:
+  - webm
+  registered: false
+- !ruby/object:MIME::Type
+  content-type: image/pjpeg
+  docs: Fixes a bug with IE6 and progressive JPEGs
+  encoding: base64
+  registered: false
+- !ruby/object:MIME::Type
+  content-type: application/1d-interleaved-parityfec
+  encoding: base64
+  registered: true
+- !ruby/object:MIME::Type
+  content-type: audio/1d-interleaved-parityfec
+  encoding: base64
+  registered: true
+- !ruby/object:MIME::Type
+  content-type: application/x-apple-diskimage
+  encoding: base64
+  extensions:
+  - dmg
+  registered: false

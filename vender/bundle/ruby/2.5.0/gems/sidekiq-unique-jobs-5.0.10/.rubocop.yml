@@ -1,0 +1,85 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/lib'
+    - '**/bin'
+    - '**/spec'
+  Exclude:
+    - 'Gemfile.lock'
+    - 'gemfiles/**/*'
+  TargetRubyVersion: 2.4
+
+Lint/HandleExceptions:
+  Enabled: true
+
+Lint/UselessAssignment:
+  Enabled: true
+
+Metrics/AbcSize:
+  Max: 38
+
+Metrics/CyclomaticComplexity:
+  Max: 7
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 13
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - '**/spec/**/*_spec.rb'
+
+Metrics/PerceivedComplexity:
+  Max: 8
+
+Style/AccessorMethodName:
+  Enabled: true
+
+Style/ConstantName:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/FileName:
+  Enabled: true
+  Exclude:
+    - 'lib/sidekiq-unique-jobs.rb'
+    - '**/Gemfile'
+    - '**/Appraisals'
+    - '**/*.gemspec'
+
+Style/GlobalVars:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+  ConsistentQuotesInMultiline: true
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: brackets
+
+Style/TernaryParentheses:
+  Enabled: true
+  EnforcedStyle: require_parentheses_when_complex
+  AllowSafeAssignment: true
+
+Style/TrailingCommaInArguments:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
