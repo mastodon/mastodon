@@ -7,7 +7,7 @@ MastodonCthulhu.setup do |status|
   status = fortune.convert(status) if fortune.match(status)	
   status
   
-  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(Cthulhu)[ 　\n]?', Cthulhu.find(rand(Cthulhu.count) + 1).story)
+  fortune = MastodonCthulhu::Random.new('[ 　\n]?#(Cthulhu)[ 　\n]?', %w(Cthulhu.find(rand(Cthulhu.count) + 1).story))
   status = fortune.convert(status) if fortune.match(status)	
   status
 end
