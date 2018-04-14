@@ -265,6 +265,7 @@ export default class MediaGallery extends React.PureComponent {
             return (
               <button
                 className='media-spoiler'
+                type='button'
                 onClick={handleOpen}
               >
                 <span className='media-spoiler__warning'>
