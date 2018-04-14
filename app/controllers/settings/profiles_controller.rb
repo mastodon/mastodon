@@ -8,7 +8,9 @@ class Settings::ProfilesController < Settings::BaseController
   obfuscate_filename [:account, :avatar]
   obfuscate_filename [:account, :header]
 
-  def show; end
+  def show
+    @account.build_fields
+  end
 
   def update
     if UpdateAccountService.new.call(@account, account_params)
@@ -22,7 +24,7 @@ class Settings::ProfilesController < Settings::BaseController
   private
 
   def account_params
-    params.require(:account).permit(:display_name, :note, :avatar, :header, :locked)
+    params.require(:account).permit(:display_name, :note, :avatar, :header, :locked, fields_attributes: [:name, :value])
   end
 
   def set_account

@@ -9,6 +9,16 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
 
+  class FieldSerializer < ActiveModel::Serializer
+    attributes :name, :value
+
+    def value
+      Formatter.instance.format_field(object.account, object.value)
+    end
+  end
+
+  has_many :fields
+
   def id
     object.id.to_s
   end
