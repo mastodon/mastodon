@@ -11,11 +11,16 @@ Rails.application.configure do
     config.x.http_client_proxy[:proxy] = { proxy_address: host, proxy_port: proxy.port, proxy_username: proxy.user, proxy_password: proxy.password }.compact
     break
   end
+
+  config.x.access_to_darknet = ENV['ALLOW_ACCESS_TO_DARKNET'] == 'true'
+  config.x.darknet_via_transparent_proxy = ENV['DARKNET_VIA_TRANSPARENT_PROXY'] == 'true'
 end
 
 module Goldfinger
   def self.finger(uri, opts = {})
-    opts = opts.merge(Rails.configuration.x.http_client_proxy)
+    to_darknet = /\.(onion|i2p)(:\d+)?$/.match(uri)
+    raise Mastodon::HostValidationError, 'blocked access to darknet' if !Rails.configuration.x.access_to_darknet && to_darknet
+    opts = opts.merge(Rails.configuration.x.http_client_proxy).merge(ssl: !to_darknet)
     Goldfinger::Client.new(uri, opts).finger
   end
 end

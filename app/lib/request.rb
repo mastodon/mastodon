@@ -14,6 +14,7 @@ class Request
     @options = options.merge(socket_class: Socket).merge(Rails.configuration.x.http_client_proxy)
     @headers = {}
 
+    raise Mastodon::HostValidationError, 'blocked access to darknet' if !Rails.configuration.x.access_to_darknet && /\.(onion|i2p)$/.match(@url.host)
     set_common_headers!
     set_digest! if options.key?(:body)
   end
@@ -130,6 +131,7 @@ class Request
     if Rails.configuration.x.http_client_proxy.empty?
       class << self
         def open(host, *args)
+          return super host, *args if Rails.configuration.x.darknet_via_transparent_proxy && /\.(onion|i2p)$/.match(host)
           outer_e = nil
           Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
             begin
