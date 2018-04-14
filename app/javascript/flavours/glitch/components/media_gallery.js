@@ -225,6 +225,15 @@ export default class MediaGallery extends React.PureComponent {
     this.props.onOpenMedia(this.props.media, index);
   }
 
+  handleRef = (node) => {
+    if (node && this.isStandaloneEligible()) {
+      // offsetWidth triggers a layout, so only calculate when we need to
+      this.setState({
+        width: node.offsetWidth,
+      });
+    }
+  }
+
   isStandaloneEligible() {
     const { media, standalone } = this.props;
     return standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
@@ -232,10 +241,20 @@ export default class MediaGallery extends React.PureComponent {
 
   render () {
     const { media, intl, sensitive, letterbox, fullwidth } = this.props;
-    const { visible } = this.state;
+    const { width, visible } = this.state;
     const size = media.take(4).size;
 
     let children;
+
+    const style = {};
+
+    if (this.isStandaloneEligible()) {
+      if (width) {
+        style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+      }
+    } else if (width) {
+      style.height = width / (16/9);
+    }
 
     if (!visible) {
       let warning = <FormattedMessage {...(sensitive ? messages.warning : messages.hidden)} />;
@@ -257,7 +276,7 @@ export default class MediaGallery extends React.PureComponent {
     const computedClass = classNames('media-gallery', `size-${size}`, { 'full-width': fullwidth });
 
     return (
-      <div className={computedClass}>
+      <div className={computedClass} style={style} ref={this.handleRef}>
         {visible ? (
           <div className='sensitive-info'>
             <IconButton
