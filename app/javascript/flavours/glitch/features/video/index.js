@@ -98,6 +98,7 @@ export default class Video extends React.PureComponent {
     letterbox: PropTypes.bool,
     fullwidth: PropTypes.bool,
     detailed: PropTypes.bool,
+    inline: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -106,6 +107,7 @@ export default class Video extends React.PureComponent {
     duration: 0,
     paused: true,
     dragging: false,
+    containerWidth: false,
     fullscreen: false,
     hovered: false,
     muted: false,
@@ -114,6 +116,12 @@ export default class Video extends React.PureComponent {
 
   setPlayerRef = c => {
     this.player = c;
+
+    if (c) {
+      this.setState({
+        containerWidth: c.offsetWidth,
+      });
+    }
   }
 
   setVideoRef = c => {
@@ -247,12 +255,23 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, width, height, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed } = this.props;
-    const { currentTime, duration, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed } = this.props;
+    const { containerWidth, currentTime, duration, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
+    const playerStyle = {};
+
+    let { width, height } = this.props;
+
+    if (inline && containerWidth) {
+      width  = containerWidth;
+      height = containerWidth / (16/9);
+
+      playerStyle.width  = width;
+      playerStyle.height = height;
+    }
 
     return (
-      <div className={classNames('video-player', { inactive: !revealed, detailed, inline: width && height && !fullscreen, fullscreen, letterbox, 'full-width': fullwidth })} style={{ width, height }} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className={classNames('video-player', { inactive: !revealed, detailed, inline: width && height && !fullscreen, fullscreen, letterbox, 'full-width': fullwidth })} style={playerStyle} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <video
           ref={this.setVideoRef}
           src={src}

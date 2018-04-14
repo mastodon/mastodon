@@ -58,6 +58,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <Video
             preview={video.get('preview_url')}
             src={video.get('url')}
+            inline
             sensitive={status.get('sensitive')}
             letterbox={settings.getIn(['media', 'letterbox'])}
             fullwidth={settings.getIn(['media', 'fullwidth'])}
