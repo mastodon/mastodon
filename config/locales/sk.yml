@@ -162,15 +162,15 @@ sk:
         enable_user: '%{name} povolil prihlásenie pre používateľa %{target}'
         memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme
           spomínať"'
-        promote_user: '%{name} povýšil používateľa %{target}'
-        reset_password_user: '%{name} resetoval heslo pre používateľa %{target}'
-        resolve_report: '%{name} zamietol nahlásenie %{target}'
-        silence_account: '%{name} stíšil účet %{target}'
-        suspend_account: '%{name} suspendoval účet používateľa %{target}'
-        unsilence_account: '%{name} zrušil stíšenie účtu používateľa %{target}'
-        unsuspend_account: '%{name} zrušil suspendáciu účtu používateľa %{target}'
-        update_custom_emoji: '%{name} aktualizoval emoji %{target}'
-        update_status: '%{name} aktualizoval status %{target}'
+        promote_user: '%{name} povýšil/a používateľa %{target}'
+        reset_password_user: '%{name} resetoval/a heslo pre používateľa %{target}'
+        resolve_report: '%{name} zamietli nahlásenie %{target}'
+        silence_account: '%{name} utíšil/a účet %{target}'
+        suspend_account: '%{name} zablokoval/a účet používateľa %{target}'
+        unsilence_account: '%{name} zrušil/a utíšenie účtu používateľa %{target}'
+        unsuspend_account: '%{name} zrušil/a blokovanie účtu používateľa %{target}'
+        update_custom_emoji: '%{name} aktualizoval/a emoji %{target}'
+        update_status: '%{name} aktualizoval/a status pre %{target}'
       title: Kontrólny záznam
     custom_emojis:
       by_domain: Doména
@@ -389,9 +389,9 @@ sk:
     warning: Na tieto údaje dávajte ohromný pozor. Nikdy ich s nikým nezďieľajte!
     your_token: Váš prístupový token
   auth:
-    agreement_html: V rámci registrácie súhlasíte, že sa budete riadiť  <a href="%{rules_path}">
-      1 pravidlami tejto instancie</a> 2 a taktiež <a href="%{terms_path}"> 3 našími
-      servisnými podmienkami </a> 4.
+    agreement_html: V rámci registrácie súhlasíš, že sa budeš riadiť <a href="%{rules_path}">
+      pravidlami tejto instancie</a>, a taktiež <a href="%{terms_path}"> našími servisnými
+      podmienkami </a>.
     change_password: Heslo
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
@@ -763,6 +763,10 @@ sk:
         obrazovku, môžeš potom dostávať notifikácie skoro ako z natívnej aplikácie!
       tips: Tipy
       title: Vitaj na palube, %{name}!
+      review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že
+        aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje
+        príspevky majú sami automaticky zaradiť. Pokiaľ nemáš malátnosť z pohybu,
+        môžeš si zvoliť aj automatické spúšťanie GIF animácií.
   users:
     invalid_email: Emailová adresa je neplatná
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
