@@ -1,11 +1,12 @@
 import api from '../api';
-import { CancelToken } from 'axios';
+import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
 import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
+import { showAlertForError } from './alerts';
 
 let cancelFetchComposeSuggestionsAccounts;
 
@@ -291,6 +292,10 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
   }).then(response => {
     dispatch(importFetchedAccounts(response.data));
     dispatch(readyComposeSuggestionsAccounts(token, response.data));
+  }).catch(error => {
+    if (!isCancel(error)) {
+      dispatch(showAlertForError(error));
+    }
   });
 }, 200, { leading: true, trailing: true });
 

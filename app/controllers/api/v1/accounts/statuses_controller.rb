@@ -69,7 +69,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit, :only_media, :exclude_replies).merge(core_params)
+    params.slice(:limit, :only_media, :exclude_replies).permit(:limit, :only_media, :exclude_replies).merge(core_params)
   end
 
   def insert_pagination_headers
