@@ -36,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 6px;
-  color: $darker-text-color;
+  color: $lighter-text-color;
   line-height: 0;
 }
 
@@ -50,7 +50,7 @@
   cursor: pointer;
 
   &:hover {
-    color: opacify($darker-text-color, 0.04);
+    color: opacify($lighter-text-color, 0.04);
   }
 }
 
