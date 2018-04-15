@@ -13,7 +13,7 @@ import { createSelector } from 'reselect';
 import { List as ImmutableList } from 'immutable';
 import { debounce } from 'lodash';
 import ScrollableList from '../../components/scrollable_list';
-import LoadMore from '../../components/load_more';
+import LoadGap from '../../components/load_gap';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -23,24 +23,6 @@ const getNotifications = createSelector([
   state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items']),
 ], (excludedTypes, notifications) => notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type'))));
-
-class LoadGap extends React.PureComponent {
-
-  static propTypes = {
-    disabled: PropTypes.bool,
-    maxId: PropTypes.string,
-    onClick: PropTypes.func.isRequired,
-  };
-
-  handleClick = () => {
-    this.props.onClick(this.props.maxId);
-  }
-
-  render () {
-    return <LoadMore onClick={this.handleClick} disabled={this.props.disabled} />;
-  }
-
-}
 
 const mapStateToProps = state => ({
   notifications: getNotifications(state),

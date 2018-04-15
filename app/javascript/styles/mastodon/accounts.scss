@@ -563,3 +563,57 @@
     border-color: rgba(lighten($error-red, 12%), 0.5);
   }
 }
+
+.account__header__fields {
+  border-collapse: collapse;
+  padding: 0;
+  margin: 15px -15px -15px;
+  border: 0 none;
+  border-top: 1px solid lighten($ui-base-color, 4%);
+  border-bottom: 1px solid lighten($ui-base-color, 4%);
+
+  th,
+  td {
+    padding: 15px;
+    padding-left: 15px;
+    border: 0 none;
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    vertical-align: middle;
+  }
+
+  th {
+    padding-left: 15px;
+    font-weight: 500;
+    text-align: center;
+    width: 94px;
+    color: $ui-secondary-color;
+    background: rgba(darken($ui-base-color, 8%), 0.5);
+  }
+
+  td {
+    color: $ui-primary-color;
+    text-align: center;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  a {
+    color: $ui-highlight-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  tr {
+    &:last-child {
+      th,
+      td {
+        border-bottom: 0;
+      }
+    }
+  }
+}

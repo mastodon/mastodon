@@ -145,6 +145,11 @@
       border: 0;
       background: transparent;
       border-bottom: 1px solid $ui-base-color;
+
+      &.section-break {
+        margin: 30px 0;
+        border-bottom: 2px solid $ui-base-lighter-color;
+      }
     }
 
     .muted-hint {
@@ -327,6 +332,36 @@
     width: 24px;
     text-align: center;
     margin-bottom: 10px;
+  }
+}
+
+.report-note__comment {
+  margin-bottom: 20px;
+}
+
+.report-note__form {
+  margin-bottom: 20px;
+
+  .report-note__textarea {
+    box-sizing: border-box;
+    border: 0;
+    padding: 7px 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: $ui-base-color;
+    display: block;
+    width: 100%;
+    outline: 0;
+    font-family: inherit;
+    resize: vertical;
+  }
+
+  .report-note__buttons {
+    text-align: right;
+  }
+
+  .report-note__button {
+    margin: 0 0 5px 5px;
   }
 }
 

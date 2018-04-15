@@ -81,8 +81,6 @@ class Notification < ApplicationRecord
       end
     end
 
-    private
-
     def activity_types_from_types(types)
       types.map { |type| TYPE_CLASS_MAP[type.to_sym] }.compact
     end
