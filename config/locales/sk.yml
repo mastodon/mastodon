@@ -149,15 +149,15 @@ sk:
         enable_custom_emoji: "%{name} povolil emoji %{target}"
         enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
         memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme spomínať"'
-        promote_user: "%{name} povýšil používateľa %{target}"
-        reset_password_user: "%{name} resetoval heslo pre používateľa %{target}"
-        resolve_report: "%{name} zamietol nahlásenie %{target}"
-        silence_account: "%{name} stíšil účet %{target}"
-        suspend_account: "%{name} suspendoval účet používateľa %{target}"
-        unsilence_account: "%{name} zrušil stíšenie účtu používateľa %{target}"
-        unsuspend_account: "%{name} zrušil suspendáciu účtu používateľa %{target}"
-        update_custom_emoji: "%{name} aktualizoval emoji %{target}"
-        update_status: "%{name} aktualizoval status %{target}"
+        promote_user: "%{name} povýšil/a používateľa %{target}"
+        reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
+        resolve_report: "%{name} zamietli nahlásenie %{target}"
+        silence_account: "%{name} utíšil/a účet %{target}"
+        suspend_account: "%{name} zablokoval/a účet používateľa %{target}"
+        unsilence_account: "%{name} zrušil/a utíšenie účtu používateľa %{target}"
+        unsuspend_account: "%{name} zrušil/a blokovanie účtu používateľa %{target}"
+        update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
+        update_status: "%{name} aktualizoval/a status pre %{target}"
       title: Kontrólny záznam
     custom_emojis:
       by_domain: Doména
@@ -358,7 +358,7 @@ sk:
     warning: Na tieto údaje dávajte ohromný pozor. Nikdy ich s nikým nezďieľajte!
     your_token: Váš prístupový token
   auth:
-    agreement_html: V rámci registrácie súhlasíte, že sa budete riadiť  <a href="%{rules_path}"> 1 pravidlami tejto instancie</a> 2 a taktiež <a href="%{terms_path}"> 3 našími servisnými podmienkami </a> 4.
+    agreement_html: V rámci registrácie súhlasíš, že sa budeš riadiť <a href="%{rules_path}"> pravidlami tejto instancie</a>, a taktiež <a href="%{terms_path}"> našími servisnými podmienkami </a>.
     change_password: Heslo
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
@@ -366,8 +366,8 @@ sk:
     didnt_get_confirmation: Neobdŕžali ste kroky pre potvrdenie?
     forgot_password: Zabudli ste heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítajte si nový.
-    login: Prihlásenie
-    logout: Odhlásiť sa
+    login: Prihlás sa
+    logout: Odhlás sa
     migrate_account: Presunúť sa na iný účet
     migrate_account_html: Pokiaľ si želáte presmerovať tento účet na nejaký iný, môžete <a href="%{path}"> tak urobiť tu</a>.
     or: alebo
@@ -375,7 +375,7 @@ sk:
     providers:
       cas: CAS
       saml: SAML
-    register: Zaregistrovať sa
+    register: Zaregistruj sa
     register_elsewhere: Zaregistruj sa na inom serveri
     resend_confirmation: Poslať potvrdzujúce pokyny znovu
     reset_password: Resetovať heslo
@@ -677,6 +677,7 @@ sk:
       full_handle: Adresa tvojho profilu v celom formáte
       full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli posielať správy, alebo ťa následovať z inej instancie.
       review_preferences_action: Zmeniť nastavenia
+      review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje príspevky majú sami automaticky zaradiť. Pokiaľ nemáš malátnosť z pohybu, môžeš si zvoliť aj automatické spúšťanie GIF animácií.
       subject: Vitaj na Mastodone
       tip_bridge_html: Ak prichádzaš z Twitteru, môžeš svojích priateľov nájsť na Mastodone pomocou tzv. <a href="%{bridge_url}">mostíkovej aplikácie</a>. Ale tá funguje iba ak ju aj oni niekedy použili!
       tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice. Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje úplne celistvá.
