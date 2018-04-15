@@ -238,7 +238,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   handleRef = (node) => {
-    if (node /*&& this.isStandaloneEligible()*/) {
+    if (node && this.isStandaloneEligible()) {
       // offsetWidth triggers a layout, so only calculate when we need to
       this.setState({
         width: node.offsetWidth,
@@ -260,12 +260,8 @@ export default class MediaGallery extends React.PureComponent {
 
     const style = {};
 
-    if (this.isStandaloneEligible()) {
-      if (width) {
-        style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
-      }
-    } else if (width) {
-      style.height = width / (16/9);
+    if (this.isStandaloneEligible() && width) {
+      style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
     }
 
     if (!visible) {
