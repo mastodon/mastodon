@@ -25,6 +25,14 @@ class AccountPolicy < ApplicationPolicy
     staff?
   end
 
+  def enable_media_uploads?
+    staff?
+  end
+
+  def disable_media_uploads?
+    staff? && !record.user&.staff?
+  end
+
   def redownload?
     admin?
   end

@@ -45,6 +45,7 @@
 #  moved_to_account_id     :integer
 #  featured_collection_url :string
 #  fields                  :jsonb
+#  media_uploads_disabled  :boolean          default(FALSE), not null
 #
 
 class Account < ApplicationRecord
@@ -184,6 +185,14 @@ class Account < ApplicationRecord
       user&.disable! if local?
       update!(memorial: true)
     end
+  end
+
+  def disable_media_uploads!
+    update!(media_uploads_disabled: true)
+  end
+
+  def enable_media_uploads!
+    update!(media_uploads_disabled: false)
   end
 
   def keypair

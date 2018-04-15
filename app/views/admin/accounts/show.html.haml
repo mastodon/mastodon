@@ -44,6 +44,15 @@
           %td
             = @account.user_unconfirmed_email
         %tr
+          %th= t('admin.accounts.media_uploads')
+          %td
+            - if @account.media_uploads_disabled?
+              = t('admin.accounts.disabled')
+              = table_link_to 'unlock', t('admin.accounts.enable'), enable_media_uploads_admin_account_path(@account.id), method: :post if can?(:enable_media_uploads, @account)
+            - else
+              = t('admin.accounts.enabled')
+              = table_link_to 'lock', t('admin.accounts.disable'), disable_media_uploads_admin_account_path(@account.id), method: :post if can?(:disable_media_uploads, @account)
+        %tr
           %th= t('admin.accounts.login_status')
           %td
             - if @account.user&.disabled?
