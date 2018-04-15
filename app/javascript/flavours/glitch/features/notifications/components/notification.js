@@ -16,6 +16,8 @@ export default class Notification extends ImmutablePureComponent {
     onMoveUp: PropTypes.func.isRequired,
     onMoveDown: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    getScrollPosition: PropTypes.func,
+    updateScrollBottom: PropTypes.func,
   };
 
   render () {
@@ -25,6 +27,8 @@ export default class Notification extends ImmutablePureComponent {
       onMoveDown,
       onMoveUp,
       onMention,
+      getScrollPosition,
+      updateScrollBottom,
     } = this.props;
 
     switch(notification.get('type')) {
@@ -50,6 +54,8 @@ export default class Notification extends ImmutablePureComponent {
           onMoveDown={onMoveDown}
           onMoveUp={onMoveUp}
           onMention={onMention}
+          getScrollPosition={getScrollPosition}
+          updateScrollBottom={updateScrollBottom}
           withDismiss
         />
       );
@@ -66,6 +72,8 @@ export default class Notification extends ImmutablePureComponent {
           onMoveDown={onMoveDown}
           onMoveUp={onMoveUp}
           onMention={onMention}
+          getScrollPosition={getScrollPosition}
+          updateScrollBottom={updateScrollBottom}
           withDismiss
         />
       );
@@ -82,6 +90,8 @@ export default class Notification extends ImmutablePureComponent {
           onMoveDown={onMoveDown}
           onMoveUp={onMoveUp}
           onMention={onMention}
+          getScrollPosition={getScrollPosition}
+          updateScrollBottom={updateScrollBottom}
           withDismiss
         />
       );
