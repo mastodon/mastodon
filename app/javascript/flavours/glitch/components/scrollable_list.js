@@ -43,7 +43,6 @@ export default class ScrollableList extends PureComponent {
     if (this.node) {
       const { scrollTop, scrollHeight, clientHeight } = this.node;
       const offset = scrollHeight - scrollTop - clientHeight;
-      this._oldScrollPosition = scrollHeight - scrollTop;
 
       if (400 > offset && this.props.onScrollToBottom && !this.props.isLoading) {
         this.props.onScrollToBottom();
@@ -74,21 +73,26 @@ export default class ScrollableList extends PureComponent {
     this.handleScroll();
   }
 
-  componentDidUpdate (prevProps) {
+  getSnapshotBeforeUpdate (prevProps, prevState) {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
+    if (someItemInserted && this.node.scrollTop > 0) {
+      return this.node.scrollHeight - this.node.scrollTop;
+    } else {
+      return null;
+    }
+  }
 
+  componentDidUpdate (prevProps, prevState, snapshot) {
     // Reset the scroll position when a new child comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
-    if (someItemInserted && this._oldScrollPosition && this.node.scrollTop > 0) {
-      const newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
+    if (snapshot !== null) {
+      const newScrollTop = this.node.scrollHeight - snapshot;
 
       if (this.node.scrollTop !== newScrollTop) {
         this.node.scrollTop = newScrollTop;
       }
-    } else {
-      this._oldScrollPosition = this.node.scrollHeight - this.node.scrollTop;
     }
   }
 
