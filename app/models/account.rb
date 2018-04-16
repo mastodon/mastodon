@@ -44,6 +44,7 @@
 #  memorial                :boolean          default(FALSE), not null
 #  moved_to_account_id     :integer
 #  featured_collection_url :string
+#  fields                  :jsonb
 #
 
 class Account < ApplicationRecord
@@ -189,6 +190,30 @@ class Account < ApplicationRecord
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
+  def fields
+    (self[:fields] || []).map { |f| Field.new(self, f) }
+  end
+
+  def fields_attributes=(attributes)
+    fields = []
+
+    attributes.each_value do |attr|
+      next if attr[:name].blank?
+      fields << attr
+    end
+
+    self[:fields] = fields
+  end
+
+  def build_fields
+    return if fields.size >= 4
+
+    raw_fields = self[:fields] || []
+    add_fields = 4 - raw_fields.size
+    add_fields.times { raw_fields << { name: '', value: '' } }
+    self.fields = raw_fields
+  end
+
   def magic_key
     modulus, exponent = [keypair.public_key.n, keypair.public_key.e].map do |component|
       result = []
@@ -236,6 +261,17 @@ class Account < ApplicationRecord
 
   def preferred_inbox_url
     shared_inbox_url.presence || inbox_url
+  end
+
+  class Field < ActiveModelSerializers::Model
+    attributes :name, :value, :account, :errors
+
+    def initialize(account, attr)
+      @account = account
+      @name    = attr['name']
+      @value   = attr['value']
+      @errors  = {}
+    end
   end
 
   class << self

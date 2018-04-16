@@ -546,7 +546,7 @@ es:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: " "
   pagination:
     newer: Más nuevo
     next: Próximo
@@ -634,6 +634,15 @@ es:
     two_factor_authentication: Autenticación de dos factores
     your_apps: Tus aplicaciones
   statuses:
+    attached:
+      description: 'Adjunto: %{attached}'
+      image:
+        one: "%{count} imagen"
+        other: "%{count} imágenes"
+      video:
+        one: "%{count} vídeo"
+        other: "%{count} vídeos"
+    content_warning: 'Alerta de contenido: %{warning}'
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
@@ -682,7 +691,7 @@ es:
     backup_ready:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
-      title: Recogida del archivo
+      title: Descargar archivo
     welcome:
       edit_profile_action: Configurar el perfil
       edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, cabecera, cambiando tu nombre para mostrar y más. Si te gustaría revisar seguidores antes de autorizarlos a que te sigan, puedes bloquear tu cuenta.

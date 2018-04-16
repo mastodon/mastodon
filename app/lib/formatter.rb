@@ -71,6 +71,11 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def format_field(account, str)
+    return reformat(str).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
+    encode_and_link_urls(str, me: true).html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   def linkify(text)
     html = encode_and_link_urls(text)
     html = simple_format(html, {}, sanitize: false)
@@ -85,12 +90,17 @@ class Formatter
     HTMLEntities.new.encode(html)
   end
 
-  def encode_and_link_urls(html, accounts = nil)
+  def encode_and_link_urls(html, accounts = nil, options = {})
     entities = Extractor.extract_entities_with_indices(html, extract_url_without_protocol: false)
+
+    if accounts.is_a?(Hash)
+      options  = accounts
+      accounts = nil
+    end
 
     rewrite(html.dup, entities) do |entity|
       if entity[:url]
-        link_to_url(entity)
+        link_to_url(entity, options)
       elsif entity[:hashtag]
         link_to_hashtag(entity)
       elsif entity[:screen_name]
@@ -177,9 +187,11 @@ class Formatter
     result.flatten.join
   end
 
-  def link_to_url(entity)
+  def link_to_url(entity, options = {})
     url        = Addressable::URI.parse(entity[:url])
     html_attrs = { target: '_blank', rel: 'nofollow noopener' }
+
+    html_attrs[:rel] = "me #{html_attrs[:rel]}" if options[:me]
 
     Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), url, html_attrs)
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
