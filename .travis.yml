@@ -48,7 +48,7 @@ services:
 
 install:
   - nvm install
-  - bundle install --path=vendor/bundle --with pam_authentication --without development production --retry=3 --jobs=16
+  - bundle install --path=vendor/bundle --with test --without production --retry=3 --jobs=16
   - yarn install
 
 before_script:

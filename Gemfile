@@ -32,7 +32,7 @@ gem 'cld3', '~> 3.2.0'
 gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0', git: 'https://github.com/ykzts/devise-two-factor.git', branch: 'rails-5.2'
 
-group :pam_authentication, optional: true do
+group :pam_authentication, :test, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.1'
 end
 
@@ -92,7 +92,7 @@ gem 'webpush'
 gem 'json-ld-preloaded', '~> 2.2'
 gem 'rdf-normalize', '~> 0.3'
 
-group :development, :test do
+group :development, :test, optional: true do
   gem 'fabrication', '~> 2.20'
   gem 'fuubar', '~> 2.2'
   gem 'i18n-tasks', '~> 0.9', require: false
@@ -104,7 +104,7 @@ group :production, :test do
   gem 'private_address_check', '~> 0.4.1'
 end
 
-group :test do
+group :test, optional: true do
   gem 'capybara', '~> 2.18'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.8'
@@ -116,7 +116,7 @@ group :test do
   gem 'parallel_tests', '~> 2.21'
 end
 
-group :development do
+group :development, optional: true do
   gem 'active_record_query_trace', '~> 1.5'
   gem 'annotate', '~> 2.7'
   gem 'better_errors', '~> 2.4'
