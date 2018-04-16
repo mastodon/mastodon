@@ -19,7 +19,7 @@ class PostStatusService < BaseService
       return Status.find(existing_id) if existing_id
     end
 
-    media  = validate_media!(options[:media_ids])
+    media  = validate_media!(options[:media_ids], account)
     status = nil
     text   = options.delete(:spoiler_text) if text.blank? && options[:spoiler_text].present?
     text   = '.' if text.blank? && !media.empty?
@@ -53,8 +53,10 @@ class PostStatusService < BaseService
 
   private
 
-  def validate_media!(media_ids)
+  def validate_media!(media_ids, account)
     return if media_ids.blank? || !media_ids.is_a?(Enumerable)
+
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.media_uploads_disabled') if account.media_uploads_disabled?
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 4
 

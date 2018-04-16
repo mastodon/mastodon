@@ -2,9 +2,13 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :enable, :disable, :memorialize]
+    before_action :set_account, only: [
+      :show, :subscribe, :unsubscribe, :redownload, :remove_avatar,
+      :enable, :disable, :enable_media_uploads, :disable_media_uploads,
+      :memorialize
+    ]
     before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
-    before_action :require_local_account!, only: [:enable, :disable, :memorialize]
+    before_action :require_local_account!, only: [:enable, :disable, :enable_media_uploads, :disable_media_uploads, :memorialize]
 
     def index
       authorize :account, :index?
@@ -47,6 +51,20 @@ module Admin
       authorize @account.user, :disable?
       @account.user.disable!
       log_action :disable, @account.user
+      redirect_to admin_account_path(@account.id)
+    end
+
+    def disable_media_uploads
+      authorize @account, :disable_media_uploads?
+      @account.disable_media_uploads!
+      log_action :disable_media_uploads, @account.user
+      redirect_to admin_account_path(@account.id)
+    end
+
+    def enable_media_uploads
+      authorize @account, :enable_media_uploads?
+      @account.enable_media_uploads!
+      log_action :enable_media_uploads, @account.user
       redirect_to admin_account_path(@account.id)
     end
 
