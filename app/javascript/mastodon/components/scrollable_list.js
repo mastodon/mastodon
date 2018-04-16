@@ -34,7 +34,7 @@ export default class ScrollableList extends PureComponent {
   };
 
   state = {
-    lastMouseMove: null,
+    fullscreen: null,
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
@@ -57,14 +57,6 @@ export default class ScrollableList extends PureComponent {
   }, 150, {
     trailing: true,
   });
-
-  handleMouseMove = throttle(() => {
-    this._lastMouseMove = new Date();
-  }, 300);
-
-  handleMouseLeave = () => {
-    this._lastMouseMove = null;
-  }
 
   componentDidMount () {
     this.attachScrollListener();
@@ -147,10 +139,6 @@ export default class ScrollableList extends PureComponent {
     this.props.onLoadMore();
   }
 
-  _recentlyMoved () {
-    return this._lastMouseMove !== null && ((new Date()) - this._lastMouseMove < 600);
-  }
-
   render () {
     const { children, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
@@ -161,7 +149,7 @@ export default class ScrollableList extends PureComponent {
 
     if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseLeave}>
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
           <div role='feed' className='item-list'>
             {prepend}
 
