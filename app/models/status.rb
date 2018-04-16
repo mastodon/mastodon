@@ -31,16 +31,18 @@ class Status < ApplicationRecord
   include Cacheable
   include StatusThreadingConcern
 
+  update_index('statuses#status', :proper) if Chewy.enabled?
+
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
-  belongs_to :application, class_name: 'Doorkeeper::Application'
+  belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
-  belongs_to :account, inverse_of: :statuses, counter_cache: true, required: true
-  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
-  belongs_to :conversation
+  belongs_to :account, inverse_of: :statuses, counter_cache: true
+  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account', optional: true
+  belongs_to :conversation, optional: true
 
-  belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
-  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count
+  belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
+  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count, optional: true
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
@@ -55,7 +57,7 @@ class Status < ApplicationRecord
   has_one :stream_entry, as: :activity, inverse_of: :status
 
   validates :uri, uniqueness: true, presence: true, unless: :local?
-  validates :text, presence: true, unless: :reblog?
+  validates :text, presence: true, unless: -> { with_media? || reblog? }
   validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
 
@@ -74,9 +76,27 @@ class Status < ApplicationRecord
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
 
-  cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
+  cache_associated :account, :application, :media_attachments, :conversation, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, :conversation, mentions: :account], thread: :account
 
   delegate :domain, to: :account, prefix: true
+
+  REAL_TIME_WINDOW = 6.hours
+
+  def searchable_by(preloaded = nil)
+    ids = [account_id]
+
+    if preloaded.nil?
+      ids += mentions.pluck(:account_id)
+      ids += favourites.pluck(:account_id)
+      ids += reblogs.pluck(:account_id)
+    else
+      ids += preloaded.mentions[id] || []
+      ids += preloaded.favourites[id] || []
+      ids += preloaded.reblogs[id] || []
+    end
+
+    ids.uniq
+  end
 
   def reply?
     !in_reply_to_id.nil? || attributes['reply']
@@ -88,6 +108,10 @@ class Status < ApplicationRecord
 
   def reblog?
     !reblog_of_id.nil?
+  end
+
+  def within_realtime_window?
+    created_at >= REAL_TIME_WINDOW.ago
   end
 
   def verb
@@ -126,8 +150,12 @@ class Status < ApplicationRecord
     private_visibility? || direct_visibility?
   end
 
+  def with_media?
+    media_attachments.any?
+  end
+
   def non_sensitive_with_media?
-    !sensitive? && media_attachments.any?
+    !sensitive? && with_media?
   end
 
   def emojis
@@ -294,7 +322,7 @@ class Status < ApplicationRecord
       self.in_reply_to_account_id = carried_over_reply_to_account_id
       self.conversation_id        = thread.conversation_id if conversation_id.nil?
     elsif conversation_id.nil?
-      create_conversation
+      self.conversation = Conversation.new
     end
   end
 

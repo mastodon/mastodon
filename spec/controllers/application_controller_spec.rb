@@ -181,10 +181,48 @@ describe ApplicationController, type: :controller do
       routes.draw { get 'sucesss' => 'anonymous#sucesss' }
     end
 
-    it 'redirects to root path if current user is not admin' do
+    it 'returns a 403 if current user is not admin' do
       sign_in(Fabricate(:user, admin: false))
       get 'sucesss'
-      expect(response).to redirect_to('/')
+      expect(response).to have_http_status(403)
+    end
+
+    it 'returns a 403 if current user is only a moderator' do
+      sign_in(Fabricate(:user, moderator: true))
+      get 'sucesss'
+      expect(response).to have_http_status(403)
+    end
+
+    it 'does nothing if current user is admin' do
+      sign_in(Fabricate(:user, admin: true))
+      get 'sucesss'
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'require_staff!' do
+    controller do
+      before_action :require_staff!
+
+      def sucesss
+        head 200
+      end
+    end
+
+    before do
+      routes.draw { get 'sucesss' => 'anonymous#sucesss' }
+    end
+
+    it 'returns a 403 if current user is not admin or moderator' do
+      sign_in(Fabricate(:user, admin: false, moderator: false))
+      get 'sucesss'
+      expect(response).to have_http_status(403)
+    end
+
+    it 'does nothing if current user is moderator' do
+      sign_in(Fabricate(:user, moderator: true))
+      get 'sucesss'
+      expect(response).to have_http_status(200)
     end
 
     it 'does nothing if current user is admin' do

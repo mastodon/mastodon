@@ -9,14 +9,11 @@ RSpec.describe PrecomputeFeedService do
     let(:account) { Fabricate(:account) }
     it 'fills a user timeline with statuses' do
       account = Fabricate(:account)
-      followed_account = Fabricate(:account)
-      Fabricate(:follow, account: account, target_account: followed_account)
-      reblog = Fabricate(:status, account: followed_account)
-      status = Fabricate(:status, account: account, reblog: reblog)
+      status = Fabricate(:status, account: account)
 
       subject.call(account)
 
-      expect(Redis.current.zscore(FeedManager.instance.key(:home, account.id), reblog.id)).to eq status.id.to_f
+      expect(Redis.current.zscore(FeedManager.instance.key(:home, account.id), status.id)).to be_within(0.1).of(status.id.to_f)
     end
 
     it 'does not raise an error even if it could not find any status' do

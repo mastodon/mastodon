@@ -3,17 +3,19 @@ id:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nama
-        redirect_uri: URI Pengalihan (Redirect)
+        name: Nama aplikasi
+        redirect_uri: URI Pengalihan
+        scopes: Cakupan
+        website: Website aplikasi
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: tidak dapat mengandung fragmen.
-              invalid_uri: URI harus valid.
-              relative_uri: URI harus absolut.
-              secured_uri: URI harus berupa HTTPS/SSL.
+              fragment_present: tidak dapat mengandung sebuah pecahan.
+              invalid_uri: harus URI yang valid.
+              relative_uri: harus URI yang absolut.
+              secured_uri: harus berupa URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -23,19 +25,23 @@ id:
         edit: Ubah
         submit: Kirim
       confirmations:
-        destroy: Anda yakin?
+        destroy: Apakah anda yakin?
       edit:
         title: Ubah aplikasi
       form:
-        error: Oh tidak! Cek kembali kemungkinan kesalahan pada formulir anda
+        error: Oops! Cek kembali kemungkinan kesalahan pada formulir anda
       help:
         native_redirect_uri: Gunakan %{native_redirect_uri} sebagai tes lokal
         redirect_uri: Gunakan satu baris per URI
         scopes: Pisahkan scope dengan spasi. Biarkan kosong jika ingin menggunakan scope default.
       index:
+        application: Aplikasi
         callback_url: URL Callback
+        delete: Hapus
         name: Nama
         new: Aplikasi baru
+        scopes: Cakupan
+        show: Tampilkan
         title: Aplikasi anda
       new:
         title: Aplikasi Baru

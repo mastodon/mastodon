@@ -12,16 +12,37 @@ de:
       last_attempt: Du hast noch einen Versuch, bevor dein Konto gesperrt wird.
       locked: Dein Konto ist gesperrt.
       not_found_in_database: "%{authentication_keys} oder Passwort ungültig."
-      timeout: Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.
+      timeout: Deine Sitzung ist abgelaufen. Bitte melde dich erneut an, um fortzufahren.
       unauthenticated: Du musst dich anmelden oder registrieren, bevor du fortfahren kannst.
       unconfirmed: Du musst deine E-Mail-Adresse bestätigen, bevor du fortfahren kannst.
     mailer:
       confirmation_instructions:
+        action: E-Mail-Adresse verifizieren
+        explanation: Du hast einen Account auf %{host} mit dieser E-Mail-Adresse erstellt. Du bist nun einen Klick entfernt vor der Aktivierung. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
+        extra_html: Bitte lies auch die <a href="%{terms_path}">Regeln dieser Instanz</a> und <a href="%{policy_path}">unsere Nutzungsbedingungen</a>.
         subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
+        title: Verifiziere E-Mail-Adresse
+      email_changed:
+        explanation: 'Die E-Mail-Adresse deines Accounts wird geändert zu:'
+        extra: Wenn du deine E-Mail-Adresse nicht geändert hast, dann kann es vermutlich sein, dass jemand Zugriff zu deinem Account erhalten hat. Bitte ändere sofort dein Passwort oder kontaktiere den Administrator deiner Instanz, wenn du dich ausgesperrt hast.
+        subject: 'Mastodon: E-Mail-Adresse geändert'
+        title: Neue E-Mail-Adresse
       password_change:
+        explanation: Das Passwort für deinen Account wurde geändert.
+        extra: Wenn du dein Passwort nicht geändert hast, dann kann es vermutlich sein, dass jemand Zugriff zu deinem Account erhalten hat. Bitte ändere sofort dein Passwort oder kontaktiere den Administrator deiner Instanz, wenn du dich ausgesperrt hast.
         subject: 'Mastodon: Passwort geändert'
+        title: Passwort geändert
+      reconfirmation_instructions:
+        explanation: Bestätige deine neue E-Mail-Adresse, um sie zu ändern.
+        extra: Wenn diese Änderung nicht von dir angestoßen wurde, dann solltest du diese E-Mail ignorieren. Die E-Mail-Adresse für deinen Mastodon-Account wird sich nicht ändern, bis du den obigen Link anklickst.
+        subject: 'Mastodon: Bestätige E-Mail-Adresse für %{instance}'
+        title: Verifiziere E-Mail-Adresse
       reset_password_instructions:
+        action: Ändere Passwort
+        explanation: Du hast ein neues Passwort für deinen Account angefragt.
+        extra: Wenn du diese Anfrage nicht gestellt hast, solltest du diese E-Mail ignorieren. Dein Passwort wird sich nicht ändern solange du den obigen Link anklickst und ein neues erstellst.
         subject: 'Mastodon: Passwort zurücksetzen'
+        title: Passwort zurücksetzen
       unlock_instructions:
         subject: 'Mastodon: Konto entsperren'
     omniauth_callbacks:
@@ -35,7 +56,7 @@ de:
       updated_not_active: Dein Passwort wurde geändert.
     registrations:
       destroyed: Dein Konto wurde gelöscht.
-      signed_up: Du hast dich erfolgreich registriert.
+      signed_up: Willkommen! Du hast dich erfolgreich registriert.
       signed_up_but_inactive: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto inaktiv ist.
       signed_up_but_locked: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto gesperrt ist.
       signed_up_but_unconfirmed: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto noch nicht bestätigt ist. Du erhältst in Kürze eine E-Mail. Darin ist erklärt, wie du dein Konto freischalten kannst.
@@ -51,7 +72,7 @@ de:
       unlocked: Dein Konto wurde entsperrt. Du bist jetzt angemeldet.
   errors:
     messages:
-      already_confirmed: wurde bereits bestätigt.
+      already_confirmed: wurde bereits bestätigt, bitte versuche dich anzumelden
       confirmation_period_expired: muss innerhalb %{period} bestätigt werden, bitte fordere einen neuen Link an.
       expired: ist abgelaufen, bitte neu anfordern.
       not_found: wurde nicht gefunden.

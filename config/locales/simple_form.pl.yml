@@ -3,28 +3,28 @@ pl:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 120x120px
-        digest: Wysyłane po długiej nieaktywności, zawiera podsumowanie wspomnień o Twoich profilu
+        avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 400x400px
+        digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
         display_name:
           few: Pozostały <span class="name-counter">%{count}</span> znaki.
           many: Pozostało <span class="name-counter">%{count}</span> znaków
-          one: Pozostał <span class="name-counter">1</span> znak.
+          one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
         header: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 700x335px
         locked: Musisz akceptować prośby o śledzenie
         note:
           few: Pozostały <span class="name-counter">%{count}</span> znaki.
           many: Pozostało <span class="name-counter">%{count}</span> znaków
-          one: Pozostał <span class="name-counter">1</span> znak.
+          one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
       imports:
         data: Plik CSV wyeksportowany z innej instancji Mastodona
       sessions:
-        otp: Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych
+        otp: Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych.
       user:
-        filtered_languages: Wpisy w wybranych językach nie będą wyświetlać się na publicznych osiach czasu.
+        filtered_languages: Wpisy w wybranych językach nie będą wyświetlać się na publicznych osiach czasu
     labels:
       defaults:
         avatar: Awatar
@@ -49,6 +49,7 @@ pl:
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
+        setting_display_sensitive_media: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_reduce_motion: Ogranicz ruch w animacjach
         setting_system_font_ui: Używaj domyślnej czcionki systemu
@@ -57,6 +58,7 @@ pl:
         severity: Priorytet
         type: Typ importu
         username: Nazwa użytkownika
+        username_or_email: Nazwa użytkownika lub adres e-mail
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz

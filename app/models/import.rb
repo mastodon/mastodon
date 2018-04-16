@@ -20,13 +20,13 @@ class Import < ApplicationRecord
 
   self.inheritance_column = false
 
-  belongs_to :account, required: true
+  belongs_to :account
 
   enum type: [:following, :blocking, :muting]
 
   validates :type, presence: true
 
-  has_attached_file :data, url: '/system/:hash.:extension', hash_secret: ENV['PAPERCLIP_SECRET']
+  has_attached_file :data
   validates_attachment_content_type :data, content_type: FILE_TYPES
   validates_attachment_presence :data
 end

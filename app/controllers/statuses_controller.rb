@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class StatusesController < ApplicationController
+  include SignatureAuthentication
   include Authorization
+
+  ANCESTORS_LIMIT = 20
 
   layout 'public'
 
@@ -15,8 +18,9 @@ class StatusesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @ancestors   = @status.reply? ? cache_collection(@status.ancestors(current_account), Status) : []
-        @descendants = cache_collection(@status.descendants(current_account), Status)
+        @ancestors     = @status.reply? ? cache_collection(@status.ancestors(ANCESTORS_LIMIT, current_account), Status) : []
+        @next_ancestor = @ancestors.size < ANCESTORS_LIMIT ? nil : @ancestors.shift
+        @descendants   = cache_collection(@status.descendants(current_account), Status)
 
         render 'stream_entries/show'
       end

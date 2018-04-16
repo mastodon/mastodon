@@ -24,6 +24,7 @@ defaults: &defaults
   boost_modal: false
   delete_modal: true
   auto_play_gif: false
+  display_sensitive_media: false
   reduce_motion: false
   system_font_ui: false
   noindex: false
@@ -49,6 +50,7 @@ defaults: &defaults
   bootstrap_timeline_accounts: ''
   activity_api_enabled: true
   peers_api_enabled: true
+  show_known_fediverse_at_about_page: true
 development:
   <<: *defaults
 

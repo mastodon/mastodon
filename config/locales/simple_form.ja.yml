@@ -3,8 +3,8 @@ ja:
   simple_form:
     hints:
       defaults:
-        avatar: 2MBまでのPNGやGIF、JPGが利用可能です。120x120pxまで縮小されます
-        digest: 長期間ログインしなかった際、その期間に受け取った返信の要約を受け取ることができます
+        avatar: 2MBまでのPNGやGIF、JPGが利用可能です。400x400pxまで縮小されます
+        digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます
         locked: フォロワーを手動で承認する必要があります
@@ -41,6 +41,7 @@ ja:
         setting_default_privacy: 投稿の公開範囲
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
+        setting_display_sensitive_media: 閲覧注意としてマークされたメディアも常に表示する
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
@@ -49,6 +50,7 @@ ja:
         severity: 重大性
         type: インポートする項目
         username: ユーザー名
+        username_or_email: ユーザー名またはメールアドレス
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック

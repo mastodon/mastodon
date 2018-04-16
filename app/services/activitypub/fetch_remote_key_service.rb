@@ -43,7 +43,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def person?
-    @json['type'] == 'Person'
+    ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES.include?(@json['type'])
   end
 
   def public_key?
@@ -55,6 +55,6 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def confirmed_owner?
-    @owner['type'] == 'Person' && value_or_id(@owner['publicKey']) == @json['id']
+    ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES.include?(@owner['type']) && value_or_id(@owner['publicKey']) == @json['id']
   end
 end

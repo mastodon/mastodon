@@ -51,6 +51,10 @@ class Api::BaseController < ApplicationController
     [params[:limit].to_i.abs, default_limit * 2].min
   end
 
+  def truthy_param?(key)
+    ActiveModel::Type::Boolean.new.cast(params[key])
+  end
+
   def current_resource_owner
     @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end

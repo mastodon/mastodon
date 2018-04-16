@@ -3,44 +3,71 @@ fi:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF tai JPG. Korkeintaan 2MB. Skaalataan kokoon 120x120px
-        display_name: Korkeintaan 30 merkkiä
-        header: PNG, GIF tai JPG. Korkeintaan 2MB. Skaalataan kokoon 700x335px
-        locked: Vaatii sinun manuaalisesti hyväksymään seuraajat ja asettaa julkaisujen yksityisyyden vain seuraajille
-        note: Korkeintaan 160 merkkiä
+        avatar: PNG, GIF tai JPG. Enintään 2 Mt. Skaalataan kokoon 400 x 400 px
+        digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
+        display_name:
+          one: <span class="name-counter">1</span> merkki jäljellä
+          other: <span class="name-counter">%{count}</span> merkkiä jäljellä
+        header: PNG, GIF tai JPG. Enintään 2 Mt. Skaalataan kokoon 700 x 335 px
+        locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
+        note:
+          one: <span class="note-counter">1</span> merkki jäljellä
+          other: <span class="note-counter">%{count}</span> merkkiä jäljellä
+        setting_noindex: Vaikuttaa julkiseen profiiliisi ja tilasivuihisi
+        setting_theme: Vaikuttaa Mastodonin ulkoasuun millä tahansa laitteella kirjauduttaessa.
       imports:
-        data: CSV tiedosto tuotu toiselta Mastodon palvelimelta
+        data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
+      sessions:
+        otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
+      user:
+        filtered_languages: Valitut kielet suodatetaan pois julkisilta aikajanoilta
     labels:
       defaults:
-        avatar: Avatar
-        confirm_new_password: Varmista uusi salasana
-        confirm_password: Varmista salasana
+        avatar: Profiilikuva
+        confirm_new_password: Vahvista uusi salasana
+        confirm_password: Vahvista salasana
         current_password: Nykyinen salasana
-        data: Data
-        display_name: Näykyvä nimi
+        data: Tiedot
+        display_name: Nimimerkki
         email: Sähköpostiosoite
-        header: Header
+        expires_in: Vanhenee
+        filtered_languages: Suodatetut kielet
+        header: Otsakekuva
         locale: Kieli
-        locked: Tee tilistä yksityinen
+        locked: Lukitse tili
+        max_uses: Käyttökertoja enintään
         new_password: Uusi salasana
-        note: Bio
-        otp_attempt: Kaksivaiheinen koodi
+        note: Kuvaus
+        otp_attempt: Kaksivaiheisen tunnistautumisen koodi
         password: Salasana
-        setting_default_privacy: Julkaisun yksityisyys
-        type: Tuonti tyyppi
+        setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
+        setting_boost_modal: Kysy vahvistusta ennen buustausta
+        setting_default_privacy: Julkaisun näkyvyys
+        setting_default_sensitive: Merkitse media aina arkaluontoiseksi
+        setting_delete_modal: Kysy vahvistusta ennen tuuttauksen poistamista
+        setting_display_sensitive_media: Näytä aina arkaluontoiseksi merkitty media
+        setting_noindex: Jättäydy pois hakukoneindeksoinnista
+        setting_reduce_motion: Vähennä animaatioiden liikettä
+        setting_system_font_ui: Käytä järjestelmän oletusfonttia
+        setting_theme: Sivuston teema
+        setting_unfollow_modal: Kysy vahvistusta, ennen kuin lopetat seuraamisen
+        severity: Vakavuus
+        type: Tietojen laji
         username: Käyttäjänimi
+        username_or_email: Käyttäjänimi tai sähköposti
       interactions:
-        must_be_follower: Estä ilmoitukset käyttäjiltä jotka eivät seuraa sinua
-        must_be_following: Estä ilmoitukset käyttäjiltä joita et seuraa
+        must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
+        must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
+        must_be_following_dm: Estä suorat viestit käyttäjiltä, joita et seuraa
       notification_emails:
-        digest: Send digest e-mails
-        favourite: Lähetä s-posti kun joku tykkää statuksestasi
-        follow: Lähetä s-posti kun joku seuraa sinua
-        follow_request: Lähetä s-posti kun joku pyytää seurata sinua
-        mention: Lähetä s-posti kun joku mainitsee sinut
-        reblog: Lähetä s-posti kun joku buustaa julkaisusi
+        digest: Lähetä koosteviestejä sähköpostitse
+        favourite: Lähetä sähköposti, kun joku tykkää tilastasi
+        follow: Lähetä sähköposti, kun joku seuraa sinua
+        follow_request: Lähetä sähköposti, kun joku pyytää seurata sinua
+        mention: Lähetä sähköposti, kun sinut mainitaan
+        reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
     'no': Ei
     required:
       mark: "*"
-      text: vaaditaan
+      text: pakollinen tieto
     'yes': Kyllä

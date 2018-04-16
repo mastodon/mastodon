@@ -3,8 +3,8 @@ nl:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 120x120px
-        digest: Wordt na een lange periode van inactiviteit verzonden met een samenvatting van vermeldingen tijdens je afwezigheid
+        avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
+        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten ontvangt
         display_name:
           one: <span class="name-counter">1</span> teken over
           other: <span class="name-counter">%{count}</span> tekens over
@@ -16,7 +16,7 @@ nl:
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
         setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
       imports:
-        data: CSV-bestand dat op een andere Mastodon-server werd geëxporteerd
+        data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
         otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcode's.
       user:
@@ -45,6 +45,7 @@ nl:
         setting_default_privacy: Zichtbaarheid toots
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
+        setting_display_sensitive_media: Als gevoelig gemarkeerde media altijd tonen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
@@ -53,6 +54,7 @@ nl:
         severity: Zwaarte
         type: Importtype
         username: gebruikersnaam
+        username_or_email: Gebruikersnaam of e-mailadres
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren

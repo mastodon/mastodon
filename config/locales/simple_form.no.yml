@@ -3,43 +3,63 @@
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 120x120px
-        display_name: Maksimalt 30 tegn
+        avatar: PNG, GIF eller JPG. Maksimalt 2 MB. Vil bli nedskalert til 400x400px
+        digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        display_name:
+          one: <span class="name-counter">1</span> tegn igjen
+          other: <span class="name-counter">%{count}</span> tegn igjen
         header: PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 700x335px
-        locked: Krever at du manuelt godkjenner følgere og setter standardbeskyttelse av poster til kun-følgere
-        note: Maksimalt 160 tegn
+        locked: Krever at du manuelt godkjenner følgere
+        note:
+          one: <span class="note-counter">1</span> tegn igjen
+          other: <span class="note-counter">%{count}</span> tegn igjen
+        setting_noindex: Påvirker din offentlige profil og statussider
+        setting_theme: Påvirker hvordan Mastodon ser ut når du er logget inn fra uansett enhet.
       imports:
-        data: CSV-fil eksportert fra en annen Mastodon instans
+        data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
-        otp: Skriv tofaktorkoden fra din telefon eller bruk en av gjenopprettingskodene.
+        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+      user:
+        filtered_languages: Språk som er avhuket vil ikke vises på offentlige tidslinjer fra deg
     labels:
       defaults:
-        avatar: Profilbilde
+        avatar: Avatar
         confirm_new_password: Bekreft nytt passord
         confirm_password: Bekreft passord
         current_password: Nåværende passord
         data: Data
         display_name: Visningsnavn
         email: E-postadresse
+        expires_in: Utløper etter
+        filtered_languages: Filtrerte språk
         header: Overskrift
         locale: Språk
-        locked: Endre konto til privat
+        locked: Lås konto
+        max_uses: Maksimalt antall bruk
         new_password: Nytt passord
-        note: Biografi
+        note: Om meg
         otp_attempt: Tofaktorkode
         password: Passord
-        setting_auto_play_gif: Automatisk avspilling av GIFer
-        setting_boost_modal: Vis bekreftelsesdialog før fremheving
-        setting_default_privacy: Leserettigheter for poster
-        severity: Alvorlighet
+        setting_auto_play_gif: Autoavspill animert GIF-filer
+        setting_boost_modal: Vis bekreftelse før fremheving
+        setting_default_privacy: Postintegritet
+        setting_default_sensitive: Marker alltid media som sensitivt
+        setting_delete_modal: Vis bekreftelse før du sletter en tut
+        setting_noindex: Ikke delta i søkemotorsindeksering
+        setting_reduce_motion: Reduser bevegelser i animasjoner
+        setting_system_font_ui: Bruk systemets standardfont
+        setting_theme: Sidens tema
+        setting_unfollow_modal: Vis bekreftelse før du slutter å følge noen
+        severity: Alvorlighetsgrad
         type: Importeringstype
         username: Brukernavn
       interactions:
-        must_be_follower: Blokkér varslinger fra ikke-følgere
-        must_be_following: Blokkér varslinger fra brukere du ikke følger
+        must_be_follower: Blokker varslinger fra ikke-følgere
+        must_be_following: Blokker varslinger fra personer du ikke følger
+        must_be_following_dm: Blokker direkte meldinger fra personer du ikke følger
       notification_emails:
-        digest: Send oppsummeringseposter
-        favourite: Send e-post når noen liker din status
+        digest: Send sammendrag på e-post
+        favourite: Send e-post når noen setter din status som favoritt
         follow: Send e-post når noen følger deg
         follow_request: Send e-post når noen ber om å få følge deg
         mention: Send e-post når noen nevner deg
@@ -47,5 +67,5 @@
     'no': Nei
     required:
       mark: "*"
-      text: påkrevd
+      text: obligatorisk
     'yes': Ja
