@@ -70,7 +70,6 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.display_name            = @json['name'] || ''
     @account.note                    = @json['summary'] || ''
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
-    @account.fields                  = property_values || {}
   end
 
   def set_fetchable_attributes!
@@ -125,11 +124,6 @@ class ActivityPub::ProcessAccountService < BaseService
     else
       url_candidate
     end
-  end
-
-  def property_values
-    return unless @json['attachment'].is_a?(Array)
-    @json['attachment'].select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
   end
 
   def mismatching_origin?(url)
