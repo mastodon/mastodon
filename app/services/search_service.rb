@@ -4,7 +4,7 @@ class SearchService < BaseService
   attr_accessor :query, :account, :limit, :resolve
 
   def call(query, limit, resolve = false, account = nil)
-    @query   = query
+    @query   = query.strip
     @account = account
     @limit   = limit
     @resolve = resolve

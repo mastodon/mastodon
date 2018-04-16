@@ -6,8 +6,8 @@
   .card__bio
     %h1.name
       %span.p-name.emojify= display_name(account)
-      %small
-        %span @#{account.local_username_and_domain}
+      %small<
+        %span>< @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
 
     - if Setting.show_staff_badge
