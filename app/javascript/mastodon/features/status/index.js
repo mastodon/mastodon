@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -54,11 +55,47 @@ const messages = defineMessages({
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
-  const mapStateToProps = (state, props) => ({
-    status: getStatus(state, props.params.statusId),
-    ancestorsIds: state.getIn(['contexts', 'ancestors', props.params.statusId]),
-    descendantsIds: state.getIn(['contexts', 'descendants', props.params.statusId]),
-  });
+  const mapStateToProps = (state, props) => {
+    const status = getStatus(state, props.params.statusId);
+    let ancestorsIds = Immutable.List();
+    let descendantsIds = Immutable.List();
+
+    if (status) {
+      ancestorsIds = ancestorsIds.withMutations(mutable => {
+        function addAncestor(id) {
+          if (id) {
+            const inReplyTo = state.getIn(['contexts', 'inReplyTos', id]);
+
+            mutable.unshift(id);
+            addAncestor(inReplyTo);
+          }
+        }
+
+        addAncestor(status.get('in_reply_to_id'));
+      });
+
+      descendantsIds = descendantsIds.withMutations(mutable => {
+        function addDescendantOf(id) {
+          const replies = state.getIn(['contexts', 'replies', id]);
+
+          if (replies) {
+            replies.forEach(reply => {
+              mutable.push(reply);
+              addDescendantOf(reply);
+            });
+          }
+        }
+
+        addDescendantOf(status.get('id'));
+      });
+    }
+
+    return {
+      status,
+      ancestorsIds,
+      descendantsIds,
+    };
+  };
 
   return mapStateToProps;
 };
