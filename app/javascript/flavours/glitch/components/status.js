@@ -326,6 +326,7 @@ export default class Status extends ImmutablePureComponent {
             {Component => (<Component
               preview={video.get('preview_url')}
               src={video.get('url')}
+              inline
               sensitive={status.get('sensitive')}
               letterbox={settings.getIn(['media', 'letterbox'])}
               fullwidth={settings.getIn(['media', 'fullwidth'])}
