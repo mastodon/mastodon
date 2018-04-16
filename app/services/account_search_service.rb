@@ -15,7 +15,11 @@ class AccountSearchService < BaseService
   private
 
   def search_service_results
-    return [] if query_blank_or_hashtag? || limit < 1
+    return [] if query_blank? || limit < 1
+
+    if query_hashtag?
+      return Account.search_by_hashtags(query_hashtags).limit(limit)
+    end
 
     if resolving_non_matching_remote_account?
       [ResolveAccountService.new.call("#{query_username}@#{query_domain}")].compact
@@ -34,8 +38,16 @@ class AccountSearchService < BaseService
     exact + search_results.to_a
   end
 
-  def query_blank_or_hashtag?
-    query.blank? || query.start_with?('#')
+  def query_blank?
+    query.blank?
+  end
+
+  def query_hashtag?
+    query.start_with?('#')
+  end
+
+  def query_hashtags
+    query.scan(/#(\w+)/).flatten
   end
 
   def split_query_string
