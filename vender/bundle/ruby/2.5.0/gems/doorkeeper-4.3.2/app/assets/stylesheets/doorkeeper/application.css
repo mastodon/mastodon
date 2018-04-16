@@ -1,0 +1,64 @@
+/*
+ *= require doorkeeper/bootstrap.min
+ *
+ *= require_self
+ *= require_tree .
+*/
+
+body {
+    background-color: #eee;
+    font-size: 14px;
+}
+
+#container {
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+    margin: 2em auto;
+    max-width: 600px;
+    outline: 0;
+    padding: 1em;
+    width: 80%;
+}
+
+.page-header {
+    margin-top: 20px;
+}
+
+#oauth-permissions {
+    width: 260px;
+}
+
+.actions {
+    border-top: 1px solid #eee;
+    margin-top: 1em;
+    padding-top: 9px;
+}
+
+.actions > form > .btn {
+    margin-top: 5px;
+}
+
+.separator {
+    color: #eee;
+    padding: 0 .5em;
+}
+
+.inline_block {
+    display: inline-block;
+}
+
+#oauth {
+    margin-bottom: 1em;
+}
+
+#oauth > .btn {
+    width: 7em;
+}
+
+td {
+    vertical-align: middle !important;
+}

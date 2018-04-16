@@ -1,0 +1,126 @@
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "gemfiles/**/*"
+    - "vendor/**/*"
+    - "Gemfile"
+    - "Rakefile"
+    - "*.gemspec"
+    - "config.ru"
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Style/ClassCheck:
+  EnforcedStyle: kind_of?
+
+Metrics/LineLength:
+  Max: 80
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+ClassLength:
+  Enabled: false
+
+CyclomaticComplexity:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Encoding:
+  Enabled: false
+
+FileName:
+  Enabled: false
+
+IfUnlessModifier:
+  Enabled: false
+
+MethodLength:
+  Enabled: false
+
+ModuleFunction:
+  Enabled: false
+
+OneLineConditional:
+  Enabled: false
+
+ParameterLists:
+  Enabled: false
+
+Proc:
+  Enabled: false
+
+SingleLineBlockParams:
+  Enabled: false
+
+VariableInterpolation:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
+  Enabled: false
+
+WhileUntilModifier:
+  Enabled: false
+
+PredicateName:
+  NamePrefixBlacklist:
+    - is_
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+DotPosition:
+  EnforcedStyle: leading
+
+SpaceBeforeBlockBraces:
+  EnforcedStyle: space
+
+SpaceInsideBlockBraces:
+  EnforcedStyle: no_space
+
+DoubleNegation:
+  Enabled: false
+
+SpaceInsideBlockBraces:
+  SpaceBeforeBlockParameters: false
+
+SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  '[]'
+    '%i': '[]'
+    '%q': '[]'
+    '%Q': '[]'
+    '%r': '[]'
+    '%s': '[]'
+    '%w': '[]'
+    '%W': '[]'
+    '%x': '[]'
+
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    detect: 'find'
+    find_all: 'select'

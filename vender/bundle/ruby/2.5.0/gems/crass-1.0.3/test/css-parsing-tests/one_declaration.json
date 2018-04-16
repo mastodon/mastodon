@@ -1,0 +1,46 @@
+[
+
+"", ["error", "empty"],
+"  /**/\n", ["error", "empty"],
+" ;", ["error", "invalid"],
+"foo", ["error", "invalid"],
+"@foo:", ["error", "invalid"],
+"#foo:", ["error", "invalid"],
+".foo:", ["error", "invalid"],
+"foo*:", ["error", "invalid"],
+"foo.. 9000", ["error", "invalid"],
+"foo:", ["declaration", "foo", [], false],
+"foo :", ["declaration", "foo", [], false],
+"\n/**/ foo: ", ["declaration", "foo", [" "], false],
+"foo:;", ["declaration", "foo", [";"], false],
+" /**/ foo /**/ :", ["declaration", "foo", [], false],
+"foo:;bar:;", ["declaration", "foo", [";", ["ident", "bar"], ":", ";"], false],
+
+"foo: 9000  !Important", ["declaration", "foo", [
+    " ", ["number", "9000", 9000, "integer"], " "
+], true],
+"foo: 9000  ! /**/\t IMPORTant /**/\f", ["declaration", "foo", [
+    " ", ["number", "9000", 9000, "integer"], " "
+], true],
+
+"foo: 9000  /* Dotted capital I */!İmportant", ["declaration", "foo", [
+    " ", ["number", "9000", 9000, "integer"], " ", "!", ["ident", "İmportant"]
+], false],
+"foo: 9000  !important!", ["declaration", "foo", [
+    " ", ["number", "9000", 9000, "integer"], " ", "!", ["ident", "important"], "!"
+], false],
+
+"foo: 9000  important", ["declaration", "foo", [
+    " ", ["number", "9000", 9000, "integer"], " ", ["ident", "important"]
+], false],
+"foo:important", ["declaration", "foo", [
+    ["ident", "important"]
+], false],
+
+"foo: 9000 @bar{ !important", ["declaration", "foo", [
+    " ", ["number", "9000", 9000, "integer"], " ", ["at-keyword", "bar"], ["{}",
+        " ", "!", ["ident", "important"]
+    ]
+], false]
+
+]

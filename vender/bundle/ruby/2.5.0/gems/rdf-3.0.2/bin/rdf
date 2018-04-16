@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
+require 'rubygems'
+require 'rdf/cli'
+
+options = RDF::CLI.options(ARGV)
+
+abort options.banner if ARGV.empty? && !options.options[:evaluate]
+
+# Add option_parser to parsed options to enable help
+begin
+  messages = {}
+  RDF::CLI.exec(options.args, option_parser: options, **options.options.merge(messages: messages))
+
+  unless messages.empty?
+    $stdout.puts "Messages:"
+    messages.each do |kind, term_messages|
+      term_messages.each do |term, messages|
+        $stdout.puts "#{kind}  #{term}"
+        messages.each {|m| $stdout.puts "  #{m}"}
+      end
+    end
+  end
+rescue ArgumentError => e
+  RDF::CLI.abort e.message
+end

@@ -1,0 +1,76 @@
+dn: cn=module,cn=config
+cn: module
+objectClass: olcModuleList
+objectClass: top
+olcModulePath: /usr/lib/ldap
+olcModuleLoad: retcode.la
+
+# source: http://www.opensource.apple.com/source/OpenLDAP/OpenLDAP-186/OpenLDAP/tests/data/retcode.conf?txt
+
+dn: olcOverlay={2}retcode,olcDatabase={1}hdb,cn=config
+objectClass: olcConfig
+objectClass: olcRetcodeConfig
+objectClass: olcOverlayConfig
+objectClass: top
+olcOverlay: retcode
+olcRetcodeParent: ou=Retcodes,dc=rubyldap,dc=com
+olcRetcodeInDir: TRUE
+olcRetcodeSleep: 0
+olcRetcodeItem: "cn=success" 0x00
+olcRetcodeItem: "cn=success w/ delay" 0x00 sleeptime=2
+olcRetcodeItem: "cn=operationsError" 0x01
+olcRetcodeItem: "cn=protocolError" 0x02
+olcRetcodeItem: "cn=timeLimitExceeded" 0x03 op=search
+olcRetcodeItem: "cn=sizeLimitExceeded" 0x04 op=search
+olcRetcodeItem: "cn=compareFalse" 0x05 op=compare
+olcRetcodeItem: "cn=compareTrue" 0x06 op=compare
+olcRetcodeItem: "cn=authMethodNotSupported" 0x07
+olcRetcodeItem: "cn=strongAuthNotSupported" 0x07 text="same as authMethodNotSupported"
+olcRetcodeItem: "cn=strongAuthRequired" 0x08
+olcRetcodeItem: "cn=strongerAuthRequired" 0x08 text="same as strongAuthRequired"
+olcRetcodeItem: "cn=referral" 0x0a text="LDAPv3" ref="ldap://:9019"
+olcRetcodeItem: "cn=adminLimitExceeded" 0x0b text="LDAPv3"
+olcRetcodeItem: "cn=unavailableCriticalExtension" 0x0c text="LDAPv3"
+olcRetcodeItem: "cn=confidentialityRequired" 0x0d text="LDAPv3"
+olcRetcodeItem: "cn=saslBindInProgress" 0x0e text="LDAPv3"
+olcRetcodeItem: "cn=noSuchAttribute" 0x10
+olcRetcodeItem: "cn=undefinedAttributeType" 0x11
+olcRetcodeItem: "cn=inappropriateMatching" 0x12
+olcRetcodeItem: "cn=constraintViolation" 0x13
+olcRetcodeItem: "cn=attributeOrValueExists" 0x14
+olcRetcodeItem: "cn=invalidAttributeSyntax" 0x15
+olcRetcodeItem: "cn=noSuchObject" 0x20
+olcRetcodeItem: "cn=aliasProblem" 0x21
+olcRetcodeItem: "cn=invalidDNSyntax" 0x22
+olcRetcodeItem: "cn=aliasDereferencingProblem" 0x24
+olcRetcodeItem: "cn=proxyAuthzFailure" 0x2F text="LDAPv3 proxy authorization"
+olcRetcodeItem: "cn=inappropriateAuthentication" 0x30
+olcRetcodeItem: "cn=invalidCredentials" 0x31
+olcRetcodeItem: "cn=insufficientAccessRights" 0x32
+olcRetcodeItem: "cn=busy" 0x33
+olcRetcodeItem: "cn=unavailable" 0x34
+olcRetcodeItem: "cn=unwillingToPerform" 0x35
+olcRetcodeItem: "cn=loopDetect" 0x36
+olcRetcodeItem: "cn=namingViolation" 0x40
+olcRetcodeItem: "cn=objectClassViolation" 0x41
+olcRetcodeItem: "cn=notAllowedOnNonleaf" 0x42
+olcRetcodeItem: "cn=notAllowedOnRDN" 0x43
+olcRetcodeItem: "cn=entryAlreadyExists" 0x44
+olcRetcodeItem: "cn=objectClassModsProhibited" 0x45
+olcRetcodeItem: "cn=resultsTooLarge" 0x46 text="CLDAP"
+olcRetcodeItem: "cn=affectsMultipleDSAs" 0x47 text="LDAPv3"
+olcRetcodeItem: "cn=other" 0x50
+olcRetcodeItem: "cn=cupResourcesExhausted" 0x71
+olcRetcodeItem: "cn=cupSecurityViolation" 0x72
+olcRetcodeItem: "cn=cupInvalidData" 0x73
+olcRetcodeItem: "cn=cupUnsupportedScheme" 0x74
+olcRetcodeItem: "cn=cupReloadRequired" 0x75
+olcRetcodeItem: "cn=cancelled" 0x76
+olcRetcodeItem: "cn=noSuchOperation" 0x77
+olcRetcodeItem: "cn=tooLate" 0x78
+olcRetcodeItem: "cn=cannotCancel" 0x79
+olcRetcodeItem: "cn=syncRefreshRequired" 0x4100
+olcRetcodeItem: "cn=noOperation" 0x410e
+olcRetcodeItem: "cn=assertionFailed" 0x410f
+olcRetcodeItem: "cn=noReferralsFound" 0x4110
+olcRetcodeItem: "cn=cannotChain" 0x4111

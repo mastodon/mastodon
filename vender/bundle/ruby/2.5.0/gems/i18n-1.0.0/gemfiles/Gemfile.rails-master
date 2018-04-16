@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+gemspec :path => '..'
+
+gem 'activesupport', github: 'rails/rails', branch: 'master'
+gem 'mocha'
+gem 'test_declarative'
+gem 'rake'
+gem 'minitest'
+gem 'oj'

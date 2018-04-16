@@ -1,0 +1,43 @@
+language: ruby
+
+sudo: false
+
+branches:
+  only:
+    - master
+
+gemfile:
+  - Gemfile
+
+before_install:
+  # This is only for Ruby 2.5.0, Bundler 1.16.1 and rubygems 2.7.3
+  # See https://github.com/travis-ci/travis-ci/issues/8969
+  - "[ \"x2.7.3\" = \"x\"$(gem --version) ] && gem update --system --no-document || echo \"no need to update rubygem\""
+
+# http://rubies.travis-ci.org/
+matrix:
+  include:
+    - rvm: 2.1.10
+      os: linux
+    - rvm: 2.2.9
+      os: linux
+    - rvm: 2.3.6
+      os: linux
+    - rvm: 2.4.3
+      os: linux
+    - rvm: 2.5.0
+      os: linux
+    - rvm: 2.5.0
+      os: osx
+    - rvm: ruby-head
+      os: linux
+    - rvm: jruby-9.1.9.0
+      os: linux
+    - rvm: jruby-head
+      os: linux
+    - rvm: jruby-19mode
+      os: linux
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
+    - rvm: jruby-19mode

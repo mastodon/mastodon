@@ -1,0 +1,56 @@
+language: ruby
+
+rvm:
+  - 2.4.2
+  - 2.3.5
+  - ruby-head
+  - jruby-9.1.13.0
+  # - rbx-3
+
+gemfile:
+  - gemfiles/active_record_51.gemfile
+  - gemfiles/active_record_50.gemfile
+  - gemfiles/active_record_42.gemfile
+  - gemfiles/active_record_41.gemfile
+  - gemfiles/active_record_edge.gemfile
+
+env:
+  - DB=sqlite3
+  - DB=postgresql
+  - DB=mysql
+
+sudo: false
+
+before_install:
+  - gem update --system
+  - gem update bundler --no-document
+script: 'bundle exec rake test'
+
+cache: bundler
+
+matrix:
+  exclude:
+    - rvm: 2.4.2
+      gemfile: gemfiles/active_record_42.gemfile
+    - rvm: 2.4.2
+      gemfile: gemfiles/active_record_41.gemfile
+    - rvm: ruby-head
+      gemfile: gemfiles/active_record_42.gemfile
+    - rvm: ruby-head
+      gemfile: gemfiles/active_record_41.gemfile
+  include:
+    - rvm: 2.2.8
+      gemfile: gemfiles/active_record_51.gemfile
+      env: DB=sqlite3
+    - rvm: 2.1.10
+      gemfile: gemfiles/active_record_42.gemfile
+      env: DB=sqlite3
+    - rvm: 2.0.0
+      gemfile: gemfiles/active_record_42.gemfile
+      env: DB=sqlite3
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-9.1.13.0
+    # - rvm: rbx-3
+    - gemfile: gemfiles/active_record_edge.gemfile
+  fast_finish: true

@@ -1,0 +1,146 @@
+[
+
+{"css_bytes": ""},
+[[], "utf-8"],
+
+{"css_bytes": "@\u00C3\u00A9",
+ "protocol_encoding": null, "environment_encoding": null},
+[[["at-rule", "é", [], null]], "utf-8"],
+
+{"css_bytes": "@\u00C3\u00A9"},
+[[["at-rule", "é", [], null]], "utf-8"],
+
+{"css_bytes": "@\u0000\u00E9\u0000",
+ "comment": "Untagged UTF-16, parsed as UTF-8"},
+[[["at-rule", "���", [], null]], "utf-8"],
+
+{"css_bytes": "\u00FF\u00FE@\u0000\u00E9\u0000",
+ "comment": "UTF-16 with a BOM"},
+[[["at-rule", "é", [], null]], "utf-16le"],
+
+{"css_bytes": "\u00FE\u00FF\u0000@\u0000\u00E9"},
+[[["at-rule", "é", [], null]], "utf-16be"],
+
+{"css_bytes": "@\u00E9"},
+[[["at-rule", "�", [], null]], "utf-8"],
+
+
+{"css_bytes": "@\u00E9", "protocol_encoding": "ISO-8859-2"},
+[[["at-rule", "é", [], null]], "iso-8859-2"],
+
+{"css_bytes": "@\u00E9", "protocol_encoding": "ISO-8859-5"},
+[[["at-rule", "щ", [], null]], "iso-8859-5"],
+
+{"css_bytes": "@\u00C3\u00A9", "protocol_encoding": "ISO-8859-2"},
+[[["at-rule", "ĂŠ", [], null]], "iso-8859-2"],
+
+{"css_bytes": "\u00EF\u00BB\u00BF @\u00C3\u00A9",
+ "protocol_encoding": "ISO-8859-2",
+ "comment": "BOM takes precedence over protocol"},
+[[["at-rule", "é", [], null]], "utf-8"],
+
+
+{"css_bytes": "@charset \"ISO-8859-5\"; @\u00E9"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "щ", [], null]],
+ "iso-8859-5"],
+
+{"css_bytes": "@Charset \"ISO-8859-5\"; @\u00E9",
+ "comment": "@charset has to match an exact byte pattern"},
+[[["at-rule", "Charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "�", [], null]],
+ "utf-8"],
+
+{"css_bytes": "@charset  \"ISO-8859-5\"; @\u00E9",
+ "comment": "@charset has to match an exact byte pattern"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "�", [], null]],
+ "utf-8"],
+
+{"css_bytes": "@charset 'ISO-8859-5'; @\u00E9",
+ "comment": "@charset has to match an exact byte pattern"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "�", [], null]],
+ "utf-8"],
+
+{"css_bytes": "@charset \"ISO-8859-5\" ; @\u00E9",
+ "comment": "@charset has to match an exact byte pattern"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"], " "], null],
+  ["at-rule", "�", [], null]],
+ "utf-8"],
+
+
+{"css_bytes": "@\u0000c\u0000h\u0000a\u0000r\u0000s\u0000e\u0000t\u0000 \u0000\"\u0000U\u0000T\u0000F\u0000-\u00001\u00006\u0000L\u0000E\u0000\"\u0000;\u0000@\u0000\u00e9\u0000",
+ "comment": "@charset has to be ASCII-compatible itself"},
+[[["at-rule", "�c�h�a�r�s�e�t�",
+   [" ", ["ident", "�"], ["string", "�U�T�F�-�1�6�L�E�"], ["ident", "�"]], null],
+  ["error", "invalid"]],
+ "utf-8"],
+
+{"css_bytes": "@charset \"UTF-16LE\"; @\u00C3\u00A9",
+ "comment": "@charset can only specify ASCII-compatible encodings"},
+[[["at-rule", "charset", [" ", ["string", "UTF-16LE"]], null],
+  ["at-rule", "é", [], null]],
+ "utf-8"],
+
+
+{"css_bytes": "\u00EF\u00BB\u00BF @charset \"ISO-8859-5\"; @\u00E9",
+ "comment": "BOM takes precedence over @charset"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "�", [], null]],
+ "utf-8"],
+
+{"css_bytes": "\u00EF\u00BB\u00BF @charset \"ISO-8859-5\"; @\u00C3\u00A9",
+ "comment": "BOM takes precedence over @charset"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "é", [], null]],
+ "utf-8"],
+
+{"css_bytes": "@charset \"ISO-8859-5\"; @\u00E9",
+ "protocol_encoding": " Iso-8859-2",
+ "comment": "Protocol takes precedence over @charset"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "é", [], null]],
+ "iso-8859-2"],
+
+{"css_bytes": "@charset \"ISO-8859-5\"; @\u00E9",
+ "protocol_encoding": "kamoulox",
+ "comment": "Unknow protocol encoding falls back to @charset"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "щ", [], null]],
+ "iso-8859-5"],
+
+
+{"css_bytes": "@\u00E9", "environment_encoding": "ISO-8859-2"},
+[[["at-rule", "é", [], null]], "iso-8859-2"],
+
+{"css_bytes": "@\u00E9", "environment_encoding": "ISO-8859-5"},
+[[["at-rule", "щ", [], null]], "iso-8859-5"],
+
+{"css_bytes": "@charset \"ISO-8859-5\"; @\u00E9",
+ "environment_encoding": "ISO-8859-2",
+ "comment": "@character takes precedence over environment"},
+[[["at-rule", "charset", [" ", ["string", "ISO-8859-5"]], null],
+  ["at-rule", "щ", [], null]],
+ "iso-8859-5"],
+
+{"css_bytes": "@charset \"kamoulox\"; @\u00E9",
+ "environment_encoding": "ISO-8859-2",
+ "comment": "@character with unknown encoding falls back to environment encoding"},
+[[["at-rule", "charset", [" ", ["string", "kamoulox"]], null],
+  ["at-rule", "é", [], null]],
+ "iso-8859-2"],
+
+{"css_bytes": "@\u00E9",
+ "protocol_encoding": "ISO-8859-2",
+ "environment_encoding": "ISO-8859-5",
+ "comment": "protocol takes precedence over environment"},
+[[["at-rule", "é", [], null]], "iso-8859-2"],
+
+{"css_bytes": "\u00EF\u00BB\u00BF @\u00C3\u00A9",
+ "environment_encoding": "ISO-8859-5",
+ "comment": "BOM takes precedence over environment"},
+[[["at-rule", "é", [], null]], "utf-8"]
+
+
+]

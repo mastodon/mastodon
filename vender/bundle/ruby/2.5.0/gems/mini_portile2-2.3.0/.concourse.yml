@@ -1,0 +1,83 @@
+---
+resources:
+- name: mini_portile
+  type: git
+  source:
+    uri: https://github.com/flavorjones/mini_portile
+    branch: master
+jobs:
+- name: "Minitest"
+  plan:
+  - get: mini_portile
+  - task: With version 1.9.3
+    config:
+      platform: linux
+      image: docker:///ruby#1.9.3
+      inputs:
+      - name: mini_portile
+      run:
+        path: bash
+        args:
+        - "-c"
+        - cd mini_portile && bundle install && rake
+    privileged: false
+  - task: With version 2.0
+    config:
+      platform: linux
+      image: docker:///ruby#2.0
+      inputs:
+      - name: mini_portile
+      run:
+        path: bash
+        args:
+        - "-c"
+        - cd mini_portile && bundle install && rake
+    privileged: false
+  - task: With version 2.1
+    config:
+      platform: linux
+      image: docker:///ruby#2.1
+      inputs:
+      - name: mini_portile
+      run:
+        path: bash
+        args:
+        - "-c"
+        - cd mini_portile && bundle install && rake
+    privileged: false
+  - task: With version 2.2
+    config:
+      platform: linux
+      image: docker:///ruby#2.2
+      inputs:
+      - name: mini_portile
+      run:
+        path: bash
+        args:
+        - "-c"
+        - cd mini_portile && bundle install && rake
+    privileged: false
+  - task: With version jruby-1.7.23
+    config:
+      platform: linux
+      image: docker:///jruby#1.7.23
+      inputs:
+      - name: mini_portile
+      run:
+        path: bash
+        args:
+        - "-c"
+        - cd mini_portile && bundle install && rake
+    privileged: false
+  - task: With version jruby-9.0.4.0
+    config:
+      platform: linux
+      image: docker:///jruby#9.0.4.0
+      inputs:
+      - name: mini_portile
+      run:
+        path: bash
+        args:
+        - "-c"
+        - cd mini_portile && bundle install && rake
+    privileged: false

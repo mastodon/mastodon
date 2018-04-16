@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - 2.2.0
+  - 2.3.0
+  - ruby-head
+  - jruby-19mode
+  - rbx
+before_install:
+  - gem install bundler # the default bundler version on travis is very old and causes 1.9.3 build issues
+matrix:
+  allow_failures:
+    - rvm: ruby-head

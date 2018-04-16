@@ -1,0 +1,36 @@
+require "bundler/gem_tasks"
+
+desc "Run unit tests"
+task :test    => 'test:unit'
+
+# ----- Test tasks ------------------------------------------------------------
+
+require 'rake/testtask'
+namespace :test do
+  Rake::TestTask.new(:unit) do |test|
+    test.libs << 'lib' << 'test'
+    test.test_files = FileList["test/unit/**/*_test.rb"]
+    test.verbose = false
+    test.warning = false
+  end
+
+  Rake::TestTask.new(:integration) do |test|
+    test.libs << 'lib' << 'test'
+    test.test_files = FileList["test/integration/**/*_test.rb"]
+    test.verbose = false
+    test.warning = false
+  end
+
+  Rake::TestTask.new(:all) do |test|
+    test.libs << 'lib' << 'test'
+    test.test_files = FileList["test/unit/**/*_test.rb", "test/integration/**/*_test.rb"]
+  end
+
+end
+
+# ----- Documentation tasks ---------------------------------------------------
+
+require 'yard'
+YARD::Rake::YardocTask.new(:doc) do |t|
+  t.options = %w| --embed-mixins --markup=markdown |
+end

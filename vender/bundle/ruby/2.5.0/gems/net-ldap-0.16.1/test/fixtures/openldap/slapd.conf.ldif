@@ -1,0 +1,67 @@
+dn: cn=config
+objectClass: olcGlobal
+cn: config
+olcPidFile: /var/run/slapd/slapd.pid
+olcArgsFile: /var/run/slapd/slapd.args
+olcLogLevel: -1
+olcToolThreads: 1
+
+dn: olcDatabase={-1}frontend,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcFrontendConfig
+olcDatabase: {-1}frontend
+olcSizeLimit: 500
+olcAccess: {0}to * by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth manage by * break
+olcAccess: {1}to dn.exact="" by * read
+olcAccess: {2}to dn.base="cn=Subschema" by * read
+
+dn: olcDatabase=config,cn=config
+objectClass: olcDatabaseConfig
+olcDatabase: config
+olcAccess: to * by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth manage by * break
+
+dn: cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: schema
+
+include: file:///etc/ldap/schema/core.ldif
+include: file:///etc/ldap/schema/cosine.ldif
+include: file:///etc/ldap/schema/nis.ldif
+include: file:///etc/ldap/schema/inetorgperson.ldif
+
+dn: cn=module{0},cn=config
+objectClass: olcModuleList
+cn: module{0}
+olcModulePath: /usr/lib/ldap
+olcModuleLoad: back_hdb
+
+dn: olcBackend=hdb,cn=config
+objectClass: olcBackendConfig
+olcBackend: hdb
+
+dn: olcDatabase=hdb,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcHdbConfig
+olcDatabase: hdb
+olcDbCheckpoint: 512 30
+olcDbConfig: set_cachesize 1 0 0
+olcDbConfig: set_lk_max_objects 1500
+olcDbConfig: set_lk_max_locks 1500
+olcDbConfig: set_lk_max_lockers 1500
+olcLastMod: TRUE
+olcSuffix: dc=rubyldap,dc=com
+olcDbDirectory: /var/lib/ldap
+olcRootDN: cn=admin,dc=rubyldap,dc=com
+# admin's password: "passworD1"
+olcRootPW: {SHA}LFSkM9eegU6j3PeGG7UuHrT/KZM=
+olcDbIndex: objectClass eq
+olcAccess: to attrs=userPassword,shadowLastChange
+  by self write
+  by anonymous auth
+  by dn="cn=admin,dc=rubyldap,dc=com" write
+  by * none
+olcAccess: to dn.base="" by * read
+olcAccess: to *
+  by self write
+  by dn="cn=admin,dc=rubyldap,dc=com" write
+  by * read

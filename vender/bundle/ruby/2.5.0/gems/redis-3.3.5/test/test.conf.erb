@@ -1,0 +1,9 @@
+dir <%=        REDIS_DIR %>
+pidfile <%=    REDIS_PID %>
+port 6381
+unixsocket <%= REDIS_SOCKET %>
+timeout 300
+loglevel debug
+logfile <%=    REDIS_LOG %>
+databases 16
+daemonize yes

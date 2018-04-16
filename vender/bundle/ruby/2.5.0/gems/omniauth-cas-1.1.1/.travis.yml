@@ -1,0 +1,9 @@
+rvm:
+  - 2.1
+  - 2.2
+  - 2.3.1
+branches:
+  only:
+    - master
+before_install:
+  - gem install bundler

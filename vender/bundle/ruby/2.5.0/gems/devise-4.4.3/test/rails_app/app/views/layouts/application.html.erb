@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Devise Test App</title>
+  </head>
+  <body>
+    <div id="container">
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, id: "flash_#{name}" %>
+      <%- end -%>
+
+      <% if user_signed_in? -%>
+        <p>Hello User <%= current_user.email %>! You are signed in!</p>
+      <% end -%>
+
+      <% if admin_signed_in? -%>
+        <p>Hello Admin <%= current_admin.email %>! You are signed in!</p>
+      <% end -%>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

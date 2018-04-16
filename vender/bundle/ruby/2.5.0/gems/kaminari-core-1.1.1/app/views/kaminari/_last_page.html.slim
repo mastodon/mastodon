@@ -1,0 +1,10 @@
+/ Link to the "Last" page
+  - available local variables
+    url          : url to the last page
+    current_page : a page object for the currently displayed page
+    total_pages  : total number of pages
+    per_page     : number of items to fetch per page
+    remote       : data-remote
+span.last
+  == link_to_unless current_page.last?, t('views.pagination.last').html_safe, url, remote: remote
+'

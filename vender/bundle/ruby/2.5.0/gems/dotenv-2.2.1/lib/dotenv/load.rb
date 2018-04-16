@@ -1,0 +1,2 @@
+require "dotenv"
+Dotenv.load

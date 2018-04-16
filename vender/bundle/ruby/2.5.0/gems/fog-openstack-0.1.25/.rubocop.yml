@@ -1,0 +1,108 @@
+#
+# Overrides
+#
+AbcSize:
+  Severity: refactor
+AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+BlockNesting:
+  Severity: refactor
+ClassLength:
+  Max: 150
+  Severity: refactor
+ClassCheck:
+  EnforcedStyle: kind_of?
+CollectionMethods:
+  PreferredMethods:
+    find: detect
+    find_all: select
+    map: collect
+    reduce: inject
+CyclomaticComplexity:
+  Severity: refactor
+FormatString:
+  EnforcedStyle: percent
+HashSyntax:
+  EnforcedStyle: hash_rockets
+LineLength:
+  Max: 120
+  Severity: refactor
+MethodLength:
+  Max: 25
+  Severity: refactor
+# Exclude test methods from BlockLength.
+Metrics/BlockLength:
+  ExcludedMethods:
+  - after
+  - before
+  - context
+  - describe
+  - it
+  - model_tests
+  - namespace
+  - draw  
+ParameterLists:
+  Severity: refactor
+PerceivedComplexity:
+  Severity: refactor
+RedundantReturn:
+  AllowMultipleReturnValues: true
+SignalException:
+  EnforcedStyle: only_raise
+SingleLineMethods:
+  AllowIfMethodIsEmpty: false
+SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+TrivialAccessors:
+  AllowPredicates: true
+#
+# Enabled/Disabled
+#
+ClassAndModuleChildren:
+  Enabled: false
+DefEndAlignment:
+  AutoCorrect: true
+Documentation:
+  Enabled: false
+Encoding:
+  Enabled: false
+EndAlignment:
+  AutoCorrect: true
+ExtraSpacing:
+  AutoCorrect: false # https://github.com/bbatsov/rubocop/issues/2280
+FindEach:
+  Enabled: false
+GuardClause:
+  Enabled: false
+IfUnlessModifier:
+  Enabled: false
+NumericLiterals:
+  AutoCorrect: false
+  MinDigits: 7
+ParallelAssignment:
+  Enabled: false
+PerlBackrefs:
+  Enabled: false
+ReadWriteAttribute:
+  AutoCorrect: false
+RescueModifier:
+  AutoCorrect: false
+SingleLineBlockParams:
+  Enabled: false
+SpaceBeforeFirstArg:
+  Enabled: false
+SpecialGlobalVars:
+  AutoCorrect: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+StringLiterals:
+  Enabled: false
+StringLiteralsInInterpolation:
+  Enabled: false
+TrailingCommaInLiteral:
+  Enabled: false
+WhileUntilModifier:
+  Enabled: false
+WordArray:
+  AutoCorrect: false

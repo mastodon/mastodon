@@ -1,0 +1,43 @@
+language: ruby
+cache: bundler
+branches:
+  only:
+    - master
+script:
+  - "RUBYOPT='-w' bundle exec rake $TASK"
+matrix:
+  include:
+    - rvm: 2.1.10
+      env: TASK=test
+    - rvm: 2.2.6
+      env: TASK=test
+    - rvm: 2.3.3
+      env: TASK=test
+    - rvm: 2.4.0
+      env: TASK=test
+    - rvm: ruby-head
+      env: TASK=test
+    - rvm: 2.4.0
+      env: TASK=bench TEMPLATE=benchmark/boolean_attribute.haml,benchmark/class_attribute.haml,benchmark/id_attribute.haml,benchmark/data_attribute.haml,benchmark/common_attribute.haml
+    - rvm: 2.4.0
+      env: TASK=bench TEMPLATE=benchmark/dynamic_attributes/boolean_attribute.haml,benchmark/dynamic_attributes/class_attribute.haml,benchmark/dynamic_attributes/id_attribute.haml,benchmark/dynamic_attributes/data_attribute.haml,benchmark/dynamic_attributes/common_attribute.haml
+    - rvm: 2.4.0
+      env: TASK=bench SLIM_BENCH=1
+    - rvm: 2.4.0
+      env: TASK=bench TEMPLATE=benchmark/etc/attribute_builder.haml
+    - rvm: 2.4.0
+      env: TASK=bench TEMPLATE=benchmark/etc/static_analyzer.haml
+    - rvm: 2.4.0
+      env: TASK=bench TEMPLATE=benchmark/etc/string_interpolation.haml
+    - rvm: 2.4.0
+      env: TASK=bench TEMPLATE=test/haml/templates/standard.haml COMPILE=1
+  allow_failures:
+    - rvm: ruby-head
+      env: TASK=test
+    - env: TASK=bench TEMPLATE=benchmark/boolean_attribute.haml,benchmark/class_attribute.haml,benchmark/id_attribute.haml,benchmark/data_attribute.haml,benchmark/common_attribute.haml
+    - env: TASK=bench TEMPLATE=benchmark/dynamic_attributes/boolean_attribute.haml,benchmark/dynamic_attributes/class_attribute.haml,benchmark/dynamic_attributes/id_attribute.haml,benchmark/dynamic_attributes/data_attribute.haml,benchmark/dynamic_attributes/common_attribute.haml
+    - env: TASK=bench SLIM_BENCH=1
+    - env: TASK=bench TEMPLATE=benchmark/etc/attribute_builder.haml
+    - env: TASK=bench TEMPLATE=benchmark/etc/static_analyzer.haml
+    - env: TASK=bench TEMPLATE=benchmark/etc/string_interpolation.haml
+    - env: TASK=bench TEMPLATE=test/haml/templates/standard.haml COMPILE=1

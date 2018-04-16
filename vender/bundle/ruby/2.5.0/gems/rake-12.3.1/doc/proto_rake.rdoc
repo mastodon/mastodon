@@ -1,0 +1,127 @@
+= Original Prototype Rake
+
+This is the original 100 line prototype rake program.
+
+---
+ #!/usr/bin/env ruby
+
+ require 'ftools'
+
+ class Task
+   TASKS = Hash.new
+
+   attr_reader :prerequisites
+
+   def initialize(task_name)
+     @name = task_name
+     @prerequisites = []
+     @actions = []
+   end
+
+   def enhance(deps=nil, &block)
+     @prerequisites |= deps if deps
+     @actions << block if block_given?
+     self
+   end
+
+   def name
+     @name.to_s
+   end
+
+   def invoke
+     @prerequisites.each { |n| Task[n].invoke }
+     execute if needed?
+   end
+
+   def execute
+     return if @triggered
+     @triggered = true
+     @actions.collect { |act| result = act.call(self) }.last
+   end
+
+   def needed?
+     true
+   end
+
+   def timestamp
+     Time.now
+   end
+
+   class << self
+     def [](task_name)
+       TASKS[intern(task_name)] or fail "Don't know how to rake #{task_name}"
+     end
+
+     def define_task(args, &block)
+       case args
+       when Hash
+ 	fail "Too Many Target Names: #{args.keys.join(' ')}" if args.size > 1
+ 	fail "No Task Name Given" if args.size < 1
+ 	task_name = args.keys[0]
+ 	deps = args[task_name]
+       else
+ 	task_name = args
+ 	deps = []
+       end
+       deps = deps.collect {|d| intern(d) }
+       get(task_name).enhance(deps, &block)
+     end
+
+     def get(task_name)
+       name = intern(task_name)
+       TASKS[name] ||= self.new(name)
+     end
+
+     def intern(task_name)
+       (Symbol === task_name) ? task_name : task_name.intern
+     end
+   end
+ end
+
+ class FileTask < Task
+   def needed?
+     return true unless File.exist?(name)
+     latest_prereq = @prerequisites.collect{|n| Task[n].timestamp}.max
+     return false if latest_prereq.nil?
+     timestamp < latest_prereq
+   end
+
+   def timestamp
+     File.new(name.to_s).mtime
+   end
+ end
+
+ def task(args, &block)
+   Task.define_task(args, &block)
+ end
+
+ def file(args, &block)
+   FileTask.define_task(args, &block)
+ end
+
+ def sys(cmd)
+   puts cmd
+   system(cmd) or fail "Command Failed: [#{cmd}]"
+ end
+
+ def rake
+   begin
+     here = Dir.pwd
+     while ! File.exist?("Rakefile")
+       Dir.chdir("..")
+       fail "No Rakefile found" if Dir.pwd == here
+       here = Dir.pwd
+     end
+     puts "(in #{Dir.pwd})"
+     load "./Rakefile"
+     ARGV.push("default") if ARGV.size == 0
+     ARGV.each { |task_name| Task[task_name].invoke }
+   rescue Exception => ex
+     puts "rake aborted ... #{ex.message}"
+     puts ex.backtrace.find {|str| str =~ /Rakefile/ } || ""
+   end
+ end
+
+ if __FILE__ == $0 then
+   rake
+ end

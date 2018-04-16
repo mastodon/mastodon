@@ -1,0 +1,28 @@
+PATH
+  remote: .
+  specs:
+    rack-proxy (0.6.4)
+      rack
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    power_assert (0.2.6)
+    rack (2.0.3)
+    rack-test (0.5.6)
+      rack (>= 1.0)
+    rake (0.9.2.2)
+    test-unit (3.1.5)
+      power_assert
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rack-proxy!
+  rack-test
+  rake
+  test-unit
+
+BUNDLED WITH
+   1.16.0.pre.2

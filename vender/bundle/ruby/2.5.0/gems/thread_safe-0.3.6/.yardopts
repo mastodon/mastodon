@@ -1,0 +1,13 @@
+--protected
+--no-private
+--embed-mixins
+--output-dir ./yardoc
+--markup markdown
+--title=Concurrent Ruby
+--template default
+--template-path ./yard-template
+
+./lib/**/*.rb
+-
+README.md
+LICENSE

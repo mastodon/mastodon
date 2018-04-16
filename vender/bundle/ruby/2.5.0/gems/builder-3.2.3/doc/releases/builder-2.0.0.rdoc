@@ -1,0 +1,46 @@
+= Builder 2.0.0 Released.
+
+== Changes in 2.0.0
+
+* UTF-8 characters in data are now correctly translated to their XML
+  equivalents. (Thanks to Sam Ruby)
+
+* Attribute values are now escaped by default.  See the README
+  file for details.
+
+<b>NOTE:</b> The escaping attribute values by default is different
+than in previous releases of Builder.  This makes version 2.0.0
+somewhat incompatible with the 1.x series of Builder.  If you use "&",
+"<", or ">" in attributes values, you may have to change your
+code. (Essentially you remove the manual escaping.  The new way is
+easier, believe me).
+
+== What is Builder?
+
+Builder::XmlMarkup is a library that allows easy programmatic creation
+of XML markup.  For example:
+
+  builder = Builder::XmlMarkup.new(:target=>STDOUT, :indent=>2)
+  builder.person { |b| b.name("Jim"); b.phone("555-1234") }
+
+will generate:
+
+  <person>
+    <name>Jim</name>
+    <phone>555-1234</phone>
+  </person>
+
+== Availability
+
+The easiest way to get and install builder is via RubyGems ...
+
+  gem install builder    (you may need root/admin privileges)
+
+== Thanks
+
+* Sam Ruby for the XChar module and the related UTF-8 translation
+  tools.
+* Also to Sam Ruby for gently persuading me to start quoting attribute
+  values.
+
+-- Jim Weirich

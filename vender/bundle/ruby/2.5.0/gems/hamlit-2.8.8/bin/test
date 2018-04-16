@@ -1,0 +1,24 @@
+#!/bin/bash
+
+VERSIONS=(
+  2.1.10
+  2.2.5
+  2.3.1
+)
+
+set -e
+trap 'echo "${VERSIONS[2]}" > .ruby-version' 0
+
+function test_with() {
+  version=$1
+  rbenv local $version
+  if ! bundle check > /dev/null; then
+    bundle install
+  fi
+  ruby -v
+  bundle exec rake test
+}
+
+for version in ${VERSIONS[@]}; do
+  test_with $version
+done

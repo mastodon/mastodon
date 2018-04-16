@@ -1,0 +1,18 @@
+language: ruby
+sudo: false
+rvm:
+  - 1.8.7
+  - 1.9.2
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - 2.2.3
+  - jruby-18mode
+  - jruby-19mode
+  - ruby-head
+  - jruby-head
+  - ree
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head

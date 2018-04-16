@@ -1,0 +1,2317 @@
+=== 12.3.1
+
+==== Bug fixes
+
+* Support did_you_mean >= v1.2.0 which has a breaking change on formatters.
+  Pull request #262 by FUJI Goro.
+
+==== Enhancements:
+
+* Don't run task if it depends on already invoked but failed task.
+  Pull request #252 by Gonzalo Rodriguez.
+* Make space trimming consistent for all task arguments.
+  Pull request #259 by Gonzalo Rodriguez.
+* Removes duplicated inclusion of Rake::DSL in tests.
+  Pull request #254 by Gonzalo Rodriguez.
+* Re-raise a LoadError that didn't come from require in the test loader.
+  Pull request #250 by Dylan Thacker-Smith.
+
+=== 12.3.0
+
+==== Compatibility Changes
+
+* Bump `required_ruby_version` to Ruby 2.0.0. Rake has already
+  removed support for Ruby 1.9.x.
+
+==== Enhancements:
+
+* Support `test-bundled-gems` task on ruby core.
+
+=== 12.2.1
+
+==== Bug fixes
+
+* Fixed to break Capistrano::Application on capistrano3.
+
+=== 12.2.0
+
+==== Enhancements:
+
+* Make rake easier to use as a library
+  Pull request #211 by @drbrain
+* Fix quadratic performance in FileTask#out_of_date?
+  Pull request #224 by @doudou
+* Clarify output when printing nested exception traces
+  Pull request #232 by @urbanautomaton
+
+==== Bug fixes
+
+* Account for a file that match 2 or more patterns.
+  Pull request #231 by @styd
+
+=== 12.1.0
+
+==== Enhancements:
+
+* Added did_you_mean feature for invalid rake task.
+  Pull request #221 by @xtina-starr
+* Enabled to dependency chained by extensions. Pull request #39 by Petr Skocik.
+* Make all of string literals to frozen objects on Ruby 2.4 or later.
+
+==== Bug fixes
+
+* Typo fixes in rakefile.rdoc. Pull request #180 by Yuta Kurotaki.
+* Fix unexpected behavior of file task with dryrun option.
+  Pull request #183 by @aycabta.
+* Make LoadError from running tests more obvious. Pull request #195
+  by Eric Hodel.
+* Fix unexpected TypeError with hash style option. Pull request #202
+  by Kuniaki IGARASHI.
+
+=== 12.0.0
+
+==== Compatibility Changes
+
+* Removed arguments on clear #157 by Jesse Bowes
+* Removed `rake/contrib` packages. These are extracted to `rake-contrib` gem.
+* Removed deprecated method named `last\_comment`.
+
+==== Enhancements:
+
+* Re-use trace option on `cleanup` task. #164 by Brian Henderson
+* Actions adore keyword arguments #174 by Josh Cheek
+* Rake::TaskArguments#key? alias of #has_key? #175 by Paul Annesley
+
+=== 11.3.0 / 2016-09-20
+
+==== Enhancements:
+
+* Remove to reference `Fixnum` constant. Pull request #160 by nobu
+
+=== 11.2.2 / 2016-06-12
+
+==== Bug fixes
+
+* Fix unexpected behavior with multiple dependencies on Rake::TestTask
+
+=== 11.2.1 / 2016-06-12
+
+==== Bug fixes
+
+* Fix regression of dependencies handling on Rake::TestTask. Report #139
+
+=== 11.2.0 / 2016-06-11
+
+==== Bug fixes
+
+* Fix unexpected cut-out behavior on task description using triple dots
+  and exclamation. Report #106 from Stephan Kämper and Pull request #134 by Lee
+* Fix empty argument assignment with `with_defaults` option. Pull request #135
+  by bakunyo
+* Ignore to use `hwprefs` on Darwin platform. Use sysctl now. Report #128
+
+==== Enhancements
+
+* Spawn options for sh Pull equest #138 by Eric Hodel.
+* Allow to specify dependencies(prerequisites) for Rake::TestTask
+  Pull request #117 by Tim Maslyuchenko
+* Use Bundler task instead of hoe for gem release.
+* Remove explicitly load to rubygems for Ruby 1.8.
+* Unify to declare `Rake::VERSION`.
+* Support xz format for PackageTask.
+
+=== 11.1.2 / 2016-03-28
+
+==== Bug fixes
+
+* Remove `-W` option when Rake::TestTask#verbose enabled. It's misunderstanding
+  specification change with Rake 11. Partly revert #67
+
+=== 11.1.1 / 2016-03-14
+
+==== Bug fixes
+
+* Use `-W` instead of `--verbose` when Rake::TestTask#verbose enabled.
+  JRuby doesn't have `--verbose` option.
+
+=== 11.1.0 / 2016-03-11
+
+==== Compatibility Changes
+
+* Revert to remove `last\_comment`. It will remove Rake 12.
+
+=== 11.0.1 / 2016-03-09
+
+==== Bug fixes
+
+* Fixed packaging manifest.
+
+=== 11.0.0 / 2016-03-09
+
+==== Bug fixes
+
+* Correctly handle bad encoding in exception messages. Pull request #113
+  by Tomer Brisker
+* Fix verbose option at TestTask. Pull request #67 by Mike Blumtritt
+
+==== Enhancements
+
+* Make FileList#exclude more analogous to FileList#include.
+* Use IO.open instead of Open3.popen3 for CPU counter.
+* Make Rake::Task#already_invoked publicly accessible.
+  Pull request #93 by Joe Rafaniello
+* Lookup prerequisites with same name outside of scope instead of
+  matching self. Pull request #96 by Sandy Vanderbleek
+* Make FileList#pathmap behave like String#pathmap.
+  Pull request #61 by Daniel Tamai
+* Add fetch method to task arguments.
+  Pull request #12 by Chris Keathley
+* Use ruby warnings by default. Pull request #97 by Harold Giménez
+
+==== Compatibility Changes
+
+* Removed to support Ruby 1.8.x
+* Removed constant named `RAKEVERSION`
+* Removed Rake::AltSystem
+* Removed Rake::RubyForgePublisher
+* Removed Rake::TaskManager#last\_comment. Use last\_description.
+* Removed Rake::TaskLib#paste
+* Removed Top-level SshDirPublisher, SshFreshDirPublisher, SshFilePublisher
+  and CompositePublisher from lib/rake/contrib/publisher.rb
+* Removed "rake/runtest.rb"
+
+=== 10.5.0 / 2016-01-13
+
+==== Enhancements
+
+* Removed monkey patching for Ruby 1.8. Pull request #46 by Pablo Herrero.
+* Inheritance class of Rake::FileList returns always self class.
+  Pull request #74 by Thomas Scholz
+
+=== 10.4.2 / 2014-12-02
+
+==== Bug fixes
+
+* Rake no longer edits ARGV.  This allows you to re-exec rake from a rake
+  task.  Pull requset #9 by Matt Palmer.
+* Documented how Rake::DSL#desc handles sentences in task descriptions.
+  Issue #7 by Raza Sayed.
+* Fixed test error on 1.9.3 with legacy RubyGems.  Issue #8 by Matt Palmer.
+* Deleted duplicated History entry.  Pull request #10 by Yuji Yamamoto.
+
+=== 10.4.1 / 2014-12-01
+
+==== Bug fixes
+
+* Reverted fix for #277 as it caused numerous issues for rake users.
+  rails/spring issue #366 by Gustavo Dutra.
+
+=== 10.4.0 / 2014-11-22
+
+==== Enhancements
+
+* Upgraded to minitest 5.  Pull request #292 by Teo Ljungberg.
+* Added support for Pathname in rake tasks.  Pull request #271 by Randy
+  Coulman.
+* Rake now ignores falsy dependencies which allows for easier programmatic
+  creation of tasks.  Pull request #273 by Manav.
+* Rake no longer edits ARGV.  This allows you to re-exec rake from a rake
+  task.  Issue #277 by Matt Palmer.
+* Etc.nprocessors is used for counting the number of CPUs.
+
+==== Bug fixes
+
+* Updated rake manpage.  Issue #283 by Nathan Long, pull request #291 by
+  skittleys.
+* Add Rake::LATE to allow rebuilding of files that depend on deleted files.
+  Bug #286, pull request #287 by David Grayson.
+* Fix relinking of files when repackaging.  Bug #276 by Muenze.
+* Fixed some typos.  Pull request #280 by Jed Northridge.
+* Try counting CPUs via cpuinfo if host_os was not matched.  Pull request
+  #282 by Edouard B.
+
+=== 10.3.2 / 2014-05-15
+
+==== Bug fixes
+
+* Rake no longer infinitely loops when showing exception causes that refer to
+  each other.  Bug #272 by Chris Bandy.
+* Fixed documentation typos.  Bug #275 by Jake Worth.
+
+=== 10.3.1 / 2014-04-17
+
+==== Bug fixes
+
+* Really stop reporting an error when cleaning already-deleted files.  Pull
+  request #269 by Randy Coulman
+* Fixed infinite loop when cleaning already-deleted files on windows.
+
+=== 10.3 / 2014-04-15
+
+==== Enhancements
+
+* Added --build-all option to rake which treats all file prerequisites as
+  out-of-date.  Pull request #254 by Andrew Gilbert.
+* Added Rake::NameSpace#scope.  Issue #263 by Jon San Miguel.
+
+==== Bug fixes
+
+* Suppress org.jruby package files in rake error messages for JRuby users.
+  Issue #213 by Charles Nutter.
+* Fixed typo, removed extra "h".  Pull request #267 by Hsing-Hui Hsu.
+* Rake no longer reports an error when cleaning already-deleted files.  Pull
+  request #266 by Randy Coulman.
+* Consume stderr while determining CPU count to avoid hang.  Issue #268 by
+  Albert Sun.
+
+=== 10.2.2 / 2014-03-27
+
+==== Bug fixes
+
+* Restored Ruby 1.8.7 compatibility
+
+=== 10.2.1 / 2014-03-25
+
+==== Bug fixes
+
+* File tasks including a ':' are now top-level tasks again.  Issue #262 by
+  Josh Holtrop.
+* Use sysctl for CPU count for all BSDs.  Pull request #261 by Joshua Stein.
+* Fixed CPU detection for unknown platforms.
+
+=== 10.2.0 / 2014-03-24
+
+==== Enhancements
+
+* Rake now requires Ruby 1.9 or newer.  For me, this is a breaking change, but
+  it seems that Jim planned to release it with Rake 10.2.  See also pull
+  request #247 by Philip Arndt.
+* Rake now allows you to declare tasks under a namespace like:
+
+    task 'a:b' do ... end
+
+  Pull request #232 by Judson Lester.
+* Task#source defaults to the first prerequisite in non-rule tasks.  Pull
+  request #215 by Avdi Grimm.
+* Rake now automatically rebuilds and reloads imported files.  Pull request
+  #209 by Randy Coulman.
+* The rake task arguments can contain escaped commas.  Pull request #214 by
+  Filip Hrbek.
+* Rake now prints the exception class on errors.  Patch #251 by David Cornu.
+
+==== Bug fixes
+
+* Fixed typos.  Pull request #256 by Valera Rozuvan, #250 via Jake Worth, #260
+  by Zachary Scott.
+* Fixed documentation for calling tasks with arguments.  Pull request #235 by
+  John Varghese.
+* Clarified `rake -f` usage message.  Pull request #252 by Marco Pfatschbacher.
+* Fixed a test failure on windows.  Pull request #231 by Hiroshi Shirosaki.
+* Fixed corrupted rake.1.gz.  Pull request #225 by Michel Boaventura.
+* Fixed bug in can\_detect\_signals? in test.  Patch from #243 by Alexey
+  Borzenkov.
+
+=== 10.1.1
+
+* Use http://github.com/jimweirich/rake instead of http://rake.rubyforge.org for
+  canonical project url.
+
+=== 10.1.0
+
+==== Changes
+
+===== New Features
+
+* Add support for variable length task argument lists. If more actual
+  arguments are supplied than named arguments, then the extra
+  arguments values will be in args.extras.
+
+* Application name is not displayed in the help banner. (Previously
+  "rake" was hardcoded, now rake-based applications can display their
+  own names).
+
+===== Bug Fixes
+
+Bug fixes include:
+
+* Fix backtrace suppression issues.
+
+* Rules now explicit get task arguments passed to them.
+
+* Rename FileList#exclude? to FileList#exclude\_from\_list? to avoid
+  conflict with new Rails method.
+
+* Clean / Clobber tasks now report failure to remove files.
+
+* Plus heaps of internal code cleanup.
+
+==== Thanks
+
+As usual, it was input from users that drove a lot of these changes.
+The following people contributed patches, made suggestions or made
+otherwise helpful comments. Thanks to ...
+
+* Michael Nikitochkin (general code cleanup)
+* Vipul A M (general code cleanup)
+* Dennis Bell (variable length task argument lists)
+* Jacob Swanner (rules arguments)
+* Rafael Rosa Fu (documentation typo)
+* Stuart Nelson (install.rb fixes)
+* Lee Hambley (application name in help banner)
+
+-- Jim Weirich
+
+=== 10.0.3
+
+  "Jim, when will Rake reach version 1.0?"
+
+Over the past several years I've been asked that question at
+conferences, panels and over twitter. Due to historical reasons (or
+maybe just plain laziness) Rake has (incorrectly) been treating the
+second digit of the version as the major release number. So in my head
+Rake was already at version 9.
+
+Well, it's time to fix things. This next version of Rake drops old,
+crufty, backwards compatibility hacks such as top level constants, DSL
+methods defined in Object and numerous other features that are just no
+longer desired. It's also time to drop the leading zero from the
+version number as well and call this new version of rake what it
+really is: Version 10.
+
+So, welcome to Rake 10.0!
+
+Rake 10 is actually feature identical to the latest version of Rake 9
+(that would be the version spelled 0.9.3), *except* that Rake 10 drops
+all the sundry deprecated features that have accumulated over the years.
+
+If your Rakefile is up to date and current with all the new features
+of Rake 10, you are ready to go. If your Rakefile still uses a few
+deprecated feeatures, feel free to use Rake 9 (0.9.3) with the same
+feature set. Just be aware that future features will be in Rake 10
+family line.
+
+==== Changes
+
+As mentioned above, there are no new features in Rake 10. However,
+there are a number of features missing:
+
+* Classic namespaces are now gone. Rake is no longer able to reflect
+  the options settings in the global variables ($rakefile, $show\_tasks,
+  $show\_prereqs, $trace, $dryrun and $silent). The
+  <tt>--classic-namespace</tt> option is no longer supported.
+
+* Global constants are no longer supported. This includes
+  <tt>Task</tt>, <tt>FileTask</tt>, <tt>FileCreationTask</tt> and
+  <tt>RakeApp</tt>). The constant missing hook to warn about using
+  global rake constants has been removed.
+
+* The Rake DSL methods (task, file, directory, etc) are in their own
+  module (Rake::DSL). The stub versions of these methods (that printed
+  warnings) in Object have been removed. However, the DSL methods are
+  added to the top-level <tt>main</tt> object. Since <tt>main</tt> is
+  not in the inheritance tree, the presence of the DSL methods in main
+  should be low impact on other libraries.
+
+  If you want to use the Rake DSL commands from your own code, just
+  include <tt>Rake::DSL</tt> into your own classes and modules.
+
+* The deprecated syntax for task arguments (the one using
+  <tt>:needs</tt>) has been removed.
+
+* The <tt>--reduce-compat</tt> flag has been removed (it's not needed
+  anymore).
+
+* The deprecated <tt>rake/sys.rb</tt> library has been removed.
+
+* The deprecated <tt>rake/rdoctask.rb</tt> library has been removed.
+  RDoc supplies its own rake task now.
+
+* The deprecated <tt>rake/gempackagetask.rb</tt> library has been
+  removed. Gem supplies its own package task now.
+
+There is one small behavioral change:
+
+* Non-file tasks now always report the current time as their time
+  stamp. This is different from the previous behavior where non-file
+  tasks reported current time only if there were no prerequisites, and
+  the max prerequisite timestamp otherwise. This lead to inconsistent
+  and surprising behavior when adding prerequisites to tasks that in
+  turn were prequisites to file tasks. The new behavior is more
+  consistent and predictable.
+
+==== Changes (from 0.9.3, 0.9.4, 0.9.5)
+
+Since Rake 10 includes the changes from the last version of Rake 9,
+we'll repeat the changes for versions 0.9.3 through 0.9.5 here.
+
+===== New Features (in 0.9.3)
+
+* Multitask tasks now use a thread pool. Use -j to limit the number of
+  available threads.
+
+* Use -m to turn regular tasks into multitasks (use at your own risk).
+
+* You can now do "Rake.add_rakelib 'dir'" in your Rakefile to
+  programatically add rake task libraries.
+
+* You can specific backtrace suppression patterns (see
+  --suppress-backtrace)
+
+* Directory tasks can now take prerequisites and actions
+
+* Use --backtrace to request a full backtrace without the task trace.
+
+* You can say "--backtrace=stdout" and "--trace=stdout" to route trace
+  output to standard output rather than standard error.
+
+* Optional 'phony' target (enable with 'require 'rake/phony'") for
+  special purpose builds.
+
+* Task#clear now clears task comments as well as actions and
+  prerequisites. Task#clear_comment will specifically target comments.
+
+* The --all option will force -T and -D to consider all the tasks,
+  with and without descriptions.
+
+===== Bug Fixes (in 0.9.3)
+
+* Semi-colons in windows rakefile paths now work.
+
+* Improved Control-C support when invoking multiple test suites.
+
+* egrep method now reads files in text mode (better support for
+  Windows)
+
+* Better deprecation line number reporting.
+
+* The -W option now works with all tasks, whether they have a
+  description or not.
+
+* File globs in rake should not be sorted alphabetically, independent
+  of file system and platform.
+
+* Numerous internal improvements.
+
+* Documentation typos and fixes.
+
+===== Bug Fixes (in 0.9.4)
+
+* Exit status with failing tests is not correctly set to non-zero.
+
+* Simplified syntax for phony task (for older versions of RDoc).
+
+* Stand alone FileList usage gets glob function (without loading in
+  extra dependencies)
+
+===== Bug Fixes (in 0.9.5)
+
+* --trace and --backtrace no longer swallow following task names.
+
+==== Thanks
+
+As usual, it was input from users that drove a lot of these changes. The
+following people contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Aaron Patterson
+* Dylan Smith
+* Jo Liss
+* Jonas Pfenniger
+* Kazuki Tsujimoto
+* Michael Bishop
+* Michael Elufimov
+* NAKAMURA Usaku
+* Ryan Davis
+* Sam Grönblom
+* Sam Phippen
+* Sergio Wong
+* Tay Ray Chuan
+* grosser
+* quix
+
+Also, many thanks to Eric Hodel for assisting with getting this release
+out the door.
+
+-- Jim Weirich
+
+=== 10.0.2
+
+==== Changes
+
+===== Bug Fixes
+
+* --trace and --backtrace no longer swallow following task names.
+
+==== Thanks
+
+As usual, it was input from users that drove a lot of these changes. The
+following people contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Aaron Patterson
+* Dylan Smith
+* Jo Liss
+* Jonas Pfenniger
+* Kazuki Tsujimoto
+* Michael Bishop
+* Michael Elufimov
+* NAKAMURA Usaku
+* Ryan Davis
+* Sam Grönblom
+* Sam Phippen
+* Sergio Wong
+* Tay Ray Chuan
+* grosser
+* quix
+
+Also, many thanks to Eric Hodel for assisting with getting this release
+out the door.
+
+-- Jim Weirich
+
+=== 10.0.1
+
+==== Changes
+
+===== Bug Fixes
+
+* Exit status with failing tests is not correctly set to non-zero.
+
+* Simplified syntax for phony task (for older versions of RDoc).
+
+* Stand alone FileList usage gets glob function (without loading in
+  extra dependencies)
+
+==== Thanks
+
+As usual, it was input from users that drove a lot of these changes. The
+following people contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Aaron Patterson
+* Dylan Smith
+* Jo Liss
+* Jonas Pfenniger
+* Kazuki Tsujimoto
+* Michael Bishop
+* Michael Elufimov
+* NAKAMURA Usaku
+* Ryan Davis
+* Sam Grönblom
+* Sam Phippen
+* Sergio Wong
+* Tay Ray Chuan
+* grosser
+* quix
+
+Also, many thanks to Eric Hodel for assisting with getting this release
+out the door.
+
+-- Jim Weirich
+
+=== 10.0.0
+
+  "Jim, when will Rake reach version 1.0?"
+
+Over the past several years I've been asked that question at
+conferences, panels and over twitter. Due to historical reasons (or
+maybe just plain laziness) Rake has (incorrectly) been treating the
+second digit of the version as the major release number. So in my head
+Rake was already at version 9.
+
+Well, it's time to fix things. This next version of Rake drops old,
+crufty, backwards compatibility hacks such as top level constants, DSL
+methods defined in Object and numerous other features that are just no
+longer desired. It's also time to drop the leading zero from the
+version number as well and call this new version of rake what it
+really is: Version 10.
+
+So, welcome to Rake 10.0!
+
+Rake 10 is actually feature identical to the latest version of Rake 9
+(that would be the version spelled 0.9.3), *except* that Rake 10 drops
+all the sundry deprecated features that have accumulated over the years.
+
+If your Rakefile is up to date and current with all the new features
+of Rake 10, you are ready to go. If your Rakefile still uses a few
+deprecated feeatures, feel free to use Rake 9 (0.9.3) with the same
+feature set. Just be aware that future features will be in Rake 10
+family line.
+
+==== Changes in 10.0
+
+As mentioned above, there are no new features in Rake 10. However,
+there are a number of features missing:
+
+* Classic namespaces are now gone. Rake is no longer able to reflect
+  the options settings in the global variables ($rakefile, $show\_tasks,
+  $show\_prereqs, $trace, $dryrun and $silent). The
+  <tt>--classic-namespace</tt> option is no longer supported.
+
+* Global constants are no longer supported. This includes
+  <tt>Task</tt>, <tt>FileTask</tt>, <tt>FileCreationTask</tt> and
+  <tt>RakeApp</tt>). The constant missing hook to warn about using
+  global rake constants has been removed.
+
+* The Rake DSL methods (task, file, directory, etc) are in their own
+  module (Rake::DSL). The stub versions of these methods (that printed
+  warnings) in Object have been removed. However, the DSL methods are
+  added to the top-level <tt>main</tt> object. Since <tt>main</tt> is
+  not in the inheritance tree, the presence of the DSL methods in main
+  should be low impact on other libraries.
+
+  If you want to use the Rake DSL commands from your own code, just
+  include <tt>Rake::DSL</tt> into your own classes and modules.
+
+* The deprecated syntax for task arguments (the one using
+  <tt>:needs</tt>) has been removed.
+
+* The <tt>--reduce-compat</tt> flag has been removed (it's not needed
+  anymore).
+
+* The deprecated <tt>rake/sys.rb</tt> library has been removed.
+
+* The deprecated <tt>rake/rdoctask.rb</tt> library has been removed.
+  RDoc supplies its own rake task now.
+
+* The deprecated <tt>rake/gempackagetask.rb</tt> library has been
+  removed. Gem supplies its own package task now.
+
+There is one small behavioral change:
+
+* Non-file tasks now always report the current time as their time
+  stamp. This is different from the previous behavior where non-file
+  tasks reported current time only if there were no prerequisites, and
+  the max prerequisite timestamp otherwise. This lead to inconsistent
+  and surprising behavior when adding prerequisites to tasks that in
+  turn were prequisites to file tasks. The new behavior is more
+  consistent and predictable.
+
+==== Changes (from 0.9.3)
+
+Since Rake 10 includes the changes from the last version of Rake 9,
+we'll repeat the changes for version 0.9.3 here.
+
+===== New Features
+
+* Multitask tasks now use a thread pool. Use -j to limit the number of
+  available threads.
+
+* Use -m to turn regular tasks into multitasks (use at your own risk).
+
+* You can now do "Rake.add_rakelib 'dir'" in your Rakefile to
+  programatically add rake task libraries.
+
+* You can specific backtrace suppression patterns (see
+  --suppress-backtrace)
+
+* Directory tasks can now take prerequisites and actions
+
+* Use --backtrace to request a full backtrace without the task trace.
+
+* You can say "--backtrace=stdout" and "--trace=stdout" to route trace
+  output to standard output rather than standard error.
+
+* Optional 'phony' target (enable with 'require 'rake/phony'") for
+  special purpose builds.
+
+* Task#clear now clears task comments as well as actions and
+  prerequisites. Task#clear_comment will specifically target comments.
+
+* The --all option will force -T and -D to consider all the tasks,
+  with and without descriptions.
+
+===== Bug Fixes
+
+* Semi-colons in windows rakefile paths now work.
+
+* Improved Control-C support when invoking multiple test suites.
+
+* egrep method now reads files in text mode (better support for
+  Windows)
+
+* Better deprecation line number reporting.
+
+* The -W option now works with all tasks, whether they have a
+  description or not.
+
+* File globs in rake should not be sorted alphabetically, independent
+  of file system and platform.
+
+* Numerous internal improvements.
+
+* Documentation typos and fixes.
+
+
+==== Thanks
+
+As usual, it was input from users that drove a lot of these changes. The
+following people contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Aaron Patterson
+* Dylan Smith
+* Jo Liss
+* Jonas Pfenniger
+* Kazuki Tsujimoto
+* Michael Bishop
+* Michael Elufimov
+* NAKAMURA Usaku
+* Ryan Davis
+* Sam Grönblom
+* Sam Phippen
+* Sergio Wong
+* Tay Ray Chuan
+* grosser
+* quix
+
+Also, many thanks to Eric Hodel for assisting with getting this release
+out the door.
+
+-- Jim Weirich
+
+=== 0.9.6
+
+Rake version 0.9.6 contains a number of fixes mainly for merging
+Rake into the Ruby source tree and fixing tests.
+
+==== Changes
+
+===== Bug Fixes (0.9.6)
+
+* Better trace output when using a multi-threaded Rakefile.
+* Arg parsing is now consistent for tasks and multitasks.
+* Skip exit code test in versions of Ruby that don't support it well.
+
+Changes for better integration with the Ruby source tree:
+
+* Fix version literal for Ruby source tree build.
+* Better loading of libraries for testing in Ruby build.
+* Use the ruby version provided by Ruby's tests.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Aaron Patterson
+* Dylan Smith
+* Jo Liss
+* Jonas Pfenniger
+* Kazuki Tsujimoto
+* Michael Bishop
+* Michael Elufimov
+* NAKAMURA Usaku
+* Ryan Davis
+* Sam Grönblom
+* Sam Phippen
+* Sergio Wong
+* Tay Ray Chuan
+* grosser
+* quix
+
+Also, many thanks to Eric Hodel for assisting with getting this release
+out the door.
+
+-- Jim Weirich
+
+=== 0.9.5
+
+Rake version 0.9.5 contains a number of bug fixes.
+
+==== Changes
+
+===== Bug Fixes (0.9.5)
+
+* --trace and --backtrace no longer swallow following task names.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Aaron Patterson
+* Dylan Smith
+* Jo Liss
+* Jonas Pfenniger
+* Kazuki Tsujimoto
+* Michael Bishop
+* Michael Elufimov
+* NAKAMURA Usaku
+* Ryan Davis
+* Sam Grönblom
+* Sam Phippen
+* Sergio Wong
+* Tay Ray Chuan
+* grosser
+* quix
+
+Also, many thanks to Eric Hodel for assisting with getting this release
+out the door.
+
+-- Jim Weirich
+
+=== 0.9.4
+
+Rake version 0.9.4 contains a number of bug fixes.
+
+==== Changes
+
+===== Bug Fixes (0.9.4)
+
+* Exit status with failing tests is not correctly set to non-zero.
+
+* Simplified syntax for phony task (for older versions of RDoc).
+
+* Stand alone FileList usage gets glob function (without loading in
+  extra dependencies)
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Aaron Patterson
+* Dylan Smith
+* Jo Liss
+* Jonas Pfenniger
+* Kazuki Tsujimoto
+* Michael Bishop
+* Michael Elufimov
+* NAKAMURA Usaku
+* Ryan Davis
+* Sam Grönblom
+* Sam Phippen
+* Sergio Wong
+* Tay Ray Chuan
+* grosser
+* quix
+
+Also, many thanks to Eric Hodel for assisting with getting this release
+out the door.
+
+-- Jim Weirich
+
+=== 0.9.3
+
+Rake version 0.9.3 contains some new, backwards compatible features and
+a number of bug fixes.
+
+==== Changes
+
+===== New Features
+
+* Multitask tasks now use a thread pool. Use -j to limit the number of
+  available threads.
+
+* Use -m to turn regular tasks into multitasks (use at your own risk).
+
+* You can now do "Rake.add_rakelib 'dir'" in your Rakefile to
+  programatically add rake task libraries.
+
+* You can specific backtrace suppression patterns (see
+  --suppress-backtrace)
+
+* Directory tasks can now take prerequisites and actions
+
+* Use --backtrace to request a full backtrace without the task trace.
+
+* You can say "--backtrace=stdout" and "--trace=stdout" to route trace
+  output to standard output rather than standard error.
+
+* Optional 'phony' target (enable with 'require 'rake/phony'") for
+  special purpose builds.
+
+* Task#clear now clears task comments as well as actions and
+  prerequisites. Task#clear_comment will specifically target comments.
+
+* The --all option will force -T and -D to consider all the tasks,
+  with and without descriptions.
+
+===== Bug Fixes
+
+* Semi-colons in windows rakefile paths now work.
+
+* Improved Control-C support when invoking multiple test suites.
+
+* egrep method now reads files in text mode (better support for
+  Windows)
+
+* Better deprecation line number reporting.
+
+* The -W option now works with all tasks, whether they have a
+  description or not.
+
+* File globs in rake should not be sorted alphabetically, independent
+  of file system and platform.
+
+* Numerous internal improvements.
+
+* Documentation typos and fixes.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Aaron Patterson
+* Dylan Smith
+* Jo Liss
+* Jonas Pfenniger
+* Kazuki Tsujimoto
+* Michael Bishop
+* Michael Elufimov
+* NAKAMURA Usaku
+* Ryan Davis
+* Sam Grönblom
+* Sam Phippen
+* Sergio Wong
+* Tay Ray Chuan
+* grosser
+* quix
+
+Also, many thanks to Eric Hodel for assisting with getting this release
+out the door.
+
+-- Jim Weirich
+
+=== Rake 0.9.2.2
+
+Rake version 0.9.2.2 is mainly bug fixes.
+
+==== Changes
+
+* The rake test loader now removes arguments it has processed.  Issue #51
+* Rake::TaskArguments now responds to #values\_at
+* RakeFileUtils.verbose_flag = nil silences output the same as 0.8.7
+* Rake tests are now directory-independent
+* Rake tests are no longer require flexmock
+* Commands constant is no longer polluting top level namespace.
+* Show only the interesting portion of the backtrace by default (James M. Lawrence).
+* Added --reduce-compat option to remove backward compatible DSL hacks (James M. Lawrence).
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* James M. Lawrence (quix)
+* Roger Pack
+* Cezary Baginski
+* Sean Scot August Moon
+* R.T. Lechow
+* Alex Chaffee
+* James Tucker
+* Matthias Lüdtke
+* Santiago Pastorino
+
+Also, bit thanks to Eric Hodel for assisting with getting this release
+out the door (where "assisting" includes, but is not by any means
+limited to, "pushing" me to get it done).
+
+-- Jim Weirich
+
+=== 0.9.2
+
+Rake version 0.9.2 has a few small fixes.  See below for details.
+
+==== Changes
+
+* Support for Ruby 1.8.6 was fixed.
+* Global DSL warnings now honor --no-deprecate
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* James M. Lawrence (quix)
+* Roger Pack
+* Cezary Baginski
+* Sean Scot August Moon
+* R.T. Lechow
+* Alex Chaffee
+* James Tucker
+* Matthias Lüdtke
+* Santiago Pastorino
+
+Also, bit thanks to Eric Hodel for assisting with getting this release
+out the door (where "assisting" includes, but is not by any means
+limited to, "pushing" me to get it done).
+
+-- Jim Weirich
+
+=== 0.9.1
+
+Rake version 0.9.1 has a number of bug fixes and enhancments (see
+below for more details).  Additionally, the internals have be slightly
+restructured and improved.
+
+==== Changes
+
+Rake 0.9.1 adds back the global DSL methods, but with deprecation
+messages.  This allows Rake 0.9.1 to be used with older rakefiles with
+warning messages.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* James M. Lawrence (quix)
+* Roger Pack
+* Cezary Baginski
+* Sean Scot August Moon
+* R.T. Lechow
+* Alex Chaffee
+* James Tucker
+* Matthias Lüdtke
+* Santiago Pastorino
+
+Also, bit thanks to Eric Hodel for assisting with getting this release
+out the door (where "assisting" includes, but is not by any means
+limited to, "pushing" me to get it done).
+
+-- Jim Weirich
+
+=== 0.9.0
+
+Rake version 0.9.0 has a number of bug fixes and enhancments (see
+below for more details).  Additionally, the internals have be slightly
+restructured and improved.
+
+==== Changes
+
+===== New Features / Enhancements / Bug Fixes in Version 0.9.0
+
+* Rake now warns when the deprecated :needs syntax used (and suggests
+  the proper syntax in the warning).
+
+* Moved Rake DSL commands to top level ruby object 'main'.  Rake DSL
+  commands are no longer private methods in Object. (Suggested by
+  James M. Lawrence/quix)
+
+* Rake now uses case-insensitive comparisons to find the Rakefile on Windows.
+  Based on patch by Roger Pack.
+
+* Rake now requires (instead of loads) files in the test task.  Patch by Cezary
+  Baginski.
+
+* Fixed typos.  Patches by Sean Scot August Moon and R.T. Lechow.
+
+* Rake now prints the Rakefile directory only when it's different from the
+  current directory.  Patch by Alex Chaffee.
+
+* Improved rakefile_location discovery on Windows.  Patch by James Tucker.
+
+* Rake now recognizes "Windows Server" as a windows system.  Patch by Matthias
+  Lüdtke
+
+* Rake::RDocTask is deprecated.  Use RDoc::Task from RDoc 2.4.2+ (require
+  'rdoc/task')
+
+* Rake::GemPackageTask is deprecated.  Use Gem::PackageTask (require
+  'rubygems/package\_task')
+
+* Rake now outputs various messages to $stderr instead of $stdout.
+
+* Rake no longer emits warnings for Config.  Patch by Santiago Pastorino.
+
+* Removed Rake's DSL methods from the top level scope.  If you need to
+  call 'task :xzy' in your code, include Rake::DSL into your class, or
+  put the code in a Rake::DSL.environment do ... end block.
+
+* Split rake.rb into individual files.
+
+* Support for the --where (-W) flag for showing where a task is defined.
+
+* Fixed quoting in test task.
+  (http://onestepback.org/redmine/issues/show/44,
+  http://www.pivotaltracker.com/story/show/1223138)
+
+* Fixed the silent option parsing problem.
+  (http://onestepback.org/redmine/issues/show/47)
+
+* Fixed :verbose=>false flag on sh and ruby commands.
+
+* Rake command line options may be given by default in a RAKEOPT
+  environment variable.
+
+* Errors in Rake will now display the task invocation chain in effect
+  at the time of the error.
+
+* Accepted change by warnickr to not expand test patterns in shell
+  (allowing more files in the test suite).
+
+* Fixed that file tasks did not perform prereq lookups in scope
+  (Redmine #57).
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* James M. Lawrence (quix)
+* Roger Pack
+* Cezary Baginski
+* Sean Scot August Moon
+* R.T. Lechow
+* Alex Chaffee
+* James Tucker
+* Matthias Lüdtke
+* Santiago Pastorino
+
+Also, bit thanks to Eric Hodel for assisting with getting this release
+out the door (where "assisting" includes, but is not by any means
+limited to, "pushing" me to get it done).
+
+-- Jim Weirich
+
+
+=== 0.8.7
+
+Rake version 0.8.5 introduced greatly improved support for executing
+commands on Windows.  The "sh" command now has the same semantics on
+Windows that it has on Unix based platforms.
+
+Rake version 0.8.6 includes minor fixes the the RDoc generation.
+Rake version 0.8.7 includes a minor fix for JRuby running on windows.
+
+==== Changes
+
+===== New Features / Enhancements in Version 0.8.5
+
+* Improved implementation of the Rake system command for Windows.
+  (patch from James M. Lawrence/quix)
+
+* Support for Ruby 1.9's improved system command.  (patch from James
+  M. Lawrence/quix)
+
+* Rake now includes the configured extension when invoking an
+  executable (Config::CONFIG['EXEEXT])
+
+===== Bug Fixes in Version 0.8.5
+
+* Environment variable keys are now correctly cased (it matters in
+  some implementations).
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Charles Nutter
+
+-- Jim Weirich
+
+=== 0.8.6
+
+Rake version 0.8.5 introduced greatly improved support for executing
+commands on Windows.  The "sh" command now has the same semantics on
+Windows that it has on Unix based platforms.
+
+Rake version 0.8.5 includes minor fixes the the RDoc generation.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* James M. Lawrence/quix
+* Luis Lavena
+
+-- Jim Weirich
+
+=== 0.8.5
+
+Rake version 0.8.5 is a new release of Rake with greatly improved
+support for executing commands on Windows.  The "sh" command now has
+the same semantics on Windows that it has on Unix based platforms.
+
+==== Changes
+
+===== New Features / Enhancements in Version 0.8.5
+
+* Improved implementation of the Rake system command for Windows.
+  (patch from James M. Lawrence/quix)
+
+* Support for Ruby 1.9's improved system command.  (patch from James
+  M. Lawrence/quix)
+
+* Rake now includes the configured extension when invoking an
+  executable (Config::CONFIG['EXEEXT])
+
+===== Bug Fixes in Version 0.8.5
+
+* Environment variable keys are now correctly cased (it matters in
+  some implementations).
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* James M. Lawrence/quix
+* Luis Lavena
+
+-- Jim Weirich
+
+=== 0.8.4
+
+Rake version 0.8.4 is a bug-fix release of rake.
+
+NOTE: The version of Rake that comes with Ruby 1.9 has diverged
+      slightly from the core Rake code base.  Rake 0.8.4 will work
+      with Ruby 1.9, but is not a strict upgrade for the Rake that
+      comes with Ruby 1.9.  A (near) future release of Rake will unify
+      those two codebases.
+
+==== Letter Writing Campaign
+
+Thanks to Aaron Patterson (@tenderlove) and Eric Hodel (@drbrain) for
+their encouraging support in organizing a letter writing campaign to
+lobby for the "Warning Free" release of rake 0.8.4.  A special callout
+goes to Jonathan D. Lord, Sr (Dr. Wingnut) whose postcard was the
+first to actually reach me. (see
+http://tenderlovemaking.com/2009/02/26/we-need-a-new-version-of-rake/
+for details)
+
+==== Changes
+
+===== New Features / Enhancements in Version 0.8.4
+
+* Case is preserved on rakefile names. (patch from James
+  M. Lawrence/quix)
+
+* Improved Rakefile case insensitivity testing (patch from Luis
+  Lavena).
+
+* Windows system dir search order is now: HOME, HOMEDRIVE + HOMEPATH,
+  APPDATA, USERPROFILE (patch from Luis Lavena)
+
+* MingGW is now recognized as a windows platform.  (patch from Luis
+  Lavena)
+
+===== Bug Fixes in Version 0.8.4
+
+* Removed reference to manage_gem to fix the warning produced by the
+  gem package task.
+
+* Fixed stray ARGV option problem that was interfering with
+  Test::Unit::Runner. (patch from Pivotal Labs)
+
+===== Infrastructure Improvements in Version 0.8.4
+
+* Numerous fixes to the windows test suite (patch from Luis Lavena).
+
+* Improved Rakefile case insensitivity testing (patch from Luis
+  Lavena).
+
+* Better support for windows paths in the test task (patch from Simon
+  Chiang/bahuvrihi)
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* James M. Lawrence/quix
+* Luis Lavena
+* Pivotal Labs
+* Simon Chiang/bahuvrihi
+
+-- Jim Weirich
+
+=== 0.8.3
+
+Rake version 0.8.3 is a bug-fix release of rake.
+
+==== Changes
+
+===== Bug Fixes in Version 0.8.3
+
+* Enhanced the system directory detection in windows. We now check
+  HOMEDRIVE/HOMEPATH and USERPROFILE if APPDATA isn't found. (Patch
+  supplied by James Tucker). Rake no long aborts if it can't find the
+  directory.
+
+* Added fix to handle ruby installations in directories with spaces in
+  their name.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Edwin Pratomo
+* Gavin Stark
+* Adam Q. Salter
+* Adam Majer
+* Emanuel Indermühle
+* Ittay Dror
+* Bheeshmar Redheendran (for spending an afternoon with me debugging
+  windows issues)
+
+-- Jim Weirich
+
+
+=== 0.8.2
+
+Rake version 0.8.2 is a new release of rake that includes a number of
+new features and numerous bug fixes.
+
+==== Changes
+
+===== New Features in Version 0.8.2
+
+* Switched from getoptlong to optparse (patches supplied by Edwin
+  Pratomo).
+
+* The -T option will now attempt to dynamically sense the size of the
+  terminal. The -T output will only self-truncate if the output is a
+  tty. However, if RAKE_COLUMNS is explicitly set, it will be honored
+  in any case. (Patch provided by Gavin Stark).
+
+* The following public methods have been added to rake task objects:
+
+  * task.clear -- Clear both the prerequisites and actions of the
+    target rake task.
+  * task.clear_prerequisites -- Clear all the existing prerequisites
+    from the target rake task.
+  * task.clear_actions -- Clear all the existing actions from the
+    target rake task.
+  * task.reenable -- Re-enable a task, allowing its actions to be
+    executed again if the task is invoked.
+
+* Changed RDoc test task to have no default template. This makes it
+  easier for the tempate to pick up the template from the environment.
+
+* Default values for task arguments can easily be specified with the
+  :with_defaults method. (Idea for default argument merging supplied
+  by (Adam Q. Salter)
+
+===== Bug Fixes in Version 0.8.2
+
+* Fixed bug in package task so that it will include the subdir
+  directory in the package for testing. (Bug found by Adam Majer)
+
+* Fixed filename dependency order bug in test\_inspect\_pending and
+  test\_to\_s\_pending. (Bug found by Adam Majer)
+
+* Fixed check for file utils options to make them immune to the
+  symbol/string differences. (Patch supplied by Edwin Pratomo)
+
+* Fixed bug with rules involving multiple source, where only the first
+  dependency of a rule has any effect (Patch supplied by Emanuel
+  Indermühle)
+
+* FileList#clone and FileList#dup have better sematics w.r.t. taint
+  and freeze.
+
+* Changed from using Mutex to Monitor. Evidently Mutex causes thread
+  join errors when Ruby is compiled with -disable-pthreads. (Patch
+  supplied by Ittay Dror)
+
+* Fixed bug in makefile parser that had problems with extra spaces in
+  file task names. (Patch supplied by Ittay Dror)
+
+==== Other changes in Version 0.8.2
+
+* Added ENV var to rake's own Rakefile to prevent OS X from including
+  extended attribute junk in the rake package tar file. (Bug found by
+  Adam Majer)
+
+* Added a performance patch for reading large makefile dependency
+  files. (Patch supplied by Ittay Dror)
+
+==== Task Argument Examples
+
+Prior to version 0.8.0, rake was only able to handle command line
+arguments of the form NAME=VALUE that were passed into Rake via the
+ENV hash.  Many folks had asked for some kind of simple command line
+arguments, perhaps using "--" to separate regular task names from
+argument values on the command line.  The problem is that there was no
+easy way to associate positional arguments on the command line with
+different tasks.  Suppose both tasks :a and :b expect a command line
+argument: does the first value go with :a?  What if :b is run first?
+Should it then get the first command line argument.
+
+Rake 0.8.0 solves this problem by explicitly passing values directly
+to the tasks that need them.  For example, if I had a release task
+that required a version number, I could say:
+
+   rake release[0.8.2]
+
+And the string "0.8.2" will be passed to the :release task.  Multiple
+arguments can be passed by separating them with a comma, for example:
+
+   rake name[john,doe]
+
+Just a few words of caution.  The rake task name and its arguments
+need to be a single command line argument to rake.  This generally
+means no spaces.  If spaces are needed, then the entire rake +
+argument string should be quoted.  Something like this:
+
+   rake "name[billy bob, smith]"
+
+(Quoting rules vary between operating systems and shells, so make sure
+you consult the proper docs for your OS/shell).
+
+===== Tasks that Expect Parameters
+
+Parameters are only given to tasks that are setup to expect them.  In
+order to handle named parameters, the task declaration syntax for
+tasks has been extended slightly.
+
+For example, a task that needs a first name and last name might be
+declared as:
+
+   task :name, :first_name, :last_name
+
+The first argument is still the name of the task (:name in this case).
+The next to argumements are the names of the parameters expected by
+:name (:first_name and :last_name in the example).
+
+To access the values of the parameters, the block defining the task
+behaviour can now accept a second parameter:
+
+   task :name, :first_name, :last_name do |t, args|
+     puts "First name is #{args.first_name}"
+     puts "Last  name is #{args.last_name}"
+   end
+
+The first argument of the block "t" is always bound to the current
+task object.  The second argument "args" is an open-struct like object
+that allows access to the task arguments.  Extra command line
+arguments to a task are ignored.  Missing command line arguments are
+given the nil value.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Edwin Pratomo
+* Gavin Stark
+* Adam Q. Salter
+* Adam Majer
+* Emanuel Indermühle
+* Ittay Dror
+* Bheeshmar Redheendran (for spending an afternoon with me debugging
+  windows issues)
+
+-- Jim Weirich
+
+=== 0.8.0/0.8.1
+
+Rake version 0.8.0 is a new release of rake that includes serveral new
+features.
+
+==== Changes
+
+===== New Features in Version 0.8.0
+
+* Tasks can now receive command line parameters.  See the examples
+  below for more details.
+
+* Comments are limited to 80 columns on output, but full comments can
+  be seen by using the -D parameter. (feature suggested by Jamis
+  Buck).
+
+* Explicit exit(n) calls will now set the exit status to n. (patch
+  provided by Stephen Touset).
+
+* Rake is now compatible with Ruby 1.9.
+
+Version 0.8.1 is a minor update that includes additional Ruby 1.9
+compatibility fixes.
+
+==== Task Argument Examples
+
+Prior to version 0.8.0, rake was only able to handle command line
+arguments of the form NAME=VALUE that were passed into Rake via the
+ENV hash.  Many folks had asked for some kind of simple command line
+arguments, perhaps using "--" to separate regular task names from
+argument values on the command line.  The problem is that there was no
+easy way to associate positional arguments on the command line with
+different tasks.  Suppose both tasks :a and :b expect a command line
+argument: does the first value go with :a?  What if :b is run first?
+Should it then get the first command line argument.
+
+Rake 0.8.0 solves this problem by explicitly passing values directly
+to the tasks that need them.  For example, if I had a release task
+that required a version number, I could say:
+
+   rake release[0.8.0]
+
+And the string "0.8.0" will be passed to the :release task.  Multiple
+arguments can be passed by separating them with a comma, for example:
+
+   rake name[john,doe]
+
+Just a few words of caution.  The rake task name and its arguments
+need to be a single command line argument to rake.  This generally
+means no spaces.  If spaces are needed, then the entire rake +
+argument string should be quoted.  Something like this:
+
+   rake "name[billy bob, smith]"
+
+(Quoting rules vary between operating systems and shells, so make sure
+you consult the proper docs for your OS/shell).
+
+===== Tasks that Expect Parameters
+
+Parameters are only given to tasks that are setup to expect them.  In
+order to handle named parameters, the task declaration syntax for
+tasks has been extended slightly.
+
+For example, a task that needs a first name and last name might be
+declared as:
+
+   task :name, :first_name, :last_name
+
+The first argument is still the name of the task (:name in this case).
+The next to argumements are the names of the parameters expected by
+:name (:first_name and :last_name in the example).
+
+To access the values of the parameters, the block defining the task
+behaviour can now accept a second parameter:
+
+   task :name, :first_name, :last_name do |t, args|
+     puts "First name is #{args.first_name}"
+     puts "Last  name is #{args.last_name}"
+   end
+
+The first argument of the block "t" is always bound to the current
+task object.  The second argument "args" is an open-struct like object
+that allows access to the task arguments.  Extra command line
+arguments to a task are ignored.  Missing command line arguments are
+given the nil value.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments.  Thanks to ...
+
+* Jamis Buck (for comment formatting suggestions)
+* Stephen Touset (for exit status patch).
+
+-- Jim Weirich
+
+
+=== 0.7.3
+
+Rake version 0.7.3 is a minor release that includes some refactoring to better
+support custom Rake applications.
+
+==== Changes
+
+===== New Features in Version 0.7.3
+
+* Added the +init+ and +top_level+ methods to make the creation of custom Rake applications a bit easier.  E.g.
+
+    gem 'rake', ">= 0.7.3"
+    require 'rake'
+
+    Rake.application.init('myrake')
+
+    task :default do
+      something_interesting
+    end
+
+    Rake.application.top_level
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes. The
+following people either contributed patches, made suggestions or made
+otherwise helpful comments. Thanks to ...
+
+-- Jim Weirich
+
+
+=== 0.7.2
+
+
+Version 0.7.2 supplies a bug fix and a few minor enhancements. In
+particular, the new version fixes an incompatibility with the soon to
+be released Ruby 1.8.6.  We strongly recommend upgrading to Rake 0.7.2
+in order to be compatible with the new version of Ruby.
+
+==== Changes
+
+===== Bug Fixes in 0.7.2
+
+There are quite a number of bug fixes in the new 0.7.2 version of
+Rake:
+
+* Removed dependency on internal fu_xxx functions from FileUtils.
+
+* Error messages are now send to stderr rather than stdout (from
+  Payton Quackenbush).
+
+* Better error handling on invalid command line arguments (from Payton
+  Quackenbush).
+
+* Fixed some bugs where the application object was going to the global
+  appliation instead of using its own data.
+
+* Fixed the method name leak from FileUtils (bug found by Glenn
+  Vanderburg).
+
+* Added test for noop, bad_option and verbose flags to sh command.
+
+* Added a description to the gem task in GemPackageTask.
+
+* Fixed a bug when rules have multiple prerequisites (patch by Joel
+  VanderWerf)
+
+* Added the handful of RakeFileUtils to the private method as well.
+
+===== New Features in 0.7.2
+
+The following new features are available in Rake version 0.7.2:
+
+* Added square and curly bracket patterns to FileList#include (Tilman
+  Sauerbeck).
+
+* FileLists can now pass a block to FileList#exclude to exclude files
+  based on calculated values.
+
+* Added plain filename support to rule dependents (suggested by Nobu
+  Nakada).
+
+* Added pathmap support to rule dependents.  In other words, if a
+  pathmap format (beginning with a '%') is given as a Rake rule
+  dependent, then the name of the depend will be the name of the
+  target with the pathmap format applied.
+
+* Added a 'tasks' method to a namespace to get a list of tasks
+  associated with the namespace.
+
+* Added tar_command and zip_command options to the Package task.
+
+* The clean task will no longer delete 'core' if it is a directory.
+
+===== Internal Rake Improvements
+
+The following changes will are mainly internal improvements and
+refactorings and have little effect on the end user.  But they may be
+of interest to the general public.
+
+* Added rcov task and updated unit testing for better code coverage.
+
+* Added a 'shame' task to the Rakefile.
+
+* Added rake_extension to handle detection of extension collisions.
+
+* Added a protected 'require "rubygems"' to test/test_application to
+  unbreak cruisecontrol.rb.
+
+* Removed rake\_dup.  Now we just simply rescue a bad dup.
+
+* Refactored the FileList reject logic to remove duplication.
+
+* Removed if \_\_FILE\_\_ at the end of the rake.rb file.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes.
+The following people either contributed patches, made suggestions or
+made otherwise helpful comments.  Thanks to ...
+
+* Payton Quackenbush -- For several error handling improvements.
+
+* Glenn Vanderburg -- For finding and fixing the method name leak from
+  FileUtils.
+
+* Joel VanderWerf -- for finding and fixing a bug in the handling of
+  multiple prerequisites.
+
+* Tilman Sauerbeck -- For some enhancing FileList to support more
+  advanced file globbing.
+
+* Nobu Nakada -- For suggesting plain file name support to rule dependents.
+
+-- Jim Weirich
+
+=== 0.7.1
+
+Version 0.7.1 supplies a bug fix and a few minor enhancements.
+
+==== Changes
+
+===== Bug Fixes in 0.7.1
+
+* Changes in the exception reported for the FileUtils.ln caused
+  safe_ln to fail with a NotImplementedError.  Rake 0.7.1 will now
+  catch that error or any StandardError and properly fall back to
+  using +cp+.
+
+===== New Features in 0.7.1
+
+* You can filter the results of the --task option by supplying an
+  optional regular expression.  This allows the user to easily find a
+  particular task name in a long list of possible names.
+
+* Transforming procs in a rule may now return a list of prerequisites.
+  This allows more flexible rule formation.
+
+* FileList and String now support a +pathmap+ melthod that makes the
+  transforming paths a bit easier.  See the API docs for +pathmap+ for
+  details.
+
+* The -f option without a value will disable the search for a
+  Rakefile.  This allows the Rakefile to be defined entirely in a
+  library (and loaded with the -r option).  The current working
+  directory is not changed when this is done.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes.
+The following people either contributed patches, made suggestions or
+made otherwise helpful comments.  Thanks to ...
+
+* James Britt and Assaph Mehr for reporting and helping to debug the
+  safe_ln issue.
+
+-- Jim Weirich
+
+
+=== 0.7.0
+
+These changes for Rake have been brewing for a long time.  Here they
+are, I hope you enjoy them.
+
+==== Changes
+
+===== New Features
+
+* Name space support for task names (see below).
+* Prerequisites can be executed in parallel (see below).
+* Added safe_ln support for openAFS (via Ludvig Omholt).
+* RDoc defaults to internal (in-process) invocation.  The old behavior
+  is still available by setting the +external+ flag to true.
+* Rakefiles are now loaded with the expanded path to prevent
+  accidental pollution from the Ruby load path.
+* Task objects my now be used in prerequisite lists directly.
+* Task objects (in addition to task names) may now be included in the
+  prerequisite list of a task.
+* Internals cleanup and refactoring.
+
+===== Bug Fixes
+
+* Compatibility fixes for Ruby 1.8.4 FileUtils changes.
+
+===== Namespaces
+
+Tasks can now be nested inside their own namespaces.  Tasks within one
+namespace will not accidentally interfer with tasks named in a different
+namespace.
+
+For example:
+
+  namespace "main" do
+    task :build do
+      # Build the main program
+    end
+  end
+
+  namespace "samples" do
+    task :build do
+      # Build the sample programs
+    end
+  end
+
+  task :build_all => ["main:build", "samples:build"]
+
+Even though both tasks are named :build, they are separate tasks in
+their own namespaces.  The :build_all task (defined in the toplevel
+namespace) references both build tasks in its prerequisites.
+
+You may invoke each of the individual build tasks with the following
+commands:
+
+  rake main:build
+  rake samples:build
+
+Or invoke both via the :build_all command:
+
+  rake build_all
+
+Namespaces may be nested arbitrarily.  Since the name of file tasks
+correspond to the name of a file in the external file system,
+FileTasks are not affected by the namespaces.
+
+See the Rakefile format documentation (in the Rake API documents) for
+more information.
+
+===== Parallel Tasks
+
+Sometimes you have several tasks that can be executed in parallel.  By
+specifying these tasks as prerequisites to a +multitask+ task.
+
+In the following example the tasks copy\_src, copy\_doc and copy\_bin
+will all execute in parallel in their own thread.
+
+  multitask :copy_files => [:copy_src, :copy_doc, :copy_bin] do
+    puts "All Copies Complete"
+  end
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes.
+The following people either contributed patches, made suggestions or
+made otherwise helpful comments.  Thanks to ...
+
+* Doug Young (inspiration for the parallel task)
+* David Heinemeier Hansson (for --trace message enhancement and for
+  pushing for namespace support).
+* Ludvig Omholt (for the openAFS fix)
+
+-- Jim Weirich
+
+=== 0.6.1
+
+* Rebuilt 0.6.0 gem without signing.
+
+=== 0.6.0
+
+Its time for some long requested enhancements and lots of bug fixes
+... And a whole new web page.
+
+==== New Web Page
+
+The primary documentation for rake has moved from the RubyForge based
+wiki to its own Hieraki based web site.  Constant spam on the wiki
+made it a difficult to keep clean.  The new site will be easier to
+update and organize.
+
+Check out the new documentation at: http://docs.rubyrake.org
+
+We will be adding new documentation to the site as time goes on.
+
+In addition to the new docs page, make sure you check out Martin
+Fowlers article on rake at http://martinfowler.com/articles/rake.html
+
+==== Changes
+
+===== New Features
+
+* Multiple prerequisites on Rake rules now allowed.  However, keep the
+  following in mind:
+
+  1. All the prerequisites of a rule must be available before a rule
+     is triggered, where "enabled" means (a) an existing file, (b) a
+     defined rule, or (c) another rule which also must be
+     trigger-able.
+  2. Rules are checked in order of definition, so it is important to
+     order your rules properly.  If a file can be created by two
+     different rules, put the more specific rule first (otherwise the
+     more general rule will trigger first and the specific one will
+     never be triggered).
+  3. The <tt>source</tt> method now returns the name of the first
+     prerequisite listed in the rule.  <tt>sources</tt> returns the
+     names of all the rule prerequisites, ordered as they are defined
+     in the rule.  If the task has other prerequisites not defined in
+     the rule (but defined in an explicit task definition), then they
+     will _not_ be included in the sources list.
+
+* FileLists may now use the egrep command.  This popular enhancement
+  is now a core part of the FileList object.  If you want to get a
+  list of all your to-dos, fixmes and TBD comments, add the following
+  to your Rakefile.
+
+    desc "Look for TODO and FIXME tags in the code"
+    task :todo do
+      FileList['**/*.rb'].egrep /#.*(FIXME|TODO|TBD)/
+    end
+
+* The <tt>investigation</tt> method was added to task object to dump
+  out some important values.  This makes it a bit easier to debug Rake
+  tasks.
+
+  For example, if you are having problems with a particular task, just
+  print it out:
+
+    task :huh do
+      puts Rake::Task['huh'].investigation
+    end
+
+* The Rake::TestTask class now supports a "ruby\_opts" option to pass
+  arbitrary ruby options to a test subprocess.
+
+===== Some Incompatibilities
+
+* When using the <tt>ruby</tt> command to start a Ruby subprocess, the
+  Ruby interpreter that is currently running rake is used by default.
+  This makes it easier to use rake in an environment with multiple
+  ruby installation.  (Previously, the first ruby command found in the
+  PATH was used).
+
+  If you wish to chose a different Ruby interpreter, you can
+  explicitly choose the interpreter via the <tt>sh</tt> command.
+
+* The major rake classes (Task, FileTask, FileCreationTask, RakeApp)
+  have been moved out of the toplevel scope and are now accessible as
+  Rake::Task, Rake::FileTask, Rake::FileCreationTask and
+  Rake::Application.  If your Rakefile
+  directly references any one of these tasks, you may:
+
+  1. Update your Rakefile to use the new classnames
+  2. Use the --classic-namespace option on the rake command to get the
+     old behavior,
+  3. Add <code>require 'rake/classic_namespace'</code> to the
+     Rakefile to get the old behavior.
+
+  <tt>rake</tt> will print a rather annoying warning whenever a
+  deprecated class name is referenced without enabling classic
+  namespace.
+
+===== Bug Fixes
+
+* Several unit tests and functional tests were fixed to run better
+  under windows.
+
+* Directory tasks are now a specialized version of a File task.  A
+  directory task will only be triggered if it doesn't exist.  It will
+  not be triggered if it is out of date w.r.t. any of its
+  prerequisites.
+
+* Fixed a bug in the Rake::GemPackageTask class so that the gem now
+  properly contains the platform name.
+
+* Fixed a bug where a prerequisite on a <tt>file</tt> task would cause
+  an exception if the prerequisite did not exist.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes.
+The following people either contributed patches, made suggestions or
+made otherwise helpful comments.  Thanks to ...
+
+* Greg Fast (better ruby_opt test options)
+* Kelly Felkins (requested by better namespace support)
+* Martin Fowler (suggested Task.investigation)
+* Stuart Jansen (send initial patch for multiple prerequisites).
+* Masao Mutch (better support for non-ruby Gem platforms)
+* Philipp Neubeck (patch for file task exception fix)
+
+-- Jim Weirich
+
+=== 0.5.4
+
+Time for some minor bug fixes and small enhancements
+
+==== Changes
+
+Here are the changes for version 0.5.4 ...
+
+* Added double quotes to the test runner.  This allows the location of
+  the tests (and runner) to be in a directory path that contains
+  spaces (e.g. "C:/Program Files/ruby/bin").
+* Added .svn to default ignore list.  Now subversion project metadata
+  is automatically ignored by Rake's FileList.
+* Updated FileList#include to support nested arrays and filelists.
+  FileLists are flat lists of file names.  Using a FileList in an
+  include will flatten out the nested file names.
+
+== Thanks
+
+As usual, it was input from users that drove a alot of these changes.
+Thanks to ...
+
+* Tilman Sauerbeck for the nested FileList suggestion.
+* Josh Knowles for pointing out the spaces in directory name problem.
+
+-- Jim Weirich
+
+=== 0.5.3
+
+Although it has only been two weeks since the last release, we have
+enough updates to the Rake program to make it time for another
+release.
+
+==== Changes
+
+Here are the changes for version 0.5.3 ...
+
+* FileLists have been extensively changed so that they mimic the
+  behavior of real arrays even more closely.  In particular,
+  operations on FileLists that return a new collection (e.g. collect,
+  reject) will now return a FileList rather than an array.  In
+  addition, several places where FileLists were not properly expanded
+  before use have been fixed.
+* A method (+ext+) to simplify the handling of file extensions was
+  added to String and to Array.
+* The 'testrb' script in test/unit tends to silently swallow syntax
+  errors in test suites.  Because of that, the default test loader is
+  now a rake-provided script.  You can still use 'testrb' by setting
+  the loader flag in the test task to :testrb.  (See the API documents
+  for TestTask for all the loader flag values).
+* FileUtil methods (e.g. cp, mv, install) are now declared to be
+  private.  This will cut down on the interference with user defined
+  methods of the same name.
+* Fixed the verbose flag in the TestTask so that the test code is
+  controlled by the flag.  Also shortened up some failure messages.
+  (Thanks to Tobias Luetke for the suggestion).
+* Rules will now properly detect a task that can generate a source
+  file.  Previously rules would only consider source files that were
+  already present.
+* Added an +import+ command that allows Rake to dynamically import
+  dependendencies into a running Rake session.  The +import+ command
+  can run tasks to update the dependency file before loading them.
+  Dependency files can be in rake or make format, allowing rake to
+  work with tools designed to generate dependencies for make.
+
+==== Thanks
+
+As usual, it was input from users that drove a alot of these changes.
+Thanks to ...
+
+* Brian Gernhardt for the rules fix (especially for the patience to
+  explain the problem to me until I got what he was talking about).
+* Stefan Lang for pointing out problems in the dark corners of the
+  FileList implementation.
+* Alexey Verkhovsky pointing out the silently swallows syntax errors
+  in tests.
+* Tobias Luetke for beautifying the test task output.
+* Sam Roberts for some of the ideas behind dependency loading.
+
+-- Jim Weirich
+
+
+=== 0.5.0
+
+It has been a long time in coming, but we finally have a new version
+of Rake available.
+
+==== Changes
+
+* Fixed documentation that was lacking the Rake module name (Tilman
+  Sauerbeck).
+* Added tar.gz and tar.bz2 support to package task (Tilman Sauerbeck).
+* Recursive rules are now supported (Tilman Sauerbeck).
+* Added warning option for the Test Task (requested by Eric Hodel).
+* The jamis rdoc template is only used if it exists.
+* Added fix for Ruby 1.8.2 test/unit and rails problem.
+* Added contributed rake man file (Jani Monoses).
+* Added Brian Candler's fix for problems in --trace and --dry-run
+  mode.
+
+==== Thanks
+
+Lots of people provided input to this release.  Thanks to Tilman
+Sauerbeck for numerous patches, documentation fixes and suggestions.
+And for also pushing me to get this release out.  Also, thanks to
+Brian Candler for the finding and fixing --trace/dry-run fix.  That
+was an obscure bug.  Also to Eric Hodel for some good suggestions.
+
+-- Jim Weirich
+
+=== 0.4.15
+
+==== Changes
+
+Version 0.4.15 is a bug fix update for the Ruby 1.8.2 compatibility
+changes.  This release includes:
+
+* Fixed a bug that prevented the TESTOPTS flag from working with the
+  revised for 1.8.2 test task.
+* Updated the docs on --trace to indicate that it also enables a full
+  backtrace on errors.
+* Several fixes for new warnings generated.
+
+==== Mini-Roadmap
+
+I will continue to issue Rake updates in the 0.4.xx series as new
+Ruby-1.8.2 issues become manifest.  Once the codebase stabilizes, I
+will release a 0.5.0 version incorporating all the changes.  If you
+are not using Ruby-1.8.2 and wish to avoid version churn, I recommend
+staying with a release prior to Rake-0.4.14.
+
+=== 0.4.14
+
+Version 0.4.14 is a compatibility fix to allow Rake's test task to
+work under Ruby 1.8.2.  A change in the Test::Unit autorun feature
+prevented Rake from running any tests.  This release fixes the
+problem.
+
+Rake 0.4.14 is the recommended release for anyone using Ruby 1.8.2.
+
+=== 0.4.13
+
+* Fixed the dry-run flag so it is operating again.
+* Multiple arguments to sh and ruby commands will not be interpreted
+  by the shell (patch provided by Jonathan Paisley).
+
+=== 0.4.12
+
+* Added --silent (-s) to suppress the (in directory) rake message.
+
+=== 0.4.11
+
+* Changed the "don't know how to rake" message (finally)
+* Changes references to a literal "Rakefile" to reference the global
+  variable $rakefile (which contains the actual name of the rakefile).
+
+=== 0.4.10
+
+* Added block support to the "sh" command, allowing users to take
+  special actions on the result of the system call.  E.g.
+
+    sh "shell_command" do |ok, res|
+      puts "Program returned #{res.exitstatus}" if ! ok
+    end
+
+=== 0.4.9
+
+* Switched to Jamis Buck's RDoc template.
+* Removed autorequire from Rake's gem spec.  This prevents the Rake
+  libraries from loading while using rails.
+
+=== 0.4.8
+
+* Added support for .rb versions of Rakefile.
+* Removed \\\n's from test task.
+* Fixed Ruby 1.9 compatibility issue with FileList.
+
+=== 0.4.7
+
+* Fixed problem in FileList that caused Ruby 1.9 to go into infinite
+  recursion.  Since to_a was removed from Object, it does not need to
+  added back into the list of methods to rewrite in FileList.  (Thanks
+  to Kent Sibilev for pointing this out).
+
+=== 0.4.6
+* Removed test version of ln in FileUtils that prevented safe_ln from
+  using ln.
+
+=== 0.4.5
+* Upgraded comments in TestTask.
+* FileList to_s and inspect now automatically resolve pending changes.
+* FileList#exclude properly returns the FileList.
+
+=== 0.4.4
+* Fixed initialization problem with @comment.
+* Now using multi -r technique in TestTask.  Switch Rakefile back to
+  using the built-in test task macros because the rake runtime is no
+  longer needed.
+* Added 'TEST=filename' and 'TESTOPTS=options' to the Test Task
+  macros.
+* Allow a +test_files+ attribute in test tasks.  This allows more
+  flexibility in specifying test files.
+
+=== 0.4.3
+* Fixed Comment leakage.
+
+=== 0.4.2
+* Added safe_ln that falls back to a copy if a file link is not supported.
+* Package builder now uses safe\_ln.
+
+=== 0.4.1
+* Task comments are now additive, combined with "/".
+* Works with (soon to be released) rubygems 0.6.2 (or 0.7.0)
+
+=== 0.4.0
+* FileList now uses deferred loading.  The file system is not searched
+  until the first call that needs the file names.
+* VAR=VALUE options are now accepted on the command line and are
+  treated like environment variables.  The values may be tested in a
+  Rakefile by referencing ENV['VAR'].
+* File.mtime is now used (instead of File.new().mtime).
+
+=== 0.3.2.x
+
+* Removed some hidden dependencies on rubygems.  Tests now will test
+  gems only if they are installed.
+* Removed Sys from some example files.  I believe that is that last
+  reference to Sys outside of the contrib area.
+* Updated all copyright notices to include 2004.
+
+=== 0.3.2
+
+* GEM Installation now works with the application stub.
+
+=== 0.3.1
+
+* FileLists now automatically ignore CVS, .bak, !
+* GEM Installation now works.
+
+=== 0.3.0
+
+Promoted 0.2.10.
+
+=== 0.2.10
+General
+
+* Added title to Rake's rdocs
+* Contrib packages are no longer included in the documentation.
+
+RDoc Issues
+
+* Removed default for the '--main' option
+* Fixed rendering of the rdoc options
+* Fixed clean/clobber confusion with rerdoc
+* 'title' attribute added
+
+Package Task Library Issues
+
+* Version (or explicit :noversion) is required.
+* +package_file+ attribute is now writable
+
+FileList Issues
+
+* Dropped bang version of exclude.  Now using ant-like include/exclude semantics.
+* Enabled the "yield self" idiom in FileList#initialize.
+
+=== 0.2.9
+
+This version contains numerous changes as the RubyConf.new(2003)
+presentation was being prepared.  The changes include:
+
+* The monolithic rubyapp task library is in the process of being
+  dropped in favor of lighter weight task libraries.
+
+=== 0.2.7
+
+* Added "desc" for task descriptions.
+* -T will now display tasks with descriptions.
+* -P will display tasks and prerequisites.
+* Dropped the Sys module in favor of the 1.8.x FileUtils module.  Sys
+  is still supported in the contrib area.
+
+=== 0.2.6
+
+* Moved to RubyForge
+
+=== 0.2.5
+
+* Switched to standard ruby app builder.
+* Added no_match option to file matcher.
+
+=== 0.2.4
+
+* Fixed indir, which neglected to actually change directories.
+
+=== 0.2.3
+
+* Added rake module for a help target
+* Added 'for\_files' to Sys
+* Added a $rakefile constant
+* Added test for selecting proper rule with multiple targets.

@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Top Sources</th>
+      <th style="width: 20%;">Connections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% connection_sources.each do |source| %>
+      <tr>
+        <td><%= source["source"] %> <div class="text-muted"><%= [source["user"], source["database"], source["ip"]].compact.join(" - ") %></div></td>
+        <td><%= number_with_delimiter(source["total_connections"]) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

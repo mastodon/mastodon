@@ -1,0 +1,14 @@
+language: ruby
+sudo: false
+cache: bundler
+services:
+  - redis-server
+before_install:
+  - gem install bundler
+  - gem update bundler
+rvm:
+  - 2.2.10
+  - 2.3.7
+  - 2.4.4
+  - 2.5.1
+  - jruby-9.1.16.0

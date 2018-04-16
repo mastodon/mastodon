@@ -1,0 +1,6595 @@
+2017-06-12  Michael Granger  <ged@FaerieMUD.org>
+
+	* Closing branch.
+	[d199582de47f] [tip] <olleolleolle/readmerdoc-use-svg-for-travis-build-badg-1489403729779>
+
+	* Merge with bitbucket upstream
+	[7cb095bb8e34]
+
+2017-06-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Merged in olleolleolle/ruby-pg/olleolleolle/readmerdoc-use-svg-for-
+	travis-build-badg-1489403729779 (pull request #24)
+
+	README.rdoc: use SVG for Travis build badge
+	[97eca85fc660]
+
+2017-03-13  Olle Jonsson  <olle.jonsson@gmail.com>
+
+	* README.rdoc:
+	README.rdoc: use SVG for Travis build badge
+	[75dcedbff32e] <olleolleolle/readmerdoc-use-svg-for-travis-build-badg-1489403729779>
+
+2017-06-12  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgignore, .hoerc, History.rdoc, Manifest.txt, lib/pg.rb:
+	Bunp minor version, update history, fix manifest/ignore files
+	[4729196c11cb]
+
+	* Merged with bitbucket default
+	[f6063a34ae2b]
+
+2017-04-07  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg.rb:
+	Move add_dll_directory to the Runtime namespace.
+
+	RubyInstaller::Runtime.add_dll_directory is deprecated with
+	rubyinstaller-2.4.1-1rc1.
+	[050a996456b1]
+
+2017-05-31  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile, lib/pg.rb, lib/pg/connection.rb,
+	lib/pg/deprecated_constants.rb, lib/pg/result.rb, pg.gemspec:
+	Deprecate the old PGconn, PGresult, and PGError constants.
+	[3ce331d8c88e]
+
+2017-06-01  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg_result.c, pg.gemspec, sample/copydata.rb:
+	Fix the docs for PG::Result#cmd_tuples
+
+	Also add an example of the nicer #copy_data way of doing `COPY`.
+	[c4a1abc36c47]
+
+2017-03-13  Michael Granger  <ged@FaerieMUD.org>
+
+	* .gems, .rvm.gems, Rakefile, pg.gemspec:
+	Update dependencies to latest versions
+	[8a15026cfe77]
+
+	* .hgignore:
+	Ignore bundler vendor directory
+	[fff7debf0630]
+
+	* Rakefile.cross:
+	Bump Postgresql version for windows binary to 9.6.2
+	[11296e69a17f]
+
+2017-03-10  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.20.0 for changeset e5eb92cca97a
+	[409cae555174]
+
+	* .hgsigs:
+	Added signature for changeset 838985377b48
+	[e5eb92cca97a] [v0.20.0]
+
+	* History.rdoc, lib/pg.rb, pg.gemspec:
+	Bump the minor version, update history.
+	[838985377b48]
+
+	* .hgignore:
+	Ignore .lock files
+	[379c198c7185]
+
+2017-02-16  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg.rb:
+	Use block.call instead of yield in proc context
+
+	yield in a proc context requires Ruby-2.2.
+	[aa91b4b14b5c]
+
+2017-01-24  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc:
+	Update History file regarding RI2 support.
+	[d52339653fe3]
+
+	* lib/pg.rb:
+	Add support for RubyInstaller2 to Windows binary gem.
+
+	RI2 ignores PATH setting for DLL search, but provides it's own API.
+	[87fe14131d78]
+
+2017-01-14  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc:
+	Update History file. [ci-skip]
+	[0d1921b825d7]
+
+	* Rakefile.cross:
+	Update Windows binary rubies to support 2.0 to 2.4
+	[3736e33ce71e]
+
+	* ext/pg_connection.c, ext/pg_result.c:
+	Change all Fixnum to Integer in documentation.
+
+	Fixnum are deprecated in Ruby-2.4.
+	[2e17f315848e]
+
+	* ext/pg_type_map.c:
+	Avoid compiler warnings about noreturn-functions:
+
+	../../../../ext/pg_type_map.c: In function
+	‘pg_typemap_fit_to_result’: ../../../../ext/pg_type_map.c:15:1:
+	warning: function might be candidate for attribute ‘noreturn’
+	[-Wsuggest-attribute=noreturn] pg_typemap_fit_to_result( VALUE self,
+	VALUE result )
+	[2af122820861]
+
+	* spec/pg/type_map_by_class_spec.rb:
+	Bignum,Fixnum and Integer are the same in Ruby-2.4.
+
+	Fixes #255 : https://bitbucket.org/ged/ruby-pg/issues/255
+	[a446dfaf9d8f]
+
+	* Rakefile, pg.gemspec:
+	Update rake-compiler and rake-compiler-dock
+
+	This adds support for Ruby-2.4 on Windows and Ruby version
+	constraints for binary gems.
+	[6ebcebaad39c]
+
+	* ext/pg_coder.c:
+	Fix method arguments for Coder#encode in documentation.
+	[ee79cce8b141]
+
+2016-12-04  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc, lib/pg/result.rb, spec/pg/result_spec.rb:
+	Fix Result#inspect on a cleared result.
+	[0c60865f718e]
+
+2016-11-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Merge branch 'master' of github.com:larskanis/ruby-pg
+	[db7c584532e5]
+
+2016-11-09  Lars Kanis  <kanis@comcard.de>
+
+	* Rakefile.cross:
+	Don't download gems in the rake-compiler-dock, but use the local
+	installed gems.
+
+	This saves traffic and avoids download issues.
+	[14e6fa84d31c]
+
+	* Rakefile.cross:
+	Update cross postgres and openssl versions.
+	[a6ec62e2b783]
+
+	* Rakefile:
+	Fetch the errorcodes from a specific release version.
+
+	This avoids introduction of errorcodes, which are not yet released
+	and possibly subject to change.
+	[b399dae9e988]
+
+	* ext/errorcodes.def, ext/errorcodes.txt:
+	Update errorcodes to PostgreSQL version 9.6.1
+	[c1b690f2b47d]
+
+2016-11-09  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc:
+	Merged with d62b04efb055
+	[cefe252948ed]
+
+2016-10-21  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/text_encoder.rb:
+	Fix typo in JSON#encode
+	[d62b04efb055]
+
+	* History.rdoc, lib/pg/text_decoder.rb, lib/pg/text_encoder.rb:
+	Use secure JSON methods for JSON (de)serialisation.
+
+	This fixes issue #248 : https://bitbucket.org/ged/ruby-pg/issues/248
+	[fe3e883bead2]
+
+2016-09-21  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.19.0 for changeset bd2aaa2c5797
+	[5ed7106cc770]
+
+	* .hgsigs:
+	Added signature for changeset 8beaa5d72670
+	[bd2aaa2c5797] [v0.19.0]
+
+	* History.rdoc, lib/pg.rb:
+	Bump the minor version, update history.
+	[8beaa5d72670]
+
+2016-09-04  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Replace rb_ary_new_from_args() which is missing in Ruby-2.0
+
+	We don't really need an Array at all, but storing the values on the
+	stack is enough.
+	[4d9c4ee44d11]
+
+	* ext/pg_connection.c:
+	Use the asynchronous interface for setting the default_encoding.
+
+	This is another attempt to solve issue https://bitbucket.org/ged
+	/ruby-pg/issues/245 While setting the encoding per
+	PQsetClientEncoding was already adjusted to release the GVL in a
+	previous commit, it did not solve the particular issue with
+	pgbouncer.
+
+	Using the async interface has the advantage, that signals or
+	exception events can be processed by the given thread, while a query
+	is running.
+	[a646a1394e9d]
+
+	* spec/pg/connection_spec.rb:
+	Spec: Use a more effective test for default_internal.
+
+	UFT-8 is the standard for internal_encoding anyway, so that not
+	setting it did not result in a failure.
+	[08e7e13687e7]
+
+2016-08-20  Michael Granger  <ged@FaerieMUD.org>
+
+	* certs/ged.pem, pg.gemspec:
+	Correct key+cert upgrade.
+
+	Refs #241.
+	[7431b5c1430d]
+
+	* README.rdoc:
+	Merged with upstream
+	[cf9ac513102e]
+
+2016-08-20  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc, lib/pg/connection.rb:
+	Fix wrong exception when running SQL while in #copy_data for output.
+
+	It raised "undefined method `result_status' for nil:NilClass"
+	previously and raises "no COPY in progress" now.
+
+	This also fixes the failing test of the previous commit.
+	[dbfc3856e543]
+
+	* spec/pg/connection_spec.rb:
+	Add tests for running SQL statements while in #copy_data.
+
+	The test for output currently fails.
+	[9b2b1cd54d49]
+
+2016-08-18  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile:
+	Don't update ext/errorcodes.def with every run of rake gem.
+
+	This fixes the previous commit.
+	[43a48561adde]
+
+2016-08-17  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* .hgignore, History.rdoc, Rakefile, ext/errorcodes.def:
+	Add errorcodes.def to git in order to allow build from git per
+	bundler.
+	[29ca3eed927d]
+
+	* History.rdoc:
+	Update History.rdoc once more.
+	[6874ea8622a1]
+
+	* README.rdoc:
+	Update README regarding to Ruby and PostgreSQL versions.
+	[73930bce99d9]
+
+	* spec/pg/basic_type_mapping_spec.rb:
+	Run JSON test on PostgreSQL-9.4+, only.
+
+	Earlier versions miss the JSONB type.
+	[6b23964f70c3]
+
+	* appveyor.yml:
+	Update Appveyor to use Ruby 2.3 and remove 2.0 and 2.1.
+	[8ff3d0b07cda]
+
+	* .travis.yml:
+	Remove ruby versions before 2.2, because hoe-deveiate isn't
+	compatible with these versions.
+	[73279f9db276]
+
+	* lib/pg/basic_type_mapping.rb, lib/pg/text_decoder.rb,
+	lib/pg/text_encoder.rb, spec/pg/basic_type_mapping_spec.rb:
+	Add JSON coders and add them to BasicTypeMapForResults and
+	BasicTypeMapBasedOnResult
+
+	Fixes bitbucket issue #212 .
+	[b76471234f7a]
+
+2016-08-14  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/basic_type_mapping.rb:
+	Improve documentation to PG::BasicTypeMapForQueries
+	[e7181c452c64]
+
+	* History.rdoc:
+	Update History.rdoc
+	[9c3699255853]
+
+2016-08-20  Michael Granger  <ged@FaerieMUD.org>
+
+	* BSDL, README.rdoc, ext/pg.c:
+	Update copyright year, license files
+	[c77d0997b4e4]
+
+	* README.rdoc, certs/ged.pem:
+	Update/upgrade my signing cert
+
+	Fixes #241.
+	[741c94c3bada]
+
+2016-08-17  Michael Granger  <ged@FaerieMUD.org>
+
+	* pg.gemspec:
+	Bump prerelease version in the gemspec
+	[f7472e7a7902]
+
+2016-08-14  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Merge git master
+	[9b7987626074]
+
+2016-08-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile.cross:
+	Update OpenSSL and PostgreSQL for binary Windows gems.
+	[edbd5b8dbb85]
+
+	* History.rdoc:
+	Update History.rdoc
+	[aca7b024ba0c]
+
+	* ext/gvl_wrappers.h, ext/pg_connection.c:
+	Release GVL while calling PQsetClientEncoding()
+
+	PQsetClientEncoding() is also called within PG::Connection.new which
+	could block due to network delay.
+
+	This fixes bitbucket issue #245 .
+	[41f81b72476f]
+
+2016-06-27  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb:
+	Add __EXTENSIONS__ to Solaris/SmartOS for Ruby >= 2.3.x
+
+	Fixes #236.
+	[5979b3cba237]
+
+2016-04-09  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgignore, Rakefile, pg.gemspec:
+	Deprecate Ruby 1.9, fix license name
+	[fc5828a71f2a]
+
+	* ext/extconf.rb:
+	Add mechanism for trying to build without pg_config
+	[22a3a8ef3244]
+
+2015-12-25  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_binary_encoder.c, ext/pg_coder.c,
+	ext/pg_connection.c, ext/pg_copy_coder.c, ext/pg_text_encoder.c,
+	spec/pg/connection_spec.rb, spec/pg/type_map_by_class_spec.rb,
+	spec/pg/type_map_by_mri_type_spec.rb, spec/pg/type_spec.rb:
+	Respect character encoding of all strings sent to the server.
+
+	Previously all strings sent to the server were sent in their
+	internal binary representation, without respecting the character
+	encoding of strings. Now the encoding of all strings is compared
+	with the current connection encoding and converted if they are
+	different.
+
+	Since coders are independent from any database connection, this adds
+	a second parameter to PG::Coder#encode, that allows to define the
+	destination encoding, which previously was always ASCII_8BIT. This
+	encoding should be set to the connection encoding, in practice.
+
+	This also adds a lot of tests for encoding and decoding data.
+
+	This implements issue #231 : https://bitbucket.org/ged/ruby-
+	pg/issues/231
+	[e61a06f1f5ed]
+
+2016-03-22  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile, pg.gemspec:
+	Remove GPL from the `licenses` of the Hoespec/gemspec (fixes #72)
+	[14d4f1399922]
+
+2016-01-31  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile, pg.gemspec:
+	Fix `hg:precheckin` task to re-generate the gemspec.
+	[6294e7bdfd2b]
+
+	* .hoerc, Gemfile, Rakefile, certs/ged.pem:
+	Add gem cert, trying out gemspec-based setup.
+
+	Hopefully Travis and Appveyor will work this way.
+	[b3946987e6f4]
+
+	* lib/pg/basic_type_mapping.rb:
+	Fix the example for PG::BasicTypeMapForQueries.
+
+	Fixes #213.
+	[11f13477e4b9]
+
+	* ext/pg_connection.c, ext/pg_result.c, lib/pg/connection.rb,
+	lib/pg/result.rb:
+	Small documentation fixes.
+
+	- Make PG::Connection and PG::Result show up instead of PGconn and
+	PGresult.
+	- Add docs for PG::Result#inspect.
+	- Swap `PGconn.open` for `PG.connect` in an example.
+	- Add explicit returns to a few methods.
+	[982082c0d77b]
+
+	* ext/pg_connection.c:
+	Clarify differences between class and instance escape methods.
+
+	Borrow the wording from the PostgreSQL docs about the difference
+	between class and instance variants of `escape_string` and
+	`escape_bytea` for PG::Connection. Fixes #205.
+	[01a8e779edb2]
+
+2016-01-30  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Gemfile:
+	Update hoe-deveiate
+	[7e95a9dae248]
+
+	* Rakefile.cross:
+	rake-compiler-dock-0.5.1 fixes the issue with bundler while cross
+	compilation
+
+	So we no longer need to disable rubygems.
+	[7ad087272591]
+
+2016-01-30  Lars Kanis  <larskanis@gmail.com>
+
+	* Merge pull request #13 from akito19/update_openssl
+
+	update version OpenSSL
+	[9917a9eefcd8]
+
+2016-01-30  Akito Kasai  <a.kasai415@gmail.com>
+
+	* Rakefile.cross:
+	update version OpenSSL
+	[a9b7e8cbd788]
+
+2016-01-30  Lars Kanis  <larskanis@gmail.com>
+
+	* Merge pull request #12 from akito19/fix_indent_on_README
+
+	fix indent sample code [skip ci]
+	[4e0e144275a2]
+
+2016-01-30  Akito Kasai  <a.kasai415@gmail.com>
+
+	* README.rdoc:
+	fix indent sample code
+	[dec5b785d96c]
+
+2016-01-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Add missing ifdef for PostgreSQL < 9.5
+	[df51313f26b9]
+
+2016-01-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/extconf.rb, ext/pg_connection.c, lib/pg/connection.rb,
+	spec/pg/connection_spec.rb:
+	Add PostgreSQL-9.5 functions PQsslInUse(), PQsslAttribute() and
+	PQsslAttributeNames().
+	[5a437ad15148]
+
+2016-01-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/helpers.rb:
+	Add rspec filter for PostgreSQL-9.5.
+	[3b4857e5401c]
+
+2016-01-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h:
+	Avoid compiler warning about undeclared function gettimeofday().
+
+	../../../../ext/pg_connection.c: In function ‘wait_socket_readable’:
+	../../../../ext/pg_connection.c:2393:3: warning: implicit
+	declaration of function ‘gettimeofday’ [-Wimplicit-function-
+	declaration] gettimeofday(&currtime, NULL);
+	[bdd4f3c8fc73]
+
+2016-01-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/connection_spec.rb:
+	Adjust timings in tests for better compat with Windows, which has
+	less exact timers.
+	[e51a84966ce6]
+
+	* .travis.yml:
+	Bundler is not installed per default on ruby-2.3.0 on travis-ci.
+	[d94ffc08a04f]
+
+	* .rvmrc:
+	Remove .rvmrc from repository.
+
+	This currently breaks the build on travis-ci.
+	[fbaac4e36b9e]
+
+2015-08-29  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* .travis.yml:
+	Switch windows binary gem build on travis-ci to docker.
+
+	This is faster and the recommended ways to buid the gems now.
+	[5fa0071f377a]
+
+2016-01-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* .travis.yml, appveyor.yml:
+	Update appveyor and travis-ci tests from 9.4 and 9.0 to 9.5 and 9.1.
+	[a66cd5015f50]
+
+2015-08-29  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile, Rakefile.cross, lib/pg.rb:
+	Remove needless platform specific subdirectory for libpq.dll.
+	[b3a270f74fdd]
+
+	* Rakefile.cross:
+	Don't abort 'rake gem:windows' when there are no key/certs for gem
+	signing.
+	[6c7d9a357ac3]
+
+	* Rakefile:
+	Don't abort the tests, if the pg_ext file is missing.
+
+	This is required to run the tests with fat binary gems.
+	[0115baee0e15]
+
+2016-01-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* .travis.yml:
+	Use ruby '2.3.0' in travis-ci, since the alias '2.3' isn't
+	available.
+	[d28332e23fbc]
+
+	* .travis.yml:
+	Remove ruby 1.9.3 from travis-ci, since it fails anyway.
+	[4173b84490f0]
+
+2016-01-08  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	PQescapeString takes size_t, so RSTRING_LEN is correct.
+	[9c8027a0934f]
+
+	* Rakefile.cross:
+	Update PostgreSQL version for cross build to 9.5.0
+	[8048fe08c330]
+
+2015-12-31  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Fix description of encoder_for_put_copy_data
+	[4d4de8d69dc0]
+
+2015-12-30  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Mark local functions as static.
+	[1a2c1d85a8fd]
+
+2015-12-29  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Improve performance of conn.escape by 50%.
+
+	Copying the string twice and calling rb_obj_is_kind_of() twice isn't
+	necessary.
+	[a8ebc0163f6b]
+
+	* ext/pg_connection.c:
+	Describe more exactly the difference between quote_ident and
+	escape_identifier.
+	[b458c0c3d40e]
+
+2016-01-08  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/errorcodes.txt:
+	Add new error codes introduced in PostgreSQL-9.5 per 'rake
+	update_error_codes'
+	[698e36b52c7d]
+
+2015-12-26  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* .travis.yml:
+	Add ruby-2.3 on travis-ci.
+	[e53198935b4a]
+
+	* Rakefile.cross:
+	Update libraries for Windows cross build.
+	[de4fdcd96eb3]
+
+	* Gemfile, Rakefile, Rakefile.cross:
+	Enable Windows cross build for Ruby-2.3.
+	[1a6f2861f9d3]
+
+	* README.rdoc:
+	Merge branch 'master@1' of ../ruby-pg.git.bare
+	[b324f3f65a0c]
+
+	* README.rdoc, ext/pg_copy_coder.c, lib/pg/basic_type_mapping.rb,
+	lib/pg/connection.rb:
+	Add a lot more of documentation, how COPY can be used with type
+	coders and type maps.
+	[256c059e4802]
+
+2015-11-13  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.18.4 for changeset f61127650cd0
+	[fdfa6657502e]
+
+	* .hgsigs:
+	Added signature for changeset 75d4f016a17f
+	[f61127650cd0] [v0.18.4]
+
+	* .hgtags:
+	Removed tag v0.18.4
+	[75d4f016a17f]
+
+	* README.rdoc:
+	Move the gitter link below the extracted links in the README
+	[588ea20370ff]
+
+	* .hgtags:
+	Added tag v0.18.4 for changeset 94ef4830540d
+	[81cc8a52985e]
+
+	* .hgsigs:
+	Added signature for changeset da42b972b5ab
+	[94ef4830540d]
+
+	* History.rdoc, lib/pg.rb:
+	Bump the version, add date to History
+	[da42b972b5ab]
+
+	* .hgignore:
+	Ignore some build artifacts
+	[f4bd9e53ccab]
+
+	* Rakefile:
+	Only use fivefish formatter when building from repo
+	[6161d8eeb3f1]
+
+2015-11-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc:
+	Update History.rdoc regarding PR#22.
+	[e4a8a1d41104]
+
+	* Merge ../ruby-pg.git.bare
+	[810c1e4dad4d]
+
+2015-10-08  Lars Kanis  <larskanis@gmail.com>
+
+	* README.rdoc:
+	Fix link to appveyor CI tests in the README.
+	[604f4dd3d5bd]
+
+2015-11-04  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_binary_encoder.c:
+	Merged in t-richards/ruby-pg/jemalloc-native-ext (pull request #22)
+
+	Fix build against jemalloc 4.0.0
+	[72168db5fb7b]
+
+2015-09-10  Tom Richards  <tom@tomrichards.net>
+
+	* ext/pg_binary_encoder.c:
+	Fix build against jemalloc 4.0.0
+	[fe05106909f7] <jemalloc-native-ext>
+
+2015-09-24  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc:
+	Add latest changes to History.rdoc.
+	[11b978b08d63]
+
+	* History.rdoc:
+	Add missing entry in History.rdoc.
+
+	This fixes bitbucket issue #225 : https://bitbucket.org/ged/ruby-
+	pg/issues/225
+	[132d674d999f]
+
+	* Merge ../ruby-pg.git.bare
+	[479799a98cfa]
+
+	* ext/pg_text_encoder.c, spec/pg/connection_spec.rb,
+	spec/pg/type_spec.rb:
+	Avoid segfault, when quote_ident is called with Array containing
+	non-strings.
+
+	This fixes bitbucket issue #226 : https://bitbucket.org/ged/ruby-
+	pg/issues/226
+	[4f0bd19e9111]
+
+2015-09-08  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Merge pull request #10 from PuzzleFlow/master
+
+	Fixing compilation problems with Microsoft Visual Studio 2008.
+	[dfb62954f2d6]
+
+2015-09-08  jfali  <jfali@puzzleflow.com>
+
+	* ext/extconf.rb, ext/pg_binary_decoder.c, ext/pg_binary_encoder.c,
+	ext/pg_text_decoder.c, ext/pg_text_encoder.c, ext/pg_type_map.c,
+	ext/pg_type_map_by_column.c:
+	Fixing compilation problems with Microsoft Visual Studio 2008.
+	- inttypes.h is not available in MSVC 2008
+	- Structs members must be initialized implicitly
+	[fcf731d3dff7]
+
+2015-09-07  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* README.rdoc:
+	Merge pull request #8 from gitter-badger/gitter-badge
+
+	Add a Gitter chat badge to README.rdoc
+	[ab4d5656abce]
+
+2015-03-09  The Gitter Badger  <badger@gitter.im>
+
+	* README.rdoc:
+	Added Gitter badge
+	[beb02a90f948]
+
+2015-09-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.18.3 for changeset 01c42c68797e
+	[4c8df76aff6f]
+
+	* .hgsigs:
+	Added signature for changeset 57291f1e96b9
+	[01c42c68797e] [v0.18.3]
+
+	* .hoerc:
+	Exclude some generated files from the Manifest
+	[57291f1e96b9]
+
+	* History.rdoc, lib/pg.rb:
+	Bump patch version, update history
+	[3b49541c9f12]
+
+2015-09-01  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/text_decoder.rb:
+	Add missing require
+	[d0ba6a2cb10f]
+
+	* Merge pull request #9 from ramfjord/date-decoder-return-dates
+
+	Date decoder to return real Dates
+	[676def89b826]
+
+2015-06-21  Thomas Ramfjord  <thomas.ramfjord@gmail.com>
+
+	* lib/pg/text_decoder.rb, spec/pg/basic_type_mapping_spec.rb:
+	modified TextDecoder::Date to return an actual ruby Date instead of
+	a Time
+	[c50593d12ba2]
+
+2015-08-20  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile:
+	Add include for Hoe::MercurialHelpers as a temporary solution for
+	the error:
+
+	 Packaging tasks require the hoe-mercurial plugin (gem install hoe-
+	mercurial)
+	[a84f83ff5b31]
+
+	* History.rdoc:
+	Update History.rdoc
+	[cadfac537e73]
+
+	* Merge branch 'master' of github.com:larskanis/ruby-pg
+	[d27d6d5a6545]
+
+	* README.rdoc:
+	Add Appveyor status badge to the README.
+	[c9637c6efcfb]
+
+	* appveyor.yml:
+	Use 9.3 because 9.0, 9.1 and 9.2 segfault in PG.init_openssl
+	[158f6649b7b8]
+
+	* spec/pg/connection_spec.rb:
+	Skip conn#host test on Windows-x64, because it segfaults, currently.
+	[04110aad7fc6]
+
+	* spec/pg/connection_spec.rb:
+	libpq on Windows doesn't respect the PGPORT env variable, so we
+	accept both.
+	[b4b666011f3f]
+
+	* spec/helpers.rb:
+	Older versions of PostgreSQL don't have a pid column, so this could
+	raise an exception: TypeError: can't convert nil into Integer
+	[48f1145fa631]
+
+	* Rakefile.cross:
+	Update OpenSSL version for Windows cross build.
+	[be6b75fef0ff]
+
+	* appveyor.yml:
+	Add CI-tests on appveyor.
+	[c2dc9e491853]
+
+2015-06-29  Lars Kanis  <kanis@comcard.de>
+
+	* History.rdoc:
+	Merge branch 'master' of https://github.com/larskanis/ruby-pg
+
+	Conflicts: History.rdoc
+	[affb47533d82]
+
+	* History.rdoc, ext/util.c, spec/pg/type_spec.rb:
+	Fix data type resulting in wrong base64 encoding.
+	[5fb9170f6a7d]
+
+2015-06-17  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Gemfile, Rakefile, Rakefile.cross:
+	Update versions of rake-compiler-dock, OpenSSL and PostgreSQL.
+	[10c6b496314c]
+
+2015-06-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile.cross:
+	Update OpenSSL and PostgreSQL versions for cross build.
+	[02094cca1cf8]
+
+2015-06-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc, README-Windows.rdoc:
+	Update README-Windows in regards to rake-compiler-dock.
+	[4d9fd821ec1e]
+
+2015-06-09  Lars Kanis  <kanis@comcard.de>
+
+	* Rakefile.cross:
+	Cross build: Ensure ChangeLog file is built on the host side before
+	entering the docker container.
+	[d32412acff38]
+
+	* Rakefile.cross:
+	Cross build: Add workaround for missing symlink support on Windows.
+	[52bb3eef00f0]
+
+	* Rakefile.cross:
+	Explicitly set the gcc-toolchain, instead of deriving from the rake-
+	compiler config.
+
+	Now, that we use the libpq.dll (instead of static linking), we can
+	mix the gcc-toolchains. So we better build the dll with the newer
+	mingw-w64 toolchain (instead of the old mingw32) and build only the
+	extension for ruby-1.9 with the old mingw32-gcc.
+	[b3d169fa189b]
+
+	* Merge https://github.com/ged/ruby-pg
+	[5aeb99dda0ca]
+
+2015-05-25  Michael Granger  <ged@FaerieMUD.org>
+
+	* lib/pg/basic_type_mapping.rb:
+	Whitespace fixes
+	[57cfbc230597]
+
+2015-05-14  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.18.2 for changeset 22a361201fd1
+	[00d6997551e6]
+
+	* .hgsigs:
+	Added signature for changeset 7d31b04e7913
+	[d77ab8ab870e]
+
+	* History.rdoc, lib/pg.rb:
+	Bump patch version, update History
+	[fa56690fe72d]
+
+	* Merged with git branch.
+	[9b2c80df821d]
+
+2015-06-09  Lars Kanis  <kanis@comcard.de>
+
+	* Rakefile.cross:
+	Cross build: Copy gem signing key and certs to be accessable from
+	the docker container
+	[c5382a785f4d]
+
+2015-06-08  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Merged
+	[3d56a65c78c5]
+
+	* Gemfile, Rakefile, Rakefile.cross:
+	Add rake task 'gem:windows' which makes use of the new rake-
+	compiler-dock.
+
+	Also update the Gemfile per 'rake bundler:gemfile' .
+	[fafadd62cc6d]
+
+	* Rakefile.cross:
+	Cross build: Work around missing dependency to libcommon in
+	PostgreSQL-9.4.0
+	[630a22437026]
+
+2015-05-25  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg_connection.c:
+	Change instance_of checks to kind_of for subclassing [#220]
+	[eb4d3c003bd6]
+
+	* lib/pg/basic_type_mapping.rb:
+	Whitespace fixes
+	[4a4368e30bcf]
+
+2015-05-14  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.18.2 for changeset 22a361201fd1
+	[94e26b472c78]
+
+	* .hgsigs:
+	Added signature for changeset 7d31b04e7913
+	[22a361201fd1] [v0.18.2]
+
+	* History.rdoc, lib/pg.rb:
+	Bump patch version, update History
+	[7d31b04e7913]
+
+	* Merged with git branch.
+	[45a1753da19a]
+
+	* .rvm.gems:
+	Bump the rvm gemset gem versions
+	[8050020330d8]
+
+2015-03-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_encoder.c, ext/util.c, ext/util.h:
+	Avoid possible symbol name clash when linking againt static libpq.
+
+	This should fix issue #209 .
+	[2334a1bc38e6]
+
+2015-02-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.c, spec/pg/connection_spec.rb:
+	Merge from git branch.
+	[a7261eb6796f]
+
+	* ext/pg.h, ext/pg_text_decoder.c:
+	Merge branch 'non-c99-compiler'
+	[7e8f1e4da59d]
+
+2015-02-06  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/extconf.rb, ext/pg.h, ext/pg_result.c, ext/pg_text_decoder.c,
+	ext/pg_type_map_by_mri_type.c:
+	Use fixed size arrays in case the compiler doesn't support C99
+	variable length arrays.
+
+	This is notably the MSVC compiler.
+
+	Note: The MSVC build environment is currently not tested on a
+	regular base, so is not fully supported.
+	[a08290a78221]
+
+2015-02-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Replace quote_ident implementation with that of
+	PG::TextEncoder::Identifier .
+
+	This allowes quoation of array of strings in addition to plain
+	strings and removes duplicated code.
+
+	It also removes the 63 byte limitation and therefore obsolets pull
+	request #21 https://bitbucket.org/ged/ruby-pg/pull-request/21
+	[b8ac29b020ee]
+
+	* ext/pg.c, ext/pg.h, ext/pg_text_decoder.c, ext/pg_text_encoder.c,
+	spec/pg/connection_spec.rb, spec/pg/type_spec.rb:
+	Derive PG::TextDecoder::Identifier from PG::SimpleDecoder instead of
+	CompositeDecoder
+
+	.. and equally for Encoder.
+
+	Identifiers are strings, so there is no good reason to compose it
+	from other element types. This change allows a faster quoting
+	implementation.
+	[55ec58cabad4]
+
+2015-05-14  Michael Granger  <ged@FaerieMUD.org>
+
+	* .rvmrc:
+	Bump default rvm Ruby to 2.2
+	[128b075d5800]
+
+2015-03-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_encoder.c, ext/util.c, ext/util.h:
+	Avoid possible symbol name clash when linking againt static libpq.
+
+	This should fix issue #209 .
+	[b859963462b2]
+
+2015-02-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.c, spec/pg/connection_spec.rb:
+	Merge from git branch.
+	[b60c89ee93c8]
+
+	* ext/pg.h, ext/pg_text_decoder.c:
+	Merge branch 'non-c99-compiler'
+	[b111c84b8445]
+
+2015-02-06  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/extconf.rb, ext/pg.h, ext/pg_result.c, ext/pg_text_decoder.c,
+	ext/pg_type_map_by_mri_type.c:
+	Use fixed size arrays in case the compiler doesn't support C99
+	variable length arrays.
+
+	This is notably the MSVC compiler.
+
+	Note: The MSVC build environment is currently not tested on a
+	regular base, so is not fully supported.
+	[1269b8ad77b8]
+
+2015-02-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Replace quote_ident implementation with that of
+	PG::TextEncoder::Identifier .
+
+	This allowes quoation of array of strings in addition to plain
+	strings and removes duplicated code.
+
+	It also removes the 63 byte limitation and therefore obsolets pull
+	request #21 https://bitbucket.org/ged/ruby-pg/pull-request/21
+	[714601d05fba]
+
+	* ext/pg.c, ext/pg.h, ext/pg_text_decoder.c, ext/pg_text_encoder.c,
+	spec/pg/connection_spec.rb, spec/pg/type_spec.rb:
+	Derive PG::TextDecoder::Identifier from PG::SimpleDecoder instead of
+	CompositeDecoder
+
+	.. and equally for Encoder.
+
+	Identifiers are strings, so there is no good reason to compose it
+	from other element types. This change allows a faster quoting
+	implementation.
+	[df67241d1a4f]
+
+2015-02-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* README.rdoc, ext/pg.c:
+	Update copyright notices
+	[447962e0dcba]
+
+	* spec/pg/connection_spec.rb:
+	Whitespace fixes
+	[f4a85f78807d]
+
+2014-08-22  Chris Bandy  <bandy.chris@gmail.com>
+
+	* lib/pg/connection.rb, spec/pg/connection_spec.rb:
+	Allow URI connection string
+
+	(Imported from https://github.com/ged/ruby-pg/pull/3)
+	[d4579ef9eae4]
+
+2015-01-27  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/text_decoder.rb, spec/pg/type_spec.rb:
+	Fix decoding of fractional timezones like "-00:25:21".
+	[766aa353b392]
+
+2015-01-27  Lars Kanis  <kanis@comcard.de>
+
+	* History.rdoc, lib/pg/text_decoder.rb, spec/pg/type_spec.rb:
+	Fix decoding of fractional timezones like "04:30".
+
+	This fixes https://bitbucket.org/ged/ruby-pg/issue/203 .
+	[33225805259c]
+
+2015-01-16  Lars Kanis  <kanis@comcard.de>
+
+	* History.rdoc, ext/extconf.rb, ext/pg_connection.c,
+	spec/pg/connection_spec.rb:
+	Revert "Add PG::Connection#hostaddr. This is new in PostgreSQL-9.4."
+
+	PQhostaddr was removed from final PostgreSQL-9.4.0.
+
+	This fixes issue #202 :https://bitbucket.org/ged/ruby-pg/issue/202
+
+	This reverts commit 03deab7aa63f9a00984014ce59617d552b4eac34.
+	[b51d736bca77]
+
+	* History.rdoc:
+	Add a missing enhancement for pg-0.18.0
+	[a7635c3425f3]
+
+	* .travis.yml:
+	Update ruby and postgresql versions for travic-ci
+	[b67b92f7db97]
+
+2015-01-06  Lars Kanis  <kanis@comcard.de>
+
+	* Merge from git.
+	[625e9359ac47]
+
+2015-01-05  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_type_map_in_ruby.c:
+	Use a simpler fix for https://bitbucket.org/ged/ruby-
+	pg/commits/a38cf53a96f
+	[3d89d3aae4fd]
+
+2015-01-05  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.18.1 for changeset f97dd6cb4f34
+	[f8122014065a]
+
+	* .hgsigs:
+	Added signature for changeset ba5aff64b5cb
+	[f97dd6cb4f34] [v0.18.1]
+
+	* History.rdoc, lib/pg.rb:
+	Bump the patch version, update history
+	[ba5aff64b5cb]
+
+	* Rakefile:
+	Fix the minimum Ruby version (closes #199)
+	[69422cc8dc45]
+
+2015-01-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.18.0 for changeset cfb2bfc0f661
+	[8aff3973f2d2]
+
+	* .hgsigs:
+	Added signature for changeset c519766e3ec9
+	[cfb2bfc0f661] [v0.18.0]
+
+	* History.rdoc:
+	Update the History
+	[c519766e3ec9]
+
+	* Manifest.txt:
+	Keep the manifest sorted so it can be diffed.
+	[d7cdbfd1b516]
+
+	* Rakefile:
+	Add a Rake task for generating the gemspec
+	[ec6d6ce61a15]
+
+2014-12-26  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/basic_type_mapping.rb:
+	Add a warning about Type OIDs without decoder in
+	PG::BasicTypeMapForResults.
+	[592e29cdf2e9]
+
+2014-12-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map_in_ruby.c:
+	Fix TypeMapInRuby for Rubinius.
+	[a38cf53a96f1]
+
+2014-12-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map_all_strings.c:
+	Fix documentation to TypeMapAllStrings.
+	[c53f993a4254]
+
+	* Manifest.txt, ext/pg.c, ext/pg.h, ext/pg_type_map_in_ruby.c,
+	spec/pg/type_map_in_ruby_spec.rb:
+	Add TypeMapInRuby as a way to combine fast but static C-based type
+	maps with flexible ruby based type maps.
+	[a9724aef9116]
+
+	* ext/pg_type_map.c, ext/pg_type_map_by_oid.c,
+	lib/pg/basic_type_mapping.rb, spec/pg/basic_type_mapping_spec.rb,
+	spec/pg/type_map_by_oid_spec.rb, spec/pg/type_map_spec.rb:
+	Remove TypeMap#fit_to_result and #fit_to_query.
+
+	The only use case so far is building a TypeMapByColumn out of a
+	TypeMapByOid, which is now named more explicitly as
+	#build_column_map .
+	[c99d26015e3c]
+
+	* ext/pg_text_encoder.c:
+	Remove unused variable.
+	[1a13e7eafeb7]
+
+	* ext/pg_connection.c, ext/pg_copy_coder.c, lib/pg/connection.rb:
+	Several documentation fixes to COPY coders.
+	[a7befacdef4e]
+
+2014-11-26  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	PG::TextDecoder::Boolean: encode only true, false, 0 and 1 and pass
+	all other values as strings to the server.
+	[6b86a5543567]
+
+2014-11-24  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/type_map_by_class_spec.rb:
+	Fix test case for rbx. The error message is somewhat different than
+	in MRI.
+	[99638547f8b4]
+
+2014-11-21  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_decoder.c:
+	Stack memory can be used for Identifier decoding, since they are
+	limited in size.
+	[b7f9daeeba29]
+
+2014-11-17  Lars Kanis  <kanis@comcard.de>
+
+	* .travis.yml:
+	Revert "Remove Rubinius from the allowed failure list - failing
+	specs are now marked as pending."
+
+	This reverts commit 524c84ccd17f3caeed13a16084206f14225bbdd6 because
+	of ongoing issues with gem installation on rbx.
+	[b8debfea4331]
+
+	* ext/pg.h, ext/pg_errors.c, ext/pg_result.c, spec/pg/result_spec.rb:
+	Use dedicated error classes for stream exceptions.
+	[f23dd01bcb52]
+
+	* History.rdoc, ext/pg.c, spec/pg_spec.rb:
+	Add PG.init_openssl and PG.init_ssl methods.
+
+	This will hopefully help to solve issue #190:
+	https://bitbucket.org/ged/ruby-pg/issue/190
+	[45610159a246]
+
+2014-11-10  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map_by_class.c:
+	Fix typo.
+	[eeb8a82c5328]
+
+	* spec/pg/type_map_by_class_spec.rb:
+	TypeMapByClass: Add test for invlid coder object.
+	[64ae7cff7f40]
+
+	* ext/pg_type_map_by_class.c:
+	Better check than believe the value type returned by #ancestors .
+	[961a1fce08fd]
+
+2014-11-08  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_binary_decoder.c, ext/pg_type_map_all_strings.c:
+	Tweak the type cast documentation a bit more. [skip ci]
+	[185638b52684]
+
+	* ext/pg_type_map_by_class.c, spec/pg/type_map_by_class_spec.rb:
+	TypeMapByClass: Forgot to expire the cache on changes.
+	[1ce48a854d11]
+
+2014-11-07  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Manifest.txt, ext/pg.c, ext/pg.h, ext/pg_type_map_by_class.c,
+	ext/pg_type_map_by_mri_type.c, lib/pg/basic_type_mapping.rb,
+	spec/pg/connection_spec.rb, spec/pg/type_map_by_class_spec.rb,
+	spec/pg/type_map_by_column_spec.rb, spec/pg/type_spec.rb:
+	Add PG::TypeMapByClass. This replaces PG::TypeMapByMriType with a
+	more portable and flexible way to encode values.
+	[27987dbd0b32]
+
+2014-11-06  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c, ext/pg_result.c:
+	Add note about function usage by the sequel_pg gem.
+	[989a6bd6bf0d]
+
+2014-11-03  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_result.c:
+	Fix possible segfault, when the GC runs within the loop of
+	pgresult_init_fnames().
+	[017bc722655b]
+
+2014-11-01  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_coder.c, lib/pg/coder.rb, spec/pg/type_spec.rb:
+	Set default format code for binary coders to 1.
+	[336f694f6362]
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Add PG::TextEncoder::Bytea .
+	[b10cbaaead6b]
+
+2014-10-31  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg.rb:
+	Windows: Set the PATH so that the bundled libpq.dll of the binary
+	gem is loaded preferably to other dlls in the system.
+
+	This avoids loading issues, if there is some other libpq.dll in the
+	path, that fails to load for some reason.
+
+	[skip ci]
+	[b2bf034e3b9f]
+
+2014-10-30  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc:
+	Update History.rdoc for PG::Connection#hostaddr .
+	[2d1a83316472]
+
+	* .travis.yml:
+	Remove Rubinius from the allowed failure list - failing specs are
+	now marked as pending.
+	[9e707fcf2070]
+
+	* ext/extconf.rb, ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Add PG::Connection#hostaddr. This is new in PostgreSQL-9.4.
+	[3a7b6a1d1cfe]
+
+	* .travis.yml, spec/helpers.rb:
+	Update tavis-ci and specs for PostgreSQL-9.4.
+	[4daf11be6d3d]
+
+2014-10-28  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/type_spec.rb:
+	Fix typo in specs. Thanks Chris Bandy.
+	[9015809803aa]
+
+2014-10-27  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/result_spec.rb:
+	Mark failing tests on Rubinius as pending.
+	[12f053154a99]
+
+	* History.rdoc:
+	Update History.rdoc
+	[b7faf8c1c677]
+
+	* Merge branch 'master' of github.com:larskanis/ruby-pg
+	[0f49f9bc93c6]
+
+2014-10-27  Lars Kanis  <kanis@comcard.de>
+
+	* ext/extconf.rb, ext/pg.h:
+	Fix compat with Rubinius.
+	[3a4e19c56686]
+
+2014-10-27  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_result.c, spec/pg/result_spec.rb:
+	Add PG::Result#stream_each and #stream_each_row methods and specs.
+	[9387b7aeaad3]
+
+	* ext/pg_result.c:
+	Fix typo.
+	[d2bfa9acf36b]
+
+2014-10-25  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_result.c:
+	Use rb_hash_dup() with a prepared tuple hash instead of
+	rb_hash_new().
+
+	This gives a little speedup of 5-10% for Result#each .
+	[dfe51787f74d]
+
+2014-10-24  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h:
+	Add workaround for missing RETURN_SIZED_ENUMERATOR macro in Ruby <
+	2.0.
+	[995d0d85d88d]
+
+	* ext/pg_text_encoder.c:
+	Add include <math.h>. It defines isnan() and isinf().
+	[cadf29e3f863]
+
+	* ext/pg_result.c:
+	Use rb_ary_new4() instead of rb_ary_new_from_values() for compat
+	with Ruby < 2.1.
+	[7c465876616d]
+
+	* ext/pg_result.c:
+	Populate the row-Array in Result#each_row and Result.values per
+	rb_ary_new_from_values() from VALUE array on the stack. The number
+	of fields is limited on the server side to ~1700, so that stack
+	space is not critical. This gives a small speed up by 5%.
+	[adc7a83326e3]
+
+	* ext/pg.h, ext/pg_result.c:
+	Use frozen String objects as field names and reuse them where
+	possible.
+
+	This speeds Result#each up by 30%.
+	[f50c049adc3b]
+
+	* ext/pg_result.c, spec/pg/result_spec.rb:
+	Add Enumerator versions to Result#each and #each_row.
+	[1b324be632e4]
+
+2014-10-22  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Merge alloc_query_params() and alloc_query_params1(). The separation
+	is no longer needed.
+
+	Allocate gc_array on demand, as it's not needed for most queries.
+	[aae1c7dd2360]
+
+	* README.rdoc, ext/pg.h, ext/pg_connection.c, ext/pg_copy_coder.c,
+	ext/pg_result.c, ext/pg_type_map.c, ext/pg_type_map_all_strings.c,
+	ext/pg_type_map_by_column.c, ext/pg_type_map_by_mri_type.c,
+	ext/pg_type_map_by_oid.c, spec/pg/basic_type_mapping_spec.rb,
+	spec/pg/connection_spec.rb, spec/pg/result_spec.rb,
+	spec/pg/type_map_by_column_spec.rb,
+	spec/pg/type_map_by_mri_type_spec.rb,
+	spec/pg/type_map_by_oid_spec.rb:
+	Allow cascading of type maps.
+
+	If a value can not be handled by a type map this value isn't handled
+	implicit by TypeMapAllStrings, but instead by the assigned
+	default_type_map, now.
+	[d369d31e8fe3]
+
+2014-10-17  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_type_map.c, ext/pg_type_map_by_column.c,
+	spec/pg/type_map_by_column_spec.rb:
+	Gracefully handle not initialized state for PG::TypeMapByColumn
+	derivations.
+	[485d02650e09]
+
+2014-10-15  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Allow non Array values as input for TextEncoder::Array.
+	[a4725dfca9e4]
+
+	* ext/pg_coder.c, spec/pg/type_spec.rb:
+	Clarify handling of nil/NULL values by PG::Coders.
+	[99d6acb8b66d]
+
+	* ext/pg_text_encoder.c, ext/util.c, ext/util.h:
+	Move pg_strncasecmp() to util.c - it better fits there.
+	[117fb5c5eed7]
+
+2014-10-14  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Implement a more serious TestEncoder::Boolean.
+	[9063a84a2ff9]
+
+	* ext/pg.h, ext/pg_binary_encoder.c, ext/pg_coder.c,
+	ext/pg_text_encoder.c:
+	Fix naming and description of pg_coder_enc_to_s(). It actually uses
+	#to_s not #to_str.
+	[ac23631c96d9]
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Use same rules for array quoting in text encoder as PostgreSQL.
+
+	This makes mutate-detection easier (in Rails).
+	[9be31c0663e3]
+
+2014-10-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_binary_decoder.c:
+	Remove needless memcpy() call.
+	[f786006b25ff]
+
+	* ext/pg_binary_decoder.c, ext/pg_binary_encoder.c, ext/util.c,
+	ext/util.h:
+	Change the endianess conversion for binary data from a library issue
+	to a compiler issue.
+
+	This removes dependency to beXXtoh() functions and ensures aligned
+	memory access.
+	[c8d7c26dd595]
+
+2014-10-11  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb, spec/helpers.rb, spec/pg/connection_spec.rb:
+	Merge pull request #6 from larskanis/column_type_mapping
+
+	Add type mapping and performance improvements
+	[0da90c2b2812]
+
+2014-10-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile, Rakefile.cross, ext/extconf.rb:
+	gcc option -static-libgcc is required for i386-mingw32 build.
+
+	Don't use native pg_config for cross build. The paths were
+	overwritten anyways until now.
+
+	Remove code that was only needed for static build to libpq.
+	[9a2f9771d0b6]
+
+2014-10-10  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map_by_column.c:
+	Use C99 struct initializer syntax.
+	[ec9ef7fb39eb]
+
+2014-10-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/connection_spec.rb, spec/pg/type_spec.rb:
+	Fix specs for Windows.
+	[3659cfd75b96]
+
+	* .travis.yml, ext/pg_connection.c, lib/pg.rb,
+	spec/pg/connection_spec.rb:
+	Merge branch 'master' into column_type_mapping
+
+	Conflicts: ext/pg_connection.c spec/pg/connection_spec.rb
+	[57d770944b5d]
+
+	* ext/pg.h, ext/pg_copy_coder.c, ext/pg_text_encoder.c:
+	Fix gcc warnings in mingw build.
+	[26541f7e6bbb]
+
+2014-10-07  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map.c, ext/pg_type_map_all_strings.c,
+	ext/pg_type_map_by_column.c, ext/pg_type_map_by_mri_type.c,
+	ext/pg_type_map_by_oid.c, lib/pg/type_map_by_column.rb:
+	Add documentation to TypeMap classes.
+	[4227fdc5f0ac]
+
+2014-10-06  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c, ext/pg_result.c, ext/pg_type_map_by_mri_type.c:
+	Ensure zero terminated strings per StringValueCStr(), where C-str
+	pointers are expected.
+
+	This fixes issues with ruby-2.2.0-dev described in github pull
+	request #5: https://github.com/ged/ruby-pg/pull/5
+	[f0b7f99b1dd5]
+
+2014-10-05  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_binary_decoder.c, ext/pg_binary_encoder.c, ext/pg_coder.c,
+	ext/pg_copy_coder.c, ext/pg_text_decoder.c, ext/pg_text_encoder.c,
+	lib/pg/coder.rb, lib/pg/text_encoder.rb:
+	Add class and method documentation related to type casting.
+
+	Move previous documentaion from .rb files to .c.
+	[e64618a44912]
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Format infinity and nan values equally to Float#to_s. This fixes a
+	test case in activerecord.
+	[02285c675326]
+
+	* lib/pg/text_decoder.rb, lib/pg/text_encoder.rb,
+	spec/pg/basic_type_mapping_spec.rb:
+	Support infinity time and date values. String values which can not
+	be parsed/formatted are now passed through instead of raising an
+	exception.
+	[85ce8d239d23]
+
+2014-10-04  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_decoder.c, ext/pg_text_encoder.c:
+	Add some more documentaion to the encoding/decoding function
+	interface.
+	[47ccb70c45d6]
+
+	* ext/pg.h, ext/pg_coder.c, ext/pg_connection.c, ext/pg_copy_coder.c,
+	ext/pg_text_encoder.c, ext/pg_type_map.c,
+	ext/pg_type_map_all_strings.c, ext/pg_type_map_by_column.c,
+	ext/pg_type_map_by_mri_type.c, spec/pg/type_map_by_column_spec.rb:
+	Fix handling of query parameters in hash form in conjunction with
+	type maps.
+
+	This moves the oid/format determining back into
+	alloc_query_params1() and avoids code duplication within type maps.
+	[2afa6cc41d55]
+
+	* spec/pg/connection_spec.rb:
+	Add missing spec for hash form parameters to #exec_params .
+	[23ad5d676b53]
+
+2014-10-03  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_binary_decoder.c, ext/pg_binary_encoder.c,
+	ext/pg_text_decoder.c, ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	FromBase64 encoder better fits into PG::BinaryEncoder and ToBase64
+	decoder better into PG::BinaryDecoder.
+	[5db80210a077]
+
+2014-10-02  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_coder.c, ext/pg_connection.c, ext/pg_text_decoder.c,
+	ext/pg_text_encoder.c:
+	rb_str_new() with NULL ptr can be used to allocate/set the Sting
+	size.
+	[2c4faf369dce]
+
+	* ext/util.c:
+	Speed up the base 64 decoder by 80%.
+	[adb1728e29d9]
+
+2014-10-01  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_decoder.c:
+	Use strings in base64 decoders, so that we can avoid copy'ing data
+	at string creation in dec_func.
+	[1e2cd139e6fe]
+
+	* spec/pg/type_spec.rb:
+	Fix base64 specs for Ruby < 2.1.
+	[3a9e0cea7387]
+
+2014-10-01  Lars Kanis  <kanis@comcard.de>
+
+	* Merge branch 'column_type_mapping' of https://github.com/larskanis
+	/ruby-pg into column_type_mapping
+	[712224085b59]
+
+2014-09-30  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_result.c, ext/pg_type_map.c,
+	ext/pg_type_map_all_strings.c, ext/pg_type_map_by_column.c,
+	ext/pg_type_map_by_oid.c:
+	Store a pointer to the current typemap into result data and use it
+	through the this pointer at all places.
+
+	This gives PG::Result#getvalue a speedup around 10%.
+	[a8b3ef723c22]
+
+	* spec/pg/basic_type_mapping_spec.rb:
+	Change timestamp specs to a value before 1970, so that we see, there
+	is no epoch limitation.
+	[441da0a4129a]
+
+2014-09-30  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_text_decoder.c, ext/pg_text_encoder.c, ext/util.c,
+	ext/util.h, spec/pg/type_spec.rb:
+	Add ToBase64 and FromBase64 classes as encoders and decoders.
+	[9ff6f35497ad]
+
+2014-09-29  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Add encoder and decoder for copy_data to gc mark list.
+	[a445b16a259e]
+
+	* Manifest.txt:
+	Update Manifest.txt
+	[e13ff4f6433e]
+
+	* ext/pg_connection.c:
+	Add new function pg_get_connection_safe() and use it instead of two
+	calls to pg_get_connection() and pg_get_pgconn(). It is faster and
+	less confusing.
+	[6ad4490a691b]
+
+	* ext/pg_coder.c, ext/pg_copy_coder.c:
+	Fix tainted mark for PG::Coder#encoder and #decode and
+	PG::TextDecoder::CopyRow output.
+	[7aec08b7677c]
+
+2014-09-27  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/basic_type_mapping.rb:
+	Fix PG::BasicTypeRegistry, so that it works with and without
+	previously applied type mapping.
+	[db5c2973f143]
+
+	* lib/pg/basic_type_mapping.rb:
+	Underscore unused variables for now, to avoid warnings about them.
+	[8d016bc21b9a]
+
+	* README.rdoc:
+	Mention type maps for COPY in the README.
+	[ac361f811253]
+
+	* ext/pg.h:
+	It's better to check for availability of the INLINED macro than for
+	RUBINIUS define.
+	[9ba559feacac]
+
+	* lib/pg/basic_type_mapping.rb, spec/pg/basic_type_mapping_spec.rb:
+	Add PG::BasicTypeMapBasedOnResult and add specs for deriving
+	TypeMapByColumn from a result and use it with COPY.
+	[6c69768961c1]
+
+	* ext/pg_connection.c, ext/pg_result.c:
+	Add somewhat more documentaion to type casting.
+
+	Harmonize coder setters for COPY to accept any PG::Coder (even if
+	any other than PG::CopyCoder hardly makes sense).
+	[e0a8ec6d2a04]
+
+	* spec/pg/connection_spec.rb:
+	Mark failing test on Rubinius as pending.
+	[6eb0fcab4d8c]
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Add typecasting to Connection#get_copy_data.
+	[21451bfb3659]
+
+	* ext/pg.c, ext/pg.h, ext/pg_copy_coder.c, ext/pg_text_encoder.c:
+	Allow inline checks for string capacity. This removes the bottleneck
+	in the COPY decoder, when doing the check for each character.
+	[c2e817ef9b8c]
+
+	* ext/pg.c, ext/pg.h, ext/pg_coder.c, ext/pg_connection.c,
+	ext/pg_copy_coder.c, ext/pg_result.c, ext/pg_text_encoder.c,
+	ext/pg_type_map.c, ext/pg_type_map_all_strings.c,
+	ext/pg_type_map_by_column.c, ext/pg_type_map_by_mri_type.c,
+	spec/pg/type_spec.rb:
+	Add PG::TypeMapAllStrings and use it as default typemap, when no
+	explicit typemap was set. This allowes PG::CopyCoder to work without
+	typemap, too.
+	[b183ef46969c]
+
+	* ext/pg_copy_coder.c, lib/pg/coder.rb, spec/pg/type_spec.rb:
+	Add CopyCoder#null_string to gc_mark and #to_h .
+	[893009c81aec]
+
+	* ext/pg.h, ext/pg_copy_coder.c, ext/pg_type_map.c,
+	ext/pg_type_map_by_column.c, ext/pg_type_map_by_mri_type.c,
+	ext/pg_type_map_by_oid.c, spec/pg/type_spec.rb:
+	Add decoder for data received from get_copy_data.
+
+	Remove duplicated not-suitable-raise-functions.
+	[0c7c819d2f46]
+
+	* ext/pg_copy_coder.c:
+	Add PG::CopyCoder#null_string .
+	[3f52c343f9c8]
+
+	* ext/pg.c:
+	Fix description.
+	[38c8b9d03bd1]
+
+2014-09-26  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg.h, ext/pg_coder.c, ext/pg_text_decoder.c,
+	ext/pg_text_encoder.c, ext/pg_type_map_by_column.c,
+	ext/pg_type_map_by_oid.c:
+	Refactured code to find the right decoder function.
+	[5822d67d8c3b]
+
+	* spec/pg/type_spec.rb:
+	Add decoder specs for Bytea.
+	[b815372dd5d2]
+
+	* lib/pg/coder.rb, spec/pg/type_spec.rb:
+	Add missing PG::CopyCoder#to_h .
+	[e0bf32c9eb31]
+
+	* ext/pg_copy_coder.c:
+	Add missing GC-mark function to copycoder.
+	[70ae4e58761c]
+
+2014-09-25  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c, lib/pg/connection.rb,
+	spec/pg/connection_spec.rb:
+	Implement Connection#put_copy_data and #copy_data with encoder.
+	[7bfcfe35344c]
+
+	* spec/pg/type_spec.rb:
+	Add more specs for PG::TextEncoder::CopyRow.
+	[94d6505a6a49]
+
+	* ext/pg_coder.c, ext/pg_text_decoder.c, ext/pg_text_encoder.c:
+	Rename different namings of the instance pointer to "this".
+	[c07d02ae1cb4]
+
+2014-09-25  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Save a call to rb_protect by wrapping possibly allocated heap memory
+	into T_DATA objects that are free'd by the GC.
+	[3c1d86fedf1b]
+
+	* spec/pg/connection_spec.rb:
+	Mark the failing COPY tests as pending.
+	[722d4e35b570]
+
+	* ext/pg.h, ext/pg_coder.c, ext/pg_copy_coder.c,
+	ext/pg_text_encoder.c:
+	Remove duplicated code.
+	[bf96b3d34538]
+
+	* ext/pg_coder.c:
+	Remove another usage of rb_str_modify_expand.
+	[36493e777910]
+
+	* ext/extconf.rb, ext/pg.c:
+	Add a more portable version of pg_ensure_str_capa, that should work
+	on Rubinius.
+	[bfdd98d3553a]
+
+	* ext/pg.c, ext/pg.h, ext/pg_copy_coder.c, ext/pg_text_encoder.c,
+	spec/pg/type_spec.rb:
+	Add specs for PG::TextEncoder::CopyRow. Refacture
+	pg_ensure_str_capa() to avoid duplicated code.
+	[58db6bcc673e]
+
+2014-09-24  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_encoder.c:
+	Finish second option for encoders to return a string.
+	[d523e7482832]
+
+2014-09-24  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_coder.c, ext/pg_connection.c, ext/pg_copy_coder.c,
+	ext/pg_text_encoder.c:
+	Add a second option for encoders to return a string. Not yet
+	finished.
+	[6a408664b53d]
+
+	* ext/pg_connection.c:
+	Fix typo.
+	[394b095b06e7]
+
+2014-09-23  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Merge branch 'column_type_mapping' of github.com:larskanis/ruby-pg
+	into column_type_mapping
+	[0a904a023886]
+
+2014-09-23  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg.h:
+	Merge branch 'column_type_mapping' of https://github.com/larskanis
+	/ruby-pg into column_type_mapping
+	[5f7ae7085714]
+
+	* ext/pg_connection.c:
+	Fix comment.
+	[bc848e8d054b]
+
+	* ext/pg.h, ext/pg_connection.c:
+	Add setter and getter for Connection#encoder_for_put_copy_data and
+	decoder_for_get_copy_data.
+	[b21c2b78af51]
+
+	* ext/pg.c, ext/pg.h, ext/pg_binary_encoder.c, ext/pg_copy_coder.c,
+	ext/pg_text_decoder.c, ext/pg_text_encoder.c,
+	spec/pg/connection_spec.rb:
+	Add TextEncoder::CopyRow. Not finished yet.
+	[f631bec1aea1]
+
+	* ext/pg_coder.c:
+	Refactured duplicated init code for coders.
+	[89c888335657]
+
+2014-09-23  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map_by_column.c, ext/pg_type_map_by_oid.c:
+	Fix possible invalid memory access in pg_tmbc_mark().
+	[89a8049d3de8]
+
+2014-09-22  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h:
+	Add compat for Rubinius.
+	[1836d0c5c623]
+
+2014-09-22  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg.h, ext/pg_connection.c, ext/pg_result.c, ext/pg_type_map.c,
+	ext/pg_type_map_by_column.c, ext/pg_type_map_by_mri_type.c,
+	ext/pg_type_map_by_oid.c, spec/pg/type_map_by_oid_spec.rb,
+	spec/pg/type_map_spec.rb:
+	Add PG::TypeMap#fit_to_result and fit_to_query as Ruby methods and
+	remove opposite Ruby callback wrapper.
+
+	The callback wrapper were not used and explicit calling
+	fit_to_result makes more sense (for caching etc.).
+
+	Swap parameter order of fit_to_result and fit_to_query so that self
+	is the first one.
+	[531ece2a12f8]
+
+	* ext/pg_type_map_by_mri_type.c:
+	Add comment to TypeMapByMriType class. [skip-ci]
+	[19e5622fd318]
+
+	* ext/pg_connection.c:
+	Put only converted ruby strings into the gc_array.
+	[f705548a5b5f]
+
+2014-09-21  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* README.rdoc, lib/pg/type_map_by_column.rb:
+	Update the introduction for type casting in Pg. Luckily it became
+	easier.
+	[b1876686a1e2]
+
+	* lib/pg/basic_type_mapping.rb, spec/pg/basic_type_mapping_spec.rb,
+	spec/pg/connection_spec.rb:
+	Use text format for integers and don't set type OID for text types.
+	[34b9dacb04d3]
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Implement a faster Fixnum to text encoder.
+	[a7b9ea6dffd7]
+
+	* spec/pg/connection_spec.rb:
+	Add spec for a lot of result columns in conjunction with type
+	casting.
+	[13629c7af842]
+
+	* ext/pg_connection.c:
+	Use query stack memory pool somewhat more space efficient.
+	[13c7d27cf253]
+
+2014-09-20  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Do two passes of query param encoding one after another. This should
+	give somewhat more cache locality.
+	[c2634b894cb7]
+
+	* ext/pg.h, ext/pg_binary_decoder.c, ext/pg_connection.c,
+	ext/pg_result.c, ext/pg_text_decoder.c:
+	Use a faster version of ENCODING_SET.
+
+	Remove several ifdefs.
+	[90051cb74b20]
+
+	* ext/pg.c, ext/pg.h, ext/pg_binary_decoder.c, ext/pg_connection.c,
+	ext/pg_result.c:
+	Cleanup and harmonize encoding assignment.
+	[2549c08e631e]
+
+	* ext/pg_result.c, spec/pg/result_spec.rb:
+	Add type casting to Result#column_values and #field_values.
+	[34b9016757c4]
+
+	* ext/pg.h, ext/pg_connection.c, ext/pg_result.c,
+	ext/pg_text_decoder.c, ext/pg_type_map.c,
+	ext/pg_type_map_by_column.c, ext/pg_type_map_by_mri_type.c,
+	ext/pg_type_map_by_oid.c:
+	Use RBasic encoding store as cache for connection's
+	internal_encoding.
+
+	Remove encoding_index from typemap struct.
+
+	Rename typemap-struct member 'typecast' to 'typecast_result_value'.
+	[58dff8991613]
+
+2014-09-19  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Avoid duplicated type check for typemaps on query params.
+	[e7ae19b8fe19]
+
+	* ext/pg_type_map_by_mri_type.c:
+	Sort MRI-types according to their probability.
+	[383da4885164]
+
+	* ext/pg_connection.c, ext/pg_result.c, lib/pg/result.rb:
+	Implement PG::Result#values in C. This avoids the overhead of
+	Enumerator-fibers and dynamic array size changes.
+	[7bf8d41cbcb6]
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Use stack memory for queries unless there are a lot of params.
+	[b9f9f33f5c21]
+
+2014-09-19  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg.h, ext/pg_connection.c, ext/pg_result.c,
+	ext/pg_type_map_by_column.c, ext/pg_type_map_by_oid.c,
+	spec/pg/connection_spec.rb, spec/pg/result_spec.rb:
+	Use a wrapped C-struct as data of PG::Result and store instance
+	variables there.
+
+	This avoids all hash lookups for accessing instance variables.
+
+	This also fixes bitbucket bug #185 by marking the result as
+	autocleared: https://bitbucket.org/ged/ruby-pg/issue/185
+
+	And this adds two new methods to PG::Result : autoclear? and
+	cleared?
+	[93d51e75cb0b]
+
+	* ext/pg_connection.c:
+	Rename p_conn to this.
+	[7ae20e3f9db2]
+
+	* ext/pg.h, ext/pg_connection.c, ext/pg_result.c:
+	Move all ivars of the Connection object to C-struct.
+	[79ed6d2ba9a1]
+
+	* ext/pg.h, ext/pg_connection.c:
+	Merge branch 'column_type_mapping' into use_structs_as_data_ptr
+	[183eff440b6e]
+
+	* ext/pg_connection.c:
+	Merge branch 'column_type_mapping' of https://github.com/larskanis
+	/ruby-pg into column_type_mapping
+	[75ef0371c4ed]
+
+2014-09-18  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map_by_oid.c:
+	Merge branch 'column_type_mapping' of github.com:larskanis/ruby-pg
+	into column_type_mapping
+
+	Conflicts: ext/pg_type_map_by_oid.c
+	[39b58e42efd6]
+
+	* ext/pg.h, ext/pg_connection.c, ext/pg_type_map.c,
+	ext/pg_type_map_by_column.c, ext/pg_type_map_by_mri_type.c,
+	ext/pg_type_map_by_oid.c:
+	Refacture type casting of query params, to avoid doublicated code.
+
+	This also bundles memory allocation for query functions.
+	[4d0a26946895]
+
+2014-09-18  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg.h, ext/pg_connection.c:
+	Use structs as data ptr.
+	[bb3ce59c6acd]
+
+	* ext/pg_connection.c:
+	Remove rb_obj_is_kind_of(connection) for every Connection method
+	call.
+
+	There should'nt be any possibility to change the base type from Ruby
+	space.
+	[5dd2fec1a494]
+
+	* ext/pg_type_map_by_oid.c, spec/pg/type_map_by_oid_spec.rb:
+	Add a OID lookup cache to PG::TypeMapByOid to the cost of 8KByte
+	heap memory per instance.
+
+	max_rows_for_online_lookup is also increased but that's only
+	guessed. So no tests were done to find any break-even point.
+	[bf44b0aaf366]
+
+2014-09-16  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map_by_oid.c, spec/pg/type_map_by_oid_spec.rb:
+	TypeMapByOid: Add threshold for per-row hash lookups.
+	[892253614bdb]
+
+2014-09-16  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c, ext/pg_result.c, ext/pg_text_decoder.c,
+	lib/pg/basic_type_mapping.rb, lib/pg/result.rb,
+	spec/pg/basic_type_mapping_spec.rb, spec/pg/connection_spec.rb:
+	Restructured BasicTypeMapping to make use of TypeMapByOid and
+	TypeMapByMriType.
+
+	Renamed type_map_for_result and type_map_for_query to plural form -
+	that sounds better.
+	[8bda62d443c9]
+
+	* ext/pg_type_map_by_oid.c:
+	TypeMapByOid: Move init code for C-Struct to alloc function, so that
+	derived classes, which don't call super in initialize don't
+	segfault.
+	[592fa6e19beb]
+
+	* ext/pg.h, ext/pg_connection.c, ext/pg_type_map_by_mri_type.c,
+	spec/pg/type_map_by_mri_type_spec.rb:
+	TypeMapByMriType: Allow dynamic definition of a coder for each per
+	query param.
+
+	Remove T_NIL since it's not useful. Qnil is always mapped to SQL
+	NULL.
+	[8e5d18881a5d]
+
+	* ext/pg.h:
+	Add missing function declaration.
+	[30eb8599d4b2]
+
+	* ext/pg_result.c, ext/pg_type_map_by_column.c,
+	ext/pg_type_map_by_oid.c:
+	Replace some Check_Type/DATA_PTR combinations by Data_Get_Struct.
+	[5f4cb85d4025]
+
+	* ext/pg_type_map_by_column.c:
+	Remove unnecessary variable.
+	[2e109387fa5b]
+
+	* Manifest.txt, ext/pg.c, ext/pg_type_map_by_mri_type.c,
+	spec/pg/type_map_by_mri_type_spec.rb:
+	Add PG::TypeMapByMriType for encoding of Ruby values.
+	[00e11c3f4ced]
+
+2014-09-15  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type_map_by_column.c:
+	Fix NULL pointer deref in mark function.
+
+	Move init of tmbc struct, so that it's done before a raise/GC run
+	can happen.
+	[ece47453109b]
+
+2014-09-15  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_type_map_by_column.c:
+	Avoid read of uninitialized values - detected with valgrind:
+
+	==30681== Conditional jump or move depends on uninitialised value(s)
+	==30681== at 0xD1732EB: pg_tmbc_alloc_query_params
+	(pg_type_map_by_column.c:157) ==30681== by 0x4EA93B6: rb_protect
+	(eval.c:819) ==30681== by 0xD1770DE: alloc_query_params
+	(pg_connection.c:1030) ==30681== by 0xD17A357: pgconn_exec_params
+	(pg_connection.c:1102) ==30681== by 0x4FCE439:
+	vm_call_cfunc_with_frame (vm_insnhelper.c:1470) ==30681== by
+	0x4FDA48E: vm_call_method (vm_insnhelper.c:1560) ==30681== by
+	0x4FD2568: vm_exec_core (insns.def:1028) ==30681== by 0x4FD7126:
+	vm_exec (vm.c:1304) ==30681== by 0x4FD8EFA:
+	invoke_block_from_c.part.49 (vm.c:732) ==30681== by 0x4FDCB13:
+	yield_under (vm.c:704) ==30681== by 0x4FCE439:
+	vm_call_cfunc_with_frame (vm_insnhelper.c:1470) ==30681== by
+	0x4FDA48E: vm_call_method (vm_insnhelper.c:1560)
+	[4a125325e819]
+
+	* ext/pg_type_map_by_column.c, ext/pg_type_map_by_oid.c:
+	Fix NULL pointer dereference when a TypeMapByColumn is marked before
+	#initialize
+
+	Remove unnecessary type cast.
+	[4fe07c3ea525]
+
+2014-09-14  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Manifest.txt, ext/pg.c, ext/pg.h, ext/pg_type_map_by_column.c,
+	ext/pg_type_map_by_oid.c, spec/pg/type_map_by_oid_spec.rb:
+	Add PG::TypeMapByOid which can be used for easy and fast result
+	value type casts.
+
+	Change TypeMapByColumn to use a GC mark function. This way we don't
+	need to store the coder objects twice.
+	[c967d74f8412]
+
+	* ext/pg_connection.c:
+	Remove unnecessary memory allocation.
+	[72957cc8bb04]
+
+2014-09-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/type_map_spec.rb:
+	Remove obsolete comment
+	[c875975e4596]
+
+	* Manifest.txt, ext/pg.c, ext/pg.h, ext/pg_coder.c,
+	ext/pg_column_mapping.c, ext/pg_connection.c, ext/pg_result.c,
+	ext/pg_type_map.c, ext/pg_type_map_by_column.c, lib/pg.rb,
+	lib/pg/basic_type_mapping.rb, lib/pg/column_mapping.rb,
+	lib/pg/result.rb, lib/pg/type_map_by_column.rb,
+	spec/pg/basic_type_mapping_spec.rb, spec/pg/column_mapping_spec.rb,
+	spec/pg/connection_spec.rb, spec/pg/result_spec.rb,
+	spec/pg/type_map_by_column_spec.rb, spec/pg/type_map_spec.rb:
+	Allow different type mapping strategies beside ColumnMapping. This
+	gives us the freedom to implement TypeMapByOid, TypeMapByClass or
+	some fixed function mappings.
+
+	Rename ColumnMapping to TypeMapByColumn.
+
+	Seperate type_map_for_result from type_map_for_query, so thats it's
+	easy to do type casts for one direction only.
+	[2548e7a85049]
+
+2014-09-02  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_coder.c, ext/pg_text_encoder.c, lib/pg/text_encoder.rb:
+	Add documentation to some TextEncoder classes.
+	[6c3fad43d3a2]
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Fix PG::TextEncoder::Identifier for more than 2 elements.
+	[fcb8138f3f6f]
+
+2014-08-31  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_coder.c, ext/pg_text_decoder.c,
+	ext/pg_text_encoder.c, lib/pg/coder.rb, spec/pg/type_spec.rb:
+	Add delimiter attribute to composite types.
+	[5604eba62d48]
+
+	* README.rdoc:
+	Update the README to reflect the API change of the type cast
+	classes.
+	[2afd944eadb2]
+
+	* lib/pg/basic_type_mapping.rb:
+	Update PG::BasicTypeMapping to make use of new PG::Coder classes.
+	Add some documentation to BasicTypeMapping.
+	[ad24be2307d1]
+
+	* spec/pg/type_spec.rb:
+	type_spec doesn't make use of the helpers.
+	[7a3a4197a61f]
+
+2014-08-26  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Manifest.txt, ext/pg.c, ext/pg.h, ext/pg_binary_decoder.c,
+	ext/pg_binary_encoder.c, ext/pg_coder.c, ext/pg_column_mapping.c,
+	ext/pg_connection.c, ext/pg_text_decoder.c, ext/pg_text_encoder.c,
+	ext/pg_type.c, lib/pg.rb, lib/pg/basic_type_mapping.rb,
+	lib/pg/coder.rb, lib/pg/column_mapping.rb, lib/pg/text_decoder.rb,
+	lib/pg/text_encoder.rb, lib/pg/type.rb,
+	spec/pg/column_mapping_spec.rb, spec/pg/result_spec.rb,
+	spec/pg/type_spec.rb:
+	Simplify the type cast API by merging PG::Type and PG::Coder
+	classes.
+
+	En/decoders can now be built directly as
+	PG::TextDecoder::Integer.new instead of previous
+	PG::Type.new(decoder: PG::TextDecoder::Integer) .
+	[2b428d490e08]
+
+2014-08-24  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c, ext/pg_type.c:
+	Change all remaining Oid <-> VALUE conversions to UINT.
+	[66047d8245d1]
+
+	* ext/pg_coder.c:
+	Remove unused accessors.
+	[b6b84993c6ff]
+
+	* spec/pg/type_spec.rb:
+	Convert remaining two should's to expect syntax.
+	[1888e8425d07]
+
+	* .travis.yml:
+	'gem install rake-compiler' is still needed for cross build.
+	[f8a0ac84f72f]
+
+	* .travis.yml, spec/pg/connection_spec.rb:
+	Merge branch 'master' into column_type_mapping
+
+	Conflicts: .travis.yml
+	[36684ebbc21d]
+
+2014-08-22  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Merge /home/lars/comcard/tmp5/ruby-pg.git.bare into
+	column_type_mapping
+	[2485600065c4]
+
+	* spec/helpers.rb, spec/pg/column_mapping_spec.rb,
+	spec/pg/connection_spec.rb, spec/pg/result_spec.rb,
+	spec/pg/type_spec.rb:
+	Convert type cast specs to expect syntax of RSpec 3
+	[3497aade8d9a]
+
+	* Manifest.txt, ext/pg_connection.c, ext/pg_result.c, spec/helpers.rb,
+	spec/lib/helpers.rb, spec/pg/connection_spec.rb,
+	spec/pg/result_spec.rb:
+	Merge branch 'master' into column_type_mapping
+
+	Conflicts: Manifest.txt spec/helpers.rb spec/pg/connection_spec.rb
+	spec/pg/result_spec.rb
+	[8eb15150e2f7]
+
+2014-05-08  Lars Kanis  <kanis@comcard.de>
+
+	* lib/pg/basic_type_mapping.rb:
+	Make column_mapping_for_* methods public.
+	[5b2c4584de20]
+
+2014-04-27  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/coder.rb, lib/pg/type.rb:
+	Add nicer inspect methods to Type and Coder.
+	[bea1b87d449f]
+
+2014-04-23  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Add PG::TextEncoder::QUOTED_LITERAL.
+
+	This can be used to encode values directly for sql insertion.
+	[899ae14a4177]
+
+	* ext/pg.h, ext/pg_binary_encoder.c, ext/pg_text_encoder.c,
+	spec/pg/type_spec.rb:
+	Use #to_i for encoding of non Numeric types. That allows use of
+	strings like "123-garbage" as integer input.
+	[3771cd7756af]
+
+	* ext/pg_text_encoder.c, lib/pg/basic_type_mapping.rb,
+	spec/pg/column_mapping_spec.rb:
+	Remove PG::TextEncoder::BYTEA, as it was not correct.
+	[f246df175b01]
+
+2014-04-22  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c, spec/pg/column_mapping_spec.rb:
+	Fix encoding of NULL values to typed fields.
+	[8820a9c4271e]
+
+	* ext/pg_binary_encoder.c, ext/pg_text_encoder.c,
+	spec/pg/type_spec.rb:
+	Allow to encode Strings to int types
+	[b8c6be80a931]
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Fix encoding of empty arrays.
+	[eff38fc911d0]
+
+	* ext/pg_binary_decoder.c, ext/pg_binary_encoder.c,
+	ext/pg_text_decoder.c, ext/pg_text_encoder.c,
+	lib/pg/basic_type_mapping.rb, lib/pg/text_decoder.rb,
+	lib/pg/text_encoder.rb, spec/pg/column_mapping_spec.rb,
+	spec/pg/result_spec.rb, spec/pg/type_spec.rb:
+	Change all coder objects to UPPERCASE, because they aren't class
+	constants.
+	[8384fe858ebf]
+
+2014-04-21  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_text_decoder.c, ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Add encoder and decoder for identifiers.
+
+	Improve quotation code of Array encoder.
+
+	Refactor Array encoder and decoder functions to allow reuse for
+	identifiers.
+	[b13e27b316d4]
+
+2014-04-19  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type.c, spec/pg/type_spec.rb:
+	Allow PG::CompositeType#elements_type=nil and fix error text for
+	invalid types.
+	[91f8becf18aa]
+
+	* spec/pg/column_mapping_spec.rb:
+	Add decoder tests for float values NAN and INFINITY.
+	[c45b87b317c3]
+
+	* ext/pg_type.c:
+	pg_type_get_and_check() is no longer in use.
+	[f387ba78ccbf]
+
+	* lib/pg/basic_type_mapping.rb:
+	Array.new is somewhat faster than using an Enumerator.
+	[458cdea12837]
+
+	* ext/pg_column_mapping.c, ext/pg_result.c:
+	Don't call ENCODING_GET() for each result value, but only once, when
+	the ColumnMapping is assigned to a PG::Result.
+
+	The speedup is only minimal (~1%).
+	[29fc4769e95a]
+
+2014-04-18  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type.c:
+	Add check for output lengths of first/second pass of C based
+	encoders.
+	[445a04470387]
+
+	* ext/pg_text_encoder.c, spec/pg/type_spec.rb:
+	Fix size computation of negative numbers for text integer encoding.
+	[3984ee009617]
+
+	* README.rdoc:
+	Tune type cast documentation a bit more.
+	[65f0f57deb57]
+
+	* README.rdoc:
+	Add the most simple use case for type casting to the README.
+	[6524afce6fbc]
+
+	* ext/pg_text_decoder.c:
+	rb_cstr2inum() seems to be slow, so we do the integer conversion by
+	hand in simple cases. This proved to be 40% faster.
+	[976fcccb023f]
+
+2014-04-16  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/type_spec.rb:
+	Add spec for PG::Type default values.
+	[ac8037456424]
+
+	* lib/pg/type.rb:
+	Remove old code.
+	[d9abf3b53985]
+
+	* spec/pg/type_spec.rb:
+	Add specs for Type#to_h.
+	[170f9f5a344b]
+
+	* ext/pg_type.c:
+	needs_quotation? should return true or false.
+	[f00c1948e602]
+
+2014-04-16  Lars Kanis  <kanis@comcard.de>
+
+	* History.rdoc, lib/pg.rb:
+	Bump VERSION to 0.18.0
+	[91ea8734d053]
+
+2014-04-15  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_binary_decoder.c, ext/pg_binary_encoder.c,
+	ext/pg_coder.c, ext/pg_text_decoder.c, ext/pg_text_encoder.c,
+	lib/pg/coder.rb:
+	Use full qualified name for Coder#name.
+
+	Remove duplicated code in coder definitions.
+	[7ca87a46a91c]
+
+2014-04-15  Lars Kanis  <kanis@comcard.de>
+
+	* Manifest.txt:
+	Update Manifest.txt
+	[02c6ce33a90c]
+
+	* ext/pg_binary_decoder.c, ext/pg_binary_encoder.c,
+	ext/pg_text_decoder.c, ext/pg_text_encoder.c:
+	Remove duplicated @name accessors.
+	[13cc22a2b729]
+
+2014-04-15  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.c, ext/pg.h, ext/pg_binary_decoder.c,
+	ext/pg_binary_encoder.c, ext/pg_coder.c, ext/pg_text_decoder.c,
+	ext/pg_text_encoder.c, lib/pg.rb, lib/pg/coder.rb, lib/pg/type.rb,
+	spec/pg/type_spec.rb:
+	Add ability to Marshal.dump/load PG::Type objects.
+
+	This should help to use PG::Type in ActiveRecord.
+
+	This also fixes base classes for Composite coders.
+	[ef0ef4b51e0d]
+
+2014-04-14  Lars Kanis  <kanis@comcard.de>
+
+	* README.rdoc:
+	Update README according to changes in type mapping.
+	[fe3b1cd9850b]
+
+2014-04-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Manifest.txt, ext/pg.h, ext/pg_column_mapping.c, ext/pg_type.c,
+	lib/pg.rb, lib/pg/simple_type.rb, lib/pg/type.rb,
+	spec/pg/type_spec.rb:
+	Add a common base class PG::Type for PG::SimpleType and
+	PG::CompositeType.
+
+	"some kind of PG::Type" sounds a little bit better than SimpleType.
+	[2a385bd22f7c]
+
+	* Manifest.txt, ext/pg.c, ext/pg.h, ext/pg_binary_decoder.c,
+	ext/pg_binary_encoder.c, ext/pg_column_mapping.c,
+	ext/pg_text_decoder.c, ext/pg_text_encoder.c, ext/pg_type.c,
+	ext/pg_type_binary_decoder.c, ext/pg_type_binary_encoder.c,
+	ext/pg_type_text_decoder.c, ext/pg_type_text_encoder.c, lib/pg.rb,
+	lib/pg/basic_type_mapping.rb, lib/pg/simple_type.rb,
+	lib/pg/text_decoder.rb, lib/pg/text_encoder.rb,
+	lib/pg/type/simple_type.rb, lib/pg/type/text_decoder.rb,
+	lib/pg/type/text_encoder.rb, lib/pg/type/type.rb,
+	spec/pg/column_mapping_spec.rb, spec/pg/result_spec.rb,
+	spec/pg/type_spec.rb:
+	Remove namespace PG::Type and move all contained classes in PG
+	namespace.
+
+	Rename function names accordingly.
+	[c5886a74623c]
+
+2014-04-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/result_spec.rb:
+	Remove needless == in spec.
+	[03d3a7c68f8f]
+
+	* Manifest.txt, lib/pg.rb, lib/pg/basic_type_mapping.rb,
+	lib/pg/column_mapping.rb, lib/pg/result.rb, lib/pg/type.rb,
+	spec/pg/column_mapping_spec.rb, spec/pg/connection_spec.rb,
+	spec/pg/result_spec.rb:
+	Change BasicTypeMapping so that it uses type information from the
+	DB.
+
+	Align specs to the latest type code refactoring.
+	[ad90adcc1ae3]
+
+	* ext/pg_column_mapping.c, lib/pg/type/simple_type.rb,
+	lib/pg/type/text_decoder.rb, lib/pg/type/text_encoder.rb,
+	lib/pg/type/type.rb:
+	Fix colmap_init. It was the wrong variable name.
+	[eb13e786adec]
+
+2014-04-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/type_spec.rb:
+	Convert and add several new test cases to SimpleType and
+	CompositType.
+	[d07abe17054c]
+
+	* ext/pg_type_text_encoder.c:
+	Avoid calling enc_func twice for array encoding.
+
+	This did lead to wrong behaviour on array of ruby defined types when
+	using quotation.
+	[767e1049ea08]
+
+	* ext/pg_type_binary_decoder.c, ext/pg_type_binary_encoder.c,
+	ext/pg_type_text_decoder.c, ext/pg_type_text_encoder.c:
+	Add String en/decoder.
+	[d420f9b92bf3]
+
+	* ext/pg_type.c:
+	Ensure encoder output is a string and decoder input is a string.
+	[fd943340acac]
+
+2014-04-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.c, ext/pg.h, ext/pg_column_mapping.c, ext/pg_connection.c,
+	ext/pg_type.c, ext/pg_type_binary_decoder.c,
+	ext/pg_type_binary_encoder.c, ext/pg_type_text_decoder.c,
+	ext/pg_type_text_encoder.c:
+	WIP: Major refactoring of the type mapping code and API.
+
+	Now we distinguish between Encoders/Decoders and Types on Ruby
+	level.
+	[48e40627d66b]
+
+2014-04-04  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/connection_spec.rb:
+	Cleanup test tables, so that these two test cases can be executed
+	multiple times.
+	[3c450594f574]
+
+2014-03-31  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg.h, ext/pg_column_mapping.c, ext/pg_type.c, lib/pg/type.rb,
+	spec/pg/type_spec.rb:
+	Allow composition of types in Ruby space, so that we can combine
+	Ruby and C converters.
+	[e25ee59f5bff]
+
+2014-03-31  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_column_mapping.c, ext/pg_connection.c,
+	ext/pg_type.c:
+	Add composit types that allow mixed C/Ruby implementation of
+	base/elem converters.
+	[c5a3c68fe2bb]
+
+2014-03-24  Lars Kanis  <kanis@comcard.de>
+
+	* .travis.yml:
+	Fix windows build on travis-ci.
+	[0fc7eee486c8]
+
+	* lib/pg/type_mapping.rb:
+	Merge branch 'column_type_mapping' of https://github.com/larskanis
+	/ruby-pg into column_type_mapping
+	[8e785f697ba7]
+
+2014-03-23  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Manifest.txt, spec/pg/array_parser_spec.rb, spec/pg/type_spec.rb:
+	Merge array_parser_spec.rb into type_spec.rb. Update Manifest.txt.
+	[23907cc8d0f2]
+
+	* spec/lib/helpers.rb, spec/pg/column_mapping_spec.rb:
+	Type encoding: Verify that the type OIDs match our expectation when
+	encoding values.
+	[4a4f58d3a058]
+
+2014-03-22  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type.c, spec/pg/type_spec.rb:
+	Fix conversion of Bignums to integer for text format.
+	[987713eeca05]
+
+	* lib/pg/basic_type_mapping.rb, spec/pg/array_parser_spec.rb,
+	spec/pg/column_mapping_spec.rb:
+	Add basic type mapping for array types.
+	[112cc249775b]
+
+	* ext/pg_type.c:
+	Add float type conversions for text format.
+	[d45c09db59c9]
+
+	* ext/pg_type.c:
+	Text array encoding: Store all intermediate values into a single
+	array even of converting multi dimensional arrays.
+
+	Add integer encoding for text format.
+	[d95cc34a5119]
+
+	* ext/pg_type.c:
+	Add inttypes.h since we're using int_t types.
+	[c3a4655c70c5]
+
+	* ext/pg_type.c:
+	Array type encoding: Avoid unnecessary copying of data.
+	[78a8caa47042]
+
+2014-03-21  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type.c, spec/pg/array_parser_spec.rb:
+	Add array encoding for text format.
+	[54682c69398f]
+
+	* spec/pg/column_mapping_spec.rb:
+	Fix typo in column_mapping_spec.rb
+	[007d45ed9ab5]
+
+	* ext/pg_column_mapping.c:
+	Fix wrong type check due to 274d3e533.
+	[51a9632e9a33]
+
+2014-02-25  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type.c:
+	Add encode/decode methods to CConverters only if corresponding C
+	functions are defined.
+
+	This allowes simple detection of the capablities per respond_to? .
+	[16209f4f9b70]
+
+	* ext/pg_connection.c:
+	Use variable length arrays on the stack for intermediates while
+	param value convertion.
+
+	This avoids malloc/free overhead, frees the memory before the
+	function call and ensures proper GC protection.
+	[44a016bc84fa]
+
+2014-02-19  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_type.c:
+	Fix value.inspect in raised exception.
+	[2af869fcf933]
+
+	* README.rdoc:
+	Add paths to implementation files in README.
+	[d6ca799ef38c]
+
+2014-02-18  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_result.c:
+	Avoid 'result has been cleared' error in case of UnableToSend.
+
+	Avoid double checking per pgresult_get().
+	[4a478da0839a]
+
+	* README.rdoc, ext/pg_connection.c, ext/pg_result.c,
+	spec/pg/connection_spec.rb:
+	Allow connection wide assignment of type_mapping.
+	[ecd58ff267b1]
+
+	* ext/pg_type.c:
+	Add missing string termination to array conversion.
+	[f2dcc3692737]
+
+	* ext/pg_type.c, spec/pg/array_parser_spec.rb,
+	spec/pg/column_mapping_spec.rb:
+	Add array type conversions.
+	[e667a761e93b]
+
+	* ext/pg_type.c, spec/pg/type_spec.rb:
+	Allow Type.decode to be called without tuple and field args.
+	[e6089af0d283]
+
+	* lib/pg.rb, lib/pg/basic_type_mapping.rb, lib/pg/type_mapping.rb:
+	Rename file so that it matches the class name.
+	[95a4b6841516]
+
+2014-02-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* .travis.yml:
+	Update travis config.
+	[8082f9d17c76]
+
+	* README.rdoc, lib/pg/result.rb:
+	Tweak documentation.
+	[c5e439d9ee9d]
+
+	* spec/pg/column_mapping_spec.rb:
+	Fix test for time input type cast.
+	[a217e1a4d4ac]
+
+	* spec/pg/connection_spec.rb:
+	Do raise test per plpgsql on PostgreSQL-9.2+ only.
+	[99301f365b41]
+
+2014-02-13  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/connection_spec.rb:
+	Restrict raise test with plpgsql to PostgreSQL-9.0+
+	[62ad91254117]
+
+2014-02-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/type_mapping.rb:
+	Add missing type_mapping.rb
+	[33238fce4d0b]
+
+	* README.rdoc, ext/pg_connection.c, ext/pg_result.c, lib/pg.rb,
+	lib/pg/column_mapping.rb, lib/pg/result.rb, lib/pg/type.rb,
+	spec/pg/column_mapping_spec.rb, spec/pg/connection_spec.rb,
+	spec/pg/result_spec.rb:
+	Implement BasicTypeMapping as a replacement to the Hash based
+	DEFAULT_OID/DEFAULT_TYPE mechanism.
+	[08fe2daeda55]
+
+2014-02-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* README.rdoc:
+	Add description of the type cast architecture.
+	[e57f8662f564]
+
+2014-01-06  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Ensure all memory is free'd in case of exceptions in
+	alloc_query_params()
+	[efb0fdf2af3d]
+
+2014-01-01  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_column_mapping.c, ext/pg_connection.c,
+	ext/pg_type.c, lib/pg.rb, lib/pg/column_mapping.rb,
+	lib/pg/result.rb, lib/pg/type.rb, spec/pg/column_mapping_spec.rb,
+	spec/pg/result_spec.rb:
+	Add optional type casting to input parameters
+
+	Refactor decoding code
+	[19491546392d]
+
+2013-12-28  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Refactor processing of query params, which was almost equal for
+	exec_params, exec_prepared, send_query and send_query_prepared.
+	[a3b5e9405825]
+
+2013-12-23  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_column_mapping.c, ext/pg_type.c, lib/pg/type.rb,
+	spec/pg/column_mapping_spec.rb, spec/pg/type_spec.rb:
+	Detach type decoders from Result, so that they could be used with
+	COPY.
+
+	Change type encoders to a two pass mechanism, which could also be
+	used with COPY.
+	[40e8c382c3ad]
+
+2013-12-21  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_column_mapping.c, ext/pg_type.c:
+	Always map NULL values to Qnil.
+
+	This removes duplicated code from type converters and will speedup
+	converters implemented in ruby.
+	[af270f5e3ddf]
+
+2013-12-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.h, ext/pg_column_mapping.c, ext/pg_type.c, lib/pg/result.rb,
+	lib/pg/type.rb, spec/pg/column_mapping_spec.rb,
+	spec/pg/result_spec.rb, spec/pg/type_spec.rb:
+	more WIP: Add bidirectional type mapping
+	[1ea69ac572c0]
+
+2013-12-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Manifest.txt, ext/pg.c, ext/pg.h, ext/pg_column_mapping.c,
+	ext/pg_result.c, ext/pg_type.c, lib/pg.rb, lib/pg/result.rb,
+	lib/pg/type.rb, spec/pg/column_mapping_spec.rb,
+	spec/pg/result_spec.rb, spec/pg/type_spec.rb:
+	WIP: Add bidiractional type mapping
+	[a89d4991f444]
+
+2013-12-07  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg/result.rb, spec/pg/column_mapping_spec.rb:
+	Add a (quite incomplete) default mapping of OIDs to PG::Result and
+	allow distinct mappings for text and binary formats to
+	Result#map_types! .
+
+	Add documentation to Result#map_types! .
+	[d137dfe12905]
+
+2013-07-19  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/column_mapping_spec.rb:
+	Too less quoting. Should fix compat with PostgreSQL 8.4.
+	[f502d245ea55]
+
+2013-07-18  Lars Kanis  <kanis@comcard.de>
+
+	* Manifest.txt:
+	Add missing files to Manifest.txt.
+	[b5c94ff41d4e]
+
+	* Manifest.txt, ext/pg_column_mapping.c, ext/util.c, ext/util.h:
+	Add compat with Windows platform.
+	[5780ddc9c111]
+
+	* ext/pg_column_mapping.c, spec/pg/column_mapping_spec.rb:
+	Add compat with Ruby-1.8.7.
+	[ab892e597042]
+
+	* spec/pg/column_mapping_spec.rb:
+	Use old BYTEA escaping for compat with PostgreSQL 8.4
+	[aa7b76abda66]
+
+2013-07-04  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_column_mapping.c, spec/pg/column_mapping_spec.rb:
+	Add BinaryBolean converter.
+
+	Refactor converter tests.
+	[7f70efce09f0]
+
+	* ext/pg_column_mapping.c, spec/pg/column_mapping_spec.rb:
+	Add BinaryFloat converter.
+	[57942116c746]
+
+2013-07-03  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_column_mapping.c, lib/pg/result.rb,
+	spec/pg/column_mapping_spec.rb, spec/pg/result_spec.rb:
+	Change ColumnMapping#initialize to take one Array arg rather than a
+	parameter list.
+
+	Suggested by Aaron: https://groups.google.com/d/msg/ruby-
+	pg/PE5K6q9RzBs/M5prOno39DEJ
+	[2606fc4f350e]
+
+	* spec/pg/result_spec.rb:
+	Add test case for all value retrieving methods of PG::Result .
+	[970d02cee164]
+
+	* spec/pg/column_mapping_spec.rb:
+	Add test case for default_mapping in Result#map_types!
+	[dbcf59dcc118]
+
+	* lib/pg/result.rb, spec/pg/column_mapping_spec.rb:
+	Add convenience method PG::Result#map_types!
+	[3e900bc457e8]
+
+	* spec/pg/column_mapping_spec.rb:
+	Add Boolean ColumnMapping spec and do Integer a bit more compact.
+	[34f6e4b23fae]
+
+2013-07-01  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_column_mapping.c, spec/pg/column_mapping_spec.rb:
+	Add converter BinaryInteger.
+	[6ccf466e1537]
+
+	* ext/pg_column_mapping.c, spec/pg/column_mapping_spec.rb,
+	spec/pg/result_spec.rb:
+	Use instances of PG::ColumnMapping::CConverter as representation of
+	the buildin converters instead of plain symbols. Symbol arguments
+	are converted to these instances, for convenience.
+
+	This allows to store and retrieve additional informations to the
+	conversion and also which conversions are supported.
+	[ccf7ec4cd083]
+
+	* ext/pg_column_mapping.c:
+	Don't depend on TYPE(obj)==T_DATA of a proc object for compat with
+	rubinius.
+	[f4f6f25434dd]
+
+2013-06-29  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg.c, ext/pg.h, ext/pg_column_mapping.c, ext/pg_result.c,
+	spec/pg/result_spec.rb:
+	Add column based type mapping.
+
+	This allowes to speed up result retrieval by directly converting
+	integer and float values to proper ruby types.
+	[71ddc0446d26]
+
+2014-10-11  Michael Granger  <ged@FaerieMUD.org>
+
+	* spec/helpers.rb, spec/pg/connection_spec.rb:
+	Merged with 4cc778c5ead7
+	[67bb0f34ca05]
+
+2014-10-09  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile, Rakefile.cross, ext/extconf.rb:
+	gcc option -static-libgcc is required for i386-mingw32 build.
+
+	Don't use native pg_config for cross build. The paths were
+	overwritten anyways until now.
+
+	Remove code that was only needed for static build to libpq.
+	[4cc778c5ead7]
+
+2014-10-09  Lars Kanis  <kanis@comcard.de>
+
+	* Rakefile, Rakefile.cross, lib/pg.rb:
+	Bundle libpq.dll into gem, because PostgreSQL-9.3 does no longer
+	support static linking.
+	[a37e27d356e5]
+
+2014-10-04  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/helpers.rb, spec/pg/connection_spec.rb:
+	Add missing spec for hash form parameters to #exec_params .
+	[04a6a0136a12]
+
+2014-08-24  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Change all remaining Oid <-> VALUE conversions to UINT.
+	[bae3928a7b09]
+
+	* .travis.yml:
+	'gem install rake-compiler' is still needed for cross build.
+	[591c4b0f2d69]
+
+	* lib/pg/connection.rb, spec/pg/connection_spec.rb:
+	Add Connection.conndefaults_hash and add specs for conndefault
+	variants.
+	[2221655210da]
+
+	* .travis.yml:
+	Travis uses the Gemfile, so 'gem install' is obsolete.
+	[4feb9bc05f2f]
+
+2014-08-23  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* .travis.yml, Rakefile.cross:
+	Fix cross build for mingw32.
+	[f97f4b2cf0c9]
+
+	* Rakefile.cross:
+	Update postgresql and openssl versions for windows cross build.
+	[f34546022095]
+
+	* .travis.yml:
+	Fix travis build
+	[daf56926b7d6]
+
+	* .travis.yml:
+	Update travis test environment
+	[cdb7c193ba29]
+
+2014-08-22  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Gemfile:
+	Update Gemfile
+	[a044c5419ff7]
+
+	* ext/extconf.rb, ext/pg_connection.c, lib/pg/connection.rb,
+	spec/pg/connection_spec.rb:
+	Test for PQconninfo availability and exclude conninfo and
+	conninfo_hash otherwise.
+	[f2692d108f46]
+
+2014-08-20  Michael Granger  <ged@FaerieMUD.org>
+
+	* spec/helpers.rb, spec/pg/connection_spec.rb:
+	Check connection status with a matcher in specs
+	[b32840b98e4b]
+
+	* ext/pg_connection.c, lib/pg/connection.rb,
+	spec/pg/connection_spec.rb:
+	Implement PG::Connection#conninfo and use it to test #188
+	[affbd590e74e]
+
+2014-07-23  Mina Naguib  <mina.github@naguib.ca>
+
+	* ext/pg_result.c:
+	Fix some type mismatches for Oid return values.
+
+	Thanks to Mina Naguib for the fix.
+	[738d4c4125a1]
+
+2014-07-23  Michael Granger  <ged@FaerieMUD.org>
+
+	* Manifest.txt:
+	Fix the path to spec helpers in the manifest
+	[b3f9e94a258c]
+
+2014-06-05  Michael Granger  <ged@FaerieMUD.org>
+
+	* Merge with 6c2444dc63e1
+	[d7160a9fb5dc]
+
+2013-12-30  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Fix typo in documentation.
+	[6c2444dc63e1]
+
+2014-06-05  Michael Granger  <ged@FaerieMUD.org>
+
+	* .rvm.gems, Rakefile, spec/helpers.rb, spec/lib/helpers.rb,
+	spec/pg/connection_spec.rb, spec/pg/result_spec.rb, spec/pg_spec.rb:
+	Convert specs to expect syntax for RSpec 3
+	[c9108c846ab2]
+
+2013-12-18  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.17.1 for changeset 78846e47d87b
+	[a5ab7f06aa1d]
+
+	* .hgsigs:
+	Added signature for changeset 22d57e3a2b37
+	[78846e47d87b] [v0.17.1]
+
+	* History.rdoc, lib/pg.rb:
+	Bump the patch version, set the date in History.
+	[22d57e3a2b37]
+
+2013-12-17  Lars Kanis  <kanis@comcard.de>
+
+	* History.rdoc:
+	Update History file
+	[ebd0e140f78d]
+
+2013-12-16  larskanis  <lars@greiz-reinsdorf.de>
+
+	* Close branch revert_query_cancel_on_ubf
+	[cddad8917d19] <revert_query_cancel_on_ubf>
+
+	* Merged in larskanis/ruby-pg/revert_query_cancel_on_ubf (pull request
+	#18)
+
+	Revert commit e0492d4 "Ensure a query is canceled, if a thread is
+	about to be killed."
+	[93a8aedecd05]
+
+2013-12-09  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/connection_spec.rb:
+	Add test case for compatibility with signal handlers. See 97c3ec2.
+	[1e974a370012] <revert_query_cancel_on_ubf>
+
+	* ext/gvl_wrappers.c, ext/gvl_wrappers.h, ext/pg_connection.c,
+	spec/pg/connection_spec.rb:
+	Revert commit e0492d4 "Ensure a query is canceled, if a thread is
+	about to be killed."
+
+	This is due to this discussion: https://groups.google.com/d/topic
+	/ruby-pg/5_ylGmog1S4/discussion
+
+	We were using rb_thread_call_without_gvl() with an ubf which
+	canceled the query currently being processed. This turned out to be
+	incompatible with possibly registered signal handlers (by
+	Signal.trap). A ubf is unconditionally invoked if ANY signal fires
+	on a process (eg even: USR1 or PROF) and Ruby has handlers
+	registered. Cancelling queries in those conditions does no make
+	sense.
+
+	This commit re-enables Connection#async_exec based on the async API
+	for all ruby versions, because async_exec allowes cancelation of
+	queries by signals like Control+C.
+
+	Thanks to Sam Saffron for highlighting this issue.
+	[97c3ec224be9] <revert_query_cancel_on_ubf>
+
+2013-09-23  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg_connection.c, lib/pg/connection.rb:
+	Fix documentation for PG::Connection::conndefaults.
+	[9812218e0654]
+
+2013-09-20  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/gvl_wrappers.h, ext/pg_connection.c:
+	Wrap PQcancel to be called without GVL. It internally waits for
+	close of the connection to be canceled.
+	[0ed6451d10a5]
+
+2013-09-16  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.17.0 for changeset 30da9c169efc
+	[46f35f5b396e]
+
+	* .hgsigs:
+	Added signature for changeset eed93df350a6
+	[30da9c169efc] [v0.17.0]
+
+	* .hoerc:
+	Add the Gemfile to the list of files that don't have to be on the
+	Manifest.
+	[eed93df350a6]
+
+2013-09-15  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc, lib/pg.rb:
+	Bump minor version
+	[7cdff0a462e5]
+
+2013-09-14  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc:
+	Add change of PG::Result#check to History.rdoc.
+	[2b4f876c54f6]
+
+	* spec/lib/helpers.rb:
+	verify_clean_exec_status itself should leave a clean status.
+	[933d0f788047]
+
+2013-09-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* lib/pg.rb, lib/pg/connection.rb, spec/lib/helpers.rb,
+	spec/pg/connection_spec.rb:
+	Improve Connection#copy_data:
+	- ensure and verify a clean exec status for each test case
+	- add error PG::NotAllCopyDataRetrieved and a spec for this case
+	- fix input/output naming in the specs
+	- use ArgumentError instead of PG::Error in case of non-COPY statement
+	[b0fd97e58a9a]
+
+	* History.rdoc, lib/pg.rb:
+	Bump VERSION to 0.16.1 and prepare History.rdoc for release.
+	[c2bbdcd4ef0f]
+
+	* lib/pg/connection.rb:
+	Fix examples of conn#copy_data and improve the documentation.
+	[53d027b0d064]
+
+2013-09-07  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/gvl_wrappers.h, ext/pg_connection.c:
+	Wrap PQisBusy to be called without GVL. It could trigger the notice
+	callback.
+	[d93b3ddc69ff]
+
+	* ext/gvl_wrappers.h, ext/pg_connection.c:
+	Wrap all PQsend* functions to be called without GVL.
+
+	These functions could trigger the notice callback when some notice
+	is yet in the buffer. The notice callback needs to be called without
+	GVL since it always reaquires the GLV. This fixes issue #171.
+	[1fd77c0a4cea]
+
+2013-08-19  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/connection_spec.rb:
+	Add #copy_data case for non copy statement
+	[eea6da92b30a]
+
+	* ext/pg_connection.c:
+	Remove copy examples in favour of #copy_data
+	[c549f9878adf]
+
+2013-08-18  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* merge tip
+	[90252df3c5c8]
+
+	* lib/pg/connection.rb, spec/pg/connection_spec.rb:
+	Add PG::Connection#copy_data as a convenience method.
+	[5096385267ab]
+
+	* ext/pg_result.c:
+	Return self from PG::Result#check instead of nil. This allowes to
+	stack method calls.
+	[8255d4f73334]
+
+2013-08-15  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile.cross:
+	Use RbConfig::CONFIG['CC'] instead of ['host'] for determining cross
+	compilation platform.
+
+	This is 'i586-mingw32msvc-gcc' versus 'i586-pc-mingw32msvc'.
+	[fbee9586e8f7]
+
+2013-08-14  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Gemfile, Rakefile:
+	Add Gemfile for compat with rake-compiler-dev-box.
+
+	Increase version of rake-compiler to 0.9. That is needed for the
+	x64-mingw32 build.
+	[355cce5c8566]
+
+2013-08-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c:
+	Add usage examples for put_copy_data and get_copy_data.
+	[9959003173b4]
+
+2013-08-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile:
+	Add Lars Kanis to the list of developers in the gemspec.
+	[6d3d18452d99]
+
+2013-07-23  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.16.0 for changeset def8f41a7672
+	[315fa9728831]
+
+	* .hgsigs:
+	Added signature for changeset 4e0606f5f5aa
+	[def8f41a7672] [v0.16.0]
+
+	* History.rdoc, lib/pg.rb:
+	Bump the version, update history.
+	[4e0606f5f5aa]
+
+2013-07-19  Lars Kanis  <kanis@comcard.de>
+
+	* .travis.yml:
+	Travis: Allow failures on rbx.
+	[7be3b156c8fb]
+
+2013-07-18  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/connection_spec.rb:
+	Test requires newer PostgreSQL version.
+	[10265c2fa41e]
+
+	* History.rdoc:
+	Update History.txt
+	[f19e8b3fc659]
+
+	* ext/pg_result.c, spec/pg/result_spec.rb:
+	Use nil as PG::Error#result in case of a NULL-result from libpq.
+
+	This previously returned a PG::Result object with internal NULL
+	pointer, that caused a misleading error "result has been cleared",
+	when accessed.
+
+	This fixes issue 166 : https://bitbucket.org/ged/ruby-pg/issue/166
+	[de6bee6a208c]
+
+	* ext/pg.h, ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Recalculate the timeout of conn#wait_for_notify and conn#block in
+	case of socket events that require re-runs of select().
+
+	This previously caused a timeout higher than the given value,
+	because the timeout was set to the original value for every re-run.
+	[854b22230eba]
+
+	* spec/pg/connection_spec.rb:
+	Await a established connection to ensure the received errors match
+	exactly.
+
+	This test failed on Windows x64.
+	[6894f73d7039]
+
+2013-07-06  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Use ConnectionBad instead of PG::Error for connection related
+
+	Replace rb_bug() for PQsocket() failure with rb_raise().
+	[ddb55d4a44d3]
+
+2013-07-17  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgignore:
+	Add generated error codes file to the ignorelist
+	[67f6fa913c9d]
+
+2013-04-04  Cody Cutrer  <cody@instructure.com>
+
+	* ext/pg_result.c:
+	refactor value retrieval into a single function
+
+	From d8bf9782f035c0a1d942d949535cd1800bc3e095 Mon Sep 17 00:00:00
+	2001
+	[368a95c8d4c1]
+
+2013-06-26  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg.h, ext/pg_connection.c, ext/pg_errors.c,
+	spec/pg/connection_spec.rb:
+	Add new error class 'ConnectionBad' that is raised if the connection
+
+	From 9d0acad61a693b9042842883fa8195ba973bf813 Mon Sep 17 00:00:00
+	2001 could not be established. Use 'UnableToSend' error in case that
+	sending fails with async methods.
+	[b09cf9da723e]
+
+	* ext/gvl_wrappers.h, ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Release GVL for PQconnect* and PQreset* functions, too.
+
+	From a1e24a52e3aaa59a552912f189a2ae36302ab696 Mon Sep 17 00:00:00
+	2001 This fixes issue #165: https://bitbucket.org/ged/ruby-
+	pg/issue/165
+	[8b9b335c3f1f]
+
+2013-06-15  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* History.rdoc:
+	Add changes for 0.16.0 to History.rdoc.
+
+	From d4d92750850707aaca3b7b90fcb515ab1a401176 Mon Sep 17 00:00:00
+	2001
+	[303cef15f662]
+
+2013-06-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_errors.c, spec/pg/connection_spec.rb:
+	Use distinct error class in case the connection is broken.
+
+	From 4d5c4301128b81c750d2dbbd0e7e0e6825b4685c Mon Sep 17 00:00:00
+	2001
+	[12a4cbea487c]
+
+	* ext/pg_errors.c, spec/pg/result_spec.rb:
+	Rename PG:Errors to PG::ERROR_CLASSES as suggested by ged.
+
+	From 5401c5c9383bb7f0edebf558b02c4bba6870a7c5 Mon Sep 17 00:00:00
+	2001
+	[a0972c3b8bbb]
+
+2013-06-07  Michael Granger  <ged@FaerieMUD.org>
+
+	* .tm_properties:
+	Fix indent in project settings
+
+	From faafc7b075f9962bed37eb664462dc771de5fc6b Mon Sep 17 00:00:00
+	2001
+	--HG-- extra : rebase_source :
+	704ec9c8ffafa89e797faf2b298e7b6b078898fc
+	[0b45c1fb7575]
+
+2013-06-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Set proper encoding on the string returned by quote_ident,
+
+	From 72acd792eb92004655226fd31307dc821109f2e2 Mon Sep 17 00:00:00
+	2001 escape_literal and escape_identifier. This fixes issue #163 :
+	https://bitbucket.org/ged/ruby-pg/issue/163 .
+	[30e475c4f9a0]
+
+2013-05-13  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_result.c:
+	Fix non working example for PGresult#error_field
+
+	From cb0dac677f049bee2817543c93c32fa0a07578f1 Mon Sep 17 00:00:00
+	2001
+	[a0b1c8dbcf99]
+
+	* .travis.yml:
+	LD_LIBRARY_PATH is needless, thanks to the rpath option
+
+	From b74ba4ff89e7012b63080270425152d9e317e562 Mon Sep 17 00:00:00
+	2001
+	[e169630b87f0]
+
+2013-05-18  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Manifest.txt, Rakefile, ext/errorcodes.rb, ext/errorcodes.txt,
+	ext/pg.c, ext/pg.h, ext/pg_errors.c, ext/pg_result.c,
+	spec/pg/result_spec.rb, spec/pg_spec.rb:
+	Use inheritance to describe multiple types of PGErrors.
+
+	From fe657c793a9b8471d959ff94087c0857e0a767a7 Mon Sep 17 00:00:00
+	2001 This resolves long standing bitbucket issue #5 .
+	[74aa9514a381]
+
+2013-05-14  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb:
+	Merge pull request #12 from larskanis/add-support-for-diag-name-
+	fields
+
+	Add support for PG_DIAG_*_NAME error fields of PostgreSQL 9.3.
+	[e4465a9779fa]
+
+	* Merge pull request #11 from larskanis/try-rpath-manually-if-
+	rpathflag-is-empty
+
+	Try to use -rpath linker option, even if RbConfig doesn't know about
+	it.
+	[b4b9be725c09]
+
+	* ext/gvl_wrappers.h, spec/pg/connection_spec.rb:
+	Merge pull request #10 from larskanis/wrap-pqnotifies-per-gvl
+
+	Wrap PQnotifies per GVL.
+	[83e4520ded0e]
+
+	* spec/pg/connection_spec.rb:
+	Merge pull request #9 from larskanis/cancel-query-ubf
+
+	Ensure a query is canceled, if a thread is about to be killed.
+	[d9a6626143d6]
+
+2013-05-14  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/extconf.rb, ext/pg.c, spec/lib/helpers.rb,
+	spec/pg/result_spec.rb:
+	Add support for PG_DIAG_*_NAME error fields.
+
+	This fixes issue #161 .
+	[e90cad5af52e]
+
+2013-05-12  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/connection_spec.rb:
+	Use async_exec for compat with Ruby-1.8
+	[52af48ad5023]
+
+2013-05-10  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/gvl_wrappers.c, ext/gvl_wrappers.h, spec/pg/connection_spec.rb:
+	Ensure a query is canceled, if a thread is about to be killed.
+
+	This fixes blocked Ruby when pressing CTRL-C for a blocking query in
+	the main thread.
+	[e0492d4bbb9c]
+
+2013-05-11  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/extconf.rb:
+	Try to use -rpath linker option, even if RbConfig doesn't know about
+	it.
+	[2dba8375f85b]
+
+2013-05-10  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/gvl_wrappers.h, ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Wrap PQnotifies per GVL.
+
+	PQnotifies doesn't do/wait for network communication, but PQnotifies
+	can deliver notifications per callback. The registered callback
+	function is then called with GVL locked. This results in a
+	rb_bug("rb_thread_call_with_gvl: called by a thread which has GVL.")
+	if we don't wrap PQnotifies likewise in order to unlock the GVL.
+	[6184e9c81ab5]
+
+2013-05-13  Michael Granger  <ged@FaerieMUD.org>
+
+	* Merge pull request #8 from larskanis/fix-travis-tests
+
+	Fix travis tests
+	[8a0806192261]
+
+2013-05-10  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Rakefile:
+	Allow 'rake compile' and 'rake gem' on non mercurial repos.
+
+	rake-compiler-0.9.0.pre.1 depends on ChangeLog for the compile task.
+	[982f66ccdd77]
+
+	* .travis.yml:
+	Update travis config.
+
+	Cross compile for i386-mingw32 on 1.8.7-p371 and x64-mingw32 on
+	2.0.0-p0.
+	[fadc58d3804f]
+
+	* spec/lib/helpers.rb, spec/pg/connection_spec.rb:
+	Better spec for fallback_application_name.
+
+	The spec failed, if /bin/bash was more than 63 characters.
+	[8326e794b79e]
+
+	* spec/pg/result_spec.rb:
+	All versions of PostgreSQL starting from 8.4 know
+	DIAG_STATEMENT_POSITION and 8.3 is EOL.
+	[578e532297e4]
+
+2013-05-08  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Merge pull request #7 from pedz/aix-build
+
+	Use a more standard method of adding library and include
+	directories.
+
+	This fixes built on AIX. See https://github.com/ged/ruby-pg/pull/7
+	[370ea51b888b]
+
+2013-04-08  Perry Smith  <pedz@easesoftware.com>
+
+	* ext/extconf.rb:
+	Use a more standard method of adding library and include
+	directories.
+	[f11a13552a36]
+
+2013-05-02  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Return result of the block in conn#transaction instead of nil. This
+	fixes issue #158 .
+	[b94100f2674c]
+
+2013-05-01  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Avoid warnings about uninitialized instance variables
+	[77410585716e]
+
+2013-04-08  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc:
+	Fix date in History
+	[de1cdb0f7ba6]
+
+	* .hgtags:
+	Added tag v0.15.1 for changeset 4692c20bcbde
+	[765d242ccf70]
+
+	* .hgsigs:
+	Added signature for changeset 0bfb6ff650be
+	[4692c20bcbde] [v0.15.1]
+
+	* lib/pg.rb:
+	Bump the patch version
+	[0bfb6ff650be]
+
+	* Merge with v0.15-stable
+	[650a853efd0d]
+
+	* ext/pg_connection.c, lib/pg/connection.rb:
+	Update PG::Connection documentation
+	[4514df7221a8]
+
+2013-04-05  Lars Kanis  <kanis@comcard.de>
+
+	* History.rdoc:
+	Update History.rdoc.
+	[1d0173b7a077] <v0.15-stable>
+
+	* lib/pg/connection.rb, spec/pg/connection_spec.rb:
+	Send a shortened $0 as application_name to the server in order to
+	avoid warnings about truncated identifier.
+
+	Thanks to Svoop for this report.
+	[134e067259ee] <v0.15-stable>
+
+	* lib/pg/connection.rb, spec/pg/connection_spec.rb:
+	Send a shortened $0 as application_name to the server in order to
+	avoid warnings about truncated identifier.
+
+	Thanks to Svoop for this report.
+	[9a6791fe9409]
+
+2013-03-26  Michael Granger  <ged@FaerieMUD.org>
+
+	* README.rdoc:
+	Update README, add Lars as maintainer
+	[5060601d2e64]
+
+	* ext/pg_result.c, lib/pg/exceptions.rb, sample/async_api.rb,
+	sample/async_mixed.rb, sample/cursor.rb,
+	sample/disk_usage_report.rb, sample/wal_shipper.rb,
+	sample/warehouse_partitions.rb, spec/lib/helpers.rb:
+	Whitespace cleanup
+	[76ebae01c937]
+
+	* .hgtags:
+	Added tag v0.15.0 for changeset 065fd1f0e9dd
+	[3321254ec4fb]
+
+	* .hgsigs:
+	Added signature for changeset 384fcbc92366
+	[065fd1f0e9dd] [v0.15.0]
+
+	* lib/pg.rb:
+	Bump the minor version
+	[384fcbc92366]
+
+	* ext/pg_connection.c:
+	Fix a compiler warning
+	[c031f659f882]
+
+	* Rakefile.cross:
+	Avoid "no implicit conversion of nil into String" on hosts with no
+	cross-ruby installs
+	[3fcdc9620b79]
+
+2013-03-25  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Avoid compiler warning about unused variable:
+
+	../../../../ext/pg_connection.c: In function
+	‘pgconn_close_socket_io’: ../../../../ext/pg_connection.c:73:6:
+	warning: unused variable ‘ruby_sd’ [-Wunused-variable]
+	[342fa14086aa]
+
+2013-03-16  Lars Kanis  <kanis@comcard.de>
+
+	* ext/extconf.rb, ext/pg_connection.c, lib/pg/connection.rb,
+	spec/lib/helpers.rb, spec/pg/connection_spec.rb:
+	Add working Connection#socket_io for Windows and remove this method
+	for platforms that don't support it.
+
+	This also requires to move the code from Ruby to C.
+
+	Use different excudes for :unix and :socket_io.
+	[79d6ab5cf45a]
+
+2013-03-14  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Use #async_exec as alias to #exec on platforms with native threads.
+
+	Since we release the GVL for all blocking function calls, now, #exec
+	has the same behaviour as #async_exec.
+
+	Discussed on: https://groups.google.com/d/msg/ruby-
+	pg/OVVO7XjH7Aw/7UIwi6g10PsJ
+	[ca09386c2aac]
+
+	* ext/pg_connection.c:
+	Test case 'can wait for NOTIFY events' failed before this fix.
+	[266d915dfb86]
+
+2013-03-13  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/connection_spec.rb:
+	Mark tests to #socket_io as UNIX-only - they fail on Windows.
+	[1f23c39fb8c8]
+
+	* Rakefile.cross:
+	Print proper message in case that cross compilation is not usable.
+	[307438918863]
+
+	* Rakefile, Rakefile.cross:
+	Merge with https://bitbucket.org/ged/ruby-pg
+	[3230e6c245e0]
+
+	* Rakefile, Rakefile.cross:
+	Add support for cross build for multiple platforms (i386-mingw32 and
+	x64-mingw32).
+
+	Update OpenSSL for cross build to 1.0.1e Update PostgreSQL for cross
+	build to 9.2.3
+
+	Remove -lws2_32 for PostgreSQL build. It fails to compile for
+	x64-mingw32 elsewise.
+	[6a2a1a53dedc]
+
+2013-03-12  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile.cross:
+	Bump PostgreSQL/OpenSSL versions for the binary gem
+	[b6f885cd57f7]
+
+	* spec/pg/connection_spec.rb:
+	Re-enable application_name setting with corrected guard
+	[5b2e5992bb78]
+
+	* .rvm.gems, Rakefile, Rakefile.cross:
+	Bump versions of dev dependencies
+	[cba92fb4b89e]
+
+2013-03-06  Michael Granger  <ged@FaerieMUD.org>
+
+	* README.rdoc:
+	Add a hint about installing with Bundler to the README.
+
+	Thanks to StackExchange user 'darnumbrella' for this hint.
+	http://stackoverflow.com/questions/15234810/cannot-install-pg-gem
+	[93bacacab796]
+
+	* History.rdoc:
+	Update History
+	[0ab4e5cf47e9]
+
+2013-03-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* spec/pg/connection_spec.rb:
+	Remove application_name setting for PG < 8.3
+	[130d50d246fb]
+
+	* spec/pg/connection_spec.rb:
+	Fix tests under Postgres 8.3.
+
+	Ugh. I need an 8.3 testing box.
+	[bda5c1c794f1]
+
+	* spec/pg/connection_spec.rb:
+	Don't set the application_name for versions of PG less than 9.0
+	[9daa5a0012d8]
+
+	* spec/lib/helpers.rb:
+	Remove reference comment
+	[edc642a94aa6]
+
+	* ext/pg_connection.c, spec/lib/helpers.rb,
+	spec/pg/connection_spec.rb:
+	Clean up the #socket_io if it exists on #finish and #reset.
+	[fc290848221b]
+
+2013-02-27  Michael Granger  <ged@FaerieMUD.org>
+
+	* README.ja.rdoc, README.rdoc:
+	Update READMEs
+
+	* Update relevant versions
+	* Move the badge to a status section
+	* Add link list to the header
+	* Add a (hopefully) more-lucid description to README.ja.rdoc.
+	[ac1c999e8514]
+
+2013-02-26  Michael Granger  <ged@FaerieMUD.org>
+
+	* .travis.yml:
+	Add Ruby 2 to the Travis matrix
+	[d8c0be8a00fa]
+
+2013-02-25  Michael Granger  <ged@FaerieMUD.org>
+
+	* .rvmrc:
+	Test under Ruby 2.0.0 by default
+	[c7919322ac00]
+
+	* Merge with rpath_ldflag
+	[a249c3b79f82]
+
+2013-02-04  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Avoid warning about DWORD to int mapping in rb_raise() format
+	string.
+	[b1d3a145bef5]
+
+2013-02-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Split the dual-mode PG::Connection#exec into #exec and #exec_params.
+
+	PG::Connection#exec should be backward compatible with old code: it
+	just passes control to #exec_params directly instead of calling
+	PQexecParams() itself.
+
+	Thanks to Aaron Patterson for the idea.
+	[7c313c2355b7]
+
+2013-01-31  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb:
+	Add experimental -rpath to the LDFLAGS
+	[8496c624dffd]
+
+2013-01-30  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hoerc, ext/pg_connection.c, lib/pg/connection.rb,
+	sample/async_api.rb, sample/async_copyto.rb, sample/async_mixed.rb,
+	spec/pg/connection_spec.rb:
+	Add PG::Connection#socket_io to return a memoized IO for the
+	underlying socket.
+
+	This keeps the IO in scope until the Connection is garbage-
+	collected, preventing Ruby from auto-closing the connection to
+	PostgreSQL.
+	[c1e35a055da6]
+
+2013-01-30  Michael Granger  <ged@faeriemud.org>
+
+	* Close branch copy_both_docu.
+	[9a5a0ead9240] <copy_both_docu>
+
+	* Close branch row_processor.
+	[2503026a5b0c] <row_processor>
+
+	* Close branch use_gvl_for_blocking_functions.
+	[c576c578b389] <use_gvl_for_blocking_functions>
+
+2013-01-29  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc:
+	Add @tenderlove's patch credit to History, reworded some stuff
+	[dbfbd4a8e88b]
+
+	* lib/pg/result.rb:
+	Whitespace/docs fix
+	[6d150feff5b7]
+
+	* spec/pg/result_spec.rb:
+	Merge with github mirror
+	[114d4527bc34]
+
+	* Merge pull request #5 from larskanis/for_ged_2
+
+	Update History+Manifest files
+	[68885ed19424]
+
+2013-01-25  Michael Granger  <ged@FaerieMUD.org>
+
+	* Merge pull request #4 from larskanis/for_ged
+
+	A bunch of cool stuff from Lars Kanis.
+	[0ac815e4c1c2]
+
+2013-01-27  Lars Kanis  <lars@greiz-reinsdorf.de>
+
+	* Manifest.txt:
+	Update Manifest file.
+	[2ec7220191c3]
+
+	* ext/pg_connection.c:
+	Remove unused variable.
+	[ff8729fed34d]
+
+	* History.rdoc:
+	Update the History file.
+	[6e1539487554]
+
+2013-01-23  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Free memory allocated per rb_fd_init().
+	[c66205b7855a]
+
+	* README.rdoc:
+	Link the travis build status icon to ged's repository.
+	[5230908c87b0]
+
+	* ext/pg_connection.c, spec/lib/helpers.rb,
+	spec/pg/connection_spec.rb:
+	conn#socket() can not be used with IO.for_fd() on Windows.
+	[35588686dd95]
+
+	* spec/pg/connection_spec.rb:
+	Fix race in threading spec.
+	[9a84576d9c1c]
+
+	* ext/extconf.rb, ext/pg_connection.c:
+	Refactor different variants of waiting for the connection socket.
+
+	Reduce the 4 variants of waiting to only 2 which are used by both
+
+	This also fixes 'Bad file descriptor' respectively wrong behaviour
+	of #wait_for_notify() on Windows and fixes timeout handling of
+
+	Make use of rb_thread_fd_select() on Ruby 1.9, to avoid deprecation
+	warnings on rb_thread_select().
+	[bdad1d6ed622]
+
+2013-01-22  Lars Kanis  <kanis@comcard.de>
+
+	* spec/lib/helpers.rb, spec/pg/connection_spec.rb:
+	Avoid fork() in specs.
+
+	fork() is not implemented on windows and jruby.
+
+	On Rubinius fork() blocks in these tests or raises 'server closed
+	the connection unexpectedly' after the test.
+	[4a6fe373133f]
+
+	* ext/extconf.rb, ext/gvl_wrappers.c, ext/gvl_wrappers.h, ext/pg.h,
+	ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Add wrappers to blocking functions and callbacks in order to release
+	the GVL of ruby 1.9 as long as not in ruby code.
+
+	This allowes better concurrency in threaded applications.
+	[ccc3e80c0058]
+
+	* spec/pg/connection_spec.rb:
+	Remove duplicated test.
+
+	It is equally defined in result_spec.rb.
+	[ce203ebe0b00]
+
+	* spec/pg/connection_spec.rb:
+	Don't do parameter test with 'keepalives' on PostgreSQL<9.0
+	[b73895632940]
+
+	* spec/pg/result_spec.rb:
+	Adjust PGError test to also match PostgreSQL 8.3
+	[69ac504b6895]
+
+	* spec/pg/connection_spec.rb:
+	Skip some tests that do not run on PostgreSQL<9.0
+	[451ee7c4195d]
+
+	* spec/pg/connection_spec.rb:
+	Replace Encoding::KOI8_U by Encoding::KOI8_R to allow testing with
+	PostgreSQL 8.3.
+	[5edc4ca287be]
+
+	* spec/pg/connection_spec.rb:
+	Async connection test seems to be a bit racy on 1.8.7. So allow
+	CONNECTION_OK, too.
+	[5f29f24727e9]
+
+	* spec/pg/result_spec.rb:
+	Avoid warning about deprecated expect{ }.should.
+	[72a839f5fe85]
+
+	* Merge http://github.com/ged/ruby-pg
+	[af2075f15962]
+
+2013-01-21  Lars Kanis  <kanis@comcard.de>
+
+	* .travis.yml, README.rdoc:
+	Add configuration for travis-ci.org and add build status icon to
+	README.
+	[cce08abf93c8]
+
+2013-01-25  Michael Granger  <ged@FaerieMUD.org>
+
+	* .tm_properties:
+	Make source settings override TM2 defaults
+	[c5706b3f73af]
+
+2012-12-26  Lars Kanis  <kanis@comcard.de>
+
+	* ext/extconf.rb, ext/pg_connection.c, spec/pg/connection_spec.rb:
+	merge in default branch
+	[ca39e311d1eb] <use_gvl_for_blocking_functions>
+
+	* ext/gvl_wrappers.h:
+	Add some documentation to gvl_wrappers
+	[ffeb6a0afd1f] <use_gvl_for_blocking_functions>
+
+	* spec/pg/connection_spec.rb:
+	Add test case for threading with Connection#exec in ruby 1.9
+	[73b9aa38e8c0] <use_gvl_for_blocking_functions>
+
+	* ext/extconf.rb, ext/gvl_wrappers.c, ext/gvl_wrappers.h, ext/pg.h,
+	ext/pg_connection.c:
+	Add wrappers to blocking functions and callbacks in order to release
+	the GVL of ruby 1.9 as long as not in ruby code
+	[2f2c681424ed] <use_gvl_for_blocking_functions>
+
+2012-07-02  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Fix encoding of values delivered to the row processor and add specs
+	for binary and text data.
+	[bb9c6625fbc9] <row_processor>
+
+	* ext/pg_connection.c:
+	Polish the documentation a little bit
+	[b7633be3c941] <row_processor>
+
+2012-07-01  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Get rid of gcc warning about (non-)const PGresult to
+	pg_new_result_for_callback()
+	[1a25786ed8f3] <row_processor>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Fix wrong encoding for Result object passed to a notice-receiver
+	block. Add proper specs for #set_notice_receiver.
+	[4280826bb9b9] <row_processor>
+
+	* ext/extconf.rb, ext/pg.h, ext/pg_connection.c, ext/pg_result.c,
+	spec/lib/helpers.rb, spec/pg/connection_spec.rb:
+	Implement PostgreSQL-9.2 functions PG::Connection#set_row_processor,
+	get_row_processor, skip_result
+	[b7ce4843f4d1] <row_processor>
+
+2012-06-28  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_result.c:
+	Add PGRES_COPY_BOTH to documentation of PG::Result#result_status
+	[63998b47da6e] <copy_both_docu>
+
+2013-01-29  Aaron Patterson  <aaron.patterson@gmail.com>
+
+	* ext/pg_result.c, lib/pg/result.rb, spec/pg/result_spec.rb:
+	adding PG::Result#each_row for looping over result sets by row
+	[fe820dfcc7a6]
+
+2013-01-05  Lars Kanis  <kanis@comcard.de>
+
+	* Rakefile.cross:
+	Update PostgreSQL to 9.2.2 for cross compilation task
+	[553bde8e3021]
+
+2013-01-03  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Fix text encoding for Connection#notifies
+	[c1522591aa08]
+
+2012-12-30  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Fix text encoding for Connection#wait_for_notify
+	[3dc45b1416b9]
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Fix encoding of messages delivered by notice callbacks
+	[048d07d14867]
+
+2012-12-26  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg.c:
+	Use proper const check instead of implicit relation
+	[d0c5d5f7f1e8]
+
+	* spec/pg/connection_spec.rb:
+	Improve spec for Connection#set_single_row_mode
+	[0b318fe91ffc]
+
+	* ext/pg_connection.c:
+	Add some more documentation to Connection#set_single_row_mode
+	[43f891ee4f64]
+
+2012-12-26  larskanis  <lars@greiz-reinsdorf.de>
+
+	* spec/pg/connection_spec.rb:
+	Merged in larskanis/ruby-pg/single_row_mode (pull request #13: Add
+	single row mode of PostgreSQL 9.2)
+	[49e3fe1dafdf]
+
+2012-12-19  Lars Kanis  <kanis@comcard.de>
+
+	* ext/extconf.rb, ext/pg.c, ext/pg_connection.c,
+	spec/pg/connection_spec.rb:
+	Add single row mode of PostgreSQL 9.2
+	[5cf348b75c1c] <single_row_mode>
+
+2012-12-19  Michael Granger  <ged@FaerieMUD.org>
+
+	* lib/pg/connection.rb:
+	Remove accidentally-committed debugging statement
+	[05f5faf568cd]
+
+	* Merge with github mirror
+	[95448a126ab5]
+
+2012-12-17  Michael Granger  <ged@FaerieMUD.org>
+
+	* Merge pull request #3 from michaelrkn/master
+
+	fix spacing in the README
+	[9561ce98b144]
+
+2012-12-17  michael  <michaelrkn@gmail.com>
+
+	* README.rdoc:
+	fix spacing on README.rdoc:21 to improve display on Github
+	[807f040166da]
+
+2012-12-19  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/connection_spec.rb:
+	Move the spec to param fallback_application_name into PostgreSQL 9.0
+	section
+	[83bfd3b99c08]
+
+	* ext/pg_result.c:
+	Fix segfault in PG::Result#field_values when called with non String
+	value
+	[e2f58175db88]
+
+	* spec/pg/result_spec.rb:
+	Add spec for PG::Result#field_values
+	[3618eb238aba]
+
+	* lib/pg/connection.rb, spec/lib/helpers.rb:
+	Restore compatibility with PostgreSQL down to 8.3
+	[e4900f62e56d]
+
+2012-10-30  Michael Granger  <ged@FaerieMUD.org>
+
+	* spec/lib/helpers.rb, spec/pg/result_spec.rb:
+	Adding some fixes for PostgreSQL 9.2.x
+	[10804d14d1e7]
+
+	* lib/pg/connection.rb, spec/pg/connection_spec.rb:
+	Write specs for the fallback_application_name addition.
+	[994bad887ae9]
+
+2012-09-08  will  <will@bitfission.com>
+
+	* lib/pg/connection.rb:
+	Add a default fallback_application_name to connection string
+	[ee5c4f860ce1]
+
+2012-10-30  Michael Granger  <ged@FaerieMUD.org>
+
+	* sample/array_insert.rb:
+	Adding an example of how to insert array data using a prepared
+	statement (issue #145)
+	[7a8fdf4ae7fe]
+
+2012-10-01  Michael Granger  <ged@FaerieMUD.org>
+
+	* Contributors.rdoc:
+	Update Rafał Bigaj's email address in Contributors.rdoc at his
+	request
+	[bf7fb95dc4e8]
+
+2012-09-07  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg_result.c:
+	Fix the documentation for Result#check (refs #123)
+	[283e533abb9b]
+
+2012-09-02  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.14.1 for changeset 2d83ce956f97
+	[523ae4535497]
+
+	* .hgsigs:
+	Added signature for changeset 52d22b060501
+	[2d83ce956f97] [v0.14.1]
+
+	* History.rdoc:
+	Updating the History file
+	[52d22b060501]
+
+2012-08-14  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg_result.c:
+	Add some documentation to PG::Result#fnumber (fixes #139)
+	[b03c4641e58f]
+
+2012-08-12  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc, lib/pg.rb:
+	Bump the patch version, update history.
+	[ef533f731814]
+
+2012-08-08  Jeremy Evans  <code@jeremyevans.net>
+
+	* ext/extconf.rb, ext/pg_result.c:
+	[PATCH] Recognize PGRES_SINGLE_TUPLE as OK when checking PGresult
+
+	From 10cdc23ac4e3cfc91488f3f8a7a44f3275c9fe0a Mon Sep 17 00:00:00
+	2001 This is used for the new single row mode introduced in
+	9.2beta3, and indicates a successful result when using that mode.
+	--- ext/extconf.rb | 1 + ext/pg_result.c | 3 +++ 2 files changed, 4
+	insertions(+), 0 deletions(-)
+	[f92b6456c566]
+
+2012-08-10  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg_result.c:
+	Apply the heap vs. stack fix for PG::Result#fields too.
+	[512a362e883e]
+
+	* ext/pg_result.c:
+	Additional fixes for PG::Result#values and #column_values.
+
+	- Revert the row-building loop of Result#values to use the heap,
+	too.
+	- Use the heap for building #column_values, too.
+
+	Props to Lars Kanis for figuring out the problem.
+
+	Refs #135, #136, #138.
+	[62c8ee5406db]
+
+	* ext/pg_result.c:
+	Use heap instead of stack for result array in #values, etc al. (refs
+	#135, #136, #138)
+	[4d5e457062e8]
+
+2012-08-04  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/connection_spec.rb:
+	Add missing require for using the TCPServer in connection_spec. This
+	fixes #137 .
+	[72b45840d975]
+
+2012-07-03  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_connection.c:
+	Add note about the usage scope of the result object received by the
+	#set_notice_receiver block.
+	[de900bfaff1a]
+
+2012-07-02  Lars Kanis  <kanis@comcard.de>
+
+	* ext/pg_result.c:
+	Add PGRES_COPY_BOTH to documentation of PG::Result#result_status
+	[5e0e06440b1a]
+
+2012-06-23  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.14.0 for changeset 634e0a42a101
+	[35eecb26bd34]
+
+	* .hgsigs:
+	Added signature for changeset a45710f8db30
+	[634e0a42a101] [v0.14.0]
+
+2012-06-17  Lars Kanis  <kanis@comcard.de>
+
+	* Rakefile.cross, ext/extconf.rb,
+	misc/postgresql-9.1.4.mingw-w64-support.patch:
+	Update windows cross compilation tasks to the latest
+	Openssl+Postgresql versions and the latest mingw-w64 compiler
+	[a45710f8db30]
+
+	* Rakefile:
+	Use RbConfig instead of obsolete and deprecated Config.
+	[d67cbb4310ac]
+
+2012-06-17  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc, ext/pg_connection.c, lib/pg.rb:
+	Bumped minor version, updated history.
+	[a3a3177b921c]
+
+	* .hoerc, ext/pg.h, ext/pg_connection.c, ext/pg_result.c,
+	spec/pg/result_spec.rb:
+	New method: PG::Result#check. (fixes #123)
+
+	This method exposes a previously internal-only function for checking
+	the status of a PG::Result, primarily for people using the async
+	interface. The check is done for you if you're using the synchronous
+	interface, but there was no way to get the same behavior for results
+	fetched via PG::Connection#get_result.
+
+	This change also adds the PG::Connection associated with a result as
+	an instance variable (@connection) on the PG::Result object.
+
+	Thanks to @royaltm for the idea.
+	[237cc4f69f63]
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	New method: PG::Connection#set_default_encoding (fixes #124)
+
+	This pulls up the code that sets the client_encoding in synchronous
+	connections into a public method that can be called by people using
+	the asynchronous API to achieve the same thing once the connection
+	is established.
+
+	Thanks to @royaltm for the suggestion.
+	[6680b395e6f4]
+
+	* Manifest.txt, sample/check_conn.rb:
+	Adding a minimal "connection-test function" example
+	[15bfcbe2bd5e]
+
+	* .rvm.gems:
+	Bump the hoe-deveiate version in the rvm gemset
+	[bc2ef3d461cd]
+
+2012-06-12  Mahlon E. Smith  <mahlon@laika.com>
+
+	* sample/warehouse_partitions.rb:
+	Move indexes across tablespaces along with their parents. Remove the
+	'parent table' option, as we can derive that automatically from the
+	pg_inherits table.
+	[be46f44349bf]
+
+2012-05-07  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile, ext/pg.c, ext/pg_connection.c, ext/pg_result.c:
+	Documentation fixes.
+	[a965926418dd]
+
+2012-04-23  Michael Granger  <ged@FaerieMUD.org>
+
+	* Manifest.txt:
+	Adding Mahlon's samples to the manifest.
+	[997c3a247f44]
+
+	* .rvm.gems, Rakefile:
+	Updated dev dependencies
+	[cc07b81eaf18]
+
+2012-04-17  Mahlon E. Smith  <mahlon@laika.com>
+
+	* sample/disk_usage_report.rb, sample/minimal-testcase.rb,
+	sample/pg_statistics.rb, sample/replication_monitor.rb,
+	sample/wal_shipper.rb, sample/warehouse_partitions.rb:
+	Add a pile of additional sample scripts that perform various
+	administrative tasks.
+
+	These have all been fairly well battle-tested and are in production
+	use at $DAYJOB, though they were cleaned up for addition to the
+	Ruby-PG repo.
+
+	See the top comments in each script for additional information, or
+	the
+	--help flag on any of them for usage.
+
+	 - disk_usage_report
+
+	 Quick reporting on the heaviest disk consumers for a database. Nice
+	for cronned/email reporting.
+
+	 - pg_statistics
+
+	 Continuous polled statistics for a database. Suitable for graphing
+	with gnuplot (example included.)
+
+	 - replication_monitor
+
+	 A command-line monitor for slave replication lag. Works for both
+	streaming replication and WAL shipping. You should be able to use it
+	as a base to plug into your preferred monitoring system.
+
+	 - wal_shipper
+
+	 A smart WAL file transfer script, similar to PITRTools.
+
+	 - warehouse_partitions
+
+	 An automated tablespace migrator for older, date- based partitioned
+	tables.
+	[36ca5b412583]
+
+2012-04-02  Michael Granger  <ged@FaerieMUD.org>
+
+	* sample/issue-119.rb:
+	Add a sample from <<issue 119>>
+	[35d75de3f5a5]
+
+2012-03-26  Michael Granger  <ged@FaerieMUD.org>
+
+	* sample/minimal-testcase.rb:
+	Adding a minimal-testcase sample
+	[87a8dadf1fdd]
+
+2012-03-10  Michael Granger  <ged@faeriemud.org>
+
+	* ext/pg_result.c:
+	Merged in larskanis/ruby-pg (pull request #7)
+	[4050c3412bd7]
+
+2012-03-10  Lars Kanis  <kanis@comcard.de>
+
+	* spec/pg/result_spec.rb:
+	Add checks with binary data for other PG::Result methods
+	[ef981c14a854]
+
+	* ext/pg_result.c:
+	Don't associate encoding with non-text-type fields in
+	PGresult#getvalue. This fixes #104 .
+	[9c90c50ca41a]
+
+2012-03-09  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg_result.c:
+	Avoid use of uninitialized Arrays (fixes #47).
+
+	Instead of declaring an Array at the beginning of fetching results
+	and pushing values onto it to return at the end (which could result
+	in a segfault if the GC runs during a NEWOBJ.
+	[6cea3cea3b2b]
+
+2012-03-06  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c, ext/pg_result.c:
+	Fix the guard for PGRES_COPY_BOTH.
+	[4053dfd600e8]
+
+	* ext/pg.c, ext/pg_connection.c, lib/pg/connection.rb,
+	spec/lib/helpers.rb, spec/pg/connection_spec.rb, spec/pg_spec.rb:
+	Factor some library-introspection methods up into the toplevel
+	namespace.
+
+	- PG::Connection.library_version -> PG.library_version
+	- PG::Connection.isthreadsafe -> PG.is_threadsafe? (with backward-
+	compat aliases)
+	- Split up examples by PG version metadata
+	[e24ff9f37b12]
+
+	* Rakefile:
+	Depend on RSpec 2.8 for example metadata
+	[c0b00fdff58a]
+
+	* ext/extconf.rb, ext/pg_result.c:
+	ifdef'ed PGRES_COPY_BOTH
+	[ad4f62c38edf]
+
+2012-03-06  Michael Granger  <ged@faeriemud.org>
+
+	* Merged in krasul/ruby-pg/issue-68 (pull request #6)
+	[dedcce66d5e8]
+
+2012-03-05  Kashif Rasul  <kashif@nomad-labs.com>
+
+	* ext/pg_connection.c, ext/pg_result.c, sample/async_api.rb:
+	Added logic for missing cases.
+	[ae9e73972844] <issue-68>
+
+2012-03-04  Kashif Rasul  <kashif@nomad-labs.com>
+
+	* ext/extconf.rb, ext/pg.c, ext/pg_connection.c,
+	spec/pg/connection_spec.rb:
+	Added server ping() API.
+	[fec045ed060d] <issue-68>
+
+2012-03-02  Kashif Rasul  <kashif@nomad-labs.com>
+
+	* ext/extconf.rb, ext/pg_connection.c:
+	Added library_version() as a singleton method. Removed non-
+	singletons.
+	[f82d969cc755] <issue-68>
+
+	* ext/pg_connection.c:
+	Added missing #def to rb_define_method() calls.
+	[fd22651ae6c5] <issue-68>
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb,
+	spec/pg/result_spec.rb:
+	Added spec for escape_literal().
+	[1ce12f2fe97c] <issue-68>
+
+	* ext/pg_connection.c:
+	Removed unused variable.
+	[3b52e0e0d421] <issue-68>
+
+	* ext/extconf.rb, ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Added PGconn#escape_literal and PGconn#escape_identifier API and a
+	spec to test for keepalive connection parameters.
+	[3bdbb90eb13b] <issue-68>
+
+2012-02-22  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.13.2 for changeset c79cd308363d
+	[d8e73919acb6]
+
+	* .hgsigs:
+	Added signature for changeset 41e071bdd6ed
+	[c79cd308363d] [v0.13.2]
+
+	* History.rdoc, lib/pg.rb:
+	Bumped patch version, updated history.
+	[41e071bdd6ed]
+
+	* ext/extconf.rb:
+	Abort early if libpq is too old.
+	[fa5f8e1d7c19]
+
+	* .rvmrc:
+	Updated rvmrc
+	[dbd04c449eea]
+
+2012-02-12  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.13.1 for changeset 9e60b2c477cd
+	[f20d1b488312]
+
+	* .hgsigs:
+	Added signature for changeset 1ba641824000
+	[9e60b2c477cd] [v0.13.1]
+
+	* .hoerc, History.rdoc, Manifest.txt, lib/pg.rb:
+	Bumped patch version, updated History, Manifest.
+	[1ba641824000]
+
+	* ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Raise a rescue-able exception when a connection is used after it's
+	been closed. (fixes #110)
+	[679b1db2b430]
+
+2012-02-11  Lars Kanis  <kanis@comcard.de>
+
+	* Rakefile:
+	allow overriding of RUBY_CC_VERSION
+	[a9b8576bb35c]
+
+	* Rakefile.cross:
+	update Postgresql download URL for cross compilation
+	[216d08f2bc92]
+
+2012-02-09  Michael Granger  <ged@FaerieMUD.org>
+
+	* misc/postgres/README.txt, misc/postgres/lib/postgres.rb:
+	Fix the Google group email and bump the patch version
+	[64aa4a38059e]
+
+	* .hgignore, misc/postgres/History.txt, misc/postgres/Manifest.txt,
+	misc/postgres/README.txt, misc/postgres/Rakefile,
+	misc/postgres/lib/postgres.rb:
+	Add a stub gem build for the deprecated 'postgres' gem
+	[62271bf75eac]
+
+	* .hgignore, misc/ruby-pg/History.txt, misc/ruby-pg/Manifest.txt, misc
+	/ruby-pg/README.txt, misc/ruby-pg/Rakefile, misc/ruby-
+	pg/lib/ruby/pg.rb:
+	Add a stub gem build for the deprecated 'ruby-pg' gem
+	[b7521150de9d]
+
+	* BSDL:
+	Add missing BSDL license file (fixes #108)
+	[4d629ff60589]
+
+	* History.rdoc:
+	Add the missing date to the History file
+	[29de189a4581]
+
+	* .hgtags:
+	Added tag v0.13.0 for changeset 7b2da7e0815c
+	[150ea5f80ee4]
+
+	* .hgsigs:
+	Added signature for changeset 9c262b875047
+	[7b2da7e0815c] [v0.13.0]
+
+2012-01-28  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgsigs:
+	Added signature for changeset 0e7f0c2451e5
+	[9c262b875047]
+
+	* ext/extconf.rb:
+	Backed out the addition of `pg_config --libs` to the linked
+	libraries
+	[0e7f0c2451e5]
+
+2012-01-27  Michael Granger  <ged@FaerieMUD.org>
+
+	* Manifest.txt, README-OS_X.rdoc, README-Windows.rdoc, readme-
+	os_x.rdoc, readme-windows.rdoc:
+	More case-corrections
+	[5732b34d5769]
+
+2012-01-27  Michael Granger  <ged@faeriemud.org>
+
+	* postgres:
+	Merged in larskanis/ruby-pg (pull request #5)
+	[ad3e4338ad35]
+
+2012-01-27  Lars Kanis  <kanis@comcard.de>
+
+	* Manifest.txt, POSTGRES, Rakefile, ext/extconf.rb, ext/pg.h,
+	postgres:
+	fix cross compilation of win32 binary gem, fix mixed case file
+	naming
+	[17151d677ad7]
+
+2012-01-26  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgsigs:
+	Added signature for changeset b67309d3ccf2
+	[8f5629b33d76]
+
+	* .rvmrc, ext/pg_connection.c, spec/pg/connection_spec.rb:
+	Fix for Ruby 1.8, removed accidentally-committed encoding-testing
+	method.
+	[b67309d3ccf2]
+
+2012-01-24  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc, Manifest.txt, README.rdoc, Rakefile, lib/pg.rb:
+	Updated the History file, Manifest, README, added missing require.
+	[b2cd37832d02]
+
+	* .rvm.gems:
+	Removed rspec 2.8.1 -- not yet released, and 2.8.0 is now pulled in
+	via hoe-deveiate
+	[a4494f18a0d3]
+
+	* lib/pg/constants.rb:
+	Whitespace cleanup
+	[e1b146cd9c2f]
+
+	* sample/async_api.rb, sample/notify_wait.rb, sample/psql.rb,
+	sample/psqlHelp.rb, sample/test1.rb, sample/test2.rb,
+	sample/test4.rb, sample/test_binary_values.rb:
+	Cleaned up the sample/ directory
+	[287c71f3c89e]
+
+	* .rvm.gems:
+	Bump hoe-deveiate version in the rvm gemset
+	[59d4530b4e43]
+
+	* .rvm.gems, BSD, Contributors.rdoc, GPL, LICENSE, Manifest.txt,
+	README.OS_X.rdoc, README.ja.rdoc, README.rdoc, README.windows.rdoc,
+	Rakefile, postgres, readme-os_x.rdoc, readme-windows.rdoc:
+	Updated/simplified authors/license sections of the README, API doc
+	cleanup, updated license files (fixes #72).
+	[29a15971cd3a]
+
+	* ext/pg.c, ext/pg_connection.c, ext/pg_result.c, spec/lib/helpers.rb,
+	spec/pg/connection_spec.rb:
+	Fix for exception message encoding (#96)
+	[1cdad2ce8993]
+
+	* .pryrc, .tm_properties, Manifest.txt, README.rdoc, ext/compat.c,
+	ext/compat.h, ext/extconf.rb, ext/pg.c, ext/pg.h,
+	ext/pg_connection.c, ext/pg_result.c, lib/pg.rb,
+	lib/pg/connection.rb, lib/pg/constants.rb, lib/pg/exceptions.rb,
+	lib/pg/result.rb, misc/openssl-pg-segfault.rb, sample/async_api.rb,
+	sample/async_copyto.rb, sample/async_mixed.rb, sample/copyfrom.rb,
+	sample/copyto.rb, sample/cursor.rb, sample/losample.rb,
+	sample/notify_wait.rb, sample/psql.rb, sample/test1.rb,
+	sample/test2.rb, sample/test4.rb, sample/test_binary_values.rb,
+	spec/lib/helpers.rb, spec/m17n_spec.rb, spec/pg/connection_spec.rb,
+	spec/pg/result_spec.rb, spec/pg_spec.rb, spec/pgconn_spec.rb,
+	spec/pgresult_spec.rb:
+	Rearranging classes under the PG namespace to be a better Ruby
+	citizen
+	[f346861fbb8b]
+
+2012-01-19  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hoerc, .rvm.gems, .rvmrc:
+	Adding rvmrc and gemset
+	[dca3d7464a00]
+
+2012-01-13  Michael Granger  <ged@FaerieMUD.org>
+
+	* Manifest.txt, sample/async_mixed.rb:
+	Adding an example of mixed synchronous/async API.
+	[3ba256ccee89]
+
+2012-01-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.12.2 for changeset 88bd78632f86
+	[622bef3960c3]
+
+	* .hgsigs:
+	Added signature for changeset f3dfdb6929b7
+	[88bd78632f86] [v0.12.2]
+
+	* History.rdoc, ext/pg.c:
+	Bump patch version for release.
+	[f3dfdb6929b7]
+
+	* ext/pg.c, spec/m17n_spec.rb:
+	Encode the messages of PGErrors with the encoding of the connection.
+	(fixes #96)
+	[b62c49d91eb2]
+
+	* History.rdoc:
+	Updating history for Lars's patch
+	[5daf0ca646d2]
+
+	* spec/m17n_spec.rb, spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	Moved all the spec hooks to the top of the file
+	[42671e5d4d67]
+
+2012-01-03  Michael Granger  <ged@faeriemud.org>
+
+	* Merged in larskanis/ruby-pg (pull request #4)
+	[8d88c47ccc9b]
+
+2012-01-03  Lars Kanis  <kanis@comcard.de>
+
+	* ext/extconf.rb, ext/pg.h:
+	Alternatively include 'st.h' instead of 'ruby/st.h'. This fixes
+	compilation on Ruby 1.8.
+	[0cf272cb383f]
+
+2012-01-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* Merged with 6fc514ea2547
+	[5ec3792d1cac]
+
+2011-12-27  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc:
+	Updating history file with the st.h change
+	[935f29411410]
+
+2012-01-02  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.12.1 for changeset 21f84883e5c2
+	[6fc514ea2547]
+
+	* .hgsigs:
+	Added signature for changeset f72b14d349bf
+	[21f84883e5c2] [v0.12.1]
+
+2011-12-27  Michael Granger  <ged@FaerieMUD.org>
+
+	* Merged with f8d66e32b9a8
+	[f72b14d349bf]
+
+2011-12-14  Michael Granger  <ged@FaerieMUD.org>
+
+	* History.rdoc, ext/pg.c:
+	Bumped patch version, updated History.
+	[f8d66e32b9a8]
+
+2011-12-27  Michael Granger  <ged@FaerieMUD.org>
+
+	* .tm_properties:
+	Adding my TextMate2 project settings
+	[daa6f202c54a]
+
+	* ext/extconf.rb, ext/pg.h:
+	Explicitly include the st.h file for interpreters that need it
+	(fixes #95)
+	[448cccfe5bbb]
+
+	* Rakefile.cross:
+	Allow native compiles without Mingw tools present
+	[f15ac13b396b]
+
+	* Rakefile, Rakefile.cross:
+	Whitespace consistency fixes
+	[784c6c5cbea9]
+
+2011-12-14  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile:
+	Made rake-compiler a dev dependency. Thanks to eolamey@bitbucket and
+	Jeremy Evans for pointing out that it isn't needed for gem
+	installation. (Fixes #93)
+	[af645318f239]
+
+2011-12-07  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.12.0 for changeset b767401684d8
+	[1060487e7621]
+
+	* .hgsigs:
+	Added signature for changeset 19b551f972e2
+	[b767401684d8] [v0.12.0]
+
+	* Contributors.rdoc, History.rdoc, Manifest.txt, README.rdoc:
+	Updated some metadata files in preparation for release.
+	[19b551f972e2]
+
+2011-10-31  Lars Kanis  <kanis@comcard.de>
+
+	* README.windows.rdoc, Rakefile, Rakefile.cross:
+	re-add mingw32 cross compilation tasks, updated to current
+	pg,openssl,ruby versions
+	[a8b505d430d0]
+
+2011-12-07  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile:
+	Fix for the 'clobber' rake task under 1.9.x.
+	[c4952fd07cc0]
+
+	* .hgignore:
+	Adding binary build dir to the ignorefile
+	[12ae62d666cb]
+
+2011-12-05  Michael Granger  <ged@FaerieMUD.org>
+
+	* Manifest.txt, Rakefile, ext/pg.c, spec/lib/helpers.rb,
+	spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	Fixes for PGresult#error_field
+	- Return +nil+ for unset PQresultErrorField() results instead of a
+	String wrapped around a NULL pointer
+	- Rename PGresult#result_error_field -> #error_field and
+	#result_error_message -> #error_message; aliases for backward
+	compatibility
+	- Add an example of how to COPY asynchronously
+	- Make the 'clobber' task clobber the spec tmpdir
+	- Log the command being run during test database setup/teardown
+	[6cece559d01c]
+
+2011-11-28  Michael Granger  <ged@FaerieMUD.org>
+
+	* sample/async_copyto.rb:
+	Adding an example of how to use COPY asynchronously
+	[9ebcdc3394fb]
+
+	* sample/copyto.rb, sample/cursor.rb:
+	Fixing some comments
+	[13cd5d7e1307]
+
+2011-10-31  Michael Granger  <ged@FaerieMUD.org>
+
+	* Manifest.txt, ext/extconf.rb, ext/pg.c, spec/m17n_spec.rb:
+	Encdb fix for Ruby 1.9.3-rc1; thanks to wishdev@bitbucket for the
+	patch (fixes #88).
+	[31ff2758248a]
+
+2011-10-10  Michael Granger  <ged@FaerieMUD.org>
+
+	* sample/cursor.rb:
+	Adding an example of using a cursor with PGconn#exec
+	[0639e0040af1]
+
+2011-10-07  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgignore, Contributors, Contributors.rdoc, History.md,
+	History.rdoc, Manifest.txt, README.OS_X.md, README.OS_X.rdoc,
+	README.ja.md, README.ja.rdoc, README.md, README.rdoc,
+	README.windows.md, README.windows.rdoc, Rakefile, lib/pg.rb,
+	misc/openssl-1.0.0a.mingw-nocapi.patch:
+	Documentation update
+	[d8eea3141983]
+
+	* ext/pg.c:
+	Ensure values returned from #wait_for_notify are tainted and encoded
+	[6d565a8c3670]
+
+	* .hgtags:
+	Added tag v0.8.0 for changeset 7fbe4187e9e5
+	[6f043966cbe4]
+
+	* .hgtags:
+	Added tag v0.9.0 for changeset da726282493c
+	[ee09cf2d34ee]
+
+	* ext/pg.c:
+	Bumping minor version.
+	[5acdaac61975]
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	Make PGconn#wait_for_notify send nil as the payload argument if the
+	NOTIFY didn't have one.
+	[e47aa3bf402a]
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	Making #wait_for_notify accept a nil argument for no timeout (Sequel
+	support)
+	[2d2e977241e4]
+
+	* sample/async_api.rb, sample/copyfrom.rb, sample/losample.rb,
+	sample/psql.rb, sample/psqlHelp.rb, sample/test1.rb,
+	sample/test2.rb, sample/test4.rb:
+	Made all the samples executable
+	[7bc74288b271]
+
+	* .gemtest, .hgsub, .hgsubstate, Contributors, History.md,
+	Manifest.txt, README, README.OS_X, README.OS_X.md, README.ja,
+	README.ja.md, README.md, README.windows, README.windows.md,
+	Rakefile, Rakefile.local, doc/postgres.html, doc/postgres.jp.html,
+	ext/extconf.rb, ext/mingw/Rakefile, ext/mingw/build.rake,
+	project.yml:
+	Converted to Hoe
+	[30bd5229899d]
+
+2011-09-18  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c:
+	Handle errors while rb_thread_select()ing in PGconn#block. Thanks to
+	Brian Weaver for the patch.
+	[adb5bb3175a4]
+
+2011-10-06  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c:
+	Added docs for the payload argument to the block from
+	PGconn#wait_for_notify
+	[3623caf38391]
+
+2011-09-16  Michael Granger  <ged@FaerieMUD.org>
+
+	* sample/copyto.rb:
+	Added an example of PGconn#get_copy_data.
+	[857ec5164f03]
+
+2011-09-01  Michael Granger  <ged@FaerieMUD.org>
+
+	* misc/openssl-pg-segfault.rb:
+	Adding a test file for duplicating the OpenSSL linking problem
+	[a810901bff03]
+
+2011-07-31  cwgem  <cwprogram@live.com>
+
+	* sample/test1.rb:
+	Fixing an issue with out of data properties and constants in the
+	sample file.
+	[44b5f65d0abe]
+
+2011-06-17  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c:
+	Split out pgconn_block #ifdef madness into three functions; added
+	error-checking that will hopefully help with #75
+	[3d744d9776c3]
+
+2011-06-07  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c:
+	Fix #ifdef for Ruby 1.9.2 under non-windows platform.
+	[88f7f11fe764]
+
+	* ext/pg.c:
+	Merged Rafał Bigaj's fixes for Win32 async queries
+	[315a497006a3]
+
+2011-05-13  rafal  <rafal@Bonifacy.intranet>
+
+	* ext/pg.c:
+	Memory leak fixed: Closing opened WSA event.
+	[2bc78e46c1b6]
+
+2011-05-04  rafal  <rafal@Bonifacy.intranet>
+
+	* ext/pg.c:
+	Fixes for #66 Win32 asynchronous queries hang on connection error.
+	Using Winsock events and rb_w32_wait_events() on WIN32 and Ruby 1.9
+	instead of rb_thread_select().
+	[fc4109b2ddba]
+
+2011-04-14  rafal  <rafal@Bonifacy.intranet>
+
+	* ext/pg.c:
+	Fixes #66 Win32 asynchronous queries hang on connection error
+	[17a6a01c1725]
+
+2011-05-30  Michael Granger  <ged@FaerieMUD.org>
+
+	* spec/m17n_spec.rb, spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	Fixed executable name in spec shebangs (refs #74)
+	[70bf05114369]
+
+2011-05-18  Michael Granger  <ged@FaerieMUD.org>
+
+	* sample/async_api.rb:
+	Added a few more comments to the results part of the async example
+	[b5361e087db3]
+
+	* sample/async_api.rb:
+	Adding an asynchronous API example
+	[cf4c3a05a380]
+
+	* ext/pg.c:
+	Fixed a typo in PGconn#error_message's documentation
+	[34fc8e167542]
+
+2011-05-04  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb:
+	Quote the path to pg_config, since now we're using backticks instead
+	of pipe+exec. Closes #65.
+	[3ec32bb496b9]
+
+2011-04-22  Aaron Patterson  <aaron.patterson@gmail.com>
+
+	* lib/pg.rb:
+	fixing unused variable warnings for ruby 1.9.3
+	[37d40754ae58]
+
+2011-04-18  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.11.0 for changeset 3cb8e57c6c80
+	[9e8896275efa]
+
+	* .hgsigs:
+	Added signature for changeset 24aa7899c696
+	[3cb8e57c6c80] [v0.11.0]
+
+	* ext/pg.c, lib/pg.rb, spec/pgconn_spec.rb:
+	Move connection-parameter parsing into Ruby, and make option-
+	handling more flexible. No longer segfaults on no-option, <7-option
+	array, and other combinations of arguments to ::connect and
+	::connect_start. Fixes #67.
+	[24aa7899c696]
+
+2011-03-30  Michael Granger  <ged@FaerieMUD.org>
+
+	* Automated merge with ssh://bitbucket.org/larskanis/ruby-pg
+	[b477174160c8]
+
+2011-03-15  Lars Kanis  <kanis@comcard.de>
+
+	* README.windows, Rakefile.local:
+	Update cross compilation tasks to use Ruby 1.8.7 instead of 1.8.6,
+	since pg.gem requires at least 1.8.7 to get installed
+	[cc3a7476465c]
+
+2011-03-12  Lars Kanis  <kanis@comcard.de>
+
+	* README.windows:
+	Update readme for cross compile
+	[b90f74cb11a5]
+
+	* Rakefile.local:
+	Use RUBY_CC_VERSION from command line, if set
+	[780650f201e3]
+
+2011-03-11  Lars Kanis  <kanis@comcard.de>
+
+	* Rakefile.local:
+	update PG and OpenSSL version for cross compile
+	[31089d6c9dde]
+
+	* Rakefile.local:
+	always run "make libpq.a" for cross compilation
+	[dfe3e7c1ea27]
+
+	* Rakefile.local, ext/extconf.rb:
+	re-add required libs for cross compilation add ws2_32.dll because
+	libpq of PostgreSQL 9.0 makes use of it to determine host IP
+	addresses
+	[06e17573b133]
+
+2011-03-30  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c:
+	Comment the WIN32 console FD stuff so I remember what it does.
+	[56098b479a23]
+
+2011-02-23  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c:
+	Whitespace/line-ending fixes
+	[1baa7a8e673e]
+
+	* ext/pg.c:
+	Merged with 1c3a1ca9f0cd
+	[fb7d22101adf]
+
+2011-01-22  Greg Hazel  <ghazel@gmail.com>
+
+	* ext/pg.c:
+	for windows support, duplicate the sockets from libpq and create
+	temporary CRT fds
+	[1c3a1ca9f0cd]
+
+2011-01-22  Michael Granger  <ged@FaerieMUD.org>
+
+	* Pulling fixes for Windows from ghazel on Github
+	[c3f163bf1ecd]
+
+2011-02-10  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c:
+	Bump minor version.
+	[18f413081e0c]
+
+2011-01-31  Michael Granger  <ged@FaerieMUD.org>
+
+	* Contributors, ext/pg.c, spec/pgresult_spec.rb:
+	Reformatting fixes for PGresult#[] and PGresult#values
+	[739692aa8dd1]
+
+2011-01-31  Jason Yanowitz  <me-bitbucket@jasonyanowitz.com>
+
+	* ext/pg.c, spec/pgresult_spec.rb:
+	added PGresult#values to get an array of arrays
+	[59679aee98ee]
+
+2011-01-19  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag v0.10.1 for changeset de10b5d8e442
+	[8ab3dd3c757b]
+
+	* .hgsigs:
+	Added signature for changeset 230ea3e68db2
+	[de10b5d8e442] [v0.10.1]
+
+	* ext/pg.h:
+	Add an include guard for pg.h
+	[230ea3e68db2]
+
+	* lib/pg.rb:
+	Simplify the common case require of the ext
+	[f877d2d399cc]
+
+	* ext/compat.h:
+	Include the extconf header
+	[8e1707a90330]
+
+2010-12-06  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb:
+	Experimenting with a greatly-simplified extconf, since the complex
+	one isn't solving any problems
+	[89348c8bb6d1]
+
+	* ext/pg.c:
+	Bumping version to 0.10.1.
+	[aea173eec98a]
+
+	* ext/extconf.rb, ext/pg.c:
+	Fixing compatibility with versions of PostgreSQL without
+	PQgetCancel. (fixes #36)
+	[d61e3310ea3d]
+
+	* .hgsubstate, lib/pg.rb:
+	Fix require for natively-compiled extension under Windows. (fixes
+	#55)
+	[89979f184b22]
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	Change rb_yield_splat() to rb_yield_values() for compatibility with
+	Rubinius. (fixes #54)
+	[9e11be78bfe4]
+
+2010-12-01  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Removed tag 0.10.0
+	[eb0d4b1df418]
+
+	* .hgtags:
+	Added tag v0.10.0 for changeset 1822a169c4fe
+	[78a63dce1491]
+
+	* spec/pgconn_spec.rb:
+	Fix deprecated expectation.
+	[469211f606ea]
+
+	* .hgpatchinfo/pg90_notify_payload.dep,
+	.hgpatchinfo/pg90_notify_payload.desc:
+	Merged in Mahlon's wait_for_notify update for PostgreSQL 9's
+	notification payload
+	[857722663a6f]
+
+	* Closing pg90_notify_payload pbranch for merge into default
+	[8ffb67a23f45] <pg90_notify_payload>
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	Finished the merge of default; fixed specs under 1.9.2.
+	[de86dca00ad2] <pg90_notify_payload>
+
+	* .hgpatchinfo/pg90_notify_payload.dep, ext/extconf.rb, ext/pg.c,
+	spec/lib/helpers.rb, spec/pgconn_spec.rb:
+	merge of default
+	[60664b2495cf] <pg90_notify_payload>
+
+	* .hgtags:
+	Added tag 0.10.0 for changeset 1822a169c4fe
+	[148d0cc3db4a]
+
+	* .hgsigs:
+	Added signature for changeset 3993015a841e
+	[1822a169c4fe] [v0.10.0]
+
+	* .hgignore, Rakefile.local:
+	Ignore the yard cache, handle missing rake-compiler for non-compile-
+	related tasks.
+	[3993015a841e]
+
+2010-11-11  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgsubstate, Rakefile, ext/pg.c, project.yml:
+	Build/gem updates
+	 * Updated the build system with Rubygems suggestions from RubyConf
+	2010
+	 * Bumped version to 0.10.0 to follow the Semantic Versioning spec
+	(http://semver.org/)
+	[71786704391b]
+
+	* README, spec/pgconn_spec.rb:
+	Added a spec for collapsed notifications.
+	[899329ce1b4e]
+
+2010-11-01  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile.local, ext/extconf.rb:
+	More work trying to get the Windows-native gem to compile. No luck,
+	but it's closer.
+	* Revert the 1.8 build back to 1.8.6 on the advice of Louis Lavena's
+	blog: http://bit.ly/bFs4hj
+	* Undo the ARCHLIBDIR change
+	* Don't depend on the static-build option for the cross-compilation
+	section of extconf.rb to facilitate easy testing while the static
+	build parts are commented out.
+	[413f9e81e3ea]
+
+2010-10-31  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/compat.c, ext/pg.c, spec/lib/helpers.rb, spec/m17n_spec.rb,
+	spec/pgconn_spec.rb:
+	Fixed issue with PGconn#wait_for_notify that caused it to miss
+	notifications that happened after the LISTEN but before the
+	wait_for_notify.
+	[3402babf2cdf]
+
+2010-10-29  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgsubstate, Rakefile, project.yml, spec/m17n_spec.rb,
+	spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	Updated to RSpec 2.0
+	[9d8f82721f69]
+
+2010-10-11  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile.local, ext/extconf.rb, misc/openssl-1.0.0a.mingw-
+	nocapi.patch:
+	Fixes for windows static build.
+	 * Disable capi engine in OpenSSL build until it's fixed
+	(http://rt.openssl.org/Ticket/Display.html?id=1747)
+	 * Rearrange some stuff in Rakefile.local to make the logic more
+	obvious
+	[b2df89600d95]
+
+2010-10-08  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb, ext/pg.c, spec/lib/helpers.rb, spec/pgconn_spec.rb:
+	Added support for the payload of NOTIFY events (w/Mahlon E. Smith)
+	[193043bf2244] <pg90_notify_payload>
+
+	* .hgpatchinfo/pg90_notify_payload.dep,
+	.hgpatchinfo/pg90_notify_payload.desc:
+	start new patch on default
+	[ce9b893ff824] <pg90_notify_payload>
+
+	* Rakefile.local, ext/extconf.rb:
+	Fixes to get the static windows build to work with PostgreSQL 9.0
+	and OpenSSL 1.0.0a
+	[49ff3442c2ee]
+
+2010-09-28  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile.local:
+	More work trying to get the native windows gem to compile under
+	PostgreSQL 9.0
+	[1fa5cd6851e3]
+
+	* sample/copyfrom.rb:
+	Adding a sample of how to use COPY FROM
+	[c9fb855a7d50]
+
+2010-09-24  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgsubstate, Rakefile, Rakefile.local, project.yml,
+	spec/m17n_spec.rb, spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	Fixes for Ruby 1.9.2.
+	[d85ff87e5949]
+
+	* Rakefile, ext/pg.c, lib/pg.rb, spec/lib/helpers.rb,
+	spec/pgconn_spec.rb:
+	Version bump, updates for PostgreSQL 9.
+	* Bump version to 0.9.1.
+	* Fixed the specs for JRuby (and other no-fork Ruby interpreters)
+	[5dbc24f596c8]
+
+2010-08-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgsubstate, Rakefile:
+	Merged JRuby fix into the build system, pulled down other build-
+	system updates. Thanks to timfel for the fix.
+	[1f8dd92ca16c]
+
+2010-08-03  Tim Felgentreff  <timfelgentreff@gmail.com>
+
+	* Rakefile:
+	Fix to allow Rakefile to work on JRuby
+	[4f705f605e51]
+
+2010-08-02  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c, spec/m17n_spec.rb:
+	Honor Ruby's default_internal encoding when connecting via the
+	synchronous interface; fixes #33
+	[92cc211ef553]
+
+	* ext/extconf.rb:
+	Don't treat the installed pg_config not having archflags as an
+	error; fixes #39
+	[a2237e39d399]
+
+	* Rakefile.local, lib/pg.rb:
+	Install extension under arch-specific directory (RPS fix)
+	[14b882b7b88c]
+
+2010-07-26  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgsub, .hgsubstate:
+	Adding rake tasklibs as a sub-repo
+	[b0a5ae858569]
+
+2010-07-21  Michael Granger  <ged@FaerieMUD.org>
+
+	* spec/pgresult_spec.rb:
+	Removed spec for issue #22, as the library is behaving the same as
+	the underlying library; closes #22
+	[37835e3b8701]
+
+	* Merged with 168:dfaa59767b2e
+	[86f238c12fa3]
+
+	* spec/pgconn_spec.rb:
+	Reworded an example's description and added a specific transaction-
+	abort spec
+	[dfaa59767b2e]
+
+2010-06-22  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile.local:
+	Merged with 170:5418a1d86d91
+	[e756f8fb15d8]
+
+	* Rakefile.local, ext/pg.c, sample/test_binary_values.rb:
+	Adding example of invalid binary data issue (refs #22), fixing
+	EXT_SO path
+	[8922f0a8ee44]
+
+2010-02-25  Michael Granger  <ged@FaerieMUD.org>
+
+	* spec/pgresult_spec.rb:
+	Adding a spec to test bug #12
+	[cb92aa4b6599]
+
+	* project.yml:
+	Adding rake-compiler to the dev dependencies
+	[86026f5ecf70]
+
+2010-06-22  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile.local, ext/extconf.rb:
+	Cross-compile tasks cleanup, extconf diagnostic improvement.
+	 * Cleaned up the cross-compilation task, factored stuff up into
+	constants, used pure-ruby download, untar, etc.
+	 * Improved diagnostics of failed extconf runs (refs #32, #24)
+	[5418a1d86d91]
+
+	* .hgignore:
+	Adding some more stuff to the ignorefile
+	[07502a793f3a]
+
+	* sample/losample.rb:
+	Modified the large-object sample script to reflect the pg library's
+	API (refs #35)
+	[873867122e80]
+
+2010-06-21  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgignore, Rakefile:
+	Updating build system, adding .orig files to ignore list.
+	[ea6eae59e917]
+
+2010-06-14  Michael Granger  <ged@FaerieMUD.org>
+
+	* spec/m17n_spec.rb:
+	Whitespace fix
+	[bb8a3baad96e]
+
+2010-05-26  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb:
+	Actually, just use the cflags from pg_config, which should resolve
+	both the -Wall and the -lsocket issue (refs #30)
+	[45e6518b780d]
+
+	* ext/extconf.rb:
+	Fixing compilation for non-GCC platforms (fixes #30)
+	[730fb885ce08]
+
+2010-03-16  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb:
+	Fixed typo in ext/extconf.rb -- thanks to Keith Cascio for spotting
+	this. Closes #27.
+	[a47ffe890970]
+
+2010-02-28  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag 0.9.0 for changeset da726282493c
+	[9a296096f7e9]
+
+	* .hgsigs:
+	Added signature for changeset 872063e42b12
+	[da726282493c] [0.9.0, v0.9.0]
+
+2010-02-19  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile.local, ext/extconf.rb, ext/pg.c, ext/pg.h, lib/pg.rb:
+	Adding "fat gem" compatible loader, set the default RUBY_CC_VERSION.
+	[872063e42b12]
+
+	* Rakefile, Rakefile.local:
+	Updated the Rakefile so it includes itself in gems. (closes #15)
+	Thanks to flameeyes@bitbucket for noticing this.
+	[ab525ca90531]
+
+2010-02-18  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	Applied patch for PGconn#async_exec to make it have the same
+	semantics as PGconn#exec (closes #19). Thanks again to Lars Kanis
+	for the patch.
+	[9c65eb905416]
+
+2010-02-17  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile:
+	Updated the Rakefile to always default the package version even if a
+	version can't be read from the VERSION_FILE.
+	[b0017ac0ecb5]
+
+	* spec/lib/helpers.rb:
+	Improving spec database setup function (closes #18). Thanks to Lars
+	Kanis for another fine patch.
+	[c7d5458af696]
+
+	* spec/m17n_spec.rb:
+	Ack! Removing typo
+	[39b11474d035]
+
+	* spec/m17n_spec.rb:
+	Adding a test to ensure the result encoding remains the same even
+	when client_encoding in the connection changes.
+	[9d54bbc98488]
+
+2010-01-18  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb:
+	Made the 'make_header' in the extconf more clear.
+	[31afece7c203]
+
+2010-01-13  Jeff Davis  <pgsql@j-davis.com>
+
+	* spec/pgconn_spec.rb:
+	Merged
+	[d9c920068712]
+
+	* spec/pgconn_spec.rb:
+	In rspec tests, replace the pattern: CREATE TABLE ... INSERT ...
+	SELECT ... with: VALUES ...
+	[294eb6d5530b]
+
+2010-01-11  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/extconf.rb, ext/pg.c, spec/pgconn_spec.rb:
+	A better fix for the PGconn#block weirdness on Win32 (closes #16).
+	* Replaced the WIN32 conditionals in PGconn#block with a much simpler
+	solution.
+	* Added a few specs to test PGconn#block based on Lars Kanis's
+	proposed one.
+
+	Thanks to both Lars and Shun for all their help with this issue.
+	[74fab32c2687]
+
+2010-01-06  Michael Granger  <ged@FaerieMUD.org>
+
+	* README:
+	Rearranged the sections of the README.
+	[f8dfc1b6c51c]
+
+2010-01-05  Michael Granger  <ged@FaerieMUD.org>
+
+	* README.OS_X:
+	Updating MacOS X README.
+	[0df792de2a19]
+
+2010-01-04  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c:
+	Work around broken rb_thread_select() on win32; thanks to Lars Kanis
+	for the patch!
+	[2894973bc63f]
+
+	* ext/pg.c, spec/pgresult_spec.rb:
+	Reverted removal of PGresult::InvalidOid, fixed broken spec.
+	[88dacdb9c97d]
+
+	* .hgignore, README, Rakefile, ext/pg.c, project.yml:
+	Ignore some generated files, documentation work, removed type OID
+	constants.
+	* Updated the various READMEs with more up-to-date info.
+	* Updated build system (rdoc fixes, packaged files)
+	* Fixed some RDoc problems and formatting glitches
+	* Removed the type OID constants from PGresult; I was including them
+	so they could be used for comparison with PGresult#ftype return
+	values. RhodiumToad on #postgresql@freenode showed me the
+	format_type() SQL function, so I added an example of how to get the
+	same information via that function instead, which is guaranteed to
+	be correct even if src/include/catalog/pg_type.h changes.
+	[739cec560448]
+
+	* README.windows, Rakefile.local, ext/extconf.rb:
+	Applied patch for static cross-compilation of win32 gem from Lars
+	Kanis with a few changes to support MacOS X as a host as well.
+	Closes #13. Thanks Lars!
+	[38a0d2a90664]
+
+2010-01-03  Michael Granger  <ged@FaerieMUD.org>
+
+	* .irbrc, COPYING.txt, ChangeLog, MANIFEST, README, README.OS_X,
+	Rakefile, Rakefile.local, ext/extconf.rb, ext/pg.h, ext_helper.rb:
+	Updated build system
+	* Backed out the experimental arch-specific subdir of lib
+	* Removed second copy of GPL; one is more than enough.
+	* Removed the ChangeLog -- this should be built on demand instead of
+	checked in.
+	* Removed the out-of-date and now-superfluous MANIFEST
+	* Started updating the remaining documentation to reflect the current
+	state of the library/build instructions/people.
+	* Pass options to 'rake' through to extconf.rb, allowing 'rake --
+	--with-pg-dir=/path/to/pg'
+	* Updated the handling of compilation on MacOS X to use the
+	architectures common to both libpq and Ruby.
+	* Use an extconf.h for configuration
+	* Removed the now-unused ext_helper.rb
+
+	Still more work to be done, but I'm checkpointing this so it's not
+	too huge.
+	[f31202539234]
+
+2010-01-02  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgtags:
+	Added tag 0.8.0 for changeset 7fbe4187e9e5
+	[cc09390cb0a8]
+
+2009-12-31  Michael Granger  <ged@FaerieMUD.org>
+
+	* Closing branch
+	[d5fa3e079a55] <i17n-19-patches>
+
+	* ext/pg.c:
+	Bumped version to 0.9.0
+	[05834d47aac3]
+
+	* ext/mkrf_config.rb:
+	Merged i17n-19-patches branch
+	[0997a0aa7624]
+
+2009-12-28  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgignore, ext/pg.c, spec/pgconn_spec.rb:
+	Make PGconn.connect_start use PQconnectStart instead of PQconnectdb
+	so asynchronous connection works. Fixes #14; thanks to 'ibc'
+	@bitbucket for submitting the test case that brought this to my
+	attention.
+	[f5af71167dea] <i17n-19-patches>
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	Added column-selection methods to PGresult (#field_values and
+	#column_values). Closes #12. Thanks to Sugano Yoshihisa for the
+	patch on which these methods were based.
+	[42919e2a4ef8] <i17n-19-patches>
+
+2009-12-23  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	Fixed #11: encrypt_arguments doesn't receive password, thanks to
+	Yuki Miyauchi for the patch.
+	[39fdb2552163] <i17n-19-patches>
+
+	* .hgignore, ext/pg.c, spec/pgconn_spec.rb:
+	Fixed infinite loop in async_exec("COPY"), thanks to Mike Pomraning
+	for the patch. Closes #9.
+	[df770b6ad237] <i17n-19-patches>
+
+2009-12-16  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgignore, Contributors, Rakefile, Rakefile.local, ext/extconf.rb,
+	ext/pg.c, project.yml, spec/m17n_spec.rb, spec/pgconn_spec.rb,
+	spec/pgresult_spec.rb:
+	New build system, build with rake-compiler, added PGconn::VERSION.
+	* Replaced the existing Rakefile with a small core set of tasks and
+	task libraries under rake/.
+	* Added a PGconn::VERSION constant (closes #4).
+	* Replaced the ARCHFLAGS warning under Darwin with code to duplicate
+	the archflags Postgres was compiled with.
+	[4cbcf197cb82] <i17n-19-patches>
+
+2009-12-15  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile, ext/pg.c, spec/lib/helpers.rb, spec/pgconn_spec.rb:
+	Applied Rubyforge patch 26282; fixes #1. Thanks to Nikolai Lugovoi
+	for the patch.
+	[6ba661bbdb28] <i17n-19-patches>
+
+2009-12-11  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile, ext/pg.c, spec/lib/helpers.rb, spec/pgconn_spec.rb:
+	Notify spec fixes, cleanup, Rakefile clean task adjustments.
+	* Made PGconn#wait_for_notify do more error-checking to track down a
+	problem with running it in transactions.
+	* Moved PGconn#wait_for_notify source closer to PGconn#notifies
+	* Split some stuff that used to get removed by 'clean' into the
+	'clobber' task instead.
+	[3e42badc15de] <i17n-19-patches>
+
+	* .hgignore, spec/lib/helpers.rb, spec/pgconn_spec.rb:
+	Simplified the spec for PGconn#notify, still segfaulting.
+	[659d80221a45] <i17n-19-patches>
+
+	* Merged Mahlon's examples-directory patch from default.
+	[26b614a7ece8] <i17n-19-patches>
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	Merged Mahlon's notify patch from default.
+	[66234afab283] <i17n-19-patches>
+
+2009-12-10  Mahlon E. Smith  <mahlon@martini.nu>
+
+	* sample/notify_wait.rb:
+	Add a sample (usage example) for wait_for_notify().
+	[1e6349a799c3]
+
+	* ext/pg.c, sample/psql.rb, sample/psqlHelp.rb, spec/pgconn_spec.rb:
+	* Small documentation fix for conn.notifies()
+	 * Add wait_for_notify(), a method to do a blocking select() for a
+	NOTIFY event.
+	[a3434e641f6a]
+
+2009-10-29  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/mkrf_config.rb:
+	Remove old mkrf config file to avoid confusion
+	[59549227d7c3] <i17n-19-patches>
+
+2009-10-28  Michael Granger  <ged@FaerieMUD.org>
+
+	* .hgignore, ext/pg.c, spec/pgresult_spec.rb:
+	Write specs for and applied patch #26283; thanks to Nikolai Lugovoi.
+	[f30139fb0587] <i17n-19-patches>
+
+	* .hgignore, spec/data/expected_trace.out, spec/m17n_spec.rb,
+	spec/pgconn_spec.rb:
+	Fixups after conversion to Mercurial, fixing tests broken by the
+	changes in the previous commit.
+	 * Fixed differences in expected trace output caused by every test
+	being wrapped in a transaction.
+	 * Fixed require-order bug in two of the specs
+	 * Corrected a mis-paste in the m17n spec before:all block
+	[a41d4291ffbb] <i17n-19-patches>
+
+	* Rakefile, spec/lib/helpers.rb, spec/m17n_spec.rb,
+	spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	* Made spec output elide output from the command line by default,
+	and log everything for diagnostics.
+	 * Factored out the database setup and teardown functions into helpers,
+	added a collection of other helper functions for specs.
+	 * Added specs to cover behavior around Nikolai Lugovoi's patch
+	(#26283) for PGresult#fmod, #ftable, and #ftablecol prior to
+	applying it.
+	[91ee1ac36a54] <i17n-19-patches>
+
+2009-10-17  Michael Granger  <ged@FaerieMUD.org>
+
+	* .irbrc, Rakefile, ext/pg.c, ext/pg.h, spec/pgconn_spec.rb,
+	spec/pgresult_spec.rb:
+	Applied patch #26277; thanks to Nikolai Lugovoi.
+	 * fixed number of parameters in definition of PGresult#paramtype --
+	expected 1 but was declared 0
+	 * minor consistency update for range checks of column/tuple indices
+	 * PGconn#lo_read : fixed to return string with length of really read
+	data, not provided length
+
+	 I also added:
+	 * Constants for paramtype Oids.
+	 * A couple of additional rake tasks
+	 * Append PQerrorMessage to some exception messages
+	 * Specs for the above patch
+	[0b28f9bd8935] <i17n-19-patches>
+
+2009-10-16  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile, ext/extconf.rb, ext/pg.c, ext/pg.h, spec/m17n_spec.rb,
+	spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	Build and warnings cleanup.
+	 * Added a :default task
+	 * Made spec execution quieter
+	 * Silenced warning about 'dup()' by including unistd.h if we have it.
+	 * Silenced warnings about generated exception messages by adding a
+	format.
+	[cb5335861c5d] <i17n-19-patches>
+
+2009-08-28  Michael Granger  <ged@FaerieMUD.org>
+
+	* ext/pg.c, spec/m17n_spec.rb:
+	Applied patch #26116; thanks to Nikolai Lugovoi.
+	  * apply client encoding to result of @conn.escape(string)
+	  * set ASCII_8BIT for results returned in binary format
+	  * fixed memory leak on exception in @conn.escape(string) for truncated
+	multibyte
+	[1d001b550715] <i17n-19-patches>
+
+	* ext/pg.c, spec/m17n_spec.rb, spec/pgconn_spec.rb,
+	spec/pgresult_spec.rb:
+	* Use pg_ctl -w instead of sleep for specs
+	 * Fix up the specs to use #external_encoding, #internal_encoding, and
+	#internal_encoding=
+	 * Added a pending spec for Johab (I can't figure out how to return
+	JOHAB-encoded results from Postgres)
+	[d67c62945540] <i17n-19-patches>
+
+2009-08-25  Michael Granger  <ged@FaerieMUD.org>
+
+	* Rakefile, ext/pg.c, ext_helper.rb, spec/m17n_spec.rb,
+	spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	* Applied patch from (rubyforge:25931), fixes (rubyforge:22925).
+	 * Normalized indentation
+	 * Create all databases without locale to ensure consistency.
+	 * Fixed the gemspec to make copying of the .so to lib/ unnecessary.
+	Extensions belong in ext/.
+	[0524dd20fb0f] <i17n-19-patches>
+
+2009-07-30  Michael Granger  <ged@FaerieMUD.org>
+
+	* Making a branch for merging the patches and new specs to test them.
+	[d0267176eb61] <i17n-19-patches>
+
+2009-03-28  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* Rakefile, spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	Bump version to 0.8.0
+
+	Update tests.
+	[7fbe4187e9e5] [0.8.0, v0.8.0]
+
+2009-03-28  Charlie Savage  <cfis@rubyforge.org>
+
+	* spec/pgconn_spec.rb:
+	Don't call file trace on windows.
+	[39a19c65b0a0]
+
+	* Updated VC2008 project
+	[c4598eee6d1b]
+
+	* ext/vc/pg.sln, ext/vc/pg_18/pg.vcproj, ext/vc/pg_19/pg_19.vcproj:
+	Updated VC2008 project
+	[c75883fb5979]
+
+2009-03-28  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	Fix socket leak when connection error occurs.
+
+	Thanks to: Andrea Barisani <andrea@inversepath.com> Rob Holland
+	<rob@inversepath.com>
+	[4192e6d1ccc0]
+
+	* ext/pg.c:
+	PGconn#lo_close was calling lo_unlink.
+	[03d6ef0de9ef]
+
+	* ext/pg.h:
+	Change header so it builds correctly on 1.8 and 1.9.
+	[b27b4b4a54eb]
+
+2009-03-14  Charlie Savage  <cfis@rubyforge.org>
+
+	* ext/pg.c:
+	Oops - use ALLOC_N not ALLOC, fixes compile error with VC2008.
+	[f7b97416c101]
+
+	* spec/pgconn_spec.rb:
+	Ignore rdoc directory, pkg directory, nbproject directory.
+	[c0fd7531850f]
+
+	* ext/mingw/Rakefile:
+	This rakefile is just used for installing the windows gem.
+	[c675c7534c4d]
+
+	* ext/mingw/build.rake:
+	Split out building on mingw to a separate rake file.
+	[c3329724ef5b]
+
+	* ext/vc/pg.sln, ext/vc/pg.vcproj, ext/vc/pg_18/pg.vcproj,
+	ext/vc/pg_19/pg_19.vcproj:
+	Updated VC2008 projects for Ruby 1.8 and Ruby 1.9 (1.9 not quite
+	setup yet).
+	[01e1dbb950c8]
+
+	* Rakefile:
+	Added rdoc task so you can type rake rdoc. Makes it easier to debug
+	rdoc documentation.
+	[677d3eae5b16]
+
+	* spec/pgresult_spec.rb:
+	Windows compatibility - use tcp/ip sockets, use full path names,
+	read files in binary mode.
+	[c33a73c14126]
+
+	* spec/pgconn_spec.rb:
+	Ripple port change through text. Always full path to open spec file.
+	[241d3410b875]
+
+	* spec/pgconn_spec.rb:
+	First stab at getting test to work on Windows. Windows does not
+	support unix-sockets, so have to use tcp/ip sockets. Also windows
+	requires that command line parameters are quoted with " and not '.
+	[1bf29d30c16c]
+
+	* ext/pg.h:
+	Export Init_pg in windows shared library.
+	[4dae2cabb5ae]
+
+	* ext/pg.c:
+	Fix up memory handling for Windows (match ALLOC with xfree).
+	[4e9b028c55cd]
+
+2009-03-06  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	1.9 compatibility fixes.
+	[4a9ffd0aa913]
+
+2008-12-03  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* Rakefile, ext/compat.c, ext/mingw/Rakefile, ext/mingw/build.rake,
+	ext/mkrf_config.rb, ext/pg.c, ext/vc/pg.sln, ext/vc/pg.vcproj:
+	Add better support for windows build.
+
+	Big thanks to Charlie Savage.
+	[7178d13749b7]
+
+2008-10-14  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/extconf.rb:
+	Merged revisions 175 via svnmerge from
+	svn+ssh://jdavis@rubyforge.org/var/svn/ruby-pg/ruby-pg/trunk
+
+	........ r175 | jdavis | 2008-10-13 22:25:00 -0700 (Mon, 13 Oct
+	2008) | 4 lines
+
+	 Revert r172. ........
+	[4c2ea65f2eb9] <stable>
+
+	* ext/extconf.rb:
+	Revert r172.
+	[3bf9ef75bae5]
+
+2008-10-05  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/extconf.rb, ext/pg.c, spec/pgconn_spec.rb:
+	Merged revisions 169-173 via svnmerge from
+	svn+ssh://jdavis@rubyforge.org/var/svn/ruby-pg/ruby-pg/trunk
+
+	........ r169 | jdavis | 2008-08-20 19:48:10 -0700 (Wed, 20 Aug
+	2008) | 6 lines
+
+	 Fixed option connection argument in the case of using 7 arguments.
+
+	 Thanks Erik Hollensbe (erikh) for the bug report. ........ r170 |
+	jdavis | 2008-10-05 11:01:40 -0700 (Sun, 05 Oct 2008) | 4 lines
+
+	 Throw correct exception when result is NULL. ........ r171 | jdavis
+	| 2008-10-05 11:47:01 -0700 (Sun, 05 Oct 2008) | 12 lines
+
+	 Fix PGconn#async_exec and PGconn#get_last_result to properly clear
+	all results when an exception is raised. Before, the connection
+	could be left in a state that is not ready for new commands.
+
+	 Also, change PGconn#get_result to not raise an exception when the
+	result is in an error state. You can still check the result object
+	for an error, but it's not appropriate to raise an exception,
+	because that could prevent the caller from properly clearing all
+	results.
+
+	 Thanks to Tarmo Tänav. ........ r172 | jdavis | 2008-10-05 12:04:45
+	-0700 (Sun, 05 Oct 2008) | 6 lines
+
+	 Include all libraries listed in "pg_config --libs" in the build.
+
+	 Thanks Hans-Thomas Mueller. ........ r173 | jdavis | 2008-10-05
+	12:18:58 -0700 (Sun, 05 Oct 2008) | 4 lines
+
+	 Update spec tests. ........
+	[7e7c22be0302] <stable>
+
+	* spec/pgconn_spec.rb:
+	Update spec tests.
+	[cdf306d84adf]
+
+	* ext/extconf.rb:
+	Include all libraries listed in "pg_config --libs" in the build.
+
+	Thanks Hans-Thomas Mueller.
+	[0386537bd139]
+
+	* ext/pg.c:
+	Fix PGconn#async_exec and PGconn#get_last_result to properly clear
+	all results when an exception is raised. Before, the connection
+	could be left in a state that is not ready for new commands.
+
+	Also, change PGconn#get_result to not raise an exception when the
+	result is in an error state. You can still check the result object
+	for an error, but it's not appropriate to raise an exception,
+	because that could prevent the caller from properly clearing all
+	results.
+
+	Thanks to Tarmo Tänav.
+	[68473ee45e28]
+
+	* ext/pg.c:
+	Throw correct exception when result is NULL.
+	[622eec9c6b0b]
+
+2008-08-21  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	Fixed option connection argument in the case of using 7 arguments.
+
+	Thanks Erik Hollensbe (erikh) for the bug report.
+	[8e8045947a9c]
+
+2008-08-17  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	Merged revisions 166 via svnmerge from
+	svn+ssh://jdavis@rubyforge.org/var/svn/ruby-pg/ruby-pg/trunk
+
+	........ r166 | jdavis | 2008-08-17 13:35:51 -0700 (Sun, 17 Aug
+	2008) | 4 lines
+
+	 Typo fix. ........
+	[3e9dda291ef3] <stable>
+
+	* ext/pg.c:
+	Typo fix.
+	[c5c44a6267f7]
+
+	* ext_helper.rb:
+	Add ext_helper.rb
+	[3686c9944fe1] <stable>
+
+	* Rakefile, ext/extconf.rb, ext/pg.c, pg.gemspec,
+	spec/data/expected_trace.out, spec/data/random_binary_data,
+	spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	Merged revisions 149-160 via svnmerge from
+	svn+ssh://jdavis@rubyforge.org/var/svn/ruby-pg/ruby-pg/trunk
+
+	........ r149 | jdavis | 2008-03-19 14:17:20 -0700 (Wed, 19 Mar
+	2008) | 5 lines
+
+	 This commmit just cleans up indenting and coding conventions. It's
+	a big patch, but does nothing meaningful. ........ r150 | jdavis |
+	2008-03-19 14:19:53 -0700 (Wed, 19 Mar 2008) | 5 lines
+
+
+	   * forgot to add the expected output to the repository, so one test was
+	failing. Corrected now. ........ r151 | jdavis | 2008-03-20 11:20:25
+	-0700 (Thu, 20 Mar 2008) | 12 lines
+
+
+	   * added PGconn.connect_start(...) -> PGconn
+	   * added test for PGconn.connect_start()
+	   * refactored to separate the complexity of parsing the connection
+	arguments
+	   * Removed some superfluous code for old versions of Ruby that don't
+	support rb_define_alloc_func(). Those versions of Ruby most likely
+	don't work anyway, and I'm not testing them.
+
+	........ r152 | jdavis | 2008-03-20 12:16:06 -0700 (Thu, 20 Mar
+	2008) | 5 lines
+
+
+	   * added PGconn#cancel() -> String
+	   * added test for PGconn#cancel() ........ r153 | jdavis | 2008-04-21
+	10:13:39 -0700 (Mon, 21 Apr 2008) | 4 lines
+
+
+	   * added some tests for binary data ........ r154 | jdavis | 2008-04-21
+	10:24:05 -0700 (Mon, 21 Apr 2008) | 5 lines
+
+
+	   * applied patch from Louis Lavena to improve the build process
+	(particularly for windows). ........ r155 | jdavis | 2008-04-21
+	10:41:04 -0700 (Mon, 21 Apr 2008) | 6 lines
+
+
+	   * backtracked a small piece of the patch, to catch the condition where
+	pg_config is not in the PATH on posix platforms. ........ r156 |
+	jdavis | 2008-07-07 23:21:07 -0700 (Mon, 07 Jul 2008) | 6 lines
+
+	 Fix oversight in connect arguments for options and connect_timeout
+	when passed in a hash. (Thanks Rob Holland for the bug report).
+	........ r157 | jdavis | 2008-07-23 22:33:26 -0700 (Wed, 23 Jul
+	2008) | 10 lines
+
+	 Changed all temporary allocations to use ALLOC_N (heap allocation)
+	rather than ALLOCA_N (stack allocation). In particular, this allows
+	PGconn#escape_string to accept larger input strings without fear of
+	exceeding the stack size.
+
+	 Thanks to Brett Neumeier. ........ r158 | jdavis | 2008-07-23
+	22:46:34 -0700 (Wed, 23 Jul 2008) | 6 lines
+
+	 Fixed PGconn#setnonblocking
+
+	 Thanks to Mohammad Ali (oldmoe) for the report. ........ r159 |
+	jdavis | 2008-08-17 11:19:09 -0700 (Sun, 17 Aug 2008) | 4 lines
+
+	 Applied build patch from Brett Neumeier. Thanks! ........ r160 |
+	jdavis | 2008-08-17 12:26:33 -0700 (Sun, 17 Aug 2008) | 7 lines
+
+	 Properly protect variables from garbage collection, preventing
+	possible memory corruption.
+
+	 Big thanks to Peter Seebach for reporting and clearly diagnosing
+	the problem. ........
+	[ed3294b76bf7] <stable>
+
+	* Initialized merge tracking via "svnmerge" with revisions "1-146"
+	from svn+ssh://jdavis@rubyforge.org/var/svn/ruby-pg/ruby-pg/trunk
+	[ff6af5fc4dc3] <stable>
+
+	* Initialized merge tracking via "svnmerge" with revisions "1-146"
+	from svn+ssh://jdavis@rubyforge.org/var/svn/ruby-pg/ruby-
+	pg/trunk@146
+	[1a7b63bacfee] <stable>
+
+	* ext/pg.c:
+	Properly protect variables from garbage collection, preventing
+	possible memory corruption.
+
+	Big thanks to Peter Seebach for reporting and clearly diagnosing the
+	problem.
+	[ed8927d7f45d]
+
+	* Rakefile:
+	Applied build patch from Brett Neumeier. Thanks!
+	[c7c5d25c851c]
+
+2008-07-24  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	Fixed PGconn#setnonblocking
+
+	Thanks to Mohammad Ali (oldmoe) for the report.
+	[48d2bdfcc630]
+
+	* ext/pg.c:
+	Changed all temporary allocations to use ALLOC_N (heap allocation)
+	rather than ALLOCA_N (stack allocation). In particular, this allows
+	PGconn#escape_string to accept larger input strings without fear of
+	exceeding the stack size.
+
+	Thanks to Brett Neumeier.
+	[b2e1bc03aca5]
+
+2008-07-08  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	Fix oversight in connect arguments for options and connect_timeout
+	when passed in a hash. (Thanks Rob Holland for the bug report).
+	[c775c24a75f9]
+
+2008-04-21  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/extconf.rb, pg.gemspec:
+	* backtracked a small piece of the patch, to catch the condition
+	where pg_config is not in the PATH on posix platforms.
+	[b86f0f75181e]
+
+	* Rakefile, ext/extconf.rb, ext_helper.rb, pg.gemspec:
+	* applied patch from Louis Lavena to improve the build process
+	(particularly for windows).
+	[b3a05d09fb27]
+
+	* spec/data/random_binary_data, spec/pgconn_spec.rb,
+	spec/pgresult_spec.rb:
+	* added some tests for binary data
+	[7579885aff18]
+
+2008-03-20  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	* added PGconn#cancel() -> String
+	 * added test for PGconn#cancel()
+	[de58e242dd99]
+
+	* ext/pg.c, spec/pgconn_spec.rb:
+	* added PGconn.connect_start(...) -> PGconn
+	 * added test for PGconn.connect_start()
+	 * refactored to separate the complexity of parsing the connection
+	arguments
+	 * Removed some superfluous code for old versions of Ruby that don't
+	support rb_define_alloc_func(). Those versions of Ruby most likely
+	don't work anyway, and I'm not testing them.
+	[778892302876]
+
+2008-03-19  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* spec/data/expected_trace.out:
+	* forgot to add the expected output to the repository, so one test
+	was failing. Corrected now.
+	[630cca5e74c1]
+
+	* ext/pg.c:
+	This commmit just cleans up indenting and coding conventions. It's a
+	big patch, but does nothing meaningful.
+	[661ed2fea9e2]
+
+2008-03-18  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* BSD, README, ext/compat.c, ext/compat.h, ext/extconf.rb,
+	ext/mkrf_config.rb, ext/pg.c, ext/pg.h, pg.gemspec,
+	spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	merged ruby-pg/trunk rev 123:146 with ruby-pg/branches/stable
+	[f9cd915ea427] <stable>
+
+2008-03-17  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/mkrf_config.rb:
+	re-adding mkrf_config.rb
+	[d821d50b7d95]
+
+	* ext/mkrf_config.rb:
+	temporarily removing mkrf_config.rb and will re-add it in the next
+	revision. This is an attempt to fix what may be a repository
+	problem.
+	[a66f44648857]
+
+	* COPYING, README.windows, ext/extconf.rb, ext/pg.c, ext/pg.h,
+	spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	merged ruby-pg/trunk rev 123:125 with ruby-pg/branches/stable
+	[bae01401c92b] <stable>
+
+	* ext/compat.c, ext/compat.h, ext/extconf.rb, ext/pg.c, pg.gemspec:
+	* 7.3 compatibility fixes
+	 * cleanup
+	[c8752b1a33cd]
+
+	* ext/pg.c:
+	* Added PGconn#reset_start
+	 * Added PGconn#reset_poll
+	 * Added PGconn#socket
+	 * Added PGconn#connect_poll (needs docs)
+	[4aa1190e1873]
+
+2008-03-12  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* spec/pgconn_spec.rb:
+	* added SQLSTATE test
+	 * added binary format test
+	[1224350cdcb6]
+
+	* README:
+	* updated the README to reflect the fact that the pg module is
+	supported by ActiveRecord now.
+	[639f8bf03621]
+
+2008-03-11  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* BSD, COPYING, README, ext/pg.c:
+	* tried to make it easier to find the license information
+	[1fd6244025c5]
+
+2008-03-10  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c, spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	* add better checking to make sure that PGconn#trace is passed a
+	stream that can provide a valid and writable file descriptor
+	 * added test case for PGconn#trace
+	[1c4f58ec2264]
+
+	* ext/pg.c:
+	* corrected handling of bytea when passed in binary format
+	 * corrected handling of +nil+ values passed as type or format
+	specifiers when using the array-of-hashes form of parameterization
+	for PGconn#exec
+	[e94ce7f92a06]
+
+	* ext/pg.c:
+	* make PGconn#trace accept any object that provides a writable file
+	descriptor via the method "fileno".
+	[221e68f16f2d]
+
+	* ext/pg.c:
+	* Added PGconn#trace(filename)
+	[2e722b22b4bc]
+
+2008-03-07  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/extconf.rb, ext/mkrf_config.rb:
+	* Added check to find pg_config. If not found, throw an error. This
+	should make it more obvious when pg_config is not in your path.
+
+	 * Added proper check on MAC OS X so that it gives the correct
+	warning on ppc when ARCHFLAGS isn't set.
+	[9b1308e85390]
+
+2008-02-22  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c, ext/pg.h:
+	* fixed PGconn#trace
+	[480eae4733ff]
+
+2008-02-21  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	* added PGconn#set_notice_receiver{ |result| ... }
+	   - This is a more powerful form of PGconn#set_notice_processor
+	 * cleaned up PGconn#set_notice_processor
+	 * removed superfluous debugging from PGconn#transaction
+	 * fixed PGresult#result_error_field
+	[a6a1c8613b31]
+
+2008-02-19  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/mkrf_config.rb:
+	quick change
+	[8a6e663a70f7]
+
+	* ext/mkrf_config.rb:
+	fix escaping of paths on windows (another try)
+	[5fc41a8f71f0]
+
+2008-02-18  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/mkrf_config.rb, ext/pg.c:
+	* attempted some compatibility fixes for windows
+	 * fixed some warnings
+	[a465fe9f95a3]
+
+2008-02-13  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/mkrf_config.rb:
+	* better quoting and error handling when invoking other programs,
+	e.g. pg_config
+	[5a91f5660c17]
+
+	* ext/mkrf_config.rb:
+	quote include and library paths
+	[5289d5034472]
+
+	* ext/mkrf_config.rb:
+	* created a mkrf_config.rb. I am attempting to transition away from
+	mkmf to mkrf
+	[ed53517514b1]
+
+2008-02-11  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* README.windows, ext/extconf.rb, ext/pg.h:
+	* windows fixes (thanks Daniel Berger!)
+	[21bf96d0f702]
+
+	* spec/pgconn_spec.rb, spec/pgresult_spec.rb:
+	* fix temporary postgresql test installation in test.
+	[9d0a23cf2113]
+
+2008-02-08  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	* properly retrieve binary data from result sets
+	[7fcd53437c79]
+
+2008-02-05  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* Rakefile, ext/compat.h, ext/pg.c, pg.gemspec, ruby-pg.gemspec,
+	sample/losample.rb, sample/psql.rb, sample/test1.rb,
+	sample/test2.rb, sample/test4.rb, spec/pgconn_spec.rb,
+	spec/pgresult_spec.rb, tests/pg_spec.rb:
+	merged ruby-pg/trunk rev 109:121 with ruby-pg/branches/stable
+	[83e5013eccc8] <stable>
+
+	* ext/compat.h:
+	fixed bug caused by a typo. HAVE_LOCREATE should have been
+	HAVE_LO_CREATE
+	[295c477ed74f]
+
+2008-02-01  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c, spec/pgresult_spec.rb:
+	* made exec, exec_prepared, send_query, and send_prepared with
+	parameters accept nil as NULL
+	 * updated comments and tests to reflect that
+	[ef2214d7f448]
+
+	* ext/pg.c, sample/losample.rb, sample/psql.rb, sample/test1.rb,
+	sample/test2.rb, sample/test4.rb:
+	* Corrected a comment.
+	 * Cleaned up the sample directory somewhat. It's still out of date,
+	though.
+	[7303b8165a37]
+
+2008-01-31  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	* removed duplicate definition of PGconn.open
+	[b3ad2112a91e]
+
+	* spec/pgconn_spec.rb, spec/pgresult_spec.rb, tests/pgconn_spec.rb,
+	tests/pgresult_spec.rb:
+	more test improvements
+	[ce9c0e52eec6]
+
+	* Rakefile, tests/pg_spec.rb, tests/pgconn_spec.rb:
+	renamed pg_spec to pgconn_spec
+	[97cbdebaeb11]
+
+	* Rakefile, tests/pg_spec.rb, tests/pgresult_spec.rb:
+	* Added some tests
+	 * Added a Rakefile
+	[1cb0537730bf]
+
+2008-01-30  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	* added PGconn.conndefaults
+	 * replaced a macro with a function to make it more understandable
+	[29b827c7dbd0]
+
+2008-01-29  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	corrected the tainting of some strings returned by the database
+	[c18f38225bc7]
+
+	* ruby-pg.gemspec:
+	changed gem name from 'ruby-pg' to just 'pg'
+	[56cd8c6ee046]
+
+2008-01-28  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* pg.gemspec:
+	made a pg.gemspec so that people can build 'pg' gem
+	[a9097dead780]
+
+	* ext/pg.c:
+	merged ruby-pg/trunk rev 104 with ruby-pg/branches/stable
+	[abfe9a457946] <stable>
+
+2008-01-26  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	changed exception type for empty data structures
+	[cfdcfcd445ab]
+
+2008-01-25  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	* added PGconn#async_exec and alias PGconn#async_query
+	 * added PGconn#get_last_result
+	 * properly check index bounds in pgresult_aref ( PGresult#[] )
+	 * PGresult#getvalue now returns nil instead of empty string for NULL
+	[81cd03f8a2c3]
+
+	* ext/pg.c:
+	added PGresult#cmdtuples as alias for PGresult#cmd_tuples
+
+	This is for better compatibility with ActiveRecord.
+	[29d775393e88]
+
+	* ext/pg.c:
+	Added:
+	 * PGresult#num_tuples as alias for PGresult#ntuples
+	 * PGresult#num_fields as alias for PGresult#nfields
+
+	This should result in easier compatibility with ActiveRecord
+	[eac7df0aa291]
+
+2008-01-24  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* README.OS_X, README.windows, ext/extconf.rb:
+	moved a few minor changes over before release
+	[c7ddb58579d3] <stable>
+
+	* README.OS_X, README.windows, ext/extconf.rb:
+	Added README.windows and README.OS_X Changed special case in
+	extconf.rb from '/ms/libpq.lib' to '/ms/libpq'
+	[7908e778e7c3]
+
+	* ext/compat.c, ext/compat.h, ext/extconf.rb, ext/pg.c, ext/pg.h,
+	tests/pg_spec.rb, tests/tc_postgres.rb:
+	merged revision 77:HEAD of ruby-pg/trunk to ruby-pg/branches/stable
+	[8df9da92380e] <stable>
+
+	* ext/extconf.rb:
+	Another change to improve windows compatibility. Thanks to Laurent
+	Francioli.
+	[7cc13a1f3010]
+
+	* ext/extconf.rb:
+	fixed typo
+	[ee0577472b67]
+
+	* ext/extconf.rb:
+	My previous fix for OS X compatibility didn't work well enough.
+
+	 The only effective solution is to generate a warning message and
+	tell the user what to do. That's what this commit does.
+	[eaf3b1825d56]
+
+2008-01-23  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/compat.h, ext/pg.h:
+	* had to include that file conditionally in compat.h for postgresql
+	7.3 compatibility
+	[12b2568a0ada]
+
+	* ext/pg.h:
+	* included an additional file so that it works with PostgreSQL 8.3
+	[34dd04d21a78]
+
+	* ext/extconf.rb, ext/pg.c:
+	* added PGconn.quote_ident to quote identifiers
+	 * added special case in extconf to build correctly on windows
+	[4cf66b7302bf]
+
+2008-01-22  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	* made PGconn#query alias for PGconn#exec
+	[081e4d8ee394]
+
+	* ext/extconf.rb, ext/pg.c:
+	* Detect if compiling on OS X, and if so set $ARCHFLAGS correctly.
+	This should resolve the problem of building on OS X.
+	 * A couple comment fixes.
+	[4774578059e1]
+
+2008-01-21  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	made conn.block cleaner and it should be more portable.
+	[204f4b591614]
+
+2008-01-18  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/extconf.rb, ext/pg.c:
+	Miscellaneous changes:
+	   * in 'pg' module, added PGconn#close as an alias for PGconn#finish,
+	for easier compatibility with AR adapter.
+	   * removed extra CFLAGS because they were causing portability problems.
+	[449d54289f07]
+
+2008-01-17  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* tests/pg_spec.rb, tests/tc_postgres.rb:
+	started creating a rspec test, more tests to come later
+	[aadd4008d2e3]
+
+	* ext/pg.c:
+	properly free memory in conn.get_copy_data
+	[4f276bb9c4b1]
+
+2008-01-15  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c, ext/pg.h:
+	Added conn.block( [ timeout ] ) -> Boolean
+	[95d9ff13c269]
+
+2008-01-14  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	Added conn.transaction{ |conn| ... }
+	[4cefa3b1ecbb]
+
+	* ext/compat.c, ext/compat.h, ext/extconf.rb, ext/pg.c, ext/pg.h:
+	Support for PostgreSQL 7.3.
+	[ae8c3b66c48d]
+
+2008-01-09  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* compat-ruby-postgres/extconf.rb, compat-ruby-postgres/libpq-
+	compat.c, compat-ruby-postgres/postgres.c, compat-ruby-postgres
+	/type-oids.h:
+	removed extra directory that was left in the merge
+	[8eb1346cb9aa] <stable>
+
+	* README, ext/compat.c, ext/compat.h, ext/extconf.rb, ext/pg.c, ruby-
+	pg.gemspec:
+	merged ruby-pg/trunk rev 69 to ruby-pg/branches/stable
+	[d6d19e5371d4] <stable>
+
+2008-01-08  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	Added:
+	  * conn.set_client_encoding
+	  * conn.get_client_encoding
+
+	 get_client_encoding returns a string, and the PQclientEncoding
+	function returns an encoding ID, which is why I didn't use the name
+	client_encoding. That leaves room later to add a wrapper for the
+	libpq PQclientEncoding if there is a need, without a name conflict.
+	[1fd8b2aaac4c]
+
+	* ext/pg.c:
+	Added:
+	 * conn.make_empty_pgresult(status)
+	 * conn.flush
+	 * conn.set_error_verbosity
+	[5c0a63028583]
+
+2008-01-07  Jeff Davis  <davis.jeffrey@gmail.com>
+
+	* ext/pg.c:
+	fixed a few method defines for async query processing
+	[40270de77f48]
+
+	* ext/pg.c:
+	Change conn.exec to use PQexec if no parameters are passed, and use
+	PQexecParams if optional parameters are passed.
+
+	Change conn.send_query to use PQsendQuery if no parameters are
+	passed, and use PQsendQueryParams if optional parameters are passed.
+	[d05d9f2042d7]
+
+	* compat-ruby-postgres/extconf.rb, compat-ruby-postgres/libpq-
+	compat.c, compat-ruby-postgres/postgres.c, compat-ruby-postgres
+	/type-oids.h, ruby-pg.gemspec:
+	Cleanup after the repository reorganization.
+	[a531a7bc9241]
+
+	* COPYING, COPYING.txt, ChangeLog, Contributors, GPL, LICENSE,
+	MANIFEST, README, README.ja, compat-ruby-postgres/extconf.rb,
+	compat-ruby-postgres/libpq-compat.c, compat-ruby-
+	postgres/postgres.c, compat-ruby-postgres/type-oids.h,
+	doc/postgres.html, doc/postgres.jp.html, ext/compat.c, ext/compat.h,
+	ext/extconf.rb, ext/pg.c, ext/pg.h, ruby-pg.gemspec,
+	sample/losample.rb, sample/psql.rb, sample/psqlHelp.rb,
+	sample/test1.rb, sample/test2.rb, sample/test4.rb,
+	tests/tc_postgres.rb:
+	Split 'ruby-pg' module and 'postgres' module into separate parts of
+	the repository. They will be maintained separately, and be released
+	as separate gems from this point forward.
+
+	One reason for this change is because we need separate gems. If we
+	distribute both modules as one gem, the documentation is not
+	properly generated due to class name conflicts.
+
+	Another reason is to reduce confusion between the two modules.
+
+	Also, I don't plan on making many improvements (aside from bugfixes
+	and portability issues) to the old 'postgres' code. I'd like to get
+	it to a stable state, and leave it alone. Meanwhile, the 'pg' module
+	can be developed on a faster timeline.
+	[aafc8cf17567]
+
+	* COPYING, COPYING.txt, ChangeLog, Contributors, GPL, LICENSE,
+	MANIFEST, README, README.ja, compat-ruby-postgres/extconf.rb,
+	compat-ruby-postgres/libpq-compat.c, compat-ruby-
+	postgres/postgres.c, compat-ruby-postgres/type-oids.h,
+	doc/postgres.html, doc/postgres.jp.html, ext/compat.c, ext/compat.h,
+	ext/extconf.rb, ext/pg.c, ext/pg.h, ruby-pg.gemspec,
+	sample/losample.rb, sample/psql.rb, sample/psqlHelp.rb,
+	sample/test1.rb, sample/test2.rb, sample/test4.rb,
+	tests/tc_postgres.rb:
+	Split 'ruby-pg' module and 'postgres' module into separate parts of
+	the repository. They will be maintained separately, and be released
+	as separate gems from this point forward.
+
+	One reason for this change is because we need separate gems. If we
+	distribute both modules as one gem, the documentation is not
+	properly generated due to class name conflicts.
+
+	Another reason is to reduce confusion between the two modules.
+
+	Also, I don't plan on making many improvements (aside from bugfixes
+	and portability issues) to the old 'postgres' code. I'd like to get
+	it to a stable state, and leave it alone. Meanwhile, the 'pg' module
+	can be developed on a faster timeline.
+	[7716d24a143b] <stable>

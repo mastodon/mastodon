@@ -1,0 +1,26 @@
+---
+language: ruby
+sudo: false
+cache: bundler
+bundler_args: --without yard benchmarks
+script: "bundle exec rake ci"
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.10
+  - 2.2.6
+  - 2.3.3
+  - 2.4.0
+  - ruby-head
+  - jruby-9000
+  - jruby-head
+  - rbx-3
+matrix:
+  allow_failures:
+    - rvm: 2.4.0
+    - rvm: ruby-head
+    - rvm: jruby-head
+    - rvm: rbx-3
+  fast_finish: true
+branches:
+  only: master

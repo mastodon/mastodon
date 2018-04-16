@@ -1,0 +1,41 @@
+<div class="content">
+  <h1>Maintenance</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Table</th>
+        <th style="width: 20%;">Last Vacuum</th>
+        <th style="width: 20%;">Last Analyze</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @maintenance_info.each do |table| %>
+        <tr>
+          <td>
+            <%= table["table"] %>
+            <% if table["schema"] != "public" %>
+              <span class="text-muted"><%= table["schema"] %></span>
+            <% end %>
+          </td>
+          <td>
+            <% time = [table["last_autovacuum"], table["last_vacuum"]].compact.max %>
+            <% if time %>
+              <%= @time_zone.parse(time).strftime("%-m/%-e %l:%M %P") %>
+            <% else %>
+              <span class="text-muted">Unknown</span>
+            <% end %>
+          </td>
+          <td>
+            <% time = [table["last_autoanalyze"], table["last_analyze"]].compact.max %>
+            <% if time %>
+              <%= @time_zone.parse(time).strftime("%-m/%-e %l:%M %P") %>
+            <% else %>
+              <span class="text-muted">Unknown</span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

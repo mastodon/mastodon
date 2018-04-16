@@ -1,0 +1,151 @@
+
+[o] merge schedule_queue and unschedule_queue (and merge [un]schedule steps)
+[x] OR stop using queue, since we've got the thread-safe JobArray
+[x] if possible, drop the mutex in JobArray
+    NO, that mutex is necessary for Scheduler#jobs (on JRuby an co)...
+[o] named mutexes
+[o] drop the schedule queue, rely on the mutex in JobArray
+[o] def jobs; (@jobs.to_a + running_jobs).uniq; end
+[o] replace @unscheduled by @unscheduled_at
+[o] make sure #jobs doesn't return unscheduled jobs
+[o] job tags and find_by_tag(t) (as in rs 2.x)
+[o] require tzinfo anyway (runtime dep)
+[o] document frequency
+[o] accept :frequency => '5s'
+[o] timeout (as in rufus-scheduler 2.x)
+[o] Rufus::Scheduler#running_jobs (as in rufus-scheduler 2.x)
+[o] Rufus::Scheduler#terminate_all_jobs
+[o] Rufus::Scheduler::Job#kill
+[x] Rufus::Scheduler#kill_all_jobs
+[o] Rufus::Scheduler#shutdown(:terminate or :kill (or nothing))
+[o] RepeatJob #pause / #resume (think about discard past)
+[o] Rufus::Scheduler.start_new (backward comp) (with deprec note?)
+[o] pass job to scheduled block? What does rs 2.x do?
+[o] :first[_in|_at] for RepeatJob
+[o] :last[_in|_at] for RepeatJob
+[o] :times for RepeatJob (how many recurrences)
+[o] fix issue #39 (first_at parses as UTC)
+[o] about issue #43, raise if cron/every job frequency < scheduler frequency
+[o] unlock spec/parse_spec.rb:30 "parse datimes with timezones"
+[o] some kind of Schedulable (Xyz#call(job, time))
+[o] add Jruby and Rubinius to Travis
+[o] make Job #first_at= / #last_at= automatically parse strings?
+[o] bring in Kratob's spec about mutex vs timeout and adapt 3.0 to it,
+    https://github.com/jmettraux/rufus-scheduler/pull/67
+[x] :unschedule_if => lambda { |job| ... }
+[o] OR look at how it was done in rs 2.0.x, some return value?
+    no, pass the job as arg to the block, then let the block do job.unschedule
+    so, document schedule.every('10d') { |j| j.unschedule if x?() }
+[x] remove the time in job.trigger(time)
+[o] add spec for job queued then unscheduled
+[o] add spec for Scheduler#shutdown and work threads
+[o] at some point, bring back rbx19 to Travis
+[o] move the parse/util part of scheduler.rb to util.rb
+[o] rescue KillSignal in job thread loop to kill just the job
+[o] add spec for raise if scheduling a job while scheduler is shutting down
+[o] schedule_in(2.days.from_now) {}
+    at and in could understand each others time parameter, ftw...
+    use the new #parse_to_time? no
+[o] do repeat jobs reschedule after timing out? yes
+[o] schedule_interval('20s')?
+[x] Scheduler#reschedule(job) (new copy of the job)
+[x] #free_all_work_threads is missing an implementation
+[x] rescue StandardError
+    :on_error => :crash[_scheduler]
+    :on_error => :ignore
+    :on_error => ...
+[o] on_error: what about TimeoutError in that scheme?
+    TimeoutError goes to $stderr, like a normal error
+[o] link to SO for support
+    - sublink to "how to report bugs effectively"
+[o] link to #ruote for support
+[x] lockblock? pass a block to teach the scheduler how to lock?
+    is not necessary, @scheduler = Scheduler.new if should_start?
+    the surrounding Ruby code checks
+[o] introduce job "vars", as in
+    http://stackoverflow.com/questions/18202848/how-to-have-a-variable-that-will-available-to-particular-scheduled-task-whenever
+    or job['key'] Job #[] and #[]=, as with Thread #[] #[]=
+    job-local variables #keys #key?
+[o] thread-safety for job-local variables?
+[x] discard past? discard_past => true or => "1d"
+    default would be discard_past => "1m" or scheduler freq * 2 ?
+    jobs would adjust their next_time until it fits the window...
+    ~~ discard past by default
+[o] expanded block/schedulable (it's "callable")
+    ```
+      scheduler.every '10m' do
+        def pre
+          return false if Backend.down?
+          # ...
+        end
+        def post
+          # ...
+        end
+        def trigger
+          puts "oh hai!"
+        end
+      end
+    ```
+    or something like that...
+    ...
+    OR accept a class (and instantiate it the first time)
+    ```
+      scheduler.every '10m', Class.new do
+        def call(job, time)
+          # ...
+        end
+      end
+    ```
+    the job contains the instance in its @callable
+[x] add spec case for corner case in Job#trigger (overlap vs reschedule) !!!
+[o] rethink job array vs job set for #scheduled?
+[x] introduce common parent class for EveryJob and IntervalJob
+[o] create spec/ at_job_spec.rb, repeat_job_spec.rb, cron_job_spec.rb, ...
+[x] ensure EveryJob do not schedule in the past (it's already like that)
+[o] CronLine#next_time should return a time with subseconds chopped off
+[o] drop min work threads setting?
+[o] thread pool something? Thread upper limit?
+[o] Rufus::Scheduler.singleton, Rufus::Scheduler.s
+[o] EveryJob#first_at= and IntervalJob#first_at= should alter @next_time
+[o] scheduler.schedule duration/time/cron ... for at/in/cron
+    (not every, nor interval)
+    scheduler.repeat time/cron ... for every/cron
+
+[o] :lockfile => x, timestamp, process_id, thread_id...
+    warning: have to clean up that file on exit... or does the scheduler
+    timestamps it?
+[ ] develop lockfile timestamp thinggy
+    ~ if the timestamp is too old (twice the default frequency?) then
+    lock [file] take over...
+    Is that really what we want all the time?
+
+[ ] idea: :mutex => x and :skip_on_mutex => true ?
+    would prevent blocking/waiting for the mutex to get available
+    :mutex => [ "mutex_name", true ]
+    :mutex => [ [ "mutex_name", true ], [ "other_mutex_name", false ] ]
+
+[ ] bring back EM (but only EM.defer ?) :defer => true (Job or Scheduler
+    or both option?)
+
+[ ] prepare a daemon, trust daemon-kit for that
+
+[ ] :if => lambda { |job, time| ... } why not?
+    :unless => lambda { ...
+    :block => lambda { ...
+    can help get the block themselves leaner
+    #
+    investigate guards for schedulables... def if_guard; ...; end
+
+[ ] scheduler.every '10', Class.new do
+      def call(job, time)
+        # might fail...
+      end
+      def on_error(err, job)
+        # catches...
+      end
+    end
+
+~~~
+
+[ ] scheduler.at('chronic string', chronic_options...)
+

@@ -1,0 +1,29 @@
+before_install:
+  - gem install bundler
+language: ruby
+matrix:
+  allow_failures:
+    - rvm: 1.8.7
+    - rvm: 1.9.2
+    - rvm: jruby
+    - rvm: rbx-3.2
+    - rvm: ree
+  fast_finish: true
+rvm:
+  - 1.8.7
+  - 1.9.2
+  - 1.9.3
+  - 2.0
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
+  - jruby
+  - rbx-3.2
+  - ree
+script: 
+  - "bundle exec shindont"
+  - "bundle exec rake spec[progress]"
+
+sudo: false

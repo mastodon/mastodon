@@ -1,0 +1,97 @@
+*0.10.1* (Feb 11, 2016)
+
+- Changed so that gem wont include images and tests.
+
+*0.10.0* (Feb 11, 2016)
+
+- Merged as_ansi by [Andy Brody](https://github.com/ab)
+
+*0.8.2* (Jan 3, 2016)
+
+- Fix source encoding problem introduced in 0.8.1
+
+*0.9.0* (Jan 3, 2016)
+
+- Added support for auto selecting qrcode size up to level 40. (only worked up to level 10 before)
+- Added numeric support during auto selection of qrcode mode.
+
+*0.8.1* (Jan 3, 2016)
+
+- Remove active support specific `present?`.
+- Fix so that all tests are run.
+
+*0.8.0* (Dec 18, 2015)
+
+- Added numeric QR code support
+- Dropped Ruby v1.8 support
+
+*0.7.0* (Aug 15, 2015)
+
+- Added shape_rendering option for as_svg
+
+*0.6.0* (Jun 2, 2015)
+
+- Improved png rendering. Previous png rendering could result in hard to scan qrcodes.
+  *Big thanks to Bart Jedrocha*
+
+*0.5.5* (Apr 25, 2015)
+
+- Fixed major bug. The rs block data was missing resulting in qr codes failing to be generated.
+  *Upgrade highly recomended!!*
+
+*0.5.4* (Nov 11th, 2013)
+  
+* Added as_html, Big thanks to Jon Evans!
+
+*0.4.2* (Sep 1st, 2011)
+
+* Proper namespace CoreExtensions and only extend when needed [https://github.com/metaskills]
+* fix for running tests on 1.9
+
+*0.4.1* (Aug 16th, 2011)
+
+* Compute common patterns only once (5% to 10% speedup) [https://github.com/gioele]
+
+*0.4.0* (Aug 13th, 2011)
+
+* Code optimization: 30% speedup [https://github.com/gioele]
+* refactor gem layout 
+
+*0.3.4* (May 23rd, 2011)
+
+* add the more Rubyish QRCode#dark? alias for #is_dark [https://github.com/dasch] 
+
+*0.3.3* (Feb 1st, 2011)
+
+* check to see if the level is valid
+* fix for 'rszf' bug by [Rob la Lau https://github.com/ohreally]
+
+*0.3.2* (Mar 15th, 2009)
+
+* Ruby 1.9 fixes by [Tore Darell http://tore.darell.no] [Chris Mowforth http://blog.99th.st]
+
+*0.3.1* (Nov 24th, 2008)
+
+* expanded RS block table to QRcode version 40  [Vladislav Gorodetskiy]
+
+*0.3.0* (Feb 28th, 2008)
+
+* added more documentation
+* changed to_console to to_s (what was I thinking)
+* add more tests
+
+*0.2.1* (Feb 24th, 2008)
+
+* small changes to rakefile and readme
+* small change to to_console method
+* make console_count method private (use modules.size instead)
+* slowy updating rdocs 
+
+*0.2.0* (Feb 23rd, 2008)
+
+* Split files up [DR]
+* added rdoc comment ... more to do there
+
+*0.1.0* (Feb 22rd, 2008)
+
+* Initial Release [DR]

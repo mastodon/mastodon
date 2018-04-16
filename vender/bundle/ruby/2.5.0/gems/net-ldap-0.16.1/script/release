@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Usage: script/release
+# Build the package, tag a commit, push it to origin, and then release the
+# package publicly.
+
+set -e
+
+version="$(script/package | grep Version: | awk '{print $2}')"
+[ -n "$version" ] || exit 1
+
+echo $version
+git commit --allow-empty -a -m "Release $version"
+git tag "v$version"
+git push origin
+git push origin "v$version"
+gem push pkg/*-${version}.gem

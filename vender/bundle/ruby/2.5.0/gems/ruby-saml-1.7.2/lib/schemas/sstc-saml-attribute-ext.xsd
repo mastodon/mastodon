@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+  targetNamespace="urn:oasis:names:tc:SAML:attribute:ext"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified"
+  blockDefault="substitution"
+  version="2.0">
+
+  <annotation>
+    <documentation>
+      Document title: SAML V2.0 Attribute Extension Schema
+      Document identifier: sstc-saml-attribute-ext.xsd
+      Location: http://www.oasis-open.org/committees/documents.php?wg_abbrev=security
+      Revision history:
+      V1.0 (October 2008):
+        Initial version.
+    </documentation>
+  </annotation>
+
+  <attribute name="OriginalIssuer" type="anyURI"/>
+  <attribute name="LastModified" type="dateTime"/>
+
+</schema>
+

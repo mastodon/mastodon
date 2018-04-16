@@ -1,0 +1,28 @@
+version: 1.0.{build}-{branch}
+
+skip_tags: true
+
+environment:
+  JRUBY_OPTS: "--dev -J-Xmx1024M --debug"
+  matrix:
+    - ruby_version: "Ruby23"
+    - ruby_version: "Ruby23-x64"
+
+cache:
+  - vendor/bundle
+
+install:
+  - SET PATH=C:\%ruby_version%\bin;%PATH%
+  - bundle env
+  - bundle check || bundle install --path=vendor/bundle --retry=3 --jobs=3
+  - bundle clean --force
+
+before_test:
+  - ruby -v
+  - gem -v
+  - bundle -v
+
+test_script:
+  - bundle exec rake ci
+
+build: off

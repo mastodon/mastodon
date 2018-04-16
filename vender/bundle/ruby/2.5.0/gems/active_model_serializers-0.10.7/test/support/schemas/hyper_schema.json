@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Profile",
+  "description": "Profile schema",
+  "stability": "prototype",
+  "strictProperties": true,
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "name": {
+      "description": "unique name of profile",
+      "readOnly": true,
+      "type": [
+        "string"
+      ]
+    },
+    "description": {
+      "description": "description of profile",
+      "readOnly": true,
+      "type": [
+        "string"
+      ]
+    },
+    "identity": {
+      "anyOf": [
+        {
+          "$ref": "/schemata/profile#/definitions/name"
+        }
+      ]
+    }
+  },
+  "links": [
+    {
+      "description": "Create a new profile.",
+      "href": "/profiles",
+      "method": "POST",
+      "rel": "create",
+      "schema": {
+        "properties": {
+        },
+        "type": [
+          "object"
+        ]
+      },
+      "title": "Create"
+    },
+    {
+      "description": "Delete an existing profile.",
+      "href": "/profiles/{(%2Fschemata%2Fprofile%23%2Fdefinitions%2Fidentity)}",
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete"
+    },
+    {
+      "description": "Info for existing profile.",
+      "href": "/profiles/{(%2Fschemata%2Fprofile%23%2Fdefinitions%2Fidentity)}",
+      "method": "GET",
+      "rel": "self",
+      "title": "Info"
+    },
+    {
+      "description": "List existing profiles.",
+      "href": "/profiles",
+      "method": "GET",
+      "rel": "instances",
+      "title": "List"
+    },
+    {
+      "description": "Update an existing profile.",
+      "href": "/profiles/{(%2Fschemata%2Fprofile%23%2Fdefinitions%2Fidentity)}",
+      "method": "PATCH",
+      "rel": "update",
+      "schema": {
+        "properties": {
+        },
+        "type": [
+          "object"
+        ]
+      },
+      "title": "Update"
+    }
+  ],
+  "properties": {
+    "name": {
+      "$ref": "/schemata/profile#/definitions/name"
+    },
+    "description": {
+      "$ref": "/schemata/profile#/definitions/description"
+    }
+  },
+  "id": "/schemata/profile"
+}

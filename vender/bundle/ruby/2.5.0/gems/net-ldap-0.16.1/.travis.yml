@@ -1,0 +1,33 @@
+language: ruby
+rvm:
+  - 2.0.0
+  - 2.1
+  - 2.2
+  # optional
+  - ruby-head
+  - jruby-19mode
+  - jruby-head
+  - rbx-2
+
+env:
+  - INTEGRATION=openldap
+
+before_install:
+  - gem update bundler
+
+install:
+  - if [ "$INTEGRATION" = "openldap" ]; then sudo script/install-openldap; fi
+  - bundle install
+
+script: bundle exec rake ci
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-19mode
+    - rvm: jruby-head
+    - rvm: rbx-2
+  fast_finish: true
+
+notifications:
+  email: false

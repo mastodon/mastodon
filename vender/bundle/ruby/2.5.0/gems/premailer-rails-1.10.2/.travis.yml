@@ -1,0 +1,15 @@
+sudo: false
+language: ruby
+cache: bundler
+script: bundle exec rspec
+rvm:
+  - 2.4.1
+env:
+  matrix:
+    - ACTION_MAILER_VERSION=4
+    - ACTION_MAILER_VERSION=5
+    - ACTION_MAILER_VERSION=master
+matrix:
+  fast_finish: true
+  allow_failures:
+    - env: ACTION_MAILER_VERSION=master

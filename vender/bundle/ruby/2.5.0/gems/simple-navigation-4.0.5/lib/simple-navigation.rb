@@ -1,0 +1,1 @@
+require 'simple_navigation'

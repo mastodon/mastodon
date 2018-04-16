@@ -1,0 +1,44 @@
+[
+
+"", [],
+";; /**/ ; ;", [],
+"a:b; c:d 42!important;\n", [
+    ["declaration", "a", [["ident", "b"]], false],
+    ["declaration", "c", [["ident", "d"], " ", ["number", "42", 42, "integer"]], true]
+],
+
+"z;a:b", [
+    ["error", "invalid"],
+    ["declaration", "a", [["ident", "b"]], false]
+],
+
+"z:x!;a:b", [
+    ["declaration", "z", [["ident", "x"], "!"], false],
+    ["declaration", "a", [["ident", "b"]], false]
+],
+
+"a:b; c+:d", [
+    ["declaration", "a", [["ident", "b"]], false],
+    ["error", "invalid"]
+],
+
+"@import 'foo.css'; a:b; @import 'bar.css'", [
+    ["at-rule", "import", [" ", ["string", "foo.css"]], null],
+    ["declaration", "a", [["ident", "b"]], false],
+    ["at-rule", "import", [" ", ["string", "bar.css"]], null]
+],
+
+"@media screen { div{;}} a:b;; @media print{div{", [
+    ["at-rule", "media", [" ", ["ident", "screen"], " "], [" ", ["ident", "div"], ["{}", ";"]]],
+    ["declaration", "a", [["ident", "b"]], false],
+    ["at-rule", "media", [" ", ["ident", "print"]], [["ident", "div"], ["{}"]]]
+],
+
+"@ media screen { div{;}} a:b;; @media print{div{", [
+    ["error", "invalid"],
+    ["at-rule", "media", [" ", ["ident", "print"]], [["ident", "div"], ["{}"]]]
+],
+
+"", []
+
+]

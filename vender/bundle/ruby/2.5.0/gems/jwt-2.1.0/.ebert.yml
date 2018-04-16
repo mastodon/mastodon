@@ -1,0 +1,18 @@
+styleguide: excpt/linters
+engines:
+  reek:
+    enabled: true
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+    channel: rubocop-0-49
+  duplication:
+    config:
+      languages:
+      - ruby
+    enabled: true
+  remark-lint:
+    enabled: true
+exclude_paths:
+- spec

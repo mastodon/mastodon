@@ -1,0 +1,26 @@
+---
+language: ruby
+sudo: false
+cache: bundler
+before_install: "gem update bundler"
+bundler_args: --without yard benchmarks
+script: "bundle exec rake ci"
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.10
+  - 2.2.8
+  - 2.3.5
+  - 2.4.2
+  - jruby-9000
+  - jruby-head
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
+  fast_finish: true
+branches:
+  only: master
+notifications:
+  email: false

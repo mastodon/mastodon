@@ -1,0 +1,302 @@
+#!/usr/bin/env rake
+
+require 'uri'
+require 'tempfile'
+require 'rbconfig'
+require 'rake/clean'
+require 'rake/extensiontask'
+require 'rake/extensioncompiler'
+require 'ostruct'
+
+MISCDIR = BASEDIR + 'misc'
+
+NUM_CPUS = if File.exist?('/proc/cpuinfo')
+	File.read('/proc/cpuinfo').scan('processor').length
+elsif RUBY_PLATFORM.include?( 'darwin' )
+	`system_profiler SPHardwareDataType | grep 'Cores' | awk '{print $5}'`.chomp
+else
+	1
+end
+
+class CrossLibrary < OpenStruct
+	include Rake::DSL
+
+	def initialize(for_platform, openssl_config, toolchain)
+		super()
+
+		self.for_platform               = for_platform
+		self.openssl_config             = openssl_config
+		self.host_platform              = toolchain
+
+		# Cross-compilation constants
+		self.openssl_version            = ENV['OPENSSL_VERSION'] || '1.0.2j'
+		self.postgresql_version         = ENV['POSTGRESQL_VERSION'] || '9.6.2'
+
+		# Check if symlinks work in the current working directory.
+		# This fails, if rake-compiler-dock is running on a Windows box.
+		begin
+			FileUtils.rm_f '.test_symlink'
+			FileUtils.ln_s '/', '.test_symlink'
+		rescue SystemCallError
+			# Symlinks don't work -> use home directory instead
+			self.compile_home               = Pathname( "~/.ruby-pg-build" ).expand_path
+		else
+			self.compile_home               = Pathname( "./build" ).expand_path
+		end
+		self.static_sourcesdir          = compile_home + 'sources'
+		self.static_builddir            = compile_home + 'builds' + for_platform
+
+		# Static OpenSSL build vars
+		self.static_openssl_builddir    = static_builddir + "openssl-#{openssl_version}"
+
+		self.openssl_source_uri         =
+			URI( "http://www.openssl.org/source/openssl-#{openssl_version}.tar.gz" )
+		self.openssl_tarball            = static_sourcesdir + File.basename( openssl_source_uri.path )
+		self.openssl_makefile           = static_openssl_builddir + 'Makefile'
+
+		self.libssleay32                = static_openssl_builddir + 'libssleay32.a'
+		self.libeay32                   = static_openssl_builddir + 'libeay32.a'
+
+		self.openssl_patches            = Rake::FileList[ (MISCDIR + "openssl-#{openssl_version}.*.patch").to_s ]
+
+		# Static PostgreSQL build vars
+		self.static_postgresql_builddir = static_builddir + "postgresql-#{postgresql_version}"
+		self.postgresql_source_uri      = begin
+			uristring = "http://ftp.postgresql.org/pub/source/v%s/postgresql-%s.tar.bz2" %
+				[ postgresql_version, postgresql_version ]
+			URI( uristring )
+		end
+		self.postgresql_tarball         = static_sourcesdir + File.basename( postgresql_source_uri.path )
+
+		self.static_postgresql_srcdir   = static_postgresql_builddir + 'src'
+		self.static_postgresql_libdir   = static_postgresql_srcdir + 'interfaces/libpq'
+		self.static_postgresql_incdir   = static_postgresql_srcdir + 'include'
+
+		self.postgresql_global_makefile = static_postgresql_srcdir + 'Makefile.global'
+		self.postgresql_shlib_makefile  = static_postgresql_srcdir + 'Makefile.shlib'
+		self.postgresql_shlib_mf_orig   = static_postgresql_srcdir + 'Makefile.shlib.orig'
+		self.postgresql_lib             = static_postgresql_libdir + 'libpq.dll'
+		self.postgresql_patches         = Rake::FileList[ (MISCDIR + "postgresql-#{postgresql_version}.*.patch").to_s ]
+
+		# clean intermediate files and folders
+		CLEAN.include( static_builddir.to_s )
+
+
+		ENV['RUBY_CC_VERSION'] ||= '1.9.3:2.0.0'
+
+		def download(url, save_to)
+			part = save_to+".part"
+			sh "wget #{url.to_s.inspect} -O #{part.inspect} || curl #{url.to_s.inspect} -o #{part.inspect}"
+			FileUtils.mv part, save_to
+		end
+
+		def run(*args)
+			sh *args
+		end
+
+		#####################################################################
+		### C R O S S - C O M P I L A T I O N - T A S K S
+		#####################################################################
+
+
+		directory static_sourcesdir.to_s
+
+		#
+		# Static OpenSSL build tasks
+		#
+		directory static_openssl_builddir.to_s
+
+		# openssl source file should be stored there
+		file openssl_tarball => static_sourcesdir do |t|
+			download( openssl_source_uri, t.name )
+		end
+
+		# Extract the openssl builds
+		file static_openssl_builddir => openssl_tarball do |t|
+			puts "extracting %s to %s" % [ openssl_tarball, static_openssl_builddir.parent ]
+			static_openssl_builddir.mkpath
+			run 'tar', '-xzf', openssl_tarball.to_s, '-C', static_openssl_builddir.parent.to_s
+			openssl_makefile.unlink if openssl_makefile.exist?
+
+			openssl_patches.each do |patchfile|
+				puts "  applying patch #{patchfile}..."
+				run 'patch', '-Np1', '-d', static_openssl_builddir.to_s,
+				'-i', File.expand_path( patchfile, BASEDIR )
+			end
+		end
+
+		self.cmd_prelude = [
+			'env',
+			"CC=#{host_platform}-gcc",
+			"CFLAGS=-DDSO_WIN32",
+			"AR=#{host_platform}-ar",
+			"RANLIB=#{host_platform}-ranlib"
+		]
+
+
+		# generate the makefile in a clean build location
+		file openssl_makefile => static_openssl_builddir do |t|
+			chdir( static_openssl_builddir ) do
+				cmd = cmd_prelude.dup
+				cmd << "./Configure" << openssl_config
+
+				run( *cmd )
+			end
+		end
+
+		desc "compile static openssl libraries"
+		task :openssl_libs => [ libssleay32, libeay32 ]
+
+		task :compile_static_openssl => openssl_makefile do |t|
+			chdir( static_openssl_builddir ) do
+				cmd = cmd_prelude.dup
+				cmd << 'make' << "-j#{NUM_CPUS}" << 'build_libs'
+
+				run( *cmd )
+			end
+		end
+
+		desc "compile static #{libeay32}"
+		file libeay32 => :compile_static_openssl do |t|
+			FileUtils.cp( static_openssl_builddir + 'libcrypto.a', libeay32.to_s )
+		end
+
+		desc "compile static #{libssleay32}"
+		file libssleay32 => :compile_static_openssl do |t|
+			FileUtils.cp( static_openssl_builddir + 'libssl.a', libssleay32.to_s )
+		end
+
+
+
+		#
+		# Static PostgreSQL build tasks
+		#
+		directory static_postgresql_builddir.to_s
+
+
+		# postgresql source file should be stored there
+		file postgresql_tarball => static_sourcesdir do |t|
+			download( postgresql_source_uri, t.name )
+		end
+
+		# Extract the postgresql sources
+		file static_postgresql_builddir => postgresql_tarball do |t|
+			puts "extracting %s to %s" % [ postgresql_tarball, static_postgresql_builddir.parent ]
+			static_postgresql_builddir.mkpath
+			run 'tar', '-xjf', postgresql_tarball.to_s, '-C', static_postgresql_builddir.parent.to_s
+
+			postgresql_patches.each do |patchfile|
+				puts "  applying patch #{patchfile}..."
+				run 'patch', '-Np1', '-d', static_postgresql_builddir.to_s,
+				'-i', File.expand_path( patchfile, BASEDIR )
+			end
+		end
+
+		# generate the makefile in a clean build location
+		file postgresql_global_makefile => [ static_postgresql_builddir, :openssl_libs ] do |t|
+			options = [
+				"--target=#{host_platform}",
+				"--host=#{host_platform}",
+				'--with-openssl',
+				'--without-zlib',
+			]
+
+			chdir( static_postgresql_builddir ) do
+				configure_path = static_postgresql_builddir + 'configure'
+				cmd = [ configure_path.to_s, *options ]
+				cmd << "CFLAGS=-L#{static_openssl_builddir}"
+				cmd << "LDFLAGS=-L#{static_openssl_builddir}"
+				cmd << "LDFLAGS_SL=-L#{static_openssl_builddir}"
+				cmd << "LIBS=-lwsock32 -lgdi32"
+				cmd << "CPPFLAGS=-I#{static_openssl_builddir}/include"
+
+				run( *cmd )
+			end
+		end
+
+
+		# make libpq.dll
+		task postgresql_lib => [ postgresql_global_makefile ] do |t|
+			# Work around missing dependency to libcommon in PostgreSQL-9.4.0
+			chdir( static_postgresql_srcdir + "common" ) do
+				sh 'make', "-j#{NUM_CPUS}"
+			end
+
+			chdir( postgresql_lib.dirname ) do
+				sh 'make',
+					"-j#{NUM_CPUS}",
+					postgresql_lib.basename.to_s,
+					'SHLIB_LINK=-lssleay32 -leay32 -lcrypt32 -lgdi32 -lsecur32 -lwsock32 -lws2_32'
+			end
+		end
+
+
+		#desc 'compile libpg.a'
+		task :libpq => postgresql_lib
+
+		# copy libpq.dll to lib dir
+		dest_libpq = "lib/#{postgresql_lib.basename}"
+		directory File.dirname(dest_libpq)
+		file dest_libpq => [postgresql_lib, File.dirname(dest_libpq)] do
+			cp postgresql_lib, dest_libpq
+		end
+
+		stage_libpq = "tmp/#{for_platform}/stage/#{dest_libpq}"
+		directory File.dirname(stage_libpq)
+		file stage_libpq => [postgresql_lib, File.dirname(stage_libpq)] do |t|
+			cp postgresql_lib, stage_libpq
+		end
+	end
+end
+
+if File.exist?(File.expand_path("~/.rake-compiler/config.yml"))
+	CrossLibraries = [
+		['i386-mingw32', 'mingw', 'i686-w64-mingw32'],
+		['x64-mingw32', 'mingw64', 'x86_64-w64-mingw32'],
+	].map do |platform, openssl_config, toolchain|
+		CrossLibrary.new platform, openssl_config, toolchain
+	end
+else
+	$stderr.puts "Cross-compilation disabled -- rake-compiler not properly installed"
+	CrossLibraries = []
+end
+
+desc 'cross compile pg for win32'
+task :cross => [ :mingw32, :libpq ]
+
+task :mingw32 do
+	# Use Rake::ExtensionCompiler helpers to find the proper host
+	unless Rake::ExtensionCompiler.mingw_host then
+		warn "You need to install mingw32 cross compile functionality to be able to continue."
+		warn "Please refer to your distribution/package manager documentation about installation."
+		fail
+	end
+end
+
+# To reduce the gem file size strip mingw32 dlls before packaging
+ENV['RUBY_CC_VERSION'].to_s.split(':').each do |ruby_version|
+  task "tmp/i386-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/pg_ext.so" do |t|
+    sh "i686-w64-mingw32-strip -S tmp/i386-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/pg_ext.so"
+  end
+
+  task "tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/pg_ext.so" do |t|
+    sh "x86_64-w64-mingw32-strip -S tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/pg_ext.so"
+  end
+end
+
+desc "Build the windows binary gems"
+task 'gem:windows' => ['ChangeLog'] do
+  require 'rake_compiler_dock'
+
+  # Copy gem signing key and certs to be accessable from the docker container
+  mkdir_p 'build/gem'
+  sh "cp ~/.gem/gem-*.pem build/gem/ || true"
+  sh "bundle package"
+
+  RakeCompilerDock.sh <<-EOT
+    mkdir ~/.gem &&
+    (cp build/gem/gem-*.pem ~/.gem/ || true) &&
+    bundle install --local &&
+    rake cross native gem RUBY_CC_VERSION=2.4.0:2.3.0:2.2.2:2.1.6:2.0.0
+  EOT
+end

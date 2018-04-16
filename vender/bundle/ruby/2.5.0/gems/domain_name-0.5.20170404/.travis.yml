@@ -1,0 +1,21 @@
+language: ruby
+rvm:
+  - 1.8.7
+  - ree
+  - 1.9.3
+  - 2.0.0
+  - 2.1.9
+  - 2.2.5
+  - 2.3.1
+  - ruby-head
+  - jruby-1.7.20
+  - jruby-9.0.5.0
+  - jruby-head
+  - rbx-2
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
+    - rvm: rbx-2
+before_install:
+  - gem update bundler

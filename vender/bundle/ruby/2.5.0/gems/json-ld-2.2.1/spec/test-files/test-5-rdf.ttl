@@ -1,0 +1,7 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://manu.sporny.org/#me> a foaf:Person;
+   foaf:knows [ a foaf:Person;
+     foaf:name "Gregg Kellogg"];
+   foaf:name "Manu Sporny" .

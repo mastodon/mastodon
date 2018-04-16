@@ -1,0 +1,60 @@
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 2.0
+  - 2.1
+  - 2.2.2
+  - 2.3.0
+  - 2.4.0
+  - 2.5.0
+  - rbx
+env:
+  - ACTIVERECORD=3.0.0
+  - ACTIVERECORD=3.1.0
+  - ACTIVERECORD=3.2.0
+  - ACTIVERECORD=4.0.0
+  - ACTIVERECORD=4.1.0
+  - ACTIVERECORD=4.2.0
+  - ACTIVERECORD=5.0.0
+  - ACTIVERECORD=5.1.1
+matrix:
+  exclude:
+    - rvm: 2.0
+      env: ACTIVERECORD=5.0.0
+    - rvm: 2.0
+      env: ACTIVERECORD=5.1.1
+    - rvm: 2.1
+      env: ACTIVERECORD=5.0.0
+    - rvm: 2.1
+      env: ACTIVERECORD=5.1.1
+    - rvm: 2.4.0
+      env: ACTIVERECORD=3.0.0
+    - rvm: 2.4.0
+      env: ACTIVERECORD=3.1.0
+    - rvm: 2.4.0
+      env: ACTIVERECORD=3.2.0
+    - rvm: 2.4.0
+      env: ACTIVERECORD=4.0.0
+    - rvm: 2.4.0
+      env: ACTIVERECORD=4.1.0
+    - rvm: 2.5.0
+      env: ACTIVERECORD=3.0.0
+    - rvm: 2.5.0
+      env: ACTIVERECORD=3.1.0
+    - rvm: 2.5.0
+      env: ACTIVERECORD=3.2.0
+    - rvm: 2.5.0
+      env: ACTIVERECORD=4.0.0
+    - rvm: 2.5.0
+      env: ACTIVERECORD=4.1.0
+    - rvm: rbx
+      env: ACTIVERECORD=5.0.0
+    - rvm: rbx
+      env: ACTIVERECORD=5.1.1
+  allow_failures:
+    - rvm: rbx
+  fast_finish: true
+addons:
+  code_climate:
+    repo_token: a90435ed4954dd6e9f3697a20c5bc3754f67d94703f870e8fc7b00f69f5b2d06

@@ -1,0 +1,36 @@
+= Source Repository
+
+Rake is currently hosted at github. The github web page is
+https://github.com/ruby/rake . The public git clone URL is
+
+  git://github.com/ruby/rake.git
+
+= Running the Rake Test Suite
+
+If you wish to run the unit and functional tests that come with Rake:
+
+* +cd+ into the top project directory of rake.
+* Install gem dependency using bundler:
+
+    bundle install  # Install bundler, minitest and rdoc
+
+* Type one of the following:
+
+    rake            # If you have run rake's tests
+
+= Issues and Bug Reports
+
+Feel free to submit commits or feature requests.  If you send a patch,
+remember to update the corresponding unit tests.  In fact, I prefer
+new feature to be submitted in the form of new unit tests.
+
+For other information, feel free to ask on the ruby-talk mailing list.
+
+If you have found a bug in rake please try with the latest version of rake
+before filing an issue.  Also check History.rdoc for bug fixes that may have
+addressed your issue.
+
+When submitting pull requests please check the rake Travis-CI page for test
+failures:
+
+  https://travis-ci.org/ruby/rake

@@ -1,0 +1,23 @@
+<% if @total_size > @count %>
+  <ul class="pagination pull-right flip">
+    <li class="<%= 'disabled' if @current_page == 1 %>">
+      <a href="<%= url %>?page=1">&laquo;</a>
+    </li>
+    <% if @current_page > 1 %>
+      <li>
+        <a href="<%= url %>?<%= qparams(page: @current_page - 1) %>"><%= @current_page - 1 %></a>
+      </li>
+    <% end %>
+    <li class="disabled">
+      <a href="<%= url %>?<%= qparams(page: @current_page) %>"><%= @current_page %></a>
+    </li>
+    <% if @total_size > @current_page * @count %>
+      <li>
+        <a href="<%= url %>?<%= qparams(page: @current_page + 1) %>"><%= @current_page + 1 %></a>
+      </li>
+    <% end %>
+    <li class="<%= 'disabled' if @total_size <= @current_page * @count %>">
+      <a href="<%= url %>?<%= qparams(page: (@total_size.to_f / @count).ceil) %>">&raquo;</a>
+    </li>
+  </ul>
+<% end %>

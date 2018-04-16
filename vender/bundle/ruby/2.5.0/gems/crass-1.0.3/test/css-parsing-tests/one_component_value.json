@@ -1,0 +1,27 @@
+[
+
+"", ["error", "empty"],
+" ", ["error", "empty"],
+"/**/", ["error", "empty"],
+"  /**/\t/* a */\n\n", ["error", "empty"],
+
+".", ".",
+"a", ["ident", "a"],
+"/**/ 4px", ["dimension", "4", 4, "integer", "px"],
+"rgba(100%, 0%, 50%, .5)", ["function", "rgba",
+    ["percentage", "100", 100, "integer"], ",", " ",
+    ["percentage", "0", 0, "integer"], ",", " ",
+    ["percentage", "50", 50, "integer"], ",", " ",
+    ["number", ".5", 0.5, "number"]
+],
+
+" /**/ { foo: bar; @baz [)", ["{}",
+    " ", ["ident", "foo"], ":", " ", ["ident", "bar"], ";", " ",
+    ["at-keyword", "baz"], " ", ["[]",
+        ["error", ")"]
+    ]
+],
+
+".foo", ["error", "extra-input"]
+
+]

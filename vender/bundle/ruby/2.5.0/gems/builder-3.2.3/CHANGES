@@ -1,0 +1,107 @@
+= Change Log
+
+== Version 3.2.0
+
+* Ruby 2.0 compatibility changes.
+
+* Allow single quoted attributes.
+
+== Version 3.1.0
+
+* Included the to_xs arity patch needed for weird Rails compatibility
+  issue.
+
+* Escaping newlines in attributes now.
+
+* Allow method caching
+
+== Version 3.0.0
+
+* Ruby 1.9 compatiblity issues.
+
+== Version 2.2.0
+
+* Applied patch from Thijs van der Vossen to allow UTF-8 encoded
+  output when the encoding is UTF-8 and $KCODE is UTF8.
+
+== Version 2.1.2
+
+* Fixed bug where private methods in kernel could leak through using
+  tag!().  Thanks to Hagen Overdick for finding and diagnosing this
+  bug.
+
+== Version 2.1.1
+
+* Fixed typo in XmlMarkup class docs (ident => indent). (from Martin
+  Fowler).
+* Removed extra directory indirection from legacy CVS to SVN move.
+* Removed some extraneous tabs from source.
+* Fixed test on private methods in blankslate to differentiate between
+  targetted and untargetted private methods.
+* Removed legacy capture of @self in XmlBase (@self was used back when
+  we used instance eval).
+* Added additional tests for global functions (both direct and included).
+
+== Version 2.1.0
+
+* Fixed bug in BlankSlate where including a module into Object could
+  cause methods to leak into BlankSlate.
+* Made BlankSlate available as its own gem.  Currently the builder gem
+  still directly includes the BlankSlate code.
+* Added reveal capability to BlankSlate.
+
+== Version 2.0.0
+
+* Added doc directory
+* Added unit tests for XmlEvents.
+* Added XChar module and used it in the _escape method.
+* Attributes are now quoted by default when strings.  Use Symbol
+  attribute values for unquoted behavior.
+
+== Version 1.2.4
+
+* Added a cdata! command to an XML Builder (from Josh Knowles).
+
+== Version 1.2.3
+
+The attributes in the <?xml ... ?> instruction will be ordered:
+version, encoding, standalone.
+
+== Version 1.2.2
+
+Another fix for BlankSlate.  The Kernal/Object traps added in 1.2.1
+failed when a method was defined late more than once.  Since the
+method was already marked as removed, another attempt to undefine it
+raised an error.  The fix was to check the list of instance methods
+before attempting the undef operation.  Thanks to Florian Gross and
+David Heinemeier Hansson for the patch.
+
+== Version 1.2.1
+
+BlankSlate now traps method definitions in Kernel and Object to avoid
+late method definitions inadvertently becoming part of the definition
+of BlankSlate as well.
+
+== Version 1.2.0
+
+Improved support for entity declarations by allowing nested
+declarations and removal of the attribute processing.
+
+Added namespace support.
+
+== Version 1.1.0
+
+Added support for comments, entity declarations and processing instructions.
+
+== Version 1.0.0
+
+Removed use of <tt>instace_eval</tt> making the use of XmlMarkup much
+less prone to error.
+
+== Version 0.1.1
+
+Bug fix.
+
+== Version 0.1.0
+
+Initial version release.

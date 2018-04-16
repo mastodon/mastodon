@@ -1,0 +1,13 @@
+source "https://rubygems.org"
+
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+gem "webpacker", path: ".."
+
+gem "rails", github: "rails/rails"
+gem "arel", github: "rails/arel"
+gem "rake", ">= 11.1"
+gem "rubocop", ">= 0.49", require: false
+gem "rack-proxy", require: false
+gem "minitest", "~> 5.0"
+gem "byebug"

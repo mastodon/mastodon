@@ -1,0 +1,78 @@
+term
+  name == 'value'
+  name != 'value'
+terms
+  name == ['value1', 'value2']   plain
+  name != ['value1', 'value2']
+
+  name(:&) == ['value1', 'value2']   or
+  name(:|) == ['value1', 'value2']   and
+  name(:b) == ['value1', 'value2']   bool
+  name(:f) == ['value1', 'value2']   fielddata
+regexp
+  name == /regexp/
+  name =~ /regexp/
+  name != /regexp/
+  name !~ /regexp/
+  name(:anystring, :intersection) == /regexp/
+prefix
+  name =~ 'pref'
+  name !~ 'pref'
+
+exists
+  name?
+missing
+  !name
+  !name?
+  name == nil
+
+numeric_range Numeric
+range Other
+  date >= Date.today
+  date > Date.today
+  date <= Date.today
+  date < Date.today
+
+  date == (2.days.ago..3.days.since)   ()
+  date == [2.days.ago..3.days.since]   []
+
+bool
+  must(name == 'name', email == 'email')
+    .should(name == 'name', email == 'email')
+    .must_not(name == 'name', email == 'email')
+and
+  (name == 'name') & (email == 'email')
+or
+  (name == 'name') | (email == 'email')
+not
+  !(name == 'name')
+  email != 'email'
+
+script s()
+match all
+  match_all
+
+has child
+  has_child('type').query()
+  has_child('type').filter()
+has parent
+  has_parent('type').query()
+  has_parent('type').filter()
+nested
+  name.nested()
+
+query q()
+type
+  .types()
+
+geo bounding box
+geo distance
+geo distance range
+geo polygon
+geoshape
+geohash cell
+
+indices
+ids
+
+limit

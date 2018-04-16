@@ -1,0 +1,249 @@
+0.8.0
+
+  * Add Temple::StaticAnalyzer to analyze Ruby expressions
+  * Support newlines in Temple::Filters::StaticAnalyzer
+
+0.7.8
+
+  * Fix an warning in StaticAnalyzer
+
+0.7.7
+
+  * Add Temple::Filters::StaticAnalyzer, Temple::Filters::StringSplitter
+  * Freeze string literals
+
+0.7.6
+
+  * EngineDSL - add support for use(:Filter) { FilterClassName }
+
+0.7.5
+
+  * HTML::Pretty Fix indentation issue (https://github.com/slim-template/slim-rails/issues/78)
+
+0.7.4
+
+  * EngineDSL: allow to replace/remove with regexp
+  * Fix deprecation warning (#83)
+
+0.7.3
+
+  * Temple::ERB::Trimming - replace option trim_mode with trim and switch to erubis-like trimming
+
+0.7.2
+
+  * Remove Filters::StaticFreezer, the generator does the freezing
+
+0.7.1
+
+  * Rename *Hash to *Map
+  * Add Filters::StaticFreezer
+
+0.7.0
+
+  * Drop Ruby 1.8.7 support
+  * EngineDSL: Remove option filter
+  * HTML: Deprecate :html4, :html5 formats
+  * HTML: Add format :xml
+  * Rename DefaultOptions to ClassOptions
+  * Deprecate default_options in favor of options
+  * Add Utils.indent_dynamic
+
+0.6.10
+
+  * Tilt template: Support :outvar and save/restore buffer to make the behaviour compatible with ERB
+
+0.6.9
+
+  * HTML::Pretty: Fix wrong line numbers
+  * Tilt template: Don't overwrite buffer always
+  * Generator: add preamble and postamble which do nothing
+  * Tilt template: don't overwrite streaming option
+  * OptionHash: inherit valid keys
+  * temple/html/safe: add poor man's html_safe? implementation (not required automatically)
+  * Temple::Mixins::GrammarDSL - Add some missing match? methods
+  * Temple::Utils.escape_html_safe - Add parameter safe
+
+0.6.8
+
+  * HTML::Fast add svg doctype
+  * Render standalone html 5 attributes
+
+0.6.7
+
+  * HTML::Pretty - change some block level tags
+  * Reduce memory allocations in immutable hash
+
+0.6.6
+
+  * Use default encoding utf-8
+  * Escape also '
+  * Try to load escape_utils by default
+
+0.6.5
+
+  * Added Filters::CodeMerger
+  * Added Filters::Encoding
+  * Added Filters::RemoveBOM
+  * Added Generators::ERB
+
+0.6.4
+
+  * Check for ActionView instead of Rails (#72)
+
+0.6.3
+
+  * Fix HTML escaping for HTML::Pretty (Issue #69)
+
+0.6.2
+
+  * [:html, :js, code] abstraction added
+
+0.6.1
+
+  * HTML::Pretty improved
+
+0.6.0
+
+  * HTML::AttributeMerger: rename option :attr_delimiter to :merge_attrs
+  * HTML: rename option :attr_wrapper to :attr_quote
+
+0.5.5
+
+  * HTML pretty: Do not remove empty lines, add newline after doctype
+
+0.5.4
+
+  * HTML::AttributeMerger fixed, it didn't remove first empty attribute values
+  * Add HTML::AttributeRemover back, :remove_empty_attrs must be an Array of Strings now
+    of the attributes to be removed if empty
+  * Simplify [:case] expression grammar
+  * Ignore parameter :outvar by sinatra since sinatra assumes also that the buffer is a String,
+    they should set :buffer and :generator explicitly if they need the access
+
+0.5.3
+
+  * Only print an message if invalid options are passed to Temple filters or engines
+    since many libraries seem to use Slim and Temple in an incorrect way
+
+0.5.2
+
+  * Fix the :outvar problem really
+
+0.5.1
+
+  * Support Sinatra :outvar option in Tilt template
+
+0.5.0
+
+  * Added exception Temple::FilterError which should be thrown by filters
+  * Added Temple::Parser as default base class for parsers
+  * escape_html doesn't escape / anymore
+  * HTML::AttributeSorter uses stable sorting now
+  * HTML::AttributeRemover removed (Was too Slim specific)
+  * Engine option :chain removed
+  * Option validation implemented (Use define_options in your filters)
+  * Deprecated options implemented (Use deprecated_options in your filters)
+  * ThreadOptions added, Method #with_options
+
+0.4.1
+
+  * Generators: produce optimized code
+  * remove deprecated method EngineDSL#wildcard
+  * Set tilt template default_mime_type to text/html
+  * HTML: Support conditional comments [:html, :condcomment, ...]
+
+0.4.0
+
+  * Split Temple::HTML::AttributeMerger in AttributeSorter,
+    AttributeMerger and AttributeRemover
+  * Fix issue #58
+
+0.3.5
+
+  * Temple::HTML::Pretty improved
+  * :sort_attrs option (default: true) added to HTML::AttributeMerger;
+    if set to false, the attributes will appear in the insertion order
+  * Temple::Mixins::EngineDSL api changed ("wildcard" is deprecated, use "use" instead)
+  * Temple::Mixins::CompiledDispatcher supports arbitrary levels now
+  * Don't use gsub! on incoming strings (#57)
+  * Fix newlines in erb parser (#46)
+
+0.3.4
+
+  * Bugfix release (0.3.3 was yanked)
+
+0.3.3
+
+  * Support for rails 3.1 streaming
+  * Add EngineDSL#wildcard
+  * HTML::Fast/Pretty supports only :xhtml and :html formats from now on
+  * HTML::AttributeMerger extracted from HTML::Fast
+
+0.3.1, 0.3.2
+
+  * Don't modify strings destructively with gsub! in HTML::Pretty.
+    This doesn't work with Rails safe buffers in version >= 3.0.8.
+
+0.3.0
+
+  * Compiled expression dispatching
+  * Method temple_dispatch is obsolete
+  * EscapeHTML renamed to Escapable
+  * Control flow filter added
+  * HTML filter: Tag and attribute expressions changed
+  * Expression grammar added
+  * Expression validator added
+  * Debugger filter removed (Validator is better replacement)
+
+0.2.0
+
+  * Add mutable/immutable hashes for option inheritance
+  * Rails template support added
+  * Rename Filter#compile to Filter#call
+  * Engine chain reconfiguration (append, prepend, replace, ...)
+  * HTML filter: Don't output empty attributes
+  * Escape expression changed [:escape, true/false, Expression]
+
+0.1.8
+
+  * HTML filter: Support :format => :html (alias for :html5)
+
+0.1.7
+
+  * HTML::Pretty indents dynamic content only if it doesn't contain
+    preformatted tags
+
+0.1.6
+
+  * Flexible chain building
+
+0.1.5
+
+  * Default options for engines
+
+0.1.4
+
+  * HTML::Pretty added
+  * Tilt-based template class added
+  * Escaping filter added
+  * Filter base class added
+  * Fix capturing (Issue #15)
+
+0.1.3
+
+  * Close issue #10
+  * Refactoring
+
+0.1.2
+
+  * Add HTML filter
+  * Remove Escapable filter
+  * Add method for checking if expression is empty
+
+0.1.1
+
+  * Test added
+
+0.1.0
+
+  * Initial release

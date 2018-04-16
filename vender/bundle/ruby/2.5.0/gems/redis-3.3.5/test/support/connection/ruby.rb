@@ -1,0 +1,1 @@
+require "support/wire/thread"

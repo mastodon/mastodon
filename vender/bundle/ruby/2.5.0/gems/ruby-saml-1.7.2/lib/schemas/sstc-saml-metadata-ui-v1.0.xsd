@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+  targetNamespace="urn:oasis:names:tc:SAML:metadata:ui"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+  xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified"
+  blockDefault="substitution"
+  version="1.0">
+
+  <annotation>
+    <documentation>
+      Document title: Metadata Extension Schema for SAML V2.0 Metadata Extensions for Login and Discovery User Interface Version 1.0
+      Document identifier: sstc-saml-metadata-ui-v1.0.xsd
+      Location: http://docs.oasis-open.org/security/saml/Post2.0/
+      Revision history:
+      16 November 2010:
+        Added Keywords element/type.
+      01 November 2010
+        Changed filename.
+      September 2010:
+        Initial version.
+    </documentation>
+  </annotation>
+
+  <import namespace="urn:oasis:names:tc:SAML:2.0:metadata"
+    schemaLocation="saml-schema-metadata-2.0.xsd"/>
+  <import namespace="http://www.w3.org/XML/1998/namespace"
+    schemaLocation="xml.xsd"/>
+
+  <element name="UIInfo" type="mdui:UIInfoType" />
+  <complexType name="UIInfoType">
+    <choice minOccurs="0" maxOccurs="unbounded">
+      <element ref="mdui:DisplayName"/>
+      <element ref="mdui:Description"/>
+      <element ref="mdui:Keywords"/>
+      <element ref="mdui:Logo"/>
+      <element ref="mdui:InformationURL"/>
+      <element ref="mdui:PrivacyStatementURL"/>
+      <any namespace="##other" processContents="lax"/>
+    </choice>
+  </complexType>
+
+  <element name="DisplayName" type="md:localizedNameType"/>
+  <element name="Description" type="md:localizedNameType"/>
+  <element name="InformationURL" type="md:localizedURIType"/>
+  <element name="PrivacyStatementURL" type="md:localizedURIType"/>
+
+  <element name="Keywords" type="mdui:KeywordsType"/>
+  <complexType name="KeywordsType">
+    <simpleContent>
+      <extension base="mdui:listOfStrings">
+        <attribute ref="xml:lang" use="required"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  
+  <simpleType name="listOfStrings">
+    <list itemType="string"/>
+  </simpleType>
+
+  <element name="Logo" type="mdui:LogoType"/>
+  <complexType name="LogoType">
+    <simpleContent>
+      <extension base="anyURI">
+        <attribute name="height" type="positiveInteger" use="required"/>
+        <attribute name="width" type="positiveInteger" use="required"/>
+        <attribute ref="xml:lang"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+  <element name="DiscoHints" type="mdui:DiscoHintsType"/>
+  <complexType name="DiscoHintsType">
+    <choice minOccurs="0" maxOccurs="unbounded">
+      <element ref="mdui:IPHint"/>
+      <element ref="mdui:DomainHint"/>
+      <element ref="mdui:GeolocationHint"/>
+      <any namespace="##other" processContents="lax"/>
+    </choice>
+  </complexType>
+
+  <element name="IPHint" type="string"/>
+  <element name="DomainHint" type="string"/>	
+  <element name="GeolocationHint" type="anyURI"/>
+
+</schema>
+

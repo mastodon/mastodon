@@ -1,0 +1,22 @@
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/idn-ruby-0.1.0/ext
+/home/mastodon/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180408-28175-1ljhrze.rb extconf.rb
+checking for -lidn... yes
+checking for idna.h... yes
+checking for punycode.h... yes
+checking for stringprep.h... yes
+creating Makefile
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/idn-ruby-0.1.0/ext
+make "DESTDIR=" clean
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/idn-ruby-0.1.0/ext
+make "DESTDIR="
+compiling idn.c
+compiling idna.c
+compiling punycode.c
+compiling stringprep.c
+linking shared-object idn.so
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/idn-ruby-0.1.0/ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 idn.so ./.gem.20180408-28175-js1j4b

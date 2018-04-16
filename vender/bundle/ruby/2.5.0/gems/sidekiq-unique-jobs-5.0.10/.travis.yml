@@ -1,0 +1,38 @@
+sudo: false
+language: ruby
+cache: bundler
+# before_install:
+#   - rvm get head
+#   - gem update --system
+#   - gem install bundler
+services:
+  - redis-server
+script:
+  - if [[ "${STYLE}" = "true" ]]; then bundle exec rubocop - P; fi;
+  - bundle exec rspec spec
+  - if [[ "${STYLE}" = "true" ]]; then CODECLIMATE_REPO_TOKEN=88e524e8f638efe690def7a6e2c72b1a9db5cdfa74548921b734d609a5858ee5 bundle exec codeclimate-test-reporter; fi;
+rvm:
+  - 2.4.1
+  - 2.3.2
+  - jruby-9.1.8.0
+env: STYLE=false
+gemfile:
+  - gemfiles/sidekiq_develop.gemfile
+  - gemfiles/sidekiq_4.0.gemfile
+  - gemfiles/sidekiq_4.1.gemfile
+  - gemfiles/sidekiq_4.2.gemfile
+  - gemfiles/sidekiq_5.0.gemfile
+
+notifications:
+  email:
+    recipients:
+      - mikael@zoolutions.se
+matrix:
+  fast_finish: true
+  include:
+    - rvm: 2.4.1
+      gemfile: gemfiles/sidekiq_develop.gemfile
+      env: STYLE=true
+addons:
+  code_climate:
+    repo_token: 88e524e8f638efe690def7a6e2c72b1a9db5cdfa74548921b734d609a5858ee5

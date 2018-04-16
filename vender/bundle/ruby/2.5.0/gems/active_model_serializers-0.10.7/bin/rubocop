@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+#
+# Usage:
+#   bin/rubocop [-A|-t|-h]
+#   bin/rubocop [file or path] [cli options]
+#
+# Options:
+#  Autocorrect    -A
+#  AutoGenConfig  -t
+#  Usage          -h,--help,help
+
+set -e
+
+case $1 in
+  -A)
+     echo "Rubocop autocorrect is ON" >&2
+     bundle exec rake -f lib/tasks/rubocop.rake rubocop:auto_correct
+     ;;
+
+  -t)
+     echo "Rubocop is generating a new TODO" >&2
+     bundle exec rake -f lib/tasks/rubocop.rake rubocop:auto_gen_config
+     ;;
+
+  -h|--help|help)
+     sed -ne '/^#/!q;s/.\{1,2\}//;1d;p' < "$0"
+     ;;
+
+  *)
+     # with no args, run vanilla rubocop
+     # else assume we're passing in arbitrary arguments
+     if [ -z "$1" ]; then
+       bundle exec rake -f lib/tasks/rubocop.rake rubocop
+     else
+       bundle exec rubocop "$@"
+     fi
+     ;;
+esac

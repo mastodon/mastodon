@@ -1,0 +1,35 @@
+# Example Rakefile -*- ruby -*-
+# Using the power of Ruby
+
+task :default => [:main]
+
+def ext(fn, newext)
+  fn.sub(/\.[^.]+$/, newext)
+end
+
+SRCFILES = Dir['*.c']
+OBJFILES = SRCFILES.collect { |fn| ext(fn,".o") }
+
+OBJFILES.each do |objfile|
+  srcfile = ext(objfile, ".c")
+  file objfile => [srcfile] do |t|
+    sh "gcc #{srcfile} -c -o #{t.name}"
+  end
+end
+
+file "main" => OBJFILES do |t|
+  sh "gcc -o #{t.name} main.o a.o b.o"
+end
+
+task :clean do
+  rm_f FileList['*.o']
+  Dir['*~'].each { |fn| rm_f fn }
+end
+
+task :clobber => [:clean] do
+  rm_f "main"
+end
+
+task :run => ["main"] do
+  sh "./main"
+end

@@ -1,0 +1,888 @@
+#id-1
+  = render partial: 'test'
+
+  %ul#id-2.class-1.class-2
+
+  %section#id-3
+    .class-3 string-1
+    .class-4
+      .class-5 string-2
+      %pre.class-6(readonly="readonly" style='width:1px')
+        :preserve
+          .class-7 string-3
+
+      .class-8 string-4
+      %pre.class-9(readonly="readonly" style='width:2px')
+        :preserve
+          .class-10 string-5
+      %p
+        Hello world
+
+      .class-12 string-6
+      %pre.class-13(readonly="readonly" style='width:3px')
+        :preserve
+          .class-14 string-7
+      %p
+        Hello world
+
+  %section#id-4
+    .class-17 string-8
+    .class-18
+      .class-19 string-9
+      %pre.class-20(readonly="readonly" style='width:4px')
+        :preserve
+          .class-21 string-10
+
+      .class-22 string-11
+      %pre.class-23(readonly="readonly" style='width:5px')
+        :preserve
+          .class-24 string-12
+
+      .class-25.class-26 Hello world
+      %pre.class-27(readonly="readonly" style='width:6px')
+        :preserve
+          .class-28.class-29 Hello world
+
+  %section#id-5
+    .class-30 string-13
+    .class-31 string-14
+    .class-32
+      %pre.class-33(readonly="readonly" style='width:7px')
+        :preserve
+          .class-34 string-15
+
+  %section#id-6
+    .class-35 string-16
+    %ul.class-36.class-37
+      %li
+        = link_to 'link', '#'
+      %li
+        = link_to 'link', '#', class: 'klass'
+      %li
+        = link_to 'link', '#', class: 'klass'
+      %li
+        = link_to 'link', '#', class: 'klass'
+      %li
+        = link_to 'link', '#', class: 'klass'
+    .class-38
+      %p text-17
+      %p text-18
+      %pre.class-41(readonly="readonly" style='width:8px')
+        :preserve
+          %ul.class-42.class-43
+            %li
+              = link_to 'link', '#'
+            %li
+              = link_to 'link', '#', class: 'klass'
+            %li
+              = link_to 'link', '#', class: 'klass'
+            %li
+              = link_to 'link', '#', class: 'klass'
+            %li
+              = link_to 'link', '#', class: 'klass'
+
+  %section#id-7
+    .class-44 string-19
+    %ul.class-45.class-46
+      %li#id-8
+        = link_to 'link', '#', class: 'klass1 klass2'
+        .class-47.class-48.class-49
+          Hello world
+    .class-50
+      %pre.class-51(readonly="readonly" style='width:9px')
+        :preserve
+          %ul.class-52.class-53
+            %li#id-10
+              = link_to 'link',
+                '#id-11',
+                class: 'klass1 klass2'
+              .class-54.class-55.class-56
+                Hello world
+
+  %section#id-12
+    .class-57 string-20
+    %ul.class-58.class-59
+      %li
+        = link_to 'link', '#'
+        .class-60 string-21
+        .class-61 string-22
+      %li
+        = link_to 'link', '#'
+        .class-62 string-23
+        .class-63 string-24
+    .class-64
+      %pre.class-65(readonly="readonly" style='width:10px')
+        :preserve
+          %ul.class-66.class-67
+            %li
+              = link_to 'link', '#'
+              .class-68 string-25
+              .class-69 string-26
+            %li
+              = link_to 'link', '#'
+              .class-70 string-27
+              .class-71 string-28
+
+  %section#id-13
+    .class-72 string-29
+    %ul.class-73.class-74
+      %li
+        = link_to 'link', '#'
+        .class-75 string-30
+        .class-76 string-31
+      %li
+        = link_to 'link', '#'
+        = image_tag 'https://google.com/favicon.ico', class: 'klass1'
+        .class-78 string-32
+      %li
+        = link_to 'link', '#'
+        = image_tag 'https://google.com/favicon.ico', class: 'klass1'
+        .class-80
+          .class-81 string-33
+          .class-82 string-34
+      %li
+        = link_to 'link', '#'
+        = image_tag 'https://google.com/favicon.ico', class: 'klass1'
+        .class-84
+          .class-85 string-35
+          .class-86 string-36
+      %li
+        = link_to 'link', '#'
+        = image_tag 'https://google.com/favicon.ico', class: 'klass1'
+        .class-88 string-37
+        .class-89 string-38
+    .class-90
+      %pre.class-91(readonly="readonly" style='width:11px')
+        :preserve
+          %ul.class-92.class-93
+            %li
+              = link_to 'link', '#'
+              .class-94 string-39
+              .class-95 string-40
+            %li
+              = link_to 'link', '#'
+              = image_tag class: 'klass1'
+              .class-96 string-41
+            %li
+              = link_to 'link', '#'
+              = image_tag class: 'klass1'
+              .class-97
+                .class-98 string-42
+                .class-99 string-43
+            %li
+              = link_to 'link', '#'
+              = image_tag class: 'klass1'
+              .class-100
+                .class-101 string-44
+                .class-102 string-45
+            %li
+              = link_to 'link', '#'
+              = image_tag class: 'klass1'
+              .class-103 string-46
+              .class-104 string-47
+
+  %section#id-14
+    .class-105 string-48
+    %ul.class-106.class-107.class-108
+      %li
+        = link_to 'link', '#'
+      %li
+        = link_to 'link', '#'
+      %li
+        = link_to 'link', '#'
+      %li
+        = link_to 'link', '#'
+
+    .class-109
+      %pre.class-110(readonly="readonly" style='width:12px')
+        :preserve
+          %ul.class-111.class-112.class-113
+            %li
+              = link_to 'link', '#'
+            %li
+              = link_to 'link', '#'
+
+  %section#id-15
+    .class-114 string-49
+    %ul.class-115.class-116.class-117
+      %li
+        = link_to 'link', '#', class: 'klass'
+        = image_tag 'https://github.com/favicon.ico', class: 'klass'
+        .class-119 string-50
+      %li
+        = link_to 'link', '#', class: 'klass'
+        = image_tag 'https://github.com/favicon.ico', class: 'klass'
+        .class-121 string-51
+      %li
+        = link_to 'link', '#', class: 'klass'
+        = image_tag 'https://github.com/favicon.ico', class: 'klass'
+        .class-123 string-52
+      %li
+        = link_to 'link', '#', class: 'klass'
+        = image_tag 'https://github.com/favicon.ico', class: 'klass'
+        .class-125 string-53
+
+    .class-126
+      %pre.class-127(readonly="readonly" style='width:13px')
+        :preserve
+          %ul.class-128.class-129.class-130
+            %li
+              = link_to 'link', '#'
+              = image_tag clsss: 'klass'
+              .class-131 string-54
+            %li
+              = link_to 'link', '#'
+              = image_tag clsss: 'klass'
+              .class-132 string-55
+
+  %section#id-16
+    .class-133 string-56
+    %ul.class-134.class-135
+      %li= link_to 'link', '#'
+      %li= link_to 'link', '#'
+      %li= link_to 'link', '#'
+    .class-136
+      %pre.class-137(readonly="readonly" style='width:14px')
+        :preserve
+          %ul.class-138.class-139
+            %li= link_to 'link', '#'
+            %li= link_to 'link', '#'
+            %li= link_to 'link', '#'
+
+  %section#id-17
+    .class-140 string-57
+    .class-141
+      %ul.class-142
+        %li
+          = image_tag 'https://github.com/favicon.ico'
+        %li
+          = image_tag 'https://github.com/favicon.ico'
+        %li
+          = image_tag 'https://github.com/favicon.ico'
+
+
+      %pre.class-146(readonly="readonly" style='width:15px')
+        :preserve
+          %ul.class-147
+            %li
+              = image_tag ''
+            %li
+              = image_tag ''
+            %li
+              = image_tag ''
+
+  %section#id-18
+    .class-148 string-58
+    .class-149
+      .class-150
+        .class-151.class-152
+          = image_tag 'https://github.com/favicon.ico'
+        .class-154.class-155
+          .class-156-title string-59
+          Hello world
+
+      %pre.class-157(readonly="readonly" style='width:16px')
+        :preserve
+          .class-158
+            .class-159.class-160
+              Hello world
+            .class-161.class-162
+              Hello world
+
+      %p text-60
+
+  %section#id-19
+    .class-164 string-61
+    .class-165
+      .class-166
+        .class-167
+          = image_tag 'https://github.com/favicon.ico'
+        .class-169
+          = image_tag 'https://github.com/favicon.ico'
+        .class-171
+          = image_tag 'https://github.com/favicon.ico'
+
+        .class-173
+          .class-174-title string-62
+          str
+
+      %pre.class-175(readonly="readonly" style='width:17px')
+        :preserve
+          .class-176
+            .class-177
+              = image_tag ''
+            .class-178
+              = image_tag ''
+            .class-179
+              = image_tag ''
+            .class-180
+              content
+      %p text-63
+      %p text-64
+
+
+  %section#id-20
+    .class-182 string-65
+    .class-183
+      %ul.class-184.class-185
+        %li.class-186.class-187
+          %span.class-188 str
+        %li.class-189
+          = link_to 'link', '#', class: 'klass'
+    .class-190
+      %pre.class-191(readonly="readonly" style='width:18px')
+        :preserve
+          .class-192
+            %ul.class-193.class-194
+              %li.class-195.class-196
+                %span.class-197 str
+              %li.class-198
+                = link_to 'link', '#', class: 'klass'
+
+  %section#id-21
+    .class-199 string-66
+    .class-200
+      %ul.class-201
+        %li.class-202.class-203
+          %span.class-204 str
+        %li.class-205
+          = link_to 'link', '#', class: 'klass'
+        %li.class-206
+          = link_to 'link', '#', class: 'klass'
+    .class-207
+      %pre.class-208(readonly="readonly" style='width:19px')
+        :preserve
+          .class-209
+            %ul.class-210
+              %li.class-211.class-212
+                %span.class-213 str
+              %li.class-214
+                = link_to 'link', '#', class: 'klass'
+              %li.class-215
+                = link_to 'link', '#', class: 'klass'
+
+  %section#id-22
+    .class-216 string-67
+    %ul.class-217
+      %li.class-218
+        = link_to 'link', '#'
+      %li
+        = link_to 'link', '#'
+      %li
+        = link_to 'link', '#'
+    .class-219
+      %pre.class-220(readonly="readonly" style='width:20px')
+        :preserve
+          %ul.class-221
+            %li.class-222
+              = link_to 'link', '#'
+            %li
+              = link_to 'link', '#'
+            %li
+              = link_to 'link', '#'
+
+      %p text-68
+
+  %section#id-23
+    .class-223 string-69
+    %ul.class-224
+      %li
+        = link_to 'link', '#'
+      %li
+        = link_to 'link', '#'
+      %li
+        = link_to 'link', '#'
+    .class-225
+      %pre.class-226(readonly="readonly" style='width:21px')
+        :preserve
+          %ul.class-227
+            %li
+              = link_to 'link', '#'
+            %li
+              = link_to 'link', '#'
+            %li
+              = link_to 'link', '#'
+
+  %section#id-24
+    .class-228 string-70
+    .class-229
+      %a(href="#" class="button") Hello world
+      %p text-71
+      %pre.class-230(readonly="readonly" style='width:22px')
+        :preserve
+          = link_to 'link', '#', class: 'klass'
+
+      %a(href="#" class="button min") Hello world
+      %pre.class-231(readonly="readonly" style='width:23px')
+        :preserve
+          = link_to 'link', '#', class: 'klass'
+
+  %section#id-25
+    .class-232 string-72
+    .class-233
+      %a(href="#" class="klass") Hello world
+      %p text-73
+      %pre.class-234(readonly="readonly" style='width:24px')
+        :preserve
+          = link_to 'link', '#',
+            class: 'klass'
+
+      %a(href="#" class="klass") Hello world
+      %pre.class-235(readonly="readonly" style='width:25px')
+        :preserve
+          = link_to 'link', '#',
+            class: 'klass'
+
+      %a(href="#" class="klass") Hello world
+      %pre.class-236(readonly="readonly" style='width:26px')
+        :preserve
+          = link_to 'link', '#',
+            class: 'klass'
+
+  %section#id-26
+    .class-237 string-74
+    .class-238
+      %a(href="#" class="klass") Hello world
+      %p text-75
+      %pre.class-239(readonly="readonly" style='width:27px')
+        :preserve
+          = link_to 'link', '#',
+          class: 'klass'
+      %a(href="#" class="klass") Hello world
+      %pre.class-240(readonly="readonly" style='width:28px')
+        :preserve
+          = link_to 'link', '#',
+          class: 'klass'
+      %a(href="#" class="klass") Hello world
+      %pre.class-241(readonly="readonly" style='width:29px')
+        :preserve
+          = link_to 'link', '#',
+          class: 'klass'
+
+  %section#id-27
+    .class-242 string-76
+    .class-243
+      %a(href="#" class="klass") Hello world
+      %p text-77
+      %pre.class-244(readonly="readonly" style='width:30px')
+        :preserve
+          = link_to 'link', '#',
+          class: 'klass'
+      %a(href="#" class="klass") Hello world
+      %pre.class-245(readonly="readonly" style='width:31px')
+        :preserve
+          = link_to 'link', '#',
+          class: 'klass'
+      %a(href="#" class="klass") Hello world
+      %pre.class-246(readonly="readonly" style='width:32px')
+        :preserve
+          = link_to 'link', '#',
+          class: 'klass'
+
+  %section#id-28
+    .class-247 string-78
+    %a(href="#" class="klass")
+      str
+      %span.class-248
+        str
+        %b text-79
+        str
+    .class-249
+      %pre.class-250(readonly="readonly" style='width:33px')
+        :preserve
+          = link_to 'link', '#'
+          %span.class-251
+            str
+            %b text-80
+            str
+
+  %section#id-29
+    .class-252 string-81
+    %label.class-253{for: 'f1_c1'}
+      %input{type: 'checkbox', id: 'f1_c1', checked: 'checked'}
+      str
+    %label.class-254{for: 'f1_c2'}
+      %input{type: 'checkbox', id: 'f1_c2'}
+      str
+    .class-255
+      %pre.class-256(readonly="readonly" style='width:34px')
+        :preserve
+          %label.class-257{for: 'f1_c1'}
+            %input{type: 'checkbox', id: 'f1_c1', checked: 'checked'}
+            str
+          %label.class-258{for: 'f1_c2'}
+            %input{type: 'checkbox', id: 'f1_c2'}
+            str
+
+    %label.class-259{for: 'f1_r1'}
+      %input{type: 'radio', name: 'form1', id: 'f1_r1', checked: 'checked'}
+      str
+    %label.class-260{for: 'f1_r2'}
+      %input{type: 'radio', name: 'form1', id: 'f1_r2'}
+      str
+    .class-261
+      %pre.class-262(readonly="readonly" style='width:35px')
+        :preserve
+          %label.class-263{for: 'f1_r1'}
+            %input{type: 'radio', name: 'form1', id: 'f1_r1', checked: 'checked'}
+            str
+          %label.class-264{for: 'f1_r2'}
+            %input{type: 'radio', name: 'form1', id: 'f1_r2'}
+            str
+
+  %section#id-30
+    .class-265 string-82
+    %ul.class-266.class-267
+      %li
+        %label.class-268{for: 'f2_c1'}
+          %input{type: 'checkbox', id: 'f2_c1', checked: 'checked'}
+          str
+      %li
+        %label.class-269{for: 'f2_c2'}
+          %input{type: 'checkbox', id: 'f2_c2'}
+          str
+    .class-270
+      %pre.class-271(readonly="readonly" style='width:36px')
+        :preserve
+          %ul.class-272.class-273
+            %li
+              %label.class-274{for: 'f2_c1'}
+                %input{type: 'checkbox', id: 'f2_c1', checked: 'checked'}
+                str
+            %li
+              %label.class-275{for: 'f2_c2'}
+                %input{type: 'checkbox', id: 'f2_c2'}
+                str
+
+    %ul.class-276.class-277
+      %li
+        %label.class-278{for: 'f2_r1'}
+          %input{type: 'radio', name: 'form2', id: 'f2_r1', checked: 'checked'}
+          str
+      %li
+        %label.class-279{for: 'f2_r2'}
+          %input{type: 'radio', name: 'form2', id: 'f2_r2'}
+          str
+    .class-280
+      %pre.class-281(readonly="readonly" style='width:37px')
+        :preserve
+          %ul.class-282.class-283
+            %li
+              %label.class-284{for: 'f2_r1'}
+                %input{type: 'radio', name: 'form2', id: 'f2_r1', checked: 'checked'}
+                str
+            %li
+              %label.class-285{for: 'f2_r2'}
+                %input{type: 'radio', name: 'form2', id: 'f2_r2'}
+                str
+
+  %section#id-31
+    .class-286 string-83
+    .class-287
+      %ul.class-288
+        %li text-84
+        %li text-85
+      %pre.class-289(readonly="readonly" style='width:38px')
+        :preserve
+          %ul.class-290
+            %li text-86
+            %li text-87
+
+      %ul.class-291.class-292
+        %li text-88
+        %li text-89
+      %pre.class-293(readonly="readonly" style='width:39px')
+        :preserve
+          %ul.class-294.class-295
+            %li text-90
+            %li text-91
+
+      %ul.class-296.class-297
+        %li text-92
+        %li text-93
+      %pre.class-298(readonly="readonly" style='width:40px')
+        :preserve
+          %ul.class-299.class-300
+            %li text-94
+            %li text-95
+
+      %ul.class-301.class-302
+        %li text-96
+        %li text-97
+      %pre.class-303(readonly="readonly" style='width:41px')
+        :preserve
+          %ul.class-304.class-305
+            %li text-98
+            %li text-99
+
+  %section#id-32
+    .class-306 string-100
+    .class-307
+      = image_tag '#'
+      = image_tag '#'
+      %pre.class-312(readonly="readonly" style='width:42px')
+        :preserve
+          = image_tag '#'
+          = image_tag '#'
+
+  %section#id-33
+    .class-315 string-101
+    .class-316
+      = image_tag '#'
+      %span.class-317 str
+      %pre.class-318(readonly="readonly" style='width:43px')
+        :preserve
+          = image_tag '#'
+          %span.class-319 str
+
+  %section#id-34
+    .class-320 string-102
+    .class-321
+      %a(href="#" class="klass")
+      %pre.class-322(readonly="readonly" style='width:44px')
+        :preserve
+          = link_to '', '#', class: 'klass'
+
+  %section#id-35
+    .class-323 string-103
+    .class-324
+      %a(href="#" class="klass")
+      %pre.class-325(readonly="readonly" style='width:45px')
+        :preserve
+          = link_to '', '#', class: 'klass'
+
+  %section#id-36
+    .class-326 string-104
+    .class-327
+      .class-328
+        %a(rel="prev" href="#")
+        %a(rel="next" href="#")
+      %pre.class-329(readonly="readonly" style='width:46px')
+        :preserve
+          .class-330
+            = link_to '', '#', rel: 'klass'
+            = link_to '', '#', rel: 'klass'
+
+  %section#id-37
+    .class-331 string-105
+    .class-332
+      .class-333
+        .class-334
+          %strong text-106
+          %span text-107
+        .class-335{ style: "width: 50%;" }
+
+      %pre.class-336{ readonly: "readonly", style: "height: 120px" }
+        :preserve
+          .class-337
+            .class-338
+              %strong text-108
+              %span text-109
+            .class-339{ style: "width: 50%;" }
+
+      .class-340.class-341
+        .class-342
+          %strong text-110
+          %span text-111
+        .class-343{ style: "width: 50%;" }
+
+      %pre.class-344{ readonly: "readonly", style: "height: 120px" }
+        :preserve
+          .class-345.class-346
+            .class-347
+              %strong text-112
+              %span text-113
+            .class-348{ style: "width: 50%;" }
+
+  %section#id-38
+    .class-349 string-114
+    .class-350
+      = render '#'
+      = render '#'
+      %pre.class-351(readonly="readonly" style='width:47px')
+        :preserve
+          = render '#'
+          = render '#'
+
+      %p text-115
+      %p text-116
+
+  %section#id-39
+    .class-353 string-117
+    .class-354
+      = link_to 'link', '#', class: 'klass1 klass2', :'data-foo_bar' => 'foo!!'
+    .class-355
+      .class-356 string-118
+      %pre.class-357(readonly="readonly" style='width:48px')
+        :preserve
+          = link_to 'link', '#',
+            class: 'klass1 klass2',
+            :'data-foo_bar' => 'foo!!'
+      .class-358 string-119
+      %pre.class-359(readonly="readonly" style='width:49px')
+        :preserve
+          foo.bar('Hoge')
+
+  %section#id-40
+    .class-361 string-120
+    .class-362
+      = link_to 'link', '#', class: 'klass1 klass2 klass3'
+    .class-363
+      .class-364 string-121
+      %pre.class-365(readonly="readonly" style='width:50px')
+        :preserve
+          = link_to 'link', '#',
+            class: 'klass1 klass2 klass3'
+
+      .class-366 string-122
+      %pre.class-367(readonly="readonly" style='width:51px')
+        :preserve
+          #id-43.class-368.class-369
+            .class-370
+              .class-371 string-123
+              %a.class-372{href: "#"}
+              str
+
+      %p text-124
+      %p text-125
+
+      .class-373 string-126
+      %pre.class-374(readonly="readonly" style='width:52px')
+        :preserve
+          // hello
+          $(window).bind('click', function(event) {
+          });
+
+          // hello
+          $('#id-44').bind('click', function(event) {
+          });
+
+          // world
+          $('#id-45').bind('click', function(event) {
+          });
+
+      %p text-127
+
+  %section#id-46
+    .class-378 string-128
+    .class-379
+      %ul.class-380
+        %li.class-381
+          str1
+        %li.class-382
+          str2
+        %li.class-383
+          str3
+    :javascript
+      $('.class-384').foo({bar: '.class-386'});
+    :css
+      .class-387 {
+        min-height: 13px;
+      }
+      .class-388 {
+        height: 1px;
+        background: #000;
+        padding: 1px;
+        text-align: center;
+      }
+      .class-390 {
+        background: #000;
+      }
+      .class-392 {
+        background: #000;
+      }
+
+    .class-394
+      %pre.class-395(readonly="readonly" style='width:53px')
+        :preserve
+          .class-396
+            %ul.class-397
+              %li.class-398 str1
+              %li.class-399 str2
+              %li.class-400 str3
+          :javascript
+            $('.class-401').bar({foo: '.class-403'});
+
+    %ul.class-404.class-405
+      %li= link_to 'link', '#'
+      %li= link_to 'link', '#'
+      %li= link_to 'link', '#'
+
+    .class-406
+      %ul.class-407
+        %li#id-52A.class-408 str1
+        %li#id-53B.class-409 str2
+        %li#id-54C.class-410 str3
+
+    :javascript
+      $('.class-411').click({foo: '.class-413 > li > a'});
+
+    :css
+      .class-414 {
+        height: 1px;
+        background: #000;
+        padding: 1px;
+        text-align: center;
+      }
+      .class-416 {
+        background: #000;
+      }
+      .class-418 {
+        background: #000;
+      }
+
+    .class-420
+      %pre.class-421(readonly="readonly" style='width:54px')
+        :preserve
+          %ul.class-422.class-423
+            %li= link_to 'link', '#'
+            %li= link_to 'link', '#'
+            %li= link_to 'link', '#'
+
+          .class-424
+            %ul.class-425
+              %li#id-60A.class-426 str1
+              %li#id-61B.class-427 str2
+              %li#id-62C.class-428 str3
+
+          :javascript
+            $('.class-429').bind({links: '.klass'});
+
+  %section#id-63
+    .class-432 string-136
+    .class-433
+      .class-434 string-137
+      %pre.class-435(readonly="readonly" style='width:55px')
+        :preserve
+          #id-64
+            -# hello
+
+            .class-436
+              -# world
+
+            %span.class-437
+
+            #id-65
+              -# hey
+      .class-438 string-138
+      %pre.class-439(readonly="readonly" style='width:56px')
+        :preserve
+          // hello
+          $(document).bind('click', function(event) {
+          });
+
+          // world
+          $(document).bind('click', function(event) {
+          });
+
+#id-66XXX.class-442.class-443
+  .class-444
+    .class-445 string-139
+
+    %a.class-446{href: "#"}
+    str
+
+:javascript
+  (function ($) {
+    $(".foo").removeClass("bar");
+  })(jQuery);

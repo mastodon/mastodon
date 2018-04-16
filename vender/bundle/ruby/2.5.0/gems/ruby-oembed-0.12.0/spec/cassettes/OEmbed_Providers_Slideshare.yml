@@ -1,0 +1,1199 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=https%3A%2F%2Fslideshare.net%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:07 GMT
+      content-type:
+      - application/json; charset=utf-8
+      status:
+      - 200 OK
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-content-type-options:
+      - nosniff
+      - nosniff
+      x-runtime:
+      - '0.033369'
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-request-id:
+      - 691fd04004bdfa6e079f9720a8097c39
+      x-request-uuid:
+      - QDAmVUpqoYazbUDtpF4PHg==
+      x-xss-protection:
+      - 1; mode=block
+      cache-control:
+      - max-age=0, private, must-revalidate
+      p3p:
+      - CP="OTI DSP COR CUR ADM DEV PSD IVD CONo OUR IND"
+      x-varnish:
+      - '930893680'
+      age:
+      - '0'
+      accept-ranges:
+      - bytes
+      x-fs-uuid:
+      - 0bb7531519cc5014f0400dc8b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=523448561; Path=/; Domain=.slideshare.net
+      - SERVERID=r88|V0FBE|V0FBE; path=/
+      - bcookie="v=2&04488d46-8407-46cb-8bb0-6fcc6e1c83a0"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:39 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - C7dTFRnMUBTwQA3ItSoAAA==
+    body: '{"thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/the-magic-of-elixir-150401151316-conversion-gate01-thumbnail.jpg?cb=1427901293","height":355,"width":425,"title":"The
+      Magic Of Elixir","slideshow_id":46553440,"provider_url":"http://www.slideshare.net","type":"rich","thumbnail_height":128,"thumbnail_width":170,"author_url":"http://www.slideshare.net/gabriele.lana","version_no":"1427901293","slide_image_baseurl":"//image.slidesharecdn.com/the-magic-of-elixir-150401151316-conversion-gate01/95/slide-","slide_image_baseurl_suffix":"-1024.jpg","total_slides":96,"version":"1.0","html":"\u003Ciframe
+      src=\"https://www.slideshare.net/slideshow/embed_code/key/avVsGA62TMDu6n\" width=\"427\"
+      height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\"
+      style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width:
+      100%;\" allowfullscreen\u003E \u003C/iframe\u003E \u003Cdiv style=\"margin-bottom:5px\"\u003E
+      \u003Cstrong\u003E \u003Ca href=\"https://www.slideshare.net/gabriele.lana/the-magic-of-elixir\"
+      title=\"The Magic Of Elixir\" target=\"_blank\"\u003EThe Magic Of Elixir\u003C/a\u003E
+      \u003C/strong\u003E from \u003Cstrong\u003E\u003Ca href=\"http://www.slideshare.net/gabriele.lana\"
+      target=\"_blank\"\u003EGabriele Lana\u003C/a\u003E\u003C/strong\u003E \u003C/div\u003E\n\n","author_name":"Gabriele
+      Lana","conversion_version":2,"provider_name":"SlideShare"}'
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=https%3A%2F%2Fslideshare.net%2Fmobile%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:07 GMT
+      content-type:
+      - text/html; charset=utf-8
+      status:
+      - 404 Not Found
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-xss-protection:
+      - 1; mode=block
+      x-runtime:
+      - '0.017874'
+      x-content-type-options:
+      - nosniff
+      x-request-id:
+      - fb4c5addcddae548849737f6fec9f8da
+      cache-control:
+      - no-cache
+      x-request-uuid:
+      - pg2CQvlQg5INa3zzz4HE4Q==
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-varnish:
+      - '937885835'
+      age:
+      - '0'
+      x-fs-uuid:
+      - 75b1b92819cc501400f765c0b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=785427590; Path=/; Domain=.slideshare.net
+      - SERVERID=r88|V0FBE|V0FBE; path=/
+      - bcookie="v=2&9a351b71-ca0b-4eaf-88b1-cffd5e06134c"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:39 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - dbG5KBnMUBQA92XAtSoAAA==
+    body: !binary |-
+      PCFET0NUWVBFIGh0bWw+CjxodG1sIHhtbG5zPSJodHRwOi8vd3d3LnczLm9y
+      Zy8xOTk5L3hodG1sIiB4bWw6bGFuZz0iZW4iIGxhbmc9ImVuIj4KICA8aGVh
+      ZD4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVu
+      dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ii8+CiAgICA8bGluayBocmVm
+      PSIvc3R5bGVzaGVldHMvZXJyb3IuY3NzIiB0eXBlPSJ0ZXh0L2NzcyIgcmVs
+      PSJzdHlsZXNoZWV0IiBtZWRpYT0ic2NyZWVuIiAvPgogICAgPGxpbmsgdHlw
+      ZT0idGV4dC9jc3MiIHJlbD0ic3R5bGVzaGVldCIgbWVkaWE9InNjcmVlbiIg
+      aHJlZj0iLi4vYmlnYm9vdC9jc3Mvc3MtY29yZS5jc3MiPgogICAgPHRpdGxl
+      PjQwNCBlcnJvci4gUGFnZSBOb3QgRm91bmQuPC90aXRsZT4KICAgIDxzY3Jp
+      cHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij4KICAgICAgZnVuY3Rpb24gZGlz
+      YWJsZVNlYXJjaChldmVudCkgewogICAgICAgIHZhciB0ID0gZG9jdW1lbnQu
+      Z2V0RWxlbWVudEJ5SWQoJ3NlYXJjaHN0cmluZycpOwogICAgICAgIGlmKHQu
+      dmFsdWUgPT09ICdUeXBlIHRleHQgaGVyZSDigKYnIHx8IHQudmFsdWUubGVu
+      Z3RoID09PSAwKSB7CiAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgp
+      OwogICAgICAgIH0KICAgICAgfQogICAgPC9zY3JpcHQ+CiAgPC9oZWFkPgog
+      IDxib2R5PgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgPGRp
+      diBjbGFzcz0icm93Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJzbWlsZXkiPgog
+      ICAgICAgICAgPGltZyBzcmM9Ii9pbWFnZXMvZXJyb3JzbWlsZXkucG5nIiB3
+      aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiIGFsdD0iZXJyb3IiIC8+CiAg
+      ICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJy
+      b3ciPgogICAgICAgIDxkaXYgY2xhc3M9ImVycm9yQm94Ij4KICAgICAgICAg
+      IDxkaXYgY2xhc3M9InNwYW4zIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0i
+      ZXJyb3JDb2RlIj4KICAgICAgICAgICAgICA8aDE+NDA0PC9oMT4KICAgICAg
+      ICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYg
+      Y2xhc3M9InNwYW43Ij4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1o
+      ZWFkZXIiPgogICAgICAgICAgICAgIDxwIGNsYXNzPSJsZWFkIj5Tb3JyeSEg
+      V2UgY291bGQgbm90IGZpbmQgd2hhdCB5b3Ugd2VyZSBsb29raW5nIGZvciA6
+      KDwvcD4KICAgICAgICAgICAgICA8cD5Eb24ndCB3b3JyeSwgd2Ugd2lsbCBo
+      ZWxwIHlvdSBnZXQgdG8gdGhlIHJpZ2h0IHBsYWNlLjwvcD4KICAgICAgICAg
+      ICAgPC9kaXY+CiAgICAgICAgICAgIDxoMz5BcmUgeW91IGxvb2tpbmcgZm9y
+      PC9oMz4KICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgIDxsaT48YSBo
+      cmVmPSIvIj5Ib21lcGFnZTwvYT48L2xpPgogICAgICAgICAgICAgIDxsaSBj
+      bGFzcz0ibWlkZGxlIj48YSBocmVmPSIvY2hhbm5lbHMiPlNsaWRlU2hhcmUg
+      Q2hhbm5lbHM8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0i
+      L3BvcHVsYXIiPlBvcHVsYXIgUHJlc2VudGF0aW9uczwvYT48L2xpPgogICAg
+      ICAgICAgICA8L3VsPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2hT
+      ZWN0aW9uIj4KICAgICAgICAgICAgICA8Zm9ybSBzdHlsZT0iZGlzcGxheTog
+      aW5saW5lOyIgYWN0aW9uPSIvc2VhcmNoL3NsaWRlc2hvdyIgbWV0aG9kPSJn
+      ZXQiPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIGlkPSJz
+      ZWFyY2hzdHJpbmciIG5hbWU9InEiIHZhbHVlPSJUeXBlIHRleHQgaGVyZSAm
+      aGVsbGlwOyIgY2xhc3M9ImVycm9yU2VhcmNoQm94IiBvbmNsaWNrPSJ0aGlz
+      LnZhbHVlID0gJyc7Ij4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0i
+      c3VibWl0IiBvbmNsaWNrPSJkaXNhYmxlU2VhcmNoKGV2ZW50KSI+CiAgICAg
+      ICAgICAgICAgICAgIFNlYXJjaDxzcGFuPiZuYnNwOzwvc3Bhbj4KICAgICAg
+      ICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgICAgIDwvZm9ybT4KICAg
+      ICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rp
+      dj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2JvZHk+CjwvaHRtbD4=
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=https%3A%2F%2Fwww.slideshare.net%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:07 GMT
+      content-type:
+      - application/json; charset=utf-8
+      status:
+      - 200 OK
+      x-content-type-options:
+      - nosniff
+      - nosniff
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-runtime:
+      - '0.027730'
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-request-id:
+      - 02dcb0ab38713a3782a073e85a2e667b
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-uuid:
+      - FCWh7AjFTHPS0qJ1heyTSw==
+      x-xss-protection:
+      - 1; mode=block
+      p3p:
+      - CP="OTI DSP COR CUR ADM DEV PSD IVD CONo OUR IND"
+      x-varnish:
+      - '115447451'
+      age:
+      - '0'
+      accept-ranges:
+      - bytes
+      x-fs-uuid:
+      - 5c1edc3b19cc5014a0f11915b62a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=1905066493; Path=/; Domain=.slideshare.net
+      - SERVERID=r87|V0FBE|V0FBE; path=/
+      - bcookie="v=2&dbfb6fc2-e672-4fbc-8f65-b60c6b2e1764"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:39 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - XB7cOxnMUBSg8RkVtioAAA==
+    body: '{"slideshow_id":46553440,"version_no":"1427901293","thumbnail_height":128,"width":425,"provider_name":"SlideShare","height":355,"html":"\u003Ciframe
+      src=\"https://www.slideshare.net/slideshow/embed_code/key/avVsGA62TMDu6n\" width=\"427\"
+      height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\"
+      style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width:
+      100%;\" allowfullscreen\u003E \u003C/iframe\u003E \u003Cdiv style=\"margin-bottom:5px\"\u003E
+      \u003Cstrong\u003E \u003Ca href=\"https://www.slideshare.net/gabriele.lana/the-magic-of-elixir\"
+      title=\"The Magic Of Elixir\" target=\"_blank\"\u003EThe Magic Of Elixir\u003C/a\u003E
+      \u003C/strong\u003E from \u003Cstrong\u003E\u003Ca href=\"http://www.slideshare.net/gabriele.lana\"
+      target=\"_blank\"\u003EGabriele Lana\u003C/a\u003E\u003C/strong\u003E \u003C/div\u003E\n\n","author_name":"Gabriele
+      Lana","version":"1.0","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/the-magic-of-elixir-150401151316-conversion-gate01-thumbnail.jpg?cb=1427901293","slide_image_baseurl":"//image.slidesharecdn.com/the-magic-of-elixir-150401151316-conversion-gate01/95/slide-","author_url":"http://www.slideshare.net/gabriele.lana","title":"The
+      Magic Of Elixir","slide_image_baseurl_suffix":"-1024.jpg","provider_url":"http://www.slideshare.net","total_slides":96,"thumbnail_width":170,"conversion_version":2,"type":"rich"}'
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=https%3A%2F%2Fwww.slideshare.net%2Fmobile%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:08 GMT
+      content-type:
+      - text/html; charset=utf-8
+      status:
+      - 404 Not Found
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-content-type-options:
+      - nosniff
+      x-runtime:
+      - '0.018183'
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-request-id:
+      - e50e5c1797e00d9a216ecb9694d6abd9
+      x-request-uuid:
+      - cswW7I/h26d7KNK79/B7Bw==
+      x-xss-protection:
+      - 1; mode=block
+      cache-control:
+      - no-cache
+      x-varnish:
+      - '936676712'
+      age:
+      - '0'
+      x-fs-uuid:
+      - 4ae3424e19cc5014f08c05c8b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=268818532; Path=/; Domain=.slideshare.net
+      - SERVERID=r88|V0FBE|V0FBE; path=/
+      - bcookie="v=2&32155b2d-50ad-462b-8440-6dcdbf220721"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:40 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - SuNCThnMUBTwjAXItSoAAA==
+    body: !binary |-
+      PCFET0NUWVBFIGh0bWw+CjxodG1sIHhtbG5zPSJodHRwOi8vd3d3LnczLm9y
+      Zy8xOTk5L3hodG1sIiB4bWw6bGFuZz0iZW4iIGxhbmc9ImVuIj4KICA8aGVh
+      ZD4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVu
+      dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ii8+CiAgICA8bGluayBocmVm
+      PSIvc3R5bGVzaGVldHMvZXJyb3IuY3NzIiB0eXBlPSJ0ZXh0L2NzcyIgcmVs
+      PSJzdHlsZXNoZWV0IiBtZWRpYT0ic2NyZWVuIiAvPgogICAgPGxpbmsgdHlw
+      ZT0idGV4dC9jc3MiIHJlbD0ic3R5bGVzaGVldCIgbWVkaWE9InNjcmVlbiIg
+      aHJlZj0iLi4vYmlnYm9vdC9jc3Mvc3MtY29yZS5jc3MiPgogICAgPHRpdGxl
+      PjQwNCBlcnJvci4gUGFnZSBOb3QgRm91bmQuPC90aXRsZT4KICAgIDxzY3Jp
+      cHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij4KICAgICAgZnVuY3Rpb24gZGlz
+      YWJsZVNlYXJjaChldmVudCkgewogICAgICAgIHZhciB0ID0gZG9jdW1lbnQu
+      Z2V0RWxlbWVudEJ5SWQoJ3NlYXJjaHN0cmluZycpOwogICAgICAgIGlmKHQu
+      dmFsdWUgPT09ICdUeXBlIHRleHQgaGVyZSDigKYnIHx8IHQudmFsdWUubGVu
+      Z3RoID09PSAwKSB7CiAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgp
+      OwogICAgICAgIH0KICAgICAgfQogICAgPC9zY3JpcHQ+CiAgPC9oZWFkPgog
+      IDxib2R5PgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgPGRp
+      diBjbGFzcz0icm93Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJzbWlsZXkiPgog
+      ICAgICAgICAgPGltZyBzcmM9Ii9pbWFnZXMvZXJyb3JzbWlsZXkucG5nIiB3
+      aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiIGFsdD0iZXJyb3IiIC8+CiAg
+      ICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJy
+      b3ciPgogICAgICAgIDxkaXYgY2xhc3M9ImVycm9yQm94Ij4KICAgICAgICAg
+      IDxkaXYgY2xhc3M9InNwYW4zIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0i
+      ZXJyb3JDb2RlIj4KICAgICAgICAgICAgICA8aDE+NDA0PC9oMT4KICAgICAg
+      ICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYg
+      Y2xhc3M9InNwYW43Ij4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1o
+      ZWFkZXIiPgogICAgICAgICAgICAgIDxwIGNsYXNzPSJsZWFkIj5Tb3JyeSEg
+      V2UgY291bGQgbm90IGZpbmQgd2hhdCB5b3Ugd2VyZSBsb29raW5nIGZvciA6
+      KDwvcD4KICAgICAgICAgICAgICA8cD5Eb24ndCB3b3JyeSwgd2Ugd2lsbCBo
+      ZWxwIHlvdSBnZXQgdG8gdGhlIHJpZ2h0IHBsYWNlLjwvcD4KICAgICAgICAg
+      ICAgPC9kaXY+CiAgICAgICAgICAgIDxoMz5BcmUgeW91IGxvb2tpbmcgZm9y
+      PC9oMz4KICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgIDxsaT48YSBo
+      cmVmPSIvIj5Ib21lcGFnZTwvYT48L2xpPgogICAgICAgICAgICAgIDxsaSBj
+      bGFzcz0ibWlkZGxlIj48YSBocmVmPSIvY2hhbm5lbHMiPlNsaWRlU2hhcmUg
+      Q2hhbm5lbHM8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0i
+      L3BvcHVsYXIiPlBvcHVsYXIgUHJlc2VudGF0aW9uczwvYT48L2xpPgogICAg
+      ICAgICAgICA8L3VsPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2hT
+      ZWN0aW9uIj4KICAgICAgICAgICAgICA8Zm9ybSBzdHlsZT0iZGlzcGxheTog
+      aW5saW5lOyIgYWN0aW9uPSIvc2VhcmNoL3NsaWRlc2hvdyIgbWV0aG9kPSJn
+      ZXQiPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIGlkPSJz
+      ZWFyY2hzdHJpbmciIG5hbWU9InEiIHZhbHVlPSJUeXBlIHRleHQgaGVyZSAm
+      aGVsbGlwOyIgY2xhc3M9ImVycm9yU2VhcmNoQm94IiBvbmNsaWNrPSJ0aGlz
+      LnZhbHVlID0gJyc7Ij4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0i
+      c3VibWl0IiBvbmNsaWNrPSJkaXNhYmxlU2VhcmNoKGV2ZW50KSI+CiAgICAg
+      ICAgICAgICAgICAgIFNlYXJjaDxzcGFuPiZuYnNwOzwvc3Bhbj4KICAgICAg
+      ICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgICAgIDwvZm9ybT4KICAg
+      ICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rp
+      dj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2JvZHk+CjwvaHRtbD4=
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=https%3A%2F%2Fde.slideshare.net%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:08 GMT
+      content-type:
+      - application/json; charset=utf-8
+      status:
+      - 200 OK
+      x-content-type-options:
+      - nosniff
+      - nosniff
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-runtime:
+      - '0.028954'
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-request-id:
+      - de6b2cfbfcc0478be4aeeda72902aeba
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-uuid:
+      - Y8oIkK/W0rmStSW1EXtWCA==
+      x-xss-protection:
+      - 1; mode=block
+      p3p:
+      - CP="OTI DSP COR CUR ADM DEV PSD IVD CONo OUR IND"
+      x-varnish:
+      - '935826108'
+      age:
+      - '0'
+      accept-ranges:
+      - bytes
+      x-fs-uuid:
+      - e9ba4a6019cc50148043433eb52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=2078575251; Path=/; Domain=.slideshare.net
+      - SERVERID=r88|V0FBE|V0FBE; path=/
+      - bcookie="v=2&9e8741a2-b710-4477-89ad-d9dab64b3923"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:40 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - 6bpKYBnMUBSAQ0M+tSoAAA==
+    body: '{"slideshow_id":46553440,"version_no":"1427901293","thumbnail_height":128,"width":425,"provider_name":"SlideShare","height":355,"html":"\u003Ciframe
+      src=\"https://www.slideshare.net/slideshow/embed_code/key/avVsGA62TMDu6n\" width=\"427\"
+      height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\"
+      style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width:
+      100%;\" allowfullscreen\u003E \u003C/iframe\u003E \u003Cdiv style=\"margin-bottom:5px\"\u003E
+      \u003Cstrong\u003E \u003Ca href=\"https://www.slideshare.net/gabriele.lana/the-magic-of-elixir\"
+      title=\"The Magic Of Elixir\" target=\"_blank\"\u003EThe Magic Of Elixir\u003C/a\u003E
+      \u003C/strong\u003E from \u003Cstrong\u003E\u003Ca href=\"http://www.slideshare.net/gabriele.lana\"
+      target=\"_blank\"\u003EGabriele Lana\u003C/a\u003E\u003C/strong\u003E \u003C/div\u003E\n\n","author_name":"Gabriele
+      Lana","version":"1.0","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/the-magic-of-elixir-150401151316-conversion-gate01-thumbnail.jpg?cb=1427901293","slide_image_baseurl":"//image.slidesharecdn.com/the-magic-of-elixir-150401151316-conversion-gate01/95/slide-","author_url":"http://www.slideshare.net/gabriele.lana","title":"The
+      Magic Of Elixir","slide_image_baseurl_suffix":"-1024.jpg","provider_url":"http://www.slideshare.net","total_slides":96,"thumbnail_width":170,"conversion_version":2,"type":"rich"}'
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=https%3A%2F%2Fde.slideshare.net%2Fmobile%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:08 GMT
+      content-type:
+      - text/html; charset=utf-8
+      status:
+      - 404 Not Found
+      x-request-uuid:
+      - MKVZ74YLojo081y9L486mQ==
+      x-request-id:
+      - 498cb6e37ee3eb1ad044c6feb357dd90
+      x-runtime:
+      - '0.011450'
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-bench-route:
+      - oembed/get_oembed_code
+      cache-control:
+      - no-cache
+      x-varnish:
+      - '106901565'
+      age:
+      - '0'
+      x-fs-uuid:
+      - 3065f47219cc501440560ec8b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=1494397463; Path=/; Domain=.slideshare.net
+      - SERVERID=r87|V0FBE|V0FBE; path=/
+      - bcookie="v=2&a07b45b9-52f6-4375-87fb-bec42d4e8e30"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:40 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - MGX0chnMUBRAVg7ItSoAAA==
+    body: !binary |-
+      PCFET0NUWVBFIGh0bWw+CjxodG1sIHhtbG5zPSJodHRwOi8vd3d3LnczLm9y
+      Zy8xOTk5L3hodG1sIiB4bWw6bGFuZz0iZW4iIGxhbmc9ImVuIj4KICA8aGVh
+      ZD4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVu
+      dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ii8+CiAgICA8bGluayBocmVm
+      PSIvc3R5bGVzaGVldHMvZXJyb3IuY3NzIiB0eXBlPSJ0ZXh0L2NzcyIgcmVs
+      PSJzdHlsZXNoZWV0IiBtZWRpYT0ic2NyZWVuIiAvPgogICAgPGxpbmsgdHlw
+      ZT0idGV4dC9jc3MiIHJlbD0ic3R5bGVzaGVldCIgbWVkaWE9InNjcmVlbiIg
+      aHJlZj0iLi4vYmlnYm9vdC9jc3Mvc3MtY29yZS5jc3MiPgogICAgPHRpdGxl
+      PjQwNCBlcnJvci4gUGFnZSBOb3QgRm91bmQuPC90aXRsZT4KICAgIDxzY3Jp
+      cHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij4KICAgICAgZnVuY3Rpb24gZGlz
+      YWJsZVNlYXJjaChldmVudCkgewogICAgICAgIHZhciB0ID0gZG9jdW1lbnQu
+      Z2V0RWxlbWVudEJ5SWQoJ3NlYXJjaHN0cmluZycpOwogICAgICAgIGlmKHQu
+      dmFsdWUgPT09ICdUeXBlIHRleHQgaGVyZSDigKYnIHx8IHQudmFsdWUubGVu
+      Z3RoID09PSAwKSB7CiAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgp
+      OwogICAgICAgIH0KICAgICAgfQogICAgPC9zY3JpcHQ+CiAgPC9oZWFkPgog
+      IDxib2R5PgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgPGRp
+      diBjbGFzcz0icm93Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJzbWlsZXkiPgog
+      ICAgICAgICAgPGltZyBzcmM9Ii9pbWFnZXMvZXJyb3JzbWlsZXkucG5nIiB3
+      aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiIGFsdD0iZXJyb3IiIC8+CiAg
+      ICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJy
+      b3ciPgogICAgICAgIDxkaXYgY2xhc3M9ImVycm9yQm94Ij4KICAgICAgICAg
+      IDxkaXYgY2xhc3M9InNwYW4zIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0i
+      ZXJyb3JDb2RlIj4KICAgICAgICAgICAgICA8aDE+NDA0PC9oMT4KICAgICAg
+      ICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYg
+      Y2xhc3M9InNwYW43Ij4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1o
+      ZWFkZXIiPgogICAgICAgICAgICAgIDxwIGNsYXNzPSJsZWFkIj5Tb3JyeSEg
+      V2UgY291bGQgbm90IGZpbmQgd2hhdCB5b3Ugd2VyZSBsb29raW5nIGZvciA6
+      KDwvcD4KICAgICAgICAgICAgICA8cD5Eb24ndCB3b3JyeSwgd2Ugd2lsbCBo
+      ZWxwIHlvdSBnZXQgdG8gdGhlIHJpZ2h0IHBsYWNlLjwvcD4KICAgICAgICAg
+      ICAgPC9kaXY+CiAgICAgICAgICAgIDxoMz5BcmUgeW91IGxvb2tpbmcgZm9y
+      PC9oMz4KICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgIDxsaT48YSBo
+      cmVmPSIvIj5Ib21lcGFnZTwvYT48L2xpPgogICAgICAgICAgICAgIDxsaSBj
+      bGFzcz0ibWlkZGxlIj48YSBocmVmPSIvY2hhbm5lbHMiPlNsaWRlU2hhcmUg
+      Q2hhbm5lbHM8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0i
+      L3BvcHVsYXIiPlBvcHVsYXIgUHJlc2VudGF0aW9uczwvYT48L2xpPgogICAg
+      ICAgICAgICA8L3VsPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2hT
+      ZWN0aW9uIj4KICAgICAgICAgICAgICA8Zm9ybSBzdHlsZT0iZGlzcGxheTog
+      aW5saW5lOyIgYWN0aW9uPSIvc2VhcmNoL3NsaWRlc2hvdyIgbWV0aG9kPSJn
+      ZXQiPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIGlkPSJz
+      ZWFyY2hzdHJpbmciIG5hbWU9InEiIHZhbHVlPSJUeXBlIHRleHQgaGVyZSAm
+      aGVsbGlwOyIgY2xhc3M9ImVycm9yU2VhcmNoQm94IiBvbmNsaWNrPSJ0aGlz
+      LnZhbHVlID0gJyc7Ij4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0i
+      c3VibWl0IiBvbmNsaWNrPSJkaXNhYmxlU2VhcmNoKGV2ZW50KSI+CiAgICAg
+      ICAgICAgICAgICAgIFNlYXJjaDxzcGFuPiZuYnNwOzwvc3Bhbj4KICAgICAg
+      ICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgICAgIDwvZm9ybT4KICAg
+      ICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rp
+      dj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2JvZHk+CjwvaHRtbD4=
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=http%3A%2F%2Fslideshare.net%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:08 GMT
+      content-type:
+      - application/json; charset=utf-8
+      status:
+      - 200 OK
+      x-request-id:
+      - cc07fb04ad9779388173e05ad037ee7c
+      x-xss-protection:
+      - 1; mode=block
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-content-type-options:
+      - nosniff
+      - nosniff
+      x-request-uuid:
+      - D72NbaYVSiL+g+IWSJY7AQ==
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-runtime:
+      - '0.026058'
+      p3p:
+      - CP="OTI DSP COR CUR ADM DEV PSD IVD CONo OUR IND"
+      x-varnish:
+      - '109137951'
+      age:
+      - '0'
+      accept-ranges:
+      - bytes
+      x-fs-uuid:
+      - a27ada8419cc501470076ec0b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=1541601704; Path=/; Domain=.slideshare.net
+      - SERVERID=r87|V0FBE|V0FBE; path=/
+      - bcookie="v=2&0ec2c6bc-50d3-4e51-8c3e-0b9f26698502"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:40 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - onrahBnMUBRwB27AtSoAAA==
+    body: '{"slideshow_id":46553440,"type":"rich","thumbnail_width":170,"title":"The
+      Magic Of Elixir","version_no":"1427901293","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/the-magic-of-elixir-150401151316-conversion-gate01-thumbnail.jpg?cb=1427901293","html":"\u003Ciframe
+      src=\"https://www.slideshare.net/slideshow/embed_code/key/avVsGA62TMDu6n\" width=\"427\"
+      height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\"
+      style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width:
+      100%;\" allowfullscreen\u003E \u003C/iframe\u003E \u003Cdiv style=\"margin-bottom:5px\"\u003E
+      \u003Cstrong\u003E \u003Ca href=\"https://www.slideshare.net/gabriele.lana/the-magic-of-elixir\"
+      title=\"The Magic Of Elixir\" target=\"_blank\"\u003EThe Magic Of Elixir\u003C/a\u003E
+      \u003C/strong\u003E from \u003Cstrong\u003E\u003Ca href=\"http://www.slideshare.net/gabriele.lana\"
+      target=\"_blank\"\u003EGabriele Lana\u003C/a\u003E\u003C/strong\u003E \u003C/div\u003E\n\n","author_url":"http://www.slideshare.net/gabriele.lana","provider_url":"http://www.slideshare.net","thumbnail_height":128,"height":355,"width":425,"author_name":"Gabriele
+      Lana","slide_image_baseurl_suffix":"-1024.jpg","provider_name":"SlideShare","version":"1.0","conversion_version":2,"total_slides":96,"slide_image_baseurl":"//image.slidesharecdn.com/the-magic-of-elixir-150401151316-conversion-gate01/95/slide-"}'
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=http%3A%2F%2Fslideshare.net%2Fmobile%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:09 GMT
+      content-type:
+      - text/html; charset=utf-8
+      status:
+      - 404 Not Found
+      cache-control:
+      - no-cache
+      x-xss-protection:
+      - 1; mode=block
+      x-request-id:
+      - bb67d3b356637561cf58818a2d486d88
+      x-content-type-options:
+      - nosniff
+      x-runtime:
+      - '0.012129'
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-request-uuid:
+      - yI9hd7qAD0wuC7Tby0wamw==
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-varnish:
+      - '928277617'
+      age:
+      - '0'
+      x-fs-uuid:
+      - 524e7a9719cc501440560ec8b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=1678621882; Path=/; Domain=.slideshare.net
+      - SERVERID=r88|V0FBF|V0FBF; path=/
+      - bcookie="v=2&fdbbb2ae-0956-430e-8f03-c10fc8f7cf4c"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:41 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - Uk56lxnMUBRAVg7ItSoAAA==
+    body: !binary |-
+      PCFET0NUWVBFIGh0bWw+CjxodG1sIHhtbG5zPSJodHRwOi8vd3d3LnczLm9y
+      Zy8xOTk5L3hodG1sIiB4bWw6bGFuZz0iZW4iIGxhbmc9ImVuIj4KICA8aGVh
+      ZD4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVu
+      dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ii8+CiAgICA8bGluayBocmVm
+      PSIvc3R5bGVzaGVldHMvZXJyb3IuY3NzIiB0eXBlPSJ0ZXh0L2NzcyIgcmVs
+      PSJzdHlsZXNoZWV0IiBtZWRpYT0ic2NyZWVuIiAvPgogICAgPGxpbmsgdHlw
+      ZT0idGV4dC9jc3MiIHJlbD0ic3R5bGVzaGVldCIgbWVkaWE9InNjcmVlbiIg
+      aHJlZj0iLi4vYmlnYm9vdC9jc3Mvc3MtY29yZS5jc3MiPgogICAgPHRpdGxl
+      PjQwNCBlcnJvci4gUGFnZSBOb3QgRm91bmQuPC90aXRsZT4KICAgIDxzY3Jp
+      cHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij4KICAgICAgZnVuY3Rpb24gZGlz
+      YWJsZVNlYXJjaChldmVudCkgewogICAgICAgIHZhciB0ID0gZG9jdW1lbnQu
+      Z2V0RWxlbWVudEJ5SWQoJ3NlYXJjaHN0cmluZycpOwogICAgICAgIGlmKHQu
+      dmFsdWUgPT09ICdUeXBlIHRleHQgaGVyZSDigKYnIHx8IHQudmFsdWUubGVu
+      Z3RoID09PSAwKSB7CiAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgp
+      OwogICAgICAgIH0KICAgICAgfQogICAgPC9zY3JpcHQ+CiAgPC9oZWFkPgog
+      IDxib2R5PgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgPGRp
+      diBjbGFzcz0icm93Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJzbWlsZXkiPgog
+      ICAgICAgICAgPGltZyBzcmM9Ii9pbWFnZXMvZXJyb3JzbWlsZXkucG5nIiB3
+      aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiIGFsdD0iZXJyb3IiIC8+CiAg
+      ICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJy
+      b3ciPgogICAgICAgIDxkaXYgY2xhc3M9ImVycm9yQm94Ij4KICAgICAgICAg
+      IDxkaXYgY2xhc3M9InNwYW4zIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0i
+      ZXJyb3JDb2RlIj4KICAgICAgICAgICAgICA8aDE+NDA0PC9oMT4KICAgICAg
+      ICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYg
+      Y2xhc3M9InNwYW43Ij4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1o
+      ZWFkZXIiPgogICAgICAgICAgICAgIDxwIGNsYXNzPSJsZWFkIj5Tb3JyeSEg
+      V2UgY291bGQgbm90IGZpbmQgd2hhdCB5b3Ugd2VyZSBsb29raW5nIGZvciA6
+      KDwvcD4KICAgICAgICAgICAgICA8cD5Eb24ndCB3b3JyeSwgd2Ugd2lsbCBo
+      ZWxwIHlvdSBnZXQgdG8gdGhlIHJpZ2h0IHBsYWNlLjwvcD4KICAgICAgICAg
+      ICAgPC9kaXY+CiAgICAgICAgICAgIDxoMz5BcmUgeW91IGxvb2tpbmcgZm9y
+      PC9oMz4KICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgIDxsaT48YSBo
+      cmVmPSIvIj5Ib21lcGFnZTwvYT48L2xpPgogICAgICAgICAgICAgIDxsaSBj
+      bGFzcz0ibWlkZGxlIj48YSBocmVmPSIvY2hhbm5lbHMiPlNsaWRlU2hhcmUg
+      Q2hhbm5lbHM8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0i
+      L3BvcHVsYXIiPlBvcHVsYXIgUHJlc2VudGF0aW9uczwvYT48L2xpPgogICAg
+      ICAgICAgICA8L3VsPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2hT
+      ZWN0aW9uIj4KICAgICAgICAgICAgICA8Zm9ybSBzdHlsZT0iZGlzcGxheTog
+      aW5saW5lOyIgYWN0aW9uPSIvc2VhcmNoL3NsaWRlc2hvdyIgbWV0aG9kPSJn
+      ZXQiPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIGlkPSJz
+      ZWFyY2hzdHJpbmciIG5hbWU9InEiIHZhbHVlPSJUeXBlIHRleHQgaGVyZSAm
+      aGVsbGlwOyIgY2xhc3M9ImVycm9yU2VhcmNoQm94IiBvbmNsaWNrPSJ0aGlz
+      LnZhbHVlID0gJyc7Ij4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0i
+      c3VibWl0IiBvbmNsaWNrPSJkaXNhYmxlU2VhcmNoKGV2ZW50KSI+CiAgICAg
+      ICAgICAgICAgICAgIFNlYXJjaDxzcGFuPiZuYnNwOzwvc3Bhbj4KICAgICAg
+      ICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgICAgIDwvZm9ybT4KICAg
+      ICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rp
+      dj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2JvZHk+CjwvaHRtbD4=
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=http%3A%2F%2Fwww.slideshare.net%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:09 GMT
+      content-type:
+      - application/json; charset=utf-8
+      status:
+      - 200 OK
+      x-request-id:
+      - a962bb0f6c213e4f014fc4e0e3e398f3
+      x-runtime:
+      - '0.030811'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-content-type-options:
+      - nosniff
+      - nosniff
+      x-request-uuid:
+      - GUq7dAy5UjgmuB0AshJ6LQ==
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-xss-protection:
+      - 1; mode=block
+      p3p:
+      - CP="OTI DSP COR CUR ADM DEV PSD IVD CONo OUR IND"
+      x-varnish:
+      - '936088471'
+      age:
+      - '0'
+      accept-ranges:
+      - bytes
+      x-fs-uuid:
+      - f288a8a819cc5014d0e88616b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=2024966944; Path=/; Domain=.slideshare.net
+      - SERVERID=r88|V0FBF|V0FBF; path=/
+      - bcookie="v=2&c8cc5011-63f9-4bdc-81eb-956863f0aa62"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:41 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - 8oioqBnMUBTQ6IYWtSoAAA==
+    body: '{"author_url":"http://www.slideshare.net/gabriele.lana","width":425,"type":"rich","total_slides":96,"html":"\u003Ciframe
+      src=\"https://www.slideshare.net/slideshow/embed_code/key/avVsGA62TMDu6n\" width=\"427\"
+      height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\"
+      style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width:
+      100%;\" allowfullscreen\u003E \u003C/iframe\u003E \u003Cdiv style=\"margin-bottom:5px\"\u003E
+      \u003Cstrong\u003E \u003Ca href=\"https://www.slideshare.net/gabriele.lana/the-magic-of-elixir\"
+      title=\"The Magic Of Elixir\" target=\"_blank\"\u003EThe Magic Of Elixir\u003C/a\u003E
+      \u003C/strong\u003E from \u003Cstrong\u003E\u003Ca href=\"http://www.slideshare.net/gabriele.lana\"
+      target=\"_blank\"\u003EGabriele Lana\u003C/a\u003E\u003C/strong\u003E \u003C/div\u003E\n\n","title":"The
+      Magic Of Elixir","thumbnail_height":128,"provider_url":"http://www.slideshare.net","provider_name":"SlideShare","slide_image_baseurl":"//image.slidesharecdn.com/the-magic-of-elixir-150401151316-conversion-gate01/95/slide-","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/the-magic-of-elixir-150401151316-conversion-gate01-thumbnail.jpg?cb=1427901293","slideshow_id":46553440,"version":"1.0","conversion_version":2,"slide_image_baseurl_suffix":"-1024.jpg","version_no":"1427901293","height":355,"author_name":"Gabriele
+      Lana","thumbnail_width":170}'
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=http%3A%2F%2Fwww.slideshare.net%2Fmobile%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:09 GMT
+      content-type:
+      - text/html; charset=utf-8
+      status:
+      - 404 Not Found
+      x-request-uuid:
+      - BIHmZt/XVMFWjzfD+Y+WdQ==
+      x-content-type-options:
+      - nosniff
+      x-xss-protection:
+      - 1; mode=block
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-request-id:
+      - b95d374107653388d6c2c712c348e3fb
+      cache-control:
+      - no-cache
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-runtime:
+      - '0.017957'
+      x-varnish:
+      - '110542608'
+      age:
+      - '0'
+      x-fs-uuid:
+      - b45d46bb19cc501420e80924b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=1007256497; Path=/; Domain=.slideshare.net
+      - SERVERID=r87|V0FBF|V0FBF; path=/
+      - bcookie="v=2&dce49371-04cc-4ad4-8538-93dd14f6aedd"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:41 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - tF1GuxnMUBQg6AkktSoAAA==
+    body: !binary |-
+      PCFET0NUWVBFIGh0bWw+CjxodG1sIHhtbG5zPSJodHRwOi8vd3d3LnczLm9y
+      Zy8xOTk5L3hodG1sIiB4bWw6bGFuZz0iZW4iIGxhbmc9ImVuIj4KICA8aGVh
+      ZD4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVu
+      dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ii8+CiAgICA8bGluayBocmVm
+      PSIvc3R5bGVzaGVldHMvZXJyb3IuY3NzIiB0eXBlPSJ0ZXh0L2NzcyIgcmVs
+      PSJzdHlsZXNoZWV0IiBtZWRpYT0ic2NyZWVuIiAvPgogICAgPGxpbmsgdHlw
+      ZT0idGV4dC9jc3MiIHJlbD0ic3R5bGVzaGVldCIgbWVkaWE9InNjcmVlbiIg
+      aHJlZj0iLi4vYmlnYm9vdC9jc3Mvc3MtY29yZS5jc3MiPgogICAgPHRpdGxl
+      PjQwNCBlcnJvci4gUGFnZSBOb3QgRm91bmQuPC90aXRsZT4KICAgIDxzY3Jp
+      cHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij4KICAgICAgZnVuY3Rpb24gZGlz
+      YWJsZVNlYXJjaChldmVudCkgewogICAgICAgIHZhciB0ID0gZG9jdW1lbnQu
+      Z2V0RWxlbWVudEJ5SWQoJ3NlYXJjaHN0cmluZycpOwogICAgICAgIGlmKHQu
+      dmFsdWUgPT09ICdUeXBlIHRleHQgaGVyZSDigKYnIHx8IHQudmFsdWUubGVu
+      Z3RoID09PSAwKSB7CiAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgp
+      OwogICAgICAgIH0KICAgICAgfQogICAgPC9zY3JpcHQ+CiAgPC9oZWFkPgog
+      IDxib2R5PgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgPGRp
+      diBjbGFzcz0icm93Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJzbWlsZXkiPgog
+      ICAgICAgICAgPGltZyBzcmM9Ii9pbWFnZXMvZXJyb3JzbWlsZXkucG5nIiB3
+      aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiIGFsdD0iZXJyb3IiIC8+CiAg
+      ICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJy
+      b3ciPgogICAgICAgIDxkaXYgY2xhc3M9ImVycm9yQm94Ij4KICAgICAgICAg
+      IDxkaXYgY2xhc3M9InNwYW4zIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0i
+      ZXJyb3JDb2RlIj4KICAgICAgICAgICAgICA8aDE+NDA0PC9oMT4KICAgICAg
+      ICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYg
+      Y2xhc3M9InNwYW43Ij4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1o
+      ZWFkZXIiPgogICAgICAgICAgICAgIDxwIGNsYXNzPSJsZWFkIj5Tb3JyeSEg
+      V2UgY291bGQgbm90IGZpbmQgd2hhdCB5b3Ugd2VyZSBsb29raW5nIGZvciA6
+      KDwvcD4KICAgICAgICAgICAgICA8cD5Eb24ndCB3b3JyeSwgd2Ugd2lsbCBo
+      ZWxwIHlvdSBnZXQgdG8gdGhlIHJpZ2h0IHBsYWNlLjwvcD4KICAgICAgICAg
+      ICAgPC9kaXY+CiAgICAgICAgICAgIDxoMz5BcmUgeW91IGxvb2tpbmcgZm9y
+      PC9oMz4KICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgIDxsaT48YSBo
+      cmVmPSIvIj5Ib21lcGFnZTwvYT48L2xpPgogICAgICAgICAgICAgIDxsaSBj
+      bGFzcz0ibWlkZGxlIj48YSBocmVmPSIvY2hhbm5lbHMiPlNsaWRlU2hhcmUg
+      Q2hhbm5lbHM8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0i
+      L3BvcHVsYXIiPlBvcHVsYXIgUHJlc2VudGF0aW9uczwvYT48L2xpPgogICAg
+      ICAgICAgICA8L3VsPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2hT
+      ZWN0aW9uIj4KICAgICAgICAgICAgICA8Zm9ybSBzdHlsZT0iZGlzcGxheTog
+      aW5saW5lOyIgYWN0aW9uPSIvc2VhcmNoL3NsaWRlc2hvdyIgbWV0aG9kPSJn
+      ZXQiPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIGlkPSJz
+      ZWFyY2hzdHJpbmciIG5hbWU9InEiIHZhbHVlPSJUeXBlIHRleHQgaGVyZSAm
+      aGVsbGlwOyIgY2xhc3M9ImVycm9yU2VhcmNoQm94IiBvbmNsaWNrPSJ0aGlz
+      LnZhbHVlID0gJyc7Ij4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0i
+      c3VibWl0IiBvbmNsaWNrPSJkaXNhYmxlU2VhcmNoKGV2ZW50KSI+CiAgICAg
+      ICAgICAgICAgICAgIFNlYXJjaDxzcGFuPiZuYnNwOzwvc3Bhbj4KICAgICAg
+      ICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgICAgIDwvZm9ybT4KICAg
+      ICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rp
+      dj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2JvZHk+CjwvaHRtbD4=
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=http%3A%2F%2Fde.slideshare.net%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:10 GMT
+      content-type:
+      - application/json; charset=utf-8
+      status:
+      - 200 OK
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-xss-protection:
+      - 1; mode=block
+      x-runtime:
+      - '0.028067'
+      x-request-uuid:
+      - yvE0fzsxn5mlh7nZrYMPhA==
+      x-content-type-options:
+      - nosniff
+      - nosniff
+      x-request-id:
+      - 16e032b07f9441445af5e0b996056b70
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-bench-route:
+      - oembed/get_oembed_code
+      p3p:
+      - CP="OTI DSP COR CUR ADM DEV PSD IVD CONo OUR IND"
+      x-varnish:
+      - '106061004'
+      age:
+      - '0'
+      accept-ranges:
+      - bytes
+      x-fs-uuid:
+      - 980544cd19cc5014b07b56c0b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=1059766811; Path=/; Domain=.slideshare.net
+      - SERVERID=r87|V0FBF|V0FBF; path=/
+      - bcookie="v=2&3c3c9700-b8eb-416e-8f42-a93e728d27a5"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:42 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - mAVEzRnMUBSwe1bAtSoAAA==
+    body: '{"slide_image_baseurl":"//image.slidesharecdn.com/the-magic-of-elixir-150401151316-conversion-gate01/95/slide-","version_no":"1427901293","conversion_version":2,"title":"The
+      Magic Of Elixir","total_slides":96,"slideshow_id":46553440,"width":425,"slide_image_baseurl_suffix":"-1024.jpg","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/the-magic-of-elixir-150401151316-conversion-gate01-thumbnail.jpg?cb=1427901293","thumbnail_width":170,"type":"rich","author_name":"Gabriele
+      Lana","version":"1.0","height":355,"html":"\u003Ciframe src=\"https://www.slideshare.net/slideshow/embed_code/key/avVsGA62TMDu6n\"
+      width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\"
+      scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px;
+      max-width: 100%;\" allowfullscreen\u003E \u003C/iframe\u003E \u003Cdiv style=\"margin-bottom:5px\"\u003E
+      \u003Cstrong\u003E \u003Ca href=\"https://www.slideshare.net/gabriele.lana/the-magic-of-elixir\"
+      title=\"The Magic Of Elixir\" target=\"_blank\"\u003EThe Magic Of Elixir\u003C/a\u003E
+      \u003C/strong\u003E from \u003Cstrong\u003E\u003Ca href=\"http://www.slideshare.net/gabriele.lana\"
+      target=\"_blank\"\u003EGabriele Lana\u003C/a\u003E\u003C/strong\u003E \u003C/div\u003E\n\n","provider_name":"SlideShare","thumbnail_height":128,"author_url":"http://www.slideshare.net/gabriele.lana","provider_url":"http://www.slideshare.net"}'
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=http%3A%2F%2Fde.slideshare.net%2Fmobile%2Fgabriele.lana%2Fthe-magic-of-elixir&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:18:10 GMT
+      content-type:
+      - text/html; charset=utf-8
+      status:
+      - 404 Not Found
+      cache-control:
+      - no-cache
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-xss-protection:
+      - 1; mode=block
+      x-runtime:
+      - '0.013722'
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-content-type-options:
+      - nosniff
+      x-request-id:
+      - 180a7e8a6dd94c5fd526bf60faf44573
+      x-request-uuid:
+      - "/fFtQax3lXZwMtvwF15Zxg=="
+      x-varnish:
+      - '936251534'
+      age:
+      - '0'
+      x-fs-uuid:
+      - 2367b6df19cc501400db4dc6b52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=86439484; Path=/; Domain=.slideshare.net
+      - SERVERID=r88|V0FBF|V0FBF; path=/
+      - bcookie="v=2&130235f9-7ed6-440a-8351-9a1bb2ff12ea"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 16:55:42 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - I2e23xnMUBQA203GtSoAAA==
+    body: !binary |-
+      PCFET0NUWVBFIGh0bWw+CjxodG1sIHhtbG5zPSJodHRwOi8vd3d3LnczLm9y
+      Zy8xOTk5L3hodG1sIiB4bWw6bGFuZz0iZW4iIGxhbmc9ImVuIj4KICA8aGVh
+      ZD4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVu
+      dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ii8+CiAgICA8bGluayBocmVm
+      PSIvc3R5bGVzaGVldHMvZXJyb3IuY3NzIiB0eXBlPSJ0ZXh0L2NzcyIgcmVs
+      PSJzdHlsZXNoZWV0IiBtZWRpYT0ic2NyZWVuIiAvPgogICAgPGxpbmsgdHlw
+      ZT0idGV4dC9jc3MiIHJlbD0ic3R5bGVzaGVldCIgbWVkaWE9InNjcmVlbiIg
+      aHJlZj0iLi4vYmlnYm9vdC9jc3Mvc3MtY29yZS5jc3MiPgogICAgPHRpdGxl
+      PjQwNCBlcnJvci4gUGFnZSBOb3QgRm91bmQuPC90aXRsZT4KICAgIDxzY3Jp
+      cHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij4KICAgICAgZnVuY3Rpb24gZGlz
+      YWJsZVNlYXJjaChldmVudCkgewogICAgICAgIHZhciB0ID0gZG9jdW1lbnQu
+      Z2V0RWxlbWVudEJ5SWQoJ3NlYXJjaHN0cmluZycpOwogICAgICAgIGlmKHQu
+      dmFsdWUgPT09ICdUeXBlIHRleHQgaGVyZSDigKYnIHx8IHQudmFsdWUubGVu
+      Z3RoID09PSAwKSB7CiAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgp
+      OwogICAgICAgIH0KICAgICAgfQogICAgPC9zY3JpcHQ+CiAgPC9oZWFkPgog
+      IDxib2R5PgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgPGRp
+      diBjbGFzcz0icm93Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJzbWlsZXkiPgog
+      ICAgICAgICAgPGltZyBzcmM9Ii9pbWFnZXMvZXJyb3JzbWlsZXkucG5nIiB3
+      aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiIGFsdD0iZXJyb3IiIC8+CiAg
+      ICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJy
+      b3ciPgogICAgICAgIDxkaXYgY2xhc3M9ImVycm9yQm94Ij4KICAgICAgICAg
+      IDxkaXYgY2xhc3M9InNwYW4zIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0i
+      ZXJyb3JDb2RlIj4KICAgICAgICAgICAgICA8aDE+NDA0PC9oMT4KICAgICAg
+      ICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYg
+      Y2xhc3M9InNwYW43Ij4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1o
+      ZWFkZXIiPgogICAgICAgICAgICAgIDxwIGNsYXNzPSJsZWFkIj5Tb3JyeSEg
+      V2UgY291bGQgbm90IGZpbmQgd2hhdCB5b3Ugd2VyZSBsb29raW5nIGZvciA6
+      KDwvcD4KICAgICAgICAgICAgICA8cD5Eb24ndCB3b3JyeSwgd2Ugd2lsbCBo
+      ZWxwIHlvdSBnZXQgdG8gdGhlIHJpZ2h0IHBsYWNlLjwvcD4KICAgICAgICAg
+      ICAgPC9kaXY+CiAgICAgICAgICAgIDxoMz5BcmUgeW91IGxvb2tpbmcgZm9y
+      PC9oMz4KICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgIDxsaT48YSBo
+      cmVmPSIvIj5Ib21lcGFnZTwvYT48L2xpPgogICAgICAgICAgICAgIDxsaSBj
+      bGFzcz0ibWlkZGxlIj48YSBocmVmPSIvY2hhbm5lbHMiPlNsaWRlU2hhcmUg
+      Q2hhbm5lbHM8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0i
+      L3BvcHVsYXIiPlBvcHVsYXIgUHJlc2VudGF0aW9uczwvYT48L2xpPgogICAg
+      ICAgICAgICA8L3VsPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2hT
+      ZWN0aW9uIj4KICAgICAgICAgICAgICA8Zm9ybSBzdHlsZT0iZGlzcGxheTog
+      aW5saW5lOyIgYWN0aW9uPSIvc2VhcmNoL3NsaWRlc2hvdyIgbWV0aG9kPSJn
+      ZXQiPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIGlkPSJz
+      ZWFyY2hzdHJpbmciIG5hbWU9InEiIHZhbHVlPSJUeXBlIHRleHQgaGVyZSAm
+      aGVsbGlwOyIgY2xhc3M9ImVycm9yU2VhcmNoQm94IiBvbmNsaWNrPSJ0aGlz
+      LnZhbHVlID0gJyc7Ij4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0i
+      c3VibWl0IiBvbmNsaWNrPSJkaXNhYmxlU2VhcmNoKGV2ZW50KSI+CiAgICAg
+      ICAgICAgICAgICAgIFNlYXJjaDxzcGFuPiZuYnNwOzwvc3Bhbj4KICAgICAg
+      ICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgICAgIDwvZm9ybT4KICAg
+      ICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rp
+      dj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2JvZHk+CjwvaHRtbD4=
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.slideshare.net:443/api/oembed/2?url=http%3A%2F%2Fwww.slideshare.net%2Ffeatured%2Fcategory%2Ftechnology&format=json
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      user-agent:
+      - Mozilla/5.0 (compatible; ruby-oembed/0.10.0)
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 May 2016 05:26:48 GMT
+      content-type:
+      - text/html; charset=utf-8
+      status:
+      - 404 Not Found
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+      x-bench-route:
+      - oembed/get_oembed_code
+      x-xss-protection:
+      - 1; mode=block
+      cache-control:
+      - no-cache
+      x-content-type-options:
+      - nosniff
+      x-request-uuid:
+      - 7/Al7f3slvfy36IFgs3ZdQ==
+      x-runtime:
+      - '0.013924'
+      x-request-id:
+      - 0c143f2278693fc8b81196c4d65a0e8f
+      x-varnish:
+      - '109431810'
+      age:
+      - '0'
+      x-fs-uuid:
+      - 4f50c66e92cc5014003a443eb52a0000
+      x-li-fabric:
+      - prod-lva1
+      set-cookie:
+      - _uv_id=801080; Path=/; Domain=.slideshare.net
+      - SERVERID=r87|V0FDG|V0FDG; path=/
+      - bcookie="v=2&84d8641d-b44a-491c-8fd2-70bfdb3c9084"; domain=.slideshare.net;
+        Path=/; Expires=Tue, 22-May-2018 17:04:20 GMT
+      transfer-encoding:
+      - chunked
+      x-li-pop:
+      - PROD-ELA4
+      x-li-uuid:
+      - T1DGbpLMUBQAOkQ+tSoAAA==
+    body: !binary |-
+      PCFET0NUWVBFIGh0bWw+CjxodG1sIHhtbG5zPSJodHRwOi8vd3d3LnczLm9y
+      Zy8xOTk5L3hodG1sIiB4bWw6bGFuZz0iZW4iIGxhbmc9ImVuIj4KICA8aGVh
+      ZD4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVu
+      dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ii8+CiAgICA8bGluayBocmVm
+      PSIvc3R5bGVzaGVldHMvZXJyb3IuY3NzIiB0eXBlPSJ0ZXh0L2NzcyIgcmVs
+      PSJzdHlsZXNoZWV0IiBtZWRpYT0ic2NyZWVuIiAvPgogICAgPGxpbmsgdHlw
+      ZT0idGV4dC9jc3MiIHJlbD0ic3R5bGVzaGVldCIgbWVkaWE9InNjcmVlbiIg
+      aHJlZj0iLi4vYmlnYm9vdC9jc3Mvc3MtY29yZS5jc3MiPgogICAgPHRpdGxl
+      PjQwNCBlcnJvci4gUGFnZSBOb3QgRm91bmQuPC90aXRsZT4KICAgIDxzY3Jp
+      cHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij4KICAgICAgZnVuY3Rpb24gZGlz
+      YWJsZVNlYXJjaChldmVudCkgewogICAgICAgIHZhciB0ID0gZG9jdW1lbnQu
+      Z2V0RWxlbWVudEJ5SWQoJ3NlYXJjaHN0cmluZycpOwogICAgICAgIGlmKHQu
+      dmFsdWUgPT09ICdUeXBlIHRleHQgaGVyZSDigKYnIHx8IHQudmFsdWUubGVu
+      Z3RoID09PSAwKSB7CiAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgp
+      OwogICAgICAgIH0KICAgICAgfQogICAgPC9zY3JpcHQ+CiAgPC9oZWFkPgog
+      IDxib2R5PgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgPGRp
+      diBjbGFzcz0icm93Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJzbWlsZXkiPgog
+      ICAgICAgICAgPGltZyBzcmM9Ii9pbWFnZXMvZXJyb3JzbWlsZXkucG5nIiB3
+      aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiIGFsdD0iZXJyb3IiIC8+CiAg
+      ICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJy
+      b3ciPgogICAgICAgIDxkaXYgY2xhc3M9ImVycm9yQm94Ij4KICAgICAgICAg
+      IDxkaXYgY2xhc3M9InNwYW4zIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0i
+      ZXJyb3JDb2RlIj4KICAgICAgICAgICAgICA8aDE+NDA0PC9oMT4KICAgICAg
+      ICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYg
+      Y2xhc3M9InNwYW43Ij4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1o
+      ZWFkZXIiPgogICAgICAgICAgICAgIDxwIGNsYXNzPSJsZWFkIj5Tb3JyeSEg
+      V2UgY291bGQgbm90IGZpbmQgd2hhdCB5b3Ugd2VyZSBsb29raW5nIGZvciA6
+      KDwvcD4KICAgICAgICAgICAgICA8cD5Eb24ndCB3b3JyeSwgd2Ugd2lsbCBo
+      ZWxwIHlvdSBnZXQgdG8gdGhlIHJpZ2h0IHBsYWNlLjwvcD4KICAgICAgICAg
+      ICAgPC9kaXY+CiAgICAgICAgICAgIDxoMz5BcmUgeW91IGxvb2tpbmcgZm9y
+      PC9oMz4KICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgIDxsaT48YSBo
+      cmVmPSIvIj5Ib21lcGFnZTwvYT48L2xpPgogICAgICAgICAgICAgIDxsaSBj
+      bGFzcz0ibWlkZGxlIj48YSBocmVmPSIvY2hhbm5lbHMiPlNsaWRlU2hhcmUg
+      Q2hhbm5lbHM8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0i
+      L3BvcHVsYXIiPlBvcHVsYXIgUHJlc2VudGF0aW9uczwvYT48L2xpPgogICAg
+      ICAgICAgICA8L3VsPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2hT
+      ZWN0aW9uIj4KICAgICAgICAgICAgICA8Zm9ybSBzdHlsZT0iZGlzcGxheTog
+      aW5saW5lOyIgYWN0aW9uPSIvc2VhcmNoL3NsaWRlc2hvdyIgbWV0aG9kPSJn
+      ZXQiPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIGlkPSJz
+      ZWFyY2hzdHJpbmciIG5hbWU9InEiIHZhbHVlPSJUeXBlIHRleHQgaGVyZSAm
+      aGVsbGlwOyIgY2xhc3M9ImVycm9yU2VhcmNoQm94IiBvbmNsaWNrPSJ0aGlz
+      LnZhbHVlID0gJyc7Ij4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0i
+      c3VibWl0IiBvbmNsaWNrPSJkaXNhYmxlU2VhcmNoKGV2ZW50KSI+CiAgICAg
+      ICAgICAgICAgICAgIFNlYXJjaDxzcGFuPiZuYnNwOzwvc3Bhbj4KICAgICAg
+      ICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgICAgIDwvZm9ybT4KICAg
+      ICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rp
+      dj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2JvZHk+CjwvaHRtbD4=
+    http_version: '1.1'

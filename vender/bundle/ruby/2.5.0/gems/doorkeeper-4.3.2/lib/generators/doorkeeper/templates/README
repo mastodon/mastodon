@@ -1,0 +1,24 @@
+===============================================================================
+
+There is a setup that you need to do before you can use doorkeeper.
+
+Step 1.
+Go to config/initializers/doorkeeper.rb and configure
+resource_owner_authenticator block.
+
+Step 2.
+Choose the ORM:
+
+If you want to use ActiveRecord run:
+
+  rails generate doorkeeper:migration
+
+And run
+
+  rake db:migrate
+
+Step 3.
+That's it, that's all. Enjoy!
+
+===============================================================================
+

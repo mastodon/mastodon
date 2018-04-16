@@ -1,0 +1,17 @@
+language: ruby
+
+matrix:
+  include:
+    - rvm: 1.9.3
+      gemfile: Gemfile
+      services: mongodb
+
+    - rvm: 2.0.0
+      gemfile: Gemfile
+      services: mongodb
+
+    - rvm: 1.9.3
+      gemfile: gemfiles/activerecord-4.gemfile
+
+    - rvm: 2.0.0
+      gemfile: gemfiles/activerecord-4.gemfile

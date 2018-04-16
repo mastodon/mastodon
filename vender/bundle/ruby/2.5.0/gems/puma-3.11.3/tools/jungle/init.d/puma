@@ -1,0 +1,421 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          puma 
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Puma web server
+# Description:       A ruby web server built for concurrency http://puma.io
+#                    initscript to be placed in /etc/init.d.
+### END INIT INFO
+
+# Author: Darío Javier Cravero <dario@exordo.com>
+#
+# Do NOT "set -e"
+
+# PATH should only include /usr/* if it runs after the mountnfs.sh script
+PATH=/usr/local/bin:/usr/local/sbin/:/sbin:/usr/sbin:/bin:/usr/bin
+DESC="Puma rack web server"
+NAME=puma
+DAEMON=$NAME
+SCRIPTNAME=/etc/init.d/$NAME
+CONFIG=/etc/puma.conf
+JUNGLE=`cat $CONFIG`
+RUNPUMA=/usr/local/bin/run-puma
+USE_LOCAL_BUNDLE=0
+
+# Load the VERBOSE setting and other rcS variables
+. /lib/init/vars.sh
+
+# Define LSB log_* functions.
+# Depend on lsb-base (>= 3.0-6) to ensure that this file is present.
+. /lib/lsb/init-functions
+
+#
+# Function that starts the jungle 
+#
+do_start() {
+  log_daemon_msg "=> Running the jungle..."
+  for i in $JUNGLE; do
+    dir=`echo $i | cut -d , -f 1`
+    do_start_one $dir
+  done
+}
+
+do_start_one() {
+  PIDFILE=$1/tmp/puma/pid
+  if [ -e $PIDFILE ]; then
+    PID=`cat $PIDFILE`
+    # If the puma isn't running, run it, otherwise restart it.
+    if [ "`ps -A -o pid= | grep -c $PID`" -eq 0 ]; then
+      do_start_one_do $1
+    else
+      do_restart_one $1
+    fi
+  else
+    do_start_one_do $1
+  fi
+}
+
+do_start_one_do() {
+  i=`grep $1 $CONFIG`
+  dir=`echo $i | cut -d , -f 1`
+  user=`echo $i | cut -d , -f 2`
+  config_file=`echo $i | cut -d , -f 3`
+  if [ "$config_file" = "" ]; then
+    config_file="$dir/config/puma.rb"
+  fi
+  log_file=`echo $i | cut -d , -f 4`
+  if [ "$log_file" = "" ]; then
+    log_file="$dir/log/puma.log"
+  fi
+  environment=`echo $i | cut -d , -f 5`
+
+  log_daemon_msg "--> Woke up puma $dir"
+  log_daemon_msg "user $user"
+  log_daemon_msg "log to $log_file"
+
+  if [ ! -z "$environment" ]; then
+    for e in $(echo "$environment" | tr ';' '\n'); do
+        log_daemon_msg "environment $e"
+        v=${e%%\=*} ;  eval "$e" ; export $v
+    done
+  fi
+
+  start-stop-daemon --verbose --start --chdir $dir --chuid $user --background --exec $RUNPUMA -- $dir $config_file $log_file
+}
+
+#
+# Function that stops the jungle
+#
+do_stop() {
+  log_daemon_msg "=> Putting all the beasts to bed..."
+  for i in $JUNGLE; do
+    dir=`echo $i | cut -d , -f 1`
+    do_stop_one $dir
+  done
+}
+#
+# Function that stops the daemon/service
+#
+do_stop_one() {
+  log_daemon_msg "--> Stopping $1"
+  PIDFILE=$1/tmp/puma/pid
+  STATEFILE=$1/tmp/puma/state
+  if [ -e $PIDFILE ]; then
+    PID=`cat $PIDFILE`
+    if [ "`ps -A -o pid= | grep -c $PID`" -eq 0 ]; then
+      log_daemon_msg "---> Puma $1 isn't running."
+    else
+      log_daemon_msg "---> About to kill PID `cat $PIDFILE`"
+      if [ "$USE_LOCAL_BUNDLE" -eq 1 ]; then
+        cd $1 && bundle exec pumactl --state $STATEFILE stop
+      else
+        pumactl --state $STATEFILE stop
+      fi
+      # Many daemons don't delete their pidfiles when they exit.
+      rm -f $PIDFILE $STATEFILE
+    fi
+  else
+    log_daemon_msg "---> No puma here..."
+  fi
+  return 0
+}
+
+#
+# Function that restarts the jungle 
+#
+do_restart() {
+  for i in $JUNGLE; do
+    dir=`echo $i | cut -d , -f 1`
+    do_restart_one $dir
+  done
+}
+
+#
+# Function that sends a SIGUSR2 to the daemon/service
+#
+do_restart_one() {
+  PIDFILE=$1/tmp/puma/pid
+
+  if [ -e $PIDFILE ]; then
+    log_daemon_msg "--> About to restart puma $1"
+    kill -s USR2 `cat $PIDFILE`
+    # TODO Check if process exist
+  else
+    log_daemon_msg "--> Your puma was never playing... Let's get it out there first"
+    do_start_one $1
+  fi
+	return 0
+}
+
+#
+# Function that phased restarts the jungle
+#
+do_phased_restart() {
+  for i in $JUNGLE; do
+    dir=`echo $i | cut -d , -f 1`
+    do_phased_restart_one $dir
+  done
+}
+
+#
+# Function that sends a SIGUSR1 to the daemon/service
+#
+do_phased_restart_one() {
+  PIDFILE=$1/tmp/puma/pid
+
+  if [ -e $PIDFILE ]; then
+    log_daemon_msg "--> About to restart puma $1"
+    kill -s USR1 `cat $PIDFILE`
+    # TODO Check if process exist
+  else
+    log_daemon_msg "--> Your puma was never playing... Let's get it out there first"
+    do_start_one $1
+  fi
+	return 0
+}
+
+#
+# Function that statuss the jungle 
+#
+do_status() {
+  for i in $JUNGLE; do
+    dir=`echo $i | cut -d , -f 1`
+    do_status_one $dir
+  done
+}
+
+#
+# Function that sends a SIGUSR2 to the daemon/service
+#
+do_status_one() {
+  PIDFILE=$1/tmp/puma/pid
+  i=`grep $1 $CONFIG`
+  dir=`echo $i | cut -d , -f 1`
+  
+  if [ -e $PIDFILE ]; then
+    log_daemon_msg "--> About to status puma $1"
+    if [ "$USE_LOCAL_BUNDLE" -eq 1 ]; then
+      cd $1 && bundle exec pumactl --state $dir/tmp/puma/state stats
+    else
+      pumactl --state $dir/tmp/puma/state stats
+    fi
+    # kill -s USR2 `cat $PIDFILE`
+    # TODO Check if process exist
+  else
+    log_daemon_msg "--> $1 isn't there :(..." 
+  fi
+	return 0
+}
+
+do_add() {
+  str=""
+  # App's directory
+  if [ -d "$1" ]; then
+    if [ "`grep -c "^$1" $CONFIG`" -eq 0 ]; then
+      str=$1
+    else
+      echo "The app is already being managed. Remove it if you want to update its config."
+      exit 1 
+    fi
+  else
+    echo "The directory $1 doesn't exist."
+    exit 1
+  fi
+  # User to run it as
+  if [ "`grep -c "^$2:" /etc/passwd`" -eq 0 ]; then
+    echo "The user $2 doesn't exist."
+    exit 1
+  else
+    str="$str,$2"
+  fi
+  # Config file
+  if [ "$3" != "" ]; then
+    if [ -e $3 ]; then
+      str="$str,$3"
+    else
+      echo "The config file $3 doesn't exist."
+      exit 1
+    fi
+  fi
+  # Log file
+  if [ "$4" != "" ]; then
+    str="$str,$4"
+  fi
+
+  # Environment variables
+  if [ "$5" != "" ]; then
+    str="$str,$5"
+  fi
+
+  # Add it to the jungle 
+  echo $str >> $CONFIG
+  log_daemon_msg "Added a Puma to the jungle: $str. You still have to start it though."
+}
+
+do_remove() {
+  if [ "`grep -c "^$1" $CONFIG`" -eq 0 ]; then
+    echo "There's no app $1 to remove."
+  else
+    # Stop it first.
+    do_stop_one $1
+    # Remove it from the config.
+    sed -i "\\:^$1:d" $CONFIG
+    log_daemon_msg "Removed a Puma from the jungle: $1."
+  fi
+}
+
+config_bundler() {
+  HOME="$(eval echo ~$(id -un))"
+
+  if [ -d "$1/.rbenv/bin" ]; then
+    PATH="$1/.rbenv/bin:$1/.rbenv/shims:$1"
+    eval "$(rbenv init -)"
+    USE_LOCAL_BUNDLE=1
+    return 0
+
+  elif [ -d "/usr/local/rbenv/bin" ]; then
+    PATH="/usr/local/rbenv/bin:/usr/local/rbenv/shims:$PATH"
+    eval "$(rbenv init -)"
+    USE_LOCAL_BUNDLE=1
+    return 0
+
+  elif [ -d "$HOME/.rbenv/bin" ]; then
+    PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+    eval "$(rbenv init -)"
+    USE_LOCAL_BUNDLE=1
+    return 0
+
+  # TODO: test rvm
+  # elif [ -f  /etc/profile.d/rvm.sh ]; then
+  #   source /etc/profile.d/rvm.sh
+  # elif [ -f /usr/local/rvm/scripts/rvm ]; then
+  #   source /etc/profile.d/rvm.sh
+  # elif [ -f "$HOME/.rvm/scripts/rvm" ]; then
+  #   source "$HOME/.rvm/scripts/rvm"
+  # TODO: don't know what to do with chruby
+  # elif [ -f /usr/local/share/chruby/chruby.sh ]; then
+  #   source /usr/local/share/chruby/chruby.sh
+  #   if [ -f /usr/local/share/chruby/auto.sh ]; then
+  #     source /usr/local/share/chruby/auto.sh
+  #   fi
+  # if you aren't using auto, set your version here
+  # chruby 2.0.0
+  fi
+
+  return 1
+}
+
+config_bundler
+
+case "$1" in
+  start)
+    [ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC" "$NAME"
+    if [ "$#" -eq 1 ]; then
+      do_start
+    else
+      i=`grep $2 $CONFIG`
+      dir=`echo $i | cut -d , -f 1`
+      do_start_one $dir
+    fi
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+  ;;
+  stop)
+    [ "$VERBOSE" != no ] && log_daemon_msg "Stopping $DESC" "$NAME"
+    if [ "$#" -eq 1 ]; then
+      do_stop
+    else
+      i=`grep $2 $CONFIG`
+      dir=`echo $i | cut -d , -f 1`
+      do_stop_one $dir
+    fi
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+  ;;
+  status)
+    # TODO Implement.
+    log_daemon_msg "Status $DESC" "$NAME"
+    if [ "$#" -eq 1 ]; then
+      do_status
+    else
+      i=`grep $2 $CONFIG`
+      dir=`echo $i | cut -d , -f 1`
+      do_status_one $dir
+    fi
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+  ;;
+  restart)
+    log_daemon_msg "Restarting $DESC" "$NAME"
+    if [ "$#" -eq 1 ]; then
+      do_restart
+    else
+      i=`grep $2 $CONFIG`
+      dir=`echo $i | cut -d , -f 1`
+      do_restart_one $dir
+    fi
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+  ;;
+  phased-restart)
+    log_daemon_msg "Restarting (phased) $DESC" "$NAME"
+    if [ "$#" -eq 1 ]; then
+      do_phased_restart
+    else
+      i=`grep $2 $CONFIG`
+      dir=`echo $i | cut -d , -f 1`
+      do_phased_restart_one $dir
+    fi
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+  ;;
+  add)
+    if [ "$#" -lt 3 ]; then
+      echo "Please, specify the app's directory and the user that will run it at least."
+      echo "  Usage: $SCRIPTNAME add /path/to/app user /path/to/app/config/puma.rb /path/to/app/config/log/puma.log"
+      echo "    config and log are optionals."
+      exit 1
+    else
+      do_add $2 $3 $4 $5
+    fi
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+  ;;
+  remove)
+    if [ "$#" -lt 2 ]; then
+      echo "Please, specifiy the app's directory to remove."
+      exit 1
+    else
+      do_remove $2
+    fi
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+  ;;
+  *)
+    echo "Usage:" >&2
+    echo "  Run the jungle: $SCRIPTNAME {start|stop|status|restart|phased-restart}" >&2
+    echo "  Add a Puma: $SCRIPTNAME add /path/to/app user /path/to/app/config/puma.rb /path/to/app/config/log/puma.log"
+    echo "    config and log are optionals."
+    echo "  Remove a Puma: $SCRIPTNAME remove /path/to/app"
+    echo "  On a Puma: $SCRIPTNAME {start|stop|status|restart|phased-restart} PUMA-NAME" >&2
+    exit 3
+  ;;
+esac
+:

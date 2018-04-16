@@ -1,0 +1,3 @@
+ENV['TEST_NOKOGIRI_WITH_LIBXML_RUBY'] = "1"
+gem "libxml-ruby", :platform => :mri, :require => false
+eval_gemfile File.join(File.dirname(ENV['BUNDLE_GEMFILE']),"Gemfile")

@@ -1,0 +1,22 @@
+<div class="content">
+  <h1>Tune</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Setting</th>
+        <th style="width: 20%;">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @settings.each do |setting, value| %>
+        <tr>
+          <td><%= setting %></td>
+          <td><%= value %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p>Check out <%= link_to "PgTune", "http://pgtune.leopard.in.ua", target: "_blank" %> for recommendations. DB version is <%= @database.server_version.split(".").first(2).join(".") %>.</p>
+</div>

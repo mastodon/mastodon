@@ -1,0 +1,101 @@
+# $Id$
+#
+# This is test-data for an LDAP server in LDIF format.
+#
+dn: dc=bayshorenetworks,dc=com
+objectClass: dcObject
+objectClass: organization
+o: Bayshore Networks LLC
+dc: bayshorenetworks
+
+dn: cn=Manager,dc=bayshorenetworks,dc=com
+objectClass: organizationalrole
+cn: Manager
+
+dn: ou=people,dc=bayshorenetworks,dc=com
+objectClass: organizationalunit
+ou: people
+
+dn: ou=privileges,dc=bayshorenetworks,dc=com
+objectClass: organizationalunit
+ou: privileges
+
+dn: ou=roles,dc=bayshorenetworks,dc=com
+objectClass: organizationalunit
+ou: roles
+
+dn: ou=office,dc=bayshorenetworks,dc=com
+objectClass: organizationalunit
+ou: office
+
+dn: mail=nogoodnik@steamheat.net,ou=people,dc=bayshorenetworks,dc=com
+cn: Bob Fosse
+mail: nogoodnik@steamheat.net
+sn: Fosse
+ou: people
+objectClass: top
+objectClass: inetorgperson
+objectClass: authorizedperson
+hasAccessRole: uniqueIdentifier=engineer,ou=roles
+hasAccessRole: uniqueIdentifier=ldapadmin,ou=roles
+hasAccessRole: uniqueIdentifier=ldapsuperadmin,ou=roles
+hasAccessRole: uniqueIdentifier=ogilvy_elephant_user,ou=roles
+hasAccessRole: uniqueIdentifier=ogilvy_eagle_user,ou=roles
+hasAccessRole: uniqueIdentifier=greenplug_user,ou=roles
+hasAccessRole: uniqueIdentifier=brandplace_logging_user,ou=roles
+hasAccessRole: uniqueIdentifier=brandplace_report_user,ou=roles
+hasAccessRole: uniqueIdentifier=workorder_user,ou=roles
+hasAccessRole: uniqueIdentifier=bayshore_eagle_user,ou=roles
+hasAccessRole: uniqueIdentifier=bayshore_eagle_superuser,ou=roles
+hasAccessRole: uniqueIdentifier=kledaras_user,ou=roles
+
+dn: mail=elephant@steamheat.net,ou=people,dc=bayshorenetworks,dc=com
+cn: Gwen Verdon
+mail: elephant@steamheat.net
+sn: Verdon
+ou: people
+objectClass: top
+objectClass: inetorgperson
+objectClass: authorizedperson
+hasAccessRole: uniqueIdentifier=brandplace_report_user,ou=roles
+hasAccessRole: uniqueIdentifier=engineer,ou=roles
+hasAccessRole: uniqueIdentifier=ogilvy_elephant_user,ou=roles
+hasAccessRole: uniqueIdentifier=ldapsuperadmin,ou=roles
+hasAccessRole: uniqueIdentifier=ldapadmin,ou=roles
+
+dn: uniqueIdentifier=engineering,ou=privileges,dc=bayshorenetworks,dc=com
+uniqueIdentifier: engineering
+ou: privileges
+objectClass: accessPrivilege
+
+dn: uniqueIdentifier=engineer,ou=roles,dc=bayshorenetworks,dc=com
+uniqueIdentifier: engineer
+ou: roles
+objectClass: accessRole
+hasAccessPrivilege: uniqueIdentifier=engineering,ou=privileges
+
+dn: uniqueIdentifier=ldapadmin,ou=roles,dc=bayshorenetworks,dc=com
+uniqueIdentifier: ldapadmin
+ou: roles
+objectClass: accessRole
+
+dn: uniqueIdentifier=ldapsuperadmin,ou=roles,dc=bayshorenetworks,dc=com
+uniqueIdentifier: ldapsuperadmin
+ou: roles
+objectClass: accessRole
+
+dn: mail=catperson@steamheat.net,ou=people,dc=bayshorenetworks,dc=com
+cn: Sid Sorokin
+mail: catperson@steamheat.net
+sn: Sorokin
+ou: people
+objectClass: top
+objectClass: inetorgperson
+objectClass: authorizedperson
+hasAccessRole: uniqueIdentifier=engineer,ou=roles
+hasAccessRole: uniqueIdentifier=ogilvy_elephant_user,ou=roles
+hasAccessRole: uniqueIdentifier=ldapsuperadmin,ou=roles
+hasAccessRole: uniqueIdentifier=ogilvy_eagle_user,ou=roles
+hasAccessRole: uniqueIdentifier=greenplug_user,ou=roles
+hasAccessRole: uniqueIdentifier=workorder_user,ou=roles
+

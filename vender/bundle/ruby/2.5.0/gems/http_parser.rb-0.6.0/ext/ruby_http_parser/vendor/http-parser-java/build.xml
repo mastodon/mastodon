@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<project name="http-parser" default="compile" basedir=".">
+
+<echo message="pulling in property files"/>
+<property file="build.properties"/>
+<property name="classes.dir" value="classes"/>
+<property name="assemble.dir" value="assemble"/>
+<property name="lib.dir" value="lib"/>
+
+
+
+<target name="prepare">
+  <mkdir dir="${classes.dir}" />
+  <mkdir dir="${assemble.dir}" />
+  <mkdir dir="${lib.dir}" />
+</target>
+
+<target name="clean">
+	<delete dir="${classes.dir}"/>
+	<delete dir="lib"/>
+	<delete dir="doc"/>
+	<delete dir="${assemble.dir}"/>
+</target>
+
+<target name="compile" depends="prepare">
+  <javac srcdir="src" destdir="${classes.dir}" debug='true'>
+    <classpath>
+      <pathelement path="${classpath}"/>
+      <pathelement location="ext/http-parser.jar"/>
+      <pathelement location="ext/primitives.jar"/>
+    </classpath>
+  </javac>
+</target>
+
+<target name="jar" depends="compile">
+	<copy todir="${assemble.dir}">
+		<fileset dir="classes"/>
+	</copy>
+	<jar basedir="${assemble.dir}" destfile="lib/${ant.project.name}.jar"/>
+</target>
+
+<target name="run" depends="jar">
+	<echo message="don't know how to run"/>
+</target>
+
+<target name="doc" depends="prepare">
+  <javadoc sourcepath="src/impl" destdir="doc">  
+	</javadoc>
+</target>
+
+<target name="test_permutations" depends="compile">
+  <java classname="http_parser.lolevel.TestLoaderNG">
+    <arg value="tests.dumped"/>
+    <classpath>
+      <pathelement location="classes/"/>
+      <pathelement location="ext/primitives.jar/"/>
+    </classpath> 
+  </java>
+</target>
+
+<target name="test_unit" depends="compile">
+  <java classname="http_parser.lolevel.Test">
+    <arg value="tests.dumped"/>
+    <classpath>
+      <pathelement location="classes/"/>
+      <pathelement location="ext/primitives.jar/"/>
+    </classpath> 
+  </java>
+</target>
+
+<target name="test" depends="test_permutations, test_unit"/>
+
+</project>

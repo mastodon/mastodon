@@ -1,0 +1,17 @@
+Changes with IDN 0.1.0 (2011-03-31)
+
+* Fix compilation errors in ruby 1.9.2p0 (2010-08-18 revision 29036).
+
+Changes with IDN 0.0.2 (2006-02-11)
+
+* Remove excessive xfree() if a call to stringprep_profile() returns an
+  error. Fixes crash reported in PR #3088.
+
+* Add tests for invalid Stringprep strings and adjust names of already
+  existing test methods.
+
+* Improve existing tests for IDN::Idna.
+
+Changes with IDN 0.0.1 (2005-09-26)
+
+* First release.

@@ -1,0 +1,9 @@
+!application/smil @smi,smil :8bit 'IANA,RFC4536 =use-instead:application/smil+xml
+!audio/vnd.qcelp @qcp 'IANA,RFC3625 =use-instead:audio/QCELP
+*!image/bmp @bmp =use-instead:image/x-bmp
+*application/acad 'LTSW
+*audio/webm @webm '{WebM=http://www.webmproject.org/code/specs/container/}
+*image/pjpeg :base64 =Fixes a bug with IE6 and progressive JPEGs
+application/1d-interleaved-parityfec 'IANA,RFC6015
+audio/1d-interleaved-parityfec 'IANA,RFC6015
+mac:application/x-apple-diskimage @dmg

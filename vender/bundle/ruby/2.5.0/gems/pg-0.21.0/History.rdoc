@@ -1,0 +1,394 @@
+== v0.21.0 [2017-06-12] Michael Granger <ged@FaerieMUD.org>
+
+Enhancements:
+- Move add_dll_directory to the Runtime namespace for newest versions
+  of RubyInstaller.
+- Deprecate PGconn, PGresult, and PGError top-level constants; a warning
+  will be output the first time one of them is used. They will be
+  removed in the upcoming 1.0 release.
+
+Documentation fixes:
+- Update the docs for PG::Result#cmd_tuples
+
+
+== v0.20.0 [2017-03-10] Michael Granger <ged@FaerieMUD.org>
+
+Enhancements:
+- Update error codes to PostgreSQL-9.6
+- Update Windows binary gems to Ruby-2.4, PostgreSQL 9.6.1 and
+  OpenSSL 1.0.2j.
+- Add support for RubyInstaller2 to Windows binary gems.
+
+Bugfixes:
+- Use secure JSON methods for JSON (de)serialisation. #248
+- Fix Result#inspect on a cleared result.
+- Fix test case that failed on Ruby-2.4. #255
+
+Documentation fixes:
+- Talk about Integer instead of Fixnum.
+- Fix method signature of Coder#encode.
+
+
+== v0.19.0 [2016-09-21] Michael Granger <ged@FaerieMUD.org>
+
+- Deprecate Ruby 1.9
+
+Enhancements:
+- Respect and convert character encoding of all strings sent
+  to the server. #231
+- Add PostgreSQL-9.5 functions PQsslInUse(), PQsslAttribute()
+  and PQsslAttributeNames().
+- Various documentation fixes and improvements.
+- Add mechanism to build without pg_config:
+    gem install pg -- --with-pg-config=ignore
+- Update Windows binary gems to Ruby-2.3, PostgreSQL 9.5.4 and
+  OpenSSL 1.0.2f.
+- Add JSON coders and add them to BasicTypeMapForResults and
+  BasicTypeMapBasedOnResult
+- Allow build from git per bundler.
+
+Bugfixes:
+- Release GVL while calling PQsetClientEncoding(). #245
+- Add __EXTENSIONS__ to Solaris/SmartOS for Ruby >= 2.3.x. #236
+- Fix wrong exception when running SQL while in Connection#copy_data
+  block for output
+
+
+== v0.18.4 [2015-11-13] Michael Granger <ged@FaerieMUD.org>
+
+Enhancements:
+- Fixing compilation problems with Microsoft Visual Studio 2008. GH #10
+- Avoid name clash with xcode and jemalloc. PR#22, PR#23
+
+Bugfixes:
+- Avoid segfault, when quote_ident or TextEncoder::Identifier
+  is called with Array containing non-strings. #226
+
+
+== v0.18.3 [2015-09-03] Michael Granger <ged@FaerieMUD.org>
+
+Enhancements:
+- Use rake-compiler-dock to build windows gems easily.
+- Add CI-tests on appveyor and fix test cases accordingly.
+
+Bugfixes:
+- Fix data type resulting in wrong base64 encoding.
+- Change instance_of checks to kind_of for subclassing. #220
+- TextDecoder::Date returns an actual Ruby Date instead of a Time
+  (thanks to Thomas Ramfjord)
+
+
+== v0.18.2 [2015-05-14] Michael Granger <ged@FaerieMUD.org>
+
+Enhancements:
+
+- Allow URI connection string (thanks to Chris Bandy)
+- Allow Array type parameter to conn.quote_ident
+
+Bugfixes:
+
+- Speedups and fixes for PG::TextDecoder::Identifier and quoting behavior
+- Revert addition of PG::Connection#hostaddr [#202].
+- Fix decoding of fractional timezones and timestamps [#203]
+- Fixes for non-C99 compilers
+- Avoid possible symbol name clash when linking againt static libpq.
+
+
+== v0.18.1 [2015-01-05] Michael Granger <ged@FaerieMUD.org>
+
+Correct the minimum compatible Ruby version to 1.9.3. #199
+
+
+== v0.18.0 [2015-01-01] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes:
+- Fix OID to Integer mapping (it is unsigned now). #187
+- Fix possible segfault in conjunction with notice receiver. #185
+
+Enhancements:
+
+- Add an extensible type cast system.
+- A lot of performance improvements.
+- Return frozen String objects for result field names.
+- Add PG::Result#stream_each and #stream_each_row as fast helpers for
+  the single row mode.
+- Add Enumerator variant to PG::Result#each and #each_row.
+- Add PG::Connection#conninfo and #hostaddr.
+- Add PG.init_openssl and PG.init_ssl methods.
+- Add PG::Result.inspect
+- Force zero termination for all text strings that are given to libpq.
+  It raises an ArgumentError if the string contains a null byte.
+- Update Windows cross build to PostgreSQL 9.3.
+
+
+
+== v0.17.1 [2013-12-18] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes:
+
+- Fix compatibility with signal handlers defined in Ruby. This reverts
+  cancelation of queries running on top of the blocking libpq API (like
+  Connection#exec) in case of signals. As an alternative the #async_exec
+  can be used, which is reverted to use the non-blocking API, again.
+- Wrap PQcancel to be called without GVL. It internally waits for
+  the canceling connection.
+
+Documentation fixes:
+
+- Fix documentation for PG::Connection::conndefaults.
+
+
+== v0.17.0 [2013-09-15] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes:
+
+- Fix crash by calling PQsend* and PQisBusy without GVL (#171).
+
+Enhancements:
+
+- Add method PG::Connection#copy_data.
+- Add a Gemfile to allow installation of dependencies with bundler.
+- Add compatibility with rake-compiler-dev-box.
+- Return self from PG::Result#check instead of nil. This allows
+  to stack method calls.
+
+
+== v0.16.0 [2013-07-22] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes:
+
+- Avoid warnings about uninitialized instance variables.
+- Use a more standard method of adding library and include directories.
+  This fixes build on AIX (Github #7) and Solaris (#164).
+- Cancel the running query, if a thread is about to be killed (e.g. by CTRL-C).
+- Fix GVL issue with wait_for_notify/notifies and notice callbacks.
+- Set proper encoding on the string returned by quote_ident, escape_literal
+  and escape_identifier (#163).
+- Use nil as PG::Error#result in case of a NULL-result from libpq (#166).
+- Recalculate the timeout of conn#wait_for_notify and conn#block in case
+  of socket events that require re-runs of select().
+
+Documentation fixes:
+
+- Fix non working example for PGresult#error_field.
+
+Enhancements:
+
+- Add unique exception classes for each PostgreSQL error type (#5).
+- Return result of the block in conn#transaction instead of nil (#158).
+- Allow 'rake compile' and 'rake gem' on non mercurial repos.
+- Add support for PG_DIAG_*_NAME error fields of PostgreSQL-9.3 (#161).
+
+
+== v0.15.1 [2013-04-08] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes:
+
+- Shorten application_name to avoid warnings about truncated identifier.
+
+
+== v0.15.0 [2013-03-03] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes:
+
+- Fix segfault in PG::Result#field_values when called with non String value.
+- Fix encoding of messages delivered by notice callbacks.
+- Fix text encoding for Connection#wait_for_notify and Connection#notifies.
+- Fix 'Bad file descriptor' problems under Windows: wrong behaviour of
+  #wait_for_notify() and timeout handling of #block on Ruby 1.9.
+
+Documentation fixes:
+
+- conn#socket() can not be used with IO.for_fd() on Windows.
+
+Enhancements:
+
+- Tested under Ruby 2.0.0p0.
+- Add single row mode of PostgreSQL 9.2.
+- Set fallback_application_name to programm name $0. Thanks to Will Leinweber
+  for the patch.
+- Release Ruby's GVL while calls to blocking libpq functions to allow better
+  concurrency in threaded applications.
+- Refactor different variants of waiting for the connection socket.
+- Make use of rb_thread_fd_select() on Ruby 1.9 and avoid deprecated
+  rb_thread_select().
+- Add an example of how to insert array data using a prepared statement (#145).
+- Add continous integration tests on travis-ci.org.
+- Add PG::Result#each_row for iterative over result sets by row. Thanks to
+  Aaron Patterson for the patch.
+- Add a PG::Connection#socket_io method for fetching a (non-autoclosing) IO
+  object for the connection's socket.
+
+Specs:
+
+- Fix various specs to run on older PostgreSQL and Ruby versions.
+- Avoid fork() in specs to allow usage on Windows and JRuby.
+
+
+== v0.14.1 [2012-09-02] Michael Granger <ged@FaerieMUD.org>
+
+Important bugfix:
+
+- Fix stack overflow bug in PG::Result#values and #column_values (#135). Thanks
+  to everyone who reported the bug, and Lars Kanis especially for figuring out
+  the problem.
+
+PostgreSQL 9.2 beta fixes:
+
+- Recognize PGRES_SINGLE_TUPLE as OK when checking PGresult (Jeremy Evans)
+
+Documentation fixes:
+
+- Add note about the usage scope of the result object received by the
+  #set_notice_receiver block. (Lars Kanis)
+- Add PGRES_COPY_BOTH to documentation of PG::Result#result_status. (Lars Kanis)
+- Add some documentation to PG::Result#fnumber (fix for #139)
+
+
+== v0.14.0 [2012-06-17] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes:
+  #47, #104
+
+
+New Methods for PostgreSQL 9 and async API support:
+PG
+- ::library_version
+
+PG::Connection
+- ::ping
+- #escape_literal
+- #escape_identifier
+- #set_default_encoding
+
+PG::Result
+- #check
+
+
+New Samples:
+
+This release also comes with a collection of contributed sample scripts for
+doing resource-utilization reports, graphing database statistics,
+monitoring for replication lag, shipping WAL files for replication,
+automated tablespace partitioning, etc. See the samples/ directory.
+
+
+== v0.13.2 [2012-02-22] Michael Granger <ged@FaerieMUD.org>
+
+- Make builds against PostgreSQL earlier than 8.3 fail with a descriptive
+  message instead of a compile failure.
+
+
+== v0.13.1 [2012-02-12] Michael Granger <ged@FaerieMUD.org>
+
+- Made use of a finished PG::Connection raise a PG::Error instead of
+  a fatal error (#110).
+- Added missing BSDL license file (#108)
+
+
+== v0.13.0 [2012-02-09] Michael Granger <ged@FaerieMUD.org>
+
+Reorganization of modules/classes to be better Ruby citizens (with backward-compatible aliases):
+- Created toplevel namespace 'PG' to correspond with the gem name.
+- Renamed PGconn to PG::Connection (with ::PGconn alias)
+- Renamed PGresult to PG::Result (with ::PGresult alias)
+- Renamed PGError to PG::Error (with ::PGError alias)
+- Declare all constants inside PG::Constants, then include them in
+  PG::Connection and PG::Result for backward-compatibility, and
+  in PG for convenience.
+- Split the extension source up by class/module.
+- Removed old compatibility code for PostgreSQL versions < 8.3
+
+Documentation:
+- Clarified licensing, updated to Ruby 1.9's license.
+- Merged authors list, added some missing people to the Contributor's
+  list.
+- Cleaned up the sample/ directory
+- Making contact info a bit clearer, link to the Google+ page and
+  the mailing list
+
+Enhancements:
+- Added a convenience method: PG.connect -> PG::Connection.new
+
+Bugfixes:
+- Fixed LATIN5-LATIN10 Postgres<->Ruby encoding conversions
+
+
+
+== v0.12.2 [2012-01-03] Michael Granger <ged@FaerieMUD.org>
+
+- Fix for the 1.8.7 breakage introduced by the st.h fix for alternative Ruby
+  implementations (#97 and #98). Thanks to Lars Kanis for the patch.
+- Encode error messages with the connection's encoding under 1.9 (#96)
+
+
+== v0.12.1 [2011-12-14] Michael Granger <ged@FaerieMUD.org>
+
+- Made rake-compiler a dev dependency, as Rubygems doesn't use the Rakefile
+  for compiling the extension. Thanks to eolamey@bitbucket and Jeremy Evans
+  for pointing this out.
+- Added an explicit include for ruby/st.h for implementations that need it
+  (fixes #95).
+
+
+== v0.12.0 [2011-12-07] Michael Granger <ged@FaerieMUD.org>
+
+- PGconn#wait_for_notify
+  * send nil as the payload argument if the NOTIFY didn't have one.
+  * accept a nil argument for no timeout (Sequel support)
+  * Fixed API docs
+  * Taint and encode event name and payload
+- Handle errors while rb_thread_select()ing in PGconn#block.
+  (Brian Weaver).
+- Fixes for Win32 async queries (Rafał Bigaj)
+- Memory leak fixed: Closing opened WSA event. (rafal)
+- Fixes for #66 Win32 asynchronous queries hang on connection
+  error. (rafal)
+- Fixed a typo in PGconn#error_message's documentation
+- fixing unused variable warnings for ruby 1.9.3 (Aaron Patterson)
+- Build system bugfixes
+- Converted to Hoe
+- Updates for the Win32 binary gem builds (Lars Kanis)
+
+
+== v0.11.0 [2011-02-09] Michael Granger <ged@FaerieMUD.org>
+
+Enhancements:
+
+* Added a PGresult#values method to fetch all result rows as an Array of
+  Arrays. Thanks to Jason Yanowitz (JYanowitz at enovafinancial dot com) for
+  the patch.
+
+
+== v0.10.1 [2011-01-19] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes:
+
+* Add an include guard for pg.h
+* Simplify the common case require of the ext
+* Include the extconf header
+* Fix compatibility with versions of PostgreSQL without PQgetCancel. (fixes #36)
+* Fix require for natively-compiled extension under Windows. (fixes #55)
+* Change rb_yield_splat() to rb_yield_values() for compatibility with Rubinius. (fixes #54)
+
+
+== v0.10.0 [2010-12-01] Michael Granger <ged@FaerieMUD.org>
+
+Enhancements:
+
+* Added support for the payload of NOTIFY events (w/Mahlon E. Smith)
+* Updated the build system with Rubygems suggestions from RubyConf 2010
+
+Bugfixes:
+
+* Fixed issue with PGconn#wait_for_notify that caused it to miss notifications that happened after
+  the LISTEN but before the wait_for_notify.
+
+== v0.9.0 [2010-02-28] Michael Granger <ged@FaerieMUD.org>
+
+Bugfixes.
+
+== v0.8.0 [2009-03-28] Jeff Davis <davis.jeffrey@gmail.com>
+
+Bugfixes, better Windows support.
+

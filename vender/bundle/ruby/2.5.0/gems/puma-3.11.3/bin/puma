@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+#
+# Copyright (c) 2011 Evan Phoenix
+#
+
+require 'puma/cli'
+
+cli = Puma::CLI.new ARGV
+
+cli.run

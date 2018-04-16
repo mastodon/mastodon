@@ -1,0 +1,21 @@
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 1.8.7
+  - ree
+  - 1.9.3
+  - 2.0.0
+  - 2.1
+  - 2.2
+  - 2.3.0
+  - ruby-head
+  - jruby-1.7
+  - jruby-9
+  - rbx-2
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: rbx-2
+before_install:
+  - gem update bundler

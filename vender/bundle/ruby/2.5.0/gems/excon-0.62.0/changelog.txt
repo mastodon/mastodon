@@ -1,0 +1,1083 @@
+0.62.0 2018-03-27
+=================
+
+remove binmode call for StringIO objects
+
+0.61.0 2018-03-16
+=================
+
+use default ports for sockets if none specified
+add ruby 2.4 and 2.5 to ci testing
+follow relative location redirects
+
+0.60.0 2017-12-15
+=================
+
+add requests_in_batches
+cleanup rakefile, gemfile, etc
+add logger/logger= and logging instrumentor
+rewind response_block in idempotent instrumentor
+
+
+0.59.0 2017-09-05
+=================
+
+fix backtick vs quote in error message
+fix socket pooling to be per-connection instead of per thread
+fix tests to ignore proxy env settings
+
+0.58.0 08/01/2017
+=================
+
+remove unused error
+add retry_interval and related settings for backoff
+
+0.57.1 06/30/2017
+=================
+
+fix remote-ip setting to prevent off-by-one issue
+
+0.57.0 06/14/2017
+=================
+
+add client_key_data and client_cert_data to valid keys
+allow passing explicit host to unix sockets
+
+0.56.0 05/31/2017
+=================
+
+fix proxy parse errors
+fix url-escaped proxy creds for ssl
+
+0.55.0 02/07/2017
+=================
+
+fix minor readme error
+update bundled certs
+update self-signed certs
+update to test with ruby 2.3.3
+fix unitialized ResponseParseError error
+add missing 'spec_helper' require in tests
+add missing 'time' require in tests
+use unescape_uri for user/pass in Authorization header
+use secure rubygems source uri
+update gemnasium badge
+update fury badge
+update travis badge
+update gittip badge
+
+0.54.0 10/17/2016
+=================
+
+add howsmyssl rake task for sanity checking
+update default ciphers to mozilla intermediate list
+fix typo in changelog
+
+0.53.0 09/27/2016
+=================
+
+add ability to pass ssl options as strings
+progress towards rspec
+update bundled certs
+
+0.52.0 08/22/2016
+=================
+
+freeze string literals
+move toward interpolation, over concatenation (frozen string related)
+start conversion toward rspec
+move user/pass authorization header setting to request level
+
+0.51.0 07/08/2016
+=================
+
+tweak new errors to be an alias rather than inherit
+
+0.50.1 06/28/2016
+=================
+
+re-add some missing errors from refactoring
+
+0.50.0 06/28/2016
+=================
+
+expand readme
+refactor errors for consistancy
+optionally allow unstubbed requests
+parse/verify path as well as host for connection
+
+0.49.0 03/28/2016
+=================
+
+fix nonblock ssl socket connect timeout handling
+fix README debug example
+make unique class for certificate errors
+connection logic cleanup
+change stubs back to global (with local option via defaults)
+specific handling for set-cookie header exceptions
+
+0.48.0 03/07/2016
+=================
+
+optimize by writing part of body with headers when it fits in a chunk
+
+0.47.0 02/29/2016
+=================
+
+fix bundled certs
+fix instrumentors to allow recording timings
+
+0.46.0 02/26/2016
+=================
+
+empty host header for unix sockets
+raise EOFError on unexpectedly read nil
+add host/path/port to response
+keep cookies through redirects
+fix to skip decompressing empty bodies
+fix escaping for query string
+README improvements
+fix SocketError initializer
+fix incorrect error class usage
+
+0.45.4 07/13/2015
+=================
+
+fix undefined errors in error handling
+ignore empty proxy values
+
+0.45.3 04/21/2015
+=================
+
+guard warning about openssl versions in case constant undefined
+ensure rackup listens properly, fixes local tests
+
+0.45.2 04/16/2015
+=================
+
+add raw_status reader
+improved tests around response/status
+rescue IO::WaitWritable for SSL sockets also
+indentation fixes
+tighten rescue in ssl socket connect to better report non-timeouts
+rescue EAGAIN and EWOULDBLOCK for non-blocking connects
+
+0.45.1 03/27/2015
+=================
+
+fix scope for readline buffer, fixes dropped initial characters
+
+0.45.0 03/26/2015
+=================
+
+prefer default SSL config to ENV, when available
+document instrumentor deviation from rails format
+better error/warning around openssl 1.0.2 bug
+fix nonblocking ssl connect to not have tight loop
+also remove user/pass when following redirects
+
+0.44.4 03/04/2015
+=================
+
+update bundled certs
+loosen travis versions, to get ~> type follow-the-leader behavior
+fix syntax issue in ruby 2.2.1
+
+0.44.3 02/24/2015
+=================
+
+don't pass body when following GET redirects
+fix error rescue case to properly reference error object
+
+0.44.2 02/11/2015
+=================
+
+simplify data[:debug] logic
+catch nonblock errors around readline
+
+
+0.44.1 02/01/2015
+=================
+
+fix issue with frozen strings in user/pass
+
+0.44.0 01/30/2015
+=================
+
+re-implement timeout using IO.select
+document custom URI parser usage
+fix ruby 2.2 build
+improved IPv6 support
+Excon::Utils improvements
+add 429 errors
+
+0.43.0 01/09/2015
+=================
+
+use basic error instead of nil as default for socket error
+allow setup_proxy to accept uri
+add disable_proxy and proxy: false to disable proxy settings
+
+0.42.1 12/04/2014
+=================
+
+update bundled certs
+fix redirect follower to avoid erroneously setting basic auth
+
+0.42.0 12/02/2014
+=================
+
+fix stubbing section of README
+follow redirect for all request methods
+remove unhelpful link for excon.io
+rescue/ignore illegal seek on rewind
+add ssl_cert_store option
+allow non-RSA ssl keys
+attempt to rewind request_block when idempotent
+add configurable thread safety for socket pool
+
+
+0.41.0 11/05/2014
+=================
+
+add :ssl_verify_peer_host option for dev purposes
+add #reason_phrase to response
+
+0.40.0 10/06/2014
+=================
+
+fix support for specifying ssl_ca_path
+more consistent response_block/response.body behavior for mocks
+add support for proxies running on unix domain sockets
+
+0.39.6 09/22/2014
+=================
+
+pretty print stub not found errors
+
+0.39.5 09/14/2014
+=================
+
+fix double delegation error
+make client_key_pass valid connection key
+cast headers to_s to fix historical symbol usage
+
+0.39.4 08/08/2014
+=================
+
+ensure Response#new uses case-insensitive headers
+add client cert pass phrase support
+
+0.39.3 08/05/2014
+=================
+
+fix for nil and/or unknown proxy values
+
+0.39.2 08/04/2014
+=================
+
+respect both ca_file/ca_path when both present
+
+0.39.1 08/04/2014
+=================
+
+fix for ssl proxies + remote_ip stuff
+
+0.39.0 08/01/2014
+=================
+
+revert to a blocking readline, for performance
+simplify status lookup
+consolidate proxy code
+store defaults as a constant
+avoid setting nil user/pass vs just no setting keys
+move idempotent warnings in to middleware
+simplify validations
+use constants in utils
+group non-chunk response paring
+optimize/simplify socket local lookup
+simplify to pro-actively build downcased headers instead of lazily do so
+add version to options (so it will appear in debug)
+add OS/Ruby version info to options/version for debugging
+more consistent output styling for errors
+remove TE stuff to simplify
+shorten timeout/sleep in streaming tests
+remove transfer-encoding altogether if it only includes chunked
+only rescue http status errors in relevant tests
+use case-insensitive headers in stubs also
+
+0.38.0 07/09/2014
+=================
+
+avoid reading non-file bodies (mock related fix)
+fixes to readme links
+fix excon_debug to set debug_response
+ensure both \r and \n are read when parsing headers
+
+0.37.0 06/09/2014
+=================
+
+fix chunked reading to avoid chop! on non-chunk endings
+fixes for proxy usage
+
+0.36.0 06/04/2014
+=================
+
+fix to reconcile streaming changes for chunked encoding
+
+0.35.0 06/03/2014
+=================
+
+fix for responses with content_length
+
+0.34.0 05/29/2014
+=================
+
+add support for setting ssl_verify_callback
+stream partial results imediately, when available
+update rack/unicorn in tests to support streaming tests
+skip streaming tests on jruby (as they depend on unicorn)
+update travis tests to use newest rubinius
+improve formatting/readibility of standard instrumentor output
+
+0.33.0 05/15/2014
+=================
+
+README clarifications around defaults and basic auth
+case insensitive headers
+
+0.32.1 03/13/2014
+=================
+
+Fix for SNI (should occur prior to connect)
+
+0.32.0 02/27/2014
+=================
+
+README improvements
+fixes around LICENSE/CONTRIBUTING/CONTRIBUTORS
+update bundled cert
+nonblock connect/timeout fixes for ssl sockets
+skip reverse lookups where feasible
+more secure ssl settings, when available
+add escape stuff as middleware
+fix to raise exceptions properly
+fix for keep alive check
+add tests around keep alive
+escape/unescape uri added to utils
+add support for reusable local ports
+
+0.31.0 12/16/2013
+=================
+
+test fixes for Bundler.require usage and Rack::Lint
+use production mode + dump errors for tests
+use Utils in Excon.stub
+add implementation of stuff from WEBrick directly to utils
+update test server to send connection close and process buffer after response
+add :persistent option, defaults true
+group HTTP errors by type
+patch to webrick to workaround intermitent test failures
+only use Open4 for 1.8.7
+update/expand getting help/getting involved in readme
+
+0.30.0 11/25/2013
+=================
+
+ensure schema/host/port are passed to redirect follower with relative location
+add .ruby-version and .ruby-gemset to .gitignore
+pass nil to :response_block for unknown values
+use :response_block if expects middleware is not used
+refactor Response.parse, add tests
+support header continuations
+support chunked trailers
+improve decompress middleware/tests
+add accept-encoding in decompress middleware requests, if missing
+fixes for connection close detection
+support transfer encoding
+fix deprecated URI.decode usage
+do not try to use tcp_nodelay for unix sockets
+nonblocking connect, connect timeouts for unix sockets
+ignore IO#close exceptions
+move conditional nonblock to only SSLSocket
+skip reverse lookups
+avoid mutating canned response from middleware
+test against latest rubinius, no longer allow failures
+add unicorn as rubinius dev dependency
+use webbrick form decode
+
+0.29.0 11/07/2013
+=================
+
+make nonblock invalid as request key
+add backtrace to all warnings
+do not allow idempotent + pipeline
+close socket after pipeline if needed
+fix Socket#read to match IO.read EOF behavior
+use Socket#read for non-blocking readline
+respect read_timeout for status read
+read response until status line, discard chunked trailer
+fix redirect follower to properly change host
+
+0.28.0 10/28/2013
+=================
+
+tag warning messages with [excon]
+allow specific ssl_versions
+fixes around param validation
+create a new connection for redirect_follower middleware
+add connection_uri/request_uri to utils
+avoid mutating connection data
+remove connection key in redirect_follower
+
+
+0.27.6 10/15/2013
+=================
+
+warn, but no longer mutate params during validation
+
+0.27.5 10/14/2013
+=================
+
+extract validations/port_string to utils module
+
+0.27.4 10/14/2013
+=================
+
+fix for https/port string values
+
+0.27.3 10/11/2013
+=================
+
+better invalid key handling
+avoid mutating port value
+
+0.27.2 10/10/2013
+=================
+
+avoid mutating datum in idempotent middleware
+
+0.27.1 10/09/2013
+=================
+
+improve warning messages for valid keys
+
+0.27.0 10/04/2013
+=================
+
+display warnings based on ruby and/or debug settings
+add missing valid connection keys
+remove 1.8.7 related nonblock warning
+add support for unix sockets
+cleanup constants
+improve test setup to minimize server spawning
+separate connection/request key validation
+
+0.26.0 09/24/2013
+=================
+
+add basic decompress middleware
+update readme mocking+stubbing info
+add unstub functionality
+avoid modifying original options in request
+jruby fixes
+misc cleanup/fixes
+encoding/compatibility fixes
+close sockets on error
+warn when both request_block and idempotent are set
+
+0.25.3 07/18/2013
+=================
+
+respect SSL_CERT_DIR/SSL_CERT_FILE
+more aggressively include bundled cert as fallback
+
+0.25.2 07/18/2013
+=================
+
+add license to gemspec
+add "excon/#{version}" default user agent
+create/use response parser middleware
+fix proxy request info to use datum rather than @data
+
+
+0.25.1 07/01/2013
+=================
+
+fix for jruby ssl
+more explicit description in docs
+
+0.25.0 06/20/2013
+=================
+
+attempt to use OS certs first, only use bundled as fallback
+normalize method in stubs
+
+0.24.0 06/12/2013
+=================
+
+allow passing ssl creds as strings or file paths
+
+0.23.0 06/10/2013
+=================
+
+defer writing request/headers to allow all-in-one
+allow opt-in for request/response error info
+add configurable TCP_NODELAY
+consolidate warning display
+respect ruby verbosity conventions
+fix copyright years in notice
+
+0.22.1 05/17/2013
+=================
+
+fix logic error in dropping default ports
+
+0.22.0 05/17/2013
+=================
+
+remove request/response info from default error messages to avoid
+credential leaks
+add option to omit default ports (http:80 and https:443)
+add examples for form encoding
+updates to facilitate streaming responses from middleware responses
+
+0.21.0 05/04/2013
+=================
+
+update bundled cacert
+add deprecated connection helper
+URL decode user/pass for basic auth
+fix odd name/permissions in benchmarks
+check for socket before closing one
+add support for no_proxy
+include scheme in socket key
+make socket.connect private
+allow stub lookup with Excon.stub_for
+
+0.20.1 03/19/2013
+=================
+
+dup middlewares to avoid overwriting original set
+delete datum[:response] in idempotent to ensure new response is parsed
+
+0.20.0 03/08/2013
+=================
+
+redact password from inspect/instrument
+downgrade severity of invalid keys from error to warning
+
+0.19.5 03/04/2013
+=================
+
+fix ssl socket proxy setup
+
+0.19.4 03/04/2013
+=================
+
+fix merge order of params in new
+
+0.19.3 03/01/2013
+=================
+
+properly raise errors when datum[:stack] has not yet been set
+
+0.19.2 02/28/2013
+=================
+
+add client_cert, client_key to valid connection options
+
+0.19.1 02/27/2013
+=================
+
+fix for ssl proxies to allow connect response to be read
+
+0.19.0 02/27/2013
+=================
+
+fix requests (pipeline) example in README
+make StubNotFound inherit from StandardError (not Excon::Errors::Error)
+idempotent reimplemented as middleware
+remaining idempotent/instrumentor functionality moved to middleware
+move uri parsing to Excon.new
+allow for configurable URI parser (ie Addressable vs URI)
+move VALID_CONNECTION_KEYS to constants
+move idempotent tests to middleware directory
+fix output of expects middleware to pass response objects instead of
+hashes
+
+0.18.5 02/22/2013
+=================
+
+add family to known keys
+
+0.18.4 02/21/2013
+=================
+
+remove ssl proxy host_port usage
+
+0.18.3 02/21/2013
+=================
+
+update response accessors to read from/write to @data
+
+0.18.2 02/21/2013
+=================
+
+one shouldn't rush, fix typo in previous
+
+0.18.1 02/21/2013
+=================
+
+fix for http errors when using mocks
+
+0.18.0 02/21/2013
+=================
+
+more refactoring around middlewares
+add pipelining capabilities
+allow [] style access to response attributes
+
+
+0.17.0 02/01/2013
+=================
+
+add patch method
+allow passing family for addresses to params/proxy
+more consistent empty header passing
+nicer debug output
+internal refactoring toward middleware pattern
+
+0.16.10 11/16/2012
+==================
+
+set default request_params for stub
+do not attempt to read body for CONNECT requests
+
+0.16.9 11/16/2012
+=================
+
+readme cleanup/clarification around stubs
+fix for reading response from ssl proxy
+
+0.16.8 11/12/2012
+=================
+
+set file body pos to 0 at beginning of request
+add eventmachine to dev dependencies for bad server tests
+comment out benchmark deps for now
+fix typo in readme
+
+0.16.7 10/17/2012
+=================
+
+fix typo in host_port per-request patch
+
+0.16.6 10/17/2012
+=================
+
+fix for host_port to recalculate on a per-request basis
+
+0.16.5 10/17/2012
+=================
+
+Also retry Timeouts on idempotent requests
+Excon.stub now breaks out user/pass from url if supplied
+loosen ssl version requirement to allow negotiation
+eof on read should return '' instead of nil
+build host_port up front to avoid recalculating
+set Proxy-Connection: Keep-Alive for https proxies
+postpone https upgrade until after proxy connect
+
+0.16.4 09/25/2012
+=================
+
+better behavior nonblock and use DEFAULT_NONBLOCK constant
+update deprecation/warnings to use $stderr
+consistency fixes for REDACT
+add REDACT behavior to standard_instrumentor
+
+0.16.3 09/20/2012
+=================
+
+remove overly paranoid const checking
+change chunk_size to be a param for consistency
+
+0.16.2 08/27/2012
+=================
+
+provide more helpful backtraces on connection requests
+provide more helpful backtraces on one-off requests
+rearrange class methods so params will pass to socket
+integrate nonblock backwards compatability fix
+rearrange excon.rb to initialize defaults sooner
+set nonblock at init time for ssl socket
+fixes around nonbleck to properly skip/warn if unavailable but selected
+
+0.16.1 08/15/2012
+=================
+
+default to SSLv3 usage
+
+0.16.0 08/14/2012
+=================
+
+add nonblock => false to use blocking requests with Timeout.timeout
+update readme to describe nonblock and idempotent options
+
+0.15.5 08/01/2012
+=================
+
+consolidate proxy handling
+proxy settings should pull from connection instead of params (allows
+		Excon.defaults[:proxy])
+properly raise connect timeout errors
+change recommended standard instrumentor ENV to EXCON_DEBUG
+remove readline nonblock protections (they didn't fix the windows issue)
+don't swallow non-nonblock SSL exceptions
+consistency fixes for ssl nonblock error handling
+do SNI in ssl_socket setup
+use Excon::Response#parse to read https proxy response
+
+0.15.4 07/16/12
+===============
+
+rescue/retry nonblock errors from readline (even though they shouldn't
+		occur)
+
+0.15.3 07/16/12
+===============
+
+remove erroneous newline in proxy auth header
+
+0.15.2 07/16/12
+===============
+
+fix capitalization of EXCON constant in auth stuff
+properly handle nil user/password values in auth
+various fixes to proxy and related tests
+
+0.15.1 07/16/12
+===============
+
+fix for sending user/pass to proxy
+
+0.15.0 07/16/12
+===============
+
+clarifications in README
+added base error class to message for Excon::SocketError
+fixes for proxy, sets properly on http and passes auth
+
+0.14.3 07/05/12
+===============
+
+remove a redundant setter in response streamer
+standardize on each (instead of for) to iterate enumerables
+
+0.14.2 06/26/12
+===============
+
+fix invoke_stub to convert files into strings before comparing
+
+0.14.1 06/19/12
+===============
+
+accept port as a separate option
+ensure first read from socket is nonblock (fixes read_timeouts)
+respect upper case env vars
+
+0.14.0 05/31/12
+===============
+
+make stubs LIFO for ease of use/understanding, updated README to
+explain
+simplify https proxy logic
+add instrumentation for responses
+add StandardInstrumentor (events got to stderr)
+EXCON_STANDARD_INSTRUMENTOR=true sets StandardInstrumentor as default
+
+0.13.3 04/05/12
+===============
+
+* fix for file size calculation in 1.8.7
+
+0.13.3 04/05/12
+===============
+
+* fixes for file like objects which do not respond to binmode
+
+0.13.2 03/26/12
+===============
+
+* fix to avoid issues when Tempfile is not required/defined. Thanks
+nextmat
+
+0.13.1 03/26/12
+===============
+
+* fix to allow for passing Tempfile objects as body. Thanks rkyrychuk
+
+0.13.0 03/22/12
+===============
+
+* workaround for jruby (use blocking read/write for ssl sockets)
+
+0.12.0 03/18/12
+===============
+
+* use params to set ssl (so each connection could differ)
+* bundle a default cert
+
+0.11.0 03/15/12
+===============
+
+* add request_block to support chunked requests
+* deprecate implicit block in favor of explicit response_block
+* loosen activesupport and jruby-openssl development dependencies
+
+0.10.1 03/13/12
+===============
+
+* avoid calling empty? on file body
+
+0.10.0 03/01/12
+===============
+
+* avoid setting/passing Content-Length headers for GET requests with
+no body
+* remove rcov from tasks/bundle in development
+* automatically parse and use basic auth when passed as part of a uri
+* fix for erroneous recursion in Excon.defaults=
+
+0.9.6 02/22/12
+==============
+
+* add support for setting ca_file. Thanks mattmatt!
+* add docs for Excon.stubs.clear and expects. Thanks masterkain!
+* add class level defaults
+* fix ruby warnings. Thanks foca!
+* improve instrumentation docs. Thanks mkb!
+* fix for empty body and SSL sockets. Thanks pweldon!
+
+0.9.5 01/16/12
+==============
+
+* fix getaddrinfo usage for rbx
+* fix mock handling when a block in passed
+* add jruby to ci
+
+0.9.4 12/21/11
+==============
+
+* fix for regexp/capture setting
+
+0.9.3 12/21/11
+==============
+
+* fix CONSTANTS referenced in SSL_Socket
+* fix default value for proxy in SSL_Socket
+* fix non-regexp header matching
+* return captures from regexp based params
+
+0.9.2 12/16/11
+==============
+
+* update mocks to allow for regex based matching
+* fixes for write_nonblock+OpenSSL weirdness
+
+0.9.1 12/15/11
+==============
+
+* update mock usage to be at the connection/request level
+
+0.9.0 12/14/11
+==============
+
+* add ability to do instrumentation
+* misc cleanup
+* deprecate retry_limit accessor in favor of passing as a param
+
+0.8.0 12/12/11
+==============
+
+* move mock handler to its own method
+* better handling around openssl errors
+* simplify writing by removing buffer
+
+0.7.12 12/04/11
+===============
+
+* revert: explicitly close files after writing
+
+0.7.11 12/24/11
+==============
+
+* rebuild gem broken gemspec with 1.8.x
+
+0.7.10 12/04/11
+===============
+
+* explicitly close files after writing
+
+0.7.9 11/30/11
+==============
+
+* add ability to modify retry limit
+* use addrinfo to avoid localhost and other IPv6 issues
+* update gemspec authors to add Dan Peterson and Matt Sanders
+
+0.7.8 11/24/11
+==============
+
+* rebuild gem broken gemspec with 1.8.x
+
+0.7.7 11/24/11
+==============
+
+* setup for travis ci automated testing
+* fix EOFError
+* use Socket.getaddrinfo to fix IPv6 issues
+
+0.7.6 10/04/11
+==============
+
+* fixes to provide for using openssl-nonblock for 1.8.x
+* correctly pass per-request settings to socket
+* fix for nonblocking stuff when waiting for socket close
+* use 127.0.0.1 instead of localhost in tests (fixes some errors)
+
+0.7.5 10/03/11
+==============
+
+* convert port to integer in sockaddr_in (jruby won't convert for you)
+
+0.7.4 09/30/11
+==============
+
+* rescue write would block from openssl
+
+0.7.3 09/27/11
+==============
+
+* fix nonblocking read to avoid reading past chunk in chunked encoded
+* rescue read would block from openssl
+
+0.7.2 09/24/11
+==============
+
+* fix buffer drain for socket#write. thanks dpiddy
+* rescue/retry timeout errors for idempotent requests. thanks dpiddy
+* timeouts should raise an excon specific error
+
+0.7.1 09/13/11
+==============
+
+* use nonblocking only when available (skip for 1.8.x SSL)
+
+0.7.0 09/12/11
+==============
+
+* change connects and most read/writes to use nonblocking methods
+* provide connect/read/write timeouts
+
+0.6.6 09/06/11
+==============
+
+* cleanup/refactoring. thanks nextmat
+* default to connection close as request delimiter
+
+0.6.5 07/13/11
+==============
+
+* properly stream responses with proc
+* fix mock with block to match real requests
+
+0.6.4 07/05/11
+==============
+
+* add block support to mocks. thanks dmeiz
+* fixes for stub matching. thanks dmeiz
+* don't do post_connection_check if verify mode is off
+* check excon state for verify mode instead of checking OpenSSL
+constants
+* use RbConfig to find OS. thanks trym
+* fixes for idempotent/retry. thanks lstoll
+
+0.6.3 05/02/11
+==============
+
+* fixes for header parsing to allow whitespace after :. thanks
+myronmarston
+* get_header optimization. thanks nextmat
+* rewind body on retry. thanks pweldon
+
+0.6.2 04/11/11
+==============
+
+* fix block arguments for connection close. thanks ggoodale
+
+0.6.1 04/05/11
+==============
+
+* add support for HTTPS proxies. thanks mrowe
+* add support for http_proxy and https_proxy ENV variables. thanks
+mrowe
+* fix progress for requests with blocks that are chunked or connection
+close
+
+0.6.0 03/30/11
+==============
+
+* basic support for using proxies. thanks mattsa
+* yield remaining/total bytes to streaming block. thanks nate
+* minor optimizations/cleanup
+
+0.5.8 03/24/11
+==============
+
+* fix regression where nil values in queries were ignored in 1.9.
+thanks mattsa
+* fix regression causing EOFError when making many connections in one
+thread
+* added tests to prevent both of the former from recurring
+
+0.5.7 03/21/11
+==============
+
+* lazily connect, rather than connecting at #initialize
+* add rough first pass at stubbing
+* minor optimizations
+* ssl client certification support. thanks thommay
+* skip figuring out/setting Content-Length if one is supplied. Thanks
+pweldon
+* do not try to parse body for 205 and 304. Thanks seancribbs
+
+0.5.6 02/19/11
+==============
+
+* only split headers by first ':' to allow for values with ':'. Thanks
+mtodd!
+* check a string instance for force_encoding, not class. Thanks
+seancribbs!
+* add benchmarks related to for vs each for enumerable. Thanks caius!
+* fix default rake task to run tests
+
+0.5.5 02/18/11
+==============
+
+* use local variables in response parsing, prevents keeping state
+across requests
+
+0.5.4 02/18/11
+==============
+
+* 204 should not attempt to parse body
+
+
+0.5.3 02/17/11
+==============
+
+* header comparison for responses is now case insensitive
+* change to allow :idempotent => false to operate correctly
+* misc cleanup

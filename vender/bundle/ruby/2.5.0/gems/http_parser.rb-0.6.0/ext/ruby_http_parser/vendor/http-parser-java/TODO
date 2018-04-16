@@ -1,0 +1,28 @@
+decide how to handle errs per default:
+  - ry: "set state to dead", return `read`
+  - current: call on_error w/ details, if no on_error handler set,
+    throw Exception, else call on_error and behave like orig...
+
+some tests from test.c left to port
+  (scan ...)
+documentation
+
+hi level callback interface 
+eventloop
+state() as a function (?)
+  - perhaps, the idea being to be able to log/debug better...
+more tests
+  - in particular, port available c tests
+impl bits of servlet api.
+
+DONE
+
+Sun Jul 18 12:19:18 CEST 2010
+
+error handling
+  - consider callback based error handling and the current highlevel
+    "nice" logging moved to high level http impl.
+  - use Exceptions "ProtocolException"?
+
+better testing
+  - no junit to avoid dependencies

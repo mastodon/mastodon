@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+$: << File.dirname(__FILE__)+'/lib'
+require 'benchmark'
+require 'fast_blank'
+
+class String
+  # active support implementation
+  def slow_blank?
+    /\A[[:space:]]*\z/ === self
+  end
+end
+
+
+n = 1000000
+
+
+strings = [
+  "",
+  "\r\n\r\n  ",
+  "this is a test",
+  "   this is a longer test",
+  "   this is a longer test
+      this is a longer test
+      this is a longer test
+      this is a longer test
+      this is a longer test"
+]
+
+strings.each do |s|
+  raise "failed on #{s.inspect}" if s.blank? != s.slow_blank?
+end
+
+Benchmark.bmbm  do |x|
+  strings.each do |s|
+    x.report("Fast Blank #{s.length}    :") do  n.times { s.blank? }  end
+    x.report("Fast Blank (Active Support)  #{s.length}    :") do  n.times { s.blank_as? }  end
+    x.report("Slow Blank #{s.length}    :") do  n.times { s.slow_blank? }  end
+    #x.report("Empty #{s.length}    :") do  n.times { s.empty? }  end
+  end
+end
+
+#                                           user     system      total        real
+# Fast Blank 0    :                       0.050000   0.000000   0.050000 (  0.048928)
+# Fast Blank (Active Support)  0    :     0.050000   0.000000   0.050000 (  0.049967)
+# Slow Blank 0    :                       0.290000   0.000000   0.290000 (  0.295086)
+# Fast Blank 6    :                       0.090000   0.000000   0.090000 (  0.089295)
+# Fast Blank (Active Support)  6    :     0.090000   0.000000   0.090000 (  0.089648)
+# Slow Blank 6    :                       0.420000   0.000000   0.420000 (  0.418375)
+# Fast Blank 14    :                      0.060000   0.000000   0.060000 (  0.056642)
+# Fast Blank (Active Support)  14    :    0.060000   0.000000   0.060000 (  0.061443)
+# Slow Blank 14    :                      0.670000   0.000000   0.670000 (  0.668229)
+# Fast Blank 24    :                      0.070000   0.000000   0.070000 (  0.075878)
+# Fast Blank (Active Support)  24    :    0.090000   0.000000   0.090000 (  0.088610)
+# Slow Blank 24    :                      0.650000   0.000000   0.650000 (  0.650736)
+# Fast Blank 136    :                     0.070000   0.000000   0.070000 (  0.075540)
+# Fast Blank (Active Support)  136    :   0.090000   0.000000   0.090000 (  0.087240)
+# Slow Blank 136    :                     0.660000   0.000000   0.660000 (  0.655168)

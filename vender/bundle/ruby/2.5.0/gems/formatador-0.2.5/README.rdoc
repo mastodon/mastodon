@@ -1,0 +1,117 @@
+= formatador
+
+STDOUT text formatting
+
+== Quick and dirty
+
+You can call class methods to print out single lines like this:
+
+  Formatador.display_line('Hello World')
+
+You use tags, similar to html, to set formatting options:
+
+  Formatador.display_line('[green]Hello World[/]')
+
+  [/] resets everything to normal, colors are supported and [_color_] sets the background color.
+
+== Standard options
+
+* format - and adds color codes if STDOUT.tty? is true
+* display - calls format on the input and prints it
+* display_line - calls display, but adds on a newline (\n)
+* redisplay - Displays text, prepended with \r which will overwrite the last existing line
+
+== Extensions
+
+* display_table: takes an array of hashes. Each hash is a row, with the keys being the headers and values being the data. An optional second argument can specify which headers/columns to include and in what order they should appear.
+* display_compact_table: Same as display_table, execpt that split lines are not drawn by default in the body of the table. If you need a split line, put a :split constant in the body array.
+* redisplay_progressbar: takes the current and total values as its first two arguments and redisplays a progressbar (until current = total and then it display_lines). An optional third argument represents the start time and will add an elapsed time counter.
+
+=== Progress Bar examples
+
+  total    = 1000
+  progress = ProgressBar.new(total)
+  1000.times do
+    progress.increment
+  end
+
+   978/1000  |************************************************* |
+
+  # Change the color of the bar
+
+  total    = 1000
+  progress = ProgressBar.new(total, :color => "light_blue")
+  1000.times do
+    progress.increment
+  end
+
+  # Change the color of a completed progress bar
+
+  total    = 1000
+  progress = ProgressBar.new(total) { |b| b.opts[:color] = "green" }
+  1000.times do
+    progress.increment
+  end
+
+=== Table examples
+
+  table_data = [{:name => "Joe", :food => "Burger"}, {:name => "Bill", :food => "French fries"}]
+  Formatador.display_table(table_data)
+
+  +------+--------------+
+  | name | food         |
+  +------+--------------+
+  | Joe  | Burger       |
+  +------+--------------+
+  | Bill | French fries |
+  +------+--------------+
+
+  table_data = [
+    {:name => "Joe", :meal => {:main_dish => "Burger", :drink => "water"}}, 
+    {:name => "Bill", :meal => {:main_dish => "Chicken", :drink => "soda"}}
+  ]
+  Formatador.display_table(table_data, [:name, :"meal.drink"])
+
+  +------+------------+
+  | name | meal.drink |
+  +------+------------+
+  | Joe  | water      |
+  +------+------------+
+  | Bill | soda       |
+  +------+------------+
+
+== Indentation
+
+By initializing a formatador object you can keep track of indentation:
+
+  formatador = Formatador.new
+  formatador.display_line('one level of indentation')
+  formatador.indent {
+    formatador.display_line('two levels of indentation')
+  }
+  formatador.display_line('one level of indentation')
+
+== Copyright
+
+(The MIT License)
+
+Copyright (c) 2009 {geemus (Wesley Beary)}[http://github.com/geemus]
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

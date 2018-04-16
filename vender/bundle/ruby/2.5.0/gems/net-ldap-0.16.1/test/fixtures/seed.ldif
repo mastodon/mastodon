@@ -1,0 +1,374 @@
+dn: ou=People,dc=rubyldap,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,dc=rubyldap,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups
+
+# Directory Superuser
+dn: uid=admin,dc=rubyldap,dc=com
+uid: admin
+cn: system administrator
+sn: administrator
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+displayName: Directory Superuser
+userPassword: passworD1
+
+# Users 1-10
+
+dn: uid=user1,ou=People,dc=rubyldap,dc=com
+uid: user1
+cn: user1
+sn: user1
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user1@rubyldap.com
+
+dn: uid=user2,ou=People,dc=rubyldap,dc=com
+uid: user2
+cn: user2
+sn: user2
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user2@rubyldap.com
+
+dn: uid=user3,ou=People,dc=rubyldap,dc=com
+uid: user3
+cn: user3
+sn: user3
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user3@rubyldap.com
+
+dn: uid=user4,ou=People,dc=rubyldap,dc=com
+uid: user4
+cn: user4
+sn: user4
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user4@rubyldap.com
+
+dn: uid=user5,ou=People,dc=rubyldap,dc=com
+uid: user5
+cn: user5
+sn: user5
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user5@rubyldap.com
+
+dn: uid=user6,ou=People,dc=rubyldap,dc=com
+uid: user6
+cn: user6
+sn: user6
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user6@rubyldap.com
+
+dn: uid=user7,ou=People,dc=rubyldap,dc=com
+uid: user7
+cn: user7
+sn: user7
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user7@rubyldap.com
+
+dn: uid=user8,ou=People,dc=rubyldap,dc=com
+uid: user8
+cn: user8
+sn: user8
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user8@rubyldap.com
+
+dn: uid=user9,ou=People,dc=rubyldap,dc=com
+uid: user9
+cn: user9
+sn: user9
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user9@rubyldap.com
+
+dn: uid=user10,ou=People,dc=rubyldap,dc=com
+uid: user10
+cn: user10
+sn: user10
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: user10@rubyldap.com
+
+# Emailless User
+
+dn: uid=emailless-user1,ou=People,dc=rubyldap,dc=com
+uid: emailless-user1
+cn: emailless-user1
+sn: emailless-user1
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+
+# Groupless User
+
+dn: uid=groupless-user1,ou=People,dc=rubyldap,dc=com
+uid: groupless-user1
+cn: groupless-user1
+sn: groupless-user1
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+
+# Admin User
+
+dn: uid=admin1,ou=People,dc=rubyldap,dc=com
+uid: admin1
+cn: admin1
+sn: admin1
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: passworD1
+mail: admin1@rubyldap.com
+
+# Groups
+
+dn: cn=ghe-users,ou=Groups,dc=rubyldap,dc=com
+cn: ghe-users
+objectClass: groupOfNames
+member: uid=user1,ou=People,dc=rubyldap,dc=com
+member: uid=emailless-user1,ou=People,dc=rubyldap,dc=com
+
+dn: cn=all-users,ou=Groups,dc=rubyldap,dc=com
+cn: all-users
+objectClass: groupOfNames
+member: cn=ghe-users,ou=Groups,dc=rubyldap,dc=com
+member: uid=user1,ou=People,dc=rubyldap,dc=com
+member: uid=user2,ou=People,dc=rubyldap,dc=com
+member: uid=user3,ou=People,dc=rubyldap,dc=com
+member: uid=user4,ou=People,dc=rubyldap,dc=com
+member: uid=user5,ou=People,dc=rubyldap,dc=com
+member: uid=user6,ou=People,dc=rubyldap,dc=com
+member: uid=user7,ou=People,dc=rubyldap,dc=com
+member: uid=user8,ou=People,dc=rubyldap,dc=com
+member: uid=user9,ou=People,dc=rubyldap,dc=com
+member: uid=user10,ou=People,dc=rubyldap,dc=com
+member: uid=emailless-user1,ou=People,dc=rubyldap,dc=com
+
+dn: cn=ghe-admins,ou=Groups,dc=rubyldap,dc=com
+cn: ghe-admins
+objectClass: groupOfNames
+member: uid=admin1,ou=People,dc=rubyldap,dc=com
+
+dn: cn=all-admins,ou=Groups,dc=rubyldap,dc=com
+cn: all-admins
+objectClass: groupOfNames
+member: cn=ghe-admins,ou=Groups,dc=rubyldap,dc=com
+member: uid=admin1,ou=People,dc=rubyldap,dc=com
+
+dn: cn=n-member-group10,ou=Groups,dc=rubyldap,dc=com
+cn: n-member-group10
+objectClass: groupOfNames
+member: uid=user1,ou=People,dc=rubyldap,dc=com
+member: uid=user2,ou=People,dc=rubyldap,dc=com
+member: uid=user3,ou=People,dc=rubyldap,dc=com
+member: uid=user4,ou=People,dc=rubyldap,dc=com
+member: uid=user5,ou=People,dc=rubyldap,dc=com
+member: uid=user6,ou=People,dc=rubyldap,dc=com
+member: uid=user7,ou=People,dc=rubyldap,dc=com
+member: uid=user8,ou=People,dc=rubyldap,dc=com
+member: uid=user9,ou=People,dc=rubyldap,dc=com
+member: uid=user10,ou=People,dc=rubyldap,dc=com
+
+dn: cn=nested-group1,ou=Groups,dc=rubyldap,dc=com
+cn: nested-group1
+objectClass: groupOfNames
+member: uid=user1,ou=People,dc=rubyldap,dc=com
+member: uid=user2,ou=People,dc=rubyldap,dc=com
+member: uid=user3,ou=People,dc=rubyldap,dc=com
+member: uid=user4,ou=People,dc=rubyldap,dc=com
+member: uid=user5,ou=People,dc=rubyldap,dc=com
+
+dn: cn=nested-group2,ou=Groups,dc=rubyldap,dc=com
+cn: nested-group2
+objectClass: groupOfNames
+member: uid=user6,ou=People,dc=rubyldap,dc=com
+member: uid=user7,ou=People,dc=rubyldap,dc=com
+member: uid=user8,ou=People,dc=rubyldap,dc=com
+member: uid=user9,ou=People,dc=rubyldap,dc=com
+member: uid=user10,ou=People,dc=rubyldap,dc=com
+
+dn: cn=nested-groups,ou=Groups,dc=rubyldap,dc=com
+cn: nested-groups
+objectClass: groupOfNames
+member: cn=nested-group1,ou=Groups,dc=rubyldap,dc=com
+member: cn=nested-group2,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-member-nested-group1,ou=Groups,dc=rubyldap,dc=com
+cn: n-member-nested-group1
+objectClass: groupOfNames
+member: cn=nested-group1,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=deeply-nested-group0.0.0,ou=Groups,dc=rubyldap,dc=com
+cn: deeply-nested-group0.0.0
+objectClass: groupOfNames
+member: uid=user1,ou=People,dc=rubyldap,dc=com
+member: uid=user2,ou=People,dc=rubyldap,dc=com
+member: uid=user3,ou=People,dc=rubyldap,dc=com
+member: uid=user4,ou=People,dc=rubyldap,dc=com
+member: uid=user5,ou=People,dc=rubyldap,dc=com
+
+dn: cn=deeply-nested-group0.0.1,ou=Groups,dc=rubyldap,dc=com
+cn: deeply-nested-group0.0.1
+objectClass: groupOfNames
+member: uid=user6,ou=People,dc=rubyldap,dc=com
+member: uid=user7,ou=People,dc=rubyldap,dc=com
+member: uid=user8,ou=People,dc=rubyldap,dc=com
+member: uid=user9,ou=People,dc=rubyldap,dc=com
+member: uid=user10,ou=People,dc=rubyldap,dc=com
+
+dn: cn=deeply-nested-group0.0,ou=Groups,dc=rubyldap,dc=com
+cn: deeply-nested-group0.0
+objectClass: groupOfNames
+member: cn=deeply-nested-group0.0.0,ou=Groups,dc=rubyldap,dc=com
+member: cn=deeply-nested-group0.0.1,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=deeply-nested-group0,ou=Groups,dc=rubyldap,dc=com
+cn: deeply-nested-group0
+objectClass: groupOfNames
+member: cn=deeply-nested-group0.0,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=deeply-nested-groups,ou=Groups,dc=rubyldap,dc=com
+cn: deeply-nested-groups
+objectClass: groupOfNames
+member: cn=deeply-nested-group0,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group1,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group1
+objectClass: groupOfNames
+member: cn=nested-group1,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group2,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group2
+objectClass: groupOfNames
+member: cn=n-depth-nested-group1,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group3,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group3
+objectClass: groupOfNames
+member: cn=n-depth-nested-group2,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group4,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group4
+objectClass: groupOfNames
+member: cn=n-depth-nested-group3,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group5,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group5
+objectClass: groupOfNames
+member: cn=n-depth-nested-group4,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group6,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group6
+objectClass: groupOfNames
+member: cn=n-depth-nested-group5,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group7,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group7
+objectClass: groupOfNames
+member: cn=n-depth-nested-group6,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group8,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group8
+objectClass: groupOfNames
+member: cn=n-depth-nested-group7,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=n-depth-nested-group9,ou=Groups,dc=rubyldap,dc=com
+cn: n-depth-nested-group9
+objectClass: groupOfNames
+member: cn=n-depth-nested-group8,ou=Groups,dc=rubyldap,dc=com
+
+dn: cn=head-group,ou=Groups,dc=rubyldap,dc=com
+cn: head-group
+objectClass: groupOfNames
+member: cn=tail-group,ou=Groups,dc=rubyldap,dc=com
+member: uid=user1,ou=People,dc=rubyldap,dc=com
+member: uid=user2,ou=People,dc=rubyldap,dc=com
+member: uid=user3,ou=People,dc=rubyldap,dc=com
+member: uid=user4,ou=People,dc=rubyldap,dc=com
+member: uid=user5,ou=People,dc=rubyldap,dc=com
+
+dn: cn=tail-group,ou=Groups,dc=rubyldap,dc=com
+cn: tail-group
+objectClass: groupOfNames
+member: cn=head-group,ou=Groups,dc=rubyldap,dc=com
+member: uid=user6,ou=People,dc=rubyldap,dc=com
+member: uid=user7,ou=People,dc=rubyldap,dc=com
+member: uid=user8,ou=People,dc=rubyldap,dc=com
+member: uid=user9,ou=People,dc=rubyldap,dc=com
+member: uid=user10,ou=People,dc=rubyldap,dc=com
+
+dn: cn=recursively-nested-groups,ou=Groups,dc=rubyldap,dc=com
+cn: recursively-nested-groups
+objectClass: groupOfNames
+member: cn=head-group,ou=Groups,dc=rubyldap,dc=com
+member: cn=tail-group,ou=Groups,dc=rubyldap,dc=com
+
+# posixGroup
+
+dn: cn=posix-group1,ou=Groups,dc=rubyldap,dc=com
+cn: posix-group1
+objectClass: posixGroup
+gidNumber: 1001
+memberUid: user1
+memberUid: user2
+memberUid: user3
+memberUid: user4
+memberUid: user5
+
+# missing members
+
+dn: cn=missing-users,ou=Groups,dc=rubyldap,dc=com
+cn: missing-users
+objectClass: groupOfNames
+member: uid=user1,ou=People,dc=rubyldap,dc=com
+member: uid=user2,ou=People,dc=rubyldap,dc=com
+member: uid=nonexistent-user,ou=People,dc=rubyldap,dc=com
