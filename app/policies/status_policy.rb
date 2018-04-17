@@ -16,7 +16,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def reblog?
-    !direct? && !private? && show?
+    !direct? && (!private? || owned?) && show?
   end
 
   def destroy?
