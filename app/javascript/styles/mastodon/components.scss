@@ -3141,7 +3141,7 @@ a.status-card {
 }
 
 .privacy-dropdown__option {
-  color: $darker-text-color;
+  color: $lighter-text-color;
   padding: 10px;
   cursor: pointer;
   display: flex;
@@ -4094,6 +4094,10 @@ a.status-card {
         &,
         button {
           transition: none;
+        }
+
+        button {
+          color: $lighter-text-color;
         }
 
         &.active,
