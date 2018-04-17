@@ -6,8 +6,8 @@
   .card__bio
     %h1.name
       %span.p-name.emojify= display_name(account)
-      %small
-        %span @#{account.local_username_and_domain}
+      %small<
+        %span>< @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
 
     - if Setting.show_staff_badge
@@ -22,6 +22,14 @@
 
     .bio
       .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+
+      - unless account.fields.empty?
+        %table.account__header__fields
+          %tbody
+            - account.fields.each do |field|
+              %tr
+                %th.emojify= field.name
+                %td.emojify= Formatter.instance.format_field(account, field.value)
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }

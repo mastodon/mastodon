@@ -204,6 +204,7 @@ ar:
       severity: الشدة
       show:
         affected_accounts:
+          one: هناك حساب واحد متأثر في قاعدة البيانات
           other: هناك %{count} حسابات في قاعدة البيانات متأثرة بذلك
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
@@ -262,6 +263,7 @@ ar:
     settings:
       activity_api_enabled:
         desc_html: عدد المنشورات المحلية و المستخدمين النشطين و التسجيلات الأسبوعية الجديدة
+        title: نشر مُجمل الإحصائيات عن نشاط المستخدمين
       bootstrap_timeline_accounts:
         title: الإشتراكات الإفتراضية للمستخدمين الجدد
       contact_information:
@@ -274,12 +276,14 @@ ar:
         title: نشر عدد مثيلات الخوادم التي تم مصادفتها
       registrations:
         closed_message:
+          desc_html: يتم عرضه على الصفحة الرئيسية عندما يتم غلق تسجيل الحسابات الجديدة. يمكنكم إستخدام علامات الأيتش تي أم أل HTML
           title: رسالة التسجيلات المقفلة
         deletion:
           desc_html: السماح لأي مستخدم إغلاق حسابه
           title: السماح بحذف الحسابات
         min_invite_role:
           disabled: لا أحد
+          title: المستخدِمون المصرح لهم لإرسال الدعوات
         open:
           desc_html: السماح للجميع بإنشاء حساب
           title: فتح التسجيل

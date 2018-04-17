@@ -122,7 +122,7 @@ export default class GettingStarted extends ImmutablePureComponent {
           <ColumnLink icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />
           <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
           <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
-          <ColumnLink icon='ban' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />
+          <ColumnLink icon='minus-circle' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />
           <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
           <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
         </div>

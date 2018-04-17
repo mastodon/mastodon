@@ -15,8 +15,7 @@ class StreamEntriesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @ancestors   = @stream_entry.activity.reply? ? cache_collection(@stream_entry.activity.ancestors(current_account), Status) : []
-        @descendants = cache_collection(@stream_entry.activity.descendants(current_account), Status)
+        redirect_to short_account_status_url(params[:account_username], @stream_entry.activity) if @type == 'status'
       end
 
       format.atom do
