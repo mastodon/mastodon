@@ -25,7 +25,7 @@ const componentMap = {
   'HASHTAG': HashtagTimeline,
   'DIRECT': DirectTimeline,
   'FAVOURITES': FavouritedStatuses,
-  'BOOKMARKED': BookmarkedStatuses,
+  'BOOKMARKS': BookmarkedStatuses,
   'LIST': ListTimeline,
 };
 
