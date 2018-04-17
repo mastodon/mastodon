@@ -10,12 +10,8 @@ class Feed
     if redis.exists("account:#{@account.id}:regeneration")
       from_database(limit, max_id, since_id)
     else
-      statuses = from_redis(limit, max_id, since_id)
-
-      statuses += from_database(limit - statuses.size,
-                                statuses.last&.id || max_id,
-                                since_id)
-
+      statuses  = from_redis(limit, max_id, since_id)
+      statuses += from_database(limit - statuses.size, statuses.last&.id || max_id, since_id) if statuses.size < limit
       statuses
     end
   end
