@@ -6,9 +6,6 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :require_user!
 
   def create
-    params.require(:subscription).require(:endpoint)
-    params.require(:subscription).require(:keys).require([:auth, :p256dh])
-
     active_session = current_session
 
     unless active_session.web_push_subscription.nil?
@@ -28,12 +25,12 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
       },
     }
 
-    data.deep_merge!(params[:data]) if params[:data]
+    data.deep_merge!(data_params) if params[:data]
 
     web_subscription = ::Web::PushSubscription.create!(
-      endpoint: params[:subscription][:endpoint],
-      key_p256dh: params[:subscription][:keys][:p256dh],
-      key_auth: params[:subscription][:keys][:auth],
+      endpoint: subscription_params[:endpoint],
+      key_p256dh: subscription_params[:keys][:p256dh],
+      key_auth: subscription_params[:keys][:auth],
       data: data
     )
 
@@ -43,12 +40,22 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   end
 
   def update
-    params.require([:id, :data])
+    params.require([:id])
 
     web_subscription = ::Web::PushSubscription.find(params[:id])
 
-    web_subscription.update!(data: params[:data])
+    web_subscription.update!(data: data_params)
 
     render json: web_subscription.as_payload
+  end
+
+  private
+
+  def subscription_params
+    @subscription_params ||= params.require(:subscription).permit(:endpoint, keys: [:auth, :p256dh])
+  end
+
+  def data_params
+    @data_params ||= params.require(:data).permit(:alerts)
   end
 end

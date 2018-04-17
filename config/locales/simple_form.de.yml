@@ -3,7 +3,7 @@ de:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 120×120 px herunterskaliert
+        avatar: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 400×400 px herunterskaliert
         digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
         display_name:
           one: <span class="name-counter">1</span> Zeichen verbleibt
@@ -45,6 +45,7 @@ de:
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_sensitive: Medien immer als heikel markieren
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
+        setting_display_sensitive_media: Medien, die als heikel markiert sind, immer anzeigen
         setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern
         setting_system_font_ui: Standardschriftart des Systems verwenden
@@ -53,6 +54,7 @@ de:
         severity: Gewichtung
         type: Importtyp
         username: Profilname
+        username_or_email: Profilname oder Email
       interactions:
         must_be_follower: Benachrichtigungen von Nicht-Folgenden blockieren
         must_be_following: Benachrichtigungen von Profilen blockieren, denen ich nicht folge

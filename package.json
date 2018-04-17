@@ -1,6 +1,6 @@
 {
   "name": "mastodon",
-  "license": "AGPL-3.0",
+  "license": "AGPL-3.0-or-later",
   "engines": {
     "node": ">=6"
   },
@@ -10,10 +10,9 @@
     "build:production": "cross-env RAILS_ENV=production ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "node ./streaming/index.js",
-    "test": "npm run test:lint && npm run test:jest",
+    "test": "npm-run-all test:lint test:jest",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ streaming/",
-    "test:jest": "cross-env NODE_ENV=test jest --coverage",
-    "postinstall": "npm rebuild node-sass"
+    "test:jest": "cross-env NODE_ENV=test jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -57,6 +56,7 @@
     "glob": "^7.1.1",
     "http-link-header": "^0.8.0",
     "immutable": "^3.8.2",
+    "imports-loader": "^0.8.0",
     "intersection-observer": "^0.5.0",
     "intl": "^1.2.5",
     "intl-messageformat": "^2.2.0",
@@ -68,9 +68,11 @@
     "marky": "^1.2.0",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
     "npmlog": "^4.1.2",
     "object-assign": "^4.1.1",
     "object-fit-images": "^3.2.3",
+    "object.values": "^1.0.4",
     "offline-plugin": "^4.8.3",
     "path-complete-extname": "^0.1.0",
     "pg": "^6.4.0",
@@ -81,8 +83,8 @@
     "prop-types": "^15.5.10",
     "punycode": "^2.1.0",
     "rails-ujs": "^5.1.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "react-hotkeys": "^0.10.0",
     "react-immutable-proptypes": "^2.1.0",
     "react-immutable-pure-component": "^1.1.1",
@@ -126,6 +128,7 @@
     "eslint": "^4.15.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-react": "^7.5.1",
     "jest": "^21.2.1",
     "raf": "^3.4.0",

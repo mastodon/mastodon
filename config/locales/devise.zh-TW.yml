@@ -2,7 +2,7 @@
 zh-TW:
   devise:
     confirmations:
-      confirmed: 信箱驗證成功
+      confirmed: 您的電子郵件地址確認成功。
       send_instructions: 您將會在幾分鐘內收到驗證信。
       send_paranoid_instructions: 如果您的電子信箱已經存在於我們的資料庫，您將會在幾分鐘內收到信，確認您電子信箱的指示。
     failure:
@@ -10,18 +10,39 @@ zh-TW:
       inactive: 您的帳號尚未啟用。
       invalid: 不正確的 %{authentication_keys} 或密碼。
       last_attempt: 若您再次嘗試失敗，我們將鎖定您的帳號，以策安全。
-      locked: 您的帳號已被鎖定
+      locked: 您的帳號已被鎖定。
       not_found_in_database: 不正確的 %{authentication_keys} 或密碼。
       timeout: 您的登入階段已經逾期，請重新登入以繼續使用。
       unauthenticated: 您必須先登入或註冊，以繼續使用。
       unconfirmed: 您必須先完成信箱驗證，以繼續使用。
     mailer:
       confirmation_instructions:
+        action: 驗證電子郵件地址
+        explanation: 您已經在 %{host} 上以此電子郵件地址建立了一個帳號。您距離啟用它只剩一次點擊之遙了。如果這不是你，請忽略此電子郵件。
+        extra_html: 同時也請看看<a href="%{terms_path}">該實體的規則</a>與<a href="%{policy_path}">我們的服務條款</a>。
         subject: 'Mastodon: 信箱驗證'
+        title: 驗證電子郵件地址
+      email_changed:
+        explanation: 您帳號的電子郵件地址被變更為：
+        extra: 如果您並未變更您的電子郵件，那麼很有可能是某人取得了您帳號的存取權限。請立刻變更您的密碼，或是若您的帳號已被鎖定，請聯絡所使用實體的管理員。
+        subject: Mastodon 電子郵件變更
+        title: 新電子郵件地址
       password_change:
+        explanation: 您帳號的密碼已變更。
+        extra: 如果您並未變更您的密碼，那麼很有可能是某人取得了您帳號的存取權限。請立刻變更您的密碼，或是若您的帳號已被鎖定，請聯絡所使用實體的管理員。
         subject: 'Mastodon: 更改密碼'
+        title: 密碼已變更
+      reconfirmation_instructions:
+        explanation: 確認新的電子郵件地址以變更您的電子郵件。
+        extra: 若此次變更不是由您開啟的，請忽略這個電子郵件。Mastodon 帳號的電子郵件地址在您存取上面的連結前不會變更。
+        subject: Mastodon：%{instance} 的確認電子郵件
+        title: 驗證電子郵件地址
       reset_password_instructions:
+        action: 變更密碼
+        explanation: 您為您的帳號請求了一個新密碼。
+        extra: 若您並未請求這個，請忽略此電子郵件。您的密碼在您存取上面的連結並建立一個新的之前不會變更。
         subject: 'Mastodon: 重設密碼'
+        title: 重設密碼
       unlock_instructions:
         subject: 'Mastodon: 帳號解鎖'
     omniauth_callbacks:

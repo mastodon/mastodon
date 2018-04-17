@@ -32,7 +32,18 @@ class MediaAttachment < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
 
-  IMAGE_STYLES = { original: '1280x1280>', small: '400x400>' }.freeze
+  IMAGE_STYLES = {
+    original: {
+      geometry: '1280x1280>',
+      file_geometry_parser: FastGeometryParser,
+    },
+
+    small: {
+      geometry: '400x400>',
+      file_geometry_parser: FastGeometryParser,
+    },
+  }.freeze
+
   VIDEO_STYLES = {
     small: {
       convert_options: {
@@ -45,6 +56,8 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
+  LIMIT = 8.megabytes
+
   belongs_to :account, inverse_of: :media_attachments, optional: true
   belongs_to :status,  inverse_of: :media_attachments, optional: true
 
@@ -53,10 +66,9 @@ class MediaAttachment < ApplicationRecord
                     processors: ->(f) { file_processors f },
                     convert_options: { all: '-quality 90 -strip' }
 
-  include Remotable
-
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
-  validates_attachment_size :file, less_than: 8.megabytes
+  validates_attachment_size :file, less_than: LIMIT
+  remotable_attachment :file, LIMIT
 
   validates :account, presence: true
   validates :description, length: { maximum: 420 }, if: :local?
@@ -80,6 +92,24 @@ class MediaAttachment < ApplicationRecord
     shortcode
   end
 
+  def focus=(point)
+    return if point.blank?
+
+    x, y = (point.is_a?(Enumerable) ? point : point.split(',')).map(&:to_f)
+
+    meta = file.instance_read(:meta) || {}
+    meta['focus'] = { 'x' => x, 'y' => y }
+
+    file.instance_write(:meta, meta)
+  end
+
+  def focus
+    x = file.meta['focus']['x']
+    y = file.meta['focus']['y']
+
+    "#{x},#{y}"
+  end
+
   before_create :prepare_description, unless: :local?
   before_create :set_shortcode
   before_post_process :set_type_and_extension
@@ -100,8 +130,9 @@ class MediaAttachment < ApplicationRecord
                 'pix_fmt'  => 'yuv420p',
                 'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
                 'vsync'    => 'cfr',
-                'b:v'      => '1300K',
-                'maxrate'  => '500K',
+                'c:v'      => 'h264',
+                'b:v'      => '500K',
+                'maxrate'  => '1300K',
                 'bufsize'  => '1300K',
                 'crf'      => 18,
               },
@@ -157,24 +188,40 @@ class MediaAttachment < ApplicationRecord
   end
 
   def populate_meta
-    meta = {}
+    meta = file.instance_read(:meta) || {}
 
     file.queued_for_write.each do |style, file|
-      begin
-        geo = Paperclip::Geometry.from_file file
-
-        meta[style] = {
-          width: geo.width.to_i,
-          height: geo.height.to_i,
-          size: "#{geo.width.to_i}x#{geo.height.to_i}",
-          aspect: geo.width.to_f / geo.height.to_f,
-        }
-      rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-        meta[style] = {}
-      end
+      meta[style] = style == :small || image? ? image_geometry(file) : video_metadata(file)
     end
 
     meta
+  end
+
+  def image_geometry(file)
+    width, height = FastImage.size(file.path)
+
+    return {} if width.nil?
+
+    {
+      width:  width,
+      height: height,
+      size: "#{width}x#{height}",
+      aspect: width.to_f / height.to_f,
+    }
+  end
+
+  def video_metadata(file)
+    movie = FFMPEG::Movie.new(file.path)
+
+    return {} unless movie.valid?
+
+    {
+      width: movie.width,
+      height: movie.height,
+      frame_rate: movie.frame_rate,
+      duration: movie.duration,
+      bitrate: movie.bitrate,
+    }
   end
 
   def appropriate_extension

@@ -4,11 +4,12 @@ module AccountHeader
   extend ActiveSupport::Concern
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
+  LIMIT = 2.megabytes
 
   class_methods do
     def header_styles(file)
-      styles = { original: '700x335#' }
-      styles[:static] = { format: 'png', convert_options: '-coalesce' } if file.content_type == 'image/gif'
+      styles = { original: { geometry: '700x335#', file_geometry_parser: FastGeometryParser } }
+      styles[:static] = { geometry: '700x335#', format: 'png', convert_options: '-coalesce', file_geometry_parser: FastGeometryParser } if file.content_type == 'image/gif'
       styles
     end
 
@@ -17,9 +18,10 @@ module AccountHeader
 
   included do
     # Header upload
-    has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-quality 80 -strip' }
+    has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-strip' }, processors: [:lazy_thumbnail]
     validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
-    validates_attachment_size :header, less_than: 2.megabytes
+    validates_attachment_size :header, less_than: LIMIT
+    remotable_attachment :header, LIMIT
   end
 
   def header_original_url

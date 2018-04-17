@@ -5,10 +5,22 @@
   = render partial: 'shared/og'
 
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  = f.input :email, autofocus: true, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
+  - if use_seamless_external_login?
+    = f.input :email, autofocus: true, placeholder: t('simple_form.labels.defaults.username_or_email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username_or_email') }
+  - else
+    = f.input :email, autofocus: true, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
   = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
 
   .actions
     = f.button :button, t('auth.login'), type: :submit
+
+- if devise_mapping.omniauthable? and resource_class.omniauth_providers.any?
+  .simple_form.alternative-login
+    %h4= t('auth.or_log_in_with')
+
+    .actions
+      - resource_class.omniauth_providers.each do |provider|
+        = link_to omniauth_authorize_path(resource_name, provider), class: "button button-#{provider}" do
+          = t("auth.providers.#{provider}", default: provider.to_s.chomp("_oauth2").capitalize)
 
 .form-footer= render 'auth/shared/links'

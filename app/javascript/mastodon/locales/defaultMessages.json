@@ -2,6 +2,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Oops!",
+        "id": "alert.unexpected.title"
+      },
+      {
+        "defaultMessage": "An unexpected error occurred.",
+        "id": "alert.unexpected.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/actions/alerts.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{name} mentioned you",
         "id": "notification.mention"
       }
@@ -95,6 +108,24 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/domain.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Load more",
+        "id": "status.load_more"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/load_gap.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Load more",
         "id": "status.load_more"
       }
@@ -174,6 +205,10 @@
       {
         "defaultMessage": "Delete",
         "id": "status.delete"
+      },
+      {
+        "defaultMessage": "Direct message @{name}",
+        "id": "status.direct"
       },
       {
         "defaultMessage": "Mention @{name}",
@@ -275,6 +310,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Pinned toot",
+        "id": "status.pinned"
+      },
+      {
         "defaultMessage": "{name} boosted",
         "id": "status.reblogged_by"
       }
@@ -293,6 +332,19 @@
       }
     ],
     "path": "app/javascript/mastodon/containers/account_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Hide entire domain",
+        "id": "confirmations.domain_block.confirm"
+      },
+      {
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
+        "id": "confirmations.domain_block.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/containers/domain_container.json"
   },
   {
     "descriptors": [
@@ -318,11 +370,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Toots",
+        "id": "account.posts"
+      },
+      {
+        "defaultMessage": "Toots and replies",
+        "id": "account.posts_with_replies"
+      },
+      {
         "defaultMessage": "Media",
         "id": "account.media"
       }
     ],
-    "path": "app/javascript/mastodon/features/account_gallery/index.json"
+    "path": "app/javascript/mastodon/features/account_timeline/components/header.json"
   },
   {
     "descriptors": [
@@ -367,6 +427,10 @@
       {
         "defaultMessage": "Mention @{name}",
         "id": "account.mention"
+      },
+      {
+        "defaultMessage": "Direct message @{name}",
+        "id": "account.direct"
       },
       {
         "defaultMessage": "Edit profile",
@@ -433,7 +497,7 @@
         "id": "account.view_full_profile"
       },
       {
-        "defaultMessage": "Posts",
+        "defaultMessage": "Toots",
         "id": "account.posts"
       },
       {
@@ -462,8 +526,24 @@
         "id": "account.requested"
       },
       {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
+      },
+      {
         "defaultMessage": "Follows you",
         "id": "account.follows_you"
+      },
+      {
+        "defaultMessage": "Blocked",
+        "id": "account.blocked"
+      },
+      {
+        "defaultMessage": "Muted",
+        "id": "account.muted"
+      },
+      {
+        "defaultMessage": "Domain hidden",
+        "id": "account.domain_blocked"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -651,6 +731,18 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "People",
+        "id": "search_results.accounts"
+      },
+      {
+        "defaultMessage": "Toots",
+        "id": "search_results.statuses"
+      },
+      {
+        "defaultMessage": "Hashtags",
+        "id": "search_results.hashtags"
+      },
+      {
         "defaultMessage": "{count, number} {count, plural, one {result} other {results}}",
         "id": "search_results.total"
       }
@@ -662,6 +754,14 @@
       {
         "defaultMessage": "Search",
         "id": "search.placeholder"
+      },
+      {
+        "defaultMessage": "Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.",
+        "id": "search_popout.tips.full_text"
+      },
+      {
+        "defaultMessage": "Simple text returns matching display names, usernames and hashtags",
+        "id": "search_popout.tips.text"
       },
       {
         "defaultMessage": "Advanced search format",
@@ -678,10 +778,6 @@
       {
         "defaultMessage": "status",
         "id": "search_popout.tips.status"
-      },
-      {
-        "defaultMessage": "Simple text returns matching display names, usernames and hashtags",
-        "id": "search_popout.tips.text"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/search.json"
@@ -707,12 +803,16 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Describe for the visually impaired",
+        "id": "upload_form.description"
+      },
+      {
         "defaultMessage": "Undo",
         "id": "upload_form.undo"
       },
       {
-        "defaultMessage": "Describe for the visually impaired",
-        "id": "upload_form.description"
+        "defaultMessage": "Crop",
+        "id": "upload_form.focus"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/upload.json"
@@ -720,8 +820,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Mark media as sensitive",
-        "id": "compose_form.sensitive"
+        "defaultMessage": "Media is marked as sensitive",
+        "id": "compose_form.sensitive.marked"
+      },
+      {
+        "defaultMessage": "Media is not marked as sensitive",
+        "id": "compose_form.sensitive.unmarked"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/sensitive_button_container.json"
@@ -729,8 +833,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Hide text behind warning",
-        "id": "compose_form.spoiler"
+        "defaultMessage": "Text is hidden behind warning",
+        "id": "compose_form.spoiler.marked"
+      },
+      {
+        "defaultMessage": "Text is not hidden",
+        "id": "compose_form.spoiler.unmarked"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/spoiler_button_container.json"
@@ -748,6 +856,10 @@
       {
         "defaultMessage": "This toot won't be listed under any hashtag as it is unlisted. Only public toots can be searched by hashtag.",
         "id": "compose_form.hashtag_warning"
+      },
+      {
+        "defaultMessage": "This toot will only be visible to all the mentioned users.",
+        "id": "compose_form.direct_message_warning"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/warning_container.json"
@@ -784,6 +896,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/compose/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "column.domain_blocks"
+      },
+      {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/domain_blocks/index.json"
   },
   {
     "descriptors": [
@@ -865,6 +990,10 @@
       {
         "defaultMessage": "Blocked users",
         "id": "navigation_bar.blocks"
+      },
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "navigation_bar.domain_blocks"
       },
       {
         "defaultMessage": "Muted users",
@@ -1255,6 +1384,10 @@
         "id": "status.delete"
       },
       {
+        "defaultMessage": "Direct message @{name}",
+        "id": "status.direct"
+      },
+      {
         "defaultMessage": "Mention @{name}",
         "id": "status.mention"
       },
@@ -1326,6 +1459,14 @@
       {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
+      },
+      {
+        "defaultMessage": "Show more for all",
+        "id": "status.show_more_all"
+      },
+      {
+        "defaultMessage": "Show less for all",
+        "id": "status.show_less_all"
       },
       {
         "defaultMessage": "Are you sure you want to block {name}?",
@@ -1553,6 +1694,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
         "defaultMessage": "Additional comments",
         "id": "report.placeholder"
       },
@@ -1563,6 +1708,18 @@
       {
         "defaultMessage": "Report {target}",
         "id": "report.target"
+      },
+      {
+        "defaultMessage": "The report will be sent to your instance moderators. You can provide an explanation of why you are reporting this account below:",
+        "id": "report.hint"
+      },
+      {
+        "defaultMessage": "The account is from another server. Send an anonymized copy of the report there as well?",
+        "id": "report.forward_hint"
+      },
+      {
+        "defaultMessage": "Forward to {target}",
+        "id": "report.forward"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/report_modal.json"
@@ -1570,16 +1727,16 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Compose",
-        "id": "tabs_bar.compose"
-      },
-      {
         "defaultMessage": "Home",
         "id": "tabs_bar.home"
       },
       {
         "defaultMessage": "Notifications",
         "id": "tabs_bar.notifications"
+      },
+      {
+        "defaultMessage": "Search",
+        "id": "tabs_bar.search"
       },
       {
         "defaultMessage": "Local",
