@@ -329,52 +329,53 @@ const startWorker = (workerId) => {
 
       // Only messages that may require filtering are statuses, since notifications
       // are already personalized and deletes do not matter
-      if (needsFiltering && event === 'update') {
-        pgPool.connect((err, client, done) => {
-          if (err) {
-            log.error(err);
-            return;
-          }
-
-          const unpackedPayload  = payload;
-          const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
-          const accountDomain    = unpackedPayload.account.acct.split('@')[1];
-
-          if (Array.isArray(req.filteredLanguages) && req.filteredLanguages.indexOf(unpackedPayload.language) !== -1) {
-            log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
-            done();
-            return;
-          }
-
-          if (req.accountId) {
-            const queries = [
-              client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
-            ];
-
-            if (accountDomain) {
-              queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
-            }
-
-            Promise.all(queries).then(values => {
-              done();
-
-              if (values[0].rows.length > 0 || (values.length > 1 && values[1].rows.length > 0)) {
-                return;
-              }
-
-              transmit();
-            }).catch(err => {
-              done();
-              log.error(err);
-            });
-          } else {
-            done();
-            transmit();
-          }
-        });
-      } else {
+      if (!needsFiltering || event !== 'update') {
         transmit();
+        return;
       }
+
+      const unpackedPayload  = payload;
+      const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
+      const accountDomain    = unpackedPayload.account.acct.split('@')[1];
+
+      if (Array.isArray(req.filteredLanguages) && req.filteredLanguages.indexOf(unpackedPayload.language) !== -1) {
+        log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
+        return;
+      }
+
+      // When the account is not logged in, it is not necessary to confirm the block or mute
+      if (!req.accountId) {
+        transmit();
+        return;
+      }
+
+      pgPool.connect((err, client, done) => {
+        if (err) {
+          log.error(err);
+          return;
+        }
+
+        const queries = [
+          client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
+        ];
+
+        if (accountDomain) {
+          queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
+        }
+
+        Promise.all(queries).then(values => {
+          done();
+
+          if (values[0].rows.length > 0 || (values.length > 1 && values[1].rows.length > 0)) {
+            return;
+          }
+
+          transmit();
+        }).catch(err => {
+          done();
+          log.error(err);
+        });
+      });
     };
 
     subscribe(`${redisPrefix}${id}`, listener);
