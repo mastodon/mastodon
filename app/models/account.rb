@@ -114,7 +114,7 @@ class Account < ApplicationRecord
   scope :without_followers, -> { where(followers_count: 0) }
   scope :with_followers, -> { where('followers_count > 0') }
   scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
-  scope :partitioned, -> { order('row_number() over (partition by domain)') }
+  scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
   scope :recent, -> { reorder(id: :desc) }
