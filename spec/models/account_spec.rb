@@ -92,6 +92,47 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '#representative' do
+    let(:admin) { Fabricate(:user, admin: true ) }
+    let(:site_contact) { Fabricate(:user, admin: false ) }
+    let(:user) { Fabricate(:user ) }
+
+    subject { Fabricate(:account, domain: nil, username: 'alice') }
+
+    around do |example|
+      # The users need to be saved in order for relationships to find them:
+      admin.save
+      site_contact.save
+      user.save
+      before = Setting.site_contact_username
+
+      example.run
+
+      Setting.site_contact_username = before
+      admin.delete
+      site_contact.delete
+      user.delete
+    end
+
+    it 'returns the account of the site_contact_user if set' do
+      Setting.site_contact_username = site_contact.account.username
+      expect(subject.representative).to eq site_contact.account
+    end
+
+    it 'returns the first admin account if the site_contact_username is not set' do
+      Setting.site_contact_username = nil
+      expect(subject.representative).to eq admin.account
+    end
+
+    it 'returns the first user if there are no admins and no site_contact_username' do
+      admin.delete
+      site_contact.delete
+
+      Setting.site_contact_username = nil
+      expect(subject.representative).to eq user.account
+    end
+  end
+
   describe '#save_with_optional_media!' do
     before do
       stub_request(:get, 'https://remote/valid_avatar').to_return(request_fixture('avatar.txt'))

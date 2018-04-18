@@ -155,6 +155,13 @@ class Account < ApplicationRecord
     "#{username}@#{Rails.configuration.x.local_domain}"
   end
 
+  def representative
+    return nil unless local?
+
+    site_contact = Account.find_local(Setting.site_contact_username) if Setting.site_contact_username.present?
+    site_contact || User.admins.first&.account || User.first&.account
+  end
+
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
   end

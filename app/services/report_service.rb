@@ -34,7 +34,7 @@ class ReportService < BaseService
   def forward_to_origin!
     ActivityPub::DeliveryWorker.perform_async(
       payload,
-      some_local_account.id,
+      @source_account.representative&.id,
       @target_account.inbox_url
     )
   end
@@ -44,11 +44,7 @@ class ReportService < BaseService
       @report,
       serializer: ActivityPub::FlagSerializer,
       adapter: ActivityPub::Adapter,
-      account: some_local_account
+      account: @source_account.representative
     ).as_json)
-  end
-
-  def some_local_account
-    @some_local_account ||= Account.local.where(suspended: false).first
   end
 end
