@@ -62,9 +62,24 @@
     = render 'authorize_follows/card', account: @report.target_account, admin: true
     = render 'admin/reports/account_details', account: @report.target_account
   .report-accounts__item
-    %h3= t('admin.reports.reported_by')
-    = render 'authorize_follows/card', account: @report.account, admin: true
-    = render 'admin/reports/account_details', account: @report.account
+    - if @report.account.local?
+      %h3= t('admin.reports.reported_by')
+      = render 'authorize_follows/card', account: @report.account, admin: true
+      = render 'admin/reports/account_details', account: @report.account
+    - else
+      %h3= t('admin.reports.reported_by_remote_instance')
+      = render 'authorize_follows/card', account: @report.account, admin: true
+      .table-wrapper
+        %table.table
+          %tbody
+            %tr
+              %td{ colspan: 2 }= t('admin.reports.remote_instance_representative', domain: @report.account.domain)
+            %tr
+              %td= t('admin.reports.created_from_remote_instance')
+              %td= pluralize(@report.from_domain.count, t('admin.accounts.show.report'))
+            %tr
+              %td= t('admin.reports.targeting_remote_instance')
+              %td= pluralize(@report.targeting_domain.count, t('admin.accounts.show.report'))
 
 %h3= t('admin.reports.comment.label')
 

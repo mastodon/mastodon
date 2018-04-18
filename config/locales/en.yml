@@ -277,6 +277,7 @@ en:
         label: Report Comment
         none: None
       created_at: Reported
+      created_from_remote_instance: From this instance
       delete: Delete
       history: Moderation History
       id: ID
@@ -293,11 +294,13 @@ en:
       nsfw:
         'false': Unhide media attachments
         'true': Hide media attachments
+      remote_instance_representative: 'Above is the representative given for: %{domain}'
       reopen: Reopen Report
       report: 'Report #%{id}'
       report_contents: Contents
       reported_account: Reported account
       reported_by: Reported by
+      reported_by_remote_instance: Report made on a remote instance
       resolved: Resolved
       resolved_msg: Report successfully resolved!
       silence_account: Silence account
@@ -305,6 +308,7 @@ en:
       statuses: Reported Toots
       suspend_account: Suspend account
       target: Target
+      targeting_remote_instance: About this instance
       title: Reports
       unassign: Unassign
       unresolved: Unresolved

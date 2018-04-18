@@ -32,6 +32,14 @@ class Report < ApplicationRecord
     :flag
   end
 
+  def from_domain
+    Report.where(account: Account.by_domain(account.domain))
+  end
+
+  def targeting_domain
+    Report.where(target_account: Account.by_domain(account.domain))
+  end
+
   def statuses
     Status.where(id: status_ids).includes(:account, :media_attachments, :mentions)
   end
