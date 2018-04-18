@@ -19,7 +19,7 @@ sk:
   doorkeeper:
     applications:
       buttons:
-        authorize: Autorizovať
+        authorize: Overiť
         cancel: Zrušiť
         destroy: Zničiť
         edit: Upraviť
@@ -54,7 +54,7 @@ sk:
         title: 'Aplikácia: %{name}'
     authorizations:
       buttons:
-        authorize: Autorizovať
+        authorize: Overiť
         deny: Zamietnuť
       error:
         title: Nastala chyba
@@ -63,7 +63,7 @@ sk:
         prompt: Aplikácia %{client_name} žiada prístup k vašemu účtu
         title: Je potrebná autorizácia
       show:
-        title: Skopírujte tento autorizačný kód a vložte ho do aplikácie.
+        title: Skopíruj tento autorizačný kód a vlož ho do aplikácie.
     authorized_applications:
       buttons:
         revoke: Zrušiť oprávnenie
@@ -91,8 +91,8 @@ sk:
           unknown: Prístupový token je neplatný
         resource_owner_authenticator_not_configured: Resource Owner zlyhal pretože Doorkeeper.configure.resource_owner_authenticator nebol nakonfigurovaný.
         server_error: Nastala neočakávaná chyba na autorizačnom serveri ktorá zabránila vykonať požiadavku.
-        temporarily_unavailable: Autorizačný server Vás teraz nemôže obslúžiť pretože prebieha údržba alebo je dočasne preťažený.
-        unauthorized_client: Klient nie je autorizovaný vykonať túto požiadavku touto metódou.
+        temporarily_unavailable: Autorizačný server ťa teraz nemôže obslúžiť, pretože prebieha údržba alebo je dočasne preťažený.
+        unauthorized_client: Klient nie je autorizovaný vykonať danú požiadavku takouto metódou.
         unsupported_grant_type: Tento typ oprávnenia nie je podporovaný autorizačným serverom.
         unsupported_response_type: Autorizačný server nepodporuje typ tejto odpovede.
     flash:
@@ -115,5 +115,5 @@ sk:
         title: Požadovaná OAuth autorizácia
     scopes:
       follow: sledovať, blokovať, povoliť a zušiť sledovanie účtov
-      read: prezrieť váš účet
+      read: prezrieť dáta na vašom účete
       write: poslať vo vašom mene

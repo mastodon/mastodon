@@ -7,7 +7,7 @@
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in link_to href",
       "file": "app/views/admin/accounts/show.html.haml",
-      "line": 143,
+      "line": 147,
       "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
       "code": "link_to(Account.find(params[:id]).inbox_url, Account.find(params[:id]).inbox_url)",
       "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
@@ -26,7 +26,7 @@
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in link_to href",
       "file": "app/views/admin/accounts/show.html.haml",
-      "line": 149,
+      "line": 153,
       "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
       "code": "link_to(Account.find(params[:id]).shared_inbox_url, Account.find(params[:id]).shared_inbox_url)",
       "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
@@ -45,7 +45,7 @@
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in link_to href",
       "file": "app/views/admin/accounts/show.html.haml",
-      "line": 54,
+      "line": 57,
       "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
       "code": "link_to(Account.find(params[:id]).url, Account.find(params[:id]).url)",
       "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
@@ -67,7 +67,7 @@
       "line": 3,
       "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :centered => true })",
-      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":41,"file":"app/controllers/statuses_controller.rb"}],
+      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":45,"file":"app/controllers/statuses_controller.rb"}],
       "location": {
         "type": "template",
         "template": "stream_entries/embed"
@@ -102,7 +102,7 @@
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in link_to href",
       "file": "app/views/admin/accounts/show.html.haml",
-      "line": 152,
+      "line": 156,
       "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
       "code": "link_to(Account.find(params[:id]).followers_url, Account.find(params[:id]).followers_url)",
       "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
@@ -121,7 +121,7 @@
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in link_to href",
       "file": "app/views/admin/accounts/show.html.haml",
-      "line": 127,
+      "line": 130,
       "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
       "code": "link_to(Account.find(params[:id]).salmon_url, Account.find(params[:id]).salmon_url)",
       "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
@@ -140,10 +140,10 @@
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/admin/custom_emojis/index.html.haml",
-      "line": 31,
+      "line": 45,
       "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => filtered_custom_emojis.eager_load(:local_counterpart).page(params[:page]), {})",
-      "render_path": [{"type":"controller","class":"Admin::CustomEmojisController","method":"index","line":10,"file":"app/controllers/admin/custom_emojis_controller.rb"}],
+      "render_path": [{"type":"controller","class":"Admin::CustomEmojisController","method":"index","line":11,"file":"app/controllers/admin/custom_emojis_controller.rb"}],
       "location": {
         "type": "template",
         "template": "admin/custom_emojis/index"
@@ -179,7 +179,7 @@
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/admin/accounts/index.html.haml",
-      "line": 64,
+      "line": 67,
       "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => filtered_accounts.page(params[:page]), {})",
       "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"index","line":12,"file":"app/controllers/admin/accounts_controller.rb"}],
@@ -192,13 +192,52 @@
       "note": ""
     },
     {
+      "warning_type": "Cross-Site Request Forgery",
+      "warning_code": 7,
+      "fingerprint": "ab491f72606337a348482d006eb67a3b1616685fd48644d5ac909bbcd62a5000",
+      "check_name": "ForgerySetting",
+      "message": "'protect_from_forgery' should be called in WellKnown::HostMetaController",
+      "file": "app/controllers/well_known/host_meta_controller.rb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross-site_request_forgery/",
+      "code": null,
+      "render_path": null,
+      "location": {
+        "type": "controller",
+        "controller": "WellKnown::HostMetaController"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "ba699ddcc6552c422c4ecd50d2cd217f616a2446659e185a50b05a0f2dad8d33",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/media_controller.rb",
+      "line": 10,
+      "link": "http://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(MediaAttachment.attached.find_by!(:shortcode => ((params[:id] or params[:medium_id]))).file.url(:original))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "MediaController",
+        "method": "show"
+      },
+      "user_input": "MediaAttachment.attached.find_by!(:shortcode => ((params[:id] or params[:medium_id]))).file.url(:original)",
+      "confidence": "High",
+      "note": ""
+    },
+    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
       "fingerprint": "bb0ad5c4a42e06e3846c2089ff5269c17f65483a69414f6ce65eecf2bb11fab7",
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in link_to href",
       "file": "app/views/admin/accounts/show.html.haml",
-      "line": 116,
+      "line": 119,
       "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
       "code": "link_to(Account.find(params[:id]).remote_url, Account.find(params[:id]).remote_url)",
       "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
@@ -250,13 +289,32 @@
       "note": ""
     },
     {
+      "warning_type": "Cross-Site Request Forgery",
+      "warning_code": 7,
+      "fingerprint": "d4278f04e807ec58a23925f8ab31fad5e84692f2fb9f2f57e7931aff05d57cf8",
+      "check_name": "ForgerySetting",
+      "message": "'protect_from_forgery' should be called in WellKnown::WebfingerController",
+      "file": "app/controllers/well_known/webfinger_controller.rb",
+      "line": 4,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross-site_request_forgery/",
+      "code": null,
+      "render_path": null,
+      "location": {
+        "type": "controller",
+        "controller": "WellKnown::WebfingerController"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "note": ""
+    },
+    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
       "fingerprint": "e04aafe1e06cf8317fb6ac0a7f35783e45aa1274272ee6eaf28d39adfdad489b",
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in link_to href",
       "file": "app/views/admin/accounts/show.html.haml",
-      "line": 146,
+      "line": 150,
       "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
       "code": "link_to(Account.find(params[:id]).outbox_url, Account.find(params[:id]).outbox_url)",
       "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
@@ -275,10 +333,10 @@
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/stream_entries/show.html.haml",
-      "line": 21,
+      "line": 24,
       "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(partial => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { :locals => ({ Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :include_threads => true }) })",
-      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":20,"file":"app/controllers/statuses_controller.rb"}],
+      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":22,"file":"app/controllers/statuses_controller.rb"}],
       "location": {
         "type": "template",
         "template": "stream_entries/show"
@@ -288,6 +346,6 @@
       "note": ""
     }
   ],
-  "updated": "2017-11-19 20:34:18 +0100",
+  "updated": "2018-02-16 06:42:53 +0100",
   "brakeman_version": "4.0.1"
 }

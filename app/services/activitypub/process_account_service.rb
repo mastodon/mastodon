@@ -16,17 +16,21 @@ class ActivityPub::ProcessAccountService < BaseService
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        @account        = Account.find_by(uri: @uri)
+        @account        = Account.find_remote(@username, @domain)
         @old_public_key = @account&.public_key
         @old_protocol   = @account&.protocol
 
         create_account if @account.nil?
         update_account
+        process_tags
       end
     end
 
+    return if @account.nil?
+
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
+    check_featured_collection! if @account.featured_collection_url.present?
 
     @account
   rescue Oj::ParseError
@@ -57,14 +61,16 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_immediate_attributes!
-    @account.inbox_url        = @json['inbox'] || ''
-    @account.outbox_url       = @json['outbox'] || ''
-    @account.shared_inbox_url = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
-    @account.followers_url    = @json['followers'] || ''
-    @account.url              = url || @uri
-    @account.display_name     = @json['name'] || ''
-    @account.note             = @json['summary'] || ''
-    @account.locked           = @json['manuallyApprovesFollowers'] || false
+    @account.inbox_url               = @json['inbox'] || ''
+    @account.outbox_url              = @json['outbox'] || ''
+    @account.shared_inbox_url        = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
+    @account.followers_url           = @json['followers'] || ''
+    @account.featured_collection_url = @json['featured'] || ''
+    @account.url                     = url || @uri
+    @account.display_name            = @json['name'] || ''
+    @account.note                    = @json['summary'] || ''
+    @account.locked                  = @json['manuallyApprovesFollowers'] || false
+    @account.fields                  = property_values || {}
   end
 
   def set_fetchable_attributes!
@@ -83,6 +89,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def after_key_change!
     RefollowWorker.perform_async(@account.id)
+  end
+
+  def check_featured_collection!
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id)
   end
 
   def image_url(key)
@@ -115,6 +125,11 @@ class ActivityPub::ProcessAccountService < BaseService
     else
       url_candidate
     end
+  end
+
+  def property_values
+    return unless @json['attachment'].is_a?(Array)
+    @json['attachment'].select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
   end
 
   def mismatching_origin?(url)
@@ -180,5 +195,33 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def lock_options
     { redis: Redis.current, key: "process_account:#{@uri}" }
+  end
+
+  def process_tags
+    return if @json['tag'].blank?
+
+    as_array(@json['tag']).each do |tag|
+      case tag['type']
+      when 'Emoji'
+        process_emoji tag
+      end
+    end
+  end
+
+  def process_emoji(tag)
+    return if skip_download?
+    return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
+
+    shortcode = tag['name'].delete(':')
+    image_url = tag['icon']['url']
+    uri       = tag['id']
+    updated   = tag['updated']
+    emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
+
+    return unless emoji.nil? || emoji.updated_at >= updated
+
+    emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
+    emoji.image_remote_url = image_url
+    emoji.save
   end
 end

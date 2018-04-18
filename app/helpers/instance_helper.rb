@@ -2,10 +2,10 @@
 
 module InstanceHelper
   def site_title
-    Setting.site_title.presence || site_hostname
+    Setting.site_title
   end
 
   def site_hostname
-    Rails.configuration.x.local_domain
+    @site_hostname ||= Addressable::URI.parse("//#{Rails.configuration.x.local_domain}").display_uri.host
   end
 end

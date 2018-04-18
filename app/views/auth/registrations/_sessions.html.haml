@@ -1,4 +1,4 @@
-%h6= t 'sessions.title'
+%h4= t 'sessions.title'
 %p.muted-hint= t 'sessions.explanation'
 
 .table-wrapper
@@ -16,7 +16,7 @@
             %span{ title: session.user_agent }<
               = fa_icon "#{session_device_icon(session)} fw", 'aria-label' => session_device_icon(session)
               = ' '
-              = t 'sessions.description', browser: t("sessions.browsers.#{session.browser}"), platform: t("sessions.platforms.#{session.platform}")
+              = t 'sessions.description', browser: t("sessions.browsers.#{session.browser}", default: "#{session.browser}"), platform: t("sessions.platforms.#{session.platform}", default: "#{session.platform}")
           %td
             %samp= session.ip
           %td

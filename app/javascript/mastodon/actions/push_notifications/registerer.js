@@ -1,6 +1,7 @@
 import api from '../../api';
 import { pushNotificationsSetting } from '../../settings';
 import { setBrowserSupport, setSubscription, clearSubscription } from './setter';
+import { me } from '../../initial_state';
 
 // Taken from https://www.npmjs.com/package/web-push
 const urlBase64ToUint8Array = (base64String) => {
@@ -35,7 +36,7 @@ const subscribe = (registration) =>
 const unsubscribe = ({ registration, subscription }) =>
   subscription ? subscription.unsubscribe().then(() => registration) : registration;
 
-const sendSubscriptionToBackend = (getState, subscription, me) => {
+const sendSubscriptionToBackend = (subscription) => {
   const params = { subscription };
 
   if (me) {
@@ -45,7 +46,7 @@ const sendSubscriptionToBackend = (getState, subscription, me) => {
     }
   }
 
-  return api(getState).post('/api/web/push_subscriptions', params).then(response => response.data);
+  return api().post('/api/web/push_subscriptions', params).then(response => response.data);
 };
 
 // Last one checks for payload support: https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/#no-payload
@@ -54,7 +55,6 @@ const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager'
 export function register () {
   return (dispatch, getState) => {
     dispatch(setBrowserSupport(supportsPushNotifications));
-    const me = getState().getIn(['meta', 'me']);
 
     if (me && !pushNotificationsSetting.get(me)) {
       const alerts = getState().getIn(['push_notifications', 'alerts']);
@@ -85,13 +85,13 @@ export function register () {
             } else {
               // Something went wrong, try to subscribe again
               return unsubscribe({ registration, subscription }).then(subscribe).then(
-                subscription => sendSubscriptionToBackend(getState, subscription, me));
+                subscription => sendSubscriptionToBackend(subscription));
             }
           }
 
           // No subscription, try to subscribe
           return subscribe(registration).then(
-            subscription => sendSubscriptionToBackend(getState, subscription, me));
+            subscription => sendSubscriptionToBackend(subscription));
         })
         .then(subscription => {
           // If we got a PushSubscription (and not a subscription object from the backend)
@@ -116,14 +116,11 @@ export function register () {
             pushNotificationsSetting.remove(me);
           }
 
-          try {
-            getRegistration()
-              .then(getPushSubscription)
-              .then(unsubscribe);
-          } catch (e) {
-
-          }
-        });
+          return getRegistration()
+            .then(getPushSubscription)
+            .then(unsubscribe);
+        })
+        .catch(console.warn);
     } else {
       console.warn('Your browser does not support Web Push Notifications.');
     }
@@ -137,13 +134,12 @@ export function saveSettings() {
     const alerts = state.get('alerts');
     const data = { alerts };
 
-    api(getState).put(`/api/web/push_subscriptions/${subscription.get('id')}`, {
+    api().put(`/api/web/push_subscriptions/${subscription.get('id')}`, {
       data,
     }).then(() => {
-      const me = getState().getIn(['meta', 'me']);
       if (me) {
         pushNotificationsSetting.set(me, data);
       }
-    });
+    }).catch(console.warn);
   };
 }

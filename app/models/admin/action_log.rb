@@ -16,8 +16,8 @@
 class Admin::ActionLog < ApplicationRecord
   serialize :recorded_changes
 
-  belongs_to :account, required: true
-  belongs_to :target, required: true, polymorphic: true
+  belongs_to :account
+  belongs_to :target, polymorphic: true
 
   default_scope -> { order('id desc') }
 
@@ -35,6 +35,11 @@ class Admin::ActionLog < ApplicationRecord
       self.recorded_changes = target.attributes
     when :update, :promote, :demote
       self.recorded_changes = target.previous_changes
+    when :change_email
+      self.recorded_changes = ActiveSupport::HashWithIndifferentAccess.new(
+        email: [target.email, nil],
+        unconfirmed_email: [nil, target.unconfirmed_email]
+      )
     end
   end
 end

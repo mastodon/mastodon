@@ -2,60 +2,81 @@
 eo:
   devise:
     confirmations:
-      confirmed: Via konto estas konfirmita.
-      send_instructions: Vi ricevos instrukciojn por konfirmi vian konton post kelkaj minutoj.
-      send_paranoid_instructions: Se via retpoŝt-adreso ekzistas en nia datumbazo, vi baldaŭ ricevos retpoŝt-mesaĝon, kiu enhavas la instrukciojn por konfirmi vian konton.
+      confirmed: Via retadreso estis sukcese konfirmita.
+      send_instructions: Vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
+      send_paranoid_instructions: Se via retadreso ekzistas en nia datumbazo, vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
     failure:
-      already_authenticated: Vi jam estas ensalutita.
+      already_authenticated: Vi jam ensalutis.
       inactive: Via konto ankoraŭ ne estas konfirmita.
-      invalid: Malĝusta retpoŝt-adreso aŭ pasvorto.
+      invalid: Nevalida %{authentication_keys} aŭ pasvorto.
       last_attempt: Vi ankoraŭ povas provi unufoje antaŭ ol via konto estos ŝlosita.
       locked: Via konto estas ŝlosita.
-      not_found_in_database: Malĝusta retpoŝt-adreso aŭ pasvorto.
-      timeout: Via sesio eksiĝis. Bonvolu reensaluti por daŭrigi.
-      unauthenticated: Vi devas ensaluti aŭ membriĝi por daŭrigi.
-      unconfirmed: Vi devas konfirmi vian konton por daŭrigi.
+      not_found_in_database: Nevalida %{authentication_keys} aŭ pasvorto.
+      timeout: Via seanco eksvalidiĝis. Bonvolu ensaluti denove por daŭrigi.
+      unauthenticated: Vi devas ensaluti aŭ registriĝi antaŭ ol daŭrigi.
+      unconfirmed: Vi devas konfirmi vian retadreson antaŭ ol daŭrigi.
     mailer:
       confirmation_instructions:
-        subject: Instrukcioj por konfirmi
+        action: Konfirmi retadreson
+        explanation: Vi kreis konton en %{host} per ĉi tiu retadreso. Nur klako restas por aktivigi ĝin. Se tio ne estis vi, bonvolu ignori ĉi tiun retmesaĝon.
+        extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la nodo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.
+        subject: 'Mastodon: Konfirmaj instrukcioj por %{instance}'
+        title: Konfirmi retadreson
+      email_changed:
+        explanation: 'La retadreso de via konto ŝanĝiĝas al:'
+        extra: Se vi ne volis ŝanĝi vian retadreson, iu verŝajne aliris al via konto. Bonvolu tuj ŝanĝi vian pasvorton aŭ kontakti la administranton de la nodo, se vi estas blokita ekster via konto.
+        subject: 'Mastodon: Retadreso ŝanĝita'
+        title: Nova retadreso
       password_change:
-        subject: Via pasvorto estis ŝanĝita senprobleme.
+        explanation: La pasvorto de via konto estis ŝanĝita.
+        extra: Se vi ne ŝanĝis vian pasvorton, iu verŝajne aliris al via konto. Bonvolu ŝanĝi vian pasvorton tuj aŭ kontakti la administranton de la nodo, se vi estas blokita ekster via konto.
+        subject: 'Mastodon: Pasvorto ŝanĝita'
+        title: Pasvorto ŝanĝita
+      reconfirmation_instructions:
+        explanation: Retajpu la novan adreson por ŝanĝi vian retadreson.
+        extra: Se ĉi tiu ŝanĝo ne estis komencita de vi, bonvolu ignori ĉi tiun retmesaĝon. La retadreso por la Mastodon-konto ne ŝanĝiĝos se vi ne aliras la supran ligilon.
+        subject: 'Mastodon: Konfirmi retadreson por %{instance}'
+        title: Kontrolu retadreson
       reset_password_instructions:
-        subject: Instrukcioj por ŝanĝi la pasvorton
+        action: Ŝanĝi pasvorton
+        explanation: Vi petis novan pasvorton por via konto.
+        extra: Se vi ne petis ĉi tion, bonvolu ignori ĉi tiun retmesaĝon. Via pasvorto ne ŝanĝiĝos se vi ne aliras la supran ligilon kaj kreas novan.
+        subject: 'Mastodon: Instrukcioj por ŝanĝi pasvorton'
+        title: Pasvorto restarigita
       unlock_instructions:
-        subject: Instrukcioj por malŝlosi la konton
+        subject: 'Mastodon: Instrukcioj por malŝlosi'
     omniauth_callbacks:
       failure: 'Ni ne povis aŭtentigi vin per %{kind}: ''%{reason}''.'
-      success: Aŭtentigita senprobleme per %{kind}.
+      success: Aŭtentigita sukcese per %{kind}.
     passwords:
-      no_token: Vi ne povas iri al tiu paĝo per alia vojo ol retpoŝt-mesaĝo por ŝanĝi pasvorton. Se vi venas de tia retpoŝt-mesaĝo, kontrolu ke vi uzis la tutan URL.
-      send_instructions: Vi ricevos retpoŝt-mesaĝon kun instrukcioj por ŝanĝi vian pasvorton post kelkaj minutoj.
-      send_paranoid_instructions: Se via retpoŝt-adreso ekzistas en nia datumbazo, vi ricevos ligilon por ŝanĝi vian pasvorton per retpoŝt-mesaĝo.
-      updated: Via pasvorto estis redaktita senprobleme, vi nun estas ensalutita.
-      updated_not_active: Via pasvorto estis redaktita senprobleme.
+      no_token: Vi ne povas aliri al ĉi tiu paĝo alimaniere ol per retmesaĝo por ŝanĝi pasvorton. Se vi venas de tia retmesaĝo, bonvolu certiĝi, ke vi uzas la tutan URL-on donitan.
+      send_instructions: Se via retadreso ekzistas en nia datumbazo, vi ricevos ligilon por havi novan pasvorton ĉe via retadreso ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
+      send_paranoid_instructions: Se via retadreso ekzistas en nia datumbazo, vi ricevos ligilon por havi novan pasvorton ĉe via retadreso ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
+      updated: Via pasvorto estis sukcese ŝanĝita. Vi nun estas ensalutinta.
+      updated_not_active: Via pasvorto estis sukcese ŝanĝita.
     registrations:
-      destroyed: Ĝis! Via konto estis forigita senprobleme. Ni esperas revidi vin baldaŭ.
-      signed_up: Bonvenon! Vi membriĝis senprobleme.
-      signed_up_but_inactive: Vi bone membriĝis, sed vi ankoraŭ ne povas ensaluti ĉar via konto ne estis konfirmita.
-      signed_up_but_locked: Vi bone membriĝis, sed vi ne povas ensaluti ĉar via konto estas ŝlosita.
-      signed_up_but_unconfirmed: Retpoŝt-mesaĝo kun via ligilo por konfirmi vian konton estis sendita al via retpoŝt-adreso. Bonvolu uzi tiun ligilon por konfirmi vian konton.
-      update_needs_confirmation: Vi bone aktualigis vian konton, sed ni bezonas kontroli vian novan retpoŝt-adreson. Bonvolu kontroli viajn retpoŝt-mesaĝojn kaj uzi la ligilon por konfirmi vian novan retpoŝt-adreson.
-      updated: Via konto estis aktualigita senprobleme.
+      destroyed: Ĝis! Via konto estis sukcese forigita. Ni esperas revidi vin baldaŭ.
+      signed_up: Bonvenon! Vi sukcese registriĝis.
+      signed_up_but_inactive: Vi sukcese registriĝis. Tamen, ni ne povis ensalutigi vin, ĉar via konto ankoraŭ ne estas konfirmita.
+      signed_up_but_locked: Vi sukcese registriĝis. Tamen, ni ne povis ensalutigi vin, ĉar via konto estas ŝlosita.
+      signed_up_but_unconfirmed: Retmesaĝo kun konfirma ligilo estis sendita al via retadreso. Bonvolu sekvi la ligilon por aktivigi vian konton. Bonvolu kontroli vian spamujon, se vi ne ricevis ĉi tiun retmesaĝon.
+      update_needs_confirmation: Vi sukcese ĝisdatigis vian konton, sed ni bezonas kontroli vian novan retadreson. Bonvolu kontroli viajn retmesaĝojn kaj sekvi la konfirman ligilon por konfirmi vian novan retadreson. Bonvolu kontroli vian spamujon, se vi ne ricevis ĉi tiun retmesaĝon.
+      updated: Via konto estis sukcese ĝisdatigita.
     sessions:
-      already_signed_out: Elsalutita.
-      signed_in: Ensalutita.
-      signed_out: Elsalutita.
+      already_signed_out: Sukcese elsalutis.
+      signed_in: Sukcese ensalutis.
+      signed_out: Sukcese elsalutis.
     unlocks:
-      send_instructions: Vi ricevos retpoŝt-mesaĝon kun instrukcioj por malŝlosi vian konton post kelkaj minutoj.
-      send_paranoid_instructions: Se via retpoŝt-adreso ekzistas en nia datumbazo, vi ricevos ligilon por malŝlosi vian konton per retpoŝt-mesaĝo.
-      unlocked: Via konto estis malŝlosita senprobleme, vi nun estas ensalutita.
+      send_instructions: Vi ricevos retmesaĝon kun instrukcioj por malŝlosi vian konton ene de kelkaj minutoj. Bonvolu kontroli vian spamujon, se vi ne ricevis ĉi tiun retmesaĝon.
+      send_paranoid_instructions: Se via konto ekzistas, vi ricevos retmesaĝon kun instrukcioj por malŝlosi ĝin ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
+      unlocked: Via konto estis sukcese malŝlosita. Bonvolu ensaluti por daŭrigi.
   errors:
     messages:
       already_confirmed: jam estis konfirmita, bonvolu provi ensaluti
-      confirmation_period_expired: devas esti konfirmita en %{period}, bonvolu repeti
-      expired: eksiĝis, bonvolu repeti
+      confirmation_period_expired: devas esti konfirmita ene de %{period}, bonvolu peti denove
+      expired: eksvalidiĝis, bonvolu peti denove
       not_found: ne estis trovita
       not_locked: ne estis ŝlosita
       not_saved:
-        one: '1 eraro malpermesis al tiu %{resource} esti konservita:'
-        other: "%{count} eraroj malpermesis al tiu %{resource} esti konservita:"
+        one: '1 eraro malpermesis al ĉi tiu %{resource} esti konservita:'
+        other: "%{count} eraroj malpermesis al ĉi tiu %{resource} esti konservita:"

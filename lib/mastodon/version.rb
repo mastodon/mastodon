@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def minor
-      1
+      3
     end
 
     def patch

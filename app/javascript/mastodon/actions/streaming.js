@@ -2,11 +2,10 @@ import { connectStream } from '../stream';
 import {
   updateTimeline,
   deleteFromTimelines,
-  refreshHomeTimeline,
-  connectTimeline,
+  expandHomeTimeline,
   disconnectTimeline,
 } from './timelines';
-import { updateNotifications, refreshNotifications } from './notifications';
+import { updateNotifications, expandNotifications } from './notifications';
 import { getLocale } from '../locales';
 
 const { messages } = getLocale();
@@ -16,10 +15,6 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null) 
   return connectStream (path, pollingRefresh, (dispatch, getState) => {
     const locale = getState().getIn(['meta', 'locale']);
     return {
-      onConnect() {
-        dispatch(connectTimeline(timelineId));
-      },
-
       onDisconnect() {
         dispatch(disconnectTimeline(timelineId));
       },
@@ -42,8 +37,8 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null) 
 }
 
 function refreshHomeTimelineAndNotification (dispatch) {
-  dispatch(refreshHomeTimeline());
-  dispatch(refreshNotifications());
+  dispatch(expandHomeTimeline());
+  dispatch(expandNotifications());
 }
 
 export const connectUserStream = () => connectTimelineStream('home', 'user', refreshHomeTimelineAndNotification);

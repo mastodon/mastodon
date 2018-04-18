@@ -13,15 +13,14 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
     def discover_provider(url, **options)
       format = options[:format]
 
-      if options[:html]
-        html = Nokogiri::HTML(options[:html])
-      else
-        res = Request.new(:get, url).perform
-
-        raise OEmbed::NotFound, url if res.code != 200 || res.mime_type != 'text/html'
-
-        html = Nokogiri::HTML(res.to_s)
-      end
+      html = if options[:html]
+               Nokogiri::HTML(options[:html])
+             else
+               Request.new(:get, url).perform do |res|
+                 raise OEmbed::NotFound, url if res.code != 200 || res.mime_type != 'text/html'
+                 Nokogiri::HTML(res.body_with_limit)
+               end
+             end
 
       if format.nil? || format == :json
         provider_endpoint ||= html.at_xpath('//link[@type="application/json+oembed"]')&.attribute('href')&.value

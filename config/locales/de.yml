@@ -23,7 +23,6 @@ de:
       real_conversation_title: Für das echte Gespräch gemacht
       within_reach_body: Verschiedene Apps für iOS, Android und andere Plattformen erlauben dir dank unserem blühenden API-Ökosystem, dich von überall auf dem Laufenden zu halten.
       within_reach_title: Immer für dich da
-    find_another_instance: Eine andere Instanz finden
     generic_description: "%{domain} ist ein Server im Netzwerk"
     hosted_on: Mastodon, beherbergt auf %{domain}
     learn_more: Mehr erfahren
@@ -61,7 +60,7 @@ de:
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       are_you_sure: Bist du sicher?
-      by_domain: Domain
+      by_domain: Domäne
       confirm: Bestätigen
       confirmed: Bestätigt
       demote: Degradieren
@@ -116,10 +115,11 @@ de:
       roles:
         admin: Administrator
         moderator: Moderator
+        staff: Mitarbeiter
         user: Nutzer
       salmon_url: Salmon-URL
       search: Suche
-      shared_inbox_url: Shared Inbox URL
+      shared_inbox_url: Geteilter Posteingang URL
       show:
         created_reports: Meldungen durch dieses Konto
         report: Meldung
@@ -143,10 +143,13 @@ de:
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
         destroy_status: "%{name} hat Status von %{target} entfernt"
-        disable_custom_emoji: "%{name} hat Emoji %{target} deaktiviert"
+        disable_2fa_user: "%{name} hat Zwei-Faktor-Anforderung für Benutzer %{target} deaktiviert"
+        disable_custom_emoji: "%{name} hat das %{target} Emoji deaktiviert"
+        disable_user: "%{name} hat den Login für Benutzer  %{target} deaktiviert"
         enable_custom_emoji: "%{name} hat das %{target} Emoji aktiviert"
         enable_user: "%{name} hat die Anmeldung für den Benutzer %{target} aktiviert"
         memorialize_account: "%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt"
+        promote_user: "%{name} hat %{target} befördert"
         reset_password_user: "%{name} hat das Passwort für den Benutzer %{target} zurückgesetzt"
         resolve_report: "%{name} hat die Meldung %{target} abgelehnt"
         silence_account: "%{name} hat %{target}s Account stummgeschaltet"
@@ -157,6 +160,7 @@ de:
         update_status: "%{name} hat den Status von %{target} aktualisiert"
       title: Überprüfungsprotokoll
     custom_emojis:
+      by_domain: Domain
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
       copy_failed_msg: Es konnte keine lokale Kopie des Emojis erstellt werden
@@ -169,11 +173,15 @@ de:
       enable: Aktivieren
       enabled_msg: Das Emoji wurde aktiviert
       image_hint: PNG bis 50 kB
+      listed: Gelistet
       new:
         title: Eigenes Emoji hinzufügen
+      overwrite: Überschreiben
       shortcode: Shortcode
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
+      unlisted: Ungelistet
+      update_failed_msg: Konnte dieses Emoji nicht aktualisieren
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     domain_blocks:
@@ -256,12 +264,21 @@ de:
       unresolved: Ungelöst
       view: Ansehen
     settings:
+      activity_api_enabled:
+        desc_html: Anzahl der lokal geposteten Beiträge, aktiven Nutzern und neuen Registrierungen in wöchentlichen Zusammenfassungen
+        title: Veröffentliche gesamte Statistiken über Benutzeraktivitäten
       bootstrap_timeline_accounts:
         desc_html: Mehrere Profilnamen durch Kommata trennen. Funktioniert nur mit lokalen und nicht gesperrten Konten. Standardwert bei freigelassenem Feld sind alle lokalen Admins.
         title: Konten, denen Neu-Angemeldete automatisch folgen
       contact_information:
         email: Öffentliche E-Mail-Adresse
         username: Profilname für die Kontaktaufnahme
+      hero:
+        desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Instanz-Thumbnail dafür verwendet
+        title: Bild für Startseite
+      peers_api_enabled:
+        desc_html: Domain-Namen dieser Instanz, die im Fediverse gefunden wurden
+        title: Veröffentliche Liste von gefundenen Instanzen
       registrations:
         closed_message:
           desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist. Du kannst HTML-Tags benutzen
@@ -271,9 +288,16 @@ de:
           title: Kontolöschung erlauben
         min_invite_role:
           disabled: Niemand
+          title: Einladungen erlauben von
         open:
           desc_html: Allen erlauben, ein Konto zu erstellen
           title: Registrierung öffnen
+      show_known_fediverse_at_about_page:
+        desc_html: Wenn aktiviert, wird es alle Beiträge aus dem bereits bekannten Teil des Fediversums auf der Startseite anzeigen. Andernfalls werden lokale Beitrage der Instanz angezeigt.
+        title: Verwende öffentliche Zeitleiste für die Vorschau
+      show_staff_badge:
+        desc_html: Zeige Mitarbeiter-Badge auf Benutzerseite
+        title: Zeige Mitarbeiter-Badge
       site_description:
         desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Beschreibung der Instanz
@@ -319,21 +343,24 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       subject: Neue Meldung auf %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Ändere E-Mail-Einstellungen
     salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
-    signature: Mastodon-Benachrichtigungen von %{instance}
     view: 'Ansehen:'
+    view_profile: Zeige Profil
+    view_status: Zeige Status
   applications:
-    created: Anwendung erstellt
-    destroyed: Anwendung gelöscht
+    created: Anwendung erfolgreich erstellt
+    destroyed: Anwendung erfolgreich gelöscht
     invalid_url: Die angegebene URL ist ungültig
     regenerate_token: Zugangs-Token neu erstellen
     token_regenerated: Zugangs-Token neu erstellt
-    warning: Sei mit diesen Daten sehr vorsichtig! Teile sie niemandem mit.
+    warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
-    agreement_html: Indem du dich registrierst, erklärst du dich mit unseren <a href="%{rules_path}">Geschäftsbedingungen</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
-    change_password: Sicherheit
+    agreement_html: Indem du dich registrierst, erklärst du dich mit den Regeln, die <a href="%{rules_path}">auf dieser Instanz gelten</a> und der <a href="%{terms_path}">Datenschutzerklärung</a> einverstanden.
+    change_password: Passwort
+    confirm_email: E-Mail bestätigen
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
@@ -341,9 +368,18 @@ de:
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
     login: Anmelden
     logout: Abmelden
+    migrate_account: Ziehe zu einem anderen Account um
+    migrate_account_html: Wenn du es wünschst diesen Account zu einem anderen umzuziehen, dann kannst du <a href="%{path}">es hier einstellen</a>.
+    or: oder
+    or_log_in_with: Oder anmelden mit
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrieren
+    register_elsewhere: Registrieren auf einem anderen Server
     resend_confirmation: Bestätigungs-Mail erneut versenden
     reset_password: Passwort zurücksetzen
+    security: Sicherheit
     set_new_password: Neues Passwort setzen
   authorize_follow:
     error: Das Profil konnte nicht geladen werden
@@ -390,6 +426,13 @@ de:
       title: Diese Seite ist kaputt
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   exports:
+    archive_takeout:
+      date: Datum
+      download: Dein Archiv herunterladen
+      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportieren Daten werden im ActivityPub-Format gespeichert, dass lesbar mit jeder Software ist, die das Format unterstützt.
+      in_progress: Stelle dein Archiv zusammen...
+      request: Dein Archiv anfragen
+      size: Größe
     blocks: Du hast blockiert
     csv: CSV
     follows: Du folgst
@@ -422,8 +465,10 @@ de:
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
+  in_memoriam_html: In Gedenken.
   invites:
     delete: Deaktivieren
+    expired: Abgelaufen
     expires_in:
       '1800': 30 Minuten
       '21600': 6 Stunden
@@ -436,42 +481,61 @@ de:
       one: 1 mal verwendet
       other: "%{count} mal verwendet"
     max_uses_prompt: Kein Limit
+    prompt: Generiere und teile Links um Zugang zu dieser Instanz zu geben
+    table:
+      expires_at: Läuft ab
+      uses: Verwendungen
+    title: Leute Einladen
   landing_strip_html: "<strong>%{name}</strong> hat ein Profil auf %{link_to_root_path}. Du kannst folgen oder interagieren, sofern du ein Konto irgendwo im Fediversum hast."
   landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
+  lists:
+    errors:
+      limit: Du hast die maximale Anzahl an Listen erreicht
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
       too_many: Es können nicht mehr als 4 Bilder angehängt werden
   migrations:
     acct: benutzername@domain des neuen Accounts
+    currently_redirecting: 'Deine Profilweiterleitung wurde gesetzt auf:'
     proceed: Speichern
+    updated_msg: Deine Account-Migrationseinstellungen wurden erfolgreich aktualisiert!
   moderation:
     title: Moderation
   notification_mailer:
     digest:
-      body: 'Hier ist eine kurze Zusammenfasung dessen, was du auf %{instance} seit deinem letzten Besuch am %{since} verpasst hast:'
+      action: Zeige alle Benachrichtigungen
+      body: Hier ist eine kurze Zusammenfassung der Nachrichten, die du seit deinem letzten Besuch am %{since} verpasst hast
       mention: "%{name} hat dich erwähnt:"
       new_followers_summary:
-        one: Ein weiteres Wesen folgt dir nun! Juhu!
-        other: "%{count} weitere Wesen folgen dir nun! Großartig!"
+        one: Außerdem ist dir seit du weg warst ein weiteres Wesen gefolgt! Juhu!
+        other: Außerdem sind dir seit du weg warst %{count} weitere Wesen gefolgt! Großartig!
       subject:
         one: "1 neue Mitteilung seit deinem letzten Besuch \U0001F418"
         other: "%{count} neue Mitteilungen seit deinem letzten Besuch \U0001F418"
+      title: In deiner Abwesenheit…
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
       subject: "%{name} hat deinen Beitrag favorisiert"
+      title: Neue Favorisierung
     follow:
       body: "%{name} folgt dir jetzt!"
       subject: "%{name} folgt dir jetzt"
+      title: Neuer Follower
     follow_request:
-      body: "%{name} möchte dir folgen:"
-      subject: "%{name} möchte dir folgen"
+      action: Verwalte Folge-Anfragen
+      body: "%{name} möchte dir folgen"
+      subject: 'Ausstehender Follower: %{name}'
+      title: Neue Folge-Anfrage
     mention:
+      action: Antworten
       body: "%{name} hat dich erwähnt:"
       subject: "%{name} hat dich erwähnt"
+      title: Neue Erwähnung
     reblog:
       body: "%{name} hat deinen Beitrag geteilt:"
       subject: "%{name} hat deinen Beitrag geteilt"
+      title: Dein Beitrag wurde geteilt
   number:
     human:
       decimal_units:
@@ -484,7 +548,9 @@ de:
           trillion: T
           unit: ''
   pagination:
+    newer: Neuer
     next: Vorwärts
+    older: Älter
     prev: Zurück
     truncate: "&hellip;"
   preferences:
@@ -519,12 +585,14 @@ de:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Unbekannter Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -543,7 +611,7 @@ de:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: unbekannter Plattform
+      other: unbekannte Plattform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -559,20 +627,22 @@ de:
     export: Datenexport
     followers: Autorisierte Folgende
     import: Datenimport
+    migrate: Account-Umzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
     settings: Einstellungen
-    two_factor_authentication: Zwei-Faktor-Authentisierung
+    two_factor_authentication: Zwei-Faktor-Auth
     your_apps: Deine Anwendungen
   statuses:
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
     pin_errors:
-      limit: Du kannst nicht noch mehr Beiträge anheften
+      limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       private: Du kannst nur öffentliche Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
     show_more: Mehr anzeigen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Nur Folgende
       private_long: Nur für Folgende sichtbar
@@ -604,7 +674,31 @@ de:
     recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscodes benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Stimmen Serverzeit und Gerätezeit?
+  user_mailer:
+    backup_ready:
+      explanation: Du hast ein vollständiges Backup von deinem Mastodon-Account angefragt. Es kann jetzt heruntergeladen werden!
+      subject: Dein Archiv ist bereit zum Download
+      title: Archiv-Download
+    welcome:
+      edit_profile_action: Profil einstellen
+      edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Follower vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.
+      explanation: Hier sind ein paar Tipps, um loszulegen
+      final_action: Fang an zu posten
+      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beitrage von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Vielleicht möchtest du dich vorstellen mit dem #introductions-Hashtag.'
+      full_handle: Dein vollständiger Benutzername
+      full_handle_hint: Dies ist was du deinen Freunden sagen kannst, damit sie dich anschreiben oder von einer anderen Instanz folgen können.
+      review_preferences_action: Einstellungen ändern
+      review_preferences_step: Stelle sicher, dass du deine Einstellungen einstellst, wie zum Beispiel welche E-Mails du gerne erhalten möchtest oder was für Privatsphäreneinstellungen voreingestellt werden sollten. Wenn dir beim Ansehen von GIFs nicht schwindelig wird, dann kannst du auch das automatische Abspielen dieser aktivieren.
+      subject: Willkommen bei Mastodon
+      tip_bridge_html: Wenn du gerade von Twitter kommst, dann kannst du deine Freunde auf Mastodon mithilfe der <a href="%{bridge_url}">Bridge-App</a> finden. Es funktioniert aber auch nur, wenn diese die Bridge-App vorher verwendet haben!
+      tip_federated_timeline: Die föderierte Zeitleiste ist die sehr große Ansicht vom Mastodon-Netzwerk. Sie enthält aber auch nur Leute, denen du und deine Nachbarn folgen, sie ist also nicht komplett.
+      tip_following: Du folgst standardmäßig deinen Server-Admin(s). Um mehr interessante Leute zu finden, kannst du die lokale oder öffentliche Zeitleiste durchsuchen.
+      tip_local_timeline: Die lokale Zeitleiste ist eine Ansicht aller Leute auf %{instance}. Diese sind deine Nachbarn!
+      tip_mobile_webapp: Wenn dein mobiler Browser dir anbietet Mastodon zu deinem Startbildschirm hinzuzufügen, dann kannst du Benachrichtigungen erhalten. Es verhält sich wie eine native App in vielen Wegen!
+      tips: Tipps
+      title: Willkommen an Bord, %{name}!
   users:
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
+    seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
