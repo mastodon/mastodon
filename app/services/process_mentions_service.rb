@@ -17,12 +17,10 @@ class ProcessMentionsService < BaseService
       if mention_undeliverable?(status, mentioned_account)
         begin
           mentioned_account = resolve_account_service.call($1)
-        rescue Goldfinger::Error, HTTP::Error
+        rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end
       end
-
-      mentioned_account ||= Account.find_remote(username, domain)
 
       next match if mention_undeliverable?(status, mentioned_account)
 
