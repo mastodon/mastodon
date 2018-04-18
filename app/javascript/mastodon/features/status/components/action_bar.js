@@ -12,6 +12,8 @@ const messages = defineMessages({
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
+  reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost to original audience' },
+  cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   mute: { id: 'status.mute', defaultMessage: 'Mute @{name}' },
@@ -120,6 +122,8 @@ export default class ActionBar extends React.PureComponent {
     if (me === status.getIn(['account', 'id'])) {
       if (publicStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+      } else {
+        menu.push({ text: intl.formatMessage(status.get('reblog') ? messages.reblog_private : messages.cancel_reblog_private), action: this.handleReblogClick });
       }
 
       menu.push(null);

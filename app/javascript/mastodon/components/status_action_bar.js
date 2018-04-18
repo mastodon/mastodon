@@ -18,6 +18,8 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
+  reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost to original audience' },
+  cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
@@ -150,6 +152,8 @@ export default class StatusActionBar extends ImmutablePureComponent {
     if (status.getIn(['account', 'id']) === me) {
       if (publicStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+      } else {
+        menu.push({ text: intl.formatMessage(status.get('reblog') ? messages.reblog_private : messages.cancel_reblog_private), action: this.handleReblogClick });
       }
 
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
