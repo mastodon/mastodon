@@ -244,6 +244,10 @@ export default class Status extends ImmutablePureComponent {
     this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
   }
 
+  handleHotkeyToggleHidden = () => {
+    this.handleToggleHidden(this.props.status);
+  }
+
   handleMoveUp = id => {
     const { status, ancestorsIds, descendantsIds } = this.props;
 
@@ -354,6 +358,7 @@ export default class Status extends ImmutablePureComponent {
       boost: this.handleHotkeyBoost,
       mention: this.handleHotkeyMention,
       openProfile: this.handleHotkeyOpenProfile,
+      toggleHidden: this.handleHotkeyToggleHidden,
     };
 
     return (
