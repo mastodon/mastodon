@@ -6,21 +6,21 @@ sk:
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali nejaké osobné správy kým ste boli preč
         display_name:
-          one: Ostáva vám <span class="name-counter">1</span> znak
-          other: Ostáva vám <span class="name-counter">%{count}</span> znakov
+          one: Ostáva ti <span class="name-counter">1</span> znak
+          other: Ostáva ti <span class="name-counter">%{count}</span> znakov
         header: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 700x335px
         locked: Musíte manuálne schváliť sledujúcich
         note:
           one: Ostáva vám <span class="note-counter">1</span> znak
-          other: Ostáva vám <span class="note-counter">%{count}</span>znakov
-        setting_noindex: Ovplyvňuje profil  a správy tak, že ich nebude možné nájsť vyhľadávaním
-        setting_theme: Ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého zariadenia.
+          other: Ostáva ti <span class="note-counter">%{count}</span> znakov
+        setting_noindex: Ovplyvňuje profil a správy tak, že ich nebude možné nájsť vyhľadávaním
+        setting_theme: Toto ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého zariadenia.
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
-        otp: Vložte 2FA kód z telefónu alebo použite jeden z vašich obnovovacích kódov.
+        otp: Napíš sem dvoj-faktorový kód z telefónu, alebo použite jeden z vašich obnovovacích kódov.
       user:
-        filtered_languages: Zaškrtnuté jazyky vám nebudú zobrazené vo verejnej časovej osi
+        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané nebudú z verejnej časovej osi
     labels:
       defaults:
         avatar: Avatar
@@ -53,7 +53,7 @@ sk:
         setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania iného používateľa
         severity: Závažnosť
         type: Typ importu
-        username: Používateľské meno
+        username: Užívateľské meno
         username_or_email: Prezívka, alebo Email
       interactions:
         must_be_follower: Blokovať notifikácie pod používateľov, ktorí ťa nesledujú

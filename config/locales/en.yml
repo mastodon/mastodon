@@ -259,6 +259,16 @@ en:
       created_msg: Report note successfully created!
       destroyed_msg: Report note successfully deleted!
     reports:
+      account:
+        created_reports: Reports created by this account
+        moderation:
+          silenced: Silenced
+          suspended: Suspended
+          title: Moderation
+        moderation_notes: Moderation Notes
+        note: note
+        report: report
+        targeted_reports: Reports made about this account
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
@@ -283,6 +293,7 @@ en:
       nsfw:
         'false': Unhide media attachments
         'true': Hide media attachments
+      reopen: Reopen Report
       report: 'Report #%{id}'
       report_contents: Contents
       reported_account: Reported account
@@ -624,6 +635,10 @@ en:
     missing_resource: Could not find the required redirect URL for your account
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+  remote_unfollow:
+    error: Error
+    title: Title
+    unfollowed: Unfollowed
   sessions:
     activity: Last activity
     browser: Browser

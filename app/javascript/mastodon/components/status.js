@@ -122,6 +122,10 @@ export default class Status extends ImmutablePureComponent {
     this.props.onMoveDown(this.props.status.get('id'));
   }
 
+  handleHotkeyToggleHidden = () => {
+    this.props.onToggleHidden(this._properStatus());
+  }
+
   _properStatus () {
     const { status } = this.props;
 
@@ -224,6 +228,7 @@ export default class Status extends ImmutablePureComponent {
       openProfile: this.handleHotkeyOpenProfile,
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
+      toggleHidden: this.handleHotkeyToggleHidden,
     };
 
     return (

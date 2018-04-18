@@ -63,6 +63,13 @@ pl:
       are_you_sure: Jesteś tego pewien?
       avatar: Awatar
       by_domain: Domena
+      change_email:
+        changed_msg: Pomyślnie zmieniono adres e-mail konta!
+        current_email: Obecny adres e-mail
+        label: Zmień adres e-mail
+        new_email: Nowy adres e-mail
+        submit: Zmień adres e-mail
+        title: Zmień adres e-mail dla %{username}
       confirm: Potwierdź
       confirmed: Potwierdzono
       demote: Degraduj
@@ -131,6 +138,7 @@ pl:
       statuses: Wpisy
       subscribe: Subskrybuj
       title: Konta
+      unconfirmed_email: Niepotwierdzony adres e-mail
       undo_silenced: Cofnij wyciszenie
       undo_suspension: Cofnij zawieszenie
       unsubscribe: Przestań subskrybować
@@ -139,6 +147,7 @@ pl:
     action_logs:
       actions:
         assigned_to_self_report: "%{name} przypisał sobie zgłoszenie %{target}"
+        change_email_user: "%{name} zmienił adres-email użytkownika %{target}"
         confirm_user: "%{name} potwierdził adres e-mail użytkownika %{target}"
         create_custom_emoji: "%{name} dodał nowe emoji %{target}"
         create_domain_block: "%{name} zablokował domenę %{target}"
@@ -251,6 +260,16 @@ pl:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
     reports:
+      account:
+        created_reports: Zgłoszenia utworzone z tego konta
+        moderation:
+          silenced: Wyciszone
+          suspended: Zawieszone
+          title: Moderacja
+        moderation_notes: Notatki moderacyjne
+        note: notatka
+        report: zgłoszenie
+        targeted_reports: Zgłoszenia dotycząće tego konta
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
@@ -258,18 +277,24 @@ pl:
       comment:
         label: Komentarz do zgłoszenia
         none: Brak
+      created_at: Zgłoszono
       delete: Usuń
+      history: Historia moderacji
       id: ID
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
       notes:
         create: Utwórz notatkę
         create_and_resolve: Rozwiąż i pozostaw notatkę
+        create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
         delete: Usuń
         label: Notatki
+        new_label: Dodaj notatkę moderacyjną
+        placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
       nsfw:
         'false': Nie oznaczaj jako NSFW
         'true': Oznaczaj jako NSFW
+      reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
       reported_account: Zgłoszone konto
@@ -617,6 +642,10 @@ pl:
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
     proceed: Śledź
     prompt: 'Zamierzasz śledzić:'
+  remote_unfollow:
+    error: Błąd
+    title: Tytuł
+    unfollowed: Przestałeś śledzić
   sessions:
     activity: Ostatnia aktywność
     browser: Przeglądarka

@@ -10,6 +10,7 @@ pl:
           many: Pozostało <span class="name-counter">%{count}</span> znaków
           one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
+        fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 700x335px
         locked: Musisz akceptować prośby o śledzenie
         note:
@@ -26,6 +27,10 @@ pl:
       user:
         filtered_languages: Wpisy w wybranych językach nie będą wyświetlać się na publicznych osiach czasu
     labels:
+      account:
+        fields:
+          name: Nazwa
+          value: Zawartość
       defaults:
         avatar: Awatar
         confirm_new_password: Potwierdź nowe hasło
@@ -35,6 +40,7 @@ pl:
         display_name: Widoczna nazwa
         email: Adres e-mail
         expires_in: Wygaśnie po
+        fields: Metadane profilu
         filtered_languages: Filtrowane języki
         header: Nagłówek
         locale: Język
