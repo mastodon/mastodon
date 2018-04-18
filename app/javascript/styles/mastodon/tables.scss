@@ -11,6 +11,7 @@
     vertical-align: top;
     border-top: 1px solid $ui-base-color;
     text-align: left;
+    background: darken($ui-base-color, 4%);
   }
 
   & > thead > tr > th {
@@ -63,6 +64,13 @@ samp {
   font-family: 'mastodon-font-monospace', monospace;
 }
 
+button.table-action-link {
+  background: transparent;
+  border: 0;
+  font: inherit;
+}
+
+button.table-action-link,
 a.table-action-link {
   text-decoration: none;
   display: inline-block;
@@ -78,5 +86,9 @@ a.table-action-link {
   i.fa {
     font-weight: 400;
     margin-right: 5px;
+  }
+
+  &:first-child {
+    padding-left: 0;
   }
 }

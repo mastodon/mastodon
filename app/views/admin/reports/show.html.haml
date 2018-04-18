@@ -54,8 +54,6 @@
             - if !@report.assigned_account.nil?
               = table_link_to 'trash', t('admin.reports.unassign'), admin_report_path(@report, outcome: 'unassign'), method: :put
 
-%hr{ class: "section-break"}/
-
 .report-accounts
   .report-accounts__item
     %h3= t('admin.reports.reported_account')
@@ -71,54 +69,47 @@
 = simple_format(@report.comment.presence || t('admin.reports.comment.none'))
 
 - unless @report.statuses.empty?
-  %hr/
+  %hr.spacer/
 
   %h3= t('admin.reports.statuses')
 
   = form_for(@form, url: admin_report_reported_statuses_path(@report.id)) do |f|
-    .batch-form-box
-      .batch-checkbox-all
-        = check_box_tag :batch_checkbox_all, nil, false
-      = f.select :action, Form::StatusBatch::ACTION_TYPE.map{|action| [t("admin.statuses.batch.#{action}"), action]}
-      = f.submit t('admin.statuses.execute'), data: { confirm: t('admin.reports.are_you_sure') }, class: 'button'
-      .media-spoiler-toggle-buttons
-        .media-spoiler-show-button.button= t('admin.statuses.media.show')
-        .media-spoiler-hide-button.button= t('admin.statuses.media.hide')
-    - @report.statuses.each do |status|
-      .report-status{ data: { id: status.id } }
-        .batch-checkbox
-          = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
-        .activity-stream.activity-stream-headless
-          .entry= render 'stream_entries/simple_status', status: status
-        .report-status__actions
-          - unless status.media_attachments.empty?
-            = link_to admin_report_reported_status_path(@report, status, status: { sensitive: !status.sensitive }), method: :put, class: 'icon-button nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
-              = fa_icon status.sensitive? ? 'eye' : 'eye-slash'
-          = link_to admin_report_reported_status_path(@report, status), method: :delete, class: 'icon-button trash-button', title: t('admin.reports.delete'), data: { confirm: t('admin.reports.are_you_sure') }, remote: true do
-            = fa_icon 'trash'
+    %table.table
+      %colgroup
+        %col{ style: 'width: 16px' }
+        %col{ style: 'width: 50ch' }
+        %col
+      %thead
+        %tr
+          %th.batch-checkbox-all{ style: 'vertical-align: middle' }= check_box_tag :batch_checkbox_all, nil, false
+          %th{ colspan: 2, style: 'vertical-align: middle; text-align: right' }
+            = f.button safe_join([fa_icon('eye-slash'), t('admin.statuses.batch.nsfw_on')]), name: :nsfw_on, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+            = f.button safe_join([fa_icon('eye'), t('admin.statuses.batch.nsfw_off')]), name: :nsfw_off, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+            = f.button safe_join([fa_icon('trash'), t('admin.statuses.batch.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
-%hr{ class: "section-break"}/
+      %tbody
+        = render partial: 'admin/reports/status', collection: @report.statuses, locals: { f: f }
+
+%hr.spacer/
 
 %h3= t('admin.reports.notes.label')
 
-- if @report_notes.length > 0
-  %ul
-    = render @report_notes
+- unless @report_notes.empty?
+  %ul= render @report_notes
 
 %h4= t('admin.reports.notes.new_label')
+
 = form_for @report_note, url: admin_report_notes_path, html: { class: 'report-note__form' } do |f|
   = render 'shared/error_messages', object: @report_note
   = f.text_area :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6, class: 'report-note__textarea'
   = f.hidden_field :report_id
-  %div{ class: 'report-note__buttons' }
+  .report-note__buttons
     - if @report.unresolved?
       = f.submit t('admin.reports.notes.create_and_resolve'), name: :create_and_resolve, class: 'button report-note__button'
     - else
       = f.submit t('admin.reports.notes.create_and_unresolve'), name: :create_and_unresolve, class: 'button report-note__button'
     = f.submit t('admin.reports.notes.create'), class: 'button report-note__button'
 
-- if @report_history.length > 0
+- unless @report_history.empty?
   %h3= t('admin.reports.history')
-
-  %ul
-    = render @report_history
+  %ul= render @report_history
