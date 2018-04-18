@@ -14,7 +14,7 @@ zh-HK:
             redirect_uri:
               fragment_present: URI 不可包含 "#fragment" 部份
               invalid_uri: 必需有正確的 URI.
-              relative_uri: 必需為絕對 URI.
+              relative_uri: 必需為完整 URI.
               secured_uri: 必需使用有 HTTPS/SSL 加密的 URI.
   doorkeeper:
     applications:
@@ -63,7 +63,7 @@ zh-HK:
         prompt: 應用程式 %{client_name} 要求得到你用戶的部份權限
         title: 需要用戶授權
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: 請把這個授權碼複製到應用程式中。
     authorized_applications:
       buttons:
         revoke: 取消授權

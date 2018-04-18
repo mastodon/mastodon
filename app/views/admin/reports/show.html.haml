@@ -60,11 +60,11 @@
   .report-accounts__item
     %h3= t('admin.reports.reported_account')
     = render 'authorize_follows/card', account: @report.target_account, admin: true
-    = render 'admin/accounts/card', account: @report.target_account
+    = render 'admin/reports/account_details', account: @report.target_account
   .report-accounts__item
     %h3= t('admin.reports.reported_by')
     = render 'authorize_follows/card', account: @report.account, admin: true
-    = render 'admin/accounts/card', account: @report.account
+    = render 'admin/reports/account_details', account: @report.account
 
 %h3= t('admin.reports.comment.label')
 

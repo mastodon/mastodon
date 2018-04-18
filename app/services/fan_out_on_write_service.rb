@@ -10,8 +10,11 @@ class FanOutOnWriteService < BaseService
 
     deliver_to_self(status) if status.account.local?
 
+    render_anonymous_payload(status)
+
     if status.direct_visibility?
       deliver_to_mentioned_followers(status)
+      deliver_to_direct_timelines(status)
     else
       deliver_to_followers(status)
       deliver_to_lists(status)
@@ -19,7 +22,6 @@ class FanOutOnWriteService < BaseService
 
     return if status.account.silenced? || !status.public_visibility? || status.reblog?
 
-    render_anonymous_payload(status)
     deliver_to_hashtags(status)
 
     return if status.reply? && status.in_reply_to_account_id != status.account_id
@@ -83,5 +85,14 @@ class FanOutOnWriteService < BaseService
 
     Redis.current.publish('timeline:public', @payload)
     Redis.current.publish('timeline:public:local', @payload) if status.local?
+  end
+
+  def deliver_to_direct_timelines(status)
+    Rails.logger.debug "Delivering status #{status.id} to direct timelines"
+
+    status.mentions.includes(:account).each do |mention|
+      Redis.current.publish("timeline:direct:#{mention.account.id}", @payload) if mention.account.local?
+    end
+    Redis.current.publish("timeline:direct:#{status.account.id}", @payload) if status.account.local?
   end
 end

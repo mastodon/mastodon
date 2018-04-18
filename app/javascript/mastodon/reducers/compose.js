@@ -36,8 +36,6 @@ import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrde
 import uuid from '../uuid';
 import { me } from '../initial_state';
 
-const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
-
 const initialState = ImmutableMap({
   mounted: 0,
   sensitive: false,
@@ -137,9 +135,8 @@ const updateSuggestionTags = (state, token) => {
   });
 };
 
-const insertEmoji = (state, position, emojiData) => {
+const insertEmoji = (state, position, emojiData, needsSpace) => {
   const oldText = state.get('text');
-  const needsSpace = emojiData.custom && position > 0 && !allowedAroundShortCode.includes(oldText[position - 1]);
   const emoji = needsSpace ? ' ' + emojiData.native : emojiData.native;
 
   return state.merge({
@@ -288,7 +285,7 @@ export default function compose(state = initialState, action) {
       return state;
     }
   case COMPOSE_EMOJI_INSERT:
-    return insertEmoji(state, action.position, action.emoji);
+    return insertEmoji(state, action.position, action.emoji, action.needsSpace);
   case COMPOSE_UPLOAD_CHANGE_SUCCESS:
     return state
       .set('is_submitting', false)

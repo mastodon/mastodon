@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-class Api::Web::PushSubscriptionsController < Api::BaseController
+class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   respond_to :json
 
   before_action :require_user!
-  protect_from_forgery with: :exception
 
   def create
     active_session = current_session

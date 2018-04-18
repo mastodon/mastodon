@@ -13,6 +13,7 @@ class StatusesController < ApplicationController
   before_action :set_link_headers
   before_action :check_account_suspension
   before_action :redirect_to_original, only: [:show]
+  before_action :set_referrer_policy_header, only: [:show]
   before_action :set_cache_headers
 
   def show
@@ -80,5 +81,10 @@ class StatusesController < ApplicationController
 
   def redirect_to_original
     redirect_to ::TagManager.instance.url_for(@status.reblog) if @status.reblog?
+  end
+
+  def set_referrer_policy_header
+    return if @status.public_visibility? || @status.unlisted_visibility?
+    response.headers['Referrer-Policy'] = 'origin'
   end
 end
