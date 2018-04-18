@@ -30,7 +30,7 @@
   }
 
   a {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
     text-decoration: underline;
 
     &:hover {
@@ -68,7 +68,7 @@ a.table-action-link {
   display: inline-block;
   margin-right: 5px;
   padding: 0 10px;
-  color: rgba($primary-text-color, 0.7);
+  color: $darker-text-color;
   font-weight: 500;
 
   &:hover {
