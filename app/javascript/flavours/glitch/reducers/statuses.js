@@ -27,10 +27,6 @@ import {
   TIMELINE_EXPAND_SUCCESS,
 } from 'flavours/glitch/actions/timelines';
 import {
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS,
-} from 'flavours/glitch/actions/accounts';
-import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
   NOTIFICATIONS_EXPAND_SUCCESS,
@@ -96,18 +92,6 @@ const deleteStatus = (state, id, references) => {
   return state.delete(id);
 };
 
-const filterStatuses = (state, relationship) => {
-  state.forEach(status => {
-    if (status.get('account') !== relationship.id) {
-      return;
-    }
-
-    state = deleteStatus(state, status.get('id'), state.filter(item => item.get('reblog') === status.get('id')));
-  });
-
-  return state;
-};
-
 const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
@@ -155,9 +139,6 @@ export default function statuses(state = initialState, action) {
     return normalizeStatuses(state, action.statuses);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-    return filterStatuses(state, action.relationship);
   default:
     return state;
   }
