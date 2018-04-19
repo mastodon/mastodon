@@ -40,6 +40,16 @@
     cursor: default;
   }
 
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
+    outline: 0 !important;
+  }
+
   &.button-primary,
   &.button-alternative,
   &.button-secondary,
@@ -665,6 +675,16 @@
     &:hover {
       background: lighten($action-button-color, 7%);
       text-decoration: none;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &:focus,
+    &:active {
+      outline: 0 !important;
     }
   }
 
@@ -3898,6 +3918,10 @@ a.status-card {
     position: absolute;
     top: 10px;
     width: 48px;
+  }
+
+  .status__content__spoiler-link {
+    color: lighten($ui-secondary-color, 8%);
   }
 }
 
