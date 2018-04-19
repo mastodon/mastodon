@@ -1,12 +1,11 @@
-%tr
-  %td.batch-checkbox
+.batch-table__row
+  %label.batch-table__row__select.batch-checkbox
     = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
-  %td
+  .batch-table__row__content
     .status__content><
       - unless status.spoiler_text.blank?
-        %p
+        %p><
           %strong= Formatter.instance.format_spoiler(status)
-        %p &nbsp;
 
       = Formatter.instance.format(status)
 
@@ -16,17 +15,14 @@
         = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 610, height: 343, inline: true
       - else
         = react_component :media_gallery, height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
-  %td{ style: 'padding: 0' }
-    %table.table
-      %tbody
-        %tr
-          %td= l status.created_at
-        %tr
-          %td
-            = fa_visibility_icon(status)
-            = t("statuses.visibilities.#{status.visibility}")
-        - if status.sensitive?
-          %tr
-            %td
-              = fa_icon('eye-slash fw')
-              = t('stream_entries.sensitive_content')
+
+    .detailed-status__meta
+      = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener' do
+        %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
+      ·
+      = fa_visibility_icon(status)
+      = t("statuses.visibilities.#{status.visibility}")
+      - if status.sensitive?
+        ·
+        = fa_icon('eye-slash fw')
+        = t('stream_entries.sensitive_content')
