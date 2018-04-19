@@ -136,16 +136,21 @@ class Item extends React.PureComponent {
     let thumbnail = '';
 
     if (attachment.get('type') === 'image') {
-      const previewUrl = attachment.get('preview_url');
+      const previewUrl   = attachment.get('preview_url');
       const previewWidth = attachment.getIn(['meta', 'small', 'width']);
 
-      const originalUrl = attachment.get('url');
-      const originalWidth = attachment.getIn(['meta', 'original', 'width']);
+      const originalUrl    = attachment.get('url');
+      const originalWidth  = attachment.getIn(['meta', 'original', 'width']);
 
       const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
       const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
-      const sizes = hasSize ? `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw` : null;
+      const sizes  = hasSize ? `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw` : null;
+
+      const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
+      const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
+      const x      = ((focusX /  2) + .5) * 100;
+      const y      = ((focusY / -2) + .5) * 100;
 
       thumbnail = (
         <a
@@ -154,7 +159,14 @@ class Item extends React.PureComponent {
           onClick={this.handleClick}
           target='_blank'
         >
-          <img className={letterbox ? 'letterbox' : null} src={previewUrl} srcSet={srcSet} sizes={sizes} alt={attachment.get('description')} title={attachment.get('description')} />
+          <img
+            className={letterbox ? 'letterbox' : null}
+            src={previewUrl}
+            srcSet={srcSet}
+            sizes={sizes}
+            alt={attachment.get('description')}
+            title={attachment.get('description')}
+            style={{ objectPosition: `${x}% ${y}%` }} />
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
@@ -225,30 +237,59 @@ export default class MediaGallery extends React.PureComponent {
     this.props.onOpenMedia(this.props.media, index);
   }
 
+  handleRef = (node) => {
+    if (node && this.isStandaloneEligible()) {
+      // offsetWidth triggers a layout, so only calculate when we need to
+      this.setState({
+        width: node.offsetWidth,
+      });
+    }
+  }
+
+  isStandaloneEligible() {
+    const { media, standalone } = this.props;
+    return standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+  }
+
   render () {
-    const {
-      handleClick,
-      handleOpen,
-    } = this;
-    const {
-      fullwidth,
-      intl,
-      letterbox,
-      media,
-      sensitive,
-      standalone,
-    } = this.props;
-    const { visible } = this.state;
+    const { media, intl, sensitive, letterbox, fullwidth } = this.props;
+    const { width, visible } = this.state;
     const size = media.take(4).size;
+
+    let children;
+
+    const style = {};
+
+    if (this.isStandaloneEligible() && width) {
+      style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+    }
+
+    if (!visible) {
+      let warning = <FormattedMessage {...(sensitive ? messages.warning : messages.hidden)} />;
+
+      children = (
+        <button className='media-spoiler' type='button' onClick={this.handleOpen}>
+          <span className='media-spoiler__warning'>{warning}</span>
+          <span className='media-spoiler__trigger'><FormattedMessage {...messages.toggle} /></span>
+        </button>
+      );
+    } else {
+      if (this.isStandaloneEligible()) {
+        children = <Item standalone attachment={media.get(0)} onClick={this.handleClick} />;
+      } else {
+        children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} letterbox={letterbox} />);
+      }
+    }
+
     const computedClass = classNames('media-gallery', `size-${size}`, { 'full-width': fullwidth });
 
     return (
-      <div className={computedClass}>
+      <div className={computedClass} style={style} ref={this.handleRef}>
         {visible ? (
           <div className='sensitive-info'>
             <IconButton
               icon='eye'
-              onClick={handleOpen}
+              onClick={this.handleOpen}
               overlay
               title={intl.formatMessage(messages.toggle_visible)}
             />
@@ -259,46 +300,8 @@ export default class MediaGallery extends React.PureComponent {
             ) : null}
           </div>
         ) : null}
-        {function () {
-          switch (true) {
-          case !visible:
-            return (
-              <button
-                className='media-spoiler'
-                type='button'
-                onClick={handleOpen}
-              >
-                <span className='media-spoiler__warning'>
-                  <FormattedMessage {...(sensitive ? messages.warning : messages.hidden)} />
-                </span>
-                <span className='media-spoiler__trigger'>
-                  <FormattedMessage {...messages.toggle} />
-                </span>
-              </button>
-            );
-          case standalone && media.size === 1 && !!media.getIn([0, 'meta', 'small', 'aspect']):
-            return (
-              <Item
-                attachment={media.get(0)}
-                onClick={handleClick}
-                standalone
-              />
-            );
-          default:
-            return media.take(4).map(
-              (attachment, i) => (
-                <Item
-                  attachment={attachment}
-                  index={i}
-                  key={attachment.get('id')}
-                  letterbox={letterbox}
-                  onClick={handleClick}
-                  size={size}
-                />
-              )
-            );
-          }
-        }()}
+
+        {children}
       </div>
     );
   }
