@@ -1006,6 +1006,15 @@
   padding: 10px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 
+  &.compact {
+    padding: 0;
+    border-bottom: 0;
+
+    .account__avatar-wrapper {
+      margin-left: 0;
+    }
+  }
+
   .account__display-name {
     flex: 1 1 auto;
     display: block;
@@ -1029,13 +1038,16 @@
 .account__avatar {
   @include avatar-radius();
   position: relative;
-  cursor: pointer;
 
   &-inline {
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
   }
+}
+
+a .account__avatar {
+  cursor: pointer;
 }
 
 .account__avatar-overlay {
@@ -1286,7 +1298,7 @@
 .status__display-name,
 .reply-indicator__display-name,
 .detailed-status__display-name,
-.account__display-name {
+a.account__display-name {
   &:hover strong {
     text-decoration: underline;
   }

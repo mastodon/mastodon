@@ -15,16 +15,24 @@
     = link_to t('admin.reports.mark_as_unresolved'), admin_report_path(@report, outcome: 'reopen'), method: :put, class: 'button'
 
 .table-wrapper
-  %table.table.inline-table
+  %table.table
     %tbody
       %tr
         %th= t('admin.reports.created_at')
-        %td{colspan: 2}
+        %td{ colspan: 2 }
           %time.formatted{ datetime: @report.created_at.iso8601 }
       %tr
         %th= t('admin.reports.updated_at')
-        %td{colspan: 2}
+        %td{ colspan: 2 }
           %time.formatted{ datetime: @report.updated_at.iso8601 }
+      %tr
+        %th= t('admin.reports.reported_account')
+        %td= render partial: 'admin/reports/account', object: @report.target_account
+        %td{ style: 'padding: 0' }= render 'admin/reports/account_details', account: @report.target_account
+      %tr
+        %th= t('admin.reports.reported_by')
+        %td= render partial: 'admin/reports/account', object: @report.account
+        %td{ style: 'padding: 0' }= render 'admin/reports/account_details', account: @report.account
       %tr
         %th= t('admin.reports.status')
         %td
@@ -32,37 +40,25 @@
             = t('admin.reports.resolved')
           - else
             = t('admin.reports.unresolved')
-        %td{style: "text-align: right; overflow: hidden;"}
+        %td
           - if @report.action_taken?
             = table_link_to 'envelope-open', t('admin.reports.reopen'), admin_report_path(@report, outcome: 'reopen'), method: :put
       - if !@report.action_taken_by_account.nil?
         %tr
           %th= t('admin.reports.action_taken_by')
-          %td{colspan: 2}
-            = @report.action_taken_by_account.acct
+          %td{ colspan: 2 }
+            = render partial: 'admin/reports/account', object: @report.action_taken_by_account
       - else
         %tr
           %th= t('admin.reports.assigned')
+          %td= render partial: 'admin/reports/account', object: @report.assigned_account
           %td
-            - if @report.assigned_account.nil?
-              \-
-            - else
-              = link_to @report.assigned_account.acct, admin_account_path(@report.assigned_account.id)
-          %td{style: "text-align: right"}
             - if @report.assigned_account != current_user.account
               = table_link_to 'user', t('admin.reports.assign_to_self'), admin_report_path(@report, outcome: 'assign_to_self'), method: :put
             - if !@report.assigned_account.nil?
               = table_link_to 'trash', t('admin.reports.unassign'), admin_report_path(@report, outcome: 'unassign'), method: :put
 
-.report-accounts
-  .report-accounts__item
-    %h3= t('admin.reports.reported_account')
-    = render 'authorize_follows/card', account: @report.target_account, admin: true
-    = render 'admin/reports/account_details', account: @report.target_account
-  .report-accounts__item
-    %h3= t('admin.reports.reported_by')
-    = render 'authorize_follows/card', account: @report.account, admin: true
-    = render 'admin/reports/account_details', account: @report.account
+%hr.spacer/
 
 %h3= t('admin.reports.comment.label')
 
