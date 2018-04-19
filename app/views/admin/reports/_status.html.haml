@@ -2,12 +2,13 @@
   %td.batch-checkbox
     = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
   %td
-    - unless status.spoiler_text.blank?
-      %p
-        %strong= Formatter.instance.format_spoiler(status)
-      %p &nbsp;
+    .status__content><
+      - unless status.spoiler_text.blank?
+        %p
+          %strong= Formatter.instance.format_spoiler(status)
+        %p &nbsp;
 
-    = Formatter.instance.format(status)
+      = Formatter.instance.format(status)
 
     - unless status.media_attachments.empty?
       - if status.media_attachments.first.video?

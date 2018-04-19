@@ -49,9 +49,20 @@
     }
   }
 
-  &.inline-table > tbody > tr:nth-child(odd) > td,
-  &.inline-table > tbody > tr:nth-child(odd) > th {
-    background: transparent;
+  &.inline-table {
+    & > tbody > tr:nth-child(odd) {
+      & > td,
+      & > th {
+        background: transparent;
+      }
+    }
+
+    & > tbody > tr:first-child {
+      & > td,
+      & > th {
+        border-top: 0;
+      }
+    }
   }
 }
 
