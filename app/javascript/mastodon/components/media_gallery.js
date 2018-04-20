@@ -189,10 +189,12 @@ export default class MediaGallery extends React.PureComponent {
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    quote: PropTypes.bool,
   };
 
   static defaultProps = {
     standalone: false,
+    quote: false,
   };
 
   state = {
@@ -228,7 +230,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, height } = this.props;
+    const { media, intl, sensitive, height, quote } = this.props;
     const { width, visible } = this.state;
 
     let children;
@@ -243,6 +245,10 @@ export default class MediaGallery extends React.PureComponent {
       style.height = width / (16/9);
     } else {
       style.height = height;
+    }
+
+    if (quote) {
+      style.height /= 2;
     }
 
     if (!visible) {

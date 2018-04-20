@@ -736,6 +736,44 @@
   vertical-align: middle;
 }
 
+.quote-inline {
+  display: none;
+}
+
+.quote-status {
+  border: solid 1px #393f4f;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 8px;
+  position: relative;
+
+  .status__avatar {
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+
+    & > div {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .display-name__account {
+    color: $ui-base-lighter-color;
+  }
+
+  .display-name {
+    padding-left: 20px;
+  }
+}
+
+.muted .quote-status .display-name {
+  color: $ui-base-lighter-color;
+}
+
 .status__prepend-icon-wrapper {
   left: -26px;
   position: absolute;

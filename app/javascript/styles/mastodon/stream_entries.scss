@@ -37,6 +37,27 @@
       }
     }
 
+    .status.light.quote-status {
+      border: solid 1px #9baec8;
+      border-radius: 4px;
+      padding: 5px;
+      margin-top: 15px;
+      cursor: pointer;
+
+      .status__avatar {
+        height: 18px;
+        width: 18px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+
+        & > div {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+
     @media screen and (max-width: 740px) {
       &,
       .detailed-status.light,
@@ -60,6 +81,27 @@
           .detailed-status.light,
           .status.light {
             border-radius: 0 0 4px 4px;
+          }
+        }
+      }
+
+      .status.light.quote-status {
+        border: solid 1px #9baec8;
+        border-radius: 4px;
+        padding: 5px;
+        margin-top: 15px;
+        cursor: pointer;
+
+        .status__avatar {
+          height: 18px;
+          width: 18px;
+          position: absolute;
+          top: 5px;
+          left: 5px;
+
+          & > div {
+            width: 18px;
+            height: 18px;
           }
         }
       }
