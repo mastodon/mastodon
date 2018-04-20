@@ -22,6 +22,8 @@ import {
   deleteStatus,
   hideStatus,
   revealStatus,
+  hideQuote,
+  revealQuote,
 } from '../actions/statuses';
 import { initMuteModal } from '../actions/mutes';
 import { initReport } from '../actions/reports';
@@ -144,6 +146,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(revealStatus(status.get('id')));
     } else {
       dispatch(hideStatus(status.get('id')));
+    }
+  },
+
+  onQuoteToggleHidden (status) {
+    if (status.get('quote_hidden')) {
+      dispatch(revealQuote(status.get('id')));
+    } else {
+      dispatch(hideQuote(status.get('id')));
     }
   },
 

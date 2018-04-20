@@ -24,6 +24,7 @@ class Formatter
     unless status.local?
       html = reformat(raw_content)
       html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
+      html = quotify(html, status, options) if status.quote?
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
@@ -35,9 +36,16 @@ class Formatter
     html = encode_and_link_urls(html, linkable_accounts)
     html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
     html = simple_format(html, {}, sanitize: false)
+    html = quotify(html, status, options) if status.quote?
     html = html.delete("\n")
 
     html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def format_in_quote(status, **options)
+    html = format(status)
+    html.sub!(/^<p>(.+)<\/p>$/, '\1')
+    Sanitize.clean(html, :elements => ['img', 'span'], :attributes => {'img' => ['src', 'class', 'draggable', 'alt', 'title'], 'span' => ['class']}).html_safe
   end
 
   def reformat(html)
@@ -147,6 +155,15 @@ class Formatter
     end
 
     html
+  end
+
+  def quotify(html, status, options)
+    quote_content = status.quote.spoiler_text.present? ? (status.spoiler_text.present? ? status.quote.text : status.quote.spoiler_text) : status.quote.text
+    quote_content = Sanitize.fragment(quote_content).gsub(/\n|\r|\r\n/, "").truncate(150)
+    quote_content = encode_custom_emojis(quote_content, status.quote.emojis) if options[:custom_emojify]
+    url = TagManager.instance.url_for(status.quote)
+    link = encode_and_link_urls(url)
+    html.sub(/(<[^>]+>)$/, "<span class='quote-inline'><br/>QT: #{quote_content}[#{link}]</span>\\1")
   end
 
   def rewrite(text, entities)

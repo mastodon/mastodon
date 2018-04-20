@@ -36,6 +36,14 @@
       }
     }
 
+    .status.light.quote-status {
+      border: solid 1px #9baec8;
+      border-radius: 4px;
+      padding: 5px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
     @media screen and (max-width: 740px) {
       &,
       .detailed-status.light,
@@ -61,6 +69,14 @@
             border-radius: 0 0 4px 4px;
           }
         }
+      }
+
+      .status.light.quote-status {
+        border: solid 1px #9baec8;
+        border-radius: 4px;
+        padding: 5px;
+        margin-top: 15px;
+        cursor: pointer;
       }
     }
   }

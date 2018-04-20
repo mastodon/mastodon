@@ -744,6 +744,21 @@
   vertical-align: middle;
 }
 
+.quote-inline {
+  display: none;
+}
+
+.quote-status {
+  border: solid 1px #393f4f;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 8px;
+
+  .display-name__account {
+    color: #606984;
+  }
+}
+
 .status__prepend-icon-wrapper {
   left: -26px;
   position: absolute;

@@ -122,18 +122,9 @@ export function submitCompose() {
   return function (dispatch, getState) {
     let status = getState().getIn(['compose', 'text'], '');
     const media  = getState().getIn(['compose', 'media_attachments']);
-    const quoteId = getState().getIn(['compose', 'quote_from'], null);
 
     if ((!status || !status.length) && media.size === 0) {
       return;
-    }
-
-    if (quoteId) {
-      status = [
-        status,
-        "~~~~~~~~~~",
-        `[${quoteId}][${getState().getIn(['compose', 'quote_from_uri'], null)}]`
-      ].join("\n");
     }
 
     dispatch(submitComposeRequest());
@@ -145,6 +136,7 @@ export function submitCompose() {
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
       visibility: getState().getIn(['compose', 'privacy']),
+      quote_id: getState().getIn(['compose', 'quote_from'], null),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
