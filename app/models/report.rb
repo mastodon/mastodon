@@ -60,7 +60,7 @@ class Report < ApplicationRecord
     !action_taken?
   end
 
-  def history
+  def actions
     time_range = created_at..updated_at
 
     sql = [
@@ -84,5 +84,9 @@ class Report < ApplicationRecord
     ].map { |query| "(#{query.to_sql})" }.join(' UNION ALL ')
 
     Admin::ActionLog.from("(#{sql}) AS admin_action_logs")
+  end
+
+  def history
+    @history ||= (notes.latest + actions).sort_by(&:created_at)
   end
 end
