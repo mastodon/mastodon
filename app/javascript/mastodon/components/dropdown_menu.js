@@ -63,7 +63,7 @@ class DropdownMenu extends React.PureComponent {
 
     if (typeof action === 'function') {
       e.preventDefault();
-      action();
+      action(e);
     } else if (to) {
       e.preventDefault();
       this.context.router.history.push(to);
