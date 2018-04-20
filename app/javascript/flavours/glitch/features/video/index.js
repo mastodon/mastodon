@@ -271,7 +271,7 @@ export default class Video extends React.PureComponent {
     }
 
     return (
-      <div className={classNames('video-player', { inactive: !revealed, detailed, inline: width && height && !fullscreen, fullscreen, letterbox, 'full-width': fullwidth })} style={playerStyle} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className={classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, letterbox, 'full-width': fullwidth })} style={playerStyle} ref={this.setPlayerRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <video
           ref={this.setVideoRef}
           src={src}
