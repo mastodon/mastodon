@@ -3,13 +3,14 @@
 }
 
 .modal-root {
+  position: relative;
   transition: opacity 0.3s linear;
   will-change: opacity;
   z-index: 9999;
 }
 
 .modal-root__overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -18,7 +19,7 @@
 }
 
 .modal-root__container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
