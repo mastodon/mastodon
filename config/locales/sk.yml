@@ -145,6 +145,15 @@ sk:
       username: Používateľske meno
       web: Web
       avatar: Maskot
+      change_email:
+        changed_msg: Email k tomuto účtu bol úspešne zmenený!
+        current_email: Súčastný email
+        label: Zmeniť email
+        new_email: Nový email
+        submit: Zmeniť email
+        title: Zmeň email pre %{username}
+      remove_avatar: Odstrániť avatár
+      unconfirmed_email: Nepotvrdený email
     action_logs:
       actions:
         confirm_user: '%{name} potvrdil e-mailovú adresu používateľa %{target}'
@@ -283,6 +292,10 @@ sk:
       title: Reporty
       unresolved: Nevyriešené
       view: Zobraziť
+      account:
+        created_reports: Nahlásenia vytvorené týmto účtom
+        moderation:
+          silenced: Utíšené
     settings:
       activity_api_enabled:
         desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov,
@@ -371,6 +384,9 @@ sk:
       title: WebSub
       topic: Téma
     title: Administrácia
+    report_notes:
+      created_msg: Poznámka o nahlásení úspešne vytvorená!
+      destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
   admin_mailer:
     new_report:
       body: '%{reporter} nahlásil %{target}'
