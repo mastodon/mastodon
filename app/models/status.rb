@@ -171,11 +171,7 @@ class Status < ApplicationRecord
   end
 
   def emojis
-    if quote?
-      CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain) + CustomEmoji.from_text([quote.spoiler_text, quote.text].join(' '), quote.account.domain)
-    else
-      CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
-    end
+    @emojis ||= CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain) + (quote? ? CustomEmoji.from_text([quote.spoiler_text, quote.text].join(' '), quote.account.domain) : [])
   end
 
   after_create_commit :store_uri, if: :local?
