@@ -84,6 +84,12 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
       return;
     }
 
+    if (e.which === 229 || e.isComposing) {
+      // Ignore key events during text composition
+      // e.key may be a name of the physical key even in this case (e.x. Safari / Chrome on Mac)
+      return;
+    }
+
     switch(e.key) {
     case 'Escape':
       if (suggestions.size === 0 || suggestionsHidden) {
