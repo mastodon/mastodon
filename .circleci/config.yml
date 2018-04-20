@@ -1,0 +1,117 @@
+version: 2
+
+aliases:
+  - &defaults
+    docker:
+      - image: circleci/ruby:2.5.1-stretch-node
+      - image: circleci/postgres:10.3-alpine
+        environment:
+          POSTGRES_USER: root
+      - image: circleci/redis:4.0.9-alpine
+    working_directory: ~/projects/mastodon/
+
+  - &attach_workspace
+    attach_workspace:
+      at: ~/projects/
+
+  - &persist_to_workspace
+    persist_to_workspace:
+      root: ~/projects/
+      paths:
+        - ./mastodon/
+
+  - &install_steps
+    steps:
+      - checkout
+      - *attach_workspace
+
+      - run:
+          name: Install system dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y libicu-dev libprotobuf-dev protobuf-compiler
+
+      - restore_cache:
+          keys:
+            - v1-ruby-dependencies-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - v1-ruby-dependencies-{{ .Branch }}-
+            - v1-ruby-dependencies--
+      - run: bundle install --clean --jobs 16 --path ./vendor/bundle/ --retry 3 --with pam_authentication --without development production
+      - save_cache:
+          key: v1-ruby-dependencies-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle/
+
+      - restore_cache:
+          keys:
+            - v1-node-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v1-node-dependencies-{{ .Branch }}-
+            - v1-node-dependencies--
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-node-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+      - *persist_to_workspace
+
+  - &test_steps
+      steps:
+        - *attach_workspace
+
+        - run:
+            name: Install system dependencies
+            command: |
+              sudo apt-get update
+              sudo apt-get install -y ffmpeg
+
+        - run: ./bin/rails assets:precompile parallel:create parallel:load_schema parallel:prepare
+        - run: bundle exec parallel_test ./spec/ --group-by filesize --type rspec
+
+jobs:
+  install:
+    <<: *defaults
+    <<: *install_steps
+
+  test-ruby2.5:
+    <<: *defaults
+    <<: *test_steps
+
+  test-ruby2.4:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.4.4-node
+      - image: circleci/postgres:10.3-alpine
+      - image: circleci/redis:4.0.9-alpine
+    <<: *test_steps
+
+  test-webui:
+    <<: *defaults
+    docker:
+      - image: circleci/node:8.11.1-stretch
+    steps:
+      - *attach_workspace
+      - run: yarn test:jest
+
+  check-i18n:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - run: bundle exec i18n-tasks check-normalized
+      - run: bundle exec i18n-tasks unused
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - install
+      - test-ruby2.5:
+          requires:
+            - build
+      - test-ruby2.4:
+          requires:
+            - build
+      - test-webui:
+          requires:
+            - install
+      - check-i18n:
+          requires:
+            - install
