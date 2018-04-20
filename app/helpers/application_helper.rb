@@ -63,4 +63,8 @@ module ApplicationHelper
   def opengraph(property, content)
     tag(:meta, content: content, property: property)
   end
+
+  def react_component(name, props = {})
+    content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
+  end
 end
