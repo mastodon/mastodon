@@ -115,11 +115,11 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyMoveUp = e => {
-    this.props.onMoveUp(this.props.status.get('id'), e.target.getAttribute('featured'));
+    this.props.onMoveUp(this.props.status.get('id'), e.target.getAttribute('data-featured'));
   }
 
   handleHotkeyMoveDown = e => {
-    this.props.onMoveDown(this.props.status.get('id'), e.target.getAttribute('featured'));
+    this.props.onMoveDown(this.props.status.get('id'), e.target.getAttribute('data-featured'));
   }
 
   handleHotkeyToggleHidden = () => {
@@ -233,7 +233,7 @@ export default class Status extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} featured={featured ? 'true' : null}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null}>
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { muted: this.props.muted })} data-id={status.get('id')}>
