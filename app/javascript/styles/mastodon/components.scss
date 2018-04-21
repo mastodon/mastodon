@@ -31,7 +31,7 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: lighten($ui-highlight-color, 4%);
+    background-color: lighten($ui-highlight-color, 10%);
     transition: all 200ms ease-out;
   }
 
@@ -83,7 +83,7 @@
   }
 
   &.button-secondary {
-    color: $ui-primary-color;
+    color: $darker-text-color;
     background: transparent;
     padding: 3px 15px;
     border: 1px solid $ui-primary-color;
@@ -92,7 +92,7 @@
     &:focus,
     &:hover {
       border-color: lighten($ui-primary-color, 4%);
-      color: lighten($ui-primary-color, 4%);
+      color: lighten($darker-text-color, 4%);
     }
   }
 
@@ -149,18 +149,18 @@
     &:hover,
     &:active,
     &:focus {
-      color: transparentize($lighter-text-color, 0.07);
+      color: darken($lighter-text-color, 7%);
     }
 
     &.disabled {
-      color: opacify($lighter-text-color, 0.07);
+      color: lighten($lighter-text-color, 7%);
     }
 
     &.active {
       color: $highlight-text-color;
 
       &.disabled {
-        color: opacify($lighter-text-color, 0.13);
+        color: lighten($highlight-text-color, 13%);
       }
     }
   }
@@ -193,12 +193,12 @@
   &:hover,
   &:active,
   &:focus {
-    color: opacify($lighter-text-color, 0.07);
+    color: darken($lighter-text-color, 7%);
     transition: color 200ms ease-out;
   }
 
   &.disabled {
-    color: transparentize($lighter-text-color, 0.2);
+    color: lighten($lighter-text-color, 20%);
     cursor: default;
   }
 
@@ -349,7 +349,7 @@
     box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
     background: $ui-secondary-color;
     border-radius: 0 0 4px 4px;
-    color: $lighter-text-color;
+    color: $inverted-text-color;
     font-size: 14px;
     padding: 6px;
 
@@ -457,7 +457,7 @@
 
         input {
           background: transparent;
-          color: $primary-text-color;
+          color: $secondary-text-color;
           border: 0;
           padding: 0;
           margin: 0;
@@ -471,8 +471,8 @@
           }
 
           &::placeholder {
-            opacity: 0.54;
-            color: $darker-text-color;
+            opacity: 0.75;
+            color: $secondary-text-color;
           }
         }
 
@@ -588,7 +588,7 @@
 }
 
 .reply-indicator__display-name {
-  color: $lighter-text-color;
+  color: $inverted-text-color;
   display: block;
   max-width: 100%;
   line-height: 24px;
@@ -643,14 +643,14 @@
   }
 
   a {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
 
       .fa {
-        color: lighten($action-button-color, 7%);
+        color: lighten($dark-text-color, 7%);
       }
     }
 
@@ -665,7 +665,7 @@
     }
 
     .fa {
-      color: $action-button-color;
+      color: $dark-text-color;
     }
   }
 
@@ -769,7 +769,7 @@
 
   &.light {
     .status__relative-time {
-      color: $lighter-text-color;
+      color: $light-text-color;
     }
 
     .status__display-name {
@@ -782,7 +782,7 @@
       }
 
       span {
-        color: $lighter-text-color;
+        color: $light-text-color;
       }
     }
 
@@ -816,13 +816,13 @@
 }
 
 .status__relative-time {
-  color: $darker-text-color;
+  color: $dark-text-color;
   float: right;
   font-size: 14px;
 }
 
 .status__display-name {
-  color: $darker-text-color;
+  color: $dark-text-color;
 }
 
 .status__info .status__display-name {
@@ -873,14 +873,14 @@
 
 .status__prepend {
   margin-left: 68px;
-  color: $darker-text-color;
+  color: $dark-text-color;
   padding: 8px 0;
   padding-bottom: 2px;
   font-size: 14px;
   position: relative;
 
   .status__display-name strong {
-    color: $darker-text-color;
+    color: $dark-text-color;
   }
 
   > span {
@@ -942,7 +942,7 @@
 
 .detailed-status__meta {
   margin-top: 15px;
-  color: $darker-text-color;
+  color: $dark-text-color;
   font-size: 14px;
   line-height: 18px;
 }
@@ -1091,7 +1091,7 @@ a .account__avatar {
     }
 
     .account__header__username {
-      color: $darker-text-color;
+      color: $secondary-text-color;
     }
   }
 
@@ -1101,7 +1101,7 @@ a .account__avatar {
   }
 
   .account__header__content {
-    color: $darker-text-color;
+    color: $secondary-text-color;
   }
 
   .account__header__display-name {
@@ -1129,7 +1129,7 @@ a .account__avatar {
 .account__disclaimer {
   padding: 10px;
   border-top: 1px solid lighten($ui-base-color, 8%);
-  color: $darker-text-color;
+  color: $dark-text-color;
 
   strong {
     font-weight: 500;
@@ -1316,7 +1316,7 @@ a.account__display-name {
 }
 
 .detailed-status__display-name {
-  color: $darker-text-color;
+  color: $secondary-text-color;
   display: block;
   line-height: 24px;
   margin-bottom: 15px;
@@ -1351,11 +1351,11 @@ a.account__display-name {
 .muted {
   .status__content p,
   .status__content a {
-    color: $darker-text-color;
+    color: $dark-text-color;
   }
 
   .status__display-name strong {
-    color: $darker-text-color;
+    color: $dark-text-color;
   }
 
   .status__avatar {
@@ -1363,11 +1363,11 @@ a.account__display-name {
   }
 
   a.status__content__spoiler-link {
-    background: $darker-text-color;
-    color: lighten($ui-base-color, 4%);
+    background: $ui-base-lighter-color;
+    color: $inverted-text-color;
 
     &:hover {
-      background: transparentize($darker-text-color, 0.07);
+      background: lighten($ui-base-lighter-color, 7%);
       text-decoration: none;
     }
   }
@@ -1378,7 +1378,7 @@ a.account__display-name {
   padding: 8px 0;
   padding-bottom: 0;
   cursor: default;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   font-size: 15px;
   position: relative;
 
@@ -1489,7 +1489,7 @@ a.account__display-name {
   color: $darker-text-color;
 
   strong {
-    color: $primary-text-color;
+    color: $secondary-text-color;
   }
 
   a {
@@ -1603,7 +1603,7 @@ a.account__display-name {
     &:hover,
     &:active {
       background: $ui-highlight-color;
-      color: $primary-text-color;
+      color: $secondary-text-color;
       outline: 0;
     }
   }
@@ -1656,7 +1656,7 @@ a.account__display-name {
 
     &:hover {
       background: $ui-highlight-color;
-      color: $primary-text-color;
+      color: $secondary-text-color;
     }
   }
 }
@@ -1668,7 +1668,7 @@ a.account__display-name {
 .static-content {
   padding: 10px;
   padding-top: 20px;
-  color: $darker-text-color;
+  color: $dark-text-color;
 
   h1 {
     font-size: 16px;
@@ -1755,7 +1755,7 @@ a.account__display-name {
   display: block;
   flex: 1 1 auto;
   padding: 15px 5px 13px;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   text-decoration: none;
   text-align: center;
   font-size: 16px;
@@ -2167,7 +2167,7 @@ a.account__display-name {
 
 .column-subheading {
   background: $ui-base-color;
-  color: $darker-text-color;
+  color: $dark-text-color;
   padding: 8px 20px;
   font-size: 12px;
   font-weight: 500;
@@ -2190,11 +2190,11 @@ a.account__display-name {
   flex: 1 0 auto;
 
   p {
-    color: $darker-text-color;
+    color: $secondary-text-color;
   }
 
   a {
-    color: opacify($darker-text-color, 0.07);
+    color: $dark-text-color;
   }
 }
 
@@ -2275,7 +2275,7 @@ a.account__display-name {
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
-  color: $darker-text-color;
+  color: $dark-text-color;
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
@@ -2355,7 +2355,7 @@ a.status-card {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2369,7 +2369,7 @@ a.status-card {
 }
 
 .status-card__description {
-  color: $ui-primary-color;
+  color: $darker-text-color;
 }
 
 .status-card__host {
@@ -2413,7 +2413,7 @@ a.status-card {
 
 .load-more {
   display: block;
-  color: $darker-text-color;
+  color: $dark-text-color;
   background-color: transparent;
   border: 0;
   font-size: inherit;
@@ -2437,7 +2437,7 @@ a.status-card {
   text-align: center;
   font-size: 16px;
   font-weight: 500;
-  color: opacify($darker-text-color, 0.07);
+  color: $dark-text-color;
   background: $ui-base-color;
   cursor: default;
   display: flex;
@@ -2477,7 +2477,7 @@ a.status-card {
     strong {
       display: block;
       margin-bottom: 10px;
-      color: $darker-text-color;
+      color: $dark-text-color;
     }
 
     span {
@@ -2565,13 +2565,13 @@ a.status-card {
 .column-header__button {
   background: lighten($ui-base-color, 4%);
   border: 0;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
 
   &:hover {
-    color: lighten($ui-primary-color, 7%);
+    color: lighten($darker-text-color, 7%);
   }
 
   &.active {
@@ -2652,7 +2652,7 @@ a.status-card {
 }
 
 .loading-indicator {
-  color: $darker-text-color;
+  color: $dark-text-color;
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
@@ -2749,7 +2749,7 @@ a.status-card {
   &:active,
   &:focus {
     padding: 0;
-    color: transparentize($darker-text-color, 0.07);
+    color: lighten($darker-text-color, 8%);
   }
 }
 
@@ -2873,7 +2873,7 @@ a.status-card {
 
 .empty-column-indicator,
 .error-column {
-  color: $darker-text-color;
+  color: $dark-text-color;
   background: $ui-base-color;
   text-align: center;
   padding: 20px;
@@ -3075,7 +3075,7 @@ a.status-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $primary-text-color;
+  color: $secondary-text-color;
   font-size: 18px;
   font-weight: 500;
   border: 2px dashed $ui-base-lighter-color;
@@ -3173,7 +3173,7 @@ a.status-card {
 }
 
 .privacy-dropdown__option {
-  color: $lighter-text-color;
+  color: $inverted-text-color;
   padding: 10px;
   cursor: pointer;
   display: flex;
@@ -3295,7 +3295,7 @@ a.status-card {
     font-size: 18px;
     width: 18px;
     height: 18px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     cursor: default;
     pointer-events: none;
 
@@ -3331,7 +3331,7 @@ a.status-card {
 }
 
 .search-results__header {
-  color: $darker-text-color;
+  color: $dark-text-color;
   background: lighten($ui-base-color, 2%);
   border-bottom: 1px solid darken($ui-base-color, 4%);
   padding: 15px 10px;
@@ -3379,13 +3379,13 @@ a.status-card {
 .search-results__hashtag {
   display: block;
   padding: 10px;
-  color: darken($primary-text-color, 4%);
+  color: $secondary-text-color;
   text-decoration: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: $primary-text-color;
+    color: lighten($secondary-text-color, 4%);
     text-decoration: underline;
   }
 }
@@ -3650,7 +3650,7 @@ a.status-card {
     &:hover,
     &:focus,
     &:active {
-      color: transparentize($lighter-text-color, 0.04);
+      color: darken($lighter-text-color, 4%);
       background-color: darken($ui-secondary-color, 16%);
     }
 
@@ -3744,7 +3744,7 @@ a.status-card {
     strong {
       font-weight: 500;
       background: $ui-base-color;
-      color: $primary-text-color;
+      color: $secondary-text-color;
       border-radius: 4px;
       font-size: 14px;
       padding: 3px 6px;
@@ -3804,7 +3804,7 @@ a.status-card {
 
   &__case {
     background: $ui-base-color;
-    color: $primary-text-color;
+    color: $secondary-text-color;
     font-weight: 500;
     padding: 10px;
     border-radius: 4px;
@@ -3821,7 +3821,7 @@ a.status-card {
 
   .figure {
     background: darken($ui-base-color, 8%);
-    color: $darker-text-color;
+    color: $secondary-text-color;
     margin-bottom: 20px;
     border-radius: 4px;
     padding: 10px;
@@ -3933,7 +3933,7 @@ a.status-card {
   }
 
   .status__content__spoiler-link {
-    color: lighten($ui-secondary-color, 8%);
+    color: lighten($secondary-text-color, 8%);
   }
 }
 
@@ -4163,7 +4163,7 @@ a.status-card {
     &:hover,
     &:focus,
     &:active {
-      color: transparentize($lighter-text-color, 0.04);
+      color: darken($lighter-text-color, 4%);
     }
   }
 }
@@ -4244,7 +4244,7 @@ a.status-card {
 
   &__icon {
     flex: 0 0 auto;
-    color: $darker-text-color;
+    color: $dark-text-color;
     padding: 8px 18px;
     cursor: default;
     border-right: 1px solid lighten($ui-base-color, 8%);
@@ -4274,7 +4274,7 @@ a.status-card {
 
     a {
       text-decoration: none;
-      color: $darker-text-color;
+      color: $dark-text-color;
       font-weight: 500;
 
       &:hover {
@@ -4293,7 +4293,7 @@ a.status-card {
     }
 
     .fa {
-      color: $darker-text-color;
+      color: $dark-text-color;
     }
   }
 }
@@ -4329,7 +4329,7 @@ a.status-card {
   cursor: zoom-in;
   display: block;
   text-decoration: none;
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   line-height: 0;
 
   &,
@@ -4500,7 +4500,7 @@ a.status-card {
       &:hover,
       &:active,
       &:focus {
-        color: transparentize($darker-text-color, 0.07);
+        color: lighten($darker-text-color, 7%);
       }
     }
 
@@ -4705,7 +4705,7 @@ a.status-card {
     &:active,
     &:focus {
       outline: 0;
-      color: transparentize($darker-text-color, 0.07);
+      color: $secondary-text-color;
 
       &::before {
         content: "";
@@ -4745,7 +4745,7 @@ a.status-card {
     position: relative;
 
     &.active {
-      color: transparentize($darker-text-color, 0.07);
+      color: $secondary-text-color;
 
       &::before,
       &::after {
@@ -4780,12 +4780,12 @@ a.status-card {
   padding: 10px 14px;
   padding-bottom: 14px;
   margin-top: 10px;
-  color: $lighter-text-color;
+  color: $light-text-color;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
 
   h4 {
     text-transform: uppercase;
-    color: $lighter-text-color;
+    color: $light-text-color;
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -4817,7 +4817,7 @@ noscript {
   div {
     font-size: 14px;
     margin: 30px auto;
-    color: $primary-text-color;
+    color: $secondary-text-color;
     max-width: 400px;
 
     a {
@@ -4970,7 +4970,7 @@ noscript {
   &__message {
     position: relative;
     margin-left: 58px;
-    color: $darker-text-color;
+    color: $dark-text-color;
     padding: 8px 0;
     padding-top: 0;
     padding-bottom: 4px;
