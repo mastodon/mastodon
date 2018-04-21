@@ -43,7 +43,7 @@ class Formatter
   end
 
   def format_in_quote(status, **options)
-    html = format(status)
+    html = format(status, options)
     html.sub!(/^<p>(.+)<\/p>$/, '\1')
     Sanitize.clean(html, :elements => ['img', 'span'], :attributes => {'img' => ['src', 'class', 'draggable', 'alt', 'title'], 'span' => ['class']}).html_safe
   end
@@ -163,7 +163,7 @@ class Formatter
     quote_content = encode_custom_emojis(quote_content, status.quote.emojis) if options[:custom_emojify]
     url = TagManager.instance.url_for(status.quote)
     link = encode_and_link_urls(url)
-    html.sub(/(<[^>]+>)$/, "<span class='quote-inline'><br/>QT: #{quote_content}[#{link}]</span>\\1")
+    html.sub(/(<[^>]+>)\z/, "<span class='quote-inline'><br/>QT: #{quote_content}[#{link}]</span>\\1")
   end
 
   def rewrite(text, entities)
