@@ -85,7 +85,7 @@ describe StatusesController do
       it 'returns a success' do
         status = Fabricate(:status)
         get :show, params: { account_username: status.account.username, id: status.id }
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'renders stream_entries/show' do
