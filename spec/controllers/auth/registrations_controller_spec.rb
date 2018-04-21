@@ -73,6 +73,12 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
   describe 'POST #create' do
     let(:accept_language) { Rails.application.config.i18n.available_locales.sample.to_s }
 
+    around do |example|
+      current_locale = I18n.locale
+      example.run
+      I18n.locale = current_locale
+    end
+
     before { request.env["devise.mapping"] = Devise.mappings[:user] }
 
     context do
