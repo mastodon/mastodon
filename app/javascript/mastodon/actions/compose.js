@@ -179,7 +179,7 @@ const MAX_IMAGE_DIMENSION = 1280;
 const dataURLtoBlob = dataURL => {
   const BASE64_MARKER = ';base64,';
 
-  if (dataURL.indexOf(BASE64_MARKER) == -1) {
+  if (dataURL.indexOf(BASE64_MARKER) === -1) {
     const parts       = dataURL.split(',');
     const contentType = parts[0].split(':')[1];
     const raw         = parts[1];
