@@ -30,13 +30,25 @@ export default class StatusList extends ImmutablePureComponent {
     trackScroll: true,
   };
 
-  handleMoveUp = id => {
-    const elementIndex = this.props.statusIds.indexOf(id) - 1;
+  getFeaturedStatusCount = () => {
+    return this.props.featuredStatusIds ? this.props.featuredStatusIds.size : 0;
+  }
+
+  getCurrentStatusIndex = (id, featured) => {
+    if (featured) {
+      return this.props.featuredStatusIds.indexOf(id);
+    } else {
+      return this.props.statusIds.indexOf(id) + this.getFeaturedStatusCount();
+    }
+  }
+
+  handleMoveUp = (id, featured) => {
+    const elementIndex = this.getCurrentStatusIndex(id, featured) - 1;
     this._selectChild(elementIndex);
   }
 
-  handleMoveDown = id => {
-    const elementIndex = this.props.statusIds.indexOf(id) + 1;
+  handleMoveDown = (id, featured) => {
+    const elementIndex = this.getCurrentStatusIndex(id, featured) + 1;
     this._selectChild(elementIndex);
   }
 

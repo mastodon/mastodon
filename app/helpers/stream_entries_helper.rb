@@ -113,6 +113,19 @@ module StreamEntriesHelper
     end
   end
 
+  def fa_visibility_icon(status)
+    case status.visibility
+    when 'public'
+      fa_icon 'globe fw'
+    when 'unlisted'
+      fa_icon 'unlock-alt fw'
+    when 'private'
+      fa_icon 'lock fw'
+    when 'direct'
+      fa_icon 'envelope fw'
+    end
+  end
+
   private
 
   def simplified_text(text)

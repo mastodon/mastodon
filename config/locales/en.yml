@@ -260,40 +260,29 @@ en:
       destroyed_msg: Report note successfully deleted!
     reports:
       account:
-        created_reports: Reports created by this account
-        moderation:
-          silenced: Silenced
-          suspended: Suspended
-          title: Moderation
-        moderation_notes: Moderation Notes
         note: note
         report: report
-        targeted_reports: Reports made about this account
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
-      assigned: Assigned Moderator
+      assigned: Assigned moderator
       comment:
-        label: Report Comment
         none: None
       created_at: Reported
       delete: Delete
-      history: Moderation History
       id: ID
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
-        create: Add Note
-        create_and_resolve: Resolve with Note
-        create_and_unresolve: Reopen with Note
+        create: Add note
+        create_and_resolve: Resolve with note
+        create_and_unresolve: Reopen with note
         delete: Delete
-        label: Moderator Notes
-        new_label: Add Moderator Note
         placeholder: Describe what actions have been taken, or any other updates to this report…
       nsfw:
         'false': Unhide media attachments
         'true': Hide media attachments
-      reopen: Reopen Report
+      reopen: Reopen report
       report: 'Report #%{id}'
       report_contents: Contents
       reported_account: Reported account
@@ -302,7 +291,6 @@ en:
       resolved_msg: Report successfully resolved!
       silence_account: Silence account
       status: Status
-      statuses: Reported Toots
       suspend_account: Suspend account
       target: Target
       title: Reports
@@ -366,8 +354,8 @@ en:
       back_to_account: Back to account page
       batch:
         delete: Delete
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
+        nsfw_off: Mark as not sensitive
+        nsfw_on: Mark as sensitive
       execute: Execute
       failed_to_execute: Failed to execute
       media:
@@ -797,6 +785,7 @@ en:
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
   themes:
+    contrast: High contrast
     default: Mastodon
   time:
     formats:

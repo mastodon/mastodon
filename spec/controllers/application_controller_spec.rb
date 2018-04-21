@@ -51,7 +51,7 @@ describe ApplicationController, type: :controller do
     routes.draw { get 'success' => 'anonymous#success' }
     allow(Rails.env).to receive(:production?).and_return(false)
     get 'success'
-    expect(response).to have_http_status(:success)
+    expect(response).to have_http_status(200)
   end
 
   it "forces ssl if Rails.env.production? is 'true'" do
@@ -145,13 +145,13 @@ describe ApplicationController, type: :controller do
 
     it 'does nothing if not signed in' do
       get 'success'
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'does nothing if user who signed in is not suspended' do
       sign_in(Fabricate(:user, account: Fabricate(:account, suspended: false)))
       get 'success'
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns http 403 if user who signed in is suspended' do

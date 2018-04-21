@@ -260,16 +260,17 @@ pl:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
     reports:
+      account:
+        note: notatka
+        report: zgłoszenie
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
       comment:
-        label: Komentarz do zgłoszenia
         none: Brak
       created_at: Zgłoszono
       delete: Usuń
-      history: Historia moderacji
       id: ID
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
@@ -278,8 +279,6 @@ pl:
         create_and_resolve: Rozwiąż i pozostaw notatkę
         create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
         delete: Usuń
-        label: Notatki
-        new_label: Dodaj notatkę moderacyjną
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
       nsfw:
         'false': Nie oznaczaj jako NSFW
@@ -293,7 +292,6 @@ pl:
       resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       silence_account: Wycisz konto
       status: Stan
-      statuses: Zgłoszone wpisy
       suspend_account: Zawieś konto
       target: Cel
       title: Zgłoszenia
