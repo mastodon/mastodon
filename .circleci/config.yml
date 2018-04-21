@@ -6,13 +6,10 @@ aliases:
       - image: circleci/ruby:2.5.1-stretch-node
         environment: &ruby_environment
           BUNDLE_APP_CONFIG: ./.bundle/
-          RAILS_ENV: test
-          NODE_ENV: test
           DB_HOST: localhost
           DB_USER: root
-          LOCAL_DOMAIN: cb6e6126.ngrok.io
-          LOCAL_HTTPS: true
-          PARALLEL_TEST_PROCESSORS: 2
+          RAILS_ENV: test
+          PARALLEL_TEST_PROCESSORS: 4
           ALLOW_NOPAM: true
     working_directory: ~/projects/mastodon/
 
