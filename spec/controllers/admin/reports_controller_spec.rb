@@ -18,7 +18,7 @@ describe Admin::ReportsController do
       reports = assigns(:reports).to_a
       expect(reports.size).to eq 1
       expect(reports[0]).to eq specified
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns http success with resolved filter' do
@@ -31,7 +31,7 @@ describe Admin::ReportsController do
       expect(reports.size).to eq 1
       expect(reports[0]).to eq specified
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -42,7 +42,7 @@ describe Admin::ReportsController do
       get :show, params: { id: report }
 
       expect(assigns(:report)).to eq report
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -52,7 +52,7 @@ describe Admin::ReportsController do
         report = Fabricate(:report)
         put :update, params: { id: report, outcome: 'unknown' }
 
-        expect(response).to have_http_status(:missing)
+        expect(response).to have_http_status(404)
       end
     end
 
