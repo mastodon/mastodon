@@ -85,6 +85,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
       quote = (
         <div className='quote-status'>
           <div className='status__info'>
+            <div className='status__avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
             <DisplayName account={quote_status.get('account')} />
           </div>
           <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} />

@@ -187,6 +187,7 @@ export default class Status extends ImmutablePureComponent {
       quote = (
         <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
           <div className='status__info'>
+            <div className='status__avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
             <DisplayName account={quote_status.get('account')} />
           </div>
           <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} />

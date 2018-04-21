@@ -42,6 +42,14 @@
       padding: 5px;
       margin-top: 15px;
       cursor: pointer;
+
+      .status__avatar {
+        height: 18px;
+        width: 18px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+     }
     }
 
     @media screen and (max-width: 740px) {
@@ -77,6 +85,14 @@
         padding: 5px;
         margin-top: 15px;
         cursor: pointer;
+
+        .status__avatar {
+          height: 18px;
+          width: 18px;
+          position: absolute;
+          top: 5px;
+          left: 5px;
+        }
       }
     }
   }
