@@ -178,7 +178,7 @@
     font-size: 14px;
     line-height: 18px;
     padding: 0 15px;
-    color: $darker-text-color;
+    color: $secondary-text-color;
   }
 
   @media screen and (max-width: 480px) {
@@ -256,7 +256,7 @@
   .current {
     background: $simple-background-color;
     border-radius: 100px;
-    color: $lighter-text-color;
+    color: $inverted-text-color;
     cursor: default;
     margin: 0 10px;
   }
@@ -268,7 +268,7 @@
   .older,
   .newer {
     text-transform: uppercase;
-    color: $primary-text-color;
+    color: $secondary-text-color;
   }
 
   .older {
@@ -293,7 +293,7 @@
 
   .disabled {
     cursor: default;
-    color: opacify($lighter-text-color, 0.1);
+    color: lighten($inverted-text-color, 10%);
   }
 
   @media screen and (max-width: 700px) {
@@ -332,7 +332,7 @@
     width: 335px;
     background: $simple-background-color;
     border-radius: 4px;
-    color: $lighter-text-color;
+    color: $inverted-text-color;
     margin: 0 5px 10px;
     position: relative;
 
@@ -344,7 +344,7 @@
       overflow: hidden;
       height: 100px;
       border-radius: 4px 4px 0 0;
-      background-color: opacify($lighter-text-color, 0.04);
+      background-color: lighten($inverted-text-color, 4%);
       background-size: cover;
       background-position: center;
       position: relative;
@@ -422,7 +422,7 @@
     .account__header__content {
       padding: 10px 15px;
       padding-top: 15px;
-      color: transparentize($lighter-text-color, 0.1);
+      color: $lighter-text-color;
       word-wrap: break-word;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -434,7 +434,7 @@
 .nothing-here {
   width: 100%;
   display: block;
-  color: $lighter-text-color;
+  color: $light-text-color;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -493,7 +493,7 @@
 
       span {
         font-size: 14px;
-        color: $inverted-text-color;
+        color: $light-text-color;
       }
     }
 
@@ -508,7 +508,7 @@
 
   .account__header__content {
     font-size: 14px;
-    color: $darker-text-color;
+    color: $inverted-text-color;
   }
 }
 
@@ -586,7 +586,7 @@
     font-weight: 500;
     text-align: center;
     width: 94px;
-    color: opacify($darker-text-color, 0.1);
+    color: $secondary-text-color;
     background: rgba(darken($ui-base-color, 8%), 0.5);
   }
 
