@@ -765,12 +765,16 @@
   }
 
   .display-name__account {
-    color: #606984;
+    color: $ui-base-lighter-color;
   }
 
   .display-name {
     padding-left: 20px;
   }
+}
+
+.muted .quote-status .display-name {
+  color: $ui-base-lighter-color;
 }
 
 .status__prepend-icon-wrapper {
