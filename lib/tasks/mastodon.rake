@@ -107,9 +107,16 @@ namespace :mastodon do
           q.convert :int
         end
 
+        env['REDIS_PASSWORD'] = prompt.ask('Redis password:') do |q|
+          q.required false
+          a.default nil
+          q.modify :strip
+        end
+
         redis_options = {
           host: env['REDIS_HOST'],
           port: env['REDIS_PORT'],
+          password: env['REDIS_PASSWORD'],
           driver: :hiredis,
         }
 
