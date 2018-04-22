@@ -202,7 +202,7 @@ const dataURLtoBlob = dataURL => {
 };
 
 const resizeImage = (inputFile, callback) => {
-  if (inputFile.type.match(/image.*/)) {
+  if (inputFile.type.match(/image.*/) && inputFile.type !== 'image/gif') {
     const reader = new FileReader();
 
     reader.onload = e => {
