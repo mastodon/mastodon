@@ -77,7 +77,7 @@ RSpec.describe StreamEntriesController, type: :controller do
     it 'returns http success with Atom' do
       status = Fabricate(:status)
       get :show, params: { account_username: status.account.username, id: status.stream_entry.id }, format: 'atom'
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 

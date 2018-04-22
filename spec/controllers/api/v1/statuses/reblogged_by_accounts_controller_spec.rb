@@ -21,7 +21,7 @@ RSpec.describe Api::V1::Statuses::RebloggedByAccountsController, type: :controll
 
       it 'returns http success' do
         get :index, params: { status_id: status.id, limit: 1 }
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
         expect(response.headers['Link'].links.size).to eq(2)
       end
     end
@@ -42,7 +42,7 @@ RSpec.describe Api::V1::Statuses::RebloggedByAccountsController, type: :controll
 
         it 'returns http unautharized' do
           get :index, params: { status_id: status.id }
-          expect(response).to have_http_status(:missing)
+          expect(response).to have_http_status(404)
         end
       end
     end
@@ -57,7 +57,7 @@ RSpec.describe Api::V1::Statuses::RebloggedByAccountsController, type: :controll
 
         it 'returns http success' do
           get :index, params: { status_id: status.id }
-          expect(response).to have_http_status(:success)
+          expect(response).to have_http_status(200)
         end
       end
     end

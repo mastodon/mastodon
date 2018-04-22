@@ -236,7 +236,7 @@ code {
     }
 
     &:required:valid {
-      border-bottom-color: lighten($error-red, 12%);
+      border-bottom-color: $valid-value-color;
     }
 
     &:active,
@@ -254,7 +254,7 @@ code {
     input[type=text],
     input[type=email],
     input[type=password] {
-      border-bottom-color: lighten($error-red, 12%);
+      border-bottom-color: $valid-value-color;
     }
 
     .error {
@@ -344,7 +344,7 @@ code {
       padding: 7px 4px;
       padding-bottom: 9px;
       font-size: 16px;
-      color: $darker-text-color;
+      color: $dark-text-color;
       font-family: inherit;
       pointer-events: none;
       cursor: default;
@@ -434,7 +434,7 @@ code {
   }
 
   strong {
-    color: $primary-text-color;
+    color: $secondary-text-color;
     font-weight: 500;
 
     @each $lang in $cjk-langs {
@@ -471,7 +471,7 @@ code {
 
 .qr-alternative {
   margin-bottom: 20px;
-  color: $darker-text-color;
+  color: $secondary-text-color;
   flex: 150px;
 
   samp {

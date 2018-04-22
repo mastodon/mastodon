@@ -90,7 +90,7 @@
     padding-left: 25px;
 
     h2 {
-      color: $primary-text-color;
+      color: $secondary-text-color;
       font-size: 24px;
       line-height: 28px;
       font-weight: 400;
@@ -98,7 +98,7 @@
     }
 
     h3 {
-      color: $primary-text-color;
+      color: $secondary-text-color;
       font-size: 20px;
       line-height: 28px;
       font-weight: 400;
@@ -109,7 +109,7 @@
       text-transform: uppercase;
       font-size: 13px;
       font-weight: 500;
-      color: $primary-text-color;
+      color: $darker-text-color;
       padding-bottom: 8px;
       margin-bottom: 8px;
       border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -117,7 +117,7 @@
 
     h6 {
       font-size: 16px;
-      color: $primary-text-color;
+      color: $secondary-text-color;
       line-height: 28px;
       font-weight: 400;
     }
@@ -125,7 +125,7 @@
     & > p {
       font-size: 14px;
       line-height: 18px;
-      color: $darker-text-color;
+      color: $secondary-text-color;
       margin-bottom: 20px;
 
       strong {
@@ -292,7 +292,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
-    color: $primary-text-color;
+    color: $secondary-text-color;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -420,7 +420,7 @@
   }
 
   &__timestamp {
-    color: $darker-text-color;
+    color: $dark-text-color;
   }
 
   &__extras {
@@ -437,7 +437,7 @@
   &__icon {
     font-size: 28px;
     margin-right: 10px;
-    color: $darker-text-color;
+    color: $dark-text-color;
   }
 
   &__icon__overlay {
@@ -464,7 +464,7 @@
   a,
   .username,
   .target {
-    color: $primary-text-color;
+    color: $secondary-text-color;
     text-decoration: none;
     font-weight: 500;
   }
@@ -474,7 +474,7 @@
   }
 
   .diff-neutral {
-    color: $darker-text-color;
+    color: $secondary-text-color;
   }
 
   .diff-new {
@@ -487,7 +487,7 @@ a.name-tag,
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
 
   .avatar {
     display: block;
@@ -535,7 +535,7 @@ a.name-tag,
     font-weight: 500;
 
     a {
-      color: $ui-primary-color;
+      color: $darker-text-color;
     }
   }
 
@@ -545,6 +545,6 @@ a.name-tag,
   }
 
   time {
-    color: $darker-text-color;
+    color: $dark-text-color;
   }
 }
