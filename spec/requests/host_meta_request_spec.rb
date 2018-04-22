@@ -5,7 +5,7 @@ describe "The host_meta route" do
     it "returns an xml response" do
       get host_meta_url
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(response.content_type).to eq "application/xrd+xml"
     end
   end

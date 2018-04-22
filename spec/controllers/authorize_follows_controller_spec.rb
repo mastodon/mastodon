@@ -47,7 +47,7 @@ describe AuthorizeFollowsController do
 
         get :show, params: { acct: 'http://example.com' }
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
         expect(assigns(:account)).to eq account
       end
 
@@ -59,7 +59,7 @@ describe AuthorizeFollowsController do
 
         get :show, params: { acct: 'acct:found@hostname' }
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
         expect(assigns(:account)).to eq account
       end
     end

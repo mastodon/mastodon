@@ -17,7 +17,7 @@ describe Api::V1::Lists::AccountsController do
     it 'returns http success' do
       get :show, params: { list_id: list.id }
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -30,7 +30,7 @@ describe Api::V1::Lists::AccountsController do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'adds account to the list' do
@@ -44,7 +44,7 @@ describe Api::V1::Lists::AccountsController do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'removes account from the list' do

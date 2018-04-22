@@ -1,8 +1,9 @@
 - content_for :header_tags do
-  %link{ href: asset_pack_path('features/getting_started.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-  %link{ href: asset_pack_path('features/compose.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-  %link{ href: asset_pack_path('features/home_timeline.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
-  %link{ href: asset_pack_path('features/notifications.js'), crossorigin: 'anonymous', rel: 'preload', as: 'script' }/
+  = preload_link_tag asset_pack_path('features/getting_started.js'), crossorigin: 'anonymous'
+  = preload_link_tag asset_pack_path('features/compose.js'), crossorigin: 'anonymous'
+  = preload_link_tag asset_pack_path('features/home_timeline.js'), crossorigin: 'anonymous'
+  = preload_link_tag asset_pack_path('features/notifications.js'), crossorigin: 'anonymous'
+
   %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
 

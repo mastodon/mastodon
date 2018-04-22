@@ -153,7 +153,9 @@ export default class StatusActionBar extends ImmutablePureComponent {
       if (publicStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
       } else {
-        menu.push({ text: intl.formatMessage(status.get('reblog') ? messages.reblog_private : messages.cancel_reblog_private), action: this.handleReblogClick });
+        if (status.get('visibility') === 'private') {
+          menu.push({ text: intl.formatMessage(status.get('reblogged') ? messages.cancel_reblog_private : messages.reblog_private), action: this.handleReblogClick });
+        }
       }
 
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });

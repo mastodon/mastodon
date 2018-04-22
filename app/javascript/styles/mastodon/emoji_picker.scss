@@ -50,7 +50,7 @@
   cursor: pointer;
 
   &:hover {
-    color: opacify($lighter-text-color, 0.04);
+    color: darken($lighter-text-color, 4%);
   }
 }
 
@@ -184,7 +184,7 @@
   font-size: 14px;
   text-align: center;
   padding-top: 70px;
-  color: $lighter-text-color;
+  color: $light-text-color;
 
   .emoji-mart-category-label {
     display: none;

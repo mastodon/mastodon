@@ -17,7 +17,7 @@ describe Settings::ExportsController do
         export = assigns(:export)
         expect(export).to be_instance_of Export
         expect(export.account).to eq user.account
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 

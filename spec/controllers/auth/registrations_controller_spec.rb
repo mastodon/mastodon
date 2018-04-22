@@ -35,7 +35,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in(Fabricate(:user))
       get :edit
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in(Fabricate(:user), scope: :user)
       post :update
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       it 'returns http success' do
         Setting.open_registrations = true
         get :new
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -72,6 +72,12 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
 
   describe 'POST #create' do
     let(:accept_language) { Rails.application.config.i18n.available_locales.sample.to_s }
+
+    around do |example|
+      current_locale = I18n.locale
+      example.run
+      I18n.locale = current_locale
+    end
 
     before { request.env["devise.mapping"] = Devise.mappings[:user] }
 

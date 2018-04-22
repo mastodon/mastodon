@@ -225,7 +225,7 @@ $small-breakpoint: 960px;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    color: transparentize($darker-text-color, 0.1);
+    color: lighten($darker-text-color, 10%);
   }
 
   h1 {
@@ -234,14 +234,14 @@ $small-breakpoint: 960px;
     line-height: 30px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $primary-text-color;
+    color: $secondary-text-color;
 
     small {
       font-family: 'mastodon-font-sans-serif', sans-serif;
       display: block;
       font-size: 18px;
       font-weight: 400;
-      color: opacify($darker-text-color, 0.1);
+      color: lighten($darker-text-color, 10%);
     }
   }
 
@@ -251,7 +251,7 @@ $small-breakpoint: 960px;
     line-height: 26px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $primary-text-color;
+    color: $secondary-text-color;
   }
 
   h3 {
@@ -260,7 +260,7 @@ $small-breakpoint: 960px;
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $primary-text-color;
+    color: $secondary-text-color;
   }
 
   h4 {
@@ -269,7 +269,7 @@ $small-breakpoint: 960px;
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $primary-text-color;
+    color: $secondary-text-color;
   }
 
   h5 {
@@ -278,7 +278,7 @@ $small-breakpoint: 960px;
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $primary-text-color;
+    color: $secondary-text-color;
   }
 
   h6 {
@@ -287,7 +287,7 @@ $small-breakpoint: 960px;
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $primary-text-color;
+    color: $secondary-text-color;
   }
 
   ul,
@@ -405,7 +405,7 @@ $small-breakpoint: 960px;
         font-size: 14px;
 
         &:hover {
-          color: $darker-text-color;
+          color: $secondary-text-color;
         }
       }
 
@@ -517,7 +517,7 @@ $small-breakpoint: 960px;
 
       span {
         &:last-child {
-          color: $darker-text-color;
+          color: $secondary-text-color;
         }
       }
 
@@ -559,7 +559,7 @@ $small-breakpoint: 960px;
         a,
         span {
           font-weight: 400;
-          color: opacify($darker-text-color, 0.1);
+          color: darken($darker-text-color, 10%);
         }
 
         a {
@@ -775,7 +775,7 @@ $small-breakpoint: 960px;
     }
 
     p a {
-      color: $darker-text-color;
+      color: $secondary-text-color;
     }
 
     h1 {
@@ -787,7 +787,7 @@ $small-breakpoint: 960px;
         color: $darker-text-color;
 
         span {
-          color: $darker-text-color;
+          color: $secondary-text-color;
         }
       }
     }
@@ -896,7 +896,7 @@ $small-breakpoint: 960px;
       }
 
       a {
-        color: $darker-text-color;
+        color: $secondary-text-color;
         text-decoration: none;
       }
     }
@@ -980,7 +980,7 @@ $small-breakpoint: 960px;
   .footer-links {
     padding-bottom: 50px;
     text-align: right;
-    color: $darker-text-color;
+    color: $dark-text-color;
 
     p {
       font-size: 14px;
@@ -995,7 +995,7 @@ $small-breakpoint: 960px;
   &__footer {
     margin-top: 10px;
     text-align: center;
-    color: $darker-text-color;
+    color: $dark-text-color;
 
     p {
       font-size: 14px;
