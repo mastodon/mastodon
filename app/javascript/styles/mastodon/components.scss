@@ -701,7 +701,7 @@
   border-radius: 2px;
   background: transparent;
   border: 0;
-  color: $lighter-text-color;
+  color: $inverted-text-color;
   font-weight: 700;
   font-size: 11px;
   padding: 0 6px;
@@ -4036,6 +4036,10 @@ a.status-card {
   max-height: 40vh;
   overflow-y: auto;
   overflow-x: hidden;
+
+  .status__content a {
+    color: $highlight-text-color;
+  }
 
   @media screen and (max-width: 480px) {
     max-height: 10vh;
