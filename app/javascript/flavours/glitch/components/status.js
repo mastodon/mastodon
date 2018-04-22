@@ -253,12 +253,12 @@ export default class Status extends ImmutablePureComponent {
     this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
   }
 
-  handleHotkeyMoveUp = () => {
-    this.props.onMoveUp(this.props.containerId || this.props.id);
+  handleHotkeyMoveUp = e => {
+    this.props.onMoveUp(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
   }
 
-  handleHotkeyMoveDown = () => {
-    this.props.onMoveDown(this.props.containerId || this.props.id);
+  handleHotkeyMoveDown = e => {
+    this.props.onMoveDown(this.props.containerId || this.props.id, e.target.getAttribute('data-featured'));
   }
 
   handleRef = c => {
@@ -292,6 +292,7 @@ export default class Status extends ImmutablePureComponent {
       onOpenMedia,
       notification,
       hidden,
+      featured,
       ...other
     } = this.props;
     const { isExpanded } = this.state;
@@ -426,6 +427,7 @@ export default class Status extends ImmutablePureComponent {
           {...selectorAttribs}
           ref={handleRef}
           tabIndex='0'
+          data-featured={featured ? 'true' : null}
         >
           <header className='status__info'>
             <span>
