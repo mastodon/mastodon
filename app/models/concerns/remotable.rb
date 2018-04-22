@@ -38,7 +38,7 @@ module Remotable
 
             self[attribute_name] = url if has_attribute?(attribute_name)
           end
-        rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError => e
+        rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
           nil
         end
