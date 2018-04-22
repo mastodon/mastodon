@@ -50,8 +50,13 @@ it:
   application_mailer:
     settings: 'Cambia le impostazioni per le e-mail: %{link}'
     view: 'Guarda:'
+    notification_preferences: Cambia preferenze email
+    view_profile: Mostra profilo
+    view_status: Mostra stati
   applications:
     invalid_url: L'URL fornito non è valido
+    created: Applicazione creata con successo
+    destroyed: Applicazione eliminata con successo
   auth:
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
@@ -62,10 +67,17 @@ it:
     reset_password: Resetta la password
     security: Credenziali
     set_new_password: Imposta una nuova password
+    change_password: Password
+    confirm_email: Conferma email
+    delete_account: Elimina account
+    migrate_account: Sposta ad un account differente
+    or: o
+    register_elsewhere: Iscriviti su un altro server
   authorize_follow:
     error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
     follow: Segui
     title: Segui %{acct}
+    already_following: Stai già seguendo questo account
   datetime:
     distance_in_words:
       about_x_hours: '%{count} ore'
@@ -247,6 +259,7 @@ it:
         silenced: Silenziati
         suspended: Sospesi
         title: Moderazione
+        all: Tutto
       moderation_notes: Note di moderazione
       most_recent_activity: Attività più recenti
       most_recent_ip: IP più recenti
@@ -278,6 +291,143 @@ it:
       unconfirmed_email: Email non confermata
       username: Nome utente
       web: Web
+      perform_full_suspension: Esegui sospensione completa
+      undo_silenced: Rimuovi silenzia
+      undo_suspension: Rimuovi sospensione
+    action_logs:
+      actions:
+        confirm_user: '%{name} ha confermato l''indirizzo email per l''utente %{target}'
+        create_custom_emoji: '%{name} ha caricato un nuovo emoji %{target}'
+        create_domain_block: '%{name} ha bloccato il dominio %{target}'
+    custom_emojis:
+      by_domain: Dominio
+      copied_msg: Creata con successo una copia locale dell'emoji
+      copy: Copia
+      copy_failed_msg: Impossibile creare una copia locale di questo emoji
+      created_msg: Emoji creato con successo!
+      delete: Elimina
+      destroyed_msg: Emoji distrutto con successo!
+      disable: Disabilita
+      disabled_msg: Questa emoji è stata disabilitata con successo
+      emoji: Emoji
+      enable: Abilita
+      enabled_msg: Questa emoji è stata abilitata con successo
+      image_hint: PNG fino a 50KB
+      listed: Elencato
+      new:
+        title: Aggiungi nuovo emoji personalizzato
+      overwrite: Sovrascrivi
+      shortcode: Shortcode
+      title: Emoji personalizzate
+      unlisted: Non elencato
+      update_failed_msg: Impossibile aggiornare questa emojii
+      updated_msg: Emoji aggiornata con successo!
+      upload: Carica
+    domain_blocks:
+      add_new: Aggiungi nuovo
+      created_msg: Il blocco del dominio sta venendo processato
+      destroyed_msg: Il blocco del dominio è stato rimosso
+      domain: Dominio
+      new:
+        create: Crea blocco
+        severity:
+          noop: Nessuno
+          silence: Silenzia
+          suspend: Sospendi
+        title: Nuovo blocco dominio
+      severities:
+        noop: Nessuno
+        silence: Silenzia
+        suspend: Sospendi
+      severity: Severità
+      title: Blocchi dominio
+    email_domain_blocks:
+      add_new: Aggiungi nuovo
+      delete: Elimina
+      domain: Dominio
+      new:
+        create: Aggiungi dominio
+    instances:
+      domain_name: Dominio
+      reset: Reimposta
+      search: Cerca
+      title: Istanze conosciute
+    invites:
+      filter:
+        all: Tutto
+        available: Disponibile
+        expired: Scaduto
+        title: Filtro
+      title: Inviti
+    reports:
+      account:
+        moderation:
+          silenced: Silenziati
+          suspended: Sospesi
+          title: Moderazione
+        moderation_notes: Note moderazione
+        note: note
+      are_you_sure: Sei sicuro?
+      assign_to_self: Assegna a me
+      comment:
+        none: Nessuno
+      delete: Elimina
+      history: Storico moderazione
+      id: ID
+      mark_as_resolved: Segna come risolto
+      mark_as_unresolved: Segna come non risolto
+      notes:
+        create: Aggiungi nota
+        create_and_resolve: Risolvi con nota
+        create_and_unresolve: Riapri con nota
+        delete: Elimina
+        label: Note moderatore
+        new_label: Aggiungi nota moderatore
+      report_contents: Contenuti
+      resolved: Risolto
+      status: Stati
+      target: Obbiettivo
+      unassign: Non assegnare
+      unresolved: Non risolto
+      updated_at: Aggiornato
+      view: Mostra
+    settings:
+      activity_api_enabled:
+        title: Pubblica statistiche aggregate circa l'attività dell'utente
+      peers_api_enabled:
+        title: Pubblica elenco di istanze scoperte
+      registrations:
+        min_invite_role:
+          disabled: Nessuno
+      show_staff_badge:
+        title: Mostra badge staff
+      site_description:
+        title: Descrizione istanza
+      site_terms:
+        title: Termini di servizio personalizzati
+      site_title: Nome istanza
+      timeline_preview:
+        title: Anteprima timeline
+      title: Impostazioni sito
+    statuses:
+      batch:
+        delete: Elimina
+        nsfw_off: NSFW OFF
+        nsfw_on: NSFW ON
+      execute: Esegui
+      failed_to_execute: Impossibile eseguire
+      media:
+        hide: Nascondi media
+        show: Mostra media
+        title: Media
+      no_media: Nessun media
+      with_media: con media
+    subscriptions:
+      callback_url: URL Callback
+      confirmed: Confermato
+      expires_in: Scade in
+      topic: Argomento
+    title: Amministrazione
   user_mailer:
     welcome:
       title: Benvenuto a bordo, %{name}!
