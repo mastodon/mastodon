@@ -4,7 +4,7 @@ it:
       doorkeeper/application:
         name: Nome applicazione
         redirect_uri: URI di reindirizzamento
-        scopes: Scop
+        scopes: Scopi
         website: Sito web applicazione
     errors:
       models:
@@ -49,7 +49,7 @@ it:
         actions: Azioni
         application_id: Id applicazione
         callback_urls: Callback urls
-        scopes: Scopes
+        scopes: Scopi
         secret: Secret
         title: 'Applicazione: %{name}'
     authorizations:
@@ -63,7 +63,7 @@ it:
         prompt: L'applicazione %{client_name} richiede l'accesso al tuo account
         title: Autorizzazione richiesta
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Copia questo codice di autorizzazione e incollalo nell'applicazione.
     authorized_applications:
       buttons:
         revoke: Disabilita
@@ -73,7 +73,7 @@ it:
         application: Applicazione
         created_at: Autorizzato
         date_format: '%d-%m-%Y %H:%M:%S'
-        scopes: Scopes
+        scopes: Scopi
         title: Applicazioni autorizzate
     errors:
       messages:
@@ -127,7 +127,7 @@ it:
       admin:
         nav:
           applications: Applicazioni
-          oauth2_provider: OAuth2 Provider
+          oauth2_provider: Provider OAuth2
       application:
         title: Autorizzazione OAuth richiesta
     scopes:
