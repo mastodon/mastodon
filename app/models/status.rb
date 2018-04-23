@@ -3,13 +3,13 @@
 #
 # Table name: statuses
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint(8)        not null, primary key
 #  uri                    :string
 #  text                   :text             default(""), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  in_reply_to_id         :integer
-#  reblog_of_id           :integer
+#  in_reply_to_id         :bigint(8)
+#  reblog_of_id           :bigint(8)
 #  url                    :string
 #  sensitive              :boolean          default(FALSE), not null
 #  visibility             :integer          default("public"), not null
@@ -18,11 +18,11 @@
 #  favourites_count       :integer          default(0), not null
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
-#  conversation_id        :integer
+#  conversation_id        :bigint(8)
 #  local                  :boolean
-#  account_id             :integer          not null
-#  application_id         :integer
-#  in_reply_to_account_id :integer
+#  account_id             :bigint(8)        not null
+#  application_id         :bigint(8)
+#  in_reply_to_account_id :bigint(8)
 #
 
 class Status < ApplicationRecord
