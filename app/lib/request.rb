@@ -11,10 +11,10 @@ class Request
   def initialize(verb, url, **options)
     @verb    = verb
     @url     = Addressable::URI.parse(url).normalize
-    @options = options.merge(socket_class: Socket).merge(Rails.configuration.x.http_client_proxy)
+    @options = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
     @headers = {}
 
-    raise Mastodon::HostValidationError, 'blocked access to darknet' if !Rails.configuration.x.access_to_darknet && /\.(onion|i2p)$/.match(@url.host)
+    raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
     set_common_headers!
     set_digest! if options.key?(:body)
   end
@@ -100,6 +100,14 @@ class Request
     @http_client ||= HTTP.timeout(:per_operation, timeout).follow(max_hops: 2)
   end
 
+  def use_proxy?
+    Rails.configuration.x.http_client_proxy.present?
+  end
+
+  def block_hidden_service?
+    !Rails.configuration.x.access_to_darknet && ['onion', 'i2p'].any?(@url.tld)
+  end
+
   module ClientLimit
     def body_with_limit(limit = 1.megabyte)
       raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
@@ -128,23 +136,25 @@ class Request
   end
 
   class Socket < TCPSocket
-    if Rails.configuration.x.http_client_proxy.empty?
-      class << self
-        def open(host, *args)
-          return super host, *args if Rails.configuration.x.darknet_via_transparent_proxy && /\.(onion|i2p)$/.match(host)
-          outer_e = nil
-          Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
-            begin
-              raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
-              return super address.ip_address, *args
-            rescue => e
-              outer_e = e
-            end
+    class << self
+      def open(host, *args)
+        return super host, *args if thru_hidden_service? host
+        outer_e = nil
+        Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
+          begin
+            raise Mastodon::HostValidationError if PrivateAddressCheck.private_address? IPAddr.new(address.ip_address)
+            return super address.ip_address, *args
+          rescue => e
+            outer_e = e
           end
-          raise outer_e if outer_e
         end
+        raise outer_e if outer_e
+      end
 
-        alias new open
+      alias new open
+
+      def thru_hidden_service?(host)
+        Rails.configuration.x.hidden_service_via_transparent_proxy && /\.(onion|i2p)$/.match(host)
       end
     end
   end
