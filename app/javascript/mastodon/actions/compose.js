@@ -174,6 +174,79 @@ export function submitComposeFail(error) {
   };
 };
 
+const MAX_IMAGE_DIMENSION = 1280;
+
+const dataURLtoBlob = dataURL => {
+  const BASE64_MARKER = ';base64,';
+
+  if (dataURL.indexOf(BASE64_MARKER) === -1) {
+    const parts       = dataURL.split(',');
+    const contentType = parts[0].split(':')[1];
+    const raw         = parts[1];
+
+    return new Blob([raw], { type: contentType });
+  }
+
+  const parts       = dataURL.split(BASE64_MARKER);
+  const contentType = parts[0].split(':')[1];
+  const raw         = window.atob(parts[1]);
+  const rawLength   = raw.length;
+
+  const uInt8Array = new Uint8Array(rawLength);
+
+  for (let i = 0; i < rawLength; ++i) {
+    uInt8Array[i] = raw.charCodeAt(i);
+  }
+
+  return new Blob([uInt8Array], { type: contentType });
+};
+
+const resizeImage = (inputFile, callback) => {
+  if (inputFile.type.match(/image.*/) && inputFile.type !== 'image/gif') {
+    const reader = new FileReader();
+
+    reader.onload = e => {
+      const img = new Image();
+
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const { width, height } = img;
+
+        let newWidth, newHeight;
+
+        if (width < MAX_IMAGE_DIMENSION && height < MAX_IMAGE_DIMENSION) {
+          callback(inputFile);
+          return;
+        }
+
+        if (width > height) {
+          newHeight = height * MAX_IMAGE_DIMENSION / width;
+          newWidth  = MAX_IMAGE_DIMENSION;
+        } else if (height > width) {
+          newWidth  = width * MAX_IMAGE_DIMENSION / height;
+          newHeight = MAX_IMAGE_DIMENSION;
+        } else {
+          newWidth  = MAX_IMAGE_DIMENSION;
+          newHeight = MAX_IMAGE_DIMENSION;
+        }
+
+        canvas.width  = newWidth;
+        canvas.height = newHeight;
+
+        canvas.getContext('2d').drawImage(img, 0, 0, newWidth, newHeight);
+
+        callback(dataURLtoBlob(canvas.toDataURL(inputFile.type)));
+      };
+
+      img.src = e.target.result;
+    };
+
+    reader.readAsDataURL(inputFile);
+  } else {
+    callback(inputFile);
+  }
+};
+
 export function uploadCompose(files) {
   return function (dispatch, getState) {
     if (getState().getIn(['compose', 'media_attachments']).size > 3) {
@@ -182,17 +255,19 @@ export function uploadCompose(files) {
 
     dispatch(uploadComposeRequest());
 
-    let data = new FormData();
-    data.append('file', files[0]);
+    resizeImage(files[0], file => {
+      let data = new FormData();
+      data.append('file', file);
 
-    api(getState).post('/api/v1/media', data, {
-      onUploadProgress: function (e) {
-        dispatch(uploadComposeProgress(e.loaded, e.total));
-      },
-    }).then(function (response) {
-      dispatch(uploadComposeSuccess(response.data));
-    }).catch(function (error) {
-      dispatch(uploadComposeFail(error));
+      api(getState).post('/api/v1/media', data, {
+        onUploadProgress: function (e) {
+          dispatch(uploadComposeProgress(e.loaded, e.total));
+        },
+      }).then(function (response) {
+        dispatch(uploadComposeSuccess(response.data));
+      }).catch(function (error) {
+        dispatch(uploadComposeFail(error));
+      });
     });
   };
 };
