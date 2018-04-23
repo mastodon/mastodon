@@ -6,12 +6,19 @@ const { sync } = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const extname = require('path-complete-extname');
+const threadLoader = require('thread-loader');
 const { env, settings, themes, output, loadersDir } = require('./configuration.js');
 const localePackPaths = require('./generateLocalePacks');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
 const entryPath = join(settings.source_path, settings.source_entry_path);
 const packPaths = sync(join(entryPath, extensionGlob));
+
+threadLoader.warmup({}, [
+  'babel-loader',
+  'babel-preset-env',
+  'babel-preset-react',
+]);
 
 module.exports = {
   entry: Object.assign(

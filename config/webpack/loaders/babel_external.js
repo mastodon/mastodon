@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 
 const env = process.env.NODE_ENV || 'development';
+const cacheDirectory = env === 'development' ? false : resolve(__dirname, '..', '..', '..', 'tmp', 'cache', 'babel-loader-external');
 
 if (env === 'development') {
   module.exports = {};
@@ -9,13 +10,17 @@ if (env === 'development') {
   module.exports = {
     test: /\.js$/,
     include: /node_modules/,
-    loader: 'babel-loader',
-    options: {
-      babelrc: false,
-      plugins: [
-        'transform-react-remove-prop-types',
-      ],
-      cacheDirectory: env === 'development' ? false : resolve(__dirname, '..', '..', '..', 'tmp', 'cache', 'babel-loader-external'),
-    },
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          babelrc: false,
+          plugins: [
+            'transform-react-remove-prop-types',
+          ],
+          cacheDirectory,
+        },
+      },
+    ],
   };
 }
