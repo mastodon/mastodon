@@ -1,15 +1,3 @@
-GIT
-  remote: https://github.com/ykzts/devise-two-factor.git
-  revision: f60492b29c174d4c959ac02406392f8eb9c4d374
-  branch: rails-5.2
-  specs:
-    devise-two-factor (3.0.2)
-      activesupport (< 5.3)
-      attr_encrypted (>= 1.3, < 4, != 2)
-      devise (~> 4.0)
-      railties (< 5.3)
-      rotp (~> 2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -156,6 +144,12 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-two-factor (3.0.3)
+      activesupport (< 5.3)
+      attr_encrypted (>= 1.3, < 4, != 2)
+      devise (~> 4.0)
+      railties (< 5.3)
+      rotp (~> 2.0)
     devise_pam_authenticatable2 (9.1.0)
       devise (>= 4.0.0)
       rpam2 (~> 4.0)
@@ -652,7 +646,7 @@ DEPENDENCIES
   cld3 (~> 3.2.0)
   climate_control (~> 0.2)
   devise (~> 4.4)
-  devise-two-factor (~> 3.0)!
+  devise-two-factor (~> 3.0)
   devise_pam_authenticatable2 (~> 9.1)
   doorkeeper (~> 4.3)
   dotenv-rails (~> 2.2)
