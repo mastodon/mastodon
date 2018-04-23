@@ -8,6 +8,7 @@ class SuspendAccountService < BaseService
     purge_user!
     purge_profile!
     purge_content!
+    resolve_reports!
     unsubscribe_push_subscribers!
   end
 
@@ -47,6 +48,10 @@ class SuspendAccountService < BaseService
     @account.avatar.destroy
     @account.header.destroy
     @account.save!
+  end
+
+  def resolve_reports!
+    @account.targeted_reports.in_batches.update_all(action_taken: true)
   end
 
   def unsubscribe_push_subscribers!

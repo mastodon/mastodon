@@ -14,6 +14,7 @@ RSpec.describe SuspendAccountService do
     let!(:active_relationship) { Fabricate(:follow, account: account) }
     let!(:passive_relationship) { Fabricate(:follow, target_account: account) }
     let!(:subscription) { Fabricate(:subscription, account: account) }
+    let!(:report) { Fabricate(:report, target_account: account, action_taken: false) }
 
     it 'deletes associated records' do
       is_expected.to change {
@@ -28,6 +29,11 @@ RSpec.describe SuspendAccountService do
           account.subscriptions
         ].map(&:count)
       }.from([1, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
+    end
+
+    pending 'marks associated reports as resolved' do
+      expect(account.targeted_reports.first.action_taken).to eq true
+      expect(account.targeted_reports.unresolved.size).to eq 0
     end
   end
 end
