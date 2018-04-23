@@ -3,16 +3,16 @@
 #
 # Table name: reports
 #
-#  id                         :integer          not null, primary key
-#  status_ids                 :integer          default([]), not null, is an Array
+#  id                         :bigint(8)        not null, primary key
+#  status_ids                 :bigint(8)        default([]), not null, is an Array
 #  comment                    :text             default(""), not null
 #  action_taken               :boolean          default(FALSE), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  account_id                 :integer          not null
-#  action_taken_by_account_id :integer
-#  target_account_id          :integer          not null
-#  assigned_account_id        :integer
+#  account_id                 :bigint(8)        not null
+#  action_taken_by_account_id :bigint(8)
+#  target_account_id          :bigint(8)        not null
+#  assigned_account_id        :bigint(8)
 #
 
 class Report < ApplicationRecord

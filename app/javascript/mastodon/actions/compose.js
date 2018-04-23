@@ -4,6 +4,7 @@ import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
 import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
+import resizeImage from '../utils/resize_image';
 import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
 import { showAlertForError } from './alerts';
@@ -182,18 +183,14 @@ export function uploadCompose(files) {
 
     dispatch(uploadComposeRequest());
 
-    let data = new FormData();
-    data.append('file', files[0]);
+    resizeImage(files[0]).then(file => {
+      const data = new FormData();
+      data.append('file', file);
 
-    api(getState).post('/api/v1/media', data, {
-      onUploadProgress: function (e) {
-        dispatch(uploadComposeProgress(e.loaded, e.total));
-      },
-    }).then(function (response) {
-      dispatch(uploadComposeSuccess(response.data));
-    }).catch(function (error) {
-      dispatch(uploadComposeFail(error));
-    });
+      return api(getState).post('/api/v1/media', data, {
+        onUploadProgress: ({ loaded, total }) => dispatch(uploadComposeProgress(loaded, total)),
+      }).then(({ data }) => dispatch(uploadComposeSuccess(data)));
+    }).catch(error => dispatch(uploadComposeFail(error)));
   };
 };
 

@@ -1,4 +1,5 @@
 import api from '../../api';
+import { decode as decodeBase64 } from '../../utils/base64';
 import { pushNotificationsSetting } from '../../settings';
 import { setBrowserSupport, setSubscription, clearSubscription } from './setter';
 import { me } from '../../initial_state';
@@ -10,13 +11,7 @@ const urlBase64ToUint8Array = (base64String) => {
     .replace(/\-/g, '+')
     .replace(/_/g, '/');
 
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
+  return decodeBase64(base64);
 };
 
 const getApplicationServerKey = () => document.querySelector('[name="applicationServerKey"]').getAttribute('content');
