@@ -175,13 +175,14 @@ sk:
           spomínať"'
         promote_user: '%{name} povýšil/a používateľa %{target}'
         reset_password_user: '%{name} resetoval/a heslo pre používateľa %{target}'
-        resolve_report: '%{name} zamietli nahlásenie %{target}'
+        resolve_report: '%{name} vyriešili nahlásenie užívateľa %{target}'
         silence_account: '%{name} utíšil/a účet %{target}'
         suspend_account: '%{name} zablokoval/a účet používateľa %{target}'
         unsilence_account: '%{name} zrušil/a utíšenie účtu používateľa %{target}'
         unsuspend_account: '%{name} zrušil/a blokovanie účtu používateľa %{target}'
         update_custom_emoji: '%{name} aktualizoval/a emoji %{target}'
         update_status: '%{name} aktualizoval/a status pre %{target}'
+        remove_avatar_user: '%{name} odstránil/a %{target}ov avatár'
       title: Kontrólny záznam
     custom_emojis:
       by_domain: Doména
@@ -269,10 +270,10 @@ sk:
         title: Filtrovať
       title: Pozvánky
     reports:
-      action_taken_by: Zákrok vykonal
+      action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
       comment:
-        label: Vyjadriť sa
+        label: Komentár k nahláseniu
         none: Žiadne
       delete: Vymazať
       id: Identifikácia
@@ -296,6 +297,11 @@ sk:
         created_reports: Nahlásenia vytvorené týmto účtom
         moderation:
           silenced: Utíšené
+          suspended: Zavrhnutý/á
+          title: Spravovanie
+        note: poznámka
+        report: nahlás
+        targeted_reports: Hlásenia urobené o tomto účte
     settings:
       activity_api_enabled:
         desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov,
