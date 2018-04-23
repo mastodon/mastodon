@@ -22,7 +22,6 @@ export default class ActionsModal extends ImmutablePureComponent {
       meta: PropTypes.node,
       name: PropTypes.string,
       on: PropTypes.bool,
-      onClick: PropTypes.func,
       onPassiveClick: PropTypes.func,
       text: PropTypes.node,
     })),

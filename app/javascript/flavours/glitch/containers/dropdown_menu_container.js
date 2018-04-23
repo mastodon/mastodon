@@ -14,8 +14,13 @@ const mapDispatchToProps = (dispatch, { status, items }) => ({
   onOpen(id, onItemClick, dropdownPlacement) {
     dispatch(isUserTouching() ? openModal('ACTIONS', {
       status,
-      actions: items,
-      onClick: onItemClick,
+      actions: items.map(
+        (item, i) => item ? {
+          ...item,
+          name: `${item.text}-${i}`,
+          onClick: (e) => { return onItemClick(i, e) },
+        } : null
+      ),
     }) : openDropdownMenu(id, dropdownPlacement));
   },
   onClose(id) {
