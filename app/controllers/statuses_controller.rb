@@ -5,6 +5,8 @@ class StatusesController < ApplicationController
   include Authorization
 
   ANCESTORS_LIMIT = 20
+  DESCENDANTS_LIMIT = 20
+  DESCENDANTS_DEPTH_LIMIT = 4
 
   layout 'public'
 
@@ -19,9 +21,8 @@ class StatusesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @ancestors     = @status.reply? ? cache_collection(@status.ancestors(ANCESTORS_LIMIT, current_account), Status) : []
-        @next_ancestor = @ancestors.size < ANCESTORS_LIMIT ? nil : @ancestors.shift
-        @descendants   = cache_collection(@status.descendants(current_account), Status)
+        set_ancestors
+        set_descendants
 
         render 'stream_entries/show'
       end
@@ -51,8 +52,74 @@ class StatusesController < ApplicationController
 
   private
 
+  def create_descendant_thread(depth, statuses)
+    if depth < DESCENDANTS_DEPTH_LIMIT
+      { statuses: statuses }
+    else
+      next_status = statuses.pop
+      { statuses: statuses, next_status: next_status }
+    end
+  end
+
   def set_account
     @account = Account.find_local!(params[:account_username])
+  end
+
+  def set_ancestors
+    @ancestors     = @status.reply? ? cache_collection(@status.ancestors(ANCESTORS_LIMIT, current_account), Status) : []
+    @next_ancestor = @ancestors.size < ANCESTORS_LIMIT ? nil : @ancestors.shift
+  end
+
+  def set_descendants
+    @max_descendant_thread_id = params[:max_descendant_thread_id]&.to_i
+    @since_descendant_thread_id = params[:since_descendant_thread_id]&.to_i
+
+    descendants = cache_collection(
+      @status.descendants(
+        DESCENDANTS_LIMIT,
+        current_account,
+        @max_descendant_thread_id,
+        @since_descendant_thread_id,
+        DESCENDANTS_DEPTH_LIMIT
+      ),
+      Status
+    )
+    @descendant_threads = []
+
+    if descendants.present?
+      statuses = [descendants.first]
+      depth = 1
+
+      descendants.drop(1).each_with_index do |descendant, index|
+        if descendants[index].id == descendant.in_reply_to_id
+          depth += 1
+          statuses << descendant
+        else
+          @descendant_threads << create_descendant_thread(depth, statuses)
+
+          @descendant_threads.reverse_each do |descendant_thread|
+            statuses = descendant_thread[:statuses]
+
+            index = statuses.find_index do |thread_status|
+              thread_status.id == descendant.in_reply_to_id
+            end
+
+            if index.present?
+              depth += index - statuses.size
+              break
+            end
+
+            depth -= statuses.size
+          end
+
+          statuses = [descendant]
+        end
+      end
+
+      @descendant_threads << create_descendant_thread(depth, statuses)
+    end
+
+    @max_descendant_thread_id = @descendant_threads.pop[:statuses].first.id if descendants.size >= DESCENDANTS_LIMIT
   end
 
   def set_link_headers

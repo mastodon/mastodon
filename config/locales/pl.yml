@@ -466,7 +466,7 @@ pl:
     archive_takeout:
       date: Data
       download: Pobierz swoje archiwum
-      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, obsługiwanym przez odpowiednie programy.
+      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, który możesz otworzyć w obsługujących go programach.
       in_progress: Tworzenie archiwum…
       request: Uzyskaj archiwum
       size: Rozmiar
@@ -485,17 +485,19 @@ pl:
       one: W trakcie usuwania śledzących z jednej domeny…
       other: W trakcie usuwania śledzących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
-    unlocked_warning_html: Każdy może Cię śledzić, aby natychmiastowo zobaczyć twoje wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
+    unlocked_warning_html: Każdy może Cię śledzić, dzięki czemu może zobaczyć Twoje niepubliczne wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
     unlocked_warning_title: Twoje konto nie jest zablokowane
   generic:
     changes_saved_msg: Ustawienia zapisane!
     powered_by: uruchomione na %{link}
     save_changes: Zapisz zmiany
     validation_errors:
-      one: Coś jest wciąż nie tak! Przyjrzyj się błędowi poniżej
-      other: Coś jest wciąż nie tak! Przejrzyj błędy (%{count}) poniżej
+      few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
+      many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
+      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
+      other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   imports:
-    preface: Możesz zaimportować pewne dane (jak dane kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
+    preface: Możesz zaimportować pewne dane (np. lista kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
     types:
       blocking: Lista blokowanych
