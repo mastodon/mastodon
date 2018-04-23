@@ -40,6 +40,8 @@ class CustomEmoji < ApplicationRecord
 
   remotable_attachment :image, LIMIT
 
+  include Attachmentable
+
   def local?
     domain.nil?
   end
