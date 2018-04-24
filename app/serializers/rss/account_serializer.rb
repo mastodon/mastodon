@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RSS::AccountSerializer
   include ActionView::Helpers::NumberHelper
   include StreamEntriesHelper
@@ -32,6 +34,6 @@ class RSS::AccountSerializer
   end
 
   def self.render(account, statuses)
-    self.new.render(account, statuses)
+    new.render(account, statuses)
   end
 end
