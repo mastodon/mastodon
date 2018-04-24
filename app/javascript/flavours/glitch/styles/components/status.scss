@@ -259,6 +259,12 @@
         text-decoration: none;
       }
     }
+    &:focus > .status__content:after {
+      background: linear-gradient(rgba(lighten($ui-base-color, 4%), 0), rgba(lighten($ui-base-color, 4%), 1));
+    }
+    &.status-direct> .status__content:after {
+      background: linear-gradient(rgba(lighten($ui-base-color, 8%), 0), rgba(lighten($ui-base-color, 8%), 1));
+    }
 
     .notification__message {
       margin-bottom: 0;
