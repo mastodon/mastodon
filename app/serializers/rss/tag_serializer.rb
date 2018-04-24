@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RSS::TagSerializer
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::SanitizeHelper
@@ -30,6 +32,6 @@ class RSS::TagSerializer
   end
 
   def self.render(tag, statuses)
-    self.new.render(tag, statuses)
+    new.render(tag, statuses)
   end
 end
