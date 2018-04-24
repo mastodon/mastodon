@@ -1,39 +1,30 @@
+---
 sk:
   about:
-    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>.
-      Ak máš účet niekde vo fediverse, môžeš ich používať.
-    about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových
-      protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
+    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
+    about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
-    closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, môžeš nájsť
-      nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne
-      tej istej siete, odtiaľ.
+    administered_by: 'Správca je:'
+    closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne tej istej siete, odtiaľ.
     contact: Kontakt
     contact_missing: Nezadané
     contact_unavailable: Neuvedené
     description_headline: Čo je %{domain}?
     domain_count_after: ďalším inštanciám
     domain_count_before: Pripojený k
-    extended_description_html: '<h3>Pravidlá</h3>
-
+    extended_description_html: |
+      <h3>Pravidlá</h3>
       <p>Žiadne zatiaľ nie sú</p>
-
-      '
     features:
-      humane_approach_body: Poučený z chýb iných sociálnych sietí, Mastodon sa snaží
-        bojovať s nekalým používaním siete vytváraním etických možností.
+      humane_approach_body: Poučený z chýb iných sociálnych sietí, Mastodon sa snaží bojovať s nekalým používaním siete vytváraním etických možností.
       humane_approach_title: Ľudskejší prístup
-      not_a_product_body: Mastodon nie je komerčná sieť. Žiadne reklamy, žiadne dolovanie
-        dát, žiadne múry. Žiadna centrálna autorita.
+      not_a_product_body: Mastodon nie je komerčná sieť. Žiadne reklamy, žiadne dolovanie dát, žiadne múry. Žiadna centrálna autorita.
       not_a_product_title: Si človek, nie produkt
-      real_conversation_body: S 500 znakmi a podporou pre varovania pri obrázkoch
-        a videách sa môžeš vyjadriť tak ako budeš chcieť.
+      real_conversation_body: S 500 znakmi a podporou pre varovania pri obrázkoch a videách sa môžeš vyjadriť tak ako budeš chcieť.
       real_conversation_title: Vytvorený pre reálnu konverzáciu
-      within_reach_body: Viacero aplikácií pre iOS, Android a iné platformy, ktoré
-        vďaka jednoduchému API ekosystému vám dovoľujú byť online so svojimi priateľmi
-        kdekoľvek.
+      within_reach_body: Viacero aplikácií pre iOS, Android a iné platformy, ktoré vďaka jednoduchému API ekosystému vám dovoľujú byť online so svojimi priateľmi kdekoľvek.
       within_reach_title: Stále v dosahu
-    generic_description: '%{domain} je jeden server v sieti'
+    generic_description: "%{domain} je jeden server v sieti"
     hosted_on: Mastodon hostovaný na %{domain}
     learn_more: Dozvedieť sa viac
     other_instances: Zoznam ďalších inštancií
@@ -43,13 +34,12 @@ sk:
     user_count_after: používateľov
     user_count_before: Domov pre
     what_is_mastodon: Čo je Mastodon?
-    administered_by: 'Správca je:'
   accounts:
     follow: Sledovať
     followers: Sledujúci
     following: Sleduje
     media: Médiá
-    moved_html: '%{name} účet bol presunutý na %{new_profile_link}:'
+    moved_html: "%{name} účet bol presunutý na %{new_profile_link}:"
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
@@ -71,7 +61,15 @@ sk:
       destroyed_msg: Poznámka moderátora bola úspešne zmazaná!
     accounts:
       are_you_sure: Ste si istý?
+      avatar: Maskot
       by_domain: Doména
+      change_email:
+        changed_msg: Email k tomuto účtu bol úspešne zmenený!
+        current_email: Súčastný email
+        label: Zmeniť email
+        new_email: Nový email
+        submit: Zmeniť email
+        title: Zmeň email pre %{username}
       confirm: Potvrdiť
       confirmed: Potvrdený
       demote: Degradovať
@@ -119,6 +117,7 @@ sk:
       public: Verejná os
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnoviť avatar
+      remove_avatar: Odstrániť avatár
       reset: Reset
       reset_password: Obnoviť heslo
       resubscribe: Znovu odoberať
@@ -139,50 +138,38 @@ sk:
       statuses: Príspevky
       subscribe: Odoberať
       title: Účty
+      unconfirmed_email: Nepotvrdený email
       undo_silenced: Zrušiť stíšenie
       undo_suspension: Zrušiť suspendáciu
       unsubscribe: Prestať odoberať
       username: Používateľske meno
       web: Web
-      avatar: Maskot
-      change_email:
-        changed_msg: Email k tomuto účtu bol úspešne zmenený!
-        current_email: Súčastný email
-        label: Zmeniť email
-        new_email: Nový email
-        submit: Zmeniť email
-        title: Zmeň email pre %{username}
-      remove_avatar: Odstrániť avatár
-      unconfirmed_email: Nepotvrdený email
     action_logs:
       actions:
-        confirm_user: '%{name} potvrdil e-mailovú adresu používateľa %{target}'
-        create_custom_emoji: '%{name} nahral nový emoji %{target}'
-        create_domain_block: '%{name} zablokoval doménu %{target}'
-        create_email_domain_block: '%{name} pridal e-mailovú doménu %{target} na zoznam
-          zakázaných'
-        demote_user: '%{name} degradoval používateľa %{target}'
-        destroy_domain_block: '%{name} povolil doménu %{target}'
-        destroy_email_domain_block: '%{name} pridal e-mailovú doménu %{target} na
-          zoznam povolených'
-        destroy_status: '%{name} zmazal status %{target}'
-        disable_2fa_user: '%{name} zakázal 2FA pre používateľa %{target}'
-        disable_custom_emoji: '%{name} zakázal emoji %{target}'
-        disable_user: '%{name} zakázal prihlásenie pre používateľa %{target}'
-        enable_custom_emoji: '%{name} povolil emoji %{target}'
-        enable_user: '%{name} povolil prihlásenie pre používateľa %{target}'
-        memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme
-          spomínať"'
-        promote_user: '%{name} povýšil/a používateľa %{target}'
-        reset_password_user: '%{name} resetoval/a heslo pre používateľa %{target}'
-        resolve_report: '%{name} vyriešili nahlásenie užívateľa %{target}'
-        silence_account: '%{name} utíšil/a účet %{target}'
-        suspend_account: '%{name} zablokoval/a účet používateľa %{target}'
-        unsilence_account: '%{name} zrušil/a utíšenie účtu používateľa %{target}'
-        unsuspend_account: '%{name} zrušil/a blokovanie účtu používateľa %{target}'
-        update_custom_emoji: '%{name} aktualizoval/a emoji %{target}'
-        update_status: '%{name} aktualizoval/a status pre %{target}'
-        remove_avatar_user: '%{name} odstránil/a %{target}ov avatár'
+        confirm_user: "%{name} potvrdil e-mailovú adresu používateľa %{target}"
+        create_custom_emoji: "%{name} nahral nový emoji %{target}"
+        create_domain_block: "%{name} zablokoval doménu %{target}"
+        create_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam zakázaných"
+        demote_user: "%{name} degradoval používateľa %{target}"
+        destroy_domain_block: "%{name} povolil doménu %{target}"
+        destroy_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam povolených"
+        destroy_status: "%{name} zmazal status %{target}"
+        disable_2fa_user: "%{name} zakázal 2FA pre používateľa %{target}"
+        disable_custom_emoji: "%{name} zakázal emoji %{target}"
+        disable_user: "%{name} zakázal prihlásenie pre používateľa %{target}"
+        enable_custom_emoji: "%{name} povolil emoji %{target}"
+        enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
+        memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme spomínať"'
+        promote_user: "%{name} povýšil/a používateľa %{target}"
+        remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
+        reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
+        resolve_report: "%{name} vyriešili nahlásenie užívateľa %{target}"
+        silence_account: "%{name} utíšil/a účet %{target}"
+        suspend_account: "%{name} zablokoval/a účet používateľa %{target}"
+        unsilence_account: "%{name} zrušil/a utíšenie účtu používateľa %{target}"
+        unsuspend_account: "%{name} zrušil/a blokovanie účtu používateľa %{target}"
+        update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
+        update_status: "%{name} aktualizoval/a status pre %{target}"
       title: Kontrólny záznam
     custom_emojis:
       by_domain: Doména
@@ -216,20 +203,15 @@ sk:
       domain: Doména
       new:
         create: Blokovať doménu
-        hint: Blokovanie domény stále dovolí vytvárať nové účty v databáze, ale tieto
-          budú automaticky moderované.
+        hint: Blokovanie domény stále dovolí vytvárať nové účty v databáze, ale tieto budú automaticky moderované.
         severity:
-          desc_html: <strong>Stíšenie</strong> urobí všetky príspevky účtu neviditeľné
-            pre všetkých ktorý nenásledujú daný účet. <strong>Suspendácia</strong>
-            zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>,
-            ak chceš iba neprijímať súbory médií.
+          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky účtu neviditeľné pre všetkých ktorý nenásledujú daný účet. <strong>Suspendácia</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
           noop: Nič
           silence: Stíšiť
           suspend: Suspendovať
         title: Nové blokovanie domény
       reject_media: Odmietať súbory s obrázkami alebo videami
-      reject_media_hint: Zmaže lokálne uložené súbory médií a odmietne ich sťahovanie
-        v budúcnosti. Irelevantné pre suspendáciu
+      reject_media_hint: Zmaže lokálne uložené súbory médií a odmietne ich sťahovanie v budúcnosti. Irelevantné pre suspendáciu
       severities:
         noop: Žiadne
         silence: Stíšiť
@@ -238,7 +220,7 @@ sk:
       show:
         affected_accounts:
           one: Jeden účet v databáze ovplyvnený
-          other: '%{count} účtov v databáze ovplyvnených'
+          other: "%{count} účtov v databáze ovplyvnených"
         retroactive:
           silence: Zrušiť stíšenie všetkých existujúcich účtov z tejto domény
           suspend: Zrušiť suspendáciu všetkých existujúcich účtov z tejto domény
@@ -269,7 +251,19 @@ sk:
         expired: Expirované
         title: Filtrovať
       title: Pozvánky
+    report_notes:
+      created_msg: Poznámka o nahlásení úspešne vytvorená!
+      destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
+      account:
+        created_reports: Nahlásenia vytvorené týmto účtom
+        moderation:
+          silenced: Utíšené
+          suspended: Zavrhnutý/á
+          title: Spravovanie
+        note: poznámka
+        report: nahlás
+        targeted_reports: Hlásenia urobené o tomto účte
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
       comment:
@@ -292,40 +286,25 @@ sk:
       title: Reporty
       unresolved: Nevyriešené
       view: Zobraziť
-      account:
-        created_reports: Nahlásenia vytvorené týmto účtom
-        moderation:
-          silenced: Utíšené
-          suspended: Zavrhnutý/á
-          title: Spravovanie
-        note: poznámka
-        report: nahlás
-        targeted_reports: Hlásenia urobené o tomto účte
     settings:
       activity_api_enabled:
-        desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov,
-          a nových registrácii, v týždenných intervaloch
+        desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov, a nových registrácii, v týždenných intervaloch
         title: Vydať hromadné štatistiky o užívateľskej aktivite
       bootstrap_timeline_accounts:
-        desc_html: Ak je prezývok viacero, každú oddeľte čiarkou. Možno zadať iba
-          miestne, odomknuté účty. Pokiaľ necháte prázdne, je to pre všetkých miestnych
-          administrátorov.
+        desc_html: Ak je prezývok viacero, každú oddeľte čiarkou. Možno zadať iba miestne, odomknuté účty. Pokiaľ necháte prázdne, je to pre všetkých miestnych administrátorov.
         title: Štandardní následovníci nových užívateľov
       contact_information:
         email: Pracovný e-mail
         username: Kontaktné užívateľské meno
       hero:
-        desc_html: Zobrazuje sa na hlavnej stránke. Doporučuje sa rozlišenie aspoň
-          600x100px Pokiaľ tu nieje nič dodané, bude nastavený základný orázok tohoto
-          serveru
+        desc_html: Zobrazuje sa na hlavnej stránke. Doporučuje sa rozlišenie aspoň 600x100px Pokiaľ tu nieje nič dodané, bude nastavený základný orázok tohoto serveru
         title: Obrázok hrdinu
       peers_api_enabled:
         desc_html: Domény na ktoré táto instancia už vo fediverse natrafila
         title: Zverejniť zoznam objavených instancií
       registrations:
         closed_message:
-          desc_html: Toto sa zobrazí na hlavnej stránke v prípade že sú registrácie
-            uzavreté. Možno tu použiť aj HTML kód
+          desc_html: Toto sa zobrazí na hlavnej stránke v prípade že sú registrácie uzavreté. Možno tu použiť aj HTML kód
           title: Správa o uzavretých registráciách
         deletion:
           desc_html: Dovoľiť každému aby si mohli zmazať svok účet
@@ -337,30 +316,23 @@ sk:
           desc_html: Povoliť každému aby si mohli vytvoriť účet
           title: Verejná registrácia
       show_known_fediverse_at_about_page:
-        desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť toot statusy
-          z celého známeho fediversa. V opačnom prípade tam budú ukázané iba statusy
-          z lokálnej osi.
+        desc_html: Pokiaľ je zapnuté, bude v ukážke osi možné nahliadnúť toot statusy z celého známeho fediversa. V opačnom prípade tam budú ukázané iba statusy z lokálnej osi.
         title: Ukázať celé známe fediversum ako ukážku osi
       show_staff_badge:
         desc_html: Zobraziť moderátorsku značku na užívateľovej stránke
         title: Zobraziť značku moderátora
       site_description:
-        desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Môžete
-          použiť HTML kód, presnejšie  <code>&lt; a&gt;</code> a <code>&lt; em&gt;
-          </code>.
+        desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Môžete použiť HTML kód, presnejšie  <code>&lt; a&gt;</code> a <code>&lt; em&gt; </code>.
         title: Popis instancie
       site_description_extended:
-        desc_html: Toto je vhodné miesto pre vaše pravidlá, oboznámenia a iné veci,
-          ktorými je vaša instancia špecifická. Je možné tu používať HTML kód
+        desc_html: Toto je vhodné miesto pre vaše pravidlá, oboznámenia a iné veci, ktorými je vaša instancia špecifická. Je možné tu používať HTML kód
         title: Vlastné doplňujúce informácie
       site_terms:
-        desc_html: Môžete si napísať vaše vlastné pravidla o súkromí, prevádzke, alebo
-          aj iné legality. Môžete tu používať HTML kód
+        desc_html: Môžete si napísať vaše vlastné pravidla o súkromí, prevádzke, alebo aj iné legality. Môžete tu používať HTML kód
         title: Vlastné pravidlá prevádzky
       site_title: Názov instancie
       thumbnail:
-        desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie
-          1200x630px
+        desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie 1200x630px
         title: Miniatúra instancie
       timeline_preview:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
@@ -389,16 +361,13 @@ sk:
       title: WebSub
       topic: Téma
     title: Administrácia
-    report_notes:
-      created_msg: Poznámka o nahlásení úspešne vytvorená!
-      destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
   admin_mailer:
     new_report:
-      body: '%{reporter} nahlásil %{target}'
+      body: "%{reporter} nahlásil %{target}"
       subject: Nový report pre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmeniť e-mailové voľby
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'Zmeniť e-mailové voľby: %{link}'
     view: 'Zobraziť:'
     view_profile: Zobraziť profil
@@ -412,23 +381,18 @@ sk:
     warning: Na tieto údaje dávajte ohromný pozor. Nikdy ich s nikým nezďieľajte!
     your_token: Váš prístupový token
   auth:
-    agreement_html: V rámci registrácie súhlasíš, že sa budeš riadiť <a href="%{rules_path}">
-      pravidlami tejto instancie</a>, a taktiež <a href="%{terms_path}"> našími servisnými
-      podmienkami </a>.
+    agreement_html: V rámci registrácie súhlasíš, že sa budeš riadiť <a href="%{rules_path}"> pravidlami tejto instancie</a>, a taktiež <a href="%{terms_path}"> našími servisnými podmienkami </a>.
     change_password: Heslo
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
-    delete_account_html: Pokiaľ si želáte vymazať svoj účet, môžete tak <a href="%{path}">
-      1 urobiť tu</a> 2. Budete požiadaný/á o potvrdenie tohto kroku.
+    delete_account_html: Pokiaľ si želáte vymazať svoj účet, môžete tak <a href="%{path}"> 1 urobiť tu</a> 2. Budete požiadaný/á o potvrdenie tohto kroku.
     didnt_get_confirmation: Neobdŕžali ste kroky pre potvrdenie?
     forgot_password: Zabudli ste heslo?
-    invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítajte
-      si nový.
+    invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítajte si nový.
     login: Prihlás sa
     logout: Odhlás sa
     migrate_account: Presunúť sa na iný účet
-    migrate_account_html: Pokiaľ si želáte presmerovať tento účet na nejaký iný, môžete
-      <a href="%{path}"> tak urobiť tu</a>.
+    migrate_account_html: Pokiaľ si želáte presmerovať tento účet na nejaký iný, môžete <a href="%{path}"> tak urobiť tu</a>.
     or: alebo
     or_log_in_with: Alebo prihlásiť z
     providers:
@@ -452,29 +416,24 @@ sk:
     title: Následovať %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: '%{count}hod'
-      about_x_months: '%{count}mesiace'
-      about_x_years: '%{count}rok'
-      almost_x_years: '%{count}rok'
+      about_x_hours: "%{count}hod"
+      about_x_months: "%{count}mesiace"
+      about_x_years: "%{count}rok"
+      almost_x_years: "%{count}rok"
       half_a_minute: Práve teraz
       less_than_x_seconds: Práve teraz
-      over_x_years: '%{count}rok'
-      x_days: '%{count}dni'
+      over_x_years: "%{count}rok"
+      x_days: "%{count}dni"
       x_minutes: ''
-      x_months: '%{count}mesiace'
-      x_seconds: '%{count}sek'
+      x_months: "%{count}mesiace"
+      x_seconds: "%{count}sek"
   deletes:
     bad_password_msg: Dobrý pokus, hakeri! Nesprávne heslo
     confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
-    description_html: Týmto <strong> natrvalo, nenavrátiteľne </strong> vymažeš obsah
-      tvojho účtu, a deaktivuješ ho. Tvoja prezývka ale ostane rezervovaná ako prevencia
-      pred budúcimi impersonáciami.
+    description_html: Týmto <strong> natrvalo, nenavrátiteľne </strong> vymažeš obsah tvojho účtu, a deaktivuješ ho. Tvoja prezývka ale ostane rezervovaná ako prevencia pred budúcimi impersonáciami.
     proceed: Vymazať účet
     success_msg: Váš účet bol úspešne vymazaný
-    warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je garantované.
-      Obsah ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery
-      ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje
-      databázy.
+    warning_html: Iba vymazanie obsahu z tejto konkrétnej instancie je garantované. Obsah ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje databázy.
     warning_title: Dostupnosť distribuovaného obsahu
   errors:
     '403': Nemáte dostatočné povolenie na zobrazenie tejto stránky.
@@ -487,16 +446,12 @@ sk:
     '500':
       content: Ospravedlňujeme sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
-    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, prosím povoľte
-      JavaScript. Alebo skúste jednu z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">
-      aplikácii </a> dostupných pre vašu platformu.
+    noscript_html: Aby bolo možné používať Mastodon web aplikáciu, prosím povoľte JavaScript. Alebo skúste jednu z <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md"> aplikácii </a> dostupných pre vašu platformu.
   exports:
     archive_takeout:
       date: Dátum
       download: Stiahni si svoj archív
-      hint_html: Môžeš si opýtať <strong>archív svojích príspevkov a nahratých médií</strong>.
-        Exportované dáta budú v ActivityPub formáte, čítateľné hociakým kompatibilným
-        softvérom.
+      hint_html: Môžeš si opýtať <strong>archív svojích príspevkov a nahratých médií</strong>. Exportované dáta budú v ActivityPub formáte, čítateľné hociakým kompatibilným softvérom.
       in_progress: Balím tvoj archív...
       request: Vyžiadaj si tvoj archív
       size: Veľkosť
@@ -507,22 +462,15 @@ sk:
     storage: Úložisko médii
   followers:
     domain: Doména
-    explanation_html: Pokiaľ chceš zaručiť súkromie svojích príspevkov, musíš mať
-      na vedomí, kto ťa sleduje. <strong> Tvoje súkromné príspevky sú doručené na
-      každý server z ktorého ťa niekto následuje. </strong> Takže možno by si ich
-      chcel/a skontrolovať, a odstrániť tých následovníkov, čo sú na serveroch ktorím
-      nedôveruješ, že ich moderátori, alebo úpravbuy kódu budú tiež rešpektovať tvoje
-      súkromie.
+    explanation_html: Pokiaľ chceš zaručiť súkromie svojích príspevkov, musíš mať na vedomí, kto ťa sleduje. <strong> Tvoje súkromné príspevky sú doručené na každý server z ktorého ťa niekto následuje. </strong> Takže možno by si ich chcel/a skontrolovať, a odstrániť tých následovníkov, čo sú na serveroch ktorím nedôveruješ, že ich moderátori, alebo úpravbuy kódu budú tiež rešpektovať tvoje súkromie.
     followers_count: Počet následovateľov
     lock_link: Zamknite svoj účet
     purge: Odstrániť následovateľa
     success:
       one: Počas utišovania sledovateľov z jednej domény...
       other: Počas utišovania sledovateľov z %{count} domén...
-    true_privacy_html: Prosím majte na vedomí, <strong> 1 že ozajstné súkromie sa
-      dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong> 2.
-    unlocked_warning_html: Hocikto ťa môže následovať aby mohol/a ihneď vidieť tvoje
-      súkromné príspevky. %{lock_link} aby si mohla skontrolovať a odmietať sledovateľov.
+    true_privacy_html: Prosím majte na vedomí, <strong> 1 že ozajstné súkromie sa dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong> 2.
+    unlocked_warning_html: Hocikto ťa môže následovať aby mohol/a ihneď vidieť tvoje súkromné príspevky. %{lock_link} aby si mohla skontrolovať a odmietať sledovateľov.
     unlocked_warning_title: Tvoj účet nieje zamknutý
   generic:
     changes_saved_msg: Zmeny boli úspešne uložené!
@@ -530,11 +478,9 @@ sk:
     save_changes: Uložiť zmeny
     validation_errors:
       one: Niečo nieje úplne v poriadku! Prosím skontroluj chybu
-      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count}
-        chyby
+      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
   imports:
-    preface: Môžeš importovať dáta ktoré si exportoval/a z iného Mastodon serveru,
-      ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
+    preface: Môžeš importovať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
     success: Tvoje dáta boli nahraté úspešne, a budú teraz spracované v danom čase
     types:
       blocking: Zoznam blokovaných
@@ -555,19 +501,15 @@ sk:
     generate: Vygeneruj
     max_uses:
       one: jedno použitie
-      other: '%{count} použití'
+      other: "%{count} použití"
     max_uses_prompt: Bez limitov
-    prompt: Vygeneruj a zdieľaj linky s ostatnými aby mali umožnený prístup k tomuto
-      serveru
+    prompt: Vygeneruj a zdieľaj linky s ostatnými aby mali umožnený prístup k tomuto serveru
     table:
       expires_at: Vyprší
       uses: Používa
     title: Pozvať ľudí
-  landing_strip_html: <strong>%{name}</strong> je užívateľ na serveri %{link_to_root_path}.
-    Ty ich môžeš následovať a môžeš s nimi interaktovať pokiaľ máš účet hocikde v
-    rámci fediversa.
-  landing_strip_signup_html: Pokiaľ ešte nemáš, môžeš <a href="%{sign_up_path}">si
-    tu vytvoriť účet</a>.
+  landing_strip_html: "<strong>%{name}</strong> je užívateľ na serveri %{link_to_root_path}. Ty ich môžeš následovať a môžeš s nimi interaktovať pokiaľ máš účet hocikde v rámci fediversa."
+  landing_strip_signup_html: Pokiaľ ešte nemáš, môžeš <a href="%{sign_up_path}">si tu vytvoriť účet</a>.
   lists:
     errors:
       limit: Dosiahli ste maximálny možný počet zoznamov
@@ -585,44 +527,41 @@ sk:
   notification_mailer:
     digest:
       action: Zobraziť všetky notifikácie
-      body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi
-        od %{since}
-      mention: '%{name} ťa spomenul/a v:'
+      body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi od %{since}
+      mention: "%{name} ťa spomenul/a v:"
       new_followers_summary:
-        one: Taktiež, získal/a si jedného nového následovníka zatiaľ čo si bol/a preč.
-          Yay!
-        other: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si
-          bol/a preč. Yay!
+        one: Taktiež, získal/a si jedného nového následovníka zatiaľ čo si bol/a preč. Yay!
+        other: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
       subject:
-        one: 1 nová notifikácia od tvojej poslednej návštevy 🐘
-        other: '%{count} nové notifikácie od tvojej poslednej návštevy 🐘'
+        one: "1 nová notifikácia od tvojej poslednej návštevy \U0001F418"
+        other: "%{count} nové notifikácie od tvojej poslednej návštevy \U0001F418"
       title: Zatiaľ čo si bol/a preč…
     favourite:
       body: 'Tvoj príspevok bol uložený medi obľúbené užívateľa %{name}:'
-      subject: '%{name} si obľúbil/a tvoj príspevok'
+      subject: "%{name} si obľúbil/a tvoj príspevok"
       title: Nové obľúbené
     follow:
-      body: '%{name} ťa teraz následuje!'
-      subject: '%{name} ťa teraz následuje'
+      body: "%{name} ťa teraz následuje!"
+      subject: "%{name} ťa teraz následuje"
       title: Nový sledovateľ
     follow_request:
       action: Spravuj žiadosti o sledovanie
-      body: '%{name} žiada povolenie ťa následovať'
-      subject: '%{name} ťa žiadá o možnosť sledovania'
+      body: "%{name} žiada povolenie ťa následovať"
+      subject: "%{name} ťa žiadá o možnosť sledovania"
       title: Nová žiadosť o sledovanie
     mention:
       action: Odpovedať
-      body: '%{name} ťa spomenul/a v:'
+      body: "%{name} ťa spomenul/a v:"
       subject: Boli ste spomenutí užívateľom %{name}
       title: Nové spomenutie
     reblog:
       body: 'Tvoj príspevok bol pozdvihnutý užívateľom %{name}:'
-      subject: '%{name} pozdvihli tvoj príspevok'
+      subject: "%{name} pozdvihli tvoj príspevok"
       title: Novo pozdvyhnuté
   number:
     human:
       decimal_units:
-        format: '%n%u'
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -634,7 +573,7 @@ sk:
     next: Ďalšie
     older: Staršie
     prev: Predošlé
-    truncate: '&hellip;'
+    truncate: "&hellip;"
   preferences:
     languages: Jazyky
     other: Ostatné
@@ -642,18 +581,18 @@ sk:
     web: Web
   push_notifications:
     favourite:
-      title: '%{name} si obľúbil/a tvoj príspevok'
+      title: "%{name} si obľúbil/a tvoj príspevok"
     follow:
-      title: '%{name} ťa teraz následuje'
+      title: "%{name} ťa teraz následuje"
     group:
-      title: '%{count} notifikácie'
+      title: "%{count} notifikácie"
     mention:
       action_boost: Pozdvihni
       action_expand: Ukáž viac
       action_favourite: Obľúbené
-      title: '%{name} ťa spomenul/a'
+      title: "%{name} ťa spomenul/a"
     reblog:
-      title: '%{name} vyzdvihli tvoj príspevok'
+      title: "%{name} vyzdvihli tvoj príspevok"
   remote_follow:
     acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
     missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
@@ -671,7 +610,7 @@ sk:
       generic: Neznámy prehliadač
       ie: Internet Explorer
     current_session: Aktuálna sezóna
-    description: '%{browser} na %{platform}'
+    description: "%{browser} na %{platform}"
     explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
     ip: IP adresa
     platforms:
@@ -699,11 +638,11 @@ sk:
     attached:
       description: 'Priložené: %{attached}'
       image:
-        one: '%{count} obrázok'
-        other: '%{count} obrázkov'
+        one: "%{count} obrázok"
+        other: "%{count} obrázkov"
       video:
-        one: '%{count} video'
-        other: '%{count} videí'
+        one: "%{count} video"
+        other: "%{count} videí"
     content_warning: 'Varovanie o obsahu: %{warning}'
     open_in_web: Otvor v okne prehliadača
     over_character_limit: limit počtu %{max} znakov bol presiahnutý
@@ -731,73 +670,47 @@ sk:
     default: Mastodon
   time:
     formats:
-      default: '%b %d, %R, %H:%M'
+      default: "%b %d, %R, %H:%M"
   two_factor_authentication:
-    code_hint: Pre potvrdenie teraz zadaj kód vygenerovaný pomocou tvojej overovacej
-      aplikácie
-    description_html: Ak povolíš <strong> dvoj-faktorové overovanie</strong>, na prihlásenie
-      potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš
-      zadať.
+    code_hint: Pre potvrdenie teraz zadaj kód vygenerovaný pomocou tvojej overovacej aplikácie
+    description_html: Ak povolíš <strong> dvoj-faktorové overovanie</strong>, na prihlásenie potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš zadať.
     disable: Zakáž
     enable: Povoliť
     enabled: Dvoj-faktorové overovanie je povolené
     enabled_success: Dvoj-faktorové overovanie bolo úspešne povolené
     generate_recovery_codes: Vygeneruj zálohové kódy
-    instructions_html: <strong>Naskenuj tento QR kód do Google Autentikátora, alebo
-      do podobnej TOTP aplikácie pomocou svojho telefónu.</strong> Od tejto chvíle
-      bude táto aplikácia pre teba generovať kódy ktoré musíš zadať aby si sa prihlásil/a.
-    lost_recovery_codes: Zálohové kódy ti umožnia dostať sa k svojmu účtu ak stratíš
-      telefón. Pokiaľ si stratila svoje zálohové kódy, môžeš si ich tu znovu vygenerovať.
-      Tvoje staré zálohové kódy budú zneplatnené.
-    manual_instructions: 'Pokiaľ nemôžeš oskenovať daný QR kód, a potrebuješ ho zadať
-      ručne, tu je tajomstvo v textovom formáte:'
+    instructions_html: "<strong>Naskenuj tento QR kód do Google Autentikátora, alebo do podobnej TOTP aplikácie pomocou svojho telefónu.</strong> Od tejto chvíle bude táto aplikácia pre teba generovať kódy ktoré musíš zadať aby si sa prihlásil/a."
+    lost_recovery_codes: Zálohové kódy ti umožnia dostať sa k svojmu účtu ak stratíš telefón. Pokiaľ si stratila svoje zálohové kódy, môžeš si ich tu znovu vygenerovať. Tvoje staré zálohové kódy budú zneplatnené.
+    manual_instructions: 'Pokiaľ nemôžeš oskenovať daný QR kód, a potrebuješ ho zadať ručne, tu je tajomstvo v textovom formáte:'
     recovery_codes: Zálohuj kódy pre obnovu
     recovery_codes_regenerated: Zálohové kódy boli úspešne zvova vygenerované
     setup: Nastavenie
     wrong_code: Zadaný kód bol neplatný. Je serverový čas a čas na zariadení správny?
   user_mailer:
     backup_ready:
-      explanation: Vyžiadal/a si si úplnú zálohu tvojho Mastodon účtu. Táto záloha
-        je teraz pripravená na stiahnutie!
+      explanation: Vyžiadal/a si si úplnú zálohu tvojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
       subject: Tvoj archív je pripravený na stiahnutie
       title: Odber archívu
     welcome:
       edit_profile_action: Nastav profil
-      edit_profile_step: Profil si môžeš prispôsobiť nahratím portrétu a hlavičky,
-        môžeš upraviť svoje meno a viac. Pokiaľ chceš preverovať nových následovateľov
-        predtým než ťa budú môcť sledovať, môžeš uzamknúť svoj účet.
+      edit_profile_step: Profil si môžeš prispôsobiť nahratím portrétu a hlavičky, môžeš upraviť svoje meno a viac. Pokiaľ chceš preverovať nových následovateľov predtým než ťa budú môcť sledovať, môžeš uzamknúť svoj účet.
       explanation: Tu nájdeš nejaké tipy do začiatku
       final_action: Začni prispievať
-      final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné
-        ostatnými, napríklad na lokálnej osi a pod haštagmi. Môžete sa ostatným predstaviť
-        pod haštagom #introductions.'
+      final_step: 'Začnite písať! Aj bez následovníkov budú vaše verejné správy videné ostatnými, napríklad na lokálnej osi a pod haštagmi. Môžete sa ostatným predstaviť pod haštagom #introductions.'
       full_handle: Adresa tvojho profilu v celom formáte
-      full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli
-        posielať správy, alebo ťa následovať z inej instancie.
+      full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli posielať správy, alebo ťa následovať z inej instancie.
       review_preferences_action: Zmeniť nastavenia
-      review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že
-        aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje
-        príspevky majú sami automaticky zaradiť. Pokiaľ nemáš malátnosť z pohybu,
-        môžeš si zvoliť aj automatické spúšťanie GIF animácií.
+      review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje príspevky majú sami automaticky zaradiť. Pokiaľ nemáš malátnosť z pohybu, môžeš si zvoliť aj automatické spúšťanie GIF animácií.
       subject: Vitaj na Mastodone
-      tip_bridge_html: Ak prichádzaš z Twitteru, môžeš svojích priateľov nájsť na
-        Mastodone pomocou tzv. <a href="%{bridge_url}">mostíkovej aplikácie</a>. Ale
-        tá funguje iba ak ju aj oni niekedy použili!
-      tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice.
-        Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje
-        úplne celistvá.
-      tip_following: Správcu servera následuješ automaticky. Môžeš ale nájsť mnoho
-        iných zaujímavých ľudí ak prezrieš tak lokálnu, ako aj globálne federovanú
-        os.
-      tip_local_timeline: Lokálna os je celkový pohľad na aktivitu užívateľov %{instance}.
-        Toto sú tvoji najbližší susedia!
-      tip_mobile_webapp: Pokiaľ ti prehliadač ponúkne možnosť pridať Mastodon na tvoju
-        obrazovku, môžeš potom dostávať notifikácie skoro ako z natívnej aplikácie!
+      tip_bridge_html: Ak prichádzaš z Twitteru, môžeš svojích priateľov nájsť na Mastodone pomocou tzv. <a href="%{bridge_url}">mostíkovej aplikácie</a>. Ale tá funguje iba ak ju aj oni niekedy použili!
+      tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice. Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje úplne celistvá.
+      tip_following: Správcu servera následuješ automaticky. Môžeš ale nájsť mnoho iných zaujímavých ľudí ak prezrieš tak lokálnu, ako aj globálne federovanú os.
+      tip_local_timeline: Lokálna os je celkový pohľad na aktivitu užívateľov %{instance}. Toto sú tvoji najbližší susedia!
+      tip_mobile_webapp: Pokiaľ ti prehliadač ponúkne možnosť pridať Mastodon na tvoju obrazovku, môžeš potom dostávať notifikácie skoro ako z natívnej aplikácie!
       tips: Tipy
       title: Vitaj na palube, %{name}!
   users:
     invalid_email: Emailová adresa je neplatná
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
-    seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia
-      hesla a emailu ti niesú prístupné.
+    seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásený ako:'

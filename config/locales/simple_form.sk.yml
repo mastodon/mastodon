@@ -1,32 +1,32 @@
+---
 sk:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
-        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali
-          nejaké osobné správy kým ste boli preč
+        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali nejaké osobné správy kým ste boli preč
         display_name:
           one: Ostáva ti <span class="name-counter">1</span> znak
           other: Ostáva ti <span class="name-counter">%{count}</span> znakov
+        fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
         header: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 700x335px
         locked: Musíte manuálne schváliť sledujúcich
         note:
           one: Ostáva vám <span class="note-counter">1</span> znak
           other: Ostáva ti <span class="note-counter">%{count}</span> znakov
-        setting_noindex: Ovplyvňuje profil a správy tak, že ich nebude možné nájsť
-          vyhľadávaním
-        setting_theme: Toto ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého
-          zariadenia.
-        fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
+        setting_noindex: Ovplyvňuje profil a správy tak, že ich nebude možné nájsť vyhľadávaním
+        setting_theme: Toto ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého zariadenia.
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
-        otp: Napíš sem dvoj-faktorový kód z telefónu, alebo použite jeden z vašich
-          obnovovacích kódov.
+        otp: Napíš sem dvoj-faktorový kód z telefónu, alebo použite jeden z vašich obnovovacích kódov.
       user:
-        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané nebudú z verejnej
-          časovej osi
+        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané nebudú z verejnej časovej osi
     labels:
+      account:
+        fields:
+          name: Označenie
+          value: Obsah
       defaults:
         avatar: Avatar
         confirm_new_password: Opäť vaše nové heslo pre potvrdenie
@@ -36,6 +36,7 @@ sk:
         display_name: Meno
         email: Emailová adresa
         expires_in: Expirovať po
+        fields: Metadáta profilu
         filtered_languages: Filtrované jazyky
         header: Obrázok v hlavičke
         locale: Jazyk
@@ -55,13 +56,11 @@ sk:
         setting_reduce_motion: Redukovať pohyb v animáciách
         setting_system_font_ui: Použiť základné systémové písmo
         setting_theme: Vzhľad
-        setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania
-          iného používateľa
+        setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania iného používateľa
         severity: Závažnosť
         type: Typ importu
         username: Užívateľské meno
         username_or_email: Prezívka, alebo Email
-        fields: Metadáta profilu
       interactions:
         must_be_follower: Blokovať notifikácie pod používateľov, ktorí ťa nesledujú
         must_be_following: Blokovať notifikácie od ľudí ktorí ťa nesledujú
@@ -73,12 +72,8 @@ sk:
         follow_request: Zaslať email ak ti niekto pošle žiadosť o sledovanie
         mention: Poslať email ak ťa niekto spomenie v svojom príspevku
         reblog: Poslať email ak niekto re-tootne tvoj príspevok
-      account:
-        fields:
-          name: Označenie
-          value: Obsah
     'no': Nie
     required:
-      mark: '*'
+      mark: "*"
       text: povinné
     'yes': Áno

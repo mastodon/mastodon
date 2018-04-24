@@ -1,31 +1,32 @@
+---
 gl:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF ou JPG. Como moito 2MB. Será reducida ate 400x400px
-        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha
-          mensaxe personal na súa ausencia
+        digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
+        fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Como moito 2MB. Será reducida a 700x335px
         locked: Require que vostede aprove as seguidoras de xeito manual
         note:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
-        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando
-          está conectada.
-        fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
+        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
-        otp: Introduza o código de Doble-Factor desde o seu teléfono ou utilice un
-          dos seus códigos de recuperación.
+        otp: Introduza o código de Doble-Factor desde o seu teléfono ou utilice un dos seus códigos de recuperación.
       user:
-        filtered_languages: Os idiomas marcados filtraranse das liñas temporais públicas
-          para vostede
+        filtered_languages: Os idiomas marcados filtraranse das liñas temporais públicas para vostede
     labels:
+      account:
+        fields:
+          name: Etiqueta
+          value: Contido
       defaults:
         avatar: Avatar
         confirm_new_password: Confirme o novo contrasinal
@@ -35,6 +36,7 @@ gl:
         display_name: Nome mostrado
         email: enderezo correo electrónico
         expires_in: Caducidade despois de
+        fields: Metadatos do perfil
         filtered_languages: Idiomas filtrados
         header: Cabezallo
         locale: Idioma
@@ -59,25 +61,19 @@ gl:
         type: Tipo de importación
         username: Nome de usuaria
         username_or_email: Nome de usuaria ou Correo-e
-        fields: Metadatos do perfil
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue
         must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
       notification_emails:
         digest: Enviar correos con resumos
-        favourite: Enviar un correo cando alguén marca como favorita unha das súas
-          publicacións
+        favourite: Enviar un correo cando alguén marca como favorita unha das súas publicacións
         follow: Enviar un correo cando alguén a segue
         follow_request: Enviar un correo cando alguén solicita seguila
         mention: Enviar un correo cando alguén a menciona
         reblog: Enviar un correo cando alguén promociona a súa mensaxe
-      account:
-        fields:
-          name: Etiqueta
-          value: Contido
     'no': Non
     required:
-      mark: '*'
+      mark: "*"
       text: requerido
     'yes': Si

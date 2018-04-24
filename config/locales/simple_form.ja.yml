@@ -1,3 +1,4 @@
+---
 ja:
   simple_form:
     hints:
@@ -5,12 +6,12 @@ ja:
         avatar: 2MBまでのPNGやGIF、JPGが利用可能です。400x400pxまで縮小されます
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
+        fields: プロフィールに表として4つまでの項目を表示することができます
         header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます
         locked: フォロワーを手動で承認する必要があります
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
-        fields: プロフィールに表として4つまでの項目を表示することができます
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -18,6 +19,10 @@ ja:
       user:
         filtered_languages: 選択した言語があなたの公開タイムラインから取り除かれます
     labels:
+      account:
+        fields:
+          name: ラベル
+          value: 内容
       defaults:
         avatar: アイコン
         confirm_new_password: 新しいパスワード（確認用）
@@ -27,6 +32,7 @@ ja:
         display_name: 表示名
         email: メールアドレス
         expires_in: 有効期限
+        fields: プロフィール補足情報
         filtered_languages: 除外する言語
         header: ヘッダー
         locale: 言語
@@ -51,7 +57,6 @@ ja:
         type: インポートする項目
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
-        fields: プロフィール補足情報
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
@@ -63,12 +68,8 @@ ja:
         follow_request: フォローリクエストを受けた時にメールで通知する
         mention: 返信が来た時にメールで通知する
         reblog: トゥートがブーストされた時にメールで通知する
-      account:
-        fields:
-          name: ラベル
-          value: 内容
     'no': いいえ
     required:
-      mark: '*'
+      mark: "*"
       text: 必須
     'yes': はい
