@@ -105,7 +105,7 @@ class Request
   end
 
   def block_hidden_service?
-    !Rails.configuration.x.access_to_hidden_service && %w(onion i2p).include?(@url.tld)
+    !Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(@url.host)
   end
 
   module ClientLimit
