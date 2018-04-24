@@ -4,6 +4,7 @@ fr:
     about_hashtag_html: Figurent ci-dessous les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fediverse.
     about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
     about_this: À propos
+    administered_by: 'Administré par :'
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
     contact_missing: Manquant
@@ -60,7 +61,15 @@ fr:
       destroyed_msg: Note de modération supprimée avec succès !
     accounts:
       are_you_sure: Êtes-vous certain⋅e ?
+      avatar: Avatar
       by_domain: Domaine
+      change_email:
+        changed_msg: Courriel du compte modifié avec succès !
+        current_email: Courriel actuel
+        label: Modifier le courriel
+        new_email: Nouveau courriel
+        submit: Modifier le courriel
+        title: Modifier le courriel pour %{username}
       confirm: Confirmer
       confirmed: Confirmé
       demote: Rétrograder
@@ -108,6 +117,7 @@ fr:
       public: Publique
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir les avatars
+      remove_avatar: Supprimer l'avatar
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
@@ -128,6 +138,7 @@ fr:
       statuses: Statuts
       subscribe: S’abonner
       title: Comptes
+      unconfirmed_email: Courriel non-confirmé
       undo_silenced: Démasquer
       undo_suspension: Annuler la suspension
       unsubscribe: Se désabonner
@@ -135,6 +146,8 @@ fr:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} s'est assigné le signalement de %{target} à eux-même"
+        change_email_user: "%{name} a modifié l'adresse de courriel de l'utilisateur %{target}"
         confirm_user: "%{name} adresse courriel confirmée de l'utilisateur %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux emoji %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
@@ -150,10 +163,13 @@ fr:
         enable_user: "%{name} a activé le login pour l'utilisateur %{target}"
         memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
         promote_user: "%{name} a promu l'utilisateur %{target}"
+        remove_avatar_user: "%{name} a supprimé l'avatar de %{target}'s"
+        reopen_report: "%{name} a ré-ouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
-        resolve_report: "%{name} n'a pas pris en compte la dénonciation de %{target}"
+        resolve_report: "%{name} a résolu la dénonciation de %{target}"
         silence_account: "%{name} a mis le compte %{target} en mode silence"
         suspend_account: "%{name} a suspendu le compte %{target}"
+        unassigned_report: "%{name} a dés-assigné le signalement %{target}"
         unsilence_account: "%{name} a mis fin au mode silence de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
         update_custom_emoji: "%{name} a mis à jour l'emoji %{target}"
@@ -239,28 +255,48 @@ fr:
         expired: Expiré
         title: Filtre
       title: Invitations
+    report_notes:
+      created_msg: Note de signalement créée avec succès !
+      destroyed_msg: Note de signalement effacée avec succès !
     reports:
+      account:
+        note: note
+        report: signaler
       action_taken_by: Intervention de
       are_you_sure: Êtes vous certain⋅e ?
+      assign_to_self: Me l'assigner
+      assigned: Modérateur assigné
       comment:
         none: Aucun
+      created_at: Signalé
       delete: Supprimer
       id: ID
       mark_as_resolved: Marquer comme résolu
+      mark_as_unresolved: Marquer comme non-résolu
+      notes:
+        create: Ajouter une note
+        create_and_resolve: Résoudre avec une note
+        create_and_unresolve: Ré-ouvrir avec une note
+        delete: Effacer
+        placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour de ce signalement…
       nsfw:
         'false': Ré-afficher les médias
         'true': Masquer les médias
+      reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       report_contents: Contenu
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
+      resolved_msg: Signalement résolu avec succès !
       silence_account: Masquer le compte
       status: Statut
       suspend_account: Suspendre le compte
       target: Cible
       title: Signalements
+      unassign: Dés-assigner
       unresolved: Non résolus
+      updated_at: Mis à jour
       view: Voir
     settings:
       activity_api_enabled:
@@ -381,6 +417,7 @@ fr:
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
   authorize_follow:
+    already_following: Vous suivez déjà ce compte
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
     follow: Suivre
     follow_request: 'Vous avez demandé à suivre :'
@@ -473,6 +510,7 @@ fr:
       '21600': 6 heures
       '3600': 1 heure
       '43200': 12 heures
+      '604800': 1 semaine
       '86400': 1 jour
     expires_in_prompt: Jamais
     generate: Générer
@@ -576,6 +614,10 @@ fr:
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     proceed: Continuez pour suivre
     prompt: 'Vous allez suivre :'
+  remote_unfollow:
+    error: Erreur
+    title: Titre
+    unfollowed: Non-suivi
   sessions:
     activity: Dernière activité
     browser: Navigateur
@@ -641,6 +683,7 @@ fr:
       video:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
+    content_warning: 'Attention au contenu : %{warning}'
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
     pin_errors:

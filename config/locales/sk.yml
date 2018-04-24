@@ -4,6 +4,7 @@ sk:
     about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
+    administered_by: 'Správca je:'
     closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne tej istej siete, odtiaľ.
     contact: Kontakt
     contact_missing: Nezadané
@@ -60,7 +61,15 @@ sk:
       destroyed_msg: Poznámka moderátora bola úspešne zmazaná!
     accounts:
       are_you_sure: Ste si istý?
+      avatar: Maskot
       by_domain: Doména
+      change_email:
+        changed_msg: Email k tomuto účtu bol úspešne zmenený!
+        current_email: Súčastný email
+        label: Zmeniť email
+        new_email: Nový email
+        submit: Zmeniť email
+        title: Zmeň email pre %{username}
       confirm: Potvrdiť
       confirmed: Potvrdený
       demote: Degradovať
@@ -108,6 +117,7 @@ sk:
       public: Verejná os
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnoviť avatar
+      remove_avatar: Odstrániť avatár
       reset: Reset
       reset_password: Obnoviť heslo
       resubscribe: Znovu odoberať
@@ -128,6 +138,7 @@ sk:
       statuses: Príspevky
       subscribe: Odoberať
       title: Účty
+      unconfirmed_email: Nepotvrdený email
       undo_silenced: Zrušiť stíšenie
       undo_suspension: Zrušiť suspendáciu
       unsubscribe: Prestať odoberať
@@ -150,8 +161,9 @@ sk:
         enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
         memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme spomínať"'
         promote_user: "%{name} povýšil/a používateľa %{target}"
+        remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
         reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
-        resolve_report: "%{name} zamietli nahlásenie %{target}"
+        resolve_report: "%{name} vyriešili nahlásenie užívateľa %{target}"
         silence_account: "%{name} utíšil/a účet %{target}"
         suspend_account: "%{name} zablokoval/a účet používateľa %{target}"
         unsilence_account: "%{name} zrušil/a utíšenie účtu používateľa %{target}"
@@ -239,8 +251,14 @@ sk:
         expired: Expirované
         title: Filtrovať
       title: Pozvánky
+    report_notes:
+      created_msg: Poznámka o nahlásení úspešne vytvorená!
+      destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
-      action_taken_by: Zákrok vykonal
+      account:
+        note: poznámka
+        report: nahlás
+      action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
       comment:
         none: Žiadne
