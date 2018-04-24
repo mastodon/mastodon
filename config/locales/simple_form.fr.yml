@@ -8,6 +8,7 @@ fr:
         display_name:
           one: <span class="name-counter">1</span> caractère restant
           other: <span class="name-counter">%{count}</span> caractères restants
+        fields: Vous pouvez avoir jusqu'à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 700x335px
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
         note:
@@ -22,6 +23,10 @@ fr:
       user:
         filtered_languages: Les langues sélectionnées seront filtrées hors de vos fils publics pour vous
     labels:
+      account:
+        fields:
+          name: Étiquette
+          value: Contenu
       defaults:
         avatar: Image de profil
         confirm_new_password: Confirmation du nouveau mot de passe
@@ -31,6 +36,7 @@ fr:
         display_name: Nom public
         email: Adresse courriel
         expires_in: Expire après
+        fields: Métadonnées du profil
         filtered_languages: Langues filtrées
         header: Image d’en-tête
         locale: Langue

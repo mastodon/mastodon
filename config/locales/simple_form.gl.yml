@@ -8,6 +8,7 @@ gl:
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
+        fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Como moito 2MB. Será reducida a 700x335px
         locked: Require que vostede aprove as seguidoras de xeito manual
         note:
@@ -22,6 +23,10 @@ gl:
       user:
         filtered_languages: Os idiomas marcados filtraranse das liñas temporais públicas para vostede
     labels:
+      account:
+        fields:
+          name: Etiqueta
+          value: Contido
       defaults:
         avatar: Avatar
         confirm_new_password: Confirme o novo contrasinal
@@ -31,6 +36,7 @@ gl:
         display_name: Nome mostrado
         email: enderezo correo electrónico
         expires_in: Caducidade despois de
+        fields: Metadatos do perfil
         filtered_languages: Idiomas filtrados
         header: Cabezallo
         locale: Idioma
