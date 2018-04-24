@@ -16,11 +16,11 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def reblog?
-    !direct? && (!private? || owned?) && show? && !current_account.blocking?(author)
+    !direct? && (!private? || owned?) && show? && !current_account&.blocking?(author)
   end
 
   def favourite?
-    show? && !current_account.blocking?(author)
+    show? && !current_account&.blocking?(author)
   end
 
   def destroy?
