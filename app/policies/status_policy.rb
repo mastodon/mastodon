@@ -16,7 +16,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def reblog?
-    !direct? && (!private? || owned?) && show?
+    !direct? && (!private? || owned?) && show? && !current_account.blocking?(author)
   end
 
   def destroy?
