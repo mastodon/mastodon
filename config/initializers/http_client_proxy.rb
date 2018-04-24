@@ -2,7 +2,7 @@ Rails.application.configure do
   config.x.http_client_proxy = {}
   if ENV['http_proxy'].present?
     proxy = URI.parse(ENV['http_proxy'])
-    raise "Unsupported proxy type: #{proxy.scheme}" unless ["http", "https"].include? proxy.scheme
+    raise "Unsupported proxy type: #{proxy.scheme}" unless %w(http https).include? proxy.scheme
     raise "No proxy host" unless proxy.host
 
     host = proxy.host
