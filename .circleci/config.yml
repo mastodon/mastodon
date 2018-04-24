@@ -23,6 +23,13 @@ aliases:
       paths:
         - ./mastodon/
 
+  - &restore_ruby_dependencies
+    restore_cache:
+      keys:
+        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
+        - v2-ruby-dependencies--
+
   - &install_steps
     steps:
       - checkout
@@ -54,25 +61,13 @@ aliases:
         - *install_system_dependencies
 
         - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
-        - restore_cache:
-            keys:
-              - v1-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
-              - v1-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
-              - v1-ruby-dependencies--
+        - *restore_ruby_dependencies
         - run: bundle install --clean --jobs 16 --path ./vendor/bundle/ --retry 3 --with pam_authentication --without development production
         - save_cache:
-            key: v1-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+            key: v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
             paths:
+              - ./.bundle/
               - ./vendor/bundle/
-
-        - run:
-            name: Precompile Assets
-            command: |
-              if [ ! -d ./public/assets/ -o ! -d ./public/packs-test/ ]; then
-                ./bin/rails assets:precompile
-              fi
-
-        - *persist_to_workspace
 
   - &test_steps
       steps:
@@ -80,6 +75,15 @@ aliases:
 
         - *install_system_dependencies
         - run: sudo apt-get install -y ffmpeg
+
+        - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
+        - *restore_ruby_dependencies
+
+        - restore_cache:
+            keys:
+              - precompiled-assets-{{ .Branch }}-{{ .Revision }}
+              - precompiled-assets-{{ .Branch }}-
+              - precompiled-assets--
 
         - run:
             name: Prepare Tests
@@ -103,6 +107,20 @@ jobs:
       - image: circleci/ruby:2.4.4-stretch-node
         environment: *ruby_environment
     <<: *install_ruby_dependencies
+
+  build:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - *install_system_dependencies
+      - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
+      - *restore_ruby_dependencies
+      - run: ./bin/rails assets:precompile
+      - save_cache:
+          key: precompiled-assets-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ./public/assets
+            - ./public/packs-test/
 
   test-ruby2.5:
     <<: *defaults
@@ -138,6 +156,8 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
+      - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
+      - *restore_ruby_dependencies
       - run: bundle exec i18n-tasks check-normalized
       - run: bundle exec i18n-tasks unused
 
@@ -151,13 +171,18 @@ workflows:
             - install
       - install-ruby2.4:
           requires:
+            - install
+      - build:
+          requires:
             - install-ruby2.5
       - test-ruby2.5:
           requires:
             - install-ruby2.5
+            - build
       - test-ruby2.4:
           requires:
             - install-ruby2.4
+            - build
       - test-webui:
           requires:
             - install

@@ -89,34 +89,34 @@ describe StatusThreadingConcern do
     let!(:viewer) { Fabricate(:account, username: 'viewer') }
 
     it 'returns replies' do
-      expect(status.descendants).to include(reply1, reply2, reply3)
+      expect(status.descendants(4)).to include(reply1, reply2, reply3)
     end
 
     it 'does not return replies user is not allowed to see' do
       reply1.update(visibility: :private)
       reply3.update(visibility: :direct)
 
-      expect(status.descendants(viewer)).to_not include(reply1, reply3)
+      expect(status.descendants(4, viewer)).to_not include(reply1, reply3)
     end
 
     it 'does not return replies from blocked users' do
       viewer.block!(jeff)
-      expect(status.descendants(viewer)).to_not include(reply3)
+      expect(status.descendants(4, viewer)).to_not include(reply3)
     end
 
     it 'does not return replies from muted users' do
       viewer.mute!(jeff)
-      expect(status.descendants(viewer)).to_not include(reply3)
+      expect(status.descendants(4, viewer)).to_not include(reply3)
     end
 
     it 'does not return replies from silenced and not followed users' do
       jeff.update(silenced: true)
-      expect(status.descendants(viewer)).to_not include(reply3)
+      expect(status.descendants(4, viewer)).to_not include(reply3)
     end
 
     it 'does not return replies from blocked domains' do
       viewer.block_domain!('example.com')
-      expect(status.descendants(viewer)).to_not include(reply2)
+      expect(status.descendants(4, viewer)).to_not include(reply2)
     end
   end
 end

@@ -3,7 +3,7 @@
 #
 # Table name: custom_emojis
 #
-#  id                 :integer          not null, primary key
+#  id                 :bigint(8)        not null, primary key
 #  shortcode          :string           default(""), not null
 #  domain             :string
 #  image_file_name    :string
@@ -39,6 +39,8 @@ class CustomEmoji < ApplicationRecord
   scope :alphabetic, -> { order(domain: :asc, shortcode: :asc) }
 
   remotable_attachment :image, LIMIT
+
+  include Attachmentable
 
   def local?
     domain.nil?
