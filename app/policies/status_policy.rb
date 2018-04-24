@@ -19,6 +19,10 @@ class StatusPolicy < ApplicationPolicy
     !direct? && (!private? || owned?) && show? && !current_account.blocking?(author)
   end
 
+  def favourite?
+    show? && !current_account.blocking?(author)
+  end
+
   def destroy?
     staff? || owned?
   end
