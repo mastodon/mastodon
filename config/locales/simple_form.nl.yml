@@ -1,10 +1,10 @@
----
 nl:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
-        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten ontvangt
+        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen
+          wanneer je tijdens jouw afwezigheid persoonlijke berichten ontvangt
         display_name:
           one: <span class="name-counter">1</span> teken over
           other: <span class="name-counter">%{count}</span> tekens over
@@ -14,13 +14,17 @@ nl:
           one: <span class="note-counter">1</span> teken over
           other: <span class="note-counter">%{count}</span> tekens over
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
-        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
+        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk
+          apparaat waarmee je inlogt).
+        fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
-        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcode's.
+        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik
+          een van jouw herstelcode's.
       user:
-        filtered_languages: De geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd
+        filtered_languages: De geselecteerde talen worden uit de lokale en globale
+          tijdlijn verwijderd
     labels:
       defaults:
         avatar: Avatar
@@ -55,6 +59,7 @@ nl:
         type: Importtype
         username: gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
+        fields: Metadata profiel
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -63,11 +68,15 @@ nl:
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Een e-mail versturen wanneer iemand jouw toot als favoriet markeert
         follow: Een e-mail versturen wanneer iemand jou volgt
-        follow_request: Een e-mail versturen wanneer iemand jou wilt volgen
+        follow_request: Een e-mail versturen wanneer iemand jou wil volgen
         mention: Een e-mail versturen wanneer iemand jou vermeld
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
+      account:
+        fields:
+          name: Label
+          value: Inhoud
     'no': Nee
     required:
-      mark: "*"
+      mark: '*'
       text: vereist
     'yes': Ja
