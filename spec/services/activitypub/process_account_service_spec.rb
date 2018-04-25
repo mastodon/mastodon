@@ -6,9 +6,9 @@ RSpec.describe ActivityPub::ProcessAccountService do
   context 'property values' do
     let(:payload) do
       {
-        id: 'https://foo',
+        id: 'https://foo.test',
         type: 'Actor',
-        inbox: 'https://foo/inbox',
+        inbox: 'https://foo.test/inbox',
         attachment: [
           { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
           { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
