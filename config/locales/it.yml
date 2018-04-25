@@ -3,43 +3,283 @@ it:
   about:
     about_mastodon_html: Mastodon è un social network <em>gratuito e open-source</em>. Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita del <em>social network</em>.
     about_this: A proposito di questo server
-    closed_registrations: Al momento le iscrizioni a questo server sono chiuse.
+    administered_by: 'Amministrato da:'
+    closed_registrations: Al momento le iscrizioni a questo server sono chiuse. Tuttavia! Puoi provare a cercare un istanza diversa su cui creare un account ed avere accesso alla stessa identica rete di questa.
     contact: Contatti
+    contact_missing: Non impostato
+    contact_unavailable: N/D
     description_headline: Cos'è %{domain}?
     domain_count_after: altri server
     domain_count_before: Connesso a
-    other_instances: Altri server
+    features:
+      humane_approach_title: Un approccio più umano
+      not_a_product_body: Mastodon non è una rete commerciale. Niente pubblicità, niente data mining, nessun giardino murato. Non c'è nessuna autorità centrale.
+      not_a_product_title: Tu sei una persona, non un prodotto
+      real_conversation_title: Creato per conversazioni reali
+    generic_description: "%{domain} è un server nella rete"
+    learn_more: Scopri altro
+    other_instances: Elenco istanze
     source_code: Codice sorgente
-    status_count_after: status
+    status_count_after: stati
     status_count_before: Che hanno pubblicato
     user_count_after: utenti
-    user_count_before: Casa di
+    user_count_before: Home di
+    what_is_mastodon: Che cos'è Mastodon?
   accounts:
     follow: Segui
     followers: Seguaci
     following: Seguiti
+    media: Media
     nothing_here: Qui non c'è nulla!
     people_followed_by: Persone seguite da %{name}
     people_who_follow: Persone che seguono %{name}
     posts: Posts
+    posts_with_replies: Toot e repliche
     remote_follow: Segui da remoto
+    reserved_username: Il nome utente è riservato
+    roles:
+      admin: Amministratore
+      moderator: Mod
     unfollow: Non seguire più
+  admin:
+    account_moderation_notes:
+      account: Moderatore
+      create: Crea
+      created_at: Data
+      created_msg: Nota di moderazione creata con successo!
+      delete: Elimina
+      destroyed_msg: Nota di moderazione distrutta con successo!
+    accounts:
+      are_you_sure: Sei sicuro?
+      avatar: Avatar
+      by_domain: Dominio
+      change_email:
+        changed_msg: Account email cambiato con successo!
+        current_email: Email corrente
+        label: Cambia email
+        new_email: Nuova email
+        submit: Cambia email
+        title: Cambia email per %{username}
+      confirm: Conferma
+      confirmed: Confermato
+      demote: Declassa
+      disable: Disabilita
+      disable_two_factor_authentication: Disabilita 2FA
+      disabled: Disabilitato
+      display_name: Nome visualizzato
+      domain: Dominio
+      edit: Modifica
+      email: Email
+      enable: Abilita
+      enabled: Abilitato
+      feed_url: URL Feed
+      followers: Follower
+      followers_url: URL follower
+      follows: Follows
+      inbox_url: URL inbox
+      ip: IP
+      location:
+        all: Tutto
+        local: Locale
+        remote: Remoto
+        title: Luogo
+      login_status: Stato login
+      media_attachments: Media allegati
+      memorialize: Trasforma in memoriam
+      moderation:
+        all: Tutto
+        silenced: Silenziati
+        suspended: Sospesi
+        title: Moderazione
+      moderation_notes: Note di moderazione
+      most_recent_activity: Attività più recenti
+      most_recent_ip: IP più recenti
+      not_subscribed: Non sottoscritto
+      order:
+        alphabetic: Alfabetico
+        most_recent: Più recente
+        title: Ordine
+      outbox_url: URL outbox
+      perform_full_suspension: Esegui sospensione completa
+      profile_url: URL profilo
+      promote: Promuovi
+      protocol: Protocollo
+      public: Pubblico
+      redownload: Aggiorna avatar
+      remove_avatar: Rimuovi avatar
+      reset: Reimposta
+      reset_password: Reimposta password
+      role: Permessi
+      roles:
+        admin: Amministratore
+        moderator: Moderatore
+        staff: Staff
+        user: Utente
+      search: Cerca
+      silence: Silenzia
+      statuses: Stati
+      subscribe: Sottoscrivi
+      title: Account
+      unconfirmed_email: Email non confermata
+      undo_silenced: Rimuovi silenzia
+      undo_suspension: Rimuovi sospensione
+      username: Nome utente
+      web: Web
+    action_logs:
+      actions:
+        confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
+        create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
+        create_domain_block: "%{name} ha bloccato il dominio %{target}"
+    custom_emojis:
+      by_domain: Dominio
+      copied_msg: Creata con successo una copia locale dell'emoji
+      copy: Copia
+      copy_failed_msg: Impossibile creare una copia locale di questo emoji
+      created_msg: Emoji creato con successo!
+      delete: Elimina
+      destroyed_msg: Emoji distrutto con successo!
+      disable: Disabilita
+      disabled_msg: Questa emoji è stata disabilitata con successo
+      emoji: Emoji
+      enable: Abilita
+      enabled_msg: Questa emoji è stata abilitata con successo
+      image_hint: PNG fino a 50KB
+      listed: Elencato
+      new:
+        title: Aggiungi nuovo emoji personalizzato
+      overwrite: Sovrascrivi
+      shortcode: Shortcode
+      title: Emoji personalizzate
+      unlisted: Non elencato
+      update_failed_msg: Impossibile aggiornare questa emojii
+      updated_msg: Emoji aggiornata con successo!
+      upload: Carica
+    domain_blocks:
+      add_new: Aggiungi nuovo
+      created_msg: Il blocco del dominio sta venendo processato
+      destroyed_msg: Il blocco del dominio è stato rimosso
+      domain: Dominio
+      new:
+        create: Crea blocco
+        severity:
+          noop: Nessuno
+          silence: Silenzia
+          suspend: Sospendi
+        title: Nuovo blocco dominio
+      severities:
+        noop: Nessuno
+        silence: Silenzia
+        suspend: Sospendi
+      severity: Severità
+      title: Blocchi dominio
+    email_domain_blocks:
+      add_new: Aggiungi nuovo
+      delete: Elimina
+      domain: Dominio
+      new:
+        create: Aggiungi dominio
+    instances:
+      domain_name: Dominio
+      reset: Reimposta
+      search: Cerca
+      title: Istanze conosciute
+    invites:
+      filter:
+        all: Tutto
+        available: Disponibile
+        expired: Scaduto
+        title: Filtro
+      title: Inviti
+    reports:
+      account:
+        note: note
+      are_you_sure: Sei sicuro?
+      assign_to_self: Assegna a me
+      comment:
+        none: Nessuno
+      delete: Elimina
+      id: ID
+      mark_as_resolved: Segna come risolto
+      mark_as_unresolved: Segna come non risolto
+      notes:
+        create: Aggiungi nota
+        create_and_resolve: Risolvi con nota
+        create_and_unresolve: Riapri con nota
+        delete: Elimina
+      report_contents: Contenuti
+      resolved: Risolto
+      status: Stati
+      target: Obbiettivo
+      unassign: Non assegnare
+      unresolved: Non risolto
+      updated_at: Aggiornato
+      view: Mostra
+    settings:
+      activity_api_enabled:
+        title: Pubblica statistiche aggregate circa l'attività dell'utente
+      peers_api_enabled:
+        title: Pubblica elenco di istanze scoperte
+      registrations:
+        min_invite_role:
+          disabled: Nessuno
+      show_staff_badge:
+        title: Mostra badge staff
+      site_description:
+        title: Descrizione istanza
+      site_terms:
+        title: Termini di servizio personalizzati
+      site_title: Nome istanza
+      timeline_preview:
+        title: Anteprima timeline
+      title: Impostazioni sito
+    statuses:
+      batch:
+        delete: Elimina
+        nsfw_off: NSFW OFF
+        nsfw_on: NSFW ON
+      execute: Esegui
+      failed_to_execute: Impossibile eseguire
+      media:
+        hide: Nascondi media
+        show: Mostra media
+        title: Media
+      no_media: Nessun media
+      with_media: con media
+    subscriptions:
+      callback_url: URL Callback
+      confirmed: Confermato
+      expires_in: Scade in
+      topic: Argomento
+    title: Amministrazione
   application_mailer:
+    notification_preferences: Cambia preferenze email
+    salutation: "%{name},"
     settings: 'Cambia le impostazioni per le e-mail: %{link}'
     view: 'Guarda:'
+    view_profile: Mostra profilo
+    view_status: Mostra stati
   applications:
+    created: Applicazione creata con successo
+    destroyed: Applicazione eliminata con successo
     invalid_url: L'URL fornito non è valido
   auth:
+    change_password: Password
+    confirm_email: Conferma email
+    delete_account: Elimina account
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
     login: Entra
     logout: Logout
+    migrate_account: Sposta ad un account differente
+    or: o
     register: Iscriviti
+    register_elsewhere: Iscriviti su un altro server
     resend_confirmation: Invia di nuovo le istruzioni di conferma
     reset_password: Resetta la password
     security: Credenziali
     set_new_password: Imposta una nuova password
   authorize_follow:
+    already_following: Stai già seguendo questo account
     error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
     follow: Segui
     title: Segui %{acct}
@@ -161,6 +401,9 @@ it:
     manual_instructions: 'Se non puoi scannerizzare il QR code e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
     setup: Configura
     wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del telefono siano corretti.
+  user_mailer:
+    welcome:
+      title: Benvenuto a bordo, %{name}!
   users:
     invalid_email: L'indirizzo e-mail inserito non è valido
     invalid_otp_token: Codice d'accesso non valido

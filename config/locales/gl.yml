@@ -4,6 +4,7 @@ gl:
     about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Pode interactuar con elas si ten unha conta nalgures do fediverso.
     about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.
     about_this: Sobre
+    administered_by: 'Administrada por:'
     closed_registrations: O rexistro en esta instancia está pechado en este intre. Porén! Pode atopar unha instancia diferente para obter unha conta e ter acceso exactamente a misma rede desde alí.
     contact: Contacto
     contact_missing: Non establecido
@@ -60,7 +61,15 @@ gl:
       destroyed_msg: Nota a moderación destruída con éxito!
     accounts:
       are_you_sure: Está segura?
+      avatar: Avatar
       by_domain: Dominio
+      change_email:
+        changed_msg: Cambiouse correctamente o correo-e da conta!
+        current_email: Correo-e actual
+        label: Cambiar correo-e
+        new_email: Novo correo-e
+        submit: Cambiar correo-e
+        title: Cambiar o correo-e de %{username}
       confirm: Confirmar
       confirmed: Confirmado
       demote: Degradar
@@ -108,6 +117,7 @@ gl:
       public: Público
       push_subscription_expires: A suscrición PuSH caduca
       redownload: Actualizar avatar
+      remove_avatar: Eliminar avatar
       reset: Restablecer
       reset_password: Restablecer contrasinal
       resubscribe: Voltar a suscribir
@@ -128,6 +138,7 @@ gl:
       statuses: Estados
       subscribe: Subscribir
       title: Contas
+      unconfirmed_email: Correo-e non confirmado
       undo_silenced: Desfacer acalar
       undo_suspension: Desfacer suspensión
       unsubscribe: Non subscribir
@@ -135,6 +146,8 @@ gl:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} asignou o informe %{target} a ela misma"
+        change_email_user: "%{name} cambiou o enderezo de correo-e da usuaria %{target}"
         confirm_user: "%{name} comfirmou o enderezo de correo da usuaria %{target}"
         create_custom_emoji: "%{name} subeu un novo emoji %{target}"
         create_domain_block: "%{name} bloqueou o dominio %{target}"
@@ -150,10 +163,13 @@ gl:
         enable_user: "%{name} habilitou a conexión para a usuaria %{target}"
         memorialize_account: "%{name} converteu a conta de  %{target} nunha páxina para a lembranza"
         promote_user: "%{name} promoveu a usuaria %{target}"
+        remove_avatar_user: "%{name} eliminou o avatar de %{target}"
+        reopen_report: "%{name} voltou abrir informe  %{target}"
         reset_password_user: "%{name} restableceu o contrasinal da usuaria %{target}"
-        resolve_report: "%{name} rexeitou o informe %{target}"
+        resolve_report: "%{name} solucionou o informe %{target}"
         silence_account: "%{name} acalou a conta de %{target}"
         suspend_account: "%{name} suspendeu a conta de %{target}"
+        unassigned_report: "%{name} non asignou informe %{target}"
         unsilence_account: "%{name} deulle voz a conta de %{target}"
         unsuspend_account: "%{name} activou a conta de %{target}"
         update_custom_emoji: "%{name} actualizou emoji %{target}"
@@ -239,28 +255,48 @@ gl:
         expired: Cadudado
         title: Filtro
       title: Convida
+    report_notes:
+      created_msg: Creouse correctamente a nota do informe!
+      destroyed_msg: Nota do informe eliminouse con éxito!
     reports:
+      account:
+        note: nota
+        report: informe
       action_taken_by: Acción tomada por
       are_you_sure: Está segura?
+      assign_to_self: Asignarmo
+      assigned: Asignado ao Moderador
       comment:
         none: Nada
+      created_at: Reportado
       delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resolto
+      mark_as_unresolved: Marcar como non resolto
+      notes:
+        create: Engadir nota
+        create_and_resolve: Resolver con nota
+        create_and_unresolve: Votar a abrir con Nota
+        delete: Eliminar
+        placeholder: Describir qué decisións foron tomadas, ou calquer actualización a este informe…
       nsfw:
         'false': Non agochar anexos de medios
         'true': Agochar anexos de medios
+      reopen: Voltar a abrir o informe
       report: 'Informe #%{id}'
       report_contents: Contidos
       reported_account: Conta reportada
       reported_by: Reportada por
       resolved: Resolto
+      resolved_msg: Resolveuse con éxito o informe!
       silence_account: Acalar conta
       status: Estado
       suspend_account: Suspender conta
       target: Obxetivo
       title: Informes
+      unassign: Non asignar
       unresolved: Non resolto
+      updated_at: Actualizado
       view: Vista
     settings:
       activity_api_enabled:
@@ -381,6 +417,7 @@ gl:
     security: Seguridade
     set_new_password: Establecer novo contrasinal
   authorize_follow:
+    already_following: Xa está a seguir esta conta
     error: Desgraciadamente, algo fallou ao buscar a conta remota
     follow: Seguir
     follow_request: 'Enviou unha petición de seguimento a:'
@@ -473,6 +510,7 @@ gl:
       '21600': 6 horas
       '3600': 1 hora
       '43200': 12 horas
+      '604800': 1 semana
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Xerar
@@ -576,6 +614,10 @@ gl:
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
     proceed: Proceda para seguir
     prompt: 'Vostede vai seguir:'
+  remote_unfollow:
+    error: Fallo
+    title: Título
+    unfollowed: Deixou de seguir
   sessions:
     activity: Última actividade
     browser: Navegador

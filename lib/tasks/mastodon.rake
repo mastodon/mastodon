@@ -109,7 +109,7 @@ namespace :mastodon do
 
         env['REDIS_PASSWORD'] = prompt.ask('Redis password:') do |q|
           q.required false
-          a.default nil
+          q.default nil
           q.modify :strip
         end
 

@@ -4,6 +4,7 @@ pt-BR:
     about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
+    administered_by: 'Administrado por:'
     closed_registrations: Os cadastros estão atualmente fechados nesta instância. No entanto, você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
     contact_missing: Não definido
@@ -60,7 +61,15 @@ pt-BR:
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       are_you_sure: Você tem certeza?
+      avatar: Avatar
       by_domain: Domínio
+      change_email:
+        changed_msg: E-mail da conta modificado com sucesso!
+        current_email: E-mail atual
+        label: Mudar e-mail
+        new_email: Novo e-mail
+        submit: Mudar e-mail
+        title: Mudar e-mail para %{username}
       confirm: Confirmar
       confirmed: Confirmado
       demote: Rebaixar
@@ -108,6 +117,7 @@ pt-BR:
       public: Público
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar avatar
+      remove_avatar: Remover avatar
       reset: Anular
       reset_password: Modificar senha
       resubscribe: Reinscrever-se
@@ -128,6 +138,7 @@ pt-BR:
       statuses: Postagens
       subscribe: Inscrever-se
       title: Contas
+      unconfirmed_email: E-mail não confirmado
       undo_silenced: Retirar silenciamento
       undo_suspension: Retirar suspensão
       unsubscribe: Desinscrever-se
@@ -135,6 +146,8 @@ pt-BR:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} designou a denúncia %{target} para si"
+        change_email_user: "%{name} mudou o endereço de e-mail do usuário %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_custom_emoji: "%{name} enviou o emoji novo %{target}"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
@@ -150,10 +163,13 @@ pt-BR:
         enable_user: "%{name} habilitou o acesso para o usuário %{target}"
         memorialize_account: "%{name} transformou a conta de %{target} em um memorial"
         promote_user: "%{name} promoveu o usuário %{target}"
+        remove_avatar_user: "%{name} removeu o avatar de %{target}"
+        reopen_report: "%{name} reabriu a denúncia %{target}"
         reset_password_user: "%{name} redefiniu a senha do usuário %{target}"
-        resolve_report: "%{name} dispensou a denúncia %{target}"
+        resolve_report: "%{name} resolveu a denúncia %{target}"
         silence_account: "%{name} silenciou a conta de %{target}"
         suspend_account: "%{name} suspendeu a conta de %{target}"
+        unassigned_report: "%{name} desatribuiu a denúncia %{target}"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
         unsuspend_account: "%{name} desativou a suspensão de  %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
@@ -239,28 +255,48 @@ pt-BR:
         expired: Expirados
         title: Filtro
       title: Convites
+    report_notes:
+      created_msg: Nota de denúncia criada com sucesso!
+      destroyed_msg: Nota de denúncia excluída com sucesso!
     reports:
+      account:
+        note: nota
+        report: denúncia
       action_taken_by: Ação realizada por
       are_you_sure: Você tem certeza?
+      assign_to_self: Designar para mim
+      assigned: Moderador designado
       comment:
         none: Nenhum
+      created_at: Denunciado
       delete: Excluir
       id: ID
       mark_as_resolved: Marcar como resolvido
+      mark_as_unresolved: Marcar como não resolvido
+      notes:
+        create: Adicionar nota
+        create_and_resolve: Resolver com nota
+        create_and_unresolve: Reabrir com nota
+        delete: Excluir
+        placeholder: Descreva que ações foram tomadas, ou quaisquer atualizações sobre esta denúncia…
       nsfw:
         'false': Mostrar mídias anexadas
         'true': Esconder mídias anexadas
+      reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
       reported_account: Conta denunciada
       reported_by: Denunciada por
       resolved: Resolvido
+      resolved_msg: Denúncia resolvida com sucesso!
       silence_account: Silenciar conta
       status: Status
       suspend_account: Suspender conta
       target: Alvo
       title: Denúncias
+      unassign: Desatribuir
       unresolved: Não resolvido
+      updated_at: Atualizado
       view: Visualizar
     settings:
       activity_api_enabled:
@@ -381,6 +417,7 @@ pt-BR:
     security: Segurança
     set_new_password: Definir uma nova senha
   authorize_follow:
+    already_following: Você já está seguindo esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
     follow_request: 'Você mandou uma solicitação de seguidor para:'
@@ -473,6 +510,7 @@ pt-BR:
       '21600': 6 horas
       '3600': 1 hora
       '43200': 12 horas
+      '604800': 1 semana
       '86400': 1 dia
     expires_in_prompt: Nunca
     generate: Gerar
@@ -576,6 +614,9 @@ pt-BR:
     missing_resource: Não foi possível encontrar a URL de direcionamento para a sua conta
     proceed: Prosseguir para seguir
     prompt: 'Você irá seguir:'
+  remote_unfollow:
+    error: Erro
+    title: Título
   sessions:
     activity: Última atividade
     browser: Navegador
