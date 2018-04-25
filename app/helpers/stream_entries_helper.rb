@@ -12,17 +12,17 @@ module StreamEntriesHelper
     prepend_str = [
       [
         number_to_human(account.statuses_count, strip_insignificant_zeros: true),
-        t('accounts.posts'),
+        I18n.t('accounts.posts'),
       ].join(' '),
 
       [
         number_to_human(account.following_count, strip_insignificant_zeros: true),
-        t('accounts.following'),
+        I18n.t('accounts.following'),
       ].join(' '),
 
       [
         number_to_human(account.followers_count, strip_insignificant_zeros: true),
-        t('accounts.followers'),
+        I18n.t('accounts.followers'),
       ].join(' '),
     ].join(', ')
 
@@ -40,16 +40,16 @@ module StreamEntriesHelper
       end
     end
 
-    text = attachments.to_a.reject { |_, value| value.zero? }.map { |key, value| t("statuses.attached.#{key}", count: value) }.join(' · ')
+    text = attachments.to_a.reject { |_, value| value.zero? }.map { |key, value| I18n.t("statuses.attached.#{key}", count: value) }.join(' · ')
 
     return if text.blank?
 
-    t('statuses.attached.description', attached: text)
+    I18n.t('statuses.attached.description', attached: text)
   end
 
   def status_text_summary(status)
     return if status.spoiler_text.blank?
-    t('statuses.content_warning', warning: status.spoiler_text)
+    I18n.t('statuses.content_warning', warning: status.spoiler_text)
   end
 
   def status_description(status)
