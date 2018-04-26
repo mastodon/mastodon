@@ -391,7 +391,7 @@ class Account < ApplicationRecord
   end
 
   def emojis
-    CustomEmoji.from_text(note, domain)
+    @emojis ||= CustomEmoji.from_text(note, domain)
   end
 
   before_create :generate_keys

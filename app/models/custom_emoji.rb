@@ -42,6 +42,8 @@ class CustomEmoji < ApplicationRecord
 
   include Attachmentable
 
+  after_commit :remove_entity_cache
+
   def local?
     domain.nil?
   end
@@ -58,11 +60,17 @@ class CustomEmoji < ApplicationRecord
 
       return [] if shortcodes.empty?
 
-      where(shortcode: shortcodes, domain: domain, disabled: false)
+      EntityCache.instance.emoji(shortcodes, domain)
     end
 
     def search(shortcode)
       where('"custom_emojis"."shortcode" ILIKE ?', "%#{shortcode}%")
     end
+  end
+
+  private
+
+  def remove_entity_cache
+    Rails.cache.delete(EntityCache.instance.to_key(:emoji, shortcode, domain))
   end
 end
