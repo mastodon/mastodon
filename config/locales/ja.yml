@@ -278,7 +278,7 @@ ja:
         create_and_resolve: 書き込み、解決済みにする
         create_and_unresolve: 書き込み、未解決として開く
         delete: 削除
-        placeholder: このレポートに取られた措置やその他更新を記述してください
+        placeholder: このレポートに取られた措置や、その他の更新を記述してください…
       nsfw:
         'false': NSFW オフ
         'true': NSFW オン
@@ -684,6 +684,9 @@ ja:
         one: "%{count} 本の動画"
         other: "%{count} 本の動画"
     content_warning: '閲覧注意: %{warning}'
+    disallowed_hashtags:
+      one: '許可されていないハッシュタグが含まれています: %{tags}'
+      other: '許可されていないハッシュタグが含まれています: %{tags}'
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:

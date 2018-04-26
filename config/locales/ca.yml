@@ -265,7 +265,7 @@ ca:
       action_taken_by: Mesures adoptades per
       are_you_sure: N'estàs segur?
       assign_to_self: Assignar-me
-      assigned: Assignar Moderador
+      assigned: Moderador assignat
       comment:
         none: Cap
       created_at: Reportat
@@ -275,14 +275,14 @@ ca:
       mark_as_unresolved: Marcar sense resoldre
       notes:
         create: Afegir nota
-        create_and_resolve: Resoldre amb Nota
-        create_and_unresolve: Reobrir amb Nota
+        create_and_resolve: Resoldre amb nota
+        create_and_unresolve: Reobrir amb nota
         delete: Esborrar
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització d'aquest informe…
       nsfw:
         'false': Mostra els fitxers multimèdia adjunts
         'true': Amaga els fitxers multimèdia adjunts
-      reopen: Reobrir Informe
+      reopen: Reobrir informe
       report: 'Informe #%{id}'
       report_contents: Contingut
       reported_account: Compte reportat
@@ -354,8 +354,8 @@ ca:
       back_to_account: Torna a la pàgina del compte
       batch:
         delete: Suprimeix
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
+        nsfw_off: Marcar com a no sensible
+        nsfw_on: Marcar com a sensible
       execute: Executa
       failed_to_execute: No s'ha pogut executar
       media:
@@ -684,6 +684,9 @@ ca:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
     content_warning: 'Avís de contingut: %{warning}'
+    disallowed_hashtags:
+      one: 'conté una etiqueta no permesa: %{tags}'
+      other: 'conté les etiquetes no permeses: %{tags}'
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
@@ -785,6 +788,7 @@ ca:
       <p>Originalment adaptat des del <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
+    contrast: Alt contrast
     default: Mastodont
   time:
     formats:

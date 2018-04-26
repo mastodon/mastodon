@@ -354,8 +354,8 @@ pt-BR:
       back_to_account: Voltar para página da conta
       batch:
         delete: Deletar
-        nsfw_off: NSFW ATIVADO
-        nsfw_on: NSFW DESATIVADO
+        nsfw_off: Marcar como não-sensível
+        nsfw_on: Marcar como sensível
       execute: Executar
       failed_to_execute: Falha em executar
       media:
@@ -683,6 +683,9 @@ pt-BR:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
     content_warning: 'Aviso de conteúdo: %{warning}'
+    disallowed_hashtags:
+      one: 'continha a hashtag não permitida: %{tags}'
+      other: 'continha as hashtags não permitidas: %{tags}'
     open_in_web: Abrir na web
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
@@ -707,6 +710,7 @@ pt-BR:
   terms:
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
+    contrast: Alto contraste
     default: Mastodon
   time:
     formats:
