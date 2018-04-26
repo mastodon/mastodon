@@ -162,40 +162,6 @@ export default class Status extends ImmutablePureComponent {
       return null;
     }
 
-    let quote = null;
-    if (status.get('quote', null) !== null) {
-      let quote_status = status.get('quote');
-
-      let quote_media = null;
-      if (quote_status.get('media_attachments').size > 0) {
-        if (this.props.muted || quote_status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
-          quote_media = (
-            <AttachmentList
-              compact
-              media={quote_status.get('media_attachments')}
-            />
-          );
-        } else {
-          quote_media = (
-            <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-              {Component => <Component media={quote_status.get('media_attachments')} sensitive={quote_status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} quote={true} />}
-            </Bundle>
-          );
-        }
-      }
-
-      quote = (
-        <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
-          <div className='status__info'>
-            <div className='status__avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
-            <DisplayName account={quote_status.get('account')} />
-          </div>
-          <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} />
-          {quote_media}
-        </div>
-      );
-    }
-
     if (hidden) {
       return (
         <div>
@@ -265,6 +231,40 @@ export default class Status extends ImmutablePureComponent {
       statusAvatar = <Avatar account={status.get('account')} size={48} />;
     }else{
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
+    }
+
+    let quote = null;
+    if (status.get('quote', null) !== null) {
+      let quote_status = status.get('quote');
+
+      let quote_media = null;
+      if (quote_status.get('media_attachments').size > 0) {
+        if (this.props.muted || quote_status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+          quote_media = (
+            <AttachmentList
+              compact
+              media={quote_status.get('media_attachments')}
+            />
+          );
+        } else {
+          quote_media = (
+            <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
+              {Component => <Component media={quote_status.get('media_attachments')} sensitive={quote_status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} quote={true} />}
+            </Bundle>
+          );
+        }
+      }
+
+      quote = (
+        <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
+          <div className='status__info'>
+            <div className='status__avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
+            <DisplayName account={quote_status.get('account')} />
+          </div>
+          <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} />
+          {quote_media}
+        </div>
+      );
     }
 
     const handlers = this.props.muted ? {} : {
