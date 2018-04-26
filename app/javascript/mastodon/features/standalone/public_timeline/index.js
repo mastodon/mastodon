@@ -5,8 +5,6 @@ import StatusListContainer from '../../ui/containers/status_list_container';
 import {
   refreshPublicTimeline,
   expandPublicTimeline,
-  refreshCommunityTimeline,
-  expandCommunityTimeline,
 } from '../../../actions/timelines';
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
@@ -14,18 +12,12 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connectPublicStream } from '../../../actions/streaming';
 
 const messages = defineMessages({
-  public: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
-  community: { id: 'standalone.community_title', defaultMessage: 'A look inside...' },
+  title: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
 });
 
 @connect()
 @injectIntl
 export default class PublicTimeline extends React.PureComponent {
-
-  constructor(props) {
-    super(props);
-    this.state = { isCommunity : true };
-  }
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -33,7 +25,6 @@ export default class PublicTimeline extends React.PureComponent {
   };
 
   handleHeaderClick = () => {
-    this.setState({ isCommunity : !this.state.isCommunity });
     this.column.scrollTop();
   }
 
@@ -44,7 +35,6 @@ export default class PublicTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
-    dispatch(refreshCommunityTimeline());
     dispatch(refreshPublicTimeline());
     this.disconnect = dispatch(connectPublicStream());
   }
@@ -57,11 +47,7 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   handleLoadMore = () => {
-    if (this.state.isCommunity) {
-      this.props.dispatch(expandCommunityTimeline());
-    }else{
-      this.props.dispatch(expandPublicTimeline());
-    }
+    this.props.dispatch(expandPublicTimeline());
   }
 
   render () {
@@ -71,12 +57,12 @@ export default class PublicTimeline extends React.PureComponent {
       <Column ref={this.setRef}>
         <ColumnHeader
           icon='globe'
-          title={intl.formatMessage(this.state.isCommunity ? messages.community : messages.public)}
+          title={intl.formatMessage(messages.title)}
           onClick={this.handleHeaderClick}
         />
 
         <StatusListContainer
-          timelineId={this.state.isCommunity ? 'community' : 'public'}
+          timelineId='public'
           loadMore={this.handleLoadMore}
           scrollKey='standalone_public_timeline'
           trackScroll={false}
