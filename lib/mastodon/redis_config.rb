@@ -4,18 +4,18 @@ def setup_redis_env_url(prefix = nil, defaults = true)
   prefix = prefix.to_s.upcase + '_' unless prefix.nil?
   prefix = '' if prefix.nil?
 
-  return unless ENV[prefix + 'REDIS_URL'].blank?
+  return if ENV[prefix + 'REDIS_URL'].present?
 
   password = ENV.fetch(prefix + 'REDIS_PASSWORD') { '' if defaults }
   host     = ENV.fetch(prefix + 'REDIS_HOST') { 'localhost' if defaults }
   port     = ENV.fetch(prefix + 'REDIS_PORT') { 6379 if defaults }
   db       = ENV.fetch(prefix + 'REDIS_DB') { 0 if defaults }
 
-  if [password, host, port, db].all?(&:nil?)
-    ENV[prefix + 'REDIS_URL'] = ENV['REDIS_URL']
-  else
-    ENV[prefix + 'REDIS_URL'] = "redis://#{password.blank? ? '' : ":#{password}@"}#{host}:#{port}/#{db}"
-  end
+  ENV[prefix + 'REDIS_URL'] = if [password, host, port, db].all?(&:nil?)
+                                ENV['REDIS_URL']
+                              else
+                                "redis://#{password.blank? ? '' : ":#{password}@"}#{host}:#{port}/#{db}"
+                              end
 end
 
 setup_redis_env_url
