@@ -243,7 +243,6 @@
 .column-header {
   display: flex;
   font-size: 16px;
-  padding: 15px;
   background: lighten($ui-base-color, 4%);
   flex: 0 0 auto;
   cursor: pointer;
@@ -255,7 +254,7 @@
   & > button {
     margin: 0;
     border: none;
-    padding: 15px 0 15px 15px;
+    padding: 15px;
     color: inherit;
     background: transparent;
     font: inherit;
@@ -264,6 +263,10 @@
     overflow: hidden;
     white-space: nowrap;
     flex: 1;
+  }
+
+  & > .column-header__back-button {
+    color: $ui-highlight-color;
   }
 
   &.active {
@@ -303,7 +306,6 @@
 .column-header__buttons {
   height: 48px;
   display: flex;
-  margin: -15px;
   margin-left: 0;
 }
 

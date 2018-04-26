@@ -22,15 +22,15 @@ export default class StatusIcons extends React.PureComponent {
     mediaIcon: PropTypes.string,
     collapsible: PropTypes.bool,
     collapsed: PropTypes.bool,
-    setExpansion: PropTypes.func.isRequired,
+    setCollapsed: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
   //  Handles clicks on collapsed button
   handleCollapsedClick = (e) => {
-    const { collapsed, setExpansion } = this.props;
+    const { collapsed, setCollapsed } = this.props;
     if (e.button === 0) {
-      setExpansion(collapsed ? null : false);
+      setCollapsed(!collapsed);
       e.preventDefault();
     }
   }
