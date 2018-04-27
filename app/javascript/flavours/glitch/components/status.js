@@ -51,7 +51,6 @@ export default class Status extends ImmutablePureComponent {
   };
 
   state = {
-    isExpanded: this.props.expanded,
     isCollapsed: false,
     autoCollapsed: false,
   }
@@ -69,6 +68,7 @@ export default class Status extends ImmutablePureComponent {
     'collapse',
     'notification',
     'hidden',
+    'expanded',
   ]
 
   updateOnStates = [
@@ -79,23 +79,48 @@ export default class Status extends ImmutablePureComponent {
   //  If our settings have changed to disable collapsed statuses, then we
   //  need to make sure that we uncollapse every one. We do that by watching
   //  for changes to `settings.collapsed.enabled` in
-  //  `componentWillReceiveProps()`.
+  //  `getderivedStateFromProps()`.
 
   //  We also need to watch for changes on the `collapse` prop---if this
   //  changes to anything other than `undefined`, then we need to collapse or
   //  uncollapse our status accordingly.
-  componentWillReceiveProps (nextProps) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let update = {};
+    let updated = false;
+
+    // Make sure the state mirrors props we track…
+    if (nextProps.collapse !== prevState.collapseProp) {
+      update.collapseProp = nextProps.collapse;
+      updated = true;
+    }
+    if (nextProps.expanded !== prevState.expandedProp) {
+      update.expandedProp = nextProps.expanded;
+      updated = true;
+    }
+
+    // Update state based on new props
     if (!nextProps.settings.getIn(['collapsed', 'enabled'])) {
-      if (this.state.isCollapsed) {
-        this.setCollapsed(false);
+      if (prevState.isCollapsed) {
+        update.isCollapsed = false;
+        updated = true;
       }
     } else if (
-      nextProps.collapse !== this.props.collapse &&
+      nextProps.collapse !== prevState.collapseProp &&
       nextProps.collapse !== undefined
-    ) this.setCollapsed(nextProps.collapse);
-    if (nextProps.expanded !== this.props.expanded &&
+    ) {
+      update.isCollapsed = nextProps.collapse;
+      if (nextProps.collapse) update.isExpanded = false;
+      updated = true;
+    }
+    if (nextProps.expanded !== prevState.expandedProp &&
       nextProps.expanded !== undefined
-    ) this.setExpansion(nextProps.expanded);
+    ) {
+      update.isExpanded = nextProps.expanded;
+      if (nextProps.expanded) update.isCollapsed = false;
+      updated = true;
+    }
+
+    return updated ? update : null;
   }
 
   //  When mounting, we just check to see if our status should be collapsed,
