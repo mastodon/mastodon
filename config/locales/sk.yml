@@ -281,11 +281,11 @@ sk:
         report: nahlás
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
-      assign_to_self: ''
-      assigned: ''
+      assign_to_self: Priraď sebe
+      assigned: Priradený moderátor
       comment:
         none: Žiadne
-      created_at: ''
+      created_at: Nahlásené
       delete: Vymazať
       id: Identifikácia
       mark_as_resolved: Označiť ako vyriešené
@@ -304,7 +304,14 @@ sk:
       title: Reporty
       unresolved: Nevyriešené
       view: Zobraziť
-      resolved_msg: ''
+      resolved_msg: Hlásenie úspešne vyriešené!
+      mark_as_unresolved: Označ ako nevyriešené
+      notes:
+        create: Pridaj poznámku
+        delete: Vymaž
+      reopen: Znovu otvor report
+      unassign: Odobrať
+      updated_at: Aktualizované
     settings:
       activity_api_enabled:
         desc_html: Sčítanie lokálne publikovaných príspevkov, aktívnych užívateľov,
@@ -451,6 +458,7 @@ sk:
       return: Vrátiť sa na užívateľov profil
       web: Ísť na web
     title: Následovať %{acct}
+    already_following: Tento účet už následuješ
   datetime:
     distance_in_words:
       about_x_hours: '%{count}hod'
