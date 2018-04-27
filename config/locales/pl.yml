@@ -697,6 +697,9 @@ pl:
         one: "%{count} film"
         other: "%{count} filmów"
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
+    disallowed_hashtags:
+      one: 'zawiera niedozwolony hashtag: %{tags}'
+      other: 'zawiera niedozwolone hashtagi: %{tags}'
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
@@ -798,6 +801,7 @@ pl:
       <p>Bazowano na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
   themes:
+    contrast: Wysoki kontrast
     default: Mastodon
   time:
     formats:
