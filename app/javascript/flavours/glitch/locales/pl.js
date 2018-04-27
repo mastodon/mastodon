@@ -7,6 +7,7 @@ const messages = {
   'layout.desktop': 'Desktopowy',
   'layout.mobile': 'Mobilny',
   'navigation_bar.app_settings': 'Ustawienia aplikacji',
+  'navigation_bar.bookmarks': 'Zakładki',
   'getting_started.onboarding': 'Rozejrzyj się',
   'onboarding.page_one.federation': '{domain} jest \'instancją\' Mastodona. Mastodon to sieć działających niezależnie serwerów tworzących jedną sieć społecznościową. Te serwery nazywane są instancjami.',
   'onboarding.page_one.welcome': 'Witamy na {domain}!',
@@ -25,12 +26,16 @@ const messages = {
   'settings.image_backgrounds': 'Obrazy w tle',
   'settings.image_backgrounds_media': 'Wyświetlaj zawartość multimedialną zwiniętych wpisów',
   'settings.image_backgrounds_users': 'Nadaj tło zwiniętym wpisom',
+  'settings.layout': 'Układ',
   'settings.media': 'Zawartość multimedialna',
   'settings.media_letterbox': 'Letterbox media',
   'settings.media_fullwidth': 'Podgląd zawartości multimedialnej o pełnej szerokości',
-  'settings.preferences': 'Preferencje użytkownika',
-  'settings.wide_view': 'Szeroki widok (tylko w trybie desktopowym)',
   'settings.navbar_under': 'Pasek nawigacji na dole (tylko w trybie mobilnym)',
+  'settings.preferences': 'Preferencje użytkownika',
+  'settings.side_arm': 'Drugi przycisk wysyłania',
+  'settings.side_arm.none': 'Żaden',
+  'settings.wide_view': 'Szeroki widok (tylko w trybie desktopowym)',
+  'status.bookmark': 'Dodaj do zakładek',
   'status.collapse': 'Zwiń',
   'status.uncollapse': 'Rozwiń',
 
@@ -49,6 +54,7 @@ const messages = {
   'notification_purge.btn_none': 'Odznacz\nwszystkie',
   'notification_purge.btn_invert': 'Odwróć\nzaznaczenie',
   'notification_purge.btn_apply': 'Usuń\nzaznaczone',
+  'notification_purge.start': 'Przejdź do trybu usuwania powiadomień',
 
   'compose.attach.upload': 'Wyślij plik',
   'compose.attach.doodle': 'Narysuj coś',
@@ -61,6 +67,13 @@ const messages = {
   'advanced_options.threaded_mode.short': 'Tryb wątków',
   'advanced_options.threaded_mode.long': 'Przechodzi do tworzenia odpowiedzi po publikacji wpisu',
   'advanced_options.threaded_mode.tooltip': 'Włączono tryb wątków',
+  
+  'column.bookmarks': 'Zakładki',
+  'compose_form.sensitive': 'Oznacz zawartość multimedialną jako wrażliwą',
+  'compose_form.spoiler': 'Ukryj tekst za ostrzeżeniem',
+  'favourite_modal.combo': 'Możesz nacisnąć {combo}, aby pominąć to następnym razem',
+  'tabs_bar.compose': 'Napisz',
+  
 };
 
 export default Object.assign({}, inherited, messages);
