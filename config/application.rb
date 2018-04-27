@@ -43,6 +43,7 @@ module Mastodon
       :de,
       :eo,
       :es,
+      :eu,
       :fa,
       :fi,
       :fr,
