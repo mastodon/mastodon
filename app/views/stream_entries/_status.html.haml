@@ -14,6 +14,9 @@
   entry_classes = h_class + ' ' + mf_classes + ' ' + style_classes
 
 - if status.reply? && include_threads
+  - if @next_ancestor
+    .entry{ class: entry_classes }
+      = render 'stream_entries/more', url: short_account_status_url(@next_ancestor.account.username, @next_ancestor)
   = render partial: 'stream_entries/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id }
 
 .entry{ class: entry_classes }
@@ -36,4 +39,14 @@
   = render (centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status'), status: status.proper
 
 - if include_threads
-  = render partial: 'stream_entries/status', collection: @descendants, as: :status, locals: { is_successor: true, parent_id: status.id }
+  - if @since_descendant_thread_id
+    .entry{ class: entry_classes }
+      = render 'stream_entries/more', url: short_account_status_url(status.account.username, status, max_descendant_thread_id: @since_descendant_thread_id + 1)
+  - @descendant_threads.each do |thread|
+    = render partial: 'stream_entries/status', collection: thread[:statuses], as: :status, locals: { is_successor: true, parent_id: status.id }
+    - if thread[:next_status]
+      .entry{ class: entry_classes }
+        = render 'stream_entries/more', url: short_account_status_url(thread[:next_status].account.username, thread[:next_status])
+  - if @next_descendant_thread
+    .entry{ class: entry_classes }
+      = render 'stream_entries/more', url: short_account_status_url(status.account.username, status, since_descendant_thread_id: @max_descendant_thread_id - 1)

@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310000000) do
+ActiveRecord::Schema.define(version: 2018_04_10_204633) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "account_domain_blocks", force: :cascade do |t|
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(version: 20180310000000) do
     t.boolean "memorial", default: false, null: false
     t.bigint "moved_to_account_id"
     t.string "featured_collection_url"
+    t.jsonb "fields"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower"
     t.index ["uri"], name: "index_accounts_on_uri"
@@ -355,6 +357,16 @@ ActiveRecord::Schema.define(version: 20180310000000) do
     t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
   end
 
+  create_table "report_notes", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "report_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_report_notes_on_account_id"
+    t.index ["report_id"], name: "index_report_notes_on_report_id"
+  end
+
   create_table "reports", force: :cascade do |t|
     t.bigint "status_ids", default: [], null: false, array: true
     t.text "comment", default: "", null: false
@@ -364,6 +376,7 @@ ActiveRecord::Schema.define(version: 20180310000000) do
     t.bigint "account_id", null: false
     t.bigint "action_taken_by_account_id"
     t.bigint "target_account_id", null: false
+    t.bigint "assigned_account_id"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
   end
@@ -569,7 +582,10 @@ ActiveRecord::Schema.define(version: 20180310000000) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", name: "fk_f5fc4c1ee3", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", name: "fk_e84df68546", on_delete: :cascade
   add_foreign_key "oauth_applications", "users", column: "owner_id", name: "fk_b0988c7c0a", on_delete: :cascade
+  add_foreign_key "report_notes", "accounts", on_delete: :cascade
+  add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
+  add_foreign_key "reports", "accounts", column: "assigned_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_eb37af34f0", on_delete: :cascade
   add_foreign_key "reports", "accounts", name: "fk_4b81f7522c", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade

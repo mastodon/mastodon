@@ -13,6 +13,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
   def update
     @account = current_account
     UpdateAccountService.new.call(@account, account_params, raise_error: true)
+    UserSettingsDecorator.new(current_user).update(user_settings_params) if user_settings_params
     ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
     render json: @account, serializer: REST::CredentialAccountSerializer
   end
@@ -21,5 +22,16 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
 
   def account_params
     params.permit(:display_name, :note, :avatar, :header, :locked)
+  end
+
+  def user_settings_params
+    return nil unless params.key?(:source)
+
+    source_params = params.require(:source)
+
+    {
+      'setting_default_privacy' => source_params.fetch(:privacy, @account.user.setting_default_privacy),
+      'setting_default_sensitive' => source_params.fetch(:sensitive, @account.user.setting_default_sensitive),
+    }
   end
 end

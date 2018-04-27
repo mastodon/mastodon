@@ -7,7 +7,7 @@
 
   font-size: 13px;
   display: inline-block;
-  color: $ui-base-color;
+  color: $inverted-text-color;
 
   .emoji-mart-emoji {
     padding: 6px;
@@ -36,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 6px;
-  color: $ui-primary-color;
+  color: $lighter-text-color;
   line-height: 0;
 }
 
@@ -50,15 +50,15 @@
   cursor: pointer;
 
   &:hover {
-    color: darken($ui-primary-color, 4%);
+    color: darken($lighter-text-color, 4%);
   }
 }
 
 .emoji-mart-anchor-selected {
-  color: darken($ui-highlight-color, 3%);
+  color: $highlight-text-color;
 
   &:hover {
-    color: darken($ui-highlight-color, 3%);
+    color: darken($highlight-text-color, 4%);
   }
 
   .emoji-mart-anchor-bar {
@@ -72,7 +72,7 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background-color: darken($ui-highlight-color, 3%);
+  background-color: $highlight-text-color;
 }
 
 .emoji-mart-anchors {
@@ -115,7 +115,7 @@
     display: block;
     width: 100%;
     background: rgba($ui-secondary-color, 0.3);
-    color: $ui-primary-color;
+    color: $inverted-text-color;
     border: 1px solid $ui-secondary-color;
     border-radius: 4px;
 
@@ -184,7 +184,7 @@
   font-size: 14px;
   text-align: center;
   padding-top: 70px;
-  color: $ui-primary-color;
+  color: $light-text-color;
 
   .emoji-mart-category-label {
     display: none;

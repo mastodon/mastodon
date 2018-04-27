@@ -107,9 +107,16 @@ namespace :mastodon do
           q.convert :int
         end
 
+        env['REDIS_PASSWORD'] = prompt.ask('Redis password:') do |q|
+          q.required false
+          q.default nil
+          q.modify :strip
+        end
+
         redis_options = {
           host: env['REDIS_HOST'],
           port: env['REDIS_PORT'],
+          password: env['REDIS_PASSWORD'],
           driver: :hiredis,
         }
 
@@ -256,11 +263,7 @@ namespace :mastodon do
             q.modify :strip
           end
 
-          env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.ask('SMTP OpenSSL verify mode:') do |q|
-            q.required
-            q.default 'peer'
-            q.modify :strip
-          end
+          env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.select('SMTP OpenSSL verify mode:', %w(none peer client_once fail_if_no_peer_cert))
         end
 
         env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|

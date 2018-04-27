@@ -4,6 +4,7 @@ sk:
     about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
+    administered_by: 'Správca je:'
     closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne tej istej siete, odtiaľ.
     contact: Kontakt
     contact_missing: Nezadané
@@ -60,7 +61,15 @@ sk:
       destroyed_msg: Poznámka moderátora bola úspešne zmazaná!
     accounts:
       are_you_sure: Ste si istý?
+      avatar: Maskot
       by_domain: Doména
+      change_email:
+        changed_msg: Email k tomuto účtu bol úspešne zmenený!
+        current_email: Súčastný email
+        label: Zmeniť email
+        new_email: Nový email
+        submit: Zmeniť email
+        title: Zmeň email pre %{username}
       confirm: Potvrdiť
       confirmed: Potvrdený
       demote: Degradovať
@@ -108,6 +117,7 @@ sk:
       public: Verejná os
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnoviť avatar
+      remove_avatar: Odstrániť avatár
       reset: Reset
       reset_password: Obnoviť heslo
       resubscribe: Znovu odoberať
@@ -128,6 +138,7 @@ sk:
       statuses: Príspevky
       subscribe: Odoberať
       title: Účty
+      unconfirmed_email: Nepotvrdený email
       undo_silenced: Zrušiť stíšenie
       undo_suspension: Zrušiť suspendáciu
       unsubscribe: Prestať odoberať
@@ -135,6 +146,8 @@ sk:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name}pridelil/a hlásenie užívateľa %{target}sebe"
+        change_email_user: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user: "%{name} potvrdil e-mailovú adresu používateľa %{target}"
         create_custom_emoji: "%{name} nahral nový emoji %{target}"
         create_domain_block: "%{name} zablokoval doménu %{target}"
@@ -149,15 +162,17 @@ sk:
         enable_custom_emoji: "%{name} povolil emoji %{target}"
         enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
         memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme spomínať"'
-        promote_user: "%{name} povýšil používateľa %{target}"
-        reset_password_user: "%{name} resetoval heslo pre používateľa %{target}"
-        resolve_report: "%{name} zamietol nahlásenie %{target}"
-        silence_account: "%{name} stíšil účet %{target}"
-        suspend_account: "%{name} suspendoval účet používateľa %{target}"
-        unsilence_account: "%{name} zrušil stíšenie účtu používateľa %{target}"
-        unsuspend_account: "%{name} zrušil suspendáciu účtu používateľa %{target}"
-        update_custom_emoji: "%{name} aktualizoval emoji %{target}"
-        update_status: "%{name} aktualizoval status %{target}"
+        promote_user: "%{name} povýšil/a používateľa %{target}"
+        remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
+        reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
+        reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
+        resolve_report: "%{name} vyriešili nahlásenie užívateľa %{target}"
+        silence_account: "%{name} utíšil/a účet %{target}"
+        suspend_account: "%{name} zablokoval/a účet používateľa %{target}"
+        unsilence_account: "%{name} zrušil/a utíšenie účtu používateľa %{target}"
+        unsuspend_account: "%{name} zrušil/a blokovanie účtu používateľa %{target}"
+        update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
+        update_status: "%{name} aktualizoval/a status pre %{target}"
       title: Kontrólny záznam
     custom_emojis:
       by_domain: Doména
@@ -239,12 +254,20 @@ sk:
         expired: Expirované
         title: Filtrovať
       title: Pozvánky
+    report_notes:
+      created_msg: Poznámka o nahlásení úspešne vytvorená!
+      destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
-      action_taken_by: Zákrok vykonal
+      account:
+        note: poznámka
+        report: nahlás
+      action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
+      assign_to_self: ''
+      assigned: ''
       comment:
-        label: Vyjadriť sa
         none: Žiadne
+      created_at: ''
       delete: Vymazať
       id: Identifikácia
       mark_as_resolved: Označiť ako vyriešené
@@ -319,8 +342,8 @@ sk:
       back_to_account: Späť na účet
       batch:
         delete: Vymazať
-        nsfw_off: Nevhodný obsah je vypnutý
-        nsfw_on: Nevhodný obsah je zapnutý
+        nsfw_off: Obsah nieje chúlostivý
+        nsfw_on: Označ obeah aka chúlostivý
       execute: Vykonať
       failed_to_execute: Nepodarilo sa vykonať
       media:
@@ -358,7 +381,7 @@ sk:
     warning: Na tieto údaje dávajte ohromný pozor. Nikdy ich s nikým nezďieľajte!
     your_token: Váš prístupový token
   auth:
-    agreement_html: V rámci registrácie súhlasíte, že sa budete riadiť  <a href="%{rules_path}"> 1 pravidlami tejto instancie</a> 2 a taktiež <a href="%{terms_path}"> 3 našími servisnými podmienkami </a> 4.
+    agreement_html: V rámci registrácie súhlasíš, že sa budeš riadiť <a href="%{rules_path}"> pravidlami tejto instancie</a>, a taktiež <a href="%{terms_path}"> našími servisnými podmienkami </a>.
     change_password: Heslo
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
@@ -366,8 +389,8 @@ sk:
     didnt_get_confirmation: Neobdŕžali ste kroky pre potvrdenie?
     forgot_password: Zabudli ste heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítajte si nový.
-    login: Prihlásenie
-    logout: Odhlásiť sa
+    login: Prihlás sa
+    logout: Odhlás sa
     migrate_account: Presunúť sa na iný účet
     migrate_account_html: Pokiaľ si želáte presmerovať tento účet na nejaký iný, môžete <a href="%{path}"> tak urobiť tu</a>.
     or: alebo
@@ -375,7 +398,7 @@ sk:
     providers:
       cas: CAS
       saml: SAML
-    register: Zaregistrovať sa
+    register: Zaregistruj sa
     register_elsewhere: Zaregistruj sa na inom serveri
     resend_confirmation: Poslať potvrdzujúce pokyny znovu
     reset_password: Resetovať heslo
@@ -580,7 +603,12 @@ sk:
     browser: Prehliadač
     browsers:
       alipay: Alipay
+      chrome: Google Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Mozilla Firefox
       generic: Neznámy prehliadač
+      ie: Internet Explorer
     current_session: Aktuálna sezóna
     description: "%{browser} na %{platform}"
     explanation: Tieto sú prehliadače ktoré sú teraz prihlásené na tvoj Mastodon účet.
@@ -607,12 +635,22 @@ sk:
     two_factor_authentication: Dvoj-faktorové overenie
     your_apps: Tvoje aplikácie
   statuses:
+    attached:
+      description: 'Priložené: %{attached}'
+      image:
+        one: "%{count} obrázok"
+        other: "%{count} obrázkov"
+      video:
+        one: "%{count} video"
+        other: "%{count} videí"
+    content_warning: 'Varovanie o obsahu: %{warning}'
     open_in_web: Otvor v okne prehliadača
     over_character_limit: limit počtu %{max} znakov bol presiahnutý
     pin_errors:
       limit: Už ste si pripli ten najvyšší možný počet príspevkov
       ownership: Nemožno pripnúť príspevok od niekoho iného
       private: Neverejné príspevky nemôžu byť pripnuté
+      reblog: Pozdvihnutie sa nedá pripnúť
     show_more: Ukáž viac
     visibilities:
       private: Iba pre sledovateľov
@@ -628,11 +666,20 @@ sk:
     sensitive_content: Senzitívny obsah
   terms:
     title: Podmienky užívania, a pravidlá o súkromí pre %{instance}
+  themes:
+    default: Mastodon
+  time:
+    formats:
+      default: "%b %d, %R, %H:%M"
   two_factor_authentication:
+    code_hint: Pre potvrdenie teraz zadaj kód vygenerovaný pomocou tvojej overovacej aplikácie
+    description_html: Ak povolíš <strong> dvoj-faktorové overovanie</strong>, na prihlásenie potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš zadať.
+    disable: Zakáž
     enable: Povoliť
     enabled: Dvoj-faktorové overovanie je povolené
     enabled_success: Dvoj-faktorové overovanie bolo úspešne povolené
     generate_recovery_codes: Vygeneruj zálohové kódy
+    instructions_html: "<strong>Naskenuj tento QR kód do Google Autentikátora, alebo do podobnej TOTP aplikácie pomocou svojho telefónu.</strong> Od tejto chvíle bude táto aplikácia pre teba generovať kódy ktoré musíš zadať aby si sa prihlásil/a."
     lost_recovery_codes: Zálohové kódy ti umožnia dostať sa k svojmu účtu ak stratíš telefón. Pokiaľ si stratila svoje zálohové kódy, môžeš si ich tu znovu vygenerovať. Tvoje staré zálohové kódy budú zneplatnené.
     manual_instructions: 'Pokiaľ nemôžeš oskenovať daný QR kód, a potrebuješ ho zadať ručne, tu je tajomstvo v textovom formáte:'
     recovery_codes: Zálohuj kódy pre obnovu
@@ -653,6 +700,7 @@ sk:
       full_handle: Adresa tvojho profilu v celom formáte
       full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli posielať správy, alebo ťa následovať z inej instancie.
       review_preferences_action: Zmeniť nastavenia
+      review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje príspevky majú sami automaticky zaradiť. Pokiaľ nemáš malátnosť z pohybu, môžeš si zvoliť aj automatické spúšťanie GIF animácií.
       subject: Vitaj na Mastodone
       tip_bridge_html: Ak prichádzaš z Twitteru, môžeš svojích priateľov nájsť na Mastodone pomocou tzv. <a href="%{bridge_url}">mostíkovej aplikácie</a>. Ale tá funguje iba ak ju aj oni niekedy použili!
       tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice. Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje úplne celistvá.

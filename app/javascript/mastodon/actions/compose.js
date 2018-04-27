@@ -1,11 +1,13 @@
 import api from '../api';
-import { CancelToken } from 'axios';
+import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
 import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
+import resizeImage from '../utils/resize_image';
 import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
+import { showAlertForError } from './alerts';
 
 let cancelFetchComposeSuggestionsAccounts;
 
@@ -15,6 +17,7 @@ export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
 export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
 export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
 export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
+export const COMPOSE_DIRECT          = 'COMPOSE_DIRECT';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
 export const COMPOSE_RESET           = 'COMPOSE_RESET';
 export const COMPOSE_UPLOAD_REQUEST  = 'COMPOSE_UPLOAD_REQUEST';
@@ -91,6 +94,19 @@ export function mentionCompose(account, router) {
   };
 };
 
+export function directCompose(account, router) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_DIRECT,
+      account: account,
+    });
+
+    if (!getState().getIn(['compose', 'mounted'])) {
+      router.push('/statuses/new');
+    }
+  };
+};
+
 export function submitCompose() {
   return function (dispatch, getState) {
     const status = getState().getIn(['compose', 'text'], '');
@@ -130,6 +146,8 @@ export function submitCompose() {
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         insertIfOnline('public');
+      } else if (response.data.visibility === 'direct') {
+        insertIfOnline('direct');
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -165,18 +183,14 @@ export function uploadCompose(files) {
 
     dispatch(uploadComposeRequest());
 
-    let data = new FormData();
-    data.append('file', files[0]);
+    resizeImage(files[0]).then(file => {
+      const data = new FormData();
+      data.append('file', file);
 
-    api(getState).post('/api/v1/media', data, {
-      onUploadProgress: function (e) {
-        dispatch(uploadComposeProgress(e.loaded, e.total));
-      },
-    }).then(function (response) {
-      dispatch(uploadComposeSuccess(response.data));
-    }).catch(function (error) {
-      dispatch(uploadComposeFail(error));
-    });
+      return api(getState).post('/api/v1/media', data, {
+        onUploadProgress: ({ loaded, total }) => dispatch(uploadComposeProgress(loaded, total)),
+      }).then(({ data }) => dispatch(uploadComposeSuccess(data)));
+    }).catch(error => dispatch(uploadComposeFail(error)));
   };
 };
 
@@ -277,6 +291,10 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
   }).then(response => {
     dispatch(importFetchedAccounts(response.data));
     dispatch(readyComposeSuggestionsAccounts(token, response.data));
+  }).catch(error => {
+    if (!isCancel(error)) {
+      dispatch(showAlertForError(error));
+    }
   });
 }, 200, { leading: true, trailing: true });
 
@@ -427,11 +445,12 @@ export function changeComposeVisibility(value) {
   };
 };
 
-export function insertEmojiCompose(position, emoji) {
+export function insertEmojiCompose(position, emoji, needsSpace) {
   return {
     type: COMPOSE_EMOJI_INSERT,
     position,
     emoji,
+    needsSpace,
   };
 };
 

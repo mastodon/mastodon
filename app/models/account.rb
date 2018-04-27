@@ -3,7 +3,7 @@
 #
 # Table name: accounts
 #
-#  id                      :integer          not null, primary key
+#  id                      :bigint(8)        not null, primary key
 #  username                :string           default(""), not null
 #  domain                  :string
 #  secret                  :string           default(""), not null
@@ -42,8 +42,9 @@
 #  followers_url           :string           default(""), not null
 #  protocol                :integer          default("ostatus"), not null
 #  memorial                :boolean          default(FALSE), not null
-#  moved_to_account_id     :integer
+#  moved_to_account_id     :bigint(8)
 #  featured_collection_url :string
+#  fields                  :jsonb
 #
 
 class Account < ApplicationRecord
@@ -95,6 +96,8 @@ class Account < ApplicationRecord
   has_many :reports
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
+  has_many :report_notes, dependent: :destroy
+
   # Moderation notes
   has_many :account_moderation_notes, dependent: :destroy
   has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy
@@ -111,9 +114,10 @@ class Account < ApplicationRecord
   scope :without_followers, -> { where(followers_count: 0) }
   scope :with_followers, -> { where('followers_count > 0') }
   scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
-  scope :partitioned, -> { order('row_number() over (partition by domain)') }
+  scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
+  scope :without_suspended, -> { where(suspended: false) }
   scope :recent, -> { reorder(id: :desc) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
@@ -122,6 +126,7 @@ class Account < ApplicationRecord
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
   delegate :email,
+           :unconfirmed_email,
            :current_sign_in_ip,
            :current_sign_in_at,
            :confirmed?,
@@ -186,6 +191,30 @@ class Account < ApplicationRecord
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
+  def fields
+    (self[:fields] || []).map { |f| Field.new(self, f) }
+  end
+
+  def fields_attributes=(attributes)
+    fields = []
+
+    attributes.each_value do |attr|
+      next if attr[:name].blank?
+      fields << attr
+    end
+
+    self[:fields] = fields
+  end
+
+  def build_fields
+    return if fields.size >= 4
+
+    raw_fields = self[:fields] || []
+    add_fields = 4 - raw_fields.size
+    add_fields.times { raw_fields << { name: '', value: '' } }
+    self.fields = raw_fields
+  end
+
   def magic_key
     modulus, exponent = [keypair.public_key.n, keypair.public_key.e].map do |component|
       result = []
@@ -235,17 +264,28 @@ class Account < ApplicationRecord
     shared_inbox_url.presence || inbox_url
   end
 
+  class Field < ActiveModelSerializers::Model
+    attributes :name, :value, :account, :errors
+
+    def initialize(account, attr)
+      @account = account
+      @name    = attr['name']
+      @value   = attr['value']
+      @errors  = {}
+    end
+  end
+
   class << self
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
     end
 
     def domains
-      reorder(nil).pluck('distinct accounts.domain')
+      reorder(nil).pluck(Arel.sql('distinct accounts.domain'))
     end
 
     def inboxes
-      urls = reorder(nil).where(protocol: :activitypub).pluck("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)")
+      urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
       DeliveryFailureTracker.filter(urls)
     end
 
@@ -348,6 +388,10 @@ class Account < ApplicationRecord
 
       [textsearch, query]
     end
+  end
+
+  def emojis
+    @emojis ||= CustomEmoji.from_text(note, domain)
   end
 
   before_create :generate_keys

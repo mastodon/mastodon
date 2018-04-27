@@ -39,11 +39,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin!
-    redirect_to root_path unless current_user&.admin?
+    forbidden unless current_user&.admin?
   end
 
   def require_staff!
-    redirect_to root_path unless current_user&.staff?
+    forbidden unless current_user&.staff?
   end
 
   def check_suspension
