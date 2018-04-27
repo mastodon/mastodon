@@ -69,7 +69,7 @@ export default class Status extends ImmutablePureComponent {
     }
 
     const { status } = this.props;
-    this.context.router.history.push(`/statuses/${status.getIn(['quote', 'id'])}`);
+    this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'quote', 'id'], status.getIn(['quote', 'id']))}`);
   }
 
   handleAccountClick = (e) => {

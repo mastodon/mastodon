@@ -85,10 +85,13 @@ const normalizeStatus = (state, status) => {
       normalStatus.quote.account.display_name_html = emojify(escapeTextContentForBrowser(displayName));
       normalStatus.quote.search_index = domParser.parseFromString(quote_searchContent, 'text/html').documentElement.textContent;
       let docElem = domParser.parseFromString(normalStatus.quote.content, 'text/html').documentElement;
-      let quoteElem = docElem.querySelector('.quote-inline');
-      if (quoteElem) {
-        quoteElem.parentNode.removeChild(quoteElem);
-      }
+      Array.from(docElem.querySelectorAll('span.invisible'), span => span.remove());
+      Array.from(docElem.querySelectorAll('p,br'), line => {
+        let parentNode = line.parentNode;
+        if (line.nextSibling) {
+          parentNode.insertBefore(document.createTextNode(' '), line.nextSibling);
+        }
+      });
       let _contentHtml = docElem.textContent;
       normalStatus.quote.contentHtml  = '<p>'+emojify(_contentHtml.substr(0, 150), quote_emojiMap) + (_contentHtml.substr(150) ? '...' : '')+'</p>';
       normalStatus.quote.spoilerHtml  = emojify(normalStatus.quote.spoiler_text || '', quote_emojiMap);
