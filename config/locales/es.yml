@@ -145,6 +145,15 @@ es:
       username: Nombre de usuario
       web: Web
       avatar: Avatar
+      change_email:
+        changed_msg: ¡El correo electrónico se ha actualizado correctamente!
+        current_email: Correo electrónico actual
+        label: Cambiar el correo electrónico
+        new_email: Nuevo correo electrónico
+        submit: Cambiar el correo electrónico
+        title: Cambiar el correo electrónico de %{username}
+      remove_avatar: Eliminar el avatar
+      unconfirmed_email: Correo electrónico sin confirmar
     action_logs:
       actions:
         confirm_user: '%{name} confirmó la dirección de correo del usuario %{target}'
@@ -167,13 +176,20 @@ es:
           de memorial'
         promote_user: '%{name} promoción al usuario %{target}'
         reset_password_user: '%{name} restauró la contraseña del usuario %{target}'
-        resolve_report: '%{name} desestimó el reporte %{target}'
+        resolve_report: '%{name} ha resuelto la denuncia %{target}'
         silence_account: '%{name} silenció la cuenta de %{target}'
         suspend_account: '%{name} suspendió la cuenta de %{target}'
         unsilence_account: '%{name} desactivó el silenciado de la cuenta de %{target}'
         unsuspend_account: '%{name} desactivó la suspensión de la cuenta de %{target}'
         update_custom_emoji: '%{name} actualizó el emoji %{target}'
         update_status: '%{name} actualizó el estado de %{target}'
+        assigned_to_self_report: '%{name} se ha asignado la denuncia %{target} a sí
+          mismo'
+        change_email_user: '%{name} ha cambiado la dirección de correo del usuario
+          %{target}'
+        remove_avatar_user: '%{name} ha eliminado el avatar de %{target}'
+        reopen_report: '%{name} ha reabierto la denuncia %{target}'
+        unassigned_report: '%{name} ha desasignado la denuncia %{target}'
       title: Log de auditoría
     custom_emojis:
       by_domain: Dominio
@@ -285,6 +301,24 @@ es:
       title: Reportes
       unresolved: No resuelto
       view: Ver
+      account:
+        note: nota
+        report: denuncia
+      assign_to_self: Asignármela a mí
+      assigned: Moderador asignado
+      created_at: Denunciado
+      mark_as_unresolved: Marcar como no resuelto
+      notes:
+        create: Añadir una nota
+        create_and_resolve: Resolver con una nota
+        create_and_unresolve: Reabrir con una nota
+        delete: Eliminar
+        placeholder: Especificar qué acciones se han tomado o cualquier otra novedad
+          respecto a esta denuncia…
+      reopen: Reabrir denuncia
+      resolved_msg: ¡La denuncia se ha resuelto correctamente!
+      unassign: Desasignar
+      updated_at: Actualizado
     settings:
       activity_api_enabled:
         desc_html: Conteo de estados publicados localmente, usuarios activos, y nuevos
@@ -350,8 +384,8 @@ es:
       back_to_account: Volver a la cuenta
       batch:
         delete: Eliminar
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
+        nsfw_off: Marcar contenido como no sensible
+        nsfw_on: Marcar contenido como sensible
       execute: Ejecutar
       failed_to_execute: Falló al ejecutar
       media:
@@ -369,6 +403,9 @@ es:
       title: WebSub
       topic: Tópico
     title: Administración
+    report_notes:
+      created_msg: ¡El registro de la denuncia se ha creado correctamente!
+      destroyed_msg: ¡El registro de la denuncia se ha borrado correctamente!
   admin_mailer:
     new_report:
       body: '%{reporter} ha reportado a %{target}'
@@ -426,6 +463,7 @@ es:
       return: Regresar al perfil del usuario
       web: Ir al sitio web
     title: Seguir a %{acct}
+    already_following: Ya estás siguiendo a esta cuenta
   datetime:
     distance_in_words:
       about_x_hours: '%{count}h'
@@ -527,6 +565,7 @@ es:
       '3600': 1 hora
       '43200': 12 horas
       '86400': 1 día
+      '604800': 1 semana
     expires_in_prompt: Nunca
     generate: Generar
     max_uses:
@@ -721,6 +760,9 @@ es:
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo
         públicas
+    disallowed_hashtags:
+      one: 'contenía un hashtag no permitido: %{tags}'
+      other: 'contenía los hashtags no permitidos: %{tags}'
   stream_entries:
     click_to_show: Click para mostrar
     pinned: Toot fijado
@@ -730,6 +772,7 @@ es:
     title: Términos del Servicio y Políticas de Privacidad de %{instance}
   themes:
     default: Mastodon
+    contrast: Alto contraste
   time:
     formats:
       default: '%d de %b del %Y, %H:%M'
@@ -771,7 +814,7 @@ es:
       edit_profile_action: Configurar el perfil
       edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, una cabecera,
         cambiando tu nombre de usuario y más cosas. Si quieres revisar a tus nuevos
-        seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta
+        seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta.
       explanation: Aquí hay algunos consejos para empezar
       final_action: Empezar a publicar
       final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos
@@ -789,9 +832,9 @@ es:
       tip_bridge_html: Si esta viniendo desde Twitter, puedes encontrar a tus amigos
         en Mastodon usando la <a href="%{bridge_url}">aplicación puente</a>. Aunque
         solo funciona si ellos también usaron la aplicación puente!
-      tip_federated_timeline: 'La linea de tiempo federada es una vista de la red
-        de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así
-        que no está completa. '
+      tip_federated_timeline: La línea de tiempo federada es una vista de la red de
+        Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que
+        no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar
         más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}.
@@ -807,3 +850,7 @@ es:
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que
       los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
+  remote_unfollow:
+    error: Error
+    title: Título
+    unfollowed: Ha dejado de seguirse
