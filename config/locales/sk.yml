@@ -309,6 +309,9 @@ sk:
       notes:
         create: Pridaj poznámku
         delete: Vymaž
+        create_and_resolve: Vyrieš s poznámkou
+        placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné aktualizácie
+          k tomuto nahláseniu…
       reopen: Znovu otvor report
       unassign: Odobrať
       updated_at: Aktualizované
@@ -560,6 +563,7 @@ sk:
       '3600': 1 hodina
       '43200': 12 hodín
       '86400': 1 deň
+      '604800': 1 týždeň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
     max_uses:
@@ -811,4 +815,6 @@ sk:
       hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásený ako:'
   remote_unfollow:
-    unfollowed: ''
+    unfollowed: Už nesleduješ
+    error: Chyba
+    title: Názov
