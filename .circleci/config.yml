@@ -28,7 +28,7 @@ aliases:
       keys:
         - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
         - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
-        - v2-ruby-dependencies--
+        - v2-ruby-dependencies-
 
   - &install_steps
     steps:
@@ -83,7 +83,7 @@ aliases:
             keys:
               - precompiled-assets-{{ .Branch }}-{{ .Revision }}
               - precompiled-assets-{{ .Branch }}-
-              - precompiled-assets--
+              - precompiled-assets-
 
         - run:
             name: Prepare Tests
