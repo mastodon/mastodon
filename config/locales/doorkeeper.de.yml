@@ -1,4 +1,3 @@
----
 de:
   activerecord:
     attributes:
@@ -31,9 +30,10 @@ de:
       form:
         error: Hoppla! Bitte überprüfe das Formular auf mögliche Fehler
       help:
-        native_redirect_uri: "%{native_redirect_uri} für lokale Tests benutzen"
+        native_redirect_uri: '%{native_redirect_uri} für lokale Tests benutzen'
         redirect_uri: Bitte benutze eine Zeile pro URI
-        scopes: Bitte die Befugnisse mit Leerzeichen trennen. Zur Verwendung der Standardwerte freilassen.
+        scopes: Bitte die Befugnisse mit Leerzeichen trennen. Zur Verwendung der Standardwerte
+          freilassen.
       index:
         application: Anwendung
         callback_url: Callback-URL
@@ -72,29 +72,46 @@ de:
       index:
         application: Anwendung
         created_at: autorisiert am
-        date_format: "%d.%m.%Y %H:%M:%S"
+        date_format: '%d.%m.%Y %H:%M:%S'
         scopes: Befugnisse
         title: Deine autorisierten Anwendungen
     errors:
       messages:
-        access_denied: Der »resource owner« oder der Autorisierungs-Server hat die Anfrage verweigert.
-        credential_flow_not_configured: Die Prozedur »Resource Owner Password Credentials« schlug fehl, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
-        invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
-        invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
+        access_denied: Der »resource owner« oder der Autorisierungs-Server hat die
+          Anfrage verweigert.
+        credential_flow_not_configured: Die Prozedur »Resource Owner Password Credentials«
+          schlug fehl, da Doorkeeper.configure.resource_owner_from_credentials nicht
+          konfiguriert ist.
+        invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt,
+          keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht
+          unterstützt.'
+        invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde
+          widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI
+          stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
-        invalid_request: Die Anfrage enthält ein nicht-unterstütztes Argument, ein Parameter fehlt, oder sie ist anderweitig fehlerhaft.
-        invalid_resource_owner: Die angegebenen Zugangsdaten für den Ressourcenbesitzer sind ungültig oder der Ressourcenbesitzer kann nicht gefunden werden
+        invalid_request: Die Anfrage enthält ein nicht-unterstütztes Argument, ein
+          Parameter fehlt, oder sie ist anderweitig fehlerhaft.
+        invalid_resource_owner: Die angegebenen Zugangsdaten für den Ressourcenbesitzer
+          sind ungültig oder der Ressourcenbesitzer kann nicht gefunden werden
         invalid_scope: Die angeforderte Befugnis ist ungültig, unbekannt oder fehlerhaft.
         invalid_token:
           expired: Der Zugriffs-Token ist abgelaufen
           revoked: Der Zugriffs-Token wurde widerrufen
           unknown: Der Zugriffs-Token ist ungültig
-        resource_owner_authenticator_not_configured: Die Prozedur »Resource Owner find« ist fehlgeschlagen, da Doorkeeper.configure.resource_owner_authenticator nicht konfiguriert ist.
-        server_error: Der Autorisierungs-Server hat ein unerwartetes Problem festgestellt und konnte die Anfrage nicht bearbeiten.
-        temporarily_unavailable: Der Autorisierungs-Server ist aufgrund von zwischenzeitlicher Überlastung oder Wartungsarbeiten derzeit nicht in der Lage, die Anfrage zu bearbeiten.
-        unauthorized_client: Der Client ist nicht dazu autorisiert, diese Anfrage mit dieser Methode auszuführen.
-        unsupported_grant_type: Der Autorisierungs-Typ wird nicht vom Autorisierungs-Server unterstützt.
-        unsupported_response_type: Der Autorisierungs-Server unterstützt diesen Antwort-Typ nicht.
+        resource_owner_authenticator_not_configured: Die Prozedur »Resource Owner
+          find« ist fehlgeschlagen, da Doorkeeper.configure.resource_owner_authenticator
+          nicht konfiguriert ist.
+        server_error: Der Autorisierungs-Server hat ein unerwartetes Problem festgestellt
+          und konnte die Anfrage nicht bearbeiten.
+        temporarily_unavailable: Der Autorisierungs-Server ist aufgrund von zwischenzeitlicher
+          Überlastung oder Wartungsarbeiten derzeit nicht in der Lage, die Anfrage
+          zu bearbeiten.
+        unauthorized_client: Der Client ist nicht dazu autorisiert, diese Anfrage
+          mit dieser Methode auszuführen.
+        unsupported_grant_type: Der Autorisierungs-Typ wird nicht vom Autorisierungs-Server
+          unterstützt.
+        unsupported_response_type: Der Autorisierungs-Server unterstützt diesen Antwort-Typ
+          nicht.
     flash:
       applications:
         create:
@@ -117,3 +134,4 @@ de:
       follow: Konten folgen, blocken, entblocken und entfolgen
       read: deine Daten auslesen
       write: Beiträge in deinem Namen veröffentlichen
+      push: erhalte Push-Benachrichtigungen von deinem Account
