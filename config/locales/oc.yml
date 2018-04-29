@@ -61,6 +61,13 @@ oc:
     accounts:
       are_you_sure: Sètz segur ?
       by_domain: Domeni
+      change_email:
+        changed_msg: Adreça corrèctament cambiada !
+        current_email: Adreça actuala
+        label: Cambiar d’adreça
+        new_email: Novèla adreça
+        submit: Cambiar
+        title: Cambiar l’adreça a %{username}
       confirm: Confirmar
       confirmed: Confirmat
       demote: Retrogradar
@@ -128,6 +135,7 @@ oc:
       statuses: Estatuts
       subscribe: S’abonar
       title: Comptes
+      unconfirmed_email: Adreça pas confirmada
       undo_silenced: Levar lo silenci
       undo_suspension: Levar la suspension
       unsubscribe: Se desabonar
@@ -135,6 +143,8 @@ oc:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
+        change_email_user: "%{name} cambièt l’adreça de corrièl de %{target}"
         confirm_user: "%{name} confirmèt l’adreça a %{target}"
         create_custom_emoji: "%{name} mandèt un nòu emoji %{target}"
         create_domain_block: "%{name} bloquèt lo domeni %{target}"
@@ -240,16 +250,37 @@ oc:
         title: Filtre
       title: Convits
     reports:
+      account:
+        created_reports: Rapòrts creats per aqueste compte
+        moderation:
+          silenced: Mes en silenci
+          suspended: Suspendut
+          title: Moderacion
+        moderation_notes: Nòtas de moderacion
+        note: nòta
+        report: rapòrt
+        targeted_reports: Rapòrts ligats a aqueste compte    
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
       comment:
         none: Pas cap
+      created_at: Creacion  
       delete: Suprimir
+      history: Istoric de moderacion
       id: ID
-      mark_as_resolved: Marcat coma resolgut
+      mark_as_resolved: Marcar coma resolgut
+      mark_as_unresolved: Marcar coma pas resolgut
+      notes:
+        create: Ajustar una nòta
+        create_and_resolve: Resòlvre amb una nòta
+        create_and_unresolve: Tornar dobrir amb una nòta
+        label: Nòtas del moderator
+        new_label: Ajustar una nòta del moderator
+        placeholder: Explicatz las accions que son estadas menadas o çò qu’es estat fach per aqueste rapòrt…
       nsfw:
         'false': Sens contengut sensible
         'true': Contengut sensible activat
+      reopen: Tornar dobrir lo rapòrt
       report: 'senhalament #%{id}'
       report_contents: Contenguts
       reported_account: Compte senhalat
@@ -652,8 +683,12 @@ oc:
   remote_follow:
     acct: Picatz vòstre utilizaire@instància que cal utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
-    proceed: Contunhatz per sègre
+    proceed: Clicatz per sègre
     prompt: 'Sètz per sègre :'
+  remote_unfollow:
+    error: Error
+    title: Títol
+    unfollowed: Pas mai seguit
   sessions:
     activity: Darrièra activitat
     browser: Navigator
@@ -719,6 +754,9 @@ oc:
       video:
         one: "%{count} vidèo"
         other: "%{count} vidèos"
+      disallowed_hashtags:
+        one: 'conten una etiqueta desactivada : %{tags}'
+        other: 'conten las etiquetas desactivadas : %{tags}'
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
@@ -742,6 +780,8 @@ oc:
     sensitive_content: Contengut sensible
   terms:
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
+    contrast: Fòrt contrast
+    default: Mastodon
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M
