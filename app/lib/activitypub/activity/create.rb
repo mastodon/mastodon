@@ -88,7 +88,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['href'].blank?
 
     account = account_from_uri(tag['href'])
-    account = ::FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
+    account = ActivityPub::FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
     return if account.nil?
     account.mentions.create(status: status)
   end
@@ -187,9 +187,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       element  = element.children.first if element&.name == 'p'
       element  = element.children.first if element&.name == 'span'
 
-      if element&.name == 'a' && !@object['tag'].nil? && as_array(@object['tag']).any? { |tag| tag['type'] == 'Mention' && tag['href'] == element['href'] }
-        @replied_to_account   = account_from_uri(element['href'])
-        @replied_to_account ||= ::FetchRemoteAccountService.new.call(element['href'], id: false)
+      if element&.name == 'a' && !@object['tag'].nil?
+        tag = as_array(@object['tag']).find { |item| item['type'] == 'Mention' && item['name'] == element.text }
+
+        if tag
+          @replied_to_account   = account_from_uri(tag['href'])
+          @replied_to_account ||= ActivityPub::FetchRemoteAccountService.new.call(tag['href'], id: false)
+        else
+          @replied_to_account = nil
+        end
       else
         @replied_to_account = nil
       end

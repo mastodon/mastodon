@@ -349,10 +349,10 @@ class Status < ApplicationRecord
   end
 
   def set_reply_from_mention
-    return if !new_record? || reblog? || reply?
+    return if !new_record? || reblog? || (reply? && in_reply_to_account_id != account_id)
 
     if local? && text =~ /\A#{Account::MENTION_RE}/
-      username, domain         = $1.split('@')
+      username, domain         = Regexp.last_match(1).split('@')
       domain                   = nil if TagManager.instance.local_domain?(domain)
       self.in_reply_to_account = Account.find_remote(username, domain)
     end
