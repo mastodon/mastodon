@@ -45,9 +45,10 @@
       = render 'stream_entries/more', url: short_account_status_url(status.account.username, status, max_descendant_thread_id: @since_descendant_thread_id + 1)
   - @descendant_threads.each do |thread|
     = render partial: 'stream_entries/status', collection: thread[:statuses], as: :status, locals: { is_successor: true, parent_id: status.id }
+
     - if thread[:next_status]
       .entry{ class: entry_classes }
-        = render 'stream_entries/more', url: short_account_status_url(thread[:next_status].account.username, thread[:next_status])
+        = render 'stream_entries/more', url: TagManager.instance.url_for(thread[:next_status])
   - if @next_descendant_thread
     .entry{ class: entry_classes }
       = render 'stream_entries/more', url: short_account_status_url(status.account.username, status, since_descendant_thread_id: @max_descendant_thread_id - 1)
