@@ -15,6 +15,18 @@ code {
     overflow: hidden;
   }
 
+  .row {
+    display: flex;
+    margin: 0 -5px;
+
+    .input {
+      box-sizing: border-box;
+      flex: 1 1 auto;
+      width: 50%;
+      padding: 0 5px;
+    }
+  }
+
   span.hint {
     display: block;
     color: $ui-primary-color;
