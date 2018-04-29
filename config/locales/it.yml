@@ -1,10 +1,16 @@
----
 it:
   about:
-    about_mastodon_html: Mastodon è un social network <em>gratuito e open-source</em>. Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita del <em>social network</em>.
+    about_mastodon_html: Mastodon è un social network <em>gratuito e open-source</em>.
+      Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita
+      che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server
+      di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque
+      altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita
+      del <em>social network</em>.
     about_this: A proposito di questo server
     administered_by: 'Amministrato da:'
-    closed_registrations: Al momento le iscrizioni a questo server sono chiuse. Tuttavia! Puoi provare a cercare un istanza diversa su cui creare un account ed avere accesso alla stessa identica rete di questa.
+    closed_registrations: Al momento le iscrizioni a questo server sono chiuse. Tuttavia!
+      Puoi provare a cercare un istanza diversa su cui creare un account ed avere
+      accesso alla stessa identica rete di questa.
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
@@ -13,10 +19,19 @@ it:
     domain_count_before: Connesso a
     features:
       humane_approach_title: Un approccio più umano
-      not_a_product_body: Mastodon non è una rete commerciale. Niente pubblicità, niente data mining, nessun giardino murato. Non c'è nessuna autorità centrale.
+      not_a_product_body: Mastodon non è una rete commerciale. Niente pubblicità,
+        niente data mining, nessun giardino murato. Non c'è nessuna autorità centrale.
       not_a_product_title: Tu sei una persona, non un prodotto
       real_conversation_title: Creato per conversazioni reali
-    generic_description: "%{domain} è un server nella rete"
+      humane_approach_body: Imparando dai fallimenti degli altri networks, Mastodon
+        mira a fare scelte di design etico per combattere l'abuso dei social media.
+      real_conversation_body: Con 500 caratteri a disposizione, un supporto per i
+        contenuti granulari ed avvisi sui media potrai esprimerti nel modo desiderato.
+      within_reach_body: Apps per iOS, Android ed altre piattaforme, realizzate grazie
+        ad un ecosistema di API adatto agli sviluppatori, ti consentono di poter stare
+        ovunque al passo con i tuoi amici.
+      within_reach_title: Sempre a portata di mano
+    generic_description: '%{domain} è un server nella rete'
     learn_more: Scopri altro
     other_instances: Elenco istanze
     source_code: Codice sorgente
@@ -25,6 +40,7 @@ it:
     user_count_after: utenti
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
+    hosted_on: Mastodon ospitato su %{domain}
   accounts:
     follow: Segui
     followers: Seguaci
@@ -41,6 +57,7 @@ it:
       admin: Amministratore
       moderator: Mod
     unfollow: Non seguire più
+    moved_html: '%{name} è stato spostato su %{new_profile_link}:'
   admin:
     account_moderation_notes:
       account: Moderatore
@@ -125,11 +142,15 @@ it:
       undo_suspension: Rimuovi sospensione
       username: Nome utente
       web: Web
+      resubscribe: Riscriversi
+      unsubscribe: Annulla l'iscrizione
     action_logs:
       actions:
-        confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
-        create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
-        create_domain_block: "%{name} ha bloccato il dominio %{target}"
+        confirm_user: '%{name} ha confermato l''indirizzo email per l''utente %{target}'
+        create_custom_emoji: '%{name} ha caricato un nuovo emoji %{target}'
+        create_domain_block: '%{name} ha bloccato il dominio %{target}'
+        change_email_user: '%{name} ha cambiato l''indirizzo e-mail per l''utente
+          %{target}'
     custom_emojis:
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
@@ -172,17 +193,23 @@ it:
         suspend: Sospendi
       severity: Severità
       title: Blocchi dominio
+      show:
+        undo: Annulla
+      undo: Annulla
     email_domain_blocks:
       add_new: Aggiungi nuovo
       delete: Elimina
       domain: Dominio
       new:
         create: Aggiungi dominio
+      created_msg: Dominio e-mail aggiunto con successo alla lista nera
+      destroyed_msg: Dominio e-mail cancellato con successo dalla lista nera
     instances:
       domain_name: Dominio
       reset: Reimposta
       search: Cerca
       title: Istanze conosciute
+      account_count: Accounts conosciuti
     invites:
       filter:
         all: Tutto
@@ -208,12 +235,19 @@ it:
         delete: Elimina
       report_contents: Contenuti
       resolved: Risolto
-      status: Stati
+      status: Stato
       target: Obbiettivo
       unassign: Non assegnare
       unresolved: Non risolto
       updated_at: Aggiornato
       view: Mostra
+      action_taken_by: Azione intrapresa da
+      assigned: Moderatore assegnato
+      nsfw:
+        'false': Mostra gli allegati multimediali
+        'true': Nascondi allegati multimediali
+      silence_account: Silenzia account
+      suspend_account: Sospendi account
     settings:
       activity_api_enabled:
         title: Pubblica statistiche aggregate circa l'attività dell'utente
@@ -222,6 +256,11 @@ it:
       registrations:
         min_invite_role:
           disabled: Nessuno
+        deletion:
+          desc_html: Consenti a chiunque di cancellare il proprio account
+          title: Apri la cancellazione dell'account
+        open:
+          desc_html: Consenti a chiunque di creare un account
       show_staff_badge:
         title: Mostra badge staff
       site_description:
@@ -232,6 +271,8 @@ it:
       timeline_preview:
         title: Anteprima timeline
       title: Impostazioni sito
+      contact_information:
+        username: Nome utente del contatto
     statuses:
       batch:
         delete: Elimina
@@ -253,7 +294,7 @@ it:
     title: Amministrazione
   application_mailer:
     notification_preferences: Cambia preferenze email
-    salutation: "%{name},"
+    salutation: '%{name},'
     settings: 'Cambia le impostazioni per le e-mail: %{link}'
     view: 'Guarda:'
     view_profile: Mostra profilo
@@ -285,18 +326,18 @@ it:
     title: Segui %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count} ore"
-      about_x_months: "%{count} mesi"
-      about_x_years: "%{count} anni"
-      almost_x_years: "%{count} anni"
+      about_x_hours: '%{count} ore'
+      about_x_months: '%{count} mesi'
+      about_x_years: '%{count} anni'
+      almost_x_years: '%{count} anni'
       half_a_minute: Adesso
-      less_than_x_minutes: "%{count} minuti"
+      less_than_x_minutes: '%{count} minuti'
       less_than_x_seconds: Adesso
-      over_x_years: "%{count} anni"
-      x_days: "%{count} giorni"
-      x_minutes: "%{count} minuti"
-      x_months: "%{count} mesi"
-      x_seconds: "%{count} secondi"
+      over_x_years: '%{count} anni'
+      x_days: '%{count} giorni'
+      x_minutes: '%{count} minuti'
+      x_months: '%{count} mesi'
+      x_seconds: '%{count} secondi'
   exports:
     blocks: Stai bloccando
     csv: CSV
@@ -308,49 +349,55 @@ it:
     save_changes: Salva modifiche
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
-      other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
+      other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori
+        qui sotto
   imports:
-    preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un esportazione su un altro server.
-    success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
+    preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato
+      su questo server, da file creati da un esportazione su un altro server.
+    success: Le tue impostazioni sono state importate correttamente e verranno applicate
+      in breve tempo
     types:
       blocking: Lista dei bloccati
       following: Lista dei seguaci
     upload: Carica
-  landing_strip_html: "<strong>%{name}</strong> è un utente su %{link_to_root_path}. Puoi seguirlo o interagire con lui se possiedi un account ovunque nel fediverse."
-  landing_strip_signup_html: Se non possiedi un account, puoi <a href="%{sign_up_path}">iscriverti qui</a>.
+  landing_strip_html: <strong>%{name}</strong> è un utente su %{link_to_root_path}.
+    Puoi seguirlo o interagire con lui se possiedi un account ovunque nel fediverse.
+  landing_strip_signup_html: Se non possiedi un account, puoi <a href="%{sign_up_path}">iscriverti
+    qui</a>.
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
       too_many: Impossibile allegare più di 4 file
   notification_mailer:
     digest:
-      body: 'Ecco un breve riassunto di quello che ti sei perso su %{instance} dalla tua ultima visita del %{since}:'
-      mention: "%{name} ti ha menzionato:"
+      body: 'Ecco un breve riassunto di quello che ti sei perso su %{instance} dalla
+        tua ultima visita del %{since}:'
+      mention: '%{name} ti ha menzionato:'
       new_followers_summary:
         one: Hai ricevuto un nuovo seguace! Urrà!
         other: Hai ricevuto %{count} nuovi seguaci! Incredibile!
       subject:
-        one: "1 nuova notifica dalla tua ultima visita \U0001F418"
-        other: "%{count} nuove notifiche dalla tua ultima visita \U0001F418"
+        one: 1 nuova notifica dalla tua ultima visita 🐘
+        other: '%{count} nuove notifiche dalla tua ultima visita 🐘'
     favourite:
       body: 'Il tuo status è stato apprezzato da %{name}:'
-      subject: "%{name} ha apprezzato il tuo status"
+      subject: '%{name} ha apprezzato il tuo status'
     follow:
-      body: "%{name} ti sta seguendo!"
-      subject: "%{name} ti sta seguendo"
+      body: '%{name} ti sta seguendo!'
+      subject: '%{name} ti sta seguendo'
     follow_request:
-      body: "%{name} ha chiesto di seguirti"
+      body: '%{name} ha chiesto di seguirti'
       subject: 'Seguace in sospeso: %{name}'
     mention:
       body: 'Sei stato menzionato da %{name} su:'
       subject: Sei stato menzionato da %{name}
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
-      subject: "%{name} ha condiviso il tuo status"
+      subject: '%{name} ha condiviso il tuo status'
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
           billion: B
           million: M
@@ -361,10 +408,11 @@ it:
   pagination:
     next: Avanti
     prev: Indietro
-    truncate: "&hellip;"
+    truncate: '&hellip;'
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
-    missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
+    missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per
+      il tuo account
     proceed: Conferma
     prompt: 'Stai per seguire:'
   settings:
@@ -390,20 +438,27 @@ it:
     sensitive_content: Materiale sensibile
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: '%b %d, %Y, %H:%M'
   two_factor_authentication:
     code_hint: Inserisci il codice generato dalla tua app di autenticazione
-    description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>, entrare nel tuo account ti richiederà di avere vicino il tuo telefono, il quale ti genererà un codice per eseguire l'accesso.
+    description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>,
+      entrare nel tuo account ti richiederà di avere vicino il tuo telefono, il quale
+      ti genererà un codice per eseguire l'accesso.
     disable: Disabilita
     enable: Abilita
     enabled_success: Autenticazione a due fattori attivata con successo
-    instructions_html: "<strong>Scannerizza questo QR code con Google Authenticator o un'app TOTP simile sul tuo telefono</strong>. Da ora in poi, quell'applicazione genererà codici da inserire necessariamente per eseguire l'accesso."
-    manual_instructions: 'Se non puoi scannerizzare il QR code e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
+    instructions_html: <strong>Scannerizza questo QR code con Google Authenticator
+      o un'app TOTP simile sul tuo telefono</strong>. Da ora in poi, quell'applicazione
+      genererà codici da inserire necessariamente per eseguire l'accesso.
+    manual_instructions: 'Se non puoi scannerizzare il QR code e hai bisogno di inserirlo
+      manualmente, questo è il codice segreto in chiaro:'
     setup: Configura
-    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del telefono siano corretti.
+    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server
+      e l'orario del telefono siano corretti.
   user_mailer:
     welcome:
       title: Benvenuto a bordo, %{name}!
+      tips: Suggerimenti
   users:
     invalid_email: L'indirizzo e-mail inserito non è valido
     invalid_otp_token: Codice d'accesso non valido
