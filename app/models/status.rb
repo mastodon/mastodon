@@ -174,6 +174,7 @@ class Status < ApplicationRecord
   before_validation :set_conversation
   before_validation :set_sensitivity
   before_validation :set_local
+  before_validation :set_reply_from_mention
 
   class << self
     def not_in_filtered_languages(account)
@@ -345,6 +346,16 @@ class Status < ApplicationRecord
 
   def set_local
     self.local = account.local?
+  end
+
+  def set_reply_from_mention
+    return if !new_record? || reblog? || reply?
+
+    if local? && text =~ /\A#{Account::MENTION_RE}/
+      username, domain         = $1.split('@')
+      domain                   = nil if TagManager.instance.local_domain?(domain)
+      self.in_reply_to_account = Account.find_remote(username, domain)
+    end
   end
 
   def update_statistics

@@ -52,6 +52,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       sensitive: @object['sensitive'] || false,
       visibility: visibility_from_audience,
       thread: replied_to_status,
+      in_reply_to_account: replied_to_account,
       conversation: conversation_from_uri(@object['conversation']),
       media_attachment_ids: process_attachments.take(4).map(&:id),
     }
@@ -87,7 +88,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['href'].blank?
 
     account = account_from_uri(tag['href'])
-    account = FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
+    account = ::FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
     return if account.nil?
     account.mentions.create(status: status)
   end
@@ -171,6 +172,27 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       @replied_to_status   = status_from_uri(in_reply_to_uri)
       @replied_to_status ||= status_from_uri(@object['inReplyToAtomUri']) if @object['inReplyToAtomUri'].present?
       @replied_to_status
+    end
+  end
+
+  def replied_to_account
+    return @replied_to_account if defined?(@replied_to_account)
+
+    if in_reply_to_uri.present?
+      # Will be set automatically based on replied-to status anyway
+      @replied_to_account = nil
+    else
+      fragment = Nokogiri::XML::DocumentFragment.parse(text_from_content || '')
+      element  = fragment.children.first
+      element  = element.children.first if element&.name == 'p'
+      element  = element.children.first if element&.name == 'span'
+
+      if element&.name == 'a' && !@object['tag'].nil? && as_array(@object['tag']).any? { |tag| tag['type'] == 'Mention' && tag['href'] == element['href'] }
+        @replied_to_account   = account_from_uri(element['href'])
+        @replied_to_account ||= ::FetchRemoteAccountService.new.call(element['href'], id: false)
+      else
+        @replied_to_account = nil
+      end
     end
   end
 
