@@ -146,6 +146,8 @@ sk:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name}pridelil/a hlásenie užívateľa %{target}sebe"
+        change_email_user: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user: "%{name} potvrdil e-mailovú adresu používateľa %{target}"
         create_custom_emoji: "%{name} nahral nový emoji %{target}"
         create_domain_block: "%{name} zablokoval doménu %{target}"
@@ -162,6 +164,7 @@ sk:
         memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme spomínať"'
         promote_user: "%{name} povýšil/a používateľa %{target}"
         remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
+        reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
         reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
         resolve_report: "%{name} vyriešili nahlásenie užívateľa %{target}"
         silence_account: "%{name} utíšil/a účet %{target}"
@@ -260,8 +263,11 @@ sk:
         report: nahlás
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
+      assign_to_self: ''
+      assigned: ''
       comment:
         none: Žiadne
+      created_at: ''
       delete: Vymazať
       id: Identifikácia
       mark_as_resolved: Označiť ako vyriešené
@@ -336,8 +342,8 @@ sk:
       back_to_account: Späť na účet
       batch:
         delete: Vymazať
-        nsfw_off: Nevhodný obsah je vypnutý
-        nsfw_on: Nevhodný obsah je zapnutý
+        nsfw_off: Obsah nieje chúlostivý
+        nsfw_on: Označ obeah aka chúlostivý
       execute: Vykonať
       failed_to_execute: Nepodarilo sa vykonať
       media:
