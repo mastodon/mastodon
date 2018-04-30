@@ -33,7 +33,7 @@ class FetchRemoteAccountService < BaseService
   rescue TypeError
     Rails.logger.debug "Unparseable URL given: #{url}"
     nil
-  rescue Nokogiri::XML::XPath::SyntaxError
+  rescue LL::ParserError
     Rails.logger.debug 'Invalid XML or missing namespace'
     nil
   end

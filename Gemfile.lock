@@ -55,6 +55,7 @@ GEM
     annotate (2.7.3)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
+    ansi (1.5.0)
     arel (9.0.0)
     ast (2.4.0)
     attr_encrypted (3.1.0)
@@ -335,6 +336,9 @@ GEM
       concurrent-ruby (~> 1.0.0)
       sidekiq (>= 3.5.0)
       statsd-ruby (~> 1.2.0)
+    oga (2.15)
+      ast
+      ruby-ll (~> 2.1)
     oj (3.5.1)
     omniauth (1.8.1)
       hashie (>= 3.4.6, < 3.6.0)
@@ -502,6 +506,9 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-ll (2.1.2)
+      ansi
+      ast
     ruby-oembed (0.12.0)
     ruby-progressbar (1.9.0)
     ruby-saml (1.7.2)
@@ -681,6 +688,7 @@ DEPENDENCIES
   net-ldap (~> 0.10)
   nokogiri (~> 1.8)
   nsa (~> 0.2)
+  oga (~> 2.15)
   oj (~> 3.5)
   omniauth (~> 1.2)
   omniauth-cas (~> 1.1)

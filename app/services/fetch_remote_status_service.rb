@@ -34,7 +34,7 @@ class FetchRemoteStatusService < BaseService
 
     statuses = ProcessFeedService.new.call(prefetched_body, account)
     statuses.first
-  rescue Nokogiri::XML::XPath::SyntaxError
+  rescue LL::ParserError
     Rails.logger.debug 'Invalid XML or missing namespace'
     nil
   end

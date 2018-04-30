@@ -27,7 +27,7 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, Addressable::URI::InvalidURIError => e
+  rescue HTTP::Error, LL::ParserError, Addressable::URI::InvalidURIError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
@@ -66,9 +66,9 @@ class FetchLinkCardService < BaseService
     if @status.local?
       urls = @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[0]).normalize }
     else
-      html  = Nokogiri::HTML(@status.text)
+      html  = Oga.parse_html(@status.text)
       links = html.css('a')
-      urls  = links.map { |a| Addressable::URI.parse(a['href']).normalize unless skip_link?(a) }.compact
+      urls  = links.map { |a| Addressable::URI.parse(a.get('href')).normalize unless skip_link?(a) }.compact
     end
 
     urls.reject { |uri| bad_url?(uri) }.first
@@ -81,7 +81,7 @@ class FetchLinkCardService < BaseService
 
   def skip_link?(a)
     # Avoid links for hashtags and mentions (microformats)
-    a['rel']&.include?('tag') || a['class']&.include?('u-url')
+    a.get('rel')&.include?('tag') || a.get('class')&.include?('u-url')
   end
 
   def attempt_oembed
@@ -128,7 +128,7 @@ class FetchLinkCardService < BaseService
     detector.strip_tags = true
 
     guess = detector.detect(@html, @html_charset)
-    page  = Nokogiri::HTML(@html, nil, guess&.fetch(:encoding, nil))
+    page  = Oga.parse_html(guess ? @html.force_encoding(guess[:encoding]).encode('utf-8') : @html)
 
     if meta_property(page, 'twitter:player')
       @card.type   = :video
@@ -144,7 +144,7 @@ class FetchLinkCardService < BaseService
       @card.type = :link
     end
 
-    @card.title            = meta_property(page, 'og:title').presence || page.at_xpath('//title')&.content || ''
+    @card.title            = meta_property(page, 'og:title').presence || page.at_xpath('//title')&.text || ''
     @card.description      = meta_property(page, 'og:description').presence || meta_property(page, 'description') || ''
     @card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
 
@@ -154,7 +154,7 @@ class FetchLinkCardService < BaseService
   end
 
   def meta_property(page, property)
-    page.at_xpath("//meta[@property=\"#{property}\"]")&.attribute('content')&.value || page.at_xpath("//meta[@name=\"#{property}\"]")&.attribute('content')&.value
+    page.at_xpath("//meta[@property=\"#{property}\"]")&.get('content') || page.at_xpath("//meta[@name=\"#{property}\"]")&.get('content')
   end
 
   def lock_options
