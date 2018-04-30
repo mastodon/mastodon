@@ -4,6 +4,7 @@ oc:
     about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
+    administered_by: 'Gerida per :'
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
     contact_missing: Pas parametrat
@@ -115,6 +116,7 @@ oc:
       public: Public
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar los avatars
+      remove_avatar: Supriir l’avatar
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
@@ -160,6 +162,7 @@ oc:
         enable_user: "%{name} activèt la connexion per %{target}"
         memorialize_account: "%{name} transformèt en memorial la pagina de perfil a %{target}"
         promote_user: "%{name} promoguèt %{target}"
+        remove_avatar_user: "%{name} suprimèt l’avatar a %{target}"
         reset_password_user: "%{name} reïnicializèt lo senhal a %{target}"
         resolve_report: "%{name} anullèt lo rapòrt de %{target}"
         silence_account: "%{name} metèt en silenci lo compte a %{target}"
@@ -249,6 +252,9 @@ oc:
         expired: Expirats
         title: Filtre
       title: Convits
+    report_notes:
+      created_msg: Nòta de moderacion corrèctament creada !
+      destroyed_msg: Nòta de moderacion corrèctament suprimida !
     reports:
       account:
         created_reports: Rapòrts creats per aqueste compte
@@ -262,6 +268,7 @@ oc:
         targeted_reports: Rapòrts ligats a aqueste compte    
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
+      avatar: Avatar
       comment:
         none: Pas cap
       created_at: Creacion  
@@ -412,6 +419,7 @@ oc:
     security: Seguretat
     set_new_password: Picar un nòu senhal
   authorize_follow:
+    already_following: Seguètz ja aqueste compte
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
     follow_request: 'Avètz demandat de sègre :'
@@ -582,6 +590,7 @@ oc:
       '21600': 6 oras
       '3600': 1 ora
       '43200': 12 oras
+      '604800': 1 setmana
       '86400': 1 jorn
     expires_in_prompt: Jamai
     generate: Generar
