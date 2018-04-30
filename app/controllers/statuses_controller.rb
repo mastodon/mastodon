@@ -4,9 +4,9 @@ class StatusesController < ApplicationController
   include SignatureAuthentication
   include Authorization
 
-  ANCESTORS_LIMIT = 20
-  DESCENDANTS_LIMIT = 20
-  DESCENDANTS_DEPTH_LIMIT = 4
+  ANCESTORS_LIMIT         = 40
+  DESCENDANTS_LIMIT       = 60
+  DESCENDANTS_DEPTH_LIMIT = 20
 
   layout 'public'
 
@@ -71,7 +71,7 @@ class StatusesController < ApplicationController
   end
 
   def set_descendants
-    @max_descendant_thread_id = params[:max_descendant_thread_id]&.to_i
+    @max_descendant_thread_id   = params[:max_descendant_thread_id]&.to_i
     @since_descendant_thread_id = params[:since_descendant_thread_id]&.to_i
 
     descendants = cache_collection(
@@ -84,11 +84,12 @@ class StatusesController < ApplicationController
       ),
       Status
     )
+
     @descendant_threads = []
 
     if descendants.present?
       statuses = [descendants.first]
-      depth = 1
+      depth    = 1
 
       descendants.drop(1).each_with_index do |descendant, index|
         if descendants[index].id == descendant.in_reply_to_id
