@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OStatus::Activity::Base
+  include XmlHelper
+
   def initialize(xml, account = nil, **options)
     @xml     = xml
     @account = account
@@ -12,31 +14,31 @@ class OStatus::Activity::Base
   end
 
   def verb
-    raw = @xml.at_xpath('./activity:verb', activity: OStatus::TagManager::AS_XMLNS).content
+    raw = @xml.at_xpath(namespaced_xpath('./activity:verb', activity: OStatus::TagManager::AS_XMLNS)).text
     OStatus::TagManager::VERBS.key(raw)
   rescue
     :post
   end
 
   def type
-    raw = @xml.at_xpath('./activity:object-type', activity: OStatus::TagManager::AS_XMLNS).content
+    raw = @xml.at_xpath(namespaced_xpath('./activity:object-type', activity: OStatus::TagManager::AS_XMLNS)).text
     OStatus::TagManager::TYPES.key(raw)
   rescue
     :activity
   end
 
   def id
-    @xml.at_xpath('./xmlns:id', xmlns: OStatus::TagManager::XMLNS).content
+    @xml.at_xpath(namespaced_xpath('./xmlns:id', xmlns: OStatus::TagManager::XMLNS)).text
   end
 
   def url
-    link = @xml.xpath('./xmlns:link[@rel="alternate"]', xmlns: OStatus::TagManager::XMLNS).find { |link_candidate| link_candidate['type'] == 'text/html' }
-    link.nil? ? nil : link['href']
+    link = @xml.xpath('./link[@rel="alternate"]').find { |link_candidate| link_candidate.get('type') == 'text/html' }
+    link&.get('href')
   end
 
   def activitypub_uri
-    link = @xml.xpath('./xmlns:link[@rel="alternate"]', xmlns: OStatus::TagManager::XMLNS).find { |link_candidate| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link_candidate['type']) }
-    link.nil? ? nil : link['href']
+    link = @xml.xpath('./link[@rel="alternate"]').find { |link_candidate| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link_candidate.get('type')) }
+    link&.get('href')
   end
 
   def activitypub_uri?
