@@ -66,8 +66,10 @@ class Api::BaseController < ApplicationController
   end
 
   def require_user!
-    if current_user
+    if current_user && !current_user.disabled?
       set_user_activity
+    elsif current_user
+      render json: { error: 'Your login is currently disabled' }, status: 403
     else
       render json: { error: 'This method requires an authenticated user' }, status: 422
     end
