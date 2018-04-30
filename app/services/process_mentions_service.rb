@@ -11,12 +11,12 @@ class ProcessMentionsService < BaseService
     return unless status.local?
 
     status.text = status.text.gsub(Account::MENTION_RE) do |match|
-      username, domain  = $1.split('@')
+      username, domain  = Regexp.last_match(1).split('@')
       mentioned_account = Account.find_remote(username, domain)
 
       if mention_undeliverable?(status, mentioned_account)
         begin
-          mentioned_account = resolve_account_service.call($1)
+          mentioned_account = resolve_account_service.call(Regexp.last_match(1))
         rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end

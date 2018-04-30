@@ -68,7 +68,7 @@ class Status < ApplicationRecord
   scope :remote, -> { where(local: false).or(where.not(uri: nil)) }
   scope :local,  -> { where(local: true).or(where(uri: nil)) }
 
-  scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
+  scope :without_replies, -> { where('statuses.in_reply_to_account_id IS NULL').or(where('statuses.in_reply_to_account_id = statuses.account_id')) }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
@@ -174,6 +174,7 @@ class Status < ApplicationRecord
   before_validation :set_conversation
   before_validation :set_sensitivity
   before_validation :set_local
+  before_validation :set_reply_from_mention
 
   class << self
     def not_in_filtered_languages(account)
@@ -345,6 +346,16 @@ class Status < ApplicationRecord
 
   def set_local
     self.local = account.local?
+  end
+
+  def set_reply_from_mention
+    return if !new_record? || reblog? || (reply? && in_reply_to_account_id != account_id)
+
+    if local? && text =~ /\A#{Account::MENTION_RE}/
+      username, domain         = Regexp.last_match(1).split('@')
+      domain                   = nil if TagManager.instance.local_domain?(domain)
+      self.in_reply_to_account = Account.find_remote(username, domain)
+    end
   end
 
   def update_statistics
