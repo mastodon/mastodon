@@ -2,19 +2,20 @@
 
 class RemoteProfile
   include ActiveModel::Model
+  include XmlHelper
 
   attr_reader :document
 
   def initialize(body)
-    @document = Nokogiri::XML.parse(body, nil, 'utf-8')
+    @document = Oga.parse_xml(body)
   end
 
   def root
-    @root ||= document.at_xpath('/atom:feed|/atom:entry', atom: OStatus::TagManager::XMLNS)
+    @root ||= document.at_xpath(namespaced_xpath('/atom:feed|/atom:entry', atom: OStatus::TagManager::XMLNS))
   end
 
   def author
-    @author ||= root.at_xpath('./atom:author|./dfrn:owner', atom: OStatus::TagManager::XMLNS, dfrn: OStatus::TagManager::DFRN_XMLNS)
+    @author ||= root.at_xpath(namespaced_xpath('./atom:author|./dfrn:owner', atom: OStatus::TagManager::XMLNS, dfrn: OStatus::TagManager::DFRN_XMLNS))
   end
 
   def hub_link
@@ -22,15 +23,15 @@ class RemoteProfile
   end
 
   def display_name
-    @display_name ||= author.at_xpath('./poco:displayName', poco: OStatus::TagManager::POCO_XMLNS)&.content
+    @display_name ||= author.at_xpath(namespaced_xpath('./poco:displayName', poco: OStatus::TagManager::POCO_XMLNS))&.text
   end
 
   def note
-    @note ||= author.at_xpath('./atom:summary|./poco:note', atom: OStatus::TagManager::XMLNS, poco: OStatus::TagManager::POCO_XMLNS)&.content
+    @note ||= author.at_xpath(namespaced_xpath('./atom:summary|./poco:note', atom: OStatus::TagManager::XMLNS, poco: OStatus::TagManager::POCO_XMLNS))&.text
   end
 
   def scope
-    @scope ||= author.at_xpath('./mastodon:scope', mastodon: OStatus::TagManager::MTDN_XMLNS)&.content
+    @scope ||= author.at_xpath(namespaced_xpath('./mastodon:scope', mastodon: OStatus::TagManager::MTDN_XMLNS))&.text
   end
 
   def avatar
@@ -42,7 +43,7 @@ class RemoteProfile
   end
 
   def emojis
-    @emojis ||= author.xpath('./xmlns:link[@rel="emoji"]', xmlns: OStatus::TagManager::XMLNS)
+    @emojis ||= author.xpath('./link[@rel="emoji"]')
   end
 
   def locked?
@@ -52,6 +53,6 @@ class RemoteProfile
   private
 
   def link_href_from_xml(xml, type)
-    xml.at_xpath(%(./atom:link[@rel="#{type}"]/@href), atom: OStatus::TagManager::XMLNS)&.content
+    xml.at_xpath(%(./link[@rel="#{type}"]))&.get('href')
   end
 end

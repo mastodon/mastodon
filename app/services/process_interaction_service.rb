@@ -3,6 +3,7 @@
 class ProcessInteractionService < BaseService
   include AuthorExtractor
   include Authorization
+  include XmlHelper
 
   # Record locally the remote interaction with our user
   # @param [String] envelope Salmon envelope
@@ -10,10 +11,8 @@ class ProcessInteractionService < BaseService
   def call(envelope, target_account)
     body = salmon.unpack(envelope)
 
-    xml = Nokogiri::XML(body)
-    xml.encoding = 'utf-8'
-
-    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS))
+    xml     = Oga.parse_xml(body)
+    account = author_from_xml(xml.at_xpath(namespaced_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS)))
 
     return if account.nil? || account.suspended?
 
@@ -54,12 +53,12 @@ class ProcessInteractionService < BaseService
   private
 
   def mentions_account?(xml, account)
-    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: OStatus::TagManager::XMLNS).each { |mention_link| return true if [OStatus::TagManager.instance.uri_for(account), OStatus::TagManager.instance.url_for(account)].include?(mention_link.attribute('href').value) }
+    xml.xpath('/entry/link[@rel="mentioned"]').each { |mention_link| return true if [OStatus::TagManager.instance.uri_for(account), OStatus::TagManager.instance.url_for(account)].include?(mention_link.get('href')) }
     false
   end
 
   def verb(xml)
-    raw = xml.at_xpath('//activity:verb', activity: OStatus::TagManager::AS_XMLNS).content
+    raw = xml.at_xpath(namespaced_xpath('//activity:verb', activity: OStatus::TagManager::AS_XMLNS)).text
     OStatus::TagManager::VERBS.key(raw)
   rescue
     :post
@@ -104,7 +103,7 @@ class ProcessInteractionService < BaseService
   end
 
   def delete_post!(xml, account)
-    status = Status.find(xml.at_xpath('//xmlns:id', xmlns: OStatus::TagManager::XMLNS).content)
+    status = Status.find(xml.at_xpath(namespaced_xpath('//xmlns:id', xmlns: OStatus::TagManager::XMLNS)).text)
 
     return if status.nil?
 
@@ -142,7 +141,7 @@ class ProcessInteractionService < BaseService
   end
 
   def activity_id(xml)
-    xml.at_xpath('//activity:object', activity: OStatus::TagManager::AS_XMLNS).at_xpath('./xmlns:id', xmlns: OStatus::TagManager::XMLNS).content
+    xml.at_xpath(namespaced_xpath('//activity:object', activity: OStatus::TagManager::AS_XMLNS)).at_xpath(namespaced_xpath('./xmlns:id', xmlns: OStatus::TagManager::XMLNS)).text
   end
 
   def salmon

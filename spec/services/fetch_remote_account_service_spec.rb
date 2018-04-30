@@ -43,6 +43,7 @@ RSpec.describe FetchRemoteAccountService do
     before do
       stub_request(:get, "https://kickass.zone/.well-known/webfinger?resource=acct:localhost@kickass.zone").to_return(request_fixture('webfinger-hacker3.txt'))
       stub_request(:get, "https://kickass.zone/api/statuses/user_timeline/7477.atom").to_return(request_fixture('feed.txt'))
+      stub_request(:get, "http://kickass.zone/system/accounts/avatars/000/000/001/large/eris.png").to_return(status: 404)
     end
 
     include_examples 'return Account'
@@ -53,6 +54,7 @@ RSpec.describe FetchRemoteAccountService do
       before do
         stub_request(:get, url).to_return(status: 200, body: Oj.dump(actor), headers: { 'Content-Type' => 'application/activity+json' })
         stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, "http://kickass.zone/system/accounts/avatars/000/000/001/large/eris.png").to_return(status: 404)
       end
 
       include_examples 'return Account'
@@ -63,6 +65,7 @@ RSpec.describe FetchRemoteAccountService do
         stub_request(:get, url).to_return(status: 200, body: xml, headers: { 'Content-Type' => 'application/atom+xml' })
         stub_request(:get, "https://kickass.zone/.well-known/webfinger?resource=acct:localhost@kickass.zone").to_return(request_fixture('webfinger-hacker3.txt'))
         stub_request(:get, "https://kickass.zone/api/statuses/user_timeline/7477.atom").to_return(request_fixture('feed.txt'))
+        stub_request(:get, "http://kickass.zone/system/accounts/avatars/000/000/001/large/eris.png").to_return(status: 404)
       end
 
       include_examples 'return Account'

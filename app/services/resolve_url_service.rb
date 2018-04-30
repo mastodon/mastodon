@@ -56,11 +56,11 @@ class ResolveURLService < BaseService
   end
 
   def xml_root
-    xml_data.root.name
+    xml_data.at_xpath('/*').name
   end
 
   def xml_data
-    @_xml_data ||= Nokogiri::XML(body, nil, 'utf-8')
+    @_xml_data ||= Oga.parse_xml(body)
   end
 
   def local_url?

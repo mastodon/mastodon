@@ -2,6 +2,7 @@
 
 class FetchRemoteAccountService < BaseService
   include AuthorExtractor
+  include XmlHelper
 
   def call(url, prefetched_body = nil, protocol = :ostatus)
     if prefetched_body.nil?
@@ -22,12 +23,10 @@ class FetchRemoteAccountService < BaseService
   private
 
   def process_atom(url, prefetched_body:)
-    xml = Nokogiri::XML(prefetched_body)
-    xml.encoding = 'utf-8'
+    xml     = Oga.parse_xml(prefetched_body)
+    account = author_from_xml(xml.at_xpath(namespaced_xpath('/xmlns:feed', xmlns: OStatus::TagManager::XMLNS)), false)
 
-    account = author_from_xml(xml.at_xpath('/xmlns:feed', xmlns: OStatus::TagManager::XMLNS), false)
-
-    UpdateRemoteProfileService.new.call(xml, account) unless account.nil?
+    UpdateRemoteProfileService.new.call(prefetched_body, account) unless account.nil?
 
     account
   rescue TypeError

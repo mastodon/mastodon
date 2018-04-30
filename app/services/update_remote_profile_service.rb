@@ -51,15 +51,15 @@ class UpdateRemoteProfileService < BaseService
     return if do_not_download
 
     remote_account.emojis.each do |link|
-      next unless link['href'] && link['name']
+      next unless link.get('href') && link.get('name')
 
-      shortcode = link['name'].delete(':')
+      shortcode = link.get('name').delete(':')
       emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: parent.account.domain)
 
       next unless emoji.nil?
 
       emoji = CustomEmoji.new(shortcode: shortcode, domain: parent.account.domain)
-      emoji.image_remote_url = link['href']
+      emoji.image_remote_url = link.get('href')
       emoji.save
     end
   end
