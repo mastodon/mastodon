@@ -265,13 +265,13 @@ oc:
         moderation_notes: Nòtas de moderacion
         note: nòta
         report: rapòrt
-        targeted_reports: Rapòrts ligats a aqueste compte    
+        targeted_reports: Rapòrts ligats a aqueste compte
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
       avatar: Avatar
       comment:
         none: Pas cap
-      created_at: Creacion  
+      created_at: Creacion
       delete: Suprimir
       history: Istoric de moderacion
       id: ID
@@ -757,15 +757,15 @@ oc:
   statuses:
     attached:
       description: 'Ajustat : %{attached}'
+      disallowed_hashtags:
+        one: 'conten una etiqueta desactivada : %{tags}'
+        other: 'conten las etiquetas desactivadas : %{tags}'
       image:
         one: "%{count} imatge"
         other: "%{count} imatges"
       video:
         one: "%{count} vidèo"
         other: "%{count} vidèos"
-      disallowed_hashtags:
-        one: 'conten una etiqueta desactivada : %{tags}'
-        other: 'conten las etiquetas desactivadas : %{tags}'
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
@@ -788,9 +788,9 @@ oc:
     reblogged: a partejat
     sensitive_content: Contengut sensible
   terms:
-    title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
     contrast: Fòrt contrast
     default: Mastodon
+    title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M
