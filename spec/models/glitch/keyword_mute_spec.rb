@@ -60,6 +60,12 @@ RSpec.describe Glitch::KeywordMute, type: :model do
         expect(matcher.matches?('This is a HOT take')).to be_truthy
       end
 
+      it 'matches if at least one non-whole-word keyword case-insensitively matches the text' do
+        Glitch::KeywordMute.create!(account: alice, keyword: 'hot', whole_word: false)
+
+        expect(matcher.matches?('This is a HOTTY take')).to be_truthy
+      end
+
       it 'maintains case-insensitivity when combining keywords into a single matcher' do
         Glitch::KeywordMute.create!(account: alice, keyword: 'hot')
         Glitch::KeywordMute.create!(account: alice, keyword: 'cold')

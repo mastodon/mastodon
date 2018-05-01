@@ -70,7 +70,7 @@ class Glitch::KeywordMute < ApplicationRecord
 
     def make_regex_text
       kws = keywords.map! do |whole_word, keyword|
-        whole_word ? boundary_regex_for_keyword(keyword) : keyword
+        whole_word ? boundary_regex_for_keyword(keyword) : /(?i:#{keyword})/
       end
 
       Regexp.union(kws).source
