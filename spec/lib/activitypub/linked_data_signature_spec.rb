@@ -16,6 +16,11 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
   subject { described_class.new(json) }
 
+  before do
+    stub_request(:get, 'https://www.w3.org/ns/activitystreams').to_return(request_fixture('json-ld.activitystreams.txt'))
+    stub_request(:get, 'https://w3id.org/identity/v1').to_return(request_fixture('json-ld.identity.txt'))
+  end
+
   describe '#verify_account!' do
     context 'when signature matches' do
       let(:raw_signature) do
