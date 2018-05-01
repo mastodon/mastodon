@@ -82,6 +82,8 @@ class Account < ApplicationRecord
   has_many :mentions, inverse_of: :account, dependent: :destroy
   has_many :notifications, inverse_of: :account, dependent: :destroy
 
+  counter_cache :statuses, if: ->(status) { !status.direct_visibility? }, scope: ->(scope) { scope.where.not(visibility: :direct) }
+
   # Pinned statuses
   has_many :status_pins, inverse_of: :account, dependent: :destroy
   has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
@@ -401,6 +403,7 @@ class Account < ApplicationRecord
   before_create :generate_keys
   before_validation :normalize_domain
   before_validation :prepare_contents, if: :local?
+  after_cache_statuses_count :update_statuses_count
 
   private
 
@@ -421,5 +424,9 @@ class Account < ApplicationRecord
     return if local?
 
     self.domain = TagManager.instance.normalize_domain(domain)
+  end
+
+  def update_statuses_count
+    update_attribute(:statuses_count, statuses_count)
   end
 end
