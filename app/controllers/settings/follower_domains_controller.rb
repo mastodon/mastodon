@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq-bulk'
-
 class Settings::FollowerDomainsController < ApplicationController
   layout 'admin'
 
