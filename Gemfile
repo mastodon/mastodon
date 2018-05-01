@@ -54,7 +54,7 @@ gem 'httplog', '~> 1.0'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
-gem 'mime-types', '~> 3.1'
+gem 'mime-types', '~> 3.1', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.8'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.5'
@@ -82,8 +82,8 @@ gem 'simple_form', '~> 4.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
 gem 'strong_migrations', '~> 0.2'
-gem 'tty-command', '~> 0.8'
-gem 'tty-prompt', '~> 0.16'
+gem 'tty-command', '~> 0.8', require: false
+gem 'tty-prompt', '~> 0.16', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2018'
 gem 'webpacker', '~> 3.4'
@@ -135,6 +135,9 @@ group :development do
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
+
+  gem 'derailed_benchmarks'
+  gem 'stackprof'
 end
 
 group :production do
