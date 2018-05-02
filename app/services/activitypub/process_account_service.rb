@@ -201,9 +201,7 @@ class ActivityPub::ProcessAccountService < BaseService
     return if @json['tag'].blank?
 
     as_array(@json['tag']).each do |tag|
-      if equals_or_includes?(tag['type'], 'Emoji')
-        process_emoji tag
-      end
+      process_emoji tag if equals_or_includes?(tag['type'], 'Emoji')
     end
   end
 

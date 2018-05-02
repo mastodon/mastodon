@@ -122,7 +122,6 @@ RSpec.describe ResolveAccountService do
     pending
   end
 
-
   it 'processes one remote account at a time using locks' do
     wait_for_start = true
     fail_occurred  = false
