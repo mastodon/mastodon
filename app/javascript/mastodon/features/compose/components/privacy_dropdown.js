@@ -58,6 +58,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    if (this.focusedItem) this.focusedItem.focus();
     this.setState({ mounted: true });
   }
 
@@ -68,6 +69,10 @@ class PrivacyDropdownMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
+  }
+
+  setFocusRef = c => {
+    this.focusedItem = c;
   }
 
   render () {
@@ -82,7 +87,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
           // react-overlays
           <div className='privacy-dropdown__dropdown' style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} role='listbox' ref={this.setRef}>
             {items.map(item => (
-              <div role='option' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value}>
+              <div role='option' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
                 <div className='privacy-dropdown__option__icon'>
                   <i className={`fa fa-fw fa-${item.icon}`} />
                 </div>

@@ -43,6 +43,7 @@ class DropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    if (this.focusedItem) this.focusedItem.focus();
     this.setState({ mounted: true });
   }
 
@@ -53,6 +54,10 @@ class DropdownMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
+  }
+
+  setFocusRef = c => {
+    this.focusedItem = c;
   }
 
   handleClick = e => {
@@ -79,7 +84,7 @@ class DropdownMenu extends React.PureComponent {
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' autoFocus={i === 0} onClick={this.handleClick} data-index={i}>
+        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} data-index={i}>
           {text}
         </a>
       </li>
