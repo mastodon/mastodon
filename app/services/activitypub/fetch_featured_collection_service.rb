@@ -4,6 +4,8 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   include JsonLdHelper
 
   def call(account)
+    return if account.featured_collection_url.blank?
+
     @account = account
     @json    = fetch_resource(@account.featured_collection_url, true)
 
