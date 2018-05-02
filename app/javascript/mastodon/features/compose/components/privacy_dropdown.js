@@ -147,9 +147,6 @@ export default class PrivacyDropdown extends React.PureComponent {
 
   handleKeyDown = e => {
     switch(e.key) {
-    case 'Enter':
-      this.handleToggle(e);
-      break;
     case 'Escape':
       this.handleClose();
       break;
