@@ -2,10 +2,7 @@
 
 class ActivityPub::Activity::Update < ActivityPub::Activity
   def perform
-    case @object['type']
-    when 'Person'
-      update_account
-    end
+    update_account if equals_or_includes?(@object['type'], 'Person')
   end
 
   private

@@ -5,6 +5,10 @@ module JsonLdHelper
     haystack.is_a?(Array) ? haystack.include?(needle) : haystack == needle
   end
 
+  def equals_or_includes_any?(haystack, needles)
+    needles.any? { |needle| equals_or_includes?(haystack, needle) }
+  end
+
   def first_of_value(value)
     value.is_a?(Array) ? value.first : value
   end

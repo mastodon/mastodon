@@ -105,6 +105,20 @@ RSpec.describe ResolveAccountService do
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
     end
 
+    context 'with multiple types' do
+      before do
+        stub_request(:get, "https://ap.example.com/users/foo").to_return(request_fixture('activitypub-actor-individual.txt'))
+      end
+
+      it 'returns new remote account' do
+        account = subject.call('foo@ap.example.com')
+
+        expect(account.activitypub?).to eq true
+        expect(account.domain).to eq 'ap.example.com'
+        expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+      end
+    end
+
     pending
   end
 
