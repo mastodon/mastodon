@@ -58,6 +58,7 @@ sv:
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
+        fields: Profil-metadata
       interactions:
         must_be_follower: Blockera meddelanden från icke-följare
         must_be_following: Blockera meddelanden från personer du inte följer
@@ -69,6 +70,10 @@ sv:
         follow_request: Skicka e-post när någon begär att följa dig
         mention: Skicka e-post när någon nämner dig
         reblog: Skicka e-post när någon knuffar din status
+      account:
+        fields:
+          name: Etikett
+          value: Innehåll
     'no': Nej
     required:
       mark: '*'
