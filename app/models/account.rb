@@ -273,6 +273,10 @@ class Account < ApplicationRecord
       @value   = attr['value']
       @errors  = {}
     end
+
+    def to_h
+      { name: @name, value: @value }
+    end
   end
 
   class << self
