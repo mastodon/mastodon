@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ActivityPub::ProcessCollectionService do
+RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account') }
 
   let(:payload) do

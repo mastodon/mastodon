@@ -2,6 +2,8 @@
 
 require 'optparse'
 require 'colorize'
+require 'tty-command'
+require 'tty-prompt'
 
 namespace :mastodon do
   desc 'Configure the instance for production use'

@@ -48,7 +48,7 @@ module JsonLdHelper
   end
 
   def canonicalize(json)
-    graph = RDF::Graph.new << JSON::LD::API.toRdf(json)
+    graph = RDF::Graph.new << JSON::LD::API.toRdf(json, documentLoader: method(:load_jsonld_context))
     graph.dump(:normalize)
   end
 
@@ -89,5 +89,20 @@ module JsonLdHelper
     request = Request.new(:get, uri)
     request.add_headers('Accept' => 'application/activity+json, application/ld+json')
     request
+  end
+
+  def load_jsonld_context(url, _options = {}, &_block)
+    json = Rails.cache.fetch("jsonld:context:#{url}", expires_in: 30.days, raw: true) do
+      request = Request.new(:get, url)
+      request.add_headers('Accept' => 'application/ld+json')
+
+      request.perform do |res|
+        raise JSON::LD::JsonLdError::LoadingDocumentFailed unless res.code == 200 && res.mime_type == 'application/ld+json'
+        res.body_with_limit
+      end
+    end
+
+    doc = JSON::LD::API::RemoteDocument.new(url, json)
+    block_given? ? yield(doc) : doc
   end
 end
