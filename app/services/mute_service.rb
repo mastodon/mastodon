@@ -10,5 +10,6 @@ class MuteService < BaseService
     else
       FeedManager.instance.clear_from_timeline(account, target_account)
     end
+    mute
   end
 end
