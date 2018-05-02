@@ -60,6 +60,42 @@ class DropdownMenu extends React.PureComponent {
     this.focusedItem = c;
   }
 
+  handleKeyDown = e => {
+    const items = Array.from(this.node.getElementsByTagName('a'));
+    const index = items.indexOf(e.currentTarget);
+    let element;
+
+    switch(e.key) {
+    case 'Enter':
+      this.handleClick(e);
+      break;
+    case 'ArrowDown':
+      element = items[index+1];
+      if (element) {
+        element.focus();
+      }
+      break;
+    case 'ArrowUp':
+      element = items[index-1];
+      if (element) {
+        element.focus();
+      }
+      break;
+    case 'Home':
+      element = items[0];
+      if (element) {
+        element.focus();
+      }
+      break;
+    case 'End':
+      element = items[items.length-1];
+      if (element) {
+        element.focus();
+      }
+      break;
+    }
+  }
+
   handleClick = e => {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
@@ -84,7 +120,7 @@ class DropdownMenu extends React.PureComponent {
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} data-index={i}>
+        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleKeyDown} data-index={i}>
           {text}
         </a>
       </li>
