@@ -3,6 +3,7 @@
 class ResolveAccountService < BaseService
   include OStatus2::MagicKey
   include JsonLdHelper
+  include XmlHelper
 
   DFRN_NS = 'http://purl.org/macgirvin/dfrn/1.0'
 
@@ -159,21 +160,21 @@ class ResolveAccountService < BaseService
   def canonical_uri
     return @canonical_uri if defined?(@canonical_uri)
 
-    author_uri = atom.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri')
+    author_uri = atom.at_xpath('/feed/author/uri')
 
     if author_uri.nil?
-      owner      = atom.at_xpath('/xmlns:feed').at_xpath('./dfrn:owner', dfrn: DFRN_NS)
-      author_uri = owner.at_xpath('./xmlns:uri') unless owner.nil?
+      owner      = atom.at_xpath('/feed').at_xpath(namespaced_xpath('./dfrn:owner', dfrn: DFRN_NS))
+      author_uri = owner.at_xpath('./uri') unless owner.nil?
     end
 
-    @canonical_uri = author_uri.nil? ? nil : author_uri.content
+    @canonical_uri = author_uri.nil? ? nil : author_uri.text
   end
 
   def hub_url
     return @hub_url if defined?(@hub_url)
 
-    hubs     = atom.xpath('//xmlns:link[@rel="hub"]')
-    @hub_url = hubs.empty? || hubs.first['href'].nil? ? nil : hubs.first['href']
+    hubs     = atom.xpath('//link[@rel="hub"]')
+    @hub_url = hubs.empty? || hubs.first.get('href').nil? ? nil : hubs.first.get('href')
   end
 
   def atom_body
@@ -194,7 +195,7 @@ class ResolveAccountService < BaseService
 
   def atom
     return @atom if defined?(@atom)
-    @atom = Nokogiri::XML(atom_body)
+    @atom = Oga.parse_xml(atom_body)
   end
 
   def update_account_profile

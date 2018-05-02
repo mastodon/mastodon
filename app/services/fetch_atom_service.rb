@@ -66,13 +66,13 @@ class FetchAtomService < BaseService
   end
 
   def process_html(response)
-    page = Nokogiri::HTML(response.body_with_limit)
+    page = Oga.parse_html(response.body_with_limit)
 
-    json_link = page.xpath('//link[@rel="alternate"]').find { |link| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link['type']) }
-    atom_link = page.xpath('//link[@rel="alternate"]').find { |link| link['type'] == 'application/atom+xml' }
+    json_link = page.xpath('//link[@rel="alternate"]').find { |link| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link.get('type')) }
+    atom_link = page.xpath('//link[@rel="alternate"]').find { |link| link.get('type') == 'application/atom+xml' }
 
-    result ||= process(json_link['href'], terminal: true) unless json_link.nil? || @unsupported_activity
-    result ||= process(atom_link['href'], terminal: true) unless atom_link.nil?
+    result ||= process(json_link.get('href'), terminal: true) unless json_link.nil? || @unsupported_activity
+    result ||= process(atom_link.get('href'), terminal: true) unless atom_link.nil?
 
     result
   end

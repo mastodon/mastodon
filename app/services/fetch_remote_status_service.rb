@@ -2,6 +2,7 @@
 
 class FetchRemoteStatusService < BaseService
   include AuthorExtractor
+  include XmlHelper
 
   def call(url, prefetched_body = nil, protocol = :ostatus)
     if prefetched_body.nil?
@@ -24,17 +25,15 @@ class FetchRemoteStatusService < BaseService
   def process_atom(url, prefetched_body:)
     Rails.logger.debug "Processing Atom for remote status at #{url}"
 
-    xml = Nokogiri::XML(prefetched_body)
-    xml.encoding = 'utf-8'
-
-    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS))
+    xml     = Oga.parse_xml(prefetched_body)
+    account = author_from_xml(xml.at_xpath(namespaced_xpath('/xmlns:entry', xmlns: OStatus::TagManager::XMLNS)))
     domain  = Addressable::URI.parse(url).normalized_host
 
     return nil unless !account.nil? && confirmed_domain?(domain, account)
 
     statuses = ProcessFeedService.new.call(prefetched_body, account)
     statuses.first
-  rescue Nokogiri::XML::XPath::SyntaxError
+  rescue LL::ParserError
     Rails.logger.debug 'Invalid XML or missing namespace'
     nil
   end

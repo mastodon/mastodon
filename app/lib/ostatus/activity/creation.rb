@@ -67,38 +67,38 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   end
 
   def content
-    @xml.at_xpath('./xmlns:content', xmlns: OStatus::TagManager::XMLNS).content
+    @xml.at_xpath(namespaced_xpath('./xmlns:content', xmlns: OStatus::TagManager::XMLNS)).text
   end
 
   def content_language
-    @xml.at_xpath('./xmlns:content', xmlns: OStatus::TagManager::XMLNS)['xml:lang']&.presence || 'en'
+    @xml.at_xpath(namespaced_xpath('./xmlns:content', xmlns: OStatus::TagManager::XMLNS))&.get('xml:lang')&.presence || 'en'
   end
 
   def content_warning
-    @xml.at_xpath('./xmlns:summary', xmlns: OStatus::TagManager::XMLNS)&.content || ''
+    @xml.at_xpath(namespaced_xpath('./xmlns:summary', xmlns: OStatus::TagManager::XMLNS))&.text || ''
   end
 
   def visibility_scope
-    @xml.at_xpath('./mastodon:scope', mastodon: OStatus::TagManager::MTDN_XMLNS)&.content&.to_sym || :public
+    @xml.at_xpath(namespaced_xpath('./mastodon:scope', mastodon: OStatus::TagManager::MTDN_XMLNS))&.text&.to_sym || :public
   end
 
   def published
-    @xml.at_xpath('./xmlns:published', xmlns: OStatus::TagManager::XMLNS).content
+    @xml.at_xpath(namespaced_xpath('./xmlns:published', xmlns: OStatus::TagManager::XMLNS)).text
   end
 
   def thread?
-    !@xml.at_xpath('./thr:in-reply-to', thr: OStatus::TagManager::THR_XMLNS).nil?
+    !@xml.at_xpath(namespaced_xpath('./thr:in-reply-to', thr: OStatus::TagManager::THR_XMLNS)).nil?
   end
 
   def thread
-    thr = @xml.at_xpath('./thr:in-reply-to', thr: OStatus::TagManager::THR_XMLNS)
-    [thr['ref'], thr['href']]
+    thr = @xml.at_xpath(namespaced_xpath('./thr:in-reply-to', thr: OStatus::TagManager::THR_XMLNS))
+    [thr.get('ref'), thr.get('href')]
   end
 
   private
 
   def find_or_create_conversation
-    uri = @xml.at_xpath('./ostatus:conversation', ostatus: OStatus::TagManager::OS_XMLNS)&.attribute('ref')&.content
+    uri = @xml.at_xpath(namespaced_xpath('./ostatus:conversation', ostatus: OStatus::TagManager::OS_XMLNS))&.get('ref')
     return if uri.nil?
 
     if OStatus::TagManager.instance.local_id?(uri)
@@ -112,10 +112,10 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   def save_mentions(parent)
     processed_account_ids = []
 
-    @xml.xpath('./xmlns:link[@rel="mentioned"]', xmlns: OStatus::TagManager::XMLNS).each do |link|
-      next if [OStatus::TagManager::TYPES[:group], OStatus::TagManager::TYPES[:collection]].include? link['ostatus:object-type']
+    @xml.xpath('./link[@rel="mentioned"]').each do |link|
+      next if [OStatus::TagManager::TYPES[:group], OStatus::TagManager::TYPES[:collection]].include? link.get('ostatus:object-type')
 
-      mentioned_account = account_from_href(link['href'])
+      mentioned_account = account_from_href(link.get('href'))
 
       next if mentioned_account.nil? || processed_account_ids.include?(mentioned_account.id)
 
@@ -127,7 +127,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   end
 
   def save_hashtags(parent)
-    tags = @xml.xpath('./xmlns:category', xmlns: OStatus::TagManager::XMLNS).map { |category| category['term'] }.select(&:present?)
+    tags = @xml.xpath(namespaced_xpath('./xmlns:category', xmlns: OStatus::TagManager::XMLNS)).map { |category| category.get('term') }.select(&:present?)
     ProcessHashtagsService.new.call(parent, tags)
   end
 
@@ -135,11 +135,11 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     do_not_download = DomainBlock.find_by(domain: @account.domain)&.reject_media?
     media_attachments = []
 
-    @xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: OStatus::TagManager::XMLNS).each do |link|
-      next unless link['href']
+    @xml.xpath('./link[@rel="enclosure"]').each do |link|
+      next unless link.get('href')
 
-      media = MediaAttachment.where(status: nil, remote_url: link['href']).first_or_initialize(account: @account, status: nil, remote_url: link['href'])
-      parsed_url = Addressable::URI.parse(link['href']).normalize
+      media = MediaAttachment.where(status: nil, remote_url: link.get('href')).first_or_initialize(account: @account, status: nil, remote_url: link.get('href'))
+      parsed_url = Addressable::URI.parse(link.get('href')).normalize
 
       next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
 
@@ -149,7 +149,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
       next if do_not_download
 
       begin
-        media.file_remote_url = link['href']
+        media.file_remote_url = link.get('href')
         media.save!
       rescue ActiveRecord::RecordInvalid
         next
@@ -164,16 +164,16 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
 
     return if do_not_download
 
-    @xml.xpath('./xmlns:link[@rel="emoji"]', xmlns: OStatus::TagManager::XMLNS).each do |link|
-      next unless link['href'] && link['name']
+    @xml.xpath('./link[@rel="emoji"]').each do |link|
+      next unless link.get('href') && link.get('name')
 
-      shortcode = link['name'].delete(':')
+      shortcode = link.get('name').delete(':')
       emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: parent.account.domain)
 
       next unless emoji.nil?
 
       emoji = CustomEmoji.new(shortcode: shortcode, domain: parent.account.domain)
-      emoji.image_remote_url = link['href']
+      emoji.image_remote_url = link.get('href')
       emoji.save
     end
   end

@@ -5,115 +5,66 @@ require 'rails_helper'
 RSpec.describe RemoteProfile do
   let(:remote_profile) { RemoteProfile.new(body) }
   let(:body) do
-    <<-XML
-      <feed xmlns="http://www.w3.org/2005/Atom">
-      <author>John</author>
+    <<-XML.squish
+      <feed xmlns="http://www.w3.org/2005/Atom" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:mastodon="http://mastodon.social/schema/1.0">
+        <link rel="hub" href="http://example.com" />
+        <author>
+          <link rel="avatar" href="http://example.com/avatar" />
+          <link rel="header" href="http://example.com/header" />
+          <poco:displayName>John</poco:displayName>
+          <poco:note>Hello</poco:note>
+          <mastodon:scope>public</mastodon:scope>
+        </author>
     XML
   end
 
   describe '.initialize' do
-    it 'calls Nokogiri::XML.parse' do
-      expect(Nokogiri::XML).to receive(:parse).with(body, nil, 'utf-8')
-      RemoteProfile.new(body)
-    end
-
     it 'sets document' do
-      remote_profile = RemoteProfile.new(body)
-      expect(remote_profile).not_to be nil
-    end
-  end
-
-  describe '#root' do
-    let(:document) { remote_profile.document }
-
-    it 'callse document.at_xpath' do
-      expect(document).to receive(:at_xpath).with(
-        '/atom:feed|/atom:entry',
-        atom: OStatus::TagManager::XMLNS
-      )
-
-      remote_profile.root
+      expect(remote_profile.document).not_to be nil
     end
   end
 
   describe '#author' do
-    let(:root) { remote_profile.root }
-
-    it 'calls root.at_xpath' do
-      expect(root).to receive(:at_xpath).with(
-        './atom:author|./dfrn:owner',
-        atom: OStatus::TagManager::XMLNS,
-        dfrn: OStatus::TagManager::DFRN_XMLNS
-      )
-
-      remote_profile.author
+    it 'returns author' do
+      expect(remote_profile.author).to be_a Oga::XML::Element
     end
   end
 
   describe '#hub_link' do
-    let(:root) { remote_profile.root }
-
-    it 'calls #link_href_from_xml' do
-      expect(remote_profile).to receive(:link_href_from_xml).with(root, 'hub')
-      remote_profile.hub_link
+    it 'returns hub link' do
+      expect(remote_profile.hub_link).to eq 'http://example.com'
     end
   end
 
   describe '#display_name' do
-    let(:author) { remote_profile.author }
-
-    it 'calls author.at_xpath.content' do
-      expect(author).to receive_message_chain(:at_xpath, :content).with(
-        './poco:displayName',
-        poco: OStatus::TagManager::POCO_XMLNS
-      ).with(no_args)
-
-      remote_profile.display_name
+    it 'returns display name' do
+      expect(remote_profile.display_name).to eq 'John'
     end
   end
 
   describe '#note' do
-    let(:author) { remote_profile.author }
-
-    it 'calls author.at_xpath.content' do
-      expect(author).to receive_message_chain(:at_xpath, :content).with(
-        './atom:summary|./poco:note',
-        atom: OStatus::TagManager::XMLNS,
-        poco: OStatus::TagManager::POCO_XMLNS
-      ).with(no_args)
-
-      remote_profile.note
+    it 'returns note' do
+      expect(remote_profile.note).to eq 'Hello'
     end
   end
 
   describe '#scope' do
-    let(:author) { remote_profile.author }
-
-    it 'calls author.at_xpath.content' do
-      expect(author).to receive_message_chain(:at_xpath, :content).with(
-        './mastodon:scope',
-        mastodon: OStatus::TagManager::MTDN_XMLNS
-      ).with(no_args)
-
-      remote_profile.scope
+    it 'returns scope' do
+      expect(remote_profile.scope).to eq 'public'
     end
   end
 
   describe '#avatar' do
     let(:author) { remote_profile.author }
 
-    it 'calls #link_href_from_xml' do
-      expect(remote_profile).to receive(:link_href_from_xml).with(author, 'avatar')
-      remote_profile.avatar
+    it 'returns avatar' do
+      expect(remote_profile.avatar).to eq 'http://example.com/avatar'
     end
   end
 
   describe '#header' do
-    let(:author) { remote_profile.author }
-
-    it 'calls #link_href_from_xml' do
-      expect(remote_profile).to receive(:link_href_from_xml).with(author, 'header')
-      remote_profile.header
+    it 'returns header' do
+      expect(remote_profile.header).to eq 'http://example.com/header'
     end
   end
 

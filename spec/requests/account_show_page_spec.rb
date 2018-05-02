@@ -27,14 +27,14 @@ describe 'The account show page' do
   end
 
   def head_meta_content(property)
-    head_section.meta("[@property='#{property}']")[:content]
+    head_section.at_xpath("*[@property='#{property}']").get('content')
   end
 
   def head_section
-    Nokogiri::Slop(response.body).html.head
+    Oga.parse_html(response.body).at_css('head')
   end
 
   def h_feed_entries
-    Nokogiri::HTML(response.body).search('.h-feed .h-entry')
+    Oga.parse_html(response.body).css('.h-feed .h-entry')
   end
 end
