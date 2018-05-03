@@ -1,10 +1,10 @@
----
 sk:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
-        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali nejaké osobné správy kým ste boli preč
+        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali
+          nejaké osobné správy kým ste boli preč
         display_name:
           one: Ostáva ti <span class="name-counter">1</span> znak
           other: Ostáva ti <span class="name-counter">%{count}</span> znakov
@@ -14,14 +14,18 @@ sk:
         note:
           one: Ostáva vám <span class="note-counter">1</span> znak
           other: Ostáva ti <span class="note-counter">%{count}</span> znakov
-        setting_noindex: Ovplyvňuje profil a správy tak, že ich nebude možné nájsť vyhľadávaním
-        setting_theme: Toto ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého zariadenia.
+        setting_noindex: Ovplyvňuje profil a správy tak, že ich nebude možné nájsť
+          vyhľadávaním
+        setting_theme: Toto ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého
+          zariadenia.
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
-        otp: Napíš sem dvoj-faktorový kód z telefónu, alebo použite jeden z vašich obnovovacích kódov.
+        otp: Napíš sem dvoj-faktorový kód z telefónu, alebo použite jeden z vašich
+          obnovovacích kódov.
       user:
-        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané nebudú z verejnej časovej osi
+        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané nebudú z verejnej
+          časovej osi
     labels:
       account:
         fields:
@@ -29,8 +33,8 @@ sk:
           value: Obsah
       defaults:
         avatar: Avatar
-        confirm_new_password: Opäť vaše nové heslo pre potvrdenie
-        confirm_password: Potvrďte heslo
+        confirm_new_password: Znovu tvoje nové heslo, pre potvrdenie
+        confirm_password: Potvrď heslo
         current_password: Súčasné heslo
         data: Dáta
         display_name: Meno
@@ -56,7 +60,8 @@ sk:
         setting_reduce_motion: Redukovať pohyb v animáciách
         setting_system_font_ui: Použiť základné systémové písmo
         setting_theme: Vzhľad
-        setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania iného používateľa
+        setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania
+          iného používateľa
         severity: Závažnosť
         type: Typ importu
         username: Užívateľské meno
@@ -74,6 +79,6 @@ sk:
         reblog: Poslať email ak niekto re-tootne tvoj príspevok
     'no': Nie
     required:
-      mark: "*"
+      mark: '*'
       text: povinné
     'yes': Áno
