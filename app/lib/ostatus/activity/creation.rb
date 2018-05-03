@@ -39,7 +39,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         reblog: cached_reblog,
         text: content,
         spoiler_text: content_warning,
-        created_at: @options[:override_timestamps] ? nil : published,
+        created_at: published,
         reply: thread?,
         language: content_language,
         visibility: visibility_scope,
@@ -61,7 +61,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
 
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
-    DistributionWorker.perform_async(status.id) if @options[:override_timestamps] || status.within_realtime_window?
+    DistributionWorker.perform_async(status.id) if status.within_realtime_window?
 
     status
   end
