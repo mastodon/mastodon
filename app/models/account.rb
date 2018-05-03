@@ -239,6 +239,21 @@ class Account < ApplicationRecord
     shared_inbox_url.presence || inbox_url
   end
 
+  class Field < ActiveModelSerializers::Model
+    attributes :name, :value, :account, :errors
+
+    def initialize(account, attr)
+      @account = account
+      @name    = attr['name']
+      @value   = attr['value']
+      @errors  = {}
+    end
+
+    def to_h
+      { name: @name, value: @value }
+    end
+  end
+
   class << self
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
@@ -370,9 +385,9 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local?
+    return unless local? && !Rails.env.test?
 
-    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 512 : 2048)
+    keypair = OpenSSL::PKey::RSA.new(2048)
     self.private_key = keypair.to_pem
     self.public_key  = keypair.public_key.to_pem
   end

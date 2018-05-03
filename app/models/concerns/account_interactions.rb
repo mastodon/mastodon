@@ -93,6 +93,7 @@ module AccountInteractions
     if mute.hide_notifications? != notifications
       mute.update!(hide_notifications: notifications)
     end
+    mute
   end
 
   def mute_conversation!(conversation)
