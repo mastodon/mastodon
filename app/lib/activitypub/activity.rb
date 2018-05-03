@@ -80,7 +80,7 @@ class ActivityPub::Activity
 
     # Only continue if the status is supposed to have
     # arrived in real-time
-    return unless @options[:override_timestamps] || status.within_realtime_window?
+    return unless status.within_realtime_window?
 
     distribute_to_followers(status)
   end
