@@ -1,0 +1,61 @@
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Access-Control-Allow-Headers: DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Accept-Encoding
+Access-Control-Allow-Origin: *
+Content-Type: application/ld+json
+Date: Wed, 02 May 2018 16:25:32 GMT
+Etag: "7e3-5651ec0f7c5ed-gzip"
+Last-Modified: Tue, 13 Feb 2018 21:34:04 GMT
+Server: Apache/2.4.7 (Ubuntu)
+Vary: Accept-Encoding
+Content-Length: 2019
+
+{
+  "@context": {
+    "id": "@id",
+    "type": "@type",
+
+    "dc": "http://purl.org/dc/terms/",
+    "sec": "https://w3id.org/security#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "EcdsaKoblitzSignature2016": "sec:EcdsaKoblitzSignature2016",
+    "Ed25519Signature2018": "sec:Ed25519Signature2018",
+    "EncryptedMessage": "sec:EncryptedMessage",
+    "GraphSignature2012": "sec:GraphSignature2012",
+    "LinkedDataSignature2015": "sec:LinkedDataSignature2015",
+    "LinkedDataSignature2016": "sec:LinkedDataSignature2016",
+    "CryptographicKey": "sec:Key",
+
+    "authenticationTag": "sec:authenticationTag",
+    "canonicalizationAlgorithm": "sec:canonicalizationAlgorithm",
+    "cipherAlgorithm": "sec:cipherAlgorithm",
+    "cipherData": "sec:cipherData",
+    "cipherKey": "sec:cipherKey",
+    "created": {"@id": "dc:created", "@type": "xsd:dateTime"},
+    "creator": {"@id": "dc:creator", "@type": "@id"},
+    "digestAlgorithm": "sec:digestAlgorithm",
+    "digestValue": "sec:digestValue",
+    "domain": "sec:domain",
+    "encryptionKey": "sec:encryptionKey",
+    "expiration": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
+    "expires": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
+    "initializationVector": "sec:initializationVector",
+    "iterationCount": "sec:iterationCount",
+    "nonce": "sec:nonce",
+    "normalizationAlgorithm": "sec:normalizationAlgorithm",
+    "owner": {"@id": "sec:owner", "@type": "@id"},
+    "password": "sec:password",
+    "privateKey": {"@id": "sec:privateKey", "@type": "@id"},
+    "privateKeyPem": "sec:privateKeyPem",
+    "publicKey": {"@id": "sec:publicKey", "@type": "@id"},
+    "publicKeyBase58": "sec:publicKeyBase58",
+    "publicKeyPem": "sec:publicKeyPem",
+    "publicKeyService": {"@id": "sec:publicKeyService", "@type": "@id"},
+    "revoked": {"@id": "sec:revoked", "@type": "xsd:dateTime"},
+    "salt": "sec:salt",
+    "signature": "sec:signature",
+    "signatureAlgorithm": "sec:signingAlgorithm",
+    "signatureValue": "sec:signatureValue"
+  }
+}
