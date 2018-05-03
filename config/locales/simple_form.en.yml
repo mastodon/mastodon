@@ -8,6 +8,7 @@ en:
         display_name:
           one: <span class="name-counter">1</span> character left
           other: <span class="name-counter">%{count}</span> characters left
+        fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
         locked: Requires you to manually approve followers
         note:
@@ -22,6 +23,10 @@ en:
       user:
         filtered_languages: Checked languages will be filtered from public timelines for you
     labels:
+      account:
+        fields:
+          name: Label
+          value: Content
       defaults:
         avatar: Avatar
         confirm_new_password: Confirm new password
@@ -31,6 +36,7 @@ en:
         display_name: Display name
         email: E-mail address
         expires_in: Expire after
+        fields: Profile metadata
         filtered_languages: Filtered languages
         header: Header
         locale: Language

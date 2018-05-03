@@ -130,6 +130,7 @@ export default class Header extends ImmutablePureComponent {
 
     const content         = { __html: account.get('note_emojified') };
     const displayNameHtml = { __html: account.get('display_name_html') };
+    const fields          = account.get('fields');
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${account.get('header')})` }}>
@@ -139,6 +140,19 @@ export default class Header extends ImmutablePureComponent {
           <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHtml} />
           <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
           <div className='account__header__content' dangerouslySetInnerHTML={content} />
+
+          {fields.size > 0 && (
+            <table className='account__header__fields'>
+              <tbody>
+                {fields.map((pair, i) => (
+                  <tr key={i}>
+                    <th dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} />
+                    <td dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
 
           {info}
           {mutingInfo}
