@@ -354,8 +354,8 @@ fr:
       back_to_account: Retour à la page du compte
       batch:
         delete: Supprimer
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
+        nsfw_off: Marquer comme non-sensible
+        nsfw_on: Marquer comme sensible
       execute: Exécuter
       failed_to_execute: Erreur d’exécution
       media:
@@ -684,6 +684,9 @@ fr:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
     content_warning: 'Attention au contenu : %{warning}'
+    disallowed_hashtags:
+      one: 'contient un hashtag désactivé : %{tags}'
+      other: 'contient les hashtag désactivés : %{tags}'
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
     pin_errors:
@@ -708,6 +711,7 @@ fr:
   terms:
     title: "%{instance} Conditions d’utilisations et politique de confidentialité"
   themes:
+    contrast: Contraste élevé
     default: Mastodon
   time:
     formats:
