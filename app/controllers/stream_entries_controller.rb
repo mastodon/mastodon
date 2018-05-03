@@ -24,6 +24,7 @@ class StreamEntriesController < ApplicationController
           skip_session!
           expires_in 3.minutes, public: true
         end
+
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.entry(@stream_entry, true))
       end
     end

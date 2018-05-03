@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq-bulk'
-
 class FanOutOnWriteService < BaseService
   # Push a status into home and mentions feeds
   # @param [Status] status

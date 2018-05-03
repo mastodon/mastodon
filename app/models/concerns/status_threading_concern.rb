@@ -7,8 +7,8 @@ module StatusThreadingConcern
     find_statuses_from_tree_path(ancestor_ids(limit), account)
   end
 
-  def descendants(account = nil)
-    find_statuses_from_tree_path(descendant_ids, account)
+  def descendants(limit, account = nil, max_child_id = nil, since_child_id = nil, depth = nil)
+    find_statuses_from_tree_path(descendant_ids(limit, max_child_id, since_child_id, depth), account)
   end
 
   private
@@ -46,34 +46,46 @@ module StatusThreadingConcern
     SQL
   end
 
-  def descendant_ids
-    descendant_statuses.pluck(:id)
+  def descendant_ids(limit, max_child_id, since_child_id, depth)
+    descendant_statuses(limit, max_child_id, since_child_id, depth).pluck(:id)
   end
 
-  def descendant_statuses
-    Status.find_by_sql([<<-SQL.squish, id: id])
+  def descendant_statuses(limit, max_child_id, since_child_id, depth)
+    Status.find_by_sql([<<-SQL.squish, id: id, limit: limit, max_child_id: max_child_id, since_child_id: since_child_id, depth: depth])
       WITH RECURSIVE search_tree(id, path)
       AS (
         SELECT id, ARRAY[id]
         FROM statuses
-        WHERE in_reply_to_id = :id
+        WHERE in_reply_to_id = :id AND COALESCE(id < :max_child_id, TRUE) AND COALESCE(id > :since_child_id, TRUE)
         UNION ALL
         SELECT statuses.id, path || statuses.id
         FROM search_tree
         JOIN statuses ON statuses.in_reply_to_id = search_tree.id
-        WHERE NOT statuses.id = ANY(path)
+        WHERE COALESCE(array_length(path, 1) < :depth, TRUE) AND NOT statuses.id = ANY(path)
       )
       SELECT id
       FROM search_tree
       ORDER BY path
+      LIMIT :limit
     SQL
   end
 
   def find_statuses_from_tree_path(ids, account)
-    statuses = statuses_with_accounts(ids).to_a
+    statuses    = statuses_with_accounts(ids).to_a
+    account_ids = statuses.map(&:account_id).uniq
+    domains     = statuses.map(&:account_domain).compact.uniq
 
-    # FIXME: n+1 bonanza
-    statuses.reject! { |status| filter_from_context?(status, account) }
+    relations = if account.present?
+                  {
+                    blocking: Account.blocking_map(account_ids, account.id),
+                    blocked_by: Account.blocked_by_map(account_ids, account.id),
+                    muting: Account.muting_map(account_ids, account.id),
+                    following: Account.following_map(account_ids, account.id),
+                    domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, account.id),
+                  }
+                end
+
+    statuses.reject! { |status| filter_from_context?(status, account, relations) }
 
     # Order ancestors/descendants by tree path
     statuses.sort_by! { |status| ids.index(status.id) }
@@ -83,7 +95,7 @@ module StatusThreadingConcern
     Status.where(id: ids).includes(:account)
   end
 
-  def filter_from_context?(status, account)
-    StatusFilter.new(status, account).filtered?
+  def filter_from_context?(status, account, relations)
+    StatusFilter.new(status, account, relations).filtered?
   end
 end

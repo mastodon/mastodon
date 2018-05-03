@@ -22,7 +22,7 @@ describe Api::V1::Statuses::FavouritesController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'updates the favourites count' do
@@ -51,7 +51,7 @@ describe Api::V1::Statuses::FavouritesController do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'updates the favourites count' do

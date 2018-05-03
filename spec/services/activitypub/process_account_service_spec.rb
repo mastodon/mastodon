@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe ActivityPub::ProcessAccountService do
+RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   subject { described_class.new }
 
   context 'property values' do
     let(:payload) do
       {
-        id: 'https://foo',
+        id: 'https://foo.test',
         type: 'Actor',
-        inbox: 'https://foo/inbox',
+        inbox: 'https://foo.test/inbox',
         attachment: [
           { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
           { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },

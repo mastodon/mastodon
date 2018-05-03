@@ -20,7 +20,7 @@ describe Admin::StatusesController do
 
       statuses = assigns(:statuses).to_a
       expect(statuses.size).to eq 2
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns http success with media' do
@@ -28,7 +28,7 @@ describe Admin::StatusesController do
 
       statuses = assigns(:statuses).to_a
       expect(statuses.size).to eq 1
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -99,7 +99,7 @@ describe Admin::StatusesController do
       allow(RemovalWorker).to receive(:perform_async)
 
       delete :destroy, params: { account_id: account.id, id: status }
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
       expect(RemovalWorker).
         to have_received(:perform_async).with(status.id)
     end

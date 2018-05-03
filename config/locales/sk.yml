@@ -4,6 +4,7 @@ sk:
     about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
+    administered_by: 'Správca je:'
     closed_registrations: Registrácie sú momentálne uzatvorené. Avšak, môžeš nájsť nejaký iný Mastodon server kde si založ účet a získaj tak prístup do presne tej istej siete, odtiaľ.
     contact: Kontakt
     contact_missing: Nezadané
@@ -60,7 +61,15 @@ sk:
       destroyed_msg: Poznámka moderátora bola úspešne zmazaná!
     accounts:
       are_you_sure: Ste si istý?
+      avatar: Maskot
       by_domain: Doména
+      change_email:
+        changed_msg: Email k tomuto účtu bol úspešne zmenený!
+        current_email: Súčastný email
+        label: Zmeniť email
+        new_email: Nový email
+        submit: Zmeniť email
+        title: Zmeň email pre %{username}
       confirm: Potvrdiť
       confirmed: Potvrdený
       demote: Degradovať
@@ -108,6 +117,7 @@ sk:
       public: Verejná os
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnoviť avatar
+      remove_avatar: Odstrániť avatár
       reset: Reset
       reset_password: Obnoviť heslo
       resubscribe: Znovu odoberať
@@ -128,6 +138,7 @@ sk:
       statuses: Príspevky
       subscribe: Odoberať
       title: Účty
+      unconfirmed_email: Nepotvrdený email
       undo_silenced: Zrušiť stíšenie
       undo_suspension: Zrušiť suspendáciu
       unsubscribe: Prestať odoberať
@@ -135,6 +146,8 @@ sk:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name}pridelil/a hlásenie užívateľa %{target}sebe"
+        change_email_user: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user: "%{name} potvrdil e-mailovú adresu používateľa %{target}"
         create_custom_emoji: "%{name} nahral nový emoji %{target}"
         create_domain_block: "%{name} zablokoval doménu %{target}"
@@ -150,8 +163,10 @@ sk:
         enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
         memorialize_account: '%{name} zmenil účet %{target} na stránku "Navždy budeme spomínať"'
         promote_user: "%{name} povýšil/a používateľa %{target}"
+        remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
+        reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
         reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
-        resolve_report: "%{name} zamietli nahlásenie %{target}"
+        resolve_report: "%{name} vyriešili nahlásenie užívateľa %{target}"
         silence_account: "%{name} utíšil/a účet %{target}"
         suspend_account: "%{name} zablokoval/a účet používateľa %{target}"
         unsilence_account: "%{name} zrušil/a utíšenie účtu používateľa %{target}"
@@ -239,29 +254,48 @@ sk:
         expired: Expirované
         title: Filtrovať
       title: Pozvánky
+    report_notes:
+      created_msg: Poznámka o nahlásení úspešne vytvorená!
+      destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
-      action_taken_by: Zákrok vykonal
+      account:
+        note: poznámka
+        report: nahlás
+      action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
+      assign_to_self: Priraď sebe
+      assigned: Priradený moderátor
       comment:
-        label: Vyjadriť sa
         none: Žiadne
+      created_at: Nahlásené
       delete: Vymazať
       id: Identifikácia
       mark_as_resolved: Označiť ako vyriešené
+      mark_as_unresolved: Označ ako nevyriešené
+      notes:
+        create: Pridaj poznámku
+        create_and_resolve: Vyrieš s poznámkou
+        create_and_unresolve: Otvor znovu, s poznámkou
+        delete: Vymaž
+        placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné aktualizácie k tomuto nahláseniu…
       nsfw:
         'false': Odkryť mediálne prílohy
         'true': Skryť mediálne prílohy
+      reopen: Znovu otvor report
       report: Nahlásiť
       report_contents: Obsah
       reported_account: Nahlásený účet
       reported_by: Nahlásené užívateľom
       resolved: Vyriešené
+      resolved_msg: Hlásenie úspešne vyriešené!
       silence_account: Zamĺčať účet
       status: Stav
       suspend_account: Pozastaviť účet
       target: Cieľ
       title: Reporty
+      unassign: Odobrať
       unresolved: Nevyriešené
+      updated_at: Aktualizované
       view: Zobraziť
     settings:
       activity_api_enabled:
@@ -319,8 +353,8 @@ sk:
       back_to_account: Späť na účet
       batch:
         delete: Vymazať
-        nsfw_off: Nevhodný obsah je vypnutý
-        nsfw_on: Nevhodný obsah je zapnutý
+        nsfw_off: Obsah nieje chúlostivý
+        nsfw_on: Označ obeah aka chúlostivý
       execute: Vykonať
       failed_to_execute: Nepodarilo sa vykonať
       media:
@@ -382,6 +416,7 @@ sk:
     security: Zabezpečenie
     set_new_password: Nastaviť nové heslo
   authorize_follow:
+    already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
     follow: Následovať
     follow_request: 'Poslali ste požiadavku následovať užívateľa:'
@@ -473,6 +508,7 @@ sk:
       '21600': 6 hodín
       '3600': 1 hodina
       '43200': 12 hodín
+      '604800': 1 týždeň
       '86400': 1 deň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
@@ -575,6 +611,10 @@ sk:
     missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
+  remote_unfollow:
+    error: Chyba
+    title: Názov
+    unfollowed: Už nesleduješ
   sessions:
     activity: Najnovšia aktivita
     browser: Prehliadač
@@ -644,6 +684,7 @@ sk:
   terms:
     title: Podmienky užívania, a pravidlá o súkromí pre %{instance}
   themes:
+    contrast: Vysoký kontrast
     default: Mastodon
   time:
     formats:

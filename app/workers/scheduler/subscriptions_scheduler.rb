@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq-scheduler'
-require 'sidekiq-bulk'
-
 class Scheduler::SubscriptionsScheduler
   include Sidekiq::Worker
 

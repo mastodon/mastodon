@@ -3,7 +3,7 @@
 #
 # Table name: accounts
 #
-#  id                      :integer          not null, primary key
+#  id                      :bigint(8)        not null, primary key
 #  username                :string           default(""), not null
 #  domain                  :string
 #  secret                  :string           default(""), not null
@@ -42,7 +42,7 @@
 #  followers_url           :string           default(""), not null
 #  protocol                :integer          default("ostatus"), not null
 #  memorial                :boolean          default(FALSE), not null
-#  moved_to_account_id     :integer
+#  moved_to_account_id     :bigint(8)
 #  featured_collection_url :string
 #  fields                  :jsonb
 #
@@ -120,6 +120,7 @@ class Account < ApplicationRecord
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
+  scope :without_suspended, -> { where(suspended: false) }
   scope :recent, -> { reorder(id: :desc) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
@@ -275,6 +276,10 @@ class Account < ApplicationRecord
       @value   = attr['value']
       @errors  = {}
     end
+
+    def to_h
+      { name: @name, value: @value }
+    end
   end
 
   class << self
@@ -393,7 +398,7 @@ class Account < ApplicationRecord
   end
 
   def emojis
-    CustomEmoji.from_text(note, domain)
+    @emojis ||= CustomEmoji.from_text(note, domain)
   end
 
   before_create :generate_keys
@@ -408,9 +413,9 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local?
+    return unless local? && !Rails.env.test?
 
-    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 512 : 2048)
+    keypair = OpenSSL::PKey::RSA.new(2048)
     self.private_key = keypair.to_pem
     self.public_key  = keypair.public_key.to_pem
   end

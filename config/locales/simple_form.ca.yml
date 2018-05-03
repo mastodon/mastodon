@@ -8,6 +8,7 @@ ca:
         display_name:
           one: <span class="name-counter">1</span> càracter restant
           other: <span class="name-counter">%{count}</span> càracters restans
+        fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 700x335px
         locked: Requereix que aprovis manualment els seguidors
         note:
@@ -22,6 +23,10 @@ ca:
       user:
         filtered_languages: Les llengües seleccionades s'eliminaran de les línies de temps públiques
     labels:
+      account:
+        fields:
+          name: Etiqueta
+          value: Contingut
       defaults:
         avatar: Avatar
         confirm_new_password: Confirma la contrasenya nova
@@ -31,6 +36,7 @@ ca:
         display_name: Nom visible
         email: Adreça de correu electrònic
         expires_in: Expira després
+        fields: Metadades del perfil
         filtered_languages: Llengües filtrades
         header: Capçalera
         locale: Llengua

@@ -68,7 +68,7 @@ ja:
         current_email: 現在のメールアドレス
         label: メールアドレスを変更
         new_email: 新しいメールアドレス
-        submit: Change Email
+        submit: メールアドレスの変更
         title: "%{username} さんのメールアドレスを変更"
       confirm: 確認
       confirmed: 確認済み
@@ -259,16 +259,17 @@ ja:
       created_msg: レポートメモを書き込みました！
       destroyed_msg: レポートメモを削除しました！
     reports:
+      account:
+        note: メモ
+        report: レポート
       action_taken_by: レポート処理者
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
       assigned: 担当者
       comment:
-        label: コメント
         none: なし
       created_at: レポート日時
       delete: 削除
-      history: モデレーション履歴
       id: ID
       mark_as_resolved: 解決済みとしてマーク
       mark_as_unresolved: 未解決として再び開く
@@ -277,9 +278,7 @@ ja:
         create_and_resolve: 書き込み、解決済みにする
         create_and_unresolve: 書き込み、未解決として開く
         delete: 削除
-        label: モデレーターメモ
-        new_label: モデレーターメモの追加
-        placeholder: このレポートに取られた措置やその他更新を記述してください
+        placeholder: このレポートに取られた措置や、その他の更新を記述してください…
       nsfw:
         'false': NSFW オフ
         'true': NSFW オン
@@ -292,7 +291,6 @@ ja:
       resolved_msg: レポートを解決済みにしました！
       silence_account: アカウントをサイレンス
       status: ステータス
-      statuses: 通報されたトゥート
       suspend_account: アカウントを停止
       target: ターゲット
       title: レポート
@@ -356,8 +354,8 @@ ja:
       back_to_account: アカウントページに戻る
       batch:
         delete: 削除
-        nsfw_off: NSFW オフ
-        nsfw_on: NSFW オン
+        nsfw_off: 閲覧注意のマークを取り除く
+        nsfw_on: 閲覧注意としてマークする
       execute: 実行
       failed_to_execute: 実行に失敗しました
       media:
@@ -697,6 +695,9 @@ ja:
         one: "%{count} 本の動画"
         other: "%{count} 本の動画"
     content_warning: '閲覧注意: %{warning}'
+    disallowed_hashtags:
+      one: '許可されていないハッシュタグが含まれています: %{tags}'
+      other: '許可されていないハッシュタグが含まれています: %{tags}'
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
@@ -798,6 +799,7 @@ ja:
       <p>オリジナルの出典: <a href="https://github.com/discourse/discourse">Discourse privacy policy</a></p>
     title: "%{instance} 利用規約・プライバシーポリシー"
   themes:
+    contrast: ハイコントラスト
     default: Mastodon
   time:
     formats:

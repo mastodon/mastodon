@@ -11,10 +11,10 @@ module Admin
 
     def show
       authorize @report, :show?
-      @report_note = @report.notes.new
-      @report_notes = @report.notes.latest
-      @report_history = @report.history
-      @form = Form::StatusBatch.new
+
+      @report_note  = @report.notes.new
+      @report_notes = (@report.notes.latest + @report.history).sort_by(&:created_at)
+      @form         = Form::StatusBatch.new
     end
 
     def update
