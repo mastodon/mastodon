@@ -4,7 +4,10 @@
   %td.target
     = admin_account_link_to report.target_account
   %td.reporter
-    = admin_account_link_to report.account
+    - if report.account.local?
+      = admin_account_link_to report.account
+    - else
+      = report.account.domain
   %td
     %div{ title: report.comment }
       = truncate(report.comment, length: 30, separator: ' ')
