@@ -5,7 +5,6 @@ module Admin
     helper_method :current_params
 
     before_action :set_account
-    before_action :set_status, only: [:update, :destroy]
 
     PER_PAGE = 20
 
@@ -34,16 +33,8 @@ module Admin
 
     private
 
-    def status_params
-      params.require(:status).permit(:sensitive)
-    end
-
     def form_status_batch_params
       params.require(:form_status_batch).permit(:action, status_ids: [])
-    end
-
-    def set_status
-      @status = @account.statuses.find(params[:id])
     end
 
     def set_account

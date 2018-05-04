@@ -3,7 +3,6 @@
 module Admin
   class ReportedStatusesController < BaseController
     before_action :set_report
-    before_action :set_status, only: [:update, :destroy]
 
     def create
       authorize :status, :update?
@@ -36,10 +35,6 @@ module Admin
 
     def set_report
       @report = Report.find(params[:report_id])
-    end
-
-    def set_status
-      @status = @report.statuses.find(params[:id])
     end
   end
 end
