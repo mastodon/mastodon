@@ -14,20 +14,6 @@ module Admin
       redirect_to admin_report_path(@report)
     end
 
-    def update
-      authorize @status, :update?
-      @status.update!(status_params)
-      log_action :update, @status
-      redirect_to admin_report_path(@report)
-    end
-
-    def destroy
-      authorize @status, :destroy?
-      RemovalWorker.perform_async(@status.id)
-      log_action :destroy, @status
-      render json: @status
-    end
-
     private
 
     def status_params
