@@ -19,7 +19,7 @@ gem 'fog-local', '~> 0.5', require: false
 gem 'fog-openstack', '~> 0.1', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
-gem 'posix-spawn'
+gem 'posix-spawn', '~> 0.3'
 gem 'streamio-ffmpeg', '~> 3.0'
 
 gem 'active_model_serializers', '~> 0.10'
