@@ -53,9 +53,7 @@ oc:
     unfollow: Quitar de sègre
   admin:
     account_moderation_notes:
-      account: Moderator
       create: Crear
-      created_at: Data
       created_msg: Nòta de moderacion ben creada !
       delete: Suprimir
       destroyed_msg: Nòta de moderacion ben suprimida !
@@ -265,7 +263,6 @@ oc:
       comment:
         none: Pas cap
       created_at: Creacion
-      delete: Suprimir
       id: ID
       mark_as_resolved: Marcar coma resolgut
       mark_as_unresolved: Marcar coma pas resolgut
@@ -274,9 +271,6 @@ oc:
         create_and_resolve: Resòlvre amb una nòta
         create_and_unresolve: Tornar dobrir amb una nòta
         placeholder: Explicatz las accions que son estadas menadas o çò qu’es estat fach per aqueste rapòrt…
-      nsfw:
-        'false': Sens contengut sensible
-        'true': Contengut sensible activat
       reopen: Tornar dobrir lo rapòrt
       report: 'senhalament #%{id}'
       report_contents: Contenguts
@@ -348,11 +342,8 @@ oc:
         delete: Suprimir
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
-      execute: Lançar
       failed_to_execute: Fracàs
       media:
-        hide: Amagar mèdia
-        show: Mostrar mèdia
         title: Mèdia
       no_media: Cap mèdia
       title: Estatuts del compte

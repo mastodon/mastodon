@@ -53,9 +53,7 @@ es:
     unfollow: Dejar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Crear
-      created_at: Fecha
       created_msg: "¡Nota de moderación creada con éxito!"
       delete: Borrar
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
@@ -269,7 +267,6 @@ es:
       comment:
         none: Ninguno
       created_at: Denunciado
-      delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resuelto
       mark_as_unresolved: Marcar como no resuelto
@@ -279,9 +276,6 @@ es:
         create_and_unresolve: Reabrir con una nota
         delete: Eliminar
         placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
-      nsfw:
-        'false': Mostrar multimedia
-        'true': Ocultar multimedia
       reopen: Reabrir denuncia
       report: 'Reportar #%{id}'
       report_contents: Contenido
@@ -356,11 +350,8 @@ es:
         delete: Eliminar
         nsfw_off: Marcar contenido como no sensible
         nsfw_on: Marcar contenido como sensible
-      execute: Ejecutar
       failed_to_execute: Falló al ejecutar
       media:
-        hide: Ocultar multimedia
-        show: Mostrar multimedia
         title: Multimedia
       no_media: No hay multimedia
       title: Estado de las cuentas
