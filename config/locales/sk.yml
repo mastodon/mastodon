@@ -263,28 +263,39 @@ sk:
         report: nahlás
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
-      assign_to_self: ''
-      assigned: ''
+      assign_to_self: Priraď sebe
+      assigned: Priradený moderátor
       comment:
         none: Žiadne
-      created_at: ''
+      created_at: Nahlásené
       delete: Vymazať
       id: Identifikácia
       mark_as_resolved: Označiť ako vyriešené
+      mark_as_unresolved: Označ ako nevyriešené
+      notes:
+        create: Pridaj poznámku
+        create_and_resolve: Vyrieš s poznámkou
+        create_and_unresolve: Otvor znovu, s poznámkou
+        delete: Vymaž
+        placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné aktualizácie k tomuto nahláseniu…
       nsfw:
         'false': Odkryť mediálne prílohy
         'true': Skryť mediálne prílohy
+      reopen: Znovu otvor report
       report: Nahlásiť
       report_contents: Obsah
       reported_account: Nahlásený účet
       reported_by: Nahlásené užívateľom
       resolved: Vyriešené
+      resolved_msg: Hlásenie úspešne vyriešené!
       silence_account: Zamĺčať účet
       status: Stav
       suspend_account: Pozastaviť účet
       target: Cieľ
       title: Reporty
+      unassign: Odobrať
       unresolved: Nevyriešené
+      updated_at: Aktualizované
       view: Zobraziť
     settings:
       activity_api_enabled:
@@ -405,6 +416,7 @@ sk:
     security: Zabezpečenie
     set_new_password: Nastaviť nové heslo
   authorize_follow:
+    already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
     follow: Následovať
     follow_request: 'Poslali ste požiadavku následovať užívateľa:'
@@ -496,6 +508,7 @@ sk:
       '21600': 6 hodín
       '3600': 1 hodina
       '43200': 12 hodín
+      '604800': 1 týždeň
       '86400': 1 deň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
@@ -598,6 +611,10 @@ sk:
     missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
+  remote_unfollow:
+    error: Chyba
+    title: Názov
+    unfollowed: Už nesleduješ
   sessions:
     activity: Najnovšia aktivita
     browser: Prehliadač
@@ -667,6 +684,7 @@ sk:
   terms:
     title: Podmienky užívania, a pravidlá o súkromí pre %{instance}
   themes:
+    contrast: Vysoký kontrast
     default: Mastodon
   time:
     formats:
