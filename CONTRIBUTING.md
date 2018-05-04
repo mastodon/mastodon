@@ -52,4 +52,5 @@ If the JavaScript or CSS assets won't compile due to a syntax error, it's a good
 
 ## Translate
 
-You can translate Weblate at [weblate.joinmastodon.org](https://weblate.joinmastodon.org/).
+You can contribute to translating Mastodon via Weblate at [weblate.joinmastodon.org](https://weblate.joinmastodon.org/).
+[![Mastodon translation statistics by language](https://weblate.joinmastodon.org/widgets/mastodon/-/multi-auto.svg)](https://weblate.joinmastodon.org/)
