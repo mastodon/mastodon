@@ -409,6 +409,7 @@ gl:
     new_report:
       body: '%{reporter} informou sobre %{target}'
       subject: Novo informe sobre %{instance} (#%{id})
+      body_remote: Alguén desde %{domain} informou sobre %{target}
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
     salutation: '%{name},'
