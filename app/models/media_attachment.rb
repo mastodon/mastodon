@@ -200,9 +200,6 @@ class MediaAttachment < ApplicationRecord
 
   def set_type_and_extension
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : AUDIO_MIME_TYPES.include?(file_content_type) ? :audio : :image
-    extension = AUDIO_MIME_TYPES.include?(file_content_type) ? '.mp4' : appropriate_extension
-    basename  = Paperclip::Interpolations.basename(file, :original)
-    file.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
   end
 
   def set_meta
