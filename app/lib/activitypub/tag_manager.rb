@@ -82,6 +82,8 @@ class ActivityPub::TagManager
   end
 
   def local_uri?(uri)
+    return false if uri.nil?
+
     uri  = Addressable::URI.parse(uri)
     host = uri.normalized_host
     host = "#{host}:#{uri.port}" if uri.port
@@ -95,6 +97,8 @@ class ActivityPub::TagManager
   end
 
   def uri_to_resource(uri, klass)
+    return if uri.nil?
+
     if local_uri?(uri)
       case klass.name
       when 'Account'
