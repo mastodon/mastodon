@@ -150,6 +150,17 @@ it:
         confirm_user: '%{name} ha confermato l''indirizzo email per l''utente %{target}'
         create_custom_emoji: '%{name} ha caricato un nuovo emoji %{target}'
         create_domain_block: '%{name} ha bloccato il dominio %{target}'
+        disable_custom_emoji: '%{name} ha disabilitato l''emoji %{target}'
+        disable_user: '%{name} ha disabilitato il login per l''utente %{target}'
+        enable_custom_emoji: '%{name} ha abilitato l''emoji %{target}'
+        enable_user: '%{name} ha abilitato il login per l''utente %{target}'
+        remove_avatar_user: '%{name} ha eliminato l''avatar di %{target}'
+        reset_password_user: '%{name} ha reimpostato la password dell''utente %{target}'
+        silence_account: '%{name} ha silenziato l''account di %{target}'
+        suspend_account: '%{name} ha sospeso l''account di %{target}'
+        unsilence_account: '%{name} ha de-silenziato l''account di %{target}'
+        unsuspend_account: '%{name} ha annullato la sospensione dell''account di %{target}'
+        update_custom_emoji: '%{name} ha aggiornato l''emoji %{target}'
     custom_emojis:
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
@@ -174,6 +185,8 @@ it:
       update_failed_msg: Impossibile aggiornare questa emojii
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
+      shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino
+        basso
     domain_blocks:
       add_new: Aggiungi nuovo
       created_msg: Il blocco del dominio sta venendo processato
@@ -193,6 +206,14 @@ it:
       severity: Severità
       show:
         undo: Annulla
+        affected_accounts:
+          one: Interessato un solo account nel database
+          other: Interessati %{count} account nel database
+        retroactive:
+          silence: De-silenzia tutti gli account esistenti da questo dominio
+          suspend: Annulla la sospensione di tutti gli account esistenti da questo
+            dominio
+        title: Annulla il blocco del dominio per %{domain}
       title: Blocchi dominio
       undo: Annulla
     email_domain_blocks:
@@ -250,10 +271,13 @@ it:
     settings:
       activity_api_enabled:
         title: Pubblica statistiche aggregate circa l'attività dell'utente
+        desc_html: Conteggi degli status pubblicati localmente, degli utenti attivi
+          e delle nuove registrazioni in gruppi settimanali
       contact_information:
         username: Nome utente del contatto
       peers_api_enabled:
         title: Pubblica elenco di istanze scoperte
+        desc_html: Nomi di dominio che questa istanza ha incontrato nella fediverse
       registrations:
         deletion:
           desc_html: Consenti a chiunque di cancellare il proprio account
@@ -262,6 +286,11 @@ it:
           disabled: Nessuno
         open:
           desc_html: Consenti a chiunque di creare un account
+          title: Apri registrazioni
+        closed_message:
+          desc_html: Mostrato nella pagina iniziale quando le registrazioni sono chiuse.
+            Puoi usare tag HTML
+          title: Messaggio per registrazioni chiuse
       show_staff_badge:
         title: Mostra badge staff
       site_description:
@@ -272,6 +301,11 @@ it:
       timeline_preview:
         title: Anteprima timeline
       title: Impostazioni sito
+      bootstrap_timeline_accounts:
+        title: Seguiti predefiniti per i nuovi utenti
+      show_known_fediverse_at_about_page:
+        desc_html: Quando attivato, mostra nell'anteprima i toot da tutte le istanze
+          conosciute. Altrimenti mostra solo i toot locali.
     statuses:
       batch:
         delete: Elimina
@@ -285,6 +319,8 @@ it:
         title: Media
       no_media: Nessun media
       with_media: con media
+      back_to_account: Torna alla pagina dell'account
+      title: Gli status dell'account
     subscriptions:
       callback_url: URL Callback
       confirmed: Confermato
@@ -302,6 +338,9 @@ it:
     created: Applicazione creata con successo
     destroyed: Applicazione eliminata con successo
     invalid_url: L'URL fornito non è valido
+    regenerate_token: Rigenera token di accesso
+    token_regenerated: Token di accesso rigenerato
+    warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
   auth:
     change_password: Password
     confirm_email: Conferma email
@@ -318,11 +357,23 @@ it:
     reset_password: Resetta la password
     security: Credenziali
     set_new_password: Imposta una nuova password
+    agreement_html: Iscrivendoti, accetti di seguire <a href="%{rules_path}">le regole
+      dell'istanza</a> e <a href="%{terms_path}"> le nostre condizioni di servizio</a>.
+    delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo
+      qui</a>. Ti sarà chiesta conferma.
+    migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso,
+      puoi <a href="%{path}">configurarlo qui</a>.
+    or_log_in_with: Oppure accedi con
   authorize_follow:
     already_following: Stai già seguendo questo account
     error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
     follow: Segui
     title: Segui %{acct}
+    follow_request: 'Hai mandato una richiesta di diventare seguace a:'
+    following: 'Accettato! Ora stai seguendo:'
+    post_follow:
+      close: Oppure puoi chiudere questa finestra.
+      return: Torna al profilo dell'utente
   datetime:
     distance_in_words:
       about_x_hours: '%{count} ore'
@@ -342,6 +393,16 @@ it:
     csv: CSV
     follows: Stai seguendo
     storage: Archiviazione media
+    archive_takeout:
+      date: Data
+      download: Scarica il tuo archivio
+      hint_html: Puoi richiedere un archivio dei tuoi <strong>toot e media caricati</strong>.
+        I dati esportati sono in formato ActivityPub, leggibili da qualunque software
+        che segue questo standard.
+      in_progress: Creazione archivio...
+      request: Richiedi il tuo archivio
+      size: Dimensioni
+    mutes: Stai silenziando
   generic:
     changes_saved_msg: Modifiche effettuate con successo!
     powered_by: offerto da %{link}
@@ -358,6 +419,7 @@ it:
     types:
       blocking: Lista dei bloccati
       following: Lista dei seguaci
+      muting: Lista dei silenziati
     upload: Carica
   landing_strip_html: <strong>%{name}</strong> è un utente su %{link_to_root_path}.
     Puoi seguirlo o interagire con lui se possiedi un account ovunque nel fediverse.
@@ -374,25 +436,34 @@ it:
       mention: '%{name} ti ha menzionato:'
       new_followers_summary:
         one: E inoltre hai ricevuto un nuovo seguace mentre eri assente! Urrà!
-        other: Hai ricevuto %{count} nuovi seguaci! Incredibile!
+        other: Inoltre, hai acquisito %{count} nuovi seguaci mentre eri assente! Incredibile!
       subject:
         one: 1 nuova notifica dalla tua ultima visita 🐘
         other: '%{count} nuove notifiche dalla tua ultima visita 🐘'
+      action: Vedi tutte le notifiche
+      title: In tua assenza…
     favourite:
       body: 'Il tuo status è stato apprezzato da %{name}:'
       subject: '%{name} ha apprezzato il tuo status'
+      title: Nuovo preferito
     follow:
       body: '%{name} ti sta seguendo!'
       subject: '%{name} ti sta seguendo'
+      title: Nuovo seguace
     follow_request:
       body: '%{name} ha chiesto di seguirti'
       subject: 'Seguace in sospeso: %{name}'
+      action: Gestisci richieste di essere seguito
+      title: Nuova richiesta di essere seguito
     mention:
       body: 'Sei stato menzionato da %{name} su:'
       subject: Sei stato menzionato da %{name}
+      action: Rispondi
+      title: Nuova menzione
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: '%{name} ha condiviso il tuo status'
+      title: Nuova condivisione
   number:
     human:
       decimal_units:
@@ -408,6 +479,8 @@ it:
     next: Avanti
     prev: Indietro
     truncate: '&hellip;'
+    newer: Più recente
+    older: Più vecchio
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per
@@ -422,7 +495,13 @@ it:
     import: Importa
     preferences: Preferenze
     settings: Impostazioni
-    two_factor_authentication: Autenticazione a Due Fattori
+    two_factor_authentication: Autenticazione a due fattori
+    delete: Cancellazione account
+    development: Sviluppo
+    followers: Seguaci autorizzati
+    migrate: Migrazione dell'account
+    notifications: Notifiche
+    your_apps: Le tue applicazioni
   statuses:
     open_in_web: Apri sul Web
     over_character_limit: Limite caratteri superato di %{max}
@@ -431,10 +510,19 @@ it:
       private: Mostra solo ai tuoi seguaci
       public: Pubblico
       unlisted: Pubblico, ma non visibile sulla timeline pubblica
+      private_long: Mostra solo ai seguaci
+      public_long: Tutti lo possono vedere
+      unlisted_long: Tutti lo possono vedere, ma non compare nelle timeline pubbliche
+    pin_errors:
+      limit: Hai già fissato in cima il massimo numero di toot
+      ownership: Non puoi fissare in cima un toot di qualcun altro
+      private: Un toot non pubblico non può essere fissato in cima
+      reblog: Un toot condiviso non può essere fissato in cima
   stream_entries:
     click_to_show: Clicca per mostrare
     reblogged: condiviso
     sensitive_content: Materiale sensibile
+    pinned: Toot fissato in cima
   time:
     formats:
       default: '%b %d, %Y, %H:%M'
@@ -454,10 +542,153 @@ it:
     setup: Configura
     wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server
       e l'orario del telefono siano corretti.
+    enabled: È abilitata l'autenticazione a due fattori
+    generate_recovery_codes: Genera codici di recupero
+    lost_recovery_codes: I codici di recupero ti permettono di accedere al tuo account
+      se perdi il telefono. Se hai perso i tuoi codici di recupero, puoi rigenerarli
+      qui. Quelli vecchi saranno annullati.
+    recovery_codes_regenerated: I codici di recupero sono stati rigenerati
+    recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di
+      recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva
+      i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli
+      e conservarli insieme ad altri documenti importanti.
   user_mailer:
     welcome:
       tips: Suggerimenti
       title: Benvenuto a bordo, %{name}!
+      edit_profile_step: Puoi personalizzare il tuo profilo caricando un avatar, un'intestazione,
+        modificando il tuo nome visualizzato e così via. Se vuoi controllare i tuoi
+        nuovi seguaci prima di autorizzarli a seguirti, puoi bloccare il tuo account.
+      explanation: Ecco alcuni suggerimenti per iniziare
+      final_action: Inizia a postare
+      final_step: 'Inizia a postare! Anche se non hai seguaci, i tuoi messaggi pubblici
+        possono essere visti da altri, ad esempio nelle timeline locali e negli hashtag.
+        Se vuoi puoi presentarti con l''hashtag #introductions.'
+      full_handle: Il tuo nome utente completo
+      full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano
+        seguirti o contattarti da un'altra istanza.
+      review_preferences_action: Cambia preferenze
+      review_preferences_step: Dovresti impostare le tue preferenze, ad esempio quali
+        email vuoi ricevere oppure il livello predefinito di privacy per i tuoi post.
+        Se le immagini in movimento non ti danno fastidio, puoi abilitare l'animazione
+        automatica delle GIF.
+      subject: Benvenuto/a su Mastodon
+      tip_bridge_html: Se vieni da Twitter, puoi trovare i tuoi amici su Mastodon
+        usando la<a href="%{bridge_url}">app bridge</a>. Ma funziona solo se anche
+        loro la usano!
+      tip_federated_timeline: La timeline federata visualizza uno dopo l'altro i messaggi
+        pubblicati su Mastodon. Ma comprende solo gli utenti seguiti dai tuoi vicini,
+        quindi non è completa.
+      tip_following: Per impostazione predefinita, segui l'amministratore/i del tuo
+        server. Per trovare utenti più interessanti, dà un'occhiata alle timeline
+        locale e federata.
+      tip_local_timeline: La timeline locale visualizza uno dopo l'altro i messaggi
+        degli utenti di %{instance}. Questi sono i tuoi vicini!
+      tip_mobile_webapp: Se il tuo browser mobile ti dà la possibilità di aggiungere
+        Mastodon allo schermo, puoi ricevere le notifiche. Funziona un po' come un'app
+        natova!
+    backup_ready:
+      explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto
+        per essere scaricato!
+      subject: Il tuo archivio è pronto per essere scaricato
+      title: Esportazione archivio
   users:
     invalid_email: L'indirizzo email inserito non è valido
     invalid_otp_token: Codice d'accesso non valido
+    seamless_external_login: Ti sei collegato per mezzo di un servizio esterno, quindi
+      le impostazioni di email e password non sono disponibili.
+  deletes:
+    bad_password_msg: Ci avete provato, hacker! Password errata
+    confirm_password: Inserisci la tua password attuale per verificare la tua identità
+    description_html: Questa azione eliminerà <strong>in modo permanente e irreversibile</strong>
+      tutto il contenuto del tuo account e lo disattiverà. Il tuo nome utente resterà
+      riservato per prevenire che qualcuno in futuro assuma la tua identità.
+    proceed: Cancella l'account
+    success_msg: Il tuo account è stato cancellato
+    warning_html: È garantita solo la cancellazione del contenuto solo da questa istanza.
+      I contenuti che sono stati ampiamente condivisi probabilmente lasceranno delle
+      tracce. I server offline e quelli che non ricevono più i tuoi aggiornamenti
+      non aggiorneranno i loro database.
+  errors:
+    '403': Non sei autorizzato a visualizzare questa pagina.
+    '404': La pagina che stavi cercando non esiste.
+    '410': La pagina che stavi cercando non esiste più.
+    '422':
+      content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
+      title: Verifica di sicurezza non riuscita
+    noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript.
+      In alternativa puoi provare una delle <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">app
+      native</a> per Mastodon per la tua piattaforma.
+  followers:
+    domain: Dominio
+    explanation_html: Se vuoi garantire la privacy dei tuoi status, devi sapere chi
+      ti sta seguendo. <strong>I tuoi status privati vengono inviati a tutte le istanze
+      su cui hai dei seguaci</strong>. Puoi controllare chi sono i tuoi seguaci, ed
+      eliminarli se non hai fiducia che la tua privacy venga rispettata dallo staff
+      o dal software di quelle istanze.
+    followers_count: Numero di seguaci
+    purge: Elimina dai seguaci
+    true_privacy_html: Tieni presente che <strong>l'effettiva riservatezza si può
+      ottenere solo con la crittografia end-to-end</strong>.
+    unlocked_warning_html: Chiunque può seguirti per vedere immediatamente i tuoi
+      status privati. %{lock_link} per poter esaminare e respingere gli utenti che
+      vogliono seguirti.
+  in_memoriam_html: In Memoriam.
+  invites:
+    delete: Disattiva
+    expired: Scaduto
+    expires_in:
+      '1800': 30 minuti
+      '21600': 6 ore
+      '3600': 1 ora
+      '43200': 12 ore
+      '604800': 1 settimana
+      '86400': 1 giorno
+    expires_in_prompt: Mai
+    generate: Genera
+    max_uses_prompt: Nessun limite
+    prompt: Genera dei link e forniscili ad altri per concedere l'accesso a questa
+      istanza
+    table:
+      expires_at: Scade
+    title: Invita persone
+  lists:
+    errors:
+      limit: Hai raggiunto il numero massimo di liste
+  migrations:
+    acct: utente@dominio del nuovo account
+    currently_redirecting: 'Il tuo profilo sarà ridirezionato a:'
+    proceed: Salva
+    updated_msg: L'impostazione per la migrazione dell'account è sta aggiornata!
+  moderation:
+    title: Moderazione
+  preferences:
+    languages: Lingue
+    other: Altro
+    publishing: Pubblicazione
+    web: Web
+  push_notifications:
+    favourite:
+      title: '%{name} ha segnato il tuo status come apprezzato'
+    follow:
+      title: '%{name} ha iniziato a seguirti'
+    group:
+      title: '%{count} notifiche'
+    mention:
+      action_expand: Mostra altro
+      action_favourite: Apprezzato
+    reblog:
+      title: '%{name} ha condiviso il tuo status'
+  remote_unfollow:
+    error: Errore
+    title: Titolo
+  sessions:
+    browser: Browser
+    browsers:
+      blackberry: Blackberry
+    current_session: Sessione corrente
+    description: '%{browser} su %{platform}'
+    platforms:
+      other: piattaforma sconosciuta
+  themes:
+    contrast: Contrasto elevato
