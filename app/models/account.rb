@@ -74,6 +74,7 @@ class Account < ApplicationRecord
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
+  validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
   # Timelines
   has_many :stream_entries, inverse_of: :account, dependent: :destroy
@@ -198,9 +199,11 @@ class Account < ApplicationRecord
   def fields_attributes=(attributes)
     fields = []
 
-    attributes.each_value do |attr|
-      next if attr[:name].blank?
-      fields << attr
+    if attributes.is_a?(Hash)
+      attributes.each_value do |attr|
+        next if attr[:name].blank?
+        fields << attr
+      end
     end
 
     self[:fields] = fields
@@ -269,8 +272,8 @@ class Account < ApplicationRecord
 
     def initialize(account, attr)
       @account = account
-      @name    = attr['name']
-      @value   = attr['value']
+      @name    = attr['name'].strip[0, 255]
+      @value   = attr['value'].strip[0, 255]
       @errors  = {}
     end
 
