@@ -31,6 +31,10 @@ class Status < ApplicationRecord
   include Cacheable
   include StatusThreadingConcern
 
+  # If `override_timestamps` is set at creation time, Snowflake ID creation
+  # will be based on current time instead of `created_at`
+  attr_accessor :override_timestamps
+
   update_index('statuses#status', :proper) if Chewy.enabled?
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility

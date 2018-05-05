@@ -12,11 +12,16 @@ it:
     domain_count_after: altri server
     domain_count_before: Connesso a
     features:
+      humane_approach_body: Imparando dai fallimenti degli altri networks, Mastodon mira a fare scelte di design etico per combattere l'abuso dei social media.
       humane_approach_title: Un approccio più umano
       not_a_product_body: Mastodon non è una rete commerciale. Niente pubblicità, niente data mining, nessun giardino murato. Non c'è nessuna autorità centrale.
       not_a_product_title: Tu sei una persona, non un prodotto
+      real_conversation_body: Con 500 caratteri a disposizione, un supporto per i contenuti granulari ed avvisi sui media potrai esprimerti nel modo desiderato.
       real_conversation_title: Creato per conversazioni reali
+      within_reach_body: Apps per iOS, Android ed altre piattaforme, realizzate grazie ad un ecosistema di API adatto agli sviluppatori, ti consentono di poter stare ovunque al passo con i tuoi amici.
+      within_reach_title: Sempre a portata di mano
     generic_description: "%{domain} è un server nella rete"
+    hosted_on: Mastodon ospitato su %{domain}
     learn_more: Scopri altro
     other_instances: Elenco istanze
     source_code: Codice sorgente
@@ -30,6 +35,7 @@ it:
     followers: Seguaci
     following: Seguiti
     media: Media
+    moved_html: "%{name} è stato spostato su %{new_profile_link}:"
     nothing_here: Qui non c'è nulla!
     people_followed_by: Persone seguite da %{name}
     people_who_follow: Persone che seguono %{name}
@@ -109,6 +115,7 @@ it:
       remove_avatar: Rimuovi avatar
       reset: Reimposta
       reset_password: Reimposta password
+      resubscribe: Riscriversi
       role: Permessi
       roles:
         admin: Amministratore
@@ -123,10 +130,12 @@ it:
       unconfirmed_email: Email non confermata
       undo_silenced: Rimuovi silenzia
       undo_suspension: Rimuovi sospensione
+      unsubscribe: Annulla l'iscrizione
       username: Nome utente
       web: Web
     action_logs:
       actions:
+        change_email_user: "%{name} ha cambiato l'indirizzo e-mail per l'utente %{target}"
         confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
@@ -171,14 +180,20 @@ it:
         silence: Silenzia
         suspend: Sospendi
       severity: Severità
+      show:
+        undo: Annulla
       title: Blocchi dominio
+      undo: Annulla
     email_domain_blocks:
       add_new: Aggiungi nuovo
+      created_msg: Dominio e-mail aggiunto con successo alla lista nera
       delete: Elimina
+      destroyed_msg: Dominio e-mail cancellato con successo dalla lista nera
       domain: Dominio
       new:
         create: Aggiungi dominio
     instances:
+      account_count: Accounts conosciuti
       domain_name: Dominio
       reset: Reimposta
       search: Cerca
@@ -193,8 +208,10 @@ it:
     reports:
       account:
         note: note
+      action_taken_by: Azione intrapresa da
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
+      assigned: Moderatore assegnato
       comment:
         none: Nessuno
       delete: Elimina
@@ -206,9 +223,14 @@ it:
         create_and_resolve: Risolvi con nota
         create_and_unresolve: Riapri con nota
         delete: Elimina
+      nsfw:
+        'false': Mostra gli allegati multimediali
+        'true': Nascondi allegati multimediali
       report_contents: Contenuti
       resolved: Risolto
-      status: Stati
+      silence_account: Silenzia account
+      status: Stato
+      suspend_account: Sospendi account
       target: Obbiettivo
       unassign: Non assegnare
       unresolved: Non risolto
@@ -217,11 +239,18 @@ it:
     settings:
       activity_api_enabled:
         title: Pubblica statistiche aggregate circa l'attività dell'utente
+      contact_information:
+        username: Nome utente del contatto
       peers_api_enabled:
         title: Pubblica elenco di istanze scoperte
       registrations:
+        deletion:
+          desc_html: Consenti a chiunque di cancellare il proprio account
+          title: Apri la cancellazione dell'account
         min_invite_role:
           disabled: Nessuno
+        open:
+          desc_html: Consenti a chiunque di creare un account
       show_staff_badge:
         title: Mostra badge staff
       site_description:
@@ -403,6 +432,7 @@ it:
     wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del telefono siano corretti.
   user_mailer:
     welcome:
+      tips: Suggerimenti
       title: Benvenuto a bordo, %{name}!
   users:
     invalid_email: L'indirizzo e-mail inserito non è valido

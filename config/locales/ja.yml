@@ -354,8 +354,8 @@ ja:
       back_to_account: アカウントページに戻る
       batch:
         delete: 削除
-        nsfw_off: NSFW オフ
-        nsfw_on: NSFW オン
+        nsfw_off: 閲覧注意のマークを取り除く
+        nsfw_on: 閲覧注意としてマークする
       execute: 実行
       failed_to_execute: 実行に失敗しました
       media:
@@ -788,13 +788,14 @@ ja:
       <p>オリジナルの出典: <a href="https://github.com/discourse/discourse">Discourse privacy policy</a></p>
     title: "%{instance} 利用規約・プライバシーポリシー"
   themes:
+    contrast: ハイコントラスト
     default: Mastodon
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
-    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
+    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
     disable: 無効
     enable: 有効
     enabled: 二段階認証は有効になっています

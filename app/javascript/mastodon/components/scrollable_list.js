@@ -35,6 +35,7 @@ export default class ScrollableList extends PureComponent {
 
   state = {
     fullscreen: null,
+    mouseOver: false,
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
@@ -71,7 +72,7 @@ export default class ScrollableList extends PureComponent {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
-    if (someItemInserted && this.node.scrollTop > 0) {
+    if (someItemInserted && this.node.scrollTop > 0 || (this.state.mouseOver && !prevProps.isLoading)) {
       return this.node.scrollHeight - this.node.scrollTop;
     } else {
       return null;
@@ -139,6 +140,14 @@ export default class ScrollableList extends PureComponent {
     this.props.onLoadMore();
   }
 
+  handleMouseEnter = () => {
+    this.setState({ mouseOver: true });
+  }
+
+  handleMouseLeave = () => {
+    this.setState({ mouseOver: false });
+  }
+
   render () {
     const { children, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
@@ -149,7 +158,7 @@ export default class ScrollableList extends PureComponent {
 
     if (isLoading || childrenCount > 0 || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <div role='feed' className='item-list'>
             {prepend}
 
