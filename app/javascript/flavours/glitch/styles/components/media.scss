@@ -15,7 +15,7 @@
 
 .media-spoiler {
   background: $base-overlay-background;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   border: 0;
   width: 100%;
   height: 100%;
@@ -23,7 +23,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($ui-primary-color, 8%);
+    color: lighten($darker-text-color, 8%);
   }
 
   .status__content > & {
@@ -350,7 +350,7 @@
     z-index: 4;
     border: 0;
     background: $base-shadow-color;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     transition: none;
     pointer-events: none;
 
@@ -361,7 +361,7 @@
       &:hover,
       &:active,
       &:focus {
-        color: lighten($ui-primary-color, 8%);
+        color: lighten($darker-text-color, 7%);
       }
     }
 

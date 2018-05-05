@@ -2,7 +2,7 @@
   text-align: center;
   font-size: 16px;
   font-weight: 500;
-  color: lighten($ui-base-color, 16%);
+  color: $dark-text-color;
   background: $ui-base-color;
   cursor: default;
   display: flex;
@@ -42,7 +42,7 @@
     strong {
       display: block;
       margin-bottom: 10px;
-      color: lighten($ui-base-color, 34%);
+      color: $dark-text-color;
     }
 
     span {

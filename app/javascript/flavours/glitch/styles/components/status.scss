@@ -33,14 +33,14 @@
   }
 
   a {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
 
       .fa {
-        color: lighten($ui-base-color, 40%);
+        color: lighten($dark-text-color, 7%);
       }
     }
 
@@ -55,7 +55,7 @@
     }
 
     .fa {
-      color: lighten($ui-base-color, 30%);
+      color: $dark-text-color;
     }
   }
 
@@ -82,7 +82,7 @@
   border-radius: 2px;
   background: lighten($ui-base-color, 30%);
   border: none;
-  color: lighten($ui-base-color, 8%);
+  color: $inverted-text-color;
   font-weight: 500;
   font-size: 11px;
   padding: 0 5px;
@@ -177,36 +177,32 @@
 
   &.status-direct {
     background: lighten($ui-base-color, 8%);
-
-    .icon-button.disabled {
-      color: lighten($ui-base-color, 16%);
-    }
   }
 
   &.light {
     .status__relative-time {
-      color: $ui-primary-color;
+      color: $lighter-text-color;
     }
 
     .status__display-name {
-      color: $ui-base-color;
+      color: $inverted-text-color;
     }
 
     .display-name {
       strong {
-        color: $ui-base-color;
+        color: $inverted-text-color;
       }
 
       span {
-        color: $ui-primary-color;
+        color: $lighter-text-color;
       }
     }
 
     .status__content {
-      color: $ui-base-color;
+      color: $inverted-text-color;
 
       a {
-        color: $ui-highlight-color;
+        color: $highlight-text-color;
       }
 
       a.status__content__spoiler-link {
@@ -285,7 +281,7 @@
     background: transparent;
 
     .icon-button.disabled {
-      color: lighten($ui-base-color, 13%);
+      color: lighten($action-button-color, 13%);
     }
   }
 }
@@ -295,7 +291,7 @@
   margin-left: auto;
   padding-left: 18px;
   width: 120px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   font-size: 14px;
   text-align: right;
   white-space: nowrap;
@@ -305,7 +301,7 @@
 
 .status__display-name {
   margin: 0 auto 0 0;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   overflow: hidden;
 }
 
@@ -333,7 +329,7 @@
   display: flex;
   align-items: center;
   height: 1em;
-  color: lighten($ui-base-color, 26%);
+  color: transparentize($lighter-text-color, 0.1);
 
   .status__visibility-icon {
     padding-left: 6px;
@@ -382,13 +378,13 @@
 
 .status__prepend {
   margin: -10px -10px 10px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   padding: 8px 10px 0 68px;
   font-size: 14px;
   position: relative;
 
   .status__display-name strong {
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
   }
 
   > span {
@@ -445,7 +441,7 @@
 
 .detailed-status__meta {
   margin-top: 15px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   font-size: 14px;
   line-height: 18px;
 }
@@ -515,7 +511,7 @@
 }
 
 .detailed-status__display-name {
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   display: block;
   line-height: 24px;
   margin-bottom: 15px;
@@ -549,11 +545,11 @@
 .muted {
   .status__content p,
   .status__content a {
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
   }
 
   .status__display-name strong {
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
   }
 
   .status__avatar {
@@ -562,7 +558,7 @@
 
   a.status__content__spoiler-link {
     background: $ui-base-lighter-color;
-    color: lighten($ui-base-color, 4%);
+    color: $inverted-text-color;
 
     &:hover {
       background: lighten($ui-base-color, 29%);
@@ -584,7 +580,7 @@
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
@@ -626,7 +622,7 @@
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -639,7 +635,7 @@
 }
 
 .status-card__description {
-  color: $ui-primary-color;
+  color: $darker-text-color;
 }
 
 .status-card__host {

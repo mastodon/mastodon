@@ -4,22 +4,6 @@
   position: relative;
 }
 
-.column-icon {
-  background: lighten($ui-base-color, 4%);
-  color: $ui-primary-color;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 15px;
-  position: absolute;
-  right: 0;
-  top: -48px;
-  z-index: 3;
-
-  &:hover {
-    color: lighten($ui-primary-color, 7%);
-  }
-}
-
 .columns-area {
   display: flex;
   flex: 1 1 auto;
@@ -136,7 +120,7 @@
 
 .column-back-button {
   background: lighten($ui-base-color, 4%);
-  color: $ui-highlight-color;
+  color: $highlight-text-color;
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
@@ -155,7 +139,7 @@
   background: lighten($ui-base-color, 4%);
   border: 0;
   font-family: inherit;
-  color: $ui-highlight-color;
+  color: $highlight-text-color;
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
@@ -210,7 +194,7 @@
 
 .column-subheading {
   background: $ui-base-color;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   padding: 8px 20px;
   font-size: 12px;
   font-weight: 500;
@@ -266,14 +250,14 @@
   }
 
   & > .column-header__back-button {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
   }
 
   &.active {
     box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
 
     .column-header__icon {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
       text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
     }
   }
@@ -316,13 +300,13 @@
 .column-header__button {
   background: lighten($ui-base-color, 4%);
   border: 0;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
 
   &:hover {
-    color: lighten($ui-primary-color, 7%);
+    color: lighten($darker-text-color, 7%);
   }
 
   &.active {
@@ -368,7 +352,7 @@
   max-height: 70vh;
   overflow: hidden;
   overflow-y: auto;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   transition: max-height 150ms ease-in-out, opacity 300ms linear;
   opacity: 1;
 
@@ -406,7 +390,7 @@
 
 .column-header__setting-btn {
   &:hover {
-    color: lighten($ui-primary-color, 4%);
+    color: $darker-text-color;
     text-decoration: underline;
   }
 }
@@ -438,7 +422,7 @@
 
 .empty-column-indicator,
 .error-column {
-  color: lighten($ui-base-color, 20%);
+  color: $dark-text-color;
   background: $ui-base-color;
   text-align: center;
   padding: 20px;
@@ -454,7 +438,7 @@
   }
 
   a {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
     text-decoration: none;
 
     &:hover {
