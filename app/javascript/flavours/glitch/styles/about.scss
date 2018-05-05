@@ -194,6 +194,28 @@ $small-breakpoint: 960px;
     }
   }
 
+  .closed-registrations-message {
+    margin-top: 20px;
+
+    &,
+    p {
+      text-align: center;
+      font-size: 12px;
+      line-height: 18px;
+      color: $ui-primary-color;
+      margin-bottom: 0;
+
+      a {
+        color: $ui-highlight-color;
+        text-decoration: underline;
+      }
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   em {
     display: inline;
     margin: 0;
