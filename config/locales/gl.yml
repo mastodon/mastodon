@@ -53,9 +53,7 @@ gl:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Crear
-      created_at: Data
       created_msg: Nota a moderación creada con éxito!
       delete: Eliminar
       destroyed_msg: Nota a moderación destruída con éxito!
@@ -269,7 +267,6 @@ gl:
       comment:
         none: Nada
       created_at: Reportado
-      delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resolto
       mark_as_unresolved: Marcar como non resolto
@@ -279,9 +276,6 @@ gl:
         create_and_unresolve: Voltar a abrir con nota
         delete: Eliminar
         placeholder: Describir qué decisións foron tomadas, ou calquer actualización a este informe…
-      nsfw:
-        'false': Non agochar anexos de medios
-        'true': Agochar anexos de medios
       reopen: Voltar a abrir o informe
       report: 'Informe #%{id}'
       report_contents: Contidos
@@ -356,11 +350,8 @@ gl:
         delete: Eliminar
         nsfw_off: Marcar como non sensible
         nsfw_on: Marcar como sensible
-      execute: Executar
       failed_to_execute: Fallou a execución
       media:
-        hide: Agochar medios
-        show: Mostar medios
         title: Medios
       no_media: Sen medios
       title: Estados da conta
