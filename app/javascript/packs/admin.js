@@ -24,17 +24,18 @@ delegate(document, batchCheckboxClassName, 'change', () => {
   const checkAllElement = document.querySelector('#batch_checkbox_all');
   if (checkAllElement) {
     checkAllElement.checked = [].every.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
+    checkAllElement.indeterminate = !checkAllElement.checked && [].some.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
   }
 });
 
 delegate(document, '.media-spoiler-show-button', 'click', () => {
-  [].forEach.call(document.querySelectorAll('.activity-stream .media-spoiler-wrapper'), (content) => {
-    content.classList.add('media-spoiler-wrapper__visible');
+  [].forEach.call(document.querySelectorAll('button.media-spoiler'), (element) => {
+    element.click();
   });
 });
 
 delegate(document, '.media-spoiler-hide-button', 'click', () => {
-  [].forEach.call(document.querySelectorAll('.activity-stream .media-spoiler-wrapper'), (content) => {
-    content.classList.remove('media-spoiler-wrapper__visible');
+  [].forEach.call(document.querySelectorAll('.spoiler-button.spoiler-button--visible button'), (element) => {
+    element.click();
   });
 });

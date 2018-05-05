@@ -22,6 +22,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     status: ImmutablePropTypes.map.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
+    onToggleHidden: PropTypes.func.isRequired,
   };
 
   handleAccountClick = (e) => {
@@ -35,6 +36,10 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   handleOpenVideo = startTime => {
     this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
+  }
+
+  handleExpandedToggle = () => {
+    this.props.onToggleHidden(this.props.status);
   }
 
   render () {
@@ -57,6 +62,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             src={video.get('url')}
             width={300}
             height={150}
+            inline
             onOpenVideo={this.handleOpenVideo}
             sensitive={status.get('sensitive')}
           />
@@ -73,7 +79,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         );
       }
     } else if (status.get('spoiler_text').length === 0) {
-      media = <CardContainer statusId={status.get('id')} />;
+      media = <CardContainer onOpenMedia={this.props.onOpenMedia} statusId={status.get('id')} />;
     }
 
     if (status.get('application')) {
@@ -104,7 +110,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <DisplayName account={status.get('account')} />
         </a>
 
-        <StatusContent status={status} />
+        <StatusContent status={status} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
         {media}
 

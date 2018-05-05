@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
+  SUPPORTED_TYPES = %w(Note).freeze
+  CONVERTED_TYPES = %w(Image Video Article).freeze
+
   def perform
-    return if delete_arrived_first?(object_uri) || unsupported_object_type?
+    return if delete_arrived_first?(object_uri) || unsupported_object_type? || invalid_origin?(@object['id'])
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -17,11 +20,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   private
 
   def process_status
+    status_params = process_status_params
+
     ApplicationRecord.transaction do
       @status = Status.create!(status_params)
 
       process_tags(@status)
-      process_attachments(@status)
     end
 
     resolve_thread(@status)
@@ -35,20 +39,22 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     status
   end
 
-  def status_params
+  def process_status_params
     {
       uri: @object['id'],
       url: object_url || @object['id'],
       account: @account,
       text: text_from_content || '',
-      language: language_from_content,
+      language: detected_language,
       spoiler_text: @object['summary'] || '',
-      created_at: @options[:override_timestamps] ? nil : @object['published'],
+      created_at: @object['published'],
+      override_timestamps: @options[:override_timestamps],
       reply: @object['inReplyTo'].present?,
       sensitive: @object['sensitive'] || false,
       visibility: visibility_from_audience,
       thread: replied_to_status,
       conversation: conversation_from_uri(@object['conversation']),
+      media_attachment_ids: process_attachments.take(4).map(&:id),
     }
   end
 
@@ -56,12 +62,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if @object['tag'].nil?
 
     as_array(@object['tag']).each do |tag|
-      case tag['type']
-      when 'Hashtag'
+      if equals_or_includes?(tag['type'], 'Hashtag')
         process_hashtag tag, status
-      when 'Mention'
+      elsif equals_or_includes?(tag['type'], 'Mention')
         process_mention tag, status
-      when 'Emoji'
+      elsif equals_or_includes?(tag['type'], 'Emoji')
         process_emoji tag, status
       end
     end
@@ -74,6 +79,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
 
     status.tags << hashtag
+  rescue ActiveRecord::RecordInvalid
+    nil
   end
 
   def process_mention(tag, status)
@@ -102,22 +109,29 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     emoji.save
   end
 
-  def process_attachments(status)
-    return if @object['attachment'].nil?
+  def process_attachments
+    return [] if @object['attachment'].nil?
+
+    media_attachments = []
 
     as_array(@object['attachment']).each do |attachment|
-      next if unsupported_media_type?(attachment['mediaType']) || attachment['url'].blank?
+      next if attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-      media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href, description: attachment['name'].presence)
+      media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['name'].presence, focus: attachment['focalPoint'])
+      media_attachments << media_attachment
 
-      next if skip_download?
+      next if unsupported_media_type?(attachment['mediaType']) || skip_download?
 
       media_attachment.file_remote_url = href
       media_attachment.save
     end
+
+    media_attachments
   rescue Addressable::URI::InvalidURIError => e
     Rails.logger.debug e
+
+    media_attachments
   end
 
   def resolve_thread(status)
@@ -165,43 +179,81 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
+    return Formatter.instance.linkify([text_from_name, object_url || @object['id']].join(' ')) if converted_object_type?
+
     if @object['content'].present?
       @object['content']
-    elsif language_map?
+    elsif content_language_map?
       @object['contentMap'].values.first
     end
   end
 
-  def language_from_content
-    return LanguageDetector.instance.detect(text_from_content, @account) unless language_map?
-    @object['contentMap'].keys.first
+  def text_from_name
+    if @object['name'].present?
+      @object['name']
+    elsif name_language_map?
+      @object['nameMap'].values.first
+    end
+  end
+
+  def detected_language
+    if content_language_map?
+      @object['contentMap'].keys.first
+    elsif name_language_map?
+      @object['nameMap'].keys.first
+    elsif supported_object_type?
+      LanguageDetector.instance.detect(text_from_content, @account)
+    end
   end
 
   def object_url
     return if @object['url'].blank?
 
-    value = first_of_value(@object['url'])
+    url_candidate = url_to_href(@object['url'], 'text/html')
 
-    return value if value.is_a?(String)
-
-    value['href']
+    if invalid_origin?(url_candidate)
+      nil
+    else
+      url_candidate
+    end
   end
 
-  def language_map?
+  def content_language_map?
     @object['contentMap'].is_a?(Hash) && !@object['contentMap'].empty?
   end
 
+  def name_language_map?
+    @object['nameMap'].is_a?(Hash) && !@object['nameMap'].empty?
+  end
+
   def unsupported_object_type?
-    @object.is_a?(String) || !%w(Article Note).include?(@object['type'])
+    @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
   end
 
   def unsupported_media_type?(mime_type)
     mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
   end
 
+  def supported_object_type?
+    equals_or_includes_any?(@object['type'], SUPPORTED_TYPES)
+  end
+
+  def converted_object_type?
+    equals_or_includes_any?(@object['type'], CONVERTED_TYPES)
+  end
+
   def skip_download?
     return @skip_download if defined?(@skip_download)
     @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
+  end
+
+  def invalid_origin?(url)
+    return true if unsupported_uri_scheme?(url)
+
+    needle   = Addressable::URI.parse(url).host
+    haystack = Addressable::URI.parse(@account.uri).host
+
+    !haystack.casecmp(needle).zero?
   end
 
   def reply_to_local?
@@ -210,7 +262,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def forward_for_reply
     return unless @json['signature'].present? && reply_to_local?
-    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id)
+    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
   end
 
   def lock_options

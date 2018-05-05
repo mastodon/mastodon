@@ -3,22 +3,24 @@ es:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF o JPG. Máximo 2MB. Será escalado a 120x120px
+        avatar: PNG, GIF o JPG. Máximo 2MB. Será escalado a 400x400px
+        digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
         header: PNG, GIF o JPG. Máximo 2MB. Será escalado a 700x335px
         locked: Requiere que manualmente apruebes seguidores y las publicaciones serán mostradas solamente a tus seguidores
         note:
-          one: <span class="name-counter">1</span> caracter restante
+          one: <span class="name-counter">1</span> carácter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
         setting_noindex: Afecta a tu perfil público y páginas de estado
+        setting_theme: Afecta al aspecto de Mastodon cuando te identificas desde cualquier dispositivo.
       imports:
         data: Archivo CSV exportado desde otra instancia de Mastodon
       sessions:
-        otp: Ingresa el código de autenticación de dos factores de tu teléfono o usa uno de tus códigos de recuperación.
+        otp: Introduce el código de autenticación de dos factores de tu teléfono o usa uno de tus códigos de recuperación.
       user:
-        filtered_languages: Los lenguajes seleccionados serán removidos de tus líneas de tiempo públicas.
+        filtered_languages: Los idiomas seleccionados dejarán de mostrarse para ti en las líneas de tiempo públicas
     labels:
       defaults:
         avatar: Avatar
@@ -26,23 +28,37 @@ es:
         confirm_password: Confirmar contraseña
         current_password: Contraseña actual
         data: Información
-        display_name: Mostrar nombre
+        display_name: Nombre para mostrar
         email: Dirección de correo electrónico
+        expires_in: Expirar tras
+        filtered_languages: Idiomas filtrados
         header: Img. cabecera
         locale: Idioma
         locked: Hacer privada esta cuenta
+        max_uses: Máx. número de usos
         new_password: Nueva contraseña
         note: Biografía
         otp_attempt: Código de dos factores
         password: Contraseña
+        setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
         setting_default_privacy: Privacidad de publicaciones
+        setting_default_sensitive: Marcar siempre imágenes como sensibles
+        setting_delete_modal: Mostrar diálogo de confirmación antes de borrar un toot
+        setting_display_sensitive_media: Mostrar siempre material marcado como sensible
+        setting_noindex: Excluirse del indexado de motores de búsqueda
+        setting_reduce_motion: Reducir el movimiento de las animaciones
+        setting_system_font_ui: Utilizar la tipografía por defecto del sistema
+        setting_theme: Tema del sitio
+        setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a alguien
         severity: Severidad
         type: Importar tipo
         username: Nombre de usuario
+        username_or_email: Usuario o Email
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
+        must_be_following_dm: Bloquear mensajes directos de la gente que no sigues
       notification_emails:
         digest: Enviar resumen de correos electrónicos
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación

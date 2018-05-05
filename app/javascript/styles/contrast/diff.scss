@@ -1,0 +1,14 @@
+// components.scss
+.compose-form {
+  .compose-form__modifiers {
+    .compose-form__upload {
+      &-description {
+        input {
+          &::placeholder {
+            opacity: 1.0;
+          }
+        }
+      }
+    }
+  }
+}

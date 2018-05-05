@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import punycode from 'punycode';
 import classnames from 'classnames';
@@ -19,11 +20,45 @@ const getHostname = url => {
   return parser.hostname;
 };
 
+const trim = (text, len) => {
+  const cut = text.indexOf(' ', len);
+
+  if (cut === -1) {
+    return text;
+  }
+
+  return text.substring(0, cut) + (text.length > len ? '…' : '');
+};
+
+const domParser = new DOMParser();
+
+const addAutoPlay = html => {
+  const document = domParser.parseFromString(html, 'text/html').documentElement;
+  const iframe = document.querySelector('iframe');
+
+  if (iframe) {
+    if (iframe.src.indexOf('?') !== -1) {
+      iframe.src += '&';
+    } else {
+      iframe.src += '?';
+    }
+
+    iframe.src += 'autoplay=1&auto_play=1';
+
+    // DOM parser creates html/body elements around original HTML fragment,
+    // so we need to get innerHTML out of the body and not the entire document
+    return document.querySelector('body').innerHTML;
+  }
+
+  return html;
+};
+
 export default class Card extends React.PureComponent {
 
   static propTypes = {
     card: ImmutablePropTypes.map,
     maxDescription: PropTypes.number,
+    onOpenMedia: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -31,52 +66,45 @@ export default class Card extends React.PureComponent {
   };
 
   state = {
-    width: 0,
+    width: 280,
+    embedded: false,
   };
 
-  renderLink () {
-    const { card, maxDescription } = this.props;
-
-    let image    = '';
-    let provider = card.get('provider_name');
-
-    if (card.get('image')) {
-      image = (
-        <div className='status-card__image'>
-          <img src={card.get('image')} alt={card.get('title')} className='status-card__image-image' width={card.get('width')} height={card.get('height')} />
-        </div>
-      );
+  componentWillReceiveProps (nextProps) {
+    if (this.props.card !== nextProps.card) {
+      this.setState({ embedded: false });
     }
-
-    if (provider.length < 1) {
-      provider = decodeIDNA(getHostname(card.get('url')));
-    }
-
-    const className = classnames('status-card', {
-      'horizontal': card.get('width') > card.get('height'),
-    });
-
-    return (
-      <a href={card.get('url')} className={className} target='_blank' rel='noopener'>
-        {image}
-
-        <div className='status-card__content'>
-          <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
-          <p className='status-card__description'>{(card.get('description') || '').substring(0, maxDescription)}</p>
-          <span className='status-card__host'>{provider}</span>
-        </div>
-      </a>
-    );
   }
 
-  renderPhoto () {
+  handlePhotoClick = () => {
+    const { card, onOpenMedia } = this.props;
+
+    onOpenMedia(
+      Immutable.fromJS([
+        {
+          type: 'image',
+          url: card.get('embed_url'),
+          description: card.get('title'),
+          meta: {
+            original: {
+              width: card.get('width'),
+              height: card.get('height'),
+            },
+          },
+        },
+      ]),
+      0
+    );
+  };
+
+  handleEmbedClick = () => {
     const { card } = this.props;
 
-    return (
-      <a href={card.get('url')} className='status-card-photo' target='_blank' rel='noopener'>
-        <img src={card.get('url')} alt={card.get('title')} width={card.get('width')} height={card.get('height')} />
-      </a>
-    );
+    if (card.get('type') === 'photo') {
+      this.handlePhotoClick();
+    } else {
+      this.setState({ embedded: true });
+    }
   }
 
   setRef = c => {
@@ -87,7 +115,7 @@ export default class Card extends React.PureComponent {
 
   renderVideo () {
     const { card }  = this.props;
-    const content   = { __html: card.get('html') };
+    const content   = { __html: addAutoPlay(card.get('html')) };
     const { width } = this.state;
     const ratio     = card.get('width') / card.get('height');
     const height    = card.get('width') > card.get('height') ? (width / ratio) : (width * ratio);
@@ -95,7 +123,7 @@ export default class Card extends React.PureComponent {
     return (
       <div
         ref={this.setRef}
-        className='status-card-video'
+        className='status-card__image status-card-video'
         dangerouslySetInnerHTML={content}
         style={{ height }}
       />
@@ -103,23 +131,76 @@ export default class Card extends React.PureComponent {
   }
 
   render () {
-    const { card } = this.props;
+    const { card, maxDescription } = this.props;
+    const { width, embedded }      = this.state;
 
     if (card === null) {
       return null;
     }
 
-    switch(card.get('type')) {
-    case 'link':
-      return this.renderLink();
-    case 'photo':
-      return this.renderPhoto();
-    case 'video':
-      return this.renderVideo();
-    case 'rich':
-    default:
-      return null;
+    const provider    = card.get('provider_name').length === 0 ? decodeIDNA(getHostname(card.get('url'))) : card.get('provider_name');
+    const horizontal  = card.get('width') > card.get('height') && (card.get('width') + 100 >= width) || card.get('type') !== 'link';
+    const className   = classnames('status-card', { horizontal });
+    const interactive = card.get('type') !== 'link';
+    const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
+    const ratio       = card.get('width') / card.get('height');
+    const height      = card.get('width') > card.get('height') ? (width / ratio) : (width * ratio);
+
+    const description = (
+      <div className='status-card__content'>
+        {title}
+        {!horizontal && <p className='status-card__description'>{trim(card.get('description') || '', maxDescription)}</p>}
+        <span className='status-card__host'>{provider}</span>
+      </div>
+    );
+
+    let embed     = '';
+    let thumbnail = <div style={{ backgroundImage: `url(${card.get('image')})`, width: horizontal ? width : null, height: horizontal ? height : null }} className='status-card__image-image' />;
+
+    if (interactive) {
+      if (embedded) {
+        embed = this.renderVideo();
+      } else {
+        let iconVariant = 'play';
+
+        if (card.get('type') === 'photo') {
+          iconVariant = 'search-plus';
+        }
+
+        embed = (
+          <div className='status-card__image'>
+            {thumbnail}
+
+            <div className='status-card__actions'>
+              <div>
+                <button onClick={this.handleEmbedClick}><i className={`fa fa-${iconVariant}`} /></button>
+                <a href={card.get('url')} target='_blank' rel='noopener'><i className='fa fa-external-link' /></a>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div className={className} ref={this.setRef}>
+          {embed}
+          {description}
+        </div>
+      );
+    } else if (card.get('image')) {
+      embed = (
+        <div className='status-card__image'>
+          {thumbnail}
+        </div>
+      );
     }
+
+    return (
+      <a href={card.get('url')} className={className} target='_blank' rel='noopener' ref={this.setRef}>
+        {embed}
+        {description}
+      </a>
+    );
   }
 
 }

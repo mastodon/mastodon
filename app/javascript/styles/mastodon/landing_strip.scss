@@ -1,7 +1,7 @@
 .landing-strip,
 .memoriam-strip {
   background: rgba(darken($ui-base-color, 7%), 0.8);
-  color: $ui-primary-color;
+  color: $darker-text-color;
   font-weight: 400;
   padding: 14px;
   border-radius: 4px;
@@ -12,6 +12,12 @@
   strong,
   a {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   a {
@@ -39,13 +45,19 @@
   padding: 14px;
   border-radius: 4px;
   background: rgba(darken($ui-base-color, 7%), 0.8);
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   font-weight: 400;
   margin-bottom: 20px;
 
   strong,
   a {
     font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
   }
 
   a {
@@ -76,7 +88,7 @@
 
     .fa {
       margin-right: 5px;
-      color: $ui-primary-color;
+      color: $darker-text-color;
     }
   }
 
@@ -91,7 +103,7 @@
       text-decoration: none;
 
       span {
-        color: $ui-highlight-color;
+        color: $highlight-text-color;
         font-weight: 400;
       }
     }

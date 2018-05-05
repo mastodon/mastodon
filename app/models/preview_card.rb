@@ -3,7 +3,7 @@
 #
 # Table name: preview_cards
 #
-#  id                 :integer          not null, primary key
+#  id                 :bigint(8)        not null, primary key
 #  url                :string           default(""), not null
 #  title              :string           default(""), not null
 #  description        :string           default(""), not null
@@ -21,10 +21,12 @@
 #  height             :integer          default(0), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  embed_url          :string           default(""), not null
 #
 
 class PreviewCard < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
+  LIMIT = 1.megabytes
 
   self.inheritance_column = false
 
@@ -32,14 +34,14 @@ class PreviewCard < ApplicationRecord
 
   has_and_belongs_to_many :statuses
 
-  has_attached_file :image, styles: { original: '280x280>' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :image, styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
-  include Remotable
 
   validates :url, presence: true, uniqueness: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
-  validates_attachment_size :image, less_than: 1.megabytes
+  validates_attachment_size :image, less_than: LIMIT
+  remotable_attachment :image, LIMIT
 
   before_save :extract_dimensions, if: :link?
 
@@ -50,6 +52,23 @@ class PreviewCard < ApplicationRecord
     save!
   end
 
+  class << self
+    private
+
+    def image_styles(f)
+      styles = {
+        original: {
+          geometry: '400x400>',
+          file_geometry_parser: FastGeometryParser,
+          convert_options: '-coalesce -strip',
+        },
+      }
+
+      styles[:original][:format] = 'jpg' if f.instance.image_content_type == 'image/gif'
+      styles
+    end
+  end
+
   private
 
   def extract_dimensions
@@ -57,10 +76,11 @@ class PreviewCard < ApplicationRecord
 
     return if file.nil?
 
-    geo         = Paperclip::Geometry.from_file(file)
-    self.width  = geo.width.to_i
-    self.height = geo.height.to_i
-  rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-    nil
+    width, height = FastImage.size(file.path)
+
+    return nil if width.nil?
+
+    self.width  = width
+    self.height = height
   end
 end

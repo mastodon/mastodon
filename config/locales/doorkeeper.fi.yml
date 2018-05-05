@@ -3,17 +3,19 @@ fi:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nimi
-        redirect_uri: Uudelleenohjaus URI
+        name: Sovelluksen nimi
+        redirect_uri: Uudelleenohjauksen URI
+        scopes: Oikeudet
+        website: Sovelluksen verkkosivu
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               fragment_present: ei voi sisältää osia.
-              invalid_uri: pitää olla validi URI.
-              relative_uri: pitää olla täydellinen URI.
-              secured_uri: pitää olla HTTPS/SSL URI.
+              invalid_uri: on oltava kelvollinen URI.
+              relative_uri: on oltava täydellinen URI.
+              secured_uri: on oltava HTTPS/SSL-URI.
   doorkeeper:
     applications:
       buttons:
@@ -25,89 +27,93 @@ fi:
       confirmations:
         destroy: Oletko varma?
       edit:
-        title: Muokkaa applikaatiota
+        title: Muokkaa sovellusta
       form:
-        error: Whoops! Tarkista lomakkeesi mahdollisten virheiden varalta
+        error: Hups! Tarkista, että lomakkeessa ei ole virheitä
       help:
         native_redirect_uri: Käytä %{native_redirect_uri} paikallisiin testeihin
-        redirect_uri: Käytä yhtä riviä per URI
-        scopes: Erota scopet välilyönnein. Jätä tyhjäksi käyteksi oletus scopeja.
+        redirect_uri: Lisää jokainen URI omalle rivilleen
+        scopes: Erota oikeudet välilyönnein. Jos kenttä jätetään tyhjäksi, käytetään oletusoikeuksia.
       index:
-        callback_url: Callback URL
+        application: Sovellus
+        callback_url: Takaisinkutsu-URL
+        delete: Poista
         name: Nimi
-        new: Uusi applikaatio
-        title: Sinun applikaatiosi
+        new: Uusi sovellus
+        scopes: Oikeudet
+        show: Näytä
+        title: Omat sovellukset
       new:
-        title: Uusi applikaatio
+        title: Uusi sovellus
       show:
         actions: Toiminnot
-        application_id: Applikaation Id
-        callback_urls: Callback urls
-        scopes: Scopet
-        secret: Salainen avain
-        title: 'Applikaatio: %{name}'
+        application_id: Asiakasohjelman tunnus
+        callback_urls: Takaisinkutsu-URL:t
+        scopes: Oikeudet
+        secret: Asiakasohjelman salainen avain
+        title: 'Sovellus: %{name}'
     authorizations:
       buttons:
         authorize: Valtuuta
         deny: Evää
       error:
-        title: Virhe on tapahtunut
+        title: Tapahtui virhe
       new:
         able_to: Se voi
-        prompt: Applikaatio %{client_name} pyytää lupaa tilillesi
+        prompt: Sovellus %{client_name} pyytää lupaa käyttää tiliäsi
         title: Valtuutus vaaditaan
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Kopioi tämä valtuutuskoodi ja liitä se sovellukseen.
     authorized_applications:
       buttons:
-        revoke: Evää
+        revoke: Peru
       confirmations:
         revoke: Oletko varma?
       index:
-        application: Applikaatio
+        application: Sovellus
         created_at: Valtuutettu
         date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Scopet
-        title: Valtuuttamasi applikaatiot
+        scopes: Oikeudet
+        title: Valtuutetut sovellukset
     errors:
       messages:
-        access_denied: Resurssin omistaja tai valtuutus palvelin hylkäsi pyynnönr.
-        credential_flow_not_configured: Resurssin omistajan salasana epäonnistui koska Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
-        invalid_client: Asiakkaan valtuutus epäonnistui koska tuntematon asiakas, asiakas ei sisältänyt valtuutusta, tai tukematon valtuutus tapa
-        invalid_grant: Antamasi valtuutus lupa on joko väärä, erääntynyt, peruttu, ei vastaa uudelleenohjaus URI jota käytetään valtuutus pyynnössä, tai se myönnettin toiselle asiakkaalle.
-        invalid_redirect_uri: Uudelleenohjaus uri ei ole oikein.
-        invalid_request: Pyynnöstä puutti parametri, sisältää tukemattoman parametri arvonn, tai on korruptoitunut.
-        invalid_resource_owner: Annetut resurssin omistajan tunnnukset ovat väärät, tai resurssin omistajaa ei löydy
-        invalid_scope: Pyydetty scope on väärä, tuntemat, tai korruptoitunut.
+        access_denied: Resurssin omistaja tai valtuutuspalvelin hylkäsi pyynnön.
+        credential_flow_not_configured: Resurssin omistajan salasana epäonnistui, koska asetusta Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
+        invalid_client: Asiakasohjelman valtuutus epäonnistui, koska asiakas on tuntematon, asiakkaan valtuutus ei ollut mukana tai valtuutustapaa ei tueta.
+        invalid_grant: Valtuutuslupa on virheellinen, umpeutunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
+        invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
+        invalid_request: Pyynnöstä puuttuu vaadittu parametri, se sisältää tukemattoman parametriarvon tai on muulla tavoin väärin muotoiltu.
+        invalid_resource_owner: Annetut resurssin omistajan tunnnukset ovat virheelliset, tai resurssin omistajaa ei löydy
+        invalid_scope: Pyydetyt oikeudet ovat virheellisiä, tuntemattomia tai väärin muotoiltuja.
         invalid_token:
-          expired: Access token vanhentunut
-          revoked: Access token evätty
-          unknown: Access token väärä
-        resource_owner_authenticator_not_configured: Resurssin omistajan etsiminen epäonnistui koska Doorkeeper.configure.resource_owner_authenticator ei ole konfiguroitu.
-        server_error: Valtuutus palvelin kohtasi odottamattoman virheen joka esti sitä täyttämästä pyyntöä.
-        temporarily_unavailable: Valtuutus palvelin ei voi tällä hetkellä käsitellä pyyntöäsi joko väliaikaisen ruuhkan tai huollon takia.
-        unauthorized_client: Asiakas ei ole valtuutettu tekemään tätä pyyntöä käyttäen tätä metodia.
-        unsupported_grant_type: Valtuutus grant type ei ole tuettu valtuutus palvelimella.
-        unsupported_response_type: Valtuutus palvelin ei tue tätä vastaus tyyppiä.
+          expired: Käyttöoikeustunnus on vanhentunut
+          revoked: Käyttöoikeustunnus on peruttu
+          unknown: Käyttöoikeustunnus on virheellinen
+        resource_owner_authenticator_not_configured: Resurssin omistajaa ei löytynyt, koska asetusta Doorkeeper.configure.resource_owner_authenticator ei ole konfiguroitu.
+        server_error: Valtuutuspalvelin kohtasi odottamattoman virheen, joka esti pyynnön täyttämisen.
+        temporarily_unavailable: Valtuutuspalvelin ei voi tällä hetkellä käsitellä pyyntöä joko väliaikaisen ruuhkan tai huollon takia.
+        unauthorized_client: Asiakkaalla ei ole valtuuksia tehdä tätä pyyntöä tällä metodilla.
+        unsupported_grant_type: Valtuutuspalvelin ei tue tätä valtuutusluvan tyyppiä.
+        unsupported_response_type: Valtuutuspalvelin ei tue tätä vastauksen tyyppiä.
     flash:
       applications:
         create:
-          notice: Applikaatio luotu.
+          notice: Sovellus luotu.
         destroy:
-          notice: Applikaatio poistettu.
+          notice: Sovellus poistettu.
         update:
-          notice: Applikaatio päivitetty.
+          notice: Sovellus päivitetty.
       authorized_applications:
         destroy:
-          notice: Applikaatio tuhottu.
+          notice: Sovellus peruttu.
     layouts:
       admin:
         nav:
-          applications: Applikaatiot
-          oauth2_provider: OAuth2 Provider
+          applications: Sovellukset
+          oauth2_provider: OAuth2-palveluntarjoaja
       application:
-        title: OAuth valtuutus tarvitaan
+        title: OAuth-valtuutus tarvitaan
     scopes:
-      follow: seuraa, estä, peru esto ja lopeta tilien seuraaminen
-      read: lukea tilin dataa
+      follow: seurata, estää, perua eston ja lopettaa tilien seuraaminen
+      read: lukea tilin tietoja
       write: julkaista puolestasi

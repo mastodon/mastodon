@@ -30,7 +30,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   end
 
   def actor_id
-    first_of_value(@json['attributedTo'])
+    value_or_id(first_of_value(@json['attributedTo']))
   end
 
   def trustworthy_attribution?(uri, attributed_to)
@@ -42,7 +42,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   end
 
   def expected_type?
-    %w(Note Article).include? @json['type']
+    equals_or_includes_any?(@json['type'], ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
   end
 
   def needs_update(actor)

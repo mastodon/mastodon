@@ -32,7 +32,7 @@ module Extractor
     possible_entries
   end
 
-  def extract_hashtags_with_indices(text, _options = {})
+  def extract_hashtags_with_indices(text, **)
     return [] unless text =~ /#/
 
     tags = []

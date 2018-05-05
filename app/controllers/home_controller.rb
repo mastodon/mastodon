@@ -2,6 +2,7 @@
 
 class HomeController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_referrer_policy_header
   before_action :set_initial_state_json
 
   def index
@@ -34,7 +35,8 @@ class HomeController < ApplicationController
       end
     end
 
-    redirect_to(default_redirect_path)
+    matches = request.path.match(%r{\A/web/timelines/tag/(?<tag>.+)\z})
+    redirect_to(matches ? tag_path(CGI.unescape(matches[:tag])) : default_redirect_path)
   end
 
   def set_initial_state_json
@@ -60,5 +62,9 @@ class HomeController < ApplicationController
     else
       about_path
     end
+  end
+
+  def set_referrer_policy_header
+    response.headers['Referrer-Policy'] = 'origin'
   end
 end

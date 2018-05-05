@@ -3,7 +3,7 @@
 #
 # Table name: site_uploads
 #
-#  id                :integer          not null, primary key
+#  id                :bigint(8)        not null, primary key
 #  var               :string           default(""), not null
 #  file_file_name    :string
 #  file_content_type :string
@@ -34,8 +34,8 @@ class SiteUpload < ApplicationRecord
 
     return if tempfile.nil?
 
-    geometry  = Paperclip::Geometry.from_file(tempfile)
-    self.meta = { width: geometry.width.to_i, height: geometry.height.to_i }
+    width, height = FastImage.size(tempfile.path)
+    self.meta = { width: width, height: height }
   end
 
   def clear_cache

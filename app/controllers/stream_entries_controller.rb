@@ -10,15 +10,20 @@ class StreamEntriesController < ApplicationController
   before_action :set_stream_entry
   before_action :set_link_headers
   before_action :check_account_suspension
+  before_action :set_cache_headers
 
   def show
     respond_to do |format|
       format.html do
-        @ancestors   = @stream_entry.activity.reply? ? cache_collection(@stream_entry.activity.ancestors(current_account), Status) : []
-        @descendants = cache_collection(@stream_entry.activity.descendants(current_account), Status)
+        redirect_to short_account_status_url(params[:account_username], @stream_entry.activity) if @type == 'status'
       end
 
       format.atom do
+        unless @stream_entry.hidden?
+          skip_session!
+          expires_in 3.minutes, public: true
+        end
+
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.entry(@stream_entry, true))
       end
     end

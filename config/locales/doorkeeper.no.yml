@@ -5,6 +5,8 @@
       doorkeeper/application:
         name: Navn
         redirect_uri: Omdirigerings-URI
+        scopes: Omfang
+        website: Applikasjonsnettside
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@
         redirect_uri: Bruk én linje per URI
         scopes: Adskill omfang med mellomrom. La det være blankt for å bruke standard omfang.
       index:
+        application: Applikasjon
         callback_url: Callback-URL
+        delete: Fjern
         name: Navn
         new: Ny applikasjon
+        scopes: Omfang
+        show: Vis
         title: Dine applikasjoner
       new:
         title: Nye applikasjoner
@@ -57,7 +63,7 @@
         prompt: Applikasjon %{client_name} spør om tilgang til din konto
         title: Autorisasjon påkrevd
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Kopier denne koden og lim den inn i programmet.
     authorized_applications:
       buttons:
         revoke: Opphev
@@ -77,7 +83,7 @@
         invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
         invalid_redirect_uri: Den inkluderte omdirigerings-URLen er ikke gyldig.
         invalid_request: Forespørslen mangler en eller flere parametere, inkluderte en parameter som ikke støttes eller har feil struktur.
-        invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så kan ikke eieren finnes.
+        invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:
           expired: Tilgangsbeviset har utløpt

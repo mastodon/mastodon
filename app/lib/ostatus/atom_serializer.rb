@@ -26,6 +26,9 @@ class OStatus::AtomSerializer
     append_element(author, 'link', nil, rel: :alternate, type: 'text/html', href: ::TagManager.instance.url_for(account))
     append_element(author, 'link', nil, rel: :avatar, type: account.avatar_content_type, 'media:width': 120, 'media:height': 120, href: full_asset_url(account.avatar.url(:original))) if account.avatar?
     append_element(author, 'link', nil, rel: :header, type: account.header_content_type, 'media:width': 700, 'media:height': 335, href: full_asset_url(account.header.url(:original))) if account.header?
+    account.emojis.each do |emoji|
+      append_element(author, 'link', nil, rel: :emoji, href: full_asset_url(emoji.image.url), name: emoji.shortcode)
+    end
     append_element(author, 'poco:preferredUsername', account.username)
     append_element(author, 'poco:displayName', account.display_name) if account.display_name?
     append_element(author, 'poco:note', account.local? ? account.note : strip_tags(account.note)) if account.note?
@@ -319,7 +322,7 @@ class OStatus::AtomSerializer
 
   private
 
-  def append_element(parent, name, content = nil, attributes = {})
+  def append_element(parent, name, content = nil, **attributes)
     element = Ox::Element.new(name)
     attributes.each { |k, v| element[k] = sanitize_str(v) }
     element << sanitize_str(content) unless content.nil?
@@ -351,7 +354,7 @@ class OStatus::AtomSerializer
     append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
     append_element(entry, 'content', Formatter.instance.format(status).to_str, type: 'html', 'xml:lang': status.language)
 
-    status.mentions.each do |mentioned|
+    status.mentions.order(:id).each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': OStatus::TagManager::TYPES[:person], href: OStatus::TagManager.instance.uri_for(mentioned.account))
     end
 
@@ -360,8 +363,6 @@ class OStatus::AtomSerializer
     status.tags.each do |tag|
       append_element(entry, 'category', nil, term: tag.name)
     end
-
-    append_element(entry, 'category', nil, term: 'nsfw') if status.sensitive?
 
     status.media_attachments.each do |media|
       append_element(entry, 'link', nil, rel: :enclosure, type: media.file_content_type, length: media.file_file_size, href: full_asset_url(media.file.url(:original, false)))

@@ -3,7 +3,7 @@
 class RemoveStatusService < BaseService
   include StreamEntryRenderer
 
-  def call(status)
+  def call(status, **options)
     @payload      = Oj.dump(event: :delete, payload: status.id.to_s)
     @status       = status
     @account      = status.account
@@ -11,6 +11,7 @@ class RemoveStatusService < BaseService
     @mentions     = status.mentions.includes(:account).to_a
     @reblogs      = status.reblogs.to_a
     @stream_entry = status.stream_entry
+    @options      = options
 
     remove_from_self if status.account.local?
     remove_from_followers
@@ -19,10 +20,16 @@ class RemoveStatusService < BaseService
     remove_reblogs
     remove_from_hashtags
     remove_from_public
+    remove_from_direct if status.direct_visibility?
 
     @status.destroy!
 
-    return unless @account.local?
+    # There is no reason to send out Undo activities when the
+    # cause is that the original object has been removed, since
+    # original object being removed implicitly removes reblogs
+    # of it. The Delete activity of the original is forwarded
+    # separately.
+    return if !@account.local? || @options[:original_removed]
 
     remove_from_remote_followers
     remove_from_remote_affected
@@ -104,7 +111,7 @@ class RemoveStatusService < BaseService
     # without us being able to do all the fancy stuff
 
     @reblogs.each do |reblog|
-      RemoveStatusService.new.call(reblog)
+      RemoveStatusService.new.call(reblog, original_removed: true)
     end
   end
 
@@ -122,6 +129,13 @@ class RemoveStatusService < BaseService
 
     Redis.current.publish('timeline:public', @payload)
     Redis.current.publish('timeline:public:local', @payload) if @status.local?
+  end
+
+  def remove_from_direct
+    @mentions.each do |mention|
+      Redis.current.publish("timeline:direct:#{mention.account.id}", @payload) if mention.account.local?
+    end
+    Redis.current.publish("timeline:direct:#{@account.id}", @payload) if @account.local?
   end
 
   def redis

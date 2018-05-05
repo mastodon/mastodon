@@ -3,13 +3,13 @@
 #
 # Table name: notifications
 #
-#  id              :integer          not null, primary key
-#  activity_id     :integer
-#  activity_type   :string
+#  id              :bigint(8)        not null, primary key
+#  activity_id     :bigint(8)        not null
+#  activity_type   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  account_id      :integer
-#  from_account_id :integer
+#  account_id      :bigint(8)        not null
+#  from_account_id :bigint(8)        not null
 #
 
 class Notification < ApplicationRecord
@@ -26,15 +26,15 @@ class Notification < ApplicationRecord
 
   STATUS_INCLUDES = [:account, :application, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :application, :media_attachments, :tags, mentions: :account]].freeze
 
-  belongs_to :account
-  belongs_to :from_account, class_name: 'Account'
-  belongs_to :activity, polymorphic: true
+  belongs_to :account, optional: true
+  belongs_to :from_account, class_name: 'Account', optional: true
+  belongs_to :activity, polymorphic: true, optional: true
 
-  belongs_to :mention,        foreign_type: 'Mention',       foreign_key: 'activity_id'
-  belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id'
-  belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id'
-  belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id'
-  belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id'
+  belongs_to :mention,        foreign_type: 'Mention',       foreign_key: 'activity_id', optional: true
+  belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id', optional: true
+  belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id', optional: true
+  belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id', optional: true
+  belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id', optional: true
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
   validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
@@ -69,7 +69,7 @@ class Notification < ApplicationRecord
 
   class << self
     def reload_stale_associations!(cached_items)
-      account_ids = cached_items.map(&:from_account_id).uniq
+      account_ids = (cached_items.map(&:from_account_id) + cached_items.map { |item| item.target_status&.account_id }.compact).uniq
 
       return if account_ids.empty?
 
@@ -77,10 +77,9 @@ class Notification < ApplicationRecord
 
       cached_items.each do |item|
         item.from_account = accounts[item.from_account_id]
+        item.target_status.account = accounts[item.target_status.account_id] if item.target_status
       end
     end
-
-    private
 
     def activity_types_from_types(types)
       types.map { |type| TYPE_CLASS_MAP[type.to_sym] }.compact

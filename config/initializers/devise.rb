@@ -30,8 +30,45 @@ Warden::Manager.before_logout do |_, warden|
   warden.cookies.delete('_session_id')
 end
 
+module Devise
+  mattr_accessor :pam_authentication
+  @@pam_authentication = false
+  mattr_accessor :pam_controlled_service
+  @@pam_controlled_service = nil
+
+  mattr_accessor :check_at_sign
+  @@check_at_sign = false
+
+  mattr_accessor :ldap_authentication
+  @@ldap_authentication = false
+  mattr_accessor :ldap_host
+  @@ldap_host = nil
+  mattr_accessor :ldap_port
+  @@ldap_port = nil
+  mattr_accessor :ldap_method
+  @@ldap_method = nil
+  mattr_accessor :ldap_base
+  @@ldap_base = nil
+  mattr_accessor :ldap_uid
+  @@ldap_uid = nil
+  mattr_accessor :ldap_bind_dn
+  @@ldap_bind_dn = nil
+  mattr_accessor :ldap_password
+  @@ldap_password = nil
+  mattr_accessor :ldap_tls_no_verify
+  @@ldap_tls_no_verify = false
+
+  class Strategies::PamAuthenticatable
+    def valid?
+      super && ::Devise.pam_authentication
+    end
+  end
+end
+
 Devise.setup do |config|
   config.warden do |manager|
+    manager.default_strategies(scope: :user).unshift :ldap_authenticatable if Devise.ldap_authentication
+    manager.default_strategies(scope: :user).unshift :pam_authenticatable  if Devise.pam_authentication
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
     manager.default_strategies(scope: :user).unshift :two_factor_backupable
   end
@@ -96,7 +133,7 @@ Devise.setup do |config|
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  config.http_authenticatable = [:database]
+  config.http_authenticatable = [:pam, :database]
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -137,6 +174,9 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   # config.pepper = '104d16705f794923e77c5e5167b52452d00646dc952a2d30b541c24086e647012c7b9625f253c51912e455981e503446772973d5f1638631196c819d7137fad4'
 
+  # Send a notification to the original email when the user's email is changed.
+  config.send_email_changed_notification = true
+
   # Send a notification email when the user's password is changed
   config.send_password_change_notification = true
 
@@ -160,7 +200,7 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
-  config.reconfirmable = false
+  config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [:email]
@@ -298,4 +338,27 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  if ENV['PAM_ENABLED'] == 'true'
+    config.pam_authentication     = true
+    config.usernamefield          = nil
+    config.emailfield             = 'email'
+    config.check_at_sign          = true
+    config.pam_default_suffix     = ENV.fetch('PAM_EMAIL_DOMAIN') { ENV['LOCAL_DOMAIN'] }
+    config.pam_default_service    = ENV.fetch('PAM_DEFAULT_SERVICE') { 'rpam' }
+    config.pam_controlled_service = ENV.fetch('PAM_CONTROLLED_SERVICE') { nil }
+  end
+
+  if ENV['LDAP_ENABLED'] == 'true'
+    config.ldap_authentication = true
+    config.check_at_sign       = true
+    config.ldap_host           = ENV.fetch('LDAP_HOST', 'localhost')
+    config.ldap_port           = ENV.fetch('LDAP_PORT', 389).to_i
+    config.ldap_method         = ENV.fetch('LDAP_METHOD', :simple_tls).to_sym
+    config.ldap_base           = ENV.fetch('LDAP_BASE')
+    config.ldap_bind_dn        = ENV.fetch('LDAP_BIND_DN')
+    config.ldap_password       = ENV.fetch('LDAP_PASSWORD')
+    config.ldap_uid            = ENV.fetch('LDAP_UID', 'cn')
+    config.ldap_tls_no_verify  = ENV['LDAP_TLS_NO_VERIFY'] == 'true'
+  end
 end

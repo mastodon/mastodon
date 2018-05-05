@@ -145,28 +145,30 @@ class FeedManager
     redis.exists("subscribed:#{timeline_id}")
   end
 
+  def blocks_or_mutes?(receiver_id, account_ids, context)
+    Block.where(account_id: receiver_id, target_account_id: account_ids).any? ||
+      (context == :home ? Mute.where(account_id: receiver_id, target_account_id: account_ids).any? : Mute.where(account_id: receiver_id, target_account_id: account_ids, hide_notifications: true).any?)
+  end
+
   def filter_from_home?(status, receiver_id)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
 
-    check_for_mutes = [status.account_id]
-    check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
-
-    return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?
-
     check_for_blocks = status.mentions.pluck(:account_id)
+    check_for_blocks.concat([status.account_id])
     check_for_blocks.concat([status.reblog.account_id]) if status.reblog?
 
-    return true if Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?
+    return true if blocks_or_mutes?(receiver_id, check_for_blocks, :home)
 
-    if status.reply? && !status.in_reply_to_account_id.nil?                                                              # Filter out if it's a reply
-      should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists? # and I'm not following the person it's a reply to
-      should_filter &&= receiver_id != status.in_reply_to_account_id                                                     # and it's not a reply to me
-      should_filter &&= status.account_id != status.in_reply_to_account_id                                               # and it's not a self-reply
+    if status.reply? && !status.in_reply_to_account_id.nil?                                                                      # Filter out if it's a reply
+      should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists?         # and I'm not following the person it's a reply to
+      should_filter &&= receiver_id != status.in_reply_to_account_id                                                             # and it's not a reply to me
+      should_filter &&= status.account_id != status.in_reply_to_account_id                                                       # and it's not a self-reply
       return should_filter
-    elsif status.reblog?                                                                                                 # Filter out a reblog
-      should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me
-      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?  # or the author's domain is blocked
+    elsif status.reblog?                                                                                                         # Filter out a reblog
+      should_filter   = Follow.where(account_id: receiver_id, target_account_id: status.account_id, show_reblogs: false).exists? # if the reblogger's reblogs are suppressed
+      should_filter ||= Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?                # or if the author of the reblogged status is blocking me
+      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?          # or the author's domain is blocked
       return should_filter
     end
 
@@ -176,11 +178,13 @@ class FeedManager
   def filter_from_mentions?(status, receiver_id)
     return true if receiver_id == status.account_id
 
-    check_for_blocks = [status.account_id]
-    check_for_blocks.concat(status.mentions.pluck(:account_id))
+    # This filter is called from NotifyService, but already after the sender of
+    # the notification has been checked for mute/block. Therefore, it's not
+    # necessary to check the author of the toot for mute/block again
+    check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
 
-    should_filter   = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?                                     # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
+    should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions)                                                         # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
     should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
 
     should_filter
@@ -219,6 +223,14 @@ class FeedManager
         return false
       end
     else
+      # A reblog may reach earlier than the original status because of the
+      # delay of the worker deliverying the original status, the late addition
+      # by merging timelines, and other reasons.
+      # If such a reblog already exists, just do not re-insert it into the feed.
+      rank = redis.zrevrank(reblog_key, status.id)
+
+      return false unless rank.nil?
+
       redis.zadd(timeline_key, status.id, status.id)
     end
 

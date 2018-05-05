@@ -38,6 +38,10 @@ class ActivityPub::TagManager
     end
   end
 
+  def generate_uri_for(_target)
+    URI.join(root_url, 'payloads', SecureRandom.uuid)
+  end
+
   def activity_uri_for(target)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
@@ -66,6 +70,8 @@ class ActivityPub::TagManager
   # Direct ones don't have a secondary audience
   def cc(status)
     cc = []
+
+    cc << uri_for(status.reblog.account) if status.reblog?
 
     case status.visibility
     when 'public'

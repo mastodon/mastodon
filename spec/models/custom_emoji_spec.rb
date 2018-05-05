@@ -1,6 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe CustomEmoji, type: :model do
+  describe '#search' do
+    let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
+
+    subject  { described_class.search(search_term) }
+
+    context 'shortcode is exact' do
+      let(:shortcode) { 'blobpats' }
+      let(:search_term) { 'blobpats' }
+
+      it 'finds emoji' do
+        is_expected.to include(custom_emoji)
+      end
+    end
+
+    context 'shortcode is partial' do
+      let(:shortcode) { 'blobpats' }
+      let(:search_term) { 'blob' }
+
+      it 'finds emoji' do
+        is_expected.to include(custom_emoji)
+      end
+    end
+  end
+
   describe '#local?' do
     let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
 

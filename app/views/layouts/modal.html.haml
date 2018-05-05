@@ -11,6 +11,8 @@
       = link_to destroy_user_session_path, method: :delete, class: 'logout-link icon-button' do
         = fa_icon 'sign-out'
 
-  .container= yield
+  .container-alt= yield
+  .modal-layout__mastodon
+    %div
 
 = render template: 'layouts/application'

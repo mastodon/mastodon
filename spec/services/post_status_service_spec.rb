@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostStatusService do
+RSpec.describe PostStatusService, type: :service do
   subject { PostStatusService.new }
 
   it 'creates a new status' do
@@ -182,7 +182,7 @@ RSpec.describe PostStatusService do
     expect(status2.id).to eq status1.id
   end
 
-  def create_status_with_options(options = {})
+  def create_status_with_options(**options)
     subject.call(Fabricate(:account), 'test', nil, options)
   end
 end

@@ -3,12 +3,12 @@
 #
 # Table name: conversation_mutes
 #
-#  id              :integer          not null, primary key
-#  conversation_id :integer          not null
-#  account_id      :integer          not null
+#  id              :bigint(8)        not null, primary key
+#  conversation_id :bigint(8)        not null
+#  account_id      :bigint(8)        not null
 #
 
 class ConversationMute < ApplicationRecord
-  belongs_to :account, required: true
-  belongs_to :conversation, required: true
+  belongs_to :account
+  belongs_to :conversation
 end

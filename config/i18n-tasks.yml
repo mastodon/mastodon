@@ -46,6 +46,7 @@ ignore_missing:
   - 'terms.body_html'
   - 'application_mailer.salutation'
   - 'errors.500'
+  - 'auth.providers.*'
 
 ignore_unused:
   - 'activemodel.errors.*'
@@ -60,3 +61,5 @@ ignore_unused:
   - 'activerecord.errors.models.doorkeeper/*'
   - 'errors.429'
   - 'admin.accounts.roles.*'
+  - 'admin.action_logs.actions.*'
+  - 'statuses.attached.*'

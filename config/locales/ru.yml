@@ -23,7 +23,6 @@ ru:
       real_conversation_title: Создан для настоящего общения
       within_reach_body: Различные приложения для iOS, Android и других платформ, написанные благодаря дружественной к разработчикам экосистеме API, позволят Вам держать связь с Вашими друзьями где угодно.
       within_reach_title: Всегда под рукой
-    find_another_instance: Найти другой узел
     generic_description: "%{domain} - один из серверов сети"
     hosted_on: Mastodon размещен на %{domain}
     learn_more: Узнать больше
@@ -39,6 +38,7 @@ ru:
     followers: Подписчики
     following: Подписан(а)
     media: Медиаконтент
+    moved_html: "%{name} переехал(а) на %{new_profile_link}:"
     nothing_here: Здесь ничего нет!
     people_followed_by: Люди, на которых подписан(а) %{name}
     people_who_follow: Подписчики %{name}
@@ -48,6 +48,7 @@ ru:
     reserved_username: Имя пользователя зарезервировано
     roles:
       admin: Администратор
+      moderator: Модератор
     unfollow: Отписаться
   admin:
     account_moderation_notes:
@@ -59,13 +60,19 @@ ru:
       destroyed_msg: Заметка модератора успешно удалена!
     accounts:
       are_you_sure: Вы уверены?
+      by_domain: Домен
       confirm: Подтвердить
       confirmed: Подтверждено
+      demote: Разжаловать
+      disable: Отключить
       disable_two_factor_authentication: Отключить 2FA
+      disabled: Отключено
       display_name: Отображаемое имя
       domain: Домен
       edit: Изменить
       email: E-mail
+      enable: Включить
+      enabled: Включен
       feed_url: URL фида
       followers: Подписчики
       followers_url: URL подписчиков
@@ -77,7 +84,9 @@ ru:
         local: Локальные
         remote: Удаленные
         title: Размещение
+      login_status: Статус аккаунта
       media_attachments: Мультимедийные вложения
+      memorialize: Превратить в Памятник
       moderation:
         all: Все
         silenced: Заглушенные
@@ -94,6 +103,7 @@ ru:
       outbox_url: URL исходящих
       perform_full_suspension: Полная блокировка
       profile_url: URL профиля
+      promote: Повысить
       protocol: Протокол
       public: Публичный
       push_subscription_expires: Подписка PuSH истекает
@@ -101,6 +111,12 @@ ru:
       reset: Сбросить
       reset_password: Сбросить пароль
       resubscribe: Переподписаться
+      role: Разрешения
+      roles:
+        admin: Администратор
+        moderator: Модератор
+        staff: Персонал
+        user: Пользователь
       salmon_url: Salmon URL
       search: Поиск
       shared_inbox_url: URL общих входящих
@@ -117,7 +133,34 @@ ru:
       unsubscribe: Отписаться
       username: Имя пользователя
       web: WWW
+    action_logs:
+      actions:
+        confirm_user: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
+        create_custom_emoji: "%{name} загрузил(а) новый эмодзи %{target}"
+        create_domain_block: "%{name} заблокировал(а) домен %{target}"
+        create_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в чёрный список"
+        demote_user: "%{name} разжаловал(а) пользователя %{target}"
+        destroy_domain_block: "%{name} разблокировал(а) домен %{target}"
+        destroy_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в белый список"
+        destroy_status: "%{name} удалил(а) статус пользователя %{target}"
+        disable_2fa_user: "%{name} отключил(а) двухэтапную авторизацию у пользователя %{target}"
+        disable_custom_emoji: "%{name} отключил(а) эмодзи %{target}"
+        disable_user: "%{name} запретил(а) вход пользователя %{target}"
+        enable_custom_emoji: "%{name} включил(а) эмодзи %{target}"
+        enable_user: "%{name} включил(а) вход пользователя %{target}"
+        memorialize_account: "%{name} перевел(а) аккаунт пользователя %{target} в режим памятника"
+        promote_user: "%{name} повысил(а) пользователя %{target}"
+        reset_password_user: "%{name} сбросил(а) пароль пользователя %{target}"
+        resolve_report: "%{name} dismissed report %{target}"
+        silence_account: "%{name} заглушил(а) аккаунт %{target}"
+        suspend_account: "%{name} заморозил(а) аккаунт %{target}"
+        unsilence_account: "%{name} снял(а) глушение аккаунта %{target}"
+        unsuspend_account: "%{name} разморозил(а) аккаунт %{target}"
+        update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
+        update_status: "%{name} изменил(а) статус пользователя %{target}"
+      title: Журнал событий
     custom_emojis:
+      by_domain: Домен
       copied_msg: Локальная копия эмодзи успешно создана
       copy: Скопироват
       copy_failed_msg: Не удалось создать локальную копию эмодзи
@@ -130,11 +173,16 @@ ru:
       enable: Включить
       enabled_msg: Эмодзи успешно включено
       image_hint: PNG до 50KB
+      listed: В списке
       new:
-        title: Добавить новое эмодзи
+        title: Добавить новый эмодзи
+      overwrite: Заменить
       shortcode: Шорткод
       shortcode_hint: Как минимум 2 символа, только алфавитно-цифровые символы и подчеркивания
       title: Собственные эмодзи
+      unlisted: Не в списке
+      update_failed_msg: Невозможно обновить этот эмодзи
+      updated_msg: Эмодзи обновлён!
       upload: Загрузить
     domain_blocks:
       add_new: Добавить новую
@@ -169,7 +217,7 @@ ru:
         title: Снять блокировку с домена %{domain}
         undo: Отменить
       title: Доменные блокировки
-      undo: Отемнить
+      undo: Отменить
     email_domain_blocks:
       add_new: Добавить новую
       created_msg: Доменная блокировка еmail успешно создана
@@ -186,11 +234,17 @@ ru:
       reset: Сбросить
       search: Поиск
       title: Известные узлы
+    invites:
+      filter:
+        all: Все
+        available: Актуальные
+        expired: Истёкшие
+        title: Фильтр
+      title: Приглашения
     reports:
       action_taken_by: 'Действие предпринято:'
       are_you_sure: Вы уверены?
       comment:
-        label: Комментарий
         none: Нет
       delete: Удалить
       id: ID
@@ -199,6 +253,7 @@ ru:
         'false': Показать мультимедийные вложения
         'true': Скрыть мультимедийные вложения
       report: 'Жалоба #%{id}'
+      report_contents: Содержимое
       reported_account: Аккаунт нарушителя
       reported_by: Отправитель жалобы
       resolved: Разрешено
@@ -210,12 +265,21 @@ ru:
       unresolved: Неразрешенные
       view: Просмотреть
     settings:
+      activity_api_enabled:
+        desc_html: Подсчёт количества локальных статусов, активных пользователей и новых регистраций на еженедельной основе
+        title: Публикация агрегированной статистики активности пользователей
       bootstrap_timeline_accounts:
         desc_html: Разделяйте имена пользователей запятыми. Сработает только для локальных незакрытых аккаунтов. По умолчанию включены все локальные администраторы.
         title: Подписки по умолчанию для новых пользователей
       contact_information:
         email: Введите публичный e-mail
         username: Введите имя пользователя
+      hero:
+        desc_html: Отображается на главной странице. Рекомендуется разрешение не менее 600х100px. Если не установлено, используется изображение узла
+        title: Баннер узла
+      peers_api_enabled:
+        desc_html: Домены, которые были замечены этим узлом среди всей федерации
+        title: Публикация списка обнаруженных узлов
       registrations:
         closed_message:
           desc_html: Отображается на титульной странице, когда закрыта регистрация<br>Можно использовать HTML-теги
@@ -223,9 +287,18 @@ ru:
         deletion:
           desc_html: Позволяет всем удалять собственные аккаунты
           title: Разрешить удаление аккаунтов
+        min_invite_role:
+          disabled: Никого
+          title: Разрешает приглашения от
         open:
           desc_html: Позволяет любому создавать аккаунт
           title: Открыть регистрацию
+      show_known_fediverse_at_about_page:
+        desc_html: Если включено, показывает посты со всех известных узлов в предпросмотре ленты. В противном случае отображаются только локальные посты.
+        title: Показывать известные узлы в предпросмотре ленты
+      show_staff_badge:
+        desc_html: Показывать метку персонала на странице пользователя
+        title: Показывать метку персонала
       site_description:
         desc_html: Отображается в качестве параграфа на титульной странице и используется в качестве мета-тега.<br>Можно использовать HTML-теги, в особенности <code>&lt;a&gt;</code> и <code>&lt;em&gt;</code>.
         title: Описание сайта
@@ -240,7 +313,7 @@ ru:
         desc_html: Используется для предпросмотра с помощью OpenGraph и API. Рекомендуется разрешение 1200x630px
         title: Картинка узла
       timeline_preview:
-        desc_html: Показывать публичную ленту на целевой странице
+        desc_html: Показывать публичную ленту на приветственной странице
         title: Предпросмотр ленты
       title: Настройки сайта
     statuses:
@@ -271,10 +344,12 @@ ru:
       body: "%{reporter} подал(а) жалобу на %{target}"
       subject: Новая жалоба, узел %{instance} (#%{id})
   application_mailer:
+    notification_preferences: Изменить настройки e-mail
     salutation: "%{name},"
     settings: 'Изменить настройки e-mail: %{link}'
-    signature: Уведомления Mastodon от %{instance}
     view: 'Просмотр:'
+    view_profile: Просмотреть профиль
+    view_status: Просмотреть статус
   applications:
     created: Приложение успешно создано
     destroyed: Приложение успешно удалено
@@ -284,8 +359,9 @@ ru:
     warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
     your_token: Ваш токен доступа
   auth:
-    agreement_html: Создавая аккаунт, вы соглашаетесь с <a href="%{rules_path}">нашими правилами поведения</a> и <a href="%{terms_path}">политикой конфиденциальности</a>.
-    change_password: Изменить пароль
+    agreement_html: Создавая аккаунт, вы соглашаетесь с <a href="%{rules_path}">правилами узла</a> и <a href="%{terms_path}">нашими условиями обслуживания</a>.
+    change_password: Пароль
+    confirm_email: Подтвердите email
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
@@ -293,11 +369,21 @@ ru:
     invalid_reset_password_token: Токен сброса пароля неверен или устарел. Пожалуйста, запросите новый.
     login: Войти
     logout: Выйти
+    migrate_account: Перенести аккаунт
+    migrate_account_html: Если Вы хотите перенести этот аккаунт на другой, вы можете <a href="%{path}">сделать это здесь</a>.
+    or: или
+    or_log_in_with: Или войти с помощью
+    providers:
+      cas: CAS
+      saml: SAML
     register: Зарегистрироваться
+    register_elsewhere: Зарегистрироваться на другом узле
     resend_confirmation: Повторить отправку инструкции для подтверждения
     reset_password: Сбросить пароль
+    security: Безопасность
     set_new_password: Задать новый пароль
   authorize_follow:
+    already_following: Вы уже подписаны на этот аккаунт
     error: К сожалению, при поиске удаленного аккаунта возникла ошибка
     follow: Подписаться
     follow_request: 'Вы отправили запрос на подписку:'
@@ -342,6 +428,13 @@ ru:
       title: Страница неверна
     noscript_html: Для работы с Mastodon, пожалуйста, включите JavaScript. Кроме того, вы можете использовать одно из <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">приложений</a> Mastodon для Вашей платформы.
   exports:
+    archive_takeout:
+      date: Дата
+      download: Скачать ваш архив
+      hint_html: Вы можете запросить архив своих <strong>статусов и загруженных медиа-файлов</strong>. Экспортированные данные будут в формате ActivityPub, который можно прочесть любой соответствующей программой.
+      in_progress: Собирается ваш архив...
+      request: Запросить ваш архив
+      size: Размер
     blocks: Список блокировки
     csv: CSV
     follows: Подписки
@@ -374,41 +467,84 @@ ru:
       following: Подписки
       muting: Список глушения
     upload: Загрузить
+  in_memoriam_html: Памятник.
+  invites:
+    delete: Удалить
+    expired: Истекло
+    expires_in:
+      '1800': 30 минут
+      '21600': 6 часов
+      '3600': 1 час
+      '43200': 12 часов
+      '604800': 1 неделю
+      '86400': 1 день
+    expires_in_prompt: Никогда
+    generate: Сгенерировать
+    max_uses:
+      few: "%{count} исп."
+      many: "%{count} исп."
+      one: 1 исп.
+      other: "%{count} исп."
+    max_uses_prompt: Без лимита
+    prompt: Генерируйте и делитесь ссылками с другими, чтобы предоставить им доступ к этому узлу.
+    table:
+      expires_at: Истекает
+      uses: Исп.
+    title: Пригласить людей
   landing_strip_html: "<strong>%{name}</strong> - пользователь на %{link_to_root_path}. Вы можете подписаться на него/нее и общаться с ним/ней, если у Вас есть аккаунт на любом узле общей сети."
   landing_strip_signup_html: Если у Вас его нет, вы можете <a href="%{sign_up_path}">зарегистрироваться здесь</a>.
+  lists:
+    errors:
+      limit: Вы достигли максимального числа списков
   media_attachments:
     validations:
       images_and_video: Нельзя добавить видео к статусу с изображениями
       too_many: Нельзя добавить более 4 файлов
+  migrations:
+    acct: имя@домен нового аккаунта
+    currently_redirecting: 'Ваш профиль будет перенаправлен на:'
+    proceed: Сохранить
+    updated_msg: Настройки миграции Вашего аккаунта обновлены!
+  moderation:
+    title: Модерация
   notification_mailer:
     digest:
-      body: 'Кратко о пропущенном Вами на %{instance} с Вашего последнего захода %{since}:'
+      action: Просмотреть все уведомления
+      body: Кратко о пропущенных Вами сообщениях с Вашего последнего захода %{since}
       mention: "%{name} упомянул(а) Вас в:"
       new_followers_summary:
         few: У Вас появилось %{count} новых подписчика! Отлично!
         many: У Вас появилось %{count} новых подписчиков! Отлично!
-        one: У Вас появился новый подписчик! Ура!
-        other: У Вас появилось %{count} новых подписчиков! Отлично!
+        one: Также, пока вас не было, у Вас появился новый подписчик! Ура!
+        other: Также, пока вас не было, у Вас появилось %{count} новых подписчиков! Отлично!
       subject:
         few: "%{count} новых уведомления с Вашего последнего захода \U0001F418"
         many: "%{count} новых уведомлений с Вашего последнего захода \U0001F418"
         one: "1 новое уведомление с Вашего последнего захода \U0001F418"
         other: "%{count} новых уведомлений с Вашего последнего захода \U0001F418"
+      title: В ваше отсутствие…
     favourite:
       body: 'Ваш статус понравился %{name}:'
       subject: "%{name} понравился Ваш статус"
+      title: Понравившийся статус
     follow:
       body: "%{name} теперь подписан(а) на Вас!"
       subject: "%{name} теперь подписан(а) на Вас"
+      title: Новый подписчик
     follow_request:
+      action: Управление запросами на подписку
       body: "%{name} запросил Вас о подписке"
       subject: "%{name} хочет подписаться на Вас"
+      title: Новый запрос о подписке
     mention:
+      action: Ответить
       body: 'Вас упомянул(а) %{name} в:'
       subject: Вы были упомянуты %{name}
+      title: Новое упоминание
     reblog:
       body: 'Ваш статус был продвинут %{name}:'
       subject: "%{name} продвинул(а) Ваш статус"
+      title: Новое продвижение
   number:
     human:
       decimal_units:
@@ -421,7 +557,9 @@ ru:
           trillion: трлн
           unit: ''
   pagination:
+    newer: Новее
     next: След
+    older: Старше
     prev: Пред
     truncate: "&hellip;"
   preferences:
@@ -456,12 +594,14 @@ ru:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Неизвестный браузер
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -484,6 +624,8 @@ ru:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    revoke: Завершить
+    revoke_success: Сессия завершена успешно
     title: Сессии
   settings:
     authorized_apps: Авторизованные приложения
@@ -494,20 +636,35 @@ ru:
     export: Экспорт данных
     followers: Авторизованные подписчики
     import: Импорт
+    migrate: Перенос аккаунта
     notifications: Уведомления
     preferences: Настройки
     settings: Опции
     two_factor_authentication: Двухфакторная аутентификация
     your_apps: Ваши приложения
   statuses:
+    attached:
+      description: 'Вложение: %{attached}'
+      image:
+        few: "%{count} изображения"
+        many: "%{count} изображений"
+        one: "%{count} изображение"
+        other: "%{count} изображений"
+      video:
+        few: "%{count} видео"
+        many: "%{count} видео"
+        one: "%{count} видео"
+        other: "%{count} видео"
+    content_warning: 'Спойлер: %{warning}'
     open_in_web: Открыть в WWW
     over_character_limit: превышен лимит символов (%{max})
     pin_errors:
-      limit: Слишком много закрепленных статусов
+      limit: Вы закрепили максимально возможное число статусов
       ownership: Нельзя закрепить чужой статус
       private: Нельзя закрепить непубличный статус
       reblog: Нельзя закрепить продвинутый статус
     show_more: Подробнее
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Для подписчиков
       private_long: Показывать только подписчикам
@@ -517,10 +674,13 @@ ru:
       unlisted_long: Показывать всем, но не отображать в публичных лентах
   stream_entries:
     click_to_show: Показать
+    pinned: Закреплённое сообщение
     reblogged: продвинул(а)
     sensitive_content: Чувствительный контент
   terms:
     title: Условия обслуживания и политика конфиденциальности %{instance}
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -540,7 +700,31 @@ ru:
     recovery_instructions_html: В случае утери доступа к Вашему телефону Вы можете использовать один из кодов восстановления, указанных ниже, чтобы вернуть доступ к аккаунту. Держите коды восстановления в безопасности, например, распечатав их и храня с другими важными документами.
     setup: Настроить
     wrong_code: Введенный код неверен! Правильно ли установлены серверное время и время устройства?
+  user_mailer:
+    backup_ready:
+      explanation: Вы запросили полный архив вашего аккаунта Mastodon. Он готов к загрузке!
+      subject: Ваш архив готов к загрузке
+      title: Вынос архива
+    welcome:
+      edit_profile_action: Настроить профиль
+      edit_profile_step: Вы можете настроить свой профиль, загрузив аватар, обложку, сменив имя и много чего ещё. Если Вы хотите фильтровать подписчиков до того, как они смогут на Вас подписаться, Вы можете закрыть свой аккаунт.
+      explanation: Несколько советов для новичков
+      final_action: Начать постить
+      final_step: 'Начните постить! Ваши публичные посты могут видеть другие, например, в локальной ленте или по хэштегам, даже если у Вас нет подписчиков. Вы также можете поздороваться с остальными и представиться, используя хэштек #приветствие.'
+      full_handle: Ваше обращение
+      full_handle_hint: То, что Вы хотите сообщить своим друзьям, чтобы они могли написать Вам или подписаться с другого узла.
+      review_preferences_action: Изменить настройки
+      review_preferences_step: Проверьте все настройки, например, какие письма Вы хотите получать или уровень приватности статусов по умолчанию. Если Вы не страдаете морской болезнь, можете включить автовоспроизведение GIF.
+      subject: Добро пожаловать в Mastodon
+      tip_bridge_html: Если Вы пришли из Twitter, можете поискать своих друзей в Mastodon, используя <a href="%{bridge_url}">приложение-мост</a>. Но это работает только если они тоже использовали это приложение!
+      tip_federated_timeline: В глобальной ленте отображается сеть Mastodon. Но в ней показаны посты только от людей, на которых подписаны Вы и Ваши соседи, поэтому лента может быть неполной.
+      tip_following: По умолчанию Вы подписаны на администратора(-ов) Вашего узла. Чтобы найти других интересных людей, проверьте локальную и глобальную ленты.
+      tip_local_timeline: В локальной ленте показаны посты от людей с %{instance}. Это Ваши непосредственные соседи!
+      tip_mobile_webapp: Если Ваш мобильный браузер предлагает добавить иконку Mastodon на домашний экран, то Вы можете получать push-уведомления. Прямо как полноценное приложение!
+      tips: Советы
+      title: Добро пожаловать на борт, %{name}!
   users:
     invalid_email: Введенный e-mail неверен
     invalid_otp_token: Введен неверный код
+    seamless_external_login: Вы залогинены через сторонний сервис, поэтому настройки e-mail и пароля недоступны.
     signed_in_as: 'Выполнен вход под именем:'

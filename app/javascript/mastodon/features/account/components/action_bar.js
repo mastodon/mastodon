@@ -8,6 +8,7 @@ import { me } from '../../../initial_state';
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
+  direct: { id: 'account.direct', defaultMessage: 'Direct message @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -20,6 +21,8 @@ const messages = defineMessages({
   media: { id: 'account.media', defaultMessage: 'Media' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Hide everything from {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
+  hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
+  showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
 });
 
 @injectIntl
@@ -30,6 +33,8 @@ export default class ActionBar extends React.PureComponent {
     onFollow: PropTypes.func,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    onDirect: PropTypes.func.isRequired,
+    onReblogToggle: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
@@ -50,16 +55,25 @@ export default class ActionBar extends React.PureComponent {
     let extraInfo = '';
 
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+    menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
+
     if ('share' in navigator) {
       menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
     }
-    menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.media), to: `/accounts/${account.get('id')}/media` });
+
     menu.push(null);
 
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
     } else {
+      if (account.getIn(['relationship', 'following'])) {
+        if (account.getIn(['relationship', 'showing_reblogs'])) {
+          menu.push({ text: intl.formatMessage(messages.hideReblogs, { name: account.get('username') }), action: this.props.onReblogToggle });
+        } else {
+          menu.push({ text: intl.formatMessage(messages.showReblogs, { name: account.get('username') }), action: this.props.onReblogToggle });
+        }
+      }
+
       if (account.getIn(['relationship', 'muting'])) {
         menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.props.onMute });
       } else {
@@ -111,7 +125,7 @@ export default class ActionBar extends React.PureComponent {
 
           <div className='account__action-bar-links'>
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
-              <span><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
+              <span><FormattedMessage id='account.posts' defaultMessage='Toots' /></span>
               <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
             </Link>
 

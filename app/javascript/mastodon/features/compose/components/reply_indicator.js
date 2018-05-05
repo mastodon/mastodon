@@ -6,6 +6,7 @@ import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { isRtl } from '../../../rtl';
 
 const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
@@ -42,12 +43,15 @@ export default class ReplyIndicator extends ImmutablePureComponent {
       return null;
     }
 
-    const content  = { __html: status.get('contentHtml') };
+    const content = { __html: status.get('contentHtml') };
+    const style   = {
+      direction: isRtl(status.get('search_index')) ? 'rtl' : 'ltr',
+    };
 
     return (
       <div className='reply-indicator'>
         <div className='reply-indicator__header'>
-          <div className='reply-indicator__cancel'><IconButton title={intl.formatMessage(messages.cancel)} icon='times' onClick={this.handleClick} /></div>
+          <div className='reply-indicator__cancel'><IconButton title={intl.formatMessage(messages.cancel)} icon='times' onClick={this.handleClick} inverted /></div>
 
           <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name'>
             <div className='reply-indicator__display-avatar'><Avatar account={status.get('account')} size={24} /></div>
@@ -55,7 +59,7 @@ export default class ReplyIndicator extends ImmutablePureComponent {
           </a>
         </div>
 
-        <div className='reply-indicator__content' dangerouslySetInnerHTML={content} />
+        <div className='reply-indicator__content' style={style} dangerouslySetInnerHTML={content} />
       </div>
     );
   }

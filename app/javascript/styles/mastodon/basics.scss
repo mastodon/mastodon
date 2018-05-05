@@ -47,6 +47,10 @@ body {
     padding-bottom: 0;
   }
 
+  &.player {
+    text-align: center;
+  }
+
   &.embed {
     background: transparent;
     margin: 0;
@@ -71,7 +75,7 @@ body {
   &.error {
     position: absolute;
     text-align: center;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     background: $ui-base-color;
     width: 100%;
     height: 100%;
@@ -118,5 +122,6 @@ button {
     height: 100%;
     align-items: center;
     justify-content: center;
+    outline: 0 !important;
   }
 }

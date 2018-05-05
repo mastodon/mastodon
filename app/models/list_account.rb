@@ -3,16 +3,18 @@
 #
 # Table name: list_accounts
 #
-#  id         :integer          not null, primary key
-#  list_id    :integer          not null
-#  account_id :integer          not null
-#  follow_id  :integer          not null
+#  id         :bigint(8)        not null, primary key
+#  list_id    :bigint(8)        not null
+#  account_id :bigint(8)        not null
+#  follow_id  :bigint(8)        not null
 #
 
 class ListAccount < ApplicationRecord
-  belongs_to :list, required: true
-  belongs_to :account, required: true
-  belongs_to :follow, required: true
+  belongs_to :list
+  belongs_to :account
+  belongs_to :follow
+
+  validates :account_id, uniqueness: { scope: :list_id }
 
   before_validation :set_follow
 

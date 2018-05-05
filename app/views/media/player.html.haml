@@ -1,0 +1,2 @@
+%video{ poster: @media_attachment.file.url(:small), preload: 'auto', autoplay: 'autoplay', muted: 'muted', loop: 'loop', controls: 'controls', style: "width: #{@media_attachment.file.meta.dig('original', 'width')}px; height: #{@media_attachment.file.meta.dig('original', 'height')}px" }
+  %source{ src: @media_attachment.file.url(:original), type: @media_attachment.file_content_type }

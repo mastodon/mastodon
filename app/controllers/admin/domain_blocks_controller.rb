@@ -21,6 +21,7 @@ module Admin
 
       if @domain_block.save
         DomainBlockWorker.perform_async(@domain_block.id)
+        log_action :create, @domain_block
         redirect_to admin_domain_blocks_path, notice: I18n.t('admin.domain_blocks.created_msg')
       else
         render :new
@@ -34,6 +35,7 @@ module Admin
     def destroy
       authorize @domain_block, :destroy?
       UnblockDomainService.new.call(@domain_block, retroactive_unblock?)
+      log_action :destroy, @domain_block
       redirect_to admin_domain_blocks_path, notice: I18n.t('admin.domain_blocks.destroyed_msg')
     end
 

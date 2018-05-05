@@ -14,7 +14,7 @@ describe AccountInteractions do
     context 'account with Follow' do
       it 'returns { target_account_id => true }' do
         Fabricate(:follow, account: account, target_account: target_account)
-        is_expected.to eq(target_account_id => true)
+        is_expected.to eq(target_account_id => { reblogs: true })
       end
     end
 
@@ -108,13 +108,15 @@ describe AccountInteractions do
   end
 
   describe '#mute!' do
+    subject { account.mute!(target_account, notifications: arg_notifications) }
+
     context 'Mute does not exist yet' do
       context 'arg :notifications is nil' do
         let(:arg_notifications) { nil }
 
-        it 'creates Mute, and returns nil' do
+        it 'creates Mute, and returns Mute' do
           expect do
-            expect(account.mute!(target_account, notifications: arg_notifications)).to be nil
+            expect(subject).to be_kind_of Mute
           end.to change { account.mute_relationships.count }.by 1
         end
       end
@@ -122,9 +124,9 @@ describe AccountInteractions do
       context 'arg :notifications is false' do
         let(:arg_notifications) { false }
 
-        it 'creates Mute, and returns nil' do
+        it 'creates Mute, and returns Mute' do
           expect do
-            expect(account.mute!(target_account, notifications: arg_notifications)).to be nil
+            expect(subject).to be_kind_of Mute
           end.to change { account.mute_relationships.count }.by 1
         end
       end
@@ -132,9 +134,9 @@ describe AccountInteractions do
       context 'arg :notifications is true' do
         let(:arg_notifications) { true }
 
-        it 'creates Mute, and returns nil' do
+        it 'creates Mute, and returns Mute' do
           expect do
-            expect(account.mute!(target_account, notifications: arg_notifications)).to be nil
+            expect(subject).to be_kind_of Mute
           end.to change { account.mute_relationships.count }.by 1
         end
       end
@@ -158,36 +160,30 @@ describe AccountInteractions do
         context 'arg :notifications is nil' do
           let(:arg_notifications) { nil }
 
-          it 'returns nil without updating mute.hide_notifications' do
+          it 'returns Mute without updating mute.hide_notifications' do
             expect do
-              expect(account.mute!(target_account, notifications: arg_notifications)).to be nil
-              mute = account.mute_relationships.find_by(target_account: target_account)
-              expect(mute.hide_notifications?).to be true
-            end
+              expect(subject).to be_kind_of Mute
+            end.not_to change { mute.reload.hide_notifications? }.from(true)
           end
         end
 
         context 'arg :notifications is false' do
           let(:arg_notifications) { false }
 
-          it 'returns true, and updates mute.hide_notifications false' do
+          it 'returns Mute, and updates mute.hide_notifications false' do
             expect do
-              expect(account.mute!(target_account, notifications: arg_notifications)).to be true
-              mute = account.mute_relationships.find_by(target_account: target_account)
-              expect(mute.hide_notifications?).to be false
-            end
+              expect(subject).to be_kind_of Mute
+            end.to change { mute.reload.hide_notifications? }.from(true).to(false)
           end
         end
 
         context 'arg :notifications is true' do
           let(:arg_notifications) { true }
 
-          it 'returns nil without updating mute.hide_notifications' do
+          it 'returns Mute without updating mute.hide_notifications' do
             expect do
-              expect(account.mute!(target_account, notifications: arg_notifications)).to be nil
-              mute = account.mute_relationships.find_by(target_account: target_account)
-              expect(mute.hide_notifications?).to be true
-            end
+              expect(subject).to be_kind_of Mute
+            end.not_to change { mute.reload.hide_notifications? }.from(true)
           end
         end
       end
@@ -198,36 +194,30 @@ describe AccountInteractions do
         context 'arg :notifications is nil' do
           let(:arg_notifications) { nil }
 
-          it 'returns true, and updates mute.hide_notifications true' do
+          it 'returns Mute, and updates mute.hide_notifications true' do
             expect do
-              expect(account.mute!(target_account, notifications: arg_notifications)).to be true
-              mute = account.mute_relationships.find_by(target_account: target_account)
-              expect(mute.hide_notifications?).to be true
-            end
+              expect(subject).to be_kind_of Mute
+            end.to change { mute.reload.hide_notifications? }.from(false).to(true)
           end
         end
 
         context 'arg :notifications is false' do
           let(:arg_notifications) { false }
 
-          it 'returns nil without updating mute.hide_notifications' do
+          it 'returns Mute without updating mute.hide_notifications' do
             expect do
-              expect(account.mute!(target_account, notifications: arg_notifications)).to be nil
-              mute = account.mute_relationships.find_by(target_account: target_account)
-              expect(mute.hide_notifications?).to be false
-            end
+              expect(subject).to be_kind_of Mute
+            end.not_to change { mute.reload.hide_notifications? }.from(false)
           end
         end
 
         context 'arg :notifications is true' do
           let(:arg_notifications) { true }
 
-          it 'returns true, and updates mute.hide_notifications true' do
+          it 'returns Mute, and updates mute.hide_notifications true' do
             expect do
-              expect(account.mute!(target_account, notifications: arg_notifications)).to be true
-              mute = account.mute_relationships.find_by(target_account: target_account)
-              expect(mute.hide_notifications?).to be true
-            end
+              expect(subject).to be_kind_of Mute
+            end.to change { mute.reload.hide_notifications? }.from(false).to(true)
           end
         end
       end
@@ -580,6 +570,43 @@ describe AccountInteractions do
 
       it 'does mute notifications' do
         expect(me.muting_notifications?(you)).to be true
+      end
+    end
+  end
+
+  describe 'ignoring reblogs from an account' do
+    before do
+      @me = Fabricate(:account, username: 'Me')
+      @you = Fabricate(:account, username: 'You')
+    end
+
+    context 'with the reblogs option unspecified' do
+      before do
+        @me.follow!(@you)
+      end
+
+      it 'defaults to showing reblogs' do
+        expect(@me.muting_reblogs?(@you)).to be(false)
+      end
+    end
+
+    context 'with the reblogs option set to false' do
+      before do
+        @me.follow!(@you, reblogs: false)
+      end
+
+      it 'does mute reblogs' do
+        expect(@me.muting_reblogs?(@you)).to be(true)
+      end
+    end
+
+    context 'with the reblogs option set to true' do
+      before do
+        @me.follow!(@you, reblogs: true)
+      end
+
+      it 'does not mute reblogs' do
+        expect(@me.muting_reblogs?(@you)).to be(false)
       end
     end
   end

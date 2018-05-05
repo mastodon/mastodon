@@ -3,16 +3,16 @@
 #
 # Table name: mentions
 #
-#  id         :integer          not null, primary key
-#  status_id  :integer
+#  id         :bigint(8)        not null, primary key
+#  status_id  :bigint(8)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  account_id :integer
+#  account_id :bigint(8)
 #
 
 class Mention < ApplicationRecord
-  belongs_to :account, inverse_of: :mentions, required: true
-  belongs_to :status, required: true
+  belongs_to :account, inverse_of: :mentions
+  belongs_to :status
 
   has_one :notification, as: :activity, dependent: :destroy
 

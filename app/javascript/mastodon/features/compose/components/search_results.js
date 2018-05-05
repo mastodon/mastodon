@@ -22,6 +22,8 @@ export default class SearchResults extends ImmutablePureComponent {
       count   += results.get('accounts').size;
       accounts = (
         <div className='search-results__section'>
+          <h5><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
+
           {results.get('accounts').map(accountId => <AccountContainer key={accountId} id={accountId} />)}
         </div>
       );
@@ -31,6 +33,8 @@ export default class SearchResults extends ImmutablePureComponent {
       count   += results.get('statuses').size;
       statuses = (
         <div className='search-results__section'>
+          <h5><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
+
           {results.get('statuses').map(statusId => <StatusContainer key={statusId} id={statusId} />)}
         </div>
       );
@@ -40,11 +44,13 @@ export default class SearchResults extends ImmutablePureComponent {
       count += results.get('hashtags').size;
       hashtags = (
         <div className='search-results__section'>
-          {results.get('hashtags').map(hashtag =>
+          <h5><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
+
+          {results.get('hashtags').map(hashtag => (
             <Link key={hashtag} className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
               #{hashtag}
             </Link>
-          )}
+          ))}
         </div>
       );
     }

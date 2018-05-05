@@ -29,10 +29,10 @@ ja:
       edit:
         title: アプリの編集
       form:
-        error: フォームにエラーが無いか確認してください。
+        error: フォームにエラーが無いか確認してください
       help:
         native_redirect_uri: ローカルテストに %{native_redirect_uri} を使用
-        redirect_uri: 一行に一つのURLを入力してください。
+        redirect_uri: 一行に一つのURLを入力してください
         scopes: アクセス権は半角スペースで区切ることができます。 空白のままにするとデフォルトを使用します。
       index:
         application: アプリ
@@ -57,11 +57,11 @@ ja:
         authorize: 承認
         deny: 拒否
       error:
-        title: エラーが発生しました。
+        title: エラーが発生しました
       new:
         able_to: このアプリは以下のことができます
-        prompt: アプリ %{client_name} があなたのアカウントへのアクセスを要求しています。
-        title: 認証が必要です。
+        prompt: アプリ %{client_name} があなたのアカウントへのアクセスを要求しています
+        title: 認証が必要です
       show:
         title: 認証コードをコピーしてアプリに貼り付けて下さい。
     authorized_applications:
@@ -83,12 +83,12 @@ ja:
         invalid_grant: 指定された認証許可は無効であるか、期限切れ、取り消されている、リダイレクトURIの不一致、または別のクライアントに発行されています。
         invalid_redirect_uri: 無効なリダイレクトURIが含まれています。
         invalid_request: リクエストに必要なパラメータが欠けているか、サポートされていないパラメータが含まれている、または不正なフォーマットです。
-        invalid_resource_owner: 指定されたリソース所有者のクレデンシャルが無効であるか、リソース所有者が見つかりません。
+        invalid_resource_owner: 指定されたリソース所有者のクレデンシャルが無効であるか、リソース所有者が見つかりません
         invalid_scope: 要求されたアクセス権は無効であるか、不明、または不正なフォーマットです。
         invalid_token:
           expired: アクセストークンの有効期限が切れています
-          revoked: アクセストークンは取り消されています。
-          unknown: アクセストークンが無効です。
+          revoked: アクセストークンは取り消されています
+          unknown: アクセストークンが無効です
         resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator が設定されていないため、リソース所有者の検索に失敗しました。
         server_error: 認証サーバーに予期せぬ例外が発生したため、リクエストを実行できなくなりました。
         temporarily_unavailable: 現在、認証サーバーに一時的な過負荷が掛かっているか、またはメンテナンス中のため、リクエストを処理できません。

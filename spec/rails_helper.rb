@@ -50,7 +50,17 @@ RSpec.configure do |config|
     Capybara.app_host = "http#{https ? 's' : ''}://#{ENV.fetch('LOCAL_DOMAIN')}"
   end
 
+  config.before :each, type: :controller do
+    stub_jsonld_contexts!
+  end
+
+  config.before :each, type: :service do
+    stub_jsonld_contexts!
+  end
+
   config.after :each do
+    Rails.cache.clear
+
     keys = Redis.current.keys
     Redis.current.del(keys) if keys.any?
   end
@@ -66,4 +76,10 @@ end
 
 def attachment_fixture(name)
   File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', name))
+end
+
+def stub_jsonld_contexts!
+  stub_request(:get, 'https://www.w3.org/ns/activitystreams').to_return(request_fixture('json-ld.activitystreams.txt'))
+  stub_request(:get, 'https://w3id.org/identity/v1').to_return(request_fixture('json-ld.identity.txt'))
+  stub_request(:get, 'https://w3id.org/security/v1').to_return(request_fixture('json-ld.security.txt'))
 end

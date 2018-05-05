@@ -7,16 +7,24 @@ class REST::AccountSerializer < ActiveModel::Serializer
              :note, :url, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count
 
-  has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved?
+  has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
 
-  delegate :moved?, to: :object
+  class FieldSerializer < ActiveModel::Serializer
+    attributes :name, :value
+
+    def value
+      Formatter.instance.format_field(object.account, object.value)
+    end
+  end
+
+  has_many :fields
 
   def id
     object.id.to_s
   end
 
   def note
-    Formatter.instance.simplified_format(object)
+    Formatter.instance.simplified_format(object, custom_emojify: true)
   end
 
   def url
@@ -37,5 +45,9 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def header_static
     full_asset_url(object.header_static_url)
+  end
+
+  def moved_and_not_nested?
+    object.moved? && object.moved_to_account.moved_to_account_id.nil?
   end
 end

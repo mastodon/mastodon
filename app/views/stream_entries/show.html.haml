@@ -1,3 +1,6 @@
+- content_for :page_title do
+  = t('statuses.title', name: display_name(@account), quote: truncate(@stream_entry.activity.spoiler_text.presence || @stream_entry.activity.text, length: 50, omission: '…', escape: false))
+
 - content_for :header_tags do
   - if @account.user&.setting_noindex
     %meta{ name: 'robots', content: 'noindex' }/
@@ -8,8 +11,8 @@
 
   = opengraph 'og:site_name', site_title
   = opengraph 'og:type', 'article'
-  = opengraph 'og:title', "#{@account.username} on #{site_hostname}"
-  = opengraph 'og:url', account_stream_entry_url(@account, @stream_entry)
+  = opengraph 'og:title', "#{display_name(@account)} (@#{@account.local_username_and_domain})"
+  = opengraph 'og:url', short_account_status_url(@account, @stream_entry)
 
   = render 'stream_entries/og_description', activity: @stream_entry.activity
   = render 'stream_entries/og_image', activity: @stream_entry.activity, account: @account
