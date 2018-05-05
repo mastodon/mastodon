@@ -532,6 +532,10 @@
   overflow-y: auto;
   overflow-x: hidden;
 
+  .status__content a {
+    color: $highlight-text-color;
+  }
+
   @media screen and (max-width: 480px) {
     max-height: 10vh;
   }
