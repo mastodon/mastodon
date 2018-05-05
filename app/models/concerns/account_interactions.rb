@@ -82,16 +82,19 @@ module AccountInteractions
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
   end
 
-  def follow!(other_account, reblogs: nil)
+  def follow!(other_account, reblogs: nil, uri: nil)
     reblogs = true if reblogs.nil?
-    rel = active_relationships.create_with(show_reblogs: reblogs).find_or_create_by!(target_account: other_account)
-    rel.update!(show_reblogs: reblogs)
 
+    rel = active_relationships.create_with(show_reblogs: reblogs, uri: uri)
+                              .find_or_create_by!(target_account: other_account)
+
+    rel.update!(show_reblogs: reblogs)
     rel
   end
 
-  def block!(other_account)
-    block_relationships.find_or_create_by!(target_account: other_account)
+  def block!(other_account, uri: nil)
+    block_relationships.create_with(uri: uri)
+                       .find_or_create_by!(target_account: other_account)
   end
 
   def mute!(other_account, notifications: nil)
