@@ -135,7 +135,7 @@ it:
       web: Web
     action_logs:
       actions:
-        change_email_user: "%{name} ha cambiato l'indirizzo e-mail per l'utente %{target}"
+        change_email_user: "%{name} ha cambiato l'indirizzo email per l'utente %{target}"
         confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
@@ -152,7 +152,7 @@ it:
       emoji: Emoji
       enable: Abilita
       enabled_msg: Questa emoji è stata abilitata con successo
-      image_hint: PNG fino a 50KB
+      image_hint: PNG fino a 50 KB
       listed: Elencato
       new:
         title: Aggiungi nuovo emoji personalizzato
@@ -186,9 +186,9 @@ it:
       undo: Annulla
     email_domain_blocks:
       add_new: Aggiungi nuovo
-      created_msg: Dominio e-mail aggiunto con successo alla lista nera
+      created_msg: Dominio email aggiunto con successo alla lista nera
       delete: Elimina
-      destroyed_msg: Dominio e-mail cancellato con successo dalla lista nera
+      destroyed_msg: Dominio email cancellato con successo dalla lista nera
       domain: Dominio
       new:
         create: Aggiungi dominio
@@ -283,7 +283,7 @@ it:
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
-    settings: 'Cambia le impostazioni per le e-mail: %{link}'
+    settings: 'Cambia le impostazioni per le email: %{link}'
     view: 'Guarda:'
     view_profile: Mostra profilo
     view_status: Mostra stati
@@ -435,5 +435,5 @@ it:
       tips: Suggerimenti
       title: Benvenuto a bordo, %{name}!
   users:
-    invalid_email: L'indirizzo e-mail inserito non è valido
+    invalid_email: L'indirizzo email inserito non è valido
     invalid_otp_token: Codice d'accesso non valido
