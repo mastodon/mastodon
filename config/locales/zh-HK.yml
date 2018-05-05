@@ -1,6 +1,7 @@
 zh-HK:
   themes:
     default: 萬象
+    contrast: 高對比
   about:
     about_hashtag_html: 這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你有任何 Mastodon
       服務站、或者聯盟網站的用戶，便可以與他們互動。
@@ -228,6 +229,7 @@ zh-HK:
       show:
         affected_accounts:
           other: 資料庫中有%{count}個用戶受影響
+          one: 資料庫中有 %{count} 個用戶受影響
         retroactive:
           silence: 對此域名的所有用戶取消靜音
           suspend: 對此域名的所有用戶取消除名
@@ -381,6 +383,7 @@ zh-HK:
     new_report:
       body: '%{reporter} 舉報了用戶 %{target}。'
       subject: 來自 %{instance} 的用戶舉報（#%{id}）
+      body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
   application_mailer:
     notification_preferences: 更改電郵首選項
     salutation: '%{name}：'
@@ -525,6 +528,9 @@ zh-HK:
       expires_at: 失效時間
       uses: 已使用次數
     title: 邀請用戶
+    max_uses:
+      one: 1 次
+      other: '%{count} 次'
   landing_strip_html: <strong>%{name}</strong> 是一個在 %{link_to_root_path} 的用戶。只要你有任何
     Mastodon 服務站、或者聯盟網站的用戶，便可以跨站關注此站用戶，或者與他們互動。
   landing_strip_signup_html: 如果你沒有這類用戶，歡迎在<a href="%{sign_up_path}">此處登記</a>。
@@ -677,6 +683,12 @@ zh-HK:
   statuses:
     attached:
       description: 附件： %{attached}
+      image:
+        one: '%{count} 幅圖片'
+        other: '%{count} 幅圖片'
+      video:
+        one: '%{count} 段影片'
+        other: '%{count} 段影片'
     content_warning: 'Content warning: %{warning}'
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
@@ -694,6 +706,9 @@ zh-HK:
       public_long: 所有人都能看到
       unlisted: 公開，但不在公共時間軸顯示
       unlisted_long: 所有人都能看到，但不在公共時間軸（本站時間軸、跨站時間軸）顯示
+    disallowed_hashtags:
+      one: 包含不允許的標籤： %{tags}
+      other: 包含不允許的標籤： %{tags}
   stream_entries:
     click_to_show: 點擊顯示
     pinned: 置頂文章
