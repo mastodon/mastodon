@@ -398,7 +398,7 @@ class Account < ApplicationRecord
   end
 
   def emojis
-    @emojis ||= CustomEmoji.from_text(note, domain)
+    @emojis ||= CustomEmoji.from_text(emojifiable_text, domain)
   end
 
   before_create :generate_keys
@@ -424,5 +424,9 @@ class Account < ApplicationRecord
     return if local?
 
     self.domain = TagManager.instance.normalize_domain(domain)
+  end
+
+  def emojifiable_text
+    [note, display_name, fields.map(&:value)].join(' ')
   end
 end
