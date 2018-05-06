@@ -103,8 +103,7 @@ export function submitCompose(withCommunity) {
     const { status, visibility, hasDefaultHashtag } = handleDefaultTag(
       withCommunity,
       getState().getIn(['compose', 'text'], ''),
-      getState().getIn(['compose', 'privacy']),
-      getState().getIn(['compose', 'in_reply_to'])
+      getState().getIn(['compose', 'privacy'])
     );
     const media  = getState().getIn(['compose', 'media_attachments']);
 
@@ -154,7 +153,7 @@ export function submitCompose(withCommunity) {
   };
 };
 
-const handleDefaultTag = (withCommunity, status, visibility, in_reply_to) => {
+const handleDefaultTag = (withCommunity, status, visibility) => {
   if (!status || !status.length) {
     return {};
   }
@@ -167,13 +166,13 @@ const handleDefaultTag = (withCommunity, status, visibility, in_reply_to) => {
   if (withCommunity) {
     // toot with community:
     // if has default hashtag: keep
-    // else if public && non-reply: add default hashtag
+    // else if public: add default hashtag
     return hasDefaultHashtag ? {
       status,
       visibility,
       hasDefaultHashtag: true,
     } : {
-      status: isPublic && !in_reply_to ? `${status} #${process.env.DEFAULT_HASHTAG}` : status,
+      status: isPublic ? `${status} #${process.env.DEFAULT_HASHTAG}` : status,
       visibility,
       hasDefaultHashtag: true,
     };
