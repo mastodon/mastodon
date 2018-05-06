@@ -71,6 +71,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.note                    = @json['summary'] || ''
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
     @account.fields                  = property_values || {}
+    @account.actor_type              = @json['type']
   end
 
   def set_fetchable_attributes!
