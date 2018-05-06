@@ -154,7 +154,7 @@ class Account < ApplicationRecord
     %w(Application Service).include? actor_type
   end
 
-  alias :bot :bot?
+  alias bot bot?
 
   def bot=(val)
     self.actor_type = ActiveModel::Type::Boolean.new.cast(val) ? 'Service' : 'Person'
