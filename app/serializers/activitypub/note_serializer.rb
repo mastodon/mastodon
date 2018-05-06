@@ -5,7 +5,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
-             :conversation
+             :conversation, :quote_url
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -80,6 +80,10 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     else
       OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
     end
+  end
+
+  def quote_url
+    object.quote? ? ActivityPub::TagManager.instance.uri_for(object.quote) : nil
   end
 
   def local?

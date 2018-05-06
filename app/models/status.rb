@@ -23,6 +23,7 @@
 #  account_id             :integer          not null
 #  application_id         :integer
 #  in_reply_to_account_id :integer
+#  quote_id               :integer
 #
 
 class Status < ApplicationRecord
@@ -43,12 +44,14 @@ class Status < ApplicationRecord
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count, optional: true
+  belongs_to :quote, foreign_key: 'quote_id', class_name: 'Status', inverse_of: :quoted, optional: true
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
   has_many :media_attachments, dependent: :destroy
+  has_many :quoted, foreign_key: 'quote_id', class_name: 'Status', inverse_of: :quote
 
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :preview_cards
@@ -110,6 +113,10 @@ class Status < ApplicationRecord
     !reblog_of_id.nil?
   end
 
+  def quote?
+    !quote_id.nil? && quote
+  end
+
   def within_realtime_window?
     created_at >= REAL_TIME_WINDOW.ago
   end
@@ -159,7 +166,11 @@ class Status < ApplicationRecord
   end
 
   def emojis
-    CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+    if quote?
+      CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain) + CustomEmoji.from_text([quote.spoiler_text, quote.text].join(' '), quote.account.domain)
+    else
+      CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+    end
   end
 
   after_create_commit :store_uri, if: :local?

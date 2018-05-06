@@ -19,6 +19,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
         'Emoji'                     => 'toot:Emoji',
         'focalPoint'                => { '@container' => '@list', '@id' => 'toot:focalPoint' },
         'featured'                  => 'toot:featured',
+        'quoteUrl'                  => 'as:quoteUrl',
       },
     ],
   }.freeze

@@ -17,6 +17,8 @@ import {
   STATUS_UNMUTE_SUCCESS,
   STATUS_REVEAL,
   STATUS_HIDE,
+  QUOTE_REVEAL,
+  QUOTE_HIDE,
 } from '../actions/statuses';
 import {
   TIMELINE_REFRESH_SUCCESS,
@@ -70,6 +72,32 @@ const normalizeStatus = (state, status) => {
     normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
     normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''), emojiMap);
     normalStatus.hidden       = normalStatus.sensitive;
+
+    if (status.quote && status.quote.id) {
+      const quote_searchContent = [status.quote.spoiler_text, status.quote.content].join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+
+      const quote_emojiMap = normalStatus.quote.emojis.reduce((obj, emoji) => {
+        obj[`:${emoji.shortcode}:`] = emoji;
+        return obj;
+      }, {});
+
+      const displayName = normalStatus.quote.account.display_name.length === 0 ? normalStatus.quote.account.username : normalStatus.quote.account.display_name;
+      normalStatus.quote.account.display_name_html = emojify(escapeTextContentForBrowser(displayName));
+      normalStatus.quote.search_index = domParser.parseFromString(quote_searchContent, 'text/html').documentElement.textContent;
+      let docElem = domParser.parseFromString(normalStatus.quote.content, 'text/html').documentElement;
+      Array.from(docElem.querySelectorAll('span.invisible'), span => span.remove());
+      Array.from(docElem.querySelectorAll('p,br'), line => {
+        let parentNode = line.parentNode;
+        if (line.nextSibling) {
+          parentNode.insertBefore(document.createTextNode(' '), line.nextSibling);
+        }
+      });
+      let _contentHtml = docElem.textContent;
+      normalStatus.quote.contentHtml  = '<p>'+emojify(_contentHtml.substr(0, 150), quote_emojiMap) + (_contentHtml.substr(150) ? '...' : '')+'</p>';
+      normalStatus.quote.spoilerHtml  = emojify(normalStatus.quote.spoiler_text || '', quote_emojiMap);
+
+      normalStatus.quote_hidden       = normalStatus.quote.sensitive;
+    }
   }
 
   return state.update(status.id, ImmutableMap(), map => map.mergeDeep(fromJS(normalStatus)));
@@ -125,6 +153,14 @@ export default function statuses(state = initialState, action) {
   case STATUS_HIDE:
     return state.withMutations(map => {
       action.ids.forEach(id => map.setIn([id, 'hidden'], true));
+    });
+  case QUOTE_REVEAL:
+    return state.withMutations(map => {
+      action.ids.forEach(id => map.setIn([id, 'quote_hidden'], false));
+    });
+  case QUOTE_HIDE:
+    return state.withMutations(map => {
+      action.ids.forEach(id => map.setIn([id, 'quote_hidden'], true));
     });
   case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:

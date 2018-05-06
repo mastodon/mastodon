@@ -4,6 +4,7 @@ import Button from '../../../components/button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
+import QuoteIndicatorContainer from '../containers/quote_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -169,6 +170,7 @@ export default class ComposeForm extends ImmutablePureComponent {
         </Collapsable>
 
         <ReplyIndicatorContainer />
+        <QuoteIndicatorContainer />
 
         <div className='compose-form__autosuggest-wrapper'>
           <AutosuggestTextarea
