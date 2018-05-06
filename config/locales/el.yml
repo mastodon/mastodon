@@ -1,39 +1,30 @@
+---
 el:
   about:
-    about_mastodon_html: Το Mastodon είναι ένα κοινωνικό δίκτυο που βασίζεται σε ανοιχτά
-      δικτυακά πρωτόκολλα και ελεύθερο λογισμικό ανοιχτού κώδικα. Είναι αποκεντρωμένο
-      όπως το e-mail.
+    about_hashtag_html: Αυτά είναι δημόσια τουτ σημειωμένα με <strong>#%{hashtag}</strong>. Μπορείς να αλληλεπιδράσεις με αυτά αν έχεις λογαριασμό οπουδήποτε στο fediverse.
+    about_mastodon_html: Το Mastodon είναι ένα κοινωνικό δίκτυο που βασίζεται σε ανοιχτά δικτυακά πρωτόκολλα και ελεύθερο λογισμικό ανοιχτού κώδικα. Είναι αποκεντρωμένο όπως το e-mail.
     about_this: Σχετικά
     administered_by: 'Διαχειρίζεται από:'
-    closed_registrations: Αυτή τη στιγμή οι εγγραφές σε αυτό τον διακομιστή είναι
-      κλειστές. Αλλά! Μπορείς να βρεις έναν άλλο διακομιστή για να ανοίξεις λογαριασμό
-      και να έχεις πρόσβαση από εκεί στο ίδιο ακριβώς δίκτυο.
+    closed_registrations: Αυτή τη στιγμή οι εγγραφές σε αυτό τον διακομιστή είναι κλειστές. Αλλά! Μπορείς να βρεις έναν άλλο διακομιστή για να ανοίξεις λογαριασμό και να έχεις πρόσβαση από εκεί στο ίδιο ακριβώς δίκτυο.
     contact: Επικοινωνία
     contact_missing: Δεν έχει οριστεί
+    contact_unavailable: Μ/Δ
+    description_headline: Τι είναι το %{domain};
     domain_count_after: άλλοι διακομιστές
     domain_count_before: Συνδέεται με
-    extended_description_html: '<h3>Ένα καλό σημείο για κανόνες</h3>
-
+    extended_description_html: |
+      <h3>Ένα καλό σημείο για κανόνες</h3>
       <p>Η αναλυτική περιγραφή δεν έχει ακόμα οριστεί</p>
-
-      '
     features:
-      humane_approach_body: Μαθαίνοντας από τις αποτυχίες άλλων δικτύων, το Mastodon
-        στοχεύει να κάνει σχεδιαστικά ηθικές επιλογές για να καταπολεμήσει την κακόβουλη
-        χρήση των κοινωνικών δικτύων.
+      humane_approach_body: Μαθαίνοντας από τις αποτυχίες άλλων δικτύων, το Mastodon στοχεύει να κάνει σχεδιαστικά ηθικές επιλογές για να καταπολεμήσει την κακόβουλη χρήση των κοινωνικών δικτύων.
       humane_approach_title: Μια πιο ανθρώπινη προσέγγιση
+      not_a_product_body: Το Mastodon δεν είναι εμπορικό δίκτυο. Χωρίς διαφημίσεις, χωρίς εξόρυξη δεδομένων, χωρίς φραγμένες περιοχές. Δεν έχει κεντρική αρχή.
       not_a_product_title: Είσαι άτομο, όχι προϊόν
+      real_conversation_body: Με 500 χαρακτήρες στη διάθεσή σου και υποστήριξη για λεπτομερή έλεγχο και προειδοποιήσεις πολυμέσων, μπορείς να εκφραστείς με τον τρόπο που θέλεις.
       real_conversation_title: Φτιαγμένο για αληθινή συζήτηση
-      within_reach_body: Οι πολλαπλές εφαρμογές για το iOS, το Android και τις υπόλοιπες
-        πλατφόρμες, χάρη σε ένα φιλικό προς τους προγραμματιστές οικοσύστημα API,
-        σου επιτρέπουν να κρατάς επαφή με τους φίλους και τις φίλες σου οπουδήποτε.
-      not_a_product_body: Το Mastodon δεν είναι εμπορικό δίκτυο. Χωρίς διαφημίσεις,
-        χωρίς εξόρυξη δεδομένων, χωρίς φραγμένες περιοχές. Δεν έχει κεντρική αρχή.
-      real_conversation_body: Με 500 χαρακτήρες στη διάθεσή σου και υποστήριξη για
-        λεπτομερή έλεγχο και προειδοποιήσεις πολυμέσων, μπορείς να εκφραστείς με τον
-        τρόπο που θέλεις.
+      within_reach_body: Οι πολλαπλές εφαρμογές για το iOS, το Android και τις υπόλοιπες πλατφόρμες, χάρη σε ένα φιλικό προς τους προγραμματιστές οικοσύστημα API, σου επιτρέπουν να κρατάς επαφή με τους φίλους και τις φίλες σου οπουδήποτε.
       within_reach_title: Πάντα προσβάσιμο
-    generic_description: '%{domain} είναι ένας εξυπηρετητής στο δίκτυο'
+    generic_description: "%{domain} είναι ένας εξυπηρετητής στο δίκτυο"
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
     learn_more: Μάθε περισσότερα
     other_instances: Λίστα διακομιστών
@@ -41,12 +32,8 @@ el:
     status_count_after: καταστάσεις
     status_count_before: Ποιός συνέγραψε
     user_count_after: χρήστες
-    what_is_mastodon: Τι είναι το Mastodon;
-    about_hashtag_html: Αυτά είναι δημόσια τουτ σημειωμένα με <strong>#%{hashtag}</strong>.
-      Μπορείς να αλληλεπιδράσεις με αυτά αν έχεις λογαριασμό οπουδήποτε στο fediverse.
-    contact_unavailable: Μ/Δ
-    description_headline: Τι είναι το %{domain};
     user_count_before: Σπίτι
+    what_is_mastodon: Τι είναι το Mastodon;
   accounts:
     follow: Ακολούθησε
     followers: Ακόλουθοι
@@ -66,9 +53,7 @@ el:
     unfollow: Διακοπή παρακολούθησης
   admin:
     account_moderation_notes:
-      account: Μεσολαβητής
       create: Δημιουργία
-      created_at: Ημερομηνία
       created_msg: Επιτυχής δημιουργία σημειώματος μεσολάβησης!
       delete: Διαγραφή
       destroyed_msg: Επιτυχής καταστροφή σημειώματος μεσολάβησης!
@@ -159,27 +144,22 @@ el:
       web: Διαδίκτυο
     action_logs:
       actions:
-        assigned_to_self_report: Ο/Η %{name} ανάθεσε την αναφορά %{target} στον εαυτό
-          του/της
+        assigned_to_self_report: Ο/Η %{name} ανάθεσε την αναφορά %{target} στον εαυτό του/της
         change_email_user: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
         confirm_user: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
         create_custom_emoji: Ο/Η %{name} ανέβασε νέο emoji %{target}
         create_domain_block: Ο/Η %{name} μπλόκαρε τον τομέα %{target}
-        create_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε
-          μαύρη λίστα
+        create_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα
         demote_user: Ο/Η %{name} υποβίβασε το χρήστη %{target}
         destroy_domain_block: Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}
-        destroy_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε
-          λευκή λίστα
+        destroy_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα
         destroy_status: Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}
-        disable_2fa_user: Ο/Η %{name} απενεργοποίησε την απαίτηση δύο παραγόντων για
-          το χρήστη %{target}
+        disable_2fa_user: Ο/Η %{name} απενεργοποίησε την απαίτηση δύο παραγόντων για το χρήστη %{target}
         disable_custom_emoji: Ο/Η %{name} απενεργοποίησε το emoji %{target}
         disable_user: Ο/Η %{name} απενεργοποίησε την είσοδο για το χρήστη %{target}
         enable_custom_emoji: Ο/Η %{name} ενεργοποίησε το emoji %{target}
         enable_user: Ο/Η %{name} ενεργοποίησε την είσοδο του χρήστη %{target}
-        memorialize_account: Ο/Η %{name} μετέτρεψε το λογαριασμό του/της %{target}
-          σε σελίδα νεκρολογίας
+        memorialize_account: Ο/Η %{name} μετέτρεψε το λογαριασμό του/της %{target} σε σελίδα νεκρολογίας
         promote_user: Ο/Η %{name} προβίβασε το χρήστη %{target}
         remove_avatar_user: Ο/Η %{name} αφαίρεσε το αβατάρ του/της %{target}
         reopen_report: Ο/Η %{name} ξανάνοιξε την αναφορά %{target}
@@ -188,8 +168,7 @@ el:
         silence_account: Ο/Η %{name} αποσιώπησε το λογαριασμό του/της %{target}
         suspend_account: Ο/Η %{name} έπαυσε το λογαριασμό του/της %{target}
         unassigned_report: Ο/Η %{name} αποδέσμευσε την αναφορά %{target}
-        unsilence_account: Ο/Η %{name} ήρε την αποσιώπηση του λογαριασμού του/της
-          %{target}
+        unsilence_account: Ο/Η %{name} ήρε την αποσιώπηση του λογαριασμού του/της %{target}
         unsuspend_account: Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}
         update_custom_emoji: Ο/Η %{name} ενημέρωσε το emoji %{target}
         update_status: Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}
@@ -225,6 +204,4 @@ el:
       domain: Τομέας
       new:
         create: Δημιουργία αποκλεισμού
-        hint: Ο αποκλεισμός τομέα δεν θα αποτρέψει νέες καταχωρίσεις λογαριασμών στην
-          βάση δεδομένων, αλλά θα εφαρμόσει αναδρομικά και αυτόματα συγκεκριμένες
-          πολιτικές μεσολάβησης σε αυτούς τους λογαριασμούς.
+        hint: Ο αποκλεισμός τομέα δεν θα αποτρέψει νέες καταχωρίσεις λογαριασμών στην βάση δεδομένων, αλλά θα εφαρμόσει αναδρομικά και αυτόματα συγκεκριμένες πολιτικές μεσολάβησης σε αυτούς τους λογαριασμούς.
