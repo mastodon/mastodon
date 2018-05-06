@@ -31,7 +31,7 @@ class PostStatusService < BaseService
                                         sensitive: (options[:sensitive].nil? ? account.user&.setting_default_sensitive : options[:sensitive]),
                                         spoiler_text: options[:spoiler_text] || '',
                                         visibility: options[:visibility] || account.user&.setting_default_privacy,
-                                        language: LanguageDetector.instance.detect(text, account),
+                                        language: language_from_option(options[:language]) || LanguageDetector.instance.detect(text, account),
                                         application: options[:application])
     end
 
@@ -63,6 +63,10 @@ class PostStatusService < BaseService
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if media.size > 1 && media.find(&:video?)
 
     media
+  end
+
+  def language_from_option(str)
+    ISO_639.find(str)&.alpha2
   end
 
   def process_mentions_service
