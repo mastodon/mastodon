@@ -4,7 +4,7 @@ nl:
       defaults:
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen
-          wanneer je tijdens jouw afwezigheid persoonlijke berichten ontvangt
+          wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
         display_name:
           one: <span class="name-counter">1</span> teken over
           other: <span class="name-counter">%{count}</span> tekens over
@@ -21,10 +21,10 @@ nl:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
         otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik
-          een van jouw herstelcode's.
+          een van jouw herstelcodes.
       user:
-        filtered_languages: De geselecteerde talen worden uit de lokale en globale
-          tijdlijn verwijderd
+        filtered_languages: Geselecteerde talen worden uit de lokale en globale tijdlijn
+          verwijderd
     labels:
       account:
         fields:
@@ -40,7 +40,7 @@ nl:
         email: E-mailadres
         expires_in: Vervalt na
         fields: Metadata profiel
-        filtered_languages: Talen filteren
+        filtered_languages: Uitgefilterde talen
         header: Omslagfoto
         locale: Taal
         locked: Maak account besloten
@@ -62,7 +62,7 @@ nl:
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
         severity: Zwaarte
         type: Importtype
-        username: gebruikersnaam
+        username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
