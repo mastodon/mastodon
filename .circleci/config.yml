@@ -90,7 +90,7 @@ aliases:
             command: ./bin/rails parallel:create parallel:load_schema parallel:prepare
         - run:
             name: Run Tests
-            command: bundle exec parallel_test ./spec/ --group-by filesize --type rspec
+            command: ./bin/retry bundle exec parallel_test ./spec/ --group-by filesize --type rspec
 
 jobs:
   install:
@@ -150,7 +150,7 @@ jobs:
       - image: circleci/node:8.11.1-stretch
     steps:
       - *attach_workspace
-      - run: yarn test:jest
+      - run: ./bin/retry yarn test:jest
 
   check-i18n:
     <<: *defaults

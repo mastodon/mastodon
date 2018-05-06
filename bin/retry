@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# https://github.com/travis-ci/travis-build/blob/cbe49ea239ab37b9b38b5b44d287b7ec7a108c16/lib/travis/build/templates/header.sh#L243-L260
+retry() {
+  local result=0
+  local count=1
+
+  while [ $count -le 3 ]; do
+    if [ $result -ne 0 ]; then
+      echo -e "\n${ANSI_RED}The command \"$@\" failed. Retrying, $count of 3.${ANSI_RESET}\n" >&2
+    fi
+
+    "$@" && { result=0 && break; } || result=$?
+    count=$(($count + 1))
+    sleep 1
+  done
+
+  if [ $count -gt 3 ]; then
+    echo -e "\n${ANSI_RED}The command \"$@\" failed 3 times.${ANSI_RESET}\n" >&2
+  fi
+
+  return $result
+}
+
+retry $@
