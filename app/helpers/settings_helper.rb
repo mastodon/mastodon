@@ -6,6 +6,7 @@ module SettingsHelper
     ar: 'العربية',
     bg: 'Български',
     ca: 'Català',
+    co: 'Corsu',
     de: 'Deutsch',
     el: 'Ελληνικά',
     eo: 'Esperanto',
