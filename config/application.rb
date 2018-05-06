@@ -40,6 +40,7 @@ module Mastodon
       :ar,
       :bg,
       :ca,
+      :co,
       :de,
       :el,
       :eo,
