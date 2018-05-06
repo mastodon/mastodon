@@ -37,6 +37,7 @@ export default class Header extends ImmutablePureComponent {
     }
 
     let displayName = account.get('display_name_html');
+    let fields      = account.get('fields');
     let info        = '';
     let mutingInfo  = '';
     let actionBtn   = '';
@@ -100,30 +101,43 @@ export default class Header extends ImmutablePureComponent {
             <span className='account__header__username'>@{account.get('acct')} {account.get('locked') ? <i className='fa fa-lock' /> : null}</span>
             <div className='account__header__content' dangerouslySetInnerHTML={{ __html: emojify(text) }} />
 
+            {fields.size > 0 && (
+              <table className='account__header__fields'>
+                <tbody>
+                  {fields.map((pair, i) => (
+                    <tr key={i}>
+                      <th dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} />
+                      <td dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                   </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+
+            {fields.size == 0 && metadata.length && (
+              <table className='account__header__fields'>
+                <tbody>
+                  {(() => {
+                    let data = [];
+                    for (let i = 0; i < metadata.length; i++) {
+                      data.push(
+                        <tr key={i}>
+                          <th scope='row'><div dangerouslySetInnerHTML={{ __html: emojify(metadata[i][0]) }} /></th>
+                          <td><div dangerouslySetInnerHTML={{ __html: emojify(metadata[i][1]) }} /></td>
+                        </tr>
+                      );
+                    }
+                    return data;
+                  })()}
+                </tbody>
+              </table>
+            ) || null}
+
             {info}
             {mutingInfo}
             {actionBtn}
           </div>
         </div>
-
-        {metadata.length && (
-          <table className='account__metadata'>
-            <tbody>
-              {(() => {
-                let data = [];
-                for (let i = 0; i < metadata.length; i++) {
-                  data.push(
-                    <tr key={i}>
-                      <th scope='row'><div dangerouslySetInnerHTML={{ __html: emojify(metadata[i][0]) }} /></th>
-                      <td><div dangerouslySetInnerHTML={{ __html: emojify(metadata[i][1]) }} /></td>
-                    </tr>
-                  );
-                }
-                return data;
-              })()}
-            </tbody>
-          </table>
-        ) || null}
       </div>
     );
   }
