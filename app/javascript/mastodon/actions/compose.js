@@ -100,6 +100,7 @@ export function mentionCompose(account, router) {
 
 export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
+    let status = getState().getIn(['compose', 'text'], '');
     const { status, visibility, hasDefaultHashtag } = handleDefaultTag(
       withCommunity,
       getState().getIn(['compose', 'text'], ''),
@@ -119,7 +120,8 @@ export function submitCompose(withCommunity) {
       media_ids: media.map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
-      visibility,
+      visibility: getState().getIn(['compose', 'privacy']),
+      quote_id: getState().getIn(['compose', 'quote_from'], null),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
