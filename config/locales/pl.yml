@@ -374,6 +374,7 @@ pl:
   admin_mailer:
     new_report:
       body: Użytkownik %{reporter} zgłosił %{target}
+      body_remote: Ktoś z %{domain} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili

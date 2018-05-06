@@ -373,6 +373,7 @@ ca:
   admin_mailer:
     new_report:
       body: "%{reporter} ha informat de %{target}"
+      body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
   application_mailer:
     notification_preferences: Canvia les preferències de correu

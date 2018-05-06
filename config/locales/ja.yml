@@ -373,6 +373,7 @@ ja:
   admin_mailer:
     new_report:
       body: "%{reporter} が %{target} を通報しました"
+      body_remote: "%{domain} の誰かが %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
     notification_preferences: メール設定の変更
