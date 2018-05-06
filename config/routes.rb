@@ -155,8 +155,13 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
-      resource :confirmation, only: [:create]
-      resources :statuses, only: [:index, :create]
+      resources :statuses, only: [:index, :create, :update, :destroy]
+
+      resource :confirmation, only: [:create] do
+        collection do
+          post :resend
+        end
+      end
 
       resource :role do
         member do
