@@ -52,9 +52,7 @@ ar:
     unfollow: إلغاء المتابعة
   admin:
     account_moderation_notes:
-      account: مُشرِف
       create: إنشاء
-      created_at: التاريخ
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح !
       delete: حذف
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح !
@@ -63,6 +61,7 @@ ar:
       by_domain: النطاق
       confirm: تأكيد
       confirmed: مؤكَّد
+      confirming: التأكد
       demote: إنزال الرُتبة الوظيفية
       disable: تعطيل
       disable_two_factor_authentication: تعطيل 2FA
@@ -71,6 +70,7 @@ ar:
       domain: النطاق
       edit: تعديل
       email: البريد الإلكتروني
+      email_status: حالة البريد الإلكتروني
       enable: تفعيل
       enabled: مفعَّل
       feed_url: عنوان رابط التغذية
@@ -108,6 +108,10 @@ ar:
       public: عمومي
       push_subscription_expires: انتهاء الاشتراك ”PuSH“
       redownload: تحديث الصورة الرمزية
+      resend_confirmation:
+        already_confirmed: هذا المستخدم مؤكد بالفعل
+        send: أعد إرسال رسالة البريد الالكتروني الخاصة بالتأكيد
+        success: تم إرسال رسالة التأكيد بنجاح!
       reset: إعادة التعيين
       reset_password: إعادة ضبط كلمة السر
       resubscribe: اشترك مرة أخرى
@@ -241,12 +245,8 @@ ar:
       are_you_sure: هل أنت متأكد ؟
       comment:
         none: لا شيء
-      delete: حذف
       id: معرّف ID
       mark_as_resolved: إعتبار التقرير كمحلول
-      nsfw:
-        'false': الكشف عن الصور
-        'true': إخفاء الوسائط المرفقة
       report: 'التقرير #%{id}'
       report_contents: المحتويات
       reported_account: حساب مُبلّغ عنه
@@ -305,11 +305,8 @@ ar:
       back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
-      execute: تفعيل
       failed_to_execute: خطأ في التفعيل
       media:
-        hide: إخفاء الوسائط
-        show: إظهار الوسائط
         title: الوسائط
       title: منشورات الحساب
       with_media: بالوسائط

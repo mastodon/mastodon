@@ -53,9 +53,7 @@ pt-BR:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Criar
-      created_at: Data
       created_msg: Nota de moderação criada com sucesso!
       delete: Excluir
       destroyed_msg: Nota de moderação excluída com sucesso!
@@ -72,6 +70,7 @@ pt-BR:
         title: Mudar e-mail para %{username}
       confirm: Confirmar
       confirmed: Confirmado
+      confirming: Confirmando
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
@@ -80,6 +79,7 @@ pt-BR:
       domain: Domínio
       edit: Editar
       email: E-mail
+      email_status: Estado del correo electrónico
       enable: Ativar
       enabled: Ativado
       feed_url: URL do feed
@@ -118,6 +118,10 @@ pt-BR:
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar avatar
       remove_avatar: Remover avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Anular
       reset_password: Modificar senha
       resubscribe: Reinscrever-se
@@ -269,7 +273,6 @@ pt-BR:
       comment:
         none: Nenhum
       created_at: Denunciado
-      delete: Excluir
       id: ID
       mark_as_resolved: Marcar como resolvido
       mark_as_unresolved: Marcar como não resolvido
@@ -279,9 +282,6 @@ pt-BR:
         create_and_unresolve: Reabrir com nota
         delete: Excluir
         placeholder: Descreva que ações foram tomadas, ou quaisquer atualizações sobre esta denúncia…
-      nsfw:
-        'false': Mostrar mídias anexadas
-        'true': Esconder mídias anexadas
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
@@ -356,11 +356,8 @@ pt-BR:
         delete: Deletar
         nsfw_off: Marcar como não-sensível
         nsfw_on: Marcar como sensível
-      execute: Executar
       failed_to_execute: Falha em executar
       media:
-        hide: Esconder mídia
-        show: Mostrar mídia
         title: Mídia
       no_media: Não há mídia
       title: Postagens da conta
