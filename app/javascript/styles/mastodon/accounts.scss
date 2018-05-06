@@ -565,36 +565,41 @@
 }
 
 .account__header__fields {
-  border-collapse: collapse;
   padding: 0;
   margin: 15px -15px -15px;
   border: 0 none;
   border-top: 1px solid lighten($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 4%);
+  font-size: 14px;
+  line-height: 20px;
 
-  th,
-  td {
-    padding: 15px;
-    padding-left: 15px;
-    border: 0 none;
+  dl {
+    display: flex;
     border-bottom: 1px solid lighten($ui-base-color, 4%);
-    vertical-align: middle;
   }
 
-  th {
-    padding-left: 15px;
-    font-weight: 500;
+  dt,
+  dd {
+    box-sizing: border-box;
+    padding: 14px;
     text-align: center;
-    width: 94px;
+    max-height: 48px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  dt {
+    font-weight: 500;
+    width: 120px;
+    flex: 0 0 auto;
     color: $secondary-text-color;
     background: rgba(darken($ui-base-color, 8%), 0.5);
   }
 
-  td {
+  dd {
+    flex: 1 1 auto;
     color: $darker-text-color;
-    text-align: center;
-    width: 100%;
-    padding-left: 0;
   }
 
   a {
@@ -608,12 +613,7 @@
     }
   }
 
-  tr {
-    &:last-child {
-      th,
-      td {
-        border-bottom: 0;
-      }
-    }
+  dl:last-child {
+    border-bottom: 0;
   }
 }

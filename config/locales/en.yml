@@ -53,9 +53,7 @@ en:
     unfollow: Unfollow
   admin:
     account_moderation_notes:
-      account: Moderator
-      create: Create
-      created_at: Date
+      create: Leave note
       created_msg: Moderation note successfully created!
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
@@ -275,7 +273,6 @@ en:
       comment:
         none: None
       created_at: Reported
-      delete: Delete
       id: ID
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
@@ -285,9 +282,6 @@ en:
         create_and_unresolve: Reopen with note
         delete: Delete
         placeholder: Describe what actions have been taken, or any other updates to this report…
-      nsfw:
-        'false': Unhide media attachments
-        'true': Hide media attachments
       reopen: Reopen report
       report: 'Report #%{id}'
       report_contents: Contents
@@ -362,11 +356,8 @@ en:
         delete: Delete
         nsfw_off: Mark as not sensitive
         nsfw_on: Mark as sensitive
-      execute: Execute
       failed_to_execute: Failed to execute
       media:
-        hide: Hide media
-        show: Show media
         title: Media
       no_media: No media
       title: Account statuses
@@ -382,6 +373,7 @@ en:
   admin_mailer:
     new_report:
       body: "%{reporter} has reported %{target}"
+      body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Change e-mail preferences

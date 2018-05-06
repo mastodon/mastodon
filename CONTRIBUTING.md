@@ -49,3 +49,8 @@ It is expected that you have a working development environment set up (see back-
 * If you are introducing new strings, they must be using localization methods
 
 If the JavaScript or CSS assets won't compile due to a syntax error, it's a good sign that the pull request isn't ready for submission yet.
+
+## Translate
+
+You can contribute to translating Mastodon via Weblate at [weblate.joinmastodon.org](https://weblate.joinmastodon.org/).
+[![Mastodon translation statistics by language](https://weblate.joinmastodon.org/widgets/mastodon/-/multi-auto.svg)](https://weblate.joinmastodon.org/)

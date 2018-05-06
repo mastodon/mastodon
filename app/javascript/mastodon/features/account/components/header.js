@@ -142,16 +142,14 @@ export default class Header extends ImmutablePureComponent {
           <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {fields.size > 0 && (
-            <table className='account__header__fields'>
-              <tbody>
-                {fields.map((pair, i) => (
-                  <tr key={i}>
-                    <th dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} />
-                    <td dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className='account__header__fields'>
+              {fields.map((pair, i) => (
+                <dl key={i}>
+                  <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
+                  <dd dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} title={pair.get('value')} />
+                </dl>
+              ))}
+            </div>
           )}
 
           {info}
