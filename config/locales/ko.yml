@@ -70,6 +70,7 @@ ko:
         title: "%{username}의 이메일 주소 변경"
       confirm: 확인
       confirmed: 확인됨
+      confirming: 확인 중
       demote: 모더레이터 강등
       disable: 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
@@ -78,6 +79,7 @@ ko:
       domain: 도메인
       edit: 편집
       email: E-mail
+      email_status: 이메일 상태
       enable: 활성화
       enabled: 활성화된
       feed_url: 피드 URL
@@ -116,6 +118,10 @@ ko:
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 아바타 업데이트
       remove_avatar: 아바타 지우기
+      resend_confirmation:
+        already_confirmed: 이 사용자는 이미 확인되었습니다.
+        send: 다시 확인 이메일
+        success: 확인 이메일이 전송되었습니다.
       reset: 초기화
       reset_password: 비밀번호 초기화
       resubscribe: 다시 구독
