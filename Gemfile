@@ -91,6 +91,7 @@ gem 'webpush'
 
 gem 'json-ld', '~> 2.2'
 gem 'rdf-normalize', '~> 0.3'
+gem 'counter_cache-rails', '~> 0.4'
 
 group :development, :test do
   gem 'fabrication', '~> 2.20'
