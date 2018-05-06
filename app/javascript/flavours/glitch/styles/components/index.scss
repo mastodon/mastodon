@@ -52,7 +52,7 @@
   }
 
   &.button-alternative {
-    color: $ui-base-color;
+    color: $inverted-text-color;
     background: $ui-primary-color;
 
     &:active,
@@ -76,7 +76,7 @@
     font-size: 16px;
     line-height: 36px;
     height: auto;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     text-transform: none;
     background: transparent;
     padding: 3px 15px;
@@ -87,7 +87,7 @@
     &:focus,
     &:hover {
       border-color: lighten($ui-primary-color, 4%);
-      color: lighten($ui-primary-color, 4%);
+      color: lighten($darker-text-color, 4%);
     }
   }
 
@@ -100,7 +100,7 @@
 .icon-button {
   display: inline-block;
   padding: 0;
-  color: $ui-base-lighter-color;
+  color: $action-button-color;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -109,17 +109,17 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($ui-base-color, 33%);
+    color: lighten($action-button-color, 7%);
     transition: color 200ms ease-out;
   }
 
   &.disabled {
-    color: lighten($ui-base-color, 13%);
+    color: darken($action-button-color, 13%);
     cursor: default;
   }
 
   &.active {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
   }
 
   &::-moz-focus-inner {
@@ -133,23 +133,23 @@
   }
 
   &.inverted {
-    color: lighten($ui-base-color, 33%);
+    color: $lighter-text-color;
 
     &:hover,
     &:active,
     &:focus {
-      color: $ui-base-lighter-color;
+      color: darken($lighter-text-color, 7%);
     }
 
     &.disabled {
-      color: $ui-primary-color;
+      color: lighten($lighter-text-color, 7%);
     }
 
     &.active {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
 
       &.disabled {
-        color: lighten($ui-highlight-color, 13%);
+        color: lighten($highlight-text-color, 13%);
       }
     }
   }
@@ -168,7 +168,7 @@
 }
 
 .text-icon-button {
-  color: lighten($ui-base-color, 33%);
+  color: $lighter-text-color;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -182,17 +182,17 @@
   &:hover,
   &:active,
   &:focus {
-    color: $ui-base-lighter-color;
+    color: darken($lighter-text-color, 7%);
     transition: color 200ms ease-out;
   }
 
   &.disabled {
-    color: lighten($ui-base-color, 13%);
+    color: lighten($lighter-text-color, 20%);
     cursor: default;
   }
 
   &.active {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
   }
 
   &::-moz-focus-inner {
@@ -209,25 +209,6 @@
 .dropdown-menu {
   position: absolute;
   transform-origin: 50% 0;
-}
-
-.dropdown--active .icon-button {
-  color: $ui-highlight-color;
-}
-
-.dropdown--active::after {
-  @media screen and (min-width: 631px) {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 4.5px 7.8px;
-    border-color: transparent transparent $ui-secondary-color;
-    bottom: 8px;
-    right: 104px;
-  }
 }
 
 .invisible {
@@ -252,10 +233,6 @@
   &::after {
     content: "…";
   }
-}
-
-.lightbox .icon-button {
-  color: $ui-base-color;
 }
 
 .notification__favourite-icon-wrapper {
@@ -462,7 +439,7 @@
     box-sizing: border-box;
     text-decoration: none;
     background: $ui-secondary-color;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -471,7 +448,7 @@
     &:hover,
     &:active {
       background: $ui-highlight-color;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       outline: 0;
     }
   }
@@ -513,7 +490,7 @@
     box-sizing: border-box;
     text-decoration: none;
     background: $ui-secondary-color;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -524,7 +501,7 @@
 
     &:hover {
       background: $ui-highlight-color;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
     }
   }
 }
@@ -536,7 +513,7 @@
 .static-content {
   padding: 10px;
   padding-top: 20px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
 
   h1 {
     font-size: 16px;
@@ -577,7 +554,7 @@
 
   &.active {
     border-bottom: 2px solid $ui-highlight-color;
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
   }
 
   &:hover,
@@ -752,11 +729,11 @@
   flex: 1 0 auto;
 
   p {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   a {
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
   }
 }
 
@@ -793,7 +770,7 @@
 }
 
 .setting-text {
-  color: $ui-primary-color;
+  color: $darker-text-color;
   background: transparent;
   border: none;
   border-bottom: 2px solid $ui-primary-color;
@@ -815,12 +792,12 @@
   }
 
   &.light {
-    color: $ui-base-color;
+    color: $inverted-text-color;
     border-bottom: 2px solid lighten($ui-base-color, 27%);
 
     &:focus,
     &:active {
-      color: $ui-base-color;
+      color: $inverted-text-color;
       border-bottom-color: $ui-highlight-color;
     }
   }
@@ -845,17 +822,17 @@
 }
 
 .reduce-motion button.icon-button i.fa-retweet {
-  color: $ui-base-lighter-color;
+  color: $action-button-color;
   transition: color 100ms ease-in;
 }
 
 .reduce-motion button.icon-button.active i.fa-retweet {
-  color: $ui-highlight-color;
+  color: $highlight-text-color;
 }
 
 .load-more {
   display: block;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   background-color: transparent;
   border: 0;
   font-size: inherit;
@@ -917,7 +894,7 @@
     width: 30px;
     height: 30px;
     font-size: 20px;
-    color: $ui-primary-color;
+    color: $inverted-text-color;
     text-shadow: 0 0 5px black;
     display: flex;
     justify-content: center;
@@ -945,7 +922,7 @@
 }
 
 .loading-indicator {
-  color: lighten($ui-base-color, 26%);
+  color: $dark-text-color;
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
@@ -1033,7 +1010,7 @@
 
 .setting-toggle__label,
 .setting-meta__label {
-  color: $ui-primary-color;
+  color: $darker-text-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
@@ -1041,7 +1018,6 @@
 }
 
 .setting-meta__label {
-  color: $ui-primary-color;
   float: right;
 }
 
@@ -1122,7 +1098,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   font-size: 18px;
   font-weight: 500;
   border: 2px dashed $ui-base-lighter-color;
@@ -1158,11 +1134,11 @@ noscript {
   div {
     font-size: 14px;
     margin: 30px auto;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     max-width: 400px;
 
     a {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
       text-decoration: underline;
 
       &:hover {

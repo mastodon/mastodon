@@ -12,7 +12,7 @@
   padding-right: 30px;
   font-family: inherit;
   background: $ui-base-color;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   font-size: 14px;
   margin: 0;
 
@@ -47,7 +47,7 @@
     font-size: 18px;
     width: 18px;
     height: 18px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     cursor: default;
     pointer-events: none;
 
@@ -82,7 +82,7 @@
 }
 
 .search-results__header {
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   background: lighten($ui-base-color, 2%);
   border-bottom: 1px solid darken($ui-base-color, 4%);
   padding: 15px 10px;
@@ -93,13 +93,13 @@
 .search-results__hashtag {
   display: block;
   padding: 10px;
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   text-decoration: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: lighten($ui-secondary-color, 4%);
+    color: lighten($secondary-text-color, 4%);
     text-decoration: underline;
   }
 }

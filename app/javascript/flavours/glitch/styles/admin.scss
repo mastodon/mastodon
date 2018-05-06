@@ -33,7 +33,7 @@
       a {
         display: block;
         padding: 15px;
-        color: rgba($primary-text-color, 0.7);
+        color: $darker-text-color;
         text-decoration: none;
         transition: all 200ms linear;
         border-radius: 4px 0 0 4px;
@@ -90,7 +90,7 @@
     padding-left: 25px;
 
     h2 {
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       font-size: 24px;
       line-height: 28px;
       font-weight: 400;
@@ -98,16 +98,26 @@
     }
 
     h3 {
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       font-size: 20px;
       line-height: 28px;
       font-weight: 400;
       margin-bottom: 30px;
     }
 
+    h4 {
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 500;
+      color: $darker-text-color;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
+    }
+
     h6 {
       font-size: 16px;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       line-height: 28px;
       font-weight: 400;
     }
@@ -115,7 +125,7 @@
     & > p {
       font-size: 14px;
       line-height: 18px;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       margin-bottom: 20px;
 
       strong {
@@ -143,10 +153,10 @@
     }
 
     .muted-hint {
-      color: $ui-primary-color;
+      color: $darker-text-color;
 
       a {
-        color: $ui-highlight-color;
+        color: $highlight-text-color;
       }
     }
 
@@ -243,7 +253,7 @@
 
     a {
       display: inline-block;
-      color: rgba($primary-text-color, 0.7);
+      color: $darker-text-color;
       text-decoration: none;
       text-transform: uppercase;
       font-size: 12px;
@@ -256,7 +266,7 @@
       }
 
       &.selected {
-        color: $ui-highlight-color;
+        color: $highlight-text-color;
         border-bottom: 2px solid $ui-highlight-color;
       }
     }
@@ -297,7 +307,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -354,7 +364,7 @@
     padding: 7px 4px;
     margin-bottom: 10px;
     font-size: 16px;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     display: block;
     width: 100%;
     outline: 0;
@@ -408,7 +418,7 @@
   font-size: 14px;
 
   a {
-    color: $classic-highlight-color;
+    color: $highlight-text-color;
     text-decoration: none;
 
     &:hover {
@@ -431,7 +441,7 @@
     align-items: center;
     padding: 10px;
     background: $ui-base-color;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     border-radius: 4px 4px 0 0;
     font-size: 14px;
     position: relative;
@@ -458,14 +468,14 @@
   }
 
   &__timestamp {
-    color: lighten($ui-base-color, 34%);
+    color: $dark-text-color;
   }
 
   &__extras {
     background: lighten($ui-base-color, 6%);
     border-radius: 0 0 4px 4px;
     padding: 10px;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     font-family: 'mastodon-font-monospace', monospace;
     font-size: 12px;
     word-wrap: break-word;
@@ -475,7 +485,7 @@
   &__icon {
     font-size: 28px;
     margin-right: 10px;
-    color: lighten($ui-base-color, 34%);
+    color: $dark-text-color;
   }
 
   &__icon__overlay {
@@ -491,7 +501,7 @@
     }
 
     &.negative {
-      background: $error-red;
+      background: lighten($error-red, 12%);
     }
 
     &.neutral {
@@ -502,17 +512,17 @@
   a,
   .username,
   .target {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     text-decoration: none;
     font-weight: 500;
   }
 
   .diff-old {
-    color: $error-red;
+    color: lighten($error-red, 12%);
   }
 
   .diff-neutral {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   .diff-new {

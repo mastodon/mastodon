@@ -12,7 +12,7 @@
     padding: 10px;
     width: 100%;
     outline: 0;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     background: $simple-background-color;
     font-size: 14px;
     font-family: inherit;
@@ -24,7 +24,7 @@
 }
 
 .composer--warning {
-  color: darken($ui-secondary-color, 65%);
+  color: $inverted-text-color;
   margin-bottom: 15px;
   background: $ui-primary-color;
   box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
@@ -34,7 +34,7 @@
   font-weight: 400;
 
   a {
-    color: darken($ui-primary-color, 33%);
+    color: $lighter-text-color;
     font-weight: 500;
     text-decoration: underline;
 
@@ -54,7 +54,7 @@
     margin-bottom: 5px;
     overflow: hidden;
 
-    & > .account.small { color: $ui-base-color }
+    & > .account.small { color: $inverted-text-color; }
 
     & > .cancel {
       float: right;
@@ -68,7 +68,7 @@
     padding: 0 12px;
     font-size: 14px;
     line-height: 20px;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     word-wrap: break-word;
     font-weight: 400;
     overflow: visible;
@@ -82,7 +82,7 @@
     }
 
     a {
-      color: lighten($ui-base-color, 20%);
+      color: $lighter-text-color;
       text-decoration: none;
 
       &:hover { text-decoration: underline }
@@ -129,7 +129,7 @@
       width: 100%;
       min-height: 100px;
       outline: 0;
-      color: $ui-base-color;
+      color: $inverted-text-color;
       background: $simple-background-color;
       font-size: 14px;
       font-family: inherit;
@@ -160,7 +160,7 @@
     margin: 2px 0 0 2px;
     width: 24px;
     height: 24px;
-    color: darken($ui-primary-color, 24%);
+    color: $lighter-text-color;
     font-size: 18px;
     line-height: 24px;
     text-align: center;
@@ -176,7 +176,7 @@
   border-radius: 0 0 4px 4px;
   padding: 6px;
   width: 100%;
-  color: $ui-base-color;
+  color: $inverted-text-color;
   background: $ui-secondary-color;
   box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   font-size: 14px;
@@ -214,14 +214,14 @@
 
   & > .account.small {
     .display-name {
-      & > span { color: lighten($ui-base-color, 36%) }
+      & > span { color: $lighter-text-color }
     }
   }
 }
 
 .composer--upload_form {
   padding: 5px;
-  color: $ui-base-color;
+  color: $inverted-text-color;
   background: $simple-background-color;
   font-size: 14px;
 
@@ -258,7 +258,7 @@
       border: 0;
       padding: 10px;
       width: 100%;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
       font-size: 14px;
       font-family: inherit;
@@ -271,7 +271,7 @@
 
       &::placeholder {
         opacity: 0.54;
-        color: $ui-secondary-color;
+        color: $secondary-text-color;
       }
     }
 
@@ -288,7 +288,7 @@
 .composer--upload_form--progress {
   display: flex;
   padding: 10px;
-  color: $ui-base-lighter-color;
+  color: $darker-text-color;
   overflow: hidden;
 
   & > .fa {
@@ -380,18 +380,18 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  color: $ui-base-color;
+  color: $inverted-text-color;
   cursor: pointer;
 
   & > .content {
     flex: 1 1 auto;
-    color: darken($ui-primary-color, 24%);
+    color: $lighter-text-color;
 
     &:not(:first-child) { margin-left: 10px }
 
     strong {
       display: block;
-      color: $ui-base-color;
+      color: $inverted-text-color;
       font-weight: 500;
     }
   }
