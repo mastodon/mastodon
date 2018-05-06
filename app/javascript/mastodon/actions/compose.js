@@ -122,7 +122,11 @@ export function mentionCompose(account, router) {
 
 export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
-    let status = getState().getIn(['compose', 'text'], '');
+    let { status, visibility, hasDefaultHashtag } = handleDefaultTag(
+      withCommunity,
+      getState().getIn(['compose', 'text'], ''),
+      getState().getIn(['compose', 'privacy'])
+    );
     const media  = getState().getIn(['compose', 'media_attachments']);
 
     if ((!status || !status.length) && media.size === 0) {
