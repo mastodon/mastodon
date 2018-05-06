@@ -52,9 +52,7 @@ fi:
     unfollow: Lopeta seuraaminen
   admin:
     account_moderation_notes:
-      account: Moderaattori
       create: Luo
-      created_at: Päiväys
       created_msg: Moderointimerkinnän luonti onnistui!
       delete: Poista
       destroyed_msg: Moderointimerkinnän poisto onnistui!
@@ -63,6 +61,7 @@ fi:
       by_domain: Verkko-osoite
       confirm: Vahvista
       confirmed: Vahvistettu
+      confirming: Vahvistavat
       demote: Alenna
       disable: Poista käytöstä
       disable_two_factor_authentication: Poista 2FA käytöstä
@@ -71,6 +70,7 @@ fi:
       domain: Verkko-osoite
       edit: Muokkaa
       email: Sähköposti
+      email_status: Sähköpostin tila
       enable: Ota käyttöön
       enabled: Käytössä
       feed_url: Syötteen URL
@@ -108,6 +108,10 @@ fi:
       public: Julkinen
       push_subscription_expires: PuSH-tilaus vanhenee
       redownload: Päivitä profiilikuva
+      resend_confirmation:
+        already_confirmed: Tämä käyttäjä on jo vahvistettu
+        send: Lähetä varmistusviesti uudelleen
+        success: Vahvistusviesti lähetettiin onnistuneesti
       reset: Palauta
       reset_password: Palauta salasana
       resubscribe: Tilaa uudelleen
@@ -244,12 +248,8 @@ fi:
       are_you_sure: Oletko varma?
       comment:
         none: Ei mitään
-      delete: Poista
       id: Tunniste
       mark_as_resolved: Merkitse ratkaistuksi
-      nsfw:
-        'false': Peru medialiitteiden piilotus
-        'true': Piilota medialiitteet
       report: Raportti nro %{id}
       report_contents: Sisältö
       reported_account: Raportoitu tili
@@ -320,11 +320,8 @@ fi:
         delete: Poista
         nsfw_off: NSFW POIS
         nsfw_on: NSFW PÄÄLLÄ
-      execute: Suorita
       failed_to_execute: Suoritus epäonnistui
       media:
-        hide: Piilota media
-        show: Näytä media
         title: Media
       no_media: Ei mediaa
       title: Tilin tilat

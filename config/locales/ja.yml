@@ -53,9 +53,7 @@ ja:
     unfollow: フォロー解除
   admin:
     account_moderation_notes:
-      account: モデレータ
       create: 書き込む
-      created_at: 日付
       created_msg: モデレーションメモを書き込みました！
       delete: 削除
       destroyed_msg: モデレーションメモを削除しました！
@@ -72,6 +70,7 @@ ja:
         title: "%{username} さんのメールアドレスを変更"
       confirm: 確認
       confirmed: 確認済み
+      confirming: 確認中
       demote: 降格
       disable: 無効化
       disable_two_factor_authentication: 二段階認証を無効にする
@@ -80,6 +79,7 @@ ja:
       domain: ドメイン
       edit: 編集
       email: メールアドレス
+      email_status: メールアドレスの状態
       enable: 有効化
       enabled: 有効
       feed_url: フィードURL
@@ -118,6 +118,10 @@ ja:
       push_subscription_expires: PuSH購読期限
       redownload: アバターの更新
       remove_avatar: アイコンを削除
+      resend_confirmation:
+        already_confirmed: メールアドレスは確認済みです。
+        send: 確認メールを再送
+        success: 確認メールを再送信しました!
       reset: リセット
       reset_password: パスワード再設定
       resubscribe: 再講読
@@ -269,7 +273,6 @@ ja:
       comment:
         none: なし
       created_at: レポート日時
-      delete: 削除
       id: ID
       mark_as_resolved: 解決済みとしてマーク
       mark_as_unresolved: 未解決として再び開く
@@ -279,9 +282,6 @@ ja:
         create_and_unresolve: 書き込み、未解決として開く
         delete: 削除
         placeholder: このレポートに取られた措置や、その他の更新を記述してください…
-      nsfw:
-        'false': NSFW オフ
-        'true': NSFW オン
       reopen: 再び開く
       report: レポート#%{id}
       report_contents: 内容
@@ -354,13 +354,10 @@ ja:
       back_to_account: アカウントページに戻る
       batch:
         delete: 削除
-        nsfw_off: NSFW オフ
-        nsfw_on: NSFW オン
-      execute: 実行
+        nsfw_off: 閲覧注意のマークを取り除く
+        nsfw_on: 閲覧注意としてマークする
       failed_to_execute: 実行に失敗しました
       media:
-        hide: メディアを隠す
-        show: メディアを表示
         title: メディア
       no_media: メディアなし
       title: トゥート一覧
@@ -376,6 +373,7 @@ ja:
   admin_mailer:
     new_report:
       body: "%{reporter} が %{target} を通報しました"
+      body_remote: "%{domain} の誰かが %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
     notification_preferences: メール設定の変更
@@ -788,13 +786,14 @@ ja:
       <p>オリジナルの出典: <a href="https://github.com/discourse/discourse">Discourse privacy policy</a></p>
     title: "%{instance} 利用規約・プライバシーポリシー"
   themes:
+    contrast: ハイコントラスト
     default: Mastodon
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
-    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
+    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
     disable: 無効
     enable: 有効
     enabled: 二段階認証は有効になっています

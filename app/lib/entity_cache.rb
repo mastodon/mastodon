@@ -21,7 +21,7 @@ class EntityCache
     end
 
     unless uncached_ids.empty?
-      uncached = CustomEmoji.where(shortcode: shortcodes, domain: domain, disabled: false).select(:shortcode, :id, :image_file_name, :visible_in_picker).map { |item| [item.shortcode, item] }.to_h
+      uncached = CustomEmoji.where(shortcode: shortcodes, domain: domain, disabled: false).map { |item| [item.shortcode, item] }.to_h
       uncached.each_value { |item| Rails.cache.write(to_key(:emoji, item.shortcode, domain), item, expires_in: MAX_EXPIRATION) }
     end
 

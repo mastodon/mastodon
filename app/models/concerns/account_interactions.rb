@@ -20,6 +20,10 @@ module AccountInteractions
       follow_mapping(Block.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
+    def blocked_by_map(target_account_ids, account_id)
+      follow_mapping(Block.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
+    end
+
     def muting_map(target_account_ids, account_id)
       Mute.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |mute, mapping|
         mapping[mute.target_account_id] = {
@@ -38,8 +42,12 @@ module AccountInteractions
 
     def domain_blocking_map(target_account_ids, account_id)
       accounts_map    = Account.where(id: target_account_ids).select('id, domain').map { |a| [a.id, a.domain] }.to_h
-      blocked_domains = AccountDomainBlock.where(account_id: account_id, domain: accounts_map.values).pluck(:domain)
-      accounts_map.map { |id, domain| [id, blocked_domains.include?(domain)] }.to_h
+      blocked_domains = domain_blocking_map_by_domain(accounts_map.values.compact, account_id)
+      accounts_map.map { |id, domain| [id, blocked_domains[domain]] }.to_h
+    end
+
+    def domain_blocking_map_by_domain(target_domains, account_id)
+      follow_mapping(AccountDomainBlock.where(account_id: account_id, domain: target_domains), :domain)
     end
 
     private
@@ -74,16 +82,19 @@ module AccountInteractions
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
   end
 
-  def follow!(other_account, reblogs: nil)
+  def follow!(other_account, reblogs: nil, uri: nil)
     reblogs = true if reblogs.nil?
-    rel = active_relationships.create_with(show_reblogs: reblogs).find_or_create_by!(target_account: other_account)
-    rel.update!(show_reblogs: reblogs)
 
+    rel = active_relationships.create_with(show_reblogs: reblogs, uri: uri)
+                              .find_or_create_by!(target_account: other_account)
+
+    rel.update!(show_reblogs: reblogs)
     rel
   end
 
-  def block!(other_account)
-    block_relationships.find_or_create_by!(target_account: other_account)
+  def block!(other_account, uri: nil)
+    block_relationships.create_with(uri: uri)
+                       .find_or_create_by!(target_account: other_account)
   end
 
   def mute!(other_account, notifications: nil)
@@ -93,6 +104,7 @@ module AccountInteractions
     if mute.hide_notifications? != notifications
       mute.update!(hide_notifications: notifications)
     end
+    mute
   end
 
   def mute_conversation!(conversation)

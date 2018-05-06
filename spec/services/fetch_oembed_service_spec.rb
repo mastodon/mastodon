@@ -2,7 +2,14 @@
 
 require 'rails_helper'
 
-describe ProviderDiscovery do
+describe FetchOEmbedService, type: :service do
+  subject { described_class.new }
+
+  before do
+    stub_request(:get, "https://host.test/provider.json").to_return(status: 404)
+    stub_request(:get, "https://host.test/provider.xml").to_return(status: 404)
+  end
+
   describe 'discover_provider' do
     context 'when status code is 200 and MIME type is text/html' do
       context 'Both of JSON and XML provider are discoverable' do
@@ -15,15 +22,15 @@ describe ProviderDiscovery do
         end
 
         it 'returns new OEmbed::Provider for JSON provider if :format option is set to :json' do
-          provider = ProviderDiscovery.discover_provider('https://host.test/oembed.html', format: :json)
-          expect(provider.endpoint).to eq 'https://host.test/provider.json'
-          expect(provider.format).to eq :json
+          subject.call('https://host.test/oembed.html', format: :json)
+          expect(subject.endpoint_url).to eq 'https://host.test/provider.json'
+          expect(subject.format).to eq :json
         end
 
         it 'returns new OEmbed::Provider for XML provider if :format option is set to :xml' do
-          provider = ProviderDiscovery.discover_provider('https://host.test/oembed.html', format: :xml)
-          expect(provider.endpoint).to eq 'https://host.test/provider.xml'
-          expect(provider.format).to eq :xml
+          subject.call('https://host.test/oembed.html', format: :xml)
+          expect(subject.endpoint_url).to eq 'https://host.test/provider.xml'
+          expect(subject.format).to eq :xml
         end
       end
 
@@ -37,9 +44,9 @@ describe ProviderDiscovery do
         end
 
         it 'returns new OEmbed::Provider for JSON provider' do
-          provider = ProviderDiscovery.discover_provider('https://host.test/oembed.html')
-          expect(provider.endpoint).to eq 'https://host.test/provider.json'
-          expect(provider.format).to eq :json
+          subject.call('https://host.test/oembed.html')
+          expect(subject.endpoint_url).to eq 'https://host.test/provider.json'
+          expect(subject.format).to eq :json
         end
       end
 
@@ -53,9 +60,9 @@ describe ProviderDiscovery do
         end
 
         it 'returns new OEmbed::Provider for XML provider' do
-          provider = ProviderDiscovery.discover_provider('https://host.test/oembed.html')
-          expect(provider.endpoint).to eq 'https://host.test/provider.xml'
-          expect(provider.format).to eq :xml
+          subject.call('https://host.test/oembed.html')
+          expect(subject.endpoint_url).to eq 'https://host.test/provider.xml'
+          expect(subject.format).to eq :xml
         end
       end
 
@@ -68,8 +75,8 @@ describe ProviderDiscovery do
           )
         end
 
-        it 'raises OEmbed::NotFound' do
-          expect { ProviderDiscovery.discover_provider('https://host.test/oembed.html') }.to raise_error OEmbed::NotFound
+        it 'returns nil' do
+          expect(subject.call('https://host.test/oembed.html')).to be_nil
         end
       end
 
@@ -82,8 +89,8 @@ describe ProviderDiscovery do
           )
         end
 
-        it 'raises OEmbed::NotFound' do
-          expect { ProviderDiscovery.discover_provider('https://host.test/oembed.html') }.to raise_error OEmbed::NotFound
+        it 'returns nil' do
+          expect(subject.call('https://host.test/oembed.html')).to be_nil
         end
       end
     end
@@ -97,8 +104,8 @@ describe ProviderDiscovery do
         )
       end
 
-      it 'raises OEmbed::NotFound' do
-        expect { ProviderDiscovery.discover_provider('https://host.test/oembed.html') }.to raise_error OEmbed::NotFound
+      it 'returns nil' do
+        expect(subject.call('https://host.test/oembed.html')).to be_nil
       end
     end
 
@@ -110,8 +117,8 @@ describe ProviderDiscovery do
         )
       end
 
-      it 'raises OEmbed::NotFound' do
-        expect { ProviderDiscovery.discover_provider('https://host.test/oembed.html') }.to raise_error OEmbed::NotFound
+      it 'returns nil' do
+        expect(subject.call('https://host.test/oembed.html')).to be_nil
       end
     end
   end

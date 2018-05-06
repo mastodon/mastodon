@@ -1,7 +1,7 @@
 ---
 sk:
   about:
-    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
+    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{hashtag}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
     administered_by: 'Správca je:'
@@ -53,9 +53,7 @@ sk:
     unfollow: Prestať sledovať
   admin:
     account_moderation_notes:
-      account: Moderátor
       create: Vytvoriť
-      created_at: Dátum
       created_msg: Poznámka moderátora bola úspešne vytvorená!
       delete: Zmazať
       destroyed_msg: Poznámka moderátora bola úspešne zmazaná!
@@ -72,6 +70,7 @@ sk:
         title: Zmeň email pre %{username}
       confirm: Potvrdiť
       confirmed: Potvrdený
+      confirming: Potvrdzujúci
       demote: Degradovať
       disable: Zablokovať
       disable_two_factor_authentication: Zakázať 2FA
@@ -80,6 +79,7 @@ sk:
       domain: Doména
       edit: Upraviť
       email: Email
+      email_status: Stav Email
       enable: Povoliť
       enabled: Povolený
       feed_url: URL časovej osi
@@ -118,6 +118,10 @@ sk:
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnoviť avatar
       remove_avatar: Odstrániť avatár
+      resend_confirmation:
+        already_confirmed: Tento používateľ už bol potvrdený
+        send: Znova odoslať potvrdzovací e-mail
+        success: Potvrdený e-mail bol úspešne odoslaný!
       reset: Reset
       reset_password: Obnoviť heslo
       resubscribe: Znovu odoberať
@@ -263,28 +267,35 @@ sk:
         report: nahlás
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Ste si istý/á?
-      assign_to_self: ''
-      assigned: ''
+      assign_to_self: Priraď sebe
+      assigned: Priradený moderátor
       comment:
         none: Žiadne
-      created_at: ''
-      delete: Vymazať
+      created_at: Nahlásené
       id: Identifikácia
       mark_as_resolved: Označiť ako vyriešené
-      nsfw:
-        'false': Odkryť mediálne prílohy
-        'true': Skryť mediálne prílohy
+      mark_as_unresolved: Označ ako nevyriešené
+      notes:
+        create: Pridaj poznámku
+        create_and_resolve: Vyrieš s poznámkou
+        create_and_unresolve: Otvor znovu, s poznámkou
+        delete: Vymaž
+        placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné aktualizácie k tomuto nahláseniu…
+      reopen: Znovu otvor report
       report: Nahlásiť
       report_contents: Obsah
       reported_account: Nahlásený účet
       reported_by: Nahlásené užívateľom
       resolved: Vyriešené
+      resolved_msg: Hlásenie úspešne vyriešené!
       silence_account: Zamĺčať účet
       status: Stav
       suspend_account: Pozastaviť účet
       target: Cieľ
       title: Reporty
+      unassign: Odobrať
       unresolved: Nevyriešené
+      updated_at: Aktualizované
       view: Zobraziť
     settings:
       activity_api_enabled:
@@ -344,11 +355,8 @@ sk:
         delete: Vymazať
         nsfw_off: Obsah nieje chúlostivý
         nsfw_on: Označ obeah aka chúlostivý
-      execute: Vykonať
       failed_to_execute: Nepodarilo sa vykonať
       media:
-        hide: Skryť médiá
-        show: Zobraziť médiá
         title: Médiá
       no_media: Žiadné médiá
       title: Statusy na účte
@@ -405,6 +413,7 @@ sk:
     security: Zabezpečenie
     set_new_password: Nastaviť nové heslo
   authorize_follow:
+    already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
     follow: Následovať
     follow_request: 'Poslali ste požiadavku následovať užívateľa:'
@@ -496,6 +505,7 @@ sk:
       '21600': 6 hodín
       '3600': 1 hodina
       '43200': 12 hodín
+      '604800': 1 týždeň
       '86400': 1 deň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
@@ -598,6 +608,10 @@ sk:
     missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
     proceed: Začni následovať
     prompt: 'Budeš sledovať:'
+  remote_unfollow:
+    error: Chyba
+    title: Názov
+    unfollowed: Už nesleduješ
   sessions:
     activity: Najnovšia aktivita
     browser: Prehliadač
@@ -621,10 +635,10 @@ sk:
     title: Sezóna
   settings:
     authorized_apps: Autorizované aplikácie
-    back: Späť do Mastodonu
-    delete: Zmazanie účtu
+    back: Späť na Mastodon
+    delete: Vymazanie účtu
     development: Vývoj
-    edit_profile: Upraviť profil
+    edit_profile: Uprav profil
     export: Exportovať dáta
     followers: Povolení sledovatelia
     import: Importovať
@@ -667,6 +681,7 @@ sk:
   terms:
     title: Podmienky užívania, a pravidlá o súkromí pre %{instance}
   themes:
+    contrast: Vysoký kontrast
     default: Mastodon
   time:
     formats:

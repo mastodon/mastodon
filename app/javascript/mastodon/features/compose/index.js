@@ -43,11 +43,19 @@ export default class Compose extends React.PureComponent {
   };
 
   componentDidMount () {
-    this.props.dispatch(mountCompose());
+    const { isSearchPage } = this.props;
+
+    if (!isSearchPage) {
+      this.props.dispatch(mountCompose());
+    }
   }
 
   componentWillUnmount () {
-    this.props.dispatch(unmountCompose());
+    const { isSearchPage } = this.props;
+
+    if (!isSearchPage) {
+      this.props.dispatch(unmountCompose());
+    }
   }
 
   onFocus = () => {

@@ -78,8 +78,10 @@ class ActivityPub::Activity
     notify_about_reblog(status) if reblog_of_local_account?(status)
     notify_about_mentions(status)
 
-    # Only continue if the status is supposed to have
-    # arrived in real-time
+    # Only continue if the status is supposed to have arrived in real-time.
+    # Note that if @options[:override_timestamps] isn't set, the status
+    # may have a lower snowflake id than other existing statuses, potentially
+    # "hiding" it from paginated API calls
     return unless @options[:override_timestamps] || status.within_realtime_window?
 
     distribute_to_followers(status)

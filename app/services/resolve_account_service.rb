@@ -189,7 +189,7 @@ class ResolveAccountService < BaseService
     return @actor_json if defined?(@actor_json)
 
     json        = fetch_resource(actor_url, false)
-    @actor_json = supported_context?(json) && ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES.include?(json['type']) ? json : nil
+    @actor_json = supported_context?(json) && equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) ? json : nil
   end
 
   def atom

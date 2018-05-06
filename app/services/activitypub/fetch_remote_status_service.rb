@@ -34,6 +34,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   end
 
   def trustworthy_attribution?(uri, attributed_to)
+    return false if uri.nil? || attributed_to.nil?
     Addressable::URI.parse(uri).normalized_host.casecmp(Addressable::URI.parse(attributed_to).normalized_host).zero?
   end
 
@@ -42,7 +43,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   end
 
   def expected_type?
-    (ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES).include? @json['type']
+    equals_or_includes_any?(@json['type'], ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
   end
 
   def needs_update(actor)

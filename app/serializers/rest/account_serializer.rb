@@ -8,6 +8,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
              :followers_count, :following_count, :statuses_count
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
+  has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   class FieldSerializer < ActiveModel::Serializer
     attributes :name, :value

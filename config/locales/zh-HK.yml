@@ -53,9 +53,7 @@ zh-HK:
     unfollow: 取消關注
   admin:
     account_moderation_notes:
-      account: 管理員
       create: 新增
-      created_at: 日期
       created_msg: 管理記錄已新增
       delete: 刪除
       destroyed_msg: 管理記錄已被刪除
@@ -72,6 +70,7 @@ zh-HK:
         title: 改變 %{username} 的電郵
       confirm: 確定
       confirmed: 已確定
+      confirming: 確定
       demote: 降任
       disable: 停用
       disable_two_factor_authentication: 停用雙重認證
@@ -80,6 +79,7 @@ zh-HK:
       domain: 域名
       edit: 編輯
       email: 電郵地址
+      email_status: 电子邮件状态
       enable: 啟用
       enabled: 已啟用
       feed_url: Feed URL
@@ -118,6 +118,10 @@ zh-HK:
       push_subscription_expires: PuSH 訂閱過期
       redownload: 更新頭像
       remove_avatar: 取消頭像
+      resend_confirmation:
+        already_confirmed: 该用户已被确认
+        send: 重发确认邮件
+        success: 确认电子邮件成功发送！
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
@@ -223,6 +227,7 @@ zh-HK:
       severity: 阻隔分級
       show:
         affected_accounts:
+          one: 資料庫中有 %{count} 個用戶受影響
           other: 資料庫中有%{count}個用戶受影響
         retroactive:
           silence: 對此域名的所有用戶取消靜音
@@ -268,7 +273,6 @@ zh-HK:
       comment:
         none: 沒有
       created_at: 日期
-      delete: 刪除
       id: ID
       mark_as_resolved: 標示為「已處理」
       mark_as_unresolved: 標示為「未處理」
@@ -278,9 +282,6 @@ zh-HK:
         create_and_unresolve: 建立筆記並標示為「未處理」
         delete: 刪除
         placeholder: 記錄已執行的動作，或其他更新
-      nsfw:
-        'false': 取消 NSFW 標記
-        'true': 添加 NSFW 標記
       reopen: 重開舉報
       report: '舉報 #%{id}'
       report_contents: 舉報內容
@@ -355,11 +356,8 @@ zh-HK:
         delete: 刪除
         nsfw_off: 取消 NSFW 標記
         nsfw_on: 添加 NSFW 標記
-      execute: 執行
       failed_to_execute: 執行失敗
       media:
-        hide: 隱藏媒體檔案
-        show: 顯示媒體檔案
         title: 媒體檔案
       no_media: 不含媒體檔案
       title: 帳戶文章
@@ -375,6 +373,7 @@ zh-HK:
   admin_mailer:
     new_report:
       body: "%{reporter} 舉報了用戶 %{target}。"
+      body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
       subject: 來自 %{instance} 的用戶舉報（#%{id}）
   application_mailer:
     notification_preferences: 更改電郵首選項
@@ -513,7 +512,9 @@ zh-HK:
       '86400': 1 天後
     expires_in_prompt: 永不過期
     generate: 生成邀請連結
-    max_uses: "%{count} 次"
+    max_uses:
+      one: 1 次
+      other: "%{count} 次"
     max_uses_prompt: 無限制
     prompt: 生成分享連結，邀請他人在本服務站註冊
     table:
@@ -580,7 +581,6 @@ zh-HK:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
   pagination:
     newer: 較新
     next: 下一頁
@@ -672,9 +672,16 @@ zh-HK:
   statuses:
     attached:
       description: 附件： %{attached}
-      image: "%{count} 張圖片"
-      video: "%{count} 段影片"
+      image:
+        one: "%{count} 幅圖片"
+        other: "%{count} 幅圖片"
+      video:
+        one: "%{count} 段影片"
+        other: "%{count} 段影片"
     content_warning: 'Content warning: %{warning}'
+    disallowed_hashtags:
+      one: 包含不允許的標籤： %{tags}
+      other: 包含不允許的標籤： %{tags}
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:
@@ -698,6 +705,9 @@ zh-HK:
     sensitive_content: 敏感內容
   terms:
     title: "%{instance} 使用條款和隱私權政策"
+  themes:
+    contrast: 高對比
+    default: 萬象
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"

@@ -9,12 +9,15 @@ class Request
   include RoutingHelper
 
   def initialize(verb, url, **options)
+    raise ArgumentError if url.blank?
+
     @verb    = verb
     @url     = Addressable::URI.parse(url).normalize
     @options = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
     @headers = {}
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
+
     set_common_headers!
     set_digest! if options.key?(:body)
   end

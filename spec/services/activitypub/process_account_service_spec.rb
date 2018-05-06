@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ActivityPub::ProcessAccountService do
+RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   subject { described_class.new }
 
   context 'property values' do

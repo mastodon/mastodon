@@ -53,9 +53,7 @@ fr:
     unfollow: Ne plus suivre
   admin:
     account_moderation_notes:
-      account: Modérateur·ice
       create: Créer
-      created_at: Date
       created_msg: Note de modération créée avec succès !
       delete: Supprimer
       destroyed_msg: Note de modération supprimée avec succès !
@@ -72,6 +70,7 @@ fr:
         title: Modifier le courriel pour %{username}
       confirm: Confirmer
       confirmed: Confirmé
+      confirming: Confirmant
       demote: Rétrograder
       disable: Désactiver
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -80,6 +79,7 @@ fr:
       domain: Domaine
       edit: Éditer
       email: Courriel
+      email_status: État de la messagerie
       enable: Activer
       enabled: Activé
       feed_url: URL du flux
@@ -118,6 +118,10 @@ fr:
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir les avatars
       remove_avatar: Supprimer l'avatar
+      resend_confirmation:
+        already_confirmed: Cet utilisateur est déjà confirmé
+        send: Renvoyer un courriel de confirmation
+        success: Email de confirmation envoyé avec succès !
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
@@ -269,7 +273,6 @@ fr:
       comment:
         none: Aucun
       created_at: Signalé
-      delete: Supprimer
       id: ID
       mark_as_resolved: Marquer comme résolu
       mark_as_unresolved: Marquer comme non-résolu
@@ -279,9 +282,6 @@ fr:
         create_and_unresolve: Ré-ouvrir avec une note
         delete: Effacer
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour de ce signalement…
-      nsfw:
-        'false': Ré-afficher les médias
-        'true': Masquer les médias
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       report_contents: Contenu
@@ -354,13 +354,10 @@ fr:
       back_to_account: Retour à la page du compte
       batch:
         delete: Supprimer
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Exécuter
+        nsfw_off: Marquer comme non-sensible
+        nsfw_on: Marquer comme sensible
       failed_to_execute: Erreur d’exécution
       media:
-        hide: Masquer les médias
-        show: Montrer les médias
         title: Médias
       no_media: Aucun média
       title: État du compte
@@ -684,6 +681,9 @@ fr:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
     content_warning: 'Attention au contenu : %{warning}'
+    disallowed_hashtags:
+      one: 'contient un hashtag désactivé : %{tags}'
+      other: 'contient les hashtag désactivés : %{tags}'
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
     pin_errors:
@@ -708,6 +708,7 @@ fr:
   terms:
     title: "%{instance} Conditions d’utilisations et politique de confidentialité"
   themes:
+    contrast: Contraste élevé
     default: Mastodon
   time:
     formats:
