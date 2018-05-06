@@ -6,7 +6,7 @@
           .account__avatar{ style: "background-image: url(#{@instance_presenter.contact_account.avatar.url})" }
         %span.display-name
           %bdi
-            %strong.display-name__html.emojify= display_name(@instance_presenter.contact_account)
+            %strong.display-name__html.emojify= display_name(@instance_presenter.contact_account, custom_emojify: true)
           %span.display-name__account @#{@instance_presenter.contact_account.acct}
     - else
       .account__display-name

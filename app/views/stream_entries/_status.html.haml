@@ -28,7 +28,7 @@
         = fa_icon('retweet fw')
       %span
         = link_to TagManager.instance.url_for(status.account), class: 'status__display-name muted' do
-          %strong.emojify= display_name(status.account)
+          %strong.emojify= display_name(status.account, custom_emojify: true)
         = t('stream_entries.reblogged')
   - elsif pinned
     .pre-header
