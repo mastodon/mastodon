@@ -15,6 +15,8 @@ import {
 
 let cancelFetchComposeSuggestionsAccounts;
 
+import { extractHashtags } from 'twitter-text';
+
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
 export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
@@ -118,7 +120,7 @@ export function mentionCompose(account, router) {
   };
 };
 
-export function submitCompose() {
+export function submitCompose(withCommunity) {
   return function (dispatch, getState) {
     let status = getState().getIn(['compose', 'text'], '');
     const media  = getState().getIn(['compose', 'media_attachments']);
@@ -158,13 +160,57 @@ export function submitCompose() {
       insertOrRefresh('home', refreshHomeTimeline);
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        insertOrRefresh('community', refreshCommunityTimeline);
+        if (hasDefaultHashtag) {
+          // Refresh the community timeline only if there is default hashtag
+          insertOrRefresh('community', refreshCommunityTimeline);
+        }
         insertOrRefresh('public', refreshPublicTimeline);
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
   };
+};
+
+const handleDefaultTag = (withCommunity, status, visibility) => {
+  if (!status || !status.length) {
+    return {};
+  }
+
+  const tags = extractHashtags(status);
+  const hasHashtags = tags.length > 0;
+  const hasDefaultHashtag = tags.some(tag => tag === process.env.DEFAULT_HASHTAG);
+  const isPublic = visibility === 'public';
+
+  if (withCommunity) {
+    // toot with community:
+    // if has default hashtag: keep
+    // else if public: add default hashtag
+    return hasDefaultHashtag ? {
+      status,
+      visibility,
+      hasDefaultHashtag: true,
+    } : {
+      status: isPublic ? `${status} #${process.env.DEFAULT_HASHTAG}` : status,
+      visibility,
+      hasDefaultHashtag: true,
+    };
+
+  } else {
+    // toot without community:
+    // if has hashtag: keep
+    // else if public: change visibility to unlisted
+    return hasHashtags ? {
+      status,
+      visibility,
+      hasDefaultHashtag: false,
+    } : {
+      status,
+      visibility: isPublic ? 'unlisted' : visibility,
+      hasDefaultHashtag: false,
+    };
+
+  }
 };
 
 export function submitComposeRequest() {
