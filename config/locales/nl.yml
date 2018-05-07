@@ -373,6 +373,7 @@ nl:
   admin_mailer:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
+      body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
