@@ -172,7 +172,6 @@ class Status < ApplicationRecord
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
-  before_validation :set_sensitivity
   before_validation :set_local
 
   class << self
@@ -318,10 +317,6 @@ class Status < ApplicationRecord
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
     self.visibility = reblog.visibility if reblog?
     self.sensitive  = false if sensitive.nil?
-  end
-
-  def set_sensitivity
-    self.sensitive = sensitive || spoiler_text.present?
   end
 
   def set_conversation
