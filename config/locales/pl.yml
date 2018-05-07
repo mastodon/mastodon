@@ -53,9 +53,7 @@ pl:
     unfollow: Przestań śledzić
   admin:
     account_moderation_notes:
-      account: Autor
       create: Dodaj
-      created_at: Data
       created_msg: Pomyślnie dodano notatkę moderacyjną!
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
@@ -72,6 +70,7 @@ pl:
         title: Zmień adres e-mail dla %{username}
       confirm: Potwierdź
       confirmed: Potwierdzono
+      confirming: Potwierdzam
       demote: Degraduj
       disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
@@ -80,6 +79,7 @@ pl:
       domain: Domena
       edit: Edytuj
       email: Adres e-mail
+      email_status: Status e-maila
       enable: Aktywuj
       enabled: Aktywowano
       feed_url: Adres kanału
@@ -118,6 +118,10 @@ pl:
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież awatar
       remove_avatar: Usun awatar
+      resend_confirmation:
+        already_confirmed: Ten użytkownik jest już potwierdzony
+        send: Wyślij ponownie email potwierdzający
+        success: E-mail z potwierdzeniem został wysłany!
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
@@ -270,7 +274,6 @@ pl:
       comment:
         none: Brak
       created_at: Zgłoszono
-      delete: Usuń
       id: ID
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
@@ -280,9 +283,6 @@ pl:
         create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
         delete: Usuń
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
-      nsfw:
-        'false': Nie oznaczaj jako NSFW
-        'true': Oznaczaj jako NSFW
       reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
@@ -357,11 +357,8 @@ pl:
         delete: Usuń
         nsfw_off: Cofnij NSFW
         nsfw_on: Oznacz jako NSFW
-      execute: Wykonaj
       failed_to_execute: Nie udało się wykonać
       media:
-        hide: Ukryj zawartość multimedialną
-        show: Pokaż zawartość multimedialną
         title: Media
       no_media: Bez zawartości multimedialnej
       title: Wpisy konta
@@ -377,6 +374,7 @@ pl:
   admin_mailer:
     new_report:
       body: Użytkownik %{reporter} zgłosił %{target}
+      body_remote: Ktoś z %{domain} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili

@@ -49,13 +49,11 @@ oc:
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
       admin: Admin
-      moderator: Mod
+      moderator: Moderador
     unfollow: Quitar de sègre
   admin:
     account_moderation_notes:
-      account: Moderator
       create: Crear
-      created_at: Data
       created_msg: Nòta de moderacion ben creada !
       delete: Suprimir
       destroyed_msg: Nòta de moderacion ben suprimida !
@@ -72,6 +70,7 @@ oc:
         title: Cambiar l’adreça a %{username}
       confirm: Confirmar
       confirmed: Confirmat
+      confirming: Confirmando
       demote: Retrogradar
       disable: Desactivar
       disable_two_factor_authentication: Desactivar 2FA
@@ -80,6 +79,7 @@ oc:
       domain: Domeni
       edit: Modificar
       email: Corrièl
+      email_status: Estado del correo electrónico
       enable: Activar
       enabled: Activat
       feed_url: Flux URL
@@ -118,13 +118,17 @@ oc:
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar los avatars
       remove_avatar: Supriir l’avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
       role: Permissions
       roles:
         admin: Administrator
-        moderator: Moderator
+        moderator: Moderador
         staff: Personnal
         user: Uitlizaire
       salmon_url: URL Salmon
@@ -164,10 +168,12 @@ oc:
         memorialize_account: "%{name} transformèt en memorial la pagina de perfil a %{target}"
         promote_user: "%{name} promoguèt %{target}"
         remove_avatar_user: "%{name} suprimèt l’avatar a %{target}"
+        reopen_report: "%{name} tornèt dobrir lo rapòrt %{target}"
         reset_password_user: "%{name} reïnicializèt lo senhal a %{target}"
-        resolve_report: "%{name} anullèt lo rapòrt de %{target}"
+        resolve_report: "%{name} anullèt lo rapòrt %{target}"
         silence_account: "%{name} metèt en silenci lo compte a %{target}"
         suspend_account: "%{name} susprenguèt lo compte a %{target}"
+        unassigned_report: "%{name} daissèt de tractar lo rapòrt %{target}"
         unsilence_account: "%{name} levèt lo silenci del compte a %{target}"
         unsuspend_account: "%{name} restabliguèt lo compte a %{target}"
         update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
@@ -262,10 +268,11 @@ oc:
         report: rapòrt
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
+      assign_to_self: Me l’assignar
+      assigned: Moderador assignat
       comment:
         none: Pas cap
       created_at: Creacion
-      delete: Suprimir
       id: ID
       mark_as_resolved: Marcar coma resolgut
       mark_as_unresolved: Marcar coma pas resolgut
@@ -274,21 +281,21 @@ oc:
         create_and_resolve: Resòlvre amb una nòta
         create_and_unresolve: Tornar dobrir amb una nòta
         placeholder: Explicatz las accions que son estadas menadas o çò qu’es estat fach per aqueste rapòrt…
-      nsfw:
-        'false': Sens contengut sensible
-        'true': Contengut sensible activat
       reopen: Tornar dobrir lo rapòrt
       report: 'senhalament #%{id}'
       report_contents: Contenguts
       reported_account: Compte senhalat
       reported_by: Senhalat per
       resolved: Resolgut
+      resolved_msg: Rapòrt corrèctament resolgut  !
       silence_account: Metre lo compte en silenci
       status: Estatut
       suspend_account: Suspendre lo compte
       target: Cibla
       title: Senhalament
+      unassign: Levar
       unresolved: Pas resolguts
+      updated_at: Actualizat
       view: Veire
     settings:
       activity_api_enabled:
@@ -346,13 +353,10 @@ oc:
       back_to_account: Tornar a la pagina Compte
       batch:
         delete: Suprimir
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Lançar
+        nsfw_off: Marcar coma pas sensible
+        nsfw_on: Marcar coma sensible
       failed_to_execute: Fracàs
       media:
-        hide: Amagar mèdia
-        show: Mostrar mèdia
         title: Mèdia
       no_media: Cap mèdia
       title: Estatuts del compte
@@ -490,9 +494,7 @@ oc:
       less_than_x_minutes:
         one: Fa mens d’una minuta
         other: Fa mens de %{count} minutas
-      less_than_x_seconds:
-        one: Fa mens d’una segonda
-        other: Fa mens de %{count} segondas
+      less_than_x_seconds: Ara meteis
       over_x_years:
         one: Fa mai d’un an
         other: Fa mai de %{count} ans
@@ -703,7 +705,7 @@ oc:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Otter
+      otter: Autre
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -753,6 +755,7 @@ oc:
       video:
         one: "%{count} vidèo"
         other: "%{count} vidèos"
+    content_warning: 'Avertiment de contengut : %{warning}'
     disallowed_hashtags:
       one: 'conten una etiqueta desactivada : %{tags}'
       other: 'conten las etiquetas desactivadas : %{tags}'

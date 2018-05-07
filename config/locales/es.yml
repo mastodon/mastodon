@@ -53,9 +53,7 @@ es:
     unfollow: Dejar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Crear
-      created_at: Fecha
       created_msg: "¡Nota de moderación creada con éxito!"
       delete: Borrar
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
@@ -72,6 +70,7 @@ es:
         title: Cambiar el correo electrónico de %{username}
       confirm: Confirmar
       confirmed: Confirmado
+      confirming: Confirmando
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -80,6 +79,7 @@ es:
       domain: Dominio
       edit: Editar
       email: E-mail
+      email_status: E-mail Status
       enable: Habilitar
       enabled: Habilitada
       feed_url: URL de notificaciones
@@ -118,6 +118,10 @@ es:
       push_subscription_expires: Expiración de la suscripción PuSH
       redownload: Refrescar avatar
       remove_avatar: Eliminar el avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito"
       reset: Reiniciar
       reset_password: Reiniciar contraseña
       resubscribe: Re-suscribir
@@ -269,7 +273,6 @@ es:
       comment:
         none: Ninguno
       created_at: Denunciado
-      delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resuelto
       mark_as_unresolved: Marcar como no resuelto
@@ -279,9 +282,6 @@ es:
         create_and_unresolve: Reabrir con una nota
         delete: Eliminar
         placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
-      nsfw:
-        'false': Mostrar multimedia
-        'true': Ocultar multimedia
       reopen: Reabrir denuncia
       report: 'Reportar #%{id}'
       report_contents: Contenido
@@ -356,11 +356,8 @@ es:
         delete: Eliminar
         nsfw_off: Marcar contenido como no sensible
         nsfw_on: Marcar contenido como sensible
-      execute: Ejecutar
       failed_to_execute: Falló al ejecutar
       media:
-        hide: Ocultar multimedia
-        show: Mostrar multimedia
         title: Multimedia
       no_media: No hay multimedia
       title: Estado de las cuentas
@@ -376,6 +373,7 @@ es:
   admin_mailer:
     new_report:
       body: "%{reporter} ha reportado a %{target}"
+      body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico

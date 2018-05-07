@@ -53,9 +53,7 @@ de:
     unfollow: Entfolgen
   admin:
     account_moderation_notes:
-      account: Moderator*in
       create: Erstellen
-      created_at: Datum
       created_msg: Moderationsnotiz erfolgreich erstellt!
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
@@ -72,6 +70,7 @@ de:
         title: E-Mail-Adresse für %{username} ändern
       confirm: Bestätigen
       confirmed: Bestätigt
+      confirming: Bestätigung
       demote: Degradieren
       disable: Ausschalten
       disable_two_factor_authentication: 2FA abschalten
@@ -80,6 +79,7 @@ de:
       domain: Domain
       edit: Bearbeiten
       email: E-Mail
+      email_status: E-Mail-Status
       enable: Freischalten
       enabled: Freigegeben
       feed_url: Feed-URL
@@ -118,6 +118,10 @@ de:
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Avatar neu laden
       remove_avatar: Profilbild entfernen
+      resend_confirmation:
+        already_confirmed: Dieser Benutzer wurde bereits bestätigt
+        send: Bestätigungsmail erneut senden
+        success: Bestätigungs-E-Mail erfolgreich gesendet!
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
@@ -269,7 +273,6 @@ de:
       comment:
         none: Kein
       created_at: Gemeldet
-      delete: Löschen
       id: ID
       mark_as_resolved: Als gelöst markieren
       mark_as_unresolved: Als ungelöst markieren
@@ -279,9 +282,6 @@ de:
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
         placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder andere Neuigkeiten zu dieser Meldung…
-      nsfw:
-        'false': Medienanhänge wieder anzeigen
-        'true': Medienanhänge verbergen
       reopen: Meldung wieder öffnen
       report: 'Meldung #%{id}'
       report_contents: Inhalt
@@ -356,11 +356,8 @@ de:
         delete: Löschen
         nsfw_off: Als nicht heikel markieren
         nsfw_on: Als heikel markieren
-      execute: Ausführen
       failed_to_execute: Ausführen fehlgeschlagen
       media:
-        hide: Medien verbergen
-        show: Medien anzeigen
         title: Medien
       no_media: Keine Medien
       title: Beiträge des Kontos
