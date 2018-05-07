@@ -30,7 +30,7 @@ const makeMapStateToProps = () => {
       account: getAccount(state, accountId),
       comment: state.getIn(['reports', 'new', 'comment']),
       forward: state.getIn(['reports', 'new', 'forward']),
-      statusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}`, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
+      statusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
     };
   };
 
@@ -64,12 +64,12 @@ export default class ReportModal extends ImmutablePureComponent {
   }
 
   componentDidMount () {
-    this.props.dispatch(refreshAccountTimeline(this.props.account.get('id')));
+    this.props.dispatch(refreshAccountTimeline(this.props.account.get('id'), true));
   }
 
   componentWillReceiveProps (nextProps) {
     if (this.props.account !== nextProps.account && nextProps.account) {
-      this.props.dispatch(refreshAccountTimeline(nextProps.account.get('id')));
+      this.props.dispatch(refreshAccountTimeline(nextProps.account.get('id'), true));
     }
   }
 

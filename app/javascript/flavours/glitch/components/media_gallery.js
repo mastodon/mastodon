@@ -202,6 +202,7 @@ export default class MediaGallery extends React.PureComponent {
 
   static propTypes = {
     sensitive: PropTypes.bool,
+    revealed: PropTypes.bool,
     standalone: PropTypes.bool,
     letterbox: PropTypes.bool,
     fullwidth: PropTypes.bool,
@@ -216,7 +217,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !this.props.sensitive || displaySensitiveMedia,
+    visible: this.props.revealed === undefined ? (!this.props.sensitive || displaySensitiveMedia) : this.props.revealed,
   };
 
   componentWillReceiveProps (nextProps) {

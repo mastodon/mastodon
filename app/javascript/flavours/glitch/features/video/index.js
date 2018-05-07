@@ -92,6 +92,7 @@ export default class Video extends React.PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
+    revealed: PropTypes.bool,
     startTime: PropTypes.number,
     onOpenVideo: PropTypes.func,
     onCloseVideo: PropTypes.func,
@@ -111,7 +112,7 @@ export default class Video extends React.PureComponent {
     fullscreen: false,
     hovered: false,
     muted: false,
-    revealed: !this.props.sensitive || displaySensitiveMedia,
+    revealed: this.props.revealed === undefined ? (!this.props.sensitive || displaySensitiveMedia) : this.props.revealed,
   };
 
   setPlayerRef = c => {
@@ -255,7 +256,7 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed } = this.props;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive } = this.props;
     const { containerWidth, currentTime, duration, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
     const playerStyle = {};
@@ -268,6 +269,13 @@ export default class Video extends React.PureComponent {
 
       playerStyle.width  = width;
       playerStyle.height = height;
+    }
+
+    let warning;
+    if (sensitive) {
+      warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
+    } else {
+      warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
     }
 
     return (
@@ -292,7 +300,7 @@ export default class Video extends React.PureComponent {
         />
 
         <button type='button' className={classNames('video-player__spoiler', { active: !revealed })} onClick={this.toggleReveal}>
-          <span className='video-player__spoiler__title'><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
+          <span className='video-player__spoiler__title'>{warning}</span>
           <span className='video-player__spoiler__subtitle'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </button>
 

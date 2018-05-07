@@ -40,6 +40,7 @@ export default class StatusCheckBox extends React.PureComponent {
                 height={110}
                 inline
                 sensitive={status.get('sensitive')}
+                revealed={false}
                 onOpenVideo={noop}
               />
             )}
@@ -48,7 +49,7 @@ export default class StatusCheckBox extends React.PureComponent {
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={noop} />}
+            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} revealed={false} height={110} onOpenMedia={noop} />}
           </Bundle>
         );
       }
