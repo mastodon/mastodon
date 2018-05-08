@@ -21,7 +21,7 @@ const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning
     return <Warning message={<FormattedMessage id='compose_form.hashtag_warning' defaultMessage="This toot won't be listed under any hashtag as it is unlisted. Only public toots can be searched by hashtag." />} />;
   }
   if (directMessageWarning) {
-    return <Warning message={<FormattedMessage id='compose_form.direct_message_warning' defaultMessage='This toot will only be visible to all the mentioned users.' />} />;
+    return <Warning message={<FormattedMessage id='compose_form.direct_message_warning' defaultMessage='This toot will only be sent to all the mentioned users. However, the operators of your instance and any receiving instances may see this message.' />} />;
   }
 
   return null;
