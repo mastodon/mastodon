@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'sidekiq-scheduler'
 
 class Scheduler::MediaCleanupScheduler
   include Sidekiq::Worker

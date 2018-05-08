@@ -3,19 +3,19 @@ fa:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Application name
-        redirect_uri: Redirect URI
-        scopes: Scopes
-        website: Application website
+        name: نام برنامه
+        redirect_uri: نشانی تغییرمسیر
+        scopes: محدوده
+        website: وبگاه برنامه
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: cannot contain a fragment.
-              invalid_uri: must be a valid URI.
-              relative_uri: must be an absolute URI.
-              secured_uri: must be an HTTPS/SSL URI.
+              fragment_present: نمی‌تواند چندتکه باشد.
+              invalid_uri: باید یک نشانی معتبر باشد.
+              relative_uri: باید یک نشانی مطلق باشد.
+              secured_uri: باید یک نشانی HTTPS/SSL باشد.
   doorkeeper:
     applications:
       buttons:

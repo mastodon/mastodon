@@ -6,6 +6,7 @@ export default class LoadMore extends React.PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func,
+    disabled: PropTypes.bool,
     visible: PropTypes.bool,
   }
 
@@ -14,10 +15,10 @@ export default class LoadMore extends React.PureComponent {
   }
 
   render() {
-    const { visible } = this.props;
+    const { disabled, visible } = this.props;
 
     return (
-      <button className='load-more' disabled={!visible} style={{ visibility: visible ? 'visible' : 'hidden' }} onClick={this.props.onClick}>
+      <button className='load-more' disabled={disabled || !visible} style={{ visibility: visible ? 'visible' : 'hidden' }} onClick={this.props.onClick}>
         <FormattedMessage id='status.load_more' defaultMessage='Load more' />
       </button>
     );

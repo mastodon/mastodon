@@ -23,7 +23,7 @@ require_relative '../lib/mastodon/redis_config'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+    config.load_defaults 5.2
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -40,9 +40,12 @@ module Mastodon
       :ar,
       :bg,
       :ca,
+      :co,
       :de,
+      :el,
       :eo,
       :es,
+      :eu,
       :fa,
       :fi,
       :fr,
@@ -67,6 +70,7 @@ module Mastodon
       :sr,
       :'sr-Latn',
       :sv,
+      :te,
       :th,
       :tr,
       :uk,
@@ -84,15 +88,6 @@ module Mastodon
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     config.active_job.queue_adapter = :sidekiq
-
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins  '*'
-        resource '/@:username',  headers: :any, methods: [:get], credentials: false
-        resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :patch, :options], credentials: false, expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
-        resource '/oauth/token', headers: :any, methods: [:post], credentials: false
-      end
-    end
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater

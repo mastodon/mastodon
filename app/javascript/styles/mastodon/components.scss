@@ -4,7 +4,7 @@
 }
 
 .button {
-  background-color: darken($ui-highlight-color, 3%);
+  background-color: $ui-highlight-color;
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
@@ -31,13 +31,23 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: lighten($ui-highlight-color, 7%);
+    background-color: lighten($ui-highlight-color, 10%);
     transition: all 200ms ease-out;
   }
 
   &:disabled {
     background-color: $ui-primary-color;
     cursor: default;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
+    outline: 0 !important;
   }
 
   &.button-primary,
@@ -52,7 +62,7 @@
   }
 
   &.button-alternative {
-    color: $ui-base-color;
+    color: $inverted-text-color;
     background: $ui-primary-color;
 
     &:active,
@@ -73,7 +83,7 @@
   }
 
   &.button-secondary {
-    color: $ui-primary-color;
+    color: $darker-text-color;
     background: transparent;
     padding: 3px 15px;
     border: 1px solid $ui-primary-color;
@@ -82,7 +92,7 @@
     &:focus,
     &:hover {
       border-color: lighten($ui-primary-color, 4%);
-      color: lighten($ui-primary-color, 4%);
+      color: lighten($darker-text-color, 4%);
     }
   }
 
@@ -98,26 +108,10 @@
   position: relative;
 }
 
-.column-icon {
-  background: lighten($ui-base-color, 4%);
-  color: $ui-primary-color;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 15px;
-  position: absolute;
-  right: 0;
-  top: -48px;
-  z-index: 3;
-
-  &:hover {
-    color: lighten($ui-primary-color, 7%);
-  }
-}
-
 .icon-button {
   display: inline-block;
   padding: 0;
-  color: $ui-base-lighter-color;
+  color: $action-button-color;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -126,17 +120,17 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($ui-base-color, 33%);
+    color: lighten($action-button-color, 7%);
     transition: color 200ms ease-out;
   }
 
   &.disabled {
-    color: lighten($ui-base-color, 13%);
+    color: darken($action-button-color, 13%);
     cursor: default;
   }
 
   &.active {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
   }
 
   &::-moz-focus-inner {
@@ -150,23 +144,23 @@
   }
 
   &.inverted {
-    color: lighten($ui-base-color, 33%);
+    color: $lighter-text-color;
 
     &:hover,
     &:active,
     &:focus {
-      color: $ui-base-lighter-color;
+      color: darken($lighter-text-color, 7%);
     }
 
     &.disabled {
-      color: $ui-primary-color;
+      color: lighten($lighter-text-color, 7%);
     }
 
     &.active {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
 
       &.disabled {
-        color: lighten($ui-highlight-color, 13%);
+        color: lighten($highlight-text-color, 13%);
       }
     }
   }
@@ -185,7 +179,7 @@
 }
 
 .text-icon-button {
-  color: lighten($ui-base-color, 33%);
+  color: $lighter-text-color;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -199,17 +193,17 @@
   &:hover,
   &:active,
   &:focus {
-    color: $ui-base-lighter-color;
+    color: darken($lighter-text-color, 7%);
     transition: color 200ms ease-out;
   }
 
   &.disabled {
-    color: lighten($ui-base-color, 13%);
+    color: lighten($lighter-text-color, 20%);
     cursor: default;
   }
 
   &.active {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
   }
 
   &::-moz-focus-inner {
@@ -226,25 +220,6 @@
 .dropdown-menu {
   position: absolute;
   transform-origin: 50% 0;
-}
-
-.dropdown--active .icon-button {
-  color: $ui-highlight-color;
-}
-
-.dropdown--active::after {
-  @media screen and (min-width: 631px) {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 4.5px 7.8px;
-    border-color: transparent transparent $ui-secondary-color;
-    bottom: 8px;
-    right: 104px;
-  }
 }
 
 .invisible {
@@ -271,15 +246,11 @@
   }
 }
 
-.lightbox .icon-button {
-  color: $ui-base-color;
-}
-
 .compose-form {
   padding: 10px;
 
   .compose-form__warning {
-    color: darken($ui-secondary-color, 65%);
+    color: $inverted-text-color;
     margin-bottom: 15px;
     background: $ui-primary-color;
     box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
@@ -289,7 +260,7 @@
     font-weight: 400;
 
     strong {
-      color: darken($ui-secondary-color, 65%);
+      color: $inverted-text-color;
       font-weight: 500;
 
       @each $lang in $cjk-langs {
@@ -300,7 +271,7 @@
     }
 
     a {
-      color: darken($ui-primary-color, 33%);
+      color: $lighter-text-color;
       font-weight: 500;
       text-decoration: underline;
 
@@ -333,7 +304,7 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     background: $simple-background-color;
     padding: 10px;
     font-family: inherit;
@@ -378,7 +349,7 @@
     box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
     background: $ui-secondary-color;
     border-radius: 0 0 4px 4px;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     font-size: 14px;
     padding: 6px;
 
@@ -419,11 +390,11 @@
   }
 
   .autosuggest-account .display-name__account {
-    color: lighten($ui-base-color, 36%);
+    color: $lighter-text-color;
   }
 
   .compose-form__modifiers {
-    color: $ui-base-color;
+    color: $inverted-text-color;
     font-family: inherit;
     font-size: 14px;
     background: $simple-background-color;
@@ -454,7 +425,7 @@
 
         .icon-button {
           flex: 0 1 auto;
-          color: $ui-secondary-color;
+          color: $action-button-color;
           font-size: 14px;
           font-weight: 500;
           padding: 10px;
@@ -463,7 +434,7 @@
           &:hover,
           &:focus,
           &:active {
-            color: lighten($ui-secondary-color, 4%);
+            color: lighten($action-button-color, 7%);
           }
         }
 
@@ -486,7 +457,7 @@
 
         input {
           background: transparent;
-          color: $ui-secondary-color;
+          color: $secondary-text-color;
           border: 0;
           padding: 0;
           margin: 0;
@@ -500,8 +471,8 @@
           }
 
           &::placeholder {
-            opacity: 0.54;
-            color: $ui-secondary-color;
+            opacity: 0.75;
+            color: $secondary-text-color;
           }
         }
 
@@ -563,7 +534,7 @@
         font-family: 'mastodon-font-sans-serif', sans-serif;
         font-size: 14px;
         font-weight: 600;
-        color: lighten($ui-base-color, 12%);
+        color: $lighter-text-color;
 
         &.character-counter--over {
           color: $warning-red;
@@ -585,7 +556,6 @@
 }
 
 .emojione {
-  display: inline-block;
   font-size: inherit;
   vertical-align: middle;
   object-fit: contain;
@@ -628,7 +598,7 @@
 
 .reply-indicator__display-name,
 .quote-indicator__display-name {
-  color: $ui-base-color;
+  color: $inverted-text-color;
   display: block;
   max-width: 100%;
   line-height: 24px;
@@ -685,14 +655,14 @@
   }
 
   a {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
 
       .fa {
-        color: lighten($ui-base-color, 40%);
+        color: lighten($dark-text-color, 7%);
       }
     }
 
@@ -707,16 +677,26 @@
     }
 
     .fa {
-      color: lighten($ui-base-color, 30%);
+      color: $dark-text-color;
     }
   }
 
   .status__content__spoiler-link {
-    background: lighten($ui-base-color, 30%);
+    background: $action-button-color;
 
     &:hover {
-      background: lighten($ui-base-color, 33%);
+      background: lighten($action-button-color, 7%);
       text-decoration: none;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &:focus,
+    &:active {
+      outline: 0 !important;
     }
   }
 
@@ -734,7 +714,7 @@
   border-radius: 2px;
   background: transparent;
   border: 0;
-  color: lighten($ui-base-color, 8%);
+  color: $inverted-text-color;
   font-weight: 700;
   font-size: 11px;
   padding: 0 6px;
@@ -830,36 +810,32 @@
 
   &.status-direct {
     background: lighten($ui-base-color, 8%);
-
-    .icon-button.disabled {
-      color: lighten($ui-base-color, 16%);
-    }
   }
 
   &.light {
     .status__relative-time {
-      color: $ui-primary-color;
+      color: $light-text-color;
     }
 
     .status__display-name {
-      color: $ui-base-color;
+      color: $inverted-text-color;
     }
 
     .display-name {
       strong {
-        color: $ui-base-color;
+        color: $inverted-text-color;
       }
 
       span {
-        color: $ui-primary-color;
+        color: $light-text-color;
       }
     }
 
     .status__content {
-      color: $ui-base-color;
+      color: $inverted-text-color;
 
       a {
-        color: $ui-highlight-color;
+        color: $highlight-text-color;
       }
 
       a.status__content__spoiler-link {
@@ -879,19 +855,19 @@
     background: transparent;
 
     .icon-button.disabled {
-      color: lighten($ui-base-color, 13%);
+      color: lighten($action-button-color, 13%);
     }
   }
 }
 
 .status__relative-time {
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   float: right;
   font-size: 14px;
 }
 
 .status__display-name {
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
 }
 
 .status__info .status__display-name {
@@ -942,14 +918,14 @@
 
 .status__prepend {
   margin-left: 68px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   padding: 8px 0;
   padding-bottom: 2px;
   font-size: 14px;
   position: relative;
 
   .status__display-name strong {
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
   }
 
   > span {
@@ -1011,7 +987,7 @@
 
 .detailed-status__meta {
   margin-top: 15px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   font-size: 14px;
   line-height: 18px;
 }
@@ -1040,22 +1016,55 @@
 
 .reply-indicator__content,
 .quote-indicator__content {
-  color: $ui-base-color;
+  color: $inverted-text-color;
   font-size: 14px;
 
   a {
-    color: lighten($ui-base-color, 20%);
+    color: $lighter-text-color;
   }
+}
+
+.domain {
+  padding: 10px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  .domain__domain-name {
+    flex: 1 1 auto;
+    display: block;
+    color: $primary-text-color;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.domain__wrapper {
+  display: flex;
+}
+
+.domain_buttons {
+  height: 18px;
+  padding: 10px;
+  white-space: nowrap;
 }
 
 .account {
   padding: 10px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 
+  &.compact {
+    padding: 0;
+    border-bottom: 0;
+
+    .account__avatar-wrapper {
+      margin-left: 0;
+    }
+  }
+
   .account__display-name {
     flex: 1 1 auto;
     display: block;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     overflow: hidden;
     text-decoration: none;
     font-size: 14px;
@@ -1075,13 +1084,16 @@
 .account__avatar {
   @include avatar-radius();
   position: relative;
-  cursor: pointer;
 
   &-inline {
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
   }
+}
+
+a .account__avatar {
+  cursor: pointer;
 }
 
 .account__avatar-overlay {
@@ -1125,7 +1137,7 @@
     }
 
     .account__header__username {
-      color: $ui-primary-color;
+      color: $secondary-text-color;
     }
   }
 
@@ -1135,7 +1147,7 @@
   }
 
   .account__header__content {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   .account__header__display-name {
@@ -1150,7 +1162,7 @@
   }
 
   .account__header__username {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
     font-size: 14px;
     font-weight: 400;
     display: block;
@@ -1163,7 +1175,7 @@
 .account__disclaimer {
   padding: 10px;
   border-top: 1px solid lighten($ui-base-color, 8%);
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
 
   strong {
     font-weight: 500;
@@ -1189,7 +1201,7 @@
 }
 
 .account__header__content {
-  color: $ui-primary-color;
+  color: $darker-text-color;
   font-size: 14px;
   font-weight: 400;
   overflow: hidden;
@@ -1266,7 +1278,7 @@
     display: block;
     text-transform: uppercase;
     font-size: 11px;
-    color: $ui-primary-color;
+    color: $darker-text-color;
   }
 
   strong {
@@ -1280,10 +1292,6 @@
         font-weight: 700;
       }
     }
-  }
-
-  abbr {
-    color: $ui-base-lighter-color;
   }
 }
 
@@ -1336,7 +1344,7 @@
 .status__display-name,
 .reply-indicator__display-name,
 .detailed-status__display-name,
-.account__display-name {
+a.account__display-name {
   &:hover strong {
     text-decoration: underline;
   }
@@ -1354,7 +1362,7 @@
 }
 
 .detailed-status__display-name {
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   display: block;
   line-height: 24px;
   margin-bottom: 15px;
@@ -1389,11 +1397,11 @@
 .muted {
   .status__content p,
   .status__content a {
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
   }
 
   .status__display-name strong {
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
   }
 
   .status__avatar {
@@ -1402,10 +1410,10 @@
 
   a.status__content__spoiler-link {
     background: $ui-base-lighter-color;
-    color: lighten($ui-base-color, 4%);
+    color: $inverted-text-color;
 
     &:hover {
-      background: lighten($ui-base-color, 29%);
+      background: lighten($ui-base-lighter-color, 7%);
       text-decoration: none;
     }
   }
@@ -1416,12 +1424,12 @@
   padding: 8px 0;
   padding-bottom: 0;
   cursor: default;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   font-size: 15px;
   position: relative;
 
   .fa {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
   }
 
   > span {
@@ -1482,14 +1490,19 @@
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  &.image-loader--loading {
-    display: flex;
-    align-content: center;
+  .image-loader__preview-canvas {
+    max-width: $media-modal-media-max-width;
+    max-height: $media-modal-media-max-height;
+    background: url('../images/void.png') repeat;
+    object-fit: contain;
+  }
 
-    .image-loader__preview-canvas {
-      filter: blur(2px);
-    }
+  &.image-loader--loading .image-loader__preview-canvas {
+    filter: blur(2px);
   }
 
   &.image-loader--amorphous .image-loader__preview-canvas {
@@ -1502,7 +1515,16 @@
   width: 100%;
   height: 100%;
   display: flex;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: $media-modal-media-max-width;
+    max-height: $media-modal-media-max-height;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
 }
 
 .navigation-bar {
@@ -1510,10 +1532,10 @@
   display: flex;
   flex-shrink: 0;
   cursor: default;
-  color: $ui-primary-color;
+  color: $darker-text-color;
 
   strong {
-    color: $primary-text-color;
+    color: $secondary-text-color;
   }
 
   a {
@@ -1618,7 +1640,7 @@
     box-sizing: border-box;
     text-decoration: none;
     background: $ui-secondary-color;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1627,7 +1649,7 @@
     &:hover,
     &:active {
       background: $ui-highlight-color;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       outline: 0;
     }
   }
@@ -1669,7 +1691,7 @@
     box-sizing: border-box;
     text-decoration: none;
     background: $ui-secondary-color;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1680,7 +1702,7 @@
 
     &:hover {
       background: $ui-highlight-color;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
     }
   }
 }
@@ -1692,7 +1714,7 @@
 .static-content {
   padding: 10px;
   padding-top: 20px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
 
   h1 {
     font-size: 16px;
@@ -1779,7 +1801,7 @@
   display: block;
   flex: 1 1 auto;
   padding: 15px 5px 13px;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   text-decoration: none;
   text-align: center;
   font-size: 16px;
@@ -1944,8 +1966,8 @@
   }
 
   &.active {
-    border-bottom: 2px solid $ui-highlight-color;
-    color: $ui-highlight-color;
+    border-bottom: 2px solid $highlight-text-color;
+    color: $highlight-text-color;
   }
 
   &:hover,
@@ -2000,7 +2022,7 @@
 
 .column-back-button {
   background: lighten($ui-base-color, 4%);
-  color: $ui-highlight-color;
+  color: $highlight-text-color;
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
@@ -2019,7 +2041,7 @@
   background: lighten($ui-base-color, 4%);
   border: 0;
   font-family: inherit;
-  color: $ui-highlight-color;
+  color: $highlight-text-color;
   cursor: pointer;
   white-space: nowrap;
   font-size: 16px;
@@ -2191,7 +2213,7 @@
 
 .column-subheading {
   background: $ui-base-color;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   padding: 8px 20px;
   font-size: 12px;
   font-weight: 500;
@@ -2214,11 +2236,11 @@
   flex: 1 0 auto;
 
   p {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   a {
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
   }
 }
 
@@ -2244,7 +2266,7 @@
 }
 
 .setting-text {
-  color: $ui-primary-color;
+  color: $darker-text-color;
   background: transparent;
   border: none;
   border-bottom: 2px solid $ui-primary-color;
@@ -2258,22 +2280,11 @@
   &:focus,
   &:active {
     color: $primary-text-color;
-    border-bottom-color: $ui-highlight-color;
+    border-bottom-color: $highlight-text-color;
   }
 
   @media screen and (max-width: 600px) {
     font-size: 16px;
-  }
-
-  &.light {
-    color: $ui-base-color;
-    border-bottom: 2px solid lighten($ui-base-color, 27%);
-
-    &:focus,
-    &:active {
-      color: $ui-base-color;
-      border-bottom-color: $ui-highlight-color;
-    }
   }
 }
 
@@ -2297,12 +2308,12 @@
 }
 
 .reduce-motion button.icon-button i.fa-retweet {
-  color: $ui-base-lighter-color;
+  color: $action-button-color;
   transition: color 100ms ease-in;
 }
 
 .reduce-motion button.icon-button.active i.fa-retweet {
-  color: $ui-highlight-color;
+  color: $highlight-text-color;
 }
 
 .status-card {
@@ -2310,7 +2321,7 @@
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
@@ -2390,7 +2401,7 @@ a.status-card {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2404,7 +2415,7 @@ a.status-card {
 }
 
 .status-card__description {
-  color: $ui-primary-color;
+  color: $darker-text-color;
 }
 
 .status-card__host {
@@ -2448,7 +2459,7 @@ a.status-card {
 
 .load-more {
   display: block;
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   background-color: transparent;
   border: 0;
   font-size: inherit;
@@ -2464,11 +2475,15 @@ a.status-card {
   }
 }
 
+.load-gap {
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+}
+
 .regeneration-indicator {
   text-align: center;
   font-size: 16px;
   font-weight: 500;
-  color: lighten($ui-base-color, 16%);
+  color: $dark-text-color;
   background: $ui-base-color;
   cursor: default;
   display: flex;
@@ -2508,7 +2523,7 @@ a.status-card {
     strong {
       display: block;
       margin-bottom: 10px;
-      color: lighten($ui-base-color, 34%);
+      color: $dark-text-color;
     }
 
     span {
@@ -2566,15 +2581,15 @@ a.status-card {
   }
 
   & > .column-header__back-button {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
   }
 
   &.active {
-    box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
+    box-shadow: 0 1px 0 rgba($highlight-text-color, 0.3);
 
     .column-header__icon {
-      color: $ui-highlight-color;
-      text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
+      color: $highlight-text-color;
+      text-shadow: 0 0 10px rgba($highlight-text-color, 0.4);
     }
   }
 
@@ -2596,13 +2611,13 @@ a.status-card {
 .column-header__button {
   background: lighten($ui-base-color, 4%);
   border: 0;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
 
   &:hover {
-    color: lighten($ui-primary-color, 7%);
+    color: lighten($darker-text-color, 7%);
   }
 
   &.active {
@@ -2620,7 +2635,7 @@ a.status-card {
   max-height: 70vh;
   overflow: hidden;
   overflow-y: auto;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   transition: max-height 150ms ease-in-out, opacity 300ms linear;
   opacity: 1;
 
@@ -2649,7 +2664,7 @@ a.status-card {
 
 .column-header__setting-btn {
   &:hover {
-    color: lighten($ui-primary-color, 4%);
+    color: $darker-text-color;
     text-decoration: underline;
   }
 }
@@ -2683,7 +2698,7 @@ a.status-card {
 }
 
 .loading-indicator {
-  color: lighten($ui-base-color, 26%);
+  color: $dark-text-color;
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
@@ -2768,7 +2783,7 @@ a.status-card {
 
 .media-spoiler {
   background: $base-overlay-background;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   border: 0;
   padding: 0;
   width: 100%;
@@ -2780,7 +2795,7 @@ a.status-card {
   &:active,
   &:focus {
     padding: 0;
-    color: lighten($ui-primary-color, 8%);
+    color: lighten($darker-text-color, 8%);
   }
 }
 
@@ -2833,7 +2848,7 @@ a.status-card {
 }
 
 .column-settings__section {
-  color: $ui-primary-color;
+  color: $darker-text-color;
   cursor: default;
   display: block;
   font-weight: 500;
@@ -2891,7 +2906,7 @@ a.status-card {
 
 .setting-toggle__label,
 .setting-meta__label {
-  color: $ui-primary-color;
+  color: $darker-text-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
@@ -2899,13 +2914,12 @@ a.status-card {
 }
 
 .setting-meta__label {
-  color: $ui-primary-color;
   float: right;
 }
 
 .empty-column-indicator,
 .error-column {
-  color: lighten($ui-base-color, 20%);
+  color: $dark-text-color;
   background: $ui-base-color;
   text-align: center;
   padding: 20px;
@@ -2922,7 +2936,7 @@ a.status-card {
   }
 
   a {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
     text-decoration: none;
 
     &:hover {
@@ -3107,7 +3121,7 @@ a.status-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   font-size: 18px;
   font-weight: 500;
   border: 2px dashed $ui-base-lighter-color;
@@ -3116,7 +3130,7 @@ a.status-card {
 
 .upload-progress {
   padding: 10px;
-  color: $ui-base-lighter-color;
+  color: $lighter-text-color;
   overflow: hidden;
   display: flex;
 
@@ -3205,7 +3219,7 @@ a.status-card {
 }
 
 .privacy-dropdown__option {
-  color: $ui-base-color;
+  color: $inverted-text-color;
   padding: 10px;
   cursor: pointer;
   display: flex;
@@ -3238,12 +3252,12 @@ a.status-card {
 
 .privacy-dropdown__option__content {
   flex: 1 1 auto;
-  color: darken($ui-primary-color, 24%);
+  color: $lighter-text-color;
 
   strong {
     font-weight: 500;
     display: block;
-    color: $ui-base-color;
+    color: $inverted-text-color;
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -3292,7 +3306,7 @@ a.status-card {
   padding-right: 30px;
   font-family: inherit;
   background: $ui-base-color;
-  color: $ui-primary-color;
+  color: $darker-text-color;
   font-size: 14px;
   margin: 0;
 
@@ -3327,7 +3341,7 @@ a.status-card {
     font-size: 18px;
     width: 18px;
     height: 18px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     cursor: default;
     pointer-events: none;
 
@@ -3349,6 +3363,7 @@ a.status-card {
   .fa-times-circle {
     top: 11px;
     transform: rotate(0deg);
+    color: $action-button-color;
     cursor: pointer;
 
     &.active {
@@ -3356,13 +3371,13 @@ a.status-card {
     }
 
     &:hover {
-      color: $primary-text-color;
+      color: lighten($action-button-color, 7%);
     }
   }
 }
 
 .search-results__header {
-  color: $ui-base-lighter-color;
+  color: $dark-text-color;
   background: lighten($ui-base-color, 2%);
   border-bottom: 1px solid darken($ui-base-color, 4%);
   padding: 15px 10px;
@@ -3391,7 +3406,7 @@ a.status-card {
     span {
       display: inline-block;
       background: $ui-base-color;
-      color: $ui-primary-color;
+      color: $darker-text-color;
       font-size: 14px;
       font-weight: 500;
       padding: 10px;
@@ -3410,25 +3425,26 @@ a.status-card {
 .search-results__hashtag {
   display: block;
   padding: 10px;
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   text-decoration: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: lighten($ui-secondary-color, 4%);
+    color: lighten($secondary-text-color, 4%);
     text-decoration: underline;
   }
 }
 
 .modal-root {
+  position: relative;
   transition: opacity 0.3s linear;
   will-change: opacity;
   z-index: 9999;
 }
 
 .modal-root__overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -3437,7 +3453,7 @@ a.status-card {
 }
 
 .modal-root__container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -3469,25 +3485,17 @@ a.status-card {
   height: 100%;
   position: relative;
 
-  img,
-  canvas,
-  video {
-    max-width: 100%;
-    /*
-    put margins on top and bottom of image to avoid the screen coverd by
-    image.
-     */
-    max-height: 80%;
-    width: auto;
-    height: auto;
-    margin: auto;
-  }
+  .extended-video-player {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  img,
-  canvas {
-    display: block;
-    background: url('../images/void.png') repeat;
-    object-fit: contain;
+    video {
+      max-width: $media-modal-media-max-width;
+      max-height: $media-modal-media-max-height;
+    }
   }
 }
 
@@ -3561,7 +3569,7 @@ a.status-card {
 }
 
 .media-modal__button {
-  background-color: $white;
+  background-color: $primary-text-color;
   height: 12px;
   width: 12px;
   border-radius: 6px;
@@ -3572,7 +3580,7 @@ a.status-card {
 }
 
 .media-modal__button--active {
-  background-color: $ui-highlight-color;
+  background-color: $highlight-text-color;
 }
 
 .media-modal__close {
@@ -3586,7 +3594,7 @@ a.status-card {
 .error-modal,
 .embed-modal {
   background: $ui-secondary-color;
-  color: $ui-base-color;
+  color: $inverted-text-color;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -3674,7 +3682,7 @@ a.status-card {
 
   .onboarding-modal__nav,
   .error-modal__nav {
-    color: darken($ui-secondary-color, 34%);
+    color: $lighter-text-color;
     border: 0;
     font-size: 14px;
     font-weight: 500;
@@ -3688,18 +3696,18 @@ a.status-card {
     &:hover,
     &:focus,
     &:active {
-      color: darken($ui-secondary-color, 38%);
+      color: darken($lighter-text-color, 4%);
       background-color: darken($ui-secondary-color, 16%);
     }
 
     &.onboarding-modal__done,
     &.onboarding-modal__next {
-      color: $ui-base-color;
+      color: $inverted-text-color;
 
       &:hover,
       &:focus,
       &:active {
-        color: darken($ui-base-color, 4%);
+        color: lighten($inverted-text-color, 4%);
       }
     }
   }
@@ -3751,17 +3759,17 @@ a.status-card {
   h1 {
     font-size: 18px;
     font-weight: 500;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     margin-bottom: 20px;
   }
 
   a {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
 
     &:hover,
     &:focus,
     &:active {
-      color: lighten($ui-highlight-color, 4%);
+      color: lighten($highlight-text-color, 4%);
     }
   }
 
@@ -3771,7 +3779,7 @@ a.status-card {
 
   p {
     font-size: 16px;
-    color: lighten($ui-base-color, 8%);
+    color: $lighter-text-color;
     margin-top: 10px;
     margin-bottom: 10px;
 
@@ -3782,7 +3790,7 @@ a.status-card {
     strong {
       font-weight: 500;
       background: $ui-base-color;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       border-radius: 4px;
       font-size: 14px;
       padding: 3px 6px;
@@ -3834,7 +3842,7 @@ a.status-card {
 
   &__label {
     font-weight: 500;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     margin-bottom: 5px;
     text-transform: uppercase;
     font-size: 12px;
@@ -3842,7 +3850,7 @@ a.status-card {
 
   &__case {
     background: $ui-base-color;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     font-weight: 500;
     padding: 10px;
     border-radius: 4px;
@@ -3859,7 +3867,7 @@ a.status-card {
 
   .figure {
     background: darken($ui-base-color, 8%);
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     margin-bottom: 20px;
     border-radius: 4px;
     padding: 10px;
@@ -3948,7 +3956,7 @@ a.status-card {
 .actions-modal,
 .mute-modal {
   background: lighten($ui-secondary-color, 8%);
-  color: $ui-base-color;
+  color: $inverted-text-color;
   border-radius: 8px;
   overflow: hidden;
   max-width: 90vw;
@@ -3968,6 +3976,10 @@ a.status-card {
     position: absolute;
     top: 10px;
     width: 48px;
+  }
+
+  .status__content__spoiler-link {
+    color: lighten($secondary-text-color, 8%);
   }
 }
 
@@ -4006,7 +4018,7 @@ a.status-card {
   & > div {
     flex: 1 1 auto;
     text-align: right;
-    color: lighten($ui-base-color, 33%);
+    color: $lighter-text-color;
     padding-right: 10px;
   }
 
@@ -4068,9 +4080,13 @@ a.status-card {
 .report-modal__statuses {
   flex: 1 1 auto;
   min-height: 20vh;
-  max-height: 40vh;
+  max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
+
+  .status__content a {
+    color: $highlight-text-color;
+  }
 
   @media screen and (max-width: 480px) {
     max-height: 10vh;
@@ -4093,7 +4109,7 @@ a.status-card {
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     background: $white;
     padding: 10px;
     font-family: inherit;
@@ -4115,7 +4131,7 @@ a.status-card {
     margin-bottom: 24px;
 
     &__label {
-      color: $ui-base-color;
+      color: $inverted-text-color;
       font-size: 14px;
     }
   }
@@ -4154,7 +4170,7 @@ a.status-card {
 
     li:not(:empty) {
       a {
-        color: $ui-base-color;
+        color: $inverted-text-color;
         display: flex;
         padding: 12px 16px;
         font-size: 15px;
@@ -4190,14 +4206,14 @@ a.status-card {
   .confirmation-modal__cancel-button,
   .mute-modal__cancel-button {
     background-color: transparent;
-    color: darken($ui-secondary-color, 34%);
+    color: $lighter-text-color;
     font-size: 14px;
     font-weight: 500;
 
     &:hover,
     &:focus,
     &:active {
-      color: darken($ui-secondary-color, 38%);
+      color: darken($lighter-text-color, 4%);
     }
   }
 }
@@ -4230,7 +4246,7 @@ a.status-card {
 }
 
 .loading-bar {
-  background-color: $ui-highlight-color;
+  background-color: $highlight-text-color;
   height: 3px;
   position: absolute;
   top: 0;
@@ -4278,7 +4294,7 @@ a.status-card {
 
   &__icon {
     flex: 0 0 auto;
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
     padding: 8px 18px;
     cursor: default;
     border-right: 1px solid lighten($ui-base-color, 8%);
@@ -4308,7 +4324,7 @@ a.status-card {
 
     a {
       text-decoration: none;
-      color: $ui-base-lighter-color;
+      color: $dark-text-color;
       font-weight: 500;
 
       &:hover {
@@ -4327,7 +4343,7 @@ a.status-card {
     }
 
     .fa {
-      color: $ui-base-lighter-color;
+      color: $dark-text-color;
     }
   }
 }
@@ -4363,7 +4379,7 @@ a.status-card {
   cursor: zoom-in;
   display: block;
   text-decoration: none;
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   line-height: 0;
 
   &,
@@ -4464,8 +4480,8 @@ a.status-card {
   border-radius: 4px;
 
   video {
-    height: 100%;
-    width: 100%;
+    max-width: 100vw;
+    max-height: 80vh;
     z-index: 1;
   }
 
@@ -4477,6 +4493,8 @@ a.status-card {
     video {
       max-width: 100% !important;
       max-height: 100% !important;
+      width: 100% !important;
+      height: 100% !important;
     }
   }
 
@@ -4523,7 +4541,7 @@ a.status-card {
     z-index: 4;
     border: 0;
     background: $base-shadow-color;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     transition: none;
     pointer-events: none;
 
@@ -4534,7 +4552,7 @@ a.status-card {
       &:hover,
       &:active,
       &:focus {
-        color: lighten($ui-primary-color, 8%);
+        color: lighten($darker-text-color, 7%);
       }
     }
 
@@ -4731,7 +4749,7 @@ a.status-card {
     background-size: cover;
     background-position: center;
     position: absolute;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     text-decoration: none;
     border-radius: 4px;
 
@@ -4739,7 +4757,7 @@ a.status-card {
     &:active,
     &:focus {
       outline: 0;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
 
       &::before {
         content: "";
@@ -4770,7 +4788,7 @@ a.status-card {
   a {
     display: block;
     flex: 1 1 auto;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     padding: 15px 0;
     font-size: 14px;
     font-weight: 500;
@@ -4779,7 +4797,7 @@ a.status-card {
     position: relative;
 
     &.active {
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
 
       &::before,
       &::after {
@@ -4814,12 +4832,12 @@ a.status-card {
   padding: 10px 14px;
   padding-bottom: 14px;
   margin-top: 10px;
-  color: $ui-primary-color;
+  color: $light-text-color;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
 
   h4 {
     text-transform: uppercase;
-    color: $ui-primary-color;
+    color: $light-text-color;
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -4835,7 +4853,7 @@ a.status-card {
 
   em {
     font-weight: 500;
-    color: $ui-base-color;
+    color: $inverted-text-color;
   }
 }
 
@@ -4851,11 +4869,11 @@ noscript {
   div {
     font-size: 14px;
     margin: 30px auto;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     max-width: 400px;
 
     a {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
       text-decoration: underline;
 
       &:hover {
@@ -4953,7 +4971,6 @@ noscript {
     }
 
     .embed-modal__html {
-      color: $ui-secondary-color;
       outline: 0;
       box-sizing: border-box;
       display: block;
@@ -4962,7 +4979,7 @@ noscript {
       padding: 10px;
       font-family: 'mastodon-font-monospace', monospace;
       background: $ui-base-color;
-      color: $ui-primary-color;
+      color: $primary-text-color;
       font-size: 14px;
       margin: 0;
       margin-bottom: 15px;
@@ -5005,7 +5022,7 @@ noscript {
   &__message {
     position: relative;
     margin-left: 58px;
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
     padding: 8px 0;
     padding-top: 0;
     padding-bottom: 4px;
@@ -5186,5 +5203,49 @@ noscript {
   &:focus,
   &:active {
     background: lighten($ui-highlight-color, 7%);
+  }
+}
+
+.account__header .roles {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
+.account__header .account__header__fields {
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+  margin: 20px -10px -20px;
+  border-bottom: 0;
+
+  dl {
+    border-top: 1px solid lighten($ui-base-color, 8%);
+    display: flex;
+  }
+
+  dt,
+  dd {
+    box-sizing: border-box;
+    padding: 14px 20px;
+    text-align: center;
+    max-height: 48px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  dt {
+    color: $darker-text-color;
+    background: darken($ui-base-color, 4%);
+    width: 120px;
+    flex: 0 0 auto;
+    font-weight: 500;
+  }
+
+  dd {
+    flex: 1 1 auto;
+    color: $primary-text-color;
+    background: $ui-base-color;
   }
 }

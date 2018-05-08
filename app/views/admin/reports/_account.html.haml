@@ -1,0 +1,19 @@
+- size ||= 36
+
+.account.compact
+  .account__wrapper
+    - if account.nil?
+      .account__display-name
+        .account__avatar-wrapper
+          .account__avatar{ style: "background-image: url(#{full_asset_url('avatars/original/missing.png', skip_pipeline: true)}); width: #{size}px; height: #{size}px; background-size: #{size}px #{size}px" }
+        %span.display-name
+          %strong= t 'about.contact_missing'
+          %span.display-name__account= t 'about.contact_unavailable'
+    - else
+      = link_to TagManager.instance.url_for(account), class: 'account__display-name' do
+        .account__avatar-wrapper
+          .account__avatar{ style: "background-image: url(#{account.avatar.url}); width: #{size}px; height: #{size}px; background-size: #{size}px #{size}px" }
+        %span.display-name
+          %bdi
+            %strong.display-name__html.emojify= display_name(account, custom_emojify: true)
+          %span.display-name__account @#{account.acct}

@@ -8,6 +8,7 @@ nl:
         display_name:
           one: <span class="name-counter">1</span> teken over
           other: <span class="name-counter">%{count}</span> tekens over
+        fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 700x335px
         locked: Vereist dat je handmatig volgers moet accepteren
         note:
@@ -22,6 +23,10 @@ nl:
       user:
         filtered_languages: De geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd
     labels:
+      account:
+        fields:
+          name: Label
+          value: Inhoud
       defaults:
         avatar: Avatar
         confirm_new_password: Nieuw wachtwoord bevestigen
@@ -31,6 +36,7 @@ nl:
         display_name: Weergavenaam
         email: E-mailadres
         expires_in: Vervalt na
+        fields: Metadata profiel
         filtered_languages: Talen filteren
         header: Omslagfoto
         locale: Taal
@@ -63,7 +69,7 @@ nl:
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Een e-mail versturen wanneer iemand jouw toot als favoriet markeert
         follow: Een e-mail versturen wanneer iemand jou volgt
-        follow_request: Een e-mail versturen wanneer iemand jou wilt volgen
+        follow_request: Een e-mail versturen wanneer iemand jou wil volgen
         mention: Een e-mail versturen wanneer iemand jou vermeld
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
     'no': Nee

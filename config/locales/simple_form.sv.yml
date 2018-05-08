@@ -8,6 +8,7 @@ sv:
         display_name:
           one: <span class="name-counter">1</span> tecken kvar
           other: <span class="name-counter">%{count}</span> tecken kvar
+        fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: NG, GIF eller JPG. Högst 2 MB. Kommer nedskalas till 700x335px
         locked: Kräver att du manuellt godkänner följare
         note:
@@ -22,6 +23,10 @@ sv:
       user:
         filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer för dig
     labels:
+      account:
+        fields:
+          name: Etikett
+          value: Innehåll
       defaults:
         avatar: Avatar
         confirm_new_password: Bekräfta nytt lösenord
@@ -31,6 +36,7 @@ sv:
         display_name: Visningsnamn
         email: E-postadress
         expires_in: Förfaller efter
+        fields: Profil-metadata
         filtered_languages: Filtrerade språk
         header: Bakgrundsbild
         locale: Språk

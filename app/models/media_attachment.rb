@@ -3,8 +3,8 @@
 #
 # Table name: media_attachments
 #
-#  id                :integer          not null, primary key
-#  status_id         :integer
+#  id                :bigint(8)        not null, primary key
+#  status_id         :bigint(8)
 #  file_file_name    :string
 #  file_content_type :string
 #  file_file_size    :integer
@@ -15,11 +15,9 @@
 #  shortcode         :string
 #  type              :integer          default("image"), not null
 #  file_meta         :json
-#  account_id        :integer
+#  account_id        :bigint(8)
 #  description       :text
 #
-
-require 'mime/types'
 
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
@@ -56,6 +54,8 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
+  LIMIT = 8.megabytes
+
   belongs_to :account, inverse_of: :media_attachments, optional: true
   belongs_to :status,  inverse_of: :media_attachments, optional: true
 
@@ -64,10 +64,11 @@ class MediaAttachment < ApplicationRecord
                     processors: ->(f) { file_processors f },
                     convert_options: { all: '-quality 90 -strip' }
 
-  include Remotable
-
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
-  validates_attachment_size :file, less_than: 8.megabytes
+  validates_attachment_size :file, less_than: LIMIT
+  remotable_attachment :file, LIMIT
+
+  include Attachmentable
 
   validates :account, presence: true
   validates :description, length: { maximum: 420 }, if: :local?
@@ -129,8 +130,9 @@ class MediaAttachment < ApplicationRecord
                 'pix_fmt'  => 'yuv420p',
                 'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
                 'vsync'    => 'cfr',
-                'b:v'      => '1300K',
-                'maxrate'  => '500K',
+                'c:v'      => 'h264',
+                'b:v'      => '500K',
+                'maxrate'  => '1300K',
                 'bufsize'  => '1300K',
                 'crf'      => 18,
               },
@@ -174,9 +176,6 @@ class MediaAttachment < ApplicationRecord
 
   def set_type_and_extension
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
-    extension = appropriate_extension
-    basename  = Paperclip::Interpolations.basename(file, :original)
-    file.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
   end
 
   def set_meta
@@ -220,14 +219,5 @@ class MediaAttachment < ApplicationRecord
       duration: movie.duration,
       bitrate: movie.bitrate,
     }
-  end
-
-  def appropriate_extension
-    mime_type = MIME::Types[file.content_type]
-
-    extensions_for_mime_type = mime_type.empty? ? [] : mime_type.first.extensions
-    original_extension       = Paperclip::Interpolations.extension(file, :original)
-
-    extensions_for_mime_type.include?(original_extension) ? original_extension : extensions_for_mime_type.first
   end
 end

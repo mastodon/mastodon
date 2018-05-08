@@ -14,9 +14,6 @@ class ActivityPub::DeliveryWorker
 
     perform_request
 
-    raise Mastodon::UnexpectedResponseError, @response unless response_successful?
-
-    @response.connection&.close
     failure_tracker.track_success!
   rescue => e
     failure_tracker.track_failure!
@@ -32,11 +29,17 @@ class ActivityPub::DeliveryWorker
   end
 
   def perform_request
-    @response = build_request.perform
+    light = Stoplight(@inbox_url) do
+      build_request.perform do |response|
+        raise Mastodon::UnexpectedResponseError, response unless response_successful?(response)
+      end
+    end
+
+    light.run
   end
 
-  def response_successful?
-    @response.code > 199 && @response.code < 300
+  def response_successful?(response)
+    response.code > 199 && response.code < 300
   end
 
   def failure_tracker

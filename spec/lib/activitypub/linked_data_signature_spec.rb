@@ -16,6 +16,10 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
   subject { described_class.new(json) }
 
+  before do
+    stub_jsonld_contexts!
+  end
+
   describe '#verify_account!' do
     context 'when signature matches' do
       let(:raw_signature) do

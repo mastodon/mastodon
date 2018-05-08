@@ -5,7 +5,7 @@ class ActivityPub::FollowSerializer < ActiveModel::Serializer
   attribute :virtual_object, key: :object
 
   def id
-    [ActivityPub::TagManager.instance.uri_for(object.account), '#follows/', object.id].join
+    ActivityPub::TagManager.instance.uri_for(object) || [ActivityPub::TagManager.instance.uri_for(object.account), '#follows/', object.id].join
   end
 
   def type
