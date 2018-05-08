@@ -18,6 +18,21 @@ import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
 
+const domParser = new DOMParser();
+
+const normalizeStatus = (state, status) => {
+  if (!status) {
+    return state;
+  }
+
+  const normalStatus   = { ...status };
+  normalStatus.account = status.account.id;
+
+  if (status.reblog && status.reblog.id) {
+    state               = normalizeStatus(state, status.reblog);
+    normalStatus.reblog = status.reblog.id;
+  }
+
   // Only calculate these values when status first encountered
   // Otherwise keep the ones already in the reducer
   if (!state.has(status.id)) {
