@@ -169,7 +169,7 @@ $small-breakpoint: 960px;
       background: $ui-base-color;
       font-size: 12px;
       font-weight: 500;
-      color: $ui-primary-color;
+      color: $darker-text-color;
       text-transform: uppercase;
       position: relative;
       z-index: 1;
@@ -186,11 +186,33 @@ $small-breakpoint: 960px;
     font-size: 16px;
     line-height: 30px;
     margin-bottom: 12px;
-    color: $ui-primary-color;
+    color: $darker-text-color;
 
     a {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
       text-decoration: underline;
+    }
+  }
+
+  .closed-registrations-message {
+    margin-top: 20px;
+
+    &,
+    p {
+      text-align: center;
+      font-size: 12px;
+      line-height: 18px;
+      color: $darker-text-color;
+      margin-bottom: 0;
+
+      a {
+        color: $highlight-text-color;
+        text-decoration: underline;
+      }
+    }
+
+    p:last-child {
+      margin-bottom: 0;
     }
   }
 
@@ -203,7 +225,7 @@ $small-breakpoint: 960px;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    color: lighten($ui-primary-color, 10%);
+    color: lighten($darker-text-color, 10%);
   }
 
   h1 {
@@ -212,14 +234,14 @@ $small-breakpoint: 960px;
     line-height: 30px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
 
     small {
       font-family: 'mastodon-font-sans-serif', sans-serif;
       display: block;
       font-size: 18px;
       font-weight: 400;
-      color: $ui-base-lighter-color;
+      color: lighten($darker-text-color, 10%);
     }
   }
 
@@ -229,7 +251,7 @@ $small-breakpoint: 960px;
     line-height: 26px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   h3 {
@@ -238,7 +260,7 @@ $small-breakpoint: 960px;
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   h4 {
@@ -247,7 +269,7 @@ $small-breakpoint: 960px;
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   h5 {
@@ -256,7 +278,7 @@ $small-breakpoint: 960px;
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   h6 {
@@ -265,7 +287,7 @@ $small-breakpoint: 960px;
     line-height: 24px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
   }
 
   ul,
@@ -327,10 +349,10 @@ $small-breakpoint: 960px;
         font-weight: 400;
         font-size: 16px;
         line-height: 30px;
-        color: $ui-primary-color;
+        color: $darker-text-color;
 
         a {
-          color: $ui-highlight-color;
+          color: $highlight-text-color;
           text-decoration: underline;
         }
       }
@@ -378,7 +400,7 @@ $small-breakpoint: 960px;
         font-size: 14px;
 
         &:hover {
-          color: $ui-secondary-color;
+          color: $secondary-text-color;
         }
       }
 
@@ -451,10 +473,10 @@ $small-breakpoint: 960px;
     font-weight: 400;
     font-size: 16px;
     line-height: 30px;
-    color: $ui-primary-color;
+    color: $darker-text-color;
 
     a {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
       text-decoration: underline;
     }
   }
@@ -490,7 +512,7 @@ $small-breakpoint: 960px;
 
       span {
         &:last-child {
-          color: $ui-secondary-color;
+          color: $secondary-text-color;
         }
       }
 
@@ -521,7 +543,7 @@ $small-breakpoint: 960px;
         font-size: 14px;
         line-height: 24px;
         font-weight: 500;
-        color: $ui-primary-color;
+        color: $darker-text-color;
         padding-bottom: 5px;
         margin-bottom: 15px;
         border-bottom: 1px solid lighten($ui-base-color, 4%);
@@ -532,7 +554,7 @@ $small-breakpoint: 960px;
         a,
         span {
           font-weight: 400;
-          color: darken($ui-primary-color, 10%);
+          color: darken($darker-text-color, 10%);
         }
 
         a {
@@ -575,7 +597,7 @@ $small-breakpoint: 960px;
 
         .username {
           display: block;
-          color: $ui-primary-color;
+          color: $darker-text-color;
         }
       }
     }
@@ -700,7 +722,7 @@ $small-breakpoint: 960px;
     }
 
     p a {
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
     }
 
     h1 {
@@ -709,10 +731,10 @@ $small-breakpoint: 960px;
       margin-bottom: 0;
 
       small {
-        color: $ui-primary-color;
+        color: $darker-text-color;
 
         span {
-          color: $ui-secondary-color;
+          color: $secondary-text-color;
         }
       }
     }
@@ -819,7 +841,7 @@ $small-breakpoint: 960px;
       }
 
       a {
-        color: $ui-secondary-color;
+        color: $secondary-text-color;
         text-decoration: none;
       }
     }
@@ -859,7 +881,7 @@ $small-breakpoint: 960px;
 
         .fa {
           display: block;
-          color: $ui-primary-color;
+          color: $darker-text-color;
           font-size: 48px;
         }
       }
@@ -867,7 +889,7 @@ $small-breakpoint: 960px;
       .text {
         font-size: 16px;
         line-height: 30px;
-        color: $ui-primary-color;
+        color: $darker-text-color;
 
         h6 {
           font-size: inherit;
@@ -885,10 +907,10 @@ $small-breakpoint: 960px;
     font-weight: 400;
     font-size: 16px;
     line-height: 30px;
-    color: $ui-primary-color;
+    color: $darker-text-color;
 
     a {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
       text-decoration: underline;
     }
   }
@@ -896,7 +918,7 @@ $small-breakpoint: 960px;
   .footer-links {
     padding-bottom: 50px;
     text-align: right;
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
 
     p {
       font-size: 14px;
@@ -911,7 +933,7 @@ $small-breakpoint: 960px;
   &__footer {
     margin-top: 10px;
     text-align: center;
-    color: $ui-base-lighter-color;
+    color: $dark-text-color;
 
     p {
       font-size: 14px;

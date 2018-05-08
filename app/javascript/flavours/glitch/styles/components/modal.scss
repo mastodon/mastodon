@@ -44,7 +44,7 @@
 .error-modal,
 .embed-modal {
   background: $ui-secondary-color;
-  color: $ui-base-color;
+  color: $inverted-text-color;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -132,7 +132,7 @@
 
   .onboarding-modal__nav,
   .error-modal__nav {
-    color: darken($ui-secondary-color, 34%);
+    color: $lighter-text-color;
     border: 0;
     font-size: 14px;
     font-weight: 500;
@@ -146,18 +146,18 @@
     &:hover,
     &:focus,
     &:active {
-      color: darken($ui-secondary-color, 38%);
+      color: darken($lighter-text-color, 4%);
       background-color: darken($ui-secondary-color, 16%);
     }
 
     &.onboarding-modal__done,
     &.onboarding-modal__next {
-      color: $ui-base-color;
+      color: $inverted-text-color;
 
       &:hover,
       &:focus,
       &:active {
-        color: darken($ui-base-color, 4%);
+        color: lighten($inverted-text-color, 4%);
       }
     }
   }
@@ -209,17 +209,17 @@
   h1 {
     font-size: 18px;
     font-weight: 500;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     margin-bottom: 20px;
   }
 
   a {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
 
     &:hover,
     &:focus,
     &:active {
-      color: lighten($ui-highlight-color, 4%);
+      color: lighten($highlight-text-color, 4%);
     }
   }
 
@@ -229,7 +229,7 @@
 
   p {
     font-size: 16px;
-    color: lighten($ui-base-color, 8%);
+    color: $lighter-text-color;
     margin-top: 10px;
     margin-bottom: 10px;
 
@@ -240,7 +240,7 @@
     strong {
       font-weight: 500;
       background: $ui-base-color;
-      color: $ui-secondary-color;
+      color: $secondary-text-color;
       border-radius: 4px;
       font-size: 14px;
       padding: 3px 6px;
@@ -292,7 +292,7 @@
 
   &__label {
     font-weight: 500;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     margin-bottom: 5px;
     text-transform: uppercase;
     font-size: 12px;
@@ -300,7 +300,7 @@
 
   &__case {
     background: $ui-base-color;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     font-weight: 500;
     padding: 10px;
     border-radius: 4px;
@@ -317,7 +317,7 @@
 
   .figure {
     background: darken($ui-base-color, 8%);
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     margin-bottom: 20px;
     border-radius: 4px;
     padding: 10px;
@@ -407,7 +407,7 @@
 .actions-modal,
 .mute-modal {
   background: lighten($ui-secondary-color, 8%);
-  color: $ui-base-color;
+  color: $inverted-text-color;
   border-radius: 8px;
   overflow: hidden;
   max-width: 90vw;
@@ -424,6 +424,10 @@
     left: 10px;
     top: 10px;
     width: 48px;
+  }
+
+  .status__content__spoiler-link {
+    color: lighten($secondary-text-color, 8%);
   }
 }
 
@@ -464,7 +468,7 @@
   & > div {
     flex: 1 1 auto;
     text-align: right;
-    color: lighten($ui-base-color, 33%);
+    color: $lighter-text-color;
     padding-right: 10px;
   }
 
@@ -528,9 +532,13 @@
 .report-modal__statuses {
   flex: 1 1 auto;
   min-height: 20vh;
-  max-height: 40vh;
+  max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
+
+  .status__content a {
+    color: $highlight-text-color;
+  }
 
   @media screen and (max-width: 480px) {
     max-height: 10vh;
@@ -553,7 +561,7 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    color: $ui-base-color;
+    color: $inverted-text-color;
     background: $white;
     padding: 10px;
     font-family: inherit;
@@ -575,7 +583,7 @@
     margin-bottom: 24px;
 
     &__label {
-      color: $ui-base-color;
+      color: $inverted-text-color;
       font-size: 14px;
     }
   }
@@ -628,7 +636,7 @@
 
     li:not(:empty) {
       a {
-        color: $ui-base-color;
+        color: $inverted-text-color;
         display: flex;
         padding: 12px 16px;
         font-size: 15px;
@@ -646,8 +654,8 @@
         &:focus {
           &,
           button {
-          background: $ui-highlight-color;
-          color: $primary-text-color;
+            background: $ui-highlight-color;
+            color: $primary-text-color;
           }
         }
 
@@ -666,14 +674,14 @@
   .confirmation-modal__cancel-button,
   .mute-modal__cancel-button {
     background-color: transparent;
-    color: darken($ui-secondary-color, 34%);
+    color: $lighter-text-color;
     font-size: 14px;
     font-weight: 500;
 
     &:hover,
     &:focus,
     &:active {
-      color: darken($ui-secondary-color, 38%);
+      color: darken($lighter-text-color, 4%);
     }
   }
 }
@@ -715,7 +723,6 @@
     }
 
     .embed-modal__html {
-      color: $ui-secondary-color;
       outline: 0;
       box-sizing: border-box;
       display: block;
@@ -724,7 +731,7 @@
       padding: 10px;
       font-family: 'mastodon-font-monospace', monospace;
       background: $ui-base-color;
-      color: $ui-primary-color;
+      color: $primary-text-color;
       font-size: 14px;
       margin: 0;
       margin-bottom: 15px;

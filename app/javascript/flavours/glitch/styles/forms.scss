@@ -15,26 +15,28 @@ code {
     overflow: hidden;
   }
 
+  .row {
+    display: flex;
+    margin: 0 -5px;
+
+    .input {
+      box-sizing: border-box;
+      flex: 1 1 auto;
+      width: 50%;
+      padding: 0 5px;
+    }
+  }
+
   span.hint {
     display: block;
-    color: $ui-primary-color;
+    color: $darker-text-color;
     font-size: 12px;
     margin-top: 4px;
   }
 
-  h4 {
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 500;
-    color: $ui-primary-color;
-    padding-bottom: 8px;
-    margin-bottom: 8px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
-  }
-
   p.hint {
     margin-bottom: 15px;
-    color: $ui-primary-color;
+    color: $darker-text-color;
 
     &.subtle-hint {
       text-align: center;
@@ -42,10 +44,10 @@ code {
       line-height: 18px;
       margin-top: 15px;
       margin-bottom: 0;
-      color: $ui-primary-color;
+      color: $darker-text-color;
 
       a {
-        color: $ui-highlight-color;
+        color: $highlight-text-color;
       }
     }
   }
@@ -242,7 +244,7 @@ code {
     }
 
     &:focus:invalid {
-      border-bottom-color: $error-value-color;
+      border-bottom-color: lighten($error-red, 12%);
     }
 
     &:required:valid {
@@ -251,26 +253,26 @@ code {
 
     &:active,
     &:focus {
-      border-bottom-color: $ui-highlight-color;
+      border-bottom-color: $highlight-text-color;
       background: rgba($base-overlay-background, 0.1);
     }
   }
 
   .input.field_with_errors {
     label {
-      color: $error-value-color;
+      color: lighten($error-red, 12%);
     }
 
     input[type=text],
     input[type=email],
     input[type=password] {
-      border-bottom-color: $error-value-color;
+      border-bottom-color: $valid-value-color;
     }
 
     .error {
       display: block;
       font-weight: 500;
-      color: $error-value-color;
+      color: lighten($error-red, 12%);
       margin-top: 4px;
     }
   }
@@ -349,7 +351,7 @@ code {
       padding: 7px 4px;
       padding-bottom: 9px;
       font-size: 16px;
-      color: $ui-base-lighter-color;
+      color: $dark-text-color;
       font-family: inherit;
       pointer-events: none;
       cursor: default;
@@ -359,7 +361,7 @@ code {
 
 .flash-message {
   background: lighten($ui-base-color, 8%);
-  color: $ui-primary-color;
+  color: $darker-text-color;
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
@@ -371,7 +373,6 @@ code {
   }
 
   .oauth-code {
-    color: $ui-secondary-color;
     outline: 0;
     box-sizing: border-box;
     display: block;
@@ -380,7 +381,7 @@ code {
     padding: 10px;
     font-family: 'mastodon-font-monospace', monospace;
     background: $ui-base-color;
-    color: $ui-primary-color;
+    color: $primary-text-color;
     font-size: 14px;
     margin: 0;
 
@@ -419,7 +420,7 @@ code {
   text-align: center;
 
   a {
-    color: $ui-primary-color;
+    color: $darker-text-color;
     text-decoration: none;
 
     &:hover {
@@ -432,7 +433,7 @@ code {
 .follow-prompt {
   margin-bottom: 30px;
   text-align: center;
-  color: $ui-primary-color;
+  color: $darker-text-color;
 
   h2 {
     font-size: 16px;
@@ -440,7 +441,7 @@ code {
   }
 
   strong {
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     font-weight: 500;
 
     @each $lang in $cjk-langs {
@@ -477,7 +478,7 @@ code {
 
 .qr-alternative {
   margin-bottom: 20px;
-  color: $ui-secondary-color;
+  color: $secondary-text-color;
   flex: 150px;
 
   samp {

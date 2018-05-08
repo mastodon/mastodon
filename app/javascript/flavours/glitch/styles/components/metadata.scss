@@ -1,9 +1,10 @@
-.account__metadata {
-  width: 100%;
+.account__header .account__header__fields {
   font-size: 15px;
   line-height: 20px;
   overflow: hidden;
   border-collapse: collapse;
+  margin: 20px -10px -20px;
+  border-bottom: 0;
 
   a {
     text-decoration: none;
@@ -31,7 +32,7 @@
   }
 
   th {
-    color: $ui-primary-color;
+    color: $darker-text-color;
     background: lighten($ui-base-color, 13%);
     max-width: 120px;
 
@@ -46,7 +47,7 @@
     background: $ui-base-color;
 
     a {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
     }
   }
 }
