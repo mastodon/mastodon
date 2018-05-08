@@ -18,73 +18,6 @@ import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
 
-const domParser = new DOMParser();
-
-const normalizeStatus = (state, status) => {
-  if (!status) {
-    return state;
-  }
-
-  const normalStatus   = { ...status };
-  normalStatus.account = status.account.id;
-
-  if (status.reblog && status.reblog.id) {
-    state               = normalizeStatus(state, status.reblog);
-    normalStatus.reblog = status.reblog.id;
-  }
-
-  // Only calculate these values when status first encountered
-  // Otherwise keep the ones already in the reducer
-  if (!state.has(status.id)) {
-    const searchContent = [status.spoiler_text, status.content].join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-
-    const emojiMap = normalStatus.emojis.reduce((obj, emoji) => {
-      obj[`:${emoji.shortcode}:`] = emoji;
-      return obj;
-    }, {});
-
-    normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-    normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
-    normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''), emojiMap);
-    normalStatus.hidden       = normalStatus.sensitive;
-
-    if (status.quote && status.quote.id) {
-      const quote_searchContent = [status.quote.spoiler_text, status.quote.content].join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-
-      const quote_emojiMap = normalStatus.quote.emojis.reduce((obj, emoji) => {
-        obj[`:${emoji.shortcode}:`] = emoji;
-        return obj;
-      }, {});
-
-      const displayName = normalStatus.quote.account.display_name.length === 0 ? normalStatus.quote.account.username : normalStatus.quote.account.display_name;
-      normalStatus.quote.account.display_name_html = emojify(escapeTextContentForBrowser(displayName));
-      normalStatus.quote.search_index = domParser.parseFromString(quote_searchContent, 'text/html').documentElement.textContent;
-      let docElem = domParser.parseFromString(normalStatus.quote.content, 'text/html').documentElement;
-      Array.from(docElem.querySelectorAll('span.invisible'), span => span.remove());
-      Array.from(docElem.querySelectorAll('p,br'), line => {
-        let parentNode = line.parentNode;
-        if (line.nextSibling) {
-          parentNode.insertBefore(document.createTextNode(' '), line.nextSibling);
-        }
-      });
-      let _contentHtml = docElem.textContent;
-      normalStatus.quote.contentHtml  = '<p>'+emojify(_contentHtml.substr(0, 150), quote_emojiMap) + (_contentHtml.substr(150) ? '...' : '')+'</p>';
-      normalStatus.quote.spoilerHtml  = emojify(normalStatus.quote.spoiler_text || '', quote_emojiMap);
-
-      normalStatus.quote_hidden       = normalStatus.quote.sensitive;
-    }
-  }
-
-  return state.update(status.id, ImmutableMap(), map => map.mergeDeep(fromJS(normalStatus)));
-};
-
-const normalizeStatuses = (state, statuses) => {
-  statuses.forEach(status => {
-    state = normalizeStatus(state, status);
-  });
-
-  return state;
-};
 const importStatuses = (state, statuses) =>
   state.withMutations(mutable => statuses.forEach(status => importStatus(mutable, status)));
 
@@ -132,16 +65,6 @@ export default function statuses(state = initialState, action) {
     return state.withMutations(map => {
       action.ids.forEach(id => map.setIn([id, 'quote_hidden'], true));
     });
-  case TIMELINE_REFRESH_SUCCESS:
-  case TIMELINE_EXPAND_SUCCESS:
-  case CONTEXT_FETCH_SUCCESS:
-  case NOTIFICATIONS_REFRESH_SUCCESS:
-  case NOTIFICATIONS_EXPAND_SUCCESS:
-  case FAVOURITED_STATUSES_FETCH_SUCCESS:
-  case FAVOURITED_STATUSES_EXPAND_SUCCESS:
-  case PINNED_STATUSES_FETCH_SUCCESS:
-  case SEARCH_FETCH_SUCCESS:
-    return normalizeStatuses(state, action.statuses);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   default:
