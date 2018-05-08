@@ -63,10 +63,11 @@ de:
     roles:
       admin: Admin
       moderator: Moderator
+      bot: Bot
     unfollow: Entfolgen
   admin:
     account_moderation_notes:
-      create: Erstellen
+      create: Nachricht hinterlassen
       created_msg: Moderationsnotiz erfolgreich erstellt!
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
@@ -408,6 +409,7 @@ de:
     new_report:
       body: '%{reporter} hat %{target} gemeldet'
       subject: Neue Meldung auf %{instance} (#%{id})
+      body_remote: Jemand von %{domain} hat %{target} gemeldet
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
     salutation: '%{name},'
@@ -856,3 +858,5 @@ de:
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen
       Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
+    otp_lost_help_html: Wenn Sie zu beidem keinen Zugriff mehr haben, kontaktieren
+      sie %{email}
