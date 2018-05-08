@@ -47,6 +47,12 @@ export default class StatusIcons extends React.PureComponent {
 
     return (
       <div className='status__info__icons'>
+        {status.get('in_reply_to_id', null) !== null ? (
+          <i
+            className={`fa fa-fw fa-comment`}
+            aria-hidden='true'
+          />
+        ) : null}
         {mediaIcon ? (
           <i
             className={`fa fa-fw fa-${mediaIcon}`}
