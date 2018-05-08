@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AuthorizeFollowService do
+RSpec.describe AuthorizeFollowService, type: :service do
   let(:sender) { Fabricate(:account, username: 'alice') }
 
   subject { AuthorizeFollowService.new }

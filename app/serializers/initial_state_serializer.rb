@@ -4,12 +4,6 @@ class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings, :push_subscription
 
-  has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
-
-  def custom_emojis
-    CustomEmoji.local.where(disabled: false)
-  end
-
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,

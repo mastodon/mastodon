@@ -6,7 +6,8 @@
     background: $simple-background-color;
 
     .detailed-status.light,
-    .status.light {
+    .status.light,
+    .more.light {
       border-bottom: 1px solid $ui-secondary-color;
       animation: none;
     }
@@ -115,7 +116,7 @@
         font-size: 14px;
 
         .status__relative-time {
-          color: $ui-primary-color;
+          color: $lighter-text-color;
         }
       }
     }
@@ -124,7 +125,7 @@
       display: block;
       max-width: 100%;
       padding-right: 25px;
-      color: $ui-base-color;
+      color: $inverted-text-color;
     }
 
     .status__avatar {
@@ -154,7 +155,7 @@
 
       strong {
         font-weight: 500;
-        color: $ui-base-color;
+        color: $inverted-text-color;
 
         @each $lang in $cjk-langs {
           &:lang(#{$lang}) {
@@ -165,15 +166,15 @@
 
       span {
         font-size: 14px;
-        color: $ui-primary-color;
+        color: $light-text-color;
       }
     }
 
     .status__content {
-      color: $ui-base-color;
+      color: $inverted-text-color;
 
       a {
-        color: $ui-highlight-color;
+        color: $highlight-text-color;
       }
 
       a.status__content__spoiler-link {
@@ -211,7 +212,7 @@
 
         strong {
           font-weight: 500;
-          color: $ui-base-color;
+          color: $inverted-text-color;
 
           @each $lang in $cjk-langs {
             &:lang(#{$lang}) {
@@ -222,7 +223,7 @@
 
         span {
           font-size: 14px;
-          color: $ui-primary-color;
+          color: $light-text-color;
         }
       }
     }
@@ -238,10 +239,10 @@
     }
 
     .status__content {
-      color: $ui-base-color;
+      color: $inverted-text-color;
 
       a {
-        color: $ui-highlight-color;
+        color: $highlight-text-color;
       }
 
       a.status__content__spoiler-link {
@@ -256,7 +257,7 @@
 
     .detailed-status__meta {
       margin-top: 15px;
-      color: $ui-primary-color;
+      color: $light-text-color;
       font-size: 14px;
       line-height: 18px;
 
@@ -274,7 +275,7 @@
 
     .status-card {
       border-color: lighten($ui-secondary-color, 4%);
-      color: darken($ui-primary-color, 4%);
+      color: $lighter-text-color;
 
       &:hover {
         background: lighten($ui-secondary-color, 4%);
@@ -283,7 +284,7 @@
 
     .status-card__title,
     .status-card__description {
-      color: $ui-base-color;
+      color: $inverted-text-color;
     }
 
     .status-card__image {
@@ -293,7 +294,7 @@
 
   .media-spoiler {
     background: $ui-base-color;
-    color: $ui-primary-color;
+    color: $darker-text-color;
   }
 
   .pre-header {
@@ -301,7 +302,7 @@
     padding-left: (48px + 14px * 2);
     padding-bottom: 0;
     margin-bottom: -4px;
-    color: $ui-primary-color;
+    color: $light-text-color;
     font-size: 14px;
     position: relative;
 
@@ -311,7 +312,7 @@
     }
 
     .status__display-name.muted strong {
-      color: $ui-primary-color;
+      color: $light-text-color;
     }
   }
 
@@ -320,6 +321,17 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  .more {
+    color: $darker-text-color;
+    display: block;
+    padding: 14px;
+    text-align: center;
+
+    &:not(:hover) {
+      text-decoration: none;
     }
   }
 }

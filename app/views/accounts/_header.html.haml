@@ -5,12 +5,16 @@
 
   .card__bio
     %h1.name
-      %span.p-name.emojify= display_name(account)
-      %small
-        %span @#{account.local_username_and_domain}
+      %span.p-name.emojify= display_name(account, custom_emojify: true)
+      %small<
+        %span>< @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
 
-    - if Setting.show_staff_badge
+    - if account.bot?
+      .roles
+        .account-role.bot
+          = t 'accounts.roles.bot'
+    - elsif Setting.show_staff_badge
       - if account.user_admin?
         .roles
           .account-role.admin
@@ -21,7 +25,14 @@
             = t 'accounts.roles.moderator'
 
     .bio
-      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)
+      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+
+      - unless account.fields.empty?
+        .account__header__fields
+          - account.fields.each do |field|
+            %dl
+              %dt.emojify{ title: field.name }= field.name
+              %dd.emojify{ title: field.value }= Formatter.instance.format_field(account, field.value, custom_emojify: true)
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }

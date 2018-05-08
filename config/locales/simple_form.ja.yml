@@ -6,6 +6,7 @@ ja:
         avatar: 2MBまでのPNGやGIF、JPGが利用可能です。400x400pxまで縮小されます
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
+        fields: プロフィールに表として4つまでの項目を表示することができます
         header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます
         locked: フォロワーを手動で承認する必要があります
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
@@ -18,6 +19,10 @@ ja:
       user:
         filtered_languages: 選択した言語があなたの公開タイムラインから取り除かれます
     labels:
+      account:
+        fields:
+          name: ラベル
+          value: 内容
       defaults:
         avatar: アイコン
         confirm_new_password: 新しいパスワード（確認用）
@@ -27,6 +32,7 @@ ja:
         display_name: 表示名
         email: メールアドレス
         expires_in: 有効期限
+        fields: プロフィール補足情報
         filtered_languages: 除外する言語
         header: ヘッダー
         locale: 言語
@@ -46,7 +52,7 @@ ja:
         setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
-        setting_unfollow_modal: フォロー解除する前に確認ダイアログを表示する
+        setting_unfollow_modal: フォローを解除する前に確認ダイアログを表示する
         severity: 重大性
         type: インポートする項目
         username: ユーザー名

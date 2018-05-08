@@ -1,18 +1,10 @@
 import {
   REBLOG_REQUEST,
-  REBLOG_SUCCESS,
   REBLOG_FAIL,
-  UNREBLOG_SUCCESS,
   FAVOURITE_REQUEST,
-  FAVOURITE_SUCCESS,
   FAVOURITE_FAIL,
-  UNFAVOURITE_SUCCESS,
-  PIN_SUCCESS,
-  UNPIN_SUCCESS,
 } from '../actions/interactions';
 import {
-  STATUS_FETCH_SUCCESS,
-  CONTEXT_FETCH_SUCCESS,
   STATUS_MUTE_SUCCESS,
   STATUS_UNMUTE_SUCCESS,
   STATUS_REVEAL,
@@ -20,43 +12,11 @@ import {
   QUOTE_REVEAL,
   QUOTE_HIDE,
 } from '../actions/statuses';
-import {
-  TIMELINE_REFRESH_SUCCESS,
-  TIMELINE_UPDATE,
-  TIMELINE_DELETE,
-  TIMELINE_EXPAND_SUCCESS,
-} from '../actions/timelines';
-import {
-  NOTIFICATIONS_UPDATE,
-  NOTIFICATIONS_REFRESH_SUCCESS,
-  NOTIFICATIONS_EXPAND_SUCCESS,
-} from '../actions/notifications';
-import {
-  FAVOURITED_STATUSES_FETCH_SUCCESS,
-  FAVOURITED_STATUSES_EXPAND_SUCCESS,
-} from '../actions/favourites';
-import {
-  PINNED_STATUSES_FETCH_SUCCESS,
-} from '../actions/pin_statuses';
-import { SEARCH_FETCH_SUCCESS } from '../actions/search';
-import emojify from '../features/emoji/emoji';
+import { TIMELINE_DELETE } from '../actions/timelines';
+import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
 import { Map as ImmutableMap, fromJS } from 'immutable';
-import escapeTextContentForBrowser from 'escape-html';
 
-const domParser = new DOMParser();
-
-const normalizeStatus = (state, status) => {
-  if (!status) {
-    return state;
-  }
-
-  const normalStatus   = { ...status };
-  normalStatus.account = status.account.id;
-
-  if (status.reblog && status.reblog.id) {
-    state               = normalizeStatus(state, status.reblog);
-    normalStatus.reblog = status.reblog.id;
-  }
+const importStatus = (state, status) => state.set(status.id, fromJS(status));
 
   // Only calculate these values when status first encountered
   // Otherwise keep the ones already in the reducer
@@ -110,6 +70,8 @@ const normalizeStatuses = (state, statuses) => {
 
   return state;
 };
+const importStatuses = (state, statuses) =>
+  state.withMutations(mutable => statuses.forEach(status => importStatus(mutable, status)));
 
 const deleteStatus = (state, id, references) => {
   references.forEach(ref => {
@@ -123,17 +85,10 @@ const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
   switch(action.type) {
-  case TIMELINE_UPDATE:
-  case STATUS_FETCH_SUCCESS:
-  case NOTIFICATIONS_UPDATE:
-    return normalizeStatus(state, action.status);
-  case REBLOG_SUCCESS:
-  case UNREBLOG_SUCCESS:
-  case FAVOURITE_SUCCESS:
-  case UNFAVOURITE_SUCCESS:
-  case PIN_SUCCESS:
-  case UNPIN_SUCCESS:
-    return normalizeStatus(state, action.response);
+  case STATUS_IMPORT:
+    return importStatus(state, action.status);
+  case STATUSES_IMPORT:
+    return importStatuses(state, action.statuses);
   case FAVOURITE_REQUEST:
     return state.setIn([action.status.get('id'), 'favourited'], true);
   case FAVOURITE_FAIL:

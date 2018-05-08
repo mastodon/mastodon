@@ -4,6 +4,7 @@ oc:
     about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
+    administered_by: 'Gerida per :'
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
     contact_missing: Pas parametrat
@@ -48,21 +49,28 @@ oc:
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
       admin: Admin
-      moderator: Mod
+      moderator: Moderador
     unfollow: Quitar de sègre
   admin:
     account_moderation_notes:
-      account: Moderator
       create: Crear
-      created_at: Data
       created_msg: Nòta de moderacion ben creada !
       delete: Suprimir
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
       are_you_sure: Sètz segur ?
+      avatar: Avatar
       by_domain: Domeni
+      change_email:
+        changed_msg: Adreça corrèctament cambiada !
+        current_email: Adreça actuala
+        label: Cambiar d’adreça
+        new_email: Novèla adreça
+        submit: Cambiar
+        title: Cambiar l’adreça a %{username}
       confirm: Confirmar
       confirmed: Confirmat
+      confirming: Confirmando
       demote: Retrogradar
       disable: Desactivar
       disable_two_factor_authentication: Desactivar 2FA
@@ -71,6 +79,7 @@ oc:
       domain: Domeni
       edit: Modificar
       email: Corrièl
+      email_status: Estado del correo electrónico
       enable: Activar
       enabled: Activat
       feed_url: Flux URL
@@ -108,13 +117,18 @@ oc:
       public: Public
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar los avatars
+      remove_avatar: Supriir l’avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
       role: Permissions
       roles:
         admin: Administrator
-        moderator: Moderator
+        moderator: Moderador
         staff: Personnal
         user: Uitlizaire
       salmon_url: URL Salmon
@@ -128,6 +142,7 @@ oc:
       statuses: Estatuts
       subscribe: S’abonar
       title: Comptes
+      unconfirmed_email: Adreça pas confirmada
       undo_silenced: Levar lo silenci
       undo_suspension: Levar la suspension
       unsubscribe: Se desabonar
@@ -135,6 +150,8 @@ oc:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
+        change_email_user: "%{name} cambièt l’adreça de corrièl de %{target}"
         confirm_user: "%{name} confirmèt l’adreça a %{target}"
         create_custom_emoji: "%{name} mandèt un nòu emoji %{target}"
         create_domain_block: "%{name} bloquèt lo domeni %{target}"
@@ -150,10 +167,13 @@ oc:
         enable_user: "%{name} activèt la connexion per %{target}"
         memorialize_account: "%{name} transformèt en memorial la pagina de perfil a %{target}"
         promote_user: "%{name} promoguèt %{target}"
+        remove_avatar_user: "%{name} suprimèt l’avatar a %{target}"
+        reopen_report: "%{name} tornèt dobrir lo rapòrt %{target}"
         reset_password_user: "%{name} reïnicializèt lo senhal a %{target}"
-        resolve_report: "%{name} anullèt lo rapòrt de %{target}"
+        resolve_report: "%{name} anullèt lo rapòrt %{target}"
         silence_account: "%{name} metèt en silenci lo compte a %{target}"
         suspend_account: "%{name} susprenguèt lo compte a %{target}"
+        unassigned_report: "%{name} daissèt de tractar lo rapòrt %{target}"
         unsilence_account: "%{name} levèt lo silenci del compte a %{target}"
         unsuspend_account: "%{name} restabliguèt lo compte a %{target}"
         update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
@@ -193,7 +213,7 @@ oc:
         create: Crear blocatge
         hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas, mai aplicarà la moderacion sus aquestes comptes.
         severity:
-          desc_html: "<strong>Silenci</strong> farà venir invisibles los estatuts del compte al mond que son pas de seguidors. <strong>Suspendre</strong> levarà tot lo contengut del compte, los mèdias e las donadas de perfil."
+          desc_html: "<strong>Silenci</strong> farà venir invisibles los estatuts del compte al monde que son pas de seguidors. <strong>Suspendre</strong> levarà tot lo contengut del compte, los mèdias e las donadas de perfil. Utilizatz <strong>Cap</strong> se volètz regetar totes los mèdias."
           noop: Cap
           silence: Silenci
           suspend: Suspendre
@@ -239,29 +259,43 @@ oc:
         expired: Expirats
         title: Filtre
       title: Convits
+    report_notes:
+      created_msg: Nòta de moderacion corrèctament creada !
+      destroyed_msg: Nòta de moderacion corrèctament suprimida !
     reports:
+      account:
+        note: nòta
+        report: rapòrt
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
+      assign_to_self: Me l’assignar
+      assigned: Moderador assignat
       comment:
-        label: Comentari
         none: Pas cap
-      delete: Suprimir
+      created_at: Creacion
       id: ID
-      mark_as_resolved: Marcat coma resolgut
-      nsfw:
-        'false': Sens contengut sensible
-        'true': Contengut sensible activat
+      mark_as_resolved: Marcar coma resolgut
+      mark_as_unresolved: Marcar coma pas resolgut
+      notes:
+        create: Ajustar una nòta
+        create_and_resolve: Resòlvre amb una nòta
+        create_and_unresolve: Tornar dobrir amb una nòta
+        placeholder: Explicatz las accions que son estadas menadas o çò qu’es estat fach per aqueste rapòrt…
+      reopen: Tornar dobrir lo rapòrt
       report: 'senhalament #%{id}'
       report_contents: Contenguts
       reported_account: Compte senhalat
       reported_by: Senhalat per
       resolved: Resolgut
+      resolved_msg: Rapòrt corrèctament resolgut  !
       silence_account: Metre lo compte en silenci
       status: Estatut
       suspend_account: Suspendre lo compte
       target: Cibla
       title: Senhalament
+      unassign: Levar
       unresolved: Pas resolguts
+      updated_at: Actualizat
       view: Veire
     settings:
       activity_api_enabled:
@@ -273,6 +307,9 @@ oc:
       contact_information:
         email: Picatz una adreça de corrièl
         username: Picatz un nom d’utilizaire
+      hero:
+        desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge de l’instància serà mostrat
+        title: Imatge de l’eròi
       peers_api_enabled:
         desc_html: Noms de domeni qu’aquesta instància a trobats pel fediverse
         title: Publica la lista de las instàncias conegudas
@@ -289,6 +326,9 @@ oc:
         open:
           desc_html: Autorizar lo mond a se marcar
           title: Inscripcions
+      show_known_fediverse_at_about_page:
+        desc_html: Un còp activat mostrarà los tuts de totes los fediverse dins l’apercebut. Autrament mostrarà pas que los tuts locals.
+        title: Mostrar los fediverse coneguts dins l’apercebut del flux
       show_staff_badge:
         desc_html: Mostrar lo badge Personal sus la pagina de perfil
         title: Mostrar lo badge personal
@@ -313,13 +353,10 @@ oc:
       back_to_account: Tornar a la pagina Compte
       batch:
         delete: Suprimir
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Lançar
+        nsfw_off: Marcar coma pas sensible
+        nsfw_on: Marcar coma sensible
       failed_to_execute: Fracàs
       media:
-        hide: Amagar mèdia
-        show: Mostrar mèdia
         title: Mèdia
       no_media: Cap mèdia
       title: Estatuts del compte
@@ -353,6 +390,8 @@ oc:
     your_token: Vòstre geton d’accès
   auth:
     agreement_html: En vos marcar acceptatz <a href="%{rules_path}">las règlas de l’instància</a> e <a href="%{terms_path}">politica de confidencialitat</a>.
+    change_password: Senhal
+    confirm_email: Confirmar lo corrièl
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
@@ -362,15 +401,19 @@ oc:
     logout: Se desconnectar
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
+    or: o
+    or_log_in_with: O autentificatz-vos amb
     providers:
       cas: CAS
       saml: SAML
     register: Se marcar
+    register_elsewhere: Se marcar endacòm mai
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     security: Seguretat
     set_new_password: Picar un nòu senhal
   authorize_follow:
+    already_following: Seguètz ja aqueste compte
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
     follow_request: 'Avètz demandat de sègre :'
@@ -451,9 +494,7 @@ oc:
       less_than_x_minutes:
         one: Fa mens d’una minuta
         other: Fa mens de %{count} minutas
-      less_than_x_seconds:
-        one: Fa mens d’una segonda
-        other: Fa mens de %{count} segondas
+      less_than_x_seconds: Ara meteis
       over_x_years:
         one: Fa mai d’un an
         other: Fa mai de %{count} ans
@@ -493,6 +534,13 @@ oc:
       title: Aquesta pagina es incorrècta
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
+    archive_takeout:
+      date: Data
+      download: Telecargar vòstre archiu
+      hint_html: Podètz demandar un archiu de vòstres <strong>tuts e mèdias enviats</strong>. Las donadas exportadas seràn al format ActivityPub, ligible pels logicials compatibles.
+      in_progress: Complilacion de vòstre archiu...
+      request: Demandar vòstre archiu
+      size: Talha
     blocks: Personas que blocatz
     csv: CSV
     follows: Personas que seguètz
@@ -534,6 +582,7 @@ oc:
       '21600': 6 oras
       '3600': 1 ora
       '43200': 12 oras
+      '604800': 1 setmana
       '86400': 1 jorn
     expires_in_prompt: Jamai
     generate: Generar
@@ -565,7 +614,7 @@ oc:
   notification_mailer:
     digest:
       action: Veire totas las notificacions
-      body: 'Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra darrièra visita lo %{since} :'
+      body: Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra darrièra visita lo %{since}
       mention: "%{name} vos a mencionat dins :"
       new_followers_summary:
         one: Avètz un nòu seguidor dempuèi vòstra darrièra visita ! Ouà !
@@ -608,7 +657,9 @@ oc:
           trillion: T
           unit: ''
   pagination:
+    newer: Mai recent
     next: Seguent
+    older: Mai ancian
     prev: Precedent
     truncate: "&hellip;"
   preferences:
@@ -633,8 +684,12 @@ oc:
   remote_follow:
     acct: Picatz vòstre utilizaire@instància que cal utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
-    proceed: Contunhatz per sègre
+    proceed: Clicatz per sègre
     prompt: 'Sètz per sègre :'
+  remote_unfollow:
+    error: Error
+    title: Títol
+    unfollowed: Pas mai seguit
   sessions:
     activity: Darrièra activitat
     browser: Navigator
@@ -650,7 +705,7 @@ oc:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Otter
+      otter: Autre
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -692,6 +747,18 @@ oc:
     two_factor_authentication: Autentificacion en dos temps
     your_apps: Vòstras aplicacions
   statuses:
+    attached:
+      description: 'Ajustat : %{attached}'
+      image:
+        one: "%{count} imatge"
+        other: "%{count} imatges"
+      video:
+        one: "%{count} vidèo"
+        other: "%{count} vidèos"
+    content_warning: 'Avertiment de contengut : %{warning}'
+    disallowed_hashtags:
+      one: 'conten una etiqueta desactivada : %{tags}'
+      other: 'conten las etiquetas desactivadas : %{tags}'
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
@@ -714,75 +781,9 @@ oc:
     reblogged: a partejat
     sensitive_content: Contengut sensible
   terms:
-    body_html: |
-      <h2>Politica de confidencialitat</h2>
-
-      <h3 id="collect">Quinas informacions reculhèm ?</h3>
-
-      <p>Collectem informacions sus vos quand vos marcatz sus nòstre site e juntem las donadas quand participatz a nòstre forum en legir, escriure e notar lo contengut partejat aquí.</p>
-
-      <p>Pendent l’inscripcion podèm vos demandar vòstre nom e adreça de corrièl. Podètz çaquelà visitar nòstre site sens vos marcar. Verificarem vòstra adreça amb un messatge donant un ligam unic. Se clicatz sul ligam sauprem qu’avètz lo contraròtle de l’adreça.</p>
-
-      <p>Quand sètz marcat e que publicatz quicòm, enregistrem l’adreça IP d’origina. Podèm tanben salvagardar los jornals del servidor que tenon l’adreça IP de totas las demandas fachas al nòstre servidor.</p>
-
-      <h3 id="use">Qué fasèm de vòstras informacions ?</h3>
-
-      <p>Totas las informacions que collectem de vos pòdon servir dins los cases seguents :</p>
-
-      <ul>
-        <li>Per personalizar vòstre experiéncia &mdash; vòstras informacions nos ajudaràn a respondre melhor a vòstres besonhs individuals.</li>
-        <li>Per melhorar nòstre site &mdash; s’eforcem de longa a melhorar çò que nòstre site ofrís segon las informacions e los comentaris que recebèm de vòstra part.</li>
-        <li>Per melhorar nòstre servici client &mdash; vòstras informacions nos ajudan per respondre amb mai eficacitat a vòstras demandas d’assisténcia.</li>
-        <li>Per enviar periodicament de corrièls &mdash; Podèm utilizar l’adreça qu’avètz donada per vos enviar d’informacions e de notificacions que demandatz tocant de cambiaments dins los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa a una demanda, e/o tota autra question.</li>
-      </ul>
-
-      <h3 id="protect">Cossí protegèm vòstras informacions ?</h3>
-
-      <p>Apliquem tota una mena de mesuras de seguretat per manténer la fisança de vòstras informacions personalas quand las picatz, mandatz, o i accedètz.</p>
-
-      <h3 id="data-retention">Quala es vòstra politica de conservacion de donadas ?</h3>
-
-      <p>Farem esfòrces per :</p>
-
-      <ul>
-        <li>Gardar los jornals del servidor que contenon las adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>
-        <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas mai de 5 ans.</li>
-      </ul>
-
-      <h3 id="cookies">Empleguem de cookies ?</h3>
-
-      <p>Òc-ben. Los cookies son de pichons fichièrs qu’un site o sos provesidors de servicis plaçan dins lo disc dur de vòstre ordenador via lo navigator Web (Se los acceptatz). Aqueles cookies permeton al site de reconéisser vòstre navigator e se tenètz un compte enregistrat de l’associar a vòstre compte.</p>
-
-      <p>Empleguem de cookies per comprendre e enregistrar vòstras preferéncias per vòstras visitas venentas, per recampar de donadas sul trafic del site e las interaccions per dire que posquem ofrir una melhora experiéncia del site e de las aisinas pel futur. Pòt arribar que contractèssem amb de provesidors de servicis tèrces per nos ajudar a comprendre melhor nòstres visitors.  Aqueles provesidors an pas lo drech que d’utilizar las donadas collectadas per nos ajudar a menar e melhorar nòstre afar.</p>
-
-      <h3 id="disclose">Divulguem d’informacions a de tèrces ?</h3>
-
-      <p>Vendèm pas, comercem o qualque transferiment que siasque a de tèrces vòstras informacions personalas identificablas. Aquò inclutz pas los tèrces partits de confisança que nos assiston a menar nòstre site, menar nòstre afar o vos servir, baste que son d’acòrd per gardar aquelas informacions confidencialas. Pòt tanben arribar que liberèssem vòstras informacions quand cresèm qu’es apropriat d’o far per se sometre a la lei, per refortir nòstras politicas, o per protegir los dreches, proprietats o seguritat de qualqu’un o de nosautres. Pasmens es possible que mandèssem d’informacions non-personalas e identificablas de nòstres visitors a d’autres partits per d’utilizacion en marketing, publicitat o un emplec mai.</p>
-
-      <h3 id="third-party">Ligams de tèrces</h3>
-
-      <p>Pòt arribar, a nòstra discrecion, qu’incluguèssem o ofriguèssem  de produches o servicis de tèrces partits sus nòstre site. Aqueles sites tèrces an de politicas de confidencialitats separadas e independentas. En consequéncia avèm pas cap de responsabilitat pel contengut e las activitats d’aqueles sites ligats. Pasmens cerquem de protegir l’integritat de nòstre site e aculhèm los comentaris tocant aqueles sites.</p>
-
-      <h3 id="coppa">Conformitat amb la lei de proteccion de la confidencialitat dels mainatges</h3>
-
-      <p>Nòstre site, nòstres produches e servicis son totes destinats a de monde d’almens 13 ans. S’aqueste servidor se tròba en los Estats Units per acontentar las exigéncias del COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) utilizetz pas aqueste site.</p>
-
-      <h3 id="online">Politica de confidencialitat en linha solament</h3>
-
-      <p>Aquesta politica de confidencialitat s’aplica pas qu’a las informacions collectadas via nòstre site e non pas a las informacions collectadas fòra linha.</p>
-
-      <h3 id="consent">Vòstre consentiment</h3>
-
-      <p>N’utilizant nòstre site, consentètz a nòstra politica de confidencialitat.</p>
-
-      <h3 id="changes">Cambiament dins nòstra politica de confidencialitat</h3>
-
-      <p>Se decidèm de cambiar nòstra politica de confidencialitat, publicarem los cambiaments sus aquesta pagina.</p>
-
-      <p>Aqueste document es jos licéncia CC-BY-SA. Darrièra mesa a jorn lo 31 de mai de 2013</p>
-
-      <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
     title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
+  themes:
+    contrast: Fòrt contrast
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M
@@ -799,10 +800,14 @@ oc:
     manual_instructions: 'Se podètz pas numerizar lo còdi QR e que vos cal picar lo còdi a la man, vaquí lo còdi en clar :'
     recovery_codes: Salvar los còdis de recuperacion
     recovery_codes_regenerated: Los còdis de recuperacion son ben estats tornats generar
-    recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
+    recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. <strong>Gardatz los còdis en seguretat</strong>, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
     setup: Paramètres
     wrong_code: Lo còdi picat es invalid ! L’ora es la bona sul servidor e lo mobil ?
   user_mailer:
+    backup_ready:
+      explanation: Avètz demandat una salvagarda complèta de vòstre compte Mastodon. Es prèsta per telecargament !
+      subject: Vòstre archiu es prèst per telecargament
+      title: Archiu per emportar
     welcome:
       edit_profile_action: Configuracion del perfil
       edit_profile_step: Podètz personalizar lo perfil en mandar un avatard, cambiar l’escais-nom e mai. Se volètz repassar las demandas d’abonaments abans que los nòus seguidors pòscan veire vòstre perfil, podètz clavar vòstre compte.
@@ -824,4 +829,5 @@ oc:
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
+    seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'

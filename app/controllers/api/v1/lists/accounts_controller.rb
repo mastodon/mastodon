@@ -88,7 +88,7 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
+    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def unlimited?

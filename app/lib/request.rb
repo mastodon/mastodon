@@ -9,10 +9,14 @@ class Request
   include RoutingHelper
 
   def initialize(verb, url, **options)
+    raise ArgumentError if url.blank?
+
     @verb    = verb
     @url     = Addressable::URI.parse(url).normalize
-    @options = options.merge(socket_class: Socket)
+    @options = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
     @headers = {}
+
+    raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
 
     set_common_headers!
     set_digest! if options.key?(:body)
@@ -33,9 +37,17 @@ class Request
   end
 
   def perform
-    http_client.headers(headers).public_send(@verb, @url.to_s, @options)
-  rescue => e
-    raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
+    begin
+      response = http_client.headers(headers).public_send(@verb, @url.to_s, @options)
+    rescue => e
+      raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
+    end
+
+    begin
+      yield response.extend(ClientLimit)
+    ensure
+      http_client.close
+    end
   end
 
   def headers
@@ -88,12 +100,48 @@ class Request
   end
 
   def http_client
-    HTTP.timeout(:per_operation, timeout).follow(max_hops: 2)
+    @http_client ||= HTTP.timeout(:per_operation, timeout).follow(max_hops: 2)
+  end
+
+  def use_proxy?
+    Rails.configuration.x.http_client_proxy.present?
+  end
+
+  def block_hidden_service?
+    !Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(@url.host)
+  end
+
+  module ClientLimit
+    def body_with_limit(limit = 1.megabyte)
+      raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
+
+      if charset.nil?
+        encoding = Encoding::BINARY
+      else
+        begin
+          encoding = Encoding.find(charset)
+        rescue ArgumentError
+          encoding = Encoding::BINARY
+        end
+      end
+
+      contents = String.new(encoding: encoding)
+
+      while (chunk = readpartial)
+        contents << chunk
+        chunk.clear
+
+        raise Mastodon::LengthValidationError if contents.bytesize > limit
+      end
+
+      contents
+    end
   end
 
   class Socket < TCPSocket
     class << self
       def open(host, *args)
+        return super host, *args if thru_hidden_service? host
         outer_e = nil
         Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
           begin
@@ -107,8 +155,12 @@ class Request
       end
 
       alias new open
+
+      def thru_hidden_service?(host)
+        Rails.configuration.x.hidden_service_via_transparent_proxy && /\.(onion|i2p)$/.match(host)
+      end
     end
   end
 
-  private_constant :Socket
+  private_constant :ClientLimit, :Socket
 end

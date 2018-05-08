@@ -4,6 +4,7 @@ module AccountAvatar
   extend ActiveSupport::Concern
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
+  LIMIT = 2.megabytes
 
   class_methods do
     def avatar_styles(file)
@@ -19,7 +20,8 @@ module AccountAvatar
     # Avatar upload
     has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-strip' }, processors: [:lazy_thumbnail]
     validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
-    validates_attachment_size :avatar, less_than: 2.megabytes
+    validates_attachment_size :avatar, less_than: LIMIT
+    remotable_attachment :avatar, LIMIT
   end
 
   def avatar_original_url

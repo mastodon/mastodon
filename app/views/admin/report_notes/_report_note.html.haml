@@ -1,0 +1,7 @@
+.speech-bubble
+  .speech-bubble__bubble
+    = simple_format(h(report_note.content))
+  .speech-bubble__owner
+    = admin_account_link_to report_note.account
+    %time.formatted{ datetime: report_note.created_at.iso8601 }= l report_note.created_at
+    = table_link_to 'trash', t('admin.reports.notes.delete'), admin_report_note_path(report_note), method: :delete if can?(:destroy, report_note)

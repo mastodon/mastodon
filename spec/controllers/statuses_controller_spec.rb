@@ -82,10 +82,53 @@ describe StatusesController do
         expect(assigns(:ancestors)).to eq []
       end
 
+      it 'assigns @descendant_threads for a thread with several statuses' do
+        status = Fabricate(:status)
+        child = Fabricate(:status, in_reply_to_id: status.id)
+        grandchild = Fabricate(:status, in_reply_to_id: child.id)
+
+        get :show, params: { account_username: status.account.username, id: status.id }
+
+        expect(assigns(:descendant_threads)[0][:statuses].pluck(:id)).to eq [child.id, grandchild.id]
+      end
+
+      it 'assigns @descendant_threads for several threads sharing the same descendant' do
+        status = Fabricate(:status)
+        child = Fabricate(:status, in_reply_to_id: status.id)
+        grandchildren = 2.times.map { Fabricate(:status, in_reply_to_id: child.id) }
+
+        get :show, params: { account_username: status.account.username, id: status.id }
+
+        expect(assigns(:descendant_threads)[0][:statuses].pluck(:id)).to eq [child.id, grandchildren[0].id]
+        expect(assigns(:descendant_threads)[1][:statuses].pluck(:id)).to eq [grandchildren[1].id]
+      end
+
+      it 'assigns @max_descendant_thread_id for the last thread if it is hitting the status limit' do
+        stub_const 'StatusesController::DESCENDANTS_LIMIT', 1
+        status = Fabricate(:status)
+        child = Fabricate(:status, in_reply_to_id: status.id)
+
+        get :show, params: { account_username: status.account.username, id: status.id }
+
+        expect(assigns(:descendant_threads)).to eq []
+        expect(assigns(:max_descendant_thread_id)).to eq child.id
+      end
+
+      it 'assigns @descendant_threads for threads with :next_status key if they are hitting the depth limit' do
+        stub_const 'StatusesController::DESCENDANTS_DEPTH_LIMIT', 1
+        status = Fabricate(:status)
+        child = Fabricate(:status, in_reply_to_id: status.id)
+
+        get :show, params: { account_username: status.account.username, id: status.id }
+
+        expect(assigns(:descendant_threads)[0][:statuses].pluck(:id)).not_to include child.id
+        expect(assigns(:descendant_threads)[0][:next_status].id).to eq child.id
+      end
+
       it 'returns a success' do
         status = Fabricate(:status)
         get :show, params: { account_username: status.account.username, id: status.id }
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'renders stream_entries/show' do

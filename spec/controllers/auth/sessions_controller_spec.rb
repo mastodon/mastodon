@@ -12,7 +12,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
     it 'returns http success' do
       get :new
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -46,6 +46,57 @@ RSpec.describe Auth::SessionsController, type: :controller do
   describe 'POST #create' do
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
+    end
+
+    context 'using PAM authentication' do
+      context 'using a valid password' do
+        before do
+          post :create, params: { user: { email: "pam_user1", password: '123456' } }
+        end
+
+        it 'redirects to home' do
+          expect(response).to redirect_to(root_path)
+        end
+
+        it 'logs the user in' do
+          expect(controller.current_user).to be_instance_of(User)
+        end
+      end
+
+      context 'using an invalid password' do
+        before do
+          post :create, params: { user: { email: "pam_user1", password: 'WRONGPW' } }
+        end
+
+        it 'shows a login error' do
+          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: 'Email')
+        end
+
+        it "doesn't log the user in" do
+          expect(controller.current_user).to be_nil
+        end
+      end
+
+      context 'using a valid email and existing user' do
+        let(:user) do
+          account = Fabricate.build(:account, username: 'pam_user1')
+          account.save!(validate: false)
+          user = Fabricate(:user, email: 'pam@example.com', password: nil, account: account)
+          user
+        end
+
+        before do
+          post :create, params: { user: { email: user.email, password: '123456' } }
+        end
+
+        it 'redirects to home' do
+          expect(response).to redirect_to(root_path)
+        end
+
+        it 'logs the user in' do
+          expect(controller.current_user).to eq user
+        end
+      end
     end
 
     context 'using password authentication' do

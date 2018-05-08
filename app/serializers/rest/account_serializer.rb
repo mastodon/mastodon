@@ -3,18 +3,29 @@
 class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :id, :username, :acct, :display_name, :locked, :created_at,
+  attributes :id, :username, :acct, :display_name, :locked, :bot, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
+  has_many :emojis, serializer: REST::CustomEmojiSerializer
+
+  class FieldSerializer < ActiveModel::Serializer
+    attributes :name, :value
+
+    def value
+      Formatter.instance.format_field(object.account, object.value)
+    end
+  end
+
+  has_many :fields
 
   def id
     object.id.to_s
   end
 
   def note
-    Formatter.instance.simplified_format(object)
+    Formatter.instance.simplified_format(object, custom_emojify: true)
   end
 
   def url
