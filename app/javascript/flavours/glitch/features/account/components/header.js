@@ -102,35 +102,25 @@ export default class Header extends ImmutablePureComponent {
             <div className='account__header__content' dangerouslySetInnerHTML={{ __html: emojify(text) }} />
 
             {fields.size > 0 && (
-              <table className='account__header__fields'>
-                <tbody>
-                  {fields.map((pair, i) => (
-                    <tr key={i}>
-                      <th dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} />
-                      <td dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
-                   </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className='account__header__fields'>
+                {fields.map((pair, i) => (
+                  <dl key={i}>
+                    <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
+                    <dd dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} title={pair.get('value')} />
+                 </dl>
+                ))}
+              </div>
             )}
 
             {fields.size == 0 && metadata.length && (
-              <table className='account__header__fields'>
-                <tbody>
-                  {(() => {
-                    let data = [];
-                    for (let i = 0; i < metadata.length; i++) {
-                      data.push(
-                        <tr key={i}>
-                          <th scope='row'><div dangerouslySetInnerHTML={{ __html: emojify(metadata[i][0]) }} /></th>
-                          <td><div dangerouslySetInnerHTML={{ __html: emojify(metadata[i][1]) }} /></td>
-                        </tr>
-                      );
-                    }
-                    return data;
-                  })()}
-                </tbody>
-              </table>
+              <div className='account__header__fields'>
+                {metadata.map((pair, i) => (
+                  <dl key={i}>
+                    <dt dangerouslySetInnerHTML={{ __html: emojify(pair[0]) }} title={pair[0]} />
+                    <dd dangerouslySetInnerHTML={{ __html: emojify(pair[1]) }} title={pair[1]} />
+                  </dl>
+                ))}
+              </div>
             ) || null}
 
             {info}
