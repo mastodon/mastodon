@@ -9,9 +9,12 @@ class Api::Web::EmbedsController < Api::Web::BaseController
     status = StatusFinder.new(params[:url]).status
     render json: status, serializer: OEmbedSerializer, width: 400
   rescue ActiveRecord::RecordNotFound
-    oembed = OEmbed::Providers.get(params[:url])
-    render json: Oj.dump(oembed.fields)
-  rescue OEmbed::NotFound
-    render json: {}, status: :not_found
+    oembed = FetchOEmbedService.new.call(params[:url])
+
+    if oembed
+      render json: oembed
+    else
+      render json: {}, status: :not_found
+    end
   end
 end

@@ -49,13 +49,11 @@ sv:
     reserved_username: Användarnamnet är reserverat
     roles:
       admin: Admin
-      moderator: Moderera
+      moderator: Moderator
     unfollow: Sluta följa
   admin:
     account_moderation_notes:
-      account: Moderator
       create: Skapa
-      created_at: Datum
       created_msg: Modereringsnotering skapad utan problem!
       delete: Ta bort
       destroyed_msg: Modereringsnotering borttagen utan problem!
@@ -72,6 +70,7 @@ sv:
         title: Byt E-postadress för %{username}
       confirm: Bekräfta
       confirmed: Bekräftad
+      confirming: Bekräftande
       demote: Degradera
       disable: inaktivera
       disable_two_factor_authentication: Inaktivera 2FA
@@ -80,6 +79,7 @@ sv:
       domain: Domän
       edit: Redigera
       email: E-post
+      email_status: E-poststatus
       enable: Aktivera
       enabled: Aktiverad
       feed_url: Flödes URL
@@ -118,6 +118,10 @@ sv:
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera avatar
       remove_avatar: Ta bort avatar
+      resend_confirmation:
+        already_confirmed: Den här användaren är redan bekräftad
+        send: Skicka om e-postbekräftelse
+        success: Bekräftelsemeddelande skickas framgångsrikt!
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
@@ -269,7 +273,6 @@ sv:
       comment:
         none: Ingen
       created_at: Anmäld
-      delete: Radera
       id: ID
       mark_as_resolved: Markera som löst
       mark_as_unresolved: Markera som olöst
@@ -279,9 +282,6 @@ sv:
         create_and_unresolve: Återuppta med anteckning
         delete: Radera
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan…
-      nsfw:
-        'false': Visa bifogade mediafiler
-        'true': Dölj bifogade mediafiler
       reopen: Återuppta anmälan
       report: 'Anmäl #%{id}'
       report_contents: Innehåll
@@ -356,11 +356,8 @@ sv:
         delete: Radera
         nsfw_off: Markera som ej känslig
         nsfw_on: Markera som känslig
-      execute: Utför
       failed_to_execute: Misslyckades att utföra
       media:
-        hide: Dölj media
-        show: Visa media
         title: Media
       no_media: Ingen media
       title: Kontostatus

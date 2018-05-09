@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AccountSearchService do
+describe AccountSearchService, type: :service do
   describe '.call' do
     describe 'with a query to ignore' do
       it 'returns empty array for missing query' do

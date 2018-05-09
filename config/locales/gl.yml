@@ -19,8 +19,8 @@ gl:
       humane_approach_body: Aprendendo dos erros de outras redes, Mastodon intenta tomar decisións éticas de deseño para loitar contra os usos incorrectos da rede.
       humane_approach_title: Unha aproximación máis humana
       not_a_product_body: Mastodon non é unha rede comercial. Sen anuncios, sen minería de datos, sen xardíns privados. Non hai autoridade centralizada.
-      not_a_product_title: Vostede é unha persona, non un producto
-      real_conversation_body: Con 500 caracteres a súa disposición e soporte para contido ao por menor e avisos sobre o contido, pode expresarse vostede do xeito que queira.
+      not_a_product_title: Vostede é unha persoa, non un producto
+      real_conversation_body: Con 500 caracteres a súa disposición, soporte para contido polo miúdo e avisos sobre o contido, pode expresarse vostede con libertade.
       real_conversation_title: Construído para conversacións reais
       within_reach_body: Existen múltiples aplicativos para iOS, Android e outras plataformas grazas a un entorno API amigable para o desenvolvedor que lle permite estar ao tanto cos seus amigos en calquer lugar.
       within_reach_title: Sempre en contacto
@@ -53,9 +53,7 @@ gl:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Crear
-      created_at: Data
       created_msg: Nota a moderación creada con éxito!
       delete: Eliminar
       destroyed_msg: Nota a moderación destruída con éxito!
@@ -72,6 +70,7 @@ gl:
         title: Cambiar o correo-e de %{username}
       confirm: Confirmar
       confirmed: Confirmado
+      confirming: Confirmar
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Deshabilitar 2FA
@@ -80,6 +79,7 @@ gl:
       domain: Dominio
       edit: Editar
       email: E-mail
+      email_status: Estado del correo electrónico
       enable: Habilitar
       enabled: Habilitado
       feed_url: URL fonte
@@ -118,6 +118,10 @@ gl:
       push_subscription_expires: A suscrición PuSH caduca
       redownload: Actualizar avatar
       remove_avatar: Eliminar avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Restablecer
       reset_password: Restablecer contrasinal
       resubscribe: Voltar a suscribir
@@ -269,7 +273,6 @@ gl:
       comment:
         none: Nada
       created_at: Reportado
-      delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resolto
       mark_as_unresolved: Marcar como non resolto
@@ -279,9 +282,6 @@ gl:
         create_and_unresolve: Voltar a abrir con nota
         delete: Eliminar
         placeholder: Describir qué decisións foron tomadas, ou calquer actualización a este informe…
-      nsfw:
-        'false': Non agochar anexos de medios
-        'true': Agochar anexos de medios
       reopen: Voltar a abrir o informe
       report: 'Informe #%{id}'
       report_contents: Contidos
@@ -356,11 +356,8 @@ gl:
         delete: Eliminar
         nsfw_off: Marcar como non sensible
         nsfw_on: Marcar como sensible
-      execute: Executar
       failed_to_execute: Fallou a execución
       media:
-        hide: Agochar medios
-        show: Mostar medios
         title: Medios
       no_media: Sen medios
       title: Estados da conta
@@ -376,6 +373,7 @@ gl:
   admin_mailer:
     new_report:
       body: "%{reporter} informou sobre %{target}"
+      body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: Novo informe sobre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
@@ -706,7 +704,7 @@ gl:
   stream_entries:
     click_to_show: Pulse para mostrar
     pinned: Mensaxe fixada
-    reblogged: promocionada
+    reblogged: promovida
     sensitive_content: Contido sensible
   terms:
     body_html: |

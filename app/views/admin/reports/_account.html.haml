@@ -15,5 +15,5 @@
           .account__avatar{ style: "background-image: url(#{account.avatar.url}); width: #{size}px; height: #{size}px; background-size: #{size}px #{size}px" }
         %span.display-name
           %bdi
-            %strong.display-name__html.emojify= display_name(account)
+            %strong.display-name__html.emojify= display_name(account, custom_emojify: true)
           %span.display-name__account @#{account.acct}

@@ -4,6 +4,7 @@ ar:
     about_hashtag_html: هذه هي الرسائل العامة مع الكلمات الدلالية  <strong> 1#%{hashtag}</strong>. يمكنك التفاعل معهم إذا كان لديك حساب في أي مكان على الإنترنت المتحد.
     about_mastodon_html: ماستدون شبكة إجتماعية <em>حرة و مفتوحة المصدر</em>. هو بديل <em>لامركزي</em> لمنصات تجارية ، يمكنك من تجنب احتكار شركة واحدة للإتصالات الخاصة بك. يمكنك اختيار أي خادم تثق فيه. أيهما تختار، يمكنك التفاعل مع أي شخص آخر على الشبكة. يمكن لأي شخص تنصيب و تشغيل خادم ماستدون خاص به والمشاركة في <em>الشبكات الاجتماعية</em> بكل شفافية.
     about_this: عن مثيل الخادوم هذا
+    administered_by: 'يديره :'
     closed_registrations: التسجيلات في مثيل الخادوم هذا مُغلقة حاليًا.
     contact: للتواصل معنا
     contact_missing: غير محدد
@@ -52,17 +53,24 @@ ar:
     unfollow: إلغاء المتابعة
   admin:
     account_moderation_notes:
-      account: مُشرِف
       create: إنشاء
-      created_at: التاريخ
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح !
       delete: حذف
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح !
     accounts:
       are_you_sure: متأكد ؟
+      avatar: الصورة الرمزية
       by_domain: النطاق
+      change_email:
+        changed_msg: تم تعديل عنوان البريد الإلكتروني الخاص بالحساب بنجاح !
+        current_email: عنوان البريد الإلكتروني الحالي
+        label: تعديل عنوان البريد الإلكتروني
+        new_email: عنوان البريد الإلكتروني الجديد
+        submit: تعديل عنوان البريد الإلكتروني
+        title: تعديل عنوان البريد الإلكتروني الخاص بـ %{username}
       confirm: تأكيد
       confirmed: مؤكَّد
+      confirming: التأكد
       demote: إنزال الرُتبة الوظيفية
       disable: تعطيل
       disable_two_factor_authentication: تعطيل 2FA
@@ -71,6 +79,7 @@ ar:
       domain: النطاق
       edit: تعديل
       email: البريد الإلكتروني
+      email_status: حالة البريد الإلكتروني
       enable: تفعيل
       enabled: مفعَّل
       feed_url: عنوان رابط التغذية
@@ -108,6 +117,11 @@ ar:
       public: عمومي
       push_subscription_expires: انتهاء الاشتراك ”PuSH“
       redownload: تحديث الصورة الرمزية
+      remove_avatar: حذف الصورة الرمزية
+      resend_confirmation:
+        already_confirmed: هذا المستخدم مؤكد بالفعل
+        send: أعد إرسال رسالة البريد الالكتروني الخاصة بالتأكيد
+        success: تم إرسال رسالة التأكيد بنجاح!
       reset: إعادة التعيين
       reset_password: إعادة ضبط كلمة السر
       resubscribe: اشترك مرة أخرى
@@ -241,12 +255,8 @@ ar:
       are_you_sure: هل أنت متأكد ؟
       comment:
         none: لا شيء
-      delete: حذف
       id: معرّف ID
       mark_as_resolved: إعتبار التقرير كمحلول
-      nsfw:
-        'false': الكشف عن الصور
-        'true': إخفاء الوسائط المرفقة
       report: 'التقرير #%{id}'
       report_contents: المحتويات
       reported_account: حساب مُبلّغ عنه
@@ -305,11 +315,8 @@ ar:
       back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
-      execute: تفعيل
       failed_to_execute: خطأ في التفعيل
       media:
-        hide: إخفاء الوسائط
-        show: إظهار الوسائط
         title: الوسائط
       title: منشورات الحساب
       with_media: بالوسائط

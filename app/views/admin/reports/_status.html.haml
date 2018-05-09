@@ -7,7 +7,7 @@
         %p><
           %strong= Formatter.instance.format_spoiler(status)
 
-      = Formatter.instance.format(status)
+      = Formatter.instance.format(status, custom_emojify: true)
 
     - unless status.media_attachments.empty?
       - if status.media_attachments.first.video?

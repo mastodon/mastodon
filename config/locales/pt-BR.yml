@@ -53,9 +53,7 @@ pt-BR:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Criar
-      created_at: Data
       created_msg: Nota de moderação criada com sucesso!
       delete: Excluir
       destroyed_msg: Nota de moderação excluída com sucesso!
@@ -72,6 +70,7 @@ pt-BR:
         title: Mudar e-mail para %{username}
       confirm: Confirmar
       confirmed: Confirmado
+      confirming: Confirmando
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
@@ -80,6 +79,7 @@ pt-BR:
       domain: Domínio
       edit: Editar
       email: E-mail
+      email_status: Estado del correo electrónico
       enable: Ativar
       enabled: Ativado
       feed_url: URL do feed
@@ -118,6 +118,10 @@ pt-BR:
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar avatar
       remove_avatar: Remover avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Anular
       reset_password: Modificar senha
       resubscribe: Reinscrever-se
@@ -269,7 +273,6 @@ pt-BR:
       comment:
         none: Nenhum
       created_at: Denunciado
-      delete: Excluir
       id: ID
       mark_as_resolved: Marcar como resolvido
       mark_as_unresolved: Marcar como não resolvido
@@ -279,9 +282,6 @@ pt-BR:
         create_and_unresolve: Reabrir com nota
         delete: Excluir
         placeholder: Descreva que ações foram tomadas, ou quaisquer atualizações sobre esta denúncia…
-      nsfw:
-        'false': Mostrar mídias anexadas
-        'true': Esconder mídias anexadas
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
@@ -356,11 +356,8 @@ pt-BR:
         delete: Deletar
         nsfw_off: Marcar como não-sensível
         nsfw_on: Marcar como sensível
-      execute: Executar
       failed_to_execute: Falha em executar
       media:
-        hide: Esconder mídia
-        show: Mostrar mídia
         title: Mídia
       no_media: Não há mídia
       title: Postagens da conta
@@ -708,6 +705,83 @@ pt-BR:
     reblogged: compartilhou
     sensitive_content: Conteúdo sensível
   terms:
+    body_html: |
+      <h2>Política de privacidade</h2>
+      <h3 id="collect">Que informação nós coletamos?</h3>
+
+      <ul>
+        <li><em>Informação básica de conta</em>: Se você se registrar nesse servidor, podemos pedir que você utilize um nome de usuário, um e-mail e uma senha. Você também pode adicionar informações extras como um nome de exibição e biografia; enviar uma imagem de perfil e imagem de cabeçalho. O nome de usuário, nome de exibição, biografia, imagem de perfil e imagem de cabeçalho são sempre listadas publicamente.</li>
+        <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.<li>
+        <li><em>Mensagens diretas e posts somente para seguidores</em>: Todos os posts são armazenados e processados no servidor. Posts somente para seguidores são entregues aos seus seguidores e usuários que são mencionados neles; mensagens diretas são entregues somente aos usuários mencionados nelas. Em alguns casos isso significa que as mensagens são entregues para servidores diferentes e cópias são armazenadas nesses servidores. Nós fazemos esforços substanciais para limitar o acesso dessas mensagens somente para as pessoas autorizadas, mas outros servidores podem não fazer o mesmo. É importante portanto revisar os servidores à qual seus seguidores pertencem. Você pode usar uma opção para aprovar ou rejeitar novos seguidores manualmente nas configurações. <em>Por favor tenha em mente que os operadores do servidor e de qualquer servidores do destinatário podem ver tais mensagens</em>, e que os destinatários podem fazer capturas de tela, copiar ou de outra maneira compartilhar as mensagens. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
+        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+
+      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
     contrast: Alto contraste

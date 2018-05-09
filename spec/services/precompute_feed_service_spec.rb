@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PrecomputeFeedService do
+RSpec.describe PrecomputeFeedService, type: :service do
   subject { PrecomputeFeedService.new }
 
   describe 'call' do
