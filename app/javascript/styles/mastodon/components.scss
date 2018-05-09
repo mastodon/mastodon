@@ -4033,7 +4033,7 @@ a.status-card {
 .report-modal__statuses {
   flex: 1 1 auto;
   min-height: 20vh;
-  max-height: 40vh;
+  max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -5159,38 +5159,45 @@ noscript {
   }
 }
 
+.account__header .roles {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
 .account__header .account__header__fields {
   font-size: 14px;
   line-height: 20px;
   overflow: hidden;
-  border-collapse: collapse;
   margin: 20px -10px -20px;
   border-bottom: 0;
 
-  tr {
+  dl {
     border-top: 1px solid lighten($ui-base-color, 8%);
-    text-align: center;
+    display: flex;
   }
 
-  th,
-  td {
+  dt,
+  dd {
+    box-sizing: border-box;
     padding: 14px 20px;
-    vertical-align: middle;
-    max-height: 40px;
+    text-align: center;
+    max-height: 48px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  th {
+  dt {
     color: $darker-text-color;
     background: darken($ui-base-color, 4%);
-    max-width: 120px;
+    width: 120px;
+    flex: 0 0 auto;
     font-weight: 500;
   }
 
-  td {
-    flex: auto;
+  dd {
+    flex: 1 1 auto;
     color: $primary-text-color;
     background: $ui-base-color;
   }

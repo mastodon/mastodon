@@ -53,9 +53,7 @@ ko:
     unfollow: 팔로우 해제
   admin:
     account_moderation_notes:
-      account: 모더레이터
       create: 작성하기
-      created_at: 작성 날짜
       created_msg: 모더레이션 기록이 성공적으로 작성되었습니다!
       delete: 삭제
       destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다!
@@ -72,6 +70,7 @@ ko:
         title: "%{username}의 이메일 주소 변경"
       confirm: 확인
       confirmed: 확인됨
+      confirming: 확인 중
       demote: 모더레이터 강등
       disable: 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
@@ -80,6 +79,7 @@ ko:
       domain: 도메인
       edit: 편집
       email: E-mail
+      email_status: 이메일 상태
       enable: 활성화
       enabled: 활성화된
       feed_url: 피드 URL
@@ -118,6 +118,10 @@ ko:
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 아바타 업데이트
       remove_avatar: 아바타 지우기
+      resend_confirmation:
+        already_confirmed: 이 사용자는 이미 확인되었습니다.
+        send: 다시 확인 이메일
+        success: 확인 이메일이 전송되었습니다.
       reset: 초기화
       reset_password: 비밀번호 초기화
       resubscribe: 다시 구독
@@ -271,7 +275,6 @@ ko:
       comment:
         none: 없음
       created_at: 리포트 시각
-      delete: 삭제
       id: ID
       mark_as_resolved: 해결 완료 처리
       mark_as_unresolved: 미해결로 표시
@@ -281,9 +284,6 @@ ko:
         create_and_unresolve: 노트 작성과 함께 미해결로 표시
         delete: 삭제
         placeholder: 이 리포트에 대한 조치, 다른 업데이트 사항에 대해 설명합니다…
-      nsfw:
-        'false': NSFW 꺼짐
-        'true': NSFW 켜짐
       reopen: 리포트 다시 열기
       report: '신고 #%{id}'
       report_contents: 내용
@@ -358,11 +358,8 @@ ko:
         delete: 삭제
         nsfw_off: NSFW 끄기
         nsfw_on: NSFW 켜기
-      execute: 실행
       failed_to_execute: 실행을 실패하였습니다
       media:
-        hide: 미디어 숨기기
-        show: 미디어 보여주기
         title: 미디어
       no_media: 미디어 없음
       title: 계정 툿

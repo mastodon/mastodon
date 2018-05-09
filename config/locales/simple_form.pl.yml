@@ -4,6 +4,7 @@ pl:
     hints:
       defaults:
         avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 400x400px
+        bot: Informuje użytkowników, że konto nie jest prowadzone przez człowieka
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
         display_name:
           few: Pozostały <span class="name-counter">%{count}</span> znaki.
@@ -23,7 +24,7 @@ pl:
       imports:
         data: Plik CSV wyeksportowany z innej instancji Mastodona
       sessions:
-        otp: Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych.
+        otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
       user:
         filtered_languages: Wpisy w wybranych językach nie będą wyświetlać się na publicznych osiach czasu
     labels:
@@ -33,6 +34,7 @@ pl:
           value: Zawartość
       defaults:
         avatar: Awatar
+        bot: To konto jest prowadzone przez bota
         confirm_new_password: Potwierdź nowe hasło
         confirm_password: Potwierdź hasło
         current_password: Obecne hasło

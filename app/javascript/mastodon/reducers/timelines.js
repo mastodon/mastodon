@@ -134,7 +134,7 @@ export default function timelines(state = initialState, action) {
       initialTimeline,
       map => map.update(
         'items',
-        items => items.first() ? items : items.unshift(null)
+        items => items.first() ? items.unshift(null) : items
       )
     );
   default:

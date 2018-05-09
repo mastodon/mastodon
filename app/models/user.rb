@@ -41,7 +41,7 @@ class User < ApplicationRecord
   include Settings::Extend
   include Omniauthable
 
-  ACTIVE_DURATION = 14.days
+  ACTIVE_DURATION = 7.days
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret

@@ -51,7 +51,7 @@ class Request
   end
 
   def headers
-    (@account ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
+    (@account ? @headers.merge('Signature' => signature) : @headers).reverse_merge('Accept-Encoding' => 'gzip').without(REQUEST_TARGET)
   end
 
   private
@@ -100,7 +100,7 @@ class Request
   end
 
   def http_client
-    @http_client ||= HTTP.timeout(:per_operation, timeout).follow(max_hops: 2)
+    @http_client ||= HTTP.use(:auto_inflate).timeout(:per_operation, timeout).follow(max_hops: 2)
   end
 
   def use_proxy?

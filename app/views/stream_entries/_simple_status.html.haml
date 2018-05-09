@@ -10,7 +10,7 @@
         %div
           = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo'
       %span.display-name
-        %strong.p-name.emojify= display_name(status.account)
+        %strong.p-name.emojify= display_name(status.account, custom_emojify: true)
         %span= acct(status.account)
 
   .status__content.p-name.emojify<
