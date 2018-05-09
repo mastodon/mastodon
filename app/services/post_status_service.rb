@@ -36,8 +36,8 @@ class PostStatusService < BaseService
                                         quote_id: options[:quote_id])
     end
 
-    process_mentions_service.call(status)
     process_hashtags_service.call(status)
+    process_mentions_service.call(status)
 
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
     DistributionWorker.perform_async(status.id)
