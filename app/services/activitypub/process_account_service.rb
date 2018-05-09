@@ -71,7 +71,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.note                    = @json['summary'] || ''
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
     @account.fields                  = property_values || {}
-    @account.actor_type              = @json['type']
+    @account.actor_type              = actor_type
   end
 
   def set_fetchable_attributes!
@@ -94,6 +94,14 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def check_featured_collection!
     ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id)
+  end
+
+  def actor_type
+    if @json['type'].is_a?(Array)
+      @json['type'].find { |type| ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES.include?(type) }
+    else
+      @json['type']
+    end
   end
 
   def image_url(key)
