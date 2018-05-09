@@ -38,6 +38,8 @@ export default class Header extends ImmutablePureComponent {
 
     let displayName = account.get('display_name_html');
     let fields      = account.get('fields');
+    let badge       = account.get('bot') ? (<div className='roles'><div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div></div>) : null;
+
     let info        = '';
     let mutingInfo  = '';
     let actionBtn   = '';
@@ -99,6 +101,9 @@ export default class Header extends ImmutablePureComponent {
 
             <span className='account__header__display-name' dangerouslySetInnerHTML={{ __html: displayName }} />
             <span className='account__header__username'>@{account.get('acct')} {account.get('locked') ? <i className='fa fa-lock' /> : null}</span>
+
+            {badge}
+
             <div className='account__header__content' dangerouslySetInnerHTML={{ __html: emojify(text) }} />
 
             {fields.size > 0 && (
