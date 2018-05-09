@@ -53,7 +53,7 @@ pl:
     unfollow: Przestań śledzić
   admin:
     account_moderation_notes:
-      create: Dodaj
+      create: Pozostaw notatkę
       created_msg: Pomyślnie dodano notatkę moderacyjną!
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
@@ -70,7 +70,7 @@ pl:
         title: Zmień adres e-mail dla %{username}
       confirm: Potwierdź
       confirmed: Potwierdzono
-      confirming: Potwierdzam
+      confirming: Potwierdzanie
       demote: Degraduj
       disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
@@ -79,7 +79,7 @@ pl:
       domain: Domena
       edit: Edytuj
       email: Adres e-mail
-      email_status: Status e-maila
+      email_status: Stan e-maila
       enable: Aktywuj
       enabled: Aktywowano
       feed_url: Adres kanału
@@ -119,8 +119,8 @@ pl:
       redownload: Odśwież awatar
       remove_avatar: Usun awatar
       resend_confirmation:
-        already_confirmed: Ten użytkownik jest już potwierdzony
-        send: Wyślij ponownie email potwierdzający
+        already_confirmed: To konto zostało już potwierdzone
+        send: Wyślij ponownie e-mail z potwierdzeniem
         success: E-mail z potwierdzeniem został wysłany!
       reset: Resetuj
       reset_password: Resetuj hasło
@@ -374,7 +374,7 @@ pl:
   admin_mailer:
     new_report:
       body: Użytkownik %{reporter} zgłosił %{target}
-      body_remote: Ktoś z %{domain} zgłosił %{target}
+      body_remote: Użytkownik instancji %{domain} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
@@ -464,7 +464,7 @@ pl:
     archive_takeout:
       date: Data
       download: Pobierz swoje archiwum
-      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, który możesz otworzyć w obsługujących go programach.
+      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, który możesz otworzyć w obsługujących go programach. Możesz wyeksportować je po 7 dniach od poprzedniego eksportu.
       in_progress: Tworzenie archiwum…
       request: Uzyskaj archiwum
       size: Rozmiar
