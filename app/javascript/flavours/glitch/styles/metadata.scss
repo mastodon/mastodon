@@ -1,43 +1,56 @@
 .account__header__fields {
   $meta-table-border: lighten($ui-base-color, 8%);
-
-  border-collapse: collapse;
   padding: 0;
   margin: 15px -15px -15px -15px;
   border: 0 none;
   border-top: 1px solid $meta-table-border;
   border-bottom: 1px solid $meta-table-border;
+  font-size: 14px;
+  line-height: 20px;
 
-  td, th {
-    padding: 15px;
-    border: 0 none;
+  dl {
+    display: flex;
     border-bottom: 1px solid $meta-table-border;
-    vertical-align: middle;
   }
 
-  tr:last-child {
-    td, th {
-      border-bottom: 0 none;
-    }
-  }
-
-  td {
-    color: $ui-primary-color;
+  dt,
+  dd {
+    box-sizing: border-box;
+    padding: 14px;
     text-align: center;
-    width:100%;
-    padding-left: 0;
+    max-height: 48px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
-  th {
+  dt {
     padding-left: 15px;
-    font-weight: bold;
+    font-weight: 500;
     text-align: center;
-    width: 94px;
-    color: $ui-secondary-color;
+    width: 120px;
+    flex: 0 0 auto;
+    color: $secondary-text-color;
     background: darken($ui-base-color, 8%);
   }
 
+  dd {
+    flex: 1 1 auto;
+    color: $darker-text-color;
+  }
+
   a {
-    color: $classic-highlight-color;
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  dl:last-child {
+    border-bottom: 0;
   }
 }
