@@ -27,7 +27,7 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, Addressable::URI::InvalidURIError => e
+  rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
