@@ -1,7 +1,7 @@
 ---
 sk:
   about:
-    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{tagom}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
+    about_hashtag_html: Toto sú verejné toot príspevky otagované <strong>#%{hashtag}</strong>. Ak máš účet niekde vo fediverse, môžeš ich používať.
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch. Jej zrojový kód je otvorený a je decentralizovaná podobne ako email.
     about_this: O tejto instancii
     administered_by: 'Správca je:'
@@ -53,9 +53,7 @@ sk:
     unfollow: Prestať sledovať
   admin:
     account_moderation_notes:
-      account: Moderátor
       create: Vytvoriť
-      created_at: Dátum
       created_msg: Poznámka moderátora bola úspešne vytvorená!
       delete: Zmazať
       destroyed_msg: Poznámka moderátora bola úspešne zmazaná!
@@ -72,6 +70,7 @@ sk:
         title: Zmeň email pre %{username}
       confirm: Potvrdiť
       confirmed: Potvrdený
+      confirming: Potvrdzujúci
       demote: Degradovať
       disable: Zablokovať
       disable_two_factor_authentication: Zakázať 2FA
@@ -80,6 +79,7 @@ sk:
       domain: Doména
       edit: Upraviť
       email: Email
+      email_status: Stav Email
       enable: Povoliť
       enabled: Povolený
       feed_url: URL časovej osi
@@ -118,6 +118,10 @@ sk:
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnoviť avatar
       remove_avatar: Odstrániť avatár
+      resend_confirmation:
+        already_confirmed: Tento používateľ už bol potvrdený
+        send: Znova odoslať potvrdzovací e-mail
+        success: Potvrdený e-mail bol úspešne odoslaný!
       reset: Reset
       reset_password: Obnoviť heslo
       resubscribe: Znovu odoberať
@@ -268,7 +272,6 @@ sk:
       comment:
         none: Žiadne
       created_at: Nahlásené
-      delete: Vymazať
       id: Identifikácia
       mark_as_resolved: Označiť ako vyriešené
       mark_as_unresolved: Označ ako nevyriešené
@@ -278,9 +281,6 @@ sk:
         create_and_unresolve: Otvor znovu, s poznámkou
         delete: Vymaž
         placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné aktualizácie k tomuto nahláseniu…
-      nsfw:
-        'false': Odkryť mediálne prílohy
-        'true': Skryť mediálne prílohy
       reopen: Znovu otvor report
       report: Nahlásiť
       report_contents: Obsah
@@ -355,11 +355,8 @@ sk:
         delete: Vymazať
         nsfw_off: Obsah nieje chúlostivý
         nsfw_on: Označ obeah aka chúlostivý
-      execute: Vykonať
       failed_to_execute: Nepodarilo sa vykonať
       media:
-        hide: Skryť médiá
-        show: Zobraziť médiá
         title: Médiá
       no_media: Žiadné médiá
       title: Statusy na účte
@@ -638,10 +635,10 @@ sk:
     title: Sezóna
   settings:
     authorized_apps: Autorizované aplikácie
-    back: Späť do Mastodonu
-    delete: Zmazanie účtu
+    back: Späť na Mastodon
+    delete: Vymazanie účtu
     development: Vývoj
-    edit_profile: Upraviť profil
+    edit_profile: Uprav profil
     export: Exportovať dáta
     followers: Povolení sledovatelia
     import: Importovať

@@ -46,7 +46,8 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         visibility: visibility_scope,
         conversation: find_or_create_conversation,
         thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil,
-        media_attachment_ids: media_attachments.map(&:id)
+        media_attachment_ids: media_attachments.map(&:id),
+        sensitive: sensitive?
       )
 
       save_mentions(status)
@@ -104,6 +105,11 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   end
 
   private
+
+  def sensitive?
+    # OStatus-specific convention (not standard)
+    @xml.xpath('./xmlns:category', xmlns: OStatus::TagManager::XMLNS).any? { |category| category['term'] == 'nsfw' }
+  end
 
   def find_or_create_conversation
     uri = @xml.at_xpath('./ostatus:conversation', ostatus: OStatus::TagManager::OS_XMLNS)&.attribute('ref')&.content

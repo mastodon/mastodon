@@ -53,9 +53,7 @@ ca:
     unfollow: Deixa de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Crea
-      created_at: Data
       created_msg: La nota de moderació s'ha creat correctament!
       delete: Suprimeix
       destroyed_msg: Nota de moderació destruïda amb èxit!
@@ -72,6 +70,7 @@ ca:
         title: Canviar adreça de correu de %{username}
       confirm: Confirma
       confirmed: Confirmat
+      confirming: Confirmando
       demote: Degrada
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
@@ -80,6 +79,7 @@ ca:
       domain: Domini
       edit: Edita
       email: Correu electrònic
+      email_status: Estado del correo electrónico
       enable: Habilita
       enabled: Habilitat
       feed_url: URL del canal
@@ -118,6 +118,10 @@ ca:
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza l'avatar
       remove_avatar: Eliminar avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
       resubscribe: Torna a subscriure
@@ -269,7 +273,6 @@ ca:
       comment:
         none: Cap
       created_at: Reportat
-      delete: Suprimeix
       id: ID
       mark_as_resolved: Marca com a resolt
       mark_as_unresolved: Marcar sense resoldre
@@ -279,9 +282,6 @@ ca:
         create_and_unresolve: Reobrir amb nota
         delete: Esborrar
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització d'aquest informe…
-      nsfw:
-        'false': Mostra els fitxers multimèdia adjunts
-        'true': Amaga els fitxers multimèdia adjunts
       reopen: Reobrir informe
       report: 'Informe #%{id}'
       report_contents: Contingut
@@ -356,11 +356,8 @@ ca:
         delete: Suprimeix
         nsfw_off: Marcar com a no sensible
         nsfw_on: Marcar com a sensible
-      execute: Executa
       failed_to_execute: No s'ha pogut executar
       media:
-        hide: Amaga el contingut multimèdia
-        show: Mostra el contingut multimèdia
         title: Contingut multimèdia
       no_media: Sense contingut multimèdia
       title: Estats del compte
@@ -376,6 +373,7 @@ ca:
   admin_mailer:
     new_report:
       body: "%{reporter} ha informat de %{target}"
+      body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
   application_mailer:
     notification_preferences: Canvia les preferències de correu

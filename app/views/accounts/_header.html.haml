@@ -6,11 +6,16 @@
 
   .card__bio
     %h1.name
-      %span.p-name.emojify= display_name(account)
+      %span.p-name.emojify= display_name(account, custom_emojify: true)
       %small<
         %span>< @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
-    - if Setting.show_staff_badge
+
+    - if account.bot?
+      .roles
+        .account-role.bot
+          = t 'accounts.roles.bot'
+    - elsif Setting.show_staff_badge
       - if account.user_admin?
         .roles
           .account-role.admin
@@ -21,19 +26,19 @@
             = t 'accounts.roles.moderator'
     .bio
       .account__header__content.p-note.emojify!=processed_bio[:text]
+
       - if !account.fields.empty?
-        %table.account__header__fields
-          %tbody
-            - account.fields.each do |field|
-              %tr
-                %th.emojify= field.name
-                %td.emojify= Formatter.instance.format_field(account, field.value)
+        .account__header__fields
+          - account.fields.each do |field|
+            %dl
+              %dt.emojify{ title: field.name }= field.name
+              %dd.emojify{ title: field.value }= Formatter.instance.format_field(account, field.value, custom_emojify: true)
       - elsif processed_bio[:metadata].length > 0
-        %table.account__header__fields<
+        .account__header__fields
           - processed_bio[:metadata].each do |i|
-            %tr
-              %th.emojify>!=i[0]
-              %td.emojify>!=i[1]
+            %dl
+              %dt.emojify{ title: i[0] }= i[0]
+              %dd.emojify{ title: i[1] }= i[1]
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }

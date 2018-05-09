@@ -1,20 +1,17 @@
-#require 'rspec/retry'
-require 'simplecov'
-
 GC.disable
 
-SimpleCov.start 'rails' do
-  add_group 'Services', 'app/services'
-  add_group 'Presenters', 'app/presenters'
-  add_group 'Validators', 'app/validators'
+if ENV['DISABLE_SIMPLECOV'] != 'true'
+  require 'simplecov'
+  SimpleCov.start 'rails' do
+    add_group 'Services', 'app/services'
+    add_group 'Presenters', 'app/presenters'
+    add_group 'Validators', 'app/validators'
+  end
 end
 
 gc_counter = -1
 
 RSpec.configure do |config|
-  #config.verbose_retry = true
-  #config.display_try_failure_messages = true
-
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
@@ -28,10 +25,6 @@ RSpec.configure do |config|
       mocks.verify_partial_doubles = true
     end
   end
-
-  #config.around :each do |ex|
-  #  ex.run_with_retry retry: 3
-  #end
 
   config.before :suite do
     Chewy.strategy(:bypass)

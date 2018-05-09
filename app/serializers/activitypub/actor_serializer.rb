@@ -37,7 +37,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def type
-    'Person'
+    object.bot? ? 'Service' : 'Person'
   end
 
   def following
