@@ -57,6 +57,7 @@ import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import emojify from 'flavours/glitch/util/emoji';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 import escapeTextContentForBrowser from 'escape-html';
+import { unescapeHTML } from 'flavours/glitch/util/html';
 
 const normalizeAccount = (state, account) => {
   account = { ...account };
@@ -74,6 +75,7 @@ const normalizeAccount = (state, account) => {
       ...pair,
       name_emojified: emojify(escapeTextContentForBrowser(pair.name)),
       value_emojified: emojify(pair.value),
+      value_plain: unescapeHTML(pair.value),
     }));
   }
 

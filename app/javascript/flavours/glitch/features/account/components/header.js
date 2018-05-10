@@ -111,7 +111,7 @@ export default class Header extends ImmutablePureComponent {
                 {fields.map((pair, i) => (
                   <dl key={i}>
                     <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
-                    <dd dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} title={pair.get('value')} />
+                    <dd dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} title={pair.get('value_plain')} />
                  </dl>
                 ))}
               </div>
