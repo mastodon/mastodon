@@ -1,8 +1,10 @@
+---
 ja:
   simple_form:
     hints:
       defaults:
         avatar: 2MBまでのPNGやGIF、JPGが利用可能です。400x400pxまで縮小されます
+        bot: アカウントが個人を表すものではないことを表示します
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         fields: プロフィールに表として4つまでの項目を表示することができます
@@ -11,7 +13,6 @@ ja:
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
-        bot: アカウントが個人を表すものではないことを表示します
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -25,6 +26,7 @@ ja:
           value: 内容
       defaults:
         avatar: アイコン
+        bot: これは BOT アカウントです
         confirm_new_password: 新しいパスワード（確認用）
         confirm_password: パスワード（確認用）
         current_password: 現在のパスワード
@@ -57,7 +59,6 @@ ja:
         type: インポートする項目
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
-        bot: これは BOT アカウントです
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
@@ -71,6 +72,6 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
     'no': いいえ
     required:
-      mark: '*'
+      mark: "*"
       text: 必須
     'yes': はい
