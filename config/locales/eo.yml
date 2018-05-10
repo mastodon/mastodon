@@ -4,6 +4,7 @@ eo:
     about_hashtag_html: Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
     about_mastodon_html: Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.
     about_this: Pri
+    administered_by: 'Administrata de:'
     closed_registrations: Registriĝoj estas nuntempe fermitaj en ĉi tiu nodo. Tamen, vi povas trovi alian nodon por fari konton kaj aliri al la sama reto de tie.
     contact: Kontakti
     contact_missing: Ne elektita
@@ -48,17 +49,26 @@ eo:
     reserved_username: La uzantnomo estas rezervita
     roles:
       admin: Administranto
+      bot: Roboto
       moderator: Kontrolanto
     unfollow: Ne plu sekvi
   admin:
     account_moderation_notes:
-      create: Krei
+      create: Lasi noton
       created_msg: Kontrola noto sukcese kreita!
       delete: Forigi
       destroyed_msg: Kontrola noto sukcese detruita!
     accounts:
       are_you_sure: Ĉu vi certas?
+      avatar: Profilbildo
       by_domain: Domajno
+      change_email:
+        changed_msg: Konta retadreso sukcese ŝanĝita!
+        current_email: Nuna retadreso
+        label: Ŝanĝi retadreson
+        new_email: Nova retadreso
+        submit: Ŝanĝi retadreson
+        title: Ŝanĝi retadreson por %{username}
       confirm: Konfirmi
       confirmed: Konfirmita
       confirming: Konfirmante
@@ -108,10 +118,11 @@ eo:
       public: Publika
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
       redownload: Aktualigi profilbildon
+      remove_avatar: Forigi profilbildon
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
         send: Esend konfirmi retpoŝton
-        success: Konfirma retpoŝto sukcese sendis
+        success: Konfirma retmesaĝo sukcese sendita!
       reset: Restarigi
       reset_password: Restarigi pasvorton
       resubscribe: Reaboni
@@ -132,6 +143,7 @@ eo:
       statuses: Mesaĝoj
       subscribe: Aboni
       title: Kontoj
+      unconfirmed_email: Nekonfirmita retadreso
       undo_silenced: Malfari kaŝon
       undo_suspension: Malfari haltigon
       unsubscribe: Malaboni
@@ -139,6 +151,8 @@ eo:
       web: Reto
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} asignis signalon %{target} al si mem"
+        change_email_user: "%{name} ŝanĝis retadreson de uzanto %{target}"
         confirm_user: "%{name} konfirmis retadreson de uzanto %{target}"
         create_custom_emoji: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_block: "%{name} blokis domajnon %{target}"
@@ -154,10 +168,13 @@ eo:
         enable_user: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user: "%{name} plirangigis uzanton %{target}"
+        remove_avatar_user: "%{name} forigis profilbildon de %{target}"
+        reopen_report: "%{name} remalfermis signalon %{target}"
         reset_password_user: "%{name} restarigis pasvorton de uzanto %{target}"
-        resolve_report: "%{name} flankmetis signalon %{target}"
+        resolve_report: "%{name} solvis signalon %{target}"
         silence_account: "%{name} kaŝis la konton de %{target}"
         suspend_account: "%{name} haltigis la konton de %{target}"
+        unassigned_report: "%{name} malasignis signalon %{target}"
         unsilence_account: "%{name} malkaŝis la konton de %{target}"
         unsuspend_account: "%{name} malhaltigis la konton de %{target}"
         update_custom_emoji: "%{name} ĝisdatigis emoĝion %{target}"
@@ -243,24 +260,44 @@ eo:
         expired: Eksvalida
         title: Filtri
       title: Invitoj
+    report_notes:
+      created_msg: Signala noto sukcese kreita!
+      destroyed_msg: Signala noto sukcese forigita!
     reports:
+      account:
+        note: noto
+        report: signalo
       action_taken_by: Ago farita de
       are_you_sure: Ĉu vi certas?
+      assign_to_self: Asigni al mi
+      assigned: Asignita kontrolanto
       comment:
         none: Nenio
+      created_at: Signalita
       id: ID
-      mark_as_resolved: Marki kiel solvita
+      mark_as_resolved: Marki solvita
+      mark_as_unresolved: Marki nesolvita
+      notes:
+        create: Aldoni noton
+        create_and_resolve: Solvi per noto
+        create_and_unresolve: Remalfermi per noto
+        delete: Forigi
+        placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
+      reopen: Remalfermi signalon
       report: 'Signalo #%{id}'
       report_contents: Enhavo
       reported_account: Signalita konto
       reported_by: Signalita de
       resolved: Solvita
+      resolved_msg: Signalo sukcese solvita!
       silence_account: Kaŝi konton
       status: Mesaĝoj
       suspend_account: Haltigi konton
       target: Celo
       title: Signaloj
+      unassign: Malasigni
       unresolved: Nesolvita
+      updated_at: Ĝisdatigita
       view: Vidi
     settings:
       activity_api_enabled:
@@ -318,8 +355,8 @@ eo:
       back_to_account: Reveni al konta paĝo
       batch:
         delete: Forigi
-        nsfw_off: Malŝalti NSFW
-        nsfw_on: Ŝalti NSFW
+        nsfw_off: Marki ne tikla
+        nsfw_on: Marki tikla
       failed_to_execute: Ekigo malsukcesa
       media:
         title: Aŭdovidaĵoj
@@ -337,6 +374,7 @@ eo:
   admin_mailer:
     new_report:
       body: "%{reporter} signalis %{target}"
+      body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
@@ -378,6 +416,7 @@ eo:
     security: Sekureco
     set_new_password: Elekti novan pasvorton
   authorize_follow:
+    already_following: Vi jam sekvas tiun konton
     error: Bedaŭrinde, estis eraro en la serĉado de la fora konto
     follow: Sekvi
     follow_request: 'Vi sendis peton de sekvado al:'
@@ -427,7 +466,7 @@ eo:
     archive_takeout:
       date: Dato
       download: Elŝuti vian arkivon
-      hint_html: Vi povas peti arkivon de viaj <strong>mesaĝoj kaj alŝutitaj aŭdovidaĵoj</strong>. La eksportitaj datumoj estos en la formato ActivityPub, legebla de ajna konformema programo.
+      hint_html: Vi povas peti arkivon de viaj <strong>mesaĝoj kaj alŝutitaj aŭdovidaĵoj</strong>. La eksportitaj datumoj estos en la formato ActivityPub, legebla de ajna konformema programo. Vi povas peti arkivon ĉiuseptage.
       in_progress: Kunmetado de via arkivo…
       request: Peti vian arkivon
       size: Grandeco
@@ -472,6 +511,7 @@ eo:
       '21600': 6 horoj
       '3600': 1 horo
       '43200': 12 horoj
+      '604800': 1 semajno
       '86400': 1 tago
     expires_in_prompt: Neniam
     generate: Krei
@@ -575,6 +615,10 @@ eo:
     missing_resource: La URL de plusendado ne estis trovita
     proceed: Daŭrigi por eksekvi
     prompt: 'Vi eksekvos:'
+  remote_unfollow:
+    error: Eraro
+    title: Titolo
+    unfollowed: Ne plu sekvita
   sessions:
     activity: Lasta ago
     browser: Retumilo
@@ -641,6 +685,9 @@ eo:
         one: "%{count} video"
         other: "%{count} videoj"
     content_warning: 'Enhava averto: %{warning}'
+    disallowed_hashtags:
+      one: 'enhavas malpermesitan kradvorton: %{tags}'
+      other: 'enhavis malpermesitan kradvorton: %{tags}'
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
@@ -665,6 +712,7 @@ eo:
   terms:
     title: Uzkondiĉoj kaj privateca politiko de %{instance}
   themes:
+    contrast: Forta kontrasto
     default: Mastodon
   time:
     formats:
@@ -711,5 +759,6 @@ eo:
   users:
     invalid_email: La retadreso estas nevalida
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
+    otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Ensalutinta kiel:'

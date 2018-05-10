@@ -4,7 +4,8 @@ nl:
     hints:
       defaults:
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
-        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten ontvangt
+        bot: Waarschuwt mensen dat dit account geen echt persoon is
+        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
         display_name:
           one: <span class="name-counter">1</span> teken over
           other: <span class="name-counter">%{count}</span> tekens over
@@ -19,9 +20,9 @@ nl:
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
-        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcode's.
+        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes.
       user:
-        filtered_languages: De geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd
+        filtered_languages: Geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd
     labels:
       account:
         fields:
@@ -29,6 +30,7 @@ nl:
           value: Inhoud
       defaults:
         avatar: Avatar
+        bot: Dit is een bot-account
         confirm_new_password: Nieuw wachtwoord bevestigen
         confirm_password: Wachtwoord bevestigen
         current_password: Huidig wachtwoord
@@ -37,11 +39,11 @@ nl:
         email: E-mailadres
         expires_in: Vervalt na
         fields: Metadata profiel
-        filtered_languages: Talen filteren
+        filtered_languages: Gefilterde talen
         header: Omslagfoto
         locale: Taal
         locked: Maak account besloten
-        max_uses: Max aantal keer te gebruiken
+        max_uses: Max. aantal keer te gebruiken
         new_password: Nieuwe wachtwoord
         note: Bio
         otp_attempt: Tweestaps-aanmeldcode
@@ -59,7 +61,7 @@ nl:
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
         severity: Zwaarte
         type: Importtype
-        username: gebruikersnaam
+        username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
