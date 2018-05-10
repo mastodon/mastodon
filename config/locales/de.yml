@@ -49,11 +49,12 @@ de:
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Admin
+      bot: Bot
       moderator: Moderator
     unfollow: Entfolgen
   admin:
     account_moderation_notes:
-      create: Erstellen
+      create: Notiz hinterlassen
       created_msg: Moderationsnotiz erfolgreich erstellt!
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
@@ -373,6 +374,7 @@ de:
   admin_mailer:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
+      body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
@@ -462,7 +464,7 @@ de:
     archive_takeout:
       date: Datum
       download: Dein Archiv herunterladen
-      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportierten Daten werden im ActivityPub-Format gespeichert, welches mit jeder Software lesbar ist die das Format unterstützt.
+      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportierten Daten werden im ActivityPub-Format gespeichert, welches mit jeder Software lesbar ist, die das Format unterstützt. Du kannst alle 7 Tage ein neues Archiv anfordern.
       in_progress: Stelle dein Archiv zusammen...
       request: Dein Archiv anfragen
       size: Größe
@@ -755,5 +757,6 @@ de:
   users:
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
+    otp_lost_help_html: Wenn Sie zu beidem keinen Zugriff mehr haben, kontaktieren sie %{email}
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'

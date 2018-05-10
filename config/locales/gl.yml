@@ -49,11 +49,12 @@ gl:
     reserved_username: O nome de usuaria está reservado
     roles:
       admin: Admin
+      bot: Bot
       moderator: Mod
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      create: Crear
+      create: Deixar nota
       created_msg: Nota a moderación creada con éxito!
       delete: Eliminar
       destroyed_msg: Nota a moderación destruída con éxito!
@@ -463,7 +464,7 @@ gl:
     archive_takeout:
       date: Data
       download: Descargue o seu ficheiro
-      hint_html: Pode solicitar un ficheiro cos <strong>seus toots ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o cumpla.
+      hint_html: Pode solicitar un ficheiro cos <strong>seus toots ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o cumpla. Pode solicitar un ficheiro cada 7 días.
       in_progress: Xerando o seu ficheiro...
       request: Solicite o ficheiro
       size: Tamaño
@@ -833,5 +834,6 @@ gl:
   users:
     invalid_email: O enderezo de correo non é válido
     invalid_otp_token: Código de doble-factor non válido
+    otp_lost_help_html: Si perde o acceso a ambos, pode contactar con %{email}
     seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'

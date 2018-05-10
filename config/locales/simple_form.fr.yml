@@ -4,6 +4,7 @@ fr:
     hints:
       defaults:
         avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 400x400px
+        bot: Avertit que ce compte ne représente pas une personne
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
         display_name:
           one: <span class="name-counter">1</span> caractère restant
@@ -19,7 +20,7 @@ fr:
       imports:
         data: Un fichier CSV généré par une autre instance de Mastodon
       sessions:
-        otp: Entrez le code d’authentification à deux facteurs depuis votre téléphone ou utilisez un de vos codes de récupération.
+        otp: 'Entrez le code d’authentification à deux facteurs généré par votre téléphone ou utilisez un de vos codes de récupération :'
       user:
         filtered_languages: Les langues sélectionnées seront filtrées hors de vos fils publics pour vous
     labels:
@@ -29,6 +30,7 @@ fr:
           value: Contenu
       defaults:
         avatar: Image de profil
+        bot: Ceci est un robot
         confirm_new_password: Confirmation du nouveau mot de passe
         confirm_password: Confirmation du mot de passe
         current_password: Mot de passe actuel

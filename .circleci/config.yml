@@ -11,6 +11,7 @@ aliases:
           RAILS_ENV: test
           PARALLEL_TEST_PROCESSORS: 4
           ALLOW_NOPAM: true
+          DISABLE_SIMPLECOV: true
     working_directory: ~/projects/mastodon/
 
   - &attach_workspace

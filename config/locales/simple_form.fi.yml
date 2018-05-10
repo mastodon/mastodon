@@ -8,6 +8,7 @@ fi:
         display_name:
           one: <span class="name-counter">1</span> merkki jäljellä
           other: <span class="name-counter">%{count}</span> merkkiä jäljellä
+        fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään 2 Mt. Skaalataan kokoon 700 x 335 px
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
         note:
@@ -22,6 +23,9 @@ fi:
       user:
         filtered_languages: Valitut kielet suodatetaan pois julkisilta aikajanoilta
     labels:
+      account:
+        fields:
+          value: Sisältö
       defaults:
         avatar: Profiilikuva
         confirm_new_password: Vahvista uusi salasana
@@ -31,6 +35,7 @@ fi:
         display_name: Nimimerkki
         email: Sähköpostiosoite
         expires_in: Vanhenee
+        fields: Profiilin metadata
         filtered_languages: Suodatetut kielet
         header: Otsakekuva
         locale: Kieli
@@ -38,7 +43,7 @@ fi:
         max_uses: Käyttökertoja enintään
         new_password: Uusi salasana
         note: Kuvaus
-        otp_attempt: Kaksivaiheisen tunnistautumisen koodi
+        otp_attempt: Kaksivaiheisen tunnistuksen koodi
         password: Salasana
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
         setting_boost_modal: Kysy vahvistusta ennen buustausta
