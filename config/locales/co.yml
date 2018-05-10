@@ -1,11 +1,11 @@
 ---
 co:
   about:
-    about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u <em>fediverse</em>.
+    about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.
     about_mastodon_html: Mastodon ghjè una rete suciale custruita incù prutucolli web aperti è lugiziali liberi. Hè decentralizatu cumu l’e-mail.
     about_this: À prupositu
     administered_by: 'Amministratu da:'
-    closed_registrations: Pè avà, l’arregistramenti sò chjosi nant’à st’istanza. Mà pudete truvà un’altr’istanza per fà un contu è avè accessu à listessa reta da quallà!
+    closed_registrations: Pè avà, l’arregistramenti sò chjosi nant’à st’istanza. Mà pudete truvà un’altr’istanza per fà un contu è avè accessu à listessa reta da quallà.
     contact: Cuntattu
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
@@ -70,6 +70,7 @@ co:
         title: Mudificà l’Email di %{username}
       confirm: Cunfirmà
       confirmed: Cunfirmata
+      confirming: Cunfirmazione
       demote: Ritrugradà
       disable: Disattivà
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
@@ -78,6 +79,7 @@ co:
       domain: Duminiu
       edit: Mudificà
       email: E-mail
+      email_status: Statu di l’e-mail
       enable: Attivà
       enabled: Attivatu
       feed_url: URL di u flussu
@@ -116,6 +118,10 @@ co:
       push_subscription_expires: Spirata di l’abbunamentu PuSH
       redownload: Mette à ghjornu i ritratti
       remove_avatar: Toglie l’avatar
+      resend_confirmation:
+        already_confirmed: St’utilizatore hè digià cunfirmatu
+        send: Rimandà un’e-mail di cunfirmazione
+        success: L’e-mail di cunfirmazione hè statu mandatu!
       reset: Reset
       reset_password: Riinizializà a chjave d’accessu
       resubscribe: Riabbunassi
@@ -175,17 +181,17 @@ co:
       title: Ghjurnale d’audit
     custom_emojis:
       by_domain: Duminiu
-      copied_msg: Copia lucale di l’emoji creata!
+      copied_msg: Copia lucale di l’emoji creata
       copy: Cupià
       copy_failed_msg: Ùn s’hè micca pussutu creà una copia di l’emoji
       created_msg: L’emoji hè stata creata!
       delete: Toglie
       destroyed_msg: L’emoji hè stata tolta!
       disable: Disattivà
-      disabled_msg: L’emoji hè stata disattivata!
+      disabled_msg: L’emoji hè stata disattivata
       emoji: Emoji
       enable: Attivà
-      enabled_msg: L’emoji hè stata attivata!
+      enabled_msg: L’emoji hè stata attivata
       image_hint: PNG di 50Ko o menu
       listed: Listata
       new:
@@ -380,9 +386,9 @@ co:
     created: Applicazione creata
     destroyed: Applicazione sguassata
     invalid_url: L’URL ch’è stata pruvista ùn hè valida
-    regenerate_token: Regenerate access token
-    token_regenerated: Access token successfully regenerated
-    warning: Be very careful with this data. Never share it with anyone!
+    regenerate_token: Creà un’altra fiscia d’accessu
+    token_regenerated: A fiscia d’accessu hè stata rigenerata
+    warning: Abbadate à quessi dati. Ùn i date à nisunu!
     your_token: Rigenerà a fiscia d’accessu
   auth:
     agreement_html: Arregistrassi vole dì chì site d’accunsentu per siguità <a href="%{rules_path}">e regule di l’istanza</a> è <a href="%{terms_path}">e cundizione d’usu</a>.
@@ -392,7 +398,7 @@ co:
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
     didnt_get_confirmation: Ùn avete micca ricevutu l’istruzione di cunfirmazione?
     forgot_password: Chjave scurdata?
-    invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
+    invalid_reset_password_token: U ligame di riinizializazione di a chjave d’accessu hè spiratu o ùn hè micca validu. Pudete dumandà un'altru ligame.
     login: Cunnettassi
     logout: Scunnettassi
     migrate_account: Cambià di contu
@@ -409,13 +415,13 @@ co:
     security: Sicurità
     set_new_password: Creà una nova chjave d’accessu
   authorize_follow:
-    already_following: You are already following this account
-    error: Peccatu, c’hè statu un prublemu ricercandu u contu.
+    already_following: Site digià abbunatu·a à stu contu
+    error: Peccatu, c’hè statu un prublemu ricercandu u contu
     follow: Siguità
     follow_request: 'Avete dumandatu di siguità:'
     following: 'Eccu! Avà seguitate:'
     post_follow:
-      close: Or, you can just close this window.
+      close: O pudete ancu chjude sta finestra.
       return: Rivultà à u prufile di l’utilizatore
       web: Andà à l’interfaccia web
     title: Siguità %{acct}
@@ -483,11 +489,11 @@ co:
     powered_by: mossu da %{link}
     save_changes: Salvà e mudificazione
     validation_errors:
-      one: Qualcosa ùn và bè! Verificate un prublemu quì sottu.
-      other: Qualcosa ùn và bè! Verificate %{count} prublemi quì sottu.
+      one: Qualcosa ùn và bè! Verificate u prublemu quì sottu
+      other: Qualcosa ùn và bè! Verificate %{count} prublemi quì sottu
   imports:
     preface: Pudete impurtà certi dati cumu e persone chì seguitate o bluccate nant’à u vostru contu nant’à st’istanza à partesi di fugliali creati nant’à un’altr’istanza.
-    success: I vostri dati sò stati impurtati è saranu trattati da quì à pocu.
+    success: I vostri dati sò stati impurtati è saranu trattati da quì à pocu
     types:
       blocking: Persone chì bluccate
       following: Persone chì seguitate
@@ -519,14 +525,14 @@ co:
   landing_strip_signup_html: Pudete ancu <a href="%{sign_up_path}">arrigistravi quì</a>.
   lists:
     errors:
-      limit: Ùn pudete più creà altre liste.
+      limit: Ùn pudete più creà altre liste
   media_attachments:
     validations:
       images_and_video: Ùn si pò micca aghjunghje un filmettu à un statutu chì hà digià ritratti
       too_many: Ùn si pò micca aghjunghje più di 4 fugliali
   migrations:
     acct: cugnome@duminiu di u novu contu
-    currently_redirecting: "’U vostru prufile riindiriza tuttu versu à:’"
+    currently_redirecting: 'U vostru prufile riindiriza tuttu versu à:'
     proceed: Salvà
     updated_msg: I paramettri di migrazione sò stati messi à ghjornu!
   moderation:
@@ -602,7 +608,7 @@ co:
     reblog:
       title: "%{name} hà spartutu u vostru statutu"
   remote_follow:
-    acct: Entrate u vostru cugnome@istanza da induve vulete siguità stu contu.
+    acct: Entrate u vostru cugnome@istanza da induve vulete siguità stu contu
     missing_resource: Ùn avemu pussutu à truvà l’indirizzu di ridirezzione
     proceed: Cuntinuà per siguità
     prompt: 'Avete da siguità:'
@@ -791,11 +797,11 @@ co:
     disable: Disattivà
     enable: Attivà
     enabled: Identificazione à dui fattori attivata
-    enabled_success: L’identificazione à dui fattori hè stata attivata.
+    enabled_success: L’identificazione à dui fattori hè stata attivata
     generate_recovery_codes: Creà codici di ricuperazione
     instructions_html: "<strong>Scanate stu QR code cù Google Authenticator, Authy o qualcosa cusì nant’à u vostru telefuninu</strong>. St’applicazione hà da creà codici da entrà ogni volta chì vi cunnettate."
     lost_recovery_codes: I codici di ricuperazione à usu unicu vi permettenu di sempre avè accessu à u vostru contu s’è voi avete persu u vostru telefuninu. S’elli sò ancu persi, pudete creà codici novi quì. I vechji codici ùn marchjeranu più.
-    manual_instructions: S’ellu ùn hè micca pussibule scanà u QR code, pudete entre sta chjave sicreta:’
+    manual_instructions: 'S’ellu ùn hè micca pussibule scanà u QR code, pudete entre sta chjave sicreta:'
     recovery_codes: Codici di ricuperazione
     recovery_codes_regenerated: Codici di ricuperazione ricreati
     recovery_instructions_html: Pudete fà usu di i codici quì sottu per sempre avè accessu à u vostru contu s’ellu hè statu persu u vostru telefuninu. <strong>Guardateli in una piazza sicura</strong>. Per esempiu, stampati è cunservati cù altri ducumenti impurtanti.
@@ -811,7 +817,7 @@ co:
       edit_profile_step: Pudete persunalizà u vostru prufile cù un ritrattu di prufile o di cuprendula, un nome pubblicu persunalizatu, etc. Pudete ancu rende u contu privatu per duvè cunfirmà ogni dumanda d’abbunamentu.
       explanation: Eccu alcune idee per principià
       final_action: Principià à pustà
-      final_step: 'Andemu! Ancu senza abbunati i vostri missaghji pubblichi puderanu esse visti da altre persone, per esempiu nant’a linea lucale è l’hashtag. Pudete ancu prisintavi nant’à u hashtag #introductions!'
+      final_step: 'Andemu! Ancu senza abbunati i vostri missaghji pubblichi puderanu esse visti da altre persone, per esempiu nant’a linea lucale è l’hashtag. Pudete ancu prisintavi nant’à u hashtag #introductions.'
       full_handle: U vostru identificatore cumplettu
       full_handle_hint: Quessu ghjè cio chì direte à i vostri amichi per circavi, abbunassi à u vostru contu da altrò, o mandà missaghji.
       review_preferences_action: Mudificà e priferenze
@@ -820,12 +826,13 @@ co:
       tip_bridge_html: S’è voi venite di Twitter, pudete truvà i vostri amichi da quallà chì sò nant’à Mastodon cù a <a href="%{bridge_url}">bridge app</a>. Mà ùn marchja chè s’elli l’anu ancu usata!
       tip_federated_timeline: A linea pubblica glubale mostra i statuti da altre istanze nant’a rete Mastodon, mà ùn hè micca cumpleta perchè ci sò soli i conti à quelli sò abbunati membri di a vostr’istanza.
       tip_following: Site digià abbunatu·a à l’amministratori di u vostru servore. Per truvà d’altre parsone da siguità, pudete pruvà e linee pubbliche.
-      tip_local_timeline: A linea pubblica lucale ghjè una vista crunulogica di i statuti di a ghjente nant’à %{instance}.
-      tip_mobile_webapp: Pudete aghjunghje Mastodon à a pagina d’accolta di u vostru navigatore di telefuninu per riceve nutificazione, cum’un applicazione.
+      tip_local_timeline: A linea pubblica lucale ghjè una vista crunulogica di i statuti di a ghjente nant’à %{instance}. Quessi sò i vostri cunvicini!
+      tip_mobile_webapp: Pudete aghjunghje Mastodon à a pagina d’accolta di u vostru navigatore di telefuninu per riceve nutificazione, cum’un applicazione!
       tips: Cunsiglii
       title: Benvenutu·a, %{name}!
   users:
-    invalid_email: L’indirizzu e-mail ùn hè currettu.
-    invalid_otp_token: U codice d’identificazione ùn hè currettu.
+    invalid_email: L’indirizzu e-mail ùn hè currettu
+    invalid_otp_token: U codice d’identificazione ùn hè currettu
+    otp_lost_help_html: S’è voi avete persu i dui, pudete cuntattà %{email}
     seamless_external_login: Site cunnettatu·a dapoi un serviziu esternu, allora i parametri di chjave d’accessu è d’indirizzu e-mail ùn so micca dispunibili.
     signed_in_as: 'Cunnettatu·a cum’è:'

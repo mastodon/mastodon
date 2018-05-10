@@ -5,10 +5,10 @@ nl:
     about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
     about_this: Over deze server
     administered_by: 'Beheerd door:'
-    closed_registrations: Registreren op deze server is momenteel uitgeschakeld.
+    closed_registrations: Registreren op deze server is momenteel niet mogelijk. Je kunt echter een andere server vinden om zo toegang te krijgen tot het netwerk.
     contact: Contact
     contact_missing: Niet ingesteld
-    contact_unavailable: N/A
+    contact_unavailable: n.v.t
     description_headline: Wat is %{domain}?
     domain_count_after: andere servers
     domain_count_before: Verbonden met
@@ -16,11 +16,11 @@ nl:
       <h3>Een goede plek voor richtlijnen</h3>
       <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
     features:
-      humane_approach_body: Na van de fouten van andere netwerken te hebben geleerd, tracht Mastodon ethische ontwerpkeuzes te maken om misbruik van social media te voorkomen.
+      humane_approach_body: Mastodon heeft van de fouten van andere sociale netwerken geleerd en probeert aan de hand van ethische ontwerpkeuzes misbruik van sociale media te voorkomen.
       humane_approach_title: Een meer menselijke aanpak
-      not_a_product_body: Mastodon is geen commercieel netwerk. Dus geen advertenties, geen datamining en geen besloten systemen. Er is geen centrale organisatie die alles bepaald.
+      not_a_product_body: Mastodon is geen commercieel netwerk. Dus geen advertenties, geen datamining en geen besloten systemen. Er is geen centrale organisatie die alles bepaalt.
       not_a_product_title: Jij bent een persoon, geen product
-      real_conversation_body: Met 500 karakters tot jouw beschikking, en ondersteuning voor tekst- en media-waarschuwingen, kan je jezelf uiten zoals jij dat wil.
+      real_conversation_body: Met 500 tekens tot jouw beschikking en ondersteuning voor tekst- en media-waarschuwingen, kan je jezelf uiten zoals jij dat wil.
       real_conversation_title: Voor echte gesprekken gemaakt
       within_reach_body: Meerdere apps voor iOS, Android en andere platformen, met dank aan het ontwikkelaarsvriendelijke API-systeem, zorgen ervoor dat je overal op de hoogte blijft.
       within_reach_title: Altijd binnen bereik
@@ -41,19 +41,20 @@ nl:
     media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     nothing_here: Hier is niets!
-    people_followed_by: Mensen die %{name} volgt
+    people_followed_by: Mensen die %{name} volgen
     people_who_follow: Mensen die %{name} volgen
     posts: Toots
-    posts_with_replies: Toots met reacties
+    posts_with_replies: Toots en reacties
     remote_follow: Extern volgen
     reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
       admin: Beheerder
-      moderator: Mod
+      bot: Bot
+      moderator: Moderator
     unfollow: Ontvolgen
   admin:
     account_moderation_notes:
-      create: Aanmaken
+      create: Laat een opmerking achter
       created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
       delete: Verwijderen
       destroyed_msg: Verwijderen van opmerking voor moderatoren geslaagd!
@@ -64,10 +65,10 @@ nl:
       change_email:
         changed_msg: E-mailadres van account succesvol veranderd!
         current_email: Huidig e-mailadres
-        label: E-mailadres veranderen
+        label: E-mailadres wijzigen
         new_email: Nieuw e-mailadres
         submit: E-mailadres veranderen
-        title: E-mailadres veranderen voor %{username}
+        title: E-mailadres wijzigen voor %{username}
       confirm: Bevestigen
       confirmed: Bevestigd
       confirming: Bevestiging
@@ -93,9 +94,9 @@ nl:
         local: Lokaal
         remote: Extern
         title: Locatie
-      login_status: Aanmeldstatus
+      login_status: Login status
       media_attachments: Mediabijlagen
-      memorialize: Verander naar in memoriam
+      memorialize: In gedenkpagina veranderen
       moderation:
         all: Alles
         silenced: Genegeerd
@@ -112,7 +113,7 @@ nl:
       outbox_url: Outbox-URL
       perform_full_suspension: Volledig opschorten
       profile_url: Profiel-URL
-      promote: Promoten
+      promote: Promoveren
       protocol: Protocol
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
@@ -125,7 +126,7 @@ nl:
       reset: Opnieuw
       reset_password: Wachtwoord opnieuw instellen
       resubscribe: Opnieuw abonneren
-      role: Permissies
+      role: Bevoegdheden
       roles:
         admin: Beheerder
         moderator: Moderator
@@ -165,7 +166,7 @@ nl:
         disable_user: Aanmelden voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
         enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
-        memorialize_account: Account %{target} is door %{name} in een in-memoriampagina veranderd
+        memorialize_account: Account %{target} is door %{name} in een gedenkpagina veranderd
         promote_user: Gebruiker %{target} is door %{name} gepromoveerd
         remove_avatar_user: "%{name} verwijderde de avatar van %{target}"
         reopen_report: "%{name} heeft gerapporteerde toot %{target} heropend"
@@ -224,7 +225,7 @@ nl:
         noop: Geen
         silence: Negeren
         suspend: Opschorten
-      severity: Strengheid
+      severity: Zwaarte
       show:
         affected_accounts:
           one: Eén account in de database aangepast
@@ -463,7 +464,7 @@ nl:
     archive_takeout:
       date: Datum
       download: Jouw archief downloaden
-      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen.
+      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een kopie van je archief aanvragen.
       in_progress: Jouw archief wordt samengesteld...
       request: Jouw archief opvragen
       size: Omvang
@@ -833,5 +834,6 @@ nl:
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+    otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'

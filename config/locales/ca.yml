@@ -49,11 +49,12 @@ ca:
     reserved_username: El nom d'usuari està reservat
     roles:
       admin: Administrador
+      bot: Bot
       moderator: Moderador
     unfollow: Deixa de seguir
   admin:
     account_moderation_notes:
-      create: Crea
+      create: Crea nota
       created_msg: La nota de moderació s'ha creat correctament!
       delete: Suprimeix
       destroyed_msg: Nota de moderació destruïda amb èxit!
@@ -463,7 +464,7 @@ ca:
     archive_takeout:
       date: Data
       download: Descarrega l’arxiu
-      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible.
+      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
       in_progress: Compilant el teu arxiu...
       request: Sol·licita el teu arxiu
       size: Tamany
@@ -833,5 +834,6 @@ ca:
   users:
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
+    otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
