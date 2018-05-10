@@ -51,16 +51,17 @@ class Request
   end
 
   def headers
-    (@account ? @headers.merge('Signature' => signature) : @headers).reverse_merge('Accept-Encoding' => 'gzip').without(REQUEST_TARGET)
+    (@account ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
   end
 
   private
 
   def set_common_headers!
-    @headers[REQUEST_TARGET] = "#{@verb} #{@url.path}"
-    @headers['User-Agent']   = user_agent
-    @headers['Host']         = @url.host
-    @headers['Date']         = Time.now.utc.httpdate
+    @headers[REQUEST_TARGET]    = "#{@verb} #{@url.path}"
+    @headers['User-Agent']      = user_agent
+    @headers['Host']            = @url.host
+    @headers['Date']            = Time.now.utc.httpdate
+    @headers['Accept-Encoding'] = 'gzip' if @verb != :head
   end
 
   def set_digest!
