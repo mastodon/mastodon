@@ -245,7 +245,7 @@ class User < ApplicationRecord
   end
 
   def web_push_subscription(session)
-    session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
+    session.web_push_subscription.nil? ? nil : session.web_push_subscription
   end
 
   def invite_code=(code)

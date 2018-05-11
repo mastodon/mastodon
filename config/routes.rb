@@ -324,6 +324,10 @@ Rails.application.routes.draw do
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
+
+      namespace :push do
+        resource :subscription, only: [:create, :update, :destroy]
+      end
     end
 
     namespace :web do

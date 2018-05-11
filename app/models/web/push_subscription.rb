@@ -3,38 +3,51 @@
 #
 # Table name: web_push_subscriptions
 #
-#  id         :bigint(8)        not null, primary key
-#  endpoint   :string           not null
-#  key_p256dh :string           not null
-#  key_auth   :string           not null
-#  data       :json
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint(8)        not null, primary key
+#  endpoint        :string           not null
+#  key_p256dh      :string           not null
+#  key_auth        :string           not null
+#  data            :json
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  access_token_id :bigint(8)
+#  user_id         :bigint(8)
 #
 
-require 'webpush'
-
 class Web::PushSubscription < ApplicationRecord
+  belongs_to :user, optional: true
+  belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', optional: true
+
   has_one :session_activation
 
   def push(notification)
-    I18n.with_locale(session_activation.user.locale || I18n.default_locale) do
+    I18n.with_locale(associated_user.locale || I18n.default_locale) do
       push_payload(message_from(notification), 48.hours.seconds)
     end
   end
 
   def pushable?(notification)
-    data&.key?('alerts') && data['alerts'][notification.type.to_s]
+    data&.key?('alerts') && ActiveModel::Type::Boolean.new.cast(data['alerts'][notification.type.to_s])
   end
 
-  def as_payload
-    payload = { id: id, endpoint: endpoint }
-    payload[:alerts] = data['alerts'] if data&.key?('alerts')
-    payload
+  def associated_user
+    return @associated_user if defined?(@associated_user)
+
+    @associated_user = if user_id.nil?
+                         session_activation.user
+                       else
+                         user
+                       end
   end
 
-  def access_token
-    find_or_create_access_token.token
+  def associated_access_token
+    return @associated_access_token if defined?(@associated_access_token)
+
+    @associated_access_token = if access_token_id.nil?
+                                 find_or_create_access_token.token
+                               else
+                                 access_token
+                               end
   end
 
   private

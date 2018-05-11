@@ -53,7 +53,7 @@ ar:
     unfollow: إلغاء المتابعة
   admin:
     account_moderation_notes:
-      create: إنشاء
+      create: إترك ملاحظة
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح !
       delete: حذف
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح !
@@ -142,6 +142,7 @@ ar:
       statuses: المنشورات
       subscribe: اشترك
       title: الحسابات
+      unconfirmed_email: البريد الإلكتروني غير المؤكد
       undo_silenced: رفع الصمت
       undo_suspension: إلغاء تعليق الحساب
       unsubscribe: إلغاء الاشتراك
@@ -149,6 +150,8 @@ ar:
       web: الويب
     action_logs:
       actions:
+        assigned_to_self_report: قام {name} بتعيين التقرير٪ {target} لأنفسهم
+        change_email_user: غيّر٪ {name} عنوان البريد الإلكتروني للمستخدم٪ {target}
         confirm_user: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
         create_custom_emoji: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
@@ -164,10 +167,13 @@ ar:
         enable_user: "%{name} لقد قام بتنشيط تسجيل الدخول للمستخدِم %{target}"
         memorialize_account: لقد قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user: "%{name} قام بترقية المستخدم %{target}"
+        remove_avatar_user: تمت إزالة٪ {name} الصورة الرمزية٪ {target}
+        reopen_report: تمت إعادة فتح التقرير {name}٪ {target}
         reset_password_user: "%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ %{target}"
         resolve_report: قام %{name} بحل التقرير %{target}
         silence_account: لقد قام %{name} بكتم حساب %{target}
         suspend_account: لقد قام %{name} بتعليق حساب %{target}
+        unassigned_report: "٪ {name} تقرير غير معتمد٪ {target}"
         unsilence_account: لقد قام %{name} بإلغاء الكتم عن حساب %{target}
         unsuspend_account: لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
@@ -205,12 +211,15 @@ ar:
       domain: النطاق
       new:
         create: إنشاء حظر
+        hint: لن تمنع كتلة المجال إنشاء إدخالات حساب في قاعدة البيانات ، ولكنها ستطبق طرق الإشراف المحددة بأثر رجعي وتلقائي على هذه الحسابات.
         severity:
+          desc_html: "<strong>Silence</strong> سيجعل مشاركات الحساب غير مرئية لأي شخص لا يتبعها. <strong>Suspend</strong> سيزيل كل محتوى الحساب ووسائطه وبيانات ملفه الشخصي. Use <strong>None</strong>  إذا كنت تريد فقط رفض ملفات الوسائط."
           noop: لا شيء
           silence: كتم
           suspend: تعليق
         title: حجب نطاق جديد
       reject_media: رفض ملفات الوسائط
+      reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       severities:
         noop: لا شيء
         silence: إخفاء أو كتم
@@ -250,35 +259,59 @@ ar:
         expired: المنتهي صلاحيتها
         title: التصفية
       title: الدعوات
+    report_notes:
+      created_msg: |-
+        41/5000
+        تم إنشاء ملاحظة التقرير بنجاح!
+      destroyed_msg: تم حذف ملاحظة التقرير بنجاح!
     reports:
+      account:
+        note: ملحوظة
+        report: تقرير
       action_taken_by: تم اتخاذ الإجراء مِن طرف
       are_you_sure: هل أنت متأكد ؟
+      assign_to_self: عين لي
+      assigned: تعين رئيس
       comment:
         none: لا شيء
+      created_at: ذكرت
       id: معرّف ID
       mark_as_resolved: إعتبار التقرير كمحلول
+      mark_as_unresolved: علام كغير محلولة
+      notes:
+        create: اضف ملاحظة
+        create_and_resolve: الحل مع ملاحظة
+        create_and_unresolve: إعادة فتح مع ملاحظة
+        delete: حذف
+        placeholder: وصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى لهذا التقرير …
+      reopen: إعادة فتح التقرير
       report: 'التقرير #%{id}'
       report_contents: المحتويات
       reported_account: حساب مُبلّغ عنه
       reported_by: أبلغ عنه من طرف
       resolved: معالجة
+      resolved_msg: تم حل تقرير بنجاح!
       silence_account: كتم و إخفاء الحساب
       status: الحالة
       suspend_account: فرض تعليق على الحساب
       target: الهدف
       title: التقارير
+      unassign: إلغاء تعيين
       unresolved: غير معالجة
+      updated_at: محدث
       view: عرض
     settings:
       activity_api_enabled:
         desc_html: عدد المنشورات المحلية و المستخدمين النشطين و التسجيلات الأسبوعية الجديدة
         title: نشر مُجمل الإحصائيات عن نشاط المستخدمين
       bootstrap_timeline_accounts:
+        desc_html: افصل بين أسماء المستخدمين المتعددة بواسطة الفاصلة. استعمل الحسابات المحلية والمفتوحة فقط. الافتراضي عندما تكون فارغة كل المسؤولين المحليين.
         title: الإشتراكات الإفتراضية للمستخدمين الجدد
       contact_information:
         email: البريد الإلكتروني المهني
         username: الإتصال بالمستخدِم
       hero:
+        desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
       peers_api_enabled:
         desc_html: أسماء النطاقات التي إلتقى بها مثيل الخادوم على البيئة الموحَّدة فيديفرس
@@ -297,15 +330,23 @@ ar:
           desc_html: السماح للجميع بإنشاء حساب
           title: فتح التسجيل
       show_known_fediverse_at_about_page:
+        desc_html: عند التثبت ، سوف تظهر toots من جميع fediverse المعروفة على عرض مسبق. وإلا فإنه سيعرض فقط toots المحلية.
         title: إظهار الفيديفرس الموحَّد في خيط المُعايَنة
+      show_staff_badge:
+        desc_html: عرض شارة الموظفين على صفحة المستخدم
+        title: إظهار شارة الموظفين
       site_description:
+        desc_html: فقرة تمهيدية على الصفحة الأولى وفي العلامات الوصفية. يمكنك استخدام علامات HTML ، ولا سيما <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: وصف مثيل الخادوم
       site_description_extended:
+        desc_html: مكان جيد لمدونة قواعد السلوك والقواعد والإرشادات وغيرها من الأمور التي تحدد حالتك. يمكنك استخدام علامات HTML
         title: الوصف المُفصّل للموقع
       site_terms:
+        desc_html: يمكنك كتابة سياسة الخصوصية الخاصة بك ، شروط الخدمة أو غيرها من القوانين. يمكنك استخدام علامات HTML
         title: شروط الخدمة المخصصة
       site_title: إسم مثيل الخادم
       thumbnail:
+        desc_html: يستخدم للعروض السابقة عبر Open Graph و API. 1200x630px موصى به
         title: الصورة الرمزية المصغرة لمثيل الخادوم
       timeline_preview:
         desc_html: عرض الخيط العمومي على صفحة الإستقبال
@@ -315,12 +356,16 @@ ar:
       back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
+        nsfw_off: ضع علامة انها غير حساسة
+        nsfw_on: ضع علامة انها حساسة
       failed_to_execute: خطأ في التفعيل
       media:
         title: الوسائط
+      no_media: لا يوجد وسائط
       title: منشورات الحساب
       with_media: بالوسائط
     subscriptions:
+      callback_url: عاود الاتصال بالعنوان
       confirmed: مؤكَّد
       expires_in: تنتهي مدة صلاحيتها في
       last_delivery: آخر إيداع
@@ -330,6 +375,8 @@ ar:
   admin_mailer:
     new_report:
       body: قام %{reporter} بالإبلاغ عن %{target}
+      body_remote: أبلغ شخص ما من٪ {domain} عن٪ {target}
+      subject: تقرير جديد ل%{instance} (#%{id})
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
     salutation: "%{name}،"
@@ -342,6 +389,7 @@ ar:
     destroyed: تم حذف التطبيق بنجاح
     invalid_url: إن الرابط المقدم غير صالح
     regenerate_token: إعادة توليد رمز النفاذ
+    token_regenerated: تم إعادة إنشاء الرمز الوصول بنجاح
     warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين !
     your_token: رمز نفاذك
   auth:
@@ -352,6 +400,7 @@ ar:
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
     forgot_password: نسيت كلمة المرور ؟
+    invalid_reset_password_token: رمز إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية. يرجى طلب واحد جديد.
     login: تسجيل الدخول
     logout: خروج
     migrate_account: الإنتقال إلى حساب آخر
@@ -368,6 +417,7 @@ ar:
     security: الهوية
     set_new_password: إدخال كلمة مرور جديدة
   authorize_follow:
+    already_following: أنت تتابع بالفعل هذا الحساب
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
     follow: إتبع
     follow_request: 'لقد قمت بإرسال طلب متابعة إلى :'
@@ -410,7 +460,7 @@ ar:
     archive_takeout:
       date: التاريخ
       download: تنزيل نسخة لحسابك
-      hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة تبويقاتك و الوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق.
+      hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة تبويقاتك و الوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق. يُمكنك طلب نسخة كل 7 أيام.
       in_progress: عملية جمع نسخة لبيانات حسابك جارية …
       request: طلب نسخة لحسابك
       size: الحجم
@@ -544,6 +594,9 @@ ar:
     missing_resource: تعذر العثور على رابط التحويل المطلوب الخاص بحسابك
     proceed: أكمل المتابعة
     prompt: 'إنك  بصدد متابعة :'
+  remote_unfollow:
+    error: ''
+    title: ''
   sessions:
     activity: آخر نشاط
     browser: المتصفح
@@ -581,11 +634,13 @@ ar:
       windows: ويندوز
       windows_mobile: ويندوز موبايل
       windows_phone: ويندوز فون
+    revoke: ''
     revoke_success: تم إبطال الجلسة بنجاح
     title: الجلسات
   settings:
     authorized_apps: التطبيقات المرخص لها
     back: عودة إلى ماستدون
+    delete: ''
     development: التطوير
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
@@ -598,9 +653,18 @@ ar:
     two_factor_authentication: إثبات الهويّة المزدوج
     your_apps: تطبيقاتك
   statuses:
+    attached:
+      image:
+        one: ''
+        other: ''
+      video:
+        one: ''
+        other: ''
+    content_warning: ''
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     pin_errors:
+      limit: ''
       ownership: لا يمكن تدبيس تبويق نشره شخص آخر
       private: لا يمكن تثبيت تبويق لم يُنشر للعامة
       reblog: لا يمكن تثبيت ترقية
@@ -641,9 +705,19 @@ ar:
     wrong_code: الرمز الذي أدخلته غير صالح ! تحقق من صحة الوقت على الخادم و الجهاز ؟
   user_mailer:
     backup_ready:
+      explanation: ''
       subject: نسخة بيانات حسابك جاهزة للتنزيل
       title: المغادرة بأرشيف الحساب
+    welcome:
+      edit_profile_action: ''
+      explanation: ''
+      full_handle: ''
+      review_preferences_action: ''
+      subject: ''
+      tips: نصائح
+      title: أهلاً بك، %{name} !
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: الرمز الثنائي غير صالح
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
+    signed_in_as: 'تم تسجيل دخولك بصفة :'
