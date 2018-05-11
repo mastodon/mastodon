@@ -1,10 +1,9 @@
----
 ja:
   simple_form:
     hints:
       defaults:
         avatar: 2MBまでのPNGやGIF、JPGが利用可能です。400x400pxまで縮小されます
-        bot: アカウントが個人を表すものではないことを表示します
+        bot: アカウントが人を表すものではないことを表示します
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         fields: プロフィールに表として4つまでの項目を表示することができます
@@ -72,6 +71,6 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
     'no': いいえ
     required:
-      mark: "*"
+      mark: '*'
       text: 必須
     'yes': はい
