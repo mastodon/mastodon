@@ -6,7 +6,8 @@
     background: $simple-background-color;
 
     .detailed-status.light,
-    .status.light {
+    .status.light,
+    .more.light {
       border-bottom: 1px solid $ui-secondary-color;
       animation: none;
     }
@@ -63,6 +64,10 @@
         }
       }
     }
+  }
+
+  .media-gallery__gifv__label {
+    bottom: 9px;
   }
 
   .status.light {
@@ -145,10 +150,10 @@
 
       a.status__content__spoiler-link {
         color: $primary-text-color;
-        background: $ui-primary-color;
+        background: $ui-base-color;
 
         &:hover {
-          background: lighten($ui-primary-color, 8%);
+          background: lighten($ui-base-color, 8%);
         }
       }
     }
@@ -215,10 +220,10 @@
 
       a.status__content__spoiler-link {
         color: $primary-text-color;
-        background: $ui-primary-color;
+        background: $ui-base-color;
 
         &:hover {
-          background: lighten($ui-primary-color, 8%);
+          background: lighten($ui-base-color, 8%);
         }
       }
     }
@@ -261,16 +266,8 @@
   }
 
   .media-spoiler {
-    background: $ui-primary-color;
-    color: $inverted-text-color;
-    transition: all 100ms linear;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background: darken($ui-primary-color, 5%);
-      color: unset;
-    }
+    background: $ui-base-color;
+    color: $darker-text-color;
   }
 
   .pre-header {
@@ -297,6 +294,17 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  .more {
+    color: $darker-text-color;
+    display: block;
+    padding: 14px;
+    text-align: center;
+
+    &:not(:hover) {
+      text-decoration: none;
     }
   }
 }
