@@ -25,7 +25,6 @@ function main() {
   const { getLocale } = require('../mastodon/locales');
   const { localeData } = getLocale();
   const VideoContainer = require('../mastodon/containers/video_container').default;
-  const CardContainer = require('../mastodon/containers/card_container').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
 
@@ -75,10 +74,16 @@ function main() {
       ReactDOM.render(<VideoContainer locale={locale} {...props} />, content);
     });
 
-    [].forEach.call(document.querySelectorAll('[data-component="Card"]'), (content) => {
-      const props = JSON.parse(content.getAttribute('data-props'));
-      ReactDOM.render(<CardContainer locale={locale} {...props} />, content);
-    });
+    const cards = document.querySelectorAll('[data-component="Card"]');
+
+    if (cards.length > 0) {
+      import(/* webpackChunkName: "containers/cards_container" */ '../mastodon/containers/cards_container').then(({ default: CardsContainer }) => {
+        const content = document.createElement('div');
+
+        ReactDOM.render(<CardsContainer locale={locale} cards={cards} />, content);
+        document.body.appendChild(content);
+      }).catch(error => console.error(error));
+    }
 
     const mediaGalleries = document.querySelectorAll('[data-component="MediaGallery"]');
 

@@ -1,5 +1,6 @@
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from '../../features/emoji/emoji';
+import { unescapeHTML } from '../../utils/html';
 
 const domParser = new DOMParser();
 
@@ -22,6 +23,7 @@ export function normalizeAccount(account) {
       ...pair,
       name_emojified: emojify(escapeTextContentForBrowser(pair.name)),
       value_emojified: emojify(pair.value, emojiMap),
+      value_plain: unescapeHTML(pair.value),
     }));
   }
 

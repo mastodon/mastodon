@@ -45,6 +45,7 @@
 #  moved_to_account_id     :bigint(8)
 #  featured_collection_url :string
 #  fields                  :jsonb
+#  actor_type              :string
 #
 
 class Account < ApplicationRecord
@@ -147,6 +148,16 @@ class Account < ApplicationRecord
 
   def moved?
     moved_to_account_id.present?
+  end
+
+  def bot?
+    %w(Application Service).include? actor_type
+  end
+
+  alias bot bot?
+
+  def bot=(val)
+    self.actor_type = ActiveModel::Type::Boolean.new.cast(val) ? 'Service' : 'Person'
   end
 
   def acct

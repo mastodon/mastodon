@@ -4,6 +4,7 @@ co:
     hints:
       defaults:
         avatar: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à 400x400px
+        bot: Avisa a ghjente chì stu contu ùn riprisenta micca una parsona
         digest: Solu mandatu dopu à una longa perioda d’inattività, è solu s’elli ci sò novi missaghji diretti
         display_name:
           one: Ci ferma <span class="name-counter">1</span> caratteru
@@ -19,16 +20,17 @@ co:
       imports:
         data: Un fugliale CSV da un’altr’istanza di Mastodon
       sessions:
-        otp: Entrate u codice d’identificazione à dui fattori nant’à u vostru telefuninu, o unu di i vostri codici di ricuperazione.
+        otp: 'Entrate u codice d’identificazione à dui fattori nant’à u vostru telefuninu, o unu di i vostri codici di ricuperazione:'
       user:
-        filtered_languages: Ùn viderete micca e lingue selezziunate nant’à e linee pubbliche.
+        filtered_languages: Ùn viderete micca e lingue selezziunate nant’à e linee pubbliche
     labels:
       account:
         fields:
           name: Label
-          value: Content
+          value: Cuntinutu
       defaults:
         avatar: Ritrattu di prufile
+        bot: Stu contu hè un bot
         confirm_new_password: Cunfirmà a nova chjave d’accessu
         confirm_password: Cunfirmà a chjave d’accessu
         current_password: Chjave d’accessu attuale

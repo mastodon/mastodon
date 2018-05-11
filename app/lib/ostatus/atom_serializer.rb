@@ -368,6 +368,7 @@ class OStatus::AtomSerializer
       append_element(entry, 'link', nil, rel: :enclosure, type: media.file_content_type, length: media.file_file_size, href: full_asset_url(media.file.url(:original, false)))
     end
 
+    append_element(entry, 'category', nil, term: 'nsfw') if status.sensitive? && status.media_attachments.any?
     append_element(entry, 'mastodon:scope', status.visibility)
 
     status.emojis.each do |emoji|
