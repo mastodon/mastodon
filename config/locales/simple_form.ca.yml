@@ -4,6 +4,7 @@ ca:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 400x400px
+        bot: Informa a tothom que el compte no representa a una persona
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
         display_name:
           one: <span class="name-counter">1</span> càracter restant
@@ -19,7 +20,7 @@ ca:
       imports:
         data: Fitxer CSV exportat des de una altra instància de Mastodon
       sessions:
-        otp: Introdueix el codi de dos factors des del teu telèfon o utilitza un dels teus codis de recuperació.
+        otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
       user:
         filtered_languages: Les llengües seleccionades s'eliminaran de les línies de temps públiques
     labels:
@@ -29,6 +30,7 @@ ca:
           value: Contingut
       defaults:
         avatar: Avatar
+        bot: Aquest compte és un bot
         confirm_new_password: Confirma la contrasenya nova
         confirm_password: Confirma la contrasenya
         current_password: Contrasenya actual

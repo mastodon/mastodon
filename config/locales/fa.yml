@@ -4,6 +4,7 @@ fa:
     about_hashtag_html: این‌ها نوشته‌های عمومی هستند که برچسب (هشتگ) <strong>#%{hashtag}</strong> را دارند. اگر شما روی هر سروری حساب داشته باشید می‌توانید به این نوشته‌ها واکنش نشان دهید.
     about_mastodon_html: ماستدون (Mastodon) یک شبکهٔ اجتماعی است که بر اساس پروتکل‌های آزاد وب و نرم‌افزارهای آزاد و کدباز ساخته شده است. این شبکه مانند ایمیل غیرمتمرکز است.
     about_this: درباره
+    administered_by: 'با مدیریت:'
     closed_registrations: ثبت‌نام روی این سرور هم‌اینک فعال نیست. اما شما می‌توانید سرور دیگری بیابید و با حسابی که آن‌جا می‌سازید دقیقاً به همین شبکه دسترسی داشته باشید.
     contact: تماس
     contact_missing: تعیین نشده
@@ -52,13 +53,21 @@ fa:
     unfollow: پایان پیگیری
   admin:
     account_moderation_notes:
-      create: نوشتن
+      create: افزودن یادداشت
       created_msg: یادداشت مدیر با موفقیت ساخته شد!
       delete: پاک کردن
       destroyed_msg: یادداشت مدیر با موفقیت پاک شد!
     accounts:
       are_you_sure: آیا مطمئن هستید؟
+      avatar: تصویر نمایه
       by_domain: دامین
+      change_email:
+        changed_msg: نشانی ایمیل این حساب با موفقیت تغییر کرد!
+        current_email: ایمیل کنونی
+        label: تغییر نشانی ایمیل
+        new_email: ایمیل تازه
+        submit: تغییر ایمیل
+        title: تغییر ایمیل برای %{username}
       confirm: تأیید
       confirmed: تأیید شد
       confirming: تأیید
@@ -91,7 +100,7 @@ fa:
         all: همه
         silenced: بی‌صدا شده
         suspended: معلق شده
-        title: مدیریت
+        title: وضعیت
       moderation_notes: یادداشت مدیر
       most_recent_activity: آخرین فعالیت‌ها
       most_recent_ip: آخرین IP ها
@@ -108,10 +117,11 @@ fa:
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
       redownload: به‌روزرسانی تصویر نمایه
+      remove_avatar: حذف تصویر نمایه
       resend_confirmation:
         already_confirmed: این کاربر قبلا تایید شده است
         send: ایمیل تایید را دوباره بفرستید
-        success: ایمیل تایید با موفقیت ارسال شد
+        success: ایمیل تایید با موفقیت ارسال شد!
       reset: بازنشانی
       reset_password: بازنشانی رمز
       resubscribe: اشتراک دوباره
@@ -132,6 +142,7 @@ fa:
       statuses: نوشته‌ها
       subscribe: اشتراک
       title: حساب‌ها
+      unconfirmed_email: ایمیل تأییدنشده
       undo_silenced: واگردانی بی‌صداکردن
       undo_suspension: واگردانی تعلیق
       unsubscribe: لغو اشتراک
@@ -139,6 +150,8 @@ fa:
       web: وب
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
+        change_email_user: "%{name} نشانی ایمیل کاربر %{target} را تغییر داد"
         confirm_user: "%{name} نشانی ایمیل کاربر %{target} را تأیید کرد"
         create_custom_emoji: "%{name} شکلک تازهٔ %{target} را بارگذاشت"
         create_domain_block: "%{name} دامین %{target} را مسدود کرد"
@@ -154,10 +167,13 @@ fa:
         enable_user: "%{name} ورود را برای کاربر %{target} فعال کرد"
         memorialize_account: "%{name} حساب کاربر %{target} را تبدیل به صفحهٔ یادمان کرد"
         promote_user: "%{name} کاربر %{target} را ترفیع داد"
+        remove_avatar_user: "%{name} تصویر نمایهٔ کاربر %{target} را حذف کرد"
+        reopen_report: "%{name} گزارش %{target} را دوباره به جریان انداخت"
         reset_password_user: "%{name} رمز کاربر %{target} را بازنشاند"
-        resolve_report: "%{name} گزارش %{target} را نادیده گرفت"
+        resolve_report: "%{name} گزارش %{target} را رفع کرد"
         silence_account: "%{name} حساب کاربر %{target} را خاموش (بی‌صدا) کرد"
         suspend_account: "%{name} حساب کاربر %{target} را تعلیق کرد"
+        unassigned_report: "%{name} بررسی گزارش %{target} را متوقف کرد"
         unsilence_account: "%{name} حساب کاربر %{target} را روشن (باصدا) کرد"
         unsuspend_account: "%{name} حساب کاربر %{target} را از تعلیق خارج کرد"
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
@@ -243,32 +259,61 @@ fa:
         expired: منقضی‌شده
         title: فیلتر
       title: دعوت‌ها
+    report_notes:
+      created_msg: یادداشت گزارش با موفقیت ساخته شد!
+      destroyed_msg: یادداشت گزارش با موفقیت حذف شد!
     reports:
+      account:
+        note: یادداشت
+        report: گزارش
       action_taken_by: انجام‌دهنده
       are_you_sure: آیا مطمئن هستید؟
+      assign_to_self: به عهدهٔ من بگذار
+      assigned: مدیر عهده‌دار
       comment:
         none: خالی
+      created_at: گزارش‌شده
       id: شناسه
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
+      mark_as_unresolved: علامت‌گذاری به عنوان حل‌نشده
+      notes:
+        create: افزودن یادداشت
+        create_and_resolve: حل کردن با یادداشت
+        create_and_unresolve: دوباره گشودن با یادداشت
+        delete: حذف
+        placeholder: کارهایی را که در این باره انجام شده، یا هر به‌روزرسانی دیگری را بنویسید…
+      reopen: دوباره به جریان بیندازید
       report: 'گزارش #%{id}'
       report_contents: محتوا
       reported_account: حساب گزارش‌شده
       reported_by: گزارش از طرف
       resolved: حل‌شده
+      resolved_msg: گزارش با موفقیت حل شد!
       silence_account: بی‌صدا کردن حساب
       status: نوشته
       suspend_account: معلق‌کردن حساب
       target: هدف
       title: گزارش‌ها
+      unassign: پس‌گرفتن مسئولیت
       unresolved: حل‌نشده
+      updated_at: به‌روز شد
       view: نمایش
     settings:
+      activity_api_enabled:
+        desc_html: تعداد بوق‌های محلی، کاربران فعال، و کاربران تازه در هر هفته
+        title: انتشار آمار تجمیعی دربارهٔ فعالیت کاربران
       bootstrap_timeline_accounts:
         desc_html: نام‌های کاربری را با ویرگول از هم جدا کنید. تنها حساب‌های محلی و قفل‌نشده کار می‌کنند. اگر این‌جا را خالی بگذارید، به طور پیش‌فرض همهٔ مدیرهای این سرور پی‌گرفته خواهند شد.
         title: پیگیری‌های پیش‌فرض برای کاربران تازه
       contact_information:
         email: ایمیل کاری
         username: نام کاربری
+      hero:
+        desc_html: در صفحهٔ آغازین نمایش می‌یابد. دست‌کم ۶۰۰×۱۰۰ پیکسل توصیه می‌شود. اگر تعیین نشود، با تصویر بندانگشتی سرور جایگزین خواهد شد
+        title: تصویر سربرگ
+      peers_api_enabled:
+        desc_html: دامین‌هایی که این سرور به آن‌ها برخورده است
+        title: انتشار فهرست سرورهای یافته‌شده
       registrations:
         closed_message:
           desc_html: وقتی امکان ثبت نام روی سرور فعال نباشد در صفحهٔ اصلی نمایش می‌یابد<br>می‌توانید HTML بنویسید
@@ -282,6 +327,9 @@ fa:
         open:
           desc_html: همه بتوانند حساب باز کنند
           title: امکان ثبت نام
+      show_known_fediverse_at_about_page:
+        desc_html: اگر انتخاب شود، بوق‌های همهٔ سرورهای دیگر نیز در پیش‌نمایش این سرور نمایش می‌یابد. وگرنه فقط بوق‌های محلی نشان داده می‌شوند.
+        title: نمایش سرورهای دیگر در پیش‌نمایش این سرور
       show_staff_badge:
         desc_html: نمایش علامت همکار روی صفحهٔ کاربر
         title: نمایش علامت همکار
@@ -306,8 +354,8 @@ fa:
       back_to_account: بازگشت به صفحهٔ حساب
       batch:
         delete: پاک‌کردن
-        nsfw_off: NSFW خاموش
-        nsfw_on: NSFW روشن
+        nsfw_off: علامت‌زدن به عنوان غیرحساس
+        nsfw_on: علامت‌زدن به عنوان حساس
       failed_to_execute: اجرا نشد
       media:
         title: رسانه
@@ -321,15 +369,19 @@ fa:
       last_delivery: آخرین ارسال
       title: WebSub
       topic: موضوع
-    title: مدیریت
+    title: مدیریت سرور
   admin_mailer:
     new_report:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
+      body_remote: کسی از %{domain} گزارش %{target} را فرستاده
       subject: گزارش تازه‌ای برای %{instance} (#%{id})
   application_mailer:
+    notification_preferences: تغییر ترجیحات ایمیل
     salutation: "%{name}،"
     settings: 'تغییر تنظیمات ایمیل: %{link}'
     view: 'نمایش:'
+    view_profile: دیدن نمایه
+    view_status: دیدن نوشته‌ها
   applications:
     created: برنامه با موفقیت ساخته شد
     destroyed: برنامه با موفقیت پاک شد
@@ -340,6 +392,8 @@ fa:
     your_token: کد دسترسی شما
   auth:
     agreement_html: پیش از عضو شدن باید <a href="%{rules_path}">قوانین این سرور</a> و <a href="%{terms_path}">شرایط استفادهٔ</a> ما را بپذیرید.
+    change_password: رمز
+    confirm_email: تأیید ایمیل
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
@@ -349,12 +403,19 @@ fa:
     logout: خروج
     migrate_account: نقل مکان به یک حساب دیگر
     migrate_account_html: اگر می‌خواهید این حساب را به حساب دیگری منتقل کنید، <a href="%{path}">این‌جا را کلیک کنید</a>.
+    or: یا
+    or_log_in_with: یا ورود به وسیلهٔ
+    providers:
+      cas: CAS
+      saml: SAML
     register: عضو شوید
+    register_elsewhere: ثبت نام روی یک سرور دیگر
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
     reset_password: بازنشانی رمز
     security: امنیت
     set_new_password: تعیین رمز تازه
   authorize_follow:
+    already_following: شما همین الان هم این حساب را پی‌می‌گیرید
     error: متأسفانه حین یافتن آن حساب خطایی رخ داد
     follow: پی بگیرید
     follow_request: 'شما درخواست پیگیری فرستاده‌اید به:'
@@ -399,6 +460,13 @@ fa:
       title: این صفحه درست نیست
     noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">یک اپ ماستدون</a> را به‌کار ببرید.
   exports:
+    archive_takeout:
+      date: تاریخ
+      download: بایگانی خود را باربگیرید
+      hint_html: شما می‌توانید بایگانی <strong>بوق‌ها و پرونده‌های بارگذاری‌شدهٔ</strong> خود را درخواست کنید. داده‌های برون‌بری‌شده در قالب ActivityPub خواهند بود و همهٔ نرم‌افزارهای سازگار خواهند توانست آن را بخوانند. شما هر ۷ روز می‌توانید یک بار برای چنین بایگانی‌ای درخواست دهید.
+      in_progress: در حال ساختن بایگانی شما...
+      request: درخواست بایگانی داده‌هایتان
+      size: اندازه
     blocks: حساب‌های مسدودشده
     csv: CSV
     follows: حساب‌های پی‌گرفته
@@ -440,6 +508,7 @@ fa:
       '21600': ۶ ساعت
       '3600': ۱ ساعت
       '43200': ۱۲ ساعت
+      '604800': ۱ هفته
       '86400': ۱ روز
     expires_in_prompt: هیچ وقت
     generate: ساختن
@@ -467,32 +536,41 @@ fa:
     proceed: ذخیره
     updated_msg: تنظیمات نقل مکان حساب شما با موفقیت به‌روز شد!
   moderation:
-    title: مدیریت
+    title: مدیریت کاربران
   notification_mailer:
     digest:
-      body: 'خلاصه‌ای از آن‌چه از زمان آخرین بازدید شما در %{since} روی %{instance} رخ داد :'
+      action: دیدن همهٔ اعلان‌ها
+      body: خلاصه‌ای از پیغام‌هایی که از زمان آخرین بازدید شما در %{since} فرستاده شد
       mention: "%{name} این‌جا از شما نام برد:"
       new_followers_summary:
-        one: شما یک پیگیر تازه دارید! ای ول!
-        other: شما %{count} پیگیر تازه دارید! چه عالی!
+        one: در ضمن، وقتی که نبودید یک پیگیر تازه پیدا کردید! ای ول!
+        other: در ضمن، وقتی که نبودید %{count} پیگیر تازه پیدا کردید! چه عالی!
       subject:
         one: "یک اعلان تازه از زمان آخرین بازدید شما \U0001F418"
         other: "%{count} اعلان تازه از زمان آخرین بازدید شما \U0001F418"
+      title: در مدتی که نبودید…
     favourite:
       body: "%{name} این نوشتهٔ شما را پسندید:"
       subject: "%{name} نوشتهٔ شما را پسندید"
+      title: پسندیده‌شدن تازه
     follow:
       body: "%{name} هم‌اینک پیگیر شماست!"
       subject: "%{name} هم‌اینک پیگیر شماست"
+      title: پیگیر تازه
     follow_request:
+      action: مدیریت درخواست‌های پیگیری
       body: "%{name} می‌خواهد پیگیر نوشته‌های شما باشد"
       subject: 'منتظر پیگیری: %{name}'
+      title: درخواست پیگیری تازه
     mention:
+      action: پاسخ
       body: "%{name} در این‌جا از شما نام برد:"
       subject: "%{name} از شما نام برد"
+      title: نام‌برده‌شدن تازه
     reblog:
       body: "%{name} نوشتهٔ شما را بازبوقید:"
       subject: "%{name} نوشتهٔ شما را بازبوقید"
+      title: بازبوق تازه
   number:
     human:
       decimal_units:
@@ -505,7 +583,9 @@ fa:
           trillion: T
           unit: ''
   pagination:
+    newer: تازه‌تر
     next: بعدی
+    older: قدیمی‌تر
     prev: قبلی
     truncate: "&hellip;"
   preferences:
@@ -532,6 +612,10 @@ fa:
     missing_resource: نشانی اینترنتی برای رسیدن به حساب شما پیدا نشد
     proceed: درخواست پیگیری
     prompt: 'شما قرار است این حساب را پیگیری کنید:'
+  remote_unfollow:
+    error: خطا
+    title: عنوان
+    unfollowed: پایان پیگیری
   sessions:
     activity: آخرین کنش
     browser: مرورگر
@@ -540,12 +624,14 @@ fa:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: مرورگر ناشناخته
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -575,7 +661,7 @@ fa:
     authorized_apps: برنامه‌های مجاز
     back: بازگشت به ماستدون
     delete: پاک‌کردن حساب
-    development: Development
+    development: فرابری
     edit_profile: ویرایش نمایه
     export: برون‌سپاری داده‌ها
     followers: پیگیران مورد تأیید
@@ -587,6 +673,18 @@ fa:
     two_factor_authentication: ورود دومرحله‌ای
     your_apps: برنامهٔ شما
   statuses:
+    attached:
+      description: 'پیوست‌شده: %{attached}'
+      image:
+        one: "%{count} تصویر"
+        other: "%{count} تصویر"
+      video:
+        one: "%{count} ویدیو"
+        other: "%{count} ویدیو"
+    content_warning: 'هشدا محتوا: %{warning}'
+    disallowed_hashtags:
+      one: 'دارای هشتگ غیرمجاز: %{tags}'
+      other: 'دارای هشتگ‌های غیرمجاز: %{tags}'
     open_in_web: بازکردن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
     pin_errors:
@@ -611,6 +709,7 @@ fa:
   terms:
     title: شرایط استفاده و سیاست رازداری %{instance}
   themes:
+    contrast: کنتراست بالا
     default: ماستدون
   time:
     formats:
@@ -628,10 +727,35 @@ fa:
     manual_instructions: 'اگر نمی‌توانید کدها را اسکن کنید و باید آن‌ها را دستی وارد کنید، متن کد امنیتی این‌جاست:'
     recovery_codes: پشتیبان‌گیری از کدهای بازیابی
     recovery_codes_regenerated: کدهای بازیابی با موفقیت ساخته شدند
-    recovery_instructions_html: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای بازیابی زیر کنترل حساب خود را به دست بگیرید. <strong>این کدها را در جای امنی نگه دارید.</strong> مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید
+    recovery_instructions_html: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای بازیابی زیر کنترل حساب خود را به دست بگیرید. <strong>این کدها را در جای امنی نگه دارید.</strong> مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید.
     setup: راه اندازی
     wrong_code: کدی که وارد کردید نامعتبر بود! آیا ساعت سرور و ساعت دستگاه شما درست تنظیم شده‌اند؟
+  user_mailer:
+    backup_ready:
+      explanation: شما یک نسخهٔ پشتیبان کامل از حساب خود را درخواست کردید. این پشتیبان الان آمادهٔ بارگیری است!
+      subject: بایگانی شما آمادهٔ دریافت است
+      title: گرفتن بایگانی
+    welcome:
+      edit_profile_action: تنظیم نمایه
+      edit_profile_step: 'شما می‌توانید نمایهٔ خود را به دلخواه خود تغییر دهید: می‌توانید تصویر نمایه، تصویر پس‌زمینه، نام، و چیزهای دیگری را تعیین کنید. اگر بخواهید، می‌توانید حساب خود را خصوصی کنید تا فقط کسانی که شما اجازه می‌دهید بتوانند پیگیر حساب شما شوند.'
+      explanation: نکته‌هایی که برای آغاز کار به شما کمک می‌کنند
+      final_action: چیزی منتشر کنید
+      final_step: 'چیزی بنویسید! حتی اگر الان کسی پیگیر شما نباشد، دیگران نوشته‌های عمومی شما را می‌بینند، مثلاً در فهرست نوشته‌های محلی و در هشتگ‌ها. شاید بخواهید با هشتگ #آشنایی خودتان را معرفی کنید.'
+      full_handle: نام کاربری کامل شما
+      full_handle_hint: این چیزی است که باید به دوستان خود بگویید تا بتوانند به شما پیغام بفرستند یا از سرورهای دیگر پیگیر شما شوند.
+      review_preferences_action: تغییر ترجیحات
+      review_preferences_step: با رفتن به صفحهٔ ترجیحات می‌توانید چیزهای گوناگونی را تنظیم کنید. مثلاً این که چه ایمیل‌های آگاه‌سازی‌ای به شما فرستاده شود، یا حریم خصوصی پیش‌فرض نوشته‌هایتان چه باشد. اگر بیماری سفر (حالت تهوع بر اثر دیدن اجسام متحرک) ندارید، می‌توانید پخش خودکار ویدیوها را فعال کنید.
+      subject: به ماستدون خوش آمدید
+      tip_bridge_html: اگر پیش از این کاربر توییتر بودید، می‌توانید دوستان توییتری خود را که در ماستدون هستند به کمک <a href="%{bridge_url}">bridge app</a> پیدا کنید. البته این فقط وقتی کار می‌کند که آن‌ها هم این اپ را به کار برده باشند!
+      tip_federated_timeline: "«فهرست نوشته‌های همه‌جا» نمایی از کل شبکهٔ بزرگ ماستدون به شما می‌دهد. البته این فهرست فقط افردای را نشان می‌دهد که هم‌سروری‌های شما آن‌ها را پیگیری می‌کنند، و بنابراین ممکن است کامل نباشد."
+      tip_following: شما به طور پیش‌فرض مدیر(های) سرور خود را پی می‌گیرید. برای یافتن افراد جالب دیگر، فهرست «نوشته‌های محلی» و «نوشته‌های همه‌جا» را ببینید.
+      tip_local_timeline: فهرست نوشته‌های محلی نمایی کلی از کاربران روی %{instance} را ارائه می‌دهد. این‌ها همسایه‌های شما هستند!
+      tip_mobile_webapp: اگر مرورگر موبایل شما امکان گذاشتن ماستدون روی صفحهٔ اصلی موبایل را به شما می‌دهد، این یعنی می‌توانید اعلان‌های خودکار ماستدون را دریافت کنید. با این کار ماستدون خیلی شبیه یک اپ معمولی موبایل می‌شود!
+      tips: نکته‌ها
+      title: خوش آمدید، کاربر %{name}!
   users:
     invalid_email: نشانی ایمیل نامعتبر است
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
+    otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید
+    seamless_external_login: شما با یک سرویس خارج از مجموعه وارد شده‌اید، به همین دلیل تنظیمات ایمیل و رمز برای شما در دسترس نیست.
     signed_in_as: 'واردشده به نام:'

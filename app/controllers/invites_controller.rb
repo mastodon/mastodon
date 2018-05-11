@@ -9,9 +9,9 @@ class InvitesController < ApplicationController
   before_action :set_pack
 
   def index
-    authorize :invite, :create?
+    authorize :invite, :index?
 
-    @invites = Invite.where(user: current_user)
+    @invites = invites
     @invite  = Invite.new(expires_in: 1.day.to_i)
   end
 
@@ -24,13 +24,13 @@ class InvitesController < ApplicationController
     if @invite.save
       redirect_to invites_path
     else
-      @invites = Invite.where(user: current_user)
+      @invites = invites
       render :index
     end
   end
 
   def destroy
-    @invite = Invite.where(user: current_user).find(params[:id])
+    @invite = invites.find(params[:id])
     authorize @invite, :destroy?
     @invite.expire!
     redirect_to invites_path
@@ -40,6 +40,10 @@ class InvitesController < ApplicationController
 
   def set_pack
     use_pack 'settings'
+  end
+
+  def invites
+    Invite.where(user: current_user)
   end
 
   def resource_params

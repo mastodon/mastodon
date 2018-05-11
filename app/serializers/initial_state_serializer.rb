@@ -2,17 +2,13 @@
 
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
-             :media_attachments, :settings, :push_subscription,
+             :media_attachments, :settings
              :max_toot_chars
 
-  has_many :custom_emojis, serializer: REST::CustomEmojiSerializer
+  has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
 
   def max_toot_chars
     StatusLengthValidator::MAX_CHARS
-  end
-
-  def custom_emojis
-    CustomEmoji.local.where(disabled: false)
   end
 
   def meta
