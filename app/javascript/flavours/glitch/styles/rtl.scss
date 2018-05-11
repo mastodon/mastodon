@@ -1,6 +1,22 @@
 body.rtl {
   direction: rtl;
 
+  .column-header > button {
+    text-align: right;
+    padding-left: 0;
+    padding-right: 15px;
+  }
+
+  .landing-page__logo {
+    margin-right: 0;
+    margin-left: 20px;
+  }
+
+  .landing-page .features-list .features-list__row .visual {
+    margin-left: 0;
+    margin-right: 15px;
+  }
+
   .column-link__icon,
   .column-header__icon {
     margin-right: 0;
