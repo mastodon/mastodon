@@ -9,6 +9,7 @@ class NotifyService < BaseService
     return if recipient.user.nil? || blocked?
 
     create_notification
+    push_notification if @notification.browserable?
     send_email if email_enabled?
   rescue ActiveRecord::RecordInvalid
     return
@@ -101,25 +102,27 @@ class NotifyService < BaseService
 
   def create_notification
     @notification.save!
-    return unless @notification.browserable?
+  end
+
+  def push_notification
+    return if @notification.activity.nil?
+
     Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
     send_push_notifications
   end
 
   def send_push_notifications
-    # HACK: Can be caused by quickly unfavouriting a status, since creating
-    # a favourite and creating a notification are not wrapped in a transaction.
-    return if @notification.activity.nil?
+    subscriptions_ids = ::Web::PushSubscription.where(user_id: @recipient.user.id)
+                                               .select { |subscription| subscription.pushable?(@notification) }
+                                               .map(&:id)
 
-    sessions_with_subscriptions = @recipient.user.session_activations.where.not(web_push_subscription: nil)
-    sessions_with_subscriptions_ids = sessions_with_subscriptions.select { |session| session.web_push_subscription.pushable? @notification }.map(&:id)
-
-    WebPushNotificationWorker.push_bulk(sessions_with_subscriptions_ids) do |session_activation_id|
-      [session_activation_id, @notification.id]
+    ::Web::PushNotificationWorker.push_bulk(subscriptions_ids) do |subscription_id|
+      [subscription_id, @notification.id]
     end
   end
 
   def send_email
+    return if @notification.activity.nil?
     NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later
   end
 
