@@ -3,6 +3,7 @@ import { List as ImmutableList } from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
 import { defineMessages } from 'react-intl';
+import { unescapeHTML } from 'flavours/glitch/util/html';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 
@@ -38,13 +39,6 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   if (accountIds > 0) {
     dispatch(fetchRelationships(accountIds));
   }
-};
-
-const unescapeHTML = (html) => {
-  const wrapper = document.createElement('div');
-  html = html.replace(/<br \/>|<br>|\n/g, ' ');
-  wrapper.innerHTML = html;
-  return wrapper.textContent;
 };
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
