@@ -6,6 +6,7 @@ export default class ModalRoot extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
     onClose: PropTypes.func.isRequired,
+    noEsc: PropTypes.bool,
   };
 
   state = {
@@ -16,7 +17,7 @@ export default class ModalRoot extends React.PureComponent {
 
   handleKeyUp = (e) => {
     if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
-         && !!this.props.children && !this.props.props.noEsc) {
+         && !!this.props.children && !this.props.noEsc) {
       this.props.onClose();
     }
   }
