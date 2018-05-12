@@ -182,7 +182,7 @@ export function putStatuses(records) {
 }
 
 export function freeStorage() {
-  return navigator.storage.estimate().then(({ quota, usage }) => {
+  return self.navigator.storage.estimate().then(({ quota, usage }) => {
     if (usage + storageMargin < quota) {
       return null;
     }
