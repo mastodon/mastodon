@@ -484,18 +484,11 @@
 }
 
 a.name-tag,
-.name-tag {
-  display: flex;
-  align-items: center;
+.name-tag,
+a.inline-name-tag,
+.inline-name-tag {
   text-decoration: none;
   color: $secondary-text-color;
-
-  .avatar {
-    display: block;
-    margin: 0;
-    margin-right: 5px;
-    border-radius: 50%;
-  }
 
   .username {
     font-weight: 500;
@@ -507,6 +500,26 @@ a.name-tag,
       color: lighten($error-red, 12%);
     }
 
+    .avatar {
+      filter: grayscale(100%);
+      opacity: 0.8;
+    }
+  }
+}
+
+a.name-tag,
+.name-tag {
+  display: flex;
+  align-items: center;
+
+  .avatar {
+    display: block;
+    margin: 0;
+    margin-right: 5px;
+    border-radius: 50%;
+  }
+
+  &.suspended {
     .avatar {
       filter: grayscale(100%);
       opacity: 0.8;
