@@ -37,8 +37,8 @@
         .account__header__fields
           - processed_bio[:metadata].each do |i|
             %dl
-              %dt.emojify{ title: i[0] }= i[0]
-              %dd.emojify{ title: i[1] }= i[1]
+              %dt.emojify{ title: i[0] }!= i[0]
+              %dd.emojify{ title: i[1] }!= i[1]
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }
