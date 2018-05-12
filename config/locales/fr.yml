@@ -49,11 +49,12 @@ fr:
     reserved_username: Ce nom d’utilisateur⋅ice est réservé
     roles:
       admin: Admin
+      bot: Robot
       moderator: Modérateur·trice
     unfollow: Ne plus suivre
   admin:
     account_moderation_notes:
-      create: Créer
+      create: Créer une note
       created_msg: Note de modération créée avec succès !
       delete: Supprimer
       destroyed_msg: Note de modération supprimée avec succès !
@@ -373,6 +374,7 @@ fr:
   admin_mailer:
     new_report:
       body: "%{reporter} a signalé %{target}"
+      body_remote: Quelqu'un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
@@ -462,7 +464,7 @@ fr:
     archive_takeout:
       date: Date
       download: Télécharger votre archive
-      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible.
+      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
       in_progress: Élaboration de votre archive....
       request: Demandez vos archives
       size: Taille
@@ -630,7 +632,7 @@ fr:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Autre
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -755,5 +757,6 @@ fr:
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'

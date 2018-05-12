@@ -54,7 +54,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
 
     def access_token
       return if actions.empty?
-      current_push_subscription.access_token
+      current_push_subscription.associated_access_token
     end
 
     def message
