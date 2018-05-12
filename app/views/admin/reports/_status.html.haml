@@ -5,10 +5,9 @@
     .status__content><
       - unless status.proper.spoiler_text.blank?
         %p><
-          %strong> #{Formatter.instance.format_spoiler(status.proper)}&nbsp;
-          %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
+          %strong> Content warning: #{Formatter.instance.format_spoiler(status.proper)}
 
-      .e-content{ lang: status.language, style: "display: block; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status.proper, custom_emojify: true)
+      = Formatter.instance.format(status.proper, custom_emojify: true)
 
     - unless status.proper.media_attachments.empty?
       - if status.proper.media_attachments.first.video?
