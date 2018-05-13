@@ -8,7 +8,7 @@ import Video from '../features/video';
 import Card from '../features/status/components/card';
 import ModalRoot from '../components/modal_root';
 import MediaModal from '../features/ui/components/media_modal';
-import { fromJS } from 'immutable';
+import { List as ImmutableList, fromJS } from 'immutable';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
@@ -25,6 +25,7 @@ export default class MediaContainer extends PureComponent {
   state = {
     media: null,
     index: null,
+    time: null,
   };
 
   handleOpenMedia = (media, index) => {
@@ -32,9 +33,16 @@ export default class MediaContainer extends PureComponent {
     this.setState({ media, index });
   }
 
+  handleOpenVideo = (video, time) => {
+    const media = ImmutableList([video]);
+
+    document.body.classList.add('media-standalone__body');
+    this.setState({ media, time });
+  }
+
   handleCloseMedia = () => {
     document.body.classList.remove('media-standalone__body');
-    this.setState({ media: null, index: null });
+    this.setState({ media: null, index: null, time: null });
   }
 
   render () {
@@ -51,18 +59,25 @@ export default class MediaContainer extends PureComponent {
             Object.assign(props, {
               ...(media ? { media: fromJS(media) } : {}),
               ...(card  ? { card:  fromJS(card)  } : {}),
+
+              ...(componentName === 'Video' ? {
+                onOpenVideo: this.handleOpenVideo,
+              } : {
+                onOpenMedia: this.handleOpenMedia,
+              }),
             });
 
             return ReactDOM.createPortal(
-              <Component onOpenMedia={this.handleOpenMedia} {...props} key={`media-${i}`} />,
+              <Component {...props} key={`media-${i}`} />,
               component,
             );
           })}
           <ModalRoot onClose={this.handleCloseMedia}>
-            {this.state.media === null || this.state.index === null ? null : (
+            {this.state.media && (
               <MediaModal
                 media={this.state.media}
-                index={this.state.index}
+                index={this.state.index || 0}
+                time={this.state.time}
                 onClose={this.handleCloseMedia}
               />
             )}
