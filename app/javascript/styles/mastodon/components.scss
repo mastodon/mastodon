@@ -4432,6 +4432,10 @@ a.status-card {
   max-width: 100%;
   border-radius: 4px;
 
+  &:focus {
+    outline: 0;
+  }
+
   video {
     max-width: 100vw;
     max-height: 80vh;
