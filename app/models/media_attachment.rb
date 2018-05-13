@@ -113,7 +113,7 @@ class MediaAttachment < ApplicationRecord
   before_create :prepare_description, unless: :local?
   before_create :set_shortcode
   before_post_process :set_type
-  after_post_process :set_extension
+  after_post_process :set_file_extensions
   before_save :set_meta
 
   class << self
@@ -179,12 +179,6 @@ class MediaAttachment < ApplicationRecord
 
   def set_type
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
-  end
-
-  def set_extension
-    extension = appropriate_extension
-    basename  = Paperclip::Interpolations.basename(file, :original)
-    file.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
   end
 
   def set_meta

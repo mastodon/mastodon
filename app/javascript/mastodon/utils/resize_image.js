@@ -1,4 +1,4 @@
-const MAX_IMAGE_DIMENSION = 1280;
+const MAX_IMAGE_DIMENSION = 1920;
 
 const getImageUrl = inputFile => new Promise((resolve, reject) => {
   if (window.URL && URL.createObjectURL) {
