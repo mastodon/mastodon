@@ -20,6 +20,10 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
     render json: @web_subscription, serializer: REST::WebPushSubscriptionSerializer
   end
 
+  def show
+    render json: @web_subscription, serializer: REST::WebPushSubscriptionSerializer
+  end
+
   def update
     raise ActiveRecord::RecordNotFound if @web_subscription.nil?
 
