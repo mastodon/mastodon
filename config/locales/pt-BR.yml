@@ -4,6 +4,7 @@ pt-BR:
     about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
     about_this: Sobre
+    administered_by: 'Administrado por:'
     closed_registrations: Os cadastros estão atualmente fechados nesta instância. No entanto, você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
     contact_missing: Não definido
@@ -52,17 +53,24 @@ pt-BR:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Criar
-      created_at: Data
       created_msg: Nota de moderação criada com sucesso!
       delete: Excluir
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       are_you_sure: Você tem certeza?
+      avatar: Avatar
       by_domain: Domínio
+      change_email:
+        changed_msg: E-mail da conta modificado com sucesso!
+        current_email: E-mail atual
+        label: Mudar e-mail
+        new_email: Novo e-mail
+        submit: Mudar e-mail
+        title: Mudar e-mail para %{username}
       confirm: Confirmar
       confirmed: Confirmado
+      confirming: Confirmando
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
@@ -71,6 +79,7 @@ pt-BR:
       domain: Domínio
       edit: Editar
       email: E-mail
+      email_status: Estado del correo electrónico
       enable: Ativar
       enabled: Ativado
       feed_url: URL do feed
@@ -108,6 +117,11 @@ pt-BR:
       public: Público
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar avatar
+      remove_avatar: Remover avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Anular
       reset_password: Modificar senha
       resubscribe: Reinscrever-se
@@ -128,6 +142,7 @@ pt-BR:
       statuses: Postagens
       subscribe: Inscrever-se
       title: Contas
+      unconfirmed_email: E-mail não confirmado
       undo_silenced: Retirar silenciamento
       undo_suspension: Retirar suspensão
       unsubscribe: Desinscrever-se
@@ -135,6 +150,8 @@ pt-BR:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} designou a denúncia %{target} para si"
+        change_email_user: "%{name} mudou o endereço de e-mail do usuário %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_custom_emoji: "%{name} enviou o emoji novo %{target}"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
@@ -150,10 +167,13 @@ pt-BR:
         enable_user: "%{name} habilitou o acesso para o usuário %{target}"
         memorialize_account: "%{name} transformou a conta de %{target} em um memorial"
         promote_user: "%{name} promoveu o usuário %{target}"
+        remove_avatar_user: "%{name} removeu o avatar de %{target}"
+        reopen_report: "%{name} reabriu a denúncia %{target}"
         reset_password_user: "%{name} redefiniu a senha do usuário %{target}"
-        resolve_report: "%{name} dispensou a denúncia %{target}"
+        resolve_report: "%{name} resolveu a denúncia %{target}"
         silence_account: "%{name} silenciou a conta de %{target}"
         suspend_account: "%{name} suspendeu a conta de %{target}"
+        unassigned_report: "%{name} desatribuiu a denúncia %{target}"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
         unsuspend_account: "%{name} desativou a suspensão de  %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
@@ -239,29 +259,44 @@ pt-BR:
         expired: Expirados
         title: Filtro
       title: Convites
+    report_notes:
+      created_msg: Nota de denúncia criada com sucesso!
+      destroyed_msg: Nota de denúncia excluída com sucesso!
     reports:
+      account:
+        note: nota
+        report: denúncia
       action_taken_by: Ação realizada por
       are_you_sure: Você tem certeza?
+      assign_to_self: Designar para mim
+      assigned: Moderador designado
       comment:
-        label: Comentário
         none: Nenhum
-      delete: Excluir
+      created_at: Denunciado
       id: ID
       mark_as_resolved: Marcar como resolvido
-      nsfw:
-        'false': Mostrar mídias anexadas
-        'true': Esconder mídias anexadas
+      mark_as_unresolved: Marcar como não resolvido
+      notes:
+        create: Adicionar nota
+        create_and_resolve: Resolver com nota
+        create_and_unresolve: Reabrir com nota
+        delete: Excluir
+        placeholder: Descreva que ações foram tomadas, ou quaisquer atualizações sobre esta denúncia…
+      reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
       reported_account: Conta denunciada
       reported_by: Denunciada por
       resolved: Resolvido
+      resolved_msg: Denúncia resolvida com sucesso!
       silence_account: Silenciar conta
       status: Status
       suspend_account: Suspender conta
       target: Alvo
       title: Denúncias
+      unassign: Desatribuir
       unresolved: Não resolvido
+      updated_at: Atualizado
       view: Visualizar
     settings:
       activity_api_enabled:
@@ -319,13 +354,10 @@ pt-BR:
       back_to_account: Voltar para página da conta
       batch:
         delete: Deletar
-        nsfw_off: NSFW ATIVADO
-        nsfw_on: NSFW DESATIVADO
-      execute: Executar
+        nsfw_off: Marcar como não-sensível
+        nsfw_on: Marcar como sensível
       failed_to_execute: Falha em executar
       media:
-        hide: Esconder mídia
-        show: Mostrar mídia
         title: Mídia
       no_media: Não há mídia
       title: Postagens da conta
@@ -382,6 +414,7 @@ pt-BR:
     security: Segurança
     set_new_password: Definir uma nova senha
   authorize_follow:
+    already_following: Você já está seguindo esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
     follow_request: 'Você mandou uma solicitação de seguidor para:'
@@ -474,6 +507,7 @@ pt-BR:
       '21600': 6 horas
       '3600': 1 hora
       '43200': 12 horas
+      '604800': 1 semana
       '86400': 1 dia
     expires_in_prompt: Nunca
     generate: Gerar
@@ -577,6 +611,9 @@ pt-BR:
     missing_resource: Não foi possível encontrar a URL de direcionamento para a sua conta
     proceed: Prosseguir para seguir
     prompt: 'Você irá seguir:'
+  remote_unfollow:
+    error: Erro
+    title: Título
   sessions:
     activity: Última atividade
     browser: Navegador
@@ -634,6 +671,18 @@ pt-BR:
     two_factor_authentication: Autenticação em dois passos
     your_apps: Seus aplicativos
   statuses:
+    attached:
+      description: 'Anexado: %{attached}'
+      image:
+        one: "%{count} imagem"
+        other: "%{count} imagens"
+      video:
+        one: "%{count} vídeo"
+        other: "%{count} vídeos"
+    content_warning: 'Aviso de conteúdo: %{warning}'
+    disallowed_hashtags:
+      one: 'continha a hashtag não permitida: %{tags}'
+      other: 'continha as hashtags não permitidas: %{tags}'
     open_in_web: Abrir na web
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
@@ -658,74 +707,84 @@ pt-BR:
   terms:
     body_html: |
       <h2>Política de privacidade</h2>
-
-      <h3 id="collect">Que informações nós coletamos?</h3>
-
-      <p>Coletamos informações quando você se cadastra em nosso site e capturamos dados quando você participa do fórum lendo, escrevendo e analisando o conteúdo aqui compartilhado.</p>
-
-      <p>Quando você se registrar em nosso site, será requisitado que você ceda seu nome e endereço de e-mail. Você pode, porém, visitar nosso site sem se cadastrar. Seu endereço de e-mail será verificado por uma mensagem contendo um link único. Se este link for visitado, saberemos que você controla este endereço de e-mail.</p>
-
-      <p>Quando registrado e postando, nós gravamos o endereço de IP de onde a postagem se originou. Nós também podemos reter logs de serviores que incluem o endereço de IP em cada requisição para o nosso servidor.</p>
-
-      <h3 id="use">Para que usamos essas informações?</h3>
-
-      <p>Quaisquer das informações que coletamos podem ser usadas das seguintes formas:</p>
+      <h3 id="collect">Que informação nós coletamos?</h3>
 
       <ul>
-        <li>Para personalizar a sua experiência &mdash; suas informações nos ajudam a nos adequar melhor às suas necessidades individuais.</li>
-        <li>Para melhorar nosso site &mdash; nós continuamente nos esforçamos para aprimorar nosso site baseados na informação e no feedback que recebemos de você.</li>
-        <li>Para aprimorar o serviço ao consumidor &mdash; suas informações nos ajudam a responder efetivamente às suas requisições e solicitações por suporte.</li>
-        <li>Para mandar e-mails periódicos &mdash; O endereço de e-mail que você forneceu pode ser usado para lhe enviar informações, notificações que você requisitar sobre mudanças a determinados tópicos ou menções ao seu nome de usuário, responder requisições e/ou solicitações e perguntas.</li>
+        <li><em>Informação básica de conta</em>: Se você se registrar nesse servidor, podemos pedir que você utilize um nome de usuário, um e-mail e uma senha. Você também pode adicionar informações extras como um nome de exibição e biografia; enviar uma imagem de perfil e imagem de cabeçalho. O nome de usuário, nome de exibição, biografia, imagem de perfil e imagem de cabeçalho são sempre listadas publicamente.</li>
+        <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.<li>
+        <li><em>Mensagens diretas e posts somente para seguidores</em>: Todos os posts são armazenados e processados no servidor. Posts somente para seguidores são entregues aos seus seguidores e usuários que são mencionados neles; mensagens diretas são entregues somente aos usuários mencionados nelas. Em alguns casos isso significa que as mensagens são entregues para servidores diferentes e cópias são armazenadas nesses servidores. Nós fazemos esforços substanciais para limitar o acesso dessas mensagens somente para as pessoas autorizadas, mas outros servidores podem não fazer o mesmo. É importante portanto revisar os servidores à qual seus seguidores pertencem. Você pode usar uma opção para aprovar ou rejeitar novos seguidores manualmente nas configurações. <em>Por favor tenha em mente que os operadores do servidor e de qualquer servidores do destinatário podem ver tais mensagens</em>, e que os destinatários podem fazer capturas de tela, copiar ou de outra maneira compartilhar as mensagens. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
+        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
-      <h3 id="protect">Como protegemos as suas informações?</h3>
+      <hr class="spacer" />
 
-      <p>Nós implementamos uma variedade de medidas de segurança para manter a segurança de suas informações pessoais quando você insere, submete ou acessa as suas informações pessoais.</p>
+      <h3 id="use">What do we use your information for?</h3>
 
-      <h3 id="data-retention">Qual a sua política de retenção de dados?</h3>
-
-      <p>Faremos esforços de boa fé para:</p>
+      <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>Reter logs de servidor contendo o endereço IP de todas as requisições a este servidor por não mais que 90 dias.</li>
-        <li>Reter os endereços IP associados a usuários cadastrados e suas postagens por não mais que 5 anos.</li>
+        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
-      <h3 id="cookies">Nós usamos cookies?</h3>
+      <hr class="spacer" />
 
-      <p>Sim. Cookies são pequenos arquivos que um site ou o provedor de serviço transfere para o armazenamento interno de seu computador através de seu navegador (se você permitir). Estes cookies habilitam o site para reconhecer o seu navegador e, se você ter um cadastro, associá-lo a esta conta.</p>
+      <h3 id="protect">How do we protect your information?</h3>
 
-      <p>Nós usamos cookies para entender e salvar as suas preferências para futuras visitas e compilar dados agregados sobre o tráfego do site para que possamos oferecer melhores experiências e ferramentas no futuro. Nós podemos contratar serviços de terceiros para nos auxiliar a entender melhor nossos visitantes. Estes provedores de serviço não são autoriza usar as informações coletadas em nosso nome exceto para nos ajudar a conduzir e aprimorar nosso funcionamento.</p>
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
 
-      <h3 id="disclose">Nós revelamos informações para terceiros?</h3>
+      <hr class="spacer" />
 
-      <p>Nós não vendemos, tocamos ou transferimos para terceiros informações pessoais que te identificam. Isso não inclui partes em que confiamos para nos ajudar a operar nosso site, conduzir nosso funcionamento ou servir você desde que estes terceiros concordem em manter essas informações em segredo. Nós também podemos prover as suas informações para obedecer ordens judiciais, reforçar nossas políticas ou proteger nossos direitos ou de outrem, propriedades ou segurança. Entretanto, informações pessoais não identificáveis podem ser enviadas para outras partes para marketing, propaganda e outros usos.</p>
+      <h3 id="data-retention">What is our data retention policy?</h3>
 
-      <h3 id="third-party">Links de terceiros</h3>
+      <p>We will make a good faith effort to:</p>
 
-      <p>Ocasionalmente, à nossa discrição, podemos icluir ou oferecer produtos ou serviços de terceiros em nosso site. Estes terceiros têm políticas de privacidade separadas e independentes. Nós, portanto, não nos responsabilizamos pelo conteúdo e atividades destes sites de terceiros. Occasionally, at our discretion, we may include or offer third party products or services on our site. Não obstante, nós procuramos proteger a integridade de nosso site e todo feedback sobre estes sites de terceiros é bem-vindo.</p>
+      <ul>
+        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
 
-      <h3 id="coppa">Obediência ao Ato de Proteção da Privacidade Online de Crianças</h3>
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
 
-      <p>Nosso site, produtos e serviços são todos direcionados a pessoas que têm pelo menos 13 anos de idade. Se este servidor estiver nos EUA, e você tiver menos de 13 anos, pelos requerimentos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não use este site.</p>
+      <p>You may irreversibly delete your account at any time.</p>
 
-      <h3 id="online">Política de Apenas Privacidade Online</h3>
+      <hr class="spacer"/>
 
-      <p>Esta política de privacidade online se aplica somente a informações coletadas por nosso site e não a informações coletadas offline.</p>
+      <h3 id="cookies">Do we use cookies?</h3>
 
-      <h3 id="consent">Seu Consentimento</h3>
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
 
-      <p>Usando o nosso site, você concorda com a nossa política de privacidade.</p>
+      <p>We use cookies to understand and save your preferences for future visits.</p>
 
-      <h3 id="changes">Mudanças em nossa Política de Privacidade</h3>
+      <hr class="spacer" />
 
-      <p>Se decidirmos mudar a nossa política de privacidade, publicaremos as mudanças nesta página.</p>
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
 
-      <p>Este documento é CC-BY-SA. A sua última atualização aconteceu em 31 de maio de 2013.</p>
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
 
-      <p>Originalmente adaptado da <a href="https://github.com/discourse/discourse">política de privacidade do Discourse</a>.</p>
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+
+      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
+    contrast: Alto contraste
     default: Mastodon
   time:
     formats:
@@ -768,7 +827,7 @@ pt-BR:
       tip_local_timeline: A timeline local é uma visão contínua das pessoas que estão em %{instance}. Esses são seus vizinhos próximos!
       tip_mobile_webapp: Se o seu navegador móvel oferecer a opção de adicionar Mastodon à tela inicial, você pode receber notificações push. Vai funcionar quase como um aplicativo nativo!
       tips: Dicas
-      title: Boas-vindas à bordo, %{name}!
+      title: Boas-vindas a bordo, %{name}!
   users:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido

@@ -83,7 +83,7 @@ class UserSettingsDecorator
   end
 
   def boolean_cast_setting(key)
-    settings[key] == '1'
+    ActiveModel::Type::Boolean.new.cast(settings[key])
   end
 
   def coerced_settings(key)
@@ -91,7 +91,7 @@ class UserSettingsDecorator
   end
 
   def coerce_values(params_hash)
-    params_hash.transform_values { |x| x == '1' }
+    params_hash.transform_values { |x| ActiveModel::Type::Boolean.new.cast(x) }
   end
 
   def change?(key)

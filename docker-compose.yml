@@ -38,7 +38,7 @@ services:
       - external_network
       - internal_network
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     depends_on:
       - db
       - redis
@@ -58,7 +58,7 @@ services:
       - external_network
       - internal_network
     ports:
-      - "4000:4000"
+      - "127.0.0.1:4000:4000"
     depends_on:
       - db
       - redis

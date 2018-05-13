@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { fetchAccount } from '../../actions/accounts';
-import { refreshAccountTimeline, refreshAccountFeaturedTimeline, expandAccountTimeline } from '../../actions/timelines';
+import { expandAccountFeaturedTimeline, expandAccountTimeline } from '../../actions/timelines';
 import StatusList from '../../components/status_list';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
@@ -19,7 +19,7 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], ImmutableList()),
     featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], ImmutableList()),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
-    hasMore: !!state.getIn(['timelines', `account:${path}`, 'next']),
+    hasMore:   state.getIn(['timelines', `account:${path}`, 'hasMore']),
   };
 };
 
@@ -41,25 +41,23 @@ export default class AccountTimeline extends ImmutablePureComponent {
 
     this.props.dispatch(fetchAccount(accountId));
     if (!withReplies) {
-      this.props.dispatch(refreshAccountFeaturedTimeline(accountId));
+      this.props.dispatch(expandAccountFeaturedTimeline(accountId));
     }
-    this.props.dispatch(refreshAccountTimeline(accountId, withReplies));
+    this.props.dispatch(expandAccountTimeline(accountId, { withReplies }));
   }
 
   componentWillReceiveProps (nextProps) {
     if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
       this.props.dispatch(fetchAccount(nextProps.params.accountId));
       if (!nextProps.withReplies) {
-        this.props.dispatch(refreshAccountFeaturedTimeline(nextProps.params.accountId));
+        this.props.dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
-      this.props.dispatch(refreshAccountTimeline(nextProps.params.accountId, nextProps.params.withReplies));
+      this.props.dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
     }
   }
 
-  handleLoadMore = () => {
-    if (!this.props.isLoading && this.props.hasMore) {
-      this.props.dispatch(expandAccountTimeline(this.props.params.accountId, this.props.withReplies));
-    }
+  handleLoadMore = maxId => {
+    this.props.dispatch(expandAccountTimeline(this.props.params.accountId, { maxId, withReplies: this.props.withReplies }));
   }
 
   render () {

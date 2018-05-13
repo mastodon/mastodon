@@ -52,9 +52,7 @@ he:
     unfollow: הפסקת מעקב
   admin:
     account_moderation_notes:
-      account: מנחה דיון
       create: ליצור
-      created_at: תאריך
       created_msg: הודעת מנחה נוצרה בהצלחה!
       delete: למחוק
       destroyed_msg: הודעת מנחה נמחקה בהצלחה!
@@ -63,6 +61,7 @@ he:
       by_domain: שם מתחם
       confirm: אישור
       confirmed: אושר
+      confirming: המאשר
       demote: הורדה בדרגה
       disable: לחסום
       disable_two_factor_authentication: ביטול הזדהות דו-שלבית
@@ -71,6 +70,7 @@ he:
       domain: תחום
       edit: עריכה
       email: דוא"ל
+      email_status: סטטוס דוא"ל
       enable: לאפשר
       enabled: מאופשר
       feed_url: כתובת פיד
@@ -108,6 +108,10 @@ he:
       public: פומבי
       push_subscription_expires: הרשמה להודעות בדחיפה פגה
       redownload: לקריאה מחדש של האווטאר
+      resend_confirmation:
+        already_confirmed: משתמש זה כבר אושר
+        send: שלח מחדש דוא"ל אימות
+        success: הודעת האימייל נשלחה בהצלחה!
       reset: איפוס
       reset_password: אתחול סיסמא
       resubscribe: להרשם מחדש
@@ -180,14 +184,9 @@ he:
     reports:
       are_you_sure: 100% על בטוח?
       comment:
-        label: הערה
         none: ללא
-      delete: מחיקה
       id: ID
       mark_as_resolved: סימון כפתור
-      nsfw:
-        'false': לכל המשפחה
-        'true': תוכן רגיש
       report: 'דווח על #%{id}'
       report_contents: תוכן
       reported_account: חשבון מדווח

@@ -18,7 +18,7 @@ describe Admin::ReportsController do
       reports = assigns(:reports).to_a
       expect(reports.size).to eq 1
       expect(reports[0]).to eq specified
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns http success with resolved filter' do
@@ -31,7 +31,7 @@ describe Admin::ReportsController do
       expect(reports.size).to eq 1
       expect(reports[0]).to eq specified
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -42,7 +42,7 @@ describe Admin::ReportsController do
       get :show, params: { id: report }
 
       expect(assigns(:report)).to eq report
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -52,7 +52,7 @@ describe Admin::ReportsController do
         report = Fabricate(:report)
         put :update, params: { id: report, outcome: 'unknown' }
 
-        expect(response).to have_http_status(:missing)
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -61,7 +61,7 @@ describe Admin::ReportsController do
         report = Fabricate(:report)
 
         put :update, params: { id: report, outcome: 'resolve' }
-        expect(response).to redirect_to(admin_report_path(report))
+        expect(response).to redirect_to(admin_reports_path)
         report.reload
         expect(report.action_taken_by_account).to eq user.account
         expect(report.action_taken).to eq true
@@ -74,7 +74,7 @@ describe Admin::ReportsController do
         allow(Admin::SuspensionWorker).to receive(:perform_async)
 
         put :update, params: { id: report, outcome: 'suspend' }
-        expect(response).to redirect_to(admin_report_path(report))
+        expect(response).to redirect_to(admin_reports_path)
         report.reload
         expect(report.action_taken_by_account).to eq user.account
         expect(report.action_taken).to eq true
@@ -88,11 +88,45 @@ describe Admin::ReportsController do
         report = Fabricate(:report)
 
         put :update, params: { id: report, outcome: 'silence' }
-        expect(response).to redirect_to(admin_report_path(report))
+        expect(response).to redirect_to(admin_reports_path)
         report.reload
         expect(report.action_taken_by_account).to eq user.account
         expect(report.action_taken).to eq true
         expect(report.target_account).to be_silenced
+      end
+    end
+
+    describe 'with an outsome of `reopen`' do
+      it 'reopens the report' do
+        report = Fabricate(:report)
+
+        put :update, params: { id: report, outcome: 'reopen' }
+        expect(response).to redirect_to(admin_report_path(report))
+        report.reload
+        expect(report.action_taken_by_account).to eq nil
+        expect(report.action_taken).to eq false
+      end
+    end
+
+    describe 'with an outsome of `assign_to_self`' do
+      it 'reopens the report' do
+        report = Fabricate(:report)
+
+        put :update, params: { id: report, outcome: 'assign_to_self' }
+        expect(response).to redirect_to(admin_report_path(report))
+        report.reload
+        expect(report.assigned_account).to eq user.account
+      end
+    end
+
+    describe 'with an outsome of `unassign`' do
+      it 'reopens the report' do
+        report = Fabricate(:report)
+
+        put :update, params: { id: report, outcome: 'unassign' }
+        expect(response).to redirect_to(admin_report_path(report))
+        report.reload
+        expect(report.assigned_account).to eq nil
       end
     end
   end

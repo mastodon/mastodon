@@ -20,15 +20,21 @@ class AccountsController < ApplicationController
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
         @statuses        = filtered_status_page(params)
         @statuses        = cache_collection(@statuses, Status)
+
         unless @statuses.empty?
-          @older_url        = older_url if @statuses.last.id > filtered_statuses.last.id
-          @newer_url        = newer_url if @statuses.first.id < filtered_statuses.first.id
+          @older_url = older_url if @statuses.last.id > filtered_statuses.last.id
+          @newer_url = newer_url if @statuses.first.id < filtered_statuses.first.id
         end
       end
 
       format.atom do
         @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id])
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? }))
+      end
+
+      format.rss do
+        @statuses = cache_collection(default_statuses.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
+        render xml: RSS::AccountSerializer.render(@account, @statuses)
       end
 
       format.json do
