@@ -3,26 +3,30 @@
     = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
   .batch-table__row__content
     .status__content><
-      - unless status.spoiler_text.blank?
+      - unless status.proper.spoiler_text.blank?
         %p><
-          %strong= Formatter.instance.format_spoiler(status)
+          %strong> Content warning: #{Formatter.instance.format_spoiler(status.proper)}
 
-      = Formatter.instance.format(status, custom_emojify: true)
+      = Formatter.instance.format(status.proper, custom_emojify: true)
 
-    - unless status.media_attachments.empty?
-      - if status.media_attachments.first.video?
-        - video = status.media_attachments.first
-        = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 610, height: 343, inline: true
+    - unless status.proper.media_attachments.empty?
+      - if status.proper.media_attachments.first.video?
+        - video = status.proper.media_attachments.first
+        = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.proper.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 610, height: 343, inline: true
       - else
-        = react_component :media_gallery, height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
+        = react_component :media_gallery, height: 343, sensitive: status.proper.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.proper.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
 
     .detailed-status__meta
       = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener' do
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       ·
-      = fa_visibility_icon(status)
-      = t("statuses.visibilities.#{status.visibility}")
-      - if status.sensitive?
+      - if status.reblog?
+        = fa_icon('retweet fw')
+        = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(status.proper.account))
+      - else
+        = fa_visibility_icon(status)
+        = t("statuses.visibilities.#{status.visibility}")
+      - if status.proper.sensitive?
         ·
         = fa_icon('eye-slash fw')
         = t('stream_entries.sensitive_content')

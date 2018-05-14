@@ -182,7 +182,9 @@ export function putStatuses(records) {
 }
 
 export function freeStorage() {
-  return navigator.storage.estimate().then(({ quota, usage }) => {
+  // navigator.storage is not present on:
+  // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.100 Safari/537.36 Edge/16.16299
+  return 'storage' in navigator && navigator.storage.estimate().then(({ quota, usage }) => {
     if (usage + storageMargin < quota) {
       return null;
     }

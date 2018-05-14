@@ -84,8 +84,8 @@ export default class Status extends ImmutablePureComponent {
     return <div className='media-spoiler-video' style={{ height: '110px' }} />;
   }
 
-  handleOpenVideo = startTime => {
-    this.props.onOpenVideo(this._properStatus().getIn(['media_attachments', 0]), startTime);
+  handleOpenVideo = (media, startTime) => {
+    this.props.onOpenVideo(media, startTime);
   }
 
   handleHotkeyReply = e => {
