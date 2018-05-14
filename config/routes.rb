@@ -308,7 +308,7 @@ Rails.application.routes.draw do
       end
 
       namespace :push do
-        resource :subscription, only: [:create, :update, :destroy]
+        resource :subscription, only: [:create, :show, :update, :destroy]
       end
     end
 
