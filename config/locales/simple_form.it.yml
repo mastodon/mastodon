@@ -1,10 +1,11 @@
+---
 it:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
-        digest: Inviata solo dopo un lungo periodo di intattività e solo se hai ricevuto
-          qualsiasi messaggio personale in tua assenza
+        bot: Avverte che l'account non rappresenta una persona
+        digest: Inviata solo dopo un lungo periodo di intattività e solo se hai ricevuto qualsiasi messaggio personale in tua assenza
         display_name:
           one: <span class="name-counter">1</span> carattere rimanente
           other: <span class="name-counter">%{count}</span> caratteri rimanenti
@@ -15,17 +16,13 @@ it:
           one: <span class="note-counter">1</span> carattere rimanente
           other: <span class="note-counter">%{count}</span> caratteri rimanenti
         setting_noindex: Coinvolge il tuo profilo pubblico e le pagine di stato
-        setting_theme: Coinvolge il modo in cui Mastodon verrà visualizzato quando
-          sarai collegato da qualsiasi dispositivo.
-        bot: Avverte che l'account non rappresenta una persona
+        setting_theme: Coinvolge il modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
       imports:
         data: File CSV esportato da un altra istanza di Mastodon
       sessions:
-        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono
-          o usa uno dei codici di recupero:'
+        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
       user:
-        filtered_languages: Le lingue selezionate verranno filtrate dalla timeline
-          pubblica per te
+        filtered_languages: Le lingue selezionate verranno filtrate dalla timeline pubblica per te
     labels:
       account:
         fields:
@@ -33,6 +30,7 @@ it:
           value: Contenuto
       defaults:
         avatar: Avatar
+        bot: Questo account è un bot
         confirm_new_password: Conferma nuova password
         confirm_password: Conferma password
         current_password: Password corrente
@@ -60,13 +58,11 @@ it:
         setting_reduce_motion: Riduci movimento nelle animazioni
         setting_system_font_ui: Usa il carattere di default del sistema
         setting_theme: Tema sito
-        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire
-          qualcuno
+        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire qualcuno
         severity: Severità
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
-        bot: Questo account è un bot
       interactions:
         must_be_follower: Blocca notifiche dai non follower
         must_be_following: Blocca notifiche dalle persone che non segui
@@ -80,6 +76,6 @@ it:
         reblog: Invia email quando qualcuno da un boost al tuo stato
     'no': 'No'
     required:
-      mark: '*'
+      mark: "*"
       text: richiesto
     'yes': Si
