@@ -31,14 +31,10 @@ self.addEventListener('fetch', function(event) {
     const asyncResponse = fetchRoot();
     const asyncCache = openWebCache();
 
-    event.respondWith(asyncResponse.then(response => {
-      if (response.ok) {
-        return asyncCache.then(cache => cache.put('/', response.clone()))
-                         .then(() => response);
-      }
-
-      throw null;
-    }).catch(() => asyncCache.then(cache => cache.match('/'))));
+    event.respondWith(asyncResponse.then(
+      response => asyncCache.then(cache => cache.put('/', response.clone()))
+                            .then(() => response),
+      () => asyncCache.then(cache => cache.match('/'))));
   } else if (url.pathname === '/auth/sign_out') {
     const asyncResponse = fetch(event.request);
     const asyncCache = openWebCache();
