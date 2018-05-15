@@ -15,7 +15,7 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.seconds.to_i}"
+    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
   }
   config.assets.digest = false
 
@@ -59,3 +59,14 @@ Rails.application.configure do
 end
 
 Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+
+# set fake_data for pam, don't do real calls, just use fake data
+if ENV['PAM_ENABLED'] == 'true'
+  Rpam2.fake_data =
+    {
+      usernames: Set['pam_user1', 'pam_user2'],
+      servicenames: Set['pam_test', 'pam_test_controlled'],
+      password: '123456',
+      env: { email: 'pam@example.com' }
+    }
+end

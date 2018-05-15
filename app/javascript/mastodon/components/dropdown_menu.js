@@ -43,6 +43,7 @@ class DropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    if (this.focusedItem) this.focusedItem.focus();
     this.setState({ mounted: true });
   }
 
@@ -55,6 +56,46 @@ class DropdownMenu extends React.PureComponent {
     this.node = c;
   }
 
+  setFocusRef = c => {
+    this.focusedItem = c;
+  }
+
+  handleKeyDown = e => {
+    const items = Array.from(this.node.getElementsByTagName('a'));
+    const index = items.indexOf(e.currentTarget);
+    let element;
+
+    switch(e.key) {
+    case 'Enter':
+      this.handleClick(e);
+      break;
+    case 'ArrowDown':
+      element = items[index+1];
+      if (element) {
+        element.focus();
+      }
+      break;
+    case 'ArrowUp':
+      element = items[index-1];
+      if (element) {
+        element.focus();
+      }
+      break;
+    case 'Home':
+      element = items[0];
+      if (element) {
+        element.focus();
+      }
+      break;
+    case 'End':
+      element = items[items.length-1];
+      if (element) {
+        element.focus();
+      }
+      break;
+    }
+  }
+
   handleClick = e => {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
@@ -63,7 +104,7 @@ class DropdownMenu extends React.PureComponent {
 
     if (typeof action === 'function') {
       e.preventDefault();
-      action();
+      action(e);
     } else if (to) {
       e.preventDefault();
       this.context.router.history.push(to);
@@ -79,7 +120,7 @@ class DropdownMenu extends React.PureComponent {
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' autoFocus={i === 0} onClick={this.handleClick} data-index={i}>
+        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleKeyDown} data-index={i}>
           {text}
         </a>
       </li>
@@ -156,9 +197,6 @@ export default class Dropdown extends React.PureComponent {
 
   handleKeyDown = e => {
     switch(e.key) {
-    case 'Enter':
-      this.handleClick(e);
-      break;
     case 'Escape':
       this.handleClose();
       break;

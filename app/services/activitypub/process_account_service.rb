@@ -22,13 +22,15 @@ class ActivityPub::ProcessAccountService < BaseService
 
         create_account if @account.nil?
         update_account
-        process_tags(@account)
+        process_tags
       end
     end
 
+    return if @account.nil?
+
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
-    check_featured_collection! if @account&.featured_collection_url&.present?
+    check_featured_collection! if @account.featured_collection_url.present?
 
     @account
   rescue Oj::ParseError
@@ -42,7 +44,6 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.protocol    = :activitypub
     @account.username    = @username
     @account.domain      = @domain
-    @account.uri         = @uri
     @account.suspended   = true if auto_suspend?
     @account.silenced    = true if auto_silence?
     @account.private_key = nil
@@ -65,9 +66,12 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.followers_url           = @json['followers'] || ''
     @account.featured_collection_url = @json['featured'] || ''
     @account.url                     = url || @uri
+    @account.uri                     = @uri
     @account.display_name            = @json['name'] || ''
     @account.note                    = @json['summary'] || ''
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
+    @account.fields                  = property_values || {}
+    @account.actor_type              = actor_type
   end
 
   def set_fetchable_attributes!
@@ -90,6 +94,14 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def check_featured_collection!
     ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id)
+  end
+
+  def actor_type
+    if @json['type'].is_a?(Array)
+      @json['type'].find { |type| ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES.include?(type) }
+    else
+      @json['type']
+    end
   end
 
   def image_url(key)
@@ -122,6 +134,11 @@ class ActivityPub::ProcessAccountService < BaseService
     else
       url_candidate
     end
+  end
+
+  def property_values
+    return unless @json['attachment'].is_a?(Array)
+    @json['attachment'].select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
   end
 
   def mismatching_origin?(url)
@@ -189,17 +206,15 @@ class ActivityPub::ProcessAccountService < BaseService
     { redis: Redis.current, key: "process_account:#{@uri}" }
   end
 
-  def process_tags(account)
+  def process_tags
     return if @json['tag'].blank?
+
     as_array(@json['tag']).each do |tag|
-      case tag['type']
-      when 'Emoji'
-        process_emoji tag, account
-      end
+      process_emoji tag if equals_or_includes?(tag['type'], 'Emoji')
     end
   end
 
-  def process_emoji(tag, _account)
+  def process_emoji(tag)
     return if skip_download?
     return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
 

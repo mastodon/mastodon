@@ -4,6 +4,7 @@ es:
     about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
     about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
     about_this: Acerca de esta instancia
+    administered_by: 'Administrado por:'
     closed_registrations: Los registros están actualmente cerrados en esta instancia.
     contact: Contacto
     contact_missing: No especificado
@@ -52,17 +53,24 @@ es:
     unfollow: Dejar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Crear
-      created_at: Fecha
       created_msg: "¡Nota de moderación creada con éxito!"
       delete: Borrar
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
       are_you_sure: "¿Estás seguro?"
+      avatar: Avatar
       by_domain: Dominio
+      change_email:
+        changed_msg: "¡El correo electrónico se ha actualizado correctamente!"
+        current_email: Correo electrónico actual
+        label: Cambiar el correo electrónico
+        new_email: Nuevo correo electrónico
+        submit: Cambiar el correo electrónico
+        title: Cambiar el correo electrónico de %{username}
       confirm: Confirmar
       confirmed: Confirmado
+      confirming: Confirmando
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -71,6 +79,7 @@ es:
       domain: Dominio
       edit: Editar
       email: E-mail
+      email_status: E-mail Status
       enable: Habilitar
       enabled: Habilitada
       feed_url: URL de notificaciones
@@ -108,6 +117,11 @@ es:
       public: Público
       push_subscription_expires: Expiración de la suscripción PuSH
       redownload: Refrescar avatar
+      remove_avatar: Eliminar el avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito"
       reset: Reiniciar
       reset_password: Reiniciar contraseña
       resubscribe: Re-suscribir
@@ -128,6 +142,7 @@ es:
       statuses: Estados
       subscribe: Suscribir
       title: Cuentas
+      unconfirmed_email: Correo electrónico sin confirmar
       undo_silenced: Des-silenciar
       undo_suspension: Des-suspender
       unsubscribe: Desuscribir
@@ -135,6 +150,8 @@ es:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
+        change_email_user: "%{name} ha cambiado la dirección de correo del usuario %{target}"
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
@@ -150,10 +167,13 @@ es:
         enable_user: "%{name} habilitó el acceso del usuario %{target}"
         memorialize_account: "%{name} convirtió la cuenta de %{target} en una página de memorial"
         promote_user: "%{name} promoción al usuario %{target}"
+        remove_avatar_user: "%{name} ha eliminado el avatar de %{target}"
+        reopen_report: "%{name} ha reabierto la denuncia %{target}"
         reset_password_user: "%{name} restauró la contraseña del usuario %{target}"
-        resolve_report: "%{name} desestimó el reporte %{target}"
+        resolve_report: "%{name} ha resuelto la denuncia %{target}"
         silence_account: "%{name} silenció la cuenta de %{target}"
         suspend_account: "%{name} suspendió la cuenta de %{target}"
+        unassigned_report: "%{name} ha desasignado la denuncia %{target}"
         unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
@@ -239,29 +259,44 @@ es:
         expired: Expiradas
         title: Filtrar
       title: Invitaciones
+    report_notes:
+      created_msg: "¡El registro de la denuncia se ha creado correctamente!"
+      destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
     reports:
+      account:
+        note: nota
+        report: denuncia
       action_taken_by: Acción tomada por
       are_you_sure: "¿Estás seguro?"
+      assign_to_self: Asignármela a mí
+      assigned: Moderador asignado
       comment:
-        label: Comentario
         none: Ninguno
-      delete: Eliminar
+      created_at: Denunciado
       id: ID
       mark_as_resolved: Marcar como resuelto
-      nsfw:
-        'false': Mostrar multimedia
-        'true': Ocultar multimedia
+      mark_as_unresolved: Marcar como no resuelto
+      notes:
+        create: Añadir una nota
+        create_and_resolve: Resolver con una nota
+        create_and_unresolve: Reabrir con una nota
+        delete: Eliminar
+        placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
+      reopen: Reabrir denuncia
       report: 'Reportar #%{id}'
       report_contents: Contenido
       reported_account: Cuenta reportada
       reported_by: Reportado por
       resolved: Resuelto
+      resolved_msg: "¡La denuncia se ha resuelto correctamente!"
       silence_account: Silenciar cuenta
       status: Estado
       suspend_account: Suspender cuenta
       target: Objetivo
       title: Reportes
+      unassign: Desasignar
       unresolved: No resuelto
+      updated_at: Actualizado
       view: Ver
     settings:
       activity_api_enabled:
@@ -319,13 +354,10 @@ es:
       back_to_account: Volver a la cuenta
       batch:
         delete: Eliminar
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Ejecutar
+        nsfw_off: Marcar contenido como no sensible
+        nsfw_on: Marcar contenido como sensible
       failed_to_execute: Falló al ejecutar
       media:
-        hide: Ocultar multimedia
-        show: Mostrar multimedia
         title: Multimedia
       no_media: No hay multimedia
       title: Estado de las cuentas
@@ -341,6 +373,7 @@ es:
   admin_mailer:
     new_report:
       body: "%{reporter} ha reportado a %{target}"
+      body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
@@ -382,6 +415,7 @@ es:
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
   authorize_follow:
+    already_following: Ya estás siguiendo a esta cuenta
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Tienes una solicitud de seguimiento de:'
@@ -474,6 +508,7 @@ es:
       '21600': 6 horas
       '3600': 1 hora
       '43200': 12 horas
+      '604800': 1 semana
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Generar
@@ -546,7 +581,7 @@ es:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: " "
   pagination:
     newer: Más nuevo
     next: Próximo
@@ -577,6 +612,10 @@ es:
     missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
+  remote_unfollow:
+    error: Error
+    title: Título
+    unfollowed: Ha dejado de seguirse
   sessions:
     activity: Última actividad
     browser: Navegador
@@ -634,6 +673,18 @@ es:
     two_factor_authentication: Autenticación de dos factores
     your_apps: Tus aplicaciones
   statuses:
+    attached:
+      description: 'Adjunto: %{attached}'
+      image:
+        one: "%{count} imagen"
+        other: "%{count} imágenes"
+      video:
+        one: "%{count} vídeo"
+        other: "%{count} vídeos"
+    content_warning: 'Alerta de contenido: %{warning}'
+    disallowed_hashtags:
+      one: 'contenía un hashtag no permitido: %{tags}'
+      other: 'contenía los hashtags no permitidos: %{tags}'
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
@@ -658,6 +709,7 @@ es:
   terms:
     title: Términos del Servicio y Políticas de Privacidad de %{instance}
   themes:
+    contrast: Alto contraste
     default: Mastodon
   time:
     formats:
@@ -682,10 +734,10 @@ es:
     backup_ready:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
-      title: Recogida del archivo
+      title: Descargar archivo
     welcome:
       edit_profile_action: Configurar el perfil
-      edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, cabecera, cambiando tu nombre para mostrar y más. Si te gustaría revisar seguidores antes de autorizarlos a que te sigan, puedes bloquear tu cuenta.
+      edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre de usuario y más cosas. Si quieres revisar a tus nuevos seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta.
       explanation: Aquí hay algunos consejos para empezar
       final_action: Empezar a publicar
       final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea de tiempo local y con "hashtags". Podrías querer introducirte con el "hashtag" #introductions.'
@@ -695,7 +747,7 @@ es:
       review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
       subject: Bienvenido a Mastodon
       tip_bridge_html: Si esta viniendo desde Twitter, puedes encontrar a tus amigos en Mastodon usando la <a href="%{bridge_url}">aplicación puente</a>. Aunque solo funciona si ellos también usaron la aplicación puente!
-      tip_federated_timeline: La historia federada es una vista de toda la red Mastodon conocida. Sólo incluye gente a la que se han suscrito personas de tu instancia, así que no está completa.
+      tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!

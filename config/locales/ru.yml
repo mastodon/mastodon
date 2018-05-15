@@ -52,9 +52,7 @@ ru:
     unfollow: Отписаться
   admin:
     account_moderation_notes:
-      account: Модератор
       create: Создать
-      created_at: Дата
       created_msg: Заметка модератора успешно создана!
       delete: Удалить
       destroyed_msg: Заметка модератора успешно удалена!
@@ -63,6 +61,7 @@ ru:
       by_domain: Домен
       confirm: Подтвердить
       confirmed: Подтверждено
+      confirming: подтверждающий
       demote: Разжаловать
       disable: Отключить
       disable_two_factor_authentication: Отключить 2FA
@@ -71,6 +70,7 @@ ru:
       domain: Домен
       edit: Изменить
       email: E-mail
+      email_status: Статус электронной почты
       enable: Включить
       enabled: Включен
       feed_url: URL фида
@@ -108,6 +108,10 @@ ru:
       public: Публичный
       push_subscription_expires: Подписка PuSH истекает
       redownload: Обновить аватар
+      resend_confirmation:
+        already_confirmed: Этот пользователь уже подтвержден
+        send: Повторно отправить подтверждение по электронной почте
+        success: Письмо с подтверждением успешно отправлено!
       reset: Сбросить
       reset_password: Сбросить пароль
       resubscribe: Переподписаться
@@ -245,14 +249,9 @@ ru:
       action_taken_by: 'Действие предпринято:'
       are_you_sure: Вы уверены?
       comment:
-        label: Комментарий
         none: Нет
-      delete: Удалить
       id: ID
       mark_as_resolved: Отметить как разрешенную
-      nsfw:
-        'false': Показать мультимедийные вложения
-        'true': Скрыть мультимедийные вложения
       report: 'Жалоба #%{id}'
       report_contents: Содержимое
       reported_account: Аккаунт нарушителя
@@ -323,11 +322,8 @@ ru:
         delete: Удалить
         nsfw_off: Выключить NSFW
         nsfw_on: Включить NSFW
-      execute: Выполнить
       failed_to_execute: Не удалось выполнить
       media:
-        hide: Скрыть медиаконтент
-        show: Показать медиаконтент
         title: Медиаконтент
       no_media: Без медиаконтента
       title: Статусы аккаунта

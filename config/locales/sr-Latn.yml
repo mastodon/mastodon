@@ -52,9 +52,7 @@ sr-Latn:
     unfollow: Otprati
   admin:
     account_moderation_notes:
-      account: Moderator
       create: Napravi
-      created_at: Datum
       created_msg: Moderatorska beleška uspešno napravljena!
       delete: Obriši
       destroyed_msg: Moderatorska beleška uspešno obrisana!
@@ -63,6 +61,7 @@ sr-Latn:
       by_domain: Domen
       confirm: Potvrdi
       confirmed: Potvrđeno
+      confirming: Potvrđujući
       demote: Ražaluj
       disable: Isključi
       disable_two_factor_authentication: Isključi 2FA
@@ -71,6 +70,7 @@ sr-Latn:
       domain: Domen
       edit: Izmeni
       email: E-pošta
+      email_status: Status e-pošte
       enable: Uključi
       enabled: Uključeno
       feed_url: Adresa dovoda
@@ -108,6 +108,10 @@ sr-Latn:
       public: Javno
       push_subscription_expires: PuSH subscription expires
       redownload: Osveži avatar
+      resend_confirmation:
+        already_confirmed: Ovaj korisnik je već potvrđen
+        send: Ponovo pošaljite e-poruku za potvrdu
+        success: E-mail potvrde je uspešno poslat!
       reset: Resetuj
       reset_password: Resetuj lozinku
       resubscribe: Ponovo se pretplati
@@ -245,14 +249,9 @@ sr-Latn:
       action_taken_by: Akciju izveo
       are_you_sure: Da li ste sigurni?
       comment:
-        label: Komentar
         none: Ništa
-      delete: Obriši
       id: ID
       mark_as_resolved: Označi kao rešen
-      nsfw:
-        'false': Otkrij medijske priloge
-        'true': Sakrij medijske priloge
       report: 'Prijava #%{id}'
       report_contents: Sadržaj
       reported_account: Prijavljeni nalog
@@ -311,11 +310,8 @@ sr-Latn:
         delete: Obriši
         nsfw_off: NSFW isključen
         nsfw_on: NSFW uključen
-      execute: Izvrši
       failed_to_execute: Neuspelo izvršavanje
       media:
-        hide: Sakrij multimediju
-        show: Prikaži multimediju
         title: Multimedija
       no_media: Bez multimedije
       title: Statusi naloga

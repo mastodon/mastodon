@@ -1,5 +1,5 @@
 import api from '../api';
-import asyncDB from '../storage/db';
+import openDB from '../storage/db';
 import { evictStatus } from '../storage/modifier';
 
 import { deleteFromTimelines } from './timelines';
@@ -92,12 +92,17 @@ export function fetchStatus(id) {
 
     dispatch(fetchStatusRequest(id, skipLoading));
 
-    asyncDB.then(db => {
+    openDB().then(db => {
       const transaction = db.transaction(['accounts', 'statuses'], 'read');
       const accountIndex = transaction.objectStore('accounts').index('id');
       const index = transaction.objectStore('statuses').index('id');
 
-      return getFromDB(dispatch, getState, accountIndex, index, id);
+      return getFromDB(dispatch, getState, accountIndex, index, id).then(() => {
+        db.close();
+      }, error => {
+        db.close();
+        throw error;
+      });
     }).then(() => {
       dispatch(fetchStatusSuccess(skipLoading));
     }, () => api(getState).get(`/api/v1/statuses/${id}`).then(response => {

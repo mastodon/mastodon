@@ -4,12 +4,13 @@ sv:
     about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
+    administered_by: 'Administreras av:'
     closed_registrations: Registreringar är för närvarande stängda i denna instans. Dock så kan du hitta en annan instans för att skapa ett konto och få tillgång till samma nätverk från det.
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: N/A
     description_headline: Vad är %{domain}?
-    domain_count_after: annan instans
+    domain_count_after: andra instanser
     domain_count_before: Uppkopplad mot
     extended_description_html: |
       <h3>En bra plats för regler</h3>
@@ -29,7 +30,7 @@ sv:
     other_instances: Instanslista
     source_code: Källkod
     status_count_after: statusar
-    status_count_before: Vem författade
+    status_count_before: Som skapat
     user_count_after: användare
     user_count_before: Hem till
     what_is_mastodon: Vad är Mastodon?
@@ -48,21 +49,28 @@ sv:
     reserved_username: Användarnamnet är reserverat
     roles:
       admin: Admin
-      moderator: Moderera
+      moderator: Moderator
     unfollow: Sluta följa
   admin:
     account_moderation_notes:
-      account: Moderator
       create: Skapa
-      created_at: Datum
       created_msg: Modereringsnotering skapad utan problem!
       delete: Ta bort
       destroyed_msg: Modereringsnotering borttagen utan problem!
     accounts:
       are_you_sure: Är du säker?
+      avatar: Avatar
       by_domain: Domän
+      change_email:
+        changed_msg: E-postadressen har ändrats!
+        current_email: Nuvarande E-postadress
+        label: Byt E-postadress
+        new_email: Ny E-postadress
+        submit: Byt E-postadress
+        title: Byt E-postadress för %{username}
       confirm: Bekräfta
       confirmed: Bekräftad
+      confirming: Bekräftande
       demote: Degradera
       disable: inaktivera
       disable_two_factor_authentication: Inaktivera 2FA
@@ -71,6 +79,7 @@ sv:
       domain: Domän
       edit: Redigera
       email: E-post
+      email_status: E-poststatus
       enable: Aktivera
       enabled: Aktiverad
       feed_url: Flödes URL
@@ -108,6 +117,11 @@ sv:
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera avatar
+      remove_avatar: Ta bort avatar
+      resend_confirmation:
+        already_confirmed: Den här användaren är redan bekräftad
+        send: Skicka om e-postbekräftelse
+        success: Bekräftelsemeddelande skickas framgångsrikt!
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
@@ -128,6 +142,7 @@ sv:
       statuses: Status
       subscribe: Prenumerera
       title: Konton
+      unconfirmed_email: Obekräftad E-postadress
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
       unsubscribe: Avsluta prenumeration
@@ -135,6 +150,8 @@ sv:
       web: Webb
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
+        change_email_user: "%{name} bytte e-postadress för användare %{target}"
         confirm_user: "%{name} bekräftade e-postadress för användare %{target}"
         create_custom_emoji: "%{name} laddade upp ny emoji %{target}"
         create_domain_block: "%{name} blockerade domän %{target}"
@@ -150,10 +167,13 @@ sv:
         enable_user: "%{name} aktiverade inloggning för användare %{target}"
         memorialize_account: "%{name} omvandlade %{target}s konto till en memoriam-sida"
         promote_user: "%{name} flyttade upp användare %{target}"
+        remove_avatar_user: "%{name} tog bort %{target}s avatar"
+        reopen_report: "%{name} återupptog anmälan %{target}"
         reset_password_user: "%{name} återställde lösenord för användaren %{target}"
-        resolve_report: "%{name} avvisade anmälan %{target}"
+        resolve_report: "%{name} löste anmälan %{target}"
         silence_account: "%{name} tystade ner %{target}s konto"
         suspend_account: "%{name} suspenderade %{target}s konto"
+        unassigned_report: "%{name} otilldelade anmälan %{target}"
         unsilence_account: "%{name} återljudade %{target}s konto"
         unsuspend_account: "%{name} aktiverade %{target}s konto"
         update_custom_emoji: "%{name} uppdaterade emoji %{target}"
@@ -239,29 +259,44 @@ sv:
         expired: Utgångna
         title: Filtrera
       title: Inbjudningar
+    report_notes:
+      created_msg: Anmälningsanteckning har skapats!
+      destroyed_msg: Anmälningsanteckning har raderats!
     reports:
+      account:
+        note: anteckning
+        report: anmälan
       action_taken_by: Åtgärder vidtagna av
       are_you_sure: Är du säker?
+      assign_to_self: Tilldela till mig
+      assigned: Tilldelad moderator
       comment:
-        label: Kommentar
         none: Ingen
-      delete: Radera
+      created_at: Anmäld
       id: ID
       mark_as_resolved: Markera som löst
-      nsfw:
-        'false': Visa bifogade mediafiler
-        'true': Dölj bifogade mediafiler
+      mark_as_unresolved: Markera som olöst
+      notes:
+        create: Lägg till anteckning
+        create_and_resolve: Lös med anteckning
+        create_and_unresolve: Återuppta med anteckning
+        delete: Radera
+        placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan…
+      reopen: Återuppta anmälan
       report: 'Anmäl #%{id}'
       report_contents: Innehåll
       reported_account: Anmält konto
       reported_by: Anmäld av
       resolved: Löst
+      resolved_msg: Anmälan har lösts framgångsrikt!
       silence_account: Tysta ner konto
       status: Status
       suspend_account: Suspendera konto
       target: Mål
       title: Anmälningar
+      unassign: Otilldela
       unresolved: Olösta
+      updated_at: Uppdaterad
       view: Granska
     settings:
       activity_api_enabled:
@@ -319,13 +354,10 @@ sv:
       back_to_account: Tillbaka till kontosidan
       batch:
         delete: Radera
-        nsfw_off: NSFW AV
-        nsfw_on: NSFW PÅ
-      execute: Utför
+        nsfw_off: Markera som ej känslig
+        nsfw_on: Markera som känslig
       failed_to_execute: Misslyckades att utföra
       media:
-        hide: Dölj media
-        show: Visa media
         title: Media
       no_media: Ingen media
       title: Kontostatus
@@ -382,6 +414,7 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
   authorize_follow:
+    already_following: Du följer redan detta konto
     error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot
     follow: Följ
     follow_request: 'Du har skickat en följaförfrågan till:'
@@ -474,6 +507,7 @@ sv:
       '21600': 6 timmar
       '3600': 1 timma
       '43200': 12 timmar
+      '604800': 1 vecka
       '86400': 1 dag
     expires_in_prompt: Aldrig
     generate: Skapa
@@ -546,7 +580,7 @@ sv:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: enhet
+          unit: ''
   pagination:
     newer: Nyare
     next: Nästa
@@ -577,6 +611,10 @@ sv:
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
     proceed: Fortsätt för att följa
     prompt: 'Du kommer att följa:'
+  remote_unfollow:
+    error: Fel
+    title: Titel
+    unfollowed: Slutade följa
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare
@@ -634,6 +672,18 @@ sv:
     two_factor_authentication: Tvåstegsautentisering
     your_apps: Dina applikationer
   statuses:
+    attached:
+      description: 'Bifogad: %{attached}'
+      image:
+        one: "%{count} bild"
+        other: "%{count} bilder"
+      video:
+        one: "%{count} video"
+        other: "%{count} videor"
+    content_warning: 'Innehållsvarning: %{warning}'
+    disallowed_hashtags:
+      one: 'innehöll en otillåten hashtag: %{tags}'
+      other: 'innehöll de otillåtna hashtagarna: %{tags}'
     open_in_web: Öppna på webben
     over_character_limit: teckengräns på %{max} har överskridits
     pin_errors:

@@ -1,3 +1,4 @@
+import { freeStorage } from '../storage/modifier';
 import './web_push_notifications';
 
 function openSystemCache() {
@@ -27,11 +28,10 @@ self.addEventListener('fetch', function(event) {
     const asyncResponse = fetchRoot();
     const asyncCache = openWebCache();
 
-    event.respondWith(asyncResponse.then(async response => {
+    event.respondWith(asyncResponse.then(response => {
       if (response.ok) {
-        const cache = await asyncCache;
-        await cache.put('/', response);
-        return response.clone();
+        return asyncCache.then(cache => cache.put('/', response))
+                         .then(() => response.clone());
       }
 
       throw null;
@@ -40,29 +40,38 @@ self.addEventListener('fetch', function(event) {
     const asyncResponse = fetch(event.request);
     const asyncCache = openWebCache();
 
-    event.respondWith(asyncResponse.then(async response => {
+    event.respondWith(asyncResponse.then(response => {
       if (response.ok || response.type === 'opaqueredirect') {
-        const cache = await asyncCache;
-        await cache.delete('/');
+        return Promise.all([
+          asyncCache.then(cache => cache.delete('/')),
+          indexedDB.deleteDatabase('mastodon'),
+        ]).then(() => response);
       }
 
       return response;
     }));
   } else if (process.env.CDN_HOST ? url.host === process.env.CDN_HOST : url.pathname.startsWith('/system/')) {
-    event.respondWith(openSystemCache().then(async cache => {
-      const cached = await cache.match(event.request.url);
+    event.respondWith(openSystemCache().then(cache => {
+      return cache.match(event.request.url).then(cached => {
+        if (cached === undefined) {
+          return fetch(event.request).then(fetched => {
+            if (fetched.ok) {
+              const put = cache.put(event.request.url, fetched.clone());
 
-      if (cached === undefined) {
-        const fetched = await fetch(event.request);
+              put.catch(() => freeStorage());
 
-        if (fetched.ok) {
-          await cache.put(event.request.url, fetched.clone());
+              return put.then(() => {
+                freeStorage();
+                return fetched;
+              });
+            }
+
+            return fetched;
+          });
         }
 
-        return fetched;
-      }
-
-      return cached;
+        return cached;
+      });
     }));
   }
 });

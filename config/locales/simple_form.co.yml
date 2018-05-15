@@ -1,0 +1,81 @@
+---
+co:
+  simple_form:
+    hints:
+      defaults:
+        avatar: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à 400x400px
+        bot: Avisa a ghjente chì stu contu ùn riprisenta micca una parsona
+        digest: Solu mandatu dopu à una longa perioda d’inattività, è solu s’elli ci sò novi missaghji diretti
+        display_name:
+          one: Ci ferma <span class="name-counter">1</span> caratteru
+          other: Ci fermanu <span class="name-counter">%{count}</span> caratteri
+        fields: Pudete avè fin’à 4 elementi mustrati cum’un tavulone nant’à u vostru prufile
+        header: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à 700x335px
+        locked: Duvarete appruvà e dumande d’abbunamentu
+        note:
+          one: Ci ferma <span class="name-counter">1</span> caratteru
+          other: Ci fermanu <span class="name-counter">%{count}</span> caratteri
+        setting_noindex: Tocca à u vostru prufile pubblicu è i vostri statuti
+        setting_theme: Tocca à l’apparenza di Mastodon quandu site cunnettatu·a da qualch’apparechju.
+      imports:
+        data: Un fugliale CSV da un’altr’istanza di Mastodon
+      sessions:
+        otp: 'Entrate u codice d’identificazione à dui fattori nant’à u vostru telefuninu, o unu di i vostri codici di ricuperazione:'
+      user:
+        filtered_languages: Ùn viderete micca e lingue selezziunate nant’à e linee pubbliche
+    labels:
+      account:
+        fields:
+          name: Label
+          value: Cuntinutu
+      defaults:
+        avatar: Ritrattu di prufile
+        bot: Stu contu hè un bot
+        confirm_new_password: Cunfirmà a nova chjave d’accessu
+        confirm_password: Cunfirmà a chjave d’accessu
+        current_password: Chjave d’accessu attuale
+        data: Dati
+        display_name: Nome pubblicu
+        email: Indirizzu e-mail
+        expires_in: Spira dopu à
+        fields: Metadata di u prufile
+        filtered_languages: Lingue filtrate
+        header: Ritrattu di cuprendula
+        locale: Lingua
+        locked: Privatizà u contu
+        max_uses: Numeru massimale d’utilizazione
+        new_password: Nova chjave d’accessu
+        note: Descrizzione
+        otp_attempt: Codice d’identificazione à dui fattori
+        password: Chjave d’accessu
+        setting_auto_play_gif: Lettura autumatica di i GIF animati
+        setting_boost_modal: Mustrà una cunfirmazione per sparte un statutu
+        setting_default_privacy: Cunfidenzialità di i statuti
+        setting_default_sensitive: Sempre cunsiderà media cum’è sensibili
+        setting_delete_modal: Mustrà une cunfirmazione per toglie un statutu
+        setting_display_sensitive_media: Sempre mustrà media marcati cum’è sensibili
+        setting_noindex: Dumandà à i motori di ricerca internet d’un pudè micca esse truvatu·a cusì
+        setting_reduce_motion: Fà chì l’animazione vanu più pianu
+        setting_system_font_ui: Pulizza di caratteri di u sistemu
+        setting_theme: Tema di u situ
+        setting_unfollow_modal: Mustrà una cunfirmazione per siguità qualch’unu
+        severity: Severità
+        type: Tippu d’impurtazione
+        username: Cugnome
+        username_or_email: Cugnome o Email
+      interactions:
+        must_be_follower: Piattà e nutificazione di quelli·e ch’ùn vi seguitanu
+        must_be_following: Piattà e nutificazione di quelli·e ch’ùn seguitate
+        must_be_following_dm: Bluccà e missaghji diretti di quelli·e ch’ùn seguitate
+      notification_emails:
+        digest: Mandà e-mail di ricapitulazione
+        favourite: Mandà un’e-mail quandu qualch’unu aghjunghje i mo statuti à i so favuriti
+        follow: Mandà un’e-mail quandu qualch’unu mi seguita
+        follow_request: Mandà un’e-mail quandu qualch’unu vole seguitami
+        mention: Mandà un’e-mail quandu qualch’unu mi mintuva
+        reblog: Mandà un’e-mail quandu qualch’unu sparte i mo statuti
+    'no': Nò
+    required:
+      mark: "*"
+      text: riquisiti
+    'yes': Ié

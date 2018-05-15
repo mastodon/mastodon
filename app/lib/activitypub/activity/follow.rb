@@ -12,7 +12,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
       return
     end
 
-    follow_request = FollowRequest.create!(account: @account, target_account: target_account)
+    follow_request = FollowRequest.create!(account: @account, target_account: target_account, uri: @json['id'])
 
     if target_account.locked?
       NotifyService.new.call(target_account, follow_request)

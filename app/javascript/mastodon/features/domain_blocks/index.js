@@ -52,7 +52,7 @@ export default class Blocks extends ImmutablePureComponent {
     }
 
     return (
-      <Column icon='ban' heading={intl.formatMessage(messages.heading)}>
+      <Column icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <ScrollableList scrollKey='domain_blocks' onLoadMore={this.handleLoadMore}>
           {domains.map(domain =>

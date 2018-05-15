@@ -11,9 +11,10 @@ module Admin
 
     def show
       authorize @report, :show?
-      @report_note = @report.notes.new
-      @report_notes = @report.notes.latest
-      @form = Form::StatusBatch.new
+
+      @report_note  = @report.notes.new
+      @report_notes = (@report.notes.latest + @report.history).sort_by(&:created_at)
+      @form         = Form::StatusBatch.new
     end
 
     def update
@@ -38,36 +39,33 @@ module Admin
         @report.update!(assigned_account_id: nil)
         log_action :unassigned, @report
       when 'reopen'
-        @report.update!(action_taken: false, action_taken_by_account_id: nil)
+        @report.unresolve!
         log_action :reopen, @report
       when 'resolve'
-        @report.update!(action_taken_by_current_attributes)
+        @report.resolve!(current_account)
         log_action :resolve, @report
       when 'suspend'
         Admin::SuspensionWorker.perform_async(@report.target_account.id)
+
         log_action :resolve, @report
         log_action :suspend, @report.target_account
+
         resolve_all_target_account_reports
-        @report.reload
       when 'silence'
         @report.target_account.update!(silenced: true)
+
         log_action :resolve, @report
         log_action :silence, @report.target_account
+
         resolve_all_target_account_reports
-        @report.reload
       else
         raise ActiveRecord::RecordNotFound
       end
-    end
-
-    def action_taken_by_current_attributes
-      { action_taken: true, action_taken_by_account_id: current_account.id }
+      @report.reload
     end
 
     def resolve_all_target_account_reports
-      unresolved_reports_for_target_account.update_all(
-        action_taken_by_current_attributes
-      )
+      unresolved_reports_for_target_account.update_all(action_taken: true, action_taken_by_account_id: current_account.id)
     end
 
     def unresolved_reports_for_target_account

@@ -8,16 +8,16 @@
   - if user_signed_in? && current_account.id != account.id && !requested
     .controls
       - if following
-        = link_to account_unfollow_path(account), data: { method: :post }, class: 'icon-button' do
+        = link_to (account.local? ? account_unfollow_path(account) : remote_unfollow_path(acct: account.acct)), data: { method: :post }, class: 'icon-button' do
           = fa_icon 'user-times'
           = t('accounts.unfollow')
       - else
-        = link_to account_follow_path(account), data: { method: :post }, class: 'icon-button' do
+        = link_to (account.local? ? account_follow_path(account) : authorize_follow_path(acct: account.acct)), data: { method: :post }, class: 'icon-button' do
           = fa_icon 'user-plus'
           = t('accounts.follow')
   - elsif !user_signed_in?
     .controls
       .remote-follow
-        = link_to account_remote_follow_path(account), class: 'icon-button' do
+        = link_to (account.local? ? account_remote_follow_path(account) : "web+mastodon://follow?uri=#{account.uri}"), class: 'icon-button' do
           = fa_icon 'user-plus'
           = t('accounts.remote_follow')

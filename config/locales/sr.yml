@@ -52,9 +52,7 @@ sr:
     unfollow: Отпрати
   admin:
     account_moderation_notes:
-      account: Модератор
       create: Направи
-      created_at: Датум
       created_msg: Модераторска белешка успешно направљена!
       delete: Обриши
       destroyed_msg: Модераторска белешка успешно обрисана!
@@ -63,6 +61,7 @@ sr:
       by_domain: Домен
       confirm: Потврди
       confirmed: Потврђено
+      confirming: Потврдување
       demote: Ражалуј
       disable: Искључи
       disable_two_factor_authentication: Искључи 2FA
@@ -71,6 +70,7 @@ sr:
       domain: Домен
       edit: Измени
       email: Е-пошта
+      email_status: Е-пошта статус
       enable: Укључи
       enabled: Укључено
       feed_url: Адреса довода
@@ -108,6 +108,10 @@ sr:
       public: Јавно
       push_subscription_expires: PuSH subscription expires
       redownload: Освежи аватар
+      resend_confirmation:
+        already_confirmed: Овој корисник е веќе потврден
+        send: Препрати го е-мајлот за потврда
+        success: Е-пошта за потврда успешно испратена!
       reset: Ресетуј
       reset_password: Ресетуј лозинку
       resubscribe: Поново се претплати
@@ -245,14 +249,9 @@ sr:
       action_taken_by: Акцију извео
       are_you_sure: Да ли сте сигурни?
       comment:
-        label: Коментар
         none: Ништа
-      delete: Обриши
       id: ID
       mark_as_resolved: Означи као решен
-      nsfw:
-        'false': Откриј медијске прилоге
-        'true': Сакриј медијске прилоге
       report: 'Пријава #%{id}'
       report_contents: Садржај
       reported_account: Пријављени налог
@@ -311,11 +310,8 @@ sr:
         delete: Обриши
         nsfw_off: NSFW искључен
         nsfw_on: NSFW укључен
-      execute: Изврши
       failed_to_execute: Неуспело извршавање
       media:
-        hide: Сакриј мултимедију
-        show: Прикажи мултимедију
         title: Мултимедија
       no_media: Без мултимедије
       title: Статуси налога

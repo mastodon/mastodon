@@ -52,9 +52,7 @@ pt:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Criar
-      created_at: Data
       created_msg: Nota de moderação criada com sucesso!
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
@@ -63,6 +61,7 @@ pt:
       by_domain: Domínio
       confirm: Confirme
       confirmed: Confirmado
+      confirming: Confirmer
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
@@ -71,6 +70,7 @@ pt:
       domain: Domínio
       edit: Editar
       email: E-mail
+      email_status: État de la messagerie
       enable: Ativar
       enabled: Ativado
       feed_url: URL do Feed
@@ -108,6 +108,10 @@ pt:
       public: Público
       push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar avatar
+      resend_confirmation:
+        already_confirmed: Cet utilisateur est déjà confirmé
+        send: Renvoyer un courriel de confirmation
+        success: Email de confirmation envoyé avec succès!
       reset: Restaurar
       reset_password: Reset palavra-passe
       resubscribe: Reinscrever
@@ -243,14 +247,9 @@ pt:
       action_taken_by: Ação tomada por
       are_you_sure: Tens a certeza?
       comment:
-        label: Comentário
         none: Nenhum
-      delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resolvido
-      nsfw:
-        'false': Mostrar imagens/vídeos
-        'true': Esconder imagens/vídeos
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
       reported_account: Conta denunciada
@@ -315,11 +314,8 @@ pt:
         delete: Eliminar
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
-      execute: Executar
       failed_to_execute: Falhou ao executar
       media:
-        hide: Esconder média
-        show: Mostrar média
         title: Média
       no_media: Não há média
       title: Estado das contas

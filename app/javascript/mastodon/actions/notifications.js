@@ -8,8 +8,10 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { defineMessages } from 'react-intl';
+import { unescapeHTML } from '../utils/html';
 
-export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
+export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
+export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
@@ -30,43 +32,45 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   }
 };
 
-const unescapeHTML = (html) => {
-  const wrapper = document.createElement('div');
-  html = html.replace(/<br \/>|<br>|\n/g, ' ');
-  wrapper.innerHTML = html;
-  return wrapper.textContent;
-};
-
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
-    const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
-    const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
-
-    dispatch(importFetchedAccount(notification.account));
-    if (notification.status) {
-      dispatch(importFetchedStatus(notification.status));
-    }
+    const showInColumn = getState().getIn(['settings', 'notifications', 'shows', notification.type], true);
+    const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
+    const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
 
     // 通知の種類毎に音を変更する
     let sound;
     switch (notification.type) {
-    case 'favourite':
-      sound = { sound: 'favourite' };
-      break;
-    case 'reblog':
-      sound = { sound: 'reblog' };
-      break;
-    default:
-      sound = { sound: 'boop' };
+      case 'favourite':
+        sound = { sound: 'favourite' };
+        break;
+      case 'reblog':
+        sound = { sound: 'reblog' };
+        break;
+      default:
+        sound = { sound: 'boop' };
     }
 
-    dispatch({
-      type: NOTIFICATIONS_UPDATE,
-      notification,
-      meta: playSound ? sound : undefined,
-    });
+    if (showInColumn) {
+      dispatch(importFetchedAccount(notification.account));
 
-    fetchRelatedRelationships(dispatch, [notification]);
+      if (notification.status) {
+        dispatch(importFetchedStatus(notification.status));
+      }
+
+      dispatch({
+        type: NOTIFICATIONS_UPDATE,
+        notification,
+        meta: playSound ? sound : undefined,
+      });
+
+      fetchRelatedRelationships(dispatch, [notification]);
+    } else if (playSound) {
+      dispatch({
+        type: NOTIFICATIONS_UPDATE_NOOP,
+        meta: sound,
+      });
+    }
 
     // Desktop notifications
     if (typeof window.Notification !== 'undefined' && showAlert) {
@@ -74,6 +78,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       const body  = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
 
       const notify = new Notification(title, { body, icon: notification.account.avatar, tag: notification.id });
+
       notify.addEventListener('click', () => {
         window.focus();
         notify.close();

@@ -29,10 +29,12 @@ tr:
       are_you_sure: Emin misiniz?
       confirm: Onayla
       confirmed: Onaylandı
+      confirming: Onaylama
       display_name: Görünen adınız
       domain: Sunucu
       edit: Düzenle
       email: E-posta
+      email_status: Email Durumu
       feed_url: Besleme linki
       followers: Takipçiler
       follows: Takip edilen
@@ -58,6 +60,10 @@ tr:
       profile_url: Profil linki
       public: Herkese açık
       push_subscription_expires: PuSH aboneliği dolumu
+      resend_confirmation:
+        already_confirmed: Bu kullanıcı zaten onaylandı
+        send: Doğrulama epostasını yeniden gönder
+        success: Onay e-postası başarıyla gönderildi!
       reset_password: Parolayı değiştir
       salmon_url: Salmon Linki
       show:
@@ -107,9 +113,7 @@ tr:
       title: Bilinen Sunucular
     reports:
       comment:
-        label: Yorum
         none: Yok
-      delete: Sil
       id: ID
       mark_as_resolved: Giderildi olarak işaretle
       report: 'Şikayet #%{id}'

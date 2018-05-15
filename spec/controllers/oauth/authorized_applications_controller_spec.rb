@@ -24,7 +24,7 @@ describe Oauth::AuthorizedApplicationsController do
 
       it 'returns http success' do
         subject
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       include_examples 'stores location for user'

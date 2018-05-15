@@ -27,7 +27,7 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, Addressable::URI::InvalidURIError => e
+  rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
@@ -85,42 +85,40 @@ class FetchLinkCardService < BaseService
   end
 
   def attempt_oembed
-    embed = OEmbed::Providers.get(@url, html: @html)
+    embed = FetchOEmbedService.new.call(@url, html: @html)
 
-    return false unless embed.respond_to?(:type)
+    return false if embed.nil?
 
-    @card.type          = embed.type
-    @card.title         = embed.respond_to?(:title)         ? embed.title         : ''
-    @card.author_name   = embed.respond_to?(:author_name)   ? embed.author_name   : ''
-    @card.author_url    = embed.respond_to?(:author_url)    ? embed.author_url    : ''
-    @card.provider_name = embed.respond_to?(:provider_name) ? embed.provider_name : ''
-    @card.provider_url  = embed.respond_to?(:provider_url)  ? embed.provider_url  : ''
+    @card.type          = embed[:type]
+    @card.title         = embed[:title]         || ''
+    @card.author_name   = embed[:author_name]   || ''
+    @card.author_url    = embed[:author_url]    || ''
+    @card.provider_name = embed[:provider_name] || ''
+    @card.provider_url  = embed[:provider_url]  || ''
     @card.width         = 0
     @card.height        = 0
 
     case @card.type
     when 'link'
-      @card.image_remote_url = embed.thumbnail_url if embed.respond_to?(:thumbnail_url)
+      @card.image_remote_url = embed[:thumbnail_url] if embed[:thumbnail_url].present?
     when 'photo'
-      return false unless embed.respond_to?(:url)
+      return false if embed[:url].blank?
 
-      @card.embed_url        = embed.url
-      @card.image_remote_url = embed.url
-      @card.width            = embed.width.presence  || 0
-      @card.height           = embed.height.presence || 0
+      @card.embed_url        = embed[:url]
+      @card.image_remote_url = embed[:url]
+      @card.width            = embed[:width].presence  || 0
+      @card.height           = embed[:height].presence || 0
     when 'video'
-      @card.width            = embed.width.presence  || 0
-      @card.height           = embed.height.presence || 0
-      @card.html             = Formatter.instance.sanitize(embed.html, Sanitize::Config::MASTODON_OEMBED)
-      @card.image_remote_url = embed.thumbnail_url if embed.respond_to?(:thumbnail_url)
+      @card.width            = embed[:width].presence  || 0
+      @card.height           = embed[:height].presence || 0
+      @card.html             = Formatter.instance.sanitize(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+      @card.image_remote_url = embed[:thumbnail_url] if embed[:thumbnail_url].present?
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no
       return false
     end
 
     @card.save_with_optional_image!
-  rescue OEmbed::NotFound
-    false
   end
 
   def attempt_opengraph

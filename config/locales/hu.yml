@@ -52,9 +52,7 @@ hu:
     unfollow: Követés abbahagyása
   admin:
     account_moderation_notes:
-      account: Moderátor
       create: Új bejegyzés
-      created_at: Dátum
       created_msg: Moderációs bejegyzés létrehozva!
       delete: Törlés
       destroyed_msg: Moderációs bejegyzés törölve!
@@ -63,6 +61,7 @@ hu:
       by_domain: Domain
       confirm: Megerősítés
       confirmed: Megerősítve
+      confirming: Megerősítve
       demote: Lefokozás
       disable: Kikapcsolás
       disable_two_factor_authentication: Kétlépcsős azonosítás kikapcsolása
@@ -71,6 +70,7 @@ hu:
       domain: Domain
       edit: Szerkesztés
       email: E-mail
+      email_status: E-mail állapot
       enable: Engedélyezés
       enabled: Engedélyezve
       feed_url: Hírcsatorna URL
@@ -108,6 +108,10 @@ hu:
       public: Nyilvános
       push_subscription_expires: A PuSH feliratkozás elévül
       redownload: Profilkép frissítése
+      resend_confirmation:
+        already_confirmed: Ezt a felhasználót már megerősítették
+        send: Küldd újra a megerősítő email-t
+        success: A megerősítő e-mail sikeresen elküldve!
       reset: Visszaállítás
       reset_password: Jelszó visszaállítása
       resubscribe: Feliratkozás ismét
@@ -243,14 +247,9 @@ hu:
       action_taken_by: 'Kezelte:'
       are_you_sure: Biztos vagy benne?
       comment:
-        label: Hozzászólás
         none: Egyik sem
-      delete: Törlés
       id: ID
       mark_as_resolved: Megjelölés megoldottként
-      nsfw:
-        'false': Média-csatolmányok rejtésének feloldása
-        'true': Média-csatolmányok elrejtése
       report: "#%{id} számú jelentés"
       report_contents: Tartalom
       reported_account: Bejelentett fiók
@@ -315,11 +314,8 @@ hu:
         delete: Törlés
         nsfw_off: Szenzitív tartalom kikapcsolva
         nsfw_on: Szenzitív tartalom bekapcsolva
-      execute: Végrehajt
       failed_to_execute: Végrehajtás sikertelen
       media:
-        hide: Média elrejtése
-        show: Média megjelenítése
         title: Média
       no_media: Nem található médiafájl
       title: Felhasználó tülkjei
