@@ -10,7 +10,7 @@ function openWebCache() {
 }
 
 function fetchRoot() {
-  return fetch('/', { credentials: 'include' });
+  return fetch('/', { credentials: 'include', redirect: 'manual' });
 }
 
 const firefox = navigator.userAgent.match(/Firefox\/(\d+)/);
