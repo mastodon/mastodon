@@ -298,6 +298,19 @@
     position: relative;
   }
 
+  .spoiler-input {
+    height: 0;
+    transform-origin: bottom;
+    opacity: 0.0;
+    transition: all 0.4s ease;
+
+    &.spoiler-input--visible {
+      height: 42px;
+      opacity: 1.0;
+      transition: all 0.4s ease;
+    }
+  }
+
   .autosuggest-textarea__textarea,
   .spoiler-input__input {
     display: block;
