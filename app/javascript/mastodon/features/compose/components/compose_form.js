@@ -171,14 +171,14 @@ export default class ComposeForm extends ImmutablePureComponent {
       <div className='compose-form'>
         <WarningContainer />
 
+        <ReplyIndicatorContainer />
+
         <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`}>
           <label>
             <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
             <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' />
           </label>
         </div>
-
-        <ReplyIndicatorContainer />
 
         <div className='compose-form__autosuggest-wrapper'>
           <AutosuggestTextarea
