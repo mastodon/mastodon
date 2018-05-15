@@ -13,7 +13,8 @@ function fetchRoot() {
   return fetch('/', { credentials: 'include' });
 }
 
-const invalidOnlyIfCached = navigator.userAgent.match(/Firefox\/(\d+)/)[1] < 60;
+const firefox = navigator.userAgent.match(/Firefox\/(\d+)/);
+const invalidOnlyIfCached = firefox && firefox[1] < 60;
 
 // Cause a new version of a registered Service Worker to replace an existing one
 // that is already installed, and replace the currently active worker on open pages.
