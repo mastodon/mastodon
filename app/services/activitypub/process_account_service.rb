@@ -44,7 +44,6 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.protocol    = :activitypub
     @account.username    = @username
     @account.domain      = @domain
-    @account.uri         = @uri
     @account.suspended   = true if auto_suspend?
     @account.silenced    = true if auto_silence?
     @account.private_key = nil
@@ -67,6 +66,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.followers_url           = @json['followers'] || ''
     @account.featured_collection_url = @json['featured'] || ''
     @account.url                     = url || @uri
+    @account.uri                     = @uri
     @account.display_name            = @json['name'] || ''
     @account.note                    = @json['summary'] || ''
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
