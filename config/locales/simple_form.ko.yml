@@ -4,6 +4,7 @@ ko:
     hints:
       defaults:
         avatar: PNG, GIF 혹은 JPG. 최대 2MB. 400x400px로 다운스케일 될 것임
+        bot: 사람들에게 계정이 사람이 아님을 알립니다
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
         display_name:
           one: <span class="name-counter">1</span> 글자 남음
@@ -19,7 +20,7 @@ ko:
       imports:
         data: 다른 마스토돈 인스턴스에서 추출된 CSV 파일
       sessions:
-        otp: 2단계 인증 코드를 휴대전화를 보고 입력하거나, 복구 코드 중 하나를 사용하세요.
+        otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
       user:
         filtered_languages: 선택된 언어가 공개 타임라인에서 제외 될 것입니다
     labels:
@@ -29,6 +30,7 @@ ko:
           value: 내용
       defaults:
         avatar: 아바타
+        bot: 이것은 봇 계정입니다
         confirm_new_password: 새로운 비밀번호 다시 입력
         confirm_password: 현재 비밀번호 다시 입력
         current_password: 현재 비밀번호 입력
