@@ -49,11 +49,12 @@ zh-HK:
     reserved_username: 此用戶名已被保留
     roles:
       admin: 管理員
+      bot: 機械人
       moderator: 監察员
     unfollow: 取消關注
   admin:
     account_moderation_notes:
-      create: 新增
+      create: 記錄
       created_msg: 管理記錄已新增
       delete: 刪除
       destroyed_msg: 管理記錄已被刪除
@@ -82,7 +83,7 @@ zh-HK:
       email_status: 电子邮件状态
       enable: 啟用
       enabled: 已啟用
-      feed_url: Feed URL
+      feed_url: 訂閱 URL
       followers: 關注者
       followers_url: 關注者（Followers）URL
       follows: 正在關注
@@ -463,7 +464,7 @@ zh-HK:
     archive_takeout:
       date: 日期
       download: 下載檔案
-      hint_html: 你可以下載包含你的<strong>文章和媒體</strong>的檔案。資料以 ActivityPub 格式儲存，可用於相容的軟體。
+      hint_html: 你可以下載包含你的<strong>文章和媒體</strong>的檔案。資料以 ActivityPub 格式儲存，可用於相容的軟體。你可以每七天下載一次。
       in_progress: 檔案製作中...
       request: 下載檔案
       size: 檔案大小
@@ -678,7 +679,8 @@ zh-HK:
       video:
         one: "%{count} 段影片"
         other: "%{count} 段影片"
-    content_warning: 'Content warning: %{warning}'
+    boosted_from_html: 轉推自 %{acct_link}
+    content_warning: 內容警告： %{warning}
     disallowed_hashtags:
       one: 包含不允許的標籤： %{tags}
       other: 包含不允許的標籤： %{tags}
@@ -753,5 +755,6 @@ zh-HK:
   users:
     invalid_email: 電郵地址格式不正確
     invalid_otp_token: 雙重認證確認碼不正確
+    otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫。
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：

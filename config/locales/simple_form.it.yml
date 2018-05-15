@@ -4,6 +4,7 @@ it:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
+        bot: Avverte che l'account non rappresenta una persona
         digest: Inviata solo dopo un lungo periodo di intattività e solo se hai ricevuto qualsiasi messaggio personale in tua assenza
         display_name:
           one: <span class="name-counter">1</span> carattere rimanente
@@ -19,7 +20,7 @@ it:
       imports:
         data: File CSV esportato da un altra istanza di Mastodon
       sessions:
-        otp: Inserisci il codice due-fattori dal tuo telefono o usa uno dei codici di recupero.
+        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
       user:
         filtered_languages: Le lingue selezionate verranno filtrate dalla timeline pubblica per te
     labels:
@@ -29,6 +30,7 @@ it:
           value: Contenuto
       defaults:
         avatar: Avatar
+        bot: Questo account è un bot
         confirm_new_password: Conferma nuova password
         confirm_password: Conferma password
         current_password: Password corrente
