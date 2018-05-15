@@ -30,7 +30,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed?
-    check_featured_collection! if @account.featured_collection_url.present?
+    check_featured_collection! if check_featured_collection?
 
     @account
   rescue Oj::ParseError
@@ -78,7 +78,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.avatar_remote_url = image_url('icon')  unless skip_download?
     @account.header_remote_url = image_url('image') unless skip_download?
     @account.public_key        = public_key || ''
-    @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
+    @account.statuses_count    = outbox_total_items    if check_outbox?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
     @account.moved_to_account  = @json['movedTo'].present? ? moved_account : nil
@@ -90,6 +90,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def after_key_change!
     RefollowWorker.perform_async(@account.id)
+  end
+
+  def check_featured_collection?
+    @account.featured_collection_url.present? && !@account.locally_followed?
   end
 
   def check_featured_collection!
@@ -146,6 +150,10 @@ class ActivityPub::ProcessAccountService < BaseService
     haystack = Addressable::URI.parse(@uri).host
 
     !haystack.casecmp(needle).zero?
+  end
+
+  def check_outbox?
+    !@account.locally_followed? && outbox_total_items.present?
   end
 
   def outbox_total_items
