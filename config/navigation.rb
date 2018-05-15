@@ -14,7 +14,7 @@ SimpleNavigation::Configuration.run do |navigation|
       settings.item :export, safe_join([fa_icon('cloud-download fw'), t('settings.export')]), settings_export_url
       settings.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_url
       settings.item :follower_domains, safe_join([fa_icon('users fw'), t('settings.followers')]), settings_follower_domains_url
-      settings.item :favourite_tags, safe_join([fa_icon('tag'), t('settings.favourite_tags')]), settings_favourite_tags_url
+      settings.item :favourite_tags, safe_join([fa_icon('tag fw'), t('settings.favourite_tags')]), settings_favourite_tags_url
     end
 
     primary.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path, if: proc { Setting.min_invite_role == 'user' }
