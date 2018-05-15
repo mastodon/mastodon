@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/tmm1/http_parser.rb
+  revision: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
+  ref: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
+  specs:
+    http_parser.rb (0.6.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -167,7 +174,7 @@ GEM
     docile (1.3.0)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    doorkeeper (4.3.2)
+    doorkeeper (4.2.6)
       railties (>= 4.2)
     dotenv (2.2.2)
     dotenv-rails (2.2.2)
@@ -252,7 +259,6 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.1.0)
     http_accept_language (2.1.1)
-    http_parser.rb (0.6.0)
     httplog (1.0.2)
       colorize (~> 0.8)
       rack (>= 1.0)
@@ -659,7 +665,7 @@ DEPENDENCIES
   devise (~> 4.4)
   devise-two-factor (~> 3.0)
   devise_pam_authenticatable2 (~> 9.1)
-  doorkeeper (~> 4.3)
+  doorkeeper (~> 4.2, < 4.3)
   dotenv-rails (~> 2.2, < 2.3)
   fabrication (~> 2.20)
   faker (~> 1.8)
@@ -675,6 +681,7 @@ DEPENDENCIES
   htmlentities (~> 4.3)
   http (~> 3.2)
   http_accept_language (~> 2.1)
+  http_parser.rb (~> 0.6)!
   httplog (~> 1.0)
   i18n-tasks (~> 0.9)
   idn-ruby

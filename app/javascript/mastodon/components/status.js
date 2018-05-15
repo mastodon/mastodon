@@ -84,8 +84,8 @@ export default class Status extends ImmutablePureComponent {
     return <div className='media-spoiler-video' style={{ height: '110px' }} />;
   }
 
-  handleOpenVideo = startTime => {
-    this.props.onOpenVideo(this._properStatus().getIn(['media_attachments', 0]), startTime);
+  handleOpenVideo = (media, startTime) => {
+    this.props.onOpenVideo(media, startTime);
   }
 
   handleHotkeyReply = e => {
@@ -206,7 +206,7 @@ export default class Status extends ImmutablePureComponent {
         );
       } else {
         media = (
-          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
+          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
             {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />}
           </Bundle>
         );

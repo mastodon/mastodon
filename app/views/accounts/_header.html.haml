@@ -10,7 +10,11 @@
         %span>< @#{account.local_username_and_domain}
         = fa_icon('lock') if account.locked?
 
-    - if Setting.show_staff_badge
+    - if account.bot?
+      .roles
+        .account-role.bot
+          = t 'accounts.roles.bot'
+    - elsif Setting.show_staff_badge
       - if account.user_admin?
         .roles
           .account-role.admin

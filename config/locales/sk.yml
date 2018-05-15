@@ -53,7 +53,7 @@ sk:
     unfollow: Prestať sledovať
   admin:
     account_moderation_notes:
-      create: Vytvoriť
+      create: Zanechaj poznámku
       created_msg: Poznámka moderátora bola úspešne vytvorená!
       delete: Zmazať
       destroyed_msg: Poznámka moderátora bola úspešne zmazaná!
@@ -173,6 +173,7 @@ sk:
         resolve_report: "%{name} vyriešili nahlásenie užívateľa %{target}"
         silence_account: "%{name} utíšil/a účet %{target}"
         suspend_account: "%{name} zablokoval/a účet používateľa %{target}"
+        unassigned_report: "%{name} odobral/a report od %{target}"
         unsilence_account: "%{name} zrušil/a utíšenie účtu používateľa %{target}"
         unsuspend_account: "%{name} zrušil/a blokovanie účtu používateľa %{target}"
         update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
@@ -372,6 +373,7 @@ sk:
   admin_mailer:
     new_report:
       body: "%{reporter} nahlásil %{target}"
+      body_remote: Niekto z %{domain} nahlásil %{target}
       subject: Nový report pre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmeniť e-mailové voľby
@@ -460,7 +462,7 @@ sk:
     archive_takeout:
       date: Dátum
       download: Stiahni si svoj archív
-      hint_html: Môžeš si opýtať <strong>archív svojích príspevkov a nahratých médií</strong>. Exportované dáta budú v ActivityPub formáte, čítateľné hociakým kompatibilným softvérom.
+      hint_html: Môžeš si opýtať <strong>archív svojích príspevkov a nahratých médií</strong>. Exportované dáta budú v ActivityPub formáte, čítateľné hociakým kompatibilným softvérom. Archív si je možné vyžiadať každých sedem dní.
       in_progress: Balím tvoj archív...
       request: Vyžiadaj si tvoj archív
       size: Veľkosť

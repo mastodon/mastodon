@@ -52,18 +52,22 @@ module JsonLdHelper
     graph.dump(:normalize)
   end
 
-  def fetch_resource(uri, id)
+  def fetch_resource(uri, id, on_behalf_of = nil)
     unless id
-      json = fetch_resource_without_id_validation(uri)
+      json = fetch_resource_without_id_validation(uri, on_behalf_of)
       return unless json
       uri = json['id']
     end
 
-    json = fetch_resource_without_id_validation(uri)
+    json = fetch_resource_without_id_validation(uri, on_behalf_of)
     json.present? && json['id'] == uri ? json : nil
   end
 
-  def fetch_resource_without_id_validation(uri)
+  def fetch_resource_without_id_validation(uri, on_behalf_of = nil)
+    build_request(uri, on_behalf_of).perform do |response|
+      return body_to_json(response.body_with_limit) if response.code == 200
+    end
+    # If request failed, retry without doing it on behalf of a user
     build_request(uri).perform do |response|
       response.code == 200 ? body_to_json(response.body_with_limit) : nil
     end
@@ -85,8 +89,9 @@ module JsonLdHelper
 
   private
 
-  def build_request(uri)
+  def build_request(uri, on_behalf_of = nil)
     request = Request.new(:get, uri)
+    request.on_behalf_of(on_behalf_of) if on_behalf_of
     request.add_headers('Accept' => 'application/activity+json, application/ld+json')
     request
   end

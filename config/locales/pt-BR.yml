@@ -53,7 +53,7 @@ pt-BR:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      create: Criar
+      create: Criar uma advertência
       created_msg: Nota de moderação criada com sucesso!
       delete: Excluir
       destroyed_msg: Nota de moderação excluída com sucesso!
@@ -373,6 +373,7 @@ pt-BR:
   admin_mailer:
     new_report:
       body: "%{reporter} denunciou %{target}"
+      body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Mudar preferências de e-mail
@@ -462,7 +463,7 @@ pt-BR:
     archive_takeout:
       date: Data
       download: Baixe o seu arquivo
-      hint_html: Você pode pedir um arquivo dos seus <strong>toots e mídia enviada</strong>. Os dados exportados estarão no formato ActivityPub, que podem ser lidos por qualquer software compatível.
+      hint_html: Você pode pedir um arquivo dos seus <strong>toots e mídia enviada</strong>. Os dados exportados estarão no formato ActivityPub, que podem ser lidos por qualquer software compatível. Você pode pedir um arquivo a cada 7 dias.
       in_progress: Preparando seu arquivo...
       request: Solicitar o seu arquivo
       size: Tamanho
@@ -713,75 +714,75 @@ pt-BR:
         <li><em>Informação básica de conta</em>: Se você se registrar nesse servidor, podemos pedir que você utilize um nome de usuário, um e-mail e uma senha. Você também pode adicionar informações extras como um nome de exibição e biografia; enviar uma imagem de perfil e imagem de cabeçalho. O nome de usuário, nome de exibição, biografia, imagem de perfil e imagem de cabeçalho são sempre listadas publicamente.</li>
         <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.<li>
         <li><em>Mensagens diretas e posts somente para seguidores</em>: Todos os posts são armazenados e processados no servidor. Posts somente para seguidores são entregues aos seus seguidores e usuários que são mencionados neles; mensagens diretas são entregues somente aos usuários mencionados nelas. Em alguns casos isso significa que as mensagens são entregues para servidores diferentes e cópias são armazenadas nesses servidores. Nós fazemos esforços substanciais para limitar o acesso dessas mensagens somente para as pessoas autorizadas, mas outros servidores podem não fazer o mesmo. É importante portanto revisar os servidores à qual seus seguidores pertencem. Você pode usar uma opção para aprovar ou rejeitar novos seguidores manualmente nas configurações. <em>Por favor tenha em mente que os operadores do servidor e de qualquer servidores do destinatário podem ver tais mensagens</em>, e que os destinatários podem fazer capturas de tela, copiar ou de outra maneira compartilhar as mensagens. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+        <li><em>IPs e outros metadados</em>: Quando você faz se autentica, nos guardamos o endereço de IP que você usou ao se autenticar e o nome do seu navegador da internet. Todas as sessões autenticadas são disponíveis para serem analisadas e revogadas nas configurações. O último endereço de IP usado é guardado por até 12 meses. Nós também podemos reter históricos do servidor que incluem o endereço de IP de todas as requisições ao nosso servidor.</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="use">What do we use your information for?</h3>
+      <h3 id="use">Para que usamos os seus dados?</h3>
 
-      <p>Any of the information we collect from you may be used in the following ways:</p>
+      <p>Toda informação que coletamos de você pode ser usada das seguintes maneiras:</p>
 
       <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+        <li>Para prover a funcionalidade básica do Mastodon. Você só pode interagir com o conteúdo de outras pessoas e postar seu próprio conteúdo estando autenticado. Por exemplo, você pode seguir outras pessoas para ver seus posts combinados na sua linha do tempo personalizada.</li>
+        <li>Para auxiliar na moderação da comunidade, por exemplo ao comparar o seu endereço de IP com outros endereços de IP conhecidos para determinar evasão de banimento e outras violações.</li>
+        <li>O endereço de email que você prover pode ser usado para lhe enviar informação, notificação sobre outras pessoas interagindo com o seu conteúdo ou lhe enviando mensagens e para responder a questões ou outros pedidos.</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="protect">How do we protect your information?</h3>
+      <h3 id="protect">Como protegemos as suas informações?</h3>
 
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+      <p>Nós implementamos diversas medidas de segurança para manter a segurança das suas informações pessoais quando você as acessa ou as envia. Entre outras coisas, sua sessão do navegador, bem como o tráfego entre as aplicações e a API são asseguradas usando SSL e a sua senha é guardada usando um algoritmo forte de encriptação de mão única. Você pode ativar autenticação em dois fatores como forma de aumentar a segurança no acesso à sua conta.</p>
 
       <hr class="spacer" />
 
-      <h3 id="data-retention">What is our data retention policy?</h3>
+      <h3 id="data-retention">Qual é a nossa política de retenção de dados?</h3>
 
-      <p>We will make a good faith effort to:</p>
+      <p>Nós fazemos esforços substanciais para:</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+        <li>Reter o histórico do servidor contendo os endereços de IP de todas as requisições feitas à esse servidor, e com respeito a quanto tempo esses logs são retidos, não mais que 90 dias.</li>
+        <li>Reter o endereço de IP associado com usuários registrados não mais que 12 meses.</li>
       </ul>
 
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+      <p>Você pode pedir e fazer o download de um arquivo de todo o conteúdo da sua conta, incluindo as suas mensagens, suas mídias anexadas, imagem de perfil e imagem de topo.</p>
 
-      <p>You may irreversibly delete your account at any time.</p>
+      <p>Você pode remover irreversivelmente a sua conta a qualquer momento.</p>
 
       <hr class="spacer"/>
 
-      <h3 id="cookies">Do we use cookies?</h3>
+      <h3 id="cookies">Nós usamos cookies?</h3>
 
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+      <p>Sim. Cookies são pequenos arquivos que um site ou serviço transfere ao seu disco rígido do seu computador através do seu navegador da web (se você permitir). Esses cookies permitem ao site conhecer seu navegador e, se você tiver uma conta registrada, associá-lo a sua conta.</p>
 
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+      <p>Nós usamos cookies para compreender e salvar suas preferências para visitas futuras.</p>
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <h3 id="disclose">Nós compartilhamos qualquer informação para terceiros?</h3>
 
-      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+      <p>Nós não vendemos, trocamos ou transferimos de qualquer maneira informação que pode lhe identificar à terceiros. Isso não inclui terceiros que podemos nos auxiliam a operar o nosso site, realizar nossos negócios ou lhe prestar serviços, contanto que esses terceiros se comprometam a manter essa informação confidencial. Nós podemos também divulgar informação quando acreditamos que é apropriado para obedecer a lei, para fazer cumprir nossas políticas ou proteger nossos direitos, propriedade ou segurança ou o direito, propriedade e segurança de outrem.</p>
+
+      <p>Seu conteúdo público pode ser descarregado por outros servidores na rede. Suas mensagens públicas e somente para seus seguidores são entregues aos servidores onde seus seguidores resides e as suas mensagens diretas são entregues ao servidor dos usuários mencionados nelas, contanto que esses seguidores ou usuários residam em um servidor diferente deste.</p>
+
+      <p>Quando você autoriza uma aplicação a usar sua conta, dependendo do escopo de permissões que você aprovar, a aplicação pode acessar sua informação pública, a lista de usuários que você segue, seus seguidores, suas listas, suas mensagens e suas mensagens favoritas. Aplicações nunca podem acessar o seu endereço de e-mail ou senha.</p>
 
       <hr class="spacer" />
 
-      <h3 id="changes">Changes to our Privacy Policy</h3>
+      <h3 id="coppa">Conformidade com a COPPA (Children's Online Privacy Protection Act)</h3>
 
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+      <p>Nosso site, produto e serviços são direcionados à pessoas que tem ao menos 13 anos de idade. Se esse servidor está hospedado nos EUA e você tem menos de 13 anos, de acordo com os requerimentos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não use este site.</p>
 
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+      <hr class="spacer" />
 
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+      <h3 id="changes">Mudanças à nossa política de privacidade</h3>
+
+      <p>Se decidirmos mudar nossa política de privacidade, nós iremos disponibilizar as mudanças nesta página.</p>
+
+      <p>Este documento é CC-BY-SA. Ele foi atualizado pela última vez em 7 de março de 2018.</p>
+
+      <p>Adaptado originalmente a partir da <a href="https://github.com/discourse/discourse">política de privacidade Discourse</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
     contrast: Alto contraste
@@ -831,5 +832,6 @@ pt-BR:
   users:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
+    otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
     seamless_external_login: Você está logado usando um serviço externo, então configurações de e-mail e password não estão disponíveis.
     signed_in_as: 'Acesso como:'

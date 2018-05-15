@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_16_210259) do
+ActiveRecord::Schema.define(version: 2018_05_14_140000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2018_04_16_210259) do
     t.bigint "moved_to_account_id"
     t.string "featured_collection_url"
     t.jsonb "fields"
+    t.string "actor_type"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower"
     t.index ["uri"], name: "index_accounts_on_uri"
@@ -538,6 +539,10 @@ ActiveRecord::Schema.define(version: 2018_04_16_210259) do
     t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "access_token_id"
+    t.bigint "user_id"
+    t.index ["access_token_id"], name: "index_web_push_subscriptions_on_access_token_id"
+    t.index ["user_id"], name: "index_web_push_subscriptions_on_user_id"
   end
 
   create_table "web_settings", force: :cascade do |t|
@@ -604,5 +609,7 @@ ActiveRecord::Schema.define(version: 2018_04_16_210259) do
   add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
+  add_foreign_key "web_push_subscriptions", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
+  add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
 end

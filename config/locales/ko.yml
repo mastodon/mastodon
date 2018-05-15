@@ -19,12 +19,12 @@ ko:
       humane_approach_body: 다른 SNS의 실패를 교훈삼아, Mastodon은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
       humane_approach_title: 보다 배려를 의식한 설계를 추구
       not_a_product_body: Mastodon은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
-      not_a_product_title: 여러분은 사람이며, 상품이 아닙니다.
+      not_a_product_title: 여러분은 사람이며, 상품이 아닙니다
       real_conversation_body: 자유롭게 사용할 수 있는 500문자의 메세지와 미디어 경고 내용을 바탕으로, 자기자신을 자유롭게 표현할 수 있습니다.
       real_conversation_title: 진정한 커뮤니케이션을 위하여
       within_reach_body: 개발자 친화적인 API에 의해서 실현된 iOS나 Android, 그 외의 여러 Platform들 덕분에 어디서든 친구들과 자유롭게 메세지를 주고 받을 수 있습니다.
       within_reach_title: 언제나 유저의 곁에서
-    generic_description: "%{domain} 은 Mastodon의 인스턴스 입니다."
+    generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     learn_more: 자세히
     other_instances: 다른 인스턴스
@@ -53,7 +53,7 @@ ko:
     unfollow: 팔로우 해제
   admin:
     account_moderation_notes:
-      create: 작성하기
+      create: 모더레이션 노트 작성하기
       created_msg: 모더레이션 기록이 성공적으로 작성되었습니다!
       delete: 삭제
       destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다!
@@ -119,9 +119,9 @@ ko:
       redownload: 아바타 업데이트
       remove_avatar: 아바타 지우기
       resend_confirmation:
-        already_confirmed: 이 사용자는 이미 확인되었습니다.
+        already_confirmed: 이 사용자는 이미 확인되었습니다
         send: 다시 확인 이메일
-        success: 확인 이메일이 전송되었습니다.
+        success: 확인 이메일이 전송되었습니다!
       reset: 초기화
       reset_password: 비밀번호 초기화
       resubscribe: 다시 구독
@@ -279,9 +279,9 @@ ko:
       mark_as_resolved: 해결 완료 처리
       mark_as_unresolved: 미해결로 표시
       notes:
-        create: 노트 추가
-        create_and_resolve: 노트를 작성하고 해결됨으로 표시
-        create_and_unresolve: 노트 작성과 함께 미해결로 표시
+        create: 기록 추가
+        create_and_resolve: 기록을 작성하고 해결됨으로 표시
+        create_and_unresolve: 기록 작성과 함께 미해결로 표시
         delete: 삭제
         placeholder: 이 리포트에 대한 조치, 다른 업데이트 사항에 대해 설명합니다…
       reopen: 리포트 다시 열기
@@ -375,6 +375,7 @@ ko:
   admin_mailer:
     new_report:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
+      body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
   application_mailer:
     notification_preferences: 메일 설정 변경
@@ -464,7 +465,7 @@ ko:
     archive_takeout:
       date: 날짜
       download: 아카이브 다운로드
-      hint_html: 당신의 <strong>툿과 업로드 된 미디어</strong>의 아카이브를 요청할 수 있습니다. 내보내지는 데이터는 ActivityPub 포맷입니다. 호환 되는 모든 소프트웨어에서 읽을 수 있습니다.
+      hint_html: 당신의 <strong>툿과 업로드 된 미디어</strong>의 아카이브를 요청할 수 있습니다. 내보내지는 데이터는 ActivityPub 포맷입니다. 호환 되는 모든 소프트웨어에서 읽을 수 있습니다. 7일마다 새로운 아카이브를 요청할 수 있습니다.
       in_progress: 당신의 아카이브를 컴파일 중입니다…
       request: 아카이브 요청하기
       size: 크기
@@ -683,6 +684,9 @@ ko:
         one: "%{count} 영상"
         other: "%{count} 영상"
     content_warning: '열람 주의: %{warning}'
+    disallowed_hashtags:
+      one: '허용 되지 않은 해시태그를 포함하고 있습니다: %{tags}'
+      other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
@@ -707,6 +711,7 @@ ko:
   terms:
     title: "%{instance} 이용약관과 개인정보 취급 방침"
   themes:
+    contrast: 고대비
     default: 마스토돈
   time:
     formats:
@@ -726,10 +731,10 @@ ko:
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     setup: 초기 설정
-    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시간이 일치하는지 확인해 주십시오.
+    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시각이 일치하나요?
   user_mailer:
     backup_ready:
-      explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다.
+      explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
     welcome:
@@ -753,5 +758,6 @@ ko:
   users:
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
+    otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'

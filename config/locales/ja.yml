@@ -119,7 +119,7 @@ ja:
       redownload: アバターの更新
       remove_avatar: アイコンを削除
       resend_confirmation:
-        already_confirmed: メールアドレスは確認済みです。
+        already_confirmed: メールアドレスは確認済みです
         send: 確認メールを再送
         success: 確認メールを再送信しました!
       reset: リセット
@@ -463,7 +463,7 @@ ja:
     archive_takeout:
       date: 日時
       download: ダウンロード
-      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。"
+      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
       in_progress: 準備中...
       request: アーカイブをリクエスト
       size: 容量
@@ -833,5 +833,6 @@ ja:
   users:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
+    otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'

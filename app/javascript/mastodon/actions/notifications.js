@@ -8,6 +8,7 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { defineMessages } from 'react-intl';
+import { unescapeHTML } from '../utils/html';
 
 export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
@@ -29,13 +30,6 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   if (accountIds.length > 0) {
     dispatch(fetchRelationships(accountIds));
   }
-};
-
-const unescapeHTML = (html) => {
-  const wrapper = document.createElement('div');
-  html = html.replace(/<br \/>|<br>|\n/g, ' ');
-  wrapper.innerHTML = html;
-  return wrapper.textContent;
 };
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
