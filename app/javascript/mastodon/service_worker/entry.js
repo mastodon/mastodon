@@ -30,8 +30,8 @@ self.addEventListener('fetch', function(event) {
 
     event.respondWith(asyncResponse.then(response => {
       if (response.ok) {
-        return asyncCache.then(cache => cache.put('/', response))
-                         .then(() => response.clone());
+        return asyncCache.then(cache => cache.put('/', response.clone()))
+                         .then(() => response);
       }
 
       throw null;
