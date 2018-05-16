@@ -15,6 +15,8 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         @status = find_status(id)
         return [@status, false] unless @status.nil?
         @status = process_status
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 
