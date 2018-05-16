@@ -21,6 +21,7 @@ import {
 import {
   replyCompose,
   mentionCompose,
+  directCompose,
 } from 'flavours/glitch/actions/compose';
 import { blockAccount } from 'flavours/glitch/actions/accounts';
 import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/statuses';
@@ -168,6 +169,10 @@ export default class Status extends ImmutablePureComponent {
         onConfirm: () => dispatch(deleteStatus(status.get('id'))),
       }));
     }
+  }
+
+  handleDirectClick = (account, router) => {
+    this.props.dispatch(directCompose(account, router));
   }
 
   handleMentionClick = (account, router) => {
@@ -399,6 +404,7 @@ export default class Status extends ImmutablePureComponent {
                   onReblog={this.handleReblogClick}
                   onBookmark={this.handleBookmarkClick}
                   onDelete={this.handleDeleteClick}
+                  onDirect={this.handleDirectClick}
                   onMention={this.handleMentionClick}
                   onMute={this.handleMuteClick}
                   onMuteConversation={this.handleConversationMuteClick}
