@@ -122,6 +122,8 @@ $account-background-color: white;
   .composer--spoiler input, .composer--textarea textarea {
     color: darken($ui-base-color, 80%);
 
+    &:disabled { background: darken($simple-background-color, 10%) }
+
     &::placeholder {
       color: darken($ui-base-color, 70%);
     }
