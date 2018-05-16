@@ -21,9 +21,7 @@ class Web::PushSubscription < ApplicationRecord
   has_one :session_activation
 
   def push(notification)
-    I18n.with_locale(associated_user.locale || I18n.default_locale) do
-      push_payload(message_from(notification), 48.hours.seconds)
-    end
+    push_payload({ access_token: associated_access_token, notification_id: notification.id, preferred_locale: associated_user&.locale || I18n.default_locale }, 48.hours.seconds)
   end
 
   def pushable?(notification)
@@ -46,16 +44,13 @@ class Web::PushSubscription < ApplicationRecord
     @associated_access_token = if access_token_id.nil?
                                  find_or_create_access_token.token
                                else
-                                 access_token
+                                 access_token.token
                                end
   end
 
   private
 
   def push_payload(message, ttl = 5.minutes.seconds)
-    # TODO: Make sure that the payload does not
-    # exceed 4KB - Webpush::PayloadTooLarge
-
     Webpush.payload_send(
       message: Oj.dump(message),
       endpoint: endpoint,
@@ -68,11 +63,6 @@ class Web::PushSubscription < ApplicationRecord
         public_key: Rails.configuration.x.vapid_public_key,
       }
     )
-  end
-
-  def message_from(notification)
-    serializable_resource = ActiveModelSerializers::SerializableResource.new(notification, serializer: Web::NotificationSerializer, scope: self, scope_name: :current_push_subscription)
-    serializable_resource.as_json
   end
 
   def find_or_create_access_token

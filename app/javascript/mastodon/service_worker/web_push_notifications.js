@@ -1,36 +1,34 @@
+import IntlMessageFormat from 'intl-messageformat';
+import locales from /* preval */ './web_push_locales';
+
 const MAX_NOTIFICATIONS = 5;
 const GROUP_TAG = 'tag';
 
-// Avoid loading intl-messageformat and dealing with locales in the ServiceWorker
-const formatGroupTitle = (message, count) => message.replace('%{count}', count);
-
 const notify = options =>
   self.registration.getNotifications().then(notifications => {
-    if (notifications.length === MAX_NOTIFICATIONS) {
-      // Reached the maximum number of notifications, proceed with grouping
+    const messages = locales[options.data.preferred_locale];
+
+    if (notifications.length === MAX_NOTIFICATIONS) { // Reached the maximum number of notifications, proceed with grouping
       const group = {
-        title: formatGroupTitle(options.data.message, notifications.length + 1),
-        body: notifications
-          .sort((n1, n2) => n1.timestamp < n2.timestamp)
-          .map(notification => notification.title).join('\n'),
+        title: new IntlMessageFormat(messages['notifications.group'], options.data.preferred_locale).format({ count: notifications.length + 1 }),
+        body: notifications.sort((n1, n2) => n1.timestamp < n2.timestamp).map(notification => notification.title).join('\n'),
         badge: '/badge.png',
         icon: '/android-chrome-192x192.png',
         tag: GROUP_TAG,
         data: {
           url: (new URL('/web/notifications', self.location)).href,
           count: notifications.length + 1,
-          message: options.data.message,
+          preferred_locale: options.data.preferred_locale,
         },
       };
 
       notifications.forEach(notification => notification.close());
 
       return self.registration.showNotification(group.title, group);
-    } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) {
-      // Already grouped, proceed with appending the notification to the group
-      const group = cloneNotification(notifications[0]);
+    } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) { // Already grouped, proceed with appending the notification to the group
+      const group = { ...notifications[0] };
 
-      group.title = formatGroupTitle(group.data.message, group.data.count + 1);
+      group.title = new IntlMessageFormat(messages['notifications.group'], options.data.preferred_locale).format({ count: notifications.length + 1 });
       group.body  = `${options.title}\n${group.body}`;
       group.data  = { ...group.data, count: group.data.count + 1 };
 
@@ -40,57 +38,45 @@ const notify = options =>
     return self.registration.showNotification(options.title, options);
   });
 
-const handlePush = (event) => {
-  const options = event.data.json();
+const fetchFromApi = (path, method, accessToken) => {
+  const url = (new URL(path, self.location)).href;
 
-  options.body      = options.data.nsfw || options.data.content;
-  options.dir       = options.data.dir;
-  options.image     = options.image || undefined; // Null results in a network request (404)
-  options.timestamp = options.timestamp && new Date(options.timestamp);
-
-  const expandAction = options.data.actions.find(action => action.todo === 'expand');
-
-  if (expandAction) {
-    options.actions          = [expandAction];
-    options.hiddenActions    = options.data.actions.filter(action => action !== expandAction);
-    options.data.hiddenImage = options.image;
-    options.image            = undefined;
-  } else {
-    options.actions = options.data.actions;
-  }
-
-  event.waitUntil(notify(options));
-};
-
-const cloneNotification = (notification) => {
-  const clone = {  };
-
-  for(var k in notification) {
-    clone[k] = notification[k];
-  }
-
-  return clone;
-};
-
-const expandNotification = (notification) => {
-  const nextNotification = cloneNotification(notification);
-
-  nextNotification.body    = notification.data.content;
-  nextNotification.image   = notification.data.hiddenImage;
-  nextNotification.actions = notification.data.actions.filter(action => action.todo !== 'expand');
-
-  return self.registration.showNotification(nextNotification.title, nextNotification);
-};
-
-const makeRequest = (notification, action) =>
-  fetch(action.action, {
+  return fetch(url, {
     headers: {
-      'Authorization': `Bearer ${notification.data.access_token}`,
+      'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
     },
-    method: action.method,
+
+    method: method,
     credentials: 'include',
   });
+};
+
+const handlePush = (event) => {
+  const { access_token, notification_id, preferred_locale } = event.data.json();
+  const messages = locales[preferred_locale];
+
+  event.waitUntil(fetchFromApi(`/api/v1/notifications/${notification_id}`, 'get', access_token)
+    .then(notification => {
+      const options = {};
+
+      options.title     = new IntlMessageFormat(messages[`notification.${notification.type}`], preferred_locale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
+      options.body      = notification.target_status && notification.target_status.content;
+      options.icon      = notification.from_account.avatar_static;
+      options.timestamp = notification.created_at && new Date(notification.created_at);
+      options.tag       = notification_id;
+      options.badge     = '/badge.png';
+      options.image     = notification.target_status && notification.target_status.media_attachments.length > 0 && notification.target_status.media_attachments[0].preview_url || undefined;
+      options.data      = { preferred_locale, url: notification.target_status ? notification.target_status.url : notification.from_account.url };
+
+      if (notification.target_status && notification.target_status.sensitive) {
+        options.body  = undefined;
+        options.image = undefined;
+      }
+
+      event.waitUntil(notify(options));
+    }).catch(() => {}));
+};
 
 const findBestClient = clients => {
   const focusedClient = clients.find(client => client.focused);
@@ -124,19 +110,10 @@ const openUrl = url =>
     return self.clients.openWindow(url);
   });
 
-const removeActionFromNotification = (notification, action) => {
-  const actions          = notification.actions.filter(act => act.action !== action.action);
-  const nextNotification = cloneNotification(notification);
-
-  nextNotification.actions = actions;
-
-  return self.registration.showNotification(nextNotification.title, nextNotification);
-};
-
 const handleNotificationClick = (event) => {
-  const reactToNotificationClick = new Promise((resolve, reject) => {
+  const reactToNotificationClick = new Promise((resolve) => {
     if (event.action) {
-      const action = event.notification.data.actions.find(({ action }) => action === event.action);
+      /*const action = event.notification.data.actions.find(({ action }) => action === event.action);
 
       if (action.todo === 'expand') {
         resolve(expandNotification(event.notification));
@@ -145,7 +122,7 @@ const handleNotificationClick = (event) => {
           .then(() => removeActionFromNotification(event.notification, action)));
       } else {
         reject(`Unknown action: ${action.todo}`);
-      }
+      }*/
     } else {
       event.notification.close();
       resolve(openUrl(event.notification.data.url));
