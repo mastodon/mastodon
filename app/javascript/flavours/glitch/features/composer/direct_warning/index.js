@@ -9,7 +9,7 @@ const motionSpring = spring(1, { damping: 35, stiffness: 400 });
 //  Messages.
 const messages = defineMessages({
   disclaimer: {
-    defaultMessage: 'This toot will only be visible to all the mentioned users.',
+    defaultMessage: 'This toot will only be sent to all the mentioned users. However, the operators of your instance and any receiving instances may see this message.',
     id: 'compose_form.direct_message_warning',
   },
 });
