@@ -14,11 +14,16 @@ filenames.forEach(filename => {
   const locale  = filename.split('.')[0];
 
   filtered[locale] = {
-    'notification.favourite': full['notification.favourite'],
-    'notification.follow': full['notification.follow'],
-    'notification.mention': full['notification.mention'],
-    'notification.reblog': full['notification.reblog'],
-    'notifications.group': full['notifications.group'],
+    'notification.favourite': full['notification.favourite'] || '',
+    'notification.follow': full['notification.follow'] || '',
+    'notification.mention': full['notification.mention'] || '',
+    'notification.reblog': full['notification.reblog'] || '',
+
+    'status.show_more': full['status.show_more'] || '',
+    'status.reblog': full['status.reblog'] || '',
+    'status.favourite': full['status.favourite'] || '',
+
+    'notifications.group': full['notifications.group'] || '',
   };
 });
 

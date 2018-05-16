@@ -21,7 +21,7 @@ class Web::PushSubscription < ApplicationRecord
   has_one :session_activation
 
   def push(notification)
-    push_payload({ access_token: associated_access_token, notification_id: notification.id, preferred_locale: associated_user&.locale || I18n.default_locale }, 48.hours.seconds)
+    push_payload({ access_token: associated_access_token, notification_id: notification.id.to_s, preferred_locale: associated_user&.locale || I18n.default_locale }, 48.hours.seconds)
   end
 
   def pushable?(notification)

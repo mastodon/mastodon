@@ -1,16 +1,14 @@
 import IntlMessageFormat from 'intl-messageformat';
-import locales from /* preval */ './web_push_locales';
+import locales from './web_push_locales';
 
 const MAX_NOTIFICATIONS = 5;
 const GROUP_TAG = 'tag';
 
 const notify = options =>
   self.registration.getNotifications().then(notifications => {
-    const messages = locales[options.data.preferred_locale];
-
     if (notifications.length === MAX_NOTIFICATIONS) { // Reached the maximum number of notifications, proceed with grouping
       const group = {
-        title: new IntlMessageFormat(messages['notifications.group'], options.data.preferred_locale).format({ count: notifications.length + 1 }),
+        title: formatMessage('notifications.group', options.data.preferred_locale, { count: notifications.length + 1 }),
         body: notifications.sort((n1, n2) => n1.timestamp < n2.timestamp).map(notification => notification.title).join('\n'),
         badge: '/badge.png',
         icon: '/android-chrome-192x192.png',
@@ -28,7 +26,7 @@ const notify = options =>
     } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) { // Already grouped, proceed with appending the notification to the group
       const group = { ...notifications[0] };
 
-      group.title = new IntlMessageFormat(messages['notifications.group'], options.data.preferred_locale).format({ count: notifications.length + 1 });
+      group.title = formatMessage('notifications.group', options.data.preferred_locale, { count: notifications.length + 1 });
       group.body  = `${options.title}\n${group.body}`;
       group.data  = { ...group.data, count: group.data.count + 1 };
 
@@ -52,26 +50,39 @@ const fetchFromApi = (path, method, accessToken) => {
   });
 };
 
+const formatMessage = (messageId, locale, values = {}) =>
+  (new IntlMessageFormat(locales[locale][messageId], locale)).format(values);
+
 const handlePush = (event) => {
   const { access_token, notification_id, preferred_locale } = event.data.json();
-  const messages = locales[preferred_locale];
 
   event.waitUntil(fetchFromApi(`/api/v1/notifications/${notification_id}`, 'get', access_token)
     .then(notification => {
       const options = {};
 
-      options.title     = new IntlMessageFormat(messages[`notification.${notification.type}`], preferred_locale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
+      options.title     = formatMessage(`notification.${notification.type}`, preferred_locale, { name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
       options.body      = notification.target_status && notification.target_status.content;
       options.icon      = notification.from_account.avatar_static;
       options.timestamp = notification.created_at && new Date(notification.created_at);
       options.tag       = notification_id;
       options.badge     = '/badge.png';
       options.image     = notification.target_status && notification.target_status.media_attachments.length > 0 && notification.target_status.media_attachments[0].preview_url || undefined;
-      options.data      = { preferred_locale, url: notification.target_status ? notification.target_status.url : notification.from_account.url };
+      options.data      = { preferred_locale, url: notification.target_status ? `/web/statuses/${notification.target_status.id}` : `/web/accounts/${notification.from_account.id}` };
 
       if (notification.target_status && notification.target_status.sensitive) {
-        options.body  = undefined;
-        options.image = undefined;
+        options.data.hiddenBody  = notification.target_status.content;
+        options.data.hiddenImage = notification.target_status.media_attachments.length > 0 && notification.target_status.media_attachments[0].preview_url;
+
+        options.body    = undefined;
+        options.image   = undefined;
+
+        options.actions = [
+          {
+            action: 'expand',
+            icon: '/web-push-icon_expand.png',
+            title: formatMessage('status.show_more', preferred_locale),
+          },
+        ];
       }
 
       event.waitUntil(notify(options));
@@ -83,6 +94,16 @@ const findBestClient = clients => {
   const visibleClient = clients.find(client => client.visibilityState === 'visible');
 
   return focusedClient || visibleClient || clients[0];
+};
+
+const expandNotification = notification => {
+  const newNotification = { ...notification };
+
+  newNotification.body = newNotification.data.hiddenBody;
+  newNotification.image = newNotification.data.hiddenImage;
+  newNotification.actions = [];
+
+  return self.registration.showNotification(newNotification.title, newNotification);
 };
 
 const openUrl = url =>
@@ -111,18 +132,17 @@ const openUrl = url =>
   });
 
 const handleNotificationClick = (event) => {
-  const reactToNotificationClick = new Promise((resolve) => {
+  const reactToNotificationClick = new Promise((resolve, reject) => {
     if (event.action) {
-      /*const action = event.notification.data.actions.find(({ action }) => action === event.action);
-
-      if (action.todo === 'expand') {
+      if (event.action === 'expand') {
         resolve(expandNotification(event.notification));
-      } else if (action.todo === 'request') {
-        resolve(makeRequest(event.notification, action)
-          .then(() => removeActionFromNotification(event.notification, action)));
+      } else if (event.action === 'reblog') {
+        resolve(); // TODO
+      } else if (event.action === 'favourite') {
+        resolve(); // TODO
       } else {
-        reject(`Unknown action: ${action.todo}`);
-      }*/
+        reject(`Unknown action: ${event.action}`);
+      }
     } else {
       event.notification.close();
       resolve(openUrl(event.notification.data.url));
