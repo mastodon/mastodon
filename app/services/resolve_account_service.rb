@@ -49,6 +49,8 @@ class ResolveAccountService < BaseService
         else
           handle_ostatus
         end
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 
