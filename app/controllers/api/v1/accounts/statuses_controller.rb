@@ -27,19 +27,17 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def account_statuses
-    default_statuses.tap do |statuses|
-      statuses.merge!(only_media_scope) if truthy_param?(:only_media)
-      statuses.merge!(pinned_scope) if truthy_param?(:pinned)
-      statuses.merge!(no_replies_scope) if truthy_param?(:exclude_replies)
-    end
-  end
-
-  def default_statuses
-    permitted_account_statuses.paginate_by_max_id(
+    statuses = truthy_param?(:pinned) ? pinned_scope : permitted_account_statuses
+    statuses = statuses.paginate_by_max_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params[:max_id],
       params[:since_id]
     )
+
+    statuses.merge!(only_media_scope) if truthy_param?(:only_media)
+    statuses.merge!(no_replies_scope) if truthy_param?(:exclude_replies)
+
+    statuses
   end
 
   def permitted_account_statuses
