@@ -67,7 +67,7 @@ const handlePush = (event) => {
       options.tag       = notification_id;
       options.badge     = '/badge.png';
       options.image     = notification.target_status && notification.target_status.media_attachments.length > 0 && notification.target_status.media_attachments[0].preview_url || undefined;
-      options.data      = { preferred_locale, url: notification.target_status ? `/web/statuses/${notification.target_status.id}` : `/web/accounts/${notification.from_account.id}` };
+      options.data      = { access_token, preferred_locale, id: notification.target_status ? notification.target_status.id : notification.from_account.id, url: notification.target_status ? `/web/statuses/${notification.target_status.id}` : `/web/accounts/${notification.from_account.id}` };
 
       if (notification.target_status && notification.target_status.sensitive) {
         options.data.hiddenBody  = notification.target_status.content;
@@ -75,19 +75,32 @@ const handlePush = (event) => {
 
         options.body    = undefined;
         options.image   = undefined;
-
-        options.actions = [
-          {
-            action: 'expand',
-            icon: '/web-push-icon_expand.png',
-            title: formatMessage('status.show_more', preferred_locale),
-          },
-        ];
+        options.actions = [actionExpand(preferred_locale)];
+      } else if (notification.target_status) {
+        options.actions = [actionReblog(preferred_locale), actionFavourite(preferred_locale)];
       }
 
       event.waitUntil(notify(options));
     }).catch(() => {}));
 };
+
+const actionExpand = preferred_locale => ({
+  action: 'expand',
+  icon: '/web-push-icon_expand.png',
+  title: formatMessage('status.show_more', preferred_locale),
+});
+
+const actionReblog = preferred_locale => ({
+  action: 'reblog',
+  icon: '/web-push-icon_reblog.png',
+  title: formatMessage('status.reblog', preferred_locale),
+});
+
+const actionFavourite = preferred_locale => ({
+  action: 'favourite',
+  icon: '/web-push-icon_favourite.png',
+  title: formatMessage('status.favourite', preferred_locale),
+});
 
 const findBestClient = clients => {
   const focusedClient = clients.find(client => client.focused);
@@ -99,9 +112,17 @@ const findBestClient = clients => {
 const expandNotification = notification => {
   const newNotification = { ...notification };
 
-  newNotification.body = newNotification.data.hiddenBody;
-  newNotification.image = newNotification.data.hiddenImage;
-  newNotification.actions = [];
+  newNotification.body    = newNotification.data.hiddenBody;
+  newNotification.image   = newNotification.data.hiddenImage;
+  newNotification.actions = [actionReblog(notification.data.preferred_locale), actionFavourite(notification.data.preferred_locale)];
+
+  return self.registration.showNotification(newNotification.title, newNotification);
+};
+
+const removeActionFromNotification = (notification, action) => {
+  const newNotification = { ...notification };
+
+  newNotification.actions = newNotification.actions.filter(item => item.action !== action);
 
   return self.registration.showNotification(newNotification.title, newNotification);
 };
@@ -137,9 +158,11 @@ const handleNotificationClick = (event) => {
       if (event.action === 'expand') {
         resolve(expandNotification(event.notification));
       } else if (event.action === 'reblog') {
-        resolve(); // TODO
+        const { data } = event.notification;
+        resolve(fetchFromApi(`/api/v1/statuses/${data.id}/reblog`, 'post', data.access_token).then(() => removeActionFromNotification(event.notification, 'reblog')));
       } else if (event.action === 'favourite') {
-        resolve(); // TODO
+        const { data } = event.notification;
+        resolve(fetchFromApi(`/api/v1/statuses/${data.id}/favourite`, 'post', data.access_token).then(() => removeActionFromNotification(event.notification, 'favourite')));
       } else {
         reject(`Unknown action: ${event.action}`);
       }
