@@ -219,6 +219,10 @@ class User < ApplicationRecord
     settings.notification_emails['digest']
   end
 
+  def hides_network?
+    @hides_network ||= settings.hide_network
+  end
+
   def token_for_app(a)
     return nil if a.nil? || a.owner != self
     Doorkeeper::AccessToken

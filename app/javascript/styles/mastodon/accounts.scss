@@ -322,6 +322,15 @@
   z-index: 2;
   position: relative;
 
+  &.empty img {
+    position: absolute;
+    opacity: 0.2;
+    height: 200px;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
   @media screen and (max-width: 740px) {
     border-radius: 0;
     box-shadow: none;
@@ -438,8 +447,8 @@
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  padding: 60px 0;
-  padding-top: 55px;
+  padding: 130px 0;
+  padding-top: 125px;
   margin: 0 auto;
   cursor: default;
 }
