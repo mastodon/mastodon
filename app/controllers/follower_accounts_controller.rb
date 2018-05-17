@@ -6,14 +6,14 @@ class FollowerAccountsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        next if @account.user.hides_network?
+        next if @account.user_hides_network?
 
         follows
         @relationships = AccountRelationshipsPresenter.new(follows.map(&:account_id), current_user.account_id) if user_signed_in?
       end
 
       format.json do
-        raise Mastodon::NotPermittedError if params[:page].present? && @account.user.hides_network?
+        raise Mastodon::NotPermittedError if params[:page].present? && @account.user_hides_network?
 
         render json: collection_presenter,
                serializer: ActivityPub::CollectionSerializer,
