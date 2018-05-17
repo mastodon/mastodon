@@ -279,6 +279,10 @@
   background: $base-shadow-color;
   max-width: 100%;
 
+  &:focus {
+    outline: 0;
+  }
+
   .detailed-status & {
     width: 100%;
     height: 100%;
