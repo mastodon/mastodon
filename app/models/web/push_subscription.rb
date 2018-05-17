@@ -21,7 +21,9 @@ class Web::PushSubscription < ApplicationRecord
   has_one :session_activation
 
   def push(notification)
-    push_payload({ access_token: associated_access_token, notification_id: notification.id.to_s, preferred_locale: associated_user&.locale || I18n.default_locale }, 48.hours.seconds)
+    I18n.with_locale(associated_user&.locale || I18n.default_locale) do
+      push_payload(payload_for_notification(notification), 48.hours.seconds)
+    end
   end
 
   def pushable?(notification)
@@ -63,6 +65,26 @@ class Web::PushSubscription < ApplicationRecord
         public_key: Rails.configuration.x.vapid_public_key,
       }
     )
+  end
+
+  def payload_for_notification(notification)
+    {
+      access_token: associated_access_token,
+      preferred_locale: associated_user&.locale || I18n.default_locale,
+      notification_id: notification.id,
+      notification_type: notification.type,
+      icon: full_asset_url(notification.from_account.avatar_static_url),
+      title: I18n.t("notification_mailer.#{notification.type}.subject", name: notification.from_account.display_name.presence || notification.from_account.username),
+      body: strip_truncate(notification.target_status&.spoiler_text&.presence || notification.target_status&.text || notification.from_account.note),
+    }
+  end
+
+  def strip_truncate(str)
+    return str if str.blank?
+
+    ActionController::Base.helpers.strip_tags(str).tap do |plain|
+      plain[0..140] + (plain.size > 140 ? '…' : '')
+    end
   end
 
   def find_or_create_access_token

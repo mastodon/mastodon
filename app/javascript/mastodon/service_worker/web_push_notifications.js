@@ -61,22 +61,22 @@ const handlePush = (event) => {
       const options = {};
 
       options.title     = formatMessage(`notification.${notification.type}`, preferred_locale, { name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
-      options.body      = notification.target_status && notification.target_status.content;
-      options.icon      = notification.from_account.avatar_static;
+      options.body      = notification.status && notification.status.content;
+      options.icon      = notification.account.avatar_static;
       options.timestamp = notification.created_at && new Date(notification.created_at);
-      options.tag       = notification_id;
+      options.tag       = notification.id;
       options.badge     = '/badge.png';
-      options.image     = notification.target_status && notification.target_status.media_attachments.length > 0 && notification.target_status.media_attachments[0].preview_url || undefined;
-      options.data      = { access_token, preferred_locale, id: notification.target_status ? notification.target_status.id : notification.from_account.id, url: notification.target_status ? `/web/statuses/${notification.target_status.id}` : `/web/accounts/${notification.from_account.id}` };
+      options.image     = notification.status && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url || undefined;
+      options.data      = { access_token, preferred_locale, id: notification.status ? notification.status.id : notification.account.id, url: notification.status ? `/web/statuses/${notification.status.id}` : `/web/accounts/${notification.account.id}` };
 
-      if (notification.target_status && notification.target_status.sensitive) {
-        options.data.hiddenBody  = notification.target_status.content;
-        options.data.hiddenImage = notification.target_status.media_attachments.length > 0 && notification.target_status.media_attachments[0].preview_url;
+      if (notification.status && notification.status.sensitive) {
+        options.data.hiddenBody  = notification.status.content;
+        options.data.hiddenImage = notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url;
 
         options.body    = undefined;
         options.image   = undefined;
         options.actions = [actionExpand(preferred_locale)];
-      } else if (notification.target_status) {
+      } else if (notification.status) {
         options.actions = [actionReblog(preferred_locale), actionFavourite(preferred_locale)];
       }
 
