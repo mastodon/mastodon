@@ -58,7 +58,7 @@ class Request
 
   def set_common_headers!
     @headers[REQUEST_TARGET]    = "#{@verb} #{@url.path}"
-    @headers['User-Agent']      = user_agent
+    @headers['User-Agent']      = Mastodon::Version.user_agent
     @headers['Host']            = @url.host
     @headers['Date']            = Time.now.utc.httpdate
     @headers['Accept-Encoding'] = 'gzip' if @verb != :head
@@ -81,10 +81,6 @@ class Request
 
   def signed_headers
     @headers.keys.join(' ').downcase
-  end
-
-  def user_agent
-    @user_agent ||= "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::Version}; +#{root_url})"
   end
 
   def key_id
