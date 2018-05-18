@@ -28,6 +28,7 @@ class UserSettingsDecorator
     user.settings['system_font_ui']          = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']                 = noindex_preference if change?('setting_noindex')
     user.settings['theme']                   = theme_preference if change?('setting_theme')
+    user.settings['hide_network']            = hide_network_preference if change?('setting_hide_network')
   end
 
   def merged_notification_emails
@@ -76,6 +77,10 @@ class UserSettingsDecorator
 
   def noindex_preference
     boolean_cast_setting 'setting_noindex'
+  end
+
+  def hide_network_preference
+    boolean_cast_setting 'setting_hide_network'
   end
 
   def theme_preference

@@ -1,5 +1,6 @@
-.accounts-grid
+.accounts-grid{ class: accounts.empty? ? 'empty' : '' }
   - if accounts.empty?
+    = image_tag asset_pack_path('elephant_ui_greeting.svg'), alt: '', role: 'presentational'
     = render partial: 'accounts/nothing_here'
   - else
     = render partial: 'accounts/grid_card', collection: accounts, as: :account, cached: !user_signed_in?
