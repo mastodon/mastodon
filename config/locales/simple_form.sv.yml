@@ -1,10 +1,10 @@
----
 sv:
   simple_form:
     hints:
       defaults:
         avatar: Högst 2 MB. Kommer nedskalas till 400x400px
-        digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
+        digest: Skickas endast efter en lång period av inaktivitet och endast om du
+          har fått några personliga meddelanden i din frånvaro
         display_name:
           one: <span class="name-counter">1</span> tecken kvar
           other: <span class="name-counter">%{count}</span> tecken kvar
@@ -15,13 +15,18 @@ sv:
           one: <span class="note-counter">1</span> tecken kvar
           other: <span class="note-counter">%{count}</span> tecken kvar
         setting_noindex: Påverkar din offentliga profil och statussidor
-        setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är inloggad.
+        setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är
+          inloggad.
+        bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte
+          övervakas
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
-        otp: Ange tvåfaktorkoden från din telefon eller använd någon av dina återställningskoder.
+        otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon
+          av dina återställningskoder:'
       user:
-        filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer för dig
+        filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer
+          för dig
     labels:
       account:
         fields:
@@ -74,6 +79,6 @@ sv:
         reblog: Skicka e-post när någon knuffar din status
     'no': Nej
     required:
-      mark: "*"
+      mark: '*'
       text: obligatorisk
     'yes': Ja
