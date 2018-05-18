@@ -139,6 +139,7 @@ class Account < ApplicationRecord
            :moderator?,
            :staff?,
            :locale,
+           :hides_network?,
            to: :user,
            prefix: true,
            allow_nil: true

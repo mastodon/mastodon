@@ -36,10 +36,9 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null) 
   });
 }
 
-function refreshHomeTimelineAndNotification (dispatch) {
-  dispatch(expandHomeTimeline());
-  dispatch(expandNotifications());
-}
+const refreshHomeTimelineAndNotification = (dispatch, done) => {
+  dispatch(expandHomeTimeline({}, () => dispatch(expandNotifications({}, done))));
+};
 
 export const connectUserStream = () => connectTimelineStream('home', 'user', refreshHomeTimelineAndNotification);
 export const connectCommunityStream = () => connectTimelineStream('community', 'public:local');

@@ -7,4 +7,7 @@
 
 = render 'accounts/header', account: @account
 
-= render 'accounts/follow_grid', follows: @follows, accounts: @follows.map(&:account)
+- if @account.user_hides_network?
+  = render 'accounts/follow_grid_hidden'
+- else
+  = render 'accounts/follow_grid', follows: @follows, accounts: @follows.map(&:account)

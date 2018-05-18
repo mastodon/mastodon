@@ -37,7 +37,7 @@ addons:
 
 rvm:
   - 2.4.3
-  - 2.5.0
+  - 2.5.1
 
 services:
   - redis-server
@@ -46,6 +46,10 @@ install:
   - nvm install
   - bundle install --path=vendor/bundle --with pam_authentication --without development production --retry=3 --jobs=16
   - yarn install
+
+# https://github.com/travis-ci/travis-ci/issues/9333
+before_install:
+  - gem install bundler
 
 before_script:
   - travis_wait ./bin/rails parallel:create parallel:load_schema parallel:prepare assets:precompile
