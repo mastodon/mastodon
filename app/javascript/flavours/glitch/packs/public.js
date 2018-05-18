@@ -6,8 +6,6 @@ function main() {
   const emojify = require('flavours/glitch/util/emoji').default;
   const { getLocale } = require('locales');
   const { localeData } = getLocale();
-  const VideoContainer = require('flavours/glitch/containers/video_container').default;
-  const CardContainer = require('flavours/glitch/containers/card_container').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
 
@@ -52,24 +50,15 @@ function main() {
       });
     });
 
-    [].forEach.call(document.querySelectorAll('[data-component="Video"]'), (content) => {
-      const props = JSON.parse(content.getAttribute('data-props'));
-      ReactDOM.render(<VideoContainer locale={locale} {...props} />, content);
-    });
-
-    [].forEach.call(document.querySelectorAll('[data-component="Card"]'), (content) => {
-      const props = JSON.parse(content.getAttribute('data-props'));
-      ReactDOM.render(<CardContainer locale={locale} {...props} />, content);
-    });
-
-    const mediaGalleries = document.querySelectorAll('[data-component="MediaGallery"]');
-
-    if (mediaGalleries.length > 0) {
-      const MediaGalleriesContainer = require('flavours/glitch/containers/media_galleries_container').default;
-      const content = document.createElement('div');
-
-      ReactDOM.render(<MediaGalleriesContainer locale={locale} galleries={mediaGalleries} />, content);
-      document.body.appendChild(content);
+    const reactComponents = document.querySelectorAll('[data-component]');
+    if (reactComponents.length > 0) {
+      import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
+        .then(({ default: MediaContainer }) => {
+          const content = document.createElement('div');
+          ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
+          document.body.appendChild(content);
+        })
+        .catch(error => console.error(error));
     }
   });
 }
