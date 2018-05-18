@@ -24,7 +24,7 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
     end
 
     it 'returns http success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'creates account for remote user' do
@@ -45,7 +45,7 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
 
     it 'returns http success if already following, too' do
       post :create, params: { uri: 'gargron@quitter.no' }
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 end

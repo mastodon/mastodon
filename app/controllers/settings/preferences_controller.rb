@@ -44,6 +44,7 @@ class Settings::PreferencesController < ApplicationController
       :setting_system_font_ui,
       :setting_noindex,
       :setting_theme,
+      :setting_hide_network,
       notification_emails: %i(follow follow_request reblog favourite mention digest),
       interactions: %i(must_be_follower must_be_following)
     )

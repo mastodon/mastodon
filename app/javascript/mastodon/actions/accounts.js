@@ -1,5 +1,5 @@
 import api, { getLinks } from '../api';
-import asyncDB from '../storage/db';
+import openDB from '../storage/db';
 import { importAccount, importFetchedAccount, importFetchedAccounts } from './importer';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
@@ -94,12 +94,15 @@ export function fetchAccount(id) {
 
     dispatch(fetchAccountRequest(id));
 
-    asyncDB.then(db => getFromDB(
+    openDB().then(db => getFromDB(
       dispatch,
       getState,
       db.transaction('accounts', 'read').objectStore('accounts').index('id'),
       id
-    )).catch(() => api(getState).get(`/api/v1/accounts/${id}`).then(response => {
+    ).then(() => db.close(), error => {
+      db.close();
+      throw error;
+    })).catch(() => api(getState).get(`/api/v1/accounts/${id}`).then(response => {
       dispatch(importFetchedAccount(response.data));
     })).then(() => {
       dispatch(fetchAccountSuccess());

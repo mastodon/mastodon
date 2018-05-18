@@ -1,0 +1,82 @@
+---
+co:
+  devise:
+    confirmations:
+      confirmed: U vostru indirizzu email hè statu cunfirmatu.
+      send_instructions: Avete da riceve un’email cù l’istruzzione di cunfirmazione in qualchì minuta. Pensate à verificà u cartulare di spam s’ellu ùn c’hè nunda.
+      send_paranoid_instructions: S’ellu esiste u vostru indirizzu email in a database, avete da riceve l’istruzzione pè cunfirmà u vostru contu in qualchì minuta. Pensate à verificà u cartulare di spam s’ellu ùn c’hè nunda.
+    failure:
+      already_authenticated: Site digià cunnettatu·a.
+      inactive: U vostru contu ùn hè ancu attivatu.
+      invalid: L’ %{authentication_keys} o a chjave d’accessu ùn sò curretti.
+      last_attempt: Avete un’ultimu tintativu nanzu chì u vostru contu sia chjosu.
+      locked: U vostru contu hè chjosu.
+      not_found_in_database: L’ %{authentication_keys} o a chjave d’accessu ùn sò curretti.
+      timeout: A vostra sezzione hè spirata. Ricunnettatevi pè cuntinuà.
+      unauthenticated: Cunnettatevi o arregistratevi pè cuntinuà.
+      unconfirmed: Duvete cunfirmà u vostru contu pè cuntinuà.
+    mailer:
+      confirmation_instructions:
+        action: Verificà l’indirizzu email
+        explanation: Avete creatu un contu nant’à %{host} cù st’indirizzu email. Pudete attivallu cù un clic, o ignurà quessu missaghji s’ellu un era micca voi.
+        extra_html: Pensate à leghje <a href="%{terms_path}">e regule di l’istanza</a> è <a href="%{policy_path}">i termini d’usu</a>.
+        subject: 'Mastodon: Istruzzione di cunfirmazione per %{instance}'
+        title: Verificà l’indirizzu email
+      email_changed:
+        explanation: 'L’indirizzu email di u vostru contu hè stata cambiata per:'
+        extra: S’ellu un era micca voi ch’avete cambiatu u vostru email, qualch’un’altru hà accessu à u vostru contu. Duvete cambià a vostra chjave d’accessu o cuntattà l’amministratore di l’istanza s’ellu ùn hè più pussibule di cunnettavi.
+        subject: 'Mastodon: Email cambiatu'
+        title: Novu indirizzu email
+      password_change:
+        explanation: A chjave d’accessu per u vostru contu hè stata cambiata.
+        extra: S’ellu un era micca voi ch’avete cambiatu a vostra chjave d’accessu, qualch’un’altru hà accessu à u vostru contu. Duvete cambià a vostra chjave d’accessu o cuntattà l’amministratore di l’istanza s’ellu ùn hè più pussibule di cunnettavi.
+        subject: 'Mastodon: Chjave d’accessu cambiata'
+        title: Chjave cambiata
+      reconfirmation_instructions:
+        explanation: Cunfirmà u novu indirizzu per cambià l’email.
+        extra: S’ellu ùn era micca voi, ignurate stu missaghju. L’email ùn cambiarà micca s’è voi ùn cliccate micca u ligame.
+        subject: 'Mastodon: Cunfirmà l’email per %{instance}'
+        title: Verificà indirizzu email
+      reset_password_instructions:
+        action: Cambià a chjave d’accessu
+        explanation: Avete dumandatu una nova chjave d’accessu per u vostru contu.
+        extra: S’ellu ùn era micca voi, ignurate stu missaghju. A chjave d’accessu ùn cambiarà micca s’è voi ùn cliccate micca u ligame.
+        subject: 'Mastodon: Cambià a chjave d’accessu'
+        title: Cambià a chjave
+      unlock_instructions:
+        subject: 'Mastodon: Riapre u contu'
+    omniauth_callbacks:
+      failure: Ùn pudemu micca cunnettavi da %{kind} perchè "%{reason}".
+      success: Vi site cunnettatu·a da %{kind}.
+    passwords:
+      no_token: Ùn pudete micca vede sta pagina senza vene d’un e-mail di cambiamentu di chjave d’accessu. S’è voi venite quì dapoi st’e-mail, assicuratevi ch’avete utilizatu l’indirizzu URL cumpletu.
+      send_instructions: Avete da riceve l’istruzzione di cambiamentu di a chjave d’accessu in qualchì minuta.
+      send_paranoid_instructions: S’ellu esiste u vostr’e-mail in a database, avete da riceve un ligame di reinizialisazione.
+      updated: A vostra chjave d’accessu hè stata cambiata, è site cunnettatu·a.
+      updated_not_active: A vostra chjave d’accessu hè stata cambiata.
+    registrations:
+      destroyed: U vostru contu hè statu sguassatu. Avvedeci!
+      signed_up: Benvinutu! Site cunnettatu·a.
+      signed_up_but_inactive: Site arregistratu·a, mà ùn pudete micca cunnettavi perchè u vostru contu deve esse attivatu.
+      signed_up_but_locked: Site arregistratu·a, mà ùn pudete micca cunnettavi perchè u vostru contu hè chjosu.
+      signed_up_but_unconfirmed: Un missaghju cù un ligame di cunfirmazione hè statu mandatu à u vostru indirizzu e-mail. Aprite stu ligame pè attivà u vostru contu. Pensate à verificà u cartulare di spam s’ellu ùn c’hè nunda.
+      update_needs_confirmation: U vostru contu hè statu messu à ghjornu mà duvemu verificà u vostru novu e-mail. Un missaghju cù un ligame di cunfirmazione hè statu mandatu. Pensate à verificà u cartulare di spam s’ellu ùn c’hè nunda.
+      updated: U vostru contu hè statu messu à ghjornu.
+    sessions:
+      already_signed_out: Scunnettatu·a.
+      signed_in: Cunnettatu·a.
+      signed_out: Scunnettatu·a.
+    unlocks:
+      send_instructions: Avete da riceve un’e-mail cù l’istruzzione pè riapre u vostru contu in qualchì minuta.
+      send_paranoid_instructions: S’ellu esiste u vostru contu, avete da riceve un’e-mail dù l’istruzzione pè riapre u vostru contu.
+      unlocked: U vostru contu hè statu riapertu, pudete cunnettavi pè cuntinuà.
+  errors:
+    messages:
+      already_confirmed: hè digià cunfirmatu, pudete pruvà à cunnettà vi
+      confirmation_period_expired: deve esse cunfirmatu nanz’à %{period}, duvete fà un’altra dumanda
+      expired: hè spiratu, duvete fà un’altra dumanda
+      not_found: ùn hè micca statu trovu
+      not_locked: ùn era micca chjosu
+      not_saved:
+        one: 'Un prublemu hà impeditu a cunservazione di stu (sta) %{resource}:'
+        other: "%{count} prublemi anu impeditu a cunservazione di stu (sta) %{resource} :"

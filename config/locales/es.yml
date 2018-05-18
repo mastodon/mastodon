@@ -4,6 +4,7 @@ es:
     about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
     about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
     about_this: Acerca de esta instancia
+    administered_by: 'Administrado por:'
     closed_registrations: Los registros están actualmente cerrados en esta instancia.
     contact: Contacto
     contact_missing: No especificado
@@ -52,17 +53,24 @@ es:
     unfollow: Dejar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Crear
-      created_at: Fecha
       created_msg: "¡Nota de moderación creada con éxito!"
       delete: Borrar
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
       are_you_sure: "¿Estás seguro?"
+      avatar: Avatar
       by_domain: Dominio
+      change_email:
+        changed_msg: "¡El correo electrónico se ha actualizado correctamente!"
+        current_email: Correo electrónico actual
+        label: Cambiar el correo electrónico
+        new_email: Nuevo correo electrónico
+        submit: Cambiar el correo electrónico
+        title: Cambiar el correo electrónico de %{username}
       confirm: Confirmar
       confirmed: Confirmado
+      confirming: Confirmando
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -71,6 +79,7 @@ es:
       domain: Dominio
       edit: Editar
       email: E-mail
+      email_status: E-mail Status
       enable: Habilitar
       enabled: Habilitada
       feed_url: URL de notificaciones
@@ -108,6 +117,11 @@ es:
       public: Público
       push_subscription_expires: Expiración de la suscripción PuSH
       redownload: Refrescar avatar
+      remove_avatar: Eliminar el avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito"
       reset: Reiniciar
       reset_password: Reiniciar contraseña
       resubscribe: Re-suscribir
@@ -128,6 +142,7 @@ es:
       statuses: Estados
       subscribe: Suscribir
       title: Cuentas
+      unconfirmed_email: Correo electrónico sin confirmar
       undo_silenced: Des-silenciar
       undo_suspension: Des-suspender
       unsubscribe: Desuscribir
@@ -135,6 +150,8 @@ es:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
+        change_email_user: "%{name} ha cambiado la dirección de correo del usuario %{target}"
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
@@ -150,10 +167,13 @@ es:
         enable_user: "%{name} habilitó el acceso del usuario %{target}"
         memorialize_account: "%{name} convirtió la cuenta de %{target} en una página de memorial"
         promote_user: "%{name} promoción al usuario %{target}"
+        remove_avatar_user: "%{name} ha eliminado el avatar de %{target}"
+        reopen_report: "%{name} ha reabierto la denuncia %{target}"
         reset_password_user: "%{name} restauró la contraseña del usuario %{target}"
-        resolve_report: "%{name} desestimó el reporte %{target}"
+        resolve_report: "%{name} ha resuelto la denuncia %{target}"
         silence_account: "%{name} silenció la cuenta de %{target}"
         suspend_account: "%{name} suspendió la cuenta de %{target}"
+        unassigned_report: "%{name} ha desasignado la denuncia %{target}"
         unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
@@ -239,29 +259,44 @@ es:
         expired: Expiradas
         title: Filtrar
       title: Invitaciones
+    report_notes:
+      created_msg: "¡El registro de la denuncia se ha creado correctamente!"
+      destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
     reports:
+      account:
+        note: nota
+        report: denuncia
       action_taken_by: Acción tomada por
       are_you_sure: "¿Estás seguro?"
+      assign_to_self: Asignármela a mí
+      assigned: Moderador asignado
       comment:
-        label: Comentario
         none: Ninguno
-      delete: Eliminar
+      created_at: Denunciado
       id: ID
       mark_as_resolved: Marcar como resuelto
-      nsfw:
-        'false': Mostrar multimedia
-        'true': Ocultar multimedia
+      mark_as_unresolved: Marcar como no resuelto
+      notes:
+        create: Añadir una nota
+        create_and_resolve: Resolver con una nota
+        create_and_unresolve: Reabrir con una nota
+        delete: Eliminar
+        placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
+      reopen: Reabrir denuncia
       report: 'Reportar #%{id}'
       report_contents: Contenido
       reported_account: Cuenta reportada
       reported_by: Reportado por
       resolved: Resuelto
+      resolved_msg: "¡La denuncia se ha resuelto correctamente!"
       silence_account: Silenciar cuenta
       status: Estado
       suspend_account: Suspender cuenta
       target: Objetivo
       title: Reportes
+      unassign: Desasignar
       unresolved: No resuelto
+      updated_at: Actualizado
       view: Ver
     settings:
       activity_api_enabled:
@@ -319,13 +354,10 @@ es:
       back_to_account: Volver a la cuenta
       batch:
         delete: Eliminar
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Ejecutar
+        nsfw_off: Marcar contenido como no sensible
+        nsfw_on: Marcar contenido como sensible
       failed_to_execute: Falló al ejecutar
       media:
-        hide: Ocultar multimedia
-        show: Mostrar multimedia
         title: Multimedia
       no_media: No hay multimedia
       title: Estado de las cuentas
@@ -341,6 +373,7 @@ es:
   admin_mailer:
     new_report:
       body: "%{reporter} ha reportado a %{target}"
+      body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
@@ -382,6 +415,7 @@ es:
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
   authorize_follow:
+    already_following: Ya estás siguiendo a esta cuenta
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Tienes una solicitud de seguimiento de:'
@@ -474,6 +508,7 @@ es:
       '21600': 6 horas
       '3600': 1 hora
       '43200': 12 horas
+      '604800': 1 semana
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Generar
@@ -546,7 +581,7 @@ es:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: " "
   pagination:
     newer: Más nuevo
     next: Próximo
@@ -577,6 +612,10 @@ es:
     missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
+  remote_unfollow:
+    error: Error
+    title: Título
+    unfollowed: Ha dejado de seguirse
   sessions:
     activity: Última actividad
     browser: Navegador
@@ -634,6 +673,18 @@ es:
     two_factor_authentication: Autenticación de dos factores
     your_apps: Tus aplicaciones
   statuses:
+    attached:
+      description: 'Adjunto: %{attached}'
+      image:
+        one: "%{count} imagen"
+        other: "%{count} imágenes"
+      video:
+        one: "%{count} vídeo"
+        other: "%{count} vídeos"
+    content_warning: 'Alerta de contenido: %{warning}'
+    disallowed_hashtags:
+      one: 'contenía un hashtag no permitido: %{tags}'
+      other: 'contenía los hashtags no permitidos: %{tags}'
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
@@ -656,76 +707,9 @@ es:
     reblogged: retooteado
     sensitive_content: Contenido sensible
   terms:
-    body_html: |
-      <h2>Políticas de privacidad</h2>
-
-      <h3 id="collect">¿Qué información recolectamos?</h3>
-
-      <p>Recolectamos información tuya cuando te registras en nuestro sitio y adquirimos datos cuando participas en el foro leyendo, escribiendo, y evaluando el contenido compartido aquí.</p>
-
-      <p>Cuando te registras en nuestro sitio, puede que se te pida tu nombre y dirección de correo electrónico. De todas formas, puedes visitar nuestro sitio sin registrarte. Tu dirección de correo electrónico será verificada por un e-mail conteniendo un enlace único. Si ese enlace es visitado, sabemos que tú controlas esa dirección.</p>
-
-      <p>Cuando te registras y posteas, grabamos la IP de la que se origina esa acción. También puede que retengamos logs del servidor, que incluyen la dirección IP de todos los pedidos a nuestro servidor.</p>
-
-      <h3 id="use">¿Para qué usamos tu información?</h3>
-
-      <p>Toda la información que recolectamos de ti puede usarse en una de las siguientes maneras:</p>
-
-      <ul>
-        <li>Para personalizar tu experiencia &mdash; tu información nos ayuda a responder mejor tus necesidades individuales.</li>
-        <li>Para mejorar nuestro sitio &mdash; nos esforzamos continuamente en mejorar nuestras ofertas del sitio basándonos en la información y apoyo que recibimos de ti.</li>
-        <li>Para mejorar el servicio al cliente &mdash; tu información nos ayuda a responder más efectivamente al servicio al cliente y otras necesidades.</li>
-        <li>Para enviar e-mails periódicos &mdash; la dirección de e-mail que provees puede usarse para enviarte información, notificaciones que pides sobre cambios en tópicos o en respuesta a tu nombre de usuario, responder consultas, y/u otros pedidos o preguntas.</li>
-      </ul>
-
-      <h3 id="protect">¿Cómo protegemos tu información?</h3>
-
-      <p>Implementamos una variedad de medidas de seguridad para mantener a salvo tu información personal cuando entras, publicas, o accesas a ella.</p>
-
-      <h3 id="data-retention">¿Cuáles son sus políticas de retención de datos?</h3>
-
-      <p>Haremos un gran esfuerzo en:</p>
-
-      <ul>
-        <li>Retener logs del servidor conteniendo la dirección IP de todos los pedidos a este servidor en no más de 90 días.</li>
-        <li>Retener las direcciones IP asociadas con usuarios registrados y sus posts no más de 5 años.</li>
-      </ul>
-
-      <h3 id="cookies"¿Usamos cookies?</h3>
-
-      <p>Sí. Las cookies son pequeños archivos que un sitio web o su proveedor de servicio transfieren al disco duro de tu computadora a través de tu navegador web (si se le permite). Estas cookies permiten al sitio reconocer tu navegador y, si y tienes una cuenta registrada, asociarlo con ella.</p>
-
-      <p>Usamos cookies para entender y guardar tus preferencias para futuras visitas y agregar datos compilados sobre el tráfico del sitio e interacción para que podamos ofrecer una mejor experiencia y herramientas en el futuro. Puede que contratemos con proveedores de servicio de tercera mano para que nos asistan en el mejor entendimiento de nuestros visitantes del sitio. A estos proveedores de servicio no se les permite usar la información recolectada a nuestras espaldas excepto para ayudarnos a conducir y mejorar nuestro trabajo.</p>
-
-      <h3 id="disclose">¿Revelamos alguna información a terceras manos?</h3>
-
-      <p>No vendemos, intercambiamos, ni de ninguna otra manera transferimos tu información personal identificable a terceras partes. Esto no incluye las terceras manos que nos asisten en operar nuestro sitio, conducción o trabajo, o en servirte, tanto como que éstas acepten en mantener esta información confidencial. Puede que también liberemos tu información cuando creamos que es apropiado para cumplir con la ley, enforzar nuestras políticas del sitio, o proteger la nuestra u otros derechos, propiedad, o seguridad. De todas formas, la información del visitante autorizado no-personal puede proveerse a otras partes por marketing, publicidad, u otros usos.</p>
-
-      <h3 id="third-party">Enlaces de terceras partes</h3>
-
-      <p>Ocasionalmente, a nuestra discreción, puede que incluyamos u ofrezcamos productos de terceras partes o servicios en nuestro sitio. Estas terceras partes tienen políticas de privacidad separadas e independientes. Por lo tanto no tenemos responsabilidad u obligación por el contenido y actividades de estos sitios enlazados. Sin embargo, buscamos proteger la integridad de nuestro sitio y dar la bienvenida a cualquier ayuda sobre estos sitios.</p>
-
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance (Cumplimiento de la Ley de la Protección Privada en Línea del Niño)</h3>
-
-      <p>Nuestro sitio y todos nuestros productos y servicios están dirigidos a gente que tiene al menos 13 años de edad. Si el servidor está alojado en EE.UU, y tienes menos de 13 años, no uses este sitio por los requerimientos del COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>).</p>
-
-      <h3 id="online">Solo Políticas de Privacidad en Línea</h3>
-
-      <p>Estas políticas de privacidad aplican únicamente a la información recolectada a través de nuestro sitio y no a información recolectada <i>offline</i>.</p>
-
-      <h3 id="consent">Tu Consentimiento</h3>
-
-      <p>Al usar nuestro sitio, estás consentido a nuestras políticas de privacidad del sitio.</p>
-
-      <h3 id="changes">Cambios a nuestras Políticas de Privacidad</h3>
-
-      <p>Si decidimos cambiar nuestras políticas de privacidad, las publicaremos en esta página.</p>
-
-      <p>Este documento está publicado bajo la licencia CC-BY-SA. Última vez actualizado el 31 de Mayo del 2013.</p>
-
-      <p>Adaptado originalmente del <a href="https://github.com/discourse/discourse">discurso de las políticas de privacidad</a>.</p>
     title: Términos del Servicio y Políticas de Privacidad de %{instance}
   themes:
+    contrast: Alto contraste
     default: Mastodon
   time:
     formats:
@@ -750,10 +734,10 @@ es:
     backup_ready:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
-      title: Recogida del archivo
+      title: Descargar archivo
     welcome:
       edit_profile_action: Configurar el perfil
-      edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, cabecera, cambiando tu nombre para mostrar y más. Si te gustaría revisar seguidores antes de autorizarlos a que te sigan, puedes bloquear tu cuenta.
+      edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre de usuario y más cosas. Si quieres revisar a tus nuevos seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta.
       explanation: Aquí hay algunos consejos para empezar
       final_action: Empezar a publicar
       final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea de tiempo local y con "hashtags". Podrías querer introducirte con el "hashtag" #introductions.'
@@ -763,7 +747,7 @@ es:
       review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
       subject: Bienvenido a Mastodon
       tip_bridge_html: Si esta viniendo desde Twitter, puedes encontrar a tus amigos en Mastodon usando la <a href="%{bridge_url}">aplicación puente</a>. Aunque solo funciona si ellos también usaron la aplicación puente!
-      tip_federated_timeline: La historia federada es una vista de toda la red Mastodon conocida. Sólo incluye gente a la que se han suscrito personas de tu instancia, así que no está completa.
+      tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!

@@ -1,0 +1,32 @@
+---
+eu:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF edo JPG. Gehienez 2MB. 400x400px neurrira eskalatuko da
+        locked: Jarraitzaileak eskuz onartu behar dituzu
+        note:
+          other: <span class="note-counter"> %{count}</span> karaktere faltan
+        setting_noindex: Zure profil publiko eta egoera orrietan eragina du
+        setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten du.
+      imports:
+        data: Mastodon-en beste instantzia batetik CSV fitxategia esportatu da
+      user:
+        filtered_languages: Aukeratutako hizkuntzak timeline publikotik filtratuko dira
+    labels:
+      account:
+        fields:
+          name: Etiketa
+          value: Edukia
+      defaults:
+        confirm_new_password: Pasahitz berria berretsi
+        confirm_password: Pasahitza berretsi
+        current_password: Oraingo pasahitza
+        display_name: Izena erakutsi
+        email: Helbide elektronikoa
+        fields: Profilaren metadatuak
+        filtered_languages: Iragazitako hizkuntzak
+        locale: Hizkuntza
+        new_password: Pasahitz berria
+        note: Bio
+        password: Pasahitza

@@ -5,14 +5,13 @@ module Admin
     helper_method :current_params
 
     before_action :set_account
-    before_action :set_status, only: [:update, :destroy]
 
     PER_PAGE = 20
 
     def index
       authorize :status, :index?
 
-      @statuses = @account.statuses
+      @statuses = @account.statuses.where(visibility: [:public, :unlisted])
 
       if params[:media]
         account_media_status_ids = @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
@@ -26,38 +25,16 @@ module Admin
     def create
       authorize :status, :update?
 
-      @form         = Form::StatusBatch.new(form_status_batch_params.merge(current_account: current_account))
+      @form         = Form::StatusBatch.new(form_status_batch_params.merge(current_account: current_account, action: action_from_button))
       flash[:alert] = I18n.t('admin.statuses.failed_to_execute') unless @form.save
 
       redirect_to admin_account_statuses_path(@account.id, current_params)
     end
 
-    def update
-      authorize @status, :update?
-      @status.update!(status_params)
-      log_action :update, @status
-      redirect_to admin_account_statuses_path(@account.id, current_params)
-    end
-
-    def destroy
-      authorize @status, :destroy?
-      RemovalWorker.perform_async(@status.id)
-      log_action :destroy, @status
-      render json: @status
-    end
-
     private
-
-    def status_params
-      params.require(:status).permit(:sensitive)
-    end
 
     def form_status_batch_params
       params.require(:form_status_batch).permit(:action, status_ids: [])
-    end
-
-    def set_status
-      @status = @account.statuses.find(params[:id])
     end
 
     def set_account
@@ -71,6 +48,16 @@ module Admin
         media: params[:media],
         page: page > 1 && page,
       }.select { |_, value| value.present? }
+    end
+
+    def action_from_button
+      if params[:nsfw_on]
+        'nsfw_on'
+      elsif params[:nsfw_off]
+        'nsfw_off'
+      elsif params[:delete]
+        'delete'
+      end
     end
   end
 end

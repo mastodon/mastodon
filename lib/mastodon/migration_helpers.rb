@@ -985,6 +985,17 @@ into similar problems in the future (e.g. when new tables are created).
         BackgroundMigrationWorker.perform_in(delay_interval * index, job_class_name, [start_id, end_id])
       end
     end
+
+    private
+
+    # https://github.com/rails/rails/blob/v5.2.0/activerecord/lib/active_record/connection_adapters/postgresql/schema_statements.rb#L678-L684
+    def extract_foreign_key_action(specifier)
+      case specifier
+      when 'c'; :cascade
+      when 'n'; :nullify
+      when 'r'; :restrict
+      end
+    end
   end
 end
 

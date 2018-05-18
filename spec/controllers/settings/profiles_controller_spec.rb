@@ -11,7 +11,7 @@ RSpec.describe Settings::ProfilesController, type: :controller do
   describe "GET #show" do
     it "returns http success" do
       get :show
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 

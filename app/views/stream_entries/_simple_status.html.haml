@@ -10,7 +10,7 @@
         %div
           = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo'
       %span.display-name
-        %strong.p-name.emojify= display_name(status.account)
+        %strong.p-name.emojify= display_name(status.account, custom_emojify: true)
         %span= acct(status.account)
 
   .status__content.p-name.emojify<
@@ -23,6 +23,6 @@
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      %div{ data: { component: 'Video', props: Oj.dump(src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 610, height: 343, inline: true) }}
+      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, width: 610, height: 343, inline: true
     - else
-      %div{ data: { component: 'MediaGallery', props: Oj.dump(height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }) }}
+      = react_component :media_gallery, height: 343, sensitive: status.sensitive? && !current_account&.user&.setting_display_sensitive_media, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }

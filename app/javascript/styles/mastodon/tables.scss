@@ -1,3 +1,9 @@
+@keyframes Swag {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -11,6 +17,7 @@
     vertical-align: top;
     border-top: 1px solid $ui-base-color;
     text-align: left;
+    background: darken($ui-base-color, 4%);
   }
 
   & > thead > tr > th {
@@ -30,7 +37,7 @@
   }
 
   a {
-    color: $ui-highlight-color;
+    color: $highlight-text-color;
     text-decoration: underline;
 
     &:hover {
@@ -48,9 +55,38 @@
     }
   }
 
-  &.inline-table > tbody > tr:nth-child(odd) > td,
-  &.inline-table > tbody > tr:nth-child(odd) > th {
-    background: transparent;
+  &.inline-table {
+    & > tbody > tr:nth-child(odd) {
+      & > td,
+      & > th {
+        background: transparent;
+      }
+    }
+
+    & > tbody > tr:first-child {
+      & > td,
+      & > th {
+        border-top: 0;
+      }
+    }
+  }
+
+  &.batch-table {
+    & > thead > tr > th {
+      background: $ui-base-color;
+      border-top: 1px solid darken($ui-base-color, 8%);
+      border-bottom: 1px solid darken($ui-base-color, 8%);
+
+      &:first-child {
+        border-radius: 4px 0 0;
+        border-left: 1px solid darken($ui-base-color, 8%);
+      }
+
+      &:last-child {
+        border-radius: 0 4px 0 0;
+        border-right: 1px solid darken($ui-base-color, 8%);
+      }
+    }
   }
 }
 
@@ -63,12 +99,19 @@ samp {
   font-family: 'mastodon-font-monospace', monospace;
 }
 
+button.table-action-link {
+  background: transparent;
+  border: 0;
+  font: inherit;
+}
+
+button.table-action-link,
 a.table-action-link {
   text-decoration: none;
   display: inline-block;
   margin-right: 5px;
   padding: 0 10px;
-  color: rgba($primary-text-color, 0.7);
+  color: $darker-text-color;
   font-weight: 500;
 
   &:hover {
@@ -78,5 +121,83 @@ a.table-action-link {
   i.fa {
     font-weight: 400;
     margin-right: 5px;
+  }
+
+  &:first-child {
+    padding-left: 0;
+  }
+}
+
+.batch-table {
+  &__toolbar,
+  &__row {
+    display: flex;
+
+    &__select {
+      box-sizing: border-box;
+      padding: 8px 16px;
+      cursor: pointer;
+      min-height: 100%;
+
+      input {
+        margin-top: 8px;
+      }
+    }
+
+    &__actions,
+    &__content {
+      padding: 8px 0;
+      padding-right: 16px;
+      flex: 1 1 auto;
+    }
+  }
+
+  &__toolbar {
+    border: 1px solid darken($ui-base-color, 8%);
+    background: $ui-base-color;
+    border-radius: 4px 0 0;
+    height: 47px;
+    align-items: center;
+
+    &__actions {
+      text-align: right;
+      padding-right: 16px - 5px;
+    }
+  }
+
+  &__row {
+    border: 1px solid darken($ui-base-color, 8%);
+    border-top: 0;
+    background: darken($ui-base-color, 4%);
+
+    &:hover {
+      background: darken($ui-base-color, 2%);
+    }
+
+    &:nth-child(even) {
+      background: $ui-base-color;
+
+      &:hover {
+        background: lighten($ui-base-color, 2%);
+      }
+    }
+
+    &__content {
+      padding-top: 12px;
+      padding-bottom: 16px;
+    }
+  }
+
+  .status__content {
+    padding-top: 0;
+
+    strong {
+      font-weight: 700;
+      background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet,orange , yellow, green, cyan, blue, violet);
+      background-size: 200% 100%;
+      background-clip: text;
+      color: transparent;
+      animation: Swag 2s linear 0s infinite;
+    }
   }
 }

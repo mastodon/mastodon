@@ -4,10 +4,12 @@ pt-BR:
     hints:
       defaults:
         avatar: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 400x400px
+        bot: Informa usuários que a conta não representa uma pessoa
         digest: Enviado após um longo período de inatividade com um resumo das menções que você recebeu em sua ausência
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
+        fields: Você pode ter até 4 itens exibidos em forma de tabela no seu perfil
         header: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 700x335px
         locked: Requer aprovação manual de seguidores
         note:
@@ -18,12 +20,17 @@ pt-BR:
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
-        otp: Insira o código de autenticação do seu celular ou use um dos códigos de recuperação.
+        otp: 'Insira o código de autenticação gerado pelo app no seu celular ou use um dos códigos de recuperação:'
       user:
         filtered_languages: Selecione os idiomas que devem ser removidos de suas timelines públicas
     labels:
+      account:
+        fields:
+          name: Rótulo
+          value: Conteúdo
       defaults:
         avatar: Avatar
+        bot: Essa é a conta de um robô
         confirm_new_password: Confirmar nova senha
         confirm_password: Confirmar senha
         current_password: Senha atual
@@ -31,6 +38,7 @@ pt-BR:
         display_name: Nome de exibição
         email: Endereço de e-mail
         expires_in: Expira em
+        fields: Metadados do perfil
         filtered_languages: Idiomas filtrados
         header: Cabeçalho
         locale: Idioma

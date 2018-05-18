@@ -13,6 +13,7 @@ import {
   ACCOUNT_UNFOLLOW_SUCCESS,
 } from '../actions/accounts';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+import compareId from '../compare_id';
 
 const initialState = ImmutableMap();
 
@@ -32,8 +33,8 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial) =>
     if (!statuses.isEmpty()) {
       mMap.update('items', ImmutableList(), oldIds => {
         const newIds = statuses.map(status => status.get('id'));
-        const lastIndex = oldIds.findLastIndex(id => id !== null && id >= newIds.last()) + 1;
-        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && id > newIds.first());
+        const lastIndex = oldIds.findLastIndex(id => id !== null && compareId(id, newIds.last()) >= 0) + 1;
+        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) > 0);
 
         if (firstIndex < 0) {
           return (isPartial ? newIds.unshift(null) : newIds).concat(oldIds.skip(lastIndex));
@@ -133,7 +134,7 @@ export default function timelines(state = initialState, action) {
       initialTimeline,
       map => map.update(
         'items',
-        items => items.first() ? items : items.unshift(null)
+        items => items.first() ? items.unshift(null) : items
       )
     );
   default:

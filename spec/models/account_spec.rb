@@ -94,14 +94,14 @@ RSpec.describe Account, type: :model do
 
   describe '#save_with_optional_media!' do
     before do
-      stub_request(:get, 'https://remote/valid_avatar').to_return(request_fixture('avatar.txt'))
-      stub_request(:get, 'https://remote/invalid_avatar').to_return(request_fixture('feed.txt'))
+      stub_request(:get, 'https://remote.test/valid_avatar').to_return(request_fixture('avatar.txt'))
+      stub_request(:get, 'https://remote.test/invalid_avatar').to_return(request_fixture('feed.txt'))
     end
 
     let(:account) do
       Fabricate(:account,
-                avatar_remote_url: 'https://remote/valid_avatar',
-                header_remote_url: 'https://remote/valid_avatar')
+                avatar_remote_url: 'https://remote.test/valid_avatar',
+                header_remote_url: 'https://remote.test/valid_avatar')
     end
 
     let!(:expectation) { account.dup }
@@ -121,7 +121,7 @@ RSpec.describe Account, type: :model do
 
     context 'with invalid properties' do
       before do
-        account.avatar_remote_url = 'https://remote/invalid_avatar'
+        account.avatar_remote_url = 'https://remote.test/invalid_avatar'
         account.save_with_optional_media!
       end
 
@@ -815,7 +815,8 @@ RSpec.describe Account, type: :model do
   end
 
   context 'when is local' do
-    it 'generates keys' do
+    # Test disabled because test environment omits autogenerating keys for performance
+    xit 'generates keys' do
       account = Account.create!(domain: nil, username: Faker::Internet.user_name(nil, ['_']))
       expect(account.keypair.private?).to eq true
     end

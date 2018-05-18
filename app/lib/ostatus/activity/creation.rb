@@ -15,6 +15,8 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         @status = find_status(id)
         return [@status, false] unless @status.nil?
         @status = process_status
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 
@@ -39,13 +41,15 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         reblog: cached_reblog,
         text: content,
         spoiler_text: content_warning,
-        created_at: @options[:override_timestamps] ? nil : published,
+        created_at: published,
+        override_timestamps: @options[:override_timestamps],
         reply: thread?,
         language: content_language,
         visibility: visibility_scope,
         conversation: find_or_create_conversation,
         thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil,
-        media_attachment_ids: media_attachments.map(&:id)
+        media_attachment_ids: media_attachments.map(&:id),
+        sensitive: sensitive?
       )
 
       save_mentions(status)
@@ -61,7 +65,14 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
 
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
-    DistributionWorker.perform_async(status.id) if @options[:override_timestamps] || status.within_realtime_window?
+
+    # Only continue if the status is supposed to have arrived in real-time.
+    # Note that if @options[:override_timestamps] isn't set, the status
+    # may have a lower snowflake id than other existing statuses, potentially
+    # "hiding" it from paginated API calls
+    return status unless @options[:override_timestamps] || status.within_realtime_window?
+
+    DistributionWorker.perform_async(status.id)
 
     status
   end
@@ -96,6 +107,11 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   end
 
   private
+
+  def sensitive?
+    # OStatus-specific convention (not standard)
+    @xml.xpath('./xmlns:category', xmlns: OStatus::TagManager::XMLNS).any? { |category| category['term'] == 'nsfw' }
+  end
 
   def find_or_create_conversation
     uri = @xml.at_xpath('./ostatus:conversation', ostatus: OStatus::TagManager::OS_XMLNS)&.attribute('ref')&.content

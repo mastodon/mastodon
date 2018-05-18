@@ -3,45 +3,79 @@ it:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF o JPG. Al massimo 2MB. Sarà ridotto a 400x400px
-        display_name: Al massimo 30 characters
-        header: PNG, GIF or JPG. Al massimo 2MB. Sarà ridotto a 700x335px
-        locked: Richiede la tua approvazione per i nuovi seguaci e rende i nuovi post automaticamente visibili solo ai seguaci
-        note: Al massimo 160 caratteri
+        avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
+        bot: Avverte che l'account non rappresenta una persona
+        digest: Inviata solo dopo un lungo periodo di intattività e solo se hai ricevuto qualsiasi messaggio personale in tua assenza
+        display_name:
+          one: <span class="name-counter">1</span> carattere rimanente
+          other: <span class="name-counter">%{count}</span> caratteri rimanenti
+        fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
+        header: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 700x335px
+        locked: Richiede che approvi i follower manualmente
+        note:
+          one: <span class="note-counter">1</span> carattere rimanente
+          other: <span class="note-counter">%{count}</span> caratteri rimanenti
+        setting_noindex: Coinvolge il tuo profilo pubblico e le pagine di stato
+        setting_theme: Coinvolge il modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
       imports:
-        data: CSV esportato da un altro server Mastodon
+        data: File CSV esportato da un altra istanza di Mastodon
+      sessions:
+        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
+      user:
+        filtered_languages: Le lingue selezionate verranno filtrate dalla timeline pubblica per te
     labels:
+      account:
+        fields:
+          name: Etichetta
+          value: Contenuto
       defaults:
         avatar: Avatar
-        confirm_new_password: Conferma la nuova password
-        confirm_password: Conferma la password
+        bot: Questo account è un bot
+        confirm_new_password: Conferma nuova password
+        confirm_password: Conferma password
         current_password: Password corrente
         data: Data
-        display_name: Nome pubblico
-        email: Indirizzo e-mail
+        display_name: Nome visualizzato
+        email: Indirizzo email
+        expires_in: Scade dopo
+        fields: Metadata profilo
+        filtered_languages: Lingue filtrate
         header: Header
         locale: Lingua
-        locked: Rendi l'account privato
+        locked: Blocca account
+        max_uses: Numero massimo di utilizzi
         new_password: Nuova password
-        note: Biografia
-        otp_attempt: Codice d'accesso
+        note: Bio
+        otp_attempt: Codice due-fattori
         password: Password
-        setting_boost_modal: Mostra finestra di conferma prima di condividere
-        setting_default_privacy: Privacy del post
-        type: Importa
-        username: Username
+        setting_auto_play_gif: Play automatico GIF animate
+        setting_boost_modal: Mostra dialogo di conferma prima del boost
+        setting_default_privacy: Privacy post
+        setting_default_sensitive: Segna sempre i media come sensibili
+        setting_delete_modal: Mostra dialogo di conferma prima di eliminare un toot
+        setting_display_sensitive_media: Mostra sempre i media segnati come sensibili
+        setting_noindex: Non indicizzare dai motori di ricerca
+        setting_reduce_motion: Riduci movimento nelle animazioni
+        setting_system_font_ui: Usa il carattere di default del sistema
+        setting_theme: Tema sito
+        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire qualcuno
+        severity: Severità
+        type: Tipo importazione
+        username: Nome utente
+        username_or_email: Nome utente o email
       interactions:
-        must_be_follower: Blocca notifiche da chi non ti segue
-        must_be_following: Blocca notifiche da chi non segui
+        must_be_follower: Blocca notifiche dai non follower
+        must_be_following: Blocca notifiche dalle persone che non segui
+        must_be_following_dm: Blocca i messaggi diretti dalle persone che non segui
       notification_emails:
-        digest: Invia riassunto via e-mail
-        favourite: Invia e-mail quando qualcuno apprezza i tuoi status
-        follow: Invia e-mail quando qualcuno ti segue
-        follow_request: Invia e-mail quando qualcuno ti richiede di seguirti
-        mention: Invia e-mail quando qualcuno ti menziona
-        reblog: Invia e-mail quando qualcuno condivide i tuoi status
+        digest: Invia email riassuntive
+        favourite: Invia email quando segna come preferito al tuo stato
+        follow: Invia email quando qualcuno ti segue
+        follow_request: Invia email quando qualcuno richiede di seguirti
+        mention: Invia email quando qualcuno ti menziona
+        reblog: Invia email quando qualcuno da un boost al tuo stato
     'no': 'No'
     required:
       mark: "*"
       text: richiesto
-    'yes': Sì
+    'yes': Si

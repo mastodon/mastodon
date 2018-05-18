@@ -9,10 +9,14 @@ class Request
   include RoutingHelper
 
   def initialize(verb, url, **options)
+    raise ArgumentError if url.blank?
+
     @verb    = verb
     @url     = Addressable::URI.parse(url).normalize
-    @options = options.merge(socket_class: Socket)
+    @options = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
     @headers = {}
+
+    raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
 
     set_common_headers!
     set_digest! if options.key?(:body)
@@ -53,10 +57,11 @@ class Request
   private
 
   def set_common_headers!
-    @headers[REQUEST_TARGET] = "#{@verb} #{@url.path}"
-    @headers['User-Agent']   = user_agent
-    @headers['Host']         = @url.host
-    @headers['Date']         = Time.now.utc.httpdate
+    @headers[REQUEST_TARGET]    = "#{@verb} #{@url.path}"
+    @headers['User-Agent']      = Mastodon::Version.user_agent
+    @headers['Host']            = @url.host
+    @headers['Date']            = Time.now.utc.httpdate
+    @headers['Accept-Encoding'] = 'gzip' if @verb != :head
   end
 
   def set_digest!
@@ -78,10 +83,6 @@ class Request
     @headers.keys.join(' ').downcase
   end
 
-  def user_agent
-    @user_agent ||= "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::Version}; +#{root_url})"
-  end
-
   def key_id
     case @key_id_format
     when :acct
@@ -96,7 +97,15 @@ class Request
   end
 
   def http_client
-    @http_client ||= HTTP.timeout(:per_operation, timeout).follow(max_hops: 2)
+    @http_client ||= HTTP.use(:auto_inflate).timeout(:per_operation, timeout).follow(max_hops: 2)
+  end
+
+  def use_proxy?
+    Rails.configuration.x.http_client_proxy.present?
+  end
+
+  def block_hidden_service?
+    !Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(@url.host)
   end
 
   module ClientLimit
@@ -129,6 +138,7 @@ class Request
   class Socket < TCPSocket
     class << self
       def open(host, *args)
+        return super host, *args if thru_hidden_service? host
         outer_e = nil
         Addrinfo.foreach(host, nil, nil, :SOCK_STREAM) do |address|
           begin
@@ -142,6 +152,10 @@ class Request
       end
 
       alias new open
+
+      def thru_hidden_service?(host)
+        Rails.configuration.x.hidden_service_via_transparent_proxy && /\.(onion|i2p)$/.match(host)
+      end
     end
   end
 

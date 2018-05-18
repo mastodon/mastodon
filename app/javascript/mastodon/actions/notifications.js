@@ -8,8 +8,10 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { defineMessages } from 'react-intl';
+import { unescapeHTML } from '../utils/html';
 
-export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
+export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
+export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
@@ -30,30 +32,32 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   }
 };
 
-const unescapeHTML = (html) => {
-  const wrapper = document.createElement('div');
-  html = html.replace(/<br \/>|<br>|\n/g, ' ');
-  wrapper.innerHTML = html;
-  return wrapper.textContent;
-};
-
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
-    const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
-    const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
+    const showInColumn = getState().getIn(['settings', 'notifications', 'shows', notification.type], true);
+    const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
+    const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
 
-    dispatch(importFetchedAccount(notification.account));
-    if (notification.status) {
-      dispatch(importFetchedStatus(notification.status));
+    if (showInColumn) {
+      dispatch(importFetchedAccount(notification.account));
+
+      if (notification.status) {
+        dispatch(importFetchedStatus(notification.status));
+      }
+
+      dispatch({
+        type: NOTIFICATIONS_UPDATE,
+        notification,
+        meta: playSound ? { sound: 'boop' } : undefined,
+      });
+
+      fetchRelatedRelationships(dispatch, [notification]);
+    } else if (playSound) {
+      dispatch({
+        type: NOTIFICATIONS_UPDATE_NOOP,
+        meta: { sound: 'boop' },
+      });
     }
-
-    dispatch({
-      type: NOTIFICATIONS_UPDATE,
-      notification,
-      meta: playSound ? { sound: 'boop' } : undefined,
-    });
-
-    fetchRelatedRelationships(dispatch, [notification]);
 
     // Desktop notifications
     if (typeof window.Notification !== 'undefined' && showAlert) {
@@ -61,6 +65,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       const body  = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
 
       const notify = new Notification(title, { body, icon: notification.account.avatar, tag: notification.id });
+
       notify.addEventListener('click', () => {
         window.focus();
         notify.close();
@@ -71,9 +76,14 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
 
-export function expandNotifications({ maxId } = {}) {
+const noOp = () => {};
+
+export function expandNotifications({ maxId } = {}, done = noOp) {
   return (dispatch, getState) => {
-    if (getState().getIn(['notifications', 'isLoading'])) {
+    const notifications = getState().get('notifications');
+
+    if (notifications.get('isLoading')) {
+      done();
       return;
     }
 
@@ -81,6 +91,10 @@ export function expandNotifications({ maxId } = {}) {
       max_id: maxId,
       exclude_types: excludeTypesFromSettings(getState()),
     };
+
+    if (!maxId && notifications.get('items').size > 0) {
+      params.since_id = notifications.getIn(['items', 0]);
+    }
 
     dispatch(expandNotificationsRequest());
 
@@ -92,8 +106,10 @@ export function expandNotifications({ maxId } = {}) {
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
+      done();
     }).catch(error => {
       dispatch(expandNotificationsFail(error));
+      done();
     });
   };
 };

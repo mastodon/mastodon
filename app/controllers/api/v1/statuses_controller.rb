@@ -17,8 +17,8 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def context
-    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(current_account)
-    descendants_results = @status.descendants(current_account)
+    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(DEFAULT_STATUSES_LIMIT, current_account)
+    descendants_results = @status.descendants(DEFAULT_STATUSES_LIMIT, current_account)
     loaded_ancestors    = cache_collection(ancestors_results, Status)
     loaded_descendants  = cache_collection(descendants_results, Status)
 
