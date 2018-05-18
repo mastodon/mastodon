@@ -11,6 +11,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       if lock.acquired?
         @status = find_existing_status
         process_status if @status.nil?
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 

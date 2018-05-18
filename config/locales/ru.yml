@@ -4,6 +4,7 @@ ru:
     about_hashtag_html: Это публичные статусы, отмеченные хэштегом <strong>#%{hashtag}</strong>. Вы можете взаимодействовать с ними при наличии у Вас аккаунта в глобальной сети Mastodon.
     about_mastodon_html: Mastodon - это <em>свободная</em> социальная сеть с <em>открытым исходным кодом</em>. Как <em>децентрализованная</em> альтернатива коммерческим платформам, Mastodon предотвращает риск монополизации Вашего общения одной компанией. Выберите сервер, которому Вы доверяете &mdash; что бы Вы ни выбрали, Вы сможете общаться со всеми остальными. Любой может запустить свой собственный узел Mastodon и участвовать в <em>социальной сети</em> совершенно бесшовно.
     about_this: Об этом узле
+    administered_by: 'Администратор узла:'
     closed_registrations: В данный момент регистрация на этом узле закрыта.
     contact: Связаться
     contact_missing: Не установлено
@@ -48,6 +49,7 @@ ru:
     reserved_username: Имя пользователя зарезервировано
     roles:
       admin: Администратор
+      bot: Бот
       moderator: Модератор
     unfollow: Отписаться
   admin:
@@ -58,7 +60,15 @@ ru:
       destroyed_msg: Заметка модератора успешно удалена!
     accounts:
       are_you_sure: Вы уверены?
+      avatar: Аватар
       by_domain: Домен
+      change_email:
+        changed_msg: E-mail аккаунта успешно изменён!
+        current_email: Текущий e-mail
+        label: Сменить e-mail
+        new_email: Новый e-mail
+        submit: Сменить e-mail
+        title: Сменить e-mail для %{username}
       confirm: Подтвердить
       confirmed: Подтверждено
       confirming: подтверждающий
@@ -108,6 +118,7 @@ ru:
       public: Публичный
       push_subscription_expires: Подписка PuSH истекает
       redownload: Обновить аватар
+      remove_avatar: Удалить аватар
       resend_confirmation:
         already_confirmed: Этот пользователь уже подтвержден
         send: Повторно отправить подтверждение по электронной почте
@@ -132,13 +143,16 @@ ru:
       statuses: Статусы
       subscribe: Подписаться
       title: Аккаунты
+      unconfirmed_email: Неподтверждённый e-mail
       undo_silenced: Снять глушение
       undo_suspension: Снять блокировку
       unsubscribe: Отписаться
       username: Имя пользователя
-      web: WWW
+      web: Веб
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} назначил(а) жалобу %{target} на себя"
+        change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
         confirm_user: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
         create_custom_emoji: "%{name} загрузил(а) новый эмодзи %{target}"
         create_domain_block: "%{name} заблокировал(а) домен %{target}"
@@ -154,10 +168,13 @@ ru:
         enable_user: "%{name} включил(а) вход пользователя %{target}"
         memorialize_account: "%{name} перевел(а) аккаунт пользователя %{target} в режим памятника"
         promote_user: "%{name} повысил(а) пользователя %{target}"
+        remove_avatar_user: "%{name} удалил(а) аватар пользователя %{target}"
+        reopen_report: "%{name} переоткрыл(а) жалобу %{target}"
         reset_password_user: "%{name} сбросил(а) пароль пользователя %{target}"
-        resolve_report: "%{name} dismissed report %{target}"
+        resolve_report: "%{name} решил(а) жалобу %{target}"
         silence_account: "%{name} заглушил(а) аккаунт %{target}"
         suspend_account: "%{name} заморозил(а) аккаунт %{target}"
+        unassigned_report: "%{name} сняла назначение жалобы %{target}"
         unsilence_account: "%{name} снял(а) глушение аккаунта %{target}"
         unsuspend_account: "%{name} разморозил(а) аккаунт %{target}"
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
@@ -245,24 +262,44 @@ ru:
         expired: Истёкшие
         title: Фильтр
       title: Приглашения
+    report_notes:
+      created_msg: Примечание жалобы создано!
+      destroyed_msg: Примечание жалобы удалено!
     reports:
+      account:
+        note: заметка
+        report: жалоба
       action_taken_by: 'Действие предпринято:'
       are_you_sure: Вы уверены?
+      assign_to_self: Назначить себе
+      assigned: Назначенный модератор
       comment:
         none: Нет
+      created_at: Создано
       id: ID
       mark_as_resolved: Отметить как разрешенную
+      mark_as_unresolved: Отметить как неразрешённую
+      notes:
+        create: Добавить заметку
+        create_and_resolve: Разрешить с заметкой
+        create_and_unresolve: Переоткрыть с заметкой
+        delete: Удалить
+        placeholder: Опишите, какие действия были приняты, или любые другие подробности…
+      reopen: Переоткрыть жалобу
       report: 'Жалоба #%{id}'
       report_contents: Содержимое
       reported_account: Аккаунт нарушителя
       reported_by: Отправитель жалобы
       resolved: Разрешено
+      resolved_msg: Жалоба успешно обработана!
       silence_account: Заглушить аккаунт
       status: Статус
       suspend_account: Блокировать аккаунт
       target: Цель
       title: Жалобы
+      unassign: Снять назначение
       unresolved: Неразрешенные
+      updated_at: Обновлена
       view: Просмотреть
     settings:
       activity_api_enabled:
@@ -339,6 +376,7 @@ ru:
   admin_mailer:
     new_report:
       body: "%{reporter} подал(а) жалобу на %{target}"
+      body_remote: Кто-то с узла %{domain} пожаловался на %{target}
       subject: Новая жалоба, узел %{instance} (#%{id})
   application_mailer:
     notification_preferences: Изменить настройки e-mail
@@ -428,7 +466,7 @@ ru:
     archive_takeout:
       date: Дата
       download: Скачать ваш архив
-      hint_html: Вы можете запросить архив своих <strong>статусов и загруженных медиа-файлов</strong>. Экспортированные данные будут в формате ActivityPub, который можно прочесть любой соответствующей программой.
+      hint_html: Вы можете запросить архив своих <strong>статусов и загруженных медиа-файлов</strong>. Экспортированные данные будут в формате ActivityPub, который можно прочесть любой соответствующей программой. Запрашивать архив можно каждые 7 дней.
       in_progress: Собирается ваш архив...
       request: Запросить ваш архив
       size: Размер
@@ -444,6 +482,8 @@ ru:
     lock_link: Закройте аккаунт
     purge: Удалить из подписчиков
     success:
+      few: В процессе мягкой блокировки подписчиков с %{count} доменов...
+      many: В процессе мягкой блокировки подписчиков с %{count} доменов...
       one: В процессе мягкой блокировки подписчиков с одного домена...
       other: В процессе мягкой блокировки подписчиков с %{count} доменов...
     true_privacy_html: Пожалуйста, заметьте, что <strong>настоящая конфиденциальность может быть достигнута только при помощи end-to-end шифрования</strong>.
@@ -454,6 +494,8 @@ ru:
     powered_by: работает на %{link}
     save_changes: Сохранить изменения
     validation_errors:
+      few: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
+      many: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
       one: Что-то здесь не так! Пожалуйста, прочитайте об ошибке ниже
       other: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
   imports:
@@ -549,7 +591,7 @@ ru:
         units:
           billion: млрд
           million: млн
-          quadrillion: Q
+          quadrillion: квадрлн
           thousand: тыс
           trillion: трлн
           unit: ''
@@ -583,6 +625,10 @@ ru:
     missing_resource: Поиск требуемого перенаправления URL для Вашего аккаунта завершился неудачей
     proceed: Продолжить подписку
     prompt: 'Вы хотите подписаться на:'
+  remote_unfollow:
+    error: Ошибка
+    title: Заголовок
+    unfollowed: Отписаны
   sessions:
     activity: Последняя активность
     browser: Браузер
@@ -652,7 +698,13 @@ ru:
         many: "%{count} видео"
         one: "%{count} видео"
         other: "%{count} видео"
+    boosted_from_html: Продвижение польз. %{acct_link}
     content_warning: 'Спойлер: %{warning}'
+    disallowed_hashtags:
+      few: 'содержались запрещённые хэштеги: %{tags}'
+      many: 'содержались запрещённые хэштеги: %{tags}'
+      one: 'содержался запрещённый хэштег: %{tags}'
+      other: 'содержались запрещённые хэштеги: %{tags}'
     open_in_web: Открыть в WWW
     over_character_limit: превышен лимит символов (%{max})
     pin_errors:
@@ -675,8 +727,86 @@ ru:
     reblogged: продвинул(а)
     sensitive_content: Чувствительный контент
   terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
+
+      <ul>
+        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+
+      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: Условия обслуживания и политика конфиденциальности %{instance}
   themes:
+    contrast: Высококонтрастная
     default: Mastodon
   time:
     formats:
@@ -722,6 +852,7 @@ ru:
       title: Добро пожаловать на борт, %{name}!
   users:
     invalid_email: Введенный e-mail неверен
-    invalid_otp_token: Введен неверный код
+    invalid_otp_token: Введен неверный код двухфакторной аутентификации
+    otp_lost_help_html: Если Вы потеряли доступ к обоим, свяжитесь с %{email}
     seamless_external_login: Вы залогинены через сторонний сервис, поэтому настройки e-mail и пароля недоступны.
     signed_in_as: 'Выполнен вход под именем:'

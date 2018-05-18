@@ -23,6 +23,8 @@ class FetchLinkCardService < BaseService
       if lock.acquired?
         @card = PreviewCard.find_by(url: @url)
         process_url if @card.nil? || @card.updated_at <= 2.weeks.ago
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 
