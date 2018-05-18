@@ -19,6 +19,8 @@ gl:
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
         setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando
           está conectada.
+        setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a
+          está a seguir
       imports:
         data: Ficheiro CSV exportado desde outra instancia Mastodon
       sessions:
@@ -67,6 +69,7 @@ gl:
         type: Tipo de importación
         username: Nome de usuaria
         username_or_email: Nome de usuaria ou Correo-e
+        setting_hide_network: Agochar a súa rede
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue
