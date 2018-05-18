@@ -26,7 +26,7 @@ const notify = options =>
     } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) { // Already grouped, proceed with appending the notification to the group
       const group = { ...notifications[0] };
 
-      group.title = formatMessage('notifications.group', options.data.preferred_locale, { count: notifications.length + 1 });
+      group.title = formatMessage('notifications.group', options.data.preferred_locale, { count: group.data.count + 1 });
       group.body  = `${options.title}\n${group.body}`;
       group.data  = { ...group.data, count: group.data.count + 1 };
 
@@ -62,8 +62,9 @@ const handlePush = (event) => {
     body,
     icon,
     tag: notification_id,
+    timestamp: new Date(),
     badge: '/badge.png',
-    url: '/web/notifications',
+    data: { access_token, preferred_locale, url: '/web/notifications' },
   }));
 
   // Rich notification
