@@ -15,6 +15,8 @@
 #
 
 class Web::PushSubscription < ApplicationRecord
+  include RoutingHelper
+
   belongs_to :user, optional: true
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', optional: true
 
