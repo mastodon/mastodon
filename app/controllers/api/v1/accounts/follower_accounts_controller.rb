@@ -19,6 +19,8 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   end
 
   def load_accounts
+    return [] if @account.user_hides_network? && current_account.id != @account.id
+
     default_accounts.merge(paginated_follows).to_a
   end
 

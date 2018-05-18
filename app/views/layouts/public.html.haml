@@ -8,9 +8,9 @@
       %span.single-user-login
         = link_to t('auth.login'), new_user_session_path
         &mdash;
-      %span.domain= link_to site_hostname, about_path
+      %span.footer__domain= link_to site_hostname, about_path
     - else
-      %span.domain= link_to site_hostname, root_path
+      %span.footer__domain= link_to site_hostname, root_path
     %span.powered-by
       != t('generic.powered_by', link: link_to('Mastodon', 'https://joinmastodon.org'))
 

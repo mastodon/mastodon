@@ -4,6 +4,7 @@ oc:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en 400x400px
+        bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
         display_name:
           one: Demòra encara <span class="name-counter">1</span> caractèr
@@ -19,7 +20,7 @@ oc:
       imports:
         data: Fichièr CSV exportat d’una autra instància Mastodon
       sessions:
-        otp: Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstre mobil o utilizatz un de vòstres còdis de recuperacion.
+        otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
       user:
         filtered_languages: Las lengas seleccionadas seràn levadas de vòstre flux d’actualitat
     labels:
@@ -29,6 +30,7 @@ oc:
           value: Contengut
       defaults:
         avatar: Avatar
+        bot: Aquò es lo compte a un robòt
         confirm_new_password: Confirmacion del nòu senhal
         confirm_password: Confirmatz lo nòu senhal
         current_password: Senhal actual

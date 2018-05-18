@@ -70,7 +70,7 @@ oc:
         title: Cambiar l’adreça a %{username}
       confirm: Confirmar
       confirmed: Confirmat
-      confirming: Confirmando
+      confirming: Confirmacion
       demote: Retrogradar
       disable: Desactivar
       disable_two_factor_authentication: Desactivar 2FA
@@ -79,7 +79,7 @@ oc:
       domain: Domeni
       edit: Modificar
       email: Corrièl
-      email_status: Estado del correo electrónico
+      email_status: Estat de l’adreça
       enable: Activar
       enabled: Activat
       feed_url: Flux URL
@@ -119,15 +119,16 @@ oc:
       redownload: Actualizar los avatars
       remove_avatar: Supriir l’avatar
       resend_confirmation:
-        already_confirmed: Este usuario ya está confirmado
-        send: Reenviar el correo electrónico de confirmación
-        success: "¡Correo electrónico de confirmación enviado con éxito!"
+        already_confirmed: Aqueste utilizaire es ja confirmat
+        send: Tornar mandar lo corrièl de confirmacion
+        success: Corrièl de confirmacion corrèctament mandat !
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
       role: Permissions
       roles:
         admin: Administrator
+        bot: Robòt
         moderator: Moderador
         staff: Personnal
         user: Uitlizaire
@@ -537,7 +538,7 @@ oc:
     archive_takeout:
       date: Data
       download: Telecargar vòstre archiu
-      hint_html: Podètz demandar un archiu de vòstres <strong>tuts e mèdias enviats</strong>. Las donadas exportadas seràn al format ActivityPub, ligible pels logicials compatibles.
+      hint_html: Podètz demandar un archiu de vòstres <strong>tuts e mèdias enviats</strong>. Las donadas exportadas seràn al format ActivityPub, ligible pels logicials compatibles. Podètz demandar un archiu cada 7 jorns.
       in_progress: Complilacion de vòstre archiu...
       request: Demandar vòstre archiu
       size: Talha
@@ -561,7 +562,7 @@ oc:
   generic:
     changes_saved_msg: Cambiaments ben realizats !
     powered_by: propulsat per %{link}
-    save_changes: Salvagardar los cambiaments
+    save_changes: Salvar los cambiaments
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
@@ -755,6 +756,7 @@ oc:
       video:
         one: "%{count} vidèo"
         other: "%{count} vidèos"
+    boosted_from_html: Partejat de %{acct_link}
     content_warning: 'Avertiment de contengut : %{warning}'
     disallowed_hashtags:
       one: 'conten una etiqueta desactivada : %{tags}'
@@ -829,5 +831,6 @@ oc:
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
+    otp_lost_help_html: Se perdatz l’accès al dos, podètz benlèu contactar %{email}
     seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'
