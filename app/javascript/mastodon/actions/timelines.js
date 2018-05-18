@@ -1,6 +1,6 @@
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import api, { getLinks } from '../api';
-import { Map as ImmutableMap } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
@@ -64,12 +64,19 @@ export function deleteFromTimelines(id) {
   };
 };
 
-export function expandTimeline(timelineId, path, params = {}) {
+const noOp = () => {};
+
+export function expandTimeline(timelineId, path, params = {}, done = noOp) {
   return (dispatch, getState) => {
     const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
 
     if (timeline.get('isLoading')) {
+      done();
       return;
+    }
+
+    if (!params.max_id && timeline.get('items', ImmutableList()).size > 0) {
+      params.since_id = timeline.getIn(['items', 0]);
     }
 
     dispatch(expandTimelineRequest(timelineId));
@@ -78,21 +85,23 @@ export function expandTimeline(timelineId, path, params = {}) {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.code === 206));
+      done();
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error));
+      done();
     });
   };
 };
 
-export const expandHomeTimeline         = ({ maxId } = {}) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId });
-export const expandPublicTimeline       = ({ maxId } = {}) => expandTimeline('public', '/api/v1/timelines/public', { max_id: maxId });
-export const expandCommunityTimeline    = ({ maxId } = {}) => expandTimeline('community', '/api/v1/timelines/public', { local: true, max_id: maxId });
-export const expandDirectTimeline       = ({ maxId } = {}) => expandTimeline('direct', '/api/v1/timelines/direct', { max_id: maxId });
+export const expandHomeTimeline         = ({ maxId } = {}, done = noOp) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId }, done);
+export const expandPublicTimeline       = ({ maxId } = {}, done = noOp) => expandTimeline('public', '/api/v1/timelines/public', { max_id: maxId }, done);
+export const expandCommunityTimeline    = ({ maxId } = {}, done = noOp) => expandTimeline('community', '/api/v1/timelines/public', { local: true, max_id: maxId }, done);
+export const expandDirectTimeline       = ({ maxId } = {}, done = noOp) => expandTimeline('direct', '/api/v1/timelines/direct', { max_id: maxId }, done);
 export const expandAccountTimeline      = (accountId, { maxId, withReplies } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, max_id: maxId });
 export const expandAccountFeaturedTimeline = accountId => expandTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true });
 export const expandAccountMediaTimeline = (accountId, { maxId } = {}) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true });
-export const expandHashtagTimeline      = (hashtag, { maxId } = {}) => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`, { max_id: maxId });
-export const expandListTimeline         = (id, { maxId } = {}) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId });
+export const expandHashtagTimeline      = (hashtag, { maxId } = {}, done = noOp) => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`, { max_id: maxId }, done);
+export const expandListTimeline         = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
 
 export function expandTimelineRequest(timeline) {
   return {

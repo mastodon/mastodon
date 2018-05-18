@@ -30,6 +30,7 @@ class UserSettingsDecorator
     user.settings['noindex']                 = noindex_preference if change?('setting_noindex')
     user.settings['flavour']                 = flavour_preference if change?('setting_flavour')
     user.settings['skin']                    = skin_preference if change?('setting_skin')
+    user.settings['hide_network']            = hide_network_preference if change?('setting_hide_network')
   end
 
   def merged_notification_emails
@@ -90,6 +91,10 @@ class UserSettingsDecorator
 
   def skin_preference
     settings['setting_skin']
+  end
+
+  def hide_network_preference
+    boolean_cast_setting 'setting_hide_network'
   end
 
   def boolean_cast_setting(key)
