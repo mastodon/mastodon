@@ -57,42 +57,41 @@ const handlePush = (event) => {
   const { access_token, notification_id, preferred_locale, title, body, icon } = event.data.json();
 
   // Placeholder until more information can be loaded
-  event.waitUntil(notify({
-    title,
-    body,
-    icon,
-    tag: notification_id,
-    timestamp: new Date(),
-    badge: '/badge.png',
-    data: { access_token, preferred_locale, url: '/web/notifications' },
-  }));
+  event.waitUntil(
+    notify({
+      title,
+      body,
+      icon,
+      tag: notification_id,
+      timestamp: new Date(),
+      badge: '/badge.png',
+      data: { access_token, preferred_locale, url: '/web/notifications' },
+    }).then(() => fetchFromApi(`/api/v1/notifications/${notification_id}`, 'get', access_token)).then(notification => {
+      const options = {};
 
-  // Rich notification
-  event.waitUntil(fetchFromApi(`/api/v1/notifications/${notification_id}`, 'get', access_token).then(notification => {
-    const options = {};
+      options.title     = formatMessage(`notification.${notification.type}`, preferred_locale, { name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
+      options.body      = notification.status && notification.status.content;
+      options.icon      = notification.account.avatar_static;
+      options.timestamp = notification.created_at && new Date(notification.created_at);
+      options.tag       = notification.id;
+      options.badge     = '/badge.png';
+      options.image     = notification.status && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url || undefined;
+      options.data      = { access_token, preferred_locale, id: notification.status ? notification.status.id : notification.account.id, url: notification.status ? `/web/statuses/${notification.status.id}` : `/web/accounts/${notification.account.id}` };
 
-    options.title     = formatMessage(`notification.${notification.type}`, preferred_locale, { name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
-    options.body      = notification.status && notification.status.content;
-    options.icon      = notification.account.avatar_static;
-    options.timestamp = notification.created_at && new Date(notification.created_at);
-    options.tag       = notification.id;
-    options.badge     = '/badge.png';
-    options.image     = notification.status && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url || undefined;
-    options.data      = { access_token, preferred_locale, id: notification.status ? notification.status.id : notification.account.id, url: notification.status ? `/web/statuses/${notification.status.id}` : `/web/accounts/${notification.account.id}` };
+      if (notification.status && notification.status.sensitive) {
+        options.data.hiddenBody  = notification.status.content;
+        options.data.hiddenImage = notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url;
 
-    if (notification.status && notification.status.sensitive) {
-      options.data.hiddenBody  = notification.status.content;
-      options.data.hiddenImage = notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url;
+        options.body    = undefined;
+        options.image   = undefined;
+        options.actions = [actionExpand(preferred_locale)];
+      } else if (notification.status) {
+        options.actions = [actionReblog(preferred_locale), actionFavourite(preferred_locale)];
+      }
 
-      options.body    = undefined;
-      options.image   = undefined;
-      options.actions = [actionExpand(preferred_locale)];
-    } else if (notification.status) {
-      options.actions = [actionReblog(preferred_locale), actionFavourite(preferred_locale)];
-    }
-
-    event.waitUntil(notify(options));
-  }).catch(() => {}));
+      return notify(options);
+    })
+  );
 };
 
 const actionExpand = preferred_locale => ({
