@@ -1,12 +1,11 @@
+---
 sk:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
-        bot: Tento účet vykonáva hlavne zautomatizované akcie, a je pravdepodobne
-          nespravovaný
-        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali
-          nejaké osobné správy kým ste boli preč
+        bot: Tento účet vykonáva hlavne zautomatizované akcie, a je pravdepodobne nespravovaný
+        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali nejaké osobné správy kým ste boli preč
         display_name:
           few: Ostávajú ti <span class="name-counter">%{count}</span> znaky
           one: Ostáva ti <span class="name-counter">1</span> znak
@@ -18,19 +17,15 @@ sk:
           few: Ostávajú ti <span class="note-counter">%{count}</span> znaky
           one: Ostáva vám <span class="note-counter">1</span> znak
           other: Ostáva ti <span class="note-counter">%{count}</span> znakov
+        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a statusy
-        setting_theme: Toto ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého
-          zariadenia.
-        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené
-          na tvojom profile
+        setting_theme: Toto ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
-        otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích
-          obnovovacích kódov:'
+        otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       user:
-        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané nebudú z verejnej
-          časovej osi
+        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané nebudú z verejnej časovej osi
     labels:
       account:
         fields:
@@ -66,8 +61,7 @@ sk:
         setting_reduce_motion: Redukovať pohyb v animáciách
         setting_system_font_ui: Použiť základné systémové písmo
         setting_theme: Vzhľad stránky
-        setting_unfollow_modal: Zobraziť potvrdzovacie okno pred skončením sledovania
-          iného užívateľa
+        setting_unfollow_modal: Zobraziť potvrdzovacie okno pred skončením sledovania iného užívateľa
         severity: Závažnosť
         type: Typ importu
         username: Užívateľská prezývka
@@ -85,6 +79,6 @@ sk:
         reblog: Poslať email ak niekto re-tootne tvoj príspevok
     'no': Nie
     required:
-      mark: '*'
+      mark: "*"
       text: povinné
     'yes': Áno
