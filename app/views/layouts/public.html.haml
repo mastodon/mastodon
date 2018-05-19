@@ -12,6 +12,6 @@
     - else
       %span.footer__domain= link_to site_hostname, root_path
     %span.powered-by
-      != t('generic.powered_by', link: link_to('Mastodon', 'https://joinmastodon.org'))
+      != t('generic.powered_by', link: link_to('https://joinmastodon.org') { image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon' })
 
 = render template: 'layouts/application'
