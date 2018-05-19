@@ -4,7 +4,7 @@ nl:
     hints:
       defaults:
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
-        bot: Waarschuwt mensen dat dit account geen echt persoon is
+        bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
         display_name:
           one: <span class="name-counter">1</span> teken over
@@ -15,6 +15,7 @@ nl:
         note:
           one: <span class="note-counter">1</span> teken over
           other: <span class="note-counter">%{count}</span> tekens over
+        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
         setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
       imports:
@@ -54,6 +55,7 @@ nl:
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
         setting_display_sensitive_media: Als gevoelig gemarkeerde media altijd tonen
+        setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken

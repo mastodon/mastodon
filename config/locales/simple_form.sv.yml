@@ -4,6 +4,7 @@ sv:
     hints:
       defaults:
         avatar: Högst 2 MB. Kommer nedskalas till 400x400px
+        bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
         display_name:
           one: <span class="name-counter">1</span> tecken kvar
@@ -19,7 +20,7 @@ sv:
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
-        otp: Ange tvåfaktorkoden från din telefon eller använd någon av dina återställningskoder.
+        otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
       user:
         filtered_languages: Kontrollerade språk filtreras från offentliga tidslinjer för dig
     labels:

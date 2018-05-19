@@ -4,13 +4,14 @@ ja:
     hints:
       defaults:
         avatar: 2MBまでのPNG、GIF、JPGが利用可能です。400x400pxまで縮小されます
-        bot: アカウントが人を表すものではないことを表示します
+        bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         fields: プロフィールに表として4つまでの項目を表示することができます
         header: 2MBまでのPNG、GIF、JPGが利用可能です。 700x335pxまで縮小されます
         locked: フォロワーを手動で承認する必要があります
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
+        setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
       imports:
@@ -50,6 +51,7 @@ ja:
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
         setting_display_sensitive_media: 閲覧注意としてマークされたメディアも常に表示する
+        setting_hide_network: 繋がりを隠す
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
