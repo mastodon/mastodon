@@ -47,7 +47,13 @@ const fetchFromApi = (path, method, accessToken) => {
 
     method: method,
     credentials: 'include',
-  }).then(res => res.ok ? res : throw new Error(res.status)).then(res => res.json());
+  }).then(res => {
+    if (res.ok) {
+      return res;
+    } else {
+      throw new Error(res.status);
+    }
+  }).then(res => res.json());
 };
 
 const formatMessage = (messageId, locale, values = {}) =>
