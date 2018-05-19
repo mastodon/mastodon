@@ -50,6 +50,15 @@ class Web::PushSubscription < ApplicationRecord
                                end
   end
 
+  class << self
+    def unsubscribe_for(application_id, resource_owner)
+      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id, revoked_at: nil)
+                                                .pluck(:id)
+
+      where(access_token_id: access_token_ids).delete_all
+    end
+  end
+
   private
 
   def push_payload(message, ttl = 5.minutes.seconds)
