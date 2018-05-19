@@ -227,6 +227,7 @@ sk:
       severity: Závažnosť
       show:
         affected_accounts:
+          few: "%{count} účty v databáze ovplyvnených"
           one: Jeden účet v databáze ovplyvnený
           other: "%{count} účtov v databáze ovplyvnených"
         retroactive:
@@ -478,6 +479,7 @@ sk:
     lock_link: Zamknite svoj účet
     purge: Odstrániť následovateľa
     success:
+      few: Počas utišovania sledovateľov z %{count} domén...
       one: Počas utišovania sledovateľov z jednej domény...
       other: Počas utišovania sledovateľov z %{count} domén...
     true_privacy_html: Prosím majte na vedomí, <strong> 1 že ozajstné súkromie sa dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong> 2.
@@ -488,8 +490,9 @@ sk:
     powered_by: poháňané vďaka %{link}
     save_changes: Uložiť zmeny
     validation_errors:
+      few: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
       one: Niečo nieje úplne v poriadku! Prosím skontroluj chybu
-      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetky %{count} chyby
+      other: Niečo ešte stále nieje v poriadku! Prosím skontroluj všetkých %{count} chýb
   imports:
     preface: Môžeš importovať dáta ktoré si exportoval/a z iného Mastodon serveru, ako sú napríklad zoznamy ľudí ktorých sleduješ, alebo blokuješ.
     success: Tvoje dáta boli nahraté úspešne, a budú teraz spracované v danom čase
@@ -512,6 +515,7 @@ sk:
     expires_in_prompt: Nikdy
     generate: Vygeneruj
     max_uses:
+      few: "%{count} použitia"
       one: jedno použitie
       other: "%{count} použití"
     max_uses_prompt: Bez limitov
@@ -542,11 +546,13 @@ sk:
       body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi od %{since}
       mention: "%{name} ťa spomenul/a v:"
       new_followers_summary:
+        few: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
         one: Taktiež, získal/a si jedného nového následovníka zatiaľ čo si bol/a preč. Yay!
         other: Taktiež, získal/a si %{count} nových následovníkov za tú dobu čo si bol/a preč. Yay!
       subject:
+        few: "%{count} nové notifikácie od tvojej poslednej návštevy \U0001F418"
         one: "1 nová notifikácia od tvojej poslednej návštevy \U0001F418"
-        other: "%{count} nové notifikácie od tvojej poslednej návštevy \U0001F418"
+        other: "%{count} nových notifikácií od tvojej poslednej návštevy \U0001F418"
       title: Zatiaľ čo si bol/a preč…
     favourite:
       body: 'Tvoj príspevok bol uložený medi obľúbené užívateľa %{name}:'
@@ -591,20 +597,6 @@ sk:
     other: Ostatné
     publishing: Publikovanie
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} si obľúbil/a tvoj príspevok"
-    follow:
-      title: "%{name} ťa teraz následuje"
-    group:
-      title: "%{count} notifikácie"
-    mention:
-      action_boost: Pozdvihni
-      action_expand: Ukáž viac
-      action_favourite: Obľúbené
-      title: "%{name} ťa spomenul/a"
-    reblog:
-      title: "%{name} vyzdvihli tvoj príspevok"
   remote_follow:
     acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
     missing_resource: Nemôžeme nájsť potrebnú presmerovaciu adresu k tvojmu účtu
@@ -654,9 +646,11 @@ sk:
     attached:
       description: 'Priložené: %{attached}'
       image:
+        few: "%{count} obrázky"
         one: "%{count} obrázok"
         other: "%{count} obrázkov"
       video:
+        few: "%{count} videá"
         one: "%{count} video"
         other: "%{count} videí"
     content_warning: 'Varovanie o obsahu: %{warning}'

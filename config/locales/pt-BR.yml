@@ -40,6 +40,7 @@ pt-BR:
     following: Seguindo
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
+    network_hidden: Essa informação não está disponível
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
@@ -49,6 +50,7 @@ pt-BR:
     reserved_username: Este usuário está reservado
     roles:
       admin: Administrador
+      bot: Robô
       moderator: Moderador
     unfollow: Deixar de seguir
   admin:
@@ -593,20 +595,6 @@ pt-BR:
     other: Outro
     publishing: Publicação
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} favoritou a sua postagem"
-    follow:
-      title: "%{name} está te seguindo"
-    group:
-      title: "%{count} notificações"
-    mention:
-      action_boost: Compartilhar
-      action_expand: Mostrar mais
-      action_favourite: Favoritar
-      title: "%{name} mencionou você"
-    reblog:
-      title: "%{name} compartilhou a sua postagem"
   remote_follow:
     acct: Insira o seu usuário@domínio do qual você quer seguir
     missing_resource: Não foi possível encontrar a URL de direcionamento para a sua conta
@@ -680,6 +668,7 @@ pt-BR:
       video:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
+    boosted_from_html: Compartilhada à partir de %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
     disallowed_hashtags:
       one: 'continha a hashtag não permitida: %{tags}'
