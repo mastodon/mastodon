@@ -32,7 +32,9 @@ gem 'cld3', '~> 3.2.0'
 gem 'devise', '~> 4.4'
 gem 'devise-two-factor', '~> 3.0'
 
-gem 'devise_pam_authenticatable2', '~> 8.0', install_if: -> { ENV['PAM_ENABLED'] == 'true' }
+group :pam_authentication, optional: true do
+  gem 'devise_pam_authenticatable2', '~> 9.0'
+end
 gem 'net-ldap', '~> 0.10'
 gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
@@ -69,7 +71,7 @@ gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 0.10'
 gem 'ruby-oembed', '~> 0.12', require: 'oembed'
 gem 'ruby-progressbar', '~> 1.4'
-gem 'sanitize', '~> 4.4'
+gem 'sanitize', '~> 4.6.4'
 gem 'sidekiq', '~> 5.0'
 gem 'sidekiq-scheduler', '~> 2.1'
 gem 'sidekiq-unique-jobs', '~> 5.0'

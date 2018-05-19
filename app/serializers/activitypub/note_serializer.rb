@@ -57,7 +57,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
   end
 
   def virtual_tags
-    object.mentions + object.tags + object.emojis
+    object.mentions.to_a.sort_by(&:id) + object.tags + object.emojis
   end
 
   def atom_uri

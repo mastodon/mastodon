@@ -29,6 +29,35 @@ module StreamEntriesHelper
     [prepend_str, account.note].join(' · ')
   end
 
+  def media_summary(status)
+    attachments = { image: 0, video: 0 }
+
+    status.media_attachments.each do |media|
+      if media.video?
+        attachments[:video] += 1
+      else
+        attachments[:image] += 1
+      end
+    end
+
+    text = attachments.to_a.reject { |_, value| value.zero? }.map { |key, value| t("statuses.attached.#{key}", count: value) }.join(' · ')
+
+    return if text.blank?
+
+    t('statuses.attached.description', attached: text)
+  end
+
+  def status_text_summary(status)
+    return if status.spoiler_text.blank?
+    t('statuses.content_warning', warning: status.spoiler_text)
+  end
+
+  def status_description(status)
+    components = [[media_summary(status), status_text_summary(status)].reject(&:blank?).join(' · ')]
+    components << status.text if status.spoiler_text.blank?
+    components.reject(&:blank?).join("\n\n")
+  end
+
   def stream_link_target
     embedded_view? ? '_blank' : nil
   end
