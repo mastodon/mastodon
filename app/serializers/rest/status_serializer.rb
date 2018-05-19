@@ -3,8 +3,7 @@
 class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
-             :uri, :content, :url, :reblogs_count, :favourites_count,
-             :license, :license_url
+             :uri, :content, :url, :reblogs_count, :favourites_count
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -91,13 +90,6 @@ class REST::StatusSerializer < ActiveModel::Serializer
     object.mentions.to_a.sort_by(&:id)
   end
 
-  def license
-    I18n.t(
-      Status::LICENSE_URLS[object.license_url],
-      scope: 'simple_form.options.user.setting_default_license'
-    )
-  end
-
   class ApplicationSerializer < ActiveModel::Serializer
     attributes :name, :website
   end
@@ -129,6 +121,21 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
     def url
       tag_url(object)
+    end
+  end
+
+  class LicenseSerializer < ActiveModel::Serializer
+    attributes :name, :url
+
+    def name
+      I18n.t(
+        Status::LICENSE_URLS[object.license_url],
+        scope: 'simple_form.options.user.setting_default_license'
+      )
+    end
+
+    def url
+      object.license_url
     end
   end
 end

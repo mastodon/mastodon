@@ -104,8 +104,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
       </Link>);
     }
 
-    if (status.get('license_url')) {
-      licenseLink = <span> · <a className='detailed-status__license' href={status.get('license_url')} target='_blank' rel='noopener'>{status.get('license')}</a></span>;
+    if (status.getIn(['license', 'url'])) {
+      licenseLink = <span> · <a className='detailed-status__license' href={status.getIn(['license', 'url'])} target='_blank' rel='noopener'>{status.getIn(['license', 'name'])}</a></span>;
     }
 
     return (

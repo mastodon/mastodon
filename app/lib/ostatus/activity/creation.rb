@@ -50,7 +50,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
         thread: thread? ? find_status(thread.first) || find_activitypub_status(thread.first, thread.second) : nil,
         media_attachment_ids: media_attachments.map(&:id),
         sensitive: sensitive?,
-        license_url: license_url,
+        license_url: license_url
       )
 
       save_mentions(status)

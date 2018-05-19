@@ -22,8 +22,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
         'schema'                    => 'http://schema.org#',
         'PropertyValue'             => 'schema:PropertyValue',
         'value'                     => 'schema:value',
-        'cc'                        => 'https://creativecommons.org/ns#',
-        'license'                   => 'cc:license',
+        'license'                   => 'http://www.w3.org/1999/xhtml/vocab#license',
       },
     ],
   }.freeze

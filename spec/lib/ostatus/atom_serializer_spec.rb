@@ -387,7 +387,6 @@ RSpec.describe OStatus::AtomSerializer do
         end
 
         expect(license_link).to be
-        expect(license_link[:type]).to eq('application/rdf+xml')
         expect(license_link[:href]).to eq('https://creativecommons.org/licenses/by/4.0/')
       end
 
