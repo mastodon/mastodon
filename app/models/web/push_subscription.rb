@@ -15,8 +15,6 @@
 #
 
 class Web::PushSubscription < ApplicationRecord
-  include RoutingHelper
-
   belongs_to :user, optional: true
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', optional: true
 
@@ -70,30 +68,19 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def payload_for_notification(notification)
-    {
-      access_token: associated_access_token,
-      preferred_locale: associated_user&.locale || I18n.default_locale,
-      notification_id: notification.id,
-      notification_type: notification.type,
-      icon: full_asset_url(notification.from_account.avatar_static_url),
-      title: I18n.t("notification_mailer.#{notification.type}.subject", name: notification.from_account.display_name.presence || notification.from_account.username),
-      body: strip_truncate(notification.target_status&.spoiler_text&.presence || notification.target_status&.text || notification.from_account.note),
-    }
-  end
-
-  def strip_truncate(str)
-    return str if str.blank?
-
-    ActionController::Base.helpers.strip_tags(str).tap do |plain|
-      plain[0..140] + (plain.size > 140 ? '…' : '')
-    end
+    ActiveModelSerializers::SerializableResource.new(
+      notification,
+      serializer: Web::NotificationSerializer,
+      scope: self,
+      scope_name: :current_push_subscription
+    ).as_json
   end
 
   def find_or_create_access_token
     Doorkeeper::AccessToken.find_or_create_for(
       Doorkeeper::Application.find_by(superapp: true),
       session_activation.user_id,
-      Doorkeeper::OAuth::Scopes.from_string('read write follow'),
+      Doorkeeper::OAuth::Scopes.from_string('read write follow push'),
       Doorkeeper.configuration.access_token_expires_in,
       Doorkeeper.configuration.refresh_token_enabled?
     )
