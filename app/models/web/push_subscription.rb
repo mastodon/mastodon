@@ -46,16 +46,13 @@ class Web::PushSubscription < ApplicationRecord
     @associated_access_token = if access_token_id.nil?
                                  find_or_create_access_token.token
                                else
-                                 access_token
+                                 access_token.token
                                end
   end
 
   private
 
   def push_payload(message, ttl = 5.minutes.seconds)
-    # TODO: Make sure that the payload does not
-    # exceed 4KB - Webpush::PayloadTooLarge
-
     Webpush.payload_send(
       message: Oj.dump(message),
       endpoint: endpoint,
@@ -71,15 +68,19 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def message_from(notification)
-    serializable_resource = ActiveModelSerializers::SerializableResource.new(notification, serializer: Web::NotificationSerializer, scope: self, scope_name: :current_push_subscription)
-    serializable_resource.as_json
+    ActiveModelSerializers::SerializableResource.new(
+      notification,
+      serializer: Web::NotificationSerializer,
+      scope: self,
+      scope_name: :current_push_subscription
+    ).as_json
   end
 
   def find_or_create_access_token
     Doorkeeper::AccessToken.find_or_create_for(
       Doorkeeper::Application.find_by(superapp: true),
       session_activation.user_id,
-      Doorkeeper::OAuth::Scopes.from_string('read write follow'),
+      Doorkeeper::OAuth::Scopes.from_string('read write follow push'),
       Doorkeeper.configuration.access_token_expires_in,
       Doorkeeper.configuration.refresh_token_enabled?
     )
