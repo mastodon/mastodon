@@ -44,11 +44,11 @@ class ActivityPub::DeliveryWorker
   end
 
   def response_successful?(response)
-    response.code > 199 && response.code < 300
+    (200...300).cover?(response.code)
   end
 
   def response_error_unsalvageable?(response)
-    response.code > 399 && response.code < 500 && response.code != 429
+    (400...500).cover?(response.code) && response.code != 429
   end
 
   def failure_tracker
