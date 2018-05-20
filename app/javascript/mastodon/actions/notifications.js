@@ -22,6 +22,7 @@ export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
+  group: { id: 'notifications.group', defaultMessage: '{count} notifications' },
 });
 
 const fetchRelatedRelationships = (dispatch, notifications) => {

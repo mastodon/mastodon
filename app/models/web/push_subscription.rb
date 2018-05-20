@@ -21,8 +21,8 @@ class Web::PushSubscription < ApplicationRecord
   has_one :session_activation
 
   def push(notification)
-    I18n.with_locale(associated_user.locale || I18n.default_locale) do
-      push_payload(message_from(notification), 48.hours.seconds)
+    I18n.with_locale(associated_user&.locale || I18n.default_locale) do
+      push_payload(payload_for_notification(notification), 48.hours.seconds)
     end
   end
 
@@ -46,16 +46,22 @@ class Web::PushSubscription < ApplicationRecord
     @associated_access_token = if access_token_id.nil?
                                  find_or_create_access_token.token
                                else
-                                 access_token
+                                 access_token.token
                                end
+  end
+
+  class << self
+    def unsubscribe_for(application_id, resource_owner)
+      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id, revoked_at: nil)
+                                                .pluck(:id)
+
+      where(access_token_id: access_token_ids).delete_all
+    end
   end
 
   private
 
   def push_payload(message, ttl = 5.minutes.seconds)
-    # TODO: Make sure that the payload does not
-    # exceed 4KB - Webpush::PayloadTooLarge
-
     Webpush.payload_send(
       message: Oj.dump(message),
       endpoint: endpoint,
@@ -70,16 +76,20 @@ class Web::PushSubscription < ApplicationRecord
     )
   end
 
-  def message_from(notification)
-    serializable_resource = ActiveModelSerializers::SerializableResource.new(notification, serializer: Web::NotificationSerializer, scope: self, scope_name: :current_push_subscription)
-    serializable_resource.as_json
+  def payload_for_notification(notification)
+    ActiveModelSerializers::SerializableResource.new(
+      notification,
+      serializer: Web::NotificationSerializer,
+      scope: self,
+      scope_name: :current_push_subscription
+    ).as_json
   end
 
   def find_or_create_access_token
     Doorkeeper::AccessToken.find_or_create_for(
       Doorkeeper::Application.find_by(superapp: true),
       session_activation.user_id,
-      Doorkeeper::OAuth::Scopes.from_string('read write follow'),
+      Doorkeeper::OAuth::Scopes.from_string('read write follow push'),
       Doorkeeper.configuration.access_token_expires_in,
       Doorkeeper.configuration.refresh_token_enabled?
     )
