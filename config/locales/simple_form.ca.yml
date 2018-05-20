@@ -4,7 +4,7 @@ ca:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Màxim 2MB. S'escalarà a 400x400px
-        bot: Informa a tothom que el compte no representa a una persona
+        bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
         display_name:
           one: <span class="name-counter">1</span> càracter restant
@@ -15,6 +15,7 @@ ca:
         note:
           one: <span class="note-counter">1</span> càracter restant
           other: <span class="note-counter">%{count}</span> caràcters restants
+        setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
         setting_theme: Afecta l'aspecte de Mastodon quan es visita des de qualsevol dispositiu.
       imports:
@@ -54,6 +55,7 @@ ca:
         setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles
         setting_delete_modal: Mostra la finestra de confirmació abans de suprimir un toot
         setting_display_sensitive_media: Mostra sempre els elements multimèdia marcats com a sensibles
+        setting_hide_network: Amaga la teva xarxa
         setting_noindex: Desactivació de la indexació del motor de cerca
         setting_reduce_motion: Redueix el moviment en animacions
         setting_system_font_ui: Utilitza el tipus de lletra predeterminat del sistema

@@ -4,17 +4,18 @@ gl:
     hints:
       defaults:
         avatar: PNG, GIF ou JPG.  Máximo 2MB. Será reducida a 400x400px
-        bot: Avisa as usuarias de que a conta non representa a unha persoa
+        bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe personal na súa ausencia
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
         fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo 2MB. Será reducida a 700x335px
-        locked: Require que vostede aprove as seguidoras de xeito manual
+        locked: Require que vostede acepte as seguidoras de xeito manual
         note:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
+        setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
         setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
       imports:
@@ -54,6 +55,7 @@ gl:
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha mensaxe
         setting_display_sensitive_media: Mostrar sempre os medios marcados como sensibles
+        setting_hide_network: Agochar a súa rede
         setting_noindex: Pedir non aparecer nas buscas dos motores de busca
         setting_reduce_motion: Reducir o movemento nas animacións
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema

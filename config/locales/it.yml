@@ -1,6 +1,7 @@
 ---
 it:
   about:
+    about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
     about_mastodon_html: Mastodon è un social network <em>gratuito e open-source</em>. Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita del <em>social network</em>.
     about_this: A proposito di questo server
     administered_by: 'Amministrato da:'
@@ -11,6 +12,9 @@ it:
     description_headline: Cos'è %{domain}?
     domain_count_after: altri server
     domain_count_before: Connesso a
+    extended_description_html: |
+      <h3>Un buon posto per le regole</h3>
+      <p>La descrizione estesa non è ancora stata preparata.</p>
     features:
       humane_approach_body: Imparando dai fallimenti degli altri networks, Mastodon mira a fare scelte di design etico per combattere l'abuso dei social media.
       humane_approach_title: Un approccio più umano
@@ -45,11 +49,12 @@ it:
     reserved_username: Il nome utente è riservato
     roles:
       admin: Amministratore
+      bot: Bot
       moderator: Mod
     unfollow: Non seguire più
   admin:
     account_moderation_notes:
-      create: Crea
+      create: Lascia nota
       created_msg: Nota di moderazione creata con successo!
       delete: Elimina
       destroyed_msg: Nota di moderazione distrutta con successo!
@@ -127,6 +132,9 @@ it:
         staff: Staff
         user: Utente
       search: Cerca
+      show:
+        created_reports: Rapporti creati da questo account
+        targeted_reports: Rapporti che riguardano questo account
       silence: Silenzia
       statuses: Stati
       subscribe: Sottoscrivi
@@ -139,16 +147,22 @@ it:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
         change_email_user: "%{name} ha cambiato l'indirizzo email per l'utente %{target}"
         confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
+        destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
+        destroy_status: "%{name} ha eliminato lo status di %{target}"
+        disable_2fa_user: "%{name} ha disabilitato l'obbligo dei due fattori per l'utente %{target}"
         disable_custom_emoji: "%{name} ha disabilitato l'emoji %{target}"
         disable_user: "%{name} ha disabilitato il login per l'utente %{target}"
         enable_custom_emoji: "%{name} ha abilitato l'emoji %{target}"
         enable_user: "%{name} ha abilitato il login per l'utente %{target}"
         remove_avatar_user: "%{name} ha eliminato l'avatar di %{target}"
+        reopen_report: "%{name} ha riaperto il rapporto %{target}"
         reset_password_user: "%{name} ha reimpostato la password dell'utente %{target}"
+        resolve_report: "%{name} ha risolto il rapporto %{target}"
         silence_account: "%{name} ha silenziato l'account di %{target}"
         suspend_account: "%{name} ha sospeso l'account di %{target}"
         unsilence_account: "%{name} ha de-silenziato l'account di %{target}"
@@ -245,7 +259,10 @@ it:
         create_and_resolve: Risolvi con nota
         create_and_unresolve: Riapri con nota
         delete: Elimina
+      reopen: Riapri rapporto
+      report: 'Rapporto #%{id}'
       report_contents: Contenuti
+      reported_by: Inviato da
       resolved: Risolto
       silence_account: Silenzia account
       status: Stato
@@ -275,11 +292,13 @@ it:
           title: Apri la cancellazione dell'account
         min_invite_role:
           disabled: Nessuno
+          title: Permetti inviti da
         open:
           desc_html: Consenti a chiunque di creare un account
           title: Apri registrazioni
       show_known_fediverse_at_about_page:
         desc_html: Quando attivato, mostra nell'anteprima i toot da tutte le istanze conosciute. Altrimenti mostra solo i toot locali.
+        title: Mostra la fediverse conosciuta nell'anteprima della timeline
       show_staff_badge:
         title: Mostra badge staff
       site_description:
@@ -294,8 +313,8 @@ it:
       back_to_account: Torna alla pagina dell'account
       batch:
         delete: Elimina
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
+        nsfw_off: Segna come non sensibile
+        nsfw_on: Segna come sensibile
       failed_to_execute: Impossibile eseguire
       media:
         title: Media
@@ -385,7 +404,7 @@ it:
     archive_takeout:
       date: Data
       download: Scarica il tuo archivio
-      hint_html: Puoi richiedere un archivio dei tuoi <strong>toot e media caricati</strong>. I dati esportati sono in formato ActivityPub, leggibili da qualunque software che segue questo standard.
+      hint_html: Puoi richiedere un archivio dei tuoi <strong>toot e media caricati</strong>. I dati esportati sono in formato ActivityPub, leggibili da qualunque software che segue questo standard. Puoi richiedere un archivio ogni 7 giorni.
       in_progress: Creazione archivio...
       request: Richiedi il tuo archivio
       size: Dimensioni
@@ -429,10 +448,13 @@ it:
       '86400': 1 giorno
     expires_in_prompt: Mai
     generate: Genera
+    max_uses:
+      other: "%{count} utilizzi"
     max_uses_prompt: Nessun limite
     prompt: Genera dei link e forniscili ad altri per concedere l'accesso a questa istanza
     table:
       expires_at: Scade
+      uses: Utilizzi
     title: Invita persone
   landing_strip_html: "<strong>%{name}</strong> è un utente su %{link_to_root_path}. Puoi seguirlo o interagire con lui se possiedi un account ovunque nel fediverse."
   landing_strip_signup_html: Se non possiedi un account, puoi <a href="%{sign_up_path}">iscriverti qui</a>.
@@ -453,7 +475,7 @@ it:
   notification_mailer:
     digest:
       action: Vedi tutte le notifiche
-      body: 'Ecco un breve riassunto di quello che ti sei perso su %{instance} dalla tua ultima visita del %{since}:'
+      body: Ecco un breve riassunto di quello che ti sei perso dalla tua ultima visita del %{since}
       mention: "%{name} ti ha menzionato:"
       new_followers_summary:
         one: E inoltre hai ricevuto un nuovo seguace mentre eri assente! Urrà!
@@ -506,18 +528,6 @@ it:
     other: Altro
     publishing: Pubblicazione
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} ha segnato il tuo status come apprezzato"
-    follow:
-      title: "%{name} ha iniziato a seguirti"
-    group:
-      title: "%{count} notifiche"
-    mention:
-      action_expand: Mostra altro
-      action_favourite: Apprezzato
-    reblog:
-      title: "%{name} ha condiviso il tuo status"
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
@@ -527,9 +537,12 @@ it:
     error: Errore
     title: Titolo
   sessions:
+    activity: Ultima attività
     browser: Browser
     browsers:
       blackberry: Blackberry
+      chrome: Chrome
+      generic: Browser sconosciuto
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
     platforms:
@@ -550,6 +563,10 @@ it:
     two_factor_authentication: Autenticazione a due fattori
     your_apps: Le tue applicazioni
   statuses:
+    attached:
+      video:
+        one: "%{count} video"
+        other: "%{count} video"
     open_in_web: Apri sul Web
     over_character_limit: Limite caratteri superato di %{max}
     pin_errors:
@@ -570,8 +587,11 @@ it:
     pinned: Toot fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
+  terms:
+    title: "%{instance} Termini di servizio e politica della privacy"
   themes:
     contrast: Contrasto elevato
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
