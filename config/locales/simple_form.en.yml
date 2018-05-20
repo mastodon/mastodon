@@ -4,7 +4,7 @@ en:
     hints:
       defaults:
         avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 400x400px
-        bot: Warns people that the account does not represent a person
+        bot: This account mainly performs automated actions and might not be monitored
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
         display_name:
           one: <span class="name-counter">1</span> character left
@@ -15,6 +15,7 @@ en:
         note:
           one: <span class="note-counter">1</span> character left
           other: <span class="note-counter">%{count}</span> characters left
+        setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
         setting_theme: Affects how Mastodon looks when you're logged in from any device.
       imports:
@@ -54,6 +55,7 @@ en:
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a toot
         setting_display_sensitive_media: Always show media marked as sensitive
+        setting_hide_network: Hide your network
         setting_noindex: Opt-out of search engine indexing
         setting_reduce_motion: Reduce motion in animations
         setting_system_font_ui: Use system's default font

@@ -23,6 +23,8 @@ class ActivityPub::ProcessAccountService < BaseService
         create_account if @account.nil?
         update_account
         process_tags
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 
