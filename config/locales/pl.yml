@@ -36,10 +36,11 @@ pl:
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     follow: Śledź
-    followers: Śledzących
-    following: Śledzi
+    followers: Śledzący
+    following: Śledzeni
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
+    network_hidden: Ta informacja nie jest dostępna
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -49,6 +50,7 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
+      bot: Bot
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
@@ -602,20 +604,6 @@ pl:
     other: Pozostałe
     publishing: Publikowanie
     web: Sieć
-  push_notifications:
-    favourite:
-      title: "%{name} dodał Twój wpis do ulubionych"
-    follow:
-      title: "%{name} zaczął Cię śledzić"
-    group:
-      title: "%{count} powiadomień"
-    mention:
-      action_boost: Podbij
-      action_expand: Pokaż więcej
-      action_favourite: Dodaj do ulubionych
-      title: "%{name} wspomniał o Tobie"
-    reblog:
-      title: "%{name} podbił Twój wpis"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -683,7 +671,7 @@ pl:
     your_apps: Twoje aplikacje
   statuses:
     attached:
-      description: 'Przytwierdzony: %{attached}'
+      description: 'Załączono: %{attached}'
       image:
         few: "%{count} obrazy"
         many: "%{count} obrazów"
@@ -694,6 +682,7 @@ pl:
         many: "%{count} filmów"
         one: "%{count} film"
         other: "%{count} filmów"
+    boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     disallowed_hashtags:
       one: 'zawiera niedozwolony hashtag: %{tags}'
@@ -846,5 +835,6 @@ pl:
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
