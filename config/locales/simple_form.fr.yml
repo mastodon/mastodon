@@ -4,7 +4,7 @@ fr:
     hints:
       defaults:
         avatar: Au format PNG, GIF ou JPG. 2 Mo maximum. Sera réduit à 400x400px
-        bot: Avertit que ce compte ne représente pas une personne
+        bot: Ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
         display_name:
           one: <span class="name-counter">1</span> caractère restant
@@ -15,6 +15,7 @@ fr:
         note:
           one: <span class="note-counter">1</span> caractère restant
           other: <span class="note-counter">%{count}</span> caractères restants
+        setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
         setting_theme: Affecte l’apparence de Mastodon quand vous êtes connecté·e depuis n’importe quel appareil.
       imports:
@@ -54,6 +55,7 @@ fr:
         setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Afficher une fenêtre de confirmation avant de supprimer un pouet
         setting_display_sensitive_media: Toujours afficher les médias marqués comme sensibles
+        setting_hide_network: Cacher votre réseau
         setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_reduce_motion: Réduire la vitesse des animations
         setting_system_font_ui: Utiliser la police par défaut du système
