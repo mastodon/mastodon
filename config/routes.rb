@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   end
 
   use_doorkeeper do
-    controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
+    controllers authorizations: 'oauth/authorizations',
+                authorized_applications: 'oauth/authorized_applications',
+                tokens: 'oauth/tokens'
   end
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
