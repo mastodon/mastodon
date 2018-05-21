@@ -59,6 +59,9 @@ const fetchFromApi = (path, method, accessToken) => {
 const formatMessage = (messageId, locale, values = {}) =>
   (new IntlMessageFormat(locales[locale][messageId], locale)).format(values);
 
+const htmlToPlainText = html =>
+  html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, '');
+
 const handlePush = (event) => {
   const { access_token, notification_id, preferred_locale, title, body, icon } = event.data.json();
 
@@ -76,7 +79,7 @@ const handlePush = (event) => {
       const options = {};
 
       options.title     = formatMessage(`notification.${notification.type}`, preferred_locale, { name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
-      options.body      = notification.status && notification.status.content;
+      options.body      = notification.status && htmlToPlainText(notification.status.content);
       options.icon      = notification.account.avatar_static;
       options.timestamp = notification.created_at && new Date(notification.created_at);
       options.tag       = notification.id;
@@ -85,10 +88,10 @@ const handlePush = (event) => {
       options.data      = { access_token, preferred_locale, id: notification.status ? notification.status.id : notification.account.id, url: notification.status ? `/web/statuses/${notification.status.id}` : `/web/accounts/${notification.account.id}` };
 
       if (notification.status && notification.status.sensitive) {
-        options.data.hiddenBody  = notification.status.content;
+        options.data.hiddenBody  = htmlToPlainText(notification.status.content);
         options.data.hiddenImage = notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url;
 
-        options.body    = undefined;
+        options.body    = notification.status.spoiler_text;
         options.image   = undefined;
         options.actions = [actionExpand(preferred_locale)];
       } else if (notification.status) {
