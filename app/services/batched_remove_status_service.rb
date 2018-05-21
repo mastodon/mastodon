@@ -93,6 +93,7 @@ class BatchedRemoveStatusService < BaseService
           redis.publish("timeline:hashtag:#{hashtag}:media", payload)
           redis.publish("timeline:hashtag:#{hashtag}:local:media", payload) if status.local?
         end
+      end
     end
   end
 
