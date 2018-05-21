@@ -481,11 +481,17 @@ const startWorker = (workerId) => {
   });
 
   app.get('/api/v1/streaming/hashtag', (req, res) => {
-    streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    const onlyMedia = req.query.only_media === '1' || req.query.only_media === 'true';
+    const channel   = onlyMedia ? `timeline:hashtag:${process.env.DEFAULT_HASHTAG.toLowerCase()}:media` : `timeline:hashtag:${process.env.DEFAULT_HASHTAG.toLowerCase()}`;
+
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
 
   app.get('/api/v1/streaming/hashtag/local', (req, res) => {
-    streamFrom(`timeline:hashtag:${req.query.tag.toLowerCase()}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+    const onlyMedia = req.query.only_media === '1' || req.query.only_media === 'true';
+    const channel   = onlyMedia ? `timeline:hashtag:${process.env.DEFAULT_HASHTAG.toLowerCase()}:local:media` : `timeline:hashtag:${process.env.DEFAULT_HASHTAG.toLowerCase()}:local`;
+
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
 
   app.get('/api/v1/streaming/list', (req, res) => {
