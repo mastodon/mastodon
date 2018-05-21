@@ -19,6 +19,7 @@ class RemoveStatusService < BaseService
     remove_from_affected
     remove_reblogs
     remove_from_hashtags
+    remove_from_hashtags_media if status.media_attachments.exists?
     remove_from_public
     remove_from_media if status.media_attachments.exists?
     remove_from_direct if status.direct_visibility?
@@ -123,6 +124,15 @@ class RemoveStatusService < BaseService
       Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
       Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if @status.local?
     end
+  end
+
+  def remove_from_hashtags_media
+    return unless @status.public_visibility?
+
+    @tags.each do |hashtag|
+      Redis.current.publish("timeline:hashtag:#{hashtag}:media", @payload)
+      Redis.current.publish("timeline:hashtag:#{hashtag}:local:media", @payload) if @status.local?
+      end
   end
 
   def remove_from_public
