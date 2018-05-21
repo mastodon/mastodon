@@ -81,7 +81,7 @@ class BatchedRemoveStatusService < BaseService
       redis.publish('timeline:public', payload)
       redis.publish('timeline:public:local', payload) if status.local?
 
-      if status.media_attachments.exists?
+      if status.media_attachments.any?
         redis.publish('timeline:public:media', payload)
         redis.publish('timeline:public:local:media', payload) if status.local?
       end
