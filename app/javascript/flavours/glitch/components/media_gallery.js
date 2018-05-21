@@ -236,7 +236,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   handleRef = (node) => {
-    if (node && this.isStandaloneEligible()) {
+    if (node /*&& this.isStandaloneEligible()*/) {
       // offsetWidth triggers a layout, so only calculate when we need to
       this.setState({
         width: node.offsetWidth,
