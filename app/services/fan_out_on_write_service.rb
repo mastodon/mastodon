@@ -21,7 +21,7 @@ class FanOutOnWriteService < BaseService
     return if status.account.silenced? || !status.public_visibility? || status.reblog?
 
     deliver_to_hashtags(status)
-    deliver_to_hashtags_media(status) if status.media_attachments.exists?
+    deliver_to_hashtags_media(status) if status.media_attachments.any?
 
     return if status.reply? && status.in_reply_to_account_id != status.account_id
 

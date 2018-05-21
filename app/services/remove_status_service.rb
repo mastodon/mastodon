@@ -19,7 +19,7 @@ class RemoveStatusService < BaseService
     remove_from_affected
     remove_reblogs
     remove_from_hashtags
-    remove_from_hashtags_media if status.media_attachments.exists?
+    remove_from_hashtags_media if status.media_attachments.any?
     remove_from_public
     remove_from_media if status.media_attachments.any?
     remove_from_direct if status.direct_visibility?
