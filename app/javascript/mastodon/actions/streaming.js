@@ -40,10 +40,9 @@ const refreshHomeTimelineAndNotification = (dispatch, done) => {
   dispatch(expandHomeTimeline({}, () => dispatch(expandNotifications({}, done))));
 };
 
-export const connectUserStream = () => connectTimelineStream('home', 'user', refreshHomeTimelineAndNotification);
-export const connectCommunityStream = () => connectTimelineStream('community', 'public:local');
-export const connectMediaStream = () => connectTimelineStream('community', 'public:local');
-export const connectPublicStream = () => connectTimelineStream('public', 'public');
-export const connectHashtagStream = (tag) => connectTimelineStream(`hashtag:${tag}`, `hashtag&tag=${tag}`);
-export const connectDirectStream = () => connectTimelineStream('direct', 'direct');
-export const connectListStream = (id) => connectTimelineStream(`list:${id}`, `list&list=${id}`);
+export const connectUserStream      = () => connectTimelineStream('home', 'user', refreshHomeTimelineAndNotification);
+export const connectCommunityStream = ({ onlyMedia } = {}) => connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`);
+export const connectPublicStream    = ({ onlyMedia } = {}) => connectTimelineStream(`public${onlyMedia ? ':media' : ''}`, `public${onlyMedia ? ':media' : ''}`);
+export const connectHashtagStream   = tag => connectTimelineStream(`hashtag:${tag}`, `hashtag&tag=${tag}`);
+export const connectDirectStream    = () => connectTimelineStream('direct', 'direct');
+export const connectListStream      = id => connectTimelineStream(`list:${id}`, `list&list=${id}`);
