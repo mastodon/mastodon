@@ -63,6 +63,13 @@ zh-CN:
       are_you_sure: 你确定吗？
       avatar: 头像
       by_domain: 域名
+      change_email:
+        changed_msg: 帐户电子邮件地址更改成功！
+        current_email: 当前的电子邮件地址
+        label: 更改电子邮件地址
+        new_email: 新的电子邮件地址
+        submit: 更改电子邮件地址
+        title: 为 %{username} 更改电子邮件地址
       confirm: 确认
       confirmed: 已确认
       confirming: 确认
@@ -137,6 +144,7 @@ zh-CN:
       statuses: 嘟文
       subscribe: 订阅
       title: 用户
+      unconfirmed_email: 待验证的电子邮件地址
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
       unsubscribe: 取消订阅
@@ -144,6 +152,7 @@ zh-CN:
       web: 站内页面
     action_logs:
       actions:
+        change_email_user: "%{name} 更改了用户 %{target} 的电子邮件地址"
         confirm_user: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
