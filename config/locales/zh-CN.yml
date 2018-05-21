@@ -373,6 +373,7 @@ zh-CN:
   admin_mailer:
     new_report:
       body: "%{reporter} 举报了用户 %{target}。"
+      body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
     notification_preferences: 更改电子邮件首选项
