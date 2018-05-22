@@ -9,6 +9,7 @@ import ColumnHeader from '../../components/column_header';
 import { expandPublicTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
+import SectionHeadline from '../community_timeline/components/section_headline';
 import { connectPublicStream } from '../../actions/streaming';
 
 const messages = defineMessages({
@@ -90,8 +91,6 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   handleHeadlineLinkClick = e => {
-    e.preventDefault();
-
     const { columnId, dispatch } = this.props;
     const onlyMedia = /\/media$/.test(e.currentTarget.href);
 
@@ -102,20 +101,14 @@ export default class PublicTimeline extends React.PureComponent {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
-    const headline = pinned ? (
-      <div className='public-timeline__section-headline'>
-        <a href='/timelines/public' className={!onlyMedia ? 'active' : undefined} onClick={this.handleHeadlineLinkClick}>
-          <FormattedMessage id='timeline.posts' defaultMessage='Toots' />
-        </a>
-        <a href='/timelines/public/media' className={onlyMedia ? 'active' : undefined} onClick={this.handleHeadlineLinkClick}>
-          <FormattedMessage id='timeline.media' defaultMessage='Media' />
-        </a>
-      </div>
-    ) : (
-      <div className='public-timeline__section-headline'>
-        <NavLink exact to='/timelines/public' replace><FormattedMessage id='timeline.posts' defaultMessage='Toots' /></NavLink>
-        <NavLink exact to='/timelines/public/media' replace><FormattedMessage id='timeline.media' defaultMessage='Media' /></NavLink>
-      </div>
+    const headline = (
+      <SectionHeadline
+        timelineId='community'
+        to='/timelines/public/local'
+        pinned={pinned}
+        onlyMedia={onlyMedia}
+        onClick={this.handleHeadlineLinkClick}
+      />
     );
 
     return (

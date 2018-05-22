@@ -4746,6 +4746,10 @@ a.status-card {
   cursor: default;
   display: flex;
 
+  &--hidden {
+    display: none;
+  }
+
   a {
     display: block;
     flex: 1 1 auto;
