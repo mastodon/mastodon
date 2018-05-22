@@ -394,9 +394,9 @@ fa:
       failed_to_execute: اجرا نشد
       media:
         title: رسانه
-      no_media: بدون رسانه
+      no_media: بدون عکس یا ویدیو
       title: نوشته‌های حساب
-      with_media: دارای رسانه
+      with_media: دارای عکس یا ویدیو
     subscriptions:
       callback_url: نشانی Callback
       confirmed: تأییدشده
@@ -509,7 +509,7 @@ fa:
     archive_takeout:
       date: تاریخ
       download: بایگانی خود را باربگیرید
-      hint_html: شما می‌توانید بایگانی <strong>بوق‌ها و پرونده‌های بارگذاری‌شدهٔ</strong>
+      hint_html: شما می‌توانید بایگانی <strong>نوشته‌ها و پرونده‌های بارگذاری‌شدهٔ</strong>
         خود را درخواست کنید. داده‌های برون‌بری‌شده در قالب ActivityPub خواهند بود
         و همهٔ نرم‌افزارهای سازگار خواهند توانست آن را بخوانند. شما هر ۷ روز می‌توانید
         یک بار برای چنین بایگانی‌ای درخواست دهید.
@@ -652,9 +652,9 @@ fa:
     prev: قبلی
     truncate: '&hellip;'
   preferences:
-    languages: زبان‌ها
-    other: سایر
-    publishing: انتشار
+    languages: تنظیمات زبان
+    other: سایر تنظیمات
+    publishing: تنظیمات انتشار مطالب
     web: وب
   remote_follow:
     acct: نشانی حساب username@domain خود را این‌جا بنویسید
@@ -745,7 +745,7 @@ fa:
     title: '%{name}: "%{quote}"'
     visibilities:
       private: خصوصی
-      private_long: نمایش تنها به پیگیران
+      private_long: تنها پیگیران شما می‌بینند
       public: عمومی
       public_long: همه می‌توانند ببینند
       unlisted: فهرست‌نشده
@@ -761,6 +761,7 @@ fa:
   themes:
     contrast: کنتراست بالا
     default: ماستدون
+    mastodon-light: ماستدون (روشن)
   time:
     formats:
       default: '%d %b %Y, %H:%M'
