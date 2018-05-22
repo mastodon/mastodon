@@ -38,7 +38,7 @@
                           %table.input{ align: 'center', cellspacing: 0, cellpadding: 0 }
                             %tbody
                               %tr
-                                %td= @resource.unconfirmed_email
+                                %td= @resource.try(:unconfirmed_email) ? @resource.unconfirmed_email : @resource.email
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody

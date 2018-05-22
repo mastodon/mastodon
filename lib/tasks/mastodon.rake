@@ -490,7 +490,7 @@ namespace :mastodon do
 
         if user.save
           prompt.ok 'User created and confirmation mail sent to the user\'s email address.'
-          prompt.ok "Here is the random password generated for the user: #{password}"
+          prompt.ok "Here is the random password generated for the user: #{user.password}"
         else
           prompt.warn 'User was not created because of the following errors:'
 
@@ -756,6 +756,24 @@ namespace :mastodon do
 
       PreviewCard.where(embed_url: '', type: :photo).delete_all
       LinkCrawlWorker.push_bulk status_ids
+    end
+
+    desc 'Find case-insensitive username duplicates of local users'
+    task find_duplicate_usernames: :environment do
+      include RoutingHelper
+
+      disable_log_stdout!
+
+      duplicate_masters = Account.find_by_sql('SELECT * FROM accounts WHERE id IN (SELECT min(id) FROM accounts WHERE domain IS NULL GROUP BY lower(username) HAVING count(*) > 1)')
+      pastel = Pastel.new
+
+      duplicate_masters.each do |account|
+        puts pastel.yellow("First of their name: ") + pastel.bold(account.username) + " (#{admin_account_url(account.id)})"
+
+        Account.where('lower(username) = ?', account.username.downcase).where.not(id: account.id).each do |duplicate|
+          puts "  " + pastel.red("Duplicate: ") + admin_account_url(duplicate.id)
+        end
+      end
     end
 
     desc 'Remove all home feed regeneration markers'
