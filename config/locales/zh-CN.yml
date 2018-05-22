@@ -26,9 +26,9 @@ zh-CN:
       within_reach_title: 始终触手可及
     generic_description: "%{domain} 是这个庞大网络中的一台服务器"
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
-    learn_more: 详细了解
+    learn_more: 了解详情
     other_instances: 其他实例
-    source_code: 源码
+    source_code: 源代码
     status_count_after: 条嘟文
     status_count_before: 他们共嘟出了
     user_count_after: 位用户
@@ -281,7 +281,7 @@ zh-CN:
         create_and_resolve: 添加记录并标记为“已处理”
         create_and_unresolve: 添加记录并重开
         delete: 删除
-        placeholder: 描述已经执行的操作，或其他任何与此条举报相关的跟进情况
+        placeholder: 描述已经执行的操作，或其他任何相关的跟进情况
       reopen: 重开举报
       report: '举报 #%{id}'
       report_contents: 内容
@@ -405,6 +405,9 @@ zh-CN:
     migrate_account_html: 如果你希望引导他人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
     or: 或者
     or_log_in_with: 或通过其他方式登录
+    providers:
+      cas: CAS
+      saml: SAML
     register: 注册
     register_elsewhere: 前往其他实例注册
     resend_confirmation: 重新发送确认邮件
@@ -460,7 +463,7 @@ zh-CN:
     archive_takeout:
       date: 日期
       download: 下载你的存档
-      hint_html: 你可以请求一份包含你的<strong>嘟文和已上传的媒体文件</strong>的存档。导出的数据为 ActivityPub 格式，因而可以通过相应的软件读取。每次可以请求存档的间隔至少为 7 天。
+      hint_html: 你可以请求一份帐户数据存档，其中包含你的<strong>嘟文和已上传的媒体文件</strong>。导出的数据为 ActivityPub 格式，因而可以被兼容的软件读取。每次允许请求存档的间隔至少为 7 天。
       in_progress: 正在准备你的存档……
       request: 请求你的存档
       size: 大小
@@ -574,7 +577,9 @@ zh-CN:
           trillion: T
           unit: ''
   pagination:
+    newer: 更新
     next: 下一页
+    older: 更早
     prev: 上一页
     truncate: "…"
   preferences:
@@ -599,12 +604,14 @@ zh-CN:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: 未知浏览器
       ie: Internet Explorer
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ浏览器
       safari: Safari
@@ -632,7 +639,7 @@ zh-CN:
     title: 会话
   settings:
     authorized_apps: 已授权的应用
-    back: 回到 Mastodon
+    back: 返回 Mastodon
     delete: 删除帐户
     development: 开发
     edit_profile: 更改个人资料
@@ -681,6 +688,7 @@ zh-CN:
   themes:
     contrast: 高对比度
     default: Mastodon
+    mastodon-light: Mastodon（亮色主题）
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
