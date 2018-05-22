@@ -104,23 +104,13 @@ export default class ComposeForm extends ImmutablePureComponent {
     this.props.onChangeSpoilerText(e.target.value);
   }
 
-  componentWillReceiveProps (nextProps) {
-    // If this is the update where we've finished uploading,
-    // save the last caret position so we can restore it below!
-    if (!nextProps.is_uploading && this.props.is_uploading) {
-      this._restoreCaret = this.autosuggestTextarea.textarea.selectionStart;
-    }
-  }
-
   componentDidUpdate (prevProps) {
     // This statement does several things:
     // - If we're beginning a reply, and,
     //     - Replying to zero or one users, places the cursor at the end of the textbox.
     //     - Replying to more than one user, selects any usernames past the first;
     //       this provides a convenient shortcut to drop everyone else from the conversation.
-    // - If we've just finished uploading an image, and have a saved caret position,
-    //   restores the cursor to that position after the text changes!
-    if (this.props.focusDate !== prevProps.focusDate || (prevProps.is_uploading && !this.props.is_uploading && typeof this._restoreCaret === 'number')) {
+    if (this.props.focusDate !== prevProps.focusDate) {
       let selectionEnd, selectionStart;
 
       if (this.props.preselectDate !== prevProps.preselectDate) {
