@@ -8,6 +8,11 @@ class Oauth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicatio
 
   include Localized
 
+  def destroy
+    Web::PushSubscription.unsubscribe_for(params[:id], current_resource_owner)
+    super
+  end
+
   private
 
   def store_current_location

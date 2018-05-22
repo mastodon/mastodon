@@ -8,7 +8,7 @@ class InvitesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    authorize :invite, :index?
+    authorize :invite, :create?
 
     @invites = invites
     @invite  = Invite.new(expires_in: 1.day.to_i)

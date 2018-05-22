@@ -40,6 +40,7 @@ sv:
     following: Följer
     media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
+    network_hidden: Denna information är inte tillgänglig
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
@@ -49,6 +50,7 @@ sv:
     reserved_username: Användarnamnet är reserverat
     roles:
       admin: Admin
+      bot: Bot
       moderator: Moderator
     unfollow: Sluta följa
   admin:
@@ -373,6 +375,7 @@ sv:
   admin_mailer:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
+      body_remote: Någon från %{domain} har rapporterat %{target}
       subject: Ny rapport för %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ändra e-postinställningar
@@ -462,7 +465,7 @@ sv:
     archive_takeout:
       date: Datum
       download: Ladda ner ditt arkiv
-      hint_html: Du kan begära ett arkiv av dina <strong>toots och uppladdad media</strong>. Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel programvara.
+      hint_html: Du kan begära ett arkiv av dina <strong>toots och uppladdad media</strong>. Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel programvara. Du kan begära ett arkiv var sjunde dag.
       in_progress: Kompilerar ditt arkiv...
       request: Efterfråga ditt arkiv
       size: Storlek
@@ -592,20 +595,6 @@ sv:
     other: Annat
     publishing: Publicering
     web: Webb
-  push_notifications:
-    favourite:
-      title: "%{name} favoriserade din status"
-    follow:
-      title: "%{name} följer nu dig"
-    group:
-      title: "%{count} meddelanden"
-    mention:
-      action_boost: Knuffa
-      action_expand: Visa mer
-      action_favourite: Favoriter
-      title: "%{name} nämnde dig"
-    reblog:
-      title: "%{name} boostade din status"
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
@@ -680,6 +669,7 @@ sv:
       video:
         one: "%{count} video"
         other: "%{count} videor"
+    boosted_from_html: Boosted från %{acct_link}
     content_warning: 'Innehållsvarning: %{warning}'
     disallowed_hashtags:
       one: 'innehöll en otillåten hashtag: %{tags}'
@@ -708,6 +698,7 @@ sv:
   terms:
     title: "%{instance} Användarvillkor och Sekretesspolicy"
   themes:
+    contrast: Hög kontrast
     default: Mastodon
   time:
     formats:
@@ -754,5 +745,6 @@ sv:
   users:
     invalid_email: E-postadressen är ogiltig
     invalid_otp_token: Ogiltig tvåfaktorkod
+    otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'

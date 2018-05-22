@@ -4,6 +4,7 @@ oc:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en 400x400px
+        bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
         display_name:
           one: Demòra encara <span class="name-counter">1</span> caractèr
@@ -14,12 +15,13 @@ oc:
         note:
           one: Demòra encara <span class="name-counter">1</span> caractèr
           other: Demòran encara <span class="name-counter">%{count}</span> caractèrs
+        setting_hide_network: Vòstre perfil mostrarà pas los que vos sègon e lo monde que seguètz
         setting_noindex: Aquò es destinat a vòstre perfil public e vòstra pagina d’estatuts
         setting_theme: Aquò càmbia lo tèma grafic de Mastodon quand sètz connectat qual que siasque lo periferic.
       imports:
         data: Fichièr CSV exportat d’una autra instància Mastodon
       sessions:
-        otp: Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstre mobil o utilizatz un de vòstres còdis de recuperacion.
+        otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
       user:
         filtered_languages: Las lengas seleccionadas seràn levadas de vòstre flux d’actualitat
     labels:
@@ -29,6 +31,7 @@ oc:
           value: Contengut
       defaults:
         avatar: Avatar
+        bot: Aquò es lo compte a un robòt
         confirm_new_password: Confirmacion del nòu senhal
         confirm_password: Confirmatz lo nòu senhal
         current_password: Senhal actual
@@ -52,6 +55,7 @@ oc:
         setting_default_sensitive: Totjorn marcar los mèdias coma sensibles
         setting_delete_modal: Afichar una fenèstra de confirmacion abans de suprimir un estatut
         setting_display_sensitive_media: Totjorn mostrar los mèdias coma sensibles
+        setting_hide_network: Amagar vòstre malhum
         setting_noindex: Èsser pas indexat pels motors de recèrca
         setting_reduce_motion: Reduire la velocitat de las animacions
         setting_system_font_ui: Utilizar la polissa del sisèma
