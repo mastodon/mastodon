@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
@@ -9,7 +8,7 @@ import ColumnHeader from '../../components/column_header';
 import { expandPublicTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import SectionHeadline from '../community_timeline/components/section_headline';
+// import SectionHeadline from '../community_timeline/components/section_headline';
 import { connectPublicStream } from '../../actions/streaming';
 
 const messages = defineMessages({
@@ -101,15 +100,17 @@ export default class PublicTimeline extends React.PureComponent {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
-    const headline = (
-      <SectionHeadline
-        timelineId='community'
-        to='/timelines/public/local'
-        pinned={pinned}
-        onlyMedia={onlyMedia}
-        onClick={this.handleHeadlineLinkClick}
-      />
-    );
+    // pending
+    //
+    // const headline = (
+    //   <SectionHeadline
+    //     timelineId='public'
+    //     to='/timelines/public'
+    //     pinned={pinned}
+    //     onlyMedia={onlyMedia}
+    //     onClick={this.handleHeadlineLinkClick}
+    //   />
+    // );
 
     return (
       <Column ref={this.setRef}>
@@ -127,7 +128,7 @@ export default class PublicTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          prepend={headline}
+          // prepend={headline}
           timelineId={`public${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}

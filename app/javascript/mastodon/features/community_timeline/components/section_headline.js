@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -36,13 +35,8 @@ export default class SectionHeadline extends Component {
   render () {
     const { timelineId, to, pinned, onlyMedia } = this.props;
 
-    const className = classNames(`${timelineId}-timeline__section-headline`, {
-      [`${timelineId}-timeline__section-headline--hidden`]: process.env.NODE_ENV === 'production',
-    });
-
-
     return (
-      <div className={className}>
+      <div className={`${timelineId}-timeline__section-headline`}>
         {pinned ? (
           <Fragment>
             <a href={to} className={!onlyMedia ? 'active' : undefined} onClick={this.handleClick}>
