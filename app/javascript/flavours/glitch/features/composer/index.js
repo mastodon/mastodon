@@ -195,16 +195,6 @@ class Composer extends React.Component {
     this.textarea = null;
   }
 
-  //  If this is the update where we've finished uploading,
-  //  save the last caret position so we can restore it below!
-  componentWillReceiveProps (nextProps) {
-    const { textarea } = this;
-    const { isUploading } = this.props;
-    if (textarea && isUploading && !nextProps.isUploading) {
-      this.caretPos = textarea.selectionStart;
-    }
-  }
-
   //  Tells our state the composer has been mounted.
   componentDidMount () {
     const { onMount } = this.props;
@@ -228,9 +218,6 @@ class Composer extends React.Component {
   //      - Replying to more than one user, selects any usernames past
   //        the first; this provides a convenient shortcut to drop
   //        everyone else from the conversation.
-  // - If we've just finished uploading an image, and have a saved
-  //   caret position, restores the cursor to that position after the
-  //   text changes.
   componentDidUpdate (prevProps) {
     const {
       caretPos,
@@ -238,7 +225,6 @@ class Composer extends React.Component {
     } = this;
     const {
       focusDate,
-      isUploading,
       isSubmitting,
       preselectDate,
       text,
@@ -246,7 +232,7 @@ class Composer extends React.Component {
     let selectionEnd, selectionStart;
 
     //  Caret/selection handling.
-    if (focusDate !== prevProps.focusDate || (prevProps.isUploading && !isUploading && !isNaN(caretPos) && caretPos !== null)) {
+    if (focusDate !== prevProps.focusDate) {
       switch (true) {
       case preselectDate !== prevProps.preselectDate:
         selectionStart = text.search(/\s/) + 1;
