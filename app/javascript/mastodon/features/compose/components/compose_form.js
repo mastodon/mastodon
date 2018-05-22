@@ -119,6 +119,7 @@ export default class ComposeForm extends ImmutablePureComponent {
       } else if (typeof this._restoreCaret === 'number') {
         selectionStart = this._restoreCaret;
         selectionEnd   = this._restoreCaret;
+        this._restoreCaret = null;
       } else {
         selectionEnd   = this.props.text.length;
         selectionStart = selectionEnd;
