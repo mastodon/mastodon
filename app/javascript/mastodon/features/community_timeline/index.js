@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
@@ -9,6 +8,7 @@ import ColumnHeader from '../../components/column_header';
 import { expandCommunityTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
+// import SectionHeadline from './components/section_headline';
 import { connectCommunityStream } from '../../actions/streaming';
 
 const messages = defineMessages({
@@ -90,8 +90,6 @@ export default class CommunityTimeline extends React.PureComponent {
   }
 
   handleHeadlineLinkClick = e => {
-    e.preventDefault();
-
     const { columnId, dispatch } = this.props;
     const onlyMedia = /\/media$/.test(e.currentTarget.href);
 
@@ -102,21 +100,17 @@ export default class CommunityTimeline extends React.PureComponent {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
-    const headline = pinned ? (
-      <div className='community-timeline__section-headline'>
-        <a href='/timelines/public/local' className={!onlyMedia ? 'active' : undefined} onClick={this.handleHeadlineLinkClick}>
-          <FormattedMessage id='timeline.posts' defaultMessage='Toots' />
-        </a>
-        <a href='/timelines/public/local/media' className={onlyMedia ? 'active' : undefined} onClick={this.handleHeadlineLinkClick}>
-          <FormattedMessage id='timeline.media' defaultMessage='Media' />
-        </a>
-      </div>
-    ) : (
-      <div className='community-timeline__section-headline'>
-        <NavLink exact to='/timelines/public/local' replace><FormattedMessage id='timeline.posts' defaultMessage='Toots' /></NavLink>
-        <NavLink exact to='/timelines/public/local/media' replace><FormattedMessage id='timeline.media' defaultMessage='Media' /></NavLink>
-      </div>
-    );
+    // pending
+    //
+    // const headline = (
+    //   <SectionHeadline
+    //     timelineId='community'
+    //     to='/timelines/public/local'
+    //     pinned={pinned}
+    //     onlyMedia={onlyMedia}
+    //     onClick={this.handleHeadlineLinkClick}
+    //   />
+    // );
 
     return (
       <Column ref={this.setRef}>
@@ -134,7 +128,7 @@ export default class CommunityTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          prepend={headline}
+          // prepend={headline}
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
