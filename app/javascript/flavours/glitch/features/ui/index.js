@@ -302,10 +302,11 @@ export default class UI extends React.Component {
   }
 
   handleHotkeyBack = () => {
-    if (window.history && window.history.length === 1) {
-      this.props.router.history.push('/');
+    // if history is exhausted, or we would leave mastodon, just go to root.
+    if (window.history.state) {
+      this.context.router.history.goBack();
     } else {
-      this.props.router.history.goBack();
+      this.context.router.history.push('/');
     }
   }
 
