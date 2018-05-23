@@ -9,6 +9,7 @@ import {
   COMPOSE_REPLY,
   COMPOSE_QUOTE,
   COMPOSE_DIRECT,
+  COMPOSE_QUOTE,
 } from '../actions/compose';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
@@ -36,6 +37,7 @@ export default function search(state = initialState, action) {
   case COMPOSE_MENTION:
   case COMPOSE_QUOTE:
   case COMPOSE_DIRECT:
+  case COMPOSE_QUOTE:
     return state.set('hidden', true);
   case SEARCH_FETCH_SUCCESS:
     return state.set('results', ImmutableMap({
