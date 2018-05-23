@@ -1,0 +1,58 @@
+= Builder 2.1.1 Released.
+
+Release 2.1.1 of Builder is mainly a bug fix release.
+
+== Changes in 2.1.1
+
+* Added <tt>reveal</tt> capability to BlankSlate.
+
+* Fixed a bug in BlankSlate where including a module into Object could
+  cause methods to leak into BlankSlate.
+
+* Fixed typo in XmlMarkup class docs (from Martin Fowler).
+
+* Fixed test on private methods to differentiate between targetted and
+  untargetted private methods.
+
+* Removed legacy capture of @self in XmlBase (@self was used back when
+  we used instance eval).
+
+* Added additional tests for global functions (both direct and
+  included).
+
+* Several misc internal cleanups, including rearranging the source
+  code tree.
+
+<b>NOTE:</b> The escaping attribute values by default is different
+than in previous releases of Builder.  This makes version 2.0.x
+somewhat incompatible with the 1.x series of Builder.  If you use "&",
+"<", or ">" in attributes values, you may have to change your
+code. (Essentially you remove the manual escaping.  The new way is
+easier, believe me).
+
+== What is Builder?
+
+Builder::XmlMarkup is a library that allows easy programmatic creation
+of XML markup.  For example:
+
+  builder = Builder::XmlMarkup.new(:target=>STDOUT, :indent=>2)
+  builder.person { |b| b.name("Jim"); b.phone("555-1234") }
+
+will generate:
+
+  <person>
+    <name>Jim</name>
+    <phone>555-1234</phone>
+  </person>
+
+== Availability
+
+The easiest way to get and install builder is via RubyGems ...
+
+  gem install builder    (you may need root/admin privileges)
+
+== Thanks
+
+* Martin Fowler for spotting some typos in the documentation.
+
+-- Jim Weirich

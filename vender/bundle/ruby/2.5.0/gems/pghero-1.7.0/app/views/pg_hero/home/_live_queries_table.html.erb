@@ -1,0 +1,30 @@
+<table class="table queries">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Pid</th>
+      <th style="width: 25%;">Duration</th>
+      <th style="width: 25%;">State</th>
+      <th style="width: 25%;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% queries.reverse.each do |query| %>
+      <tr>
+        <td><%= query["pid"] %></td>
+        <td><%= number_with_delimiter(query["duration_ms"].to_f.round) %> ms</td>
+        <td><%= query["state"] %></td>
+        <td class="text-right">
+          <% button_path, button_options = Rails.version >= "4.1" ? [explain_path, {params: {query: query["query"]}}] : [explain_path(query: query["query"]), {}] %>
+          <%= button_to "Explain", button_path, button_options.merge(form: {target: "_blank"}, class: "btn btn-info") %>
+          <%= button_to "Kill", kill_path(pid: query["pid"]), class: "btn btn-danger" %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6" style="border-top: none; padding: 0;">
+          <%= query["source"] %> <span class="text-muted"><%= query["user"] %></span>
+          <pre><%= query["query"] %></pre>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

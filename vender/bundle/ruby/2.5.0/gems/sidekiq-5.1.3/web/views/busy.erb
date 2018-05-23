@@ -1,0 +1,98 @@
+<div class="row header">
+  <div class="col-sm-8 pull-left flip">
+    <h3><%= t('Processes') %></h3>
+  </div>
+  <div class="col-sm-4 pull-right flip">
+    <form method="POST" class="warning-messages">
+      <%= csrf_tag %>
+      <div class="btn-group pull-right flip">
+        <button class="btn btn-warn" type="submit" name="quiet" value="1" data-confirm="<%= t('AreYouSure') %>"><%= t('QuietAll') %></button>
+        <button class="btn btn-danger" type="submit" name="stop" value="1" data-confirm="<%= t('AreYouSure') %>"><%= t('StopAll') %></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="table_container">
+  <table class="processes table table-hover table-bordered table-striped table-white">
+    <thead>
+      <th><%= t('Name') %></th>
+      <th><%= t('Started') %></th>
+      <th><%= t('Threads') %></th>
+      <th><%= t('Busy') %></th>
+      <th>&nbsp;</th>
+    </thead>
+    <% lead = processes.leader %>
+    <% processes.each do |process| %>
+      <tr>
+        <td class="box">
+          <%= "#{process['hostname']}:#{process['pid']}" %>
+          <span class="label label-success"><%= process.tag %></span>
+          <% process.labels.each do |label| %>
+            <span class="label label-info"><%= label %></span>
+          <% end %>
+          <% if process.stopping? %>
+            <span class="label label-danger">quiet</span>
+          <% end %>
+          <% if process.identity == lead %>
+            <span class="label label-warning">leader</span>
+          <% end %>
+          <br>
+          <b><%= "#{t('Queues')}: " %></b>
+          <%= process['queues'] * ", " %>
+        </td>
+        <td><%= relative_time(Time.at(process['started_at'])) %></td>
+        <td><%= process['concurrency'] %></td>
+        <td><%= process['busy'] %></td>
+        <td>
+          <div class="btn-group pull-right flip">
+            <form method="POST">
+              <%= csrf_tag %>
+              <input type="hidden" name="identity" value="<%= process['identity'] %>"/>
+              <% unless process.stopping? %>
+                <button class="btn btn-warn" type="submit" name="quiet" value="1"><%= t('Quiet') %></button>
+              <% end %>
+              <button class="btn btn-danger" type="submit" name="stop" value="1"><%= t('Stop') %></button>
+            </form>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="row header">
+  <div class="col-sm-7">
+    <h3><%= t('Jobs') %></h3>
+  </div>
+</div>
+
+<div class="table_container">
+  <table class="workers table table-hover table-bordered table-striped table-white">
+    <thead>
+      <th><%= t('Process') %></th>
+      <th><%= t('TID') %></th>
+      <th><%= t('JID') %></th>
+      <th><%= t('Queue') %></th>
+      <th><%= t('Job') %></th>
+      <th><%= t('Arguments') %></th>
+      <th><%= t('Started') %></th>
+    </thead>
+    <% workers.each do |process, thread, msg| %>
+      <% job = Sidekiq::Job.new(msg['payload']) %>
+      <tr>
+        <td><%= process %></td>
+        <td><%= thread %></td>
+        <td><%= job.jid %></td>
+        <td>
+          <a href="<%= root_path %>queues/<%= msg['queue'] %>"><%= msg['queue'] %></a>
+        </td>
+        <td><%= job.display_class %></td>
+        <td>
+          <div class="args"><%= display_args(job.display_args) %></div>
+        </td>
+        <td><%= relative_time(Time.at(msg['run_at'])) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

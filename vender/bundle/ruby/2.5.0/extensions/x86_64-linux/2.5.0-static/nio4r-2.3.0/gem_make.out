@@ -1,0 +1,186 @@
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nio4r-2.3.0/ext/nio4r
+/home/mastodon/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180408-28175-azqgbc.rb extconf.rb
+checking for unistd.h... yes
+checking for sys/select.h... yes
+checking for port_event_t in poll.h... no
+checking for sys/epoll.h... yes
+checking for sys/event.h... no
+checking for port_event_t in port.h... no
+checking for sys/resource.h... yes
+creating Makefile
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nio4r-2.3.0/ext/nio4r
+make "DESTDIR=" clean
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nio4r-2.3.0/ext/nio4r
+make "DESTDIR="
+compiling bytebuffer.c
+compiling monitor.c
+compiling nio4r_ext.c
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c:488:48: warning: "/*" within comment [-Wcomment]
+ /*#define MIN_INTERVAL  0.00000095367431640625 /* 1/2**20, good till 2200 */
+ ^
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c: In function 'ecb_binary32_to_binary16':
+../libev/ev.c:1274:13: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (e < (14 - 24)) /* might not be sharp, but is good enough */
+             ^
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c: At top level:
+../libev/ev.c:1836:31: warning: 'ev_default_loop_ptr' initialized and declared 'extern' [enabled by default]
+   EV_API_DECL struct ev_loop *ev_default_loop_ptr = 0; /* needs to be initialised to make it a definition despite extern */
+                               ^
+../libev/ev.c: In function 'ev_time':
+../libev/ev.c:1876:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   struct timeval tv;
+   ^
+../libev/ev.c: In function 'array_nextsize':
+../libev/ev.c:1945:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if (elem * ncur > MALLOC_ROUND - sizeof (void *) * 4)
+                   ^
+In file included from ../libev/ev.c:179:0,
+                 from nio4r_ext.c:7:
+../libev/ev_poll.c: In function 'poll_poll':
+../libev/ev_poll.c:111:77: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+         assert (("libev: poll() returned illegal result, broken BSD kernel?", p < polls + pollcnt));
+                                                                             ^
+../libev/ev.c: In function 'verify_watcher':
+../libev/ev.c:3123:49: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: watcher has invalid priority", ABSPRI (w) >= 0 && ABSPRI (w) < NUMPRI));
+                                                 ^
+../libev/ev.c:3126:59: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     assert (("libev: pending watcher not on pending queue", pendings [ABSPRI (w)][w->pending - 1].w == w));
+                                                           ^
+../libev/ev.c: In function 'verify_heap':
+../libev/ev.c:3137:54: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+       assert (("libev: active index mismatch in heap", ev_active (ANHE_w (heap [i])) == i));
+                                                      ^
+../libev/ev.c:3138:48: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+       assert (("libev: heap condition violated", i == HEAP0 || ANHE_at (heap [HPARENT (i)]) <= ANHE_at (heap [i])));
+                                                ^
+../libev/ev.c:3139:47: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+       assert (("libev: heap at cache mismatch", ANHE_at (heap [i]) == ev_at (ANHE_w (heap [i]))));
+                                               ^
+../libev/ev.c: In function 'array_verify':
+../libev/ev.c:3151:46: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+       assert (("libev: active index mismatch", ev_active (ws [cnt]) == cnt + 1));
+                                              ^
+../libev/ev.c: In function 'ev_verify':
+../libev/ev.c:3169:47: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     assert (("libev: negative fd in fdchanges", fdchanges [i] >= 0));
+                                               ^
+../libev/ev.c:3182:64: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+               assert (("libev: io watcher list contains a loop", w != w2));
+                                                                ^
+../libev/ev.c:3186:61: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+           assert (("libev: inactive fd watcher on anfd list", ev_active (w) == 1));
+                                                             ^
+../libev/ev.c:3187:65: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+           assert (("libev: fd mismatch between watcher and anfd", ((ev_io *)w)->fd == i));
+                                                                 ^
+../libev/ev.c: In function 'timers_reify':
+../libev/ev.c:3371:93: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+               assert (("libev: negative ev_timer repeat value found while processing timers", w->repeat > 0.));
+                                                                                             ^
+../libev/ev.c: In function 'periodics_reify':
+../libev/ev.c:3434:90: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+               assert (("libev: ev_periodic reschedule callback returned time in the past", ev_at (w) >= ev_rt_now));
+                                                                                          ^
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c: In function 'ev_backend_poll':
+../libev/ev.c:3580:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+In file included from ../libev/ev.c:179:0,
+                 from nio4r_ext.c:7:
+../libev/ev.c: In function 'ev_run':
+../libev/ev.c:3594:62: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: ev_loop recursion during release detected", loop_done != EVBREAK_RECURSE));
+                                                              ^
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c:3750:9: warning: passing argument 1 of 'rb_thread_call_without_gvl' from incompatible pointer type [enabled by default]
+         rb_thread_call_without_gvl(ev_backend_poll, (void *)&poll_args, RUBY_UBF_IO, 0);
+         ^
+In file included from ../libev/ev.c:42:0,
+                 from nio4r_ext.c:7:
+/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/thread.h:28:7: note: expected 'void * (*)(void *)' but argument is of type 'VALUE (*)(void *)'
+ void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
+       ^
+In file included from ../libev/ev.c:179:0,
+                 from nio4r_ext.c:7:
+../libev/ev.c:3762:70: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+             assert (("libev: pipe_w not active, but pipe not written", ev_is_active (&pipe_w)));
+                                                                      ^
+../libev/ev.c: In function 'ev_io_start':
+../libev/ev.c:3937:56: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: ev_io_start called with negative fd", fd >= 0));
+                                                        ^
+../libev/ev.c:3938:63: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: ev_io_start called with illegal event mask", !(w->events & ~(EV__IOFDSET | EV_READ | EV_WRITE))));
+                                                               ^
+../libev/ev.c:3947:62: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: ev_io_start called with corrupted watcher", ((WL)w)->next != (WL)w));
+                                                              ^
+../libev/ev.c: In function 'ev_io_stop':
+../libev/ev.c:3963:88: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: ev_io_stop called with illegal fd (must stay constant after start!)", w->fd >= 0 && w->fd < anfdmax));
+                                                                                        ^
+../libev/ev.c: In function 'ev_timer_start':
+../libev/ev.c:3984:75: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: ev_timer_start called with negative timer repeat value", w->repeat >= 0.));
+                                                                           ^
+../libev/ev.c: In function 'ev_timer_stop':
+../libev/ev.c:4013:53: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     assert (("libev: internal timer heap corruption", ANHE_w (timers [active]) == (WT)w));
+                                                     ^
+../libev/ev.c: In function 'ev_periodic_start':
+../libev/ev.c:4077:78: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+       assert (("libev: ev_periodic_start called with negative interval value", w->interval >= 0.));
+                                                                              ^
+../libev/ev.c: In function 'ev_periodic_stop':
+../libev/ev.c:4110:56: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     assert (("libev: internal periodic heap corruption", ANHE_w (periodics [active]) == (WT)w));
+                                                        ^
+../libev/ev.c: In function 'ev_signal_start':
+../libev/ev.c:4149:70: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: ev_signal_start called with illegal signal number", w->signum > 0 && w->signum < EV_NSIG));
+                                                                      ^
+../libev/ev.c:4152:73: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: a signal must not be attached to two different loops",
+                                                                         ^
+../libev/ev.c: In function 'ev_child_start':
+../libev/ev.c:4271:74: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+   assert (("libev: child watchers are only supported in the default loop", loop == ev_default_loop_ptr));
+                                                                          ^
+../libev/ev.c: In function 'ev_embed_start':
+../libev/ev.c:4856:60: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+     assert (("libev: loop to be embedded is not embeddable", backend & ev_embeddable_backends ()));
+                                                            ^
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c: At top level:
+../libev/ev.c:5206:27: warning: "/*" within comment [-Wcomment]
+ /* EV_STAT     0x00001000 /* stat data changed */
+ ^
+../libev/ev.c:5207:27: warning: "/*" within comment [-Wcomment]
+ /* EV_EMBED    0x00010000 /* embedded event loop needs sweep */
+ ^
+nio4r_ext.c: In function 'Init_nio4r_ext':
+nio4r_ext.c:15:5: warning: passing argument 1 of 'ev_set_allocator' from incompatible pointer type [enabled by default]
+     ev_set_allocator(xrealloc);
+     ^
+In file included from nio4r_ext.c:7:0:
+../libev/ev.c:1738:1: note: expected 'void * (*)(void *, long int)' but argument is of type 'void * (*)(void *, size_t)'
+ ev_set_allocator (void *(*cb)(void *ptr, long size) EV_THROW) EV_THROW
+ ^
+nio4r_ext.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+compiling selector.c
+linking shared-object nio4r_ext.so
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/nio4r-2.3.0/ext/nio4r
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20180408-28175-1x36oo0

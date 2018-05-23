@@ -1,0 +1,16 @@
+<tr class='route_row' data-helper='path'>
+  <td data-route-name='<%= route[:name] %>'>
+    <% if route[:name].present? %>
+      <%= route[:name] %><span class='helper'>_path</span>
+    <% end %>
+  </td>
+  <td>
+    <%= route[:verb] %>
+  </td>
+  <td data-route-path='<%= route[:path] %>'>
+    <%= route[:path] %>
+  </td>
+  <td>
+    <%=simple_format route[:reqs] %>
+  </td>
+</tr>

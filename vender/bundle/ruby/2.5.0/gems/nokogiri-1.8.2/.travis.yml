@@ -1,0 +1,63 @@
+language: ruby
+dist: trusty
+group: beta
+sudo: required
+
+matrix:
+  include:
+  - os: linux
+    rvm: 2.0
+  - os: osx
+    rvm: 2.0
+  - os: linux
+    rvm: 2.1
+  - os: osx
+    rvm: 2.1
+  - os: linux
+    rvm: 2.2.5
+  - os: osx
+    rvm: 2.2.5
+  - os: linux
+    rvm: 2.3.1
+  - os: osx
+    rvm: 2.3.1
+  - os: linux
+    rvm: 2.4.0
+    env:
+      - RUBYOPT="--enable-frozen-string-literal --debug=frozen-string-literal"
+  - os: osx
+    rvm: 2.4.0
+    env:
+      - RUBYOPT="--enable-frozen-string-literal --debug=frozen-string-literal"
+  - os: linux
+    rvm: ruby-head
+    env:
+      - RUBYOPT="--enable-frozen-string-literal --debug=frozen-string-literal"
+  - os: osx
+    rvm: ruby-head
+    env:
+      - RUBYOPT="--enable-frozen-string-literal --debug=frozen-string-literal"
+  - os: linux
+    rvm: jruby-1.7
+  - os: linux
+    rvm: jruby-9.1.5.0
+  - os: linux
+    rvm: rbx-3
+  allow_failures:
+  - rvm: ruby-head
+  fast_finish: true
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#nokogiri"
+    on_success: always
+    on_failure: always
+    template:
+      - "%{repository} (%{branch}:%{commit} by %{author}): %{message} (%{build_url})"
+    skip_join: true
+
+addons:
+  apt:
+    packages:
+    - haveged

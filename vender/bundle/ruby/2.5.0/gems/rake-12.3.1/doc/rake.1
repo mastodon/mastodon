@@ -1,0 +1,156 @@
+.Dd June 12, 2016
+.Dt RAKE 1
+.Os rake 11.2.2
+.Sh NAME
+.Nm rake
+.Nd make-like build utility for Ruby
+.Sh SYNOPSIS
+.Nm
+.Op Fl f Ar rakefile
+.Op Ar options
+.Ar targets ...
+.Sh DESCRIPTION
+.Nm
+is a
+.Xr make 1 Ns -like
+build utility for Ruby.
+Tasks and dependencies are specified in standard Ruby syntax.
+.Sh OPTIONS
+.Bl -tag -width Ds
+.It Fl m , Fl -multitask
+Treat all tasks as multitasks.
+.It Fl B , Fl -build-all
+Build all prerequisites, including those which are up\-to\-date.
+.It Fl j , Fl -jobs Ar num_jobs
+Specifies the maximum number of tasks to execute in parallel (default is number of CPU cores + 4).
+.El
+.Ss Modules
+.Bl -tag -width Ds
+.It Fl I , Fl -libdir Ar libdir
+Include
+.Ar libdir
+in the search path for required modules.
+.It Fl r , Fl -require Ar module
+Require
+.Ar module
+before executing
+.Pa rakefile .
+.El
+.Ss Rakefile location
+.Bl -tag -width Ds
+.It Fl f , Fl -rakefile Ar filename
+Use
+.Ar filename
+as the rakefile to search for.
+.It Fl N , Fl -no-search , Fl -nosearch
+Do not search parent directories for the Rakefile.
+.It Fl G , Fl -no-system , Fl -nosystem
+Use standard project Rakefile search paths, ignore system wide rakefiles.
+.It Fl R , Fl -rakelib Ar rakelibdir , Fl -rakelibdir Ar rakelibdir
+Auto-import any .rake files in
+.Ar rakelibdir
+(default is
+.Sq rakelib )
+.It Fl g , Fl -system
+Use system-wide (global) rakefiles (usually
+.Pa ~/.rake/*.rake ) .
+.El
+.Ss Debugging
+.Bl -tag -width Ds
+.It Fl -backtrace Ns = Ns Ar out
+Enable full backtrace.
+.Ar out
+can be
+.Dv stderr
+(default) or
+.Dv stdout .
+.It Fl t , Fl -trace Ns = Ns Ar out
+Turn on invoke/execute tracing, enable full backtrace.
+.Ar out
+can be
+.Dv stderr
+(default) or
+.Dv stdout .
+.It Fl -suppress-backtrace Ar pattern
+Suppress backtrace lines matching regexp
+.Ar pattern .
+Ignored if
+.Fl -trace
+is on.
+.It Fl -rules
+Trace the rules resolution.
+.It Fl n , Fl -dry-run
+Do a dry run without executing actions.
+.It Fl T , Fl -tasks Op Ar pattern
+Display the tasks (matching optional
+.Ar pattern )
+with descriptions, then exit.
+.It Fl D , Fl -describe Op Ar pattern
+Describe the tasks (matching optional
+.Ar pattern ) ,
+then exit.
+.It Fl W , Fl -where Op Ar pattern
+Describe the tasks (matching optional
+.Ar pattern ) ,
+then exit.
+.It Fl P , Fl -prereqs
+Display the tasks and dependencies, then exit.
+.It Fl e , Fl -execute Ar code
+Execute some Ruby code and exit.
+.It Fl p , Fl -execute-print Ar code
+Execute some Ruby code, print the result, then exit.
+.It Fl E , Fl -execute-continue Ar code
+Execute some Ruby code, then continue with normal task processing.
+.El
+.Ss Information
+.Bl -tag -width Ds
+.It Fl v , Fl -verbose
+Log message to standard output.
+.It Fl q , Fl -quiet
+Do not log messages to standard output.
+.It Fl s , Fl -silent
+Like
+.Fl -quiet ,
+but also suppresses the
+.Sq in directory
+announcement.
+.It Fl X , Fl -no-deprecation-warnings
+Disable the deprecation warnings.
+.It Fl -comments
+Show commented tasks only
+.It Fl A , Fl -all
+Show all tasks, even uncommented ones (in combination with
+.Fl T
+or
+.Fl D )
+.It Fl -job-stats Op Ar level
+Display job statistics.
+If
+.Ar level
+is
+.Sq history ,
+displays a complete job list.
+.It Fl V , Fl -version
+Display the program version.
+.It Fl h , Fl H , Fl -help
+Display a help message.
+.El
+.Sh SEE ALSO
+The complete documentation for
+.Nm rake
+has been installed at
+.Pa /usr/share/doc/rake-doc/html/index.html .
+It is also available online at
+.Lk https://ruby.github.io/rake .
+.Sh AUTHORS
+.An -nosplit
+.Nm
+was written by
+.An Jim Weirich Aq Mt jim@weirichhouse.org .
+.Pp
+This manual was created by
+.An Caitlin Matos Aq Mt caitlin.matos@zoho.com
+for the Debian project (but may be used by others).
+It was inspired by the manual by
+.An Jani Monoses Aq Mt jani@iv.ro
+for the Ubuntu project.

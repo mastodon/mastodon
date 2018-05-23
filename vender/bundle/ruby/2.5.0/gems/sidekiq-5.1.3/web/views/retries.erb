@@ -1,0 +1,76 @@
+<header class="row">
+  <div class="col-sm-5">
+    <h3><%= t('Retries') %></h3>
+  </div>
+  <% if @retries.size > 0 && @total_size > @count %>
+    <div class="col-sm-4">
+      <%= erb :_paging, locals: { url: "#{root_path}retries" } %>
+    </div>
+  <% end %>
+  <%= filtering('retries') %>
+</header>
+
+<% if @retries.size > 0 %>
+  <form action="<%= root_path %>retries" method="post">
+    <%= csrf_tag %>
+    <div class="table_container">
+      <table class="table table-striped table-bordered table-white">
+        <thead>
+          <tr>
+            <th class="table-checkbox checkbox-column">
+              <label>
+                <input type="checkbox" class="check_all" />
+              </label>
+            </th>
+            <th><%= t('NextRetry') %></th>
+            <th><%= t('RetryCount') %></th>
+            <th><%= t('Queue') %></th>
+            <th><%= t('Job') %></th>
+            <th><%= t('Arguments') %></th>
+            <th><%= t('Error') %></th>
+          </tr>
+        </thead>
+        <% @retries.each do |entry| %>
+          <tr>
+            <td class="table-checkbox">
+              <label>
+                <input type='checkbox' name='key[]' value='<%= job_params(entry.item, entry.score) %>' />
+              </label>
+            </td>
+            <td>
+              <a href="<%= root_path %>retries/<%= job_params(entry.item, entry.score) %>"><%= relative_time(entry.at) %></a>
+            </td>
+            <td><%= entry['retry_count'] %></td>
+            <td>
+              <a href="<%= root_path %>queues/<%= entry.queue %>"><%= entry.queue %></a>
+            </td>
+            <td><%= entry.display_class %></td>
+            <td>
+              <div class="args"><%= display_args(entry.display_args) %></div>
+            </td>
+            <td>
+              <div><%= h truncate("#{entry['error_class']}: #{entry['error_message']}", 200) %></div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <input class="btn btn-primary btn-xs pull-left flip" type="submit" name="retry" value="<%= t('RetryNow') %>" />
+    <input class="btn btn-danger btn-xs pull-left flip" type="submit" name="delete" value="<%= t('Delete') %>" />
+    <input class="btn btn-danger btn-xs pull-left flip" type="submit" name="kill" value="<%= t('Kill') %>" />
+  </form>
+
+  <% unfiltered? do %>
+    <form action="<%= root_path %>retries/all/delete" method="post">
+      <%= csrf_tag %>
+      <input class="btn btn-danger btn-xs pull-right flip" type="submit" name="delete" value="<%= t('DeleteAll') %>" data-confirm="<%= t('AreYouSure') %>" />
+    </form>
+    <form action="<%= root_path %>retries/all/retry" method="post">
+      <%= csrf_tag %>
+      <input class="btn btn-danger btn-xs pull-right flip" type="submit" name="retry" value="<%= t('RetryAll') %>" data-confirm="<%= t('AreYouSure') %>" />
+    </form>
+  <% end %>
+
+<% else %>
+  <div class="alert alert-success"><%= t('NoRetriesFound') %></div>
+<% end %>

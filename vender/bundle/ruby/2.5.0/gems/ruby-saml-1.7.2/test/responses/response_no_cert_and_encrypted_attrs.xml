@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" Destination="https://vmwdemo.socialcast.com/saml/authenticate" ID="_f9fbcbf79715244c7ff909d8663d782e" InResponseTo="_4b4c72d0-eb5a-0131-0fec-0050568312b8" IssueInstant="2014-07-11T18:53:30.916Z" Version="2.0"><samlp:Status><samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/></samlp:Status><saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="_fddb13c899036a90f920ddaac50fc0d6" IssueInstant="2014-07-11T18:53:30.916Z" Version="2.0"><saml:Issuer>https://hw6dldc.vmwdemo.com/SAAS/API/1.0/GET/metadata/idp.xml</saml:Issuer><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="#_fddb13c899036a90f920ddaac50fc0d6">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"><ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="ds saml xenc xs xsi"/></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>HS49Xqi+JftXvslmp/boT9ixzp8=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+gdY9y3GNOgOqBOlEx981yILKAssUG79fXw639MJB3uJjLYokqY+Y5KFFtAU4FGvh/L6Romghx0is
+rxukFkfw9coxKOhCoDZiaYPvvuC2qqhTwTAZ0Spvwuffrj3UwztSWbS6JGXtebo4ghKnae4hH5lF
+tRawV9HnbLJmhL3cVPSu+7SF3iWov0PZyZczH1P6sZrYeX5X32h3RhXXxMi3kgHGWxaVTQmgTEgu
+xN3GD7lnsf+WOAvdPAPgFrJjEGJZDd/MClS/x5ZwLnMZ82r7XHoFhiC47eq3Te+JE9qZvSbIs/om
+dpuFSaFKxxdM8C+vHTRUDDaGckqckPc5Y7wlgA==
+</ds:SignatureValue>
+</ds:Signature><saml:Subject><saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" NameQualifier="https://hw6dldc.vmwdemo.com/SAAS/API/1.0/GET/metadata/idp.xml">akjoshi87+du@gmail.com</saml:NameID><saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"><saml:SubjectConfirmationData InResponseTo="_4b4c72d0-eb5a-0131-0fec-0050568312b8" NotOnOrAfter="2014-07-11T18:56:50.916Z" Recipient="https://vmwdemo.socialcast.com/saml/authenticate"/></saml:SubjectConfirmation></saml:Subject><saml:Conditions NotBefore="2014-07-11T18:53:15.916Z" NotOnOrAfter="2014-07-11T18:56:50.916Z"><saml:AudienceRestriction><saml:Audience>vmwdemo.socialcast.com</saml:Audience></saml:AudienceRestriction></saml:Conditions><saml:AuthnStatement AuthnInstant="2014-07-11T18:53:30.916Z" SessionIndex="_876ca8142c7ba8126af3c90d952af251"><saml:AuthnContext><saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef></saml:AuthnContext></saml:AuthnStatement><saml:AttributeStatement><saml:Attribute Name="first_name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"><saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Demo</saml:AttributeValue></saml:Attribute><saml:Attribute Name="email" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"><saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">akjoshi87+du@gmail.com</saml:AttributeValue></saml:Attribute><saml:Attribute Name="last_name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"><saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">User</saml:AttributeValue></saml:Attribute><saml:EncryptedAttribute><xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Id="_2a1c0500932ae79e9f5ede82dccb57c6" Type="http://www.w3.org/2001/04/xmlenc#Element"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><xenc:EncryptedKey Id="_ff2d29836cd453cdfca94b69b630cf40"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/><xenc:CipherData><xenc:CipherValue>IdFfvxdt+YBaLSkWfcxuGqiPDyiQtpklGkJZFW+UoZXMhopZXmW/ekfEAf1VpzIlDlo3xwY2y8Rw
+zZwASwjiuHoQSMZQzZ6Ws184f1pWh9un23wgHzYc/jwXF0pXfcVL944SSxxNO4zO+DMJz6Px9rvk
+Rpac86uujfBuqXlo684=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedKey></ds:KeyInfo><xenc:CipherData><xenc:CipherValue>/+Noi1tNN1HcY+bW/iyBkwOYR4X32pTPzq7EjQO/HB3L0B2RtpsYkvC9750eb6KydbsBSGCyNt3k
+grjcI1nUgvvY488NhIo9+PWv3MhAqnljKhDzl6AcfE00Lq3HA1FcTCwrE0VLjUV4NtztK2JVCZwu
+ToViUJMlu1SGL8U7uRfsRpbrXoIEv1AwFHjz+XZgwD3nxl79iAcnm3FFX7nIkjUQIPPBWC/U4XJN
+u+u5svSoUpIOFqdeNcDQUq5+P5lXT46O5LcULQrEY8xHNGToxOwINMOrU+rCgwyAVbP/SaY9ywYe
+bxpESNkHmkjLAI7GBvLRRkTEE88Q6/uV9D1A5X3rT4BMQJ0N7BfgnOJ7IMga2Q9wU9oPuoCsqL9I
+bP9IY1vCLcAAEsMR0EgZaInLCiLoXdmDHllSo2fyKQqBGxE+KpZhvVdCOVzLN3+TrW3k/xl/kx6w
+AIPFlXd6TRVzmg==</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData></saml:EncryptedAttribute></saml:AttributeStatement></saml:Assertion></samlp:Response>

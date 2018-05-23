@@ -1,0 +1,201 @@
+
+= MessagePack
+
+MessagePack[http://msgpack.org] is an efficient binary serialization format.
+It lets you exchange data among multiple languages like JSON but it's faster and smaller.
+For example, small integers (like flags or error code) are encoded into a single byte,
+and typical short strings only require an extra byte in addition to the strings themselves.
+
+If you ever wished to use JSON for convenience (storing an image with metadata) but could
+not for technical reasons (binary data, size, speed...), MessagePack is a perfect replacement.
+
+    require 'msgpack'
+    msg = [1,2,3].to_msgpack  #=> "\x93\x01\x02\x03"
+    MessagePack.unpack(msg)   #=> [1,2,3]
+
+Use RubyGems to install:
+
+    gem install msgpack
+
+or build msgpack-ruby and install:
+
+    bundle
+    rake
+    gem install --local pkg/msgpack
+
+
+= Use cases
+
+* Create REST API returing MessagePack using Rails + [RABL](https://github.com/nesquena/rabl)
+* Store objects efficiently serialized by msgpack on memcached or Redis
+  * In fact Redis supports msgpack in EVAL-scripts[http://redis.io/commands/eval]
+* Upload data in efficient format from mobile devices such as smartphones
+  * MessagePack works on iPhone/iPad and Android. See also Objective-C[https://github.com/msgpack/msgpack-objectivec] and Java[https://github.com/msgpack/msgpack-java] implementations
+* Design a portable protocol to communicate with embedded devices
+  * Check also Fluentd[http://fluentd.org/] which is a log collector which uses msgpack for the log format (they say it uses JSON but actually it's msgpack, which is compatible with JSON)
+* Exchange objects between software components written in different languages
+  * You'll need a flexible but efficient format so that components exchange objects while keeping compatibility
+
+= Portability
+
+MessagePack for Ruby should run on x86, ARM, PowerPC, SPARC and other CPU architectures.
+
+And it works with MRI (CRuby) and Rubinius.
+Patches to improve portability is highly welcomed.
+
+
+= Serializing objects
+
+Use *MessagePack.pack* or *to_msgpack*:
+
+    require 'msgpack'
+    msg = MessagePack.pack(obj)  # or
+    msg = obj.to_msgpack
+
+== Streaming serialization
+
+Packer provides advanced API to serialize objects in streaming style:
+
+    # serialize a 2-element array [e1, e2]
+    pk = MessagePack::Packer.new(io)
+    pk.write_array_header(2).write(e1).write(e2).flush
+
+See {API reference}[http://ruby.msgpack.org/MessagePack/Packer.html] for details.
+
+= Deserializing objects
+
+Use *MessagePack.unpack*:
+
+    require 'msgpack'
+    obj = MessagePack.unpack(msg)
+
+== Streaming deserialization
+
+Unpacker provides advanced API to deserialize objects in streaming style:
+
+    # deserialize objects from an IO
+    u = MessagePack::Unpacker.new(io)
+    u.each do |obj|
+      # ...
+    end
+
+or event-driven style which works well with EventMachine:
+
+    # event-driven deserialization
+    def on_read(data)
+      @u ||= MessagePack::Unpacker.new
+      @u.feed_each(data) {|obj|
+         # ...
+      }
+    end
+
+See {API reference}[http://ruby.msgpack.org/MessagePack/Unpacker.html] for details.
+
+= Serializing and deserializing symbols
+
+By default, symbols are serialized as strings:
+
+    packed = :symbol.to_msgpack     # => "\xA6symbol"
+    MessagePack.unpack(packed)      # => "symbol"
+
+This can be customized by registering an extension type for them:
+
+    MessagePack::DefaultFactory.register_type(0x00, Symbol)
+
+    # symbols now survive round trips
+    packed = :symbol.to_msgpack     # => "\xc7\x06\x00symbol"
+    MessagePack.unpack(packed)      # => :symbol
+
+The extension type for symbols is configurable like any other extension type.
+For example, to customize how symbols are packed you can just redefine
+Symbol#to_msgpack_ext. Doing this gives you an option to prevent symbols from
+being serialized altogether by throwing an exception:
+
+    class Symbol
+        def to_msgpack_ext
+            raise "Serialization of symbols prohibited"
+        end
+    end
+
+    MessagePack::DefaultFactory.register_type(0x00, Symbol)
+
+    [1, :symbol, 'string'].to_msgpack  # => RuntimeError: Serialization of symbols prohibited
+
+= Extension Types
+
+Packer and Unpacker support {Extension types of MessagePack}[https://github.com/msgpack/msgpack/blob/master/spec.md#types-extension-type].
+
+    # register how to serialize custom class at first
+    pk = MessagePack::Packer.new(io)
+    pk.register_type(0x01, MyClass1, :to_msgpack_ext) # equal to pk.register_type(0x01, MyClass)
+    pk.register_type(0x02, MyClass2){|obj| obj.how_to_serialize() } # blocks also available
+    
+    # almost same API for unpacker
+    uk = MessagePack::Unpacker.new()
+    uk.register_type(0x01, MyClass1, :from_msgpack_ext)
+    uk.register_type(0x02){|data| MyClass2.create_from_serialized_data(data) }
+
+MessagePack::Factory is to create packer and unpacker which have same extention types.
+
+    factory = MessagePack::Factory.new
+    factory.register_type(0x01, MyClass1) # same with next line
+    factory.register_type(0x01, MyClass1, packer: :to_msgpack_ext, unpacker: :from_msgpack_ext)
+    pk = factory.packer(options_for_packer)
+    uk = factory.unpacker(options_for_unpacker)
+
+For *MessagePack.pack* and *MessagePack.unpack*, default packer/unpacker refer *MessagePack::DefaultFactory*. Call *MessagePack::DefaultFactory.register_type* to enable types process globally.
+
+    MessagePack::DefaultFactory.register_type(0x03, MyClass3)
+    MessagePack.unpack(data_with_ext_typeid_03) #=> MyClass3 instance
+
+= Buffer API
+
+MessagePack for Ruby provides a buffer API so that you can read or write data by hand, not via Packer or Unpacker API.
+
+This {MessagePack::Buffer}[http://ruby.msgpack.org/MessagePack/Buffer.html] is backed with a fixed-length shared memory pool which is very fast for small data (<= 4KB),
+and has zero-copy capability which significantly affects performance to handle large binary data.
+
+= How to build and run tests
+
+Before building msgpack, you need to install bundler and dependencies.
+
+    gem install bundler
+    bundle install
+
+Then, you can run the tasks as follows:
+
+* Build
+
+    bundle exec rake build
+
+* Run tests
+
+    bundle exec rake spec
+
+* Generating docs
+
+    bundle exec rake doc
+
+== How to build -mingw32 rubygems
+
+MessagePack mingw32/64 rubygems build process uses {rake-compiler-dock}[https://github.com/rake-compiler/rake-compiler-dock]. Run:
+
+    rake build:windows
+
+Once this step successes, target gems exist in pkg/msgpack-*-{x86,x64}-mingw32.gem.
+
+== Updating documents
+
+Online documents (http://ruby.msgpack.org) is generated from gh-pages branch.
+Following commands update documents in gh-pages branch:
+
+    bundle exec rake doc
+    git checkout gh-pages
+    cp doc/* ./ -a
+
+= Copyright
+
+Author::    Sadayuki Furuhashi <frsyuki@gmail.com>
+Copyright:: Copyright (c) 2008-2015 Sadayuki Furuhashi
+License::   Apache License, Version 2.0
+

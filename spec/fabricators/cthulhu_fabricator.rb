@@ -1,0 +1,2 @@
+Fabricator(:cthulhu) do
+end

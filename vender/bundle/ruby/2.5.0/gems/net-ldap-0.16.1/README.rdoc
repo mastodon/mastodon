@@ -1,0 +1,72 @@
+= Net::LDAP for Ruby {<img src="https://travis-ci.org/ruby-ldap/ruby-net-ldap.png" />}[https://travis-ci.org/ruby-ldap/ruby-net-ldap]
+
+== Description
+
+Net::LDAP for Ruby (also called net-ldap) implements client access for the
+Lightweight Directory Access Protocol (LDAP), an IETF standard protocol for
+accessing distributed directory services. Net::LDAP is written completely in
+Ruby with no external dependencies. It supports most LDAP client features and a
+subset of server features as well.
+
+Net::LDAP has been tested against modern popular LDAP servers including
+OpenLDAP and Active Directory. The current release is mostly compliant with
+earlier versions of the IETF LDAP RFCs (2251–2256, 2829–2830, 3377, and 3771).
+Our roadmap for Net::LDAP 1.0 is to gain full <em>client</em> compliance with
+the most recent LDAP RFCs (4510–4519, plus portions of 4520–4532).
+
+== Where
+
+* {GitHub}[https://github.com/ruby-ldap/ruby-net-ldap]
+* {ruby-ldap@googlegroups.com}[http://groups.google.com/group/ruby-ldap]
+
+== Synopsis
+
+See Net::LDAP for documentation and usage samples.
+
+== Requirements
+
+Net::LDAP requires a Ruby 2.0.0 compatible interpreter or better.
+
+== Install
+
+Net::LDAP is a pure Ruby library. It does not require any external libraries.
+You can install the RubyGems version of Net::LDAP available from the usual
+sources.
+
+  gem install net-ldap
+
+Simply require either 'net-ldap' or 'net/ldap'.
+
+== Extensions
+
+This library focuses on the core LDAP RFCs referenced in the description.
+However, we recognize there are commonly used extensions to the spec that are
+useful. If there is another library which handles it, we list it here.
+
+* {resolv-srv}[https://rubygems.org/gems/resolv-srv]: Support RFC2782 SRV record lookup and failover
+
+== Develop
+
+This task will run the test suite and the
+{RuboCop}[https://github.com/bbatsov/rubocop] static code analyzer.
+
+  rake rubotest
+
+CI takes too long? If your local box supports
+{Vagrant}[https://www.vagrantup.com/], you can run most of the tests
+in a VM on your local box. For more details and setup instructions, see
+{test/support/vm/openldap/README.md}[https://github.com/ruby-ldap/ruby-net-ldap/tree/master/test/support/vm/openldap/README.md]
+
+== Release
+
+This section is for gem maintainers to cut a new version of the gem.
+
+* Check out a new branch `release-VERSION`
+* Update lib/net/ldap/version.rb to next version number X.X.X following {semver}(http://semver.org/).
+* Update `History.rdoc`. Get latest changes with `script/changelog`
+* Open a pull request with these changes for review
+* After merging, on the master branch, run `script/release`
+
+:include: Contributors.rdoc
+
+:include: License.rdoc

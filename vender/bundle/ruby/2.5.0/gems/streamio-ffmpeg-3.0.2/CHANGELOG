@@ -1,0 +1,263 @@
+== Master
+
+Current with 3.0.2
+
+== 3.0.2 2016-11-18
+
+Improvements:
+* Issue #153 Adds support for multiple audio streams
+* Issue #150 Does not trust reported SAR/DAR as these may not be defined per https://trac.ffmpeg.org/ticket/3798
+
+== 3.0.1 2016-11-10
+
+Improvements:
+* Issue #144 is fixed. Of a nil movie is presented to transcode, the progress block does not fail
+* Issue #145 Adds ability to follow URLs when presented as Movie inputs
+
+
+== 3.0.0 2016-09-07
+
+Breaking Changes:
+* Changes: custom parameters now specified using an array syntax
+
+Improvements:
+* Issue # 128, #137 are fixed (custom parameters passed as strings) which was caused
+  by 2.1.0 in attempting to avoid the use of shell and filename escaping issues
+  on various platforms.
+
+
+== 2.1.0 2016-08-08
+
+New:
+* Issue #135, Support creating slideshows from stills
+* Issue #130, Adds support for a URL as an input
+* Support for specifying options to apply to the input file
+* Improved support for calling  FFMpeg with popen3, improving compatibility with various platforms, including windows
+* Issue #111. uses attr_accessor for the timeout attribute
+* Exposes the movie's entire meta data and format tags as movie attributes
+* Issue #122, adds encoding fix to stderr
+* All specs pass and brought current with Rspec V3
+* Issue #123, #131 improved stream validation, ignoring additional invalid streams if a valid stream is recognized
+* Issue #124, improved parsing for moving creation_time
+* SAR and DAR now adapt after rotation, DAR is ignored when calculating dimensions
+
+Improvements:
+* Allow parenthesis in colorspace (thanks walterdavis for initial code and rociiu for finding a bug with it)
+* Width and height now switched if video is filmed in portrait mode. ffmpeg 2.7 or later now automatically rotates output
+* Movie metadata now provided with ffprobe (#114). Thanks to Ryan Lovelett for the contributions!
+* Ability to create multiple screenshots at consistent intervals in one pass (#113)
+
+== 2.0.0 2016-01-14
+
+New:
+* Support watermarking (thanks smoothdvd)
+* Bumped target ffmpeg version to 2.8
+
+Improvements:
+* Allow parenthesis in colorspace (thanks walterdavis for initial code and rociiu for finding a bug with it)
+* Width and height now switched if video is filmed in portrait mode. ffmpeg 2.7 or later now automatically rotates output
+* Movie metadata now provided with ffprobe (#114). Thanks to Ryan Lovelett for the contributions!
+* Ability to create multiple screenshots at consistent intervals in one pass (#113)
+
+== 1.0.0 2013-07-08
+
+New:
+* Bumped target ffmpeg version to 1.2.1
+
+Improvements:
+* Simpler implementation for timeouts.
+  Should be far less cpu and memory dependent (don't spawn a thread for every line of output)
+  Timeout spec now passes in Rubinius (using 1.9 mode)
+* Give helpful error message for windows users lacking the win32-process gem (thanks casoetan)
+* Add Movie#container (thanks vitalis)
+* Support vprofile and preset encoding options (thanks vitalis)
+
+Changes:
+* Default timeout lowered to 30 seconds
+
+Bugs:
+* Avoid crash if asking for frame_rate of a video without video stream (thanks squidarth)
+* Fix crash when doing audio transcoding on ffmpeg >= 1.0.1 (thanks vitalis)
+
+Deprecations:
+* Removed support for Ruby 1.8
+* Removed support for ffmpeg 0.7
+
+Refactorings:
+* Quite a few, see commit history for details.
+
+== 0.9.0 2012-07-24
+
+New:
+* Bumped target ffmpeg version to 0.11.1
+* Add hung process detection with configurable timeout (thanks stakach)
+* Raise FFMPEG::Error instead of generic RuntimeError on failed transcodings
+* Movie#screenshot for more intuitive screenshotting (README has details)
+* Movie#creation_time and Movie#rotation attributes when metadata is available (thanks Innonate)
+
+Bugs:
+* Fixed too many open files bug (thanks to akicho8)
+* Fixed missing path escaping (thanks to mikesager)
+* Fixed README typo (thanks to Linutux)
+* Files outputing "could not find codec parameters" are now recognized as invalid
+
+Deprecations:
+* Removed Movie#uncertain_duration?
+* Removed all the deprecated crop options (use :custom => '-vf crop=x:x:x:x' if you need it)
+
+Refactorings:
+* Removed the deprecated duration validation code
+* Polish on the transcoder class
+* Polish on the spec suite
+
+== 0.8.5 2011-03-05
+
+* If a clip has a DAR that doesn't make sense fall back to calculating aspect ratio from dimensions
+* Allow filenames with single quote characters (thanks to youpy)
+
+== 0.8.4 2011-11-30
+
+* Duration now one decimal more accurate (thanks to Russel Brooks)
+* Added encoding option seek_time (thanks to Misty De Meo)
+
+== 0.8.3 2011-09-01
+
+* Parameters now come in the order of codecs, presets, others so that we can override the presets
+* Added encoding option keyframe_interval to set number of frames between i-frames (aka GOP size)
+* Streamio (sponsor of this project) have launched new awesome pricing @ http://streamio.com
+
+== 0.8.2 2011-08-19
+
+* Path to ffmpeg binary can now be specified (thanks jonathandean)
+* If ffmpeg output contains "is not supported" the Movie will be considered invalid
+
+== 0.8.1 2011-07-28
+
+* Fix progress yielding with ffmpeg 0.8
+* Updated specs to pass with ffmpeg 0.8
+
+== 0.8.0 2011-05-26
+
+* Duration is now ALWAYS considered uncertain (we've noticed that ffmpeg is not always correct)
+* This means that the duration check will normally never run (unless you manually hack @uncertain_duration to false)
+* Movie#audio_channels now returns nil if there is no audio stream (instead of crashing)
+* Development: Use Bundler
+* Development: Update RSpec to 2.6
+
+== 0.7.8 2011-04-04
+
+* Fixed number of audio channels on files with 5.1 audio
+
+== 0.7.7 2011-02-01
+
+* Movies with starttime are now considered as having uncertain duration as its behavior is not consistent across formats
+* Upgrade development environment to RSpec 2.4
+
+== 0.7.6 2011-01-14
+
+* Another ruby 1.9 encoding fix
+
+== 0.7.5 2011-01-14
+
+* Fixed some ruby 1.9 issues
+* Added Movie#video_bitrate and Movie#audio_bitrate (thanks to mbj)
+
+== 0.7.4 2010-12-07
+
+* Fixed broken duration on movies with start times over 0 by reducing duration with start-time
+
+== 0.7.3 2010-08-26
+
+* Replaced Jewler with simple dynamic gemspec file
+* Spec files now not in published gem to make it a lot smaller in size
+* Full output from ffmpeg command in error raised during transcoding
+
+== 0.7.2 2010-08-11
+
+* Added encoding option duration
+* Avoid crashing when ffmpeg can't find resolution of a movie
+
+== 0.7.1 2010-07-08
+
+* Make sure preset parameters are always put last to avoid them ending up before any codec assignments
+* Testing against a fresh ffmpeg build (r24069)
+
+== 0.7.0 2010-07-07
+
+* Support for ffpresets through video_preset, audio_preset and file_preset encoding options
+* Added encoding option video_bitrate_tolerance
+
+== 0.6.8.1 2010-07-06
+
+* Bugfix - aspect ratio was not calculated properly on movies with no DAR
+
+== 0.6.8 2010-07-06
+
+* Don't use encoding options with nil values
+* Added encoding options video_max_bitrate, video_min_bitrate and buffer_size for constant bitrate encoding
+
+== 0.6.7 2010-06-10
+
+* Bugfix - aspect ratio preserver could suggest non even resolutions in certain circumstances
+
+== 0.6.6 2010-06-10
+
+* Transcodings to .jpg and .png will now work as they will skip duration validation
+
+== 0.6.5 2010-05-19
+
+* Movie#size method to get file size.
+
+== 0.6.4 2010-05-12
+
+* Ruby 1.9 compatibility fix for EncodingOptions (thanks michalf!)
+
+== 0.6.3 2010-05-05
+
+* Use DAR to calculate aspect ratio if available
+
+== 0.6.2 2010-05-05
+
+* Added Movie#uncertain_duration? which is true if ffmpeg is guessing duration from bitrate
+* Skipping the transcoders duration validation if original file has uncertain duration
+* Made sure aspect ratio preservation always rounds new size to an even number to avoid "not divisible by 2" errors
+* Changed Movie#valid? logic to accept any movie with either a readable audio or video stream
+
+== 0.6.0 2010-05-04
+
+* Cropping options now handled by EncodingOptions (croptop, cropbottom, cropleft and cropright)
+* Aspect ratio parameter calculated and added by default
+* Added transcoder options to preserve original aspect ratio on width or height
+
+== 0.5.0 2010-04-28
+
+* Added logging capabilities
+
+== 0.4.3 2010-04-06
+
+* Correctly identify invalid movies on latest ffmpeg build (r22811)
+
+== 0.4.2 2010-04-06
+
+* Escape the path to handle spaces in filenames and avoid CLI injection attacks (thanks J. Weir!)
+
+== 0.4.1 2010-02-10
+
+* Forgot to change the transcoding shortcut from Movie
+
+== 0.4.0 2010-02-10
+
+* Transcoding API changed to make use of more humanly readable options (see README for examples)
+* Fixed frame rate parsing for integer frame rates
+
+== 0.3.0 2010-02-07
+
+* Simple transcoding
+
+== 0.2.0 2010-02-06
+
+* Some more metadata parsing
+
+== 0.1.0 2010-02-05
+
+* Some basic parsing of metadata added

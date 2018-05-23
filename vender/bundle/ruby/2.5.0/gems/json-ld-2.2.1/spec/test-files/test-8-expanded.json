@@ -1,0 +1,24 @@
+[
+  {
+    "@id": "http://example.com/library",
+    "@type": ["http://example.org/vocab#Library"],
+    "http://example.org/vocab#contains": [{
+      "@id": "http://example.org/library/the-republic"
+    }]
+  },
+  {
+    "@id": "http://example.org/library/the-republic",
+    "@type": ["http://example.org/vocab#Book"],
+    "http://purl.org/dc/terms/creator": [{"@value": "Plato"}],
+    "http://purl.org/dc/terms/title": [{"@value": "The Republic"}],
+    "http://example.org/vocab#contains": [{
+      "@id": "http://example.org/library/the-republic#introduction"
+    }]
+  },
+  {
+    "@id": "http://example.org/library/the-republic#introduction",
+    "@type": ["http://example.org/vocab#Chapter"],
+    "http://purl.org/dc/terms/description": [{"@value": "An introductory chapter on The Republic."}],
+    "http://purl.org/dc/terms/title": [{"@value": "The Introduction"}]
+  }
+]

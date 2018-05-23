@@ -1,0 +1,26 @@
+sudo: false
+language: ruby
+rvm:
+  - 1.8.7
+  - 1.9.3
+  - 2.0.0
+  - 2.1.5
+  - 2.2.0
+  - 2.3.0
+  - 2.4.0
+  - ree
+  - jruby-1.7.21
+  - jruby-9.0.0.0
+gemfile:
+  - Gemfile
+  - gemfiles/nokogiri-1.5.gemfile
+matrix:
+  exclude:
+    - rvm: 1.8.7
+      gemfile: Gemfile
+    - rvm: ree
+      gemfile: Gemfile
+    - rvm: jruby-9.0.0.0
+      gemfile: gemfiles/nokogiri-1.5.gemfile
+    - rvm: jruby-1.7.21
+      gemfile: gemfiles/nokogiri-1.5.gemfile

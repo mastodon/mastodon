@@ -1,0 +1,92 @@
+== 4.3.4 (2015-07-05)
+* Remove erroneous 'Iodot' entity (a typo'd duplicate of Idot).
+
+== 4.3.3 (2014-12-25)
+* Remove duplicate hash entry that causes warnings in Ruby 2.2.0.
+
+== 4.3.2 (2014-05-31)
+* Ruby 1.8 is no longer supported
+
+== 4.3.1 (2011-11-30)
+* Fix bug when working with Rails 3/Ruby 1.8.7
+* Make character encoding behaviour consistent in Ruby 1.9.2/1.9.3
+
+== 4.3.0 (2011-03-29)
+* Use Ruby 1.9's encoding support where available.
+* Deprecated HTMLEntities.encode_entities/decode_entities interface is now
+  removed.
+
+== 4.2.4 (2011-01-30)
+* Fix issue where double-escaped entities were not correctly escaped. Bug
+  reported by Christian Kruse.
+
+== 4.2.3 (2011-01-07)
+* Additional entities from Junya Ishihara.
+* Performance improvements.
+
+== 4.2.1 (2010-04-05)
+* Fixed error on Ruby 1.8.x when $KCODE was not set to "UTF8". Thanks to
+  Benoit Larroque for the bug report.
+
+== 4.2.0 (2009-08-24)
+* Added benchmarking code and improved performance.
+
+== 4.1.0 (2009-08-15)
+* Now works with Ruby 1.9.1 and JRuby.
+* Reverted lazy loading of entity mappings as this is not thread-safe.
+* Finally removed the deprecated String#encode_entities and #decode_entities
+  methods.
+
+== 4.0.1 (2008-06-03)
+* Added :expanded charset -- the ~1000 SGML entities from
+  ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MISC/SGML.TXT (extra code by
+  Philip (flip) Kromer <flip@infochimps.org>, entity info from John Cowan
+  <cowan@ccil.org> #)
+
+== 4.0.0 (2007-03-15)
+* New instantiation-based interface (but legacy interface is preserved for
+  compatibility.
+* Handles HTML4 as well as XHTML1 (the former lacks the &apos; entity).
+* Encodes basic entities numerically when :basic isn't specified and :decimal
+  or :hexadecimal is.
+* Performs a maximum of two gsub passes instead of three when encoding, which
+  should be more efficient on long strings.
+
+== 3.1.0 (2007-01-19)
+* Now understands all the entities referred to in the XHTML 1.0 DTD (253
+  entities compared with 131 in version 3.0.1).
+* Calls to_s on parameters to play nicely with Rails 1.2.1.
+* Entity mapping data is now lazily loaded.
+
+== 3.0.1 (2005-04-08)
+* Improved documentation.
+
+== 3.0.0 (2005-04-08)
+* Changed licence to MIT due to confusion with previous 'Fair' licence (my
+  intention was to be liberal, not obscure).
+* Moved basic functionality out of String class; for previous behaviour,
+  require 'htmlentities/string'.
+* Changed version numbering scheme.
+* Now available as a Gem.
+
+== 2.2 (2005-11-07)
+* Important bug fixes -- thanks to Moonwolf.
+* Decoding hexadecimal entities now accepts 'f' as a hex digit. (D'oh!)
+* Decimal decoding edge cases addressed.
+* Test cases added.
+
+== 2.1 (2005-10-31)
+* Removed some unnecessary code in basic entity encoding.
+* Improved handling of encoding: commands are now automatically sorted, so the
+  user doesn't have to worry about their order.
+* Now using setup.rb.
+* Tests moved to separate file.
+
+== 2.0 (2005-08-23)
+* Added encoding to entities.
+* Decoding interface unchanged.
+* Fixed a bug with handling high codepoints.
+
+== 1.0 (2005-08-03)
+* Initial release.
+* Decoding only.

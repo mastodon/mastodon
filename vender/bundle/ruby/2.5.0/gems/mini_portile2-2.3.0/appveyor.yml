@@ -1,0 +1,25 @@
+---
+install:
+  - ps: ((New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt', "$env:TMP\ca-bundle.crt"))
+  - SET SSL_CERT_FILE=%TMP%\ca-bundle.crt
+  - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
+  - SET RAKEOPT=-rdevkit
+  - ruby --version
+  - gem --version
+  - bundle install
+  - gpg --version
+
+build: off
+
+test_script:
+  - bundle exec rake
+
+environment:
+  matrix:
+    - ruby_version: "22-x64"
+    - ruby_version: "22"
+    - ruby_version: "21-x64"
+    - ruby_version: "21"
+    - ruby_version: "200-x64"
+    - ruby_version: "200"
+    - ruby_version: "193"

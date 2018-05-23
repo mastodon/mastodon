@@ -1,0 +1,32 @@
+language: ruby
+sudo: false
+before_install:
+  - gem update bundler
+script:
+  - bundle exec rake test TESTOPTS="--verbose"
+  - bundle exec rake spec
+env:
+  - JRUBY_OPTS=--debug
+matrix:
+  fast_finish: true
+  include:
+  - rvm: 2.2.0
+    gemfile: Gemfile
+  - rvm: 2.3.0
+    gemfile: Gemfile
+  - rvm: 2.3.1
+    gemfile: Gemfile
+  - rvm: 2.4.2
+    gemfile: Gemfile
+  - rvm: jruby-head
+    gemfile: Gemfile
+  allow_failures:
+  - rvm: jruby-head
+notifications:
+  webhooks:
+    urls:
+    - https://webhooks.gitter.im/e/af95aadff4470a9732b9
+    on_success: change
+    on_failure: always
+    on_start: never
+  email: false

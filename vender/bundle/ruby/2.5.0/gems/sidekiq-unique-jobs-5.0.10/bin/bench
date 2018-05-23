@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Trap interrupts to quit cleanly. See
+# https://twitter.com/mitchellh/status/283014103189053442
+Signal.trap('INT') { abort }
+
+require 'bundler/setup'
+require 'benchmark/ips'
+require 'sidekiq-unique-jobs'
+
+ITERATIONS ||= 10_000
+
+Benchmark.ips do |x|
+  x.config(time: 5, warmup: 2)
+  x.report('new_shit') do |_times|
+    SidekiqUniqueJobs::Scripts::AcquireLock.execute(nil, SecureRandom.hex, SecureRandom.hex)
+  end
+  x.compare!
+end

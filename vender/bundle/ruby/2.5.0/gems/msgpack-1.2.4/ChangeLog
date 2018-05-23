@@ -1,0 +1,214 @@
+2018-03-02 version 1.2.3:
+
+* Add Ruby 2.5.0 binary in gem releases for Windows
+
+2018-01-11 version 1.2.2:
+
+* Fix bug to occur SEGV occasionally (depends on GC timing) when exttype is used
+* Fix bug to encode an ext type with wrong type id if superclass is also registered as ext type 
+
+2017-12-08 version 1.2.1:
+
+* Hotfix release only for JRuby: 1.2.0-java was built in incorrect way
+
+2017-12-07 version 1.2.0:
+
+* Add MessagePack::Factory#dump and MessagePack::Factory#load as convenient methods
+  like MessagePack.dump and MessagePack.load
+* Fix bug to accept MessagePack::Factory#register_type after #freeze
+
+2017-02-28 version 1.1.0:
+
+* Fix the extention type handling to accept modules in addition to classes
+
+2017-01-24 version 1.0.3:
+
+* Support Ruby 2.4
+
+2016-10-17 version 1.0.2:
+
+* Bump version up to release newer version to fix broken gem release for JRuby
+
+2016-10-17 version 1.0.1:
+
+* Fix a bug to crash at packer when ext type is registered for superclass of packed object
+* Fix JRuby implementation about inconsistent API of Unpacker constructor
+
+2016-07-08 version 1.0.0:
+
+* Fix to be able to pack Symbol with ext types
+* Fix for MRI 2.4 (Integer unification)
+
+2016-05-10 version 0.7.6:
+
+* Fix bug to raise IndexOutOfBoundsException for Bignum value with small int in JRuby
+
+2016-04-06 version 0.7.5:
+
+* Improved support for i386/armel/armhf environments
+* Fix bug for negative ext type id and some architectures (arm*)
+
+2016-01-08 version 0.7.4:
+
+* Improved compatibility of Packer between CRuby and JRuby about argument IO-ish object values.
+
+2016-01-07 version 0.7.3:
+
+* Add Packer#write_float32 method to pack floating point numbers into FLOAT of messagepack.
+
+2016-01-06 version 0.7.2:
+
+* Improved compatibility of Unpacker between CRuby and JRuby to accept stream-like object
+  by checking respond_to(:read) in addition to class check
+
+2015-11-20 version 0.7.1:
+
+* Fixed bug to pack/unpack ext type objects larger than 256bytes incorrectly.
+
+2015-10-24 version 0.7.0:
+
+* Add extention types support.
+* Fix to share almost all test cases between CRuby and JRuby implementations.
+* Fixed JRuby implementation to raise UnknownExtTypeError for unregistered ext type ids
+  instead to generate MessagePack::ExtensionValue instances.
+  (Specify `allow_unknown_ext: true` as unpacker option for v0.6.x behavior.)
+
+2015-07-22 version 0.6.2:
+
+* Fix release workflow: Ruby 2.1 and 2.2 are supported for Windows (2.0 is omitted)
+* Fix to encode symbols along its encoding
+* Fix segmentation fault in minor case
+
+2015-07-01 version 0.6.1:
+
+* Added :compatibility_mode option to Packer#initialize. Default is false. If it
+  is set to true, str8 format and bin format family will not be used.
+
+2015-05-26 version 0.6.0:
+
+* Added support for Binary types
+* Fixed to encode/decode between Binary types and ASCII-8BIT Ruby String objects
+
+2015-05-21 version 0.5.12:
+
+* Added support for JRuby 9K.
+* Added a benchmarking suite.
+* Fixed a bug in the handling of options given to MessagePack.unpack in JRuby.
+
+
+2015-02-04 version 0.5.11:
+
+* Fixed Encoding::CompatibilityError error when serializing a long string
+  longer than write_reference_threshold (5KB by default) and whose encoding
+  is not ASCII-8BIT.
+* Fix read_(map|array)_header (@funny-falcon++).
+* Internally, rename msgpack_unpacker_{init,reset,destroy} functions
+  so that we can load msgpack-c in the same process (@miihael++)
+
+
+2015-01-09 version 0.5.10:
+
+* Merged msgpack-jruby by @iconara. JRuby can run `require 'msgpack'` to use
+  msgpack-jruby.
+
+
+2014-10-05 version 0.5.9:
+
+* Fixed Unpacker#read_map_header and #read_array_header
+* Added support for Symbol GC added since MRI 2.2.0
+
+
+2013-12-14 version 0.5.8:
+
+* Fixed compatibility with Ruby 2.1.0
+* Added :symbolize_keys option to MessagePack.load and Unpacker#initialize
+
+
+2013-10-12 version 0.5.7:
+
+* Added deserialization support for the new MessagePack spec
+
+
+2013-09-23 version 0.5.6:
+
+* Fixed "can't modify frozen String" exception in Unpacker with ruby 2.1.0-dev
+* Getting work with Ruby v2.0 on Windows (Thank you @thegreendroid)
+* Fixed EOFError handling in Unpacker
+
+
+2013-05-12 version 0.5.5:
+
+* Fixed SEGV problem in to_msgpack
+* Fixed a possible race condition in MessagePack.load when it loads data from IO
+* mingw32 package includes binary for ruby-2.0.0
+
+
+2013-03-15 version 0.5.4:
+
+* Added missing MessagePack::Unpacker#reset method
+
+
+2013-02-14 version 0.5.3:
+
+* Fixed segfault problem on Buffer#clear (reuse rmem internal fragment optimization)
+* Fixed segfault problem on Buffer (rmem free code)
+
+
+2013-02-07 version 0.5.2:
+
+* Fixed invalid pack/unpack on 32bit architecture such as Win32
+* Disable rmem on Rubinius because rmem is not thread safe
+
+
+2012-12-23 version 0.5.1:
+
+* Fixed compile error with Rubinius 2.0.0-dev
+* Optimized msgpack_packer_write_hash for Rubinius
+
+
+2012-12-20 version 0.5.0:
+
+* Rewrote all code and improved performance significantly
+* Added MessagePack::Buffer class
+* Added MessagePack::Packer class
+* Added Packer#buffer and Unpacker#buffer accessors which return MessagePack::Buffer
+* Added Packer#write_{array,map}_header and Unpacker#read_{array,map}_header methods
+* Added Packer#write_nil and Unpacker#skip_nil methods
+* Added Packer#write -> #pack alias and Unpacker#read method
+* Added exception classes - UnpackError, MalformedFormatError, StackError and TypeError
+* Added MessagePack.dup -> .pack and MessagePack.load -> .unpack aliases
+* Added Packer#empty?, #size and #clear methods
+* Added Packer#write_to(io) method to flush serialized data to IO efficiently
+* Added Unpacker#skip method to skip an object efficiently
+* Removed obsoleted Unpacker#fill, #execute, #execute_limit, #finished? and #data methods
+* Removed obsoleted Unapcker#stream and #stream= methods. Use unpacker.buffer.io instead
+
+
+2012-05-05 version 0.4.7:
+
+* Fixed serialization of double values on ARM OABI architectures
+* Fixed byteorder problem on big-endian platforms
+* Don't use MRI internals in the Ruby extension for Rubinius
+* Detect whether st.h is present and don't use RUBY_VM as the condition for
+  Rubinius
+
+2011-08-08 version 0.4.6:
+
+* Fixed compile error problem on Mac OS X Lion
+
+2011-05-09 version 0.4.5:
+
+* Improves compatibility with JRuby
+
+2010-11-28 version 0.4.4:
+
+* Adds Unpacker#feed_each method
+* Improves compatibility with Rubinius
+* Improves compatibility with ruby-1.8.5
+* Encodings of String instances to UTF-8 on Ruby 1.9
+
+2010-06-29 version 0.4.3:
+
+* Adds MessagePack::VERSION constant
+* Fixes SEGV problem caused by GC bug at MessagePack_Unpacker_mark
+

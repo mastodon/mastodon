@@ -1,0 +1,40 @@
+---
+TooManyStatements:
+  max_statements: 10
+UncommunicativeMethodName:
+  reject:
+  - !ruby/regexp /^[a-z]$/
+  - !ruby/regexp /[0-9]$/
+UncommunicativeParameterName:
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /^_/
+UncommunicativeVariableName:
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+UtilityFunction:
+  enabled: false
+LongParameterList:
+  enabled: false
+DuplicateMethodCall:
+  max_calls: 2
+IrresponsibleModule:
+  enabled: false
+NestedIterators:
+  max_allowed_nesting: 2
+PrimaDonnaMethod:
+  enabled: false
+UnusedParameters:
+  enabled: false
+FeatureEnvy:
+  enabled: false
+ControlParameter:
+  enabled: false
+UnusedPrivateMethod:
+  enabled: false
+InstanceVariableAssumption:
+  exclude:
+    - !ruby/regexp /Controller$/
+    - !ruby/regexp /Mailer$/s

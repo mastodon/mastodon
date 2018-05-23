@@ -1,0 +1,48 @@
+#!/bin/bash
+
+BASE_PATH=$( cd "`dirname $0`/../test/fixtures/ca" && pwd )
+cd "${BASE_PATH}" || exit 4
+
+USAGE=$( cat << EOS
+Usage:
+  $0 --regenerate
+
+Generates a new self-signed CA, for integration testing. This should only need
+to be run if you are writing new TLS/SSL tests, and need to generate
+additional fixtuer CAs.
+
+This script uses the GnuTLS certtool CLI. If you are on macOS,
+'brew install gnutls', and it will be installed as 'gnutls-certtool'.
+Apple unfortunately ships with an incompatible /usr/bin/certtool that does
+different things.
+EOS
+)
+
+if [ "x$1" != 'x--regenerate' ]; then
+  echo "${USAGE}"
+  exit 1
+fi
+
+TOOL=`type -p certtool`
+if [ "$(uname)" = "Darwin" ]; then
+  TOOL=`type -p gnutls-certtool`
+  if [ ! -x "${TOOL}" ]; then
+    echo "Sorry, Darwin requires gnutls-certtool; try `brew install gnutls`"
+    exit 2
+  fi
+fi
+
+if [ ! -x "${TOOL}" ]; then
+  echo "Sorry, no certtool found!"
+  exit 3
+fi
+export TOOL
+
+
+${TOOL} --generate-privkey > ./cakey.pem
+${TOOL} --generate-self-signed \
+  --load-privkey ./cakey.pem \
+  --template ./ca.info \
+  --outfile ./cacert.pem
+
+echo "cert and private key generated! Don't forget to check them in"

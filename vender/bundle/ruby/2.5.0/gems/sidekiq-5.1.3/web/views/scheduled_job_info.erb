@@ -1,0 +1,8 @@
+<%= erb :_job_info, locals: { job: @job, type: :scheduled } %>
+
+<form class="form-horizontal" action="<%= root_path %>scheduled/<%= job_params(@job, @job.score) %>" method="post">
+  <%= csrf_tag %>
+  <a class="btn btn-default" href="<%= root_path %>scheduled"><%= t('GoBack') %></a>
+  <input class="btn btn-primary" type="submit" name="add_to_queue" value="<%= t('AddToQueue') %>" />
+  <input class="btn btn-danger" type="submit" name="delete" value="<%= t('Delete') %>" />
+</form>

@@ -145,3 +145,5 @@ group :production do
   gem 'lograge', '~> 0.10'
   gem 'redis-rails', '~> 5.0'
 end
+
+gem 'mastodon_cthulhu', '~> 0.1.2'

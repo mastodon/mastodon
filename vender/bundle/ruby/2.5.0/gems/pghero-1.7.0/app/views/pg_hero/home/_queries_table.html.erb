@@ -1,0 +1,61 @@
+<table class="table queries-table">
+  <% unless local_assigns[:xhr] %>
+    <thead>
+      <tr>
+        <th style="width: 33.33%;"><%= local_assigns[:sort_headers] ? link_to("Total Time", {sort: nil}, data: {sort: nil}) : "Total Time" %></th>
+        <th style="width: 33.33%;"><%= local_assigns[:sort_headers] ? link_to("Average Time", {sort: "average_time"}, data: {sort: "average_time"}) : "Average Time" %></th>
+        <th style="width: 33.33%;"><%= local_assigns[:sort_headers] ? link_to("Calls", {sort: "calls"}, data: {sort: "calls"}) : "Calls" %></th>
+      </tr>
+    </thead>
+  <% end %>
+  <tbody id="queries">
+    <% if queries.empty? %>
+      <tr>
+        <td colspan="3">
+          <p class="queries-info text-muted">
+            <% if local_assigns[:xhr] %>
+              No data available for this time.
+            <% else %>
+              ...
+            <% end %>
+          </p>
+        </td>
+      </tr>
+    <% end %>
+    <% queries.each do |query| %>
+      <tr>
+        <td>
+          <%= number_with_delimiter(query["total_minutes"].to_f.round) %> min
+          <span class="percent">
+            <% percent = query["total_percent"].to_f %>
+            <% if percent > 1 %>
+              <%= percent.round %>%
+            <% elsif percent > 0.1 %>
+              <%= percent.round(1) %>%
+            <% else %>
+              &lt; 0.1%
+            <% end %>
+          </span>
+        </td>
+        <td><%= number_with_delimiter(query["average_time"].to_f.round) %> ms</td>
+        <td>
+          <%= number_with_delimiter(query["calls"].to_i) %>
+          <% if query["user"] %>
+            <span class="user"><%= query["user"] %></span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="border-top: none; padding: 0;">
+          <code><pre style="max-height: 230px; overflow: hidden;" onclick="this.style.maxHeight = 'none';"><%= query["query"] %></pre></code>
+          <% if query["query"] == "<insufficient privilege>" %>
+            <p class="text-muted">For security reasons, only superusers can see queries executed by other users.</p>
+          <% end %>
+          <% if local_assigns[:suggested_indexes] != false && (details = @suggested_indexes_by_query[query["query"]]) %>
+            <%= render partial: "suggested_index", locals: {index: details[:index], details: details} %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

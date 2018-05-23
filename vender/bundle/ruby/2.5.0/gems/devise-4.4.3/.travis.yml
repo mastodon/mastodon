@@ -1,0 +1,68 @@
+language: ruby
+
+rvm:
+  - 2.1.10
+  - 2.2.8
+  - 2.3.5
+  - 2.4.2
+  - 2.5.0
+  - ruby-head
+
+gemfile:
+  - Gemfile
+  - gemfiles/Gemfile.rails-5.2-rc1
+  - gemfiles/Gemfile.rails-5.0-stable
+  - gemfiles/Gemfile.rails-4.2-stable
+  - gemfiles/Gemfile.rails-4.1-stable
+
+matrix:
+  exclude:
+    - rvm: 2.1.10
+      gemfile: Gemfile
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.rails-5.2-rc1
+    - rvm: 2.5.0
+      gemfile: gemfiles/Gemfile.rails-4.1-stable
+    - rvm: 2.4.2
+      gemfile: gemfiles/Gemfile.rails-4.1-stable
+    - rvm: ruby-head
+      gemfile: gemfiles/Gemfile.rails-4.1-stable
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.rails-5.0-stable
+    - rvm: 2.1.10
+      gemfile: Gemfile
+    - env: DEVISE_ORM=mongoid
+      gemfile: Gemfile
+    - env: DEVISE_ORM=mongoid
+      gemfile: gemfiles/Gemfile.rails-5.0-stable
+    - env: DEVISE_ORM=mongoid
+      gemfile: gemfiles/Gemfile.rails-5.2-rc1
+  allow_failures:
+    - rvm: ruby-head
+services:
+  - mongodb
+
+sudo: false
+
+cache: bundler
+
+env:
+  matrix:
+    - DEVISE_ORM=active_record
+    - DEVISE_ORM=mongoid
+
+before_install:
+  - "rm ${BUNDLE_GEMFILE}.lock"
+  - gem update --system
+
+before_script: "bundle update"
+
+script: "bin/test"
+
+notifications:
+  email: false
+  slack:
+    on_pull_requests: false
+    on_success: change
+    on_failure: always
+    secure: Q3M+kmude3FjisibEeeGe0wSMXgvwLH+vL7Zrx9//q4QtkfnrQ/BBMvY9KXxPEsNF+eys4YopYjTkJ8uRmeboUATW/oQ4Jrv3+u3zkIHK2sFn/Q2cQWpK5w+CbgEnHPjKYnUu34b09njXTgDlr/mqtbPqrKeZ1dLlpKXCB/q4GY=

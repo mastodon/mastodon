@@ -1,0 +1,48 @@
+[
+
+"", [],
+"foo", [["error", "invalid"]],
+"foo 4", [["error", "invalid"]],
+
+"@foo", [["at-rule", "foo", [], null]],
+
+"@foo bar; \t/* comment */", [["at-rule", "foo", [" ", ["ident", "bar"]], null]],
+
+" /**/ @foo bar{[(4", [["at-rule", "foo",
+    [" ", ["ident", "bar"]],
+    [["[]", ["()", ["number", "4", 4, "integer"]]]]
+]],
+
+"@foo { bar", [["at-rule", "foo", [" "], [" ", ["ident", "bar"]]]],
+"@foo [ bar", [["at-rule", "foo", [" ", ["[]", " ", ["ident", "bar"]]], null]],
+
+" /**/ div > p { color: #aaa;  } /**/ ", [["qualified rule",
+    [["ident", "div"], " ", ">", " ", ["ident", "p"], " "],
+    [" ", ["ident", "color"], ":", " ", ["hash", "aaa", "id"], ";", " "]
+]],
+
+" /**/ { color: #aaa  ", [["qualified rule",
+    [],
+    [" ", ["ident", "color"], ":", " ", ["hash", "aaa", "id"], " "]
+]],
+
+" /* CDO/CDC are not special */ <!-- --> {", [["qualified rule",
+    ["<!--", " ", "-->", " "], []
+]],
+
+"div { color: #aaa; } p{}", [
+    ["qualified rule", [["ident", "div"], " "],
+        [" ", ["ident", "color"], ":", " ", ["hash", "aaa", "id"], ";", " "]
+    ],
+    ["qualified rule", [["ident", "p"]], []]
+],
+
+"div {} -->", [
+    ["qualified rule", [["ident", "div"], " "], []],
+    ["error", "invalid"]
+],
+
+"{}a", [["qualified rule", [], []], ["error", "invalid"]],
+"{}@a", [["qualified rule", [], []], ["at-rule", "a", [], null]]
+
+]

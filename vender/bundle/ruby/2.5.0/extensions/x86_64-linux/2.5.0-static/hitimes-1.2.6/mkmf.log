@@ -1,0 +1,62 @@
+have_library: checking for clock_gettime() in -lrt... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lrt  -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'clock_gettime' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))clock_gettime; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))clock_gettime; return !p; }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lrt  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void clock_gettime();
+14: int t(void) { clock_gettime(); return 0; }
+/* end */
+
+--------------------
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+  targetNamespace="urn:oasis:names:tc:SAML:metadata:attribute"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+  xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified"
+  blockDefault="substitution"
+  version="2.0">
+
+  <annotation>
+    <documentation>
+      Document title: SAML V2.0 Metadata Extention for Entity Attributes Schema
+      Document identifier: sstc-metadata-attr.xsd
+      Location: http://www.oasis-open.org/committees/documents.php?wg_abbrev=security
+      Revision history:
+      V1.0 (November 2008):
+        Initial version.
+    </documentation>
+  </annotation>
+
+  <import namespace="urn:oasis:names:tc:SAML:2.0:assertion"
+      schemaLocation="saml-schema-assertion-2.0.xsd"/>
+
+  <element name="EntityAttributes" type="mdattr:EntityAttributesType"/>
+  <complexType name="EntityAttributesType">
+    <choice maxOccurs="unbounded">
+      <element ref="saml:Attribute"/>
+      <element ref="saml:Assertion"/>
+    </choice>
+  </complexType>
+
+</schema>
+

@@ -1,0 +1,33 @@
+= C/C++ mode style for Nokogiri
+
+Please don't propose commits that only change whitespace. However, if your
+commit touches a function or section that is not using MRI Ruby conventions,
+feel free to update whitespace in the surrounding code.
+
+
+= WHITESPACE:
+
+* indent level: 2
+* indent type: Always spaces
+* line Breaks: LF
+
+This style can be automatically applied by running:
+
+    astyle --indent=spaces=2 --style=1tbs --keep-one-line-blocks $(ack -f --type=cpp --type=cc ext/nokogiri)
+
+
+= FUNCTION DECLARATION:
+
+ANSI C style:
+
+    type name(args)
+    {
+      declarations
+    
+      code
+    }
+
+= SOURCES:
+
+* <3<3<3
+

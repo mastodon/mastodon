@@ -1,0 +1,47 @@
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/oj-3.5.0/ext/oj
+/home/mastodon/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180408-28175-1duwqqh.rb extconf.rb
+>>>>> Creating Makefile for ruby version 2.5.1 on x86_64-linux <<<<<
+creating Makefile
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/oj-3.5.0/ext/oj
+make "DESTDIR=" clean
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/oj-3.5.0/ext/oj
+make "DESTDIR="
+compiling cache8.c
+compiling circarray.c
+compiling code.c
+compiling compat.c
+compiling custom.c
+compiling dump.c
+compiling dump_compat.c
+compiling dump_leaf.c
+compiling dump_object.c
+compiling dump_strict.c
+compiling err.c
+compiling fast.c
+compiling hash.c
+compiling hash_test.c
+compiling mimic_json.c
+compiling object.c
+compiling odd.c
+compiling oj.c
+compiling parse.c
+compiling rails.c
+compiling reader.c
+compiling resolve.c
+compiling rxclass.c
+compiling saj.c
+compiling scp.c
+compiling sparse.c
+compiling stream_writer.c
+compiling strict.c
+compiling string_writer.c
+compiling trace.c
+compiling val_stack.c
+compiling wab.c
+linking shared-object oj/oj.so
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/oj-3.5.0/ext/oj
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 oj.so ./.gem.20180408-28175-rffy7t/oj

@@ -1,0 +1,46 @@
+dist: trusty
+sudo: required
+language: ruby
+rvm:
+  - 2.4.0
+  - 2.3.3
+  - 2.2.6
+  - 2.1.9
+  - 2.0.0
+  - 1.9.3
+  - ruby-head
+  - jruby-9.1.5.0
+  - jruby-1.7.26
+  - jruby-head
+  - rubinius-3
+  - rubinius-2
+jdk:
+  - openjdk7
+  - oraclejdk8
+matrix:
+  exclude:
+    - rvm: 2.4.0
+      jdk: oraclejdk8
+    - rvm: 2.3.3
+      jdk: oraclejdk8
+    - rvm: 2.2.6
+      jdk: oraclejdk8
+    - rvm: 2.1.9
+      jdk: oraclejdk8
+    - rvm: 2.0.0
+      jdk: oraclejdk8
+    - rvm: 1.9.3
+      jdk: oraclejdk8
+    - rvm: ruby-head
+      jdk: oraclejdk8
+    - rvm: rubinius-3
+      jdk: oraclejdk8
+    - rvm: rubinius-2
+      jdk: oraclejdk8
+  allow_failures:
+    - rvm: 1.9.3
+    - rvm: ruby-head
+    - rvm: jruby-1.7.26
+    - rvm: jruby-head
+    - rvm: rubinius-2
+script: "bundle exec rake test"

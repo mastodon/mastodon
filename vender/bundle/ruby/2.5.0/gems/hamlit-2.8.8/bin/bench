@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'hamlit'
+require 'faml'
+require 'thor'
+require 'benchmark/ips'
+require_relative '../benchmark/utils/benchmark_ips_extension'
+
+class Bench < Thor
+  class_option :show_template, type: :boolean, aliases: ['-t']
+
+  desc 'bench HAML', 'Benchmark haml template'
+  option :compile, type: :boolean, aliases: ['-c']
+  option :show_code, type: :boolean, aliases: ['-s']
+  def bench(*files)
+    files.each { |file| render(file) }
+    files.each { |file| compile(file) if options[:compile] }
+    files.each { |file| code(file) if options[:show_code] }
+  end
+
+  desc 'compile HAML', 'Benchmark compilation'
+  def compile(file)
+    puts "#{?= * 49}\n Compilation: #{file}\n#{?= * 49}"
+    haml = File.read(file)
+
+    Benchmark.ips do |x|
+      x.report("haml v#{Haml::VERSION}") { Haml::Engine.new(haml, escape_html: true, escape_attrs: true, ugly: true).precompiled }
+      x.report("faml v#{Faml::VERSION}") { Faml::Engine.new.call(haml) }
+      x.report("hamlit v#{Hamlit::VERSION}") { Hamlit::Engine.new.call(haml) }
+      x.compare!
+    end
+  end
+
+  desc 'render HAML', 'Benchmark rendering'
+  def render(file)
+    puts "#{?= * 49}\n Rendering: #{file}\n#{?= * 49}"
+    haml = File.read(file)
+    puts haml + "\n" if options[:show_template]
+    object = Object.new
+    ruby_file = file.gsub(/\.haml\z/, '.rb')
+    if File.exist?(ruby_file)
+      object.instance_eval(File.read(ruby_file))
+    end
+
+    Haml::Engine.new(haml, escape_html: true, escape_attrs: true, ugly: true).def_method(object, :haml)
+    object.instance_eval "def faml; #{Faml::Engine.new.call(haml)}; end"
+    object.instance_eval "def hamlit; #{Hamlit::Engine.new.call(haml)}; end"
+
+    Benchmark.ips do |x|
+      x.report("haml v#{Haml::VERSION}") { object.haml }
+      x.report("faml v#{Faml::VERSION}") { object.faml }
+      x.report("hamlit v#{Hamlit::VERSION}") { object.hamlit }
+      x.compare!
+    end
+  end
+
+  desc 'code HAML', 'Show compiled code'
+  def code(file)
+    haml = File.read(file)
+    puts "#{?= * 49}\n Haml Source: #{file}\n#{?= * 49}"
+    puts Haml::Engine.new(haml, escape_html: true, escape_attrs: true, ugly: true).precompiled
+    puts "\n#{?= * 49}\n Faml Source: #{file}\n#{?= * 49}"
+    puts Faml::Engine.new.call(haml)
+    puts "\n#{?= * 49}\n Hamlit Source: #{file}\n#{?= * 49}"
+    puts Hamlit::Engine.new.call(haml)
+  end
+
+  private
+
+  def method_missing(*args)
+    return super if args.length > 1
+    render(args.first.to_s)
+  end
+end
+
+Bench.start

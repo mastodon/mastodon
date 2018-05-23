@@ -1,0 +1,54 @@
+<header class="row">
+  <div class="col-sm-5">
+    <h3><%= t('ScheduledJobs') %></h3>
+  </div>
+  <% if @scheduled.size > 0 && @total_size > @count %>
+    <div class="col-sm-4">
+      <%= erb :_paging, locals: { url: "#{root_path}scheduled" } %>
+    </div>
+  <% end %>
+  <%= filtering('scheduled') %>
+</header>
+
+<% if @scheduled.size > 0 %>
+
+  <form action="<%= root_path %>scheduled" method="post">
+    <%= csrf_tag %>
+    <div class="table_container">
+      <table class="table table-striped table-bordered table-white">
+        <thead>
+          <tr>
+            <th class="checkbox-column">
+              <input type="checkbox" class="check_all" />
+            </th>
+            <th><%= t('When') %></th>
+            <th><%= t('Queue') %></th>
+            <th><%= t('Job') %></th>
+            <th><%= t('Arguments') %></th>
+          </tr>
+        </thead>
+        <% @scheduled.each do |entry| %>
+          <tr>
+            <td>
+              <input type='checkbox' name='key[]' value='<%= job_params(entry.item, entry.score) %>' />
+            </td>
+            <td>
+               <a href="<%= root_path %>scheduled/<%= job_params(entry.item, entry.score) %>"><%= relative_time(entry.at) %></a>
+            </td>
+            <td>
+              <a href="<%= root_path %>queues/<%= entry.queue %>"><%= entry.queue %></a>
+            </td>
+            <td><%= entry.display_class %></td>
+            <td>
+               <div class="args"><%= display_args(entry.display_args) %></div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <input class="btn btn-danger pull-right flip" type="submit" name="delete" value="<%= t('Delete') %>" />
+    <input class="btn btn-danger pull-right flip" type="submit" name="add_to_queue" value="<%= t('AddToQueue') %>" />
+  </form>
+<% else %>
+  <div class="alert alert-success"><%= t('NoScheduledFound') %></div>
+<% end %>

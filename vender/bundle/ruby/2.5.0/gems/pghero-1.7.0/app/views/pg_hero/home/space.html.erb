@@ -1,0 +1,29 @@
+<div class="content">
+  <h1>Space</h1>
+
+  <p>Database Size: <%= @database_size %></p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Relation</th>
+        <th style="width: 15%;"></th>
+        <th style="width: 15%;">Size</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @relation_sizes.each do |query| %>
+        <tr>
+          <td>
+            <%= query["name"] %>
+            <% if query["schema"] != "public" %>
+              <span class="text-muted"><%= query["schema"] %></span>
+            <% end %>
+          </td>
+          <td> <span class="text-muted"><%= query["type"] == "index" ? "index" : "" %></span></td>
+          <td><%= query["size"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

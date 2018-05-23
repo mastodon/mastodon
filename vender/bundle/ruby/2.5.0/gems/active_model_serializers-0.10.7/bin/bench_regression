@@ -1,0 +1,316 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'pathname'
+require 'shellwords'
+require 'English'
+
+############################
+# USAGE
+#
+# bundle exec bin/bench_regression <ref1> <ref2>
+#   <ref1> defaults to the current branch
+#   <ref2> defaults to the master branch
+# bundle exec bin/bench_regression current                    # will run on the current branch
+# bundle exec bin/bench_regression revisions 792fb8a90 master # every revision inclusive
+# bundle exec bin/bench_regression           792fb8a90 master --repeat-count 2 --env CACHE_ON=off
+# bundle exec bin/bench_regression vendor
+###########################
+
+class BenchRegression
+  ROOT = Pathname File.expand_path(File.join(*['..', '..']), __FILE__)
+  TMP_DIR_NAME = File.join('tmp', 'bench')
+  TMP_DIR = File.join(ROOT, TMP_DIR_NAME)
+  E_TMP_DIR = Shellwords.shellescape(TMP_DIR)
+  load ROOT.join('bin', 'bench')
+
+  attr_reader :source_stasher
+
+  def initialize
+    @source_stasher = SourceStasher.new
+  end
+
+  class SourceStasher
+    attr_reader :gem_require_paths, :gem_paths
+    attr_writer :vendor
+
+    def initialize
+      @gem_require_paths = []
+      @gem_paths = []
+      refresh_temp_dir
+      @vendor = false
+    end
+
+    def temp_dir_empty?
+      File.directory?(TMP_DIR) &&
+        Dir[File.join(TMP_DIR, '*')].none?
+    end
+
+    def empty_temp_dir
+      return if @vendor
+      return if temp_dir_empty?
+      FileUtils.mkdir_p(TMP_DIR)
+      Dir[File.join(TMP_DIR, '*')].each do |file|
+        if File.directory?(file)
+          FileUtils.rm_rf(file)
+        else
+          FileUtils.rm(file)
+        end
+      end
+    end
+
+    def fill_temp_dir
+      vendor_files(Dir[File.join(ROOT, 'test', 'benchmark', '*.{rb,ru}')])
+      # vendor_file(File.join('bin', 'bench'))
+      housekeeping { empty_temp_dir }
+      vendor_gem('benchmark-ips')
+    end
+
+    def vendor_files(files)
+      files.each do |file|
+        vendor_file(file)
+      end
+    end
+
+    def vendor_file(file)
+      FileUtils.cp(file, File.join(TMP_DIR, File.basename(file)))
+    end
+
+    def vendor_gem(gem_name)
+      directory_name = `bundle exec gem unpack benchmark-ips --target=#{E_TMP_DIR}`[/benchmark-ips.+\d/]
+      gem_paths << File.join(TMP_DIR, directory_name)
+      gem_require_paths << File.join(TMP_DIR_NAME, directory_name, 'lib')
+      housekeeping { remove_vendored_gems }
+    end
+
+    def remove_vendored_gems
+      return if @vendor
+      FileUtils.rm_rf(*gem_paths)
+    end
+
+    def refresh_temp_dir
+      empty_temp_dir
+      fill_temp_dir
+    end
+
+    def housekeeping
+      at_exit { yield }
+    end
+  end
+
+  module RevisionMethods
+    module_function
+    def current_branch
+      @current_branch ||= `cat .git/HEAD | cut -d/ -f3,4,5`.chomp
+    end
+
+    def current_revision
+      `git rev-parse --short HEAD`.chomp
+    end
+
+    def revision_description(rev)
+      `git log --oneline -1 #{rev}`.chomp
+    end
+
+    def revisions(start_ref, end_ref)
+      cmd = "git rev-list --reverse #{start_ref}..#{end_ref}"
+      `#{cmd}`.chomp.split("\n")
+    end
+
+    def checkout_ref(ref)
+      `git checkout #{ref}`.chomp
+      if $CHILD_STATUS
+        STDERR.puts "Checkout failed: #{ref}, #{$CHILD_STATUS.exitstatus}" unless $CHILD_STATUS.success?
+        $CHILD_STATUS.success?
+      else
+        true
+      end
+    end
+
+    def clean_head
+      system('git reset --hard --quiet')
+    end
+  end
+  module ShellMethods
+
+    def sh(cmd)
+      puts cmd
+      # system(cmd)
+      run(cmd)
+      # env = {}
+      # # out = STDOUT
+      # pid = spawn(env, cmd)
+      # Process.wait(pid)
+      # pid = fork do
+      #   exec cmd
+      # end
+      # Process.waitpid2(pid)
+      # puts $CHILD_STATUS.exitstatus
+    end
+
+    require 'pty'
+    # should consider trapping SIGINT in here
+    def run(cmd)
+      puts cmd
+      child_process = ''
+      result = ''
+      # http://stackoverflow.com/a/1162850
+      # stream output of subprocess
+      begin
+        PTY.spawn(cmd) do |stdin, _stdout, pid|
+          begin
+            # Do stuff with the output here. Just printing to show it works
+            stdin.each do |line|
+              print line
+              result << line
+            end
+            child_process = PTY.check(pid)
+          rescue Errno::EIO
+            puts 'Errno:EIO error, but this probably just means ' \
+                  'that the process has finished giving output'
+          end
+        end
+      rescue PTY::ChildExited
+        puts 'The child process exited!'
+      end
+      unless (child_process && child_process.success?)
+        exitstatus = child_process.exitstatus
+        puts "FAILED: #{child_process.pid} exited with status #{exitstatus.inspect} due to failed command #{cmd}"
+        exit exitstatus || 1
+      end
+      result
+    end
+
+    def bundle(ref)
+      system("rm -f Gemfile.lock")
+      # This is absolutely critical for bundling to work
+      Bundler.with_clean_env do
+        system("bundle check ||
+          bundle install --local ||
+          bundle install ||
+          bundle update")
+      end
+
+      # if $CHILD_STATUS
+      #   STDERR.puts "Bundle failed at: #{ref}, #{$CHILD_STATUS.exitstatus}" unless $CHILD_STATUS.success?
+      #   $CHILD_STATUS.success?
+      # else
+      #   false
+      # end
+    end
+  end
+  include ShellMethods
+  include RevisionMethods
+
+  def benchmark_refs(ref1: nil, ref2: nil, cmd:)
+    checking_out = false
+    ref0 = current_branch
+    ref1 ||= current_branch
+    ref2 ||= 'master'
+    p [ref0, ref1, ref2, current_revision]
+
+    run_benchmark_at_ref(cmd, ref1)
+    p [ref0, ref1, ref2, current_revision]
+    run_benchmark_at_ref(cmd, ref2)
+    p [ref0, ref1, ref2, current_revision]
+
+    checking_out = true
+    checkout_ref(ref0)
+  rescue Exception # rubocop:disable Lint/RescueException
+    STDERR.puts "[ERROR] #{$!.message}"
+    checkout_ref(ref0) unless checking_out
+    raise
+  end
+
+  def benchmark_revisions(ref1: nil, ref2: nil, cmd:)
+    checking_out = false
+    ref0 = current_branch
+    ref1 ||= current_branch
+    ref2 ||= 'master'
+
+    revisions(ref1, ref2).each do |rev|
+      STDERR.puts "Checking out: #{revision_description(rev)}"
+
+      run_benchmark_at_ref(cmd, rev)
+      clean_head
+    end
+    checking_out = true
+    checkout_ref(ref0)
+  rescue Exception # rubocop:disable Lint/RescueException
+    STDERR.puts "[ERROR]: #{$!.message}"
+    checkout_ref(ref0) unless checking_out
+    raise
+  end
+
+  def run_benchmark_at_ref(cmd, ref)
+    checkout_ref(ref)
+    run_benchmark(cmd, ref)
+  end
+
+  def run_benchmark(cmd, ref = nil)
+    ref ||= current_revision
+    bundle(ref) &&
+      benchmark_tests(cmd, ref)
+  end
+
+  def benchmark_tests(cmd, ref)
+    base = E_TMP_DIR
+    # cmd.sub('bin/bench', 'tmp/revision_runner/bench')
+    # bundle = Gem.bin('bunle'
+    # Bundler.with_clean_env(&block)
+
+    # cmd = Shellwords.shelljoin(cmd)
+    # cmd = "COMMIT_HASH=#{ref} BASE=#{base} bundle exec ruby  -rbenchmark/ips #{cmd}"
+    # Add vendoring benchmark/ips to load path
+
+    # CURRENT THINKING: IMPORTANT
+    # Pass into require statement as RUBYOPTS i.e. via env rather than command line argument
+    # otherwise, have a 'fast ams benchmarking' module that extends benchmarkings to add the 'ams'
+    # method but doesn't depend on benchmark-ips
+    options = {
+      commit_hash: ref,
+      base: base,
+      rubyopt: Shellwords.shellescape("-Ilib:#{source_stasher.gem_require_paths.join(':')}")
+    }
+    BenchmarkDriver.parse_argv_and_run(ARGV.dup, options)
+  end
+end
+
+if $PROGRAM_NAME == __FILE__
+  benchmarking = BenchRegression.new
+
+  case ARGV[0]
+  when 'current'
+    # Run current branch only
+
+    # super simple command line parsing
+    args = ARGV.dup
+    _    = args.shift # remove 'current' from args
+    cmd  = args
+    benchmarking.run_benchmark(cmd)
+  when 'revisions'
+    # Runs on every revision
+
+    # super simple command line parsing
+    args = ARGV.dup
+    _         = args.shift
+    ref1      = args.shift # remove 'revisions' from args
+    ref2      = args.shift
+    cmd       = args
+    benchmarking.benchmark_revisions(ref1: ref1, ref2: ref2, cmd: cmd)
+  when 'vendor'
+    # Just prevents vendored files from being cleaned up
+    # at exit. (They are vendored at initialize.)
+    benchmarking.source_stasher.vendor = true
+  else
+    # Default: Compare current_branch to master
+    # Optionally: pass in two refs as args to `bin/bench_regression`
+    # TODO: Consider checking across more revisions, to automatically find problems.
+
+    # super simple command line parsing
+    args = ARGV.dup
+    ref1      = args.shift
+    ref2      = args.shift
+    cmd       = args
+    benchmarking.benchmark_refs(ref1: ref1, ref2: ref2, cmd: cmd)
+  end
+end

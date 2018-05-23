@@ -1,0 +1,475 @@
+#
+# errcodes.txt
+#      PostgreSQL error codes
+#
+# Copyright (c) 2003-2016, PostgreSQL Global Development Group
+#
+# This list serves as the basis for generating source files containing error
+# codes. It is kept in a common format to make sure all these source files have
+# the same contents.
+# The files generated from this one are:
+#
+#   src/include/utils/errcodes.h
+#      macros defining errcode constants to be used in the rest of the source
+#
+#   src/pl/plpgsql/src/plerrcodes.h
+#      a list of PL/pgSQL condition names and their SQLSTATE codes
+#
+#   src/pl/tcl/pltclerrcodes.h
+#      the same, for PL/Tcl
+#
+#   doc/src/sgml/errcodes-list.sgml
+#      a SGML table of error codes for inclusion in the documentation
+#
+# The format of this file is one error code per line, with the following
+# whitespace-separated fields:
+#
+#      sqlstate    E/W/S    errcode_macro_name    spec_name
+#
+# where sqlstate is a five-character string following the SQLSTATE conventions,
+# the second field indicates if the code means an error, a warning or success,
+# errcode_macro_name is the C macro name starting with ERRCODE that will be put
+# in errcodes.h, and spec_name is a lowercase, underscore-separated name that
+# will be used as the PL/pgSQL condition name and will also be included in the
+# SGML list. The last field is optional, if not present the PL/pgSQL condition
+# and the SGML entry will not be generated.
+#
+# Empty lines and lines starting with a hash are comments.
+#
+# There are also special lines in the format of:
+#
+#      Section: section description
+#
+# that is, lines starting with the string "Section:". They are used to delimit
+# error classes as defined in the SQL spec, and are necessary for SGML output.
+#
+#
+#      SQLSTATE codes for errors.
+#
+# The SQL99 code set is rather impoverished, especially in the area of
+# syntactical and semantic errors.  We have borrowed codes from IBM's DB2
+# and invented our own codes to develop a useful code set.
+#
+# When adding a new code, make sure it is placed in the most appropriate
+# class (the first two characters of the code value identify the class).
+# The listing is organized by class to make this prominent.
+#
+# Each class should have a generic '000' subclass.  However,
+# the generic '000' subclass code should be used for an error only
+# when there is not a more-specific subclass code defined.
+#
+# The SQL spec requires that all the elements of a SQLSTATE code be
+# either digits or upper-case ASCII characters.
+#
+# Classes that begin with 0-4 or A-H are defined by the
+# standard. Within such a class, subclass values defined by the
+# standard must begin with 0-4 or A-H. To define a new error code,
+# ensure that it is either in an "implementation-defined class" (it
+# begins with 5-9 or I-Z), or its subclass falls outside the range of
+# error codes that could be present in future versions of the
+# standard (i.e. the subclass value begins with 5-9 or I-Z).
+#
+# The convention is that new error codes defined by PostgreSQL in a
+# class defined by the standard have a subclass value that begins
+# with 'P'. In addition, error codes defined by PostgreSQL clients
+# (such as ecpg) have a class value that begins with 'Y'.
+
+Section: Class 00 - Successful Completion
+
+00000    S    ERRCODE_SUCCESSFUL_COMPLETION                                  successful_completion
+
+Section: Class 01 - Warning
+
+# do not use this class for failure conditions
+01000    W    ERRCODE_WARNING                                                warning
+0100C    W    ERRCODE_WARNING_DYNAMIC_RESULT_SETS_RETURNED                   dynamic_result_sets_returned
+01008    W    ERRCODE_WARNING_IMPLICIT_ZERO_BIT_PADDING                      implicit_zero_bit_padding
+01003    W    ERRCODE_WARNING_NULL_VALUE_ELIMINATED_IN_SET_FUNCTION          null_value_eliminated_in_set_function
+01007    W    ERRCODE_WARNING_PRIVILEGE_NOT_GRANTED                          privilege_not_granted
+01006    W    ERRCODE_WARNING_PRIVILEGE_NOT_REVOKED                          privilege_not_revoked
+01004    W    ERRCODE_WARNING_STRING_DATA_RIGHT_TRUNCATION                   string_data_right_truncation
+01P01    W    ERRCODE_WARNING_DEPRECATED_FEATURE                             deprecated_feature
+
+Section: Class 02 - No Data (this is also a warning class per the SQL standard)
+
+# do not use this class for failure conditions
+02000    W    ERRCODE_NO_DATA                                                no_data
+02001    W    ERRCODE_NO_ADDITIONAL_DYNAMIC_RESULT_SETS_RETURNED             no_additional_dynamic_result_sets_returned
+
+Section: Class 03 - SQL Statement Not Yet Complete
+
+03000    E    ERRCODE_SQL_STATEMENT_NOT_YET_COMPLETE                         sql_statement_not_yet_complete
+
+Section: Class 08 - Connection Exception
+
+08000    E    ERRCODE_CONNECTION_EXCEPTION                                   connection_exception
+08003    E    ERRCODE_CONNECTION_DOES_NOT_EXIST                              connection_does_not_exist
+08006    E    ERRCODE_CONNECTION_FAILURE                                     connection_failure
+08001    E    ERRCODE_SQLCLIENT_UNABLE_TO_ESTABLISH_SQLCONNECTION            sqlclient_unable_to_establish_sqlconnection
+08004    E    ERRCODE_SQLSERVER_REJECTED_ESTABLISHMENT_OF_SQLCONNECTION      sqlserver_rejected_establishment_of_sqlconnection
+08007    E    ERRCODE_TRANSACTION_RESOLUTION_UNKNOWN                         transaction_resolution_unknown
+08P01    E    ERRCODE_PROTOCOL_VIOLATION                                     protocol_violation
+
+Section: Class 09 - Triggered Action Exception
+
+09000    E    ERRCODE_TRIGGERED_ACTION_EXCEPTION                             triggered_action_exception
+
+Section: Class 0A - Feature Not Supported
+
+0A000    E    ERRCODE_FEATURE_NOT_SUPPORTED                                  feature_not_supported
+
+Section: Class 0B - Invalid Transaction Initiation
+
+0B000    E    ERRCODE_INVALID_TRANSACTION_INITIATION                         invalid_transaction_initiation
+
+Section: Class 0F - Locator Exception
+
+0F000    E    ERRCODE_LOCATOR_EXCEPTION                                      locator_exception
+0F001    E    ERRCODE_L_E_INVALID_SPECIFICATION                              invalid_locator_specification
+
+Section: Class 0L - Invalid Grantor
+
+0L000    E    ERRCODE_INVALID_GRANTOR                                        invalid_grantor
+0LP01    E    ERRCODE_INVALID_GRANT_OPERATION                                invalid_grant_operation
+
+Section: Class 0P - Invalid Role Specification
+
+0P000    E    ERRCODE_INVALID_ROLE_SPECIFICATION                             invalid_role_specification
+
+Section: Class 0Z - Diagnostics Exception
+
+0Z000    E    ERRCODE_DIAGNOSTICS_EXCEPTION                                  diagnostics_exception
+0Z002    E    ERRCODE_STACKED_DIAGNOSTICS_ACCESSED_WITHOUT_ACTIVE_HANDLER    stacked_diagnostics_accessed_without_active_handler
+
+Section: Class 20 - Case Not Found
+
+20000    E    ERRCODE_CASE_NOT_FOUND                                         case_not_found
+
+Section: Class 21 - Cardinality Violation
+
+# this means something returned the wrong number of rows
+21000    E    ERRCODE_CARDINALITY_VIOLATION                                  cardinality_violation
+
+Section: Class 22 - Data Exception
+
+22000    E    ERRCODE_DATA_EXCEPTION                                         data_exception
+2202E    E    ERRCODE_ARRAY_ELEMENT_ERROR
+# SQL99's actual definition of "array element error" is subscript error
+2202E    E    ERRCODE_ARRAY_SUBSCRIPT_ERROR                                  array_subscript_error
+22021    E    ERRCODE_CHARACTER_NOT_IN_REPERTOIRE                            character_not_in_repertoire
+22008    E    ERRCODE_DATETIME_FIELD_OVERFLOW                                datetime_field_overflow
+22008    E    ERRCODE_DATETIME_VALUE_OUT_OF_RANGE
+22012    E    ERRCODE_DIVISION_BY_ZERO                                       division_by_zero
+22005    E    ERRCODE_ERROR_IN_ASSIGNMENT                                    error_in_assignment
+2200B    E    ERRCODE_ESCAPE_CHARACTER_CONFLICT                              escape_character_conflict
+22022    E    ERRCODE_INDICATOR_OVERFLOW                                     indicator_overflow
+22015    E    ERRCODE_INTERVAL_FIELD_OVERFLOW                                interval_field_overflow
+2201E    E    ERRCODE_INVALID_ARGUMENT_FOR_LOG                               invalid_argument_for_logarithm
+22014    E    ERRCODE_INVALID_ARGUMENT_FOR_NTILE                             invalid_argument_for_ntile_function
+22016    E    ERRCODE_INVALID_ARGUMENT_FOR_NTH_VALUE                         invalid_argument_for_nth_value_function
+2201F    E    ERRCODE_INVALID_ARGUMENT_FOR_POWER_FUNCTION                    invalid_argument_for_power_function
+2201G    E    ERRCODE_INVALID_ARGUMENT_FOR_WIDTH_BUCKET_FUNCTION             invalid_argument_for_width_bucket_function
+22018    E    ERRCODE_INVALID_CHARACTER_VALUE_FOR_CAST                       invalid_character_value_for_cast
+22007    E    ERRCODE_INVALID_DATETIME_FORMAT                                invalid_datetime_format
+22019    E    ERRCODE_INVALID_ESCAPE_CHARACTER                               invalid_escape_character
+2200D    E    ERRCODE_INVALID_ESCAPE_OCTET                                   invalid_escape_octet
+22025    E    ERRCODE_INVALID_ESCAPE_SEQUENCE                                invalid_escape_sequence
+22P06    E    ERRCODE_NONSTANDARD_USE_OF_ESCAPE_CHARACTER                    nonstandard_use_of_escape_character
+22010    E    ERRCODE_INVALID_INDICATOR_PARAMETER_VALUE                      invalid_indicator_parameter_value
+22023    E    ERRCODE_INVALID_PARAMETER_VALUE                                invalid_parameter_value
+2201B    E    ERRCODE_INVALID_REGULAR_EXPRESSION                             invalid_regular_expression
+2201W    E    ERRCODE_INVALID_ROW_COUNT_IN_LIMIT_CLAUSE                      invalid_row_count_in_limit_clause
+2201X    E    ERRCODE_INVALID_ROW_COUNT_IN_RESULT_OFFSET_CLAUSE              invalid_row_count_in_result_offset_clause
+2202H    E    ERRCODE_INVALID_TABLESAMPLE_ARGUMENT                           invalid_tablesample_argument
+2202G    E    ERRCODE_INVALID_TABLESAMPLE_REPEAT                             invalid_tablesample_repeat
+22009    E    ERRCODE_INVALID_TIME_ZONE_DISPLACEMENT_VALUE                   invalid_time_zone_displacement_value
+2200C    E    ERRCODE_INVALID_USE_OF_ESCAPE_CHARACTER                        invalid_use_of_escape_character
+2200G    E    ERRCODE_MOST_SPECIFIC_TYPE_MISMATCH                            most_specific_type_mismatch
+22004    E    ERRCODE_NULL_VALUE_NOT_ALLOWED                                 null_value_not_allowed
+22002    E    ERRCODE_NULL_VALUE_NO_INDICATOR_PARAMETER                      null_value_no_indicator_parameter
+22003    E    ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE                             numeric_value_out_of_range
+22026    E    ERRCODE_STRING_DATA_LENGTH_MISMATCH                            string_data_length_mismatch
+22001    E    ERRCODE_STRING_DATA_RIGHT_TRUNCATION                           string_data_right_truncation
+22011    E    ERRCODE_SUBSTRING_ERROR                                        substring_error
+22027    E    ERRCODE_TRIM_ERROR                                             trim_error
+22024    E    ERRCODE_UNTERMINATED_C_STRING                                  unterminated_c_string
+2200F    E    ERRCODE_ZERO_LENGTH_CHARACTER_STRING                           zero_length_character_string
+22P01    E    ERRCODE_FLOATING_POINT_EXCEPTION                               floating_point_exception
+22P02    E    ERRCODE_INVALID_TEXT_REPRESENTATION                            invalid_text_representation
+22P03    E    ERRCODE_INVALID_BINARY_REPRESENTATION                          invalid_binary_representation
+22P04    E    ERRCODE_BAD_COPY_FILE_FORMAT                                   bad_copy_file_format
+22P05    E    ERRCODE_UNTRANSLATABLE_CHARACTER                               untranslatable_character
+2200L    E    ERRCODE_NOT_AN_XML_DOCUMENT                                    not_an_xml_document
+2200M    E    ERRCODE_INVALID_XML_DOCUMENT                                   invalid_xml_document
+2200N    E    ERRCODE_INVALID_XML_CONTENT                                    invalid_xml_content
+2200S    E    ERRCODE_INVALID_XML_COMMENT                                    invalid_xml_comment
+2200T    E    ERRCODE_INVALID_XML_PROCESSING_INSTRUCTION                     invalid_xml_processing_instruction
+
+Section: Class 23 - Integrity Constraint Violation
+
+23000    E    ERRCODE_INTEGRITY_CONSTRAINT_VIOLATION                         integrity_constraint_violation
+23001    E    ERRCODE_RESTRICT_VIOLATION                                     restrict_violation
+23502    E    ERRCODE_NOT_NULL_VIOLATION                                     not_null_violation
+23503    E    ERRCODE_FOREIGN_KEY_VIOLATION                                  foreign_key_violation
+23505    E    ERRCODE_UNIQUE_VIOLATION                                       unique_violation
+23514    E    ERRCODE_CHECK_VIOLATION                                        check_violation
+23P01    E    ERRCODE_EXCLUSION_VIOLATION                                    exclusion_violation
+
+Section: Class 24 - Invalid Cursor State
+
+24000    E    ERRCODE_INVALID_CURSOR_STATE                                   invalid_cursor_state
+
+Section: Class 25 - Invalid Transaction State
+
+25000    E    ERRCODE_INVALID_TRANSACTION_STATE                              invalid_transaction_state
+25001    E    ERRCODE_ACTIVE_SQL_TRANSACTION                                 active_sql_transaction
+25002    E    ERRCODE_BRANCH_TRANSACTION_ALREADY_ACTIVE                      branch_transaction_already_active
+25008    E    ERRCODE_HELD_CURSOR_REQUIRES_SAME_ISOLATION_LEVEL              held_cursor_requires_same_isolation_level
+25003    E    ERRCODE_INAPPROPRIATE_ACCESS_MODE_FOR_BRANCH_TRANSACTION       inappropriate_access_mode_for_branch_transaction
+25004    E    ERRCODE_INAPPROPRIATE_ISOLATION_LEVEL_FOR_BRANCH_TRANSACTION   inappropriate_isolation_level_for_branch_transaction
+25005    E    ERRCODE_NO_ACTIVE_SQL_TRANSACTION_FOR_BRANCH_TRANSACTION       no_active_sql_transaction_for_branch_transaction
+25006    E    ERRCODE_READ_ONLY_SQL_TRANSACTION                              read_only_sql_transaction
+25007    E    ERRCODE_SCHEMA_AND_DATA_STATEMENT_MIXING_NOT_SUPPORTED         schema_and_data_statement_mixing_not_supported
+25P01    E    ERRCODE_NO_ACTIVE_SQL_TRANSACTION                              no_active_sql_transaction
+25P02    E    ERRCODE_IN_FAILED_SQL_TRANSACTION                              in_failed_sql_transaction
+25P03    E    ERRCODE_IDLE_IN_TRANSACTION_SESSION_TIMEOUT                    idle_in_transaction_session_timeout
+
+Section: Class 26 - Invalid SQL Statement Name
+
+# (we take this to mean prepared statements
+26000    E    ERRCODE_INVALID_SQL_STATEMENT_NAME                             invalid_sql_statement_name
+
+Section: Class 27 - Triggered Data Change Violation
+
+27000    E    ERRCODE_TRIGGERED_DATA_CHANGE_VIOLATION                        triggered_data_change_violation
+
+Section: Class 28 - Invalid Authorization Specification
+
+28000    E    ERRCODE_INVALID_AUTHORIZATION_SPECIFICATION                    invalid_authorization_specification
+28P01    E    ERRCODE_INVALID_PASSWORD                                       invalid_password
+
+Section: Class 2B - Dependent Privilege Descriptors Still Exist
+
+2B000    E    ERRCODE_DEPENDENT_PRIVILEGE_DESCRIPTORS_STILL_EXIST            dependent_privilege_descriptors_still_exist
+2BP01    E    ERRCODE_DEPENDENT_OBJECTS_STILL_EXIST                          dependent_objects_still_exist
+
+Section: Class 2D - Invalid Transaction Termination
+
+2D000    E    ERRCODE_INVALID_TRANSACTION_TERMINATION                        invalid_transaction_termination
+
+Section: Class 2F - SQL Routine Exception
+
+2F000    E    ERRCODE_SQL_ROUTINE_EXCEPTION                                  sql_routine_exception
+2F005    E    ERRCODE_S_R_E_FUNCTION_EXECUTED_NO_RETURN_STATEMENT            function_executed_no_return_statement
+2F002    E    ERRCODE_S_R_E_MODIFYING_SQL_DATA_NOT_PERMITTED                 modifying_sql_data_not_permitted
+2F003    E    ERRCODE_S_R_E_PROHIBITED_SQL_STATEMENT_ATTEMPTED               prohibited_sql_statement_attempted
+2F004    E    ERRCODE_S_R_E_READING_SQL_DATA_NOT_PERMITTED                   reading_sql_data_not_permitted
+
+Section: Class 34 - Invalid Cursor Name
+
+34000    E    ERRCODE_INVALID_CURSOR_NAME                                    invalid_cursor_name
+
+Section: Class 38 - External Routine Exception
+
+38000    E    ERRCODE_EXTERNAL_ROUTINE_EXCEPTION                             external_routine_exception
+38001    E    ERRCODE_E_R_E_CONTAINING_SQL_NOT_PERMITTED                     containing_sql_not_permitted
+38002    E    ERRCODE_E_R_E_MODIFYING_SQL_DATA_NOT_PERMITTED                 modifying_sql_data_not_permitted
+38003    E    ERRCODE_E_R_E_PROHIBITED_SQL_STATEMENT_ATTEMPTED               prohibited_sql_statement_attempted
+38004    E    ERRCODE_E_R_E_READING_SQL_DATA_NOT_PERMITTED                   reading_sql_data_not_permitted
+
+Section: Class 39 - External Routine Invocation Exception
+
+39000    E    ERRCODE_EXTERNAL_ROUTINE_INVOCATION_EXCEPTION                  external_routine_invocation_exception
+39001    E    ERRCODE_E_R_I_E_INVALID_SQLSTATE_RETURNED                      invalid_sqlstate_returned
+39004    E    ERRCODE_E_R_I_E_NULL_VALUE_NOT_ALLOWED                         null_value_not_allowed
+39P01    E    ERRCODE_E_R_I_E_TRIGGER_PROTOCOL_VIOLATED                      trigger_protocol_violated
+39P02    E    ERRCODE_E_R_I_E_SRF_PROTOCOL_VIOLATED                          srf_protocol_violated
+39P03    E    ERRCODE_E_R_I_E_EVENT_TRIGGER_PROTOCOL_VIOLATED                event_trigger_protocol_violated
+
+Section: Class 3B - Savepoint Exception
+
+3B000    E    ERRCODE_SAVEPOINT_EXCEPTION                                    savepoint_exception
+3B001    E    ERRCODE_S_E_INVALID_SPECIFICATION                              invalid_savepoint_specification
+
+Section: Class 3D - Invalid Catalog Name
+
+3D000    E    ERRCODE_INVALID_CATALOG_NAME                                   invalid_catalog_name
+
+Section: Class 3F - Invalid Schema Name
+
+3F000    E    ERRCODE_INVALID_SCHEMA_NAME                                    invalid_schema_name
+
+Section: Class 40 - Transaction Rollback
+
+40000    E    ERRCODE_TRANSACTION_ROLLBACK                                   transaction_rollback
+40002    E    ERRCODE_T_R_INTEGRITY_CONSTRAINT_VIOLATION                     transaction_integrity_constraint_violation
+40001    E    ERRCODE_T_R_SERIALIZATION_FAILURE                              serialization_failure
+40003    E    ERRCODE_T_R_STATEMENT_COMPLETION_UNKNOWN                       statement_completion_unknown
+40P01    E    ERRCODE_T_R_DEADLOCK_DETECTED                                  deadlock_detected
+
+Section: Class 42 - Syntax Error or Access Rule Violation
+
+42000    E    ERRCODE_SYNTAX_ERROR_OR_ACCESS_RULE_VIOLATION                  syntax_error_or_access_rule_violation
+# never use the above; use one of these two if no specific code exists:
+42601    E    ERRCODE_SYNTAX_ERROR                                           syntax_error
+42501    E    ERRCODE_INSUFFICIENT_PRIVILEGE                                 insufficient_privilege
+42846    E    ERRCODE_CANNOT_COERCE                                          cannot_coerce
+42803    E    ERRCODE_GROUPING_ERROR                                         grouping_error
+42P20    E    ERRCODE_WINDOWING_ERROR                                        windowing_error
+42P19    E    ERRCODE_INVALID_RECURSION                                      invalid_recursion
+42830    E    ERRCODE_INVALID_FOREIGN_KEY                                    invalid_foreign_key
+42602    E    ERRCODE_INVALID_NAME                                           invalid_name
+42622    E    ERRCODE_NAME_TOO_LONG                                          name_too_long
+42939    E    ERRCODE_RESERVED_NAME                                          reserved_name
+42804    E    ERRCODE_DATATYPE_MISMATCH                                      datatype_mismatch
+42P18    E    ERRCODE_INDETERMINATE_DATATYPE                                 indeterminate_datatype
+42P21    E    ERRCODE_COLLATION_MISMATCH                                     collation_mismatch
+42P22    E    ERRCODE_INDETERMINATE_COLLATION                                indeterminate_collation
+42809    E    ERRCODE_WRONG_OBJECT_TYPE                                      wrong_object_type
+
+# Note: for ERRCODE purposes, we divide namable objects into these categories:
+# databases, schemas, prepared statements, cursors, tables, columns,
+# functions (including operators), and all else (lumped as "objects").
+# (The first four categories are mandated by the existence of separate
+# SQLSTATE classes for them in the spec; in this file, however, we group
+# the ERRCODE names with all the rest under class 42.)  Parameters are
+# sort-of-named objects and get their own ERRCODE.
+#
+# The same breakdown is used for "duplicate" and "ambiguous" complaints,
+# as well as complaints associated with incorrect declarations.
+
+42703    E    ERRCODE_UNDEFINED_COLUMN                                       undefined_column
+34000    E    ERRCODE_UNDEFINED_CURSOR
+3D000    E    ERRCODE_UNDEFINED_DATABASE
+42883    E    ERRCODE_UNDEFINED_FUNCTION                                     undefined_function
+26000    E    ERRCODE_UNDEFINED_PSTATEMENT
+3F000    E    ERRCODE_UNDEFINED_SCHEMA
+42P01    E    ERRCODE_UNDEFINED_TABLE                                        undefined_table
+42P02    E    ERRCODE_UNDEFINED_PARAMETER                                    undefined_parameter
+42704    E    ERRCODE_UNDEFINED_OBJECT                                       undefined_object
+42701    E    ERRCODE_DUPLICATE_COLUMN                                       duplicate_column
+42P03    E    ERRCODE_DUPLICATE_CURSOR                                       duplicate_cursor
+42P04    E    ERRCODE_DUPLICATE_DATABASE                                     duplicate_database
+42723    E    ERRCODE_DUPLICATE_FUNCTION                                     duplicate_function
+42P05    E    ERRCODE_DUPLICATE_PSTATEMENT                                   duplicate_prepared_statement
+42P06    E    ERRCODE_DUPLICATE_SCHEMA                                       duplicate_schema
+42P07    E    ERRCODE_DUPLICATE_TABLE                                        duplicate_table
+42712    E    ERRCODE_DUPLICATE_ALIAS                                        duplicate_alias
+42710    E    ERRCODE_DUPLICATE_OBJECT                                       duplicate_object
+42702    E    ERRCODE_AMBIGUOUS_COLUMN                                       ambiguous_column
+42725    E    ERRCODE_AMBIGUOUS_FUNCTION                                     ambiguous_function
+42P08    E    ERRCODE_AMBIGUOUS_PARAMETER                                    ambiguous_parameter
+42P09    E    ERRCODE_AMBIGUOUS_ALIAS                                        ambiguous_alias
+42P10    E    ERRCODE_INVALID_COLUMN_REFERENCE                               invalid_column_reference
+42611    E    ERRCODE_INVALID_COLUMN_DEFINITION                              invalid_column_definition
+42P11    E    ERRCODE_INVALID_CURSOR_DEFINITION                              invalid_cursor_definition
+42P12    E    ERRCODE_INVALID_DATABASE_DEFINITION                            invalid_database_definition
+42P13    E    ERRCODE_INVALID_FUNCTION_DEFINITION                            invalid_function_definition
+42P14    E    ERRCODE_INVALID_PSTATEMENT_DEFINITION                          invalid_prepared_statement_definition
+42P15    E    ERRCODE_INVALID_SCHEMA_DEFINITION                              invalid_schema_definition
+42P16    E    ERRCODE_INVALID_TABLE_DEFINITION                               invalid_table_definition
+42P17    E    ERRCODE_INVALID_OBJECT_DEFINITION                              invalid_object_definition
+
+Section: Class 44 - WITH CHECK OPTION Violation
+
+44000    E    ERRCODE_WITH_CHECK_OPTION_VIOLATION                            with_check_option_violation
+
+Section: Class 53 - Insufficient Resources
+
+# (PostgreSQL-specific error class)
+53000    E    ERRCODE_INSUFFICIENT_RESOURCES                                 insufficient_resources
+53100    E    ERRCODE_DISK_FULL                                              disk_full
+53200    E    ERRCODE_OUT_OF_MEMORY                                          out_of_memory
+53300    E    ERRCODE_TOO_MANY_CONNECTIONS                                   too_many_connections
+53400    E    ERRCODE_CONFIGURATION_LIMIT_EXCEEDED                           configuration_limit_exceeded
+
+Section: Class 54 - Program Limit Exceeded
+
+# this is for wired-in limits, not resource exhaustion problems (class borrowed from DB2)
+54000    E    ERRCODE_PROGRAM_LIMIT_EXCEEDED                                 program_limit_exceeded
+54001    E    ERRCODE_STATEMENT_TOO_COMPLEX                                  statement_too_complex
+54011    E    ERRCODE_TOO_MANY_COLUMNS                                       too_many_columns
+54023    E    ERRCODE_TOO_MANY_ARGUMENTS                                     too_many_arguments
+
+Section: Class 55 - Object Not In Prerequisite State
+
+# (class borrowed from DB2)
+55000    E    ERRCODE_OBJECT_NOT_IN_PREREQUISITE_STATE                       object_not_in_prerequisite_state
+55006    E    ERRCODE_OBJECT_IN_USE                                          object_in_use
+55P02    E    ERRCODE_CANT_CHANGE_RUNTIME_PARAM                              cant_change_runtime_param
+55P03    E    ERRCODE_LOCK_NOT_AVAILABLE                                     lock_not_available
+
+Section: Class 57 - Operator Intervention
+
+# (class borrowed from DB2)
+57000    E    ERRCODE_OPERATOR_INTERVENTION                                  operator_intervention
+57014    E    ERRCODE_QUERY_CANCELED                                         query_canceled
+57P01    E    ERRCODE_ADMIN_SHUTDOWN                                         admin_shutdown
+57P02    E    ERRCODE_CRASH_SHUTDOWN                                         crash_shutdown
+57P03    E    ERRCODE_CANNOT_CONNECT_NOW                                     cannot_connect_now
+57P04    E    ERRCODE_DATABASE_DROPPED                                       database_dropped
+
+Section: Class 58 - System Error (errors external to PostgreSQL itself)
+
+# (class borrowed from DB2)
+58000    E    ERRCODE_SYSTEM_ERROR                                           system_error
+58030    E    ERRCODE_IO_ERROR                                               io_error
+58P01    E    ERRCODE_UNDEFINED_FILE                                         undefined_file
+58P02    E    ERRCODE_DUPLICATE_FILE                                         duplicate_file
+
+Section: Class 72 - Snapshot Failure
+# (class borrowed from Oracle)
+72000    E    ERRCODE_SNAPSHOT_TOO_OLD                                       snapshot_too_old
+
+Section: Class F0 - Configuration File Error
+
+# (PostgreSQL-specific error class)
+F0000    E    ERRCODE_CONFIG_FILE_ERROR                                      config_file_error
+F0001    E    ERRCODE_LOCK_FILE_EXISTS                                       lock_file_exists
+
+Section: Class HV - Foreign Data Wrapper Error (SQL/MED)
+
+# (SQL/MED-specific error class)
+HV000    E    ERRCODE_FDW_ERROR                                              fdw_error
+HV005    E    ERRCODE_FDW_COLUMN_NAME_NOT_FOUND                              fdw_column_name_not_found
+HV002    E    ERRCODE_FDW_DYNAMIC_PARAMETER_VALUE_NEEDED                     fdw_dynamic_parameter_value_needed
+HV010    E    ERRCODE_FDW_FUNCTION_SEQUENCE_ERROR                            fdw_function_sequence_error
+HV021    E    ERRCODE_FDW_INCONSISTENT_DESCRIPTOR_INFORMATION                fdw_inconsistent_descriptor_information
+HV024    E    ERRCODE_FDW_INVALID_ATTRIBUTE_VALUE                            fdw_invalid_attribute_value
+HV007    E    ERRCODE_FDW_INVALID_COLUMN_NAME                                fdw_invalid_column_name
+HV008    E    ERRCODE_FDW_INVALID_COLUMN_NUMBER                              fdw_invalid_column_number
+HV004    E    ERRCODE_FDW_INVALID_DATA_TYPE                                  fdw_invalid_data_type
+HV006    E    ERRCODE_FDW_INVALID_DATA_TYPE_DESCRIPTORS                      fdw_invalid_data_type_descriptors
+HV091    E    ERRCODE_FDW_INVALID_DESCRIPTOR_FIELD_IDENTIFIER                fdw_invalid_descriptor_field_identifier
+HV00B    E    ERRCODE_FDW_INVALID_HANDLE                                     fdw_invalid_handle
+HV00C    E    ERRCODE_FDW_INVALID_OPTION_INDEX                               fdw_invalid_option_index
+HV00D    E    ERRCODE_FDW_INVALID_OPTION_NAME                                fdw_invalid_option_name
+HV090    E    ERRCODE_FDW_INVALID_STRING_LENGTH_OR_BUFFER_LENGTH             fdw_invalid_string_length_or_buffer_length
+HV00A    E    ERRCODE_FDW_INVALID_STRING_FORMAT                              fdw_invalid_string_format
+HV009    E    ERRCODE_FDW_INVALID_USE_OF_NULL_POINTER                        fdw_invalid_use_of_null_pointer
+HV014    E    ERRCODE_FDW_TOO_MANY_HANDLES                                   fdw_too_many_handles
+HV001    E    ERRCODE_FDW_OUT_OF_MEMORY                                      fdw_out_of_memory
+HV00P    E    ERRCODE_FDW_NO_SCHEMAS                                         fdw_no_schemas
+HV00J    E    ERRCODE_FDW_OPTION_NAME_NOT_FOUND                              fdw_option_name_not_found
+HV00K    E    ERRCODE_FDW_REPLY_HANDLE                                       fdw_reply_handle
+HV00Q    E    ERRCODE_FDW_SCHEMA_NOT_FOUND                                   fdw_schema_not_found
+HV00R    E    ERRCODE_FDW_TABLE_NOT_FOUND                                    fdw_table_not_found
+HV00L    E    ERRCODE_FDW_UNABLE_TO_CREATE_EXECUTION                         fdw_unable_to_create_execution
+HV00M    E    ERRCODE_FDW_UNABLE_TO_CREATE_REPLY                             fdw_unable_to_create_reply
+HV00N    E    ERRCODE_FDW_UNABLE_TO_ESTABLISH_CONNECTION                     fdw_unable_to_establish_connection
+
+Section: Class P0 - PL/pgSQL Error
+
+# (PostgreSQL-specific error class)
+P0000    E    ERRCODE_PLPGSQL_ERROR                                          plpgsql_error
+P0001    E    ERRCODE_RAISE_EXCEPTION                                        raise_exception
+P0002    E    ERRCODE_NO_DATA_FOUND                                          no_data_found
+P0003    E    ERRCODE_TOO_MANY_ROWS                                          too_many_rows
+P0004    E    ERRCODE_ASSERT_FAILURE                                         assert_failure
+
+Section: Class XX - Internal Error
+
+# this is for "can't-happen" conditions and software bugs (PostgreSQL-specific error class)
+XX000    E    ERRCODE_INTERNAL_ERROR                                         internal_error
+XX001    E    ERRCODE_DATA_CORRUPTED                                         data_corrupted
+XX002    E    ERRCODE_INDEX_CORRUPTED                                        index_corrupted

@@ -1,0 +1,21 @@
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/hitimes-1.2.6/ext/hitimes/c
+/home/mastodon/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180408-28175-1wzmml0.rb extconf.rb
+checking for clock_gettime() in -lrt... yes
+creating Makefile
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/hitimes-1.2.6/ext/hitimes/c
+make "DESTDIR=" clean
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/hitimes-1.2.6/ext/hitimes/c
+make "DESTDIR="
+compiling hitimes.c
+compiling hitimes_instant_clock_gettime.c
+compiling hitimes_instant_osx.c
+compiling hitimes_instant_windows.c
+compiling hitimes_interval.c
+compiling hitimes_stats.c
+linking shared-object hitimes/2.5/hitimes.so
+
+current directory: /home/mastodon/live/vender/bundle/ruby/2.5.0/gems/hitimes-1.2.6/ext/hitimes/c
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 hitimes.so ./.gem.20180408-28175-1yboyw7/hitimes/2.5

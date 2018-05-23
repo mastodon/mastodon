@@ -1,0 +1,36 @@
+require 'bundler'
+include Rake::DSL
+Bundler::GemHelper.install_tasks
+
+task :default => ['spec', 'test:conformance']
+task :test => :spec
+
+require 'rubygems'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)
+
+namespace :test do
+  namespace :conformance do
+    desc "Run conformance test suite"
+    task :run do
+      ruby '-rubygems', "test/conformance_test.rb"
+    end
+  end
+
+  desc "Run conformance test suite"
+  task :conformance => ['conformance:run'] do
+  end
+end
+
+require 'rdoc/task'
+namespace :doc do
+  RDoc::Task.new do |rd|
+    rd.main = "README.rdoc"
+    rd.rdoc_dir = 'doc'
+    rd.rdoc_files.include("README.rdoc", "lib/**/*.rb")
+  end
+end
+
+desc "Run cruise control build"
+task :cruise => [:spec, 'test:conformance'] do
+end

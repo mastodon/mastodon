@@ -1,0 +1,202 @@
+---
+tl:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Nabigo ang pagpapatunay: %{errors}'
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: ika-%d ng %b
+      long: ika-%d ng %B, %Y
+    day_names:
+    - Linggo
+    - Lunes
+    - Martes
+    - Miyerkules
+    - Huwebes
+    - Biyernes
+    - Sabado
+    abbr_day_names:
+    - Lin
+    - Lun
+    - Mar
+    - Miy
+    - Huw
+    - Biy
+    - Sab
+    month_names:
+    -
+    - Enero
+    - Pebrero
+    - Marso
+    - Abril
+    - Mayo
+    - Hunyo
+    - Hulyo
+    - Agosto
+    - Setyembre
+    - Oktubre
+    - Nobyembre
+    - Disyembre
+    abbr_month_names:
+    -
+    - Ene
+    - Peb
+    - Mar
+    - Abr
+    - May
+    - Hun
+    - Hul
+    - Ago
+    - Set
+    - Okt
+    - Nob
+    - Dis
+    order:
+    - :year
+    - :month
+    - :day
+  time:
+    formats:
+      default: "%A, ika-%d ng %B ng %Y %H:%M:%S %z"
+      short: "%d ng %b %H:%M"
+      long: ika-%d ng %B ng %Y %H:%M
+    am: AM
+    pm: PM
+  support:
+    array:
+      words_connector: ","
+      two_words_connector: at
+      last_word_connector: ", at"
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      format:
+        format: "%n %u"
+        unit: "₱"
+        separator: "."
+        delimiter: ","
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+    human:
+      format:
+        delimiter: ''
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          kb: KB
+          mb: MB
+          gb: GB
+          tb: TB
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ''
+          thousand: libo
+          million: milyon
+          billion: bilyon
+          trillion: trilyon
+          quadrillion: kuwadrilyon
+  datetime:
+    distance_in_words:
+      half_a_minute: kalahating minuto
+      less_than_x_seconds:
+        one: mas mababa sa isang segundo
+        other: mas mababa sa %{count} segundo
+      x_seconds:
+        one: isang segundo
+        other: "%{count} segundo"
+      less_than_x_minutes:
+        one: mas mababa sa isang minuto
+        other: mas mababa sa %{count} minuto
+      x_minutes:
+        one: isang minuto
+        other: "%{count} minuto"
+      about_x_hours:
+        one: humigit-kumulang isang oras
+        other: humigit-kumulang %{count} oras
+      x_days:
+        one: isang araw
+        other: "%{count} araw"
+      about_x_months:
+        one: humigit-kumulang isang buwan
+        other: humigit-kumulang %{count} buwan
+      x_months:
+        one: isang buwan
+        other: "%{count} buwan"
+      about_x_years:
+        one: humigit-kumulang isang taon
+        other: humigit-kumulang %{count} taon
+      over_x_years:
+        one: higit sa isang taon
+        other: higit %{count} taon
+      almost_x_years:
+        one: halos isang taon
+        other: halos %{count} taon
+    prompts:
+      year: taon
+      month: buwan
+      day: araw
+      hour: oras
+      minute: minuto
+      second: segundo
+  helpers:
+    select:
+      prompt: Mangyaring pumili
+    submit:
+      create: lumikha ng %{model}
+      update: i-update ang %{model}
+      submit: isumite ang %{model}
+  errors:
+    format: "%{attribute} ay %{message}"
+    messages:
+      inclusion: hindi kasama sa listahan
+      exclusion: nakalaan na
+      invalid: hindi wasto
+      confirmation: hindi tumutugma ang pagpapatunay
+      accepted: dapat na tanggapin
+      empty: hindi maaaring walang laman
+      blank: hindi maaaring walang laman
+      too_long:
+        one: masyadong mahaba (pinakamadami ay %{count} character)
+        other: masyadong mahaba (pinakamadami ay %{count} character)
+      too_short:
+        one: masyadong maikli (pinakakonti ay %{count} character)
+        other: masyadong maikli (pinakakonti ay %{count} character)
+      wrong_length:
+        one: ang maling haba (ito ay dapat eksaktong %{count} character)
+        other: ang maling haba (ito ay dapat eksaktong %{count} character)
+      not_a_number: hindi isang numero
+      not_an_integer: dapat na isang integer
+      greater_than: dapat na mas higit sa %{count}
+      greater_than_or_equal_to: dapat na mas higit sa o katumbas ng %{count}
+      equal_to: dapat na katumba sa %{count}
+      less_than: dapat na mas mababa sa %{count}
+      less_than_or_equal_to: dapat na mas mababa sa o katumbas ng %{count}
+      odd: dapat maging odd
+      even: dapat maging even
+      taken: ginagamit na
+    template:
+      header:
+        one: hindi maaaring i-save ang %{model} na ito dahil sa isang error
+        other: hindi maaaring i-save ang %{model} na ito dahil sa %{count} error
+      body: 'May mga problema sa mga sumusunod na patlang:'

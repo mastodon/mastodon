@@ -1,0 +1,20 @@
+<div class="navbar navbar-fixed-bottom navbar-inverse ltr">
+  <div class="navbar-inner">
+    <div class="container text-center">
+        <ul class="nav">
+          <li>
+            <p class="navbar-text product-version"><%= product_version %></p>
+          </li>
+          <li>
+            <p class="navbar-text redis-url" title="<%= redis_connection_and_namespace %>"><%= redis_connection_and_namespace %></p>
+          </li>
+          <li>
+            <p class="navbar-text server-utc-time"><%= server_utc_time %></p>
+          </li>
+          <li>
+            <p class="navbar-text"><a style="color: gray;" href="https://github.com/mperham/sidekiq/wiki">docs</a></p>
+          </li>
+        </ul>
+    </div>
+  </div>
+</div>

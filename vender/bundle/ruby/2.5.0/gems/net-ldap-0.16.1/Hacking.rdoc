@@ -1,0 +1,63 @@
+= Hacking on Net::LDAP
+
+We welcome your contributions to Net::LDAP. We accept most contributions, but
+there are ways to increase the chance of your patch being accepted quickly.
+
+== Licensing
+
+Net::LDAP 0.2 and later are be licensed under an MIT-style license; any
+contributions after 2010-04-20 must be under this license to be accepted.
+
+== Formatting
+
+* Your patches should be formatted like the rest of Net::LDAP.
+* We use a text wrap of 76–78 characters, especially for documentation
+  contents.
+* Operators should have spaces around them.
+* Method definitions should have parentheses around arguments (and no
+  parentheses if there are no arguments).
+* Indentation should be kept as flat as possible; this may mean being more
+  explicit with constants.
+
+
+We welcome your contributions to Net::LDAP. To increase the chances of your
+patches being accepted, we recommend that you follow the guidelines below:
+
+== Documentation
+
+* Documentation: {net-ldap}[http://rubydoc.info/gems/net-ldap]
+
+It is very important that, if you add new methods or objects, your code is
+well-documented. The purpose of the changes should be clearly described so that
+even if this is a feature we do not use, we can understand its purpose.
+
+We also encourage documentation-only contributions that improve the
+documentation of Net::LDAP.
+
+We encourage you to provide a good summary of your as a modification to
++History.rdoc+, and if you're not yet named as a contributor, include a
+modification to +Contributors.rdoc+ to add yourself.
+
+== Tests
+
+The Net::LDAP team uses [Minitest](http://docs.seattlerb.org/minitest/) for unit
+testing; all changes must have tests for any new or changed features.
+
+Your changes should have been tested against at least one real LDAP server; the
+current tests are not sufficient to find all possible bugs. It's unlikely that
+they will ever be sufficient given the variations in LDAP server behaviour.
+
+If you're introducing a new feature, it would be preferred for you to provide
+us with a sample LDIF data file for importing into LDAP servers for testing.
+
+== Development Dependencies
+
+Net::LDAP uses several libraries during development, all of which can be
+installed using RubyGems.
+
+* *flexmock*
+
+== Participation
+
+* GitHub: {ruby-ldap/ruby-net-ldap}[https://github.com/ruby-ldap/ruby-net-ldap/]
+* Group: {ruby-ldap}[http://groups.google.com/group/ruby-ldap]

@@ -1,0 +1,502 @@
+[
+  {
+    "name": "IE_Comments",
+    "input": "<!--[if gte IE 4]><script>alert('XSS');</script><![endif]-->",
+    "output": "&lt;!--[if gte IE 4]&gt;&lt;script&gt;alert('XSS');&lt;/script&gt;&lt;![endif]--&gt;"
+  },
+
+  {
+    "name": "IE_Comments_2",
+    "input": "<![if !IE 5]><script>alert('XSS');</script><![endif]>",
+    "output": "&lt;script&gt;alert('XSS');&lt;/script&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "allow_colons_in_path_component",
+    "input": "<a href=\"./this:that\">foo</a>",
+    "output": "<a href='./this:that'>foo</a>"
+  },
+
+  {
+    "name": "background_attribute",
+    "input": "<div background=\"javascript:alert('XSS')\"></div>",
+    "output": "<div/>",
+    "xhtml": "<div></div>",
+    "rexml": "<div></div>"
+  },
+
+  {
+    "name": "bgsound",
+    "input": "<bgsound src=\"javascript:alert('XSS');\" />",
+    "output": "&lt;bgsound src=\"javascript:alert('XSS');\"/&gt;",
+    "rexml": "&lt;bgsound src=\"javascript:alert('XSS');\"&gt;&lt;/bgsound&gt;"
+  },
+
+  {
+    "name": "div_background_image_unicode_encoded",
+    "input": "<div style=\"background-image:\u00a5\u00a2\u006C\u0028'\u006a\u0061\u00a6\u0061\u00a3\u0063\u00a2\u0069\u00a0\u00a4\u003a\u0061\u006c\u0065\u00a2\u00a4\u0028.1027\u0058.1053\u0053\u0027\u0029'\u0029\">foo</div>",
+    "output": "<div>foo</div>"
+  },
+
+  {
+    "name": "div_expression",
+    "input": "<div style=\"width: expression(alert('XSS'));\">foo</div>",
+    "output": "<div>foo</div>"
+  },
+
+  {
+    "name": "double_open_angle_brackets",
+    "input": "<img src=http://ha.ckers.org/scriptlet.html <",
+    "output": "<img src='http://ha.ckers.org/scriptlet.html'>",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "double_open_angle_brackets_2",
+    "input": "<script src=http://ha.ckers.org/scriptlet.html <",
+    "output": "&lt;script src=\"http://ha.ckers.org/scriptlet.html\"&gt;&lt;/script&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "grave_accents",
+    "input": "<img src=`javascript:alert('XSS')` />",
+    "output": "<img>",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "img_dynsrc_lowsrc",
+    "input": "<img dynsrc=\"javascript:alert('XSS')\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "img_vbscript",
+    "input": "<img src='vbscript:msgbox(\"XSS\")' />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "input_image",
+    "input": "<input type=\"image\" src=\"javascript:alert('XSS');\" />",
+    "output": "<input type='image'>",
+    "rexml": "<input type='image' />"
+  },
+
+  {
+    "name": "link_stylesheets",
+    "input": "<link rel=\"stylesheet\" href=\"javascript:alert('XSS');\" />",
+    "output": "&lt;link rel=\"stylesheet\" href=\"javascript:alert('XSS');\"&gt;",
+    "rexml": "&lt;link href=\"javascript:alert('XSS');\" rel=\"stylesheet\"/&gt;"
+  },
+
+  {
+    "name": "link_stylesheets_2",
+    "input": "<link rel=\"stylesheet\" href=\"http://ha.ckers.org/xss.css\" />",
+    "output": "&lt;link rel=\"stylesheet\" href=\"http://ha.ckers.org/xss.css\"&gt;",
+    "rexml": "&lt;link href=\"http://ha.ckers.org/xss.css\" rel=\"stylesheet\"/&gt;"
+  },
+
+  {
+    "name": "list_style_image",
+    "input": "<li style=\"list-style-image: url(javascript:alert('XSS'))\">foo</li>",
+    "output": "<li>foo</li>"
+  },
+
+  {
+    "name": "no_closing_script_tags",
+    "input": "<script src=http://ha.ckers.org/xss.js?<b>",
+    "output": "&lt;script src=\"http://ha.ckers.org/xss.js?&amp;lt;b\"&gt;&lt;/script&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "non_alpha_non_digit",
+    "input": "<script/XSS src=\"http://ha.ckers.org/xss.js\"></script>",
+    "output": "&lt;script src=\"http://ha.ckers.org/xss.js\"&gt;&lt;/script&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "non_alpha_non_digit_2",
+    "input": "<a onclick!\\#$%&()*~+-_.,:;?@[/|\\]^`=alert(\"XSS\")>foo</a>",
+    "output": "<a>foo</a>",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "non_alpha_non_digit_3",
+    "input": "<img/src=\"http://ha.ckers.org/xss.js\"/>",
+    "output": "<img>",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "non_alpha_non_digit_II",
+    "input": "<a href!\\#$%&()*~+-_.,:;?@[/|]^`=alert('XSS')>foo</a>",
+    "output": "<a>foo</a>",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "non_alpha_non_digit_III",
+    "input": "<a/href=\"javascript:alert('XSS');\">foo</a>",
+    "output": "<a>foo</a>",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "platypus",
+    "input": "<a href=\"http://www.ragingplatypus.com/\" style=\"display:block; position:absolute; left:0; top:0; width:100%; height:100%; z-index:1; background-color:black; background-image:url(http://www.ragingplatypus.com/i/cam-full.jpg); background-x:center; background-y:center; background-repeat:repeat;\">never trust your upstream platypus</a>",
+    "output": "<a href='http://www.ragingplatypus.com/' style='display:block;width:100%;height:100%;background-color:black;background-x:center;background-y:center;'>never trust your upstream platypus</a>"
+  },
+
+  {
+    "name": "protocol_resolution_in_script_tag",
+    "input": "<script src=//ha.ckers.org/.j></script>",
+    "output": "&lt;script src=\"//ha.ckers.org/.j\"&gt;&lt;/script&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_allow_anchors",
+    "input": "<a href='foo' onclick='bar'><script>baz</script></a>",
+    "output": "<a href='foo'>&lt;script&gt;baz&lt;/script&gt;</a>"
+  },
+
+  {
+    "name": "should_allow_image_alt_attribute",
+    "input": "<img alt='foo' onclick='bar' />",
+    "output": "<img alt='foo'>",
+    "rexml": "<img alt='foo' />"
+  },
+
+  {
+    "name": "should_allow_image_height_attribute",
+    "input": "<img height='foo' onclick='bar' />",
+    "output": "<img height='foo'>",
+    "rexml": "<img height='foo' />"
+  },
+
+  {
+    "name": "should_allow_image_src_attribute",
+    "input": "<img src='foo' onclick='bar' />",
+    "output": "<img src='foo'>",
+    "rexml": "<img src='foo' />"
+  },
+
+  {
+    "name": "should_allow_image_width_attribute",
+    "input": "<img width='foo' onclick='bar' />",
+    "output": "<img width='foo'>",
+    "rexml": "<img width='foo' />"
+  },
+
+  {
+    "name": "should_handle_blank_text",
+    "input": "",
+    "output": ""
+  },
+
+  {
+    "name": "should_handle_malformed_image_tags",
+    "input": "<img \"\"\"><script>alert(\"XSS\")</script>\">",
+    "output": "<img>&lt;script&gt;alert(\"XSS\")&lt;/script&gt;\"&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_handle_non_html",
+    "input": "abc",
+    "output": "abc"
+  },
+
+  {
+    "name": "should_not_fall_for_ridiculous_hack",
+    "input": "<img\nsrc\n=\n\"\nj\na\nv\na\ns\nc\nr\ni\np\nt\n:\na\nl\ne\nr\nt\n(\n'\nX\nS\nS\n'\n)\n\"\n />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_0",
+    "input": "<img src=\"javascript:alert('XSS');\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_1",
+    "input": "<img src=javascript:alert('XSS') />",
+    "output": "<img>",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_10",
+    "input": "<img src=\"jav&#x0A;ascript:alert('XSS');\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_11",
+    "input": "<img src=\"jav&#x0D;ascript:alert('XSS');\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_12",
+    "input": "<img src=\" &#14;  javascript:alert('XSS');\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_13",
+    "input": "<img src=\"&#x20;javascript:alert('XSS');\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_14",
+    "input": "<img src=\"&#xA0;javascript:alert('XSS');\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_2",
+    "input": "<img src=\"JaVaScRiPt:alert('XSS')\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_3",
+    "input": "<img src='javascript:alert(&quot;XSS&quot;)' />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_4",
+    "input": "<img src='javascript:alert(String.fromCharCode(88,83,83))' />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_5",
+    "input": "<img src='&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;' />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_6",
+    "input": "<img src='&#0000106;&#0000097;&#0000118;&#0000097;&#0000115;&#0000099;&#0000114;&#0000105;&#0000112;&#0000116;&#0000058;&#0000097;&#0000108;&#0000101;&#0000114;&#0000116;&#0000040;&#0000039;&#0000088;&#0000083;&#0000083;&#0000039;&#0000041' />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_7",
+    "input": "<img src='&#x6A;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3A;&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x27;&#x58;&#x53;&#x53;&#x27;&#x29' />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_8",
+    "input": "<img src=\"jav\tascript:alert('XSS');\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_not_fall_for_xss_image_hack_9",
+    "input": "<img src=\"jav&#x09;ascript:alert('XSS');\" />",
+    "output": "<img>",
+    "rexml": "<img />"
+  },
+
+  {
+    "name": "should_sanitize_half_open_scripts",
+    "input": "<img src=\"javascript:alert('XSS')\"",
+    "output": "<img>",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_sanitize_invalid_script_tag",
+    "input": "<script/XSS SRC=\"http://ha.ckers.org/xss.js\"></script>",
+    "output": "&lt;script src=\"http://ha.ckers.org/xss.js\"&gt;&lt;/script&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_sanitize_script_tag_with_multiple_open_brackets",
+    "input": "<<script>alert(\"XSS\");//<</script>",
+    "output": "alert(\"XSS\");//",
+    "xhtml": "&lt;&lt;script&gt;alert('XSS');//&lt;&lt;/script&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_sanitize_script_tag_with_multiple_open_brackets_2",
+    "input": "<iframe src=http://ha.ckers.org/scriptlet.html\n<",
+    "output": "&lt;iframe src=\"http://ha.ckers.org/scriptlet.html\"&gt;&lt;/iframe&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_sanitize_tag_broken_up_by_null",
+    "input": "<scr\u0000ipt>alert(\"XSS\")</scr\u0000ipt>",
+    "output": "&lt;scr&gt;&lt;/scr&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_sanitize_unclosed_script",
+    "input": "<script src=http://ha.ckers.org/xss.js?<b>",
+    "output": "&lt;script src=\"http://ha.ckers.org/xss.js?&amp;lt;b\"&gt;&lt;/script&gt;",
+    "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+    "name": "should_strip_href_attribute_in_a_with_bad_protocols",
+    "input": "<a href=\"javascript:XSS\" title=\"1\">boo</a>",
+    "output": "<a title='1'>boo</a>"
+  },
+
+  {
+    "name": "should_strip_href_attribute_in_a_with_bad_protocols_and_whitespace",
+    "input": "<a href=\" javascript:XSS\" title=\"1\">boo</a>",
+    "output": "<a title='1'>boo</a>"
+  },
+
+  {
+    "name": "should_strip_src_attribute_in_img_with_bad_protocols",
+    "input": "<img src=\"javascript:XSS\" title=\"1\">boo</img>",
+    "output": "<img title='1'>boo",
+    "rexml": "<img title='1' />"
+  },
+
+  {
+    "name": "should_strip_src_attribute_in_img_with_bad_protocols_and_whitespace",
+    "input": "<img src=\" javascript:XSS\" title=\"1\">boo</img>",
+    "output": "<img title='1'>boo",
+    "rexml": "<img title='1' />"
+  },
+
+  {
+    "name": "xml_base",
+    "input": "<div xml:base=\"javascript:alert('XSS');//\">foo</div>",
+    "output": "<div>foo</div>"
+  },
+
+  {
+    "name": "xul",
+    "input": "<p style=\"-moz-binding:url('http://ha.ckers.org/xssmoz.xml#xss')\">fubar</p>",
+    "output": "<p>fubar</p>"
+  },
+
+  {
+    "name": "quotes_in_attributes",
+    "input": "<img src='foo' title='\"foo\" bar' />",
+    "rexml": "<img src='foo' title='\"foo\" bar' />",
+    "output": "<img src='foo' title='\"foo\" bar'>"
+  },
+
+  {
+    "name": "uri_refs_in_svg_attributes",
+    "input": "<rect fill='url(#foo)' />",
+    "rexml": "<rect fill='url(#foo)'></rect>",
+    "xhtml": "<rect fill='url(#foo)'></rect>",
+    "output": "<rect fill='url(#foo)'/>"
+  },
+
+  {
+    "name": "absolute_uri_refs_in_svg_attributes",
+    "input": "<rect fill='url(http://bad.com/) #fff' />",
+    "rexml": "<rect fill='  #fff'></rect>",
+    "xhtml": "<rect fill='  #fff'></rect>",
+    "output": "<rect fill='  #fff'/>"
+  },
+
+  {
+    "name": "uri_ref_with_space_in svg_attribute",
+    "input": "<rect fill='url(\n#foo)' />",
+    "rexml": "<rect fill='url(\n#foo)'></rect>",
+    "xhtml": "<rect fill='url(\n#foo)'></rect>",
+    "output": "<rect fill='url(\n#foo)'/>"
+  },
+
+  {
+    "name": "absolute_uri_ref_with_space_in svg_attribute",
+    "input": "<rect fill=\"url(\nhttp://bad.com/)\" />",
+    "rexml": "<rect></rect>",
+    "xhtml": "<rect></rect>",
+    "output": "<rect/>"
+  },
+
+  {
+    "name": "allow_html5_image_tag",
+    "input": "<image src='foo' />",
+    "rexml": "&lt;image src=\"foo\"&gt;&lt;/image&gt;",
+    "output": "&lt;image src=\"foo\"/&gt;"
+  },
+
+  {
+    "name": "style_attr_end_with_nothing",
+    "input": "<div style=\"color: blue\" />",
+    "output": "<div style='color: blue;'/>",
+    "xhtml": "<div style='color: blue;'></div>",
+    "rexml": "<div style='color: blue;'></div>"
+  },
+
+  {
+    "name": "style_attr_end_with_space",
+    "input": "<div style=\"color: blue \" />",
+    "output": "<div style='color: blue ;'/>",
+    "xhtml": "<div style='color: blue ;'></div>",
+    "rexml": "<div style='color: blue ;'></div>"
+  },
+
+  {
+    "name": "style_attr_end_with_semicolon",
+    "input": "<div style=\"color: blue;\" />",
+    "output": "<div style='color: blue;'/>",
+    "xhtml": "<div style='color: blue;'></div>",
+    "rexml": "<div style='color: blue;'></div>"
+  },
+
+  {
+    "name": "style_attr_end_with_semicolon_space",
+    "input": "<div style=\"color: blue; \" />",
+    "output": "<div style='color: blue;'/>",
+    "xhtml": "<div style='color: blue;'></div>",
+    "rexml": "<div style='color: blue;'></div>"
+  },
+
+  {
+   "name": "attributes_with_embedded_quotes",
+   "input": "<img src=doesntexist.jpg\"'onerror=\"alert(1) />",
+   "output": "<img src='doesntexist.jpg%22'onerror=%22alert(1)'>",
+   "rexml": "Ill-formed XHTML!"
+  },
+
+  {
+   "name": "attributes_with_embedded_quotes_II",
+   "input": "<img src=notthere.jpg\"\"onerror=\"alert(2) />",
+   "output": "<img src='notthere.jpg%22%22onerror=%22alert(2)'>",
+   "rexml": "Ill-formed XHTML!"
+  }
+]

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= [@databases.size > 1 ? @database.name : "PgHero", @title].compact.join(" / ") %></title>
+
+    <meta charset="utf-8" />
+    <%= stylesheet_link_tag "pghero/application" %>
+    <%= javascript_include_tag "pghero/application" %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="alert alert-<%= alert ? "danger" : "info" %>">
+        <% if alert %>
+          <%= alert %>
+        <% elsif notice %>
+          <%= notice %>
+        <% elsif Rails.env.development? %>
+          Do not use development information to make decisions about your production environment
+        <% else %>
+          <%= link_to "PgHero", root_path %>
+        <% end %>
+      </div>
+
+      <div class="grid">
+        <div class="col-3-12">
+          <% if @databases.size > 1 %>
+            <p class="nav-header"><%= @database.name %></p>
+          <% end %>
+
+          <ul class="nav">
+            <!-- poor man's active_link_to -->
+            <li class="<%= controller.action_name == "index" ? "active" : "" %>"><%= link_to "Overview", root_path %></li>
+            <% if @system_stats_enabled %>
+              <li class="<%= controller.action_name == "system" ? "active" : "" %>"><%= link_to "System", system_path %></li>
+            <% end %>
+            <% if @query_stats_enabled %>
+              <li class="<%= controller.action_name == "queries" ? "active" : "" %>"><%= link_to "Queries", queries_path %></li>
+            <% end %>
+            <li class="<%= controller.action_name == "space" ? "active" : "" %>"><%= link_to "Space", space_path %></li>
+            <li class="<%= controller.action_name == "connections" ? "active" : "" %>"><%= link_to "Connections", connections_path %></li>
+            <li class="<%= controller.action_name == "live_queries" ? "active" : "" %>"><%= link_to "Live Queries", live_queries_path %></li>
+            <% unless @database.replica? %>
+              <li class="<%= controller.action_name == "maintenance" ? "active" : "" %>"><%= link_to "Maintenance", maintenance_path %></li>
+            <% end %>
+            <li class="<%= controller.action_name == "explain" ? "active" : "" %>"><%= link_to "Explain", explain_path %></li>
+            <li class="<%= controller.action_name == "tune" ? "active" : "" %>"><%= link_to "Tune", tune_path %></li>
+          </ul>
+
+          <% if @databases.size > 1 %>
+            <p class="nav-header">Databases</p>
+            <ul class="nav">
+              <% @databases.each do |database| %>
+                <li class="<%= ("active-database" if @database.id == database.id) %>">
+                  <%= link_to database.name, database: database.id %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+
+        <div class="col-9-12">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

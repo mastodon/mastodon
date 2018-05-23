@@ -1,0 +1,47 @@
+#!/bin/bash
+# Usage: script/changelog [-r <repo>] [-b <base>] [-h <head>]
+#
+#  repo: BASE string of GitHub REPOsitory url. e.g. "user_or_org/REPOsitory". Defaults to git remote url.
+#  base: git ref to compare from. e.g. "v1.3.1". Defaults to latest git tag.
+#  head: git ref to compare to. Defaults to "HEAD".
+#
+# Generate a changelog preview from pull requests merged between `base` and
+# `head`.
+#
+# https://github.com/jch/release-scripts/blob/master/changelog
+set -e
+
+[ $# -eq 0 ] && set -- --help
+while [[ $# > 1 ]]
+do
+  key="$1"
+  case $key in
+    -r|--repo)
+    repo="$2"
+    shift
+    ;;
+    -b|--base)
+    base="$2"
+    shift
+    ;;
+    -h|--head)
+    head="$2"
+    shift
+    ;;
+    *)
+    ;;
+  esac
+  shift
+done
+
+repo="${repo:-$(git remote -v | grep push | awk '{print $2}' | cut -d'/' -f4- | sed 's/\.git//')}"
+base="${base:-$(git tag -l | sort -t. -k 1,1n -k 2,2n -k 3,3n | tail -n 1)}"
+head="${head:-HEAD}"
+api_url="https://api.github.com"
+
+# get merged PR's. Better way is to query the API for these, but this is easier
+for pr in $(git log --oneline $base..$head | grep "Merge pull request" | awk '{gsub("#",""); print $5}')
+do
+  # frustrated with trying to pull out the right values, fell back to ruby
+  curl -s "$api_url/repos/$repo/pulls/$pr" | ruby -rjson -e 'pr=JSON.parse(STDIN.read); puts "* #{pr[%q(title)]} {##{pr[%q(number)]}}[#{pr[%q(html_url)]}]"'
+done

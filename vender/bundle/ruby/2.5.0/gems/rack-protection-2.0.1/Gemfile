@@ -1,0 +1,13 @@
+source "http://rubygems.org"
+# encoding: utf-8
+
+gem 'rake'
+
+rack_version = ENV['rack'].to_s
+rack_version = nil if rack_version.empty? or rack_version == 'stable'
+rack_version = {:github => 'rack/rack'} if rack_version == 'master'
+gem 'rack', rack_version
+
+gem 'sinatra', path: '..'
+
+gemspec

@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "Book": "http://example.org/vocab#Book",
+    "Chapter": "http://example.org/vocab#Chapter",
+    "contains": "http://example.org/vocab#contains",
+    "creator": "http://purl.org/dc/terms/creator",
+    "description": "http://purl.org/dc/terms/description",
+    "Library": "http://example.org/vocab#Library",
+    "title": "http://purl.org/dc/terms/title"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.com/library",
+      "@type": "Library",
+      "contains": {
+        "@id": "http://example.org/library/the-republic",
+        "@type": "Book",
+        "contains": {
+          "@id": "http://example.org/library/the-republic#introduction",
+          "@type": "Chapter",
+          "description": "An introductory chapter on The Republic.",
+          "title": "The Introduction"
+        },
+        "creator": "Plato",
+        "title": "The Republic"
+      }
+    }
+  ]
+}

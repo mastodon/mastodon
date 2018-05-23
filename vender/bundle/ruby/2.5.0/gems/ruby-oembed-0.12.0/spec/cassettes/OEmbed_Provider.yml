@@ -1,0 +1,224 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: http://www.flickr.com:80/services/oembed/?format=json&url=http%3A%2F%2Fflickr.com%2Fphotos%2Fbees%2F2362225867%2F
+    body: !!null 
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sat, 26 Nov 2011 01:53:45 GMT
+      p3p:
+      - policyref="http://p3p.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV"
+      set-cookie:
+      - localization=en-us%3Bus%3Bus; expires=Sat, 23-Nov-2013 01:53:45 GMT; path=/;
+        domain=.flickr.com
+      cache-control:
+      - private
+      x-served-by:
+      - www129.flickr.mud.yahoo.com
+      vary:
+      - Accept-Encoding
+      content-type:
+      - application/json
+      age:
+      - '0'
+      via:
+      - HTTP/1.1 r08.ycpi.ne1.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ]), HTTP/1.1
+        r22.ycpi.sp2.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ])
+      server:
+      - YTS/1.20.9
+    body: ! '{"version":"1.0","type":"photo","author_url":"http:\/\/www.flickr.com\/photos\/bees\/","cache_age":3600,"provider_name":"Flickr","provider_url":"http:\/\/www.flickr.com\/","title":"Bacon
+      Lollys","author_name":"\u202e\u202d\u202cbees\u202c","width":"500","height":"375","url":"http:\/\/farm4.staticflickr.com\/3040\/2362225867_4a87ab8baf.jpg"}
+
+'
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: http://www.flickr.com:80/services/oembed/?format=json&url=http%3A%2F%2Fflickr.com%2Fphotos%2Fbees%2F2362225867%2F404
+    body: !!null 
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 404
+      message: Not Found
+    headers:
+      date:
+      - Sat, 26 Nov 2011 01:53:45 GMT
+      p3p:
+      - policyref="http://p3p.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV"
+      set-cookie:
+      - localization=en-us%3Bus%3Bus; expires=Sat, 23-Nov-2013 01:53:45 GMT; path=/;
+        domain=.flickr.com
+      cache-control:
+      - private
+      x-served-by:
+      - www129.flickr.mud.yahoo.com
+      vary:
+      - Accept-Encoding
+      content-type:
+      - application/json
+      age:
+      - '0'
+      via:
+      - HTTP/1.1 r08.ycpi.ne1.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ]), HTTP/1.1
+        r22.ycpi.sp2.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ])
+      server:
+      - YTS/1.20.9
+    body: ! ' '
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: http://www.flickr.com:80/services/oembed/?format=json&url=http%3A%2F%2Fflickr.com%2Fphotos%2Fbees%2F2362225867%2F405
+    body: !!null 
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 405
+      message: Method Not Allowed
+    headers:
+      date:
+      - Sat, 26 Nov 2011 01:53:45 GMT
+      p3p:
+      - policyref="http://p3p.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV"
+      set-cookie:
+      - localization=en-us%3Bus%3Bus; expires=Sat, 23-Nov-2013 01:53:45 GMT; path=/;
+        domain=.flickr.com
+      cache-control:
+      - private
+      x-served-by:
+      - www129.flickr.mud.yahoo.com
+      vary:
+      - Accept-Encoding
+      content-type:
+      - application/json
+      age:
+      - '0'
+      via:
+      - HTTP/1.1 r08.ycpi.ne1.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ]), HTTP/1.1
+        r22.ycpi.sp2.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ])
+      server:
+      - YTS/1.20.9
+    body: ! ' '
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: http://www.flickr.com:80/services/oembed/?format=json&url=http%3A%2F%2Fflickr.com%2Fphotos%2Fbees%2F2362225867%2F500
+    body: !!null 
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 500
+      message: Internal Server Error
+    headers:
+      date:
+      - Sat, 26 Nov 2011 01:53:45 GMT
+      p3p:
+      - policyref="http://p3p.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV"
+      set-cookie:
+      - localization=en-us%3Bus%3Bus; expires=Sat, 23-Nov-2013 01:53:45 GMT; path=/;
+        domain=.flickr.com
+      cache-control:
+      - private
+      x-served-by:
+      - www129.flickr.mud.yahoo.com
+      vary:
+      - Accept-Encoding
+      content-type:
+      - application/json
+      age:
+      - '0'
+      via:
+      - HTTP/1.1 r08.ycpi.ne1.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ]), HTTP/1.1
+        r22.ycpi.sp2.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ])
+      server:
+      - YTS/1.20.9
+    body: ! ' '
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: http://www.flickr.com:80/services/oembed/?format=json&url=http%3A%2F%2Fflickr.com%2Fphotos%2Fbees%2F2362225867%2F501
+    body: !!null 
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 501
+      message: Not Implemented
+    headers:
+      date:
+      - Sat, 26 Nov 2011 01:53:45 GMT
+      p3p:
+      - policyref="http://p3p.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV"
+      set-cookie:
+      - localization=en-us%3Bus%3Bus; expires=Sat, 23-Nov-2013 01:53:45 GMT; path=/;
+        domain=.flickr.com
+      cache-control:
+      - private
+      x-served-by:
+      - www129.flickr.mud.yahoo.com
+      vary:
+      - Accept-Encoding
+      content-type:
+      - application/json
+      age:
+      - '0'
+      via:
+      - HTTP/1.1 r08.ycpi.ne1.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ]), HTTP/1.1
+        r22.ycpi.sp2.yahoo.net (YahooTrafficServer/1.20.9 [cMsSf ])
+      server:
+      - YTS/1.20.9
+    body: ! ' '
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://vimeo.com:443/api/oembed.json?url=https%3A%2F%2Fvimeo.com%2F31158841
+    body: !!null 
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sat, 26 Nov 2011 02:02:58 GMT
+      server:
+      - Apache
+      x-powered-by:
+      - PHP/5.3.5-0.dotdeb.0
+      expires:
+      - Fri, 25 Nov 2011 14:02:58 GMT
+      cache-control:
+      - no-store, no-cache, must-revalidate
+      - post-check=0, pre-check=0
+      vary:
+      - Accept-Encoding
+      content-length:
+      - '697'
+      content-type:
+      - application/json
+    body: ! '{"type":"video","version":"1.0","provider_name":"Vimeo","provider_url":"http:\/\/vimeo.com\/","title":"Murmuration","author_name":"Sophie
+      Windsor Clive","author_url":"http:\/\/vimeo.com\/user3069761","is_plus":"0","html":"<iframe
+      src=\"https:\/\/player.vimeo.com\/video\/31158841\" width=\"640\" height=\"512\"
+      frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><\/iframe>","width":640,"height":512,"duration":120,"description":"A
+      chance encounter and shared moment with one of natures greatest and most fleeting
+      phenomena.","thumbnail_url":"https:\/\/secure-b.vimeocdn.com\/ts\/209\/801\/209801744_640.jpg","thumbnail_width":640,"thumbnail_height":512,"video_id":31158841}'
+    http_version: '1.1'

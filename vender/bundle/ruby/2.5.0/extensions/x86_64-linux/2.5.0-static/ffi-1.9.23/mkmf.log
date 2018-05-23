@@ -1,0 +1,451 @@
+"pkg-config --exists libffi"
+| pkg-config --libs libffi
+=> "-lffi  \n"
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I. -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+| pkg-config --cflags-only-I libffi
+=> " \n"
+| pkg-config --cflags-only-other libffi
+=> " \n"
+| pkg-config --libs-only-l libffi
+=> "-lffi  \n"
+package configuration for libffi
+cflags: 
+ldflags: 
+libs: -lffi
+
+have_library: checking for ffi_call() in -lffi... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic      -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <ffi.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &t);
+11:   }
+12: 
+13:   return 0;
+14: }
+15: int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_call; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for ffi_closure_alloc()... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'ffi_closure_alloc' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_closure_alloc; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_closure_alloc; return !p; }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void ffi_closure_alloc();
+14: int t(void) { ffi_closure_alloc(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for ffi_raw_call()... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'ffi_raw_call' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_raw_call; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_raw_call; return !p; }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void ffi_raw_call();
+14: int t(void) { ffi_raw_call(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for ffi_prep_raw_closure()... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'ffi_prep_raw_closure' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_prep_raw_closure; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_prep_raw_closure; return !p; }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void ffi_prep_raw_closure();
+14: int t(void) { ffi_prep_raw_closure(); return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for shlwapi.h... -------------------- no
+
+"gcc -E -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format   conftest.c -o conftest.i"
+conftest.c:3:21: fatal error: shlwapi.h: No such file or directory
+ #include <shlwapi.h>
+                     ^
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <shlwapi.h>
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_blocking_region()... -------------------- no
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'rb_thread_blocking_region' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_blocking_region; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_blocking_region; return !p; }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+/tmp/ccFIDGby.o: In function `t':
+/home/mastodon/live/vender/bundle/ruby/2.5.0/gems/ffi-1.9.23/ext/ffi_c/conftest.c:14: undefined reference to `rb_thread_blocking_region'
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void rb_thread_blocking_region();
+14: int t(void) { rb_thread_blocking_region(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_call_with_gvl()... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'rb_thread_call_with_gvl' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_with_gvl; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_with_gvl; return !p; }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void rb_thread_call_with_gvl();
+14: int t(void) { rb_thread_call_with_gvl(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_call_without_gvl()... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'rb_thread_call_without_gvl' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_without_gvl; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_without_gvl; return !p; }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void rb_thread_call_without_gvl();
+14: int t(void) { rb_thread_call_without_gvl(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for ffi_prep_cif_var()... -------------------- yes
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'ffi_prep_cif_var' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_prep_cif_var; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality" [enabled by default]
+cc1: warning: unrecognized command line option "-Wno-tautological-compare" [enabled by default]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))ffi_prep_cif_var; return !p; }
+/* end */
+
+"gcc -o conftest -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/x86_64-linux -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0/ruby/backward -I/home/mastodon/.rbenv/versions/2.5.1/include/ruby-2.5.0 -I.  -I/home/mastodon/.rbenv/versions/2.5.1/include    -O3 -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  conftest.c  -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L. -L/home/mastodon/.rbenv/versions/2.5.1/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -lffi  -lffi -Wl,-rpath,/home/mastodon/.rbenv/versions/2.5.1/lib -L/home/mastodon/.rbenv/versions/2.5.1/lib -lruby-static -lffi  -lffi -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void ffi_prep_cif_var();
+14: int t(void) { ffi_prep_cif_var(); return 0; }
+/* end */
+
+--------------------
+
+extconf.h is:
+/* begin */
+ 1: #ifndef EXTCONF_H
+ 2: #define EXTCONF_H
+ 3: #define HAVE_FFI_CLOSURE_ALLOC 1
+ 4: #define HAVE_FFI_RAW_CALL 1
+ 5: #define HAVE_FFI_PREP_RAW_CLOSURE 1
+ 6: #define HAVE_RAW_API 1
+ 7: #define HAVE_RB_THREAD_CALL_WITH_GVL 1
+ 8: #define HAVE_RB_THREAD_CALL_WITHOUT_GVL 1
+ 9: #define HAVE_FFI_PREP_CIF_VAR 1
+10: #define RUBY_1_9 1
+11: #endif
+/* end */
+

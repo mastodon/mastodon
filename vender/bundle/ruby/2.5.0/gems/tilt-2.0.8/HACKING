@@ -1,0 +1,16 @@
+Clone:
+
+    git clone git://github.com/rtomayko/tilt.git
+    cd tilt
+
+Install needed packages under ./vendor and run tests (requires bundler):
+
+    rake
+
+Run tests under your current gem environment. Do not install anything:
+
+    rake test
+
+Only install needed packages under ./vendor:
+
+    rake setup

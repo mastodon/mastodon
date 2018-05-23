@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  version="2.0">
+
+  <xs:annotation>
+    <xs:documentation>
+      Document identifier: saml-schema-authn-context-types-2.0
+      Location: http://docs.oasis-open.org/security/saml/v2.0/
+      Revision history:
+          V2.0 (March, 2005):
+          New core authentication context schema types for SAML V2.0. 
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="AuthenticationContextDeclaration" type="AuthnContextDeclarationBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        A particular assertion on an identity
+        provider's part with respect to the authentication
+        context associated with an authentication assertion.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Identification" type="IdentificationType">
+    <xs:annotation>
+      <xs:documentation>
+        Refers to those characteristics that describe the
+        processes and mechanisms
+        the Authentication Authority uses to initially create
+        an association between a Principal
+        and the identity (or name) by which the Principal will
+        be known
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PhysicalVerification">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that identification has been
+        performed in a physical
+        face-to-face meeting with the principal and not in an
+        online manner.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attribute name="credentialLevel">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="primary"/>
+            <xs:enumeration value="secondary"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="WrittenConsent" type="ExtensionOnlyType"/>
+
+  <xs:element name="TechnicalProtection" type="TechnicalProtectionBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        Refers to those characterstics that describe how the
+        'secret' (the knowledge or possession
+        of which allows the Principal to authenticate to the
+        Authentication Authority) is kept secure
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SecretKeyProtection" type="SecretKeyProtectionType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates the types and strengths of
+        facilities
+        of a UA used to protect a shared secret key from
+        unauthorized access and/or use.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PrivateKeyProtection" type="PrivateKeyProtectionType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates the types and strengths of
+        facilities
+        of a UA used to protect a private key from
+        unauthorized access and/or use.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="KeyActivation" type="KeyActivationType">
+    <xs:annotation>
+      <xs:documentation>The actions that must be performed
+        before the private key can be used. </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="KeySharing" type="KeySharingType">
+    <xs:annotation>
+      <xs:documentation>Whether or not the private key is shared
+        with the certificate authority.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="KeyStorage" type="KeyStorageType">
+    <xs:annotation>
+      <xs:documentation>
+        In which medium is the key stored.
+        memory - the key is stored in memory.
+        smartcard - the key is stored in a smartcard.
+        token - the key is stored in a hardware token.
+        MobileDevice - the key is stored in a mobile device.
+        MobileAuthCard - the key is stored in a mobile
+        authentication card.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SubscriberLineNumber" type="ExtensionOnlyType"/>
+  <xs:element name="UserSuffix" type="ExtensionOnlyType"/>
+
+  <xs:element name="Password" type="PasswordType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that a password (or passphrase)
+        has been used to
+        authenticate the Principal to a remote system.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ActivationPin" type="ActivationPinType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that a Pin (Personal
+        Identification Number) has been used to authenticate the Principal to
+        some local system in order to activate a key.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Token" type="TokenType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that a hardware or software
+        token is used
+        as a method of identifying the Principal.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="TimeSyncToken" type="TimeSyncTokenType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that a time synchronization
+        token is used to identify the Principal. hardware -
+        the time synchonization
+        token has been implemented in hardware. software - the
+        time synchronization
+        token has been implemented in software. SeedLength -
+        the length, in bits, of the
+        random seed used in the time synchronization token.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Smartcard" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that a smartcard is used to
+        identity the Principal.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Length" type="LengthType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates the minimum and/or maximum
+        ASCII length of the password which is enforced (by the UA or the
+        IdP). In other words, this is the minimum and/or maximum number of
+        ASCII characters required to represent a valid password.
+        min - the minimum number of ASCII characters required
+        in a valid password, as enforced by the UA or the IdP.
+        max - the maximum number of ASCII characters required
+        in a valid password, as enforced by the UA or the IdP.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ActivationLimit" type="ActivationLimitType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates the length of time for which an
+        PIN-based authentication is valid.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Generation">
+    <xs:annotation>
+      <xs:documentation>
+        Indicates whether the password was chosen by the
+        Principal or auto-supplied by the Authentication Authority.
+        principalchosen - the Principal is allowed to choose
+        the value of the password. This is true even if
+        the initial password is chosen at random by the UA or
+        the IdP and the Principal is then free to change
+        the password.
+        automatic - the password is chosen by the UA or the
+        IdP to be cryptographically strong in some sense,
+        or to satisfy certain password rules, and that the
+        Principal is not free to change it or to choose a new password.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:attribute name="mechanism" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="principalchosen"/>
+            <xs:enumeration value="automatic"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="AuthnMethod" type="AuthnMethodBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        Refers to those characteristics that define the
+        mechanisms by which the Principal authenticates to the Authentication
+        Authority.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PrincipalAuthenticationMechanism" type="PrincipalAuthenticationMechanismType">
+    <xs:annotation>
+      <xs:documentation>
+        The method that a Principal employs to perform
+        authentication to local system components.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Authenticator" type="AuthenticatorBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        The method applied to validate a principal's
+        authentication across a network
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ComplexAuthenticator" type="ComplexAuthenticatorType">
+    <xs:annotation>
+      <xs:documentation>
+        Supports Authenticators with nested combinations of
+        additional complexity.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PreviousSession" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        Indicates that the Principal has been strongly
+        authenticated in a previous session during which the IdP has set a
+        cookie in the UA. During the present session the Principal has only
+        been authenticated by the UA returning the cookie to the IdP.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ResumeSession" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        Rather like PreviousSession but using stronger
+        security. A secret that was established in a previous session with
+        the Authentication Authority has been cached by the local system and
+        is now re-used (e.g. a Master Secret is used to derive new session
+        keys in TLS, SSL, WTLS).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ZeroKnowledge" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Principal has been
+        authenticated by a zero knowledge technique as specified in ISO/IEC
+        9798-5.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SharedSecretChallengeResponse" type="SharedSecretChallengeResponseType"/>
+
+  <xs:complexType name="SharedSecretChallengeResponseType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Principal has been
+        authenticated by a challenge-response protocol utilizing shared secret
+        keys and symmetric cryptography.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="method" type="xs:anyURI" use="optional"/>
+  </xs:complexType>
+
+  <xs:element name="DigSig" type="PublicKeyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Principal has been
+        authenticated by a mechanism which involves the Principal computing a
+        digital signature over at least challenge data provided by the IdP.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AsymmetricDecryption" type="PublicKeyType">
+    <xs:annotation>
+      <xs:documentation>
+        The local system has a private key but it is used
+        in decryption mode, rather than signature mode. For example, the
+        Authentication Authority generates a secret and encrypts it using the
+        local system's public key: the local system then proves it has
+        decrypted the secret.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AsymmetricKeyAgreement" type="PublicKeyType">
+    <xs:annotation>
+      <xs:documentation>
+        The local system has a private key and uses it for
+        shared secret key agreement with the Authentication Authority (e.g.
+        via Diffie Helman).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="PublicKeyType">
+    <xs:sequence>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="keyValidation" use="optional"/>
+  </xs:complexType>
+
+  <xs:element name="IPAddress" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Principal has been
+        authenticated through connection from a particular IP address.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SharedSecretDynamicPlaintext" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        The local system and Authentication Authority
+        share a secret key. The local system uses this to encrypt a
+        randomised string to pass to the Authentication Authority.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AuthenticatorTransportProtocol" type="AuthenticatorTransportProtocolType">
+    <xs:annotation>
+      <xs:documentation>
+        The protocol across which Authenticator information is
+        transferred to an Authentication Authority verifier.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="HTTP" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Authenticator has been
+        transmitted using bare HTTP utilizing no additional security
+        protocols.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="IPSec" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Authenticator has been
+        transmitted using a transport mechanism protected by an IPSEC session.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="WTLS" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Authenticator has been
+        transmitted using a transport mechanism protected by a WTLS session.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="MobileNetworkNoEncryption" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Authenticator has been
+        transmitted solely across a mobile network using no additional
+        security mechanism.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="MobileNetworkRadioEncryption" type="ExtensionOnlyType"/>
+  <xs:element name="MobileNetworkEndToEndEncryption" type="ExtensionOnlyType"/>
+
+  <xs:element name="SSL" type="ExtensionOnlyType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Authenticator has been
+        transmitted using a transport mechnanism protected by an SSL or TLS
+        session.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="PSTN" type="ExtensionOnlyType"/>
+  <xs:element name="ISDN" type="ExtensionOnlyType"/>
+  <xs:element name="ADSL" type="ExtensionOnlyType"/>
+
+  <xs:element name="OperationalProtection" type="OperationalProtectionType">
+    <xs:annotation>
+      <xs:documentation>
+        Refers to those characteristics that describe
+        procedural security controls employed by the Authentication Authority.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SecurityAudit" type="SecurityAuditType"/>
+  <xs:element name="SwitchAudit" type="ExtensionOnlyType"/>
+  <xs:element name="DeactivationCallCenter" type="ExtensionOnlyType"/>
+
+  <xs:element name="GoverningAgreements" type="GoverningAgreementsType">
+    <xs:annotation>
+      <xs:documentation>
+        Provides a mechanism for linking to external (likely
+        human readable) documents in which additional business agreements,
+        (e.g. liability constraints, obligations, etc) can be placed.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="GoverningAgreementRef" type="GoverningAgreementRefType"/>
+
+  <xs:simpleType name="nymType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="anonymity"/>
+      <xs:enumeration value="verinymity"/>
+      <xs:enumeration value="pseudonymity"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="AuthnContextDeclarationBaseType">
+    <xs:sequence>
+      <xs:element ref="Identification" minOccurs="0"/>
+      <xs:element ref="TechnicalProtection" minOccurs="0"/>
+      <xs:element ref="OperationalProtection" minOccurs="0"/>
+      <xs:element ref="AuthnMethod" minOccurs="0"/>
+      <xs:element ref="GoverningAgreements" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:ID" use="optional"/>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificationType">
+    <xs:sequence>
+      <xs:element ref="PhysicalVerification" minOccurs="0"/>
+      <xs:element ref="WrittenConsent" minOccurs="0"/>
+      <xs:element ref="GoverningAgreements" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="nym" type="nymType">
+      <xs:annotation>
+        <xs:documentation>
+          This attribute indicates whether or not the
+          Identification mechanisms allow the actions of the Principal to be
+          linked to an actual end user.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="TechnicalProtectionBaseType">
+    <xs:sequence>
+      <xs:choice minOccurs="0">
+        <xs:element ref="PrivateKeyProtection"/>
+        <xs:element ref="SecretKeyProtection"/>
+      </xs:choice>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OperationalProtectionType">
+    <xs:sequence>
+      <xs:element ref="SecurityAudit" minOccurs="0"/>
+      <xs:element ref="DeactivationCallCenter" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AuthnMethodBaseType">
+    <xs:sequence>
+      <xs:element ref="PrincipalAuthenticationMechanism" minOccurs="0"/>
+      <xs:element ref="Authenticator" minOccurs="0"/>
+      <xs:element ref="AuthenticatorTransportProtocol" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GoverningAgreementsType">
+    <xs:sequence>
+      <xs:element ref="GoverningAgreementRef" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GoverningAgreementRefType">
+    <xs:attribute name="governingAgreementRef" type="xs:anyURI" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="PrincipalAuthenticationMechanismType">
+    <xs:sequence>
+      <xs:element ref="Password" minOccurs="0"/>
+      <xs:element ref="RestrictedPassword" minOccurs="0"/>
+      <xs:element ref="Token" minOccurs="0"/>
+      <xs:element ref="Smartcard" minOccurs="0"/>
+      <xs:element ref="ActivationPin" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="preauth" type="xs:integer" use="optional"/>
+  </xs:complexType>
+  
+  <xs:group name="AuthenticatorChoiceGroup">
+    <xs:choice>
+      <xs:element ref="PreviousSession"/>
+      <xs:element ref="ResumeSession"/>
+      <xs:element ref="DigSig"/>
+      <xs:element ref="Password"/>
+      <xs:element ref="RestrictedPassword"/>
+      <xs:element ref="ZeroKnowledge"/>
+      <xs:element ref="SharedSecretChallengeResponse"/>
+      <xs:element ref="SharedSecretDynamicPlaintext"/>
+      <xs:element ref="IPAddress"/>
+      <xs:element ref="AsymmetricDecryption"/>
+      <xs:element ref="AsymmetricKeyAgreement"/>
+      <xs:element ref="SubscriberLineNumber"/>
+      <xs:element ref="UserSuffix"/>
+      <xs:element ref="ComplexAuthenticator"/>
+    </xs:choice>
+  </xs:group>
+  
+  <xs:group name="AuthenticatorSequenceGroup">
+    <xs:sequence>
+      <xs:element ref="PreviousSession" minOccurs="0"/>
+      <xs:element ref="ResumeSession" minOccurs="0"/>
+      <xs:element ref="DigSig" minOccurs="0"/>
+      <xs:element ref="Password" minOccurs="0"/>
+      <xs:element ref="RestrictedPassword" minOccurs="0"/>
+      <xs:element ref="ZeroKnowledge" minOccurs="0"/>
+      <xs:element ref="SharedSecretChallengeResponse" minOccurs="0"/>
+      <xs:element ref="SharedSecretDynamicPlaintext" minOccurs="0"/>
+      <xs:element ref="IPAddress" minOccurs="0"/>
+      <xs:element ref="AsymmetricDecryption" minOccurs="0"/>
+      <xs:element ref="AsymmetricKeyAgreement" minOccurs="0"/>
+      <xs:element ref="SubscriberLineNumber" minOccurs="0"/>
+      <xs:element ref="UserSuffix" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="AuthenticatorBaseType">
+    <xs:sequence>
+      <xs:group ref="AuthenticatorChoiceGroup"/>
+      <xs:group ref="AuthenticatorSequenceGroup"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ComplexAuthenticatorType">
+    <xs:sequence>
+      <xs:group ref="AuthenticatorChoiceGroup"/>
+      <xs:group ref="AuthenticatorSequenceGroup"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="AuthenticatorTransportProtocolType">
+    <xs:sequence>
+      <xs:choice minOccurs="0">
+        <xs:element ref="HTTP"/>
+        <xs:element ref="SSL"/>
+        <xs:element ref="MobileNetworkNoEncryption"/>
+        <xs:element ref="MobileNetworkRadioEncryption"/>
+        <xs:element ref="MobileNetworkEndToEndEncryption"/>
+        <xs:element ref="WTLS"/>
+        <xs:element ref="IPSec"/>
+        <xs:element ref="PSTN"/>
+        <xs:element ref="ISDN"/>
+        <xs:element ref="ADSL"/>
+      </xs:choice>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="KeyActivationType">
+    <xs:sequence>
+      <xs:element ref="ActivationPin" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="KeySharingType">
+    <xs:attribute name="sharing" type="xs:boolean" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="PrivateKeyProtectionType">
+    <xs:sequence>
+      <xs:element ref="KeyActivation" minOccurs="0"/>
+      <xs:element ref="KeyStorage" minOccurs="0"/>
+      <xs:element ref="KeySharing" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PasswordType">
+    <xs:sequence>
+      <xs:element ref="Length" minOccurs="0"/>
+      <xs:element ref="Alphabet" minOccurs="0"/>
+      <xs:element ref="Generation" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="ExternalVerification" type="xs:anyURI" use="optional"/>
+  </xs:complexType>
+
+  <xs:element name="RestrictedPassword" type="RestrictedPasswordType"/>
+
+  <xs:complexType name="RestrictedPasswordType">
+    <xs:complexContent>
+      <xs:restriction base="PasswordType">
+        <xs:sequence>
+          <xs:element name="Length" type="RestrictedLengthType" minOccurs="1"/>
+          <xs:element ref="Generation" minOccurs="0"/>
+          <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="ExternalVerification" type="xs:anyURI" use="optional"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="RestrictedLengthType">
+    <xs:complexContent>
+      <xs:restriction base="LengthType">
+        <xs:attribute name="min" use="required">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="3"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="max" type="xs:integer" use="optional"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ActivationPinType">
+    <xs:sequence>
+      <xs:element ref="Length" minOccurs="0"/>
+      <xs:element ref="Alphabet" minOccurs="0"/>
+      <xs:element ref="Generation" minOccurs="0"/>
+      <xs:element ref="ActivationLimit" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="Alphabet" type="AlphabetType"/>
+  <xs:complexType name="AlphabetType">
+    <xs:attribute name="requiredChars" type="xs:string" use="required"/>
+    <xs:attribute name="excludedChars" type="xs:string" use="optional"/>
+    <xs:attribute name="case" type="xs:string" use="optional"/>
+  </xs:complexType>
+  
+  <xs:complexType name="TokenType">
+    <xs:sequence>
+      <xs:element ref="TimeSyncToken"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:simpleType name="DeviceTypeType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="hardware"/>
+      <xs:enumeration value="software"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="booleanType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="true"/>
+      <xs:enumeration value="false"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:complexType name="TimeSyncTokenType">
+    <xs:attribute name="DeviceType" type="DeviceTypeType" use="required"/>
+    <xs:attribute name="SeedLength" type="xs:integer" use="required"/>
+    <xs:attribute name="DeviceInHand" type="booleanType" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType name="ActivationLimitType">
+    <xs:choice>
+      <xs:element ref="ActivationLimitDuration"/>
+      <xs:element ref="ActivationLimitUsages"/>
+      <xs:element ref="ActivationLimitSession"/>
+    </xs:choice>
+  </xs:complexType>
+  
+  <xs:element name="ActivationLimitDuration" type="ActivationLimitDurationType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Key Activation Limit is
+        defined as a specific duration of time.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="ActivationLimitUsages" type="ActivationLimitUsagesType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Key Activation Limit is
+        defined as a number of usages.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="ActivationLimitSession" type="ActivationLimitSessionType">
+    <xs:annotation>
+      <xs:documentation>
+        This element indicates that the Key Activation Limit is
+        the session.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:complexType name="ActivationLimitDurationType">
+    <xs:attribute name="duration" type="xs:duration" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType name="ActivationLimitUsagesType">
+    <xs:attribute name="number" type="xs:integer" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType name="ActivationLimitSessionType"/>
+  
+  <xs:complexType name="LengthType">
+    <xs:attribute name="min" type="xs:integer" use="required"/>
+    <xs:attribute name="max" type="xs:integer" use="optional"/>
+  </xs:complexType>
+
+  <xs:simpleType name="mediumType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="memory"/>
+      <xs:enumeration value="smartcard"/>
+      <xs:enumeration value="token"/>
+      <xs:enumeration value="MobileDevice"/>
+      <xs:enumeration value="MobileAuthCard"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="KeyStorageType">
+    <xs:attribute name="medium" type="mediumType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="SecretKeyProtectionType">
+    <xs:sequence>
+      <xs:element ref="KeyActivation" minOccurs="0"/>
+      <xs:element ref="KeyStorage" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SecurityAuditType">
+    <xs:sequence>
+      <xs:element ref="SwitchAudit" minOccurs="0"/>
+      <xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ExtensionOnlyType">
+    <xs:sequence>
+      <xs:element ref="Extension" minOccurs="0"  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="Extension" type="ExtensionType"/>
+
+  <xs:complexType name="ExtensionType">
+    <xs:sequence>
+      <xs:any namespace="##other" processContents="lax" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

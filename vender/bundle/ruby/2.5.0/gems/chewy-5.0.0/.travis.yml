@@ -1,0 +1,45 @@
+language: ruby
+sudo: false
+services:
+  - mongodb
+jdk:
+  - oraclejdk8
+rvm:
+  - 2.4.3
+env:
+  global:
+    - TEST_CLUSTER_NODES=1
+  matrix:
+    - ES_VERSION=5.6.7
+gemfile:
+  - gemfiles/rails.5.0.activerecord.gemfile
+  - gemfiles/rails.5.1.activerecord.gemfile
+  - gemfiles/rails.5.0.mongoid.6.1.gemfile
+  - gemfiles/rails.5.1.mongoid.6.3.gemfile
+  - gemfiles/sequel.4.45.gemfile
+matrix:
+  include:
+  - rvm: 2.2.9
+    gemfile: gemfiles/rails.4.0.activerecord.gemfile
+    env: ES_VERSION=2.4.6
+  - rvm: 2.2.9
+    gemfile: gemfiles/rails.4.1.activerecord.gemfile
+    env: ES_VERSION=2.4.6
+  - rvm: 2.3.6
+    gemfile: gemfiles/rails.4.2.activerecord.gemfile
+    env: ES_VERSION=2.4.6
+  - rvm: 2.3.6
+    gemfile: gemfiles/rails.4.2.mongoid.5.2.gemfile
+    env: ES_VERSION=2.4.6
+  - rvm: 2.5.0
+    gemfile: gemfiles/rails.5.2.activerecord.gemfile
+    env: ES_VERSION=5.6.7
+before_install:
+  - curl -s https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.6/elasticsearch-2.4.6.tar.gz | tar xz -C /tmp
+  - curl -s https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.7.tar.gz | tar xz -C /tmp
+before_script:
+  - /tmp/elasticsearch-2.4.6/bin/plugin install delete-by-query
+  - TEST_CLUSTER_COMMAND=/tmp/elasticsearch-$ES_VERSION/bin/elasticsearch TEST_CLUSTER_LOGS=/tmp/log rake es:start
+script:
+  - bundle exec rspec
+  - bundle exec rubocop

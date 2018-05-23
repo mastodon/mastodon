@@ -1,0 +1,160 @@
+= CHANGELOG
+
+== Unreleased (0.12.1)
+
+
+== 0.12.0 - 26 March 2017
+
+* Add a Noembed aggregator; Issue #32 (github.com/evaryont and Arnaud Leymet)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes.
+* Remove the `rake oembed:update_oohembed` task.
+
+== 0.11.0 - 26 March 2017
+
+* Add built-in Speaker Deck provider; Issue #67 (Camille Roux)
+* Add built-in Giphy provider
+* Add built-in Kickstarter provider
+* Add built-in TED provider
+* Add built-in CodePen provider
+* Update built-in Hulu provider to support https
+
+== 0.10.1 - 21 May 2016
+
+* Update built-in Twitter provider to use the new Twitter oEmbed endpoint; Pull #60 (Ben Ramsey)
+* Update built-in SlideShare provider to accept https URLs and URLs from various subdomains; Pull #59 (Axel Wahlen)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Marcos Wright-Kuhns)
+
+== 0.10.0 - 6 March 2016
+
+* Add built-in Tumblr provider; Pull #55 (unknown)
+* Add bulit-in FacebookPost and FacebookVideo providers; Pull #54 (John Crowe)
+* Change ProviderDiscovery.discover_provider to better find tags on some sites; Issue #56 + Pull #57 (Marcos Wright-Kuhns)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Marcos Wright-Kuhns)
+
+== 0.9.0 - 12 December 2015
+
+* Add support for HTTP redirects in ProviderDiscovery; Pull #39 (Sebastian de Castelberg) and Pull #38 (Sven Schwyn)
+* Add support for a :max_redirects option to Provider#get and ProviderDiscovery#get  (Marcos Wright-Kuhns)
+* Change built-in YouTube, Slideshare, Yfrog, Scribd, & SoundCloud providers to use the https oembed endpoint; Pull #48 (Javan Makhmali)
+* Change built-in Instagram provider to recognize URLs in the www subdomain; Pull #52 (Javan Makhmali)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Marcos Wright-Kuhns)
+
+== 0.8.14 - 25 April 2015
+
+* Change built-in Vimeo provider to use https oembed endpoint; Pull #44 (Jonne Haß)
+* Change built-in Flickr provider to use https oembed endpoint; Pull #46 (Javan Makhmali)
+* Change built-in Flickr provider to recognize https URLs and short flic.kr URLs (Javan Makhmali & Marcos Wright-Kuhns)
+
+== 0.8.13 - 23 April 2015
+
+* Change built-in Instagram provider to recognize https URLs; Pull #35 (Philipp Bosch)
+* Change built-in Instagram provider to use https oembed/API endpoint. (Marcos Wright-Kuhns)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Marcos Wright-Kuhns)
+
+== 0.8.12 - 7 January 2015
+
+* Fix URI error in Ruby 2.2; Pull #41, Issue #43 (Maxim Bublis)
+* Change built-in YouTube provider to return https embeds; Pull #34, Issue #33 (Fla)
+* Add built-in providers for Twitter, Vine, & Imgur; Pull #42 (Eliot Shepard)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Marcos Wright-Kuhns)
+
+== 0.8.11 - 7 November 2014
+
+* Add built-in provider for Spotify; Pull #36 (Sami Kukkonen)
+* Update Travis CI configuration to test with modern Rails; Pull #37 (Sami Kukkonen)
+
+== 0.8.10 - 6 August 2014
+
+* Add support for specifying a Provider#get `:timeout`; Pull #35 (Blake Thomson)
+* Upgrade to RSpec 3.x
+
+== 0.8.9 - 15 September 2013
+
+* SoundCloud provider supports https URLs; Pull #30 (Greg Tangey)
+* Address rspec DEPRECATION warnings; Pull metavida#3 (Marcos Wright Kuhns)
+
+== 0.8.8 - 18 November 2012
+
+* OEmbed::Response::Photo#html now includes alt attribute; Pull #23 & #25 (François de Metz)
+* Always escape the url query param when requesting a resource from a provider; Pull #26 (Michael Cohen)
+* Allow query params in a provider endpoint URL; Pull #27 (Michael Andrews)
+* Added built-in provider for Skitch; Pull #24 (François de Metz)
+* Updated built-in Vimeo provider (Marcos Wright Kuhns)
+* For developers who work on this gem, removed the dependency on jeweler (Marcos Wright Kuhns)
+
+== 0.8.7 - 11 March 2012
+
+* Support for https provider endpoints; Issue #16 (Marcos Wright Kuhns)
+* OEmbed::Providers.register_all now actually registers all bundled providers; Issue #18 (Marcos Wright Kuhns)
+* Added built-in provider for SoundCloud (Hendrik Mans)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Marcos Wright Kuhns)
+* For developers who work on this gem, the rvmrc now automatically creates an oembed gemset; Issue #20 (Florian Staudacher)
+
+== 0.8.5 - 14 November 2011
+
+* Fixed problems ProviderDiscovery and some xml endpoints. Also added much better test coverage. (Marcos Wright Kuhns)
+* Added support for XML parsing using {Nokogiri}[http://nokogiri.org/] (Marcos Wright Kuhns)
+* Added built-in provider for MLG.TV (Matt Wilson)
+* Added https support to the built-in YouTube provider (Marcos Wright Kuhns)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Marcos Wright Kuhns)
+
+== 0.8.3 - 26 June 2011
+
+* Fixing a circular dependency introduced during my recent Jeweler upgrade. (Marcos Wright Kuhns)
+
+== 0.8.2 - 25 June 2011
+
+* Added built-in providers for Instagram, Slideshare and Yfrog (Florian Günther)
+* Improved support (and error detection) for custom OEmbed::Formatter backends. (Marcos Wright Kuhns)
+* DRYed up OEmbed::Formatter::JSON and XML methods into OEmbed::Formatter::Base (Marcos Wright Kuhns)
+* More consistently raise an OEmbed::Parse error if there is any sort of problem parsing the server response, whether it's an expected error type or not. (Marcos Wright Kuhns)
+* Added in-code comments about the {OohEmbed}[http://oohembed.com] service becoming part of {Embedly}[http://embed.ly] (Marcos Wright Kuhns)
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Marcos Wright Kuhns)
+
+== 0.8.1 - 27 February 2011
+
+* Removed all dependencies on external gems. XML is parsed using REXML and JSON can be parsed using YAML thanks to the convert_json_to_yaml method borrowed from Rails! (Marcos Wright Kuhns)
+* Fixed several errors that cropped up when the json gem wasn't installed. (Marcos Wright Kuhns)
+* OEmbed::Response#field now always return Strings. Previously, some JSON values were parsed into other Object types, like Integer and Float instances.
+* OEmbed::Response#url has been renamed OEmbed::Response#request_url because OEmbed::Response::Photo#url should be the URL of the static photo to be used by the oEmbed consumer.
+* OEmbed::Response.create_for now requires the format parameter.
+* OEmbed::Formatter backends won't try to load gems that haven't already been loaded. (Marcos Wright Kuhns)
+* Better code documentation, all around. (Marcos Wright Kuhns)
+
+=== Deprecations & Removals
+
+* Removed the OEmbed::Response::METHODS constant.
+* OEmbed::Provders::Pownce has been removed since pownce.com is no longer active.
+* Provider#url and Provider#name will be removed at some point in the future.
+* All direct raw calls will be made private at some point in the future (i.e. Provider#raw, Providers#raw, and ProviderDiscovery#raw)
+
+== 0.8.0 - Not Publicly Released
+
+* Added OEmbed::Formatter Backends, to remove the dependency on the json gem and make adding support for other parsing libraries easier. This also fixes GitHub Issue =1. (Marcos Wright Kuhns)
+* Catch invalid endpoint URLs on OEmbed::Provider instantiation. (Marcos Wright Kuhns)
+* Jeweler uses the new OEmbed::Version Class. (Marcos Wright Kuhns)
+* Corrected syntax for Youtube provider in the README (Ryan Richards)
+* Removed the deprecated rails/init.rb file. (Marcos Wright Kuhns)
+
+== 0.7.6 - 11 October 2010
+
+* Released all recent changes to judofyr/master on GitHub. (Marcos Wright Kuhns)
+* Added CHANGELOG & LICENSE information. (Marcos Wright Kuhns)
+
+== 0.7.5 - 29 September 2010
+
+* Updated the list of {Embedly}[http://embed.ly] URL schemes. (Aris Bartee)
+* {rvmrc file}[http://rvm.beginrescueend.com/workflow/rvmrc/] added. (Aris Bartee)
+
+== 0.7.0 - 23 August 2010
+
+* Gemified. (Aris Bartee)
+* Added the {Embedly}[http://embed.ly] Provider. (Alex Kessinger)
+* OEmbed::Response now includes the original request url. (Colin Shea)
+* Unregistering providers with duplicate URL patterns works. (Marcos Wright Kuhns)
+
+== 0.0.0 - May 2008 - July 2010
+
+* Initial work & release as a library (Magnus Holm, et al.)
+* Many Providers supported, including {OohEmbed}[http://oohembed.com].
+* Support for JSON (via the json gem) and XML (via the xml-simple gem).

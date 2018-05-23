@@ -1,0 +1,30 @@
+---
+sudo: required
+
+language: cpp
+
+os:
+  - linux
+compiler:
+  - gcc
+  - clang
+env:
+  - CONFIGURE_OPTIONS=--disable-shared
+  - CONFIGURE_OPTIONS=
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      env: HOST=i386-pc-linux-gnu
+
+install:
+  - ./.travis/install.sh
+
+script:
+  - ./autogen.sh
+  - if test x"$HOST" = x"i386-pc-linux-gnu"; then CC="$CC -m32"; CXX="$CXX -m32"; fi
+  - ./configure ${HOST+--host=$HOST} ${CONFIGURE_OPTIONS}
+  - make
+  - make dist
+  - make check
+  - cat */testsuite/libffi.log

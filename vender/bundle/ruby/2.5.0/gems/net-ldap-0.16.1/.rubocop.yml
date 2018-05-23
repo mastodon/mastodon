@@ -1,0 +1,20 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'pkg/**/*'
+
+Style/ExtraSpacing:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma

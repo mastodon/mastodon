@@ -1,0 +1,59 @@
+tilt(1) -- process templates
+============================
+
+## SYNOPSIS
+
+`tilt` `-l`<br>
+`tilt` [`-t` <pattern>] [`-y` <file>] [`-D` <name>=<value>] [`-d` <file>]
+  [`--vars=`<ruby>] <file>
+
+## DESCRIPTION
+
+Process template <file> and write output to stdout. With no <file> or
+when <file> is '-', read template from stdin and use the --type option
+to determine the template's type.
+
+## OPTIONS
+
+* `-l`, `--list`:
+  List template engines + file patterns and exit
+* `-t`, `--type`=<pattern>:
+  Use this template engine; required if no <file>
+* `-y`, `--layout`=<file>:
+  Use <file> as a layout template
+* `-D`<name>=<value>:
+  Define variable <name> as <value>
+* `-d`, `--define-file`=<file>:
+  Load YAML or JSON from <file> and use for variables
+* `--vars`=<ruby>:
+  Evaluate <ruby> to Hash and use for variables
+* `-h`, `--help`:
+  Show this help message
+
+## EXAMPLES
+
+Convert markdown to HTML:
+
+    $ tilt foo.markdown > foo.html
+
+Process ERB template:
+
+    $ echo "Answer: <%= 2 + 2 %>" | tilt -t erb
+    Answer: 4
+
+Define variables:
+
+    $ echo '{"n":40}' > data.json
+    $ echo "Answer: <%= 2 + n %>" | tilt -t erb -d data.json
+    Answer: 42
+
+    $ echo "Answer: <%= 2 + n %>" | tilt -t erb --vars="{:n=>40}"
+    Answer: 42
+    $ echo "Answer: <%= 2 + n.to_i %>" | tilt -t erb -Dn=40
+    Answer: 42
+
+## SEE ALSO
+
+m4(1), mustache(1)
+
+

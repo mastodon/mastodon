@@ -1,0 +1,15 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.com/library> a <http://example.org/vocab#Library>;
+   <http://example.org/vocab#contains> <http://example.org/library/the-republic> .
+
+<http://example.org/library/the-republic> a <http://example.org/vocab#Book>;
+   dc:title "The Republic";
+   <http://example.org/vocab#contains> <http://example.org/library/the-republic#introduction>;
+   dc:creator "Plato" .
+
+<http://example.org/library/the-republic#introduction> a <http://example.org/vocab#Chapter>;
+   dc:title "The Introduction";
+   dc:description "An introductory chapter on The Republic." .
+

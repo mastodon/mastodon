@@ -1,0 +1,110 @@
+AllCops:
+  DisplayCopNames: true
+
+## Layout ######################################################################
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/SpaceAroundOperators:
+  AllowForAlignment: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+## Metrics #####################################################################
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+Metrics/BlockNesting:
+  Max: 2
+
+Metrics/ClassLength:
+  CountComments: false
+  Max: 125
+
+# TODO: Lower to 6
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Metrics/PerceivedComplexity:
+  Max: 8
+
+# TODO: Lower to 80
+Metrics/LineLength:
+  AllowURI: true
+  Max: 143
+
+# TODO: Lower to 15
+Metrics/MethodLength:
+  CountComments: false
+  Max: 25
+
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 120
+
+Metrics/ParameterLists:
+  Max: 5
+  CountKeywordArgs: true
+
+## Performance #################################################################
+
+# XXX: requires ruby 2.4+
+Performance/RegexpMatch:
+  Enabled: false
+
+## Style #######################################################################
+
+Style/CollectionMethods:
+  PreferredMethods:
+    collect:  'map'
+    reduce:   'inject'
+    find:     'detect'
+    find_all: 'select'
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/EachWithObject:
+  Enabled: false
+
+Style/Encoding:
+  Enabled: false
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+# XXX: Lots of times it suggests making code terrible to read.
+Style/GuardClause:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
+
+Style/Lambda:
+  Enabled: false
+
+Style/OptionHash:
+  Enabled: true
+
+# XXX: requires ruby 2.3+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/TrivialAccessors:
+  Enabled: false
+
+Style/YodaCondition:
+  Enabled: false

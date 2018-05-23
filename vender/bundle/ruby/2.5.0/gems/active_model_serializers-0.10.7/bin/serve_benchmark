@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -e
+
+case "$1" in
+
+  start)
+  config="${CONFIG_RU:-test/benchmark/config.ru}"
+  bundle exec ruby -Ilib -S rackup "$config" --daemonize --pid tmp/benchmark_app.pid --warn --server webrick
+  until [ -f 'tmp/benchmark_app.pid' ]; do
+    sleep 0.1 # give it time to start.. I don't know a better way
+  done
+  cat tmp/benchmark_app.pid
+  true
+  ;;
+
+  stop)
+  if [ -f 'tmp/benchmark_app.pid' ]; then
+    kill -TERM $(cat tmp/benchmark_app.pid)
+  else
+    echo 'No pidfile'
+    false
+  fi
+  ;;
+
+  status)
+  if [ -f 'tmp/benchmark_app.pid' ]; then
+    kill -0 $(cat tmp/benchmark_app.pid)
+    [ "$?" -eq 0 ]
+  else
+    echo 'No pidfile'
+    false
+  fi
+  ;;
+
+  *)
+  echo "Usage: $0 [start|stop|status]"
+  ;;
+
+esac

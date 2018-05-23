@@ -1,0 +1,48 @@
+<h3><%= t('recurring_jobs') %></h3>
+
+<div class="table_container">
+  <table class="table table-hover table-bordered table-striped table-white">
+    <thead>
+      <tr>
+        <th><%= t('name') %></th>
+        <th><%= t('description') %></th>
+        <th><%= t('interval') %></th>
+        <th><%= t('class') %></th>
+        <th><%= t('queue') %></th>
+        <th><%= t('arguments') %></th>
+        <th><%= t('last_time') %></th>
+        <th><%= t('next_time') %></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @presented_jobs.each do |job| %>
+        <tr>
+          <td><%= job.name %></td>
+          <td><%= job['description'] %></td>
+          <td><%= job.interval %></td>
+          <td><%= job['class'] %></td>
+          <td>
+            <a href="<%= root_path %>queues/<%= job.queue %>"><%= job.queue %></a>
+          </td>
+          <td><%= job['args'] %></td>
+          <td><%= job.last_time %></td>
+          <td>
+            <span style="<%= 'text-decoration:line-through' unless job.enabled? %>">
+              <%= job.next_time || t('no_next_time') %>
+            </span>
+          </td>
+          <td class="text-center">
+            <a class="btn btn-warn btn-xs" href="<%= root_path %>recurring-jobs/<%= URI.escape(job.name) %>/enqueue">
+              <%= t('enqueue_now') %>
+            </a>
+            <a class="btn <%= job.enabled? ? "btn-primary" : "btn-warn"%> btn-xs" href="<%= root_path %>recurring-jobs/<%= URI.escape(job.name) %>/toggle">
+              <%= job.enabled? ? t('disable') : t('enable') %>
+            </a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,36 @@
+language: ruby
+sudo: false
+cache: bundler
+
+before_install:
+  - gem update --system
+  - gem --version
+
+bundler_args: --without development
+
+branches:
+  only:
+    - master
+
+rvm:
+  - jruby-9.1.15.0 # latest stable
+  - 2.2.7
+  - 2.3.4
+  - 2.4.1
+  - 2.5.0
+  - ruby-head
+
+env:
+  global:
+    - JRUBY_OPTS="--dev -J-Djruby.launch.inproc=true -J-Xmx1024M"      
+  matrix:
+    - NIO4R_PURE=false
+    - NIO4R_PURE=true
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+  fast_finish: true
+
+notifications:
+  irc: "irc.freenode.org#celluloid"

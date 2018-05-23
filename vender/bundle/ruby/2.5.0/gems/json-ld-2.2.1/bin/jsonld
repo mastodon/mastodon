@@ -1,0 +1,202 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+begin
+  require 'linkeddata'
+rescue LoadError
+end
+$:.unshift(File.expand_path("../../lib", __FILE__))
+require 'json/ld'
+require 'getoptlong'
+require 'open-uri'
+require 'logger'
+
+def run(input, options)
+  reader_class = RDF::Reader.for(options[:input_format].to_sym)
+  raise "Reader not found for #{options[:input_format]}" unless reader_class
+
+  # Override default (or specified) output format when framing
+  options[:format] = :jsonld if options[:compact] || options[:frame]
+
+  # If input format is not JSON-LD, transform input to JSON-LD first
+  reader = if options[:input_format] != :jsonld
+    reader_class.new(input, options[:parser_options])
+  end
+
+  start = Time.new
+  if options[:expand]
+    options = options.merge(expandContext: options.delete(:context)) if options.has_key?(:context)
+    input = JSON::LD::API.fromRdf(reader) if reader
+    output = JSON::LD::API.expand(input, options)
+    secs = Time.new - start
+    options[:output].puts output.to_json(JSON::LD::JSON_STATE)
+    STDERR.puts "Expanded in #{secs} seconds." unless options[:quiet]
+  elsif options[:compact]
+    input = JSON::LD::API.fromRdf(reader) if reader
+    output = JSON::LD::API.compact(input, options[:context], options)
+    secs = Time.new - start
+    options[:output].puts output.to_json(JSON::LD::JSON_STATE)
+    STDERR.puts "Compacted in #{secs} seconds." unless options[:quiet]
+  elsif options[:flatten]
+    input = JSON::LD::API.fromRdf(reader) if reader
+    output = JSON::LD::API.flatten(input, options[:context], options)
+    secs = Time.new - start
+    options[:output].puts output.to_json(JSON::LD::JSON_STATE)
+    STDERR.puts "Flattened in #{secs} seconds." unless options[:quiet]
+  elsif options[:frame]
+    input = JSON::LD::API.fromRdf(reader) if reader
+    output = JSON::LD::API.frame(input, options[:frame], options)
+    secs = Time.new - start
+    options[:output].puts output.to_json(JSON::LD::JSON_STATE)
+    STDERR.puts "Framed in #{secs} seconds." unless options[:quiet]
+  else
+    options = options.merge(expandContext: options.delete(:context)) if options.has_key?(:context)
+    parser_options = options[:parser_options].merge(standard_prefixes: true)
+    reader ||= JSON::LD::Reader.new(input, parser_options)
+    num = 0
+    RDF::Writer.for(options[:output_format]).new(options[:output], parser_options) do |w|
+      reader.each do |statement|
+        num += 1
+        w << statement
+      end
+    end
+    secs = Time.new - start
+    STDERR.puts "\nParsed #{num} statements in #{secs} seconds @ #{num/secs} statements/second." unless options[:quiet]
+  end
+rescue
+  fname = case
+  when input.respond_to?(:path) then input.path
+  when input.respond_to?(:requested_url) && input.requested_url then input.requested_url
+  when input.respond_to?(:base_uri) then input.base_uri
+  else  "-stdin-"
+  end
+  STDERR.puts("Error in #{fname}")
+  raise
+end
+
+logger = Logger.new(STDERR)
+logger.level = Logger::WARN
+logger.formatter = lambda {|severity, datetime, progname, msg| "#{severity}: #{msg}\n"}
+
+parser_options = {
+  base:     nil,
+  validate: false,
+  stream:   false,
+  strict:   false,
+  logger:   logger,
+}
+
+options = {
+  parser_options: parser_options,
+  output:         STDOUT,
+  output_format:  :jsonld,
+  input_format:   :jsonld,
+  logger:         logger,
+}
+input = nil
+
+OPT_ARGS = [
+  ["--debug",         GetoptLong::NO_ARGUMENT,      "Turn on verbose debugging"],
+  ["--compact",       GetoptLong::NO_ARGUMENT,      "Compact document, using --context"],
+  ["--compactArrays", GetoptLong::OPTIONAL_ARGUMENT, "Set compactArrays option"],
+  ["--context",       GetoptLong::REQUIRED_ARGUMENT,"Context to apply for expand, compact and converting from RDF"],
+  ["--embed",         GetoptLong::REQUIRED_ARGUMENT,"a flag specifying that objects should be directly embedded in the output, instead of being referred to by their IRI"],
+  ["--evaluate","-e", GetoptLong::REQUIRED_ARGUMENT,"Evaluate argument as a JSON-LD document"],
+  ["--expand",        GetoptLong::NO_ARGUMENT,      "Expand document, using an optional --context"],
+  ["--expanded",      GetoptLong::OPTIONAL_ARGUMENT, "Input is already expanded"],
+  ["--explicit",      GetoptLong::OPTIONAL_ARGUMENT, "a flag specifying that for properties to be included in the output, they must be explicitly declared in the framing context"],
+  ["--flatten",       GetoptLong::NO_ARGUMENT,      "Flatten document, using an optional --context"],
+  ["--format",        GetoptLong::REQUIRED_ARGUMENT,"Specify output format when converting to RDF"],
+  ["--frame",         GetoptLong::REQUIRED_ARGUMENT,"Frame document, using the file or URL as a frame specification"],
+  ["--input-format",  GetoptLong::REQUIRED_ARGUMENT,"Format of the input document, when converting from RDF."],
+  ["--omitDefault",   GetoptLong::OPTIONAL_ARGUMENT,"a flag specifying that properties that are missing from the JSON-LD input should be omitted from the output"],
+  ["--output", "-o",  GetoptLong::REQUIRED_ARGUMENT,"Output to the specified file path"],
+  ["--parse-only",    GetoptLong::NO_ARGUMENT,      "Parse the document for well-formedness only"],
+  ["--processingMode",GetoptLong::REQUIRED_ARGUMENT,"Set processing mode, defaults to json-ld-1.1"],
+  ["--quiet",         GetoptLong::NO_ARGUMENT,      "Supress most output other than progress indicators"],
+  ["--rename_bnodes", GetoptLong::OPTIONAL_ARGUMENT,"Rename bnodes as part of expansion, or keep them the same"],
+  ["--requireAll",    GetoptLong::OPTIONAL_ARGUMENT,"Rename bnodes as part of expansion, or keep them the same"],
+  ["--stream",        GetoptLong::NO_ARGUMENT,      "Use Streaming reader/writer"],
+  ["--unique_bnodes", GetoptLong::OPTIONAL_ARGUMENT,"Use unique bnode identifiers"],
+  ["--uri",           GetoptLong::REQUIRED_ARGUMENT,"URI to be used as the document base"],
+  ["--validate",      GetoptLong::NO_ARGUMENT,      "Validate while processing"],
+  ["--help", "-?",    GetoptLong::NO_ARGUMENT,      "This message"]
+]
+def usage
+  STDERR.puts %{Usage: #{$0} [options] file ...}
+  width = OPT_ARGS.map do |o|
+    l = o.first.length
+    l += o[1].length + 2 if o[1].is_a?(String)
+    l
+  end.max
+  OPT_ARGS.each do |o|
+    s = "  %-*s  " % [width, (o[1].is_a?(String) ? "#{o[0,2].join(', ')}" : o[0])]
+    s += o.last
+    STDERR.puts s
+  end
+  exit(1)
+end
+
+opts = GetoptLong.new(*OPT_ARGS.map {|o| o[0..-2]})
+
+opts.each do |opt, arg|
+  case opt
+  when '--debug'          then logger.level = Logger::DEBUG
+  when '--compact'        then options[:compact] = true
+  when "--compactArrays"  then options[:compactArrays] = (arg || 'true') == 'true'
+  when '--context'        then options[:context] = arg
+  when '--evaluate'       then input = arg
+  when '--expand'         then options[:expand] = true
+  when "--expanded"       then options[:expanded] = (arg || 'true') == 'true'
+  when "--explicit"       then options[:compactArrays] = (arg || 'true') == 'true'
+  when '--format'         then options[:output_format] = arg.to_sym
+  when '--flatten'        then options[:flatten] = arg
+  when '--frame'          then options[:frame] = arg
+  when '--input-format'   then options[:input_format] = arg.to_sym
+  when "--omitDefault"    then options[:omitDefault] = (arg || 'true') == 'true'
+  when '--output'         then options[:output] = File.open(arg, "w")
+  when '--parse-only'     then options[:parse_only] = true
+  when '--processingMode' then options[:processingMode] = arg
+  when '--quiet'
+    options[:quiet] = true
+    logger.level = Logger::FATAL
+  when "--rename_bnodes"  then options[:rename_bnodes] = (arg || 'true') == 'true'
+  when "--requireAll"     then options[:requireAll] = (arg || 'true') == 'true'
+  when '--stream'         then parser_options[:stream] = true
+  when "--unique_bnodes"  then options[:unique_bnodes] = (arg || 'true') == 'true'
+  when '--uri'            then parser_options[:base] = arg
+  when '--validate'       then parser_options[:validate] = true
+  when '--help'           then usage
+  when '--embed'
+    case arg
+    when '@always', '@never', '@link', '@last'
+      options[:embed] = arg
+    when 'true'
+      options[:embed] = true
+    when 'false'
+      options[:embed] = false
+    else
+      STDERR.puts "--embed option takes one of '@always', '@never', '@link', '@last', true, or false"
+      exit(1)
+    end
+  end
+end
+
+# Hack
+options[:parser_options][:context] = options[:context] if parser_options[:stream]
+
+if !(options.keys & [:expand, :compact, :flatten, :frame]).empty? &&
+   (parser_options[:stream] || options[:output_format] != :jsonld)
+   STDERR.puts "Incompatible options"
+   exit(1)
+end
+
+if ARGV.empty?
+  s = input ? input : $stdin.read
+  run(StringIO.new(s), options)
+else
+  ARGV.each do |file|
+    # Call with opened files
+    RDF::Util::File.open_file(file, options) {|f| run(f, options)}
+  end
+end
+puts

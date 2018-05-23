@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+  exec ruby -I"test" -w -e 'Dir.glob("./test/**/*_test.rb").each { |f| require f }' -- "$@"
+else
+  path=$1
+  exec ruby -I"test" -w -e "require '${path#test/}'" -- "$@"
+fi

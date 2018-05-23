@@ -1,0 +1,23 @@
+speedups:
+  parallel_assignment: false
+  rescue_vs_respond_to: true
+  module_eval: true
+  shuffle_first_vs_sample: true
+  for_loop_vs_each: true
+  each_with_index_vs_while: false
+  map_flatten_vs_flat_map: true
+  reverse_each_vs_reverse_each: true
+  select_first_vs_detect: true
+  sort_vs_sort_by: true
+  fetch_with_argument_vs_block: true
+  keys_each_vs_each_key: true
+  hash_merge_bang_vs_hash_brackets: true
+  block_vs_symbol_to_proc: true
+  proc_call_vs_yield: true
+  gsub_vs_tr: true
+  select_last_vs_reverse_detect: true
+  getter_vs_attr_reader: true
+  setter_vs_attr_writer: true
+
+exclude_paths:
+  - 'spec/**/*.rb'

@@ -1,0 +1,44 @@
+#! /usr/bin/env bash
+#
+#  script to build gems for all relevant platforms:
+#  - MRI et al (standard gem)
+#  - windows (x86-mingw32 and x64-mingw32)
+#  - jruby
+#
+
+# Load RVM into a shell session *as a function*
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+    source "$HOME/.rvm/scripts/rvm"
+elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
+    source "/usr/local/rvm/scripts/rvm"
+else
+    echo "ERROR: An RVM installation was not found.\n"
+fi
+
+set -o errexit
+
+rm -rf tmp pkg
+bundle exec rake clean clobber
+
+# holding pen
+rm -rf gems
+mkdir -p gems
+
+# windows
+bundle exec rake gem:windows
+cp -v pkg/nokogiri*{x86,x64}-mingw32*.gem gems
+
+# MRI
+bundle exec rake clean
+bundle exec rake gem
+cp -v pkg/nokogiri*.gem gems
+
+# jruby
+bundle exec rake clean clobber
+bundle exec rake generate
+
+rvm jruby-1.7.19
+gem install bundler --conservative
+bundle install --quiet --local || bundle install
+bundle exec rake gem
+cp -v pkg/nokogiri*java.gem gems

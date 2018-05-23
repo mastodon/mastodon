@@ -1,0 +1,95 @@
+AllCops:
+  Exclude:
+    - "gemfiles/**/*"
+    - "vendor/**/*"
+    - "lib/generators/**/*"
+
+Metrics/MethodLength:
+  Max: 40
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/StructInheritance:
+  Enabled: false
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/ClosingParenthesisIndentation:
+  Enabled: false
+
+Style/OneLineConditional:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/Not:
+  Enabled: false
+
+Documentation:
+  Enabled: false # TODO: Enable again once we have more docs
+
+Style/CaseIndentation:
+  IndentWhenRelativeTo: case
+  SupportedStyles:
+    - case
+    - end
+  IndentOneStep: true
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%w': "[]"
+    '%W': "[]"
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Style/SignalException:
+  Enabled: false
+
+Style/IndentationWidth:
+  Enabled: false
+
+Style/TrivialAccessors:
+  ExactNameMatch: true
+
+Lint/EndAlignment:
+  AlignWith: variable
+
+Lint/DefEndAlignment:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  Enabled: false
+
+Style/TrivialAccessors:
+  Enabled: false
+
+Style/IndentHash:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false

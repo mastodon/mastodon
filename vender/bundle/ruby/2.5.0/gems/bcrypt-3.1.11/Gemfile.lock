@@ -1,0 +1,44 @@
+PATH
+  remote: .
+  specs:
+    bcrypt (3.1.11)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.2.5)
+    json (1.8.3)
+    json (1.8.3-java)
+    rake (10.4.2)
+    rake-compiler (0.9.5)
+      rake
+    rdoc (3.12.2)
+      json (~> 1.4)
+    rspec (3.3.0)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+    rspec-core (3.3.2)
+      rspec-support (~> 3.3.0)
+    rspec-expectations (3.3.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-mocks (3.3.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-support (3.3.0)
+
+PLATFORMS
+  java
+  ruby
+  x64-mingw32
+  x86-mingw32
+
+DEPENDENCIES
+  bcrypt!
+  rake-compiler (~> 0.9.2)
+  rdoc (~> 3.12)
+  rspec (>= 3)
+
+BUNDLED WITH
+   1.11.2

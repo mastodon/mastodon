@@ -1,0 +1,23 @@
+databases:
+  main:
+    # Database URL (defaults to app database)
+    # url: <%= ENV["DATABASE_URL"] %>
+
+    # Minimum time for long running queries
+    # long_running_query_sec: 60
+
+    # Minimum average time for slow queries
+    # slow_query_ms: 20
+
+    # Minimum calls for slow queries
+    # slow_query_calls: 100
+
+    # Minimum connections for high connections warning
+    # total_connections_threshold: 100
+
+  # Add more databases
+  # other:
+  #   url: <%= ENV["OTHER_DATABASE_URL"] %>
+
+# Time zone (defaults to app time zone)
+# time_zone: "Pacific Time (US & Canada)"

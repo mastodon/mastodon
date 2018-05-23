@@ -1,0 +1,30 @@
+language: ruby
+dist: trusty
+
+cache: bundler
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.10
+  - 2.2.6
+  - 2.3.3
+  - ruby-head
+  - jruby-19mode
+  - rbx-3
+
+sudo: false
+
+env:
+  - ESCAPE_UTILS=1
+  - ""
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: rbx-3
+  exclude:
+    - rvm: jruby-19mode
+      env: ESCAPE_UTILS=1
+    - rvm: rbx-3
+      env: ESCAPE_UTILS=1

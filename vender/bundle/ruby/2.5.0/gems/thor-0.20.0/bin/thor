@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# -*- mode: ruby -*-
+
+require "thor/runner"
+$thor_runner = true
+Thor::Runner.start

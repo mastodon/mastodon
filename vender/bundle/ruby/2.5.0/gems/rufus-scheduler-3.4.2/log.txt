@@ -1,0 +1,285 @@
+Worker information
+hostname: i-078c3db-precise-production-2-worker-org-docker.travisci.net:f906399b-e569-4426-b0d7-1619a6db7baa
+version: v2.5.0 https://github.com/travis-ci/worker/tree/da3a43228dffc0fcca5a46569ca786b22991979f
+instance: 1292ed6:travis:ruby
+startup: 845.717814ms
+Build system information
+Build language: ruby
+Build group: stable
+Build dist: precise
+Build id: 213618964
+Job id: 213618967
+travis-build version: 35b504699
+Build image provisioning date and time
+Thu Feb  5 15:09:33 UTC 2015
+Operating System Details
+Distributor ID:	Ubuntu
+Description:	Ubuntu 12.04.5 LTS
+Release:	12.04
+Codename:	precise
+Linux Version
+3.13.0-29-generic
+Cookbooks Version
+a68419e https://github.com/travis-ci/travis-cookbooks/tree/a68419e
+GCC version
+gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
+Copyright (C) 2011 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+LLVM version
+clang version 3.4 (tags/RELEASE_34/final)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+Pre-installed Ruby versions
+ruby-1.9.3-p551
+Pre-installed Node.js versions
+v0.10.36
+Pre-installed Go versions
+1.4.1
+Redis version
+redis-server 2.8.19
+riak version
+2.0.2
+MongoDB version
+MongoDB 2.4.12
+CouchDB version
+couchdb 1.6.1
+Neo4j version
+1.9.4
+RabbitMQ Version
+3.4.3
+ElasticSearch version
+1.4.0
+Installed Sphinx versions
+2.0.10
+2.1.9
+2.2.6
+Default Sphinx version
+2.2.6
+Installed Firefox version
+firefox 31.0esr
+PhantomJS version
+1.9.8
+ant -version
+Apache Ant(TM) version 1.8.2 compiled on December 3 2011
+mvn -version
+Apache Maven 3.2.5 (12a6b3acb947671f09b81f49094c53f426d8cea1; 2014-12-14T17:29:23+00:00)
+Maven home: /usr/local/maven
+Java version: 1.7.0_76, vendor: Oracle Corporation
+Java home: /usr/lib/jvm/java-7-oracle/jre
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "3.13.0-29-generic", arch: "amd64", family: "unix"
+
+$ export DEBIAN_FRONTEND=noninteractive
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following extra packages will be installed:
+  libc-bin libc-dev-bin libc6-dev
+Suggested packages:
+  glibc-doc
+The following packages will be upgraded:
+  libc-bin libc-dev-bin libc6 libc6-dev
+4 upgraded, 0 newly installed, 0 to remove and 271 not upgraded.
+Need to get 8,886 kB of archives.
+After this operation, 13.3 kB of additional disk space will be used.
+Get:1 http://us.archive.ubuntu.com/ubuntu/ precise-updates/main libc6-dev amd64 2.15-0ubuntu10.16 [2,948 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu/ precise-updates/main libc-dev-bin amd64 2.15-0ubuntu10.16 [84.2 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu/ precise-updates/main libc-bin amd64 2.15-0ubuntu10.16 [1,179 kB]
+Get:4 http://us.archive.ubuntu.com/ubuntu/ precise-updates/main libc6 amd64 2.15-0ubuntu10.16 [4,674 kB]
+Fetched 8,886 kB in 0s (32.1 MB/s)
+Preconfiguring packages ...
+(Reading database ... 71420 files and directories currently installed.)
+Preparing to replace libc6-dev 2.15-0ubuntu10.10 (using .../libc6-dev_2.15-0ubuntu10.16_amd64.deb) ...
+Unpacking replacement libc6-dev ...
+Preparing to replace libc-dev-bin 2.15-0ubuntu10.10 (using .../libc-dev-bin_2.15-0ubuntu10.16_amd64.deb) ...
+Unpacking replacement libc-dev-bin ...
+Preparing to replace libc-bin 2.15-0ubuntu10.10 (using .../libc-bin_2.15-0ubuntu10.16_amd64.deb) ...
+Unpacking replacement libc-bin ...
+Processing triggers for man-db ...
+Setting up libc-bin (2.15-0ubuntu10.16) ...
+(Reading database ... 71419 files and directories currently installed.)
+Preparing to replace libc6 2.15-0ubuntu10.10 (using .../libc6_2.15-0ubuntu10.16_amd64.deb) ...
+Unpacking replacement libc6 ...
+Setting up libc6 (2.15-0ubuntu10.16) ...
+Setting up libc-dev-bin (2.15-0ubuntu10.16) ...
+Setting up libc6-dev (2.15-0ubuntu10.16) ...
+Processing triggers for libc-bin ...
+ldconfig deferred processing now taking place
+$ git clone --depth=50 --branch=master https://github.com/jmettraux/rufus-scheduler.git jmettraux/rufus-scheduler
+Cloning into 'jmettraux/rufus-scheduler'...
+remote: Counting objects: 362, done.
+remote: Compressing objects: 100% (217/217), done.
+remote: Total 362 (delta 185), reused 290 (delta 143), pack-reused 0
+Receiving objects: 100% (362/362), 121.72 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (185/185), done.
+Checking connectivity... done.
+
+$ cd jmettraux/rufus-scheduler
+$ git checkout -qf f3539da98361a36182d7e2c81f8f045e64891755
+
+This job is running on container-based infrastructure, which does not allow use of 'sudo', setuid and setguid executables.
+If you require sudo, add 'sudo: required' to your .travis.yml
+See https://docs.travis-ci.com/user/workers/container-based-infrastructure/ for details.
+$ rvm use 2.1.1 --install --binary --fuzzy
+ruby-2.1.1 is not installed - installing.
+Searching for binary rubies, this might take some time.
+Found remote file https://s3.amazonaws.com/travis-rubies/binaries/ubuntu/12.04/x86_64/ruby-2.1.1.tar.bz2
+Checking requirements for ubuntu.
+Requirements installation successful.
+ruby-2.1.1 - #configure
+ruby-2.1.1 - #download
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 20.9M  100 20.9M    0     0  88.3M      0 --:--:-- --:--:-- --:--:-- 92.2M
+No checksum for downloaded archive, recording checksum in user configuration.
+ruby-2.1.1 - #validate archive
+ruby-2.1.1 - #extract
+ruby-2.1.1 - #validate binary
+ruby-2.1.1 - #setup
+ruby-2.1.1 - #gemset created /home/travis/.rvm/gems/ruby-2.1.1@global
+ruby-2.1.1 - #importing gemset /home/travis/.rvm/gemsets/global.gems|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|.
+ruby-2.1.1 - #generating global wrappers|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/.
+ruby-2.1.1 - #uninstalling gem rubygems-bundler-1.4.4|/.
+ruby-2.1.1 - #gemset created /home/travis/.rvm/gems/ruby-2.1.1
+ruby-2.1.1 - #importing gemset /home/travis/.rvm/gemsets/default.gems|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.
+ruby-2.1.1 - #generating default wrappers|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-\|/-.|/-\|/-\|.-\|/-.
+chown: changing ownership of `/home/travis/.rvm/user/installs': Operation not permitted
+Using /home/travis/.rvm/gems/ruby-2.1.1
+
+$ export BUNDLE_GEMFILE=$PWD/Gemfile
+Setting up build cache
+$ export CASHER_DIR=$HOME/.casher
+$ Installing caching utilities
+
+
+attempting to download cache archive
+fetching master/cache-linux-precise-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.1.1--gemfile-Gemfile.tgz
+found cache
+
+
+
+adding /home/travis/build/jmettraux/rufus-scheduler/vendor/bundle to cache
+creating directory /home/travis/build/jmettraux/rufus-scheduler/vendor/bundle
+
+$ ruby --version
+ruby 2.1.1p76 (2014-02-24 revision 45161) [x86_64-linux]
+$ rvm --version
+rvm 1.26.10 (latest-minor) by Wayne E. Seguin <wayneeseguin@gmail.com>, Michal Papis <mpapis@gmail.com> [https://rvm.io/]
+$ bundle --version
+Bundler version 1.14.6
+$ gem --version
+2.2.2
+$ bundle install --jobs=3 --retry=3 --path=${BUNDLE_PATH:-vendor/bundle}
+Fetching gem metadata from https://rubygems.org/..........
+Fetching version metadata from https://rubygems.org/.
+Resolving dependencies...
+Using chronic 0.10.2
+Using diff-lcs 1.3
+Using thread_safe 0.3.6
+Using rspec-support 3.5.0
+Using bundler 1.14.6
+Using tzinfo 1.2.2
+Using rspec-core 3.5.4
+Using rspec-expectations 3.5.0
+Using rspec-mocks 3.5.0
+Using rspec 3.5.0
+Installing et-orbi 1.0.0
+Using rufus-scheduler 3.4.0 from source at `.`
+Bundle complete! 3 Gemfile dependencies, 12 gems now installed.
+Bundled gems are installed into ./vendor/bundle.
+
+$ bundle exec rspec
+RUBY_VERSION: 2.1.1
+RUBY_PLATFORM: x86_64-linux
+.................................................................................................................F...................F..........F................................................................................................*.................*..........................................................................................
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Rufus::Scheduler#at accepts an ActiveSupport time thinggy
+     # Not yet implemented
+     # ./spec/schedule_at_spec.rb:149
+
+  2) Rufus::Scheduler#schedule_in accepts an ActiveSupport .from_now thinggy
+     # Not yet implemented
+     # ./spec/schedule_in_spec.rb:73
+
+Failures:
+
+  1) Rufus::Scheduler::CronJob#next_time returns the next trigger time (first_at => Time)
+     Failure/Error: expect(nt.zone).to eq(Rufus::Scheduler::ZoTime.local_tzone)
+
+       expected: #<TZInfo::TimezoneProxy: Etc/UTC>
+            got: #<TZInfo::DataTimezone: UTC>
+
+       (compared using ==)
+
+       Diff:
+       @@ -1,2 +1,2 @@
+       -#<TZInfo::TimezoneProxy: Etc/UTC>
+       +#<TZInfo::DataTimezone: UTC>
+     # ./spec/job_cron_spec.rb:128:in `block (3 levels) in <top (required)>'
+
+  2) Rufus::Scheduler::RepeatJob :first/:first_in/:first_at => point in time accepts a Time instance
+     Failure/Error: expect(job.first_at.zone).to eq(Rufus::Scheduler::ZoTime.local_tzone)
+
+       expected: #<TZInfo::TimezoneProxy: Etc/UTC>
+            got: #<TZInfo::DataTimezone: UTC>
+
+       (compared using ==)
+
+       Diff:
+       @@ -1,2 +1,2 @@
+       -#<TZInfo::TimezoneProxy: Etc/UTC>
+       +#<TZInfo::DataTimezone: UTC>
+     # ./spec/job_repeat_spec.rb:138:in `block (3 levels) in <top (required)>'
+
+  3) Rufus::Scheduler::RepeatJob :last/:last_in/:last_at => point in time accepts a Time instance
+     Failure/Error: expect(job.last_at.zone).to eq(Rufus::Scheduler::ZoTime.local_tzone)
+
+       expected: #<TZInfo::TimezoneProxy: Etc/UTC>
+            got: #<TZInfo::DataTimezone: UTC>
+
+       (compared using ==)
+
+       Diff:
+       @@ -1,2 +1,2 @@
+       -#<TZInfo::TimezoneProxy: Etc/UTC>
+       +#<TZInfo::DataTimezone: UTC>
+     # ./spec/job_repeat_spec.rb:286:in `block (3 levels) in <top (required)>'
+
+Finished in 3 minutes 5.5 seconds (files took 0.25551 seconds to load)
+350 examples, 3 failures, 2 pending
+
+Failed examples:
+
+rspec ./spec/job_cron_spec.rb:119 # Rufus::Scheduler::CronJob#next_time returns the next trigger time (first_at => Time)
+rspec ./spec/job_repeat_spec.rb:131 # Rufus::Scheduler::RepeatJob :first/:first_in/:first_at => point in time accepts a Time instance
+rspec ./spec/job_repeat_spec.rb:279 # Rufus::Scheduler::RepeatJob :last/:last_in/:last_at => point in time accepts a Time instance
+
+
+
+The command "bundle exec rspec" exited with 1.
+store build cache
+$ bundle clean
+
+change detected (content changed, file is created, or file is deleted):
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/cache/et-orbi-1.0.0.gem
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/cases.txt
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/CHANGELOG.md
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/CREDITS.md
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/et-orbi.gemspec
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/lib/et_orbi.rb
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/lib/et-orbi.rb
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/lib/etorbi.rb
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/LICENSE.txt
+/home/travis/build/jmettraux/rufus-scheduler/vendor/bundle/ruby/2.1.0/gems/et-orbi-1.0.0/
+
+...
+
+changes detected, packing new archive
+uploading archive
+
+
+Done. Your build exited with 1.

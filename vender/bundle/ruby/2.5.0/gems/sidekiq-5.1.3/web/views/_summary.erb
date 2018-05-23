@@ -1,0 +1,40 @@
+<ul class="list-unstyled summary row">
+  <li class="processed col-sm-1">
+    <span class="count"><%= number_with_delimiter(stats.processed) %></span>
+    <span class="desc"><%= t('Processed') %></span>
+  </li>
+  <li class="failed col-sm-1">
+    <span class="count"><%= number_with_delimiter(stats.failed) %></span>
+    <span class="desc"><%= t('Failed') %></span>
+  </li>
+  <li class="busy col-sm-1">
+    <a href="<%= root_path %>busy">
+      <span class="count"><%= number_with_delimiter(workers.size) %></span>
+      <span class="desc"><%= t('Busy') %></span>
+    </a>
+  </li>
+  <li class="enqueued col-sm-1">
+    <a href="<%= root_path %>queues">
+      <span class="count"><%= number_with_delimiter(stats.enqueued) %></span>
+      <span class="desc"><%= t('Enqueued') %></span>
+    </a>
+  </li>
+  <li class="retries col-sm-1">
+    <a href="<%= root_path %>retries">
+      <span class="count"><%= number_with_delimiter(stats.retry_size) %></span>
+      <span class="desc"><%= t('Retries') %></span>
+    </a>
+  </li>
+  <li class="scheduled col-sm-1">
+    <a href="<%= root_path %>scheduled">
+      <span class="count"><%= number_with_delimiter(stats.scheduled_size) %></span>
+      <span class="desc"><%= t('Scheduled') %></span>
+    </a>
+  </li>
+  <li class="dead col-sm-1">
+    <a href="<%= root_path %>morgue">
+      <span class="count"><%= number_with_delimiter(stats.dead_size) %></span>
+      <span class="desc"><%= t('Dead') %></span>
+    </a>
+  </li>
+</ul>

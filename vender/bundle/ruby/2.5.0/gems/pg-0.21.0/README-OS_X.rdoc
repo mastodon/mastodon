@@ -1,0 +1,68 @@
+= Compiling on MacOS X
+
+The EnterpriseDB packages are the recommended PostgreSQL installations to use
+with MacOS X. They eliminate most or all of the issues with getting 'pg'
+installed, linked correctly, and running.
+
+== Segfaults and SSL Support
+
+If you need a custom installation of PostgreSQL, you should ensure that you
+either compile it against the same version of OpenSSL as the OpenSSL extension
+of the Ruby you'll be using, or compile it without SSL support. If you fail to
+do this, you will likely see segfaults when you use 'pg' and the 'openssl'
+extension at the same time. You can see what library it's linked against using
+'otool -L'; for example, on my 10.7 machine I use for 'pg' development:
+
+    $ otool -L /System/Library/Frameworks/Ruby.framework/Versions\
+      /1.8/usr/lib/ruby/1.8/universal-darwin11.0/openssl.bundle
+
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/\
+        lib/ruby/1.8/universal-darwin11.0/openssl.bundle:
+        /System/Library/Frameworks/Ruby.framework/Versions/1.8/\
+            usr/lib/libruby.1.dylib (compatibility version 1.8.0, \
+            current version 1.8.7)
+        /usr/lib/libssl.0.9.8.dylib (compatibility version 0.9.8, \
+            current version 0.9.8)
+        /usr/lib/libcrypto.0.9.8.dylib (compatibility version 0.9.8, \
+            current version 0.9.8)
+        /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, \
+            current version 159.0.0)
+
+
+== Dealing with Installation Problems
+
+If you are building/installing pg on MacOS X, and the installation doesn't
+work at first, here are a few things you can try.
+
+=== pg_config
+
+The first thing you should do is ensure that the 'pg_config' tool that comes
+with Postgres is in your path. If it isn't, or the one that's first in your
+path isn't the one that was installed with the Postgres you want to build
+against, you can specify the path to it with the --with-pg-config option.
+
+For example, if you're using the Ruby binary that comes with OSX, and
+PostgreSQL 9.0.x installed from MacPorts, do:
+
+	gem install -- --with-pg-config=/opt/local/lib/postgresql90/bin/pg_config
+
+=== ARCHFLAGS and Universal Binaries
+
+OS X supports both architecture-specific binaries (e.g. i386), as well as
+universal binaries (i.e. i386 & ppc). If Ruby is built as a universal binary
+and PostgreSQL is not, you need to specify the path to the appropriate
+pg_config binary or set the environment variable ARCHFLAGS appropriately.
+
+Alternatively, if the build system can't figure out which architectures it
+should include, you may need to set the 'ARCHFLAGS' environment variable
+explicitly:
+
+	sudo env ARCHFLAGS='-arch x86_64' gem install pg
+
+or, if you're building from source:
+
+	rake compile ARCHFLAGS="-arch x86_64"
+
+Note that the recommended EnterpriseDB packages are correctly compiled as
+universal binaries, and don't need any of these workarounds.
+

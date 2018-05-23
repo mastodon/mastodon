@@ -1,0 +1,22 @@
+# -*- ruby -*-
+
+begin
+  require 'autotest/fsevent'
+rescue LoadError
+end
+
+Autotest.add_hook :initialize do |at|
+  at.add_exception /bundle$/
+  at.add_exception /\.git/
+end
+
+Autotest.add_hook :run_command do |at|
+  at.unit_diff = 'cat'
+  system "rake compile"
+end
+
+Autotest.add_hook :ran_command do |at|
+  File.open('/tmp/autotest.txt', 'wb') { |f|
+    f.write(at.results.join)
+  }
+end

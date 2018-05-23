@@ -1,0 +1,105 @@
+AllCops:
+  TargetRubyVersion: 2.1
+  Exclude:
+    - !ruby/regexp /(vendor|bundle|bin|db|tmp)\/.*/
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  # https://github.com/bbatsov/rubocop/blob/master/manual/caching.md
+  # https://github.com/bbatsov/rubocop/blob/e8680418b351491e111a18cf5b453fc07a3c5239/config/default.yml#L60-L77
+  UseCache: true
+  CacheRootDirectory: tmp
+
+Rails:
+  Enabled: true
+
+Lint/NestedMethodDefinition:
+  Enabled: false
+  Exclude:
+    - test/action_controller/serialization_test.rb
+
+Style/Alias:
+  EnforcedStyle: prefer_alias
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Metrics/AbcSize:
+  Max: 35 # TODO: Lower to 15
+
+Metrics/ClassLength:
+  Max: 261 # TODO: Lower to 100
+  Exclude:
+    - test/**/*.rb
+
+Metrics/CyclomaticComplexity:
+  Max: 7 # TODO: Lower to 6
+
+Metrics/LineLength:
+  Max: 251 # TODO: Lower to 80
+
+Metrics/MethodLength:
+  Max: 106 # TODO: Lower to 10
+
+Metrics/PerceivedComplexity:
+  Max: 9 # TODO: Lower to 7
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+
+Style/Documentation:
+  Enabled: false
+
+Style/MissingElse:
+  Enabled: true
+  EnforcedStyle: case
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: line_count_based
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/DotPosition:
+  EnforcedStyle: leading
+
+########## test_helper.rb sanity
+Style/EndBlock:
+  Exclude:
+    - test/test_helper.rb
+
+Style/SpecialGlobalVars:
+  Exclude:
+    - test/test_helper.rb
+
+Style/GlobalVars:
+  Exclude:
+    - test/test_helper.rb
+
+Style/AndOr:
+  Exclude:
+    - test/test_helper.rb
+    - 'lib/active_model/serializer/lint.rb'
+
+Style/Not:
+  Exclude:
+    - test/test_helper.rb
+
+Style/ClassCheck:
+  Exclude:
+    - test/test_helper.rb

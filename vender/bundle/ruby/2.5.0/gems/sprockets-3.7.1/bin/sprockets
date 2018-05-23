@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+$VERBOSE = nil
+
+require 'sprockets'
+require 'optparse'
+require 'shellwords'
+
+unless ARGV.delete("--noenv")
+  if File.exist?(path = "./.sprocketsrc")
+    rcflags = Shellwords.split(File.read(path))
+    ARGV.unshift(*rcflags)
+  end
+end
+
+filenames = []
+environment = Sprockets::Environment.new(Dir.pwd)
+manifest = nil
+
+(ENV['SPROCKETS_PATH'] || "").split(File::PATH_SEPARATOR).each do |path|
+  environment.append_path path
+end
+
+OptionParser.new do |opts|
+  opts.summary_width = 28
+  opts.banner = "Usage: sprockets [options] filename [filename ...]"
+
+  def opts.show_usage
+    puts self
+    exit 1
+  end
+
+  opts.on("-r", "--require LIBRARY", "Require the LIBRARY before doing anything") do |lib|
+    require lib
+  end
+
+  opts.on("-I DIRECTORY", "--include=DIRECTORY", "Adds the directory to the Sprockets load path") do |directory|
+    environment.append_path directory
+  end
+
+  opts.on("-o DIRECTORY", "--output=DIRECTORY", "Copy provided assets into DIRECTORY") do |directory|
+    manifest = Sprockets::Manifest.new(environment, directory)
+  end
+
+  opts.on("--css-compressor=COMPRESSOR", "Use CSS compressor") do |compressor|
+    environment.css_compressor = compressor.to_sym
+  end
+
+  opts.on("--js-compressor=COMPRESSOR", "Use JavaScript compressor") do |compressor|
+    environment.js_compressor = compressor.to_sym
+  end
+
+  opts.on("--noenv", "Disables .sprocketsrc file") do
+  end
+
+  opts.on_tail("-h", "--help", "Shows this help message") do
+    opts.show_usage
+  end
+
+  opts.on_tail("-v", "--version", "Shows version") do
+    puts Sprockets::VERSION
+    exit
+  end
+
+  opts.show_usage if ARGV.empty?
+
+  begin
+    opts.order(ARGV) do |filename|
+      filenames << File.expand_path(filename)
+    end
+  rescue OptionParser::ParseError => e
+    opts.warn e.message
+    opts.show_usage
+  end
+end
+
+if environment.paths.empty?
+  warn "No load paths given"
+  warn "Usage: sprockets -Ijavascripts/ filename"
+  exit 1
+end
+
+if manifest
+  manifest.compile(filenames)
+elsif filenames.length == 1
+  puts environment.find_asset(filenames.first).to_s
+else
+  warn "Only one file can be compiled to stdout at a time"
+  exit 1
+end

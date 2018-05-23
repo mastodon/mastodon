@@ -1,0 +1,21 @@
+language: ruby
+sudo: false
+
+bundler_args: --without development doc
+
+rvm:
+  - 2.0.0
+  - 2.1.10
+  - 2.2.6
+  - 2.3.3
+  - jruby-9.1.6.0
+
+matrix:
+  fast_finish: true
+
+branches:
+  only:
+    - master
+
+notifications:
+  irc: "irc.freenode.org#celluloid"

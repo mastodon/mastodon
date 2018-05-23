@@ -1,0 +1,24 @@
+source 'https://rubygems.org'
+
+gem 'railties', '~> 5.0.0'
+gem 'activerecord', '~> 5.0.0', require: 'active_record'
+gem 'actionview', '~> 5.0.0', require: 'action_view'
+
+platforms :ruby do
+  gem 'sqlite3', require: false
+  gem 'pg', require: false
+  gem 'mysql2', require: false
+end
+platforms :jruby do
+  gem 'activerecord-jdbcsqlite3-adapter', require: false
+  gem 'activerecord-jdbcpostgresql-adapter', require: false
+  gem 'activerecord-jdbcmysql-adapter', require: false
+end
+platforms :rbx do
+  gem 'rubysl', '~> 2.0'
+  gem 'racc'
+  gem 'minitest'
+  gem 'rubinius-developer_tools'
+end
+
+gemspec path: '../'

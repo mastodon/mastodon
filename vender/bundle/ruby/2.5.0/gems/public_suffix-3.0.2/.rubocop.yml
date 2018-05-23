@@ -1,0 +1,32 @@
+inherit_from:
+  - .rubocop_defaults.yml
+
+AllCops:
+  Exclude:
+    # Exclude .gemspec files because they are generally auto-generated
+    - '*.gemspec'
+    # Exclude vendored folders
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    # Exclude artifacts
+    - 'pkg/**/*'
+    # Other
+    - 'test/benchmarks/**/*'
+    - 'test/profilers/**/*'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+    - 'test/**/*_test.rb'
+
+# Dear Rubocop, I don't want to use String#strip_heredoc
+Layout/IndentHeredoc:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+  MinSize: 3
+
+Style/SymbolArray:
+  Enabled: false
+  MinSize: 3

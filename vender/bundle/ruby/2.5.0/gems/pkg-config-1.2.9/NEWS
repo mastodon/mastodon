@@ -1,0 +1,218 @@
+= NEWS
+
+== 1.2.9 - 2018-01-13
+
+=== Improvements
+
+  * Added more default paths for OpenBSD.
+    [GitHub#15][Reported by clintpachl]
+
+=== Thanks
+
+  * clintpachl
+
+== 1.2.8 - 2017-10-19
+
+=== Improvements
+
+  * Improved macOS environment detection.
+    [Reported by Simeon Manolov]
+
+=== Thanks
+
+  * Simeon Manolov
+
+== 1.2.7 - 2017-08-16
+
+=== Improvements
+
+  * Improved Homebrew repository detection.
+    [Reported by Wyatt Kirby]
+
+=== Thanks
+
+  * Wyatt Kirby
+
+== 1.2.6 - 2017-08-13
+
+=== Improvements
+
+  * Improved Homebrew repository detection.
+
+== 1.2.5 - 2017-08-10
+
+=== Improvements
+
+  * Supported Homebrew bundled .pc files.
+    [GitHub:rcairo/rcairo#49][Reported by choboy11]
+
+=== Thanks
+
+  * choboy11
+
+== 1.2.4 - 2017-08-07
+
+=== Improvements
+
+  * Added `pkg-config` 0.29 or later compatible result support.
+    [GitHub#13][Reported by HIGUCHI Daisuke]
+
+  * test: Updated expected value for the latest cairo.
+    [GitHub#14][Patch by HIGUCHI Daisuke]
+
+=== Thanks
+
+  * HIGUCHI Daisuke
+
+== 1.2.3 - 2017-05-29
+
+=== Fixes
+
+  * Supported *-mingw32 Rubies without MSYS2 again.
+
+== 1.2.2 - 2017-05-29
+
+=== Improvements
+
+  * Supported path normalization for MSYS2.
+
+== 1.2.1 - 2017-05-29
+
+=== Improvements
+
+  * Supported MSYS2.
+
+== 1.2.0 - 2017-04-25
+
+=== Improvements
+
+  * Supported x32 environment. [GitHub#12][Reported by Elan Ruusamäe]
+
+=== Thanks
+
+  * Elan Ruusamäe
+
+== 1.1.9 - 2017-04-20
+
+  * Supported C++ compiler.
+
+== 1.1.8 - 2017-04-19
+
+  * Stopped to require mkmf.
+
+== 1.1.7 - 2015-01-16
+
+  * Added path for FreeBSD to default paths.
+    [Reported by Hajime UMEMOTO]
+
+=== Thanks
+
+  * Hajime UMEMOTO
+
+== 1.1.6 - 2014/11/12
+
+  * Supported Ruby 2.1.
+    [GitHub:ruby-gnome2/ruby-gnome2#262][Reported by Steve Wills]
+
+=== Thanks
+
+  * Steve Wills
+
+== 1.1.5 - 2013/12/29
+
+  * Supported XQuartz.
+    [GitHub:#10][Patch by Masafumi Yokoyama]
+
+=== Thanks
+
+  * Masafumi Yokoyama
+
+== 1.1.4 - 2012/08/02
+
+  * Supported mswin64 as MSVC environment.
+
+== 1.1.3 - 2012/01/29
+
+  * [GitHub #8] fix test broken by libpng version.
+    (Patch by Bohuslav Kabrda.)
+  * Used RbConfig instead of Config.
+
+=== Thanks
+
+  * Bohuslav Kabrda
+
+== 1.1.2 - 2011/07/04
+
+  * [GitHub #2] fix test broken.
+    (Reported by Mamoru Tasaka.)
+  * [GitHub #4] update project descripton.
+    (Patch by Antonio Terceiro.)
+  * [GitHub #4] use setup.rb instead of extconf.rb.
+    (Patch by Antonio Terceiro.)
+  * [GitHub #3] add Copyright notice to README.
+    (Suggested by Antonio Terceiro.)
+  * [GitHub #7] supported non i386 and amd64 architectures.
+    (Reported by Antonio Terceiro.)
+
+=== Thanks
+
+  * Mamoru Tasaka
+  * Antonio Terceiro
+
+== 1.1.1 - 2011/05/03
+
+* [ruby-gnome-devel-en] add
+  /usr/lib/i386-linux-gnu/pkgconfig to the default paths.
+  (Reported by Andrea B.C.)
+
+=== Thanks
+
+  * Funky Bibimba
+
+== 1.1.0 - 2011/04/03
+
+* [#3270846] add /usr/lib/x86_64-linux-gnu/pkgconfig to default paths.
+  (Reported by Funky Bibimbap)
+
+=== Thanks
+
+  * Funky Bibimba
+
+== 1.0.8 - 2011/01/30
+
+* fix a bug that multiple PKGConfig.add_path doesn't work.
+
+== 1.0.7 - 2010/09/30
+
+* suppress warnings on Ruby 1.9.
+
+== 1.0.6 - 2010/09/23
+
+* add PKGConfig.libs_only_L.
+
+== 1.0.5 - 2010/09/23
+
+* suppress duplicated configure arguments processing.
+* use mkmf.rb message functions.
+
+== 1.0.4 - 2010/09/23
+
+* add PKGConfig.variable.
+
+== 1.0.3 - 2010/09/07
+
+* add path and override_variable customize API.
+* support description.
+
+== 1.0.2 - 2010/09/02
+
+* fix packaing miss.
+
+== 1.0.1 - 2010/09/02
+
+* support installing without gem.
+
+== 1.0.0 - 2010/09/02
+
+* Initial release!
+

@@ -1,0 +1,27 @@
+<div class="content">
+  <h1>Index Usage</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Table</th>
+        <th style="width: 30%;">% of Time Index Used</th>
+        <th style="width: 20%;">Rows</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @index_usage.each do |query| %>
+        <tr>
+          <td>
+            <%= query["table"] %>
+            <% if query["schema"] != "public" %>
+              <span class="text-muted"><%= query["schema"] %></span>
+            <% end %>
+          </td>
+          <td><%= query["percent_of_times_index_used"] %></td>
+          <td><%= number_with_delimiter(query["rows_in_table"]) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

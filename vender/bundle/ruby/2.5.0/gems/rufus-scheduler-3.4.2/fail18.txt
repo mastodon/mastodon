@@ -1,0 +1,12 @@
+
+rspec ./spec/job_spec.rb:640 # Rufus::Scheduler::Job work time #mean_work_time gathers work times and computes the mean
+rspec ./spec/schedule_at_spec.rb:60 # Rufus::Scheduler#at triggers a job
+rspec ./spec/schedule_in_spec.rb:44 # Rufus::Scheduler#in removes the job after execution
+rspec ./spec/scheduler_spec.rb:83 # Rufus::Scheduler a schedule method passes the job to its block when it triggers
+rspec ./spec/scheduler_spec.rb:534 # Rufus::Scheduler#running_jobs(:tag/:tags => x) returns a list of running jobs filtered by tag
+rspec ./spec/scheduler_spec.rb:601 # Rufus::Scheduler#occurrences(time0, time1) respects :times for repeat jobs
+rspec ./spec/scheduler_spec.rb:1019 # Rufus::Scheduler#on_post_trigger is called right after a job triggers
+
+
+determine_id specs are slower... much slower...
+

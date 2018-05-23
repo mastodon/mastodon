@@ -1,0 +1,3 @@
+require 'coveralls'
+
+Coveralls.wear!

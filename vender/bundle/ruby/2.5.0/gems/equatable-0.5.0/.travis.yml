@@ -1,0 +1,32 @@
+language: ruby
+before_install:
+  - gem install bundler
+script: "bundle exec rake ci"
+rvm:
+  - 1.8.7
+  - 1.9.2
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - ruby-head
+  - jruby-18mode
+  - jruby-19mode
+  - jruby-20mode
+  - jruby-21mode
+  - rbx-18mode
+  - rbx-19mode
+  - rbx-2
+  - jruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-19mode
+    - rvm: jruby-20mode
+    - rvm: jruby-21mode
+    - rvm: jruby-head
+    - rvm: rbx-18mode
+    - rvm: rbx-19mode
+    - rvm: rbx-2
+  fast_finish: true
+branches:
+  only: master

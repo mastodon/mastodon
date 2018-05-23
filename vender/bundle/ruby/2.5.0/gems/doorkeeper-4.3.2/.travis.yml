@@ -1,0 +1,38 @@
+cache: bundler
+language: ruby
+sudo: false
+
+rvm:
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
+
+before_install:
+  - gem update --system # Need for Ruby 2.5.0. https://github.com/travis-ci/travis-ci/issues/8978
+  - gem install bundler -v '~> 1.10'
+
+gemfile:
+  - gemfiles/rails_4_2.gemfile
+  - gemfiles/rails_5_0.gemfile
+  - gemfiles/rails_5_1.gemfile
+  - gemfiles/rails_5_2.gemfile
+  - gemfiles/rails_master.gemfile
+
+matrix:
+  exclude:
+    - gemfile: gemfiles/rails_5_0.gemfile
+      rvm: 2.1
+    - gemfile: gemfiles/rails_5_1.gemfile
+      rvm: 2.1
+    - gemfile: gemfiles/rails_5_2.gemfile
+      rvm: 2.1
+    - gemfile: gemfiles/rails_master.gemfile
+      rvm: 2.1
+    - gemfile: gemfiles/rails_master.gemfile
+      rvm: 2.2
+    - gemfile: gemfiles/rails_master.gemfile
+      rvm: 2.3
+  allow_failures:
+    - gemfile: gemfiles/rails_master.gemfile

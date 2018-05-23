@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="Description" CONTENT="「ハッキング」から「今晩のおかず」までを手広くカバーする巨大掲示板群『２ちゃんねる』へようこそ！">
+<meta name="KeyWords" CONTENT="２ちゃんねる, 掲示板, 2ch, BBS">
+<meta name="Author" CONTENT="２ちゃんねる">
+<meta name="verify-v1" content="hMevVuWJIPYrUj9ItfRJByoLNIpyhnrWaywiH+IFocU=" />
+<title>２ちゃんねる掲示板へようこそ</title>
+<style type="text/css" media="all">
+@import url(2ch_top.css);
+</style>
+<script>
+<!--
+function fcs(){document.f.STR.focus();}
+-->
+</script>
+</head>
+
+<body onLoad="document.f.STR.focus()">
+
+<div id="wrapper">
+<div id="header">
+<div id="header_inside">
+<div class="header_left">
+<a href="http://www2.2ch.net/2ch.html"><img src="images/2ch_logo.gif" width="151" height="40" alt="２ちゃんねる" align="middle" border="0" /><a href="http://www2.2ch.net/2ch.html">掲示板</a>｜
+<a href="http://c.2ch.net/">imode</a>｜<a href="http://orz.2ch.io/top.html">携帯orz</a>｜<a href="http://p2.2ch.net/">ビューアp2</a>
+</div>
+
+<div class="senna_banner">
+
+<a href="http://razil.jp/product/senna/"><img src="images/senna88x31.gif" width="88" height="31" alt="Senna" align="middle" border="0" /></a>
+</div>
+<div class="header_right">
+<!---find 2ch form --->
+<form method=GET name=f action="http://find.2ch.net/" style="margin:0px">
+<input size=25 name=STR value="" class="form_input">
+<select name="TYPE" class="form_select">
+<option value="BODY">本文</option>
+
+<option value="TITLE" selected>スレッドタイトル</option>
+<option value="POSTERS">投稿者</option>
+</select>
+<input type="image" src="images/search_button.gif"  alt="検索"  class="form_button"><br />
+<input type=hidden name=BBS value=ALL>
+
+<input type=hidden name=ENCODING value=SJIS>
+<input type=hidden name=COUNT value=50>
+<div class="caption">本文検索や検索設定は<a href="http://find.2ch.net/moritapo/notlogin.php">ログイン</a><a href="http://find.2ch.net/moritapo/welcome/">&raquo;詳細</a></div>
+
+</form>
+</div>
+</div><!--- header_inside --->
+</div><!--- end of header--->
+
+<div id="under_header">
+<a href="http://newsnavi.2ch.net/">ニュース</a>｜<a href="http://headline.2ch.net/bbynews/">ヘッドライン</a>｜<a href="http://epg.2ch.net/">テレビ欄</a>｜<a href="http://www.2ch.net/kakolog.html">過去ログ倉庫</a>
+
+</div><!--- end of under header--->
+
+<div id="main">
+<iframe src="http://cast.texpo.jp/2chtop/main_frame.html" width="100%" height="550" scrolling="no" border="0" frameborder="0"></iframe>
+</div><!--- end of main--->
+
+<div id="footer_menu">
+<div class="guide">
+<a href="http://info.2ch.net/guide/">使い方＆注意</a>｜<a href="http://info.2ch.net/guide/adv.html#saku_guide">削除ガイドライン</a>｜<a href="http://www2.2ch.net/2ch2.html">拡張版メニュー</a>｜<a href="http://info.2ch.net/blog.html">ひろゆき日記</a>｜<a href="http://www.2ch.net/ad.html">広告のご案内</a>
+
+</div>
+
+<div class="service">
+<iframe src="http://cast.texpo.jp/2chtop/moritapo_frame.html" width="100%" height="50" scrolling="no" border="0" frameborder="0"></iframe>
+</div>
+
+<div class="banner">
+<a href=http://livede55.com/ target="_blank"><img
+src="http://www2.livede55.com/2ch_468_60_13.gif"
+width="468" height="60" border="0" alt=ライブチャット></a><br>
+<br>
+<A href="http://www.bb-chat.tv/" target=_blank><IMG height=60 src="http://img.bbchat.tv/images/bannar/46860-3.gif" width=468 border=0></A><br>
+</div>
+
+<div class="condition">
+２ちゃんねるのご利用は利用者各位のご判断にお任せしています｜<a href="precautions.html">2chのデータ利用について</a>
+
+</div>
+</div><!--- end of footer_menu--->
+
+
+<div id="footer">
+<div class="footer_left">
+<a href="http://www.bunka.go.jp/jiyuriyo/" target="_blank">
+<img src="http://www.dd.iij4u.or.jp/~cap/y_3copyok.jpg" width="184" height="31" border="0" alt="自由利用マーク" /></a>
+</div>
+
+<div class="footer_right">
+<a href="http://count.2ch.net/?index" target="_blank">
+<img src="http://count.2ch.net/ct.php/index" width="88" height="31"  border="0" alt="ちゃっかりカウンター"></a>
+
+
+</div>
+</div><!---end of footer--->
+
+</div><!--- end of wrapper--->
+</body>
+</html>

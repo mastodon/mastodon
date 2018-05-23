@@ -1,0 +1,44 @@
+#
+# This file allows to:
+#   - create a ruby docker environment for development
+#   - run a testsuite from scratch like .travis.yml
+#
+# Run all tests with
+#
+# $ docker-compose up test
+#
+# Create the develompent environment with
+#
+# $ docker-compose up -d ruby
+# $ docker exec -ti fogopenstack_ruby_1  /bin/bash
+#
+version: '2'
+
+services:
+
+  ruby:
+    image: ruby:2.4-stretch
+    cap_add:
+    - SYS_PTRACE
+    volumes:
+    - .:/code:z
+    - .:/home/travis/build/fog/fog-openstack:z
+    entrypoint: tail -f /etc/hosts
+
+  test:
+    image: ruby:2.4-stretch
+    cap_add:
+    - SYS_PTRACE
+    volumes:
+    - .:/code:z
+    - .:/home/travis/build/fog/fog-openstack:z
+    environment:
+    - JRUBY_OPTS=--debug 
+    working_dir: /home/travis/build/fog/fog-openstack
+    entrypoint: |
+      bash -c '
+        gem update bundler --verbose
+        bundle install --verbose
+        bundle exec rake test
+        bundle exec rake spec
+        '

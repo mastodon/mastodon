@@ -1,0 +1,6 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/people#joebob> a foaf:Person;
+   foaf:name "Joe Bob";
+   foaf:nick ("joe" "bob" "jaybe") .

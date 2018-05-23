@@ -1,0 +1,40 @@
+<!doctype html>
+<html dir="<%= text_direction %>">
+  <head>
+    <title><%= environment_title_prefix %><%= Sidekiq::NAME %></title>
+    <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <link href="<%= root_path %>stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+    <% if rtl? %>
+    <link href="<%= root_path %>stylesheets/bootstrap-rtl.min.css" media="screen" rel="stylesheet" type="text/css"/>
+    <% end %>
+
+    <link href="<%= root_path %>stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <% if rtl? %>
+    <link href="<%= root_path %>stylesheets/application-rtl.css" media="screen" rel="stylesheet" type="text/css" />
+    <% end %>
+
+    <link rel="shortcut icon" type="image/ico" href="<%= root_path %>images/favicon.ico" />
+    <script type="text/javascript" src="<%= root_path %>javascripts/application.js"></script>
+    <meta name="google" content="notranslate" />
+    <%= display_custom_head %>
+  </head>
+  <body class="admin" data-poll-path="<%= poll_path %>" data-locale="<%= locale %>">
+    <%= erb :_nav %>
+    <div id="page">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 summary_bar">
+            <%= erb :_summary %>
+          </div>
+
+          <div class="col-sm-12">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= erb :_footer %>
+  </body>
+</html>

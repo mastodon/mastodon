@@ -1,0 +1,11 @@
+source "https://rubygems.org"
+
+gemspec :path => "../"
+
+case ENV["conn"]
+when "hiredis"
+  gem "hiredis"
+when "synchrony"
+  gem "hiredis"
+  gem "em-synchrony"
+end
