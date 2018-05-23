@@ -5,10 +5,7 @@ import StatusListContainer from './containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import {
-  refreshHashtagTimeline,
-  expandHashtagTimeline,
-} from '../../actions/timelines';
+import { expandHashtagTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
@@ -64,13 +61,13 @@ export default class HashtagTimeline extends React.PureComponent {
     const { dispatch, isLocal } = this.props;
     const { id } = this.props.params;
 
-    dispatch(refreshHashtagTimeline(id, isLocal));
+    dispatch(expandHashtagTimeline(id, isLocal));
     this._subscribe(dispatch, id, isLocal);
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.id !== this.props.params.id || nextProps.isLocal !== this.props.isLocal) {
-      this.props.dispatch(refreshHashtagTimeline(nextProps.params.id, nextProps.isLocal));
+      this.props.dispatch(expandHashtagTimeline(nextProps.params.id, nextProps.isLocal));
       this._unsubscribe();
       this._subscribe(this.props.dispatch, nextProps.params.id, nextProps.isLocal);
     }
@@ -84,8 +81,8 @@ export default class HashtagTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandHashtagTimeline(this.props.params.id, this.props.isLocal));
+  handleLoadMore = maxId => {
+    this.props.dispatch(expandHashtagTimeline(this.props.params.id, { maxId, isLocal: this.props.isLocal }));
   }
 
   render () {
@@ -116,7 +113,7 @@ export default class HashtagTimeline extends React.PureComponent {
           trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
           timelineId={`hashtag:${id}`}
-          loadMore={this.handleLoadMore}
+          onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
         />
       </Column>

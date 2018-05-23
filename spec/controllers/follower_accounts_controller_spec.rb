@@ -19,7 +19,7 @@ describe FollowerAccountsController do
       expect(assigned[0]).to eq follow1
       expect(assigned[1]).to eq follow0
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 end

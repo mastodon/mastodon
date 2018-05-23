@@ -17,7 +17,7 @@ RSpec.describe Api::V1::InstancesController, type: :controller do
     it 'returns http success' do
       get :show
 
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
 
     it 'returns instance parameter' do

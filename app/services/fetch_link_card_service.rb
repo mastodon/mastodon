@@ -23,11 +23,13 @@ class FetchLinkCardService < BaseService
       if lock.acquired?
         @card = PreviewCard.find_by(url: @url)
         process_url if @card.nil? || @card.updated_at <= 2.weeks.ago
+      else
+        raise Mastodon::RaceConditionError
       end
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, Addressable::URI::InvalidURIError => e
+  rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
@@ -36,15 +38,24 @@ class FetchLinkCardService < BaseService
 
   def process_url
     @card ||= PreviewCard.new(url: @url)
-    res     = Request.new(:head, @url).perform
 
-    return if res.code != 405 && (res.code != 200 || res.mime_type != 'text/html')
+    failed = Request.new(:head, @url).perform do |res|
+      res.code != 405 && (res.code != 200 || res.mime_type != 'text/html')
+    end
 
-    @response = Request.new(:get, @url).perform
+    return if failed
 
-    return if @response.code != 200 || @response.mime_type != 'text/html'
+    Request.new(:get, @url).perform do |res|
+      if res.code == 200 && res.mime_type == 'text/html'
+        @html = res.body_with_limit
+        @html_charset = res.charset
+      else
+        @html = nil
+        @html_charset = nil
+      end
+    end
 
-    @html = @response.to_s
+    return if @html.nil?
 
     attempt_oembed || attempt_opengraph
   end
@@ -76,49 +87,47 @@ class FetchLinkCardService < BaseService
   end
 
   def attempt_oembed
-    embed = OEmbed::Providers.get(@url, html: @html)
+    embed = FetchOEmbedService.new.call(@url, html: @html)
 
-    return false unless embed.respond_to?(:type)
+    return false if embed.nil?
 
-    @card.type          = embed.type
-    @card.title         = embed.respond_to?(:title)         ? embed.title         : ''
-    @card.author_name   = embed.respond_to?(:author_name)   ? embed.author_name   : ''
-    @card.author_url    = embed.respond_to?(:author_url)    ? embed.author_url    : ''
-    @card.provider_name = embed.respond_to?(:provider_name) ? embed.provider_name : ''
-    @card.provider_url  = embed.respond_to?(:provider_url)  ? embed.provider_url  : ''
+    @card.type          = embed[:type]
+    @card.title         = embed[:title]         || ''
+    @card.author_name   = embed[:author_name]   || ''
+    @card.author_url    = embed[:author_url]    || ''
+    @card.provider_name = embed[:provider_name] || ''
+    @card.provider_url  = embed[:provider_url]  || ''
     @card.width         = 0
     @card.height        = 0
 
     case @card.type
     when 'link'
-      @card.image_remote_url = embed.thumbnail_url if embed.respond_to?(:thumbnail_url)
+      @card.image_remote_url = embed[:thumbnail_url] if embed[:thumbnail_url].present?
     when 'photo'
-      return false unless embed.respond_to?(:url)
+      return false if embed[:url].blank?
 
-      @card.embed_url        = embed.url
-      @card.image_remote_url = embed.url
-      @card.width            = embed.width.presence  || 0
-      @card.height           = embed.height.presence || 0
+      @card.embed_url        = embed[:url]
+      @card.image_remote_url = embed[:url]
+      @card.width            = embed[:width].presence  || 0
+      @card.height           = embed[:height].presence || 0
     when 'video'
-      @card.width            = embed.width.presence  || 0
-      @card.height           = embed.height.presence || 0
-      @card.html             = Formatter.instance.sanitize(embed.html, Sanitize::Config::MASTODON_OEMBED)
-      @card.image_remote_url = embed.thumbnail_url if embed.respond_to?(:thumbnail_url)
+      @card.width            = embed[:width].presence  || 0
+      @card.height           = embed[:height].presence || 0
+      @card.html             = Formatter.instance.sanitize(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+      @card.image_remote_url = embed[:thumbnail_url] if embed[:thumbnail_url].present?
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no
       return false
     end
 
     @card.save_with_optional_image!
-  rescue OEmbed::NotFound
-    false
   end
 
   def attempt_opengraph
     detector = CharlockHolmes::EncodingDetector.new
     detector.strip_tags = true
 
-    guess = detector.detect(@html, @response.charset)
+    guess = detector.detect(@html, @html_charset)
     page  = Nokogiri::HTML(@html, nil, guess&.fetch(:encoding, nil))
 
     if meta_property(page, 'twitter:player')

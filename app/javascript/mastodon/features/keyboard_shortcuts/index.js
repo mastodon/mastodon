@@ -53,6 +53,10 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
               </tr>
               <tr>
+                <td><kbd>x</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.toggle_hidden' defaultMessage='to show/hide text behind CW' /></td>
+              </tr>
+              <tr>
                 <td><kbd>up</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
               </tr>

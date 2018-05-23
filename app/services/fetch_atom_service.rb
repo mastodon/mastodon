@@ -24,43 +24,49 @@ class FetchAtomService < BaseService
 
   def process(url, terminal = false)
     @url = url
-    perform_request
-    process_response(terminal)
+    perform_request { |response| process_response(response, terminal) }
   end
 
-  def perform_request
+  def perform_request(&block)
     accept = 'text/html'
     accept = 'application/activity+json, application/ld+json, application/atom+xml, ' + accept unless @unsupported_activity
 
-    @response = Request.new(:get, @url)
-                       .add_headers('Accept' => accept)
-                       .perform
+    Request.new(:get, @url).add_headers('Accept' => accept).perform(&block)
   end
 
-  def process_response(terminal = false)
-    return nil if @response.code != 200
+  def process_response(response, terminal = false)
+    return nil if response.code != 200
 
-    if @response.mime_type == 'application/atom+xml'
-      [@url, { prefetched_body: @response.to_s }, :ostatus]
-    elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@response.mime_type)
-      json = body_to_json(@response.to_s)
-      if supported_context?(json) && json['type'] == 'Person' && json['inbox'].present?
-        [json['id'], { prefetched_body: @response.to_s, id: true }, :activitypub]
-      elsif supported_context?(json) && json['type'] == 'Note'
-        [json['id'], { prefetched_body: @response.to_s, id: true }, :activitypub]
+    if response.mime_type == 'application/atom+xml'
+      [@url, { prefetched_body: response.body_with_limit }, :ostatus]
+    elsif ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(response.mime_type)
+      body = response.body_with_limit
+      json = body_to_json(body)
+      if supported_context?(json) && equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) && json['inbox'].present?
+        [json['id'], { prefetched_body: body, id: true }, :activitypub]
+      elsif supported_context?(json) && expected_type?(json)
+        [json['id'], { prefetched_body: body, id: true }, :activitypub]
       else
         @unsupported_activity = true
         nil
       end
-    elsif @response['Link'] && !terminal && link_header.find_link(%w(rel alternate))
-      process_headers
-    elsif @response.mime_type == 'text/html' && !terminal
-      process_html
+    elsif !terminal
+      link_header = response['Link'] && parse_link_header(response)
+
+      if link_header&.find_link(%w(rel alternate))
+        process_link_headers(link_header)
+      elsif response.mime_type == 'text/html'
+        process_html(response)
+      end
     end
   end
 
-  def process_html
-    page = Nokogiri::HTML(@response.to_s)
+  def expected_type?(json)
+    equals_or_includes_any?(json['type'], ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
+  end
+
+  def process_html(response)
+    page = Nokogiri::HTML(response.body_with_limit)
 
     json_link = page.xpath('//link[@rel="alternate"]').find { |link| ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(link['type']) }
     atom_link = page.xpath('//link[@rel="alternate"]').find { |link| link['type'] == 'application/atom+xml' }
@@ -71,7 +77,7 @@ class FetchAtomService < BaseService
     result
   end
 
-  def process_headers
+  def process_link_headers(link_header)
     json_link = link_header.find_link(%w(rel alternate), %w(type application/activity+json)) || link_header.find_link(%w(rel alternate), ['type', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'])
     atom_link = link_header.find_link(%w(rel alternate), %w(type application/atom+xml))
 
@@ -81,7 +87,7 @@ class FetchAtomService < BaseService
     result
   end
 
-  def link_header
-    @link_header ||= LinkHeader.parse(@response['Link'].is_a?(Array) ? @response['Link'].first : @response['Link'])
+  def parse_link_header(response)
+    LinkHeader.parse(response['Link'].is_a?(Array) ? response['Link'].first : response['Link'])
   end
 end

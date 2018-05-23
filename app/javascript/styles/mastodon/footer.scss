@@ -2,9 +2,9 @@
   text-align: center;
   margin-top: 30px;
   font-size: 12px;
-  color: darken($ui-secondary-color, 25%);
+  color: $darker-text-color;
 
-  .domain {
+  .footer__domain {
     font-weight: 500;
 
     a {
@@ -25,6 +25,14 @@
       &:hover {
         text-decoration: none;
       }
+    }
+
+    img {
+      margin: 0 4px;
+      position: relative;
+      bottom: -1px;
+      height: 18px;
+      vertical-align: top;
     }
   }
 }

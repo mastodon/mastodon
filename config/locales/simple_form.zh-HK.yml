@@ -4,39 +4,69 @@ zh-HK:
     hints:
       defaults:
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 2MB，會縮裁成 400x400px
-        display_name: 最多 30 個字元
+        bot: 提醒用戶本帳號是機械人
+        digest: 僅在你長時間未登錄，且收到了私信時發送
+        display_name:
+          one: 尚餘 <span class="name-counter">1</span> 個字
+          other: 尚餘 <span class="name-counter">%{count}</span> 個字
+        fields: 個人資料頁可顯示多至 4 個項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 2MB，會縮裁成 700x335px
         locked: 你必須人手核准每個用戶對你的關注請求，而你的文章私隱會被預設為「只有關注你的人能看」
-        note: 最多 160 個字元
+        note:
+          one: 尚餘 <span class="note-counter">1</span> 個字
+          other: 尚餘 <span class="note-counter">%{count}</span> 個字
+        setting_noindex: 此設定會影響到你的公開個人資料以及文章頁面
+        setting_theme: 此設置會影響到你從任意設備登入時 Mastodon 的顯示樣式。
       imports:
         data: 自其他服務站匯出的 CSV 檔案
+      sessions:
+        otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼。
       user:
-        filtered_languages: 下面被選擇的語言的文章將不會出現在你的公共時間軸上。
+        filtered_languages: 下面被選擇的語言的文章將不會出現在你的公共時間軸上
     labels:
+      account:
+        fields:
+          name: 標籤
+          value: 內容
       defaults:
         avatar: 個人頭像
+        bot: 這帳號是機械人
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
         current_password: 目前密碼
         data: 資料
         display_name: 顯示名稱
         email: 電郵地址
-        filtered_languages: 封鎖下面语言的文章
+        expires_in: 失效時間
+        fields: 資料
+        filtered_languages: 封鎖下面語言的文章
         header: 個人頁面頂部
         locale: 語言
         locked: 將用戶轉為「私人」
+        max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
         otp_attempt: 雙重認證碼
         password: 密碼
+        setting_auto_play_gif: 自動播放 GIF
         setting_boost_modal: 在轉推前詢問我
         setting_default_privacy: 文章預設為
+        setting_default_sensitive: 預設我的內容為敏感內容
+        setting_delete_modal: 刪推前詢問我
+        setting_display_sensitive_media: 預設我的媒體為敏感內容
+        setting_noindex: 阻止搜尋引擎檢索
+        setting_reduce_motion: 減低動畫效果
+        setting_system_font_ui: 使用系統預設字型
+        setting_theme: 網站主題
+        setting_unfollow_modal: 取消關注前跳出詢問我
         severity: 等級
         type: 匯入資料類型
         username: 用戶名稱
+        username_or_email: 用戶名稱或電郵
       interactions:
         must_be_follower: 隱藏沒有關注你的用戶的通知
         must_be_following: 隱藏你不關注的用戶的通知
+        must_be_following_dm: 隱藏你不關注的用戶的私信
       notification_emails:
         digest: 定期電郵摘要
         favourite: 當有用戶喜歡你的文章時，發電郵通知

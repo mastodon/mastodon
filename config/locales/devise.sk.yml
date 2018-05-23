@@ -13,13 +13,13 @@ sk:
       locked: Váš účet je zamknutý.
       not_found_in_database: Nesprávny %{authentication_keys} alebo heslo.
       timeout: Vaša aktívna sezóna vypršala. Pre pokračovanie sa prosím znovu prihláste.
-      unauthenticated: Pred pokračovaním sa musíte zaregistrovať alebo prihlásiť.
-      unconfirmed: Pred pokračovaním musíte potvrdiť svoj email.
+      unauthenticated: K pokračovaniu sa musíš zaregistrovať alebo prihlásiť.
+      unconfirmed: Pred pokračovaním musíš potvrdiť svoj email.
     mailer:
       confirmation_instructions:
-        action: Potvrite emailovú adresu
-        explanation: S touto email adresou ste si vytvoril/a účet na %{host}. Si iba jeden klik od jeho aktivácie. Pokiaľ ste to ale nebol/a vy, prosím ignoruj tento email.
-        extra_html: Prosím pozri sa aj na <a href="%{terms_path}"> pravidla tohto servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
+        action: Potvŕď emailovú adresu
+        explanation: S touto emailovou adresou si si vytvoril/a účet na %{host}. Si iba jeden klik od jeho aktivácie. Pokiaľ si to ale nebol/a ty, prosím ignoruj tento email.
+        extra_html: Prosím pozri sa aj na <a href="%{terms_path}"> pravidlá tohto servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
         subject: 'Mastodon: Potvrdzovacie inštrukcie pre %{instance}'
         title: Potvrď emailovú adresu
       email_changed:
@@ -78,5 +78,6 @@ sk:
       not_found: nenájdený
       not_locked: nebol uzamknutý
       not_saved:
+        few: "%{resource} nebol uložený kôli %{count} chybám:"
         one: "%{resource} nebol uložený kôli chybe:"
         other: "%{resource} nebol uložený kôli %{count} chybám:"

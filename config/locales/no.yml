@@ -52,9 +52,7 @@
     unfollow: Slutte følge
   admin:
     account_moderation_notes:
-      account: Moderator
       create: Lag
-      created_at: Dato
       created_msg: Moderasjonsnotat laget uten problem!
       delete: Slett
       destroyed_msg: Moderasjonsnotat slettet uten problem!
@@ -63,6 +61,7 @@
       by_domain: Domene
       confirm: Bekreft
       confirmed: Bekreftet
+      confirming: Bekrefte
       demote: Degrader
       disable: Deaktiver
       disable_two_factor_authentication: Skru av 2FA
@@ -71,6 +70,7 @@
       domain: Domene
       edit: Redigér
       email: E-post
+      email_status: E-poststatus
       enable: Aktiver
       enabled: Aktivert
       feed_url: Feed-URL
@@ -108,6 +108,10 @@
       public: Offentlig
       push_subscription_expires: PuSH-abonnent utløper
       redownload: Oppdater avatar
+      resend_confirmation:
+        already_confirmed: Denne brukeren er allerede bekreftet
+        send: Send bekreftelses-epost på nytt
+        success: Bekreftelses e-post er vellykket sendt!
       reset: Tilbakestill
       reset_password: Nullstill passord
       resubscribe: Abonner på nytt
@@ -243,14 +247,9 @@
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
       comment:
-        label: Kommentar
         none: Ingen
-      delete: Slett
       id: ID
       mark_as_resolved: Merk som løst
-      nsfw:
-        'false': Vis mediavedlegg
-        'true': Skjul mediavedlegg
       report: 'Rapportér #%{id}'
       report_contents: Innhold
       reported_account: Rapportert konto
@@ -315,11 +314,8 @@
         delete: Slett
         nsfw_off: NSFW AV
         nsfw_on: NSFW PÅ
-      execute: Utfør
       failed_to_execute: Utføring mislyktes
       media:
-        hide: Skjul media
-        show: Vis media
         title: Media
       no_media: Ingen media
       title: Kontostatuser
@@ -535,20 +531,6 @@
     other: Annet
     publishing: Publisering
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} favoriserte din status"
-    follow:
-      title: "%{name} følger deg nå"
-    group:
-      title: "%{count} varslinger"
-    mention:
-      action_boost: Fremhev
-      action_expand: Vis mer
-      action_favourite: Favoritter
-      title: "%{name} nevnte deg"
-    reblog:
-      title: "%{name} fremhevde din status"
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
@@ -633,74 +615,6 @@
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
   terms:
-    body_html: |
-      <h2>Personvernserklæring</h2>
-
-      <h3 id='collect'>Hvilke opplysninger samler vi?</h3>
-
-      <p>Vi samler opplysninger fra deg når du registrerer deg på nettstedet vårt, og vi samler data når du deltar på forumet ved å lese, skrive og evaluere innholdet som deles her.</p>
-
-      <p>Når du registrerer deg på nettstedet vårt, kan du bli bedt om å oppgi navnet og e-postadressen din. Imidlertid kan du besøke nettstedet vårt uten å registrere deg. E-postadressen din vil bli bekreftet med en e-post som inneholder en unik lenke. Hvis siden den lenker til, blir besøkt, vet vi at du har kontroll over e-postadressen.</p>
-
-      <p>Når du registrerer deg og skriver innlegg, registrerer vi IP-adressen som innlegget stammer fra. Vi kan også oppbevare logger som inkluderer IP-adressen til alle forespørslene sendt til tjeneren vår.</p>
-
-      <h3 id='use'>Hva bruker vi opplysningene dine til?</h3>
-
-      <p>Alle opplysningene vi samler fra deg, kan bli brukt på en av følgende måter:</p>
-
-      <ul>
-        <li>For å gjøre opplevelsen din mer personlig. Opplysningene dine hjelper oss å svare bedre på dine individuelle behov.</li>
-        <li>For å forbedre nettstedet vårt. Vi jobber konstant for å forbedre nettstedets tilbud basert på opplysningene og tilbakemeldingene vi mottar fra deg.</li>
-        <li>For å forbedre vår kundeservice. Dine opplysninger hjelper oss å svare mer effektivt på dine forespørsler sendt til kundeservice eller behov om støtte.</li>
-        <li>For å sende periodiske e-poster. E-postadressen du oppgir, kan bli brukt til å sende deg informasjon, påminnelser som du ber om ved endringer av emner eller ved svar til brukernavnet ditt, til henvendelser, og/eller andre forspørsler eller andre spørsmål.</li>
-      </ul>
-
-      <h3 id='protect'>Hvordan sikrer vi opplysningene?</h3>
-
-      <p>Vi gjennomfører flere sikkerhetstiltak for å holde personopplysningene dine sikre når du skriver inn, lagrer eller henter dem.</p>
-
-      <h3 id='data-retention'>Hva er retningslinjene deres for lagring av data?</h3>
-
-      <p>Vi vil forsøke i god tro å:</p>
-
-      <ul>
-        <li>Ikke oppbevare tjener-logger som inneholder IP-adressen til alle forespørslene til denne tjeneren i lenger enn i 90 dager.</li>
-        <li>Ikke oppbevare IP-adressene forbundet med registrerte brukere og deres innlegg lenger enn i 5 år.</li>
-      </ul>
-
-      <h3 id='cookies'>Bruker vi informasjonskapsler?</h3>
-
-      <p>Ja. Informasjonskapsler er små filer som et nettsted eller dets tjenesteleverandør overfører til harddisken på datamaskinen din gjennom nettleseren din (dersom du tillater det). Disse informasjonskapslene gjør det mulig for nettstedet å gjenkjenne nettleseren din og, dersom du har en konto, knytte nettleseren til den.</p>
-
-      <p>Vi bruker informasjonskapsler for å forstå og lagre preferansene dine for fremtidige besøk og for å samle aggregatdata om trafikk på og samhandling med nettstedet slik at vi kan tilby bedre opplevelser og verktøy på nettstedet i fremtiden. Vi kan inngå avtaler med tredjeparts tjenesteleverandører for å bistå oss i å forstå besøkerne våres bedre. Disse tjenesteleverandørene har ikke lov til å bruke opplysningene samlet på våres vegne unntatt til å hjelpe oss å gjennomføre og forbedre anliggendet vårt.</p>
-
-      <h3 id='disclose'>Gir vi noen opplysninger videre til andre parter?</h3>
-
-      <p>Vi verken selger, handler med eller overfører på noen annen måte til andre parter dine identifiserbare personopplysninger. Dette inkluderer ikke tredjeparter som har vår tillit og bistår oss i å drive nettstedet, utføre våre anliggender eller yter tjenester til deg, så lenge disse partene samtykker til å behandle disse opplysningene fortrolig. Vi kan også frigi opplysningene dine dersom vi tror at å frigi dem er hensiktsmessig for å overholde loven, håndheve nettstedet retningslinjer eller beskytte våre og andres rettigheter. Imidlertid kan opplysninger som ikke er personlig identifiserbare, bli delt med andre parter for markedsføring, reklame eller annet bruk.</p>
-
-      <h3 id='third-party'>Tredjeparts lenker</h3>
-
-      <p>Av og til, etter skjønn, kan vil inkludere eller tilby tredjeparts produkter eller tjenester på nettstedet vårt. Disse tredjeparts nettstedene har separate og selvstendige personvernerklæringer. Vi bærer derfor intet ansvar eller forpliktelser for innholdet eller aktivitetene til disse nettstedene det lenkes til. Ikke mindre prøver vi å bevare vår eget nettsteds integritet og ønsker enhver tilbakemelding om disse nettstedene velkomne.</p>
-
-      <h3 id='coppa'>Overensstemmelse med Children's Online Privacy Protection Act</h3>
-
-      <p>Nettstedet er rettet mot folk som er minst 13 år gamle. Dersom denne tjeneren er i USA, og du er under 13 år i henhold til kravene i  COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children&#39;s Online Privacy Protection Act</a>), ikke bruk dette nettstedet.</p>
-
-      <h3 id='online'>Personvernerklæring bare for nettet</h3>
-
-      <p>Denne nett-personvernerklæringen gjelder bare for informasjon samlet gjennom nettstedet vårt og ikke for opplysninger samlet når en er frakoblet.</p>
-
-      <h3 id='consent'>Ditt samtykke</h3>
-
-      <p>Ved å bruke dette nettstedet samtykker du til nettstedets personvernerklæring.</p>
-
-      <h3 id='changes'>Endringer i vår personvernerklæring</h3>
-
-      <p>Dersom vi beslutter å endre personvernerklæringen vår, vil vi publisere disse endringene på denne siden.</p>
-
-      <p>Dette dokumentet er lisensiert under CC-BY-SA. De ble sist oppdatert 12. april 2017.</p>
-
-      <p>Dokumentet er en adoptert og endret versjon fra <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Personvern og villkår for bruk av nettstedet"
   themes:
     default: Mastodon

@@ -40,6 +40,27 @@ class UpdateRemoteProfileService < BaseService
         account.header_remote_url = ''
         account.header.destroy
       end
+
+      save_emojis if remote_profile.emojis.present?
+    end
+  end
+
+  def save_emojis
+    do_not_download = DomainBlock.find_by(domain: account.domain)&.reject_media?
+
+    return if do_not_download
+
+    remote_profile.emojis.each do |link|
+      next unless link['href'] && link['name']
+
+      shortcode = link['name'].delete(':')
+      emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: account.domain)
+
+      next unless emoji.nil?
+
+      emoji = CustomEmoji.new(shortcode: shortcode, domain: account.domain)
+      emoji.image_remote_url = link['href']
+      emoji.save
     end
   end
 end

@@ -4,6 +4,7 @@ ca:
     about_hashtag_html: Aquests són toots públics etiquetats amb <strong>#%{hashtag}</strong>. Pots interactuar amb ells si tens un compte a qualsevol lloc del fediverse.
     about_mastodon_html: Mastodon és una xarxa social basada en protocols web oberts i en programari lliure i de codi obert. Està descentralitzat com el correu electrònic.
     about_this: Quant a
+    administered_by: 'Administrat per:'
     closed_registrations: Actualment, el registre està tancat en aquesta instància. Malgrat això! Pots trobar una altra instància per fer-te un compte i obtenir accés a la mateixa xarxa des d'allà.
     contact: Contacte
     contact_missing: No configurat
@@ -39,6 +40,7 @@ ca:
     following: Seguint
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
+    network_hidden: Aquesta informació no està disponible
     nothing_here: No hi ha res aquí!
     people_followed_by: Usuaris seguits per %{name}
     people_who_follow: Usuaris que segueixen %{name}
@@ -48,21 +50,29 @@ ca:
     reserved_username: El nom d'usuari està reservat
     roles:
       admin: Administrador
+      bot: Bot
       moderator: Moderador
     unfollow: Deixa de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
-      create: Crea
-      created_at: Data
+      create: Crea nota
       created_msg: La nota de moderació s'ha creat correctament!
       delete: Suprimeix
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
       are_you_sure: N'estàs segur?
+      avatar: Avatar
       by_domain: Domini
+      change_email:
+        changed_msg: El correu electrònic del compte s'ha canviat correctament!
+        current_email: Correu electrònic actual
+        label: Canviar l'adreça de correu
+        new_email: Nou correu
+        submit: Canviar adreça de correu
+        title: Canviar adreça de correu de %{username}
       confirm: Confirma
       confirmed: Confirmat
+      confirming: Confirmando
       demote: Degrada
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
@@ -71,6 +81,7 @@ ca:
       domain: Domini
       edit: Edita
       email: Correu electrònic
+      email_status: Estado del correo electrónico
       enable: Habilita
       enabled: Habilitat
       feed_url: URL del canal
@@ -108,6 +119,11 @@ ca:
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza l'avatar
+      remove_avatar: Eliminar avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
       resubscribe: Torna a subscriure
@@ -128,6 +144,7 @@ ca:
       statuses: Estats
       subscribe: Subscriu
       title: Comptes
+      unconfirmed_email: Correu electrònic sense confirmar
       undo_silenced: Deixa de silenciar
       undo_suspension: Desfés la suspensió
       unsubscribe: Cancel·la la subscripció
@@ -135,6 +152,8 @@ ca:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
+        change_email_user: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
         confirm_user: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
         create_custom_emoji: "%{name} ha pujat un nou emoji %{target}"
         create_domain_block: "%{name} ha blocat el domini %{target}"
@@ -150,10 +169,13 @@ ca:
         enable_user: "%{name} ha activat l'accés per a l'usuari %{target}"
         memorialize_account: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user: "%{name} ha promogut l'usuari %{target}"
+        remove_avatar_user: "%{name} ha eliminat l'avatar de %{target}"
+        reopen_report: "%{name} ha reobert l'informe %{target}"
         reset_password_user: "%{name} ha restablert la contrasenya de l'usuari %{target}"
-        resolve_report: "%{name} ha descartat l'informe %{target}"
+        resolve_report: "%{name} ha resolt l'informe %{target}"
         silence_account: "%{name} ha silenciat el compte de %{target}"
         suspend_account: "%{name} ha suspès el compte de %{target}"
+        unassigned_report: "%{name} ha des-assignat  l'informe %{target}"
         unsilence_account: "%{name} ha silenciat el compte de %{target}"
         unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
         update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
@@ -239,29 +261,44 @@ ca:
         expired: Caducat
         title: Filtre
       title: Convida
+    report_notes:
+      created_msg: La nota del informe s'ha creat correctament!
+      destroyed_msg: La nota del informe s'ha esborrat correctament!
     reports:
+      account:
+        note: nota
+        report: informe
       action_taken_by: Mesures adoptades per
       are_you_sure: N'estàs segur?
+      assign_to_self: Assignar-me
+      assigned: Moderador assignat
       comment:
-        label: Comentari
         none: Cap
-      delete: Suprimeix
+      created_at: Reportat
       id: ID
       mark_as_resolved: Marca com a resolt
-      nsfw:
-        'false': Mostra els fitxers multimèdia adjunts
-        'true': Amaga els fitxers multimèdia adjunts
+      mark_as_unresolved: Marcar sense resoldre
+      notes:
+        create: Afegir nota
+        create_and_resolve: Resoldre amb nota
+        create_and_unresolve: Reobrir amb nota
+        delete: Esborrar
+        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització d'aquest informe…
+      reopen: Reobrir informe
       report: 'Informe #%{id}'
       report_contents: Contingut
       reported_account: Compte reportat
       reported_by: Reportat per
       resolved: Resolt
+      resolved_msg: Informe resolt amb èxit!
       silence_account: Silencia el compte
       status: Estat
       suspend_account: Suspèn el compte
       target: Objectiu
       title: Informes
+      unassign: Treure assignació
       unresolved: No resolt
+      updated_at: Actualitzat
       view: Visualització
     settings:
       activity_api_enabled:
@@ -319,13 +356,10 @@ ca:
       back_to_account: Torna a la pàgina del compte
       batch:
         delete: Suprimeix
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Executa
+        nsfw_off: Marcar com a no sensible
+        nsfw_on: Marcar com a sensible
       failed_to_execute: No s'ha pogut executar
       media:
-        hide: Amaga el contingut multimèdia
-        show: Mostra el contingut multimèdia
         title: Contingut multimèdia
       no_media: Sense contingut multimèdia
       title: Estats del compte
@@ -341,6 +375,7 @@ ca:
   admin_mailer:
     new_report:
       body: "%{reporter} ha informat de %{target}"
+      body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
   application_mailer:
     notification_preferences: Canvia les preferències de correu
@@ -382,6 +417,7 @@ ca:
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
   authorize_follow:
+    already_following: Ja estàs seguint aquest compte
     error: Malauradament, ha ocorregut un error cercant el compte remot
     follow: Segueix
     follow_request: 'Has enviat una sol·licitud de seguiment a:'
@@ -429,7 +465,7 @@ ca:
     archive_takeout:
       date: Data
       download: Descarrega l’arxiu
-      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible.
+      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
       in_progress: Compilant el teu arxiu...
       request: Sol·licita el teu arxiu
       size: Tamany
@@ -474,6 +510,7 @@ ca:
       '21600': 6 hores
       '3600': 1 hora
       '43200': 12 hores
+      '604800': 1 setmana
       '86400': 1 dia
     expires_in_prompt: Mai
     generate: Genera
@@ -558,25 +595,15 @@ ca:
     other: Altre
     publishing: Publicació
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} ha marcat com a preferit el teu estat"
-    follow:
-      title: "%{name} ara et segueix"
-    group:
-      title: "%{count} notificacions"
-    mention:
-      action_boost: Retooteja
-      action_expand: Mostra'n més
-      action_favourite: Preferit
-      title: "%{name} t'ha mencionat"
-    reblog:
-      title: "%{name} t'ha retootejat"
   remote_follow:
     acct: Escriu el teu usuari@domini des del qual vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte
     proceed: Comença a seguir
     prompt: 'Seguiràs a:'
+  remote_unfollow:
+    error: Error
+    title: Títol
+    unfollowed: Sense seguir
   sessions:
     activity: Última activitat
     browser: Navegador
@@ -634,6 +661,19 @@ ca:
     two_factor_authentication: Autenticació de dos factors
     your_apps: Les teves aplicacions
   statuses:
+    attached:
+      description: 'Adjunt: %{attached}'
+      image:
+        one: "%{count} imatge"
+        other: "%{count} imatges"
+      video:
+        one: "%{count} vídeo"
+        other: "%{count} vídeos"
+    boosted_from_html: Impulsat des de %{acct_link}
+    content_warning: 'Avís de contingut: %{warning}'
+    disallowed_hashtags:
+      one: 'conté una etiqueta no permesa: %{tags}'
+      other: 'conté les etiquetes no permeses: %{tags}'
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
@@ -657,75 +697,85 @@ ca:
     sensitive_content: Contingut sensible
   terms:
     body_html: |
-      <h2>Política de privacitat</h2>
-
+      <h2>Privacy Policy</h2>
       <h3 id="collect">Quina informació recollim?</h3>
 
-      <p>Recopilem informació teva quan et registres en aquesta instància i recopilem dades quan participes en el fòrum llegint, escrivint i avaluant el contingut aquí compartit.</p>
+      <ul>
+        <li><em>Informació bàsica del compte</em>: Si et registres en aquest servidor, se´t pot demanar que introdueixis un nom d'usuari, una adreça de correu electrònic i una contrasenya. També pots introduir informació de perfil addicional, com ara un nom de visualització i una biografia, i carregar una imatge de perfil i de capçalera. El nom d'usuari, el nom de visualització, la biografia, la imatge de perfil i la imatge de capçalera sempre apareixen públicament.</li>
+        <li><em>Publicacions, seguiment i altra informació pública</em>: La llista de persones que segueixes s'enumeren públicament i el mateix passa amb els teus seguidors. Quan envies un missatge, la data i l'hora s'emmagatzemen, així com l'aplicació que va enviar el missatge. Els missatges poden contenir multimèdia, com ara imatges i vídeos. Els toots públics i no llistats estan disponibles públicament. En quan tinguis un toot en el teu perfil, aquest també és informació pública. Les teves entrades es lliuren als teus seguidors que en alguns casos significa que es lliuren a diferents servidors en els quals s'hi emmagatzemen còpies. Quan suprimeixes publicacions, també es lliuraran als teus seguidors. L'acció d'impulsar o marcar com a favorit una publicació sempre és pública.</li>
+        <li><em>Toots directes i per a només seguidors</em>: Totes les publicacions s'emmagatzemen i processen al servidor. Els toots per a només seguidors només es lliuren als teus seguidors i als usuaris que s'esmenten en ells i els toots directes només es lliuren als usuaris esmentats. En alguns casos, significa que es lliuren a diferents servidors i s'hi emmagatzemen còpies. Fem un esforç de bona fe per limitar l'accés a aquestes publicacions només a les persones autoritzades, però és possible que altres servidors no ho facin. Per tant, és important revisar els servidors als quals pertanyen els teus seguidors. Pots canviar la opció de aprovar o rebutjar els nous seguidors manualment a la configuració.  <em>Tingues en compte que els operadors del servidor i qualsevol servidor receptor poden visualitzar aquests missatges</em> i els destinataris poden fer una captura de pantalla, copiar-los o tornar-los a compartir.  <em>No comparteixis cap informació perillosa a Mastodon.</em></li>
+        <li><em>IPs i altres metadades</em>: Quan inicies sessió registrem l'adreça IP en que l'has iniciat, així com el nom de l'aplicació o navegador. Totes les sessions registrades estan disponibles per a la teva revisió i revocació a la configuració. L'última adreça IP utilitzada s'emmagatzema durant un màxim de 12 mesos. També podrem conservar els registres que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</li>
+      </ul>
 
-      <p>En registrar-te en aquesta instància, se't pot demanar que introduexis el teu nom i l'adreça de correu electrònic. També pots visitar el nostre lloc sense registrar-te. La teva adreça de correu electrònic es verificarà mitjançant un correu electrònic que conté un enllaç únic. Si es visita aquest enllaç, sabem que controles l'adreça de correu electrònic.</p>
-
-      <p>Quan es registra i publica, registrem l'adreça IP de la qual es va originar la publicació. També podrem conservar els registres del servidor que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</p>
+      <hr class="spacer" />
 
       <h3 id="use">Per a què utilitzem la teva informació?</h3>
 
-      <p>Qualsevol de la informació que recopilem de tu pot utilitzar-se d'una de les maneres següents:</p>
+      <p>Qualsevol de la informació que recopilem de tu es pot utilitzar de la manera següent:</p>
 
       <ul>
-        <li>Per a personalitzar la teva experiència &mdash; la teva informació ens ajuda a respondre millor a les teves necessitats individuals.</li>
-        <li>Per millorar el nostre lloc &mdash; ens esforcem contínuament per millorar les nostres ofertes de llocs basats en la informació i els comentaris que rebem de tu.</li>
-        <li>Per millorar el servei al client &mdash; la teva informació ens ajuda a respondre més eficaçment a les teves sol·licituds de servei al client i a les necessitats de suport.</li>
-        <li>Per enviar correus electrònics periòdics &mdash; l'adreça electrònica que proporcionis es pot utilitzar per enviar-te informació, notificacions que sol·licitis sobre canvis en temes o en resposta al teu nom d'usuari, respondre a les consultes i/o altres sol·licituds o preguntes.</li>
+        <li>Per proporcionar la funcionalitat bàsica de Mastodon. Només pots interactuar amb el contingut d'altres persones i publicar el teu propi contingut quan hàgis iniciat la sessió. Per exemple, pots seguir altres persones per veure les publicacions combinades a la teva pròpia línia de temps personalitzada.</li>
+        <li>Per ajudar a la moderació de la comunitat, per exemple comparar la teva adreça IP amb altres conegudes per determinar l'evasió de prohibicions o altres infraccions.</li>
+        <li>L'adreça electrònica que ens proporciones pot utilitzar-se per enviar-te informació, notificacions sobre altres persones que interactuen amb el teu contingut o t'envien missatges, i per respondre a les consultes i / o altres sol·licituds o preguntes.</li>
       </ul>
 
-      <h3 id="protect">Com protegim la teva informació?</h3>
+      <hr class="spacer" />
 
-      <p>Implementem diverses mesures de seguretat per mantenir la seguretat de la teva informació personal quan introdueixes, envies o accedeixes a la teva informació personal.</p>
+      <h3 id="protect">Com protegim la teva informació</h3>
 
-      <h3 id="data-retention">Quina és la nostre política de retenció de dades?</h3>
+      <p>Implementem diverses mesures per mantenir la seguretat quan introdueixes, envies o accedeixes a la teva informació personal. Entre altres mesures, la sessió del teu navegador així com el trànsit entre les teves aplicacions i l'API estan protegides amb SSL i la teva contrasenya es codifica utilitzant un algoritme de direcció única. Pots habilitar l'autenticació de dos factors per a garantir l'accés segur al teu compte.</p>
 
-      <p>Farem un esforç de bona fe per a:</p>
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Quina és la nostra política de retenció de dades?</h3>
+
+      <p>Farem un esforç de bona fe per:</p>
 
       <ul>
-        <li>Conserva els registres de servidor que continguin l'adreça IP de totes les sol·licituds a aquest servidor no més de 90 dies.</li>
-        <li>Conserva les adreces IP associades als usuaris registrats i les seves publicacions no més de 5 anys.</li>
+        <li>Conservar els registres del servidor que continguin l'adreça IP de totes les sol·licituds que rebi, tenint em compte que aquests registres es mantenen no més de 90 dies.</li>
+        <li>Conservar les adreces IP associades als usuaris registrats no més de 12 mesos.</li>
       </ul>
 
-      <h3 id="cookies">Utilitzem galetes?</h3>
+      <p>Pots sol·licitar i descarregar un arxiu del teu contingut incloses les publicacions, els fitxers adjunts multimèdia, la imatge de perfil i la imatge de capçalera.</p>
 
-      <p>Sí. Les cookies són fitxers petits que un lloc o el proveïdor de serveis transfereix al disc dur del vostre ordinador a través del navegador web (si ho permet). Aquestes galetes permeten al lloc reconèixer el vostre navegador i, si teniu un compte registrat, associar-lo al vostre compte registrat.</p>
+      <p>Pots eliminar el teu compte de forma irreversible en qualsevol moment.</p>
 
-      <p>Utilitzem cookies per comprendre i desar les vostres preferències per a futures visites i compilar dades agregades sobre el trànsit del lloc i la interacció del lloc, de manera que podrem oferir millors experiències i eines del lloc en el futur. Podem contractar amb proveïdors de serveis de tercers per ajudar-nos a comprendre millor els visitants del nostre lloc. Aquests proveïdors de serveis no estan autoritzats a utilitzar la informació recollida en nom nostre, excepte per ajudar-nos a dur a terme i millorar el nostre negoci.</p>
+      <hr class="spacer"/>
 
-      <h3 id="disclose">Publiquem informació al exterior?</h3>
+      <h3 id="cookies">Utilitzem cookies?</h3>
 
-      <p>No venem, comercialitzem ni transmetem a tercers la vostra informació d'identificació personal. Això no inclou tercers de confiança que ens ajudin a operar el nostre lloc, a dur a terme el nostre negoci o a fer-ho, sempre que aquestes parts acceptin mantenir confidencial aquesta informació. També podem publicar la vostra informació quan creiem que l'alliberament és apropiat per complir amb la llei, fer complir les polítiques del nostre lloc o protegir els nostres drets o altres drets, propietat o seguretat. No obstant això, la informació de visitant que no sigui personalment identificable es pot proporcionar a altres parts per a la comercialització, la publicitat o altres usos.</p>
+      <p>Sí. Les cookies són petits fitxers que un lloc o el proveïdor de serveis transfereix al disc dur del teu ordinador a través del navegador web (si ho permet). Aquestes galetes permeten al lloc reconèixer el teu navegador i, si tens un compte registrat, associar-lo al teu compte registrat.</p>
 
-      <h3 id="third-party">Vincles de tercers</h3>
+      <p>Utilitzem cookies per entendre i guardar les teves preferències per a futures visites.</p>
 
-      <p>De tant en tant, segons el nostre criteri, podem incloure o oferir productes o serveis de tercers al nostre lloc. Aquests llocs de tercers tenen polítiques de privadesa separades i independents. Per tant, no tenim responsabilitat ni responsabilitat civil pel contingut i les activitats d'aquests llocs enllaçats. No obstant això, busquem protegir la integritat del nostre lloc i donem la benvinguda a qualsevol comentari sobre aquests llocs.</p>
+      <hr class="spacer" />
+
+      <h3 id="disclose">Revelem informació a terceres parts?</h3>
+
+      <p>No venem, comercialitzem ni transmetem a tercers la teva informació d'identificació personal. Això no inclou tercers de confiança que ens ajuden a operar el nostre lloc, a dur a terme el nostre servei o a servir-te, sempre que aquestes parts acceptin mantenir confidencial aquesta informació. També podem publicar la teva informació quan creiem que l'alliberament és apropiat per complir amb la llei, fer complir les polítiques del nostre lloc o protegir els nostres drets o altres drets, propietat o seguretat.</p>
+
+      <p>Els altres servidors de la teva xarxa poden descarregar contingut públic. Els teus toots públics i per a només seguidors es lliuren als servidors on resideixen els teus seguidors i els missatges directes s'envien als servidors dels destinataris, sempre que aquests seguidors o destinataris resideixin en un servidor diferent d'aquest.</p>
+
+      <p>Quan autoritzes una aplicació a utilitzar el teu compte, segons l'abast dels permisos que aprovis, pot accedir a la teva informació de perfil pública, a la teva llista de seguits, als teus seguidors, a les teves llistes, a totes les teves publicacions i als teus favorits. Les aplicacions mai no poden accedir a la teva adreça de correu electrònic o contrasenya.</p>
+
+      <hr class="spacer" />
 
       <h3 id="coppa">Compliment de la Llei de protecció de la privacitat en línia dels nens</h3>
 
-      <p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i teniu menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no feu servir aquest lloc.</p>
+      <p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i tens menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no utilitzis aquest lloc.</p>
 
-      <h3 id="online">Només la política de privacitat en línia</h3>
-
-      <p>Aquesta política de privacitat en línia només s'aplica a la informació recopilada a través del nostre lloc i no a la informació recopilada fora de línia.</p>
-
-      <h3 id="consent">El vostre consentiment</h3>
-
-      <p>En utilitzar el nostre lloc, accepta la política de privadesa del nostre lloc web.</p>
+      <hr class="spacer" />
 
       <h3 id="changes">Canvis a la nostra política de privacitat</h3>
 
       <p>Si decidim canviar la nostra política de privadesa, publicarem aquests canvis en aquesta pàgina.</p>
 
-      <p>Aquest document és CC-BY-SA. Es va actualitzar per última vegada el 31 de maig de 2013.</p>
+      <p> Aquest document és CC-BY-SA. Actualitzat per darrera vegada el 7 de Març del 2018.</p>
 
-      <p>Originalment adaptat a la <a href="https://github.com/discourse/discourse">política de privadesa del Discurs</a>.</p>
+      <p>Originalment adaptat des del <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
+    contrast: Alt contrast
     default: Mastodont
   time:
     formats:
@@ -772,5 +822,6 @@ ca:
   users:
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
+    otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'

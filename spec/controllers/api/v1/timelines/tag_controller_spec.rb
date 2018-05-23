@@ -7,7 +7,7 @@ describe Api::V1::Timelines::TagController do
 
   let(:user) { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
 
-  context 'with authoraized' do 
+  context 'with authoraized' do
     before do
       allow(controller).to receive(:doorkeeper_token) { token }
     end
@@ -23,7 +23,7 @@ describe Api::V1::Timelines::TagController do
 
         it 'returns http success' do
           get :show, params: { id: 'test' }
-          expect(response).to have_http_status(:success)
+          expect(response).to have_http_status(200)
           expect(response.headers['Link'].links.size).to eq(2)
           expect(JSON.parse(response.body).length).to eq(2)
         end
@@ -36,7 +36,7 @@ describe Api::V1::Timelines::TagController do
       describe 'GET #show' do
         it 'returns http success' do
           get :show, params: { id: 'test' }
-          expect(response).to have_http_status(:success)
+          expect(response).to have_http_status(200)
           expect(response.headers['Link']).to be_nil
           expect(JSON.parse(response.body).length).to eq(0)
         end
@@ -44,7 +44,7 @@ describe Api::V1::Timelines::TagController do
     end
   end
 
-  context 'without authoraized' do 
+  context 'without authoraized' do
     context 'with a user context' do
       describe 'GET #show' do
         before do
@@ -54,7 +54,7 @@ describe Api::V1::Timelines::TagController do
 
         it 'returns http success' do
           get :show, params: { id: 'test' }
-          expect(response).to have_http_status(:success)
+          expect(response).to have_http_status(200)
           expect(response.headers['Link'].links.size).to eq(2)
           expect(JSON.parse(response.body).length).to eq(1)
         end
@@ -65,7 +65,7 @@ describe Api::V1::Timelines::TagController do
       describe 'GET #show' do
         it 'returns http success' do
           get :show, params: { id: 'test' }
-          expect(response).to have_http_status(:success)
+          expect(response).to have_http_status(200)
           expect(response.headers['Link']).to be_nil
           expect(JSON.parse(response.body).length).to eq(0)
         end

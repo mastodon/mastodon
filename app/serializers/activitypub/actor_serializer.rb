@@ -10,6 +10,9 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
+  has_many :virtual_tags, key: :tag
+  has_many :virtual_attachments, key: :attachment
+
   attribute :moved_to, if: :moved?
 
   class EndpointsSerializer < ActiveModel::Serializer
@@ -34,7 +37,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def type
-    'Person'
+    object.bot? ? 'Service' : 'Person'
   end
 
   def following
@@ -101,7 +104,30 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
     object.locked
   end
 
+  def virtual_tags
+    object.emojis
+  end
+
+  def virtual_attachments
+    object.fields
+  end
+
   def moved_to
     ActivityPub::TagManager.instance.uri_for(object.moved_to_account)
+  end
+
+  class CustomEmojiSerializer < ActivityPub::EmojiSerializer
+  end
+
+  class Account::FieldSerializer < ActiveModel::Serializer
+    attributes :type, :name, :value
+
+    def type
+      'PropertyValue'
+    end
+
+    def value
+      Formatter.instance.format_field(object.account, object.value)
+    end
   end
 end
