@@ -38,7 +38,7 @@ module Mastodon
 
     # specify git tag or commit hash here
     def source_tag
-      'foresdon-v2.3.3'
+      'foresdon-v2.4.0'
     end
 
     def source_url
