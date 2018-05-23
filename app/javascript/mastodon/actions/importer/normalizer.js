@@ -68,8 +68,9 @@ export function normalizeStatus(status, normalOldStatus) {
         return obj;
       }, {});
 
+      const quote_account_emojiMap = makeEmojiMap(status.quote.account);
       const displayName = normalStatus.quote.account.display_name.length === 0 ? normalStatus.quote.account.username : normalStatus.quote.account.display_name;
-      normalStatus.quote.account.display_name_html = emojify(escapeTextContentForBrowser(displayName));
+      normalStatus.quote.account.display_name_html = emojify(escapeTextContentForBrowser(displayName), quote_account_emojiMap);
       normalStatus.quote.search_index = domParser.parseFromString(quote_searchContent, 'text/html').documentElement.textContent;
       let docElem = domParser.parseFromString(normalStatus.quote.content, 'text/html').documentElement;
       Array.from(docElem.querySelectorAll('span.invisible'), span => span.remove());
