@@ -7,7 +7,6 @@ import {
 import {
   COMPOSE_MENTION,
   COMPOSE_REPLY,
-  COMPOSE_QUOTE,
   COMPOSE_DIRECT,
   COMPOSE_QUOTE,
 } from '../actions/compose';
