@@ -9,7 +9,7 @@ class InvitesController < ApplicationController
   before_action :set_pack
 
   def index
-    authorize :invite, :index?
+    authorize :invite, :create?
 
     @invites = invites
     @invite  = Invite.new(expires_in: 1.day.to_i)
