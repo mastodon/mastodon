@@ -13,5 +13,5 @@
           = l invite.expires_at
   %td= table_link_to 'link', public_invite_url(invite_code: invite.code), public_invite_url(invite_code: invite.code)
   %td
-    - if invite.expired? && policy(invite).destroy?
+    - if !invite.expired? && policy(invite).destroy?
       = table_link_to 'times', t('invites.delete'), invite_path(invite), method: :delete

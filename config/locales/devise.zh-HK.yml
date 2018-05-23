@@ -17,11 +17,32 @@ zh-HK:
       unconfirmed: 你必須先確認電郵地址，繼續使用。
     mailer:
       confirmation_instructions:
+        action: 驗證電子郵件地址
+        explanation: 你在 %{host} 上使用這個電子郵件地址建立了一個帳戶。只需點擊下面的連結，即可啟用帳戶。如果你並沒有建立過帳戶，請忽略此郵件。
+        extra_html: 請記得閱讀本服務站的<a href="%{terms_path}">相關規定</a>和<a href="%{policy_path}">使用條款</a>。
         subject: 'Mastodon: 確認電郵地址'
+        title: 驗證電子郵件地址
+      email_changed:
+        explanation: 你的帳戶的電子郵件地址即將變更為：
+        extra: 如果你沒有請求更改你的電子郵件地址，則他人很有可能已經入侵你的帳戶。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
+        subject: Mastodon：電子郵件地址已被更改
+        title: 新電子郵件地址
       password_change:
+        explanation: 你的帳戶的密碼已被更改。
+        extra: 如果你沒有請求更改你的密碼，則他人很有可能已經入侵你的帳戶。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
         subject: 'Mastodon: 更改密碼'
+        title: 密碼已被重設
+      reconfirmation_instructions:
+        explanation: 點擊下面的連結來確認你的新電子郵件地址。
+        extra: 如果你沒有請求本次變更，請忽略此郵件。 Mastodon 帳戶的電子郵件地址只有在你點擊上面的連結後才會更改。
+        subject: Mastodon：確認 %{instance} 電子郵件地址
+        title: 驗證電子郵件地址
       reset_password_instructions:
+        action: 更改密碼
+        explanation: 點擊下面的連結來更改帳戶的密碼。
+        extra: 如果你沒有請求本次變更，請忽略此郵件。你的密碼只有在你點擊上面的連結並輸入新密碼後才會更改。
         subject: 'Mastodon: 重設密碼'
+        title: 重設密碼
       unlock_instructions:
         subject: 'Mastodon: 解除用戶鎖定'
     omniauth_callbacks:
@@ -57,5 +78,5 @@ zh-HK:
       not_found: 找不到
       not_locked: 並未被鎖定
       not_saved:
-        one: 1 個錯誤令 %{resource} 被法被儲存︰
-        other: "%{count} 個錯誤令 %{resource} 被法被儲存︰"
+        one: 1 個錯誤令 %{resource} 無法被儲存︰
+        other: "%{count} 個錯誤令 %{resource} 無法被儲存︰"

@@ -6,7 +6,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const sharedConfig = require('./shared.js');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const OfflinePlugin = require('offline-plugin');
-const { publicPath } = require('./configuration.js');
+const { env, publicPath } = require('./configuration.js');
 const path = require('path');
 
 let compressionAlgorithm;
@@ -90,7 +90,7 @@ module.exports = merge(sharedConfig, {
         '**/*.woff',
       ],
       ServiceWorker: {
-        entry: path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'),
+        entry: `imports-loader?process.env=>${encodeURIComponent(JSON.stringify(env))}!${encodeURI(path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'))}`,
         cacheName: 'mastodon',
         output: '../assets/sw.js',
         publicPath: '/sw.js',

@@ -3,13 +3,13 @@
 #
 # Table name: statuses
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint(8)        not null, primary key
 #  uri                    :string
 #  text                   :text             default(""), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  in_reply_to_id         :integer
-#  reblog_of_id           :integer
+#  in_reply_to_id         :bigint(8)
+#  reblog_of_id           :bigint(8)
 #  url                    :string
 #  sensitive              :boolean          default(FALSE), not null
 #  visibility             :integer          default("public"), not null
@@ -18,11 +18,11 @@
 #  favourites_count       :integer          default(0), not null
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
-#  conversation_id        :integer
+#  conversation_id        :bigint(8)
 #  local                  :boolean
-#  account_id             :integer          not null
-#  application_id         :integer
-#  in_reply_to_account_id :integer
+#  account_id             :bigint(8)        not null
+#  application_id         :bigint(8)
+#  in_reply_to_account_id :bigint(8)
 #
 
 class Status < ApplicationRecord
@@ -30,6 +30,10 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
   include StatusThreadingConcern
+
+  # If `override_timestamps` is set at creation time, Snowflake ID creation
+  # will be based on current time instead of `created_at`
+  attr_accessor :override_timestamps
 
   update_index('statuses#status', :proper) if Chewy.enabled?
 
@@ -59,6 +63,7 @@ class Status < ApplicationRecord
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
   validates_with StatusLengthValidator
+  validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
 
   default_scope { recent }
@@ -159,7 +164,7 @@ class Status < ApplicationRecord
   end
 
   def emojis
-    CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
+    @emojis ||= CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
   end
 
   after_create_commit :store_uri, if: :local?
@@ -181,6 +186,14 @@ class Status < ApplicationRecord
 
     def as_home_timeline(account)
       where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
+    end
+
+    def as_direct_timeline(account)
+      query = joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
+              .where("mentions.account_id = #{account.id} OR statuses.account_id = #{account.id}")
+              .where(visibility: [:direct])
+
+      apply_timeline_filters(query, account, false)
     end
 
     def as_public_timeline(account = nil, local_only = false)
@@ -322,7 +335,7 @@ class Status < ApplicationRecord
       self.in_reply_to_account_id = carried_over_reply_to_account_id
       self.conversation_id        = thread.conversation_id if conversation_id.nil?
     elsif conversation_id.nil?
-      create_conversation
+      self.conversation = Conversation.new
     end
   end
 

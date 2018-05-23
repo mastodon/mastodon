@@ -36,6 +36,7 @@ class BatchedRemoveStatusService < BaseService
     # Cannot be batched
     statuses.each do |status|
       unpush_from_public_timelines(status)
+      unpush_from_direct_timelines(status) if status.direct_visibility?
       batch_salmon_slaps(status) if status.local?
     end
 
@@ -80,10 +81,25 @@ class BatchedRemoveStatusService < BaseService
       redis.publish('timeline:public', payload)
       redis.publish('timeline:public:local', payload) if status.local?
 
+      if status.media_attachments.any?
+        redis.publish('timeline:public:media', payload)
+        redis.publish('timeline:public:local:media', payload) if status.local?
+      end
+
       @tags[status.id].each do |hashtag|
         redis.publish("timeline:hashtag:#{hashtag}", payload)
         redis.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
       end
+    end
+  end
+
+  def unpush_from_direct_timelines(status)
+    payload = @json_payloads[status.id]
+    redis.pipelined do
+      @mentions[status.id].each do |mention|
+        redis.publish("timeline:direct:#{mention.account.id}", payload) if mention.account.local?
+      end
+      redis.publish("timeline:direct:#{status.account.id}", payload) if status.account.local?
     end
   end
 

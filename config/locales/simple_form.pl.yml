@@ -4,12 +4,14 @@ pl:
     hints:
       defaults:
         avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 400x400px
+        bot: Informuje użytkowników, że konto nie jest prowadzone przez człowieka
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
         display_name:
           few: Pozostały <span class="name-counter">%{count}</span> znaki.
           many: Pozostało <span class="name-counter">%{count}</span> znaków
           one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
+        fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 700x335px
         locked: Musisz akceptować prośby o śledzenie
         note:
@@ -17,17 +19,23 @@ pl:
           many: Pozostało <span class="name-counter">%{count}</span> znaków
           one: Pozostał <span class="name-counter">1</span> znak
           other: Pozostało <span class="name-counter">%{count}</span> znaków
+        setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
       imports:
         data: Plik CSV wyeksportowany z innej instancji Mastodona
       sessions:
-        otp: Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych.
+        otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
       user:
         filtered_languages: Wpisy w wybranych językach nie będą wyświetlać się na publicznych osiach czasu
     labels:
+      account:
+        fields:
+          name: Nazwa
+          value: Zawartość
       defaults:
         avatar: Awatar
+        bot: To konto jest prowadzone przez bota
         confirm_new_password: Potwierdź nowe hasło
         confirm_password: Potwierdź hasło
         current_password: Obecne hasło
@@ -35,6 +43,7 @@ pl:
         display_name: Widoczna nazwa
         email: Adres e-mail
         expires_in: Wygaśnie po
+        fields: Metadane profilu
         filtered_languages: Filtrowane języki
         header: Nagłówek
         locale: Język
@@ -50,13 +59,14 @@ pl:
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
         setting_display_sensitive_media: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
+        setting_hide_network: Ukryj swoją sieć
         setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_reduce_motion: Ogranicz ruch w animacjach
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
         setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem śledzenia
         severity: Priorytet
-        type: Typ importu
+        type: Importowane dane
         username: Nazwa użytkownika
         username_or_email: Nazwa użytkownika lub adres e-mail
       interactions:

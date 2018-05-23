@@ -24,7 +24,7 @@ describe Oauth::AuthorizedApplicationsController do
 
       it 'returns http success' do
         subject
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       include_examples 'stores location for user'
@@ -37,6 +37,26 @@ describe Oauth::AuthorizedApplicationsController do
       end
 
       include_examples 'stores location for user'
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let!(:user) { Fabricate(:user) }
+    let!(:application) { Fabricate(:application) }
+    let!(:access_token) { Fabricate(:accessible_access_token, application: application, resource_owner_id: user.id) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_token) }
+
+    before do
+      sign_in user, scope: :user
+      post :destroy, params: { id: application.id }
+    end
+
+    it 'revokes access tokens for the application' do
+      expect(Doorkeeper::AccessToken.where(application: application).first.revoked_at).to_not be_nil
+    end
+
+    it 'removes subscriptions for the application\'s access tokens' do
+      expect(Web::PushSubscription.where(user: user).count).to eq 0
     end
   end
 end

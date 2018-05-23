@@ -20,6 +20,7 @@ defaults: &defaults
   timeline_preview: true
   show_staff_badge: true
   default_sensitive: false
+  hide_network: false
   unfollow_modal: false
   boost_modal: false
   delete_modal: true
@@ -47,6 +48,7 @@ defaults: &defaults
     - root
     - webmaster
     - administrator
+  disallowed_hashtags: # space separated string or list of hashtags without the hash
   bootstrap_timeline_accounts: ''
   activity_api_enabled: true
   peers_api_enabled: true

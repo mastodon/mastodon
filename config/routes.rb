@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   end
 
   use_doorkeeper do
-    controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
+    controllers authorizations: 'oauth/authorizations',
+                authorized_applications: 'oauth/authorized_applications',
+                tokens: 'oauth/tokens'
   end
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
@@ -116,6 +118,7 @@ Rails.application.routes.draw do
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
   # Remote follow
+  resource :remote_unfollow, only: [:create]
   resource :authorize_follow, only: [:show, :create]
   resource :share, only: [:show, :create]
 
@@ -134,8 +137,10 @@ Rails.application.routes.draw do
     end
 
     resources :reports, only: [:index, :show, :update] do
-      resources :reported_statuses, only: [:create, :update, :destroy]
+      resources :reported_statuses, only: [:create]
     end
+
+    resources :report_notes, only: [:create, :destroy]
 
     resources :accounts, only: [:index, :show] do
       member do
@@ -144,14 +149,21 @@ Rails.application.routes.draw do
         post :enable
         post :disable
         post :redownload
+        post :remove_avatar
         post :memorialize
       end
 
+      resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
-      resource :confirmation, only: [:create]
       resources :statuses, only: [:index, :create, :update, :destroy]
+
+      resource :confirmation, only: [:create] do
+        collection do
+          post :resend
+        end
+      end
 
       resource :role do
         member do
@@ -224,6 +236,7 @@ Rails.application.routes.draw do
       end
 
       namespace :timelines do
+        resource :direct, only: :show, controller: :direct
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
@@ -294,6 +307,10 @@ Rails.application.routes.draw do
 
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
+      end
+
+      namespace :push do
+        resource :subscription, only: [:create, :show, :update, :destroy]
       end
     end
 

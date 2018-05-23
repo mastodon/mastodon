@@ -26,6 +26,9 @@ class OStatus::AtomSerializer
     append_element(author, 'link', nil, rel: :alternate, type: 'text/html', href: ::TagManager.instance.url_for(account))
     append_element(author, 'link', nil, rel: :avatar, type: account.avatar_content_type, 'media:width': 120, 'media:height': 120, href: full_asset_url(account.avatar.url(:original))) if account.avatar?
     append_element(author, 'link', nil, rel: :header, type: account.header_content_type, 'media:width': 700, 'media:height': 335, href: full_asset_url(account.header.url(:original))) if account.header?
+    account.emojis.each do |emoji|
+      append_element(author, 'link', nil, rel: :emoji, href: full_asset_url(emoji.image.url), name: emoji.shortcode)
+    end
     append_element(author, 'poco:preferredUsername', account.username)
     append_element(author, 'poco:displayName', account.display_name) if account.display_name?
     append_element(author, 'poco:note', account.local? ? account.note : strip_tags(account.note)) if account.note?
@@ -361,12 +364,11 @@ class OStatus::AtomSerializer
       append_element(entry, 'category', nil, term: tag.name)
     end
 
-    append_element(entry, 'category', nil, term: 'nsfw') if status.sensitive?
-
     status.media_attachments.each do |media|
       append_element(entry, 'link', nil, rel: :enclosure, type: media.file_content_type, length: media.file_file_size, href: full_asset_url(media.file.url(:original, false)))
     end
 
+    append_element(entry, 'category', nil, term: 'nsfw') if status.sensitive? && status.media_attachments.any?
     append_element(entry, 'mastodon:scope', status.visibility)
 
     status.emojis.each do |emoji|

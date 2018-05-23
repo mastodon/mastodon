@@ -29,10 +29,12 @@ id:
       are_you_sure: Anda yakin?
       confirm: Konfirmasi
       confirmed: Dikonfirmasi
+      confirming: Mengkonfirmasi
       display_name: Nama
       domain: Domain
       edit: Ubah
       email: E-mail
+      email_status: Status Email
       feed_url: URL Feed
       followers: Pengikut
       follows: Mengikut
@@ -58,6 +60,10 @@ id:
       profile_url: URL profil
       public: Publik
       push_subscription_expires: Langganan PuSH telah kadaluarsa
+      resend_confirmation:
+        already_confirmed: Pengguna ini sudah dikonfirmasi
+        send: Kirim ulang email konfirmasi
+        success: Email konfirmasi berhasil dikirim!
       reset_password: Reset kata sandi
       salmon_url: URL Salmon
       show:
@@ -106,9 +112,7 @@ id:
       title: Server yang diketahui
     reports:
       comment:
-        label: Komentar
         none: Tidak ada
-      delete: Hapus
       id: ID
       mark_as_resolved: Tandai telah diseleseikan
       report: 'Laporkan #%{id}'

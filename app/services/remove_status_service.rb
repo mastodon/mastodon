@@ -20,6 +20,8 @@ class RemoveStatusService < BaseService
     remove_reblogs
     remove_from_hashtags
     remove_from_public
+    remove_from_media if status.media_attachments.any?
+    remove_from_direct if status.direct_visibility?
 
     @status.destroy!
 
@@ -128,6 +130,20 @@ class RemoveStatusService < BaseService
 
     Redis.current.publish('timeline:public', @payload)
     Redis.current.publish('timeline:public:local', @payload) if @status.local?
+  end
+
+  def remove_from_media
+    return unless @status.public_visibility?
+
+    Redis.current.publish('timeline:public:media', @payload)
+    Redis.current.publish('timeline:public:local:media', @payload) if @status.local?
+  end
+
+  def remove_from_direct
+    @mentions.each do |mention|
+      Redis.current.publish("timeline:direct:#{mention.account.id}", @payload) if mention.account.local?
+    end
+    Redis.current.publish("timeline:direct:#{@account.id}", @payload) if @account.local?
   end
 
   def redis

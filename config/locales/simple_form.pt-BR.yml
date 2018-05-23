@@ -4,26 +4,34 @@ pt-BR:
     hints:
       defaults:
         avatar: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 400x400px
+        bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
         digest: Enviado após um longo período de inatividade com um resumo das menções que você recebeu em sua ausência
         display_name:
           one: <span class="name-counter">1</span> caracter restante
           other: <span class="name-counter">%{count}</span> caracteres restantes
+        fields: Você pode ter até 4 itens exibidos em forma de tabela no seu perfil
         header: PNG, GIF or JPG. Arquivos de até 2MB. Eles serão diminuídos para 700x335px
         locked: Requer aprovação manual de seguidores
         note:
           one: <span class="note-counter">1</span> caracter restante
           other: <span class="note-counter">%{count}</span> caracteres restantes
+        setting_hide_network: Quem você segue e quem segue você não aparecerá no seu perfil
         setting_noindex: Afeta seu perfil público e as páginas de suas postagens
         setting_theme: Afeta a aparência do Mastodon quando em sua conta em qualquer aparelho.
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
       sessions:
-        otp: Insira o código de autenticação do seu celular ou use um dos códigos de recuperação.
+        otp: 'Insira o código de autenticação gerado pelo app no seu celular ou use um dos códigos de recuperação:'
       user:
         filtered_languages: Selecione os idiomas que devem ser removidos de suas timelines públicas
     labels:
+      account:
+        fields:
+          name: Rótulo
+          value: Conteúdo
       defaults:
         avatar: Avatar
+        bot: Essa é a conta de um robô
         confirm_new_password: Confirmar nova senha
         confirm_password: Confirmar senha
         current_password: Senha atual
@@ -31,6 +39,7 @@ pt-BR:
         display_name: Nome de exibição
         email: Endereço de e-mail
         expires_in: Expira em
+        fields: Metadados do perfil
         filtered_languages: Idiomas filtrados
         header: Cabeçalho
         locale: Idioma
@@ -46,6 +55,7 @@ pt-BR:
         setting_default_sensitive: Sempre marcar mídia como sensível
         setting_delete_modal: Mostrar diálogo de confirmação antes de deletar uma postagem
         setting_display_sensitive_media: Sempre mostrar mídia marcada como sensível
+        setting_hide_network: Esconder suas conexões
         setting_noindex: Não quero ser indexado por mecanismos de busca
         setting_reduce_motion: Reduz movimento em animações
         setting_system_font_ui: Usar a fonte padrão de seu sistema

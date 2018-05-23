@@ -52,9 +52,7 @@ pt:
     unfollow: Deixar de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
       create: Criar
-      created_at: Data
       created_msg: Nota de moderação criada com sucesso!
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
@@ -63,6 +61,7 @@ pt:
       by_domain: Domínio
       confirm: Confirme
       confirmed: Confirmado
+      confirming: Confirmer
       demote: Rebaixar
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
@@ -71,6 +70,7 @@ pt:
       domain: Domínio
       edit: Editar
       email: E-mail
+      email_status: État de la messagerie
       enable: Ativar
       enabled: Ativado
       feed_url: URL do Feed
@@ -108,6 +108,10 @@ pt:
       public: Público
       push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar avatar
+      resend_confirmation:
+        already_confirmed: Cet utilisateur est déjà confirmé
+        send: Renvoyer un courriel de confirmation
+        success: Email de confirmation envoyé avec succès!
       reset: Restaurar
       reset_password: Reset palavra-passe
       resubscribe: Reinscrever
@@ -243,14 +247,9 @@ pt:
       action_taken_by: Ação tomada por
       are_you_sure: Tens a certeza?
       comment:
-        label: Comentário
         none: Nenhum
-      delete: Eliminar
       id: ID
       mark_as_resolved: Marcar como resolvido
-      nsfw:
-        'false': Mostrar imagens/vídeos
-        'true': Esconder imagens/vídeos
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
       reported_account: Conta denunciada
@@ -315,11 +314,8 @@ pt:
         delete: Eliminar
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
-      execute: Executar
       failed_to_execute: Falhou ao executar
       media:
-        hide: Esconder média
-        show: Mostrar média
         title: Média
       no_media: Não há média
       title: Estado das contas
@@ -538,20 +534,6 @@ pt:
     other: Outro
     publishing: Publicação
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} adicionou o teu post aos favoritos"
-    follow:
-      title: "%{name} começou a seguir-te"
-    group:
-      title: "%{count} notificações"
-    mention:
-      action_boost: Partilhar
-      action_expand: Mostrar mais
-      action_favourite: Adicionar aos favoritos
-      title: "%{name} mencionou-te"
-    reblog:
-      title: "%{name} partilhou o teu post"
   remote_follow:
     acct: Entre seu usuário@domínio do qual quer seguir
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
@@ -635,74 +617,6 @@ pt:
     reblogged: boosted
     sensitive_content: Conteúdo sensível
   terms:
-    body_html: |
-      <h2>Política de privacidade</h2>
-
-      <h3 id="collect">Quais são as informações que recolhemos?</h3>
-
-      <p>Recolhemos informações quando te registas no nosso site e capturamos dados quando participas do fórum lendo, escrevendo e analisando o conteúdo aqui partilhado.</p>
-
-      <p>Quando te registas no nosso site, será requisitado que você ceda seu nome e endereço de e-mail. Você pode, porém, visitar nosso site sem se cadastrar. Seu endereço de e-mail será verificado por uma mensagem contendo um link único. Se este link for visitado, saberemos que você controla este endereço de e-mail.</p>
-
-      <p>Quando registrado e postando, nós gravamos o endereço de IP de onde a postagem se originou. Nós também podemos reter logs de serviores que incluem o endereço de IP em cada requisição para o nosso servidor.</p>
-
-      <h3 id="use">Para que usamos essas informações?</h3>
-
-      <p>Quaisquer das informações que coletamos podem ser usadas das seguintes formas:</p>
-
-      <ul>
-        <li>Para personalizar a sua experiência &mdash; suas informações nos ajudam a nos adequar melhor às suas necessidades individuais.</li>
-        <li>Para melhorar nosso site &mdash; nós continuamente nos esforçamos para aprimorar nosso site baseados na informação e no feedback que recebemos de você.</li>
-        <li>Para aprimorar o serviço ao consumidor &mdash; suas informações nos ajudam a responder efetivamente às suas requisições e solicitações por suporte.</li>
-        <li>Para mandar e-mails periódicos &mdash; O endereço de e-mail que você forneceu pode ser usado para lhe enviar informações, notificações que você requisitar sobre mudanças a determinados tópicos ou menções ao seu nome de usuário, responder requisições e/ou solicitações e perguntas.</li>
-      </ul>
-
-      <h3 id="protect">Como protegemos as suas informações?</h3>
-
-      <p>Nós implementamos uma variedade de medidas de segurança para manter a segurança de suas informações pessoais quando você insere, submete ou acessa as suas informações pessoais.</p>
-
-      <h3 id="data-retention">Qual a sua política de retenção de dados?</h3>
-
-      <p>Faremos esforços de boa fé para:</p>
-
-      <ul>
-        <li>Reter logs de servidor contendo o endereço IP de todas as requisições a este servidor por não mais que 90 dias.</li>
-        <li>Reter os endereços IP associados a usuários cadastrados e suas postagens por não mais que 5 anos.</li>
-      </ul>
-
-      <h3 id="cookies">Nós usamos cookies?</h3>
-
-      <p>Sim. Cookies são pequenos arquivos que um site ou o provedor de serviço transfere para o armazenamento interno de seu computador através de seu navegador (se você permitir). Estes cookies habilitam o site para reconhecer o seu navegador e, se você ter um cadastro, associá-lo a esta conta.</p>
-
-      <p>Nós usamos cookies para entender e salvar as suas preferências para futuras visitas e compilar dados agregados sobre o tráfego do site para que possamos oferecer melhores experiências e ferramentas no futuro. Nós podemos contratar serviços de terceiros para nos auxiliar a entender melhor nossos visitantes. Estes provedores de serviço não são autoriza usar as informações coletadas em nosso nome exceto para nos ajudar a conduzir e aprimorar nosso funcionamento.</p>
-
-      <h3 id="disclose">Nós revelamos informações para terceiros?</h3>
-
-      <p>Nós não vendemos, tocamos ou transferimos para terceiros informações pessoais que te identificam. Isso não inclui partes em que confiamos para nos ajudar a operar nosso site, conduzir nosso funcionamento ou servir você desde que estes terceiros concordem em manter essas informações em segredo. Nós também podemos prover as suas informações para obedecer ordens judiciais, reforçar nossas políticas ou proteger nossos direitos ou de outrem, propriedades ou segurança. Entretanto, informações pessoais não identificáveis podem ser enviadas para outras partes para marketing, propaganda e outros usos.</p>
-
-      <h3 id="third-party">Links de terceiros</h3>
-
-      <p>Ocasionalmente, à nossa discrição, podemos icluir ou oferecer produtos ou serviços de terceiros em nosso site. Estes terceiros têm políticas de privacidade separadas e independentes. Nós, portanto, não nos responsabilizamos pelo conteúdo e atividades destes sites de terceiros. Occasionally, at our discretion, we may include or offer third party products or services on our site. Não obstante, nós procuramos proteger a integridade de nosso site e todo feedback sobre estes sites de terceiros é bem-vindo.</p>
-
-      <h3 id="coppa">Obediência ao Ato de Proteção da Privacidade Online de Crianças</h3>
-
-      <p>Nosso site, produtos e serviços são todos direcionados a pessoas que têm pelo menos 13 anos de idade. Se este servidor estiver nos EUA, e você tiver menos de 13 anos, pelos requerimentos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não use este site.</p>
-
-      <h3 id="online">Política de Apenas Privacidade Online</h3>
-
-      <p>Esta política de privacidade online se aplica somente a informações coletadas por nosso site e não a informações coletadas offline.</p>
-
-      <h3 id="consent">Seu Consentimento</h3>
-
-      <p>Usando o nosso site, você concorda com a nossa política de privacidade.</p>
-
-      <h3 id="changes">Mudanças em nossa Política de Privacidade</h3>
-
-      <p>Se decidirmos mudar a nossa política de privacidade, publicaremos as mudanças nesta página.</p>
-
-      <p>Este documento é CC-BY-SA. A sua última atualização aconteceu em 31 de maio de 2013.</p>
-
-      <p>Originalmente adaptado da <a href="https://github.com/discourse/discourse">política de privacidade do Discourse</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
     default: Mastodon

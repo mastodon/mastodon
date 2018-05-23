@@ -4,6 +4,7 @@ en:
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
+    administered_by: 'Administered by:'
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
     contact: Contact
     contact_missing: Not set
@@ -39,6 +40,7 @@ en:
     following: Following
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
+    network_hidden: This information is not available
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
@@ -48,21 +50,29 @@ en:
     reserved_username: The username is reserved
     roles:
       admin: Admin
+      bot: Bot
       moderator: Mod
     unfollow: Unfollow
   admin:
     account_moderation_notes:
-      account: Moderator
-      create: Create
-      created_at: Date
+      create: Leave note
       created_msg: Moderation note successfully created!
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
       are_you_sure: Are you sure?
+      avatar: Avatar
       by_domain: Domain
+      change_email:
+        changed_msg: Account email successfully changed!
+        current_email: Current Email
+        label: Change Email
+        new_email: New Email
+        submit: Change Email
+        title: Change Email for %{username}
       confirm: Confirm
       confirmed: Confirmed
+      confirming: Confirming
       demote: Demote
       disable: Disable
       disable_two_factor_authentication: Disable 2FA
@@ -71,6 +81,7 @@ en:
       domain: Domain
       edit: Edit
       email: E-mail
+      email_status: E-mail Status
       enable: Enable
       enabled: Enabled
       feed_url: Feed URL
@@ -108,6 +119,11 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh avatar
+      remove_avatar: Remove avatar
+      resend_confirmation:
+        already_confirmed: This user is already confirmed
+        send: Resend confirmation email
+        success: Confirmation email successfully sent!
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
@@ -128,6 +144,7 @@ en:
       statuses: Statuses
       subscribe: Subscribe
       title: Accounts
+      unconfirmed_email: Unconfirmed E-mail
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
       unsubscribe: Unsubscribe
@@ -135,6 +152,8 @@ en:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} assigned report %{target} to themselves"
+        change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
@@ -150,10 +169,13 @@ en:
         enable_user: "%{name} enabled login for user %{target}"
         memorialize_account: "%{name} turned %{target}'s account into a memoriam page"
         promote_user: "%{name} promoted user %{target}"
+        remove_avatar_user: "%{name} removed %{target}'s avatar"
+        reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} reset password of user %{target}"
-        resolve_report: "%{name} dismissed report %{target}"
+        resolve_report: "%{name} resolved report %{target}"
         silence_account: "%{name} silenced %{target}'s account"
         suspend_account: "%{name} suspended %{target}'s account"
+        unassigned_report: "%{name} unassigned report %{target}"
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_custom_emoji: "%{name} updated emoji %{target}"
@@ -239,29 +261,44 @@ en:
         expired: Expired
         title: Filter
       title: Invites
+    report_notes:
+      created_msg: Report note successfully created!
+      destroyed_msg: Report note successfully deleted!
     reports:
+      account:
+        note: note
+        report: report
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
+      assign_to_self: Assign to me
+      assigned: Assigned moderator
       comment:
-        label: Comment
         none: None
-      delete: Delete
+      created_at: Reported
       id: ID
       mark_as_resolved: Mark as resolved
-      nsfw:
-        'false': Unhide media attachments
-        'true': Hide media attachments
+      mark_as_unresolved: Mark as unresolved
+      notes:
+        create: Add note
+        create_and_resolve: Resolve with note
+        create_and_unresolve: Reopen with note
+        delete: Delete
+        placeholder: Describe what actions have been taken, or any other related updates...
+      reopen: Reopen report
       report: 'Report #%{id}'
       report_contents: Contents
       reported_account: Reported account
       reported_by: Reported by
       resolved: Resolved
+      resolved_msg: Report successfully resolved!
       silence_account: Silence account
       status: Status
       suspend_account: Suspend account
       target: Target
       title: Reports
+      unassign: Unassign
       unresolved: Unresolved
+      updated_at: Updated
       view: View
     settings:
       activity_api_enabled:
@@ -319,13 +356,10 @@ en:
       back_to_account: Back to account page
       batch:
         delete: Delete
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Execute
+        nsfw_off: Mark as not sensitive
+        nsfw_on: Mark as sensitive
       failed_to_execute: Failed to execute
       media:
-        hide: Hide media
-        show: Show media
         title: Media
       no_media: No media
       title: Account statuses
@@ -341,6 +375,7 @@ en:
   admin_mailer:
     new_report:
       body: "%{reporter} has reported %{target}"
+      body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Change e-mail preferences
@@ -382,6 +417,7 @@ en:
     security: Security
     set_new_password: Set new password
   authorize_follow:
+    already_following: You are already following this account
     error: Unfortunately, there was an error looking up the remote account
     follow: Follow
     follow_request: 'You have sent a follow request to:'
@@ -429,7 +465,7 @@ en:
     archive_takeout:
       date: Date
       download: Download your archive
-      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in ActivityPub format, readable by any compliant software.
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
       in_progress: Compiling your archive...
       request: Request your archive
       size: Size
@@ -474,6 +510,7 @@ en:
       '21600': 6 hours
       '3600': 1 hour
       '43200': 12 hours
+      '604800': 1 week
       '86400': 1 day
     expires_in_prompt: Never
     generate: Generate
@@ -513,7 +550,7 @@ en:
       subject:
         one: "1 new notification since your last visit \U0001F418"
         other: "%{count} new notifications since your last visit \U0001F418"
-      title: In your absence…
+      title: In your absence...
     favourite:
       body: 'Your status was favourited by %{name}:'
       subject: "%{name} favourited your status"
@@ -558,25 +595,15 @@ en:
     other: Other
     publishing: Publishing
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} favourited your status"
-    follow:
-      title: "%{name} is now following you"
-    group:
-      title: "%{count} notifications"
-    mention:
-      action_boost: Boost
-      action_expand: Show more
-      action_favourite: Favourite
-      title: "%{name} mentioned you"
-    reblog:
-      title: "%{name} boosted your status"
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+  remote_unfollow:
+    error: Error
+    title: Title
+    unfollowed: Unfollowed
   sessions:
     activity: Last activity
     browser: Browser
@@ -642,7 +669,11 @@ en:
       video:
         one: "%{count} video"
         other: "%{count} videos"
+    boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
+    disallowed_hashtags:
+      one: 'contained a disallowed hashtag: %{tags}'
+      other: 'contained the disallowed hashtags: %{tags}'
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
@@ -667,75 +698,86 @@ en:
   terms:
     body_html: |
       <h2>Privacy Policy</h2>
-
       <h3 id="collect">What information do we collect?</h3>
 
-      <p>We collect information from you when you register on our site and gather data when you participate in the forum by reading, writing, and evaluating the content shared here.</p>
+      <ul>
+        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
 
-      <p>When registering on our site, you may be asked to enter your name and e-mail address. You may, however, visit our site without registering. Your e-mail address will be verified by an email containing a unique link. If that link is visited, we know that you control the e-mail address.</p>
-
-      <p>When registered and posting, we record the IP address that the post originated from. We also may retain server logs which include the IP address of every request to our server.</p>
+      <hr class="spacer" />
 
       <h3 id="use">What do we use your information for?</h3>
 
-      <p>Any of the information we collect from you may be used in one of the following ways:</p>
+      <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>To personalize your experience &mdash; your information helps us to better respond to your individual needs.</li>
-        <li>To improve our site &mdash; we continually strive to improve our site offerings based on the information and feedback we receive from you.</li>
-        <li>To improve customer service &mdash; your information helps us to more effectively respond to your customer service requests and support needs.</li>
-        <li>To send periodic emails &mdash; The email address you provide may be used to send you information, notifications that you request about changes to topics or in response to your user name, respond to inquiries, and/or other requests or questions.</li>
+        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
+
+      <hr class="spacer" />
 
       <h3 id="protect">How do we protect your information?</h3>
 
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.</p>
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
 
-      <h3 id="data-retention">What is your data retention policy?</h3>
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
 
       <p>We will make a good faith effort to:</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users and their posts no more than 5 years.</li>
+        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
       </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
 
       <h3 id="cookies">Do we use cookies?</h3>
 
       <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
 
-      <p>We use cookies to understand and save your preferences for future visits and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our business.</p>
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
 
       <h3 id="disclose">Do we disclose any information to outside parties?</h3>
 
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.</p>
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
 
-      <h3 id="third-party">Third party links</h3>
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
 
-      <p>Occasionally, at our discretion, we may include or offer third party products or services on our site. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.</p>
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
 
       <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
 
       <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
 
-      <h3 id="online">Online Privacy Policy Only</h3>
-
-      <p>This online privacy policy applies only to information collected through our site and not to information collected offline.</p>
-
-      <h3 id="consent">Your Consent</h3>
-
-      <p>By using our site, you consent to our web site privacy policy.</p>
+      <hr class="spacer" />
 
       <h3 id="changes">Changes to our Privacy Policy</h3>
 
       <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
 
-      <p>This document is CC-BY-SA. It was last updated May 31, 2013.</p>
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
   themes:
+    contrast: High contrast
     default: Mastodon
+    mastodon-light: Mastodon (light)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -781,5 +823,6 @@ en:
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+    otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'

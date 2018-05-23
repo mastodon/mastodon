@@ -4,26 +4,33 @@ eo:
     hints:
       defaults:
         avatar: Formato PNG, GIF aŭ JPG. Ĝis 2MB. Estos malgrandigita al 400x400px
+        bot: Atentigas homojn, ke la konto ne reprezentas homon
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
         display_name:
           one: <span class="name-counter">1</span> signo restas
           other: <span class="name-counter">%{count}</span> signoj restas
+        fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis 2MB. Estos malgrandigita al 700x335px
         locked: Vi devos aprobi ĉiun peton de sekvado mane
         note:
           one: <span class="note-counter">1</span> signo restas
           other: <span class="note-counter">%{count}</span> signoj restas
         setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
-        setting_theme: Influas kiel Mastodon aspektas kiam vi ensalutis en ajna aparato.
+        setting_theme: Influas kiel Mastodon aspektas post ensaluto de ajna aparato.
       imports:
         data: CSV-dosiero el alia nodo de Mastodon
       sessions:
-        otp: Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el la realiraj kodoj.
+        otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
       user:
         filtered_languages: Markitaj lingvoj estos elfiltritaj de publikaj tempolinioj por vi
     labels:
+      account:
+        fields:
+          name: Etikedo
+          value: Enhavo
       defaults:
         avatar: Profilbildo
+        bot: Tio estas robota konto
         confirm_new_password: Konfirmi novan pasvorton
         confirm_password: Konfirmi pasvorton
         current_password: Nuna pasvorto
@@ -31,6 +38,7 @@ eo:
         display_name: Publika nomo
         email: Retadreso
         expires_in: Eksvalidiĝas post
+        fields: Profilaj metadatumoj
         filtered_languages: Filtritaj lingvoj
         header: Fonbildo
         locale: Lingvo
@@ -45,7 +53,7 @@ eo:
         setting_default_privacy: Mesaĝa videbleco
         setting_default_sensitive: Ĉiam marki aŭdovidaĵojn tiklaj
         setting_delete_modal: Montri fenestron por konfirmi antaŭ ol forigi mesaĝon
-        setting_display_sensitive_media: Ĉiam montri aŭdovidaĵon markitajn tiklaj
+        setting_display_sensitive_media: Ĉiam montri aŭdovidaĵojn markitajn tiklaj
         setting_noindex: Ellistiĝi de retserĉila indeksado
         setting_reduce_motion: Malrapidigi animaciojn
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
