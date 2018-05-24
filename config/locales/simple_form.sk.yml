@@ -4,33 +4,44 @@ sk:
     hints:
       defaults:
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
+        bot: Tento účet vykonáva hlavne zautomatizované akcie, a je pravdepodobne nespravovaný
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali nejaké osobné správy kým ste boli preč
         display_name:
-          one: Ostáva vám <span class="name-counter">1</span> znak
-          other: Ostáva vám <span class="name-counter">%{count}</span> znakov
+          few: Ostávajú ti <span class="name-counter">%{count}</span> znaky
+          one: Ostáva ti <span class="name-counter">1</span> znak
+          other: Ostáva ti <span class="name-counter">%{count}</span> znakov
+        fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
         header: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 700x335px
         locked: Musíte manuálne schváliť sledujúcich
         note:
+          few: Ostávajú ti <span class="note-counter">%{count}</span> znaky
           one: Ostáva vám <span class="note-counter">1</span> znak
-          other: Ostáva vám <span class="note-counter">%{count}</span>znakov
-        setting_noindex: Ovplyvňuje profil  a správy tak, že ich nebude možné nájsť vyhľadávaním
-        setting_theme: Ovplyvní ako bude Mastodon vyzerať pri prihlásení z hociktorého zariadenia.
+          other: Ostáva ti <span class="note-counter">%{count}</span> znakov
+        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
+        setting_noindex: Ovplyvňuje verejný profil a statusy
+        setting_theme: Toto ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
       imports:
         data: CSV súbor vyexportovaný z inej Mastodon inštancie
       sessions:
-        otp: Vložte 2FA kód z telefónu alebo použite jeden z vašich obnovovacích kódov.
+        otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       user:
-        filtered_languages: Zaškrtnuté jazyky vám nebudú zobrazené vo verejnej časovej osi
+        filtered_languages: Zaškrtnuté jazyky budú pre teba vynechané nebudú z verejnej časovej osi
     labels:
+      account:
+        fields:
+          name: Označenie
+          value: Obsah
       defaults:
         avatar: Avatar
-        confirm_new_password: Opäť vaše nové heslo pre potvrdenie
-        confirm_password: Potvrďte heslo
+        bot: Toto je automatizovaný bot účet
+        confirm_new_password: Znovu tvoje nové heslo, pre potvrdenie
+        confirm_password: Potvrď heslo
         current_password: Súčasné heslo
         data: Dáta
         display_name: Meno
         email: Emailová adresa
         expires_in: Expirovať po
+        fields: Metadáta profilu
         filtered_languages: Filtrované jazyky
         header: Obrázok v hlavičke
         locale: Jazyk
@@ -43,17 +54,17 @@ sk:
         setting_auto_play_gif: Automaticky prehrávať animované GIFy
         setting_boost_modal: Zobrazovať potvrdzovacie okno pred re-toot
         setting_default_privacy: Nastavenie súkromia príspevkov
-        setting_default_sensitive: Označiť každý obrázok/video/súbor ako chúlostivý
-        setting_delete_modal: Zobrazovať potvrdzovacie okno pred zmazaním toot-u
-        setting_display_sensitive_media: Vždy zobrazovať médiá označované ako senzitívne
-        setting_noindex: Nezaradzovať vaše príspevky do indexácie pre vyhľadávanie
+        setting_default_sensitive: Označ všetky mediálne súbory ako chúlostivé
+        setting_delete_modal: Zobrazuj potvrdzovacie okno pred vymazaním toot-u
+        setting_display_sensitive_media: Vždy zobraz médiá označené ako chúlostivé
+        setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
         setting_reduce_motion: Redukovať pohyb v animáciách
         setting_system_font_ui: Použiť základné systémové písmo
-        setting_theme: Vzhľad
-        setting_unfollow_modal: Zobrazovať potvrdzovacie okno pred skončením sledovania iného používateľa
+        setting_theme: Vzhľad stránky
+        setting_unfollow_modal: Zobraziť potvrdzovacie okno pred skončením sledovania iného užívateľa
         severity: Závažnosť
         type: Typ importu
-        username: Používateľské meno
+        username: Užívateľská prezývka
         username_or_email: Prezívka, alebo Email
       interactions:
         must_be_follower: Blokovať notifikácie pod používateľov, ktorí ťa nesledujú

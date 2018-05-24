@@ -3,8 +3,10 @@ it:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nome
+        name: Nome applicazione
         redirect_uri: URI di reindirizzamento
+        scopes: Scopi
+        website: Sito web applicazione
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +35,13 @@ it:
         redirect_uri: Usa una riga per URI
         scopes: Dividi gli scopes con spazi. Lascia vuoto per utilizzare gli scopes di default.
       index:
+        application: Applicazione
         callback_url: Callback URL
+        delete: Elimina
         name: Nome
         new: Nuova applicazione
+        scopes: Scopes
+        show: Mostra
         title: Le tue applicazioni
       new:
         title: Nuova applicazione
@@ -43,7 +49,7 @@ it:
         actions: Azioni
         application_id: Id applicazione
         callback_urls: Callback urls
-        scopes: Scopes
+        scopes: Scopi
         secret: Secret
         title: 'Applicazione: %{name}'
     authorizations:
@@ -57,7 +63,7 @@ it:
         prompt: L'applicazione %{client_name} richiede l'accesso al tuo account
         title: Autorizzazione richiesta
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Copia questo codice di autorizzazione e incollalo nell'applicazione.
     authorized_applications:
       buttons:
         revoke: Disabilita
@@ -67,7 +73,7 @@ it:
         application: Applicazione
         created_at: Autorizzato
         date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Scopes
+        scopes: Scopi
         title: Applicazioni autorizzate
     errors:
       messages:
@@ -104,10 +110,11 @@ it:
       admin:
         nav:
           applications: Applicazioni
-          oauth2_provider: OAuth2 Provider
+          oauth2_provider: Provider OAuth2
       application:
         title: Autorizzazione OAuth richiesta
     scopes:
       follow: seguire, bloccare, sbloccare e smettere di seguire account
+      push: ricevi notifiche push per il tuo account
       read: leggere le informazioni del tuo account
       write: pubblicare post in tua vece

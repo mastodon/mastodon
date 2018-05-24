@@ -4,6 +4,7 @@ zh-CN:
     about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Mastodon 实例或与其兼容的网站上拥有一个帐户。
     about_mastodon_html: Mastodon（长毛象）是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本实例
+    administered_by: 本实例的管理员：
     closed_registrations: 这个实例目前没有开放注册。不过，你可以前往其他实例注册一个帐户，同样可以加入到这个网络中哦！
     contact: 联系方式
     contact_missing: 未设定
@@ -25,9 +26,9 @@ zh-CN:
       within_reach_title: 始终触手可及
     generic_description: "%{domain} 是这个庞大网络中的一台服务器"
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
-    learn_more: 详细了解
+    learn_more: 了解详情
     other_instances: 其他实例
-    source_code: 源码
+    source_code: 源代码
     status_count_after: 条嘟文
     status_count_before: 他们共嘟出了
     user_count_after: 位用户
@@ -39,6 +40,7 @@ zh-CN:
     following: 正在关注
     media: 媒体
     moved_html: "%{name} 已经迁移到 %{new_profile_link}："
+    network_hidden: 此信息不可用。
     nothing_here: 这里神马都没有！
     people_followed_by: "%{name} 关注的人"
     people_who_follow: 关注 %{name} 的人
@@ -48,21 +50,29 @@ zh-CN:
     reserved_username: 此用户名已被保留
     roles:
       admin: 管理员
+      bot: 机器人
       moderator: 监察员
     unfollow: 取消关注
   admin:
     account_moderation_notes:
-      account: 管理员
       create: 新建
-      created_at: 日期
       created_msg: 管理备忘建立成功！
       delete: 删除
       destroyed_msg: 管理备忘删除成功！
     accounts:
       are_you_sure: 你确定吗？
+      avatar: 头像
       by_domain: 域名
+      change_email:
+        changed_msg: 帐户电子邮件地址更改成功！
+        current_email: 当前的电子邮件地址
+        label: 更改电子邮件地址
+        new_email: 新的电子邮件地址
+        submit: 更改电子邮件地址
+        title: 为 %{username} 更改电子邮件地址
       confirm: 确认
       confirmed: 已确认
+      confirming: 确认
       demote: 降任
       disable: 停用
       disable_two_factor_authentication: 停用双重认证
@@ -71,6 +81,7 @@ zh-CN:
       domain: 域名
       edit: 编辑
       email: 电子邮件地址
+      email_status: 电子邮件地址状态
       enable: 启用
       enabled: 已启用
       feed_url: 订阅 URL
@@ -108,6 +119,11 @@ zh-CN:
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
       redownload: 刷新头像
+      remove_avatar: 删除头像
+      resend_confirmation:
+        already_confirmed: 该用户已被确认
+        send: 重发确认邮件
+        success: 确认邮件发送成功！
       reset: 重置
       reset_password: 重置密码
       resubscribe: 重新订阅
@@ -128,6 +144,7 @@ zh-CN:
       statuses: 嘟文
       subscribe: 订阅
       title: 用户
+      unconfirmed_email: 待验证的电子邮件地址
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
       unsubscribe: 取消订阅
@@ -135,6 +152,8 @@ zh-CN:
       web: 站内页面
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} 接管了举报 %{target}"
+        change_email_user: "%{name} 更改了用户 %{target} 的电子邮件地址"
         confirm_user: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
@@ -150,10 +169,13 @@ zh-CN:
         enable_user: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user: "%{name} 对用户 %{target} 进行了升任操作"
+        remove_avatar_user: "%{name} 删除了 %{target} 的头像"
+        reopen_report: "%{name} 重开了举报 %{target}"
         reset_password_user: "%{name} 重置了用户 %{target} 的密码"
         resolve_report: "%{name} 处理了举报 %{target}"
         silence_account: "%{name} 隐藏了用户 %{target}"
         suspend_account: "%{name} 封禁了用户 %{target}"
+        unassigned_report: "%{name} 放弃了举报 %{target} 的接管"
         unsilence_account: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
@@ -237,29 +259,44 @@ zh-CN:
         expired: 已失效
         title: 筛选
       title: 邀请用户
+    report_notes:
+      created_msg: 举报记录建立成功！
+      destroyed_msg: 举报记录删除成功！
     reports:
+      account:
+        note: 条记录
+        report: 条举报
       action_taken_by: 操作执行者
       are_you_sure: 你确定吗？
+      assign_to_self: 接管
+      assigned: 已接管的监察员
       comment:
-        label: 备注
         none: 没有
-      delete: 删除
+      created_at: 举报时间
       id: ID
       mark_as_resolved: 标记为“已处理”
-      nsfw:
-        'false': 取消 NSFW 标记
-        'true': 添加 NSFW 标记
+      mark_as_unresolved: 标记为“未处理”
+      notes:
+        create: 添加记录
+        create_and_resolve: 添加记录并标记为“已处理”
+        create_and_unresolve: 添加记录并重开
+        delete: 删除
+        placeholder: 描述已经执行的操作，或其他任何相关的跟进情况
+      reopen: 重开举报
       report: '举报 #%{id}'
       report_contents: 内容
       reported_account: 举报用户
       reported_by: 举报人
       resolved: 已处理
+      resolved_msg: 举报处理成功！
       silence_account: 隐藏用户
       status: 状态
       suspend_account: 封禁用户
       target: 被举报人
       title: 举报
+      unassign: 取消接管
       unresolved: 未处理
+      updated_at: 更新时间
       view: 查看
     settings:
       activity_api_enabled:
@@ -271,6 +308,9 @@ zh-CN:
       contact_information:
         email: 用于联系的公开电子邮件地址
         username: 用于联系的公开用户名
+      hero:
+        desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
+        title: 主题图片
       peers_api_enabled:
         desc_html: 截至目前本实例在网络中已发现的域名
         title: 公开已知实例的列表
@@ -287,11 +327,14 @@ zh-CN:
         open:
           desc_html: 允许所有人建立帐户
           title: 开放注册
+      show_known_fediverse_at_about_page:
+        desc_html: 启用此选项将会在预览中显示来自已知实例的嘟文，否则只会显示本站时间轴的内容
+        title: 在时间轴预览中显示已知实例
       show_staff_badge:
         desc_html: 在个人资料页上显示管理人员标志
         title: 显示管理人员标志
       site_description:
-        desc_html: 用于首页展示以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
+        desc_html: 用于首页展示以及 meta 标签中的网站简介。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>
         title: 本站简介
       site_description_extended:
         desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
@@ -311,13 +354,10 @@ zh-CN:
       back_to_account: 返回帐户信息页
       batch:
         delete: 删除
-        nsfw_off: 取消 NSFW 标记
-        nsfw_on: 添加 NSFW 标记
-      execute: 执行
+        nsfw_off: 标记为非敏感内容
+        nsfw_on: 标记为敏感内容
       failed_to_execute: 执行失败
       media:
-        hide: 隐藏媒体文件
-        show: 显示媒体文件
         title: 媒体文件
       no_media: 不含媒体文件
       title: 帐户嘟文
@@ -332,7 +372,8 @@ zh-CN:
     title: 管理
   admin_mailer:
     new_report:
-      body: "%{reporter} 举报了用户 %{target}。"
+      body: "%{reporter} 举报了用户 %{target}"
+      body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
     notification_preferences: 更改电子邮件首选项
@@ -351,6 +392,8 @@ zh-CN:
     your_token: 你的访问令牌
   auth:
     agreement_html: 注册即表示你同意遵守<a href="%{rules_path}">本实例的相关规定</a>和<a href="%{terms_path}">我们的使用条款</a>。
+    change_password: 密码
+    confirm_email: 确认电子邮件地址
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
     didnt_get_confirmation: 没有收到确认邮件？
@@ -360,12 +403,19 @@ zh-CN:
     logout: 登出
     migrate_account: 迁移到另一个帐户
     migrate_account_html: 如果你希望引导他人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
+    or: 或者
+    or_log_in_with: 或通过其他方式登录
+    providers:
+      cas: CAS
+      saml: SAML
     register: 注册
+    register_elsewhere: 前往其他实例注册
     resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
     security: 帐户安全
     set_new_password: 设置新密码
   authorize_follow:
+    already_following: 你已经在关注此用户了
     error: 对不起，寻找这个跨站用户时出错
     follow: 关注
     follow_request: 关注请求已发送给：
@@ -410,6 +460,13 @@ zh-CN:
       title: 这个页面有问题
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">Mastodon 应用</a>。
   exports:
+    archive_takeout:
+      date: 日期
+      download: 下载你的存档
+      hint_html: 你可以请求一份帐户数据存档，其中包含你的<strong>嘟文和已上传的媒体文件</strong>。导出的数据为 ActivityPub 格式，因而可以被兼容的软件读取。每次允许请求存档的间隔至少为 7 天。
+      in_progress: 正在准备你的存档……
+      request: 请求你的存档
+      size: 大小
     blocks: 屏蔽的用户
     csv: CSV
     follows: 关注的用户
@@ -449,6 +506,7 @@ zh-CN:
       '21600': 6 小时后
       '3600': 1 小时后
       '43200': 12 小时后
+      '604800': 1 周后
       '86400': 1 天后
     expires_in_prompt: 永不过期
     generate: 生成邀请链接
@@ -519,7 +577,9 @@ zh-CN:
           trillion: T
           unit: ''
   pagination:
+    newer: 更新
     next: 下一页
+    older: 更早
     prev: 上一页
     truncate: "…"
   preferences:
@@ -527,25 +587,15 @@ zh-CN:
     other: 其他
     publishing: 发布
     web: 站内
-  push_notifications:
-    favourite:
-      title: "%{name} 收藏了你的嘟文"
-    follow:
-      title: "%{name} 关注了你"
-    group:
-      title: "%{count} 条新通知"
-    mention:
-      action_boost: 转嘟
-      action_expand: 显示更多
-      action_favourite: 收藏
-      title: "%{name} 提到了你"
-    reblog:
-      title: "%{name} 转嘟了你的嘟文"
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
     proceed: 确认关注
     prompt: 你正准备关注：
+  remote_unfollow:
+    error: 错误
+    title: 标题
+    unfollowed: 已取消关注
   sessions:
     activity: 最后一次活跃的时间
     browser: 浏览器
@@ -554,12 +604,14 @@ zh-CN:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: 未知浏览器
       ie: Internet Explorer
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ浏览器
       safari: Safari
@@ -587,7 +639,7 @@ zh-CN:
     title: 会话
   settings:
     authorized_apps: 已授权的应用
-    back: 回到 Mastodon
+    back: 返回 Mastodon
     delete: 删除帐户
     development: 开发
     edit_profile: 更改个人资料
@@ -601,6 +653,15 @@ zh-CN:
     two_factor_authentication: 双重认证
     your_apps: 你的应用
   statuses:
+    attached:
+      description: 附加媒体：%{attached}
+      image: "%{count} 张图片"
+      video: "%{count} 个视频"
+    boosted_from_html: 转嘟自 %{acct_link}
+    content_warning: 内容警告：%{warning}
+    disallowed_hashtags:
+      one: 包含了一个禁止的话题标签：%{tags}
+      other: 包含了这些禁止的话题标签：%{tags}
     open_in_web: 在站内打开
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
@@ -623,75 +684,11 @@ zh-CN:
     reblogged: 转嘟
     sensitive_content: 敏感内容
   terms:
-    body_html: |
-      <h2>隐私权政策</h2>
-
-      <h3 id="collect">我们收集什么信息？</h3>
-
-      <p>我们从你在我们站点注册开始从你那开始收集信息，并收集关于你在论坛的阅读和写作的数据，并评估分享的内容。</p>
-
-      <p>当在我们站点注册时，你可能被要求输入你的名字和邮件地址。然而你可以在不用注册的情况下访问站点。你的邮件地将通过一个独一无二的链接验证。如果链接被访问了，我们就知道你控制了该邮件地址。</p>
-
-      <p>当已注册和发帖时，我们记录发布帖子时的 IP 地址。我们也可能保留服务器日志，其中包括了每一个向我们服务器的请求。</p>
-
-      <h3 id="use">我们如何使用你的信息？</h3>
-
-      <p>从你那收集的任何数据将以以下方式使用：</p>
-
-      <ul>
-        <li>改进你的个人体验 &mdash; 你的信息帮助我们更好地满足你的个人需求。</li>
-        <li>改进我们的站点 &mdash; 我们基于信息和我们从你那收到的反馈不断地试图改进我们的站点。</li>
-        <li>改善我们的客户服务 &mdash; 你的信息帮助我们更有效地回应用户服务请求和支持。</li>
-        <li>用于发送阶段性的邮件 &mdash; 你提供的邮件地址可能用于接受信息、你想看到的通知或与你用户名有关的回复和询问，或是其他的请求和问题。</li>
-      </ul>
-
-      <h3 id="protect">我们如何保护你的信息？</h3>
-
-      <p>我们实现了一系列的安全措施保证你输入、提交或者访问你个人信息的数据安全。</p>
-
-      <h3 id="data-retention">数据保存政策是什么？</h3>
-
-      <p>我们将善意地：</p>
-
-      <ul>
-        <li>保存 90 天内的所有向服务器的包含 IP 地址的请求。</li>
-        <li>保存 5 年内已注册用户和与他们的帖子有关的 IP 地址。</li>
-      </ul>
-
-      <h3 id="cookies">我们使用 Cookie 吗？</h3>
-
-      <p>是的。Cookie 是网站或它的服务商通过网页浏览器存储在你电脑硬盘上的小文件（如果你同意）。这些 Cookie 使站点能分辨你的浏览器，并且，如果你注册了一个账户，与你的注册账户关联。</p>
-
-      <p>我们使用 Cookie 为之后的访问和编译一小段关于站点流量和交互的数据来判断并保存你的个人设置，这样我们可以在之后提供更好的站点体验和工具。我们可能使用第三方服务商来帮助我们更好地理解我们的站点访客。这些服务商是不允许代表我们使用收集的信息，除非是在帮助我们执行和改进我们的站点。</p>
-
-      <h3 id="disclose">我们会在站外提供任何信息吗？</h3>
-
-      <p>我们绝不销售、交易或任何向外转移你个人信息的行为。这不包括帮助我们管理站点、改进站点或给你提供服务的第三方团体，这些团体需要保证对这些信息保密。当我们认为提交你的信息符合法律、我们的站点政策或保护我们或其他人的权利、知识产权或安全时，我们也可能提交你的信息。然而，非个人访问信息可能供其他团体使用，用于市场、广告或其他用途。</p>
-
-      <h3 id="third-party">第三方链接</h3>
-
-      <p>偶尔地，根据我们的判断，我们可能在我们的站点上包括或提供第三方团体的产品或服务。这些第三方站点用于独立和不同的隐私政策。因此我们对链接到的站点或活动没有责任和权利。尽管如此，我们寻求保护我们的整个站点并且欢迎你给这些站点反馈。</p>
-
-      <h3 id="coppa">儿童在线隐私保护法案合规</h3>
-
-      <p>我们的站点、产品和服务提供给 13 岁以上的人们。如果服务器位于美国，并且你小于 13 岁，根据<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">儿童在线隐私保护法案合规</a>，不要使用这个站点。</p>
-
-      <h3 id="online">仅用于在线隐私政策</h3>
-
-      <p>这个线上隐私政策只适用于通过我们站点收集到的信息，并不包括线下收集的信息。</p>
-
-      <h3 id="consent">你的同意</h3>
-
-      <p>你使用站点的同时，代表你同意了我们网站的隐私政策。</p>
-
-      <h3 id="changes">隐私政策的更改</h3>
-
-      <p>如果我们决定更改我们的隐私政策，我们将在此页更新这些改变。</p>
-
-      <p>文档以 CC-BY-SA 发布。最后更新时间为2013年5月31日。</p>
-
-      <p>原文出自 <a href="https://github.com/discourse/discourse">Discourse 隐私权政策</a>。</p>
     title: "%{instance} 使用条款和隐私权政策"
+  themes:
+    contrast: 高对比度
+    default: Mastodon
+    mastodon-light: Mastodon（亮色主题）
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
@@ -712,6 +709,10 @@ zh-CN:
     setup: 设置
     wrong_code: 输入的认证码无效！请核对一下你的设备显示的时间，如果正确，你可能需要联系一下实例的管理员，让他们校准服务器的时间。
   user_mailer:
+    backup_ready:
+      explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
+      subject: 你的存档已经准备完毕
+      title: 存档导出
     welcome:
       edit_profile_action: 设置个人资料
       edit_profile_step: 你可以自定义你的个人资料，包括上传头像、横幅图片、更改昵称等等。如果你想在新的关注者关注你之前对他们进行审核，你也可以选择为你的帐户开启保护。
@@ -733,4 +734,6 @@ zh-CN:
   users:
     invalid_email: 输入的电子邮件地址无效
     invalid_otp_token: 输入的双重认证代码无效
+    otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
+    seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: 当前登录的帐户：

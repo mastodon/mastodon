@@ -4,6 +4,7 @@ eo:
     about_hashtag_html: Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
     about_mastodon_html: Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.
     about_this: Pri
+    administered_by: 'Administrata de:'
     closed_registrations: Registriĝoj estas nuntempe fermitaj en ĉi tiu nodo. Tamen, vi povas trovi alian nodon por fari konton kaj aliri al la sama reto de tie.
     contact: Kontakti
     contact_missing: Ne elektita
@@ -24,12 +25,12 @@ eo:
       within_reach_body: Pluraj aplikaĵoj por iOS, Android, kaj aliaj platformoj danke al API-medio bonveniga por programistoj permesas resti en kontakto kun viaj amikoj ĉie.
       within_reach_title: Ĉiam kontaktebla
     generic_description: "%{domain} estas unu servilo en la reto"
-    hosted_on: Mastodon gastigita en %{domain}
+    hosted_on: "%{domain} estas nodo de Mastodon"
     learn_more: Lerni pli
     other_instances: Listo de nodoj
     source_code: Fontkodo
     status_count_after: mesaĝoj
-    status_count_before: Kiu publikigis
+    status_count_before: Kie skribiĝis
     user_count_after: uzantoj
     user_count_before: Hejmo de
     what_is_mastodon: Kio estas Mastodon?
@@ -48,21 +49,29 @@ eo:
     reserved_username: La uzantnomo estas rezervita
     roles:
       admin: Administranto
+      bot: Roboto
       moderator: Kontrolanto
     unfollow: Ne plu sekvi
   admin:
     account_moderation_notes:
-      account: Kontrolanto
-      create: Krei
-      created_at: Dato
+      create: Lasi noton
       created_msg: Kontrola noto sukcese kreita!
       delete: Forigi
       destroyed_msg: Kontrola noto sukcese detruita!
     accounts:
       are_you_sure: Ĉu vi certas?
+      avatar: Profilbildo
       by_domain: Domajno
+      change_email:
+        changed_msg: Konta retadreso sukcese ŝanĝita!
+        current_email: Nuna retadreso
+        label: Ŝanĝi retadreson
+        new_email: Nova retadreso
+        submit: Ŝanĝi retadreson
+        title: Ŝanĝi retadreson por %{username}
       confirm: Konfirmi
       confirmed: Konfirmita
+      confirming: Konfirmante
       demote: Degradi
       disable: Malebligi
       disable_two_factor_authentication: Malebligi 2FA
@@ -71,6 +80,7 @@ eo:
       domain: Domajno
       edit: Redakti
       email: Retpoŝto
+      email_status: Retpoŝto Stato
       enable: Ebligi
       enabled: Ebligita
       feed_url: URL de la fluo
@@ -108,6 +118,11 @@ eo:
       public: Publika
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
       redownload: Aktualigi profilbildon
+      remove_avatar: Forigi profilbildon
+      resend_confirmation:
+        already_confirmed: Ĉi tiu uzanto jam estas konfirmita
+        send: Esend konfirmi retpoŝton
+        success: Konfirma retmesaĝo sukcese sendita!
       reset: Restarigi
       reset_password: Restarigi pasvorton
       resubscribe: Reaboni
@@ -128,6 +143,7 @@ eo:
       statuses: Mesaĝoj
       subscribe: Aboni
       title: Kontoj
+      unconfirmed_email: Nekonfirmita retadreso
       undo_silenced: Malfari kaŝon
       undo_suspension: Malfari haltigon
       unsubscribe: Malaboni
@@ -135,6 +151,8 @@ eo:
       web: Reto
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} asignis signalon %{target} al si mem"
+        change_email_user: "%{name} ŝanĝis retadreson de uzanto %{target}"
         confirm_user: "%{name} konfirmis retadreson de uzanto %{target}"
         create_custom_emoji: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_block: "%{name} blokis domajnon %{target}"
@@ -150,10 +168,13 @@ eo:
         enable_user: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user: "%{name} plirangigis uzanton %{target}"
+        remove_avatar_user: "%{name} forigis profilbildon de %{target}"
+        reopen_report: "%{name} remalfermis signalon %{target}"
         reset_password_user: "%{name} restarigis pasvorton de uzanto %{target}"
-        resolve_report: "%{name} flankmetis signalon %{target}"
+        resolve_report: "%{name} solvis signalon %{target}"
         silence_account: "%{name} kaŝis la konton de %{target}"
         suspend_account: "%{name} haltigis la konton de %{target}"
+        unassigned_report: "%{name} malasignis signalon %{target}"
         unsilence_account: "%{name} malkaŝis la konton de %{target}"
         unsuspend_account: "%{name} malhaltigis la konton de %{target}"
         update_custom_emoji: "%{name} ĝisdatigis emoĝion %{target}"
@@ -239,29 +260,44 @@ eo:
         expired: Eksvalida
         title: Filtri
       title: Invitoj
+    report_notes:
+      created_msg: Signala noto sukcese kreita!
+      destroyed_msg: Signala noto sukcese forigita!
     reports:
+      account:
+        note: noto
+        report: signalo
       action_taken_by: Ago farita de
       are_you_sure: Ĉu vi certas?
+      assign_to_self: Asigni al mi
+      assigned: Asignita kontrolanto
       comment:
-        label: Komento
         none: Nenio
-      delete: Forigi
+      created_at: Signalita
       id: ID
-      mark_as_resolved: Marki kiel solvita
-      nsfw:
-        'false': Malkaŝi aŭdovidajn kunsendaĵojn
-        'true': Kaŝi aŭdovidajn kunsendaĵojn
+      mark_as_resolved: Marki solvita
+      mark_as_unresolved: Marki nesolvita
+      notes:
+        create: Aldoni noton
+        create_and_resolve: Solvi per noto
+        create_and_unresolve: Remalfermi per noto
+        delete: Forigi
+        placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
+      reopen: Remalfermi signalon
       report: 'Signalo #%{id}'
       report_contents: Enhavo
       reported_account: Signalita konto
       reported_by: Signalita de
       resolved: Solvita
+      resolved_msg: Signalo sukcese solvita!
       silence_account: Kaŝi konton
       status: Mesaĝoj
       suspend_account: Haltigi konton
       target: Celo
       title: Signaloj
+      unassign: Malasigni
       unresolved: Nesolvita
+      updated_at: Ĝisdatigita
       view: Vidi
     settings:
       activity_api_enabled:
@@ -319,13 +355,10 @@ eo:
       back_to_account: Reveni al konta paĝo
       batch:
         delete: Forigi
-        nsfw_off: Malŝalti NSFW
-        nsfw_on: Ŝalti NSFW
-      execute: Ekigi
+        nsfw_off: Marki ne tikla
+        nsfw_on: Marki tikla
       failed_to_execute: Ekigo malsukcesa
       media:
-        hide: Kaŝi aŭdovidaĵojn
-        show: Montri aŭdovidaĵojn
         title: Aŭdovidaĵoj
       no_media: Neniu aŭdovidaĵo
       title: Mesaĝoj de la konto
@@ -333,7 +366,7 @@ eo:
     subscriptions:
       callback_url: Revena URL
       confirmed: Konfirmita
-      expires_in: Eksvalidiĝas en
+      expires_in: Eksvalidiĝas je
       last_delivery: Lasta livero
       title: WebSub
       topic: Temo
@@ -341,6 +374,7 @@ eo:
   admin_mailer:
     new_report:
       body: "%{reporter} signalis %{target}"
+      body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
@@ -358,7 +392,7 @@ eo:
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
     your_token: Via alira ĵetono
   auth:
-    agreement_html: Per registriĝo, vi konsentas kun <a href="%{rules_path}">la reguloj de la nodo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
+    agreement_html: Per registriĝo, vi konsentas kun <a href="%{rules_path}">la reguloj de nia nodo</a> kaj <a href="%{terms_path}">niaj uzkondiĉoj</a>.
     change_password: Pasvorto
     confirm_email: Konfirmi retadreson
     delete_account: Forigi konton
@@ -382,6 +416,7 @@ eo:
     security: Sekureco
     set_new_password: Elekti novan pasvorton
   authorize_follow:
+    already_following: Vi jam sekvas tiun konton
     error: Bedaŭrinde, estis eraro en la serĉado de la fora konto
     follow: Sekvi
     follow_request: 'Vi sendis peton de sekvado al:'
@@ -431,7 +466,7 @@ eo:
     archive_takeout:
       date: Dato
       download: Elŝuti vian arkivon
-      hint_html: Vi povas peti arkivon de viaj <strong>mesaĝoj kaj alŝutitaj aŭdovidaĵoj</strong>. La eksportitaj datumoj estos en la formato ActivityPub, legebla de ajna konformema programo.
+      hint_html: Vi povas peti arkivon de viaj <strong>mesaĝoj kaj alŝutitaj aŭdovidaĵoj</strong>. La eksportitaj datumoj estos en la formato ActivityPub, legebla de ajna konformema programo. Vi povas peti arkivon ĉiuseptage.
       in_progress: Kunmetado de via arkivo…
       request: Peti vian arkivon
       size: Grandeco
@@ -476,6 +511,7 @@ eo:
       '21600': 6 horoj
       '3600': 1 horo
       '43200': 12 horoj
+      '604800': 1 semajno
       '86400': 1 tago
     expires_in_prompt: Neniam
     generate: Krei
@@ -485,7 +521,7 @@ eo:
     max_uses_prompt: Neniu limo
     prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu nodo
     table:
-      expires_at: Eksvalidiĝas
+      expires_at: Eksvalidiĝas je
       uses: Uzoj
     title: Inviti homojn
   landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la fediverse."
@@ -560,25 +596,15 @@ eo:
     other: Aliaj aferoj
     publishing: Publikado
     web: Reto
-  push_notifications:
-    favourite:
-      title: "%{name} stelumis vian mesaĝon"
-    follow:
-      title: "%{name} eksekvis vin"
-    group:
-      title: "%{count} sciigoj"
-    mention:
-      action_boost: Diskonigi
-      action_expand: Montri pli
-      action_favourite: Stelumi
-      title: "%{name} menciis vin"
-    reblog:
-      title: "%{name} diskonigis vian mesaĝon"
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas sekvi
     missing_resource: La URL de plusendado ne estis trovita
     proceed: Daŭrigi por eksekvi
     prompt: 'Vi eksekvos:'
+  remote_unfollow:
+    error: Eraro
+    title: Titolo
+    unfollowed: Ne plu sekvita
   sessions:
     activity: Lasta ago
     browser: Retumilo
@@ -636,6 +662,18 @@ eo:
     two_factor_authentication: Dufaktora aŭtentigo
     your_apps: Viaj aplikaĵoj
   statuses:
+    attached:
+      description: 'Ligita: %{attached}'
+      image:
+        one: "%{count} bildo"
+        other: "%{count} bildoj"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoj"
+    content_warning: 'Enhava averto: %{warning}'
+    disallowed_hashtags:
+      one: 'enhavas malpermesitan kradvorton: %{tags}'
+      other: 'enhavis malpermesitan kradvorton: %{tags}'
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
@@ -658,76 +696,9 @@ eo:
     reblogged: diskonigita
     sensitive_content: Tikla enhavo
   terms:
-    body_html: |
-      <h2>Privateca politiko</h2>
-
-      <h3 id="collect">Kiujn informojn ni kolektas?</h3>
-
-      <p>Ni kolektas informojn de vi, kiam vi registriĝas en nia retejo aŭ partoprenas en la forumo per legado, skribado, kaj traktado de la enhavo diskonigita ĉi tie.</p>
-
-      <p>En registriĝo, ni povas peti al vi vian nomon kaj retadreson. Vi tamen povas viziti nian retejon sen registriĝo. Via retadreso estos validigita per retmesaĝo, kiu enhavos unikan ligilon. Se tiu ligilo estas vizitita, ni scios ke vi regas la retadreson.</p>
-
-      <p>Post registriĝo, ni registras la IP-adreson de tiu, kiu kreas mesaĝon. Ni ankaŭ povas konservi servilan historion, en kiu troviĝas la IP-adreso de ĉiu peto al nia servilo.</p>
-
-      <h3 id="use">Por kio ni uzas viajn informojn?</h3>
-
-      <p>Ajna informo, kiun ni kolektas povas esti uzata por unu el tiuj celoj:</p>
-
-      <ul>
-        <li>Proprigi vian sperton &mdash; viaj informoj helpas nin pli bone respondi al viaj propraj bezonoj.</li>
-        <li>Plibonigi nian retejon &mdash; ni daŭre klopodas por plibonigi nian retejon uzante la informojn kaj komentojn, kiujn ni ricevas de vi.</li>
-        <li>Plibonigi nian helpon al klientoj &mdash; viaj informoj helpas nin pli bone respondi al klientaj petoj kaj al subtenaj bezonoj.</li>
-        <li>Sendi periodajn retmesaĝojn &mdash; La retadreso, kiun vi donas al ni, povas esti uzata por sendi al vi informojn kaj sciigojn, kiujn vi volas ricevi pri ŝanĝoj rilate al apartaj temoj, aŭ responde al via uzantnomo, al petoj kaj al demandoj.</li>
-      </ul>
-
-      <h3 id="protect">Kiel ni protektas viajn informojn?</h3>
-
-      <p>Ni realigis diversajn sekurigajn procedojn por konservi la sekurecon de viaj personaj informoj kiam vi enmetas, sendas, aŭ aliras viajn personajn informojn.</p>
-
-      <h3 id="data-retention">Kio estas nia politiko pri konservado de datumoj?</h3>
-
-      <p>Ni honeste klopodas:</p>
-
-      <ul>
-        <li>Ne konservi servilan historion, kiu enhavas la IP-adresojn de ĉiuj petoj, dum pli ol 90 tagoj.</li>
-        <li>Ne konservi la IP-adresojn de registritaj uzantoj kaj de iliaj mesaĝoj dum pli ol 5 jaroj.</li>
-      </ul>
-
-      <h3 id="cookies">Ĉu ni uzas kuketojn?</h3>
-
-      <p>Jes. Kuketoj estas etaj dosieroj, kiujn retejo aŭ ĝia servo donas al la memoro de via komputilo, per via retumilo (se vi permesas tion). Ĉi tiuj kuketoj ebligas al la retejo rekoni vian retumilon, kaj se vi havas registritan konton, ligas ĝin al via registrita konto.</p>
-
-      <p>Ni uzas kuketojn por kompreni kaj konservi viajn preferojn por postaj vizitoj, kaj kunmeti informojn pri reteja trafiko kaj interago, por ke ni povu doni pli bonan retejan sperton kaj pli bonajn ilojn estonte. Ni povas kontrakti kun eksteraj servoj por helpi nin pli bone kompreni la vizitantojn de la retejo. Ĉi tiuj eksteraj servoj ne rajtas uzi la informojn, kiujn ni kolektis, krom por helpi nin regi kaj plibonigi nian komercon.</p>
-
-      <h3 id="disclose">Ĉu ni disdonas informojn al eksteraj personoj?</h3>
-
-      <p>Ni ne vendas, interŝanĝas aŭ transdonas al eksteraj personoj viajn persone identigeblajn informojn. Ĉi tio ne inkludas la eksterajn servojn, kiujn ni fidas, kiuj helpas nin funkciigi nian retejon, regi nian komercon, aŭ servi vin, kiom longe tiuj personoj konsentas pri la sekura konservado de ĉi tiuj informoj. Ni ankaŭ povas disdoni viajn informojn, kiam ni pensas ke tio estas nepra por respekti leĝojn, por respektigi la politikojn de nia retejo, aŭ por protekti la rajtojn, posedaĵojn, kaj sekurecon de ni kaj de aliaj. Tamen, informoj de vizitantoj, kiuj ne identigas personojn, povas esti donitaj al eksteraj personoj por merkatado, reklamado, aŭ aliaj uzoj.</p>
-
-      <h3 id="third-party">Eksteraj ligiloj</h3>
-
-      <p>Foje, laŭ nia elekto, ni povas enmeti aŭ oferti eksterajn produktojn aŭ servojn en nia retejo. Ĉi tiuj eksteraj retejoj havas apartajn kaj sendependajn privatecajn politikojn. Tial, ni havas nek responsojn nek devigojn rilate al la enhavoj kaj agadoj de ĉi tiuj ligitaj retejoj. Tamen, ni celas protekti tiujn, kiuj uzas nian retejon, kaj bonvenigas ajnan komenton pri ĉi tiuj retejoj.</p>
-
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
-
-      <p>Niaj retejo, produktoj kaj servoj estas por tiuj, kiuj havas almenaŭ 13 jarojn. Se ĉi tiu servilo estas en Usono, kaj vi havas malpli ol 13 jarojn, pro la postuloj de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) ne uzu ĉi tiun retejon.</p>
-
-      <h3 id="online">Privateca politiko nur rete</h3>
-
-      <p>Ĉi tiu privateca politiko validas nur por informoj kolektitaj per nia retejo kaj ne por informoj kolektitaj eksterrete.</p>
-
-      <h3 id="consent">Via konsento</h3>
-
-      <p>Per uzado de nia retejo, vi konsentas kun nia reta privateca politiko.</p>
-
-      <h3 id="changes">Ŝanĝoj al nia privateca politiko</h3>
-
-      <p>Se ni decidas ŝanĝi nian privatecan politikon, ni afiŝos tiujn ŝanĝojn en ĉi tiu paĝo.</p>
-
-      <p>Ĉi tiu dokumento estas laŭ permeso CC-BY-SA. Ĝi estis laste ĝisdatigita je 2018-02-27.</p>
-
-      <p>Originale adaptita el la <a href="https://github.com/discourse/discourse">privateca politiko de Discourse</a>.</p>
     title: Uzkondiĉoj kaj privateca politiko de %{instance}
   themes:
+    contrast: Forta kontrasto
     default: Mastodon
   time:
     formats:
@@ -774,5 +745,6 @@ eo:
   users:
     invalid_email: La retadreso estas nevalida
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
+    otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Ensalutinta kiel:'

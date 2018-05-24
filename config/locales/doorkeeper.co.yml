@@ -1,0 +1,119 @@
+---
+co:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nome di l’applicazione
+        redirect_uri: URI di ridirezzione
+        scopes: Scopi
+        website: Situ di l’applicazione
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ùn pò cuntene un pezzu.
+              invalid_uri: duve esse un’URI curretta.
+              relative_uri: duve esse un’URI assoluta.
+              secured_uri: duve esse un’URL HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Appruvà
+        cancel: Sguassà
+        destroy: Strughje
+        edit: Mudificà
+        submit: Mandà
+      confirmations:
+        destroy: Site sicuru·a?
+      edit:
+        title: Mudificà l’applicazione
+      form:
+        error: Uups! V’invitemu à verificà u vostru formulariu per vede s’elli ùn ci sò sbaglii
+      help:
+        native_redirect_uri: Utilizate %{native_redirect_uri} pè e prove lucale
+        redirect_uri: Utilizzate una linea per ogni URI
+        scopes: Separate i scopi cù spazii. Lasciate viotu per utilizzà i scopi predefiniti.
+      index:
+        application: Applicazione
+        callback_url: URL di richjama
+        delete: Toglie
+        name: Nome
+        new: Applicazione nova
+        scopes: Scopi
+        show: Vede
+        title: E vostre applicazione
+      new:
+        title: Applicazione nova
+      show:
+        actions: Azzioni
+        application_id: Chjave di u clientu
+        callback_urls: URL di richjama
+        scopes: Scopi
+        secret: Sicretu di u clientu
+        title: 'Applicazione : %{name}'
+    authorizations:
+      buttons:
+        authorize: Appruvà
+        deny: Ricusà
+      error:
+        title: C’hè statu un prublemu
+      new:
+        able_to: St’applicazione puderà
+        prompt: L’applicazione %{client_name} hà dumandatu d’avè accessu à u vostru contu
+        title: Permessu riquestu
+      show:
+        title: Codice d’auturizazione da cupià indè l’applicazione.
+    authorized_applications:
+      buttons:
+        revoke: Sguassà
+      confirmations:
+        revoke: Site sicuru·a?
+      index:
+        application: Applicazione
+        created_at: Auturizata u
+        date_format: "%d-%m-%Y %H:%M:%S"
+        scopes: Scopi
+        title: E vostre applicazione auturizate
+    errors:
+      messages:
+        access_denied: U pruprietariu di a risorsa o u servore d’autitinficazione hà ricusatu a dumanda.
+        credential_flow_not_configured: U flussu di l’identificazione di u pruprietariu di a risorsa hà fiascatu perchè Doorkeeper.configure.resource_owner_from_credentials ùn hè micca cunfiguratu.
+        invalid_client: L’autintificazione di u cliente hà fiascatu perchè u cliente ùn hè micca cunnisciutu, l’identificazione di u cliente ùn hè cumpresa, o u modu d’identificazione ùn marchja micca.
+        invalid_grant: L’accunsentu d’auturizazione furnitu ùn hè currettu, hè spiratu, sguassatu, ùn và micca cù l’indirizzu di ridirezzione usatu in a dumanda d’auturizazione, o hè statu emessu per un’altru cliente.
+        invalid_redirect_uri: L’URI di ridirezzione ùn hè curretta.
+        invalid_request: Ci manca un parametru riquestu indè a dumanda, cuntene un parametru ch’ùn esiste micca, o altru sbagliu di forma.
+        invalid_resource_owner: L’idintificanti di u pruprietariu di a risorsa ùn sò curretti, o u pruprietariu ùn pò micca esse trovu
+        invalid_scope: U scopu dumandatu ùn hè currettu, hè scunnisciutu, o altru sbagliu di forma.
+        invalid_token:
+          expired: A marca d’accessu hè spirata
+          revoked: A marca d’accessu hè stata rivucata
+          unknown: A marca d’accessu ùn hè curretta
+        resource_owner_authenticator_not_configured: Ùn c’hè micca pussutu ricercà u pruprietariu di a risorsa perchè Doorkeeper.configure.resource_owner_authenticator ùn hè micca cunfiguratu.
+        server_error: C’hè statu un prublemu cù u servore d’auturizazione.
+        temporarily_unavailable: U servore d’auturizazione ùn pò micca trattà a dumanda avà perchè hè sopraccaricatu o in mantenimentu.
+        unauthorized_client: U cliente ùn pò micca fà sta dumanda cusì.
+        unsupported_grant_type: Stu tippu d’accunsentu ùn marchja micca nant’à stu servore d’auturizazione.
+        unsupported_response_type: Sta risposta ùn marchja micca nant’à stu servore d’auturizazione.
+    flash:
+      applications:
+        create:
+          notice: Applicazione creata.
+        destroy:
+          notice: Applicazione sguassata.
+        update:
+          notice: Applicazione messa à ghjornu.
+      authorized_applications:
+        destroy:
+          notice: Applicazione sguassata.
+    layouts:
+      admin:
+        nav:
+          applications: Applicazione
+          oauth2_provider: Furnitore OAuth2
+      application:
+        title: Auturizazione OAuth riquestata
+    scopes:
+      follow: bluccà, sbluccà, è reghje l’abbunamenti
+      read: leghje l’infurmazione di u vostru contu
+      write: mandà missaghji per voi

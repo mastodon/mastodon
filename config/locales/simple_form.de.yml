@@ -4,10 +4,12 @@ de:
     hints:
       defaults:
         avatar: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 400×400 px herunterskaliert
+        bot: Warnt Besucher das dieser Nutzer keine echte Person darstellt
         digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
         display_name:
           one: <span class="name-counter">1</span> Zeichen verbleibt
           other: <span class="name-counter">%{count}</span> Zeichen verbleiben
+        fields: Du kannst bis zu 4 Elemente als Tabelle dargestellt auf deinem Profil anzeigen lassen
         header: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 700×335 px herunterskaliert
         locked: Wer dir folgen möchte, muss um deine Erlaubnis bitten
         note:
@@ -18,12 +20,17 @@ de:
       imports:
         data: CSV-Datei, die aus einer anderen Mastodon-Instanz exportiert wurde
       sessions:
-        otp: Gib den Zwei-Faktor-Authentisierungs-Code von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes.
+        otp: 'Gib den Zwei-Faktor-Authentisierungscode von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
       user:
         filtered_languages: Ausgewählte Sprachen werden aus deinen öffentlichen Zeitleisten gefiltert
     labels:
+      account:
+        fields:
+          name: Bezeichnung
+          value: Inhalt
       defaults:
         avatar: Profilbild
+        bot: Dies ist ein bot Benutzer
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
         current_password: Derzeitiges Passwort
@@ -31,6 +38,7 @@ de:
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Gültig bis
+        fields: Profil-Metadaten
         filtered_languages: Gefilterte Sprachen
         header: Kopfbild
         locale: Sprache

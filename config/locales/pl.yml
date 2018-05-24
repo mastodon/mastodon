@@ -4,6 +4,7 @@ pl:
     about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
+    administered_by: 'Administrowana przez:'
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
     contact_missing: Nie ustawiono
@@ -35,10 +36,11 @@ pl:
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     follow: Śledź
-    followers: Śledzących
-    following: Śledzi
+    followers: Śledzący
+    following: Śledzeni
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
+    network_hidden: Ta informacja nie jest dostępna
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -48,21 +50,29 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
+      bot: Bot
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
     account_moderation_notes:
-      account: Autor
-      create: Dodaj
-      created_at: Data
+      create: Pozostaw notatkę
       created_msg: Pomyślnie dodano notatkę moderacyjną!
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       are_you_sure: Jesteś tego pewien?
+      avatar: Awatar
       by_domain: Domena
+      change_email:
+        changed_msg: Pomyślnie zmieniono adres e-mail konta!
+        current_email: Obecny adres e-mail
+        label: Zmień adres e-mail
+        new_email: Nowy adres e-mail
+        submit: Zmień adres e-mail
+        title: Zmień adres e-mail dla %{username}
       confirm: Potwierdź
       confirmed: Potwierdzono
+      confirming: Potwierdzanie
       demote: Degraduj
       disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
@@ -71,6 +81,7 @@ pl:
       domain: Domena
       edit: Edytuj
       email: Adres e-mail
+      email_status: Stan e-maila
       enable: Aktywuj
       enabled: Aktywowano
       feed_url: Adres kanału
@@ -108,6 +119,11 @@ pl:
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież awatar
+      remove_avatar: Usun awatar
+      resend_confirmation:
+        already_confirmed: To konto zostało już potwierdzone
+        send: Wyślij ponownie e-mail z potwierdzeniem
+        success: E-mail z potwierdzeniem został wysłany!
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
@@ -128,6 +144,7 @@ pl:
       statuses: Wpisy
       subscribe: Subskrybuj
       title: Konta
+      unconfirmed_email: Niepotwierdzony adres e-mail
       undo_silenced: Cofnij wyciszenie
       undo_suspension: Cofnij zawieszenie
       unsubscribe: Przestań subskrybować
@@ -135,6 +152,8 @@ pl:
       web: Sieć
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} przypisał sobie zgłoszenie %{target}"
+        change_email_user: "%{name} zmienił adres-email użytkownika %{target}"
         confirm_user: "%{name} potwierdził adres e-mail użytkownika %{target}"
         create_custom_emoji: "%{name} dodał nowe emoji %{target}"
         create_domain_block: "%{name} zablokował domenę %{target}"
@@ -150,10 +169,13 @@ pl:
         enable_user: "%{name} przywrócił możliwość logowania użytkownikowi %{target}"
         memorialize_account: "%{name} nadał kontu %{target} status in memoriam"
         promote_user: "%{name} podniósł uprawnienia użytkownikowi %{target}"
+        remove_avatar_user: "%{name} usunął awatar użytkownikowi %{target}"
+        reopen_report: "%{name} otworzył ponownie zgłoszenie %{target}"
         reset_password_user: "%{name} przywrócił hasło użytkownikowi %{target}"
-        resolve_report: "%{name} odrzucił zgłoszenie %{target}"
+        resolve_report: "%{name} rozwiązał zgłoszenie %{target}"
         silence_account: "%{name} wyciszył konto %{target}"
         suspend_account: "%{name} zawiesił konto %{target}"
+        unassigned_report: "%{name} cofnął przypisanie zgłoszenia %{target}"
         unsilence_account: "%{name} cofnął wyciszenie konta %{target}"
         unsuspend_account: "%{name} cofnął zawieszenie konta %{target}"
         update_custom_emoji: "%{name} zaktualizował emoji %{target}"
@@ -240,29 +262,44 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
+    report_notes:
+      created_msg: Pomyslnie utworzono notatkę moderacyjną.
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
     reports:
+      account:
+        note: notatka
+        report: zgłoszenie
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
+      assign_to_self: Przypisz do siebie
+      assigned: Przypisany moderator
       comment:
-        label: Komentarz
         none: Brak
-      delete: Usuń
+      created_at: Zgłoszono
       id: ID
       mark_as_resolved: Oznacz jako rozwiązane
-      nsfw:
-        'false': Nie oznaczaj jako NSFW
-        'true': Oznaczaj jako NSFW
+      mark_as_unresolved: Oznacz jako nierozwiązane
+      notes:
+        create: Utwórz notatkę
+        create_and_resolve: Rozwiąż i pozostaw notatkę
+        create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
+        delete: Usuń
+        placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
+      reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
       resolved: Rozwiązane
+      resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       silence_account: Wycisz konto
       status: Stan
       suspend_account: Zawieś konto
       target: Cel
       title: Zgłoszenia
+      unassign: Cofnij przypisanie
       unresolved: Nierozwiązane
+      updated_at: Zaktualizowano
       view: Wyświetl
     settings:
       activity_api_enabled:
@@ -322,11 +359,8 @@ pl:
         delete: Usuń
         nsfw_off: Cofnij NSFW
         nsfw_on: Oznacz jako NSFW
-      execute: Wykonaj
       failed_to_execute: Nie udało się wykonać
       media:
-        hide: Ukryj zawartość multimedialną
-        show: Pokaż zawartość multimedialną
         title: Media
       no_media: Bez zawartości multimedialnej
       title: Wpisy konta
@@ -342,6 +376,7 @@ pl:
   admin_mailer:
     new_report:
       body: Użytkownik %{reporter} zgłosił %{target}
+      body_remote: Użytkownik instancji %{domain} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
@@ -383,6 +418,7 @@ pl:
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
   authorize_follow:
+    already_following: Już śledzisz to konto
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
     follow: Śledź
     follow_request: 'Wysłano prośbę o pozwolenie na śledzenie:'
@@ -430,7 +466,7 @@ pl:
     archive_takeout:
       date: Data
       download: Pobierz swoje archiwum
-      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, obsługiwanym przez odpowiednie programy.
+      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, który możesz otworzyć w obsługujących go programach. Możesz wyeksportować je po 7 dniach od poprzedniego eksportu.
       in_progress: Tworzenie archiwum…
       request: Uzyskaj archiwum
       size: Rozmiar
@@ -449,17 +485,19 @@ pl:
       one: W trakcie usuwania śledzących z jednej domeny…
       other: W trakcie usuwania śledzących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
-    unlocked_warning_html: Każdy może Cię śledzić, aby natychmiastowo zobaczyć twoje wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
+    unlocked_warning_html: Każdy może Cię śledzić, dzięki czemu może zobaczyć Twoje niepubliczne wpisy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
     unlocked_warning_title: Twoje konto nie jest zablokowane
   generic:
     changes_saved_msg: Ustawienia zapisane!
     powered_by: uruchomione na %{link}
     save_changes: Zapisz zmiany
     validation_errors:
-      one: Coś jest wciąż nie tak! Przyjrzyj się błędowi poniżej
-      other: Coś jest wciąż nie tak! Przejrzyj błędy (%{count}) poniżej
+      few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
+      many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
+      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
+      other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   imports:
-    preface: Możesz zaimportować pewne dane (jak dane kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
+    preface: Możesz zaimportować pewne dane (np. lista kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
     types:
       blocking: Lista blokowanych
@@ -475,6 +513,7 @@ pl:
       '21600': 6 godzinach
       '3600': godzinie
       '43200': 12 godzinach
+      '604800': 1 tygodniu
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
@@ -565,25 +604,15 @@ pl:
     other: Pozostałe
     publishing: Publikowanie
     web: Sieć
-  push_notifications:
-    favourite:
-      title: "%{name} dodał Twój wpis do ulubionych"
-    follow:
-      title: "%{name} zaczął Cię śledzić"
-    group:
-      title: "%{count} powiadomień"
-    mention:
-      action_boost: Podbij
-      action_expand: Pokaż więcej
-      action_favourite: Dodaj do ulubionych
-      title: "%{name} wspomniał o Tobie"
-    reblog:
-      title: "%{name} podbił Twój wpis"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
     proceed: Śledź
     prompt: 'Zamierzasz śledzić:'
+  remote_unfollow:
+    error: Błąd
+    title: Tytuł
+    unfollowed: Przestałeś śledzić
   sessions:
     activity: Ostatnia aktywność
     browser: Przeglądarka
@@ -641,6 +670,23 @@ pl:
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     your_apps: Twoje aplikacje
   statuses:
+    attached:
+      description: 'Załączono: %{attached}'
+      image:
+        few: "%{count} obrazy"
+        many: "%{count} obrazów"
+        one: "%{count} obraz"
+        other: "%{count} obrazów"
+      video:
+        few: "%{count} filmy"
+        many: "%{count} filmów"
+        one: "%{count} film"
+        other: "%{count} filmów"
+    boosted_from_html: Podbito przez %{acct_link}
+    content_warning: 'Ostrzeżenie o zawartości: %{warning}'
+    disallowed_hashtags:
+      one: 'zawiera niedozwolony hashtag: %{tags}'
+      other: 'zawiera niedozwolone hashtagi: %{tags}'
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
@@ -665,75 +711,86 @@ pl:
   terms:
     body_html: |
       <h2>Polityka prywatności</h2>
-
       <h3 id="collect">Jakie informacje zbieramy?</h3>
 
-      <p>Zbieramy informacje podane przy rejestracji i treści utworzone w trakcie korzystania z serwisu.</p>
-
-      <p>Podczas rejestracji, możesz otrzymać prośbę o podanie adresu e-mail. Możesz jednak odwiedzać stronę bez rejestracji. Adres zostanie zweryfikowany przez kliknięcie w link wysłany w wiadomości. Dzięki temu wiemy, że jesteś właścicielem tego adresu.</p>
-
-      <p>Podczas rejestracji i tworzenia wpisów, Twój adres IP jest zapisywany na naszych serwerach. Możemy też przechowywać adres IP użyty przy każdej operacji w serwisie.</p>
-
-      <h3 id="use">Jak wykorzystujemy zebrane informacje?</h3>
-
-      <p>Zebrane informacje mogą zostać w jednym z następujących celach:</p>
-
       <ul>
-        <li>Aby poprawić wrażenia &mdash; informacje o Tobie pomagają w dostosowywaniu serwisu do Twoich potrzeb.</li>
-        <li>Aby usprawnić stronę &mdash; nieustannie staramy się ulepszyć stronę na podstawie informacji o Tobie i Twoich opinii.</li>
-        <li>Aby usprawnić obsługę klienta &mdash; informacje pomogą obsłudze klienta utrzymywać kontakt z Tobą.</li>
-        <li>Aby okazjonalnie wysyłać wiadomości e-mail &mdash; Na podany adres e-mail mogą zostać wysłane wiadomości o wspomnieniu o Tobie we wpisach, przejrzeniu Twojego zgłoszenia i innych interakcji z Tobą.</li>
+        <li><em>Podstawowe informacje o koncie</em>: Podczas rejestracji na tym serwerze, możesz zostać poproszony o wprowadzenie nazwy użytkownika, adresu e-mail i hasła. Możesz także wprowadzić dodatkowe informacje o profilu, takie jak nazwa wyświetlana i biografia oraz wysłać awatar i obraz nagłówka. Nazwa użytkownika, nazwa wyświetlana, biografia, awatar i obraz nagłówka są zawsze widoczne dla wszystkich.</li>
+        <li><em>Wpisy, śledzenie i inne publiczne informacje</em>: Lista osób które śledzisz jest widoczna publicznie, tak jak lista osób, które Cię śledzą. Jeżeli dodasz wpis, data i czas jego utworzenia i aplikacja, z której go wysłano są przechowywane. Wiadomości mogą zawierać załączniki multimedialne, takie jak zdjęcia i filmy. Publiczne i niewidoczne wpisy są dostępne publicznie. Udostępniony wpis również jest widoczny publicznie. Twoje wpisy są dostarczane obserwującym, co oznacza że jego kopie mogą zostać dostarczone i być przechowywane na innych serwerach. Kiedy usuniesz wpis, przestaje być widoczny również dla osób śledzących Cię. „Podbijanie” i dodanie do ulubionych jest zawsze publiczne.</li>
+        <li><em>Wpisy bezpośrednie i tylko dla śledzących</em>: Wszystkie wpisy są przechowywane i przetwarzane na serwerze. Wpisy przeznaczone tylko dla śledzących są widoczne tylko dla nich i osób wspomnianych we wpisie, a wpisy bezpośrednie tylko dla wspimnianych. W wielu przypadkach oznacza to, że ich kopie są dostarczane i przechowywane na innych serwerach. Staramy się ograniczać zasięg tych wpisów wyłącznie do właściwych odbiorców, ale inne serwery mogą tego nie robić. Ważne jest, aby sprawdzać jakich serwerów używają osoby, które Cię śledzą. Możesz aktywować opcję pozwalającą na ręczne akceptowanie i odrzucanie nowych śledzących. <em>Pamiętaj, że właściciele serwerów mogą zobaczyć te wiadomości</em>, a odbiorcy mogą wykonać zrzut ekranu, skopiować lub udostępniać ten wpis. <em>Nie udostępniaj wrażliwych danych z użyciem Mastodona.</em></li>
+        <li><em>Adresy IP i inne metadane</em>: Kiedy zalogujesz się, przechowujemy adres IP użyty w trakcie logowania wraz z nazwą używanej przeglądarki. Wszystkie aktywne sesje możesz zobaczyć (i wygasić) w ustawieniach. Ostatnio używany adres IP jest przechowywany przez nas do 12 miesięcy. Możemy również przechowywać adresy IP wykorzystywane przy każdym działaniu na serwerze.</li>
       </ul>
 
-      <h3 id="protect">Jak zabezpieczamy dane?</h3>
+      <hr class="spacer" />
 
-      <p>Korzystamy z wielu zabezpieczeń, aby utrudnić osobom niepowołanym dostęp do danych, które wprowadzasz, publikujesz i czytasz.</p>
+      <h3 id="use">W jakim celu wykorzystujecie informacje?</h3>
 
-      <h3 id="data-retention">Jak długo przechowujecie dane?</h3>
-
-      <p>Dołożymy wszelkich starań, aby przechowywać:</p>
+      <p>Zebrane informacje mogą zostać użyte w następujące sposoby:</p>
 
       <ul>
-        <li>dzienniki serwera zawierające adresy IP przypisane do każdych operacji nie dłużej niż 90 dni.</li>
-        <li>adresy IP przypisane do użytkowników i ich wpisów nie dłużej niż 5 lat.</li>
+        <li>Aby dostarczyć podstawową funkcjonalność Mastodona. Możesz wchodzić w interakcje z zawartością tworzoną przez innych tylko gdy jesteś zalogowany. Na przykład, możesz śledzić innych, aby widzieć ich wpisy w dostosowanej osi czasu.</li>
+        <li>Aby wspomóc moderację społeczności, na przykład porównując Twój adres IP ze znanymi, aby rozpoznać próbę obejścia blokady i inne naruszenia.</li>
+        <li>Adres e-mail może zostać wykorzystany, aby wysyłać Ci informacje, powiadomienia o osobach wchodzących w interakcje z tworzoną przez Ciebie zawartością, wysyłających Ci wiadomości, odpowiadać na zgłoszenia i inne żądania lub zapytania.</li>
       </ul>
 
-      <h3 id="cookies">Czy używamy plików cookies?</h3>
+      <hr class="spacer" />
 
-      <p>Tak. Pliki cookies (zwane często ciasteczkami) są małymi zbiorami danych przechowywanych na Twoim dysku przez stronę internetową, aby rozpoznawać przeglądarkę i powiązać ją (jeżeli jesteś zarejestrowany/a) z Twoim kontem, jeżeli na to pozwolisz.</p>
+      <h3 id="protect">W jaki sposób chronimy Twoje dane?</h3>
 
-      <p>Możemy używać ciasteczek, aby skonfigurować stronę na podstawie zapisanych preferencji, oraz dostosować ją do potrzeb innych użytkowników. Możemy korzystać z usług firm trzecich pomagających w zrozumieniu potrzeb użytkownika. Te usługi nie mogą korzystać ze zdobytych danych w celach innych niż analiza pomagająca ulepszać ten serwis.</p>
+      <p>Wykorzystujemy różne zabezpieczenia, aby zapewnić bezpieczeństwo informacji, które wprowadzasz, wysyłasz lub do których uzyskujesz dostęp. Poza tym, sesja przeglądarki oraz ruch pomiędzy aplikacją a API jest zabezpieczany z użyciem SSL, a hasło jest hashowane z użyciem silnego algorytmu. Możesz też aktywować uwierzytelnianie dwustopniowe, aby lepiej zabezpieczyć dostęp do konta.</p>
 
-      <h3 id="disclose">Czy przekazujecie dane podmiotów trzecim?</h3>
+      <hr class="spacer" />
 
-      <p>Nie dokonujemy transakcji danych pozwalających na identyfikację Twojej osoby umieszczonych na tym serwisie. Nie oznacza to, że nie przekazujemy ich zaufanym podmiotom, które korzystają z nich poufnie. Możemy jednak udostępniać dane, jeżeli jest to wymagane prawnie, lub dla utrzymania bezpieczeństwa strony i innych użytkowników. W celach marketingowych (i podobnych) mogą zostać użyte jedynie dane niepozwalające na identyfikację osoby.</p>
+      <h3 id="data-retention">Jaka jest nasza polityka przechowywania danych?</h3>
 
-      <h3 id="third-party">Odnośniki do treści stron trzecich</h3>
+      <p>Staramy się:</p>
 
-      <p>Czasem na stronie mogą pojawić się odnośniki do stron trzecich. Mają one odrębne regulaminy i politykę prywatności. Nie odpowiadamy więc za zawartość tych stron. Dokładamy jednak wszelkich starań, aby nie stanowiły one zagrożenia, prosimy jednak o opinie na temat ich wykorzystania.</p>
+      <ul>
+        <li>Przechowywać logi zawierające adresy IP używane przy każdym żądaniu do serwera przez nie dłużej niż 90 dni.</li>
+        <li>Przechowywać adresy IP przypisane do użytkowników przez nie dłużej niż 12 miesięcy.</li>
+      </ul>
+
+      <p>Możesz zażądać i pobrać archiwum tworzonej zawartości, wliczając Twoje wpisy, załączniki multimedialne, awatar i zdjęcie nagłówka.</p>
+
+      <p>Możesz nieodwracalnie usunąć konto w każdej chwili.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Czy używany plików cookies?</h3>
+
+      <p>Tak. Pliki cookies są małymi plikami, które strona lub dostawca jej usługi dostarcza na dysk twardy komputera z użyciem przeglądarki internetowej (jeżeli na to pozwoli). Pliki cookies pozwalają na rozpoznanie przeglądarki i – jeśli jesteś zarejestrowany – przypisanie jej do konta.</p>
+
+      <p>Wykorzystujemy pliki cookies, aby przechowywać preferencję użytkowników na przyszłe wizyty.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Czy przekazujemy informacje osobom trzecim?</h3>
+
+      <p>Nie sprzedajemy, nie wymieniamy i nie przekazujemy osobom trzecim informacji pozwalających na identyfikację Ciebie. Nie dotyczy to zaufanym dostawcom pomagającym w prowadzeniu lub obsługiwaniu użytkowników, jeżeli zgadzają się, aby nie przekazywać dalej tych informacji. Możemy również udostępnić informacje, jeżeli uważany to za wymagane przez prawo, konieczne do wypełnienia polityki strony, przestrzegania naszych lub cudzych praw, własności i bezpieczeństwa.</p>
+
+      <p>Twoja publiczna zawartość może zostać pobrana przez inne serwery w sieci. Wpisy publiczne i tylko dla śledzących są dostarczane na serwery, na których znajdują się śledzący Cię, a wiadomości bezpośrednie trafiają na serwery adresatów, jeżeli są oni użytkownikami innego serwera.</p>
+
+      <p>Kiedy pozwolisz aplikacji na dostęp do Twojego konta, w zależności od nadanych jej pozwoleń, może uzyskać dostęp do publicznych informacji, listy śledzonych, Twoich list, wszystkich wpisów i ulubionych. Aplikacje nie mogą uzyskać dostępu do Twojego adresu e-mail i hasła.</p>
+
+      <hr class="spacer" />
 
       <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
 
-      <p>Ta strona i usługa jest przeznaczona dla osób, które ukończyły 13 lat. Jeżeli serwer znajduje się na terenie USA i nie masz ukończonych 13 lat, zgodnie z amerykańską ustawą COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) nie możesz korzystać z tego serwisu.</p>
+      <p>Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli serwer znajduje się w USA, a nie ukończyłeś 13 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
 
-      <h3 id="online">Polityka prywatności dotyczy tylko Internetu</h3>
-
-      <p>Ta polityka prywatności dotyczy jedynie danych zbieranych w Internecie, nie tych, które przechowywane są na Twoim komputerze, np. pliki cookies.</p>
-
-      <h3 id="consent">Wyrażenie zgody</h3>
-
-      <p>Korzystanie ze strony jest równoznaczne z akceptacją naszej polityki prywatności.</p>
+      <hr class="spacer" />
 
       <h3 id="changes">Zmiany w naszej polityce prywatności</h3>
 
-      <p>Jeżeli zdecydujemy się na zmiany w polityce prywatności, zmiany pojawią się na tej stronie.</p>
+      <p>Jeżeli zdecydujemy się na zmiany w polityce prywatności, pojawią się na tej stronie.</p>
 
-      <p>Dokument jest dostępny na licencji CC-BY-SA. Ostatnio modyfikowany 31 maja 2013, przetłumaczony 4 lipca 2017. Tłumaczenie (mimo dołożenia wszelkich starań) może nie być w pełni poprawne.</p>
+      <p>Dokument jest dostępny na licencji CC-BY-SA. Ostatnio zmodyfikowano go 7 marca 2018, przetłumaczono 9 kwietnia 2018. Tłumaczenie (mimo dołożenia wszelkich starań) może nie być w pełni poprawne.</p>
 
-      <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
+      <p>Bazowano na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
     title: Zasady korzystania i polityka prywatności %{instance}
   themes:
+    contrast: Wysoki kontrast
     default: Mastodon
+    mastodon-light: Mastodon (jasny)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -779,5 +836,6 @@ pl:
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'

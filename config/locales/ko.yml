@@ -4,6 +4,7 @@ ko:
     about_hashtag_html: "<strong>#%{hashtag}</strong> 라는 해시태그가 붙은 공개 툿 입니다. 같은 연합에 속한 임의의 인스턴스에 계정을 생성하면 당신도 대화에 참여할 수 있습니다."
     about_mastodon_html: Mastodon은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 Mastodon 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
+    administered_by: '관리자:'
     closed_registrations: 현재 이 인스턴스에서는 신규 등록을 받고 있지 않습니다.
     contact: 연락처
     contact_missing: 미설정
@@ -18,12 +19,12 @@ ko:
       humane_approach_body: 다른 SNS의 실패를 교훈삼아, Mastodon은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
       humane_approach_title: 보다 배려를 의식한 설계를 추구
       not_a_product_body: Mastodon은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
-      not_a_product_title: 여러분은 사람이며, 상품이 아닙니다.
+      not_a_product_title: 여러분은 사람이며, 상품이 아닙니다
       real_conversation_body: 자유롭게 사용할 수 있는 500문자의 메세지와 미디어 경고 내용을 바탕으로, 자기자신을 자유롭게 표현할 수 있습니다.
       real_conversation_title: 진정한 커뮤니케이션을 위하여
       within_reach_body: 개발자 친화적인 API에 의해서 실현된 iOS나 Android, 그 외의 여러 Platform들 덕분에 어디서든 친구들과 자유롭게 메세지를 주고 받을 수 있습니다.
       within_reach_title: 언제나 유저의 곁에서
-    generic_description: "%{domain} 은 Mastodon의 인스턴스 입니다."
+    generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     learn_more: 자세히
     other_instances: 다른 인스턴스
@@ -48,21 +49,29 @@ ko:
     reserved_username: 이 아이디는 예약되어 있습니다
     roles:
       admin: 관리자
+      bot: 봇
       moderator: 모더레이터
     unfollow: 팔로우 해제
   admin:
     account_moderation_notes:
-      account: 모더레이터
-      create: 작성하기
-      created_at: 작성 날짜
+      create: 모더레이션 노트 작성하기
       created_msg: 모더레이션 기록이 성공적으로 작성되었습니다!
       delete: 삭제
       destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다!
     accounts:
       are_you_sure: 정말로 실행하시겠습니까?
+      avatar: 아바타
       by_domain: 도메인
+      change_email:
+        changed_msg: 이메일이 성공적으로 바뀌었습니다!
+        current_email: 현재 이메일 주소
+        label: 이메일 주소 변경
+        new_email: 새 이메일 주소
+        submit: 이메일 주소 변경
+        title: "%{username}의 이메일 주소 변경"
       confirm: 확인
       confirmed: 확인됨
+      confirming: 확인 중
       demote: 모더레이터 강등
       disable: 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
@@ -71,6 +80,7 @@ ko:
       domain: 도메인
       edit: 편집
       email: E-mail
+      email_status: 이메일 상태
       enable: 활성화
       enabled: 활성화된
       feed_url: 피드 URL
@@ -108,6 +118,11 @@ ko:
       public: 전체 공개
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 아바타 업데이트
+      remove_avatar: 아바타 지우기
+      resend_confirmation:
+        already_confirmed: 이 사용자는 이미 확인되었습니다
+        send: 다시 확인 이메일
+        success: 확인 이메일이 전송되었습니다!
       reset: 초기화
       reset_password: 비밀번호 초기화
       resubscribe: 다시 구독
@@ -128,6 +143,7 @@ ko:
       statuses: 툿 수
       subscribe: 구독하기
       title: 계정
+      unconfirmed_email: 미확인 된 이메일 주소
       undo_silenced: 침묵 해제
       undo_suspension: 정지 해제
       unsubscribe: 구독 해제
@@ -135,6 +151,8 @@ ko:
       web: 웹
     action_logs:
       actions:
+        assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
+        change_email_user: "%{name}이 %{target}의 이메일 주소를 변경했습니다"
         confirm_user: "%{name}이 %{target}의 이메일 주소를 컨펌했습니다"
         create_custom_emoji: "%{name}이 새로운 에모지 %{target}를 추가했습니다"
         create_domain_block: "%{name}이 도메인 %{target}를 차단했습니다"
@@ -150,10 +168,13 @@ ko:
         enable_user: "%{name}이 %{target}의 로그인을 활성화 했습니다"
         memorialize_account: "%{name}이 %{target}의 계정을 메모리엄으로 전환했습니다"
         promote_user: "%{name}이 %{target}를 승급시켰습니다"
+        remove_avatar_user: "%{name}이 %{target}의 아바타를 지웠습니다"
+        reopen_report: "%{name}이 리포트 %{target}을 다시 열었습니다"
         reset_password_user: "%{name}이 %{target}의 암호를 초기화했습니다"
         resolve_report: "%{name}이 %{target} 신고를 처리됨으로 변경하였습니다"
         silence_account: "%{name}이 %{target}의 계정을 뮤트시켰습니다"
         suspend_account: "%{name}이 %{target}의 계정을 정지시켰습니다"
+        unassigned_report: "%{name}이 리포트 %{target}을 할당 해제했습니다"
         unsilence_account: "%{name}이 %{target}에 대한 뮤트를 해제했습니다"
         unsuspend_account: "%{name}이 %{target}에 대한 정지를 해제했습니다"
         update_custom_emoji: "%{name}이 에모지 %{target}를 업데이트 했습니다"
@@ -241,29 +262,44 @@ ko:
         expired: 만료됨
         title: 필터
       title: 초대
+    report_notes:
+      created_msg: 리포트 노트가 성공적으로 작성되었습니다!
+      destroyed_msg: 리포트 노트가 성공적으로 삭제되었습니다!
     reports:
+      account:
+        note: 노트
+        report: 리포트
       action_taken_by: 신고 처리자
       are_you_sure: 정말로 실행하시겠습니까?
+      assign_to_self: 나에게 할당 됨
+      assigned: 할당 된 모더레이터
       comment:
-        label: 코멘트
         none: 없음
-      delete: 삭제
+      created_at: 리포트 시각
       id: ID
       mark_as_resolved: 해결 완료 처리
-      nsfw:
-        'false': NSFW 꺼짐
-        'true': NSFW 켜짐
+      mark_as_unresolved: 미해결로 표시
+      notes:
+        create: 기록 추가
+        create_and_resolve: 기록을 작성하고 해결됨으로 표시
+        create_and_unresolve: 기록 작성과 함께 미해결로 표시
+        delete: 삭제
+        placeholder: 이 리포트에 대한 조치, 다른 업데이트 사항에 대해 설명합니다…
+      reopen: 리포트 다시 열기
       report: '신고 #%{id}'
       report_contents: 내용
       reported_account: 신고 대상 계정
       reported_by: 신고자
       resolved: 해결됨
+      resolved_msg: 리포트가 성공적으로 해결되었습니다!
       silence_account: 계정을 침묵 처리
       status: 상태
       suspend_account: 계정을 정지
       target: 대상
       title: 신고
+      unassign: 할당 해제
       unresolved: 미해결
+      updated_at: 업데이트 시각
       view: 표시
     settings:
       activity_api_enabled:
@@ -323,11 +359,8 @@ ko:
         delete: 삭제
         nsfw_off: NSFW 끄기
         nsfw_on: NSFW 켜기
-      execute: 실행
       failed_to_execute: 실행을 실패하였습니다
       media:
-        hide: 미디어 숨기기
-        show: 미디어 보여주기
         title: 미디어
       no_media: 미디어 없음
       title: 계정 툿
@@ -343,6 +376,7 @@ ko:
   admin_mailer:
     new_report:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
+      body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
   application_mailer:
     notification_preferences: 메일 설정 변경
@@ -361,6 +395,7 @@ ko:
     your_token: 액세스 토큰
   auth:
     agreement_html: 이 등록으로 <a href="%{rules_path}">이용규약</a> 과 <a href="%{terms_path}">약관</a>에 동의하는 것으로 간주됩니다.
+    change_password: 패스워드
     confirm_email: 확인 메일 승인
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
@@ -373,12 +408,17 @@ ko:
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
     or: 또는
     or_log_in_with: 다른 방법으로 로그인 하려면
+    providers:
+      cas: CAS
+      saml: SAML
     register: 등록하기
+    register_elsewhere: 다른 인스턴스에서 가입
     resend_confirmation: 확인 메일을 다시 보내기
     reset_password: 비밀번호 재설정
     security: 보안
     set_new_password: 새 비밀번호
   authorize_follow:
+    already_following: 이미 이 계정을 팔로우 하고 있습니다
     error: 리모트 계정을 확인하는 도중 오류가 발생했습니다
     follow: 팔로우
     follow_request: '당신은 다음 계정에 팔로우 신청을 했습니다:'
@@ -426,7 +466,7 @@ ko:
     archive_takeout:
       date: 날짜
       download: 아카이브 다운로드
-      hint_html: 당신의 <strong>툿과 업로드 된 미디어</strong>의 아카이브를 요청할 수 있습니다. 내보내지는 데이터는 ActivityPub 포맷입니다. 호환 되는 모든 소프트웨어에서 읽을 수 있습니다.
+      hint_html: 당신의 <strong>툿과 업로드 된 미디어</strong>의 아카이브를 요청할 수 있습니다. 내보내지는 데이터는 ActivityPub 포맷입니다. 호환 되는 모든 소프트웨어에서 읽을 수 있습니다. 7일마다 새로운 아카이브를 요청할 수 있습니다.
       in_progress: 당신의 아카이브를 컴파일 중입니다…
       request: 아카이브 요청하기
       size: 크기
@@ -471,6 +511,7 @@ ko:
       '21600': 6 시간
       '3600': 1 시간
       '43200': 12 시간
+      '604800': 1주일
       '86400': 하루
     expires_in_prompt: 영원히
     generate: 생성
@@ -543,9 +584,11 @@ ko:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: ''
+          unit: "."
   pagination:
+    newer: 새로운 툿
     next: 다음
+    older: 오래된 툿
     prev: 이전
     truncate: "&hellip;"
   preferences:
@@ -553,25 +596,15 @@ ko:
     other: 기타
     publishing: 퍼블리싱
     web: 웹
-  push_notifications:
-    favourite:
-      title: "%{name} 님이 당신의 툿를 즐겨찾기에 등록했습니다"
-    follow:
-      title: "%{name} 님이 나를 팔로우 하고 있습니다"
-    group:
-      title: "%{count} 건의 알림"
-    mention:
-      action_boost: 부스트
-      action_expand: 더보기
-      action_favourite: 즐겨찾기
-      title: "%{name} 님이 답장을 보냈습니다"
-    reblog:
-      title: "%{name} 님이 당신의 툿을 부스트 했습니다"
   remote_follow:
     acct: 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다:'
+  remote_unfollow:
+    error: 에러
+    title: 타이틀
+    unfollowed: 언팔로우됨
   sessions:
     activity: 마지막 활동
     browser: 브라우저
@@ -629,6 +662,18 @@ ko:
     two_factor_authentication: 2단계 인증
     your_apps: 애플리케이션
   statuses:
+    attached:
+      description: '첨부: %{attached}'
+      image:
+        one: "%{count} 이미지"
+        other: "%{count} 이미지"
+      video:
+        one: "%{count} 영상"
+        other: "%{count} 영상"
+    content_warning: '열람 주의: %{warning}'
+    disallowed_hashtags:
+      one: '허용 되지 않은 해시태그를 포함하고 있습니다: %{tags}'
+      other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
@@ -651,76 +696,9 @@ ko:
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
   terms:
-    body_html: |
-      <h2>사생활 정책</h2>
-
-      <h3 id="collect">우리가 어떤 정보를 수집하나요?</h3>
-
-      <p>우리는 귀하가 우리 사이트에 가입할 때, 그리고 우리의 포럼에 읽고, 쓸 때, 그리고 포럼에 게시된 공유된 콘텐츠를 평가할 때 정보를 수집합니다.</p>
-
-      <p>우리 사이트에 가입할 때, 귀하는 이름과 이메일 주소 입력을 요구 받을 수 있습니다. 하지만 귀하는 우리의 사이트를 가입하지 않고도 방문할 수 있습니다. 귀하의 이메일 주소는 고유한 링크를 담고 있는 이메일로 검증 될 것입니다. 만약 귀하가 그 링크를 방문한다면, 우리는 귀하가 그 이메일 주소를 소유하고 있다는 것을 알 수 있습니다.</p>
-
-      <p>가입을 하고 글을 쓸 때, 우리는 글이 어떤 IP에서 작성 되었는지 기록합니다. 또한 우리는 모든 요청에 대한 IP 주소를 담고 있는 서버 로그를 보관할 수 있습니다.</p>
-
-      <h3 id="use">우리가 귀하의 정보를 어떻게 사용하나요?</h3>
-
-      <p>우리가 귀하에게서 수집하는 어떠한 정보는 다음 중 하나와 같은 방법으로 사용될 수 있습니다:</p>
-
-      <ul>
-        <li>귀하의 경험을 개인화 하기 위해 &mdash; 귀하의 정보는 우리가 귀하의 개별적인 요구에 더 나은 응답을 할 수 있도록 돕습니다.</li>
-        <li>우리의 사이트를 개선하기 위해 &mdash; 우리는 귀하에게 받는 정보와 귀하에게 받는 피드박을 바탕으로 우리의 사이트 내용을 계속 개선하기 위해 노력합니다.</li>
-        <li>고객 서비스를 개선하기 위해 &mdash; 귀하의 정보는 우리가 귀하의 서비스 요청과 지원 요청에 더 효과적으로 응답할 수 있게 돕습니다.</li>
-        <li>주기적인 이메일을 보내기 위해 &mdash; 귀하가 제공하는 이메일 주소는 귀하에게 정보, 귀하가 요청하는 주제에 대한 변경과 귀하의 유저 이름에 대한 응답에 대한 알림, 문의에 대한 답, 또는 다른 요청과 질문을 보내는 데에 사용될 수 있습니다.</li>
-      </ul>
-
-      <h3 id="protect">우리가 어떻게 귀하의 정보를 보호하나요?</h3>
-
-      <p>우리는 귀하가 개인정보를 입력, 제출, 접근 할 때 귀하의 개인정보의 안전을 유지하기 위한 여러가지 보안 방법을 구현합니다.</p>
-
-      <h3 id="data-retention">정보 보관 정책은 어떻게 되나요?</h3>
-
-      <p>우리는 다음과 같이 노력 하겠습니다:</p>
-
-      <ul>
-        <li>모든 요청에 대한 IP 주소를 담고 있는 서버 로그를 최대 90일까지 보관합니다.</li>
-        <li>등록된 사용자와 관련된 IP 주소와 그들의 게시물들을 최대 5년까지 보관합니다.</li>
-      </ul>
-
-      <h3 id="cookies">쿠키를 사용하나요?</h3>
-
-      <p>네. 쿠키는 사이트나 서비스 제공자가 (만약 허용하신다면) 웹 브라우저를 통해 귀하의 컴퓨터 하드디스크에 전송하는 작은 파일들입니다. 이 쿠키들은 사이트가 귀하의 브라우저를 인식하게 하고, 만약 가입한 계정이 있다면 브라우저를 가입한 계정과 연관짓는 일을 가능하게 합니다.</p>
-
-      <p>우리는 쿠키를 사용해 귀하의 환경설정을 미래의 방문을 위해 저장하고, 사이트 접근 기록과 사이트 상호작용 기록을 모아 미래에 우리가 더 나은 사이트 경험과 도구를 제공할 수 있도록 합니다. 우리는 제 3자의 서비스 제공자와 계약하여 우리 사이트의 방문자에 대해 더 나은 이해를 하기 위해 도움을 받을 수 있습니다. 이러한 서비스 제공자들은 우리가 더 나은 서비스를 제공하도록 돕는 목적 외에는 이 정보를 사용할 수 없습니다.</p>
-
-      <h3 id="disclose">우리가 외부에 정보를 공개하나요?</h3>
-
-      <p>우리는 귀하를 식별할 수 있는 정보를 외부에 팔거나, 거래하거나, 전송하지 않습니다. 이는 우리가 우리의 사이트를 운영하고, 사업을 하고, 귀하에게 서비스를 제공하는 데에 도움을 주는 믿을 수 있는 제 3자의 서비스 제공자를 포함하지 않으며, 이는 그 서비스 제공자가 이 정보를 비밀로 취급하는 것에 동의하는지에 따라 다릅니다. 우리는 또한 법을 지키는 것, 우리 사이트의 정책을 집행하는 것, 우리와 다른 사람들의 권리, 재산, 안전을 보호하는 것으로 인해 정보 공개가 적합하다고 생각되면 정보를 공개 할 수 있습니다. 그러나, 귀하를 식별할 수 없는 방문자 정보는 외부에 마케팅, 광고, 혹은 다른 용도로 제공될 수 있습니다.</p>
-
-      <h3 id="third-party">제 3자 링크</h3>
-
-      <p>종종, 우리의 재량에 따라 우리의 사이트에 제 3자의 상품이나 서비스를 포함하거나 제공할 수 있습니다. 이러한 제 3자 사이트는 독립적인 개인정보 정책을 가지고 있습니다. 이러한 링크된 제 3자 사이트의 내용과 활동에 대해서 우리는 어떠한 의무와 법적 책임을 가지고 있지 않습니다. 그래도 우리는 그 사이트에 대한 피드백을 환영하며, 우리 사이트만의 정체성을 유지하도록 노력하겠습니다.</p>
-
-      <h3 id="coppa">아동 온라인 사생활 보호법 준수</h3>
-
-      <p>우리 사이트, 제품과 서비스는 적어도 13살인 사람들에게 맞춰져 있습니다. 만약 이 서버가 미합중국에 위치하고, 귀하가 13살이 되지 않는다면, COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) 의 요구사항에 따라 이 사이트를 이용하지 마십시오.</p>
-
-      <h3 id="online">온라인 사생활 정책 한정</h3>
-
-      <p>이 온라인 사생활 정책은 우리 사이트를 통해 수집된 정보에게만 적용되며, 오프라인에서 수집된 정보에는 적용되지 않습니다.</p>
-
-      <h3 id="consent">귀하의 동의</h3>
-
-      <p>우리의 사이트를 사용함으로서, 귀하는 우리 사이트의 사생활 정책에 동의합니다.</p>
-
-      <h3 id="changes">사생활 정책의 변경</h3>
-
-      <p>만약 우리가 사생활 정책을 변경하도록 결정한다면, 우리는 그 변경사항을 이 페이지에 게시하겠습니다.</p>
-
-      <p>이 문서는 CC-BY-SA 정책으로 배포됩니다. 마지막으로 2013년 3월 31일에 수정되었습니다.</p>
-
-      <p><a href="https://github.com/discourse/discourse">Discourse privacy policy</a>에서 가져옴.</p>
     title: "%{instance} 이용약관과 개인정보 취급 방침"
   themes:
+    contrast: 고대비
     default: 마스토돈
   time:
     formats:
@@ -740,10 +718,10 @@ ko:
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     setup: 초기 설정
-    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시간이 일치하는지 확인해 주십시오.
+    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시각이 일치하나요?
   user_mailer:
     backup_ready:
-      explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다.
+      explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
     welcome:
@@ -767,5 +745,6 @@ ko:
   users:
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
+    otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'

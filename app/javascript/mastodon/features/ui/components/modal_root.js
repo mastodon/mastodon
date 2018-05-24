@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Base from '../../../components/modal_root';
 import BundleContainer from '../containers/bundle_container';
 import BundleModalError from './bundle_modal_error';
 import ModalLoading from './modal_loading';
@@ -39,54 +40,15 @@ export default class ModalRoot extends React.PureComponent {
     onClose: PropTypes.func.isRequired,
   };
 
-  state = {
-    revealed: false,
-  };
-
-  handleKeyUp = (e) => {
-    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
-         && !!this.props.type) {
-      this.props.onClose();
-    }
+  getSnapshotBeforeUpdate () {
+    const visible = !!this.props.type;
+    return {
+      overflowY: visible ? 'hidden' : null,
+    };
   }
 
-  componentDidMount () {
-    window.addEventListener('keyup', this.handleKeyUp, false);
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (!!nextProps.type && !this.props.type) {
-      this.activeElement = document.activeElement;
-
-      this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
-    } else if (!nextProps.type) {
-      this.setState({ revealed: false });
-    }
-  }
-
-  componentDidUpdate (prevProps) {
-    if (!this.props.type && !!prevProps.type) {
-      this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
-      this.activeElement.focus();
-      this.activeElement = null;
-    }
-    if (this.props.type) {
-      requestAnimationFrame(() => {
-        this.setState({ revealed: true });
-      });
-    }
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('keyup', this.handleKeyUp);
-  }
-
-  getSiblings = () => {
-    return Array(...this.node.parentElement.childNodes).filter(node => node !== this.node);
-  }
-
-  setRef = ref => {
-    this.node = ref;
+  componentDidUpdate (prevProps, prevState, { overflowY }) {
+    document.body.style.overflowY = overflowY;
   }
 
   renderLoading = modalId => () => {
@@ -101,28 +63,16 @@ export default class ModalRoot extends React.PureComponent {
 
   render () {
     const { type, props, onClose } = this.props;
-    const { revealed } = this.state;
     const visible = !!type;
 
-    if (!visible) {
-      return (
-        <div className='modal-root' ref={this.setRef} style={{ opacity: 0 }} />
-      );
-    }
-
     return (
-      <div className='modal-root' ref={this.setRef} style={{ opacity: revealed ? 1 : 0 }}>
-        <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-          <div role='presentation' className='modal-root__overlay' onClick={onClose} />
-          <div role='dialog' className='modal-root__container'>
-            {visible && (
-              <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
-                {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
-              </BundleContainer>
-            )}
-          </div>
-        </div>
-      </div>
+      <Base onClose={onClose}>
+        {visible && (
+          <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
+            {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
+          </BundleContainer>
+        )}
+      </Base>
     );
   }
 

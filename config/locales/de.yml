@@ -4,6 +4,7 @@ de:
     about_hashtag_html: Dies sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du ein Konto irgendwo im Fediversum besitzt, kannst du mit ihnen interagieren.
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diese Instanz
+    administered_by: 'Administriert von:'
     closed_registrations: Die Registrierung auf dieser Instanz ist momentan geschlossen. Aber du kannst dein Konto auch auf einer anderen Instanz erstellen! Von dort hast du genauso Zugriff auf das Mastodon-Netzwerk.
     contact: Kontakt
     contact_missing: Nicht angegeben
@@ -48,21 +49,29 @@ de:
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Admin
+      bot: Bot
       moderator: Moderator
     unfollow: Entfolgen
   admin:
     account_moderation_notes:
-      account: Moderator*in
-      create: Erstellen
-      created_at: Datum
+      create: Notiz hinterlassen
       created_msg: Moderationsnotiz erfolgreich erstellt!
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       are_you_sure: Bist du sicher?
+      avatar: Profilbild
       by_domain: Domäne
+      change_email:
+        changed_msg: E-Mail-Adresse des Kontos erfolgreich geändert!
+        current_email: Aktuelle E-Mail-Adresse
+        label: E-Mail-Adresse ändern
+        new_email: Neue E-Mail-Adresse
+        submit: E-Mail-Adresse ändern
+        title: E-Mail-Adresse für %{username} ändern
       confirm: Bestätigen
       confirmed: Bestätigt
+      confirming: Bestätigung
       demote: Degradieren
       disable: Ausschalten
       disable_two_factor_authentication: 2FA abschalten
@@ -71,13 +80,14 @@ de:
       domain: Domain
       edit: Bearbeiten
       email: E-Mail
+      email_status: E-Mail-Status
       enable: Freischalten
       enabled: Freigegeben
       feed_url: Feed-URL
       followers: Folger
-      followers_url: Followers URL
+      followers_url: URL des Folgenden
       follows: Folgt
-      inbox_url: Inbox URL
+      inbox_url: Posteingangs-URL
       ip: IP-Adresse
       location:
         all: Alle
@@ -100,7 +110,7 @@ de:
         alphabetic: Alphabetisch
         most_recent: Neueste
         title: Sortierung
-      outbox_url: Outbox URL
+      outbox_url: Postausgangs-URL
       perform_full_suspension: Vollständige Sperre durchführen
       profile_url: Profil-URL
       promote: Befördern
@@ -108,6 +118,11 @@ de:
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Avatar neu laden
+      remove_avatar: Profilbild entfernen
+      resend_confirmation:
+        already_confirmed: Dieser Benutzer wurde bereits bestätigt
+        send: Bestätigungsmail erneut senden
+        success: Bestätigungs-E-Mail erfolgreich gesendet!
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
@@ -128,6 +143,7 @@ de:
       statuses: Beiträge
       subscribe: Abonnieren
       title: Konten
+      unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_silenced: Stummschaltung zurücknehmen
       undo_suspension: Sperre zurücknehmen
       unsubscribe: Abbestellen
@@ -135,6 +151,8 @@ de:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
+        change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
         confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
@@ -150,10 +168,13 @@ de:
         enable_user: "%{name} hat die Anmeldung für den Benutzer %{target} aktiviert"
         memorialize_account: "%{name} hat %{target}s Profil in eine Gedenkseite umgewandelt"
         promote_user: "%{name} hat %{target} befördert"
+        remove_avatar_user: "%{name} hat das Profilbild von %{target} entfernt"
+        reopen_report: "%{name} hat die Meldung %{target} wieder geöffnet"
         reset_password_user: "%{name} hat das Passwort für den Benutzer %{target} zurückgesetzt"
-        resolve_report: "%{name} hat die Meldung %{target} abgelehnt"
+        resolve_report: "%{name} hat die Meldung %{target} bearbeitet"
         silence_account: "%{name} hat %{target}s Account stummgeschaltet"
         suspend_account: "%{name} hat %{target}s Account gesperrt"
+        unassigned_report: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
         unsilence_account: "%{name} hat die Stummschaltung von %{target}s Account aufgehoben"
         unsuspend_account: "%{name} hat die Sperrung von %{target}s Account aufgehoben"
         update_custom_emoji: "%{name} hat das %{target} Emoji aktualisiert"
@@ -177,7 +198,7 @@ de:
       new:
         title: Eigenes Emoji hinzufügen
       overwrite: Überschreiben
-      shortcode: Shortcode
+      shortcode: Kürzel
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
       unlisted: Ungelistet
@@ -239,29 +260,44 @@ de:
         expired: Ausgelaufen
         title: Filter
       title: Einladungen
+    report_notes:
+      created_msg: Meldungs-Kommentar erfolgreich erstellt!
+      destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
     reports:
+      account:
+        note: Notiz
+        report: Meldung
       action_taken_by: Maßnahme ergriffen durch
       are_you_sure: Bist du dir sicher?
+      assign_to_self: Mir zuweisen
+      assigned: Zugewiesener Moderator
       comment:
-        label: Kommentar
         none: Kein
-      delete: Löschen
+      created_at: Gemeldet
       id: ID
       mark_as_resolved: Als gelöst markieren
-      nsfw:
-        'false': Medienanhänge wieder anzeigen
-        'true': Medienanhänge verbergen
+      mark_as_unresolved: Als ungelöst markieren
+      notes:
+        create: Kommentar hinzufügen
+        create_and_resolve: Mit Kommentar lösen
+        create_and_unresolve: Mit Kommentar wieder öffnen
+        delete: Löschen
+        placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder andere Neuigkeiten zu dieser Meldung…
+      reopen: Meldung wieder öffnen
       report: 'Meldung #%{id}'
       report_contents: Inhalt
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
+      resolved_msg: Meldung erfolgreich gelöst!
       silence_account: Konto stummschalten
       status: Status
       suspend_account: Konto sperren
       target: Ziel
       title: Meldungen
+      unassign: Zuweisung entfernen
       unresolved: Ungelöst
+      updated_at: Aktualisiert
       view: Ansehen
     settings:
       activity_api_enabled:
@@ -319,13 +355,10 @@ de:
       back_to_account: Zurück zum Konto
       batch:
         delete: Löschen
-        nsfw_off: NSFW aus
-        nsfw_on: NSFW ein
-      execute: Ausführen
+        nsfw_off: Als nicht heikel markieren
+        nsfw_on: Als heikel markieren
       failed_to_execute: Ausführen fehlgeschlagen
       media:
-        hide: Medien verbergen
-        show: Medien anzeigen
         title: Medien
       no_media: Keine Medien
       title: Beiträge des Kontos
@@ -341,6 +374,7 @@ de:
   admin_mailer:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
+      body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
@@ -382,6 +416,7 @@ de:
     security: Sicherheit
     set_new_password: Neues Passwort setzen
   authorize_follow:
+    already_following: Du folgst diesem Konto bereits
     error: Das Profil konnte nicht geladen werden
     follow: Folgen
     follow_request: 'Du hast eine Folgeanfrage gesendet an:'
@@ -429,7 +464,7 @@ de:
     archive_takeout:
       date: Datum
       download: Dein Archiv herunterladen
-      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportieren Daten werden im ActivityPub-Format gespeichert, dass lesbar mit jeder Software ist, die das Format unterstützt.
+      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportierten Daten werden im ActivityPub-Format gespeichert, welches mit jeder Software lesbar ist, die das Format unterstützt. Du kannst alle 7 Tage ein neues Archiv anfordern.
       in_progress: Stelle dein Archiv zusammen...
       request: Dein Archiv anfragen
       size: Größe
@@ -474,6 +509,7 @@ de:
       '21600': 6 Stunden
       '3600': 1 Stunde
       '43200': 12 Stunden
+      '604800': 1 Woche
       '86400': 1 Tag
     expires_in_prompt: Nie
     generate: Generieren
@@ -558,25 +594,15 @@ de:
     other: Weiteres
     publishing: Beiträge
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} hat deinen Beitrag favorisiert"
-    follow:
-      title: "%{name} folgt dir nun"
-    group:
-      title: "%{count} Benachrichtigungen"
-    mention:
-      action_boost: Teilen
-      action_expand: Mehr anzeigen
-      action_favourite: Favorisieren
-      title: "%{name} hat dich erwähnt"
-    reblog:
-      title: "%{name} hat deinen Beitrag geteilt"
   remote_follow:
     acct: Profilname@Domain, von wo aus du dieser Person folgen möchtest
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
+  remote_unfollow:
+    error: Fehler
+    title: Titel
+    unfollowed: Entfolgt
   sessions:
     activity: Letzte Aktivität
     browser: Browser
@@ -634,6 +660,18 @@ de:
     two_factor_authentication: Zwei-Faktor-Auth
     your_apps: Deine Anwendungen
   statuses:
+    attached:
+      description: 'Angehängt: %{attached}'
+      image:
+        one: "%{count} Bild"
+        other: "%{count} Bilder"
+      video:
+        one: "%{count} Video"
+        other: "%{count} Videos"
+    content_warning: 'Inhaltswarnung: %{warning}'
+    disallowed_hashtags:
+      one: 'Enthält den unerlaubten Hashtag: %{tags}'
+      other: 'Enthält die unerlaubten Hashtags: %{tags}'
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
     pin_errors:
@@ -655,6 +693,11 @@ de:
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: Heikle Inhalte
+  terms:
+    title: "%{instance} Nutzungsbedingungen und Datenschutzerklärung"
+  themes:
+    contrast: Hoher Kontrast
+    default: Mastodon
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
@@ -700,5 +743,6 @@ de:
   users:
     invalid_email: Ungültige E-Mail-Adresse
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
+    otp_lost_help_html: Wenn Sie zu beidem keinen Zugriff mehr haben, kontaktieren sie %{email}
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'

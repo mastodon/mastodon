@@ -4,6 +4,7 @@ ja:
     about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
+    administered_by: '管理者:'
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     contact_missing: 未設定
@@ -17,7 +18,7 @@ ja:
     features:
       humane_approach_body: 他の SNS の失敗から学び、Mastodon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指しています。
       humane_approach_title: より思いやりのある設計
-      not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析は無く、またユーザーの囲い込みもありません。
+      not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析は無く、またユーザーの囲い込みもありません。ここには中央権力はありません。
       not_a_product_title: あなたは人間であり、商品ではありません
       real_conversation_body: 好きなように書ける500文字までの投稿や、文章やメディアの内容に警告をつけられる機能で、思い通りに自分自身を表現することができます。
       real_conversation_title: 本当のコミュニケーションのために
@@ -39,6 +40,7 @@ ja:
     following: フォロー中
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
+    network_hidden: この情報は利用できません
     nothing_here: 何もありません！
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
@@ -48,21 +50,29 @@ ja:
     reserved_username: このユーザー名は予約されています
     roles:
       admin: Admin
+      bot: Bot
       moderator: Mod
     unfollow: フォロー解除
   admin:
     account_moderation_notes:
-      account: モデレータ
       create: 書き込む
-      created_at: 日付
       created_msg: モデレーションメモを書き込みました！
       delete: 削除
       destroyed_msg: モデレーションメモを削除しました！
     accounts:
       are_you_sure: 本当に実行しますか？
+      avatar: アイコン
       by_domain: ドメイン
+      change_email:
+        changed_msg: メールアドレスの変更に成功しました！
+        current_email: 現在のメールアドレス
+        label: メールアドレスを変更
+        new_email: 新しいメールアドレス
+        submit: メールアドレスの変更
+        title: "%{username} さんのメールアドレスを変更"
       confirm: 確認
       confirmed: 確認済み
+      confirming: 確認中
       demote: 降格
       disable: 無効化
       disable_two_factor_authentication: 二段階認証を無効にする
@@ -70,7 +80,8 @@ ja:
       display_name: 表示名
       domain: ドメイン
       edit: 編集
-      email: E-mail
+      email: メールアドレス
+      email_status: メールアドレスの状態
       enable: 有効化
       enabled: 有効
       feed_url: フィードURL
@@ -108,6 +119,11 @@ ja:
       public: パブリック
       push_subscription_expires: PuSH購読期限
       redownload: アバターの更新
+      remove_avatar: アイコンを削除
+      resend_confirmation:
+        already_confirmed: メールアドレスは確認済みです
+        send: 確認メールを再送
+        success: 確認メールを再送信しました!
       reset: リセット
       reset_password: パスワード再設定
       resubscribe: 再講読
@@ -128,6 +144,7 @@ ja:
       statuses: トゥート数
       subscribe: 購読する
       title: アカウント
+      unconfirmed_email: 確認待ちのメールアドレス
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
       unsubscribe: 購読の解除
@@ -135,6 +152,8 @@ ja:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} さんがレポート %{target} を自身の担当に割り当てました"
+        change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
@@ -150,10 +169,13 @@ ja:
         enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
         memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
         promote_user: "%{name} さんが %{target} さんを昇格しました"
+        remove_avatar_user: "%{name} さんが %{target} さんのアイコンを削除しました"
+        reopen_report: "%{name} さんがレポート %{target} を再び開きました"
         reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
         resolve_report: "%{name} さんがレポート %{target} を解決済みにしました"
         silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account: "%{name} さんが %{target} さんを停止しました"
+        unassigned_report: "%{name} さんがレポート %{target} の担当を外しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
@@ -239,29 +261,44 @@ ja:
         expired: 期限切れ
         title: フィルター
       title: 招待
+    report_notes:
+      created_msg: レポートメモを書き込みました！
+      destroyed_msg: レポートメモを削除しました！
     reports:
+      account:
+        note: メモ
+        report: レポート
       action_taken_by: レポート処理者
       are_you_sure: 本当に実行しますか？
+      assign_to_self: 担当になる
+      assigned: 担当者
       comment:
-        label: コメント
         none: なし
-      delete: 削除
+      created_at: レポート日時
       id: ID
       mark_as_resolved: 解決済みとしてマーク
-      nsfw:
-        'false': NSFW オフ
-        'true': NSFW オン
+      mark_as_unresolved: 未解決として再び開く
+      notes:
+        create: 書き込む
+        create_and_resolve: 書き込み、解決済みにする
+        create_and_unresolve: 書き込み、未解決として開く
+        delete: 削除
+        placeholder: このレポートに取られた措置や、その他の更新を記述してください…
+      reopen: 再び開く
       report: レポート#%{id}
       report_contents: 内容
       reported_account: 報告対象アカウント
       reported_by: 報告者
       resolved: 解決済み
+      resolved_msg: レポートを解決済みにしました！
       silence_account: アカウントをサイレンス
       status: ステータス
       suspend_account: アカウントを停止
       target: ターゲット
       title: レポート
+      unassign: 担当を外す
       unresolved: 未解決
+      updated_at: 更新日時
       view: 表示
     settings:
       activity_api_enabled:
@@ -319,13 +356,10 @@ ja:
       back_to_account: アカウントページに戻る
       batch:
         delete: 削除
-        nsfw_off: NSFW オフ
-        nsfw_on: NSFW オン
-      execute: 実行
+        nsfw_off: 閲覧注意をはずす
+        nsfw_on: 閲覧注意にする
       failed_to_execute: 実行に失敗しました
       media:
-        hide: メディアを隠す
-        show: メディアを表示
         title: メディア
       no_media: メディアなし
       title: トゥート一覧
@@ -341,6 +375,7 @@ ja:
   admin_mailer:
     new_report:
       body: "%{reporter} が %{target} を通報しました"
+      body_remote: "%{domain} の誰かが %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
     notification_preferences: メール設定の変更
@@ -382,6 +417,7 @@ ja:
     security: セキュリティ
     set_new_password: 新しいパスワード
   authorize_follow:
+    already_following: あなたは既にこのアカウントをフォローしています
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
     follow: フォロー
     follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
@@ -429,7 +465,7 @@ ja:
     archive_takeout:
       date: 日時
       download: ダウンロード
-      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。"
+      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
       in_progress: 準備中...
       request: アーカイブをリクエスト
       size: 容量
@@ -474,6 +510,7 @@ ja:
       '21600': 6 時間
       '3600': 1 時間
       '43200': 12 時間
+      '604800': 1 週間
       '86400': 1 日
     expires_in_prompt: 無期限
     generate: 作成
@@ -558,25 +595,15 @@ ja:
     other: その他
     publishing: 投稿
     web: ウェブ
-  push_notifications:
-    favourite:
-      title: あなたのトゥートが %{name} さんにお気に入り登録されました
-    follow:
-      title: "%{name} さんにフォローされました"
-    group:
-      title: "%{count} 件の通知"
-    mention:
-      action_boost: ブースト
-      action_expand: もっと見る
-      action_favourite: お気に入り
-      title: "%{name} さんから返信がありました"
-    reblog:
-      title: あなたのトゥートが %{name} さんにブーストされました
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
     proceed: フォローする
     prompt: 'フォローしようとしています:'
+  remote_unfollow:
+    error: エラー
+    title: タイトル
+    unfollowed: フォロー解除しました
   sessions:
     activity: 最後のアクティビティ
     browser: ブラウザ
@@ -634,6 +661,19 @@ ja:
     two_factor_authentication: 二段階認証
     your_apps: アプリ
   statuses:
+    attached:
+      description: '添付: %{attached}'
+      image:
+        one: "%{count} 枚の画像"
+        other: "%{count} 枚の画像"
+      video:
+        one: "%{count} 本の動画"
+        other: "%{count} 本の動画"
+    boosted_from_html: "%{acct_link} からブースト"
+    content_warning: '閲覧注意: %{warning}'
+    disallowed_hashtags:
+      one: '許可されていないハッシュタグが含まれています: %{tags}'
+      other: '許可されていないハッシュタグが含まれています: %{tags}'
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
@@ -658,81 +698,91 @@ ja:
   terms:
     body_html: |
       <h2>プライバシーポリシー</h2>
-
-      <h3 id="collect">どのような情報を収集するのですか？</h3>
-
-      <p>あなたがこのサイトに登録すると、ここで共有された情報を読んだり、書いたり、評価したりして、フォーラムでの情報を集める事ができます。</p>
-
-      <p>このサイトに登録する際には、名前とメールアドレスの入力を求めることがあります。ただし、登録をすることなくこのサイトを利用することも可能です。あなたのメールアドレスは、固有のリンクを含んだメールで確認されます。そのリンクにアクセスした場合にメールアドレスを制御することとなります。</p>
-
-      <p>アカウントを登録し、投稿を行った際にはその投稿が行われたIPアドレスを記録します。また、このサーバーに対する全てのリクエストはIPアドレスを含むサーバーログとして保管されます。</p>
-
-      <h3 id="use">自分の情報を何に使うのですか？</h3>
-
-      <p>このサイトで収集された情報は、次のいくつかの方法で使用されます:</p>
+      <h3 id="collect">どのような情報を収集しますか？</h3>
 
       <ul>
-        <li>パーソナライズ・エクスペリエンス &mdash; あなたの情報は、あなたや他のユーザーのニーズに対応するために役立ちます。</li>
-        <li>サイトの改善・最適化 &mdash; このサービスはあなたから受け取った情報やフィードバックに基づいて提供されるサイトの改善を行いつづけます。</li>
-        <li>サービスの向上 &mdash; あなたの情報は、ユーザーからの要求やサポートへより効果的に対応するために役立ちます。</li>
-        <li>定期メールの送信 &mdash; メールアドレスは、情報の送信、トピックの変更やユーザー名に関係するお知らせ、お問い合わせに関する返答、その他のリクエストや質問に関してお知らせするために使用されます。</li>
+        <li><em>基本的なアカウント情報</em>: 当サイトに登録すると、ユーザー名・メールアドレス・パスワードの入力を求められることがあります。また表示名や自己紹介・プロフィール画像・ヘッダー画像といった追加のプロフィールを登録できます。ユーザー名・表示名・自己紹介・プロフィール画像・ヘッダー画像は常に公開されます。</li>
+        <li><em>投稿・フォロー・その他公開情報</em>: フォローしているユーザーの一覧は一般公開されます。フォロワーも同様です。メッセージを投稿する際、日時だけでなく投稿に使用したアプリケーション名も記録されます。メッセージには写真や動画といった添付メディアを含むことがあります。「公開」や「未収載」の投稿は一般公開されます。プロフィールに投稿を載せるとそれもまた公開情報となります。投稿はフォロワーに配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。投稿を削除した場合も同様にフォロワーに配信されます。他の投稿をリブログやお気に入り登録する行動は常に公開されます。</li>
+        <li><em>「ダイレクト」と「フォロワー限定」投稿</em>: すべての投稿はサーバーに保存され、処理されます。「フォロワー限定」投稿はフォロワーと投稿に書かれたユーザーに配信されます。「ダイレクト」投稿は投稿に書かれたユーザーにのみ配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。私たちはこれらの閲覧を一部の許可された者に限定するよう誠意を持って努めます。しかし他のサーバーにおいても同様に扱われるとは限りません。したがって、相手の所属するサーバーを吟味することが重要です。設定で新しいフォロワーの承認または拒否を手動で行うよう切り替えることもできます。<em>サーバー管理者は「ダイレクト」や「フォロワー限定」投稿も閲覧する可能性があることを忘れないでください。</em>また受信者がスクリーンショットやコピー、もしくは共有する可能性があることを忘れないでください。<em>いかなる危険な情報もMastodon上で共有しないでください。</em></li>
+        <li><em>IPアドレスやその他メタデータ</em>: ログインする際IPアドレスだけでなくブラウザーアプリケーション名を記録します。ログインしたセッションはすべてユーザー設定で見直し、取り消すことができます。使用されている最新のIPアドレスは最大12ヵ月間保存されます。またサーバーへのIPアドレスを含むすべてのリクエストのログを保持することがあります。</li>
       </ul>
 
-      <h3 id="protect">自分の情報はどのように保護されるのですか？</h3>
+      <hr class="spacer" />
 
-      <p>このサービスはあなたの個人情報の入力、送信、またはアクセスに際してあなたの個人情報の安全性を維持するために様々なセキュリティ手段をとっています。</p>
+      <h3 id="use">情報を何に使用しますか？</h3>
 
-      <h3 id="data-retention">データ保持のポリシーはどのようになっていますか？</h3>
-
-      <p>このサービスはデータ保持に関して次のことを行うよう努めます。:</p>
+      <p>収集した情報は次の用途に使用されることがあります:</p>
 
       <ul>
-        <li>このサーバーへのすべての要求に対して、IPアドレスを含むサーバーログを90日以内に渡って保持します。</li>
-        <li>登録されたユーザーとその投稿に関連付けされたIPアドレスを5年以内に渡って保持します。</li>
+        <li>Mastodonのコア機能の提供: ログインしている間にかぎり他の人たちと投稿を通じて交流することができます。例えば自分専用のホームタイムラインで投稿をまとめて読むために他の人たちをフォローできます。</li>
+        <li>コミュニティ維持の補助: 例えばIPアドレスを既知のものと比較し、BAN回避目的の複数登録者やその他違反者を判別します。</li>
+        <li>提供されたメールアドレスはお知らせの送信・投稿に対するリアクションやメッセージ送信の通知・お問い合わせやその他要求や質問への返信に使用されることがあります。</li>
       </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">情報をどのように保護しますか？</h3>
+
+      <p>私たちはあなたが入力・送信する際や自身の情報にアクセスする際に個人情報を安全に保つため、さまざまなセキュリティ上の対策を実施します。特にブラウザーセッションだけでなくアプリケーションとAPI間の通信もSSLによって保護されます。またパスワードは強力な不可逆アルゴリズムでハッシュ化されます。二段階認証を有効にし、アカウントへのアクセスをさらに安全にすることができます。</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">データ保持方針はどうなっていますか？</h3>
+
+      <p>私たちは次のように誠意を持って努めます:</p>
+
+      <ul>
+        <li>当サイトへのIPアドレスを含むすべての要求に対するサーバーログを90日以内のできるかぎりの間保持します。</li>
+        <li>登録されたユーザーに関連付けられたIPアドレスを12ヵ月以内の間保持します。</li>
+      </ul>
+
+      <p>あなたは投稿・添付メディア・プロフィール画像・ヘッダー画像を含む自身のデータのアーカイブを要求し、ダウンロードすることができます。</p>
+
+      <p>あなたはいつでもアカウントの削除を要求できます。削除は取り消すことができません。</p>
+
+      <hr class="spacer"/>
 
       <h3 id="cookies">クッキーを使用していますか？</h3>
 
-      <p>はい。クッキーはあなたがウェブブラウザ上で許可した場合にコンピュータのストレージに転送される小さなファイルです。これらのクッキーを使用すると、サイトでブラウザが識別され、登録済みのアカウントを持っている場合は登録済みのアカウントに関連付けがされます。</p>
+      <p>はい。クッキーは (あなたが許可した場合に) WebサイトやサービスがWebブラウザーを介してコンピューターに保存する小さなファイルです。使用することで Web サイトがブラウザーを識別し、登録済みのアカウントがある場合関連付けます。</p>
 
-      <p>クッキーを使用して、今後再度閲覧された場合に前回のデータから設定を呼び出したり、今後の改善のためにサイトのトラフィックやサイトの相互作用に関する集計データを作成します。このサービスは、サイトを訪れた方との理解を深めるために、第三者のサービス提供者と契約することがあります。これらのサービス提供者というものは、このサービスでの業務を行ったり、改善するためにこのサービスの代わって収集された情報を使用することはできません。</p>
+      <p>私たちはクッキーを将来の訪問のために設定を保存し呼び出す用途に使用します。</p>
 
-      <h3 id="disclose">このサイトは外部に何らかの情報を開示していますか？</h3>
+      <hr class="spacer" />
 
-      <p>私たちは、個人を特定出来る情報を外部へ販売、取引、または他の方法で渡すことはありません。これには、このサイトを操作したり、業務を行ったり、サービスを提供するのに役立つ信頼できる第三者は含まれません。法令遵守、サイトポリシーの施行、このサービスや他の人の権利、財産または安全の保護のために適切であると判断した場合に、あなたの情報を公開する場合があります。ただし、マーケティングや広告、その他の目的で匿名での訪問者情報を他者へ提供することができます。</p>
+      <h3 id="disclose">なんらかの情報を外部に提供していますか？</h3>
 
-      <h3 id="third-party">サードパーティのリンク</h3>
+      <p>私たちは個人を特定できる情報を外部へ販売・取引・その他方法で渡すことはありません。これには当サイトの運営・業務遂行・サービス提供を行ううえで補助する信頼できる第三者をこの機密情報の保護に同意するかぎり含みません。法令の遵守やサイトポリシーの施行、権利・財産・安全の保護に適切と判断した場合、あなたの情報を公開することがあります。</p>
 
-      <p>必要に応じて、このサービスの方針にもとづいてこのサイトや第三者のサービスを提供することがあります。これらの第三者のサイトには、個別の独立したプライバシーポリシーがあります。従って、これらのリンク先のサイトに関するコンテンツや活動にかんしては一切責任を負いません。ですが、サイトの完全性やこれらのサイトに関するフィードバックは非常に重要なものであると認識しております。</p>
+      <p>あなたの公開情報はネットワーク上の他のサーバーにダウンロードされることがあります。相手が異なるサーバーに所属する場合、「公開」と「フォロワー限定」投稿はフォロワーの所属するサーバーに配信され、「ダイレクト」投稿は受信者の所属するサーバーに配信されます。</p>
 
-      <h3 id="coppa">子供のオンライン・プライバシー保護法</h3>
+      <p>あなたがアカウントの使用をアプリケーションに許可すると、承認した権限の範囲内で公開プロフィール情報・フォローリスト・フォロワー・リスト・すべての投稿・お気に入り登録にアクセスできます。アプリケーションはメールアドレスやパスワードに決してアクセスできません。</p>
 
-      <p>このサイト、製品、サービスはすべて13歳以上の人を対象としております。このサーバーが米国にあり、13歳未満の場合はCOPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) にもとづいてこのサイトを使用しないでください。</p>
+      <hr class="spacer" />
 
-      <h3 id="online">オンライン限定のプライバシーポリシー</h3>
+      <h3 id="coppa">児童オンラインプライバシー保護法の遵守</h3>
 
-      <p>このオンライン・プライバシーポリシーは、このサイトを通じて収集された情報のみに適用され、オフラインで収集される情報には適用されません。</p>
+      <p>当サイト・製品・サービスは13歳以上の人を対象としています。サーバーが米国にあり、あなたが13歳未満の場合、COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a> - 児童オンラインプライバシー保護法) により当サイトを使用できません。</p>
 
-      <h3 id="consent">あなたの同意</h3>
-
-      <p>このサービスを使用することにより、このサイトのプライバシーポリシーに同意するものとします。</p>
+      <hr class="spacer" />
 
       <h3 id="changes">プライバシーポリシーの変更</h3>
 
-      <p>プライバシーポリシーを変更する場合は、このページへ変更内容を掲載します。</p>
+      <p>プライバシーポリシーの変更を決定した場合、このページに変更点を掲載します。</p>
 
-      <p>この文章のライセンスはCC-BY-SAです。このページは2017年5月6日が最終更新です。</p>
+      <p>この文章のライセンスはCC-BY-SAです。最終更新日は2018年3月7日です。</p>
 
-      <p>オリジナルの出典 <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+      <p>オリジナルの出典: <a href="https://github.com/discourse/discourse">Discourse privacy policy</a></p>
     title: "%{instance} 利用規約・プライバシーポリシー"
   themes:
+    contrast: ハイコントラスト
     default: Mastodon
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
-    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
+    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
     disable: 無効
     enable: 有効
     enabled: 二段階認証は有効になっています
@@ -772,5 +822,6 @@ ja:
   users:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
+    otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'

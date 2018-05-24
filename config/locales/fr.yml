@@ -4,6 +4,7 @@ fr:
     about_hashtag_html: Figurent ci-dessous les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fediverse.
     about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
     about_this: À propos
+    administered_by: 'Administré par :'
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
     contact_missing: Manquant
@@ -39,6 +40,7 @@ fr:
     following: Abonnements
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
+    network_hidden: Cette information n'est pas disponible
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
@@ -48,21 +50,29 @@ fr:
     reserved_username: Ce nom d’utilisateur⋅ice est réservé
     roles:
       admin: Admin
+      bot: Robot
       moderator: Modérateur·trice
     unfollow: Ne plus suivre
   admin:
     account_moderation_notes:
-      account: Modérateur·ice
-      create: Créer
-      created_at: Date
+      create: Créer une note
       created_msg: Note de modération créée avec succès !
       delete: Supprimer
       destroyed_msg: Note de modération supprimée avec succès !
     accounts:
       are_you_sure: Êtes-vous certain⋅e ?
+      avatar: Avatar
       by_domain: Domaine
+      change_email:
+        changed_msg: Courriel du compte modifié avec succès !
+        current_email: Courriel actuel
+        label: Modifier le courriel
+        new_email: Nouveau courriel
+        submit: Modifier le courriel
+        title: Modifier le courriel pour %{username}
       confirm: Confirmer
       confirmed: Confirmé
+      confirming: Confirmant
       demote: Rétrograder
       disable: Désactiver
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -71,6 +81,7 @@ fr:
       domain: Domaine
       edit: Éditer
       email: Courriel
+      email_status: État de la messagerie
       enable: Activer
       enabled: Activé
       feed_url: URL du flux
@@ -108,6 +119,11 @@ fr:
       public: Publique
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir les avatars
+      remove_avatar: Supprimer l'avatar
+      resend_confirmation:
+        already_confirmed: Cet utilisateur est déjà confirmé
+        send: Renvoyer un courriel de confirmation
+        success: Email de confirmation envoyé avec succès !
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
@@ -128,6 +144,7 @@ fr:
       statuses: Statuts
       subscribe: S’abonner
       title: Comptes
+      unconfirmed_email: Courriel non-confirmé
       undo_silenced: Démasquer
       undo_suspension: Annuler la suspension
       unsubscribe: Se désabonner
@@ -135,6 +152,8 @@ fr:
       web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} s'est assigné le signalement de %{target} à eux-même"
+        change_email_user: "%{name} a modifié l'adresse de courriel de l'utilisateur %{target}"
         confirm_user: "%{name} adresse courriel confirmée de l'utilisateur %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux emoji %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
@@ -150,10 +169,13 @@ fr:
         enable_user: "%{name} a activé le login pour l'utilisateur %{target}"
         memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
         promote_user: "%{name} a promu l'utilisateur %{target}"
+        remove_avatar_user: "%{name} a supprimé l'avatar de %{target}'s"
+        reopen_report: "%{name} a ré-ouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
-        resolve_report: "%{name} n'a pas pris en compte la dénonciation de %{target}"
+        resolve_report: "%{name} a résolu la dénonciation de %{target}"
         silence_account: "%{name} a mis le compte %{target} en mode silence"
         suspend_account: "%{name} a suspendu le compte %{target}"
+        unassigned_report: "%{name} a dés-assigné le signalement %{target}"
         unsilence_account: "%{name} a mis fin au mode silence de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
         update_custom_emoji: "%{name} a mis à jour l'emoji %{target}"
@@ -239,29 +261,44 @@ fr:
         expired: Expiré
         title: Filtre
       title: Invitations
+    report_notes:
+      created_msg: Note de signalement créée avec succès !
+      destroyed_msg: Note de signalement effacée avec succès !
     reports:
+      account:
+        note: note
+        report: signaler
       action_taken_by: Intervention de
       are_you_sure: Êtes vous certain⋅e ?
+      assign_to_self: Me l'assigner
+      assigned: Modérateur assigné
       comment:
-        label: Commentaire
         none: Aucun
-      delete: Supprimer
+      created_at: Signalé
       id: ID
       mark_as_resolved: Marquer comme résolu
-      nsfw:
-        'false': Ré-afficher les médias
-        'true': Masquer les médias
+      mark_as_unresolved: Marquer comme non-résolu
+      notes:
+        create: Ajouter une note
+        create_and_resolve: Résoudre avec une note
+        create_and_unresolve: Ré-ouvrir avec une note
+        delete: Effacer
+        placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour de ce signalement…
+      reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       report_contents: Contenu
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
+      resolved_msg: Signalement résolu avec succès !
       silence_account: Masquer le compte
       status: Statut
       suspend_account: Suspendre le compte
       target: Cible
       title: Signalements
+      unassign: Dés-assigner
       unresolved: Non résolus
+      updated_at: Mis à jour
       view: Voir
     settings:
       activity_api_enabled:
@@ -319,13 +356,10 @@ fr:
       back_to_account: Retour à la page du compte
       batch:
         delete: Supprimer
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
-      execute: Exécuter
+        nsfw_off: Marquer comme non-sensible
+        nsfw_on: Marquer comme sensible
       failed_to_execute: Erreur d’exécution
       media:
-        hide: Masquer les médias
-        show: Montrer les médias
         title: Médias
       no_media: Aucun média
       title: État du compte
@@ -341,6 +375,7 @@ fr:
   admin_mailer:
     new_report:
       body: "%{reporter} a signalé %{target}"
+      body_remote: Quelqu'un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
@@ -382,6 +417,7 @@ fr:
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
   authorize_follow:
+    already_following: Vous suivez déjà ce compte
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
     follow: Suivre
     follow_request: 'Vous avez demandé à suivre :'
@@ -429,7 +465,7 @@ fr:
     archive_takeout:
       date: Date
       download: Télécharger votre archive
-      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible.
+      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
       in_progress: Élaboration de votre archive....
       request: Demandez vos archives
       size: Taille
@@ -474,6 +510,7 @@ fr:
       '21600': 6 heures
       '3600': 1 heure
       '43200': 12 heures
+      '604800': 1 semaine
       '86400': 1 jour
     expires_in_prompt: Jamais
     generate: Générer
@@ -558,25 +595,15 @@ fr:
     other: Autre
     publishing: Publication
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} a mis votre statut en favori"
-    follow:
-      title: "%{name} vous suit"
-    group:
-      title: "%{count} notifications"
-    mention:
-      action_boost: Partager
-      action_expand: Montrer plus
-      action_favourite: Ajouter aux favoris
-      title: "%{name} vous a mentionné·e"
-    reblog:
-      title: "%{name} a partagé votre statut"
   remote_follow:
     acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre cet·te utilisateur⋅ice
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     proceed: Continuez pour suivre
     prompt: 'Vous allez suivre :'
+  remote_unfollow:
+    error: Erreur
+    title: Titre
+    unfollowed: Non-suivi
   sessions:
     activity: Dernière activité
     browser: Navigateur
@@ -592,7 +619,7 @@ fr:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Autre
+      otter: Loutre
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -634,6 +661,19 @@ fr:
     two_factor_authentication: Identification à deux facteurs
     your_apps: Vos applications
   statuses:
+    attached:
+      description: 'Attaché : %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} vidéo"
+        other: "%{count} vidéos"
+    boosted_from_html: Repartagé depuis %{acct_link}
+    content_warning: 'Attention au contenu : %{warning}'
+    disallowed_hashtags:
+      one: 'contient un hashtag désactivé : %{tags}'
+      other: 'contient les hashtag désactivés : %{tags}'
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
     pin_errors:
@@ -653,80 +693,14 @@ fr:
   stream_entries:
     click_to_show: Cliquer pour afficher
     pinned: Pouet épinglé
-    reblogged: partagé
+    reblogged: a partagé
     sensitive_content: Contenu sensible
   terms:
-    body_html: |
-      <h2>Politique de confidentialité</h2>
-
-      <h3 id="collect">Quelles données collectons-nous ?</h3>
-
-      <p>Nous collectons des données lorsque vous vous enregistrez sur notre site et les récoltons lorsque vous participez dans le forum en lisant, écrivant, et évaluant le contenu partagé ici.</p>
-
-      <p>Lors de l’enregistrement sur notre site, il peut vous être demandé de renseigner votre nom et adresse électronique. Vous pouvez, cependant, visiter notre site sans inscription. Votre adresse électronique devra être vérifiée grâce à un courriel contenant un lien unique. Si ce lien est visité, nous savons que vous contrôlez cette adresse.</p>
-
-      <p>Lors de l’inscription et de la publication de statuts, nous enregistrons l’adresse IP de laquelle les statuts proviennent. Nous pouvons également conserver des historiques serveurs qui contiendront l’adresse IP de chaque requête adressée à notre serveur.</p>
-
-      <h3 id="use">Que faisons-nous avec vos données ?</h3>
-
-      <p>Toute information que nous collectons pourra être utilisée d’une des manières suivantes :</p>
-
-      <ul>
-        <li>Pour personnaliser votre expérience &mdash; vos données nous aident à mieux répondre à vos besoins individuels.</li>
-        <li>Pour améliorer notre site &mdash; nous faisons tout notre possible pour améliorer notre site en fonction des données, retours et suggestions que nous recevons.</li>
-        <li>Afin d’améliorer le support client &mdash; vos données nous aident à mieux répondre à vos requêtes et demandes de support.</li>
-        <li>Afin d’envoyer des courriels à intervalles réguliers &mdash; l’adresse électronique que vous renseignez peut être utilisée pour vous envoyer des données et notifications concernant des changements ou en réponse à votre nom d’utilisateur⋅ice, en réponse à vos demandes et/ou autres requêtes ou questions</li>
-      </ul>
-
-      <h3 id="protect">Comment protégeons-nous vos données ?</h3>
-
-      <p>Nous appliquons une multitude de mesures afin de maintenir la sécurité de vos données personnelles lorsque vous entrez, soumettez, ou accédez à ces dernières.</p>
-
-      <h3 id="data-retention">Quelle est notre politique de conservation des données ?</h3>
-
-      <p>Nous nous efforçons de :</p>
-
-      <ul>
-        <li>ne pas garder les historiques serveurs contenant l’adresse IP de chaque requête adressée à ce serveur plus de 90 jours ;</li>
-        <li>ne pas conserver les adresses IP associées aux utilisateur⋅trices et leur contenu plus de 5 ans.</li>
-      </ul>
-
-      <h3 id="cookies">Utilisons-nous des « cookies » ?</h3>
-
-      <p>Oui. Les cookies sont de petits fichiers qu’un site ou prestataires de services transfèrent sur le disque dur de votre ordinateur par le biais de votre navigateur Web (si ce dernier le permet). Ces cookies permettent au site de reconnaître votre navigateur et, si vous disposez d’un compte, de l’associer à celui-ci.</p>
-
-      <p>Nous utilisons les cookies pour enregistrer vos préférences pour de futures visites, compiler des données agrégées à propos du trafic et des interactions effectuées sur le site afin de proposer une meilleure expérience dans le futur. Nous pouvons contracter les services de tiers afin de nous aider à mieux comprendre les visiteurs de notre site. Ces tiers ont l’autorisation d’utiliser ces données seulement à des fins d’améliorations.</p>
-
-      <h3 id="disclose">Divulguons-nous des données à des tiers ?</h3>
-
-      <p>Nous n’échangeons pas, ne vendons pas ni effectuons de quelconques transferts avec des tiers d’informations permettant de vous identifier personnellement. Cela n’inclut pas les tiers de confiance qui nous aident à gérer notre entreprise et à vous servir tant que ces tiers s’accordent à garder lesdites informations confidentielles. Nous pouvons être amenés à délivrer vos informations lorsque jugé adéquat afin de respecter la loi, d’appliquer la politique de notre site, ou afin de protéger nos droits, ceux des autres, notre propriété ou sécurité. Cependant, aucune information permettant l’identification de nos visiteur⋅euse⋅s ne sera divulguée à des fins publicitaires, commerciales ou tout autre usage.</p>
-
-      <h3 id="third-party">Liens vers des tiers</h3>
-
-      <p>Nous pouvons être amenés à inclure ou offrir les services ou produits de tiers sur notre site. Ces tiers possèdent leur propre politique de confidentialité. Nous ne sommes donc pas responsables du contenu ou activités desdits tiers. Néanmoins, nous cherchons à protéger l’intégrité de notre site et sommes ouverts à toute remarque concernant ces tiers.</p>
-
-      <h3 id="coppa" lang="en">Children's Online Privacy Protection Act</h3>
-
-      <p>Notre site, nos produits et services sont tous destinés à l’usage de personnes âgées de 13 ans ou plus. Si ce serveur est hébergé aux États-Unis et que vous êtes âgé⋅e de moins de 13 ans, au vu du COPPA (<a href="https://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act"><i lang="en">Children's Online Privacy Protection Act</i></a>) n’utilisez pas ce site.</p>
-
-      <h3 id="online">Politique de confidentialité en ligne</h3>
-
-      <p>Cette politique de confidentialité en ligne s'applique uniquement aux informations collectées par le biais de notre site et non aux informations collectées hors ligne.</p>
-
-      <h3 id="consent">Votre consentement</h3>
-
-      <p>En utilisant notre site, vous consentez à la présente politique de confidentialité.</p>
-
-      <h3 id="changes">Changements de notre politique de confidentialité</h3>
-
-      <p>Si nous décidons d’apporter des changements à notre politique de confidentialité, nous les publierons sur cette page.</p>
-
-      <p>Ce document est distribué sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 31 mai 2013. Il a été traduit en français en juillet 2017.</p>
-
-      <p>Originellement adapté à partir de la politique de confidentialité de <a href="https://github.com/discourse/discourse">Discourse</a>.</p>
     title: "%{instance} Conditions d’utilisations et politique de confidentialité"
   themes:
+    contrast: Contraste élevé
     default: Mastodon
+    mastodon-light: Mastodon (clair)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -766,11 +740,12 @@ fr:
       tip_federated_timeline: La chronologie fédérée est une vue en direct du réseau Mastodon. Mais elle n'inclut que les personnes auxquelles vos voisin·es sont abonné·es, donc elle n'est pas complète.
       tip_following: Vous suivez les administrateurs et administratrices de votre serveur par défaut. Pour trouver d'autres personnes intéressantes, consultez les chronologies locales et fédérées.
       tip_local_timeline: La chronologie locale est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
-      tip_mobile_webapp: Si votre navigateur mobile vous propose d'ajouter Mastodon à votre écran d'accueil, vous pouvez recevoir des notifications push. Il agit comme une application native de bien des façons !
+      tip_mobile_webapp: Si votre navigateur mobile vous propose d'ajouter Mastodon à votre écran d'accueil, vous pouvez recevoir des notifications. Il agit comme une application native de bien des façons !
       tips: Astuces
       title: Bienvenue à bord, %{name} !
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'

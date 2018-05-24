@@ -7,7 +7,5 @@ class ProcessHashtagsService < BaseService
     tags.map { |str| str.mb_chars.downcase }.uniq(&:to_s).each do |tag|
       status.tags << Tag.where(name: tag).first_or_initialize(name: tag)
     end
-
-    status.update(sensitive: true) if tags.include?('nsfw')
   end
 end

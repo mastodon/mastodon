@@ -3,23 +3,31 @@ ja:
   simple_form:
     hints:
       defaults:
-        avatar: 2MBまでのPNGやGIF、JPGが利用可能です。400x400pxまで縮小されます
+        avatar: 2MBまでのPNG、GIF、JPGが利用可能です。400x400pxまで縮小されます
+        bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
-        header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます
+        fields: プロフィールに表として4つまでの項目を表示することができます
+        header: 2MBまでのPNG、GIF、JPGが利用可能です。 700x335pxまで縮小されます
         locked: フォロワーを手動で承認する必要があります
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
+        setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
-        otp: 携帯電話に表示された2段階認証コードを入力するか、生成したリカバリーコードを使用してください。
+        otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
       user:
         filtered_languages: 選択した言語があなたの公開タイムラインから取り除かれます
     labels:
+      account:
+        fields:
+          name: ラベル
+          value: 内容
       defaults:
         avatar: アイコン
+        bot: これは BOT アカウントです
         confirm_new_password: 新しいパスワード（確認用）
         confirm_password: パスワード（確認用）
         current_password: 現在のパスワード
@@ -27,6 +35,7 @@ ja:
         display_name: 表示名
         email: メールアドレス
         expires_in: 有効期限
+        fields: プロフィール補足情報
         filtered_languages: 除外する言語
         header: ヘッダー
         locale: 言語
@@ -42,11 +51,12 @@ ja:
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
         setting_display_sensitive_media: 閲覧注意としてマークされたメディアも常に表示する
+        setting_hide_network: 繋がりを隠す
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
-        setting_unfollow_modal: フォロー解除する前に確認ダイアログを表示する
+        setting_unfollow_modal: フォローを解除する前に確認ダイアログを表示する
         severity: 重大性
         type: インポートする項目
         username: ユーザー名
