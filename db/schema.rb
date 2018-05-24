@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_14_140000) do
+ActiveRecord::Schema.define(version: 2018_05_26_013703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_05_14_140000) do
     t.string "actor_type"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower"
+    t.index ["id"], name: "index_accounts_not_silenced", where: "(NOT silenced)"
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url"
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true
@@ -265,6 +266,8 @@ ActiveRecord::Schema.define(version: 2018_05_14_140000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "account_id"
+    t.boolean "direct", default: false, null: false
+    t.index ["account_id", "status_id"], name: "index_mentions_direct", where: "direct"
     t.index ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true
     t.index ["status_id"], name: "index_mentions_on_status_id"
   end
@@ -447,8 +450,10 @@ ActiveRecord::Schema.define(version: 2018_05_14_140000) do
     t.bigint "account_id", null: false
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
+    t.index ["account_id", "id", "updated_at"], name: "index_statuses_dm_account", where: "(visibility = 3)"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20180106", order: { id: :desc }
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
+    t.index ["id", "updated_at"], name: "index_statuses_dm", where: "(visibility = 3)"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
     t.index ["uri"], name: "index_statuses_on_uri", unique: true
