@@ -1,4 +1,3 @@
----
 eu:
   simple_form:
     hints:
@@ -8,11 +7,13 @@ eu:
         note:
           other: <span class="note-counter"> %{count}</span> karaktere faltan
         setting_noindex: Zure profil publiko eta egoera orrietan eragina du
-        setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten du.
+        setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten
+          du.
       imports:
         data: Mastodon-en beste instantzia batetik CSV fitxategia esportatu da
       user:
-        filtered_languages: Aukeratutako hizkuntzak timeline publikotik filtratuko dira
+        filtered_languages: Aukeratutako hizkuntzak timeline publikotik filtratuko
+          dira
     labels:
       account:
         fields:
@@ -28,5 +29,15 @@ eu:
         filtered_languages: Iragazitako hizkuntzak
         locale: Hizkuntza
         new_password: Pasahitz berria
-        note: Bio
+        note: Biografia
         password: Pasahitza
+        setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman
+          aurretik
+        setting_default_privacy: Mezuaren pribatutasuna
+      notification_emails:
+        reblog: Bidali e-mail mezua norbaitek zure mezuari bultzada ematen badio
+    'no': Ez
+    required:
+      mark: '*'
+      text: beharrezkoa
+    'yes': Bai
