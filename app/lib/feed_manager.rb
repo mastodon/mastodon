@@ -168,6 +168,7 @@ class FeedManager
     elsif status.reblog?                                                                                                         # Filter out a reblog
       should_filter   = Follow.where(account_id: receiver_id, target_account_id: status.account_id, show_reblogs: false).exists? # if the reblogger's reblogs are suppressed
       should_filter ||= Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?                # or if the author of the reblogged status is blocking me
+      should_filter ||= Mute.where(account_id: receiver_id, target_account_id: status.reblog.account_id).exists?                # or if I have the author of the reblogged status muted
       should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?          # or the author's domain is blocked
       return should_filter
     end
