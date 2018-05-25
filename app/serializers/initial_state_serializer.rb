@@ -2,7 +2,7 @@
 
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
-             :media_attachments, :settings
+             :media_attachments, :settings,
              :max_toot_chars
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
