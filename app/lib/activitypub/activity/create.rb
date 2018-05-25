@@ -80,7 +80,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
     hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
 
-    status.tags << hashtag
+    status.tags << hashtag unless status.tags.include?(hashtag)
   rescue ActiveRecord::RecordInvalid
     nil
   end
