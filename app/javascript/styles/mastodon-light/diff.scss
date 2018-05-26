@@ -27,10 +27,12 @@
 
 .compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button {
   color: $ui-base-color;
-}
 
-.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:active, .compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:focus, .compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button:hover {
-  color: darken($ui-base-color, 7%);
+  &:active,
+  &:focus,
+  &:hover {
+    color: darken($ui-base-color, 7%);
+  }
 }
 
 .compose-form .compose-form__modifiers .compose-form__upload-description input {
@@ -68,7 +70,7 @@
   background: $ui-base-lighter-color;
 
   &:hover {
-    background: lighten($ui-base-lighter-color, 6%)
+    background: lighten($ui-base-lighter-color, 6%);
   }
 }
 
