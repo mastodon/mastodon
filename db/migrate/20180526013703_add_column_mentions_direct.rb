@@ -13,7 +13,7 @@ class AddColumnMentionsDirect < ActiveRecord::Migration[5.0]
     end
 
     Status.unscoped.select('id').where(Status.arel_table[:visibility].eq(3)).find_in_batches do |batch|
-      Mentions.where(status_id: batch.map(&:id)).update_all('direct=TRUE')
+      Mention.where(status_id: batch.map(&:id)).update_all('direct=TRUE')
     end
 
     add_index :mentions, [:account_id, :status_id], where: 'direct', algorithm: :concurrently, name: 'index_mentions_direct'
