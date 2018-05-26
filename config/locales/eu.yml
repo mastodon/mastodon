@@ -159,6 +159,7 @@ eu:
       unsubscribe: Kendu harpidetza
       username: Erabiltzaile-izena
       web: Web
+      email_status: Posta elektronikoaren egoera
     action_logs:
       actions:
         assigned_to_self_report: '%{name}(e)k %{target} salaketa bere buruari esleitu
@@ -167,6 +168,19 @@ eu:
         unsuspend_account: '%{name}(e)k %{target} kontuaren kanporaketa atzera bota
           du'
         update_custom_emoji: '%{name}(e)k %{target} emoji-a eguneratu du'
+        change_email_user: '%{name}(e)k %{target} erabiltzailearen helbide elektronikoa
+          aldatu du'
+        confirm_user: '%{name}(e)k %{target} erabiltzailearen helbide elektronikoa
+          berretsi du'
+        create_custom_emoji: '%{name}(e)k emoji berria kargatu du %{target}'
+        create_domain_block: '%{name}(e)k %{target} domeinua blokeatu du'
+        create_email_domain_block: '%{name}(e)k %{target} helbide elektronikoen domeinua
+          zerrenda beltzean sartu du'
+        demote_user: '%{name}(e)k %{target} erabiltzailea mailaz jaitsi du'
+        destroy_domain_block: '%{name}(e)k %{target} domeinua desblokeatu du'
+        destroy_email_domain_block: '%{name}(e)k %{target} helbide elektronikoen domeinua
+          zerrenda zurian sartu du'
+        destroy_status: '%{name}(e)k %{target}(e)n egoera kendu du'
       title: Auditoria egunkaria
     custom_emojis:
       by_domain: Domeinua
