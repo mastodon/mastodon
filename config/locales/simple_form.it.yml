@@ -1,11 +1,11 @@
+---
 it:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
         bot: Avverte che l'account non rappresenta una persona
-        digest: Inviata solo dopo un lungo periodo di intattività e solo se hai ricevuto
-          qualsiasi messaggio personale in tua assenza
+        digest: Inviata solo dopo un lungo periodo di intattività e solo se hai ricevuto qualsiasi messaggio personale in tua assenza
         display_name:
           one: <span class="name-counter">1</span> carattere rimanente
           other: <span class="name-counter">%{count}</span> caratteri rimanenti
@@ -15,19 +15,15 @@ it:
         note:
           one: <span class="note-counter">1</span> carattere rimanente
           other: <span class="note-counter">%{count}</span> caratteri rimanenti
+        setting_hide_network: Chi segui e chi segue te no saranno mostrati sul tuo profilo
         setting_noindex: Coinvolge il tuo profilo pubblico e le pagine di stato
-        setting_theme: Coinvolge il modo in cui Mastodon verrà visualizzato quando
-          sarai collegato da qualsiasi dispositivo.
-        setting_hide_network: Chi segui e chi segue te no saranno mostrati sul tuo
-          profilo
+        setting_theme: Coinvolge il modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
       imports:
         data: File CSV esportato da un altra istanza di Mastodon
       sessions:
-        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono
-          o usa uno dei codici di recupero:'
+        otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
       user:
-        filtered_languages: Le lingue selezionate verranno filtrate dalla timeline
-          pubblica per te
+        filtered_languages: Le lingue selezionate verranno filtrate dalla timeline pubblica per te
     labels:
       account:
         fields:
@@ -59,17 +55,16 @@ it:
         setting_default_sensitive: Segna sempre i media come sensibili
         setting_delete_modal: Mostra dialogo di conferma prima di eliminare un toot
         setting_display_sensitive_media: Mostra sempre i media segnati come sensibili
+        setting_hide_network: Nascondi la tua rete
         setting_noindex: Non indicizzare dai motori di ricerca
         setting_reduce_motion: Riduci movimento nelle animazioni
         setting_system_font_ui: Usa il carattere di default del sistema
         setting_theme: Tema sito
-        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire
-          qualcuno
+        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire qualcuno
         severity: Severità
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
-        setting_hide_network: Nascondi la tua rete
       interactions:
         must_be_follower: Blocca notifiche dai non follower
         must_be_following: Blocca notifiche dalle persone che non segui
@@ -83,6 +78,6 @@ it:
         reblog: Invia email quando qualcuno da un boost al tuo stato
     'no': 'No'
     required:
-      mark: '*'
+      mark: "*"
       text: richiesto
     'yes': Si
