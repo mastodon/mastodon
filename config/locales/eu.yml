@@ -17,6 +17,17 @@ eu:
       not_a_product_title: Pertsona bat zara, ez produktu bat
       real_conversation_title: Egiazko elkarrizketarako eraikia
       within_reach_title: Beti eskura
+      humane_approach_body: Beste sareen akatsetatik ikasiz, Mastodon diseinu erabaki
+        etikoak hartzen saiatzen da gizarte sareen erabilera okerrak borrokatzeko.
+      humane_approach_title: Ikuspuntu humanoago bat
+      not_a_product_body: Mastodon ez da sare komertzial bat. Ez du iragarkirik, eta
+        ditu datuak mehatzen, ez da hormaz babestutako lorategi bat. Ez dago autoritate
+        zentralik.
+      real_conversation_body: 500 karaktere dituzu eskura, edukia xehetasunez kudeatu
+        daiteke eta multimediari abisuak jarri, adierazi zure burua zure erara.
+      within_reach_body: iOS, Android eta beste plataformetarako aplikazio ugari,
+        eta garatzaileentzako erabilterraza den API ekosistema bati esker beste plataforma
+        batzuetako lagunekin aritzeko aukera.
     generic_description: '%{domain} sareko zerbitzari bat da'
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     learn_more: Ikasi gehiago
@@ -27,6 +38,12 @@ eu:
     user_count_after: erabiltzaile
     user_count_before: Baditugu
     what_is_mastodon: Zer da Mastodon?
+    about_hashtag_html: Hauek  <strong>#%{hashtag}</strong> traola duten toot publokoak
+      dira. Fedibertsuko edozein kontu baduzu harremanetan jarri zaitezke.
+    about_mastodon_html: Mastodon web protokolo ireki eta libreak darabiltzan gizarte
+      sare bat da. E-mail sarea bezala deszentralizatua da.
+    closed_registrations: Harpidetza itxita dago orain instantzia honetan. Hala ere,
+      beste instantzia bat aurkitu dezakezu kontua egiteko eta hona ere sarbidea izan.
   accounts:
     follow: Jarraitu
     followers: Jarraitzaile
@@ -45,6 +62,7 @@ eu:
       bot: Bot-a
       moderator: Moderatzailea
     unfollow: Utzi jarraitzeari
+    moved_html: '%{name} hona aldatu da %{new_profile_link}:'
   admin:
     account_moderation_notes:
       create: Sortu oharra
@@ -66,3 +84,251 @@ eu:
       confirmed: Berretsita
       confirming: Berresten
       demote: Jaitsi mailaz
+      disable: Desgaitu
+      disable_two_factor_authentication: Desgaitu 2FA
+      disabled: Desgaituta
+      display_name: Pantaila-izena
+      domain: Domeinua
+      edit: Editatu
+      email: E-mail
+      enable: Gaitu
+      enabled: Gaituta
+      feed_url: Jarioaren URL-a
+      followers: Jarraitzaileak
+      followers_url: Jarraitzaileen URL-a
+      follows: Jarraitzen du
+      inbox_url: Sarrera ontziaren URL-a
+      ip: IP
+      location:
+        all: Denak
+        local: Lokala
+        remote: Urrunekoa
+        title: Kokalekua
+      login_status: Saioaren egoera
+      media_attachments: Multimedia eranskinak
+      memorialize: Bihurtu memoriala
+      moderation:
+        all: Denak
+        silenced: Isiluta
+        suspended: Kanporatua
+        title: Moderazioa
+      moderation_notes: Moderazio oharrak
+      most_recent_activity: Azken jarduera
+      most_recent_ip: Azken IP-a
+      not_subscribed: Harpidetu gabe
+      order:
+        alphabetic: Alfabetikoa
+        most_recent: Azkena
+        title: Ordena
+      outbox_url: Irteera ontziaren URL-a
+      perform_full_suspension: Aplikatu kanporatze osoa
+      profile_url: Profilaren URL-a
+      promote: Sustatu
+      protocol: Protokoloa
+      public: Publikoa
+      push_subscription_expires: Push harpidetzaren iraugitzea
+      redownload: Freskatu abatarra
+      remove_avatar: Kendu abatarra
+      resend_confirmation:
+        already_confirmed: Erabiltzaile hau berretsita dago
+        send: Birbidali baieztapen e-maila
+        success: Baieztapen e-maila ongi bidali da!
+      reset: Berrezarri
+      reset_password: Berrezarri pasahitza
+      resubscribe: Berriro harpidetu
+      role: Baimenak
+      roles:
+        admin: Administratzailea
+        moderator: Moderatzailea
+        staff: Langilea
+        user: Erabiltzailea
+      salmon_url: Salmon URL-a
+      search: Bilatu
+      shared_inbox_url: Partekatutako sarrera ontziaren URL-a
+      show:
+        created_reports: Kontu honek sortutako txostenak
+        report: salatu
+        targeted_reports: Kontu honek egindako salaketak
+      silence: Isilarazi
+      statuses: Mezuak
+      subscribe: Harpidetu
+      title: Kontuak
+      unconfirmed_email: Baieztatu gabeko e-mail helbidea
+      undo_silenced: Utzi isilarazteari
+      undo_suspension: Desegin kanporatzea
+      unsubscribe: Kendu harpidetza
+      username: Erabiltzaile-izena
+      web: Web
+    action_logs:
+      actions:
+        assigned_to_self_report: '%{name}(e)k %{target} salaketa bere buruari esleitu
+          dio'
+        suspend_account: '%{name}(e)k %{target} kontua kanporatu du'
+        unsuspend_account: '%{name}(e)k %{target} kontuaren kanporaketa atzera bota
+          du'
+        update_custom_emoji: '%{name}(e)k %{target} emoji-a eguneratu du'
+      title: Auditoria egunkaria
+    custom_emojis:
+      by_domain: Domeinua
+      copied_msg: Ongi sortu da emoji-aren kopia lokala
+      copy: Kopiatu
+      copy_failed_msg: Ezin izan da emoji-aren kopia lokal bat sortu
+      created_msg: Emoji-a ongi sortu da!
+      delete: Ezabatu
+      destroyed_msg: Emoji-a ongi suntsitu da!
+      disable: Desgaitu
+      disabled_msg: Emoji-a ongi desgaitu da
+      emoji: Emoji
+      enable: Gaitu
+      enabled_msg: Emoji hori ongi gaitu da
+      image_hint: PNG gehienez 50KB
+      listed: Zerrendatua
+      new:
+        title: Gehitu emoji pertsonal berria
+      overwrite: Gainidatzi
+      shortcode: Laster-kodea
+      shortcode_hint: Gutxienez 2 karaktere, alfanumerikoak eta azpimarra  besterik
+        ez
+      title: Emoji pertsonalak
+      unlisted: Zerrendatu gabea
+      update_failed_msg: Ezin izan da emoji hori eguneratu
+      updated_msg: Emoji-a ongi eguneratu da!
+      upload: Igo
+    domain_blocks:
+      add_new: Gehitu berria
+      created_msg: Domeinuaren blokeoa orain prozesatzen ari da
+      destroyed_msg: Domeinuaren blokeoa desegin da
+      domain: Domeinua
+      new:
+        create: Sortu blokeoa
+        hint: Domeinuaren blokeoak ez du eragotziko kontuen sarrerak sortzea datu-basean,
+          baina automatikoki ezarriko zaizkie moderazio metodo bereziak iraganeko
+          mezuetan ere.
+        severity:
+          noop: Bat ere ez
+          silence: Isilarasi
+          suspend: Kanporatu
+        title: Domeinu blokeo berria
+      reject_media: Ukatu multimedia fitxategiak
+      reject_media_hint: Lokalki gordetako multimedia fitxategiak ezabatzen ditu eta
+        etorkizunean fitxategi berriak deskargatzeari uko egingo dio. Ez du garrantzirik
+        kanporaketetan
+      severities:
+        noop: Bat ere ez
+        silence: Isilarazi
+        suspend: Kanporatu
+      severity: Larritasuna
+      show:
+        affected_accounts:
+          one: Datu-baseko kontu bati eragiten dio
+          other: Datu-baseko %{count} kontuei eragiten die
+        retroactive:
+          silence: Kendu isilarazteko agindua domeinu honetako kontu guztiei
+          suspend: Kendu kanporatzeko agindua domeinu honetako kontu guztiei
+        title: Desegin %{domain} domeinuko blokeoa
+        undo: Desegin
+      title: Domeinuen blokeoak
+      undo: Desegin
+    email_domain_blocks:
+      add_new: Gehitu berria
+      delete: Ezabatu
+      domain: Domeinua
+      new:
+        create: Gehitu domeinua
+    instances:
+      account_count: Kontu ezagunak
+      domain_name: Domeinua
+      reset: Berrezarri
+      search: Bilatu
+      title: Instantzia ezagunak
+    invites:
+      filter:
+        all: Denak
+        available: Eskuragarri
+        expired: Iraungitua
+        title: Iragazi
+      title: Gonbidapenak
+    report_notes:
+      created_msg: Salaketa oharra ongi sortu da!
+      destroyed_msg: Salaketa oharra ongi ezabatu da!
+    reports:
+      account:
+        note: oharra
+        report: salaketa
+      action_taken_by: 'Neurriak hartu ditu:'
+      are_you_sure: Ziur zaude?
+      assign_to_self: Esleitu niri
+      assigned: Esleitutako moderatzailea
+      comment:
+        none: Bat ere ez
+      created_at: Salatua
+      id: ID
+      mark_as_resolved: Markatu konpondutako gisa
+      mark_as_unresolved: Markatu konpondu gabeko gisa
+      notes:
+        create: Gehitu oharra
+        create_and_resolve: Konpondu ohar batekin
+        create_and_unresolve: Berrireki ohar batekin
+        delete: Ezabatu
+        placeholder: Azaldu hartutako neurriak, edo erlazioa duten bestelako berriak...
+      reopen: Berrireki salaketa
+      report: 'Salaketa #%{id}'
+      report_contents: Edukiak
+      reported_account: Salatutako kontua
+      reported_by: Salatzailea
+      resolved: Konponduta
+      resolved_msg: Salaketa ongi konpondu da!
+      silence_account: Isilarazi kontua
+      status: Mezua
+      suspend_account: Kanporatu kontua
+      target: Helburua
+      title: Salaketak
+      unassign: Kendu esleipena
+      unresolved: Konpondu gabea
+      updated_at: Eguneratua
+      view: Ikusi
+    settings:
+      activity_api_enabled:
+        desc_html: Lokalki bidalitako mezu kopurua, erabiltzaile aktiboak, eta izen
+          emate berriak asteko
+        title: Argitaratu erabiltzaile-jardueraren estatistikak
+      bootstrap_timeline_accounts:
+        title: Lehenetsitako jarraipena erabiltzaile berrientzat
+      contact_information:
+        email: Laneko e-mail helbidea
+        username: Kontaktuaren erabiltzaile-izena
+      hero:
+        desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen
+          ez bada, instantziaren irudia hartuko du
+        title: Azaleko irudia
+      peers_api_enabled:
+        desc_html: Instantzia honek fedibertsuan aurkitutako domeinu-izenak
+        title: Argitaratu aurkitutako instantzien zerrenda
+      registrations:
+        closed_message:
+          desc_html: Azaleko orrian bistaratua izen ematea ixten denean. HTML etiketak
+            erabili ditzakezu
+          title: Izen emate itxiaren mezua
+        deletion:
+          desc_html: Baimendu edonori bere kontua ezabatzea
+          title: Ireki kontu ezabaketa
+        min_invite_role:
+          disabled: Inor ez
+          title: Baimendu hauen gobidapenak
+        open:
+          desc_html: Baimendu edonori kontu bat sortzea
+          title: Ireki izen ematea
+      show_known_fediverse_at_about_page:
+        desc_html: Txandakatzean, fedibertsu ezagun osoko toot-ak bistaratuko ditu
+          aurrebistan. Bestela, toot lokalak besterik ez ditu erakutsiko.
+        title: Erakutsi fedibertsu ezagun osoko denbora-lerroa aurrebistan
+      show_staff_badge:
+        desc_html: Erakutsi langile banda erabiltzailearen orrian
+        title: Erakutsi langile banda
+      site_description:
+        title: Instantziaren deskripzioa
+      site_description_extended:
+        title: Informazio hedatu pertsonizatua
+      site_terms:
+        desc_html: Zure pribatutasun politika, erabilera baldintzak eta bestelako
+          testu legalak idatzi ditzakezu. HTML etiketak erabili ditzakezu
