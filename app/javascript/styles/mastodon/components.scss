@@ -425,7 +425,7 @@
 
         .icon-button {
           flex: 0 1 auto;
-          color: $action-button-color;
+          color: $secondary-text-color;
           font-size: 14px;
           font-weight: 500;
           padding: 10px;
@@ -434,7 +434,7 @@
           &:hover,
           &:focus,
           &:active {
-            color: lighten($action-button-color, 7%);
+            color: lighten($secondary-text-color, 7%);
           }
         }
 
