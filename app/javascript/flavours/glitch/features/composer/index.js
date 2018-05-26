@@ -56,6 +56,7 @@ function mapStateToProps (state) {
     advancedOptions: state.getIn(['compose', 'advanced_options']),
     amUnlocked: !state.getIn(['accounts', me, 'locked']),
     focusDate: state.getIn(['compose', 'focusDate']),
+    caretPosition: state.getIn(['compose', 'caretPosition']),
     isSubmitting: state.getIn(['compose', 'is_submitting']),
     isUploading: state.getIn(['compose', 'is_uploading']),
     layout: state.getIn(['local_settings', 'layout']),
@@ -117,7 +118,6 @@ const handlers = {
   handleEmoji (data) {
     const { textarea: { selectionStart } } = this;
     const { onInsertEmoji } = this.props;
-    this.caretPos = selectionStart + data.native.length + 1;
     if (onInsertEmoji) {
       onInsertEmoji(selectionStart, data);
     }
@@ -139,7 +139,6 @@ const handlers = {
   //  Selects a suggestion from the autofill.
   handleSelect (tokenStart, token, value) {
     const { onSelectSuggestion } = this.props;
-    this.caretPos = null;
     if (onSelectSuggestion) {
       onSelectSuggestion(tokenStart, token, value);
     }
@@ -191,18 +190,7 @@ class Composer extends React.Component {
     assignHandlers(this, handlers);
 
     //  Instance variables.
-    this.caretPos = null;
     this.textarea = null;
-  }
-
-  //  If this is the update where we've finished uploading,
-  //  save the last caret position so we can restore it below!
-  componentWillReceiveProps (nextProps) {
-    const { textarea } = this;
-    const { isUploading } = this.props;
-    if (textarea && isUploading && !nextProps.isUploading) {
-      this.caretPos = textarea.selectionStart;
-    }
   }
 
   //  Tells our state the composer has been mounted.
@@ -228,17 +216,13 @@ class Composer extends React.Component {
   //      - Replying to more than one user, selects any usernames past
   //        the first; this provides a convenient shortcut to drop
   //        everyone else from the conversation.
-  // - If we've just finished uploading an image, and have a saved
-  //   caret position, restores the cursor to that position after the
-  //   text changes.
   componentDidUpdate (prevProps) {
     const {
-      caretPos,
       textarea,
     } = this;
     const {
       focusDate,
-      isUploading,
+      caretPosition,
       isSubmitting,
       preselectDate,
       text,
@@ -246,14 +230,14 @@ class Composer extends React.Component {
     let selectionEnd, selectionStart;
 
     //  Caret/selection handling.
-    if (focusDate !== prevProps.focusDate || (prevProps.isUploading && !isUploading && !isNaN(caretPos) && caretPos !== null)) {
+    if (focusDate !== prevProps.focusDate) {
       switch (true) {
       case preselectDate !== prevProps.preselectDate:
         selectionStart = text.search(/\s/) + 1;
         selectionEnd = text.length;
         break;
-      case !isNaN(caretPos) && caretPos !== null:
-        selectionStart = selectionEnd = caretPos;
+      case !isNaN(caretPosition) && caretPosition !== null:
+        selectionStart = selectionEnd = caretPosition;
         break;
       default:
         selectionStart = selectionEnd = text.length;
@@ -410,6 +394,7 @@ Composer.propTypes = {
   advancedOptions: ImmutablePropTypes.map,
   amUnlocked: PropTypes.bool,
   focusDate: PropTypes.instanceOf(Date),
+  caretPosition: PropTypes.number,
   isSubmitting: PropTypes.bool,
   isUploading: PropTypes.bool,
   layout: PropTypes.string,
