@@ -40,6 +40,7 @@ zh-HK:
     following: 正在關注
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
+    network_hidden: 此信息不可用
     nothing_here: 暫時未有內容可以顯示
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
@@ -50,7 +51,7 @@ zh-HK:
     roles:
       admin: 管理員
       bot: 機械人
-      moderator: 監察员
+      moderator: 監察員
     unfollow: 取消關注
   admin:
     account_moderation_notes:
@@ -129,7 +130,7 @@ zh-HK:
       role: 身份
       roles:
         admin: 管理員
-        moderator: 監察员
+        moderator: 監察員
         staff: 管理人員
         user: 普通用戶
       salmon_url: Salmon 反饋 URL
@@ -282,7 +283,7 @@ zh-HK:
         create_and_resolve: 建立筆記並標示為「已處理」
         create_and_unresolve: 建立筆記並標示為「未處理」
         delete: 刪除
-        placeholder: 記錄已執行的動作，或其他更新
+        placeholder: 記錄已執行的動作，或其他相關的更新……
       reopen: 重開舉報
       report: '舉報 #%{id}'
       report_contents: 舉報內容
@@ -696,6 +697,7 @@ zh-HK:
   themes:
     contrast: 高對比
     default: 萬象
+    mastodon-light: 萬象（亮色主題）
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
