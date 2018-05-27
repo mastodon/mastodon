@@ -21,6 +21,8 @@ const makeGetStatusIds = () => createSelector([
   }
 
   return statusIds.filter(id => {
+    if (id === null) return true;
+
     const statusForId = statuses.get(id);
     let showStatus    = true;
 
