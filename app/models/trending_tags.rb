@@ -8,6 +8,8 @@ class TrendingTags
 
   class << self
     def record_use!(tag, at_time = Time.now.utc)
+      return if disallowed_hashtags.include?(tag.name)
+
       increment_vote!(tag.id, at_time)
       increment_historical_use!(tag.id, at_time)
     end
@@ -35,6 +37,14 @@ class TrendingTags
     # While dynamic, it will always be the same within one year
     def epoch
       @epoch ||= Date.new(Date.current.year + 2.5, 10, 1).to_datetime.to_i
+    end
+
+    def disallowed_hashtags
+      return @disallowed_hashtags if defined?(@disallowed_hashtags)
+
+      @disallowed_hashtags = Setting.disallowed_hashtags.nil? ? [] : Setting.disallowed_hashtags
+      @disallowed_hashtags = @disallowed_hashtags.split(' ') if @disallowed_hashtags.is_a? String
+      @disallowed_hashtags = @disallowed_hashtags.map(&:downcase)
     end
 
     def redis
