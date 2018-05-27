@@ -205,9 +205,10 @@ class Status < ApplicationRecord
         dm_from_me = dm_from_me.where(arel_table[:id].gt(since_id))
       end
 
-      query = Status.where(id: (dm_to_me + dm_from_me).uniq)
+      dm_to_me = apply_timeline_filters(dm_to_me, account, false)
+      dm_from_me = apply_timeline_filters(dm_from_me, account, false)
 
-      apply_timeline_filters(query, account, false)
+      Status.where(id: (dm_to_me + dm_from_me).uniq)
     end
 
     def as_public_timeline(account = nil, local_only = false)
