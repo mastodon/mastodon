@@ -5245,6 +5245,13 @@ noscript {
     &__name {
       flex: 1 1 auto;
       color: $dark-text-color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      strong {
+        font-weight: 500;
+      }
 
       a {
         color: $darker-text-color;

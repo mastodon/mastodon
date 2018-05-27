@@ -51,7 +51,7 @@ export default class SearchResults extends ImmutablePureComponent {
                     #<span>{hashtag.get('name')}</span>
                   </Link>
 
-                  <FormattedMessage id='trends.total' defaultMessage='{count} over the last week' values={{ count: shortNumberFormat(hashtag.get('history').reduce((aggr, day) => aggr + (day.get('uses') * 1), 0)) }} />
+                  <FormattedMessage id='trends.count_by_accounts' defaultMessage='{count} {rawCount, plural, one {person} other {people}} talking' values={{ rawCount: hashtag.getIn(['history', 0, 'accounts']), count: <strong>{shortNumberFormat(hashtag.getIn(['history', 0, 'accounts']))}</strong> }} />
                 </div>
 
                 <div className='trends__item__current'>

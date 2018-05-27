@@ -7,11 +7,12 @@ class TrendingTags
   EXPIRE_HISTORY_AFTER = 7.days.seconds
 
   class << self
-    def record_use!(tag, at_time = Time.now.utc)
-      return if disallowed_hashtags.include?(tag.name)
+    def record_use!(tag, account, at_time = Time.now.utc)
+      return if disallowed_hashtags.include?(tag.name) || account.silenced?
 
       increment_vote!(tag.id, at_time)
       increment_historical_use!(tag.id, at_time)
+      increment_unique_use!(tag.id, account.id, at_time)
     end
 
     def get(limit)
@@ -30,6 +31,12 @@ class TrendingTags
     def increment_historical_use!(tag_id, at_time)
       key = "activity:tags:#{tag_id}:#{at_time.beginning_of_day.to_i}"
       redis.incrby(key, 1)
+      redis.expire(key, EXPIRE_HISTORY_AFTER)
+    end
+
+    def increment_unique_use!(tag_id, account_id, at_time)
+      key = "activity:tags:#{tag_id}:#{at_time.beginning_of_day.to_i}:accounts"
+      redis.pfadd(key, account_id)
       redis.expire(key, EXPIRE_HISTORY_AFTER)
     end
 
