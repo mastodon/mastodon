@@ -347,7 +347,7 @@ RSpec.describe Status, type: :model do
       expect(results2).to_not include(@followed_direct_status)
     end
 
-    it 'includes direct statuses mentioning recipient from non-followed' do
+    it 'does not includes direct statuses mentioning recipient from non-followed' do
       Fabricate(:mention, account: account, status: @not_followed_direct_status)
       results2 = Status.as_direct_timeline_from_me(account)
       expect(results2).to_not include(@not_followed_direct_status)
