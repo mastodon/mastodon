@@ -195,14 +195,16 @@ class Status < ApplicationRecord
     end
 
     def as_direct_timeline_from_me(account)
-      # constant expression is required to use partial index
-      query = where(account_id: account.id)
-              .where(Status.arel_table[:visibility].eq(3))
 
-      apply_timeline_filters(query, account, false)
+      # constant expression is required to use partial index
+      where(account_id: account.id)
+        .where(Status.arel_table[:visibility].eq(3))
+
+      # _from_me part does not require any timeline filters
     end
 
     def as_direct_timeline_to_me(account)
+
       # constant expression is required to use partial index
       query = Status
               .joins(:mentions)
@@ -210,7 +212,12 @@ class Status < ApplicationRecord
               .where(Mention.arel_table[:direct].eq(true))
               .where(Status.arel_table[:visibility].eq(3))
 
-      apply_timeline_filters(query, account, false)
+      # direct timeline is not public.
+      # this TL does not require filtering by silence, languages, domain_block
+      # but mute and block should be applied
+      query.not_excluded_by_account(account)
+
+      # FIXME: may we check mutes.hide_notifications?
     end
 
     def as_public_timeline(account = nil, local_only = false)
