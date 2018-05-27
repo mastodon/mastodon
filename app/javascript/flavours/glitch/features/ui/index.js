@@ -467,7 +467,9 @@ export default class UI extends React.Component {
               <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
               <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
               <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
+              <WrappedRoute path='/timelines/public/media' extract component={PublicTimeline} content={children} componentParams={{ onlyMedia: true }} />
               <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
+              <WrappedRoute path='/timelines/public/local/media' component={CommunityTimeline} content={children} componentParams={{ onlyMedia: true }} />
               <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
               <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
               <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
