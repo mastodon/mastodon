@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import Column from 'flavours/glitch/components/column';
@@ -37,12 +37,12 @@ export default class CommunityTimeline extends React.PureComponent {
   };
 
   handlePin = () => {
-    const { columnId, dispatch } = this.props;
+    const { columnId, dispatch, onlyMedia } = this.props;
 
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('COMMUNITY', {}));
+      dispatch(addColumn('COMMUNITY', { other: { onlyMedia } }));
     }
   }
 
@@ -83,7 +83,12 @@ export default class CommunityTimeline extends React.PureComponent {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
-    const headline = (
+    const headline = pinned ? (
+      <div className='community-timeline__section-headline'>
+        <Link to='/timelines/public/local' replace className={!onlyMedia ? 'active' : undefined}><FormattedMessage id='timeline.posts' defaultMessage='Toots' /></Link>
+        <Link to='/timelines/public/local/media' replace className={onlyMedia ? 'active' : undefined}><FormattedMessage id='timeline.media' defaultMessage='Media' /></Link>
+      </div>
+    ) : (
       <div className='community-timeline__section-headline'>
         <NavLink exact to='/timelines/public/local' replace><FormattedMessage id='timeline.posts' defaultMessage='Toots' /></NavLink>
         <NavLink exact to='/timelines/public/local/media' replace><FormattedMessage id='timeline.media' defaultMessage='Media' /></NavLink>
