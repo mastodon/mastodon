@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
+import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from 'flavours/glitch/actions/streaming';
 
@@ -62,6 +62,16 @@ export default class CommunityTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
   }
 
+  componentDidUpdate (prevProps) {
+    if (prevProps.onlyMedia !== this.props.onlyMedia) {
+      const { dispatch, onlyMedia } = this.props;
+
+      this.disconnect();
+      dispatch(expandCommunityTimeline({ onlyMedia }));
+      this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+    }
+  }
+
   componentWillUnmount () {
     if (this.disconnect) {
       this.disconnect();
@@ -79,14 +89,31 @@ export default class CommunityTimeline extends React.PureComponent {
     dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
   }
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen)
+  }
+
+  handleHeadlineLinkClick = e => {
+    e.preventDefault();
+
+    const { columnId, dispatch } = this.props;
+    const onlyMedia = /\/media$/.test(e.currentTarget.href);
+
+    dispatch(changeColumnParams(columnId, { other: { onlyMedia } }));
+  }
+
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
     const headline = pinned ? (
       <div className='community-timeline__section-headline'>
-        <Link to='/timelines/public/local' replace className={!onlyMedia ? 'active' : undefined}><FormattedMessage id='timeline.posts' defaultMessage='Toots' /></Link>
-        <Link to='/timelines/public/local/media' replace className={onlyMedia ? 'active' : undefined}><FormattedMessage id='timeline.media' defaultMessage='Media' /></Link>
+        <a href='/timelines/public/local' className={!onlyMedia ? 'active' : undefined} onClick={this.handleHeadlineLinkClick}>
+          <FormattedMessage id='timeline.posts' defaultMessage='Toots' />
+        </a>
+        <a href='/timelines/public/local/media' className={onlyMedia ? 'active' : undefined} onClick={this.handleHeadlineLinkClick}>
+          <FormattedMessage id='timeline.media' defaultMessage='Media' />
+        </a>
       </div>
     ) : (
       <div className='community-timeline__section-headline'>

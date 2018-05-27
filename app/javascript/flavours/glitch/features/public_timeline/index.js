@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { expandPublicTimeline } from 'flavours/glitch/actions/timelines';
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
+import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectPublicStream } from 'flavours/glitch/actions/streaming';
 
@@ -62,6 +62,16 @@ export default class PublicTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectPublicStream({ onlyMedia }));
   }
 
+  componentDidUpdate (prevProps) {
+    if (prevProps.onlyMedia !== this.props.onlyMedia) {
+      const { dispatch, onlyMedia } = this.props;
+
+      this.disconnect();
+      dispatch(expandPublicTimeline({ onlyMedia }));
+      this.disconnect = dispatch(connectPublicStream({ onlyMedia }));
+    }
+  }
+
   componentWillUnmount () {
     if (this.disconnect) {
       this.disconnect();
@@ -79,14 +89,31 @@ export default class PublicTimeline extends React.PureComponent {
     dispatch(expandPublicTimeline({ maxId, onlyMedia }));
   }
 
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    return !(location.state && location.state.mastodonModalOpen)
+  }
+
+  handleHeadlineLinkClick = e => {
+    e.preventDefault();
+
+    const { columnId, dispatch } = this.props;
+    const onlyMedia = /\/media$/.test(e.currentTarget.href);
+
+    dispatch(changeColumnParams(columnId, { other: { onlyMedia } }));
+  }
+
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
     const headline = pinned ? (
       <div className='public-timeline__section-headline'>
-        <Link to='/timelines/public' replace className={!onlyMedia ? 'active' : undefined}><FormattedMessage id='timeline.posts' defaultMessage='Toots' /></Link>
-        <Link to='/timelines/public/media' replace className={onlyMedia ? 'active' : undefined}><FormattedMessage id='timeline.media' defaultMessage='Media' /></Link>
+        <a href='/timelines/public' className={!onlyMedia ? 'active' : undefined} onClick={this.handleHeadlineLinkClick}>
+          <FormattedMessage id='timeline.posts' defaultMessage='Toots' />
+        </a>
+        <a href='/timelines/public/media' className={onlyMedia ? 'active' : undefined} onClick={this.handleHeadlineLinkClick}>
+          <FormattedMessage id='timeline.media' defaultMessage='Media' />
+        </a>
       </div>
     ) : (
       <div className='public-timeline__section-headline'>
