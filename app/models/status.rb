@@ -195,7 +195,6 @@ class Status < ApplicationRecord
     end
 
     def as_direct_timeline_from_me(account)
-
       # constant expression is required to use partial index
       where(account_id: account.id)
         .where(Status.arel_table[:visibility].eq(3))
@@ -204,7 +203,6 @@ class Status < ApplicationRecord
     end
 
     def as_direct_timeline_to_me(account)
-
       # constant expression is required to use partial index
       query = Status
               .joins(:mentions)
