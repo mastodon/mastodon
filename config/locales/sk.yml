@@ -10,7 +10,7 @@ sk:
     contact_missing: Nezadané
     contact_unavailable: Neuvedené
     description_headline: Čo je %{domain}?
-    domain_count_after: ďalším inštanciám
+    domain_count_after: ďalším instanciám
     domain_count_before: Pripojený k
     extended_description_html: |
       <h3>Pravidlá</h3>
@@ -40,6 +40,7 @@ sk:
     following: Sleduje
     media: Médiá
     moved_html: "%{name} účet bol presunutý na %{new_profile_link}:"
+    network_hidden: Táto informácia nieje k dispozícii
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
@@ -282,7 +283,7 @@ sk:
         create_and_resolve: Vyrieš s poznámkou
         create_and_unresolve: Otvor znovu, s poznámkou
         delete: Vymaž
-        placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné aktualizácie k tomuto nahláseniu…
+        placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné súvisiace aktualizácie…
       reopen: Znovu otvor report
       report: Nahlásiť
       report_contents: Obsah
@@ -396,8 +397,8 @@ sk:
     change_password: Heslo
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
-    delete_account_html: Pokiaľ si želáte vymazať svoj účet, môžete tak <a href="%{path}"> 1 urobiť tu</a> 2. Budete požiadaný/á o potvrdenie tohto kroku.
-    didnt_get_confirmation: Neobdŕžali ste kroky pre potvrdenie?
+    delete_account_html: Pokiaľ chceš vymazať svoj účet, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
+    didnt_get_confirmation: Neobdŕžal/a si kroky pre potvrdenie?
     forgot_password: Zabudli ste heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítajte si nový.
     login: Prihlás sa
@@ -482,7 +483,7 @@ sk:
       few: Počas utišovania sledovateľov z %{count} domén...
       one: Počas utišovania sledovateľov z jednej domény...
       other: Počas utišovania sledovateľov z %{count} domén...
-    true_privacy_html: Prosím majte na vedomí, <strong> 1 že ozajstné súkromie sa dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong> 2.
+    true_privacy_html: Prosím ber na vedomie, <strong> že ozajstné súkromie sa dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong>.
     unlocked_warning_html: Hocikto ťa môže následovať aby mohol/a ihneď vidieť tvoje súkromné príspevky. %{lock_link} aby si mohla skontrolovať a odmietať sledovateľov.
     unlocked_warning_title: Tvoj účet nieje zamknutý
   generic:
@@ -679,6 +680,7 @@ sk:
   themes:
     contrast: Vysoký kontrast
     default: Mastodon
+    mastodon-light: Mastodon (svetlý)
   time:
     formats:
       default: "%b %d, %R, %H:%M"
