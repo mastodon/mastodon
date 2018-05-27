@@ -5,7 +5,7 @@ import {
   expandHomeTimeline,
   disconnectTimeline,
 } from './timelines';
-import { updateNotifications, refreshNotifications } from './notifications';
+import { updateNotifications, expandNotifications } from './notifications';
 import { getLocale } from 'mastodon/locales';
 
 const { messages } = getLocale();
@@ -38,7 +38,7 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null) 
 
 function refreshHomeTimelineAndNotification (dispatch) {
   dispatch(expandHomeTimeline());
-  dispatch(refreshNotifications());
+  dispatch(expandNotifications());
 }
 
 export const connectUserStream = () => connectTimelineStream('home', 'user', refreshHomeTimelineAndNotification);
