@@ -48,8 +48,8 @@ export default class SectionHeadline extends Component {
           </Fragment>
         ) : (
           <Fragment>
-            <NavLink exact to={to} replace><FormattedMessage id='timeline.posts' defaultMessage='Toots' /></NavLink>
-            <NavLink exact to={`${to}/media`} replace><FormattedMessage id='timeline.media' defaultMessage='Media' /></NavLink>
+            <NavLink exact to={to}><FormattedMessage id='timeline.posts' defaultMessage='Toots' /></NavLink>
+            <NavLink exact to={`${to}/media`}><FormattedMessage id='timeline.media' defaultMessage='Media' /></NavLink>
           </Fragment>
         )}
       </div>
