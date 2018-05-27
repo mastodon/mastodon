@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
-import {
-  refreshPublicTimeline,
-  expandPublicTimeline,
-} from 'flavours/glitch/actions/timelines';
+import { expandPublicTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -35,7 +32,7 @@ export default class PublicTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
-    dispatch(refreshPublicTimeline());
+    dispatch(expandPublicTimeline());
     this.disconnect = dispatch(connectPublicStream());
   }
 
@@ -46,8 +43,8 @@ export default class PublicTimeline extends React.PureComponent {
     }
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandPublicTimeline());
+  handleLoadMore = maxId => {
+    this.props.dispatch(expandPublicTimeline({ maxId }));
   }
 
   render () {
@@ -63,7 +60,7 @@ export default class PublicTimeline extends React.PureComponent {
 
         <StatusListContainer
           timelineId='public'
-          loadMore={this.handleLoadMore}
+          onLoadMore={this.handleLoadMore}
           scrollKey='standalone_public_timeline'
           trackScroll={false}
         />

@@ -9,7 +9,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { isMobile } from 'flavours/glitch/util/is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose } from 'flavours/glitch/actions/compose';
-import { refreshHomeTimeline } from 'flavours/glitch/actions/timelines';
+import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import { refreshNotifications } from 'flavours/glitch/actions/notifications';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_helpers';
@@ -219,7 +219,7 @@ export default class UI extends React.Component {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
-    this.props.dispatch(refreshHomeTimeline());
+    this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(refreshNotifications());
   }
 

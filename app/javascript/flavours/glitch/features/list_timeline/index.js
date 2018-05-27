@@ -8,7 +8,7 @@ import ColumnHeader from 'flavours/glitch/components/column_header';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connectListStream } from 'flavours/glitch/actions/streaming';
-import { refreshListTimeline, expandListTimeline } from 'flavours/glitch/actions/timelines';
+import { expandListTimeline } from 'flavours/glitch/actions/timelines';
 import { fetchList, deleteList } from 'flavours/glitch/actions/lists';
 import { openModal } from 'flavours/glitch/actions/modal';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
@@ -67,7 +67,7 @@ export default class ListTimeline extends React.PureComponent {
     const { id } = this.props.params;
 
     dispatch(fetchList(id));
-    dispatch(refreshListTimeline(id));
+    dispatch(expandListTimeline(id));
 
     this.disconnect = dispatch(connectListStream(id));
   }
@@ -83,9 +83,9 @@ export default class ListTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
+  handleLoadMore = maxId => {
     const { id } = this.props.params;
-    this.props.dispatch(expandListTimeline(id));
+    this.props.dispatch(expandListTimeline(id, { maxId }));
   }
 
   handleEditClick = () => {
@@ -164,7 +164,7 @@ export default class ListTimeline extends React.PureComponent {
           trackScroll={!pinned}
           scrollKey={`list_timeline-${columnId}`}
           timelineId={`list:${id}`}
-          loadMore={this.handleLoadMore}
+          onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet.' />}
         />
       </Column>

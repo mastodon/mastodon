@@ -5,13 +5,7 @@ import { search as emojiSearch } from 'flavours/glitch/util/emoji/emoji_mart_sea
 import { useEmoji } from './emojis';
 import resizeImage from 'flavours/glitch/util/resize_image';
 
-import {
-  updateTimeline,
-  refreshHomeTimeline,
-  refreshCommunityTimeline,
-  refreshPublicTimeline,
-  refreshDirectTimeline,
-} from './timelines';
+import { updateTimeline } from './timelines';
 
 let cancelFetchComposeSuggestionsAccounts;
 
@@ -151,21 +145,19 @@ export function submitCompose() {
 
       // To make the app more responsive, immediately get the status into the columns
 
-      const insertOrRefresh = (timelineId, refreshAction) => {
-        if (getState().getIn(['timelines', timelineId, 'online'])) {
+      const insertIfOnline = (timelineId) => {
+        if (getState().getIn(['timelines', timelineId, 'items', 0]) !== null) {
           dispatch(updateTimeline(timelineId, { ...response.data }));
-        } else if (getState().getIn(['timelines', timelineId, 'loaded'])) {
-          dispatch(refreshAction());
         }
       };
 
-      insertOrRefresh('home', refreshHomeTimeline);
+      insertIfOnline('home');
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        insertOrRefresh('community', refreshCommunityTimeline);
-        insertOrRefresh('public', refreshPublicTimeline);
+        insertIfOnline('community');
+        insertIfOnline('public');
       } else if (response.data.visibility === 'direct') {
-        insertOrRefresh('direct', refreshDirectTimeline);
+        insertIfOnline('direct');
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
