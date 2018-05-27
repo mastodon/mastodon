@@ -8,7 +8,10 @@ $classic-secondary-color: #d9e1e8;
 $classic-highlight-color: #2b90d9;
 
 // Differences
-$base-overlay-background: $white;
+$success-green: #3c754d;
+
+$base-overlay-background: $white !default;
+$valid-value-color: $success-green !default;
 
 $ui-base-color: $classic-secondary-color !default;
 $ui-base-lighter-color: #b0c0cf;
@@ -26,7 +29,7 @@ $lighter-text-color: $classic-base-color !default;
 $light-text-color: #444b5d;
 
 //Newly added colors
-$account-background-color: $white;
+$account-background-color: $white !default;
 
 //Invert darkened and lightened colors
 @function darken($color, $amount) {
