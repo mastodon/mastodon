@@ -201,7 +201,6 @@ class Status < ApplicationRecord
       query = Status
               .joins(:mentions)
               .merge(Mention.where(account_id: account.id))
-              .where(Mention.arel_table[:direct].eq(true))
               .where(Status.arel_table[:visibility].eq(3))
 
       # direct timeline is not public.

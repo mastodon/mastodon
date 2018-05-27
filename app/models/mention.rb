@@ -8,7 +8,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  account_id :bigint(8)
-#  direct     :boolean          default(FALSE), not null
 #
 
 class Mention < ApplicationRecord
@@ -25,11 +24,4 @@ class Mention < ApplicationRecord
     to: :account,
     prefix: true
   )
-
-  before_save :prepare_save
-
-  def prepare_save
-    self.direct = status.direct_visibility?
-    self
-  end
 end
