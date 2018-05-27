@@ -34,7 +34,7 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial) =>
       mMap.update('items', ImmutableList(), oldIds => {
         const newIds = statuses.map(status => status.get('id'));
         const lastIndex = oldIds.findLastIndex(id => id !== null && compareId(id, newIds.last()) >= 0) + 1;
-        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) >= 0);
+        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) > 0);
 
         if (firstIndex < 0) {
           return (isPartial ? newIds.unshift(null) : newIds).concat(oldIds.skip(lastIndex));
