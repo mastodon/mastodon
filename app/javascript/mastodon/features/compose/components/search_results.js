@@ -110,6 +110,7 @@ export default class SearchResults extends ImmutablePureComponent {
     return (
       <div className='search-results'>
         <div className='search-results__header'>
+          <i className='fa fa-search fa-fw' />
           <FormattedMessage id='search_results.total' defaultMessage='{count, number} {count, plural, one {result} other {results}}' values={{ count }} />
         </div>
 
