@@ -65,6 +65,7 @@ class User < ApplicationRecord
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
+  validates_with EmailMxValidator, if: :email_changed?
 
   scope :recent, -> { order(id: :desc) }
   scope :admins, -> { where(admin: true) }

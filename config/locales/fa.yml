@@ -40,6 +40,7 @@ fa:
     following: پی می‌گیرد
     media: عکس و ویدیو
     moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
+    network_hidden: این اطلاعات در دسترس نیست
     nothing_here: این‌جا چیزی نیست!
     people_followed_by: کسانی که %{name} پی می‌گیرد
     people_who_follow: کسانی که %{name} را پی می‌گیرند
@@ -49,6 +50,7 @@ fa:
     reserved_username: این نام کاربری در دسترس نیست
     roles:
       admin: مدیر
+      bot: ربات
       moderator: ناظم
     unfollow: پایان پیگیری
   admin:
@@ -281,7 +283,7 @@ fa:
         create_and_resolve: حل کردن با یادداشت
         create_and_unresolve: دوباره گشودن با یادداشت
         delete: حذف
-        placeholder: کارهایی را که در این باره انجام شده، یا هر به‌روزرسانی دیگری را بنویسید…
+        placeholder: کارهایی را که در این باره انجام شده، یا هر به‌روزرسانی دیگری را بنویسید...
       reopen: دوباره به جریان بیندازید
       report: 'گزارش #%{id}'
       report_contents: محتوا
@@ -359,9 +361,9 @@ fa:
       failed_to_execute: اجرا نشد
       media:
         title: رسانه
-      no_media: بدون رسانه
+      no_media: بدون عکس یا ویدیو
       title: نوشته‌های حساب
-      with_media: دارای رسانه
+      with_media: دارای عکس یا ویدیو
     subscriptions:
       callback_url: نشانی Callback
       confirmed: تأییدشده
@@ -463,7 +465,7 @@ fa:
     archive_takeout:
       date: تاریخ
       download: بایگانی خود را باربگیرید
-      hint_html: شما می‌توانید بایگانی <strong>بوق‌ها و پرونده‌های بارگذاری‌شدهٔ</strong> خود را درخواست کنید. داده‌های برون‌بری‌شده در قالب ActivityPub خواهند بود و همهٔ نرم‌افزارهای سازگار خواهند توانست آن را بخوانند. شما هر ۷ روز می‌توانید یک بار برای چنین بایگانی‌ای درخواست دهید.
+      hint_html: شما می‌توانید بایگانی <strong>نوشته‌ها و پرونده‌های بارگذاری‌شدهٔ</strong> خود را درخواست کنید. داده‌های برون‌بری‌شده در قالب ActivityPub خواهند بود و همهٔ نرم‌افزارهای سازگار خواهند توانست آن را بخوانند. شما هر ۷ روز می‌توانید یک بار برای چنین بایگانی‌ای درخواست دهید.
       in_progress: در حال ساختن بایگانی شما...
       request: درخواست بایگانی داده‌هایتان
       size: اندازه
@@ -548,7 +550,7 @@ fa:
       subject:
         one: "یک اعلان تازه از زمان آخرین بازدید شما \U0001F418"
         other: "%{count} اعلان تازه از زمان آخرین بازدید شما \U0001F418"
-      title: در مدتی که نبودید…
+      title: در مدتی که نبودید...
     favourite:
       body: "%{name} این نوشتهٔ شما را پسندید:"
       subject: "%{name} نوشتهٔ شما را پسندید"
@@ -589,9 +591,9 @@ fa:
     prev: قبلی
     truncate: "&hellip;"
   preferences:
-    languages: زبان‌ها
-    other: سایر
-    publishing: انتشار
+    languages: تنظیمات زبان
+    other: سایر تنظیمات
+    publishing: تنظیمات انتشار مطالب
     web: وب
   remote_follow:
     acct: نشانی حساب username@domain خود را این‌جا بنویسید
@@ -667,6 +669,7 @@ fa:
       video:
         one: "%{count} ویدیو"
         other: "%{count} ویدیو"
+    boosted_from_html: بازبوقیده از طرف %{acct_link}
     content_warning: 'هشدا محتوا: %{warning}'
     disallowed_hashtags:
       one: 'دارای هشتگ غیرمجاز: %{tags}'
@@ -682,7 +685,7 @@ fa:
     title: '%{name}: "%{quote}"'
     visibilities:
       private: خصوصی
-      private_long: نمایش تنها به پیگیران
+      private_long: تنها پیگیران شما می‌بینند
       public: عمومی
       public_long: همه می‌توانند ببینند
       unlisted: فهرست‌نشده
@@ -697,6 +700,7 @@ fa:
   themes:
     contrast: کنتراست بالا
     default: ماستدون
+    mastodon-light: ماستدون (روشن)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
