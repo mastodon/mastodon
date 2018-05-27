@@ -8,6 +8,7 @@ import {
 } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
+import { connectHashtagStream } from 'flavours/glitch/actions/streaming';
 
 @connect()
 export default class HashtagTimeline extends React.PureComponent {
@@ -29,16 +30,13 @@ export default class HashtagTimeline extends React.PureComponent {
     const { dispatch, hashtag } = this.props;
 
     dispatch(refreshHashtagTimeline(hashtag));
-
-    this.polling = setInterval(() => {
-      dispatch(refreshHashtagTimeline(hashtag));
-    }, 10000);
+    this.disconnect = dispatch(connectHashtagStream(hashtag));
   }
 
   componentWillUnmount () {
-    if (typeof this.polling !== 'undefined') {
-      clearInterval(this.polling);
-      this.polling = null;
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
   }
 
