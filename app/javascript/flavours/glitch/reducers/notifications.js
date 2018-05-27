@@ -18,6 +18,7 @@ import {
 } from 'flavours/glitch/actions/accounts';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from 'flavours/glitch/actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import compareId from 'flavours/glitch/util/compare_id';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),
@@ -54,13 +55,6 @@ const normalizeNotification = (state, notification) => {
   });
 };
 
-const newer = (m, n) => {
-  const mId = m.get('id');
-  const nId = n.get('id');
-
-  return mId.length === nId.length ? mId > nId : mId.length > nId.length;
-};
-
 const expandNormalizedNotifications = (state, notifications, next) => {
   let items = ImmutableList();
 
@@ -72,11 +66,11 @@ const expandNormalizedNotifications = (state, notifications, next) => {
     if (!items.isEmpty()) {
       mutable.update('items', list => {
         const lastIndex = 1 + list.findLastIndex(
-          item => item !== null && (newer(item, items.last()) || item.get('id') === items.last().get('id'))
+          item => item !== null && (compareId(item.get('id'), items.last().get('id')) > 0 || item.get('id') === items.last().get('id'))
         );
 
         const firstIndex = 1 + list.take(lastIndex).findLastIndex(
-          item => item !== null && newer(item, items.first())
+          item => item !== null && compareId(item.get('id'), items.first().get('id')) > 0
         );
 
         return list.take(firstIndex).concat(items, list.skip(lastIndex));
