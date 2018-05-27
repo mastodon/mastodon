@@ -5,6 +5,7 @@ eu:
         name: Aplikazioaren izena
         website: Aplikazioaren webgunea
         redirect_uri: Birbideratze URI-a
+        scopes: Esparruak
     errors:
       models:
         doorkeeper/application:
@@ -13,6 +14,7 @@ eu:
               invalid_uri: baliozko URI bat izan behar da.
               relative_uri: URI absolutu bat izan behar da.
               secured_uri: HTTPS/SSL URI bat izan behar da.
+              fragment_present: ezin du zati bat izan.
   doorkeeper:
     applications:
       buttons:
@@ -30,6 +32,8 @@ eu:
       help:
         native_redirect_uri: Erabili %{native_redirect_uri} proba lokaletarako
         redirect_uri: Erabili lerro bat URI-ko
+        scopes: Banandu esparruak espazioekin. Laga hutsik lehenetsitako esparruak
+          erabiltzeko.
       index:
         application: Aplikazioa
         callback_url: Itzulera URL-a
@@ -38,6 +42,7 @@ eu:
         new: Aplikazio berria
         show: Erakutsi
         title: Zure aplikazioak
+        scopes: Esparruak
       new:
         title: Aplikazio berria
       show:
@@ -46,6 +51,7 @@ eu:
         callback_urls: Itzulera URL-ak
         secret: Bezeroaren sekretua
         title: 'Aplikazioa: %{name}'
+        scopes: Esparruak
     authorizations:
       buttons:
         authorize: Baimendu
@@ -68,7 +74,15 @@ eu:
         created_at: Baimenduta
         date_format: '%Y-%m-%d %H:%M:%S'
         title: Zuk baimendutako aplikazioak
+        scopes: Esparruak
     errors:
       messages:
         access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaria ukatu
           du.
+        invalid_redirect_uri: Sartutako birbideratze URI-a baliogabea da.
+        invalid_scope: Eskatutako esparrua baliogabea da, ezezaguna, edo gaizki osatua
+          dago.
+        invalid_token:
+          expired: Sarbide token-a iraungitu da
+          revoked: Sarbide token-a indargabetua izan da
+          unknown: Sarbide token-a baliogabea da
