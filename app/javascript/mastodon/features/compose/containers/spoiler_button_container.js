@@ -15,10 +15,11 @@ const mapStateToProps = (state, { intl }) => ({
   ariaControls: 'cw-spoiler-input',
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
 
   onClick () {
     dispatch(changeComposeSpoilerness());
+    ownProps.onClick();
   },
 
 });
