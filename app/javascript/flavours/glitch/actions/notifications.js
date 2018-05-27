@@ -68,9 +68,14 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
 
 
-export function expandNotifications({ maxId } = {}) {
+const noOp = () => {};
+
+export function expandNotifications({ maxId } = {}, done = noOp) {
   return (dispatch, getState) => {
-    if (getState().getIn(['notifications', 'isLoading'])) {
+    const notifications = getState().get('notifications');
+
+    if (notifications.get('isLoading')) {
+      done();
       return;
     }
 
@@ -79,14 +84,20 @@ export function expandNotifications({ maxId } = {}) {
       exclude_types: excludeTypesFromSettings(getState()),
     };
 
+    if (!maxId && notifications.get('items').size > 0) {
+      params.since_id = notifications.getIn(['items', 0]);
+    }
+
     dispatch(expandNotificationsRequest());
 
     api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
+      done();
     }).catch(error => {
       dispatch(expandNotificationsFail(error));
+      done();
     });
   };
 };
