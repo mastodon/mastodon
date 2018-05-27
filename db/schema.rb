@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 2018_05_26_013703) do
     t.string "actor_type"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower"
-    t.index ["id"], name: "index_accounts_not_silenced", where: "(NOT silenced)"
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url"
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true
