@@ -8,7 +8,7 @@ import ColumnHeader from 'flavours/glitch/components/column_header';
 import { expandPublicTimeline } from 'flavours/glitch/actions/timelines';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
-// import SectionHeadline from '../community_timeline/components/section_headline';
+import SectionHeadline from '../community_timeline/components/section_headline';
 import { connectPublicStream } from 'flavours/glitch/actions/streaming';
 
 const messages = defineMessages({
@@ -104,17 +104,15 @@ export default class PublicTimeline extends React.PureComponent {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
-    // pending
-    //
-    // const headline = (
-    //   <SectionHeadline
-    //     timelineId='public'
-    //     to='/timelines/public'
-    //     pinned={pinned}
-    //     onlyMedia={onlyMedia}
-    //     onClick={this.handleHeadlineLinkClick}
-    //   />
-    // );
+    const headline = (
+      <SectionHeadline
+        timelineId='public'
+        to='/timelines/public'
+        pinned={pinned}
+        onlyMedia={onlyMedia}
+        onClick={this.handleHeadlineLinkClick}
+      />
+    );
 
     return (
       <Column ref={this.setRef} name='federated' label={intl.formatMessage(messages.title)}>
@@ -132,7 +130,7 @@ export default class PublicTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          // prepend={headline}
+          prepend={headline}
           timelineId={`public${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
