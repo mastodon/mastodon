@@ -8,6 +8,7 @@ import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
+import SectionHeadline from './components/section_headline';
 import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
@@ -96,6 +97,16 @@ export default class HomeTimeline extends React.PureComponent {
     const { intl, hasUnread, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
 
+    const headline = (
+      <SectionHeadline
+        timelineId='public'
+        to='/timelines/public'
+        pinned={pinned}
+        onlyMedia={onlyMedia}
+        onClick={this.handleHeadlineLinkClick}
+      />
+    );
+
     return (
       <Column ref={this.setRef}>
         <ColumnHeader
@@ -112,6 +123,7 @@ export default class HomeTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
+          prepend={headline}
           trackScroll={!pinned}
           scrollKey={`home_timeline-${columnId}`}
           onLoadMore={this.handleLoadMore}
