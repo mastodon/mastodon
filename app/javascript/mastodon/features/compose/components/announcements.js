@@ -45,7 +45,7 @@ class Announcement extends React.PureComponent {
 export default class Announcements extends React.PureComponent {
 
   state = {
-    items: Announcement.cache || Immutable.Map(),
+    items: Announcements.cache || Immutable.Map(),
   }
 
   static isCacheControlled = false
@@ -72,22 +72,35 @@ export default class Announcements extends React.PureComponent {
     }
   }
 
+  deleteServiceWorkerCache = () => {
+    // files in /system/ will be cached by SW
+    if (self.caches) {
+      return caches.open('mastodon-system')
+        .then(cache => cache.delete(window.origin + '/system/announcements.json'))
+        .catch(() => {});
+    } else {
+      return Promise.resolve();
+    }
+  }
+
   refresh = () => {
     this.timer = null;
 
     axios.get('/system/announcements.json', {
       headers: {
-        'If-Modified-Since': !Announcement.isCacheControlled && Announcement.lastDate || '',
+        'If-Modified-Since': !Announcements.isCacheControlled && Announcements.lastDate || '',
       },
     })
-    .then(resp => {
-      Announcement.isCacheControlled = !!resp.headers['cache-control'];
-      Announcement.lastDate = resp.headers['last-modified'];
-      return resp;
-    })
-    .then(resp => this.setState({ items: Announcement.cache = Immutable.fromJS(resp.data) || {} }))
-    .catch(err => err.response.status !== 304 && console.warn(err))
-    .then(this.setPolling);
+      .then(resp => {
+        Announcements.isCacheControlled = !!resp.headers['cache-control'];
+        Announcements.lastDate = resp.headers['last-modified'];
+        return resp;
+      })
+      .then(resp => this.setState({ items: Announcements.cache = Immutable.fromJS(resp.data) || {} }))
+      .catch(err => err.response.status !== 304 && console.warn(err))
+      .then(this.deleteServiceWorkerCache)
+      .then(this.setPolling)
+      .catch(err => err && console.warn(err));
   }
 
   render() {
@@ -96,9 +109,9 @@ export default class Announcements extends React.PureComponent {
     return (
       <ul className='announcements'>
         {items.entrySeq().map(([key, item]) =>
-          <li key={key}>
+          (<li key={key}>
             <Announcement item={item} />
-          </li>
+          </li>)
         )}
       </ul>
     );
