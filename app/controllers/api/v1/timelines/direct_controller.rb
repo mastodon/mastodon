@@ -32,7 +32,8 @@ class Api::V1::Timelines::DirectController < Api::BaseController
       current_account,
       limit_param(DEFAULT_STATUSES_LIMIT),
       params[:max_id],
-      params[:since_id]
+      params[:since_id],
+      true # returns array of cache_ids object
     )
   end
 
