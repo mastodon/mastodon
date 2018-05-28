@@ -208,12 +208,12 @@ class Status < ApplicationRecord
                     .not_excluded_by_account(account)
 
       if max_id.present?
-        query_from_me = query_from_me.where('mentions.status_id < ?', max_id)
+        query_from_me = query_from_me.where('statuses.id < ?', max_id)
         query_to_me = query_to_me.where('mentions.status_id < ?', max_id)
       end
 
       if since_id.present?
-        query_from_me = query_from_me.where('mentions.status_id > ?', since_id)
+        query_from_me = query_from_me.where('statuses.id > ?', since_id)
         query_to_me = query_to_me.where('mentions.status_id > ?', since_id)
       end
 
