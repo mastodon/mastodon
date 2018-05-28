@@ -16,6 +16,28 @@ const shortNumberFormat = number => {
   }
 };
 
+const renderHashtag = hashtag => (
+  <div className='trends__item' key={hashtag.get('name')}>
+    <div className='trends__item__name'>
+      <Link to={`/timelines/tag/${hashtag.get('name')}`}>
+        #<span>{hashtag.get('name')}</span>
+      </Link>
+
+      <FormattedMessage id='trends.count_by_accounts' defaultMessage='{count} {rawCount, plural, one {person} other {people}} talking' values={{ rawCount: hashtag.getIn(['history', 0, 'accounts']), count: <strong>{shortNumberFormat(hashtag.getIn(['history', 0, 'accounts']))}</strong> }} />
+    </div>
+
+    <div className='trends__item__current'>
+      {shortNumberFormat(hashtag.getIn(['history', 0, 'uses']))}
+    </div>
+
+    <div className='trends__item__sparkline'>
+      <Sparklines width={50} height={28} data={hashtag.get('history').reverse().map(day => day.get('uses')).toArray()}>
+        <SparklinesCurve style={{ fill: 'none' }} />
+      </Sparklines>
+    </div>
+  </div>
+);
+
 export default class SearchResults extends ImmutablePureComponent {
 
   static propTypes = {
@@ -44,27 +66,7 @@ export default class SearchResults extends ImmutablePureComponent {
               <FormattedMessage id='trends.header' defaultMessage='Trending now' />
             </div>
 
-            {trends && trends.map(hashtag => (
-              <div className='trends__item' key={hashtag.get('name')}>
-                <div className='trends__item__name'>
-                  <Link to={`/timelines/tag/${hashtag.get('name')}`}>
-                    #<span>{hashtag.get('name')}</span>
-                  </Link>
-
-                  <FormattedMessage id='trends.count_by_accounts' defaultMessage='{count} {rawCount, plural, one {person} other {people}} talking' values={{ rawCount: hashtag.getIn(['history', 0, 'accounts']), count: <strong>{shortNumberFormat(hashtag.getIn(['history', 0, 'accounts']))}</strong> }} />
-                </div>
-
-                <div className='trends__item__current'>
-                  {shortNumberFormat(hashtag.getIn(['history', 0, 'uses']))}
-                </div>
-
-                <div className='trends__item__sparkline'>
-                  <Sparklines width={50} height={28} data={hashtag.get('history').reverse().map(day => day.get('uses')).toArray()}>
-                    <SparklinesCurve style={{ fill: 'none' }} />
-                  </Sparklines>
-                </div>
-              </div>
-            ))}
+            {trends && trends.map(hashtag => renderHashtag(hashtag))}
           </div>
         </div>
       );
@@ -74,7 +76,7 @@ export default class SearchResults extends ImmutablePureComponent {
       count   += results.get('accounts').size;
       accounts = (
         <div className='search-results__section'>
-          <h5><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
+          <h5><i className='fa fa-fw fa-users' /><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
 
           {results.get('accounts').map(accountId => <AccountContainer key={accountId} id={accountId} />)}
         </div>
@@ -85,7 +87,7 @@ export default class SearchResults extends ImmutablePureComponent {
       count   += results.get('statuses').size;
       statuses = (
         <div className='search-results__section'>
-          <h5><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
+          <h5><i className='fa fa-fw fa-quote-right' /><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
 
           {results.get('statuses').map(statusId => <StatusContainer key={statusId} id={statusId} />)}
         </div>
@@ -96,13 +98,9 @@ export default class SearchResults extends ImmutablePureComponent {
       count += results.get('hashtags').size;
       hashtags = (
         <div className='search-results__section'>
-          <h5><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
+          <h5><i className='fa fa-fw fa-hashtag' /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
 
-          {results.get('hashtags').map(hashtag => (
-            <Link key={hashtag} className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
-              {hashtag}
-            </Link>
-          ))}
+          {results.get('hashtags').map(hashtag => renderHashtag(hashtag))}
         </div>
       );
     }
