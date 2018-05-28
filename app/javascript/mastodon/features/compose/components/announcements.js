@@ -71,6 +71,15 @@ export default class Announcements extends React.PureComponent {
       this.timer = null;
     }
   }
+  
+  deleteServiceWorkerCache = () => {
+    // files in /system/ will be cached by SW
+    if (self.caches) {
+      return caches.open('mastodon-system')
+        .then(cache => cache.delete(window.origin + '/system/announcements.json'))
+        .catch(() => {});
+    }
+  }
 
   refresh = () => {
     this.timer = null;
@@ -87,6 +96,7 @@ export default class Announcements extends React.PureComponent {
     })
     .then(resp => this.setState({ items: Announcement.cache = Immutable.fromJS(resp.data) || {} }))
     .catch(err => err.response.status !== 304 && console.warn(err))
+    .then(this.deleteServiceWorkerCache)
     .then(this.setPolling);
   }
 
