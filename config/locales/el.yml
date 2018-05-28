@@ -18,8 +18,8 @@ el:
     features:
       humane_approach_body: Μαθαίνοντας από τις αποτυχίες άλλων δικτύων, το Mastodon στοχεύει να κάνει σχεδιαστικά ηθικές επιλογές για να καταπολεμήσει την κακόβουλη χρήση των κοινωνικών δικτύων.
       humane_approach_title: Μια πιο ανθρώπινη προσέγγιση
-      not_a_product_body: Το Mastodon δεν είναι εμπορικό δίκτυο. Χωρίς διαφημίσεις, χωρίς εξόρυξη δεδομένων, χωρίς φραγμένες περιοχές. Δεν έχει κεντρική αρχή.
-      not_a_product_title: Είσαι άτομο, όχι προϊόν
+      not_a_product_body: Το Mastodon δεν είναι εμπορικό δίκτυο. Δεν έχει διαφημίσεις, δεν έχει εξόρυξη δεδομένων, δεν έχει φραγμένες περιοχές. Δεν υπάρχει κεντρικό σημείο ελέγχου.
+      not_a_product_title: Είσαι άνθρωπος, όχι προϊόν
       real_conversation_body: Με 500 χαρακτήρες στη διάθεσή σου και υποστήριξη για λεπτομερή έλεγχο και προειδοποιήσεις πολυμέσων, μπορείς να εκφραστείς με τον τρόπο που θέλεις.
       real_conversation_title: Φτιαγμένο για αληθινή συζήτηση
       within_reach_body: Οι πολλαπλές εφαρμογές για το iOS, το Android και τις υπόλοιπες πλατφόρμες, χάρη σε ένα φιλικό προς τους προγραμματιστές οικοσύστημα API, σου επιτρέπουν να κρατάς επαφή με τους φίλους και τις φίλες σου οπουδήποτε.
@@ -40,6 +40,7 @@ el:
     following: Ακολουθεί
     media: Πολυμέσα
     moved_html: 'Ο/Η %{name} μετακόμισε στο %{new_profile_link}:'
+    network_hidden: Αυτή η πληροφορία δεν είναι διαθέσιμη
     nothing_here: Δεν υπάρχει τίποτα εδώ!
     people_followed_by: Χρήστες που ακολουθεί ο/η %{name}
     people_who_follow: Χρήστες που ακολουθούν τον/την %{name}
@@ -54,7 +55,7 @@ el:
     unfollow: Διακοπή παρακολούθησης
   admin:
     account_moderation_notes:
-      create: Δημιουργία
+      create: Άφησε σημείωση
       created_msg: Επιτυχής δημιουργία σημειώματος μεσολάβησης!
       delete: Διαγραφή
       destroyed_msg: Επιτυχής καταστροφή σημειώματος μεσολάβησης!
@@ -129,7 +130,7 @@ el:
       role: Δικαιώματα
       roles:
         admin: Διαχειριστής
-        moderator: Μεσολαβητής
+        moderator: Συντονιστής
         staff: Προσωπικό
         user: Χρήστης
       salmon_url: URL Salmon
@@ -137,7 +138,7 @@ el:
       shared_inbox_url: URL κοινόχρηστων εισερχομένων
       show:
         created_reports: Αναφορές από αυτόν το λογαριασμό
-        report: ανάφερε
+        report: κατάγγειλε
         targeted_reports: Αναφορές για αυτόν το λογαριασμό
       silence: Αποσιώπησε
       statuses: Καταστάσεις
@@ -151,7 +152,7 @@ el:
       web: Διαδίκτυο
     action_logs:
       actions:
-        assigned_to_self_report: Ο/Η %{name} ανάθεσε την αναφορά %{target} στον εαυτό του/της
+        assigned_to_self_report: Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της
         change_email_user: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
         confirm_user: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
         create_custom_emoji: Ο/Η %{name} ανέβασε νέο emoji %{target}
@@ -169,12 +170,12 @@ el:
         memorialize_account: Ο/Η %{name} μετέτρεψε το λογαριασμό του/της %{target} σε σελίδα νεκρολογίας
         promote_user: Ο/Η %{name} προβίβασε το χρήστη %{target}
         remove_avatar_user: Ο/Η %{name} αφαίρεσε το αβατάρ του/της %{target}
-        reopen_report: Ο/Η %{name} ξανάνοιξε την αναφορά %{target}
+        reopen_report: Ο/Η %{name} ξανάνοιξε την καταγγελία %{target}
         reset_password_user: Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}
-        resolve_report: Ο/Η %{name} επέλυσε την αναφορά %{target}
+        resolve_report: Ο/Η %{name} επέλυσε την καταγγελία %{target}
         silence_account: Ο/Η %{name} αποσιώπησε το λογαριασμό του/της %{target}
         suspend_account: Ο/Η %{name} έπαυσε το λογαριασμό του/της %{target}
-        unassigned_report: Ο/Η %{name} αποδέσμευσε την αναφορά %{target}
+        unassigned_report: Ο/Η %{name} αποδέσμευσε την καταγγελία %{target}
         unsilence_account: Ο/Η %{name} ήρε την αποσιώπηση του λογαριασμού του/της %{target}
         unsuspend_account: Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}
         update_custom_emoji: Ο/Η %{name} ενημέρωσε το emoji %{target}
@@ -216,6 +217,83 @@ el:
         severity:
           noop: Κανένα
           silence: Σίγαση
+          suspend: Αναστολή
+        title: Αποκλεισμός νέου τομέα
+      reject_media: Απόρριψη πολυμέσων
+      severities:
+        noop: Κανένα
+        silence: Αποσιώπηση
+        suspend: Αναστολή
+      severity: Αυστηρότητα
+      show:
+        affected_accounts:
+          one: Επηρεάζεται ένας λογαριασμός στη βάση δεδομένων
+          other: Επηρεάζονται %{count} λογαριασμοί στη βάση δεδομένων
+        retroactive:
+          silence: Αναίρεση αποσιώπησης όλων των λογαριασμός του τομέα
+          suspend: Αναίρεση αναστολής όλων των λογαριασμών του τομέα
+        title: Αναίρεση αποκλεισμού για τον τομέα %{domain}
+        undo: Αναίρεση
+      title: Αποκλεισμένοι τομείς
+      undo: Αναίρεση
+    email_domain_blocks:
+      add_new: Πρόσθεση νέου
+      created_msg: Επιτυχής πρόσθεση email τομέα σε μαύρη λίστα
+      delete: Διαγραφή
+      destroyed_msg: Επιτυχής διαγραφή email τομέα από τη μαύρη λίστα
+      domain: Τομέας
+      new:
+        create: Πρόσθεση τομέα
+        title: Νέα εγγραφή email στη μαύρη λίστα
+      title: Μαύρη λίστα email
+    instances:
+      account_count: Γνωστοί λογαριασμοί
+      domain_name: Τομέας
+      reset: Επαναφορά
+      search: Αναζήτηση
+      title: Γνωστοί κόμβοι
+    invites:
+      filter:
+        all: Όλες
+        available: Διαθέσιμες
+        expired: Ληγμένες
+        title: Φίλτρο
+      title: Προσκλήσεις
+    report_notes:
+      created_msg: Επιτυχής δημιουργία σημείωσης καταγγελίας!
+      destroyed_msg: Επιτυχής διαγραφή σημείωσης καταγγελίας!
+    reports:
+      account:
+        note: σημείωση
+        report: καταγγελία
+      action_taken_by: Ενέργεια από τον/την
+      are_you_sure: Σίγουρα;
+      assign_to_self: Ανάθεση σε μένα
+      assigned: Αρμόδιος συντονιστής
+      comment:
+        none: Κανένα
+      created_at: Αναφέρθηκε
+      id: ID
+      mark_as_resolved: Σημειωμένο ως επιλυμένο
+      mark_as_unresolved: Σημειωμένο ως ανεπίλυτο
+      notes:
+        create: Πρόσθεσε σημείωση
+        create_and_resolve: Επίλυσε με σημείωση
+        create_and_unresolve: Ξανάνοιξε με σημείωση
+        delete: Διέγραψε
+        placeholder: Περιέγραψε τις ενέργειες που έγιναν, ή οποιαδήποτε άλλη ενημέρωση...
+      reopen: Ξανάνοιξε την καταγγελία
+      report: 'Καταγγελία #%{id}'
+      report_contents: Περιεχόμενα
+      reported_account: Αναφερόμενος λογαριασμός
+      reported_by: Αναφέρθηκε από
+      resolved: Επιλύθηκε
+      resolved_msg: Η καταγγελία επιλύθηκε επιτυχώς!
+      silence_account: Αποσιώπηση λογαριασμού
+      status: Κατάσταση
+      suspend_account: Ανέστειλε λογαριασμό
+      target: Στόχος
+      title: Αναφορές
     settings:
       hero:
         desc_html: Εμφανίζεται στην μπροστινή σελίδα. Συνίσταται τουλάχιστον 600x100px. Όταν λείπει, χρησιμοποιείται η μικρογραφία του κόμβου
@@ -235,7 +313,7 @@ el:
         title: Προεπισκόπιση ροής
   admin_mailer:
     new_report:
-      subject: Νέα αναφορά για %{instance} (#%{id})
+      subject: Νέα καταγγελία για %{instance} (#%{id})
   auth:
     agreement_html: Με την εγγραφή σου, συμφωνείς να ακολουθείς <a href="%{rules_path}">τους κανόνες αυτού του κόμβου</a> και <a href="%{terms_path}">τους όρους χρήσης του</a>.
   deletes:
@@ -250,5 +328,6 @@ el:
     welcome:
       final_step: 'Ξεκίνα τις δημοσιεύσεις! Ακόμα και χωρίς ακόλουθους τα δημόσια μηνύματά σου μπορεί να τα δουν άλλοι, για παράδειγμα στην τοπική ροή και στις ετικέτες. Ίσως να θέλεις να κάνεις μια εισαγωγή του εαυτού σου με την ετικέτα #introductions.'
       full_handle_hint: Αυτό θα εδώ θα πεις στους φίλους σου για να σου μιλήσουν ή να σε ακολουθήσουν από άλλο κόμβο.
-      tip_federated_timeline: Η συνδυασμένη ροή είναι μια όψη πραγματικού χρόνου στο δίκτυο του Mastodon. Παρόλα αυτά, περιλαμβάνει μόνο όσους ακολουθούν οι γείτονές σου, άρα δεν είναι πλήρης.
+      tip_federated_timeline: Η ομοσπονδιακή ροή είναι μια όψη πραγματικού χρόνου στο δίκτυο του Mastodon. Παρόλα αυτά, περιλαμβάνει μόνο όσους ακολουθούν οι γείτονές σου, άρα δεν είναι πλήρης.
+      tip_following: Ακολουθείς το διαχειριστή του διακομιστή σου αυτόματα. Για να βρεις περισσότερους ενδιαφέροντες ανθρώπους, έλεγξε την τοπική και την ομοσπονδιακή ροή.
       tip_local_timeline: Η τοπική ροή είναι η όψη πραγματικού χρόνου των ανθρώπων στον κόμβο %{instance}. Αυτοί είναι οι άμεσοι γείτονές σου!
