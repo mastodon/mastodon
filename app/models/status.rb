@@ -224,8 +224,8 @@ class Status < ApplicationRecord
         (query_from_me.cache_ids.to_a + query_to_me.cache_ids.to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
       else
         # returns ActiveRecord.Relation
-        id_array = (query_from_me.select(:id).to_a + query_to_me.select(:id).to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
-        Status.where(id: id_array.map{|item| item.id})
+        items = (query_from_me.select(:id).to_a + query_to_me.select(:id).to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
+        Status.where(id: items.map(&:id))
       end
     end
 
