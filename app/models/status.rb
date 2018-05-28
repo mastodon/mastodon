@@ -204,6 +204,7 @@ class Status < ApplicationRecord
       query_to_me = Status
                     .joins(:mentions)
                     .merge(Mention.where(account_id: account.id))
+                    .where(Mention.arel_table[:direct].eq(true))
                     .where(Status.arel_table[:visibility].eq(3))
                     .limit(limit)
                     .order('mentions.status_id DESC')
