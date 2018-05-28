@@ -80,6 +80,9 @@ class Status < ApplicationRecord
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
+  scope :direct_messages, -> { where(visibility: :direct) }
+  scope :message_from_me, ->(account) { where(account_id: account.id) }
+  scope :message_to_me, ->(account) { left_outer_joins(:mentions).where(mentions: { account_id: account.id }) }
 
   cache_associated :account, :application, :media_attachments, :conversation, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, :conversation, mentions: :account], thread: :account
 
@@ -188,12 +191,24 @@ class Status < ApplicationRecord
       where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
     end
 
-    def as_direct_timeline(account)
-      query = joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
-              .where("mentions.account_id = #{account.id} OR statuses.account_id = #{account.id}")
-              .where(visibility: [:direct])
+    def as_direct_timeline(account, max_id = nil, since_id = nil, limit = 20)
+      dm_to_me = Status.direct_messages.message_to_me(account).select(:id).limit(limit)
+      dm_from_me = Status.direct_messages.message_from_me(account).select(:id).limit(limit)
 
-      apply_timeline_filters(query, account, false)
+      if max_id.present?
+        dm_to_me = dm_to_me.where(arel_table[:id].lt(max_id))
+        dm_from_me = dm_from_me.where(arel_table[:id].lt(max_id))
+      end
+
+      if since_id.present?
+        dm_to_me = dm_to_me.where(arel_table[:id].gt(since_id))
+        dm_from_me = dm_from_me.where(arel_table[:id].gt(since_id))
+      end
+
+      dm_to_me = apply_timeline_filters(dm_to_me, account, false)
+      dm_from_me = apply_timeline_filters(dm_from_me, account, false)
+
+      Status.where(id: (dm_to_me + dm_from_me).uniq)
     end
 
     def as_public_timeline(account = nil, local_only = false)
