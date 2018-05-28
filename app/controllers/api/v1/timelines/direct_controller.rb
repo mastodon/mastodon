@@ -19,35 +19,21 @@ class Api::V1::Timelines::DirectController < Api::BaseController
   end
 
   def cached_direct_statuses
-    a1 = cache_collection direct_statuses_from_me, Status
-    a2 = cache_collection direct_statuses_to_me, Status
-    (a1 + a2).uniq(&:id).sort_by(&:id).reverse.take(limit_param(DEFAULT_STATUSES_LIMIT))
+    cache_collection direct_statuses, Status
   end
 
-  def direct_statuses_from_me
-    direct_timeline_statuses_from_me.paginate_by_max_id(
+  def direct_statuses
+    direct_timeline_statuses
+  end
+
+  def direct_timeline_statuses
+    # this query requires built in pagination.
+    Status.as_direct_timeline(
+      current_account,
       limit_param(DEFAULT_STATUSES_LIMIT),
       params[:max_id],
       params[:since_id]
     )
-  end
-
-  def direct_statuses_to_me
-    # pagenation to mentions.status_id instead of statuses.id
-    max_id = params[:max_id]
-    since_id = params[:since_id]
-    query = direct_timeline_statuses_to_me.order('mentions.status_id desc').limit(limit_param(DEFAULT_STATUSES_LIMIT))
-    query = query.where('mentions.status_id < ?', max_id) if max_id.present?
-    query = query.where('mentions.status_id > ?', since_id) if since_id.present?
-    query
-  end
-
-  def direct_timeline_statuses_from_me
-    Status.as_direct_timeline_from_me(current_account)
-  end
-
-  def direct_timeline_statuses_to_me
-    Status.as_direct_timeline_to_me(current_account)
   end
 
   def insert_pagination_headers
