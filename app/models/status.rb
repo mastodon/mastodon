@@ -197,6 +197,7 @@ class Status < ApplicationRecord
       query_from_me = where(account_id: account.id)
                       .where(Status.arel_table[:visibility].eq(3))
                       .limit(limit)
+                      .order('statuses.id DESC')
 
       # _to_me part requires mute and block filter.
       # FIXME: may we check mutes.hide_notifications?
@@ -205,6 +206,7 @@ class Status < ApplicationRecord
                     .merge(Mention.where(account_id: account.id))
                     .where(Status.arel_table[:visibility].eq(3))
                     .limit(limit)
+                    .order('mentions.status_id DESC')
                     .not_excluded_by_account(account)
 
       if max_id.present?
