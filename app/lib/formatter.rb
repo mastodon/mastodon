@@ -47,7 +47,7 @@ class Formatter
     while cur_c < chunks.length
       h = chunks[cur_c]
       h.gsub(/ /) { |match| "&nbsp;" }
-      h = "<tt style=\"font-family: monospace;\">" + h + "</tt>"
+      h = "<tt style=\"font-family: monospace; font-size: 0.9em;\">" + h + "</tt>"
       chunks[cur_c] = h
       cur_c += 2
     end
