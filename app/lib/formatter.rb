@@ -51,6 +51,7 @@ class Formatter
       chunks[cur_c] = h
       cur_c += 2
     end
+    return chunks.join('')
   end
   
   def reformat(html)
