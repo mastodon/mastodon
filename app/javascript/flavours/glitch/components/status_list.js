@@ -25,7 +25,7 @@ export default class StatusList extends ImmutablePureComponent {
     prepend: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
     emptyMessage: PropTypes.node,
-    timelineId: PropTypes.string,
+    timelineId: PropTypes.string.isRequired,
   };
 
   static defaultProps = {

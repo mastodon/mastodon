@@ -131,6 +131,7 @@ export default class CommunityTimeline extends React.PureComponent {
 
         <StatusListContainer
           prepend={headline}
+          alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           shouldUpdateScroll={this.shouldUpdateScroll}
