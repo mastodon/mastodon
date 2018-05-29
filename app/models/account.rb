@@ -126,6 +126,7 @@ class Account < ApplicationRecord
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+  scope :not_domain_blocked_by_account, ->(account) { where('domain IS NULL OR domain NOT IN (?)', account.excluded_from_timeline_domains) if account.excluded_from_timeline_domains.present? }
 
   delegate :email,
            :unconfirmed_email,

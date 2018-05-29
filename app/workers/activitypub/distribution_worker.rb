@@ -25,7 +25,7 @@ class ActivityPub::DistributionWorker
   end
 
   def inboxes
-    @inboxes ||= @account.followers.inboxes
+    @inboxes ||= @account.followers.not_domain_blocked_by_account(@account).inboxes
   end
 
   def signed_payload
