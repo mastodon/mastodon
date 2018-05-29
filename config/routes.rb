@@ -254,6 +254,7 @@ Rails.application.routes.draw do
       resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+      resources :trends,     only: [:index]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
@@ -312,6 +313,10 @@ Rails.application.routes.draw do
       namespace :push do
         resource :subscription, only: [:create, :show, :update, :destroy]
       end
+    end
+
+    namespace :v2 do
+      get '/search', to: 'search#index', as: :search
     end
 
     namespace :web do

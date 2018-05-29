@@ -44,6 +44,7 @@ const initialState = ImmutableMap({
   privacy: null,
   text: '',
   focusDate: null,
+  caretPosition: null,
   preselectDate: null,
   in_reply_to: null,
   is_composing: false,
@@ -91,7 +92,6 @@ function appendMedia(state, media) {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
-    map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
 
     if (prevSize === 0 && (state.get('default_sensitive') || state.get('spoiler'))) {
@@ -119,6 +119,7 @@ const insertSuggestion = (state, position, token, completion) => {
     map.set('suggestion_token', null);
     map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
+    map.set('caretPosition', position + completion.length + 1);
     map.set('idempotencyKey', uuid());
   });
 };
@@ -142,6 +143,7 @@ const insertEmoji = (state, position, emojiData, needsSpace) => {
   return state.merge({
     text: `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`,
     focusDate: new Date(),
+    caretPosition: position + emoji.length + 1,
     idempotencyKey: uuid(),
   });
 };
@@ -216,6 +218,7 @@ export default function compose(state = initialState, action) {
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.set('focusDate', new Date());
+      map.set('caretPosition', null);
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
 
@@ -259,6 +262,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.update('text', text => [text.trim(), `@${action.account.get('acct')} `].filter((str) => str.length !== 0).join(' '));
       map.set('focusDate', new Date());
+      map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_DIRECT:
@@ -266,6 +270,7 @@ export default function compose(state = initialState, action) {
       map.update('text', text => [text.trim(), `@${action.account.get('acct')} `].filter((str) => str.length !== 0).join(' '));
       map.set('privacy', 'direct');
       map.set('focusDate', new Date());
+      map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUGGESTIONS_CLEAR:

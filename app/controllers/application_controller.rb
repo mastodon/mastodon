@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from ActionController::UnknownFormat, with: :not_acceptable
   rescue_from Mastodon::NotPermittedError, with: :forbidden
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
@@ -71,6 +72,10 @@ class ApplicationController < ActionController::Base
 
   def unprocessable_entity
     respond_with_error(422)
+  end
+
+  def not_acceptable
+    respond_with_error(406)
   end
 
   def single_user_mode?
