@@ -21,6 +21,22 @@ class Tag < ApplicationRecord
     name
   end
 
+  def history
+    days = []
+
+    7.times do |i|
+      day = i.days.ago.beginning_of_day.to_i
+
+      days << {
+        day: day.to_s,
+        uses: Redis.current.get("activity:tags:#{id}:#{day}") || '0',
+        accounts: Redis.current.pfcount("activity:tags:#{id}:#{day}:accounts").to_s,
+      }
+    end
+
+    days
+  end
+
   class << self
     def search_for(term, limit = 5)
       pattern = sanitize_sql_like(term.strip) + '%'
