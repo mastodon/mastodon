@@ -127,6 +127,7 @@ export default class PublicTimeline extends React.PureComponent {
 
         <StatusListContainer
           prepend={headline}
+          alwaysPrepend
           timelineId={`public${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}

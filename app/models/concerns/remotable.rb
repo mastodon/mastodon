@@ -41,7 +41,7 @@ module Remotable
         rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
           nil
-        rescue Paperclip::Error => e
+        rescue Paperclip::Error, Mastodon::DimensionsValidationError => e
           Rails.logger.debug "Error processing remote #{attachment_name}: #{e}"
           nil
         end
