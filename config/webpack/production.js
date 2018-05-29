@@ -8,7 +8,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const OfflinePlugin = require('offline-plugin');
 const { publicPath } = require('./configuration.js');
 const path = require('path');
-const { URL } = require('url');
+const { URL } = require('whatwg-url');
 
 let compressionAlgorithm;
 try {
