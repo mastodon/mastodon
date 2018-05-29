@@ -76,7 +76,7 @@ export default class Announcements extends React.PureComponent {
     // files in /system/ will be cached by SW
     if (self.caches) {
       return caches.open('mastodon-system')
-        .then(cache => cache.delete(window.origin + '/system/announcements.json'))
+        .then(cache => cache.delete(window.origin + '/announcements.json'))
         .catch(() => {});
     } else {
       return Promise.resolve();
