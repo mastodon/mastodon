@@ -34,12 +34,25 @@ class Formatter
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = encode_and_link_urls(html, linkable_accounts)
     html = encode_custom_emojis(html, status.emojis) if options[:custom_emojify]
+    html = custom_format(html)
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def custom_format(html)
+    chunks = html.split("```")
+    cur_c = 1
+    while cur_c < chunks.length
+      h = chunks[cur_c]
+      h.gsub(/ /) { |match| "&nbsp;" }
+      h = "<tt>" + h + "</tt>"
+      chunks[cur_c] = h
+      cur_c += 2
+    end
+  end
+  
   def reformat(html)
     sanitize(html, Sanitize::Config::MASTODON_STRICT)
   end
