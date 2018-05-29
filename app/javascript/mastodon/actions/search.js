@@ -33,7 +33,7 @@ export function submitSearch() {
 
     dispatch(fetchSearchRequest());
 
-    api(getState).get('/api/v1/search', {
+    api(getState).get('/api/v2/search', {
       params: {
         q: value,
         resolve: true,
