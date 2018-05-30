@@ -36,7 +36,7 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
 
   def deduplicate_account!(account_ids)
     accounts          = Account.where(id: account_ids).to_a
-    accounts          = account.first.local? ? accounts.sort_by(&:created_at) : accounts.sort_by(&:updated_at).reverse
+    accounts          = accounts.first.local? ? accounts.sort_by(&:created_at) : accounts.sort_by(&:updated_at).reverse
     reference_account = accounts.shift
 
     accounts.each do |other_account|
@@ -69,15 +69,19 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
     # to check for (and skip past) uniqueness errors
     [Follow, FollowRequest, Block, Mute].each do |klass|
       klass.where(account_id: duplicate_account.id).find_each do |record|
-        record.update(account_id: main_account.id)
-      rescue ActiveRecord::RecordNotUnique
-        next
+        begin
+          record.update(account_id: main_account.id)
+        rescue ActiveRecord::RecordNotUnique
+          next
+        end
       end
 
       klass.where(target_account_id: duplicate_account.id).find_each do |record|
-        record.update(target_account_id: main_account.id)
-      rescue ActiveRecord::RecordNotUnique
-        next
+        begin
+          record.update(target_account_id: main_account.id)
+        rescue ActiveRecord::RecordNotUnique
+          next
+        end
       end
     end
   end
