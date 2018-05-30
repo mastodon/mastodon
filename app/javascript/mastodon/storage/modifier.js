@@ -1,4 +1,5 @@
 import openDB from './db';
+import { isEqual } from 'lodash';
 
 const accountAssetKeys = ['avatar', 'avatar_static', 'header', 'header_static'];
 const storageMargin = 8388608;
@@ -38,11 +39,17 @@ function put(name, objects, onupdate, oncreate) {
         }
 
         if (retrieval.target.result) {
-          if (onupdate) {
-            onupdate(object, retrieval.target.result, putStore, deleteObject);
-          } else {
-            deleteObject();
-          }
+          putStore.get(retrieval.target.result).onsuccess = ({ target }) => {
+            if (isEqual(target.result, object)) {
+              return;
+            }
+
+            if (onupdate) {
+              onupdate(object, retrieval.target.result, putStore, deleteObject);
+            } else {
+              deleteObject();
+            }
+          };
         } else {
           if (oncreate) {
             oncreate(object, addObject);
