@@ -123,7 +123,7 @@ export default class GettingStarted extends ImmutablePureComponent {
 
     navItems.push(
       <ColumnLink key='9' icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />,
-      <ColumnLink key='10' icon='question' text={intl.formatMessage(messages.faq)} href='http://faq.imastodon.net/getting-started/' targetWindow='_blank' />
+      <ColumnLink key='10' icon='question' text={intl.formatMessage(messages.faq)} href='https://faq.imastodon.net/getting-started/' targetWindow='_blank' />
     );
 
     const contents = (
