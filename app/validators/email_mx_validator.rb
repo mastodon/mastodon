@@ -4,7 +4,7 @@ require 'resolv'
 
 class EmailMxValidator < ActiveModel::Validator
   def validate(user)
-    return if Rails.env.test?
+    return if Rails.env.test? || Rails.env.development?
     user.errors.add(:email, I18n.t('users.invalid_email')) if invalid_mx?(user.email)
   end
 
