@@ -13,12 +13,12 @@ import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
 import { fetchTrends } from '../../actions/trends';
 import Hashtag from '../../components/hashtag';
+import NavigationBar from '../compose/components/navigation_bar';
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
-  navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
@@ -33,6 +33,7 @@ const messages = defineMessages({
   refresh_trends: { id: 'trends.refresh', defaultMessage: 'Refresh' },
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
+  security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
 });
 
 const mapStateToProps = state => ({
@@ -90,14 +91,9 @@ export default class GettingStarted extends ImmutablePureComponent {
       navItems.push(
         <ColumnSubheading key='1' text={intl.formatMessage(messages.discover)} />,
         <ColumnLink key='2' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
-        <ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
+        <ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
+        <ColumnSubheading key='8' text={intl.formatMessage(messages.personal)} />
       );
-    }
-
-    navItems.push(<ColumnSubheading key='8' text={intl.formatMessage(messages.personal)} />);
-
-    if (!multiColumn) {
-      navItems.push(<ColumnLink key='9' icon='user' text={`@${myAccount.get('username')}`} to={`/accounts/${myAccount.get('id')}`} />);
     }
 
     navItems.push(
@@ -108,6 +104,14 @@ export default class GettingStarted extends ImmutablePureComponent {
 
     if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key='7' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+    }
+
+    if (!multiColumn) {
+      navItems.push(
+        <ColumnSubheading key='9' text={intl.formatMessage(messages.settings_subheading)} />,
+        <ColumnLink key='6' icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
+        <ColumnLink key='6' icon='lock' text={intl.formatMessage(messages.security)} href='/auth/edit' />
+      );
     }
 
     return (
@@ -122,6 +126,7 @@ export default class GettingStarted extends ImmutablePureComponent {
         </div>}
 
         <div className='getting-started__wrapper'>
+          {!multiColumn && <NavigationBar account={myAccount} />}
           {navItems}
         </div>
 
