@@ -528,8 +528,8 @@ namespace :mastodon do
       accounts = Account.remote
       accounts = accounts.where(domain: ENV['DOMAIN']) if ENV['DOMAIN'].present?
 
-      accounts.select(:id).find_in_batches do |accounts|
-        Maintenance::RedownloadAccountMediaWorker.push_bulk(accounts.map(&:id))
+      accounts.select(:id).find_in_batches do |accounts_batch|
+        Maintenance::RedownloadAccountMediaWorker.push_bulk(accounts_batch.map(&:id))
       end
     end
   end
