@@ -21,7 +21,10 @@ class BatchedRemoveStatusService < BaseService
     @activity_xml          = {}
 
     # Ensure that rendered XML reflects destroyed state
-    statuses.each(&:destroy)
+    statuses.each do |status|
+      status.mark_for_mass_destruction!
+      status.destroy
+    end
 
     # Batch by source account
     statuses.group_by(&:account_id).each_value do |account_statuses|
