@@ -5,6 +5,7 @@ import {
 import { CONTEXT_FETCH_SUCCESS } from '../actions/statuses';
 import { TIMELINE_DELETE, TIMELINE_UPDATE } from '../actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import compareId from '../compare_id';
 
 const initialState = ImmutableMap({
   inReplyTos: ImmutableMap(),
@@ -15,27 +16,27 @@ const normalizeContext = (immutableState, id, ancestors, descendants) => immutab
   state.update('inReplyTos', immutableAncestors => immutableAncestors.withMutations(inReplyTos => {
     state.update('replies', immutableDescendants => immutableDescendants.withMutations(replies => {
       function addReply({ id, in_reply_to_id }) {
-        if (in_reply_to_id) {
-          const siblings = replies.get(in_reply_to_id, ImmutableList());
+        if (in_reply_to_id && !inReplyTos.has(id)) {
 
-          if (!siblings.includes(id)) {
-            const index = siblings.findLastIndex(sibling => sibling.id < id);
-            replies.set(in_reply_to_id, siblings.insert(index + 1, id));
-          }
+          replies.update(in_reply_to_id, ImmutableList(), siblings => {
+            const index = siblings.findLastIndex(sibling => compareId(sibling, id) < 0);
+            return siblings.insert(index + 1, id);
+          });
 
           inReplyTos.set(id, in_reply_to_id);
         }
       }
 
+      // We know in_reply_to_id of statuses but `id` itself.
+      // So we assume that the status of the id replies to last ancestors.
+
+      ancestors.forEach(addReply);
+
       if (ancestors[0]) {
-        addReply({ id, in_reply_to_id: ancestors[0].id });
+        addReply({ id, in_reply_to_id: ancestors[ancestors.length - 1].id });
       }
 
-      if (descendants[0]) {
-        addReply({ id: descendants[0].id, in_reply_to_id: id });
-      }
-
-      [ancestors, descendants].forEach(statuses => statuses.forEach(addReply));
+      descendants.forEach(addReply);
     }));
   }));
 });
@@ -80,7 +81,7 @@ const updateContext = (state, status) => {
       mutable.setIn(['inReplyTos', status.id], status.in_reply_to_id);
 
       if (!replies.includes(status.id)) {
-        mutable.setIn(['replies', status.id], replies.push(status.id));
+        mutable.setIn(['replies', status.in_reply_to_id], replies.push(status.id));
       }
     });
   }
