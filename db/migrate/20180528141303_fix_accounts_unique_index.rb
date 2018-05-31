@@ -39,22 +39,22 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
     accounts          = accounts.first.local? ? accounts.sort_by(&:created_at) : accounts.sort_by(&:updated_at).reverse
     reference_account = accounts.shift
 
-    say "Deduplicating @#{reference_account.acct}...", true
+    say_with_time "Deduplicating @#{reference_account.acct} (#{accounts.size} duplicates)..." do
+      accounts.each do |other_account|
+        if other_account.public_key == reference_account.public_key
+          # The accounts definitely point to the same resource, so
+          # it's safe to re-attribute content and relationships
+          merge_accounts!(reference_account, other_account)
+        elsif other_account.local?
+          # Since domain is in the GROUP BY clause, both accounts
+          # are always either going to be local or not local, so only
+          # one check is needed. Since we cannot support two users with
+          # the same username locally, one has to go. 😢
+          other_account.user&.destroy
+        end
 
-    accounts.each do |other_account|
-      if other_account.public_key == reference_account.public_key
-        # The accounts definitely point to the same resource, so
-        # it's safe to re-attribute content and relationships
-        merge_accounts!(reference_account, other_account)
-      elsif other_account.local?
-        # Since domain is in the GROUP BY clause, both accounts
-        # are always either going to be local or not local, so only
-        # one check is needed. Since we cannot support two users with
-        # the same username locally, one has to go. 😢
-        other_account.user&.destroy
+        other_account.destroy
       end
-
-      other_account.destroy
     end
   end
 
