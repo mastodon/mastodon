@@ -39,6 +39,8 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
     accounts          = accounts.first.local? ? accounts.sort_by(&:created_at) : accounts.sort_by(&:updated_at).reverse
     reference_account = accounts.shift
 
+    say "Deduplicating @#{reference_account.acct}...", true
+
     accounts.each do |other_account|
       if other_account.public_key == reference_account.public_key
         # The accounts definitely point to the same resource, so
@@ -57,7 +59,7 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
   end
 
   def merge_accounts!(main_account, duplicate_account)
-    [Status, Favourite, Mention, StatusPin, StreamEntry].each do |klass|
+    [Status, Mention, StatusPin, StreamEntry].each do |klass|
       klass.where(account_id: duplicate_account.id).update_all(account_id: main_account.id)
     end
 
@@ -67,19 +69,19 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
     # of the index bug users could have *also* followed the reference
     # account already, therefore mass update will not work and we need
     # to check for (and skip past) uniqueness errors
-    [Follow, FollowRequest, Block, Mute].each do |klass|
+    [Favourite, Follow, FollowRequest, Block, Mute].each do |klass|
       klass.where(account_id: duplicate_account.id).find_each do |record|
         begin
-          record.update(account_id: main_account.id)
-        rescue ActiveRecord::RecordNotUnique
+          record.update_attribute(:account_id, main_account.id)
+        rescue PG::UniqueViolation
           next
         end
       end
 
       klass.where(target_account_id: duplicate_account.id).find_each do |record|
         begin
-          record.update(target_account_id: main_account.id)
-        rescue ActiveRecord::RecordNotUnique
+          record.update_attribute(:target_account_id, main_account.id)
+        rescue PG::UniqueViolation
           next
         end
       end
