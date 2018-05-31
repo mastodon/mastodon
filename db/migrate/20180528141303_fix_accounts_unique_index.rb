@@ -49,7 +49,7 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
         # are always either going to be local or not local, so only
         # one check is needed. Since we cannot support two users with
         # the same username locally, one has to go. 😢
-        other_account.user.destroy
+        other_account.user&.destroy
       end
 
       other_account.destroy
