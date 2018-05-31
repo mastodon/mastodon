@@ -1,4 +1,3 @@
----
 eu:
   simple_form:
     hints:
@@ -6,13 +5,30 @@ eu:
         avatar: PNG, GIF edo JPG. Gehienez 2MB. 400x400px neurrira eskalatuko da
         locked: Jarraitzaileak eskuz onartu behar dituzu
         note:
-          other: <span class="note-counter"> %{count}</span> karaktere faltan
-        setting_noindex: Zure profil publiko eta egoera orrietan eragina du
-        setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten du.
+          other: <span class="note-counter"> %{count}</span> karaktere geratzen dira
+          one: Karaktere<span class="note-counter">1</span> geratzen da
+        setting_noindex: Zure profil publiko eta toot orrietan eragina du
+        setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten
+          du.
+        bot: Kontu honek nagusiki automatizatutako ekintzak burutzen ditu eta agian
+          ez du inork monitorizatzen
+        digest: Soilik jarduerarik gabeko epe luze bat eta gero, eta soilik ez zeudela
+          mezu pertsonalen bat jaso baduzu
+        display_name:
+          one: Karaktere <span class="name-counter">1</span> geratzen da
+          other: <span class="name-counter">%{count}</span> karaktere geratzen dira
+        fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
+        header: PNG, GIF edo JPG. Gehienez 2MB. 700x335px eskalara txikituko da
+        setting_hide_network: Nor jarraitzen duzun eta nork jariatzen zaituen ez da
+          bistaratuko zure profilean
       imports:
-        data: Mastodon-en beste instantzia batetik CSV fitxategia esportatu da
+        data: Beste Mastodon instantzia batetik esportatutako CSV fitxategia
       user:
-        filtered_languages: Aukeratutako hizkuntzak timeline publikotik filtratuko dira
+        filtered_languages: Ez dira aukeratutako hizkuntzak erakutsiko zure denbora-lerro
+          publikoetan
+      sessions:
+        otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo
+          erabili zure berreskuratze kodeetako bat:'
     labels:
       account:
         fields:
@@ -30,12 +46,46 @@ eu:
         new_password: Pasahitz berria
         note: Biografia
         password: Pasahitza
-        setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
+        setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman
+          aurretik
         setting_default_privacy: Mezuaren pribatutasuna
+        avatar: Abatarra
+        bot: Hau bot kontu bat da
+        data: Datuak
+        expires_in: Iraungitzea
+        header: Goiburua
+        locked: Giltzapetu kontua
+        max_uses: Gehieneko erabiltzaile kopurua
+        otp_attempt: Bi faktoreetako kodea
+        setting_auto_play_gif: Automatikoki abiatu GIF animatuak
+        setting_default_sensitive: Beti markatu edukiak mingarri gisa
+        setting_delete_modal: Erakutsi baieztapen elkarrizketa-koadroa toot bat ezabatu
+          aurretik
+        setting_display_sensitive_media: Beti erakutsi mingarri marka duen edukia
+        setting_hide_network: Ezkutatu zure sarea
+        setting_noindex: Atera bilaketa motorraren idexaziotik
+        setting_reduce_motion: Murriztu animazioen mugimenduak
+        setting_system_font_ui: Erabili sistemako tipografia lehenetsia
+        setting_theme: Gunearen gaia
+        setting_unfollow_modal: Erakutsi baieztapen elkarrizketa-koadroa inor jarraitzeari
+          utzi aurretik
+        severity: Larritasuna
+        type: Inportazio mota
+        username: Erabiltzaile-izena
+        username_or_email: Erabiltzaile-izena edo e-mail helbidea
       notification_emails:
         reblog: Bidali e-mail mezua norbaitek zure mezuari bultzada ematen badio
+        digest: Bidali laburpenak e-mail bidez
+        favourite: Bidali e-mail bat norbaitek zure mezua gogoko duenean
+        follow: Bidali e-mail bat norbaitek jarraitzen zaituenean
+        follow_request: Bidali e-mail bat norbaitek zu jarraitzea eskatzen duenean
+        mention: Bidali e-mail bat norbaitek zu aipatzean
+      interactions:
+        must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
+        must_be_following: Blokeatu zuk jarraitzen ez dituzunen jakinarazpenak
+        must_be_following_dm: Blokeatu zuk jarraitzen ez dituzunen mezu zuzenak
     'no': Ez
     required:
-      mark: "*"
+      mark: '*'
       text: beharrezkoa
     'yes': Bai
