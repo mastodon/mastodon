@@ -7,7 +7,7 @@ class ProcessHashtagsService < BaseService
     tags.map { |str| str.mb_chars.downcase }.uniq(&:to_s).each do |name|
       tag = Tag.where(name: name).first_or_create(name: name)
       status.tags << tag
-      TrendingTags.record_use!(tag, status.account, status.created_at)
+      TrendingTags.record_use!(tag, status.account, status.created_at) if status.public_visibility?
     end
   end
 end
