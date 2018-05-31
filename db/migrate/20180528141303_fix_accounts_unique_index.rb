@@ -60,7 +60,7 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
 
   def merge_accounts!(main_account, duplicate_account)
     [Status, Mention, StatusPin, StreamEntry].each do |klass|
-      klass.where(account_id: duplicate_account.id).update_all(account_id: main_account.id)
+      klass.where(account_id: duplicate_account.id).in_batches.update_all(account_id: main_account.id)
     end
 
     # Since it's the same remote resource, the remote resource likely
