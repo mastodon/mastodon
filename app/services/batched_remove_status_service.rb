@@ -21,7 +21,10 @@ class BatchedRemoveStatusService < BaseService
     @activity_xml          = {}
 
     # Ensure that rendered XML reflects destroyed state
-    statuses.each(&:destroy)
+    statuses.each do |status|
+      status.mark_for_mass_destruction!
+      status.destroy
+    end
 
     # Batch by source account
     statuses.group_by(&:account_id).each_value do |account_statuses|
@@ -53,7 +56,7 @@ class BatchedRemoveStatusService < BaseService
   end
 
   def unpush_from_home_timelines(account, statuses)
-    recipients = account.followers.local.to_a
+    recipients = account.followers_for_local_distribution.to_a
 
     recipients << account if account.local?
 
@@ -65,7 +68,7 @@ class BatchedRemoveStatusService < BaseService
   end
 
   def unpush_from_list_timelines(account, statuses)
-    account.lists.select(:id, :account_id).each do |list|
+    account.lists_for_local_distribution.select(:id, :account_id).each do |list|
       statuses.each do |status|
         FeedManager.instance.unpush_from_list(list, status)
       end

@@ -1,16 +1,25 @@
 # frozen_string_literal: true
-require 'resolv'
-class EmailMXValidator < ActiveModel::Validator
-  def validate(user)
-    domain = user.email.split('@', 2).last
-    mxs = Resolv::DNS.new.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
 
-    user.errors.add(:email, "Email address does not appear to be valid. Please check that you've typed it correctly.") if mxs.empty? || blocked_mx?(mxs)
+require 'resolv'
+
+class EmailMxValidator < ActiveModel::Validator
+  def validate(user)
+    return if Rails.env.test? || Rails.env.development?
+    user.errors.add(:email, I18n.t('users.invalid_email')) if invalid_mx?(user.email)
   end
 
   private
 
-  def blocked_mx?(mxs)
-    EmailDomainBlock.where('domain IN (?)', mxs).exists?
+  def invalid_mx?(value)
+    _, domain = value.split('@', 2)
+
+    return true if domain.nil?
+
+    records = Resolv::DNS.new.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
+    records.empty? || on_blacklist?(records)
+  end
+
+  def on_blacklist?(values)
+    EmailDomainBlock.where(domain: values).any?
   end
 end

@@ -10,7 +10,7 @@ import {
   COMPOSE_DIRECT,
   COMPOSE_QUOTE,
 } from '../actions/compose';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
   value: '',
@@ -42,7 +42,7 @@ export default function search(state = initialState, action) {
     return state.set('results', ImmutableMap({
       accounts: ImmutableList(action.results.accounts.map(item => item.id)),
       statuses: ImmutableList(action.results.statuses.map(item => item.id)),
-      hashtags: ImmutableList(action.results.hashtags),
+      hashtags: fromJS(action.results.hashtags),
     })).set('submitted', true);
   default:
     return state;
