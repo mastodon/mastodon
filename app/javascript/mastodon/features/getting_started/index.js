@@ -82,6 +82,10 @@ export default class GettingStarted extends ImmutablePureComponent {
     setTimeout(() => this.props.fetchTrends(), 5000);
   }
 
+  handleRefreshTrends = () => {
+    this.props.fetchTrends();
+  }
+
   render () {
     const { intl, myAccount, multiColumn, unreadFollowRequests, trends } = this.props;
 
@@ -138,7 +142,7 @@ export default class GettingStarted extends ImmutablePureComponent {
                 <FormattedMessage id='trends.header' defaultMessage='Trending now' />
               </button>
               <div className='column-header__buttons'>
-                <button className='column-header__button' title={intl.formatMessage(messages.refresh_trends)} aria-label={intl.formatMessage(messages.refresh_trends)}><i className='fa fa-refresh' /></button>
+                <button onClick={this.handleRefreshTrends} className='column-header__button' title={intl.formatMessage(messages.refresh_trends)} aria-label={intl.formatMessage(messages.refresh_trends)}><i className='fa fa-refresh' /></button>
               </div>
             </h1>
           </div>
