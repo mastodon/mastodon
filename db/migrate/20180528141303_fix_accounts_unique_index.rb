@@ -77,7 +77,9 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
           next
         end
       end
+    end
 
+    [Follow, FollowRequest, Block, Mute].each do |klass|
       klass.where(target_account_id: duplicate_account.id).find_each do |record|
         begin
           record.update_attribute(:target_account_id, main_account.id)
