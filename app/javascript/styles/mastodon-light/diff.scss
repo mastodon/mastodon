@@ -132,18 +132,52 @@
 .boost-modal,
 .confirmation-modal,
 .mute-modal,
-.report-modal {
+.report-modal,
+.embed-modal,
+.error-modal,
+.onboarding-modal {
   background: $ui-base-color;
 }
 
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
-.mute-modal__action-bar {
+.mute-modal__action-bar,
+.onboarding-modal__paginator,
+.error-modal__footer {
   background: darken($ui-base-color, 6%);
+
+  .onboarding-modal__nav,
+  .error-modal__nav {
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($ui-base-color, 12%);
+    }
+  }
+}
+
+.display-case__case {
+  background: $white;
+}
+
+.embed-modal .embed-modal__container .embed-modal__html {
+  background: $white;
+
+  &:focus {
+    background: darken($ui-base-color, 6%);
+  }
 }
 
 .react-toggle-track {
   background: $ui-secondary-color;
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background: darken($ui-secondary-color, 10%);
+}
+
+.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background: lighten($ui-highlight-color, 10%);
 }
 
 // Change the default color used for the text in an empty column or on the error column

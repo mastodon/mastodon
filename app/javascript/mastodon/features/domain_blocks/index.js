@@ -28,7 +28,7 @@ export default class Blocks extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    domains: ImmutablePropTypes.list,
+    domains: ImmutablePropTypes.orderedSet,
     intl: PropTypes.object.isRequired,
   };
 

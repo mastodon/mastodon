@@ -41,12 +41,12 @@ class Status < ApplicationRecord
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
-  belongs_to :account, inverse_of: :statuses, counter_cache: true
+  belongs_to :account, inverse_of: :statuses
   belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account', optional: true
   belongs_to :conversation, optional: true
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
-  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count, optional: true
+  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
@@ -167,6 +167,17 @@ class Status < ApplicationRecord
     @emojis ||= CustomEmoji.from_text([spoiler_text, text].join(' '), account.domain)
   end
 
+  def mark_for_mass_destruction!
+    @marked_for_mass_destruction = true
+  end
+
+  def marked_for_mass_destruction?
+    @marked_for_mass_destruction
+  end
+
+  after_create  :increment_counter_caches
+  after_destroy :decrement_counter_caches
+
   after_create_commit :store_uri, if: :local?
   after_create_commit :update_statistics, if: :local?
 
@@ -188,12 +199,45 @@ class Status < ApplicationRecord
       where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
     end
 
-    def as_direct_timeline(account)
-      query = joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
-              .where("mentions.account_id = #{account.id} OR statuses.account_id = #{account.id}")
-              .where(visibility: [:direct])
+    def as_direct_timeline(account, limit = 20, max_id = nil, since_id = nil, cache_ids = false)
+      # direct timeline is mix of direct message from_me and to_me.
+      # 2 querys are executed with pagination.
+      # constant expression using arel_table is required for partial index
 
-      apply_timeline_filters(query, account, false)
+      # _from_me part does not require any timeline filters
+      query_from_me = where(account_id: account.id)
+                      .where(Status.arel_table[:visibility].eq(3))
+                      .limit(limit)
+                      .order('statuses.id DESC')
+
+      # _to_me part requires mute and block filter.
+      # FIXME: may we check mutes.hide_notifications?
+      query_to_me = Status
+                    .joins(:mentions)
+                    .merge(Mention.where(account_id: account.id))
+                    .where(Status.arel_table[:visibility].eq(3))
+                    .limit(limit)
+                    .order('mentions.status_id DESC')
+                    .not_excluded_by_account(account)
+
+      if max_id.present?
+        query_from_me = query_from_me.where('statuses.id < ?', max_id)
+        query_to_me = query_to_me.where('mentions.status_id < ?', max_id)
+      end
+
+      if since_id.present?
+        query_from_me = query_from_me.where('statuses.id > ?', since_id)
+        query_to_me = query_to_me.where('mentions.status_id > ?', since_id)
+      end
+
+      if cache_ids
+        # returns array of cache_ids object that have id and updated_at
+        (query_from_me.cache_ids.to_a + query_to_me.cache_ids.to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
+      else
+        # returns ActiveRecord.Relation
+        items = (query_from_me.select(:id).to_a + query_to_me.select(:id).to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
+        Status.where(id: items.map(&:id))
+      end
     end
 
     def as_public_timeline(account = nil, local_only = false)
@@ -354,5 +398,41 @@ class Status < ApplicationRecord
   def update_statistics
     return unless public_visibility? || unlisted_visibility?
     ActivityTracker.increment('activity:statuses:local')
+  end
+
+  def increment_counter_caches
+    return if direct_visibility?
+
+    if association(:account).loaded?
+      account.update_attribute(:statuses_count, account.statuses_count + 1)
+    else
+      Account.where(id: account_id).update_all('statuses_count = COALESCE(statuses_count, 0) + 1')
+    end
+
+    return unless reblog?
+
+    if association(:reblog).loaded?
+      reblog.update_attribute(:reblogs_count, reblog.reblogs_count + 1)
+    else
+      Status.where(id: reblog_of_id).update_all('reblogs_count = COALESCE(reblogs_count, 0) + 1')
+    end
+  end
+
+  def decrement_counter_caches
+    return if direct_visibility? || marked_for_mass_destruction?
+
+    if association(:account).loaded?
+      account.update_attribute(:statuses_count, [account.statuses_count - 1, 0].max)
+    else
+      Account.where(id: account_id).update_all('statuses_count = GREATEST(COALESCE(statuses_count, 0) - 1, 0)')
+    end
+
+    return unless reblog?
+
+    if association(:reblog).loaded?
+      reblog.update_attribute(:reblogs_count, [reblog.reblogs_count - 1, 0].max)
+    else
+      Status.where(id: reblog_of_id).update_all('reblogs_count = GREATEST(COALESCE(reblogs_count, 0) - 1, 0)')
+    end
   end
 end
