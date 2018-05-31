@@ -25,7 +25,7 @@ const notify = options =>
 
       return self.registration.showNotification(group.title, group);
     } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) { // Already grouped, proceed with appending the notification to the group
-      const group = { ...notifications[0] };
+      const group = cloneNotification(notifications[0]);
 
       group.title = formatMessage('notifications.group', options.data.preferred_locale, { count: group.data.count + 1 });
       group.body  = `${options.title}\n${group.body}`;
@@ -55,6 +55,18 @@ const fetchFromApi = (path, method, accessToken) => {
       throw new Error(res.status);
     }
   }).then(res => res.json());
+};
+
+const cloneNotification = notification => {
+  const clone = {};
+  let k;
+
+  // Object.assign() does not work with notifications
+  for(k in notification) {
+    clone[k] = notification[k];
+  }
+
+  return clone;
 };
 
 const formatMessage = (messageId, locale, values = {}) =>
@@ -95,7 +107,7 @@ const handlePush = (event) => {
         options.body    = notification.status.spoiler_text;
         options.image   = undefined;
         options.actions = [actionExpand(preferred_locale)];
-      } else if (notification.status) {
+      } else if (notification.type === 'mention') {
         options.actions = [actionReblog(preferred_locale), actionFavourite(preferred_locale)];
       }
 
@@ -130,7 +142,7 @@ const findBestClient = clients => {
 };
 
 const expandNotification = notification => {
-  const newNotification = { ...notification };
+  const newNotification = cloneNotification(notification);
 
   newNotification.body    = newNotification.data.hiddenBody;
   newNotification.image   = newNotification.data.hiddenImage;
@@ -140,7 +152,7 @@ const expandNotification = notification => {
 };
 
 const removeActionFromNotification = (notification, action) => {
-  const newNotification = { ...notification };
+  const newNotification = cloneNotification(notification);
 
   newNotification.actions = newNotification.actions.filter(item => item.action !== action);
 

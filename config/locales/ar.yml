@@ -40,6 +40,7 @@ ar:
     following: يتابعون
     media: الوسائط
     moved_html: "%{name} إنتقلَ إلى %{new_profile_link} :"
+    network_hidden: إنّ المعطيات غير متوفرة
     nothing_here: لا يوجد أي شيء هنا !
     people_followed_by: الأشخاص الذين يتبعهم %{name}
     people_who_follow: الأشخاص الذين يتبعون %{name}
@@ -49,6 +50,7 @@ ar:
     reserved_username: إسم المستخدم محجوز
     roles:
       admin: المدير
+      bot: روبوت
       moderator: مُشرِف
     unfollow: إلغاء المتابعة
   admin:
@@ -283,7 +285,7 @@ ar:
         create_and_resolve: الحل مع ملاحظة
         create_and_unresolve: إعادة فتح مع ملاحظة
         delete: حذف
-        placeholder: وصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى لهذا التقرير …
+        placeholder: قم بوصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى ذات علاقة …
       reopen: إعادة فتح التقرير
       report: 'التقرير #%{id}'
       report_contents: المحتويات
@@ -414,7 +416,7 @@ ar:
     register_elsewhere: التسجيل على خادوم آخَر
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
-    security: الهوية
+    security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
@@ -637,7 +639,7 @@ ar:
     notifications: الإخطارات
     preferences: التفضيلات
     settings: الإعدادات
-    two_factor_authentication: إثبات الهويّة المزدوج
+    two_factor_authentication: المُصادقة بخُطوَتَيْن
     your_apps: تطبيقاتك
   statuses:
     attached:
@@ -678,11 +680,11 @@ ar:
       default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: قم بإدخال الرمز المُوَلّد عبر تطبيق المصادقة للتأكيد
-    description_html: في حال تفعيل <strong>المصادقة بخطوتين </strong>، فتسجيل الدخول يتتطلب منك أن يكون بحوزتك هاتفك النقال قصد توليد الرمز الذي سيتم إدخاله.
+    description_html: في حال تفعيل <strong>المصادقة بخطوتين </strong>، فتسجيل الدخول يتطلب منك أن يكون بحوزتك هاتفك النقال قصد توليد الرمز الذي سيتم إدخاله.
     disable: تعطيل
     enable: تفعيل
     enabled: نظام المصادقة بخطوتين مُفعَّل
-    enabled_success: تم تفعيل إثبات الهوية المزدوج بنجاح
+    enabled_success: تم تفعيل المصادقة بخطوتين بنجاح
     generate_recovery_codes: توليد رموز الإسترجاع
     instructions_html: "<strong>قم بمسح رمز الكيو آر عبر Google Authenticator أو أي تطبيق TOTP على جهازك</strong>. من الآن فصاعدا سوف يقوم ذاك التطبيق بتوليد رموز يجب عليك إدخالها عند تسجيل الدخول."
     manual_instructions: 'في حالة تعذّر مسح رمز الكيو آر أو طُلب منك إدخال يدوي، يُمْكِنك إدخال هذا النص السري على التطبيق :'
@@ -705,6 +707,6 @@ ar:
       title: أهلاً بك، %{name} !
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
-    invalid_otp_token: الرمز الثنائي غير صالح
+    invalid_otp_token: رمز المصادقة بخطوتين غير صالح
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
     signed_in_as: 'تم تسجيل دخولك بصفة :'

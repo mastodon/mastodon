@@ -3,7 +3,7 @@ sv:
   simple_form:
     hints:
       defaults:
-        avatar: Högst 2 MB. Kommer nedskalas till 400x400px
+        avatar: Högst 2 MB. Kommer att skalas ner till 400x400px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
         display_name:
@@ -15,6 +15,7 @@ sv:
         note:
           one: <span class="note-counter">1</span> tecken kvar
           other: <span class="note-counter">%{count}</span> tecken kvar
+        setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
         setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är inloggad.
       imports:
@@ -30,6 +31,7 @@ sv:
           value: Innehåll
       defaults:
         avatar: Avatar
+        bot: Detta är ett botkonto
         confirm_new_password: Bekräfta nytt lösenord
         confirm_password: Bekräfta lösenord
         current_password: Nuvarande lösenord
@@ -53,6 +55,7 @@ sv:
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot
         setting_display_sensitive_media: Visa alltid media märkt som känsligt
+        setting_hide_network: Göm ditt nätverk
         setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont

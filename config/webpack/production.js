@@ -6,8 +6,9 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const sharedConfig = require('./shared.js');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const OfflinePlugin = require('offline-plugin');
-const { env, publicPath } = require('./configuration.js');
+const { publicPath } = require('./configuration.js');
 const path = require('path');
+const { URL } = require('whatwg-url');
 
 let compressionAlgorithm;
 try {
@@ -17,6 +18,21 @@ try {
   };
 } catch (error) {
   compressionAlgorithm = 'gzip';
+}
+
+let attachmentHost;
+
+if (process.env.S3_ENABLED === 'true') {
+  if (process.env.S3_CLOUDFRONT_HOST) {
+    attachmentHost = process.env.S3_CLOUDFRONT_HOST;
+  } else {
+    attachmentHost = process.env.S3_HOSTNAME || `s3-${process.env.S3_REGION || 'us-east-1'}.amazonaws.com`;
+  }
+} else if (process.env.SWIFT_ENABLED === 'true') {
+  const { host } = new URL(process.env.SWIFT_OBJECT_URL);
+  attachmentHost = host;
+} else {
+  attachmentHost = null;
 }
 
 module.exports = merge(sharedConfig, {
@@ -90,7 +106,7 @@ module.exports = merge(sharedConfig, {
         '**/*.woff',
       ],
       ServiceWorker: {
-        entry: `imports-loader?process.env=>${encodeURIComponent(JSON.stringify(env))}!${encodeURI(path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'))}`,
+        entry: `imports-loader?ATTACHMENT_HOST=>${encodeURIComponent(JSON.stringify(attachmentHost))}!${encodeURI(path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'))}`,
         cacheName: 'mastodon',
         output: '../assets/sw.js',
         publicPath: '/sw.js',

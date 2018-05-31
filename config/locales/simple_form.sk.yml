@@ -4,18 +4,18 @@ sk:
     hints:
       defaults:
         avatar: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 400x400px
-        bot: Tento účet vykonáva hlavne zautomatizované akcie, a je pravdepodobne nespravovaný
-        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak ste obdŕžali nejaké osobné správy kým ste boli preč
+        bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
+        digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdŕžal/a nejaké osobné správy kým si bol/a preč
         display_name:
           few: Ostávajú ti <span class="name-counter">%{count}</span> znaky
           one: Ostáva ti <span class="name-counter">1</span> znak
           other: Ostáva ti <span class="name-counter">%{count}</span> znakov
         fields: Môžeš mať 4 položky na svojom profile zobrazené vo forme tabuľky
         header: PNG, GIF alebo JPG. Maximálne 2MB. Bude zmenšený na 700x335px
-        locked: Musíte manuálne schváliť sledujúcich
+        locked: Vyžaduje manuálne schvalovať sledujúcich
         note:
           few: Ostávajú ti <span class="note-counter">%{count}</span> znaky
-          one: Ostáva vám <span class="note-counter">1</span> znak
+          one: Ostáva ti <span class="note-counter">1</span> znak
           other: Ostáva ti <span class="note-counter">%{count}</span> znakov
         setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a statusy
@@ -57,6 +57,7 @@ sk:
         setting_default_sensitive: Označ všetky mediálne súbory ako chúlostivé
         setting_delete_modal: Zobrazuj potvrdzovacie okno pred vymazaním toot-u
         setting_display_sensitive_media: Vždy zobraz médiá označené ako chúlostivé
+        setting_hide_network: Ukri svoju sieť kontaktov
         setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
         setting_reduce_motion: Redukovať pohyb v animáciách
         setting_system_font_ui: Použiť základné systémové písmo
@@ -64,11 +65,11 @@ sk:
         setting_unfollow_modal: Zobraziť potvrdzovacie okno pred skončením sledovania iného užívateľa
         severity: Závažnosť
         type: Typ importu
-        username: Užívateľská prezývka
-        username_or_email: Prezívka, alebo Email
+        username: Prezývka
+        username_or_email: Prezívka, alebo email
       interactions:
-        must_be_follower: Blokovať notifikácie pod používateľov, ktorí ťa nesledujú
-        must_be_following: Blokovať notifikácie od ľudí ktorí ťa nesledujú
+        must_be_follower: Blokovať oznámenia od užívateľov, ktorí ťa nesledujú
+        must_be_following: Blokovať oznámenia od ľudí ktorých nesleduješ
         must_be_following_dm: Blokovať súkromné správy od ľudí ktorých nesleduješ
       notification_emails:
         digest: Posielať súhrnné emaily
