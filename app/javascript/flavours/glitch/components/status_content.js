@@ -98,7 +98,7 @@ export default class StatusContent extends React.PureComponent {
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
-    if (e.target.localName === 'button' || e.target.localName === 'a' || (e.target.parentNode && (e.target.parentNode.localName === 'button' || e.target.parentNode.localName === 'a'))) {
+    if (e.target.localName === 'button' || e.target.localName == 'video' || e.target.localName === 'a' || (e.target.parentNode && (e.target.parentNode.localName === 'button' || e.target.parentNode.localName === 'a'))) {
       return;
     }
 
@@ -188,11 +188,9 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} tabIndex='0'>
+        <div className={classNames} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p
             style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
-            onMouseDown={this.handleMouseDown}
-            onMouseUp={this.handleMouseUp}
           >
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
@@ -208,8 +206,6 @@ export default class StatusContent extends React.PureComponent {
               ref={this.setRef}
               style={directionStyle}
               tabIndex={!hidden ? 0 : null}
-              onMouseDown={this.handleMouseDown}
-              onMouseUp={this.handleMouseUp}
               dangerouslySetInnerHTML={content}
             />
             {media}
@@ -222,12 +218,12 @@ export default class StatusContent extends React.PureComponent {
         <div
           className={classNames}
           style={directionStyle}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
           tabIndex='0'
         >
           <div
             ref={this.setRef}
-            onMouseDown={this.handleMouseDown}
-            onMouseUp={this.handleMouseUp}
             dangerouslySetInnerHTML={content}
             tabIndex='0'
           />

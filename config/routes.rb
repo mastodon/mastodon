@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   end
 
   use_doorkeeper do
-    controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
+    controllers authorizations: 'oauth/authorizations',
+                authorized_applications: 'oauth/authorized_applications',
+                tokens: 'oauth/tokens'
   end
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
@@ -144,7 +146,7 @@ Rails.application.routes.draw do
     end
 
     resources :reports, only: [:index, :show, :update] do
-      resources :reported_statuses, only: [:create, :update, :destroy]
+      resources :reported_statuses, only: [:create]
     end
 
     resources :report_notes, only: [:create, :destroy]
@@ -164,8 +166,13 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
-      resource :confirmation, only: [:create]
       resources :statuses, only: [:index, :create, :update, :destroy]
+
+      resource :confirmation, only: [:create] do
+        collection do
+          post :resend
+        end
+      end
 
       resource :role do
         member do
@@ -264,6 +271,7 @@ Rails.application.routes.draw do
       resources :favourites, only: [:index]
       resources :bookmarks,  only: [:index]
       resources :reports,    only: [:index, :create]
+      resources :trends,     only: [:index]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
@@ -319,6 +327,14 @@ Rails.application.routes.draw do
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
+
+      namespace :push do
+        resource :subscription, only: [:create, :show, :update, :destroy]
+      end
+    end
+
+    namespace :v2 do
+      get '/search', to: 'search#index', as: :search
     end
 
     namespace :web do

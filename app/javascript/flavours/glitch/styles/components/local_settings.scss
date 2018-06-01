@@ -35,8 +35,8 @@
   display: block;
   padding: 15px 20px;
   color: inherit;
-  background: $primary-text-color;
-  border-bottom: 1px $ui-primary-color solid;
+  background: lighten($ui-secondary-color, 8%);
+  border-bottom: 1px $ui-secondary-color solid;
   cursor: pointer;
   text-decoration: none;
   outline: none;
@@ -58,8 +58,7 @@
 }
 
 .glitch.local-settings__navigation {
-  background: $simple-background-color;
-  color: $inverted-text-color;
+  background: lighten($ui-secondary-color, 8%);
   width: 200px;
   font-size: 15px;
   line-height: 20px;

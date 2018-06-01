@@ -33,6 +33,11 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial) =>
     if (!statuses.isEmpty()) {
       mMap.update('items', ImmutableList(), oldIds => {
         const newIds = statuses.map(status => status.get('id'));
+
+        if (timeline.indexOf(':pinned') !== -1) {
+          return newIds;
+        }
+
         const lastIndex = oldIds.findLastIndex(id => id !== null && compareId(id, newIds.last()) >= 0) + 1;
         const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) > 0);
 
@@ -134,7 +139,7 @@ export default function timelines(state = initialState, action) {
       initialTimeline,
       map => map.update(
         'items',
-        items => items.first() ? items : items.unshift(null)
+        items => items.first() ? items.unshift(null) : items
       )
     );
   default:

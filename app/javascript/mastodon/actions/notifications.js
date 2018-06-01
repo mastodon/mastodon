@@ -8,6 +8,7 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { defineMessages } from 'react-intl';
+import { unescapeHTML } from '../utils/html';
 
 export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
@@ -21,6 +22,7 @@ export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
+  group: { id: 'notifications.group', defaultMessage: '{count} notifications' },
 });
 
 const fetchRelatedRelationships = (dispatch, notifications) => {
@@ -29,13 +31,6 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   if (accountIds.length > 0) {
     dispatch(fetchRelationships(accountIds));
   }
-};
-
-const unescapeHTML = (html) => {
-  const wrapper = document.createElement('div');
-  html = html.replace(/<br \/>|<br>|\n/g, ' ');
-  wrapper.innerHTML = html;
-  return wrapper.textContent;
 };
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
@@ -82,9 +77,14 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
 
-export function expandNotifications({ maxId } = {}) {
+const noOp = () => {};
+
+export function expandNotifications({ maxId } = {}, done = noOp) {
   return (dispatch, getState) => {
-    if (getState().getIn(['notifications', 'isLoading'])) {
+    const notifications = getState().get('notifications');
+
+    if (notifications.get('isLoading')) {
+      done();
       return;
     }
 
@@ -92,6 +92,10 @@ export function expandNotifications({ maxId } = {}) {
       max_id: maxId,
       exclude_types: excludeTypesFromSettings(getState()),
     };
+
+    if (!maxId && notifications.get('items').size > 0) {
+      params.since_id = notifications.getIn(['items', 0]);
+    }
 
     dispatch(expandNotificationsRequest());
 
@@ -103,8 +107,10 @@ export function expandNotifications({ maxId } = {}) {
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
+      done();
     }).catch(error => {
       dispatch(expandNotificationsFail(error));
+      done();
     });
   };
 };

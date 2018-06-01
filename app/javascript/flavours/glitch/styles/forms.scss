@@ -280,6 +280,11 @@ code {
   .actions {
     margin-top: 30px;
     display: flex;
+
+    &.actions--top {
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
   }
 
   button,
@@ -563,9 +568,27 @@ code {
 
 .post-follow-actions {
   text-align: center;
-  color: $ui-primary-color;
+  color: $darker-text-color;
 
   div {
     margin-bottom: 4px;
+  }
+}
+
+.alternative-login {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  h4 {
+    font-size: 16px;
+    color: $primary-text-color;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 0;
+    padding: 0;
+  }
+
+  .button {
+    display: block;
   }
 }

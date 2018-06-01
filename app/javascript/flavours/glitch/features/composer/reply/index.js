@@ -58,6 +58,7 @@ export default class ComposerReply extends React.PureComponent {
             icon='times'
             onClick={handleClick}
             title={intl.formatMessage(messages.cancel)}
+            inverted
           />
           {account ? (
             <AccountContainer

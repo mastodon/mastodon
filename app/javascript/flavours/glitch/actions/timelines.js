@@ -4,31 +4,15 @@ import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
 
-export const TIMELINE_REFRESH_REQUEST = 'TIMELINE_REFRESH_REQUEST';
-export const TIMELINE_REFRESH_SUCCESS = 'TIMELINE_REFRESH_SUCCESS';
-export const TIMELINE_REFRESH_FAIL    = 'TIMELINE_REFRESH_FAIL';
-
 export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
 export const TIMELINE_EXPAND_SUCCESS = 'TIMELINE_EXPAND_SUCCESS';
 export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
-export const TIMELINE_CONNECT    = 'TIMELINE_CONNECT';
 export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
 export const TIMELINE_CONTEXT_UPDATE = 'CONTEXT_UPDATE';
-
-export function refreshTimelineSuccess(timeline, statuses, skipLoading, next, partial) {
-  return {
-    type: TIMELINE_REFRESH_SUCCESS,
-    timeline,
-    statuses,
-    skipLoading,
-    next,
-    partial,
-  };
-};
 
 export function updateTimeline(timeline, status) {
   return (dispatch, getState) => {
@@ -77,97 +61,43 @@ export function deleteFromTimelines(id) {
   };
 };
 
-export function refreshTimelineRequest(timeline, skipLoading) {
-  return {
-    type: TIMELINE_REFRESH_REQUEST,
-    timeline,
-    skipLoading,
-  };
-};
+const noOp = () => {};
 
-export function refreshTimeline(timelineId, path, params = {}) {
-  return function (dispatch, getState) {
-    const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
-
-    if (timeline.get('isLoading') || (timeline.get('online') && !timeline.get('isPartial'))) {
-      return;
-    }
-
-    const ids      = timeline.get('items', ImmutableList());
-    const newestId = ids.size > 0 ? ids.first() : null;
-
-    let skipLoading = timeline.get('loaded');
-
-    if (newestId !== null) {
-      params.since_id = newestId;
-    }
-
-    dispatch(refreshTimelineRequest(timelineId, skipLoading));
-
-    api(getState).get(path, { params }).then(response => {
-      if (response.status === 206) {
-        dispatch(refreshTimelineSuccess(timelineId, [], skipLoading, null, true));
-      } else {
-        const next = getLinks(response).refs.find(link => link.rel === 'next');
-        dispatch(refreshTimelineSuccess(timelineId, response.data, skipLoading, next ? next.uri : null, false));
-      }
-    }).catch(error => {
-      dispatch(refreshTimelineFail(timelineId, error, skipLoading));
-    });
-  };
-};
-
-export const refreshHomeTimeline            = () => refreshTimeline('home', '/api/v1/timelines/home');
-export const refreshPublicTimeline          = () => refreshTimeline('public', '/api/v1/timelines/public');
-export const refreshCommunityTimeline       = () => refreshTimeline('community', '/api/v1/timelines/public', { local: true });
-export const refreshDirectTimeline          = () => refreshTimeline('direct', '/api/v1/timelines/direct');
-export const refreshAccountTimeline         = (accountId, withReplies) => refreshTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies });
-export const refreshAccountFeaturedTimeline = accountId => refreshTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true });
-export const refreshAccountMediaTimeline    = accountId => refreshTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
-export const refreshHashtagTimeline         = hashtag => refreshTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
-export const refreshListTimeline            = id => refreshTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
-
-export function refreshTimelineFail(timeline, error, skipLoading) {
-  return {
-    type: TIMELINE_REFRESH_FAIL,
-    timeline,
-    error,
-    skipLoading,
-    skipAlert: error.response && error.response.status === 404,
-  };
-};
-
-export function expandTimeline(timelineId, path, params = {}) {
+export function expandTimeline(timelineId, path, params = {}, done = noOp) {
   return (dispatch, getState) => {
     const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
-    const ids      = timeline.get('items', ImmutableList());
 
-    if (timeline.get('isLoading') || ids.size === 0) {
+    if (timeline.get('isLoading')) {
+      done();
       return;
     }
 
-    params.max_id = ids.last();
-    params.limit  = 10;
+    if (!params.max_id && timeline.get('items', ImmutableList()).size > 0) {
+      params.since_id = timeline.getIn(['items', 0]);
+    }
 
     dispatch(expandTimelineRequest(timelineId));
 
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null));
+      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.code === 206));
+      done();
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error));
+      done();
     });
   };
 };
 
-export const expandHomeTimeline         = () => expandTimeline('home', '/api/v1/timelines/home');
-export const expandPublicTimeline       = () => expandTimeline('public', '/api/v1/timelines/public');
-export const expandCommunityTimeline    = () => expandTimeline('community', '/api/v1/timelines/public', { local: true });
-export const expandDirectTimeline       = () => expandTimeline('direct', '/api/v1/timelines/direct');
-export const expandAccountTimeline      = (accountId, withReplies) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies })
-export const expandAccountMediaTimeline = accountId => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { only_media: true });
-export const expandHashtagTimeline      = hashtag => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`);
-export const expandListTimeline         = id => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`);
+export const expandHomeTimeline         = ({ maxId } = {}, done = noOp) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId }, done);
+export const expandPublicTimeline       = ({ maxId } = {}, done = noOp) => expandTimeline('public', '/api/v1/timelines/public', { max_id: maxId }, done);
+export const expandCommunityTimeline    = ({ maxId } = {}, done = noOp) => expandTimeline('community', '/api/v1/timelines/public', { local: true, max_id: maxId }, done);
+export const expandDirectTimeline       = ({ maxId } = {}, done = noOp) => expandTimeline('direct', '/api/v1/timelines/direct', { max_id: maxId }, done);
+export const expandAccountTimeline      = (accountId, { maxId, withReplies } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, max_id: maxId });
+export const expandAccountFeaturedTimeline = accountId => expandTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true });
+export const expandAccountMediaTimeline = (accountId, { maxId } = {}) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true });
+export const expandHashtagTimeline      = (hashtag, { maxId } = {}, done = noOp) => expandTimeline(`hashtag:${hashtag}`, `/api/v1/timelines/tag/${hashtag}`, { max_id: maxId }, done);
+export const expandListTimeline         = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
 
 export function expandTimelineRequest(timeline) {
   return {
@@ -176,12 +106,13 @@ export function expandTimelineRequest(timeline) {
   };
 };
 
-export function expandTimelineSuccess(timeline, statuses, next) {
+export function expandTimelineSuccess(timeline, statuses, next, partial) {
   return {
     type: TIMELINE_EXPAND_SUCCESS,
     timeline,
     statuses,
     next,
+    partial,
   };
 };
 
@@ -198,13 +129,6 @@ export function scrollTopTimeline(timeline, top) {
     type: TIMELINE_SCROLL_TOP,
     timeline,
     top,
-  };
-};
-
-export function connectTimeline(timeline) {
-  return {
-    type: TIMELINE_CONNECT,
-    timeline,
   };
 };
 

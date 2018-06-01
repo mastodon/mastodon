@@ -57,10 +57,11 @@ class Request
   private
 
   def set_common_headers!
-    @headers[REQUEST_TARGET] = "#{@verb} #{@url.path}"
-    @headers['User-Agent']   = user_agent
-    @headers['Host']         = @url.host
-    @headers['Date']         = Time.now.utc.httpdate
+    @headers[REQUEST_TARGET]    = "#{@verb} #{@url.path}"
+    @headers['User-Agent']      = Mastodon::Version.user_agent
+    @headers['Host']            = @url.host
+    @headers['Date']            = Time.now.utc.httpdate
+    @headers['Accept-Encoding'] = 'gzip' if @verb != :head
   end
 
   def set_digest!
@@ -82,10 +83,6 @@ class Request
     @headers.keys.join(' ').downcase
   end
 
-  def user_agent
-    @user_agent ||= "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::Version}; +#{root_url})"
-  end
-
   def key_id
     case @key_id_format
     when :acct
@@ -100,7 +97,7 @@ class Request
   end
 
   def http_client
-    @http_client ||= HTTP.timeout(:per_operation, timeout).follow(max_hops: 2)
+    @http_client ||= HTTP.use(:auto_inflate).timeout(:per_operation, timeout).follow(max_hops: 2)
   end
 
   def use_proxy?

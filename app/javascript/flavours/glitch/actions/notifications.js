@@ -1,8 +1,8 @@
 import api, { getLinks } from 'flavours/glitch/util/api';
-import { List as ImmutableList } from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
 import { defineMessages } from 'react-intl';
+import { unescapeHTML } from 'flavours/glitch/util/html';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 
@@ -16,10 +16,6 @@ export const NOTIFICATIONS_ENTER_CLEARING_MODE = 'NOTIFICATIONS_ENTER_CLEARING_M
 export const NOTIFICATIONS_UNMARK_ALL_FOR_DELETE = 'NOTIFICATIONS_UNMARK_ALL_FOR_DELETE';
 // Mark one for delete
 export const NOTIFICATION_MARK_FOR_DELETE = 'NOTIFICATION_MARK_FOR_DELETE';
-
-export const NOTIFICATIONS_REFRESH_REQUEST = 'NOTIFICATIONS_REFRESH_REQUEST';
-export const NOTIFICATIONS_REFRESH_SUCCESS = 'NOTIFICATIONS_REFRESH_SUCCESS';
-export const NOTIFICATIONS_REFRESH_FAIL    = 'NOTIFICATIONS_REFRESH_FAIL';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
@@ -38,13 +34,6 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   if (accountIds > 0) {
     dispatch(fetchRelationships(accountIds));
   }
-};
-
-const unescapeHTML = (html) => {
-  const wrapper = document.createElement('div');
-  html = html.replace(/<br \/>|<br>|\n/g, ' ');
-  wrapper.innerHTML = html;
-  return wrapper.textContent;
 };
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
@@ -78,75 +67,26 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
 
-export function refreshNotifications() {
+
+const noOp = () => {};
+
+export function expandNotifications({ maxId } = {}, done = noOp) {
   return (dispatch, getState) => {
-    const params = {};
-    const ids    = getState().getIn(['notifications', 'items']);
+    const notifications = getState().get('notifications');
 
-    let skipLoading = false;
-
-    if (ids.size > 0) {
-      params.since_id = ids.first().get('id');
-    }
-
-    if (getState().getIn(['notifications', 'loaded'])) {
-      skipLoading = true;
-    }
-
-    params.exclude_types = excludeTypesFromSettings(getState());
-
-    dispatch(refreshNotificationsRequest(skipLoading));
-
-    api(getState).get('/api/v1/notifications', { params }).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-
-      dispatch(refreshNotificationsSuccess(response.data, skipLoading, next ? next.uri : null));
-      fetchRelatedRelationships(dispatch, response.data);
-    }).catch(error => {
-      dispatch(refreshNotificationsFail(error, skipLoading));
-    });
-  };
-};
-
-export function refreshNotificationsRequest(skipLoading) {
-  return {
-    type: NOTIFICATIONS_REFRESH_REQUEST,
-    skipLoading,
-  };
-};
-
-export function refreshNotificationsSuccess(notifications, skipLoading, next) {
-  return {
-    type: NOTIFICATIONS_REFRESH_SUCCESS,
-    notifications,
-    accounts: notifications.map(item => item.account),
-    statuses: notifications.map(item => item.status).filter(status => !!status),
-    skipLoading,
-    next,
-  };
-};
-
-export function refreshNotificationsFail(error, skipLoading) {
-  return {
-    type: NOTIFICATIONS_REFRESH_FAIL,
-    error,
-    skipLoading,
-  };
-};
-
-export function expandNotifications() {
-  return (dispatch, getState) => {
-    const items  = getState().getIn(['notifications', 'items'], ImmutableList());
-
-    if (getState().getIn(['notifications', 'isLoading']) || items.size === 0) {
+    if (notifications.get('isLoading')) {
+      done();
       return;
     }
 
     const params = {
-      max_id: items.last().get('id'),
-      limit: 20,
+      max_id: maxId,
       exclude_types: excludeTypesFromSettings(getState()),
     };
+
+    if (!maxId && notifications.get('items').size > 0) {
+      params.since_id = notifications.getIn(['items', 0]);
+    }
 
     dispatch(expandNotificationsRequest());
 
@@ -154,8 +94,10 @@ export function expandNotifications() {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
+      done();
     }).catch(error => {
       dispatch(expandNotificationsFail(error));
+      done();
     });
   };
 };

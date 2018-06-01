@@ -68,6 +68,8 @@ export default function DrawerResults ({
           </header>
           {accounts && accounts.size ? (
             <section>
+              <h5><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
+
               {accounts.map(
                 accountId => (
                   <AccountContainer
@@ -80,6 +82,8 @@ export default function DrawerResults ({
           ) : null}
           {statuses && statuses.size ? (
             <section>
+              <h5><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
+
               {statuses.map(
                 statusId => (
                   <StatusContainer
@@ -92,6 +96,8 @@ export default function DrawerResults ({
           ) : null}
           {hashtags && hashtags.size ? (
             <section>
+              <h5><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
+
               {hashtags.map(
                 hashtag => (
                   <Link

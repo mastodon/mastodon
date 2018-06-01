@@ -5,6 +5,7 @@ import { makeGetStatus } from 'flavours/glitch/selectors';
 import {
   replyCompose,
   mentionCompose,
+  directCompose,
 } from 'flavours/glitch/actions/compose';
 import {
   reblog,
@@ -129,6 +130,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         onConfirm: () => dispatch(deleteStatus(status.get('id'))),
       }));
     }
+  },
+
+  onDirect (account, router) {
+    dispatch(directCompose(account, router));
   },
 
   onMention (account, router) {

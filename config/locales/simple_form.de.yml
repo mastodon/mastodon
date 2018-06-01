@@ -4,6 +4,7 @@ de:
     hints:
       defaults:
         avatar: PNG, GIF oder JPG. Maximal 2 MB. Wird auf 400×400 px herunterskaliert
+        bot: Warnt Besucher das dieser Nutzer keine echte Person darstellt
         digest: Wenn du lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen in deiner Abwesenheit zugeschickt
         display_name:
           one: <span class="name-counter">1</span> Zeichen verbleibt
@@ -19,7 +20,7 @@ de:
       imports:
         data: CSV-Datei, die aus einer anderen Mastodon-Instanz exportiert wurde
       sessions:
-        otp: Gib den Zwei-Faktor-Authentisierungs-Code von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes.
+        otp: 'Gib den Zwei-Faktor-Authentisierungscode von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
       user:
         filtered_languages: Ausgewählte Sprachen werden aus deinen öffentlichen Zeitleisten gefiltert
     labels:
@@ -29,6 +30,7 @@ de:
           value: Inhalt
       defaults:
         avatar: Profilbild
+        bot: Dies ist ein bot Benutzer
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
         current_password: Derzeitiges Passwort

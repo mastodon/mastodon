@@ -56,13 +56,6 @@ export function register () {
     dispatch(setBrowserSupport(supportsPushNotifications));
     const me = getState().getIn(['meta', 'me']);
 
-    if (me && !pushNotificationsSetting.get(me)) {
-      const alerts = getState().getIn(['push_notifications', 'alerts']);
-      if (alerts) {
-        pushNotificationsSetting.set(me, { alerts: alerts });
-      }
-    }
-
     if (supportsPushNotifications) {
       if (!getApplicationServerKey()) {
         console.error('The VAPID public key is not set. You will not be able to receive Web Push Notifications.');

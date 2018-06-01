@@ -6,6 +6,7 @@ import { hydrateStore } from 'flavours/glitch/actions/store';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from 'mastodon/locales';
 import PublicTimeline from 'flavours/glitch/features/standalone/public_timeline';
+import CommunityTimeline from 'flavours/glitch/features/standalone/community_timeline';
 import HashtagTimeline from 'flavours/glitch/features/standalone/hashtag_timeline';
 import initialState from 'flavours/glitch/util/initial_state';
 
@@ -23,17 +24,24 @@ export default class TimelineContainer extends React.PureComponent {
   static propTypes = {
     locale: PropTypes.string.isRequired,
     hashtag: PropTypes.string,
+    showPublicTimeline: PropTypes.bool.isRequired,
+  };
+
+  static defaultProps = {
+    showPublicTimeline: initialState.settings.known_fediverse,
   };
 
   render () {
-    const { locale, hashtag } = this.props;
+    const { locale, hashtag, showPublicTimeline } = this.props;
 
     let timeline;
 
     if (hashtag) {
       timeline = <HashtagTimeline hashtag={hashtag} />;
-    } else {
+    } else if (showPublicTimeline) {
       timeline = <PublicTimeline />;
+    } else {
+      timeline = <CommunityTimeline />;
     }
 
     return (

@@ -32,6 +32,8 @@ export default class Status extends ImmutablePureComponent {
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
+    onDirect: PropTypes.func,
+    onMention: PropTypes.func,
     onPin: PropTypes.func,
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
@@ -257,8 +259,8 @@ export default class Status extends ImmutablePureComponent {
     }
   };
 
-  handleOpenVideo = startTime => {
-    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), startTime);
+  handleOpenVideo = (media, startTime) => {
+    this.props.onOpenVideo(media, startTime);
   }
 
   handleHotkeyReply = e => {

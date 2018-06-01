@@ -8,6 +8,7 @@ import { me } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
+  direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
@@ -43,6 +44,7 @@ export default class ActionBar extends React.PureComponent {
     onMuteConversation: PropTypes.func,
     onBlock: PropTypes.func,
     onDelete: PropTypes.func.isRequired,
+    onDirect: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onReport: PropTypes.func,
     onPin: PropTypes.func,
@@ -68,6 +70,10 @@ export default class ActionBar extends React.PureComponent {
 
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status);
+  }
+
+  handleDirectClick = () => {
+    this.props.onDirect(this.props.status.get('account'), this.context.router.history);
   }
 
   handleMentionClick = () => {
@@ -115,6 +121,7 @@ export default class ActionBar extends React.PureComponent {
 
     if (publicStatus) {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+      menu.push(null);
     }
 
     if (me === status.getIn(['account', 'id'])) {
@@ -128,6 +135,7 @@ export default class ActionBar extends React.PureComponent {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
+      menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
@@ -149,7 +157,7 @@ export default class ActionBar extends React.PureComponent {
       <div className='detailed-status__action-bar'>
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(reblog_message)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
-        <div className='detailed-status__button'><IconButton animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+        <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
         {shareButton}
         <div className='detailed-status__button'><IconButton active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
 

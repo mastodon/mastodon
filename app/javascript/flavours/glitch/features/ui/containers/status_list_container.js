@@ -21,6 +21,8 @@ const makeGetStatusIds = () => createSelector([
   }
 
   return statusIds.filter(id => {
+    if (id === null) return true;
+
     const statusForId = statuses.get(id);
     let showStatus    = true;
 
@@ -52,18 +54,13 @@ const makeMapStateToProps = () => {
     statusIds: getStatusIds(state, { type: timelineId }),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
-    hasMore: !!state.getIn(['timelines', timelineId, 'next']),
+    hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),
   });
 
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { timelineId, loadMore }) => ({
-
-  onScrollToBottom: debounce(() => {
-    dispatch(scrollTopTimeline(timelineId, false));
-    loadMore();
-  }, 300, { leading: true }),
+const mapDispatchToProps = (dispatch, { timelineId }) => ({
 
   onScrollToTop: debounce(() => {
     dispatch(scrollTopTimeline(timelineId, true));

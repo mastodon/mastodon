@@ -40,6 +40,7 @@ ca:
     following: Seguint
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
+    network_hidden: Aquesta informació no està disponible
     nothing_here: No hi ha res aquí!
     people_followed_by: Usuaris seguits per %{name}
     people_who_follow: Usuaris que segueixen %{name}
@@ -49,13 +50,12 @@ ca:
     reserved_username: El nom d'usuari està reservat
     roles:
       admin: Administrador
+      bot: Bot
       moderator: Moderador
     unfollow: Deixa de seguir
   admin:
     account_moderation_notes:
-      account: Moderador
-      create: Crea
-      created_at: Data
+      create: Crea nota
       created_msg: La nota de moderació s'ha creat correctament!
       delete: Suprimeix
       destroyed_msg: Nota de moderació destruïda amb èxit!
@@ -72,6 +72,7 @@ ca:
         title: Canviar adreça de correu de %{username}
       confirm: Confirma
       confirmed: Confirmat
+      confirming: Confirmando
       demote: Degrada
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
@@ -80,6 +81,7 @@ ca:
       domain: Domini
       edit: Edita
       email: Correu electrònic
+      email_status: Estado del correo electrónico
       enable: Habilita
       enabled: Habilitat
       feed_url: URL del canal
@@ -118,6 +120,10 @@ ca:
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza l'avatar
       remove_avatar: Eliminar avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
       resubscribe: Torna a subscriure
@@ -269,7 +275,6 @@ ca:
       comment:
         none: Cap
       created_at: Reportat
-      delete: Suprimeix
       id: ID
       mark_as_resolved: Marca com a resolt
       mark_as_unresolved: Marcar sense resoldre
@@ -278,10 +283,7 @@ ca:
         create_and_resolve: Resoldre amb nota
         create_and_unresolve: Reobrir amb nota
         delete: Esborrar
-        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització d'aquest informe…
-      nsfw:
-        'false': Mostra els fitxers multimèdia adjunts
-        'true': Amaga els fitxers multimèdia adjunts
+        placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
       reopen: Reobrir informe
       report: 'Informe #%{id}'
       report_contents: Contingut
@@ -356,11 +358,8 @@ ca:
         delete: Suprimeix
         nsfw_off: Marcar com a no sensible
         nsfw_on: Marcar com a sensible
-      execute: Executa
       failed_to_execute: No s'ha pogut executar
       media:
-        hide: Amaga el contingut multimèdia
-        show: Mostra el contingut multimèdia
         title: Contingut multimèdia
       no_media: Sense contingut multimèdia
       title: Estats del compte
@@ -376,6 +375,7 @@ ca:
   admin_mailer:
     new_report:
       body: "%{reporter} ha informat de %{target}"
+      body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
   application_mailer:
     notification_preferences: Canvia les preferències de correu
@@ -465,7 +465,7 @@ ca:
     archive_takeout:
       date: Data
       download: Descarrega l’arxiu
-      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible.
+      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i els fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
       in_progress: Compilant el teu arxiu...
       request: Sol·licita el teu arxiu
       size: Tamany
@@ -595,20 +595,6 @@ ca:
     other: Altre
     publishing: Publicació
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} ha marcat com a preferit el teu estat"
-    follow:
-      title: "%{name} ara et segueix"
-    group:
-      title: "%{count} notificacions"
-    mention:
-      action_boost: Retooteja
-      action_expand: Mostra'n més
-      action_favourite: Preferit
-      title: "%{name} t'ha mencionat"
-    reblog:
-      title: "%{name} t'ha retootejat"
   remote_follow:
     acct: Escriu el teu usuari@domini des del qual vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte
@@ -633,7 +619,7 @@ ca:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Altre
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -683,6 +669,7 @@ ca:
       video:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
+    boosted_from_html: Impulsat des de %{acct_link}
     content_warning: 'Avís de contingut: %{warning}'
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
@@ -832,5 +819,6 @@ ca:
   users:
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
+    otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'

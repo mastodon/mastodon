@@ -1,5 +1,5 @@
 .card {
-  background-color: lighten($ui-base-color, 4%);
+  background-color: $base-shadow-color;
   background-size: cover;
   background-position: center;
   border-radius: 4px 4px 0 0;
@@ -79,6 +79,10 @@
       font-weight: 400;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      .fa {
+        margin-left: 3px;
+      }
     }
   }
 
@@ -322,6 +326,15 @@
   z-index: 2;
   position: relative;
 
+  &.empty img {
+    position: absolute;
+    opacity: 0.2;
+    height: 200px;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
   @media screen and (max-width: 740px) {
     border-radius: 0;
     box-shadow: none;
@@ -438,8 +451,8 @@
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  padding: 60px 0;
-  padding-top: 55px;
+  padding: 130px 0;
+  padding-top: 125px;
   margin: 0 auto;
   cursor: default;
 }
@@ -565,36 +578,41 @@
 }
 
 .account__header__fields {
-  border-collapse: collapse;
   padding: 0;
   margin: 15px -15px -15px;
   border: 0 none;
   border-top: 1px solid lighten($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 4%);
+  font-size: 14px;
+  line-height: 20px;
 
-  th,
-  td {
-    padding: 15px;
-    padding-left: 15px;
-    border: 0 none;
+  dl {
+    display: flex;
     border-bottom: 1px solid lighten($ui-base-color, 4%);
-    vertical-align: middle;
   }
 
-  th {
-    padding-left: 15px;
-    font-weight: 500;
+  dt,
+  dd {
+    box-sizing: border-box;
+    padding: 14px;
     text-align: center;
-    width: 94px;
+    max-height: 48px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  dt {
+    font-weight: 500;
+    width: 120px;
+    flex: 0 0 auto;
     color: $secondary-text-color;
     background: rgba(darken($ui-base-color, 8%), 0.5);
   }
 
-  td {
+  dd {
+    flex: 1 1 auto;
     color: $darker-text-color;
-    text-align: center;
-    width: 100%;
-    padding-left: 0;
   }
 
   a {
@@ -608,12 +626,7 @@
     }
   }
 
-  tr {
-    &:last-child {
-      th,
-      td {
-        border-bottom: 0;
-      }
-    }
+  dl:last-child {
+    border-bottom: 0;
   }
 }

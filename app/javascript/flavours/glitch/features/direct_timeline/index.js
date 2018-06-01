@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import {
-  refreshDirectTimeline,
-  expandDirectTimeline,
-} from 'flavours/glitch/actions/timelines';
+import { expandDirectTimeline } from 'flavours/glitch/actions/timelines';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
@@ -55,7 +52,7 @@ export default class DirectTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
 
-    dispatch(refreshDirectTimeline());
+    dispatch(expandDirectTimeline());
     this.disconnect = dispatch(connectDirectStream());
   }
 
@@ -70,8 +67,8 @@ export default class DirectTimeline extends React.PureComponent {
     this.column = c;
   }
 
-  handleLoadMore = () => {
-    this.props.dispatch(expandDirectTimeline());
+  handleLoadMore = maxId => {
+    this.props.dispatch(expandDirectTimeline({ maxId }));
   }
 
   render () {
@@ -97,7 +94,7 @@ export default class DirectTimeline extends React.PureComponent {
           trackScroll={!pinned}
           scrollKey={`direct_timeline-${columnId}`}
           timelineId='direct'
-          loadMore={this.handleLoadMore}
+          onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
         />
       </Column>

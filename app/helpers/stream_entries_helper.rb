@@ -4,8 +4,12 @@ module StreamEntriesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'
 
-  def display_name(account)
-    account.display_name.presence || account.username
+  def display_name(account, **options)
+    if options[:custom_emojify]
+      Formatter.instance.format_display_name(account, options)
+    else
+      account.display_name.presence || account.username
+    end
   end
 
   def account_description(account)

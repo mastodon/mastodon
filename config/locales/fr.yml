@@ -40,6 +40,7 @@ fr:
     following: Abonnements
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
+    network_hidden: Cette information n'est pas disponible
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
@@ -49,13 +50,12 @@ fr:
     reserved_username: Ce nom d’utilisateur⋅ice est réservé
     roles:
       admin: Admin
+      bot: Robot
       moderator: Modérateur·trice
     unfollow: Ne plus suivre
   admin:
     account_moderation_notes:
-      account: Modérateur·ice
-      create: Créer
-      created_at: Date
+      create: Créer une note
       created_msg: Note de modération créée avec succès !
       delete: Supprimer
       destroyed_msg: Note de modération supprimée avec succès !
@@ -72,6 +72,7 @@ fr:
         title: Modifier le courriel pour %{username}
       confirm: Confirmer
       confirmed: Confirmé
+      confirming: Confirmation
       demote: Rétrograder
       disable: Désactiver
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -80,6 +81,7 @@ fr:
       domain: Domaine
       edit: Éditer
       email: Courriel
+      email_status: État de la messagerie
       enable: Activer
       enabled: Activé
       feed_url: URL du flux
@@ -118,6 +120,10 @@ fr:
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir les avatars
       remove_avatar: Supprimer l'avatar
+      resend_confirmation:
+        already_confirmed: Cet utilisateur est déjà confirmé
+        send: Renvoyer un courriel de confirmation
+        success: Email de confirmation envoyé avec succès !
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
@@ -269,7 +275,6 @@ fr:
       comment:
         none: Aucun
       created_at: Signalé
-      delete: Supprimer
       id: ID
       mark_as_resolved: Marquer comme résolu
       mark_as_unresolved: Marquer comme non-résolu
@@ -278,10 +283,7 @@ fr:
         create_and_resolve: Résoudre avec une note
         create_and_unresolve: Ré-ouvrir avec une note
         delete: Effacer
-        placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour de ce signalement…
-      nsfw:
-        'false': Ré-afficher les médias
-        'true': Masquer les médias
+        placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       report_contents: Contenu
@@ -356,11 +358,8 @@ fr:
         delete: Supprimer
         nsfw_off: Marquer comme non-sensible
         nsfw_on: Marquer comme sensible
-      execute: Exécuter
       failed_to_execute: Erreur d’exécution
       media:
-        hide: Masquer les médias
-        show: Montrer les médias
         title: Médias
       no_media: Aucun média
       title: État du compte
@@ -376,6 +375,7 @@ fr:
   admin_mailer:
     new_report:
       body: "%{reporter} a signalé %{target}"
+      body_remote: Quelqu'un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
@@ -465,7 +465,7 @@ fr:
     archive_takeout:
       date: Date
       download: Télécharger votre archive
-      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible.
+      hint_html: Vous pouvez demander une archive de vos  <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
       in_progress: Élaboration de votre archive....
       request: Demandez vos archives
       size: Taille
@@ -550,7 +550,7 @@ fr:
       subject:
         one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
-      title: Pendant votre absence…
+      title: Pendant votre absence...
     favourite:
       body: "%{name} a ajouté votre post à ses favoris :"
       subject: "%{name} a ajouté votre post à ses favoris"
@@ -595,20 +595,6 @@ fr:
     other: Autre
     publishing: Publication
     web: Web
-  push_notifications:
-    favourite:
-      title: "%{name} a mis votre statut en favori"
-    follow:
-      title: "%{name} vous suit"
-    group:
-      title: "%{count} notifications"
-    mention:
-      action_boost: Partager
-      action_expand: Montrer plus
-      action_favourite: Ajouter aux favoris
-      title: "%{name} vous a mentionné·e"
-    reblog:
-      title: "%{name} a partagé votre statut"
   remote_follow:
     acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre cet·te utilisateur⋅ice
     missing_resource: L’URL de redirection n’a pas pu être trouvée
@@ -633,7 +619,7 @@ fr:
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
-      otter: Autre
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -683,6 +669,7 @@ fr:
       video:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
+    boosted_from_html: Repartagé depuis %{acct_link}
     content_warning: 'Attention au contenu : %{warning}'
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
@@ -710,6 +697,10 @@ fr:
     sensitive_content: Contenu sensible
   terms:
     title: "%{instance} Conditions d’utilisations et politique de confidentialité"
+  themes:
+    contrast: Contraste élevé
+    default: Mastodon
+    mastodon-light: Mastodon (clair)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -749,11 +740,12 @@ fr:
       tip_federated_timeline: La chronologie fédérée est une vue en direct du réseau Mastodon. Mais elle n'inclut que les personnes auxquelles vos voisin·es sont abonné·es, donc elle n'est pas complète.
       tip_following: Vous suivez les administrateurs et administratrices de votre serveur par défaut. Pour trouver d'autres personnes intéressantes, consultez les chronologies locales et fédérées.
       tip_local_timeline: La chronologie locale est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
-      tip_mobile_webapp: Si votre navigateur mobile vous propose d'ajouter Mastodon à votre écran d'accueil, vous pouvez recevoir des notifications push. Il agit comme une application native de bien des façons !
+      tip_mobile_webapp: Si votre navigateur mobile vous propose d'ajouter Mastodon à votre écran d'accueil, vous pouvez recevoir des notifications. Il agit comme une application native de bien des façons !
       tips: Astuces
       title: Bienvenue à bord, %{name} !
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'

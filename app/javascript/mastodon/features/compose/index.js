@@ -43,11 +43,19 @@ export default class Compose extends React.PureComponent {
   };
 
   componentDidMount () {
-    this.props.dispatch(mountCompose());
+    const { isSearchPage } = this.props;
+
+    if (!isSearchPage) {
+      this.props.dispatch(mountCompose());
+    }
   }
 
   componentWillUnmount () {
-    this.props.dispatch(unmountCompose());
+    const { isSearchPage } = this.props;
+
+    if (!isSearchPage) {
+      this.props.dispatch(unmountCompose());
+    }
   }
 
   onFocus = () => {
@@ -93,7 +101,7 @@ export default class Compose extends React.PureComponent {
         {(multiColumn || isSearchPage) && <SearchContainer /> }
 
         <div className='drawer__pager'>
-          <div className='drawer__inner' onFocus={this.onFocus}>
+          {!isSearchPage && <div className='drawer__inner' onFocus={this.onFocus}>
             <NavigationContainer onClose={this.onBlur} />
             <ComposeFormContainer />
             {multiColumn && (
@@ -101,7 +109,7 @@ export default class Compose extends React.PureComponent {
                 <img alt='' draggable='false' src={elephantUIPlane} />
               </div>
             )}
-          </div>
+          </div>}
 
           <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) => (

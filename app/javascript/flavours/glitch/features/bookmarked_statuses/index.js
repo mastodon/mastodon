@@ -62,7 +62,7 @@ export default class Bookmarks extends ImmutablePureComponent {
     this.column = c;
   }
 
-  handleScrollToBottom = debounce(() => {
+  handleLoadMore = debounce(() => {
     this.props.dispatch(expandBookmarkedStatuses());
   }, 300, { leading: true })
 
@@ -89,7 +89,7 @@ export default class Bookmarks extends ImmutablePureComponent {
           scrollKey={`bookmarked_statuses-${columnId}`}
           hasMore={hasMore}
           isLoading={isLoading}
-          onScrollToBottom={this.handleScrollToBottom}
+          onLoadMore={this.handleLoadMore}
         />
       </Column>
     );

@@ -17,6 +17,10 @@
       {
         "defaultMessage": "{name} mentioned you",
         "id": "notification.mention"
+      },
+      {
+        "defaultMessage": "{count} notifications",
+        "id": "notifications.group"
       }
     ],
     "path": "app/javascript/mastodon/actions/notifications.json"
@@ -552,6 +556,10 @@
       {
         "defaultMessage": "Domain hidden",
         "id": "account.domain_blocked"
+      },
+      {
+        "defaultMessage": "Bot",
+        "id": "account.badges.bot"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -581,6 +589,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/community_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Toots",
+        "id": "timeline.posts"
+      },
+      {
+        "defaultMessage": "Media",
+        "id": "timeline.media"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/community_timeline/components/section_headline.json"
   },
   {
     "descriptors": [
@@ -815,7 +836,7 @@
         "id": "upload_form.description"
       },
       {
-        "defaultMessage": "Undo",
+        "defaultMessage": "Delete",
         "id": "upload_form.undo"
       },
       {
@@ -866,8 +887,12 @@
         "id": "compose_form.hashtag_warning"
       },
       {
-        "defaultMessage": "This toot will only be visible to all the mentioned users.",
+        "defaultMessage": "This toot will only be sent to all the mentioned users.",
         "id": "compose_form.direct_message_warning"
+      },
+      {
+        "defaultMessage": "Learn more",
+        "id": "compose_form.direct_message_warning_learn_more"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/warning_container.json"

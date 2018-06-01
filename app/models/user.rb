@@ -41,7 +41,7 @@ class User < ApplicationRecord
   include Settings::Extend
   include Omniauthable
 
-  ACTIVE_DURATION = 14.days
+  ACTIVE_DURATION = 7.days
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
@@ -65,6 +65,7 @@ class User < ApplicationRecord
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
+  validates_with EmailMxValidator, if: :email_changed?
 
   scope :recent, -> { order(id: :desc) }
   scope :admins, -> { where(admin: true) }
@@ -86,7 +87,7 @@ class User < ApplicationRecord
   has_many :session_activations, dependent: :destroy
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :favourite_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :flavour, :skin, :display_sensitive_media,
+           :reduce_motion, :system_font_ui, :noindex, :flavour, :skin, :display_sensitive_media, :hide_network,
            to: :settings, prefix: :setting, allow_nil: false
 
   attr_accessor :invite_code
@@ -219,6 +220,10 @@ class User < ApplicationRecord
     settings.notification_emails['digest']
   end
 
+  def hides_network?
+    @hides_network ||= settings.hide_network
+  end
+
   def token_for_app(a)
     return nil if a.nil? || a.owner != self
     Doorkeeper::AccessToken
@@ -245,7 +250,7 @@ class User < ApplicationRecord
   end
 
   def web_push_subscription(session)
-    session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
+    session.web_push_subscription.nil? ? nil : session.web_push_subscription
   end
 
   def invite_code=(code)

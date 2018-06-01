@@ -848,6 +848,10 @@
   }
 }
 
+.load-gap {
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+}
+
 .missing-indicator {
   padding-top: 20px + 48px;
 
@@ -894,7 +898,7 @@
     width: 30px;
     height: 30px;
     font-size: 20px;
-    color: $inverted-text-color;
+    color: $darker-text-color;
     text-shadow: 0 0 5px black;
     display: flex;
     justify-content: center;

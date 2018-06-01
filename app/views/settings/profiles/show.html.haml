@@ -20,6 +20,9 @@
     = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
 
   .fields-group
+    = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
+
+  .fields-group
     .input.with_block_label
       %label= t('simple_form.labels.defaults.fields')
       %span.hint= t('simple_form.hints.defaults.fields')

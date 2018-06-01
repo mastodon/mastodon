@@ -36,10 +36,11 @@ pl:
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     follow: Śledź
-    followers: Śledzących
-    following: Śledzi
+    followers: Śledzący
+    following: Śledzeni
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
+    network_hidden: Ta informacja nie jest dostępna
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -49,13 +50,12 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
+      bot: Bot
       moderator: Moderator
     unfollow: Przestań śledzić
   admin:
     account_moderation_notes:
-      account: Autor
-      create: Dodaj
-      created_at: Data
+      create: Pozostaw notatkę
       created_msg: Pomyślnie dodano notatkę moderacyjną!
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
@@ -72,6 +72,7 @@ pl:
         title: Zmień adres e-mail dla %{username}
       confirm: Potwierdź
       confirmed: Potwierdzono
+      confirming: Potwierdzanie
       demote: Degraduj
       disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
@@ -80,6 +81,7 @@ pl:
       domain: Domena
       edit: Edytuj
       email: Adres e-mail
+      email_status: Stan e-maila
       enable: Aktywuj
       enabled: Aktywowano
       feed_url: Adres kanału
@@ -118,6 +120,10 @@ pl:
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież awatar
       remove_avatar: Usun awatar
+      resend_confirmation:
+        already_confirmed: To konto zostało już potwierdzone
+        send: Wyślij ponownie e-mail z potwierdzeniem
+        success: E-mail z potwierdzeniem został wysłany!
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
@@ -270,7 +276,6 @@ pl:
       comment:
         none: Brak
       created_at: Zgłoszono
-      delete: Usuń
       id: ID
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
@@ -280,9 +285,6 @@ pl:
         create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
         delete: Usuń
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
-      nsfw:
-        'false': Nie oznaczaj jako NSFW
-        'true': Oznaczaj jako NSFW
       reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
@@ -357,11 +359,8 @@ pl:
         delete: Usuń
         nsfw_off: Cofnij NSFW
         nsfw_on: Oznacz jako NSFW
-      execute: Wykonaj
       failed_to_execute: Nie udało się wykonać
       media:
-        hide: Ukryj zawartość multimedialną
-        show: Pokaż zawartość multimedialną
         title: Media
       no_media: Bez zawartości multimedialnej
       title: Wpisy konta
@@ -377,6 +376,7 @@ pl:
   admin_mailer:
     new_report:
       body: Użytkownik %{reporter} zgłosił %{target}
+      body_remote: Użytkownik instancji %{domain} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
@@ -466,7 +466,7 @@ pl:
     archive_takeout:
       date: Data
       download: Pobierz swoje archiwum
-      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, który możesz otworzyć w obsługujących go programach.
+      hint_html: Możesz uzyskać archiwum swoich <strong>wpisów i wysłanej zawartości multimedialnej</strong>. Wyeksportowane dane będą dostępne w formacie ActivityPub, który możesz otworzyć w obsługujących go programach. Możesz wyeksportować je po 7 dniach od poprzedniego eksportu.
       in_progress: Tworzenie archiwum…
       request: Uzyskaj archiwum
       size: Rozmiar
@@ -613,20 +613,6 @@ pl:
     other: Pozostałe
     publishing: Publikowanie
     web: Sieć
-  push_notifications:
-    favourite:
-      title: "%{name} dodał Twój wpis do ulubionych"
-    follow:
-      title: "%{name} zaczął Cię śledzić"
-    group:
-      title: "%{count} powiadomień"
-    mention:
-      action_boost: Podbij
-      action_expand: Pokaż więcej
-      action_favourite: Dodaj do ulubionych
-      title: "%{name} wspomniał o Tobie"
-    reblog:
-      title: "%{name} podbił Twój wpis"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -696,7 +682,7 @@ pl:
     your_apps: Twoje aplikacje
   statuses:
     attached:
-      description: 'Przytwierdzony: %{attached}'
+      description: 'Załączono: %{attached}'
       image:
         few: "%{count} obrazy"
         many: "%{count} obrazów"
@@ -707,6 +693,7 @@ pl:
         many: "%{count} filmów"
         one: "%{count} film"
         other: "%{count} filmów"
+    boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     disallowed_hashtags:
       one: 'zawiera niedozwolony hashtag: %{tags}'
@@ -856,5 +843,6 @@ pl:
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
