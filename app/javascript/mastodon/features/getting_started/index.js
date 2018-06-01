@@ -90,31 +90,32 @@ export default class GettingStarted extends ImmutablePureComponent {
     const { intl, myAccount, multiColumn, unreadFollowRequests, trends } = this.props;
 
     const navItems = [];
+    let i = 1;
 
     if (multiColumn) {
       navItems.push(
-        <ColumnSubheading key='1' text={intl.formatMessage(messages.discover)} />,
-        <ColumnLink key='2' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
-        <ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
-        <ColumnSubheading key='8' text={intl.formatMessage(messages.personal)} />
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.discover)} />,
+        <ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
+        <ColumnLink key={i++} icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.personal)} />
       );
     }
 
     navItems.push(
-      <ColumnLink key='4' icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
-      <ColumnLink key='5' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
-      <ColumnLink key='6' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+      <ColumnLink key={i++} icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
+      <ColumnLink key={i++} icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
+      <ColumnLink key={i++} icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
     );
 
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key='7' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
     }
 
     if (!multiColumn) {
       navItems.push(
-        <ColumnSubheading key='9' text={intl.formatMessage(messages.settings_subheading)} />,
-        <ColumnLink key='6' icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
-        <ColumnLink key='6' icon='lock' text={intl.formatMessage(messages.security)} href='/auth/edit' />
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.settings_subheading)} />,
+        <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
+        <ColumnLink key={i++} icon='lock' text={intl.formatMessage(messages.security)} href='/auth/edit' />
       );
     }
 
