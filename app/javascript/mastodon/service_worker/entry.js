@@ -33,7 +33,7 @@ self.addEventListener('fetch', function(event) {
 
     event.respondWith(asyncResponse.then(
       response => asyncCache.then(cache => cache.put('/', response.clone()))
-                            .then(() => response),
+        .then(() => response),
       () => asyncCache.then(cache => cache.match('/'))));
   } else if (url.pathname === '/auth/sign_out') {
     const asyncResponse = fetch(event.request);
