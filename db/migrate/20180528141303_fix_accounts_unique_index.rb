@@ -39,26 +39,28 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
     accounts          = accounts.first.local? ? accounts.sort_by(&:created_at) : accounts.sort_by(&:updated_at).reverse
     reference_account = accounts.shift
 
-    accounts.each do |other_account|
-      if other_account.public_key == reference_account.public_key
-        # The accounts definitely point to the same resource, so
-        # it's safe to re-attribute content and relationships
-        merge_accounts!(reference_account, other_account)
-      elsif other_account.local?
-        # Since domain is in the GROUP BY clause, both accounts
-        # are always either going to be local or not local, so only
-        # one check is needed. Since we cannot support two users with
-        # the same username locally, one has to go. 😢
-        other_account.user&.destroy
-      end
+    say_with_time "Deduplicating @#{reference_account.acct} (#{accounts.size} duplicates)..." do
+      accounts.each do |other_account|
+        if other_account.public_key == reference_account.public_key
+          # The accounts definitely point to the same resource, so
+          # it's safe to re-attribute content and relationships
+          merge_accounts!(reference_account, other_account)
+        elsif other_account.local?
+          # Since domain is in the GROUP BY clause, both accounts
+          # are always either going to be local or not local, so only
+          # one check is needed. Since we cannot support two users with
+          # the same username locally, one has to go. 😢
+          other_account.user&.destroy
+        end
 
-      other_account.destroy
+        other_account.destroy
+      end
     end
   end
 
   def merge_accounts!(main_account, duplicate_account)
-    [Status, Favourite, Mention, StatusPin, StreamEntry].each do |klass|
-      klass.where(account_id: duplicate_account.id).update_all(account_id: main_account.id)
+    [Status, Mention, StatusPin, StreamEntry].each do |klass|
+      klass.where(account_id: duplicate_account.id).in_batches.update_all(account_id: main_account.id)
     end
 
     # Since it's the same remote resource, the remote resource likely
@@ -67,18 +69,20 @@ class FixAccountsUniqueIndex < ActiveRecord::Migration[5.2]
     # of the index bug users could have *also* followed the reference
     # account already, therefore mass update will not work and we need
     # to check for (and skip past) uniqueness errors
-    [Follow, FollowRequest, Block, Mute].each do |klass|
+    [Favourite, Follow, FollowRequest, Block, Mute].each do |klass|
       klass.where(account_id: duplicate_account.id).find_each do |record|
         begin
-          record.update(account_id: main_account.id)
+          record.update_attribute(:account_id, main_account.id)
         rescue ActiveRecord::RecordNotUnique
           next
         end
       end
+    end
 
+    [Follow, FollowRequest, Block, Mute].each do |klass|
       klass.where(target_account_id: duplicate_account.id).find_each do |record|
         begin
-          record.update(target_account_id: main_account.id)
+          record.update_attribute(:target_account_id, main_account.id)
         rescue ActiveRecord::RecordNotUnique
           next
         end
