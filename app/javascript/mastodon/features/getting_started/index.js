@@ -11,9 +11,8 @@ import { me } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
-import { fetchTrends } from '../../actions/trends';
-import Hashtag from '../../components/hashtag';
 import NavigationBar from '../compose/components/navigation_bar';
+import TrendsContainer from './containers/trends_container';
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -30,7 +29,6 @@ const messages = defineMessages({
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
-  refresh_trends: { id: 'trends.refresh', defaultMessage: 'Refresh' },
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
@@ -39,12 +37,10 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   myAccount: state.getIn(['accounts', me]),
   unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
-  trends: state.get('trends'),
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchFollowRequests: () => dispatch(fetchFollowRequests()),
-  fetchTrends: () => dispatch(fetchTrends()),
 });
 
 const badgeDisplay = (number, limit) => {
@@ -69,7 +65,6 @@ export default class GettingStarted extends ImmutablePureComponent {
     fetchFollowRequests: PropTypes.func.isRequired,
     unreadFollowRequests: PropTypes.number,
     unreadNotifications: PropTypes.number,
-    trends: ImmutablePropTypes.list,
   };
 
   componentDidMount () {
@@ -78,16 +73,10 @@ export default class GettingStarted extends ImmutablePureComponent {
     if (myAccount.get('locked')) {
       fetchFollowRequests();
     }
-
-    setTimeout(() => this.props.fetchTrends(), 5000);
-  }
-
-  handleRefreshTrends = () => {
-    this.props.fetchTrends();
   }
 
   render () {
-    const { intl, myAccount, multiColumn, unreadFollowRequests, trends } = this.props;
+    const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
 
     const navItems = [];
     let i = 1;
@@ -135,21 +124,7 @@ export default class GettingStarted extends ImmutablePureComponent {
           {navItems}
         </div>
 
-        {multiColumn && trends && <div className='getting-started__trends'>
-          <div className='column-header__wrapper'>
-            <h1 className='column-header'>
-              <button>
-                <i className='fa fa-fire fa-fw' />
-                <FormattedMessage id='trends.header' defaultMessage='Trending now' />
-              </button>
-              <div className='column-header__buttons'>
-                <button onClick={this.handleRefreshTrends} className='column-header__button' title={intl.formatMessage(messages.refresh_trends)} aria-label={intl.formatMessage(messages.refresh_trends)}><i className='fa fa-refresh' /></button>
-              </div>
-            </h1>
-          </div>
-
-          <div className='getting-started__scrollable'>{trends.take(3).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}</div>
-        </div>}
+        {multiColumn && <TrendsContainer />}
 
         {!multiColumn && <div className='flex-spacer' />}
 

@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
-import SearchResults from '../components/search_results';
+import { injectIntl } from 'react-intl';
 import { fetchTrends } from '../../../actions/trends';
+import Trends from '../components/trends';
 
 const mapStateToProps = state => ({
-  results: state.getIn(['search', 'results']),
   trends: state.getIn(['trends', 'items']),
+  loading: state.getIn(['trends', 'isLoading']),
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchTrends: () => dispatch(fetchTrends()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Trends));
