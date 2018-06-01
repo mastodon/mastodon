@@ -83,7 +83,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if status.tags.include?(hashtag)
 
     status.tags << hashtag
-    TrendingTags.record_use!(hashtag, status.account, status.created_at)
+    TrendingTags.record_use!(hashtag, status.account, status.created_at) if status.public_visibility?
   rescue ActiveRecord::RecordInvalid
     nil
   end
