@@ -23,6 +23,14 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
   hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
   showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
+  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
 });
 
 @injectIntl
@@ -54,17 +62,29 @@ export default class ActionBar extends React.PureComponent {
     let menu = [];
     let extraInfo = '';
 
-    menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
-    menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
+    if (account.get('id') !== me) {
+      menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+      menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
+      menu.push(null);
+    }
 
     if ('share' in navigator) {
       menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
+      menu.push(null);
     }
-
-    menu.push(null);
 
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
+      menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
+      menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
+      menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
+      menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
+      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
+      menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     } else {
       if (account.getIn(['relationship', 'following'])) {
         if (account.getIn(['relationship', 'showing_reblogs'])) {
