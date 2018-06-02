@@ -2,17 +2,16 @@
 
 class TrendingTags
   KEY                  = 'trending_tags'
-  HALF_LIFE            = 1.day.to_i
-  MAX_ITEMS            = 500
   EXPIRE_HISTORY_AFTER = 7.days.seconds
+  THRESHOLD            = 5
 
   class << self
     def record_use!(tag, account, at_time = Time.now.utc)
-      return if disallowed_hashtags.include?(tag.name) || account.silenced?
+      return if disallowed_hashtags.include?(tag.name) || account.silenced? || account.bot?
 
-      increment_vote!(tag.id, at_time)
       increment_historical_use!(tag.id, at_time)
       increment_unique_use!(tag.id, account.id, at_time)
+      increment_vote!(tag.id, at_time)
     end
 
     def get(limit)
@@ -24,8 +23,16 @@ class TrendingTags
     private
 
     def increment_vote!(tag_id, at_time)
-      redis.zincrby(KEY, (2**((at_time.to_i - epoch) / HALF_LIFE)).to_f, tag_id.to_s)
-      redis.zremrangebyrank(KEY, 0, -MAX_ITEMS) if rand < (2.to_f / MAX_ITEMS)
+      expected = redis.pfcount("activity:tags:#{tag_id}:#{(at_time - 1.day).beginning_of_day.to_i}:accounts").to_f
+      expected = 1.0 if expected.zero?
+      observed = redis.pfcount("activity:tags:#{tag_id}:#{at_time.beginning_of_day.to_i}:accounts").to_f
+
+      if expected > observed || observed < THRESHOLD
+        redis.zrem(KEY, tag_id.to_s)
+      else
+        score = ((observed - expected)**2) / expected
+        redis.zadd(KEY, score, tag_id.to_s)
+      end
     end
 
     def increment_historical_use!(tag_id, at_time)
@@ -38,12 +45,6 @@ class TrendingTags
       key = "activity:tags:#{tag_id}:#{at_time.beginning_of_day.to_i}:accounts"
       redis.pfadd(key, account_id)
       redis.expire(key, EXPIRE_HISTORY_AFTER)
-    end
-
-    # The epoch needs to be 2.5 years in the future if the half-life is one day
-    # While dynamic, it will always be the same within one year
-    def epoch
-      @epoch ||= Date.new(Date.current.year + 2.5, 10, 1).to_datetime.to_i
     end
 
     def disallowed_hashtags
