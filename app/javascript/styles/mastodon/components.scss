@@ -251,7 +251,7 @@
 
   .compose-form__warning {
     color: $inverted-text-color;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     background: $ui-primary-color;
     box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
     padding: 8px 10px;
@@ -296,6 +296,19 @@
   .autosuggest-textarea,
   .spoiler-input {
     position: relative;
+  }
+
+  .spoiler-input {
+    height: 0;
+    transform-origin: bottom;
+    opacity: 0.0;
+    transition: all 0.4s ease;
+
+    &.spoiler-input--visible {
+      height: 47px;
+      opacity: 1.0;
+      transition: all 0.4s ease;
+    }
   }
 
   .autosuggest-textarea__textarea,
@@ -569,9 +582,8 @@
 }
 
 .reply-indicator {
-  border-radius: 4px 4px 0 0;
-  position: relative;
-  bottom: -2px;
+  border-radius: 4px;
+  margin-bottom: 10px;
   background: $ui-primary-color;
   padding: 10px;
 }
@@ -2165,8 +2177,7 @@ a.account__display-name {
 }
 
 .getting-started__wrapper {
-  position: relative;
-  overflow-y: auto;
+  flex: 0 0 auto;
 }
 
 .flex-spacer {
@@ -2174,7 +2185,6 @@ a.account__display-name {
 }
 
 .getting-started {
-  flex: 1 0 auto;
   color: $dark-text-color;
 
   p {
@@ -2215,7 +2225,23 @@ a.account__display-name {
 
   &__trends {
     background: $ui-base-color;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
+
+    @media screen and (max-height: 810px) {
+      .trends__item:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-height: 720px) {
+      .trends__item:nth-child(2) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-height: 670px) {
+      display: none;
+    }
   }
 
   &__scrollable {
@@ -2447,8 +2473,10 @@ a.status-card {
   line-height: inherit;
   margin: 0;
   padding: 15px;
+  box-sizing: border-box;
   width: 100%;
   clear: both;
+  text-decoration: none;
 
   &:hover {
     background: lighten($ui-base-color, 2%);

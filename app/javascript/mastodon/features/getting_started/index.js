@@ -11,9 +11,8 @@ import { me } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
-import { fetchTrends } from '../../actions/trends';
-import Hashtag from '../../components/hashtag';
 import NavigationBar from '../compose/components/navigation_bar';
+import TrendsContainer from './containers/trends_container';
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -30,7 +29,6 @@ const messages = defineMessages({
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
-  refresh_trends: { id: 'trends.refresh', defaultMessage: 'Refresh' },
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
@@ -39,12 +37,10 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   myAccount: state.getIn(['accounts', me]),
   unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
-  trends: state.get('trends'),
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchFollowRequests: () => dispatch(fetchFollowRequests()),
-  fetchTrends: () => dispatch(fetchTrends()),
 });
 
 const badgeDisplay = (number, limit) => {
@@ -69,7 +65,6 @@ export default class GettingStarted extends ImmutablePureComponent {
     fetchFollowRequests: PropTypes.func.isRequired,
     unreadFollowRequests: PropTypes.number,
     unreadNotifications: PropTypes.number,
-    trends: ImmutablePropTypes.list,
   };
 
   componentDidMount () {
@@ -78,40 +73,47 @@ export default class GettingStarted extends ImmutablePureComponent {
     if (myAccount.get('locked')) {
       fetchFollowRequests();
     }
-
-    setTimeout(() => this.props.fetchTrends(), 5000);
   }
 
   render () {
-    const { intl, myAccount, multiColumn, unreadFollowRequests, trends } = this.props;
+    const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
 
     const navItems = [];
+    let i = 1;
+    let height = 0;
 
     if (multiColumn) {
       navItems.push(
-        <ColumnSubheading key='1' text={intl.formatMessage(messages.discover)} />,
-        <ColumnLink key='2' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
-        <ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
-        <ColumnSubheading key='8' text={intl.formatMessage(messages.personal)} />
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.discover)} />,
+        <ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />,
+        <ColumnLink key={i++} icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.personal)} />
       );
+
+      height += 34*2 + 48*2;
     }
 
     navItems.push(
-      <ColumnLink key='4' icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
-      <ColumnLink key='5' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
-      <ColumnLink key='6' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+      <ColumnLink key={i++} icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
+      <ColumnLink key={i++} icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
+      <ColumnLink key={i++} icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
     );
 
+    height += 48*3;
+
     if (myAccount.get('locked')) {
-      navItems.push(<ColumnLink key='7' icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      height += 48;
     }
 
     if (!multiColumn) {
       navItems.push(
-        <ColumnSubheading key='9' text={intl.formatMessage(messages.settings_subheading)} />,
-        <ColumnLink key='6' icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
-        <ColumnLink key='6' icon='lock' text={intl.formatMessage(messages.security)} href='/auth/edit' />
+        <ColumnSubheading key={i++} text={intl.formatMessage(messages.settings_subheading)} />,
+        <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
+        <ColumnLink key={i++} icon='lock' text={intl.formatMessage(messages.security)} href='/auth/edit' />
       );
+
+      height += 34 + 48*2;
     }
 
     return (
@@ -125,26 +127,12 @@ export default class GettingStarted extends ImmutablePureComponent {
           </h1>
         </div>}
 
-        <div className='getting-started__wrapper'>
+        <div className='getting-started__wrapper' style={{ height }}>
           {!multiColumn && <NavigationBar account={myAccount} />}
           {navItems}
         </div>
 
-        {multiColumn && trends && <div className='getting-started__trends'>
-          <div className='column-header__wrapper'>
-            <h1 className='column-header'>
-              <button>
-                <i className='fa fa-fire fa-fw' />
-                <FormattedMessage id='trends.header' defaultMessage='Trending now' />
-              </button>
-              <div className='column-header__buttons'>
-                <button className='column-header__button' title={intl.formatMessage(messages.refresh_trends)} aria-label={intl.formatMessage(messages.refresh_trends)}><i className='fa fa-refresh' /></button>
-              </div>
-            </h1>
-          </div>
-
-          <div className='getting-started__scrollable'>{trends.take(3).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}</div>
-        </div>}
+        {multiColumn && <TrendsContainer />}
 
         {!multiColumn && <div className='flex-spacer' />}
 

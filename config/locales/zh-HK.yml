@@ -9,7 +9,7 @@ zh-HK:
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 未公開
-    description_headline: 關於 %{domain}
+    description_headline: 甚麼是 %{domain} ？
     domain_count_after: 個其他服務站
     domain_count_before: 已連接至
     extended_description_html: |
@@ -41,7 +41,7 @@ zh-HK:
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
     network_hidden: 此信息不可用
-    nothing_here: 暫時未有內容可以顯示
+    nothing_here: 暫時未有內容可以顯示。
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
     posts: 文章
@@ -215,7 +215,7 @@ zh-HK:
         create: 新增域名阻隔
         hint: "「域名阻隔」不會隔絕該域名用戶的用戶進入本站資料庫，而是會在時候自動套用特定的審批操作。"
         severity:
-          desc_html: "「<strong>自動靜音</strong>」令該域名用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。 「<strong>自動刪除</strong>」會自動將該域名用戶的文章、媒體檔案、個人資料自本服務站刪除。"
+          desc_html: "「<strong>自動靜音</strong>」令該域名下用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。 「<strong>自動刪除</strong>」會刪除將該域名下用戶的文章、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該域名的媒體檔案。"
           noop: 無
           silence: 自動靜音
           suspend: 自動刪除
@@ -374,7 +374,7 @@ zh-HK:
     title: 管理
   admin_mailer:
     new_report:
-      body: "%{reporter} 舉報了用戶 %{target}。"
+      body: "%{reporter} 舉報了用戶 %{target}"
       body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
       subject: 來自 %{instance} 的用戶舉報（#%{id}）
   application_mailer:
@@ -423,7 +423,7 @@ zh-HK:
     follow_request: 關注請求已發送给：
     following: 成功！你正在關注：
     post_follow:
-      close: 你也可以直接關閉這個頁面
+      close: 你也可以直接關閉這個頁面。
       return: 返回至個人資料頁
       web: 返回本站
     title: 關注 %{acct}
@@ -450,9 +450,9 @@ zh-HK:
     warning_html: 我們只能保證本服務站上的內容將會被徹底刪除。對於已經被廣泛傳播的內容，它們在本服務站以外的某些地方可能仍然可見。此外，失去連接的服務站以及停止接收訂閱的服務站所存儲的數據亦無法刪除。
     warning_title: 關於已傳播的內容的警告
   errors:
-    '403': 你沒有觀看本頁的權限
-    '404': 找不到內容
-    '410': 內容已被刪除
+    '403': 你沒有觀看本頁的權限。
+    '404': 找不到內容。
+    '410': 內容已被刪除。
     '422':
       content: 無法確認登入資訊。會不會你阻擋了本站使用 Cookies 的權限？
       title: 無法確認登入資訊
@@ -487,7 +487,7 @@ zh-HK:
     unlocked_warning_html: 目前任何人都可以看到你的私人文章，若%{lock_link}的話，你將可以審批關注者。
     unlocked_warning_title: 你的用戶目前為「公共」
   generic:
-    changes_saved_msg: 已成功儲存修改
+    changes_saved_msg: 已成功儲存修改。
     powered_by: 網站由 %{link} 開發
     save_changes: 儲存修改
     validation_errors:
@@ -552,7 +552,7 @@ zh-HK:
         other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 在你不在的這段時間……
     favourite:
-      body: 你的文章是 %{name} 的最愛！
+      body: 您的文章被 %{name} 收藏：
       subject: "%{name} 收藏了你的文章"
       title: 新的收藏
     follow:
@@ -570,7 +570,7 @@ zh-HK:
       subject: "%{name} 在文章中提及你"
       title: 新的提及
     reblog:
-      body: 你的文章得到 %{name} 的轉推
+      body: 您的文章被 %{name} 轉推：
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
   number:
@@ -640,7 +640,7 @@ zh-HK:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: 取消
-    revoke_success: 作業階段取消成功。
+    revoke_success: 作業階段成功取消
     title: 作業階段
   settings:
     authorized_apps: 授權應用程式
@@ -714,7 +714,7 @@ zh-HK:
     manual_instructions: 如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰
     recovery_codes: 備份恢復驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
-    recovery_instructions_html: 如果你遺失了安裝認證器的裝置（如︰你的電話），你可以使用備用驗證碼進行登入。請確保將備用驗證碼收藏穩當，（如列印出來，和你其他重要文件一起存放）
+    recovery_instructions_html: 如果你遺失了安裝認證器的裝置（如︰你的電話），你可以使用備用驗證碼進行登入。請確保將備用驗證碼收藏穩當，（如列印出來，和你其他重要文件一起存放）。
     setup: 設定
     wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
   user_mailer:
