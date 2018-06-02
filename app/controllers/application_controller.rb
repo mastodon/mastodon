@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from Mastodon::NotFound, with: :not_found
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
   rescue_from ActionController::UnknownFormat, with: :not_acceptable
   rescue_from Mastodon::NotPermittedError, with: :forbidden

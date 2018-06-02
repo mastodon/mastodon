@@ -2,6 +2,7 @@
 
 module Mastodon
   class Error < StandardError; end
+  class NotFound < Error; end
   class NotPermittedError < Error; end
   class ValidationError < Error; end
   class HostValidationError < ValidationError; end

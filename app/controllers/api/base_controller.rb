@@ -13,7 +13,7 @@ class Api::BaseController < ApplicationController
     render json: { error: e.to_s }, status: 422
   end
 
-  rescue_from ActiveRecord::RecordNotFound do
+  rescue_from ActiveRecord::RecordNotFound, Mastodon::NotFound do
     render json: { error: 'Record not found' }, status: 404
   end
 

@@ -9,9 +9,15 @@ module Authorization
     current_account
   end
 
-  def authorize(*)
+  def authorize(record, query = nil)
     super
   rescue Pundit::NotAuthorizedError
+    if query.nil? ? params[:action] == 'show' : query.to_sym == :show?
+      raise Mastodon::NotFound
+    end
+
+    authorize record, :show?
+
     raise Mastodon::NotPermittedError
   end
 
