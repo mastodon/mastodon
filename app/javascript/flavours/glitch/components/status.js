@@ -153,6 +153,11 @@ export default class Status extends ImmutablePureComponent {
       muted,
       prepend,
     } = this.props;
+
+    // Prevent a crash when node is undefined. Not completely sure why this
+    // happens, might be because status === null.
+    if (node === undefined) return;
+
     const autoCollapseSettings = settings.getIn(['collapsed', 'auto']);
 
     if (function () {
