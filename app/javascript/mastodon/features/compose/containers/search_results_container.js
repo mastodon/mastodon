@@ -4,7 +4,7 @@ import { fetchTrends } from '../../../actions/trends';
 
 const mapStateToProps = state => ({
   results: state.getIn(['search', 'results']),
-  trends: state.get('trends'),
+  trends: state.getIn(['trends', 'items']),
 });
 
 const mapDispatchToProps = dispatch => ({
