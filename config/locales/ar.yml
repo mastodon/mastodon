@@ -166,7 +166,7 @@ ar:
         disable_custom_emoji: "%{name} قام بتعطيل الإيموجي %{target}"
         disable_user: "%{name} لقد قام بتعطيل تسجيل الدخول للمستخدِم %{target}"
         enable_custom_emoji: "%{name} قام بتنشيط الإيموجي %{target}"
-        enable_user: "%{name} لقد قام بتنشيط تسجيل الدخول للمستخدِم %{target}"
+        enable_user: لقد قام %{name} بتنشيط تسجيل الدخول للمستخدِم %{target}
         memorialize_account: لقد قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user: "%{name} قام بترقية المستخدم %{target}"
         remove_avatar_user: تمت إزالة٪ {name} الصورة الرمزية٪ {target}
@@ -474,6 +474,7 @@ ar:
   followers:
     domain: النطاق
     followers_count: عدد المتابِعين
+    lock_link: قم بتجميد حسابك
     purge: تنحية من بين متابعيك
     unlocked_warning_title: إنّ حسابك غير مقفل
   generic:
@@ -499,6 +500,7 @@ ar:
       '21600': 6 ساعات
       '3600': ساعة
       '43200': 12 ساعة
+      '604800': أسبوع
       '86400': يوم واحد
     expires_in_prompt: أبدا
     generate: توليد
@@ -528,6 +530,7 @@ ar:
     title: الإشراف
   notification_mailer:
     digest:
+      action: معاينة كافة الإشعارات
       body: هذا هو مُلَخَّص الرسائل التي فاتتك وذلك منذ آخر زيارة لك في  %{since}
       mention: "%{name} أشار إليك في :"
       new_followers_summary:
@@ -550,6 +553,7 @@ ar:
       subject: 'متابع مُعلّق : %{name}'
       title: طلب متابَعة جديد
     mention:
+      action: الرد
       body: 'أشار إليك %{name} في :'
       subject: لقد قام %{name} بذِكرك
     reblog:
@@ -584,7 +588,7 @@ ar:
     proceed: أكمل المتابعة
     prompt: 'إنك  بصدد متابعة :'
   remote_unfollow:
-    error: ''
+    error: خطأ
     title: ''
   sessions:
     activity: آخر نشاط
@@ -623,13 +627,13 @@ ar:
       windows: ويندوز
       windows_mobile: ويندوز موبايل
       windows_phone: ويندوز فون
-    revoke: ''
+    revoke: إبطال
     revoke_success: تم إبطال الجلسة بنجاح
     title: الجلسات
   settings:
     authorized_apps: التطبيقات المرخص لها
     back: عودة إلى ماستدون
-    delete: ''
+    delete: حذف الحسابات
     development: التطوير
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
