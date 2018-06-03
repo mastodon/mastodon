@@ -33,68 +33,74 @@ class Glitch::KeywordMute < ApplicationRecord
     Rails.cache.delete(TagMatcher.cache_key(account_id))
   end
 
-  class RegexpMatcher
-    attr_reader :account_id
-    attr_reader :regex
+  class CachedKeywordMute
+    attr_reader :keyword
+    attr_reader :whole_word
 
-    def initialize(account_id)
-      @account_id = account_id
-      regex_text = Rails.cache.fetch(self.class.cache_key(account_id)) { make_regex_text }
-      @regex = /#{regex_text}/
+    def initialize(keyword, whole_word)
+      @keyword = keyword
+      @whole_word = whole_word
     end
 
-    protected
-
-    def keywords
-      Glitch::KeywordMute.where(account_id: account_id).pluck(:whole_word, :keyword)
-    end
-
-    def boundary_regex_for_keyword(keyword)
+    def boundary_regex_for_keyword
       sb = keyword =~ /\A[[:word:]]/ ? '\b' : ''
       eb = keyword =~ /[[:word:]]\Z/ ? '\b' : ''
 
       /(?mix:#{sb}#{Regexp.escape(keyword)}#{eb})/
     end
+
+    def matches?(str)
+      str =~ (whole_word ? boundary_regex_for_keyword : /#{keyword}/i)
+    end
   end
 
-  class TextMatcher < RegexpMatcher
+  class Matcher
+    attr_reader :account_id
+    attr_reader :words
+
+    def initialize(account_id)
+      @account_id = account_id
+      @words = Rails.cache.fetch(self.class.cache_key(account_id)) { fetch_keywords }
+    end
+
+    protected
+
+    def fetch_keywords
+      Glitch::KeywordMute.where(account_id: account_id).pluck(:whole_word, :keyword).map do |whole_word, keyword|
+        CachedKeywordMute.new(transform_keyword(keyword), whole_word)
+      end
+    end
+
+    def transform_keyword(keyword)
+      keyword
+    end
+  end
+
+  class TextMatcher < Matcher
     def self.cache_key(account_id)
       format('keyword_mutes:regex:text:%s', account_id)
     end
 
     def matches?(str)
-      !!(regex =~ str)
-    end
-
-    private
-
-    def make_regex_text
-      kws = keywords.map! do |whole_word, keyword|
-        whole_word ? boundary_regex_for_keyword(keyword) : /(?i:#{Regexp.escape(keyword)})/
-      end
-
-      Regexp.union(kws).source
+      words.any? { |w| w.matches?(str) }
     end
   end
 
-  class TagMatcher < RegexpMatcher
+  class TagMatcher < Matcher
     def self.cache_key(account_id)
       format('keyword_mutes:regex:tag:%s', account_id)
     end
 
     def matches?(tags)
-      tags.pluck(:name).any? { |n| regex =~ n }
+      tags.pluck(:name).any? do |n|
+        words.any? { |w| w.matches?(n) }
+      end
     end
 
-    private
+    protected
 
-    def make_regex_text
-      kws = keywords.map! do |whole_word, keyword|
-        term = (Tag::HASHTAG_RE =~ keyword) ? $1 : keyword
-        whole_word ? boundary_regex_for_keyword(term) : term
-      end
-
-      Regexp.union(kws).source
+    def transform_keyword(kw)
+      Tag::HASHTAG_RE =~ kw ? $1 : kw
     end
   end
 end
