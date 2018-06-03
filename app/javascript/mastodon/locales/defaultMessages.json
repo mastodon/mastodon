@@ -121,6 +121,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{count} {rawCount, plural, one {person} other {people}} talking",
+        "id": "trends.count_by_accounts"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/hashtag.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Load more",
         "id": "status.load_more"
       }
@@ -501,6 +510,38 @@
         "id": "account.show_reblogs"
       },
       {
+        "defaultMessage": "Pinned toots",
+        "id": "navigation_bar.pins"
+      },
+      {
+        "defaultMessage": "Preferences",
+        "id": "navigation_bar.preferences"
+      },
+      {
+        "defaultMessage": "Follow requests",
+        "id": "navigation_bar.follow_requests"
+      },
+      {
+        "defaultMessage": "Favourites",
+        "id": "navigation_bar.favourites"
+      },
+      {
+        "defaultMessage": "Lists",
+        "id": "navigation_bar.lists"
+      },
+      {
+        "defaultMessage": "Blocked users",
+        "id": "navigation_bar.blocks"
+      },
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "navigation_bar.domain_blocks"
+      },
+      {
+        "defaultMessage": "Muted users",
+        "id": "navigation_bar.mutes"
+      },
+      {
         "defaultMessage": "Information below may reflect the user's profile incompletely.",
         "id": "account.disclaimer_full"
       },
@@ -540,6 +581,10 @@
       {
         "defaultMessage": "Unblock @{name}",
         "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Edit profile",
+        "id": "account.edit_profile"
       },
       {
         "defaultMessage": "Follows you",
@@ -759,6 +804,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Trending now",
+        "id": "trends.header"
+      },
       {
         "defaultMessage": "People",
         "id": "search_results.accounts"
@@ -990,9 +1039,22 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Getting started",
-        "id": "getting_started.heading"
+        "defaultMessage": "Refresh",
+        "id": "trends.refresh"
       },
+      {
+        "defaultMessage": "Trending now",
+        "id": "trends.header"
+      },
+      {
+        "defaultMessage": "Load more",
+        "id": "status.load_more"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/getting_started/components/trends.json"
+  },
+  {
+    "descriptors": [
       {
         "defaultMessage": "Home",
         "id": "tabs_bar.home"
@@ -1004,10 +1066,6 @@
       {
         "defaultMessage": "Federated timeline",
         "id": "navigation_bar.public_timeline"
-      },
-      {
-        "defaultMessage": "Navigation",
-        "id": "column_subheading.navigation"
       },
       {
         "defaultMessage": "Settings",
@@ -1030,10 +1088,6 @@
         "id": "navigation_bar.follow_requests"
       },
       {
-        "defaultMessage": "Logout",
-        "id": "navigation_bar.logout"
-      },
-      {
         "defaultMessage": "Favourites",
         "id": "navigation_bar.favourites"
       },
@@ -1050,10 +1104,6 @@
         "id": "navigation_bar.mutes"
       },
       {
-        "defaultMessage": "Extended information",
-        "id": "navigation_bar.info"
-      },
-      {
         "defaultMessage": "Pinned toots",
         "id": "navigation_bar.pins"
       },
@@ -1062,20 +1112,40 @@
         "id": "navigation_bar.lists"
       },
       {
-        "defaultMessage": "Keyboard shortcuts",
+        "defaultMessage": "Discover",
+        "id": "navigation_bar.discover"
+      },
+      {
+        "defaultMessage": "Personal",
+        "id": "navigation_bar.personal"
+      },
+      {
+        "defaultMessage": "Security",
+        "id": "navigation_bar.security"
+      },
+      {
+        "defaultMessage": "Getting started",
+        "id": "getting_started.heading"
+      },
+      {
+        "defaultMessage": "Hotkeys",
         "id": "navigation_bar.keyboard_shortcuts"
       },
       {
-        "defaultMessage": "FAQ",
-        "id": "getting_started.faq"
+        "defaultMessage": "About this instance",
+        "id": "navigation_bar.info"
       },
       {
-        "defaultMessage": "User Guide",
-        "id": "getting_started.userguide"
+        "defaultMessage": "Terms of service",
+        "id": "getting_started.terms"
       },
       {
-        "defaultMessage": "Apps",
-        "id": "getting_started.appsshort"
+        "defaultMessage": "Documentation",
+        "id": "getting_started.documentation"
+      },
+      {
+        "defaultMessage": "Logout",
+        "id": "navigation_bar.logout"
       },
       {
         "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}.",
@@ -1536,6 +1606,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/status/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Trending now",
+        "id": "trends.header"
+      },
+      {
+        "defaultMessage": "Refresh trends",
+        "id": "trends.refresh"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/trends/index.json"
   },
   {
     "descriptors": [
