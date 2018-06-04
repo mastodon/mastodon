@@ -51,6 +51,10 @@ module StatusThreadingConcern
   end
 
   def descendant_statuses(limit, max_child_id, since_child_id, depth)
+    # use limit + 1 and depth + 1 because 'self' is included
+    depth = depth + 1 if depth.present?
+    limit = limit + 1 if limit.present?
+
     descendants_with_self = Status.find_by_sql([<<-SQL.squish, id: id, limit: limit, max_child_id: max_child_id, since_child_id: since_child_id, depth: depth])
       WITH RECURSIVE search_tree(id, path)
       AS (
