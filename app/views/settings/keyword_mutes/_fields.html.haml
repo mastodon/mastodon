@@ -2,6 +2,9 @@
   = f.input :keyword
   = f.check_box :whole_word
   = f.label :whole_word, t('keyword_mutes.match_whole_word')
+  %br
+  = f.check_box :apply_to_mentions
+  = f.label :apply_to_mentions, t('keyword_mutes.apply_to_mentions')
 
 .actions
   - if f.object.persisted?
