@@ -3,8 +3,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { Link } from 'react-router-dom';
-import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { me } from '../../../initial_state';
+import { shortNumberFormat } from '../../../utils/numbers';
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
@@ -146,17 +147,17 @@ export default class ActionBar extends React.PureComponent {
           <div className='account__action-bar-links'>
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
               <span><FormattedMessage id='account.posts' defaultMessage='Toots' /></span>
-              <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
+              <strong>{shortNumberFormat(account.get('statuses_count'))}</strong>
             </Link>
 
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
               <span><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
-              <strong><FormattedNumber value={account.get('following_count')} /></strong>
+              <strong>{shortNumberFormat(account.get('following_count'))}</strong>
             </Link>
 
             <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
               <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
-              <strong><FormattedNumber value={account.get('followers_count')} /></strong>
+              <strong>{shortNumberFormat(account.get('followers_count'))}</strong>
             </Link>
           </div>
         </div>
