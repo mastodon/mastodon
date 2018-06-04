@@ -69,7 +69,7 @@ module StatusThreadingConcern
       LIMIT :limit
     SQL
 
-    return descendants_with_self - [self]
+    descendants_with_self - [self]
   end
 
   def find_statuses_from_tree_path(ids, account)
