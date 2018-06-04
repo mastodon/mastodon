@@ -9,16 +9,16 @@ class Glitch::KeywordMuteHelper
     @tag_matcher    = Glitch::KeywordMute.tag_matcher_for(receiver_id)
   end
 
-  def matches?(status)
-    matchers_match?(status) || (status.reblog? && matchers_match?(status.reblog))
+  def matches?(status, scope)
+    matchers_match?(status, scope) || (status.reblog? && matchers_match?(status.reblog, scope))
   end
 
   private
 
-  def matchers_match?(status)
-    text_matcher.matches?(prepare_text(status.text)) ||
-      text_matcher.matches?(prepare_text(status.spoiler_text)) ||
-      tag_matcher.matches?(status.tags)
+  def matchers_match?(status, scope)
+    text_matcher.matches?(prepare_text(status.text), scope) ||
+      text_matcher.matches?(prepare_text(status.spoiler_text), scope) ||
+      tag_matcher.matches?(status.tags, scope)
   end
 
   def prepare_text(text)
