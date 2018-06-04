@@ -26,20 +26,20 @@
 }
 
 .compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button {
-  color: $ui-base-color;
+  color: lighten($white, 7%);
 
   &:active,
   &:focus,
   &:hover {
-    color: darken($ui-base-color, 7%);
+    color: $white;
   }
 }
 
 .compose-form .compose-form__modifiers .compose-form__upload-description input {
-  color: $ui-base-color;
+  color: lighten($white, 7%);
 
   &::placeholder {
-    color: $ui-base-color;
+    color: lighten($white, 7%);
   }
 }
 
@@ -100,7 +100,7 @@
 .dropdown-menu__item {
   a {
     background: $ui-base-color;
-    color: $ui-secondary-color;
+    color: $darker-text-color;
   }
 }
 
@@ -189,12 +189,6 @@
 // Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
   background: $account-background-color;
-
-  a {
-    &.active {
-      color: $ui-primary-color;
-    }
-  }
 }
 
 .activity-stream {
@@ -219,7 +213,7 @@
   .account-grid-card {
     .controls {
       .icon-button {
-        color: $ui-secondary-color;
+        color: $darker-text-color;
       }
     }
 
@@ -230,7 +224,7 @@
     }
 
     .username {
-      color: $ui-secondary-color;
+      color: $darker-text-color;
     }
 
     .account__header__content {

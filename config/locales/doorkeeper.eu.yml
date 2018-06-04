@@ -4,7 +4,7 @@ eu:
     attributes:
       doorkeeper/application:
         name: Aplikazioaren izena
-        redirect_uri: Birbideratze URI-a
+        redirect_uri: Birbideratu URIa
         scopes: Esparruak
         website: Aplikazioaren webgunea
     errors:
@@ -12,10 +12,10 @@ eu:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: ezin du zati bat izan.
-              invalid_uri: baliozko URI bat izan behar da.
-              relative_uri: URI absolutu bat izan behar da.
-              secured_uri: HTTPS/SSL URI bat izan behar da.
+              fragment_present: ezin du zati bat eduki.
+              invalid_uri: baliozko URI bat izan behar du.
+              relative_uri: URI absolutu bat izan behar du.
+              secured_uri: HTTPS/SSL URI bat izan behar du.
   doorkeeper:
     applications:
       buttons:
@@ -32,11 +32,11 @@ eu:
         error: Ene! Egiaztatu formularioan errorerik dagoen
       help:
         native_redirect_uri: Erabili %{native_redirect_uri} proba lokaletarako
-        redirect_uri: Erabili lerro bat URI-ko
+        redirect_uri: Erabili lerro bat URI bakoitzeko
         scopes: Banandu esparruak espazioekin. Laga hutsik lehenetsitako esparruak erabiltzeko.
       index:
         application: Aplikazioa
-        callback_url: Itzulera URL-a
+        callback_url: Itzulera URLa
         delete: Ezabatu
         name: Izena
         new: Aplikazio berria
@@ -112,9 +112,9 @@ eu:
           applications: Aplikazioak
           oauth2_provider: OAuth2 hornitzailea
       application:
-        title: OAuth autorizatzea behar da
+        title: OAuth autorizazioa behar da
     scopes:
-      follow: kontuak jarraitu, blokeatu, jarraitzeari utzi eta desblokeatu
+      follow: jarraitu kontuak, blokeatu, utzi jarraitzeari eta desblokeatu
       push: jaso zure kontuaren push jakinarazpenak
       read: irakurri zure kontuko datuak
-      write: zure izenean argitaratu
+      write: argitaratu zure izenean
