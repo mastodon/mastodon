@@ -42,14 +42,14 @@ sudo apt-get install \
   libpam0g-dev \
   -y
 
-# Install rvm
-read RUBY_VERSION < .ruby-version
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer | bash -s stable --ruby=$RUBY_VERSION
-source /home/vagrant/.rvm/scripts/rvm
-
-# Install Ruby
-rvm reinstall ruby-$RUBY_VERSION --disable-binary
+# Install rbenv to install ruby
+git clone https://github.com/sstephenson/rbenv.git /home/vagrant/.rbenv
+echo 'export PATH="/home/vagrant/.rbenv/bin:$PATH"' >> /home/vagrant/.bash_profile
+echo 'eval "$(/home/vagrant/.rbenv/bin/rbenv init -)"' >> /home/vagrant/.bash_profile
+git clone https://github.com/sstephenson/ruby-build.git /home/vagrant/.rbenv/plugins/ruby-build
+source /home/vagrant/.bash_profile
+rbenv install 2.5.1
+rbenv global 2.5.1
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
