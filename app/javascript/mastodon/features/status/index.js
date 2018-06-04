@@ -77,9 +77,12 @@ const makeMapStateToProps = () => {
           let id        = ids.shift();
           const replies = state.getIn(['contexts', 'replies', id]);
 
+          if (status.get('id') !== id) {
+            mutable.push(id);
+          }
+
           if (replies) {
-            replies.forEach(reply => {
-              mutable.push(reply);
+            replies.reverse().forEach(reply => {
               ids.unshift(reply);
             });
           }
