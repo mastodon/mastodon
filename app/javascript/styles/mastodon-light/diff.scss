@@ -189,11 +189,18 @@
 // Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
   background: $account-background-color;
+  border-bottom-color: lighten($ui-base-color, 8%);
 }
 
 .activity-stream {
   .entry {
     background: $account-background-color;
+
+    .detailed-status.light,
+    .more.light,
+    .status.light {
+      border-bottom-color: lighten($ui-base-color, 8%);
+    }
   }
 
   .status.light {
