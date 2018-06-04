@@ -25,6 +25,13 @@ class Admin::ActionLog < ApplicationRecord
     super.to_sym
   end
 
+  def recorded_target
+    case target_type
+    when 'Status'
+      Status.new(recorded_changes)
+    end
+  end
+
   before_validation :set_changes
 
   private

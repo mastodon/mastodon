@@ -12,4 +12,8 @@
       = fa_icon icon_for_log(action_log)
       .log-entry__icon__overlay{ class: class_for_log_icon(action_log) }
   .log-entry__extras
+    - target = action_log.target || action_log.recorded_target
+    - if target.is_a? Status
+      .activity-stream.activity-stream-headless
+        .entry= render 'stream_entries/simple_status', status: target
     = log_extra_attributes relevant_log_changes(action_log)
