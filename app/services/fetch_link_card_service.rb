@@ -40,7 +40,7 @@ class FetchLinkCardService < BaseService
     @card ||= PreviewCard.new(url: @url)
 
     failed = Request.new(:head, @url).perform do |res|
-      res.code != 405 && (res.code != 200 || res.mime_type != 'text/html')
+      res.code != 405 && res.code != 501 && (res.code != 200 || res.mime_type != 'text/html')
     end
 
     return if failed
