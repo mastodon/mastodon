@@ -30,6 +30,7 @@ class SearchService < BaseService
     statuses = StatusesIndex.filter(term: { searchable_by: account.id })
                             .query(multi_match: { type: 'most_fields', query: query, operator: 'and', fields: %w(text text.stemmed) })
                             .limit(limit)
+                            .order({created_at: {order: :desc}})
                             .objects
                             .compact
 
