@@ -153,14 +153,14 @@ eu:
     action_logs:
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
-        change_email_user: "%{name}(e)k %{target}(r)en helbide elektronikoa aldatu du"
-        confirm_user: "%{name}(e)k %{target}(r)en helbide elektronikoa berretsi du"
+        change_email_user: "%{name}(e)k %{target}(r)en e-mail helbidea aldatu du"
+        confirm_user: "%{name}(e)k %{target}(r)en e-mail helbidea berretsi du"
         create_custom_emoji: "%{name}(e)k emoji berria kargatu du %{target}"
         create_domain_block: "%{name}(e)k %{target} domeinua blokeatu du"
-        create_email_domain_block: "%{name}(e)k %{target} helbide elektronikoen domeinua zerrenda beltzean sartu du"
+        create_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda beltzean sartu du"
         demote_user: "%{name}(e)k %{target} mailaz jaitsi du"
         destroy_domain_block: "%{name}(e)k %{target} domeinua desblokeatu du"
-        destroy_email_domain_block: "%{name}(e)k %{target} helbide elektronikoen domeinua zerrenda zurian sartu du"
+        destroy_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda zurian sartu du"
         destroy_status: "%{name}(e)k %{target}(e)n egoera kendu du"
         disable_2fa_user: "%{name}(e)k %{target}(r)i bi faktoreetako eskaera kendu dio"
         disable_custom_emoji: "%{name}(e)k %{target} emoji-a desgaitu du"
@@ -356,8 +356,8 @@ eu:
       back_to_account: Atzera kontuaren orrira
       batch:
         delete: Ezabatu
-        nsfw_off: Markatu ez mingarri gisa
-        nsfw_on: Markatu mingarri gisa
+        nsfw_off: Markatu ez hunkigarri gisa
+        nsfw_on: Markatu hunkigarri gisa
       failed_to_execute: Ezin izan da burutu
       media:
         title: Multimedia
@@ -694,7 +694,7 @@ eu:
     click_to_show: Klik erakusteko
     pinned: Finkatutako toot-a
     reblogged: bultzatua
-    sensitive_content: Eduki mingarria
+    sensitive_content: Eduki hunkigarria
   terms:
     body_html: |
       <h2>Pribatutasun politika</h2>
