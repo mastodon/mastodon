@@ -1,16 +1,9 @@
 import React from 'react';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import { Link } from 'react-router-dom';
-import { FormattedMessage, FormattedNumber } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-
-const shortNumberFormat = number => {
-  if (number < 1000) {
-    return <FormattedNumber value={number} />;
-  } else {
-    return <React.Fragment><FormattedNumber value={number / 1000} maximumFractionDigits={1} />K</React.Fragment>;
-  }
-};
+import { shortNumberFormat } from '../utils/numbers';
 
 const Hashtag = ({ hashtag }) => (
   <div className='trends__item'>
