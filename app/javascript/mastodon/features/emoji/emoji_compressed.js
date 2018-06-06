@@ -12,7 +12,7 @@ const { emojiIndex } = require('emoji-mart');
 const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
 let data = require('emoji-mart/data/all.json');
 if(data.compressed) {
-data = emojiMartUncompress(data);
+  data = emojiMartUncompress(data);
 }
 const emojiMartData = data;
 
@@ -69,19 +69,14 @@ Object.keys(emojiMap).forEach(key => {
 
 Object.keys(emojiIndex.emojis).forEach(key => {
   const { native } = emojiIndex.emojis[key];
-  let { short_names, keywords, unified } = emojiMartData.emojis[key];
-  let search = keywords;
-  if(short_names === undefined) {
-    short_names = [key];
-  }
-  if (search === undefined) {
-    search = short_names;
-  }
-  search = search.join(',');
-  if (short_names[0] === key) {
-    short_names = short_names.slice(1); // first short name can be inferred from the key
+  let { short_names, search, unified } = emojiMartData.emojis[key];
+  if (short_names[0] !== key) {
+    throw new Error('The compresser expects the first short_code to be the ' +
+      'key. It may need to be rewritten if the emoji change such that this ' +
+      'is no longer the case.');
   }
 
+  short_names = short_names.slice(1); // first short name can be inferred from the key
 
   const searchData = [native, short_names, search];
   if (unicodeToUnifiedName(native) !== unified) {
