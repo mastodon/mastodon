@@ -24,14 +24,16 @@ module Remotable
           Request.new(:get, url).perform do |response|
             next if response.code != 200
 
-            matches  = response.headers['content-disposition']&.match(/filename="([^"]*)"/)
-            filename = matches.nil? ? parsed_url.path.split('/').last : matches[1]
+            content_type = parse_content_type(response.headers['content-type'])
+            extname      = detect_extname_from_content_type(content_type)
+
+            if extname.nil?
+              matches  = response.headers['content-disposition']&.match(/filename="([^"]*)"/)
+              filename = matches.nil? ? parsed_url.path.split('/').last : matches[1]
+              extname  = filename.nil? ? '' : File.extname(filename)
+            end
+
             basename = SecureRandom.hex(8)
-            extname = if filename.nil?
-                        ''
-                      else
-                        File.extname(filename)
-                      end
 
             send("#{attachment_name}=", StringIO.new(response.body_with_limit(limit)))
             send("#{attachment_name}_file_name=", basename + extname)
@@ -41,7 +43,7 @@ module Remotable
         rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
           nil
-        rescue Paperclip::Error => e
+        rescue Paperclip::Error, Mastodon::DimensionsValidationError => e
           Rails.logger.debug "Error processing remote #{attachment_name}: #{e}"
           nil
         end
@@ -56,5 +58,23 @@ module Remotable
         send(method_name, url)
       end
     end
+  end
+
+  private
+
+  def detect_extname_from_content_type(content_type)
+    return if content_type.nil?
+
+    type = MIME::Types[content_type].first
+
+    return if type.nil?
+
+    type.extensions.first
+  end
+
+  def parse_content_type(content_type)
+    return if content_type.nil?
+
+    content_type.split(/\s*;\s*/).first
   end
 end

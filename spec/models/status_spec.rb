@@ -154,7 +154,7 @@ RSpec.describe Status, type: :model do
 
   describe '#target' do
     it 'returns nil if the status is self-contained' do
-      expect(subject.target).to be_nil
+     expect(subject.target).to be_nil
     end
 
     it 'returns nil if the status is a reply' do
@@ -175,6 +175,13 @@ RSpec.describe Status, type: :model do
 
       expect(subject.reblogs_count).to eq 2
     end
+
+    it 'is decremented when reblog is removed' do
+      reblog = Fabricate(:status, account: bob, reblog: subject)
+      expect(subject.reblogs_count).to eq 1
+      reblog.destroy
+      expect(subject.reblogs_count).to eq 0
+    end
   end
 
   describe '#favourites_count' do
@@ -183,6 +190,13 @@ RSpec.describe Status, type: :model do
       Fabricate(:favourite, account: alice, status: subject)
 
       expect(subject.favourites_count).to eq 2
+    end
+
+    it 'is decremented when favourite is removed' do
+      favourite = Fabricate(:favourite, account: bob, status: subject)
+      expect(subject.favourites_count).to eq 1
+      favourite.destroy
+      expect(subject.favourites_count).to eq 0
     end
   end
 
@@ -333,24 +347,25 @@ RSpec.describe Status, type: :model do
       expect(@results).to_not include(@followed_public_status)
     end
 
-    it 'includes direct statuses mentioning recipient from followed' do
-      Fabricate(:mention, account: account, status: @followed_direct_status)
-      expect(@results).to include(@followed_direct_status)
-    end
-
     it 'does not include direct statuses not mentioning recipient from followed' do
       expect(@results).to_not include(@followed_direct_status)
-    end
-
-    it 'includes direct statuses mentioning recipient from non-followed' do
-      Fabricate(:mention, account: account, status: @not_followed_direct_status)
-      expect(@results).to include(@not_followed_direct_status)
     end
 
     it 'does not include direct statuses not mentioning recipient from non-followed' do
       expect(@results).to_not include(@not_followed_direct_status)
     end
 
+    it 'includes direct statuses mentioning recipient from followed' do
+      Fabricate(:mention, account: account, status: @followed_direct_status)
+      results2 = Status.as_direct_timeline(account)
+      expect(results2).to include(@followed_direct_status)
+    end
+
+    it 'includes direct statuses mentioning recipient from non-followed' do
+      Fabricate(:mention, account: account, status: @not_followed_direct_status)
+      results2 = Status.as_direct_timeline(account)
+      expect(results2).to include(@not_followed_direct_status)
+    end
   end
 
   describe '.as_public_timeline' do
