@@ -69,7 +69,11 @@ module Remotable
 
     return if type.nil?
 
-    type.extensions.first
+    extname = type.extensions.first
+
+    return if extname.nil?
+
+    ".#{extname}"
   end
 
   def parse_content_type(content_type)
