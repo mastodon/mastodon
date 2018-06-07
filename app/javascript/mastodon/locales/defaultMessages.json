@@ -220,6 +220,10 @@
         "id": "status.delete"
       },
       {
+        "defaultMessage": "Delete & re-draft",
+        "id": "status.redraft"
+      },
+      {
         "defaultMessage": "Direct message @{name}",
         "id": "status.direct"
       },
@@ -380,6 +384,14 @@
       {
         "defaultMessage": "Are you sure you want to delete this status?",
         "id": "confirmations.delete.message"
+      },
+      {
+        "defaultMessage": "Delete & redraft",
+        "id": "confirmations.redraft.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.",
+        "id": "confirmations.redraft.message"
       },
       {
         "defaultMessage": "Block",
@@ -818,10 +830,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Trending now",
-        "id": "trends.header"
-      },
-      {
         "defaultMessage": "People",
         "id": "search_results.accounts"
       },
@@ -1048,23 +1056,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/follow_requests/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Refresh",
-        "id": "trends.refresh"
-      },
-      {
-        "defaultMessage": "Trending now",
-        "id": "trends.header"
-      },
-      {
-        "defaultMessage": "Load more",
-        "id": "status.load_more"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/getting_started/components/trends.json"
   },
   {
     "descriptors": [
@@ -1521,6 +1512,10 @@
         "id": "status.delete"
       },
       {
+        "defaultMessage": "Delete & re-draft",
+        "id": "status.redraft"
+      },
+      {
         "defaultMessage": "Direct message @{name}",
         "id": "status.direct"
       },
@@ -1602,6 +1597,14 @@
         "id": "confirmations.delete.message"
       },
       {
+        "defaultMessage": "Delete & redraft",
+        "id": "confirmations.redraft.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.",
+        "id": "confirmations.redraft.message"
+      },
+      {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
       },
@@ -1619,19 +1622,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/status/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Trending now",
-        "id": "trends.header"
-      },
-      {
-        "defaultMessage": "Refresh trends",
-        "id": "trends.refresh"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/trends/index.json"
   },
   {
     "descriptors": [

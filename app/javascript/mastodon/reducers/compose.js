@@ -38,6 +38,7 @@ import { REDRAFT } from '../actions/statuses';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from '../uuid';
 import { me } from '../initial_state';
+import { unescapeHTML } from '../utils/html';
 
 const initialState = ImmutableMap({
   mounted: 0,
@@ -178,14 +179,14 @@ const hydrate = (state, hydratedState) => {
 
 const domParser = new DOMParser();
 
-const htmlToText = status => {
+const expandMentions = status => {
   const fragment = domParser.parseFromString(status.get('content'), 'text/html').documentElement;
 
   status.get('mentions').forEach(mention => {
     fragment.querySelector(`a[href="${mention.get('url')}"]`).textContent = `@${mention.get('acct')}`;
   });
 
-  return fragment.textContent;
+  return fragment.innerHTML;
 };
 
 export default function compose(state = initialState, action) {
@@ -345,7 +346,7 @@ export default function compose(state = initialState, action) {
       }));
   case REDRAFT:
     return state.withMutations(map => {
-      map.set('text', htmlToText(action.status));
+      map.set('text', unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
       map.set('media_attachments', action.status.get('media_attachments'));
