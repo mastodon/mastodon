@@ -24,13 +24,14 @@ module Remotable
           Request.new(:get, url).perform do |response|
             next if response.code != 200
 
-            content_type = parse_content_type(response.headers['content-type'])
+            content_type = parse_content_type(response.headers.get('content-type').last)
             extname      = detect_extname_from_content_type(content_type)
 
             if extname.nil?
-              matches  = response.headers['content-disposition']&.match(/filename="([^"]*)"/)
-              filename = matches.nil? ? parsed_url.path.split('/').last : matches[1]
-              extname  = filename.nil? ? '' : File.extname(filename)
+              disposition = response.headers.get('content-disposition').last
+              matches     = disposition&.match(/filename="([^"]*)"/)
+              filename    = matches.nil? ? parsed_url.path.split('/').last : matches[1]
+              extname     = filename.nil? ? '' : File.extname(filename)
             end
 
             basename = SecureRandom.hex(8)
@@ -69,7 +70,11 @@ module Remotable
 
     return if type.nil?
 
-    type.extensions.first
+    extname = type.extensions.first
+
+    return if extname.nil?
+
+    ".#{extname}"
   end
 
   def parse_content_type(content_type)
