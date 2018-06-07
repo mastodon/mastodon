@@ -51,7 +51,7 @@ describe('emoji', () => {
     });
 
     it('does an emoji that has no shortcode', () => {
-      expect(emojify('🕉️')).toEqual('<img draggable="false" class="emojione" alt="🕉️" title="" src="/emoji/1f549.svg" />');
+      expect(emojify('👁‍🗨')).toEqual('<img draggable="false" class="emojione" alt="👁‍🗨" title="" src="/emoji/1f441-200d-1f5e8.svg" />');
     });
 
     it('does an emoji whose filename is irregular', () => {
