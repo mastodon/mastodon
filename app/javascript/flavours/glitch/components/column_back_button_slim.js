@@ -10,10 +10,10 @@ export default class ColumnBackButtonSlim extends React.PureComponent {
 
   handleClick = () => {
     // if history is exhausted, or we would leave mastodon, just go to root.
-    if (window.history && (window.history.length === 1 || window.history.length === window._mastoInitialHistoryLen)) {
-      this.context.router.history.push('/');
-    } else {
+    if (window.history.state) {
       this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/');
     }
   }
 
