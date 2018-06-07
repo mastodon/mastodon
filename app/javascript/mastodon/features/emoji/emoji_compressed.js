@@ -11,6 +11,7 @@ const emojiMap         = require('./emoji_map.json');
 const { emojiIndex } = require('emoji-mart');
 const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
 let data = require('emoji-mart/data/all.json');
+
 if(data.compressed) {
   data = emojiMartUncompress(data);
 }
