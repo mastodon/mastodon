@@ -33,9 +33,9 @@ function clearCustomEmojis(pool) {
   customEmojisList.forEach((emoji) => {
     let emojiId = emoji.id || emoji.short_names[0];
 
-    delete pool[emojiId]
-    delete emojisList[emojiId]
-  })
+    delete pool[emojiId];
+    delete emojisList[emojiId];
+  });
 }
 
 function addCustomToPool(custom, pool) {
@@ -55,7 +55,7 @@ function addCustomToPool(custom, pool) {
 }
 
 function search(value, { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}) {
-  if (customEmojisList != custom)
+  if (customEmojisList !== custom)
     addCustomToPool(custom, originalPool);
 
   maxResults = maxResults || 75;
