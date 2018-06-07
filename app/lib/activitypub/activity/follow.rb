@@ -4,7 +4,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
   def perform
     target_account = account_from_uri(object_uri)
 
-    return if target_account.nil? || !target_account.local? || delete_arrived_first?(@json['id']) || @account.requested?(target_account)
+    return if target_account.nil? || !target_account.local? || delete_arrived_first?(@json['id']) || @account.requested?(target_account) || target_account.blocking?(@account) || target_account.domain_blocking?(@account.domain)
 
     # Fast-forward repeat follow requests
     if @account.following?(target_account)
