@@ -143,7 +143,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
   if (results) {
     if (emojisToShowFilter) {
-      results = results.filter((result) => emojisToShowFilter(data.emojis[result.id].unified));
+      results = results.filter((result) => emojisToShowFilter(data.emojis[result.id]));
     }
 
     if (results && results.length > maxResults) {

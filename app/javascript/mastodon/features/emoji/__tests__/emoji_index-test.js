@@ -70,7 +70,7 @@ describe('emoji_index', () => {
   });
 
   it('should filter only emojis we care about, exclude pineapple', () => {
-    const emojisToShowFilter = unified => unified !== '1F34D';
+    const emojisToShowFilter = emoji => emoji.unified !== '1F34D';
     expect(search('apple', { emojisToShowFilter }).map((obj) => obj.id))
       .not.toContain('pineapple');
     expect(emojiIndex.search('apple', { emojisToShowFilter }).map((obj) => obj.id))
