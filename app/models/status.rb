@@ -55,7 +55,7 @@ class Status < ApplicationRecord
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
-  has_many :media_attachments, dependent: :destroy
+  has_many :media_attachments, dependent: :nullify
 
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :preview_cards
@@ -194,7 +194,6 @@ class Status < ApplicationRecord
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
-  before_validation :set_sensitivity
   before_validation :set_local
 
   class << self
@@ -317,7 +316,11 @@ class Status < ApplicationRecord
         # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in.
         visibility.push(:private) if account.following?(target_account)
 
-        where(visibility: visibility).or(where(id: account.mentions.select(:status_id)))
+        scope = left_outer_joins(:reblog)
+
+        scope.where(visibility: visibility)
+             .or(scope.where(id: account.mentions.select(:status_id)))
+             .merge(scope.where(reblog_of_id: nil).or(scope.where.not(reblogs_statuses: { account_id: account.excluded_from_timeline_account_ids })))
       end
     end
 
@@ -386,10 +389,6 @@ class Status < ApplicationRecord
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
     self.visibility = reblog.visibility if reblog?
     self.sensitive  = false if sensitive.nil?
-  end
-
-  def set_sensitivity
-    self.sensitive = sensitive || spoiler_text.present?
   end
 
   def set_locality
