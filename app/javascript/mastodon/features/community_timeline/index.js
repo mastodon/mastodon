@@ -10,9 +10,12 @@ import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../a
 import ColumnSettingsContainer from './containers/column_settings_container';
 import SectionHeadline from './components/section_headline';
 import { connectCommunityStream } from '../../actions/streaming';
+import classNames from 'classnames';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
+  showTabs: { id: 'column_header.show_tabs', defaultMessage: 'Show tabs' },
+  hideTabs: { id: 'column_header.hide_tabs', defaultMessage: 'Hide tabs' },
 });
 
 const mapStateToProps = (state, { onlyMedia }) => ({
@@ -34,6 +37,10 @@ export default class CommunityTimeline extends React.PureComponent {
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
     onlyMedia: PropTypes.bool,
+  };
+
+  state = {
+    showTabs: false,
   };
 
   handlePin = () => {
@@ -96,11 +103,16 @@ export default class CommunityTimeline extends React.PureComponent {
     dispatch(changeColumnParams(columnId, { other: { onlyMedia } }));
   }
 
+  handleHeadlineToggle = () => {
+    this.setState({ showTabs: !this.state.showTabs });
+  }
+
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
+    const { showTabs } = this.state;
     const pinned = !!columnId;
 
-    const headline = (
+    const headline = showTabs && (
       <SectionHeadline
         timelineId='community'
         to='/timelines/public/local'
@@ -108,6 +120,18 @@ export default class CommunityTimeline extends React.PureComponent {
         onlyMedia={onlyMedia}
         onClick={this.handleHeadlineLinkClick}
       />
+    );
+
+    const toggleHeadlineButton = (
+      <button
+        onClick={this.handleHeadlineToggle}
+        className={classNames('column-header__button', { active: showTabs })}
+        title={intl.formatMessage(showTabs ? messages.hideTabs : messages.showTabs)}
+        aria-label={intl.formatMessage(showTabs ? messages.hideTabs : messages.showTabs)}
+        aria-pressed={showTabs ? 'true' : 'false'}
+      >
+        <i className='fa fa-toggle-on' />
+      </button>
     );
 
     return (
@@ -120,6 +144,7 @@ export default class CommunityTimeline extends React.PureComponent {
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
           pinned={pinned}
+          extraButton={toggleHeadlineButton}
           multiColumn={multiColumn}
         >
           <ColumnSettingsContainer />
