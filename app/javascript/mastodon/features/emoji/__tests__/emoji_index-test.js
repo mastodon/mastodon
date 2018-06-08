@@ -44,7 +44,12 @@ describe('emoji_index', () => {
     expect(emojiIndex.search('apple').map(trimEmojis)).toEqual(expected);
   });
 
-  it('erases custom emoji if not passed again', () => {
+  it('can include/exclude categories', () => {
+    expect(search('flag', { include: ['people'] })).toEqual([]);
+    expect(emojiIndex.search('flag', { include: ['people'] })).toEqual([]);
+  });
+
+  it('(different behavior from emoji-mart) do not erases custom emoji if not passed again', () => {
     const custom = [
       {
         id: 'mastodon',
@@ -60,7 +65,33 @@ describe('emoji_index', () => {
     search('', { custom });
     emojiIndex.search('', { custom });
     const expected = [];
-    expect(search('masto').map(trimEmojis)).toEqual(expected);
+    const lightExpected = [
+      {
+        id: 'mastodon',
+        custom: true,
+      },
+    ];
+    expect(search('masto').map(trimEmojis)).toEqual(lightExpected);
+    expect(emojiIndex.search('masto').map(trimEmojis)).toEqual(expected);
+  });
+
+  it('(different behavior from emoji-mart) erases custom emoji if another is passed', () => {
+    const custom = [
+      {
+        id: 'mastodon',
+        name: 'mastodon',
+        short_names: ['mastodon'],
+        text: '',
+        emoticons: [],
+        keywords: ['mastodon'],
+        imageUrl: 'http://example.com',
+        custom: true,
+      },
+    ];
+    search('', { custom });
+    emojiIndex.search('', { custom });
+    const expected = [];
+    expect(search('masto', { custom: [] }).map(trimEmojis)).toEqual(expected);
     expect(emojiIndex.search('masto').map(trimEmojis)).toEqual(expected);
   });
 
@@ -95,11 +126,6 @@ describe('emoji_index', () => {
       .not.toContain('pineapple');
     expect(emojiIndex.search('apple', { emojisToShowFilter }).map((obj) => obj.id))
       .not.toContain('pineapple');
-  });
-
-  it('can include/exclude categories', () => {
-    expect(search('flag', { include: ['people'] })).toEqual([]);
-    expect(emojiIndex.search('flag', { include: ['people'] })).toEqual([]);
   });
 
   it('does an emoji whose unified name is irregular', () => {
