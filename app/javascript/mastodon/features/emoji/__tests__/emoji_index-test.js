@@ -91,7 +91,7 @@ describe('emoji_index', () => {
     search('', { custom });
     emojiIndex.search('', { custom });
     const expected = [];
-    expect(search('masto', {custom: []}).map(trimEmojis)).toEqual(expected);
+    expect(search('masto', { custom: [] }).map(trimEmojis)).toEqual(expected);
     expect(emojiIndex.search('masto').map(trimEmojis)).toEqual(expected);
   });
 
