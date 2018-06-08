@@ -2210,7 +2210,10 @@ a.account__display-name {
   }
 
   &__footer {
-    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1 0 auto;
     padding: 10px;
     padding-top: 20px;
 
