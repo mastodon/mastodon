@@ -229,8 +229,8 @@ sk:
         hint: Blokovanie domény stále dovolí vytvárať nové účty v databáze, ale tieto
           budú automaticky moderované.
         severity:
-          desc_html: <strong>Stíšenie</strong> urobí všetky príspevky účtu neviditeľné
-            pre všetkých ktorý nenásledujú daný účet. <strong>Suspendácia</strong>
+          desc_html: <strong>Stíšenie</strong> urobí všetky príspevky daného účtu
+            neviditeľné pre všetkých ktorí nenásledujú tento účet. <strong>Suspendácia</strong>
             zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>,
             ak chceš iba neprijímať súbory médií.
           noop: Nič
@@ -734,6 +734,10 @@ sk:
       public_long: Všetci môžu vidieť
       unlisted: Nezaradené
       unlisted_long: Všetci môžu vidieť, ale nieje zaradené do verejnej osi
+    boosted_from_html: Povýšené od %{acct_link}
+    disallowed_hashtags:
+      one: 'obsahuje nepovolený haštag: %{tags}'
+      other: 'obsahuje nepovolené haštagy: %{tags}'
   stream_entries:
     click_to_show: Klikni pre zobrazenie
     pinned: Pripnutý toot
