@@ -44,6 +44,11 @@ describe('emoji_index', () => {
     expect(emojiIndex.search('apple').map(trimEmojis)).toEqual(expected);
   });
 
+  it('can include/exclude categories', () => {
+    expect(search('flag', { include: ['people'] })).toEqual([]);
+    expect(emojiIndex.search('flag', { include: ['people'] })).toEqual([]);
+  });
+
   it('(different behavior from emoji-mart) do not erases custom emoji if not passed again', () => {
     const custom = [
       {
@@ -121,11 +126,6 @@ describe('emoji_index', () => {
       .not.toContain('pineapple');
     expect(emojiIndex.search('apple', { emojisToShowFilter }).map((obj) => obj.id))
       .not.toContain('pineapple');
-  });
-
-  it('can include/exclude categories', () => {
-    expect(search('flag', { include: ['people'] })).toEqual([]);
-    expect(emojiIndex.search('flag', { include: ['people'] })).toEqual([]);
   });
 
   it('does an emoji whose unified name is irregular', () => {
