@@ -15,7 +15,7 @@ class Api::V1::DomainBlocksController < Api::BaseController
   end
 
   def create
-    BlockDomainFromAccountService.new.call(current_account, domain_block_params[:domain])
+    AccountDomainBlockWorker.perform_async(current_account.id, domain_block_params[:domain])
     render_empty
   end
 

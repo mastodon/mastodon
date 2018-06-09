@@ -26,6 +26,10 @@ class BlockDomainFromAccountService < BaseService
   end
 
   def reject_follow!(follow)
+    follow.destroy
+
+    return unless follow.account.activitypub?
+
     json = Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
       follow,
       serializer: ActivityPub::RejectFollowSerializer,
@@ -33,6 +37,5 @@ class BlockDomainFromAccountService < BaseService
     ).as_json).sign!(@account))
 
     ActivityPub::DeliveryWorker.perform_async(json, @account.id, follow.account.inbox_url)
-    follow.destroy
   end
 end
