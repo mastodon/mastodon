@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class IntentsController < ApplicationController
-  def show
-    uri = Addressable::URI.parse(params[:uri])
+  before_action :check_uri
+  rescue_from Addressable::URI::InvalidURIError, with: :handle_invalid_uri
 
+  def show
     if uri.scheme == 'web+mastodon'
       case uri.host
       when 'follow'
@@ -14,5 +15,19 @@ class IntentsController < ApplicationController
     end
 
     not_found
+  end
+
+  private
+
+  def check_uri
+    not_found if uri.blank?
+  end
+
+  def handle_invalid_uri
+    not_found
+  end
+
+  def uri
+    @uri ||= Addressable::URI.parse(params[:uri])
   end
 end
