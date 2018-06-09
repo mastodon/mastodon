@@ -47,6 +47,19 @@
   background: darken($ui-base-color, 6%);
 }
 
+.emoji-mart-bar {
+  border-color: lighten($ui-base-color, 8%);
+
+  &:first-child {
+    background: $ui-base-color;
+  }
+}
+
+.emoji-mart-search input {
+  background: rgba($ui-base-color, 0.3);
+  border-color: $ui-base-color;
+}
+
 .focusable:focus {
   background: $ui-base-color;
 }
