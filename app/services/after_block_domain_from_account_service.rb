@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-class BlockDomainFromAccountService < BaseService
+class AfterBlockDomainFromAccountService < BaseService
+  # This service does not create an AccountDomainBlock record,
+  # it's meant to be called after such a record has been created
+  # synchronously, to "clean up"
   def call(account, domain)
     @account = account
     @domain  = domain
-
-    @account.block_domain!(@domain)
 
     reject_existing_followers!
     reject_pending_follow_requests!
