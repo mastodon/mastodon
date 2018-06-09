@@ -21,14 +21,12 @@ import {
   STATUS_UNMUTE_SUCCESS,
 } from 'flavours/glitch/actions/statuses';
 import {
-  TIMELINE_REFRESH_SUCCESS,
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
   TIMELINE_EXPAND_SUCCESS,
 } from 'flavours/glitch/actions/timelines';
 import {
   NOTIFICATIONS_UPDATE,
-  NOTIFICATIONS_REFRESH_SUCCESS,
   NOTIFICATIONS_EXPAND_SUCCESS,
 } from 'flavours/glitch/actions/notifications';
 import {
@@ -129,10 +127,8 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.id, 'muted'], true);
   case STATUS_UNMUTE_SUCCESS:
     return state.setIn([action.id, 'muted'], false);
-  case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:
   case CONTEXT_FETCH_SUCCESS:
-  case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
