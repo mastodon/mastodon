@@ -29,7 +29,6 @@ import {
   FAVOURITES_FETCH_SUCCESS,
 } from 'flavours/glitch/actions/interactions';
 import {
-  TIMELINE_REFRESH_SUCCESS,
   TIMELINE_UPDATE,
   TIMELINE_EXPAND_SUCCESS,
 } from 'flavours/glitch/actions/timelines';
@@ -40,7 +39,6 @@ import {
 import { SEARCH_FETCH_SUCCESS } from 'flavours/glitch/actions/search';
 import {
   NOTIFICATIONS_UPDATE,
-  NOTIFICATIONS_REFRESH_SUCCESS,
   NOTIFICATIONS_EXPAND_SUCCESS,
 } from 'flavours/glitch/actions/notifications';
 import {
@@ -119,11 +117,9 @@ export default function accountsCounters(state = initialState, action) {
   case LIST_ACCOUNTS_FETCH_SUCCESS:
   case LIST_EDITOR_SUGGESTIONS_READY:
     return action.accounts ? normalizeAccounts(state, action.accounts) : state;
-  case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case SEARCH_FETCH_SUCCESS:
     return normalizeAccountsFromStatuses(normalizeAccounts(state, action.accounts), action.statuses);
-  case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:
   case CONTEXT_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
