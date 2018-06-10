@@ -425,7 +425,7 @@ pl:
     following: 'Pomyślnie! Od teraz śledzisz:'
     post_follow:
       close: Ewentualnie, możesz po prostu zamknąć tę stronę.
-      return: Powróć do strony użytkownika
+      return: Pokaż stronę użytkownika
       web: Przejdź do sieci
     title: Śledź %{acct}
   datetime:
@@ -773,9 +773,13 @@ pl:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <h3 id="children">Korzystanie ze strony przez dzieci</h3>
 
-      <p>Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli serwer znajduje się w USA, a nie ukończyłeś 13 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś 16 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+
+      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś 13 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
+
+      <p>Wymogi mogą być inne, jeżeli serwer znajduje się w innym kraju.</p>
 
       <hr class="spacer" />
 
