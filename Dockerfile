@@ -77,8 +77,10 @@ COPY . /mastodon
 
 RUN chown -R mastodon:mastodon /mastodon
 
-VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
+VOLUME /mastodon/public/system
 
 USER mastodon
+
+RUN OTP_SECRET=$(bundle exec rails secret) SECRET_KEY_BASE=$(bundle exec rails secret) bundle exec rails assets:precompile
 
 ENTRYPOINT ["/sbin/tini", "--"]
