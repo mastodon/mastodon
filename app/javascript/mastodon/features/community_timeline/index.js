@@ -8,7 +8,7 @@ import ColumnHeader from '../../components/column_header';
 import { expandCommunityTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
-// import SectionHeadline from './components/section_headline';
+import SectionHeadline from './components/section_headline';
 import { connectCommunityStream } from '../../actions/streaming';
 
 const messages = defineMessages({
@@ -100,17 +100,15 @@ export default class CommunityTimeline extends React.PureComponent {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
-    // pending
-    //
-    // const headline = (
-    //   <SectionHeadline
-    //     timelineId='community'
-    //     to='/timelines/public/local'
-    //     pinned={pinned}
-    //     onlyMedia={onlyMedia}
-    //     onClick={this.handleHeadlineLinkClick}
-    //   />
-    // );
+    const headline = (
+      <SectionHeadline
+        timelineId='community'
+        to='/timelines/public/local'
+        pinned={pinned}
+        onlyMedia={onlyMedia}
+        onClick={this.handleHeadlineLinkClick}
+      />
+    );
 
     return (
       <Column ref={this.setRef}>
@@ -128,7 +126,8 @@ export default class CommunityTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          // prepend={headline}
+          prepend={headline}
+          alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}

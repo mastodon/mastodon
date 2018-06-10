@@ -283,7 +283,7 @@ ja:
         create_and_resolve: 書き込み、解決済みにする
         create_and_unresolve: 書き込み、未解決として開く
         delete: 削除
-        placeholder: このレポートに取られた措置や、その他の更新を記述してください…
+        placeholder: どのような措置が取られたか、または関連する更新を記述してください…
       reopen: 再び開く
       report: レポート#%{id}
       report_contents: 内容
@@ -393,7 +393,7 @@ ja:
     warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
-    agreement_html: 登録すると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">利用規約</a> に従うことに同意したことになります。
+    agreement_html: 登録すると <a href="%{rules_path}">インスタンスのルール</a> と <a href="%{terms_path}">プライバシーポリシー</a> に従うことに同意したことになります。
     change_password: パスワード
     confirm_email: メールアドレスの確認
     delete_account: アカウントの削除
@@ -478,14 +478,14 @@ ja:
     domain: ドメイン
     explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
     followers_count: フォロワー数
-    lock_link: 非公開アカウントにする
+    lock_link: 承認制アカウントにする
     purge: フォロワーから削除する
     success:
       one: 1個のドメインからソフトブロックするフォロワーを処理中...
       other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
     true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
-    unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
-    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません
+    unlocked_warning_html: 誰でもあなたをフォローすることができ、フォロワー限定の投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
+    unlocked_warning_title: このアカウントは承認制アカウントに設定されていません
   generic:
     changes_saved_msg: 正常に変更されました！
     powered_by: powered by %{link}
@@ -684,7 +684,7 @@ ja:
     show_more: もっと見る
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: 非公開
+      private: フォロワー限定
       private_long: フォロワーにのみ表示されます
       public: 公開
       public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
@@ -744,7 +744,7 @@ ja:
 
       <h3 id="cookies">クッキーを使用していますか？</h3>
 
-      <p>はい。クッキーは (あなたが許可した場合に) WebサイトやサービスがWebブラウザーを介してコンピューターに保存する小さなファイルです。使用することで Web サイトがブラウザーを識別し、登録済みのアカウントがある場合関連付けます。</p>
+      <p>はい。クッキーは (あなたが許可した場合に) WebサイトやサービスがWebブラウザーを介してコンピューターに保存する小さなファイルです。使用することでWebサイトがブラウザーを識別し、登録済みのアカウントがある場合関連付けます。</p>
 
       <p>私たちはクッキーを将来の訪問のために設定を保存し呼び出す用途に使用します。</p>
 
@@ -760,9 +760,13 @@ ja:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">児童オンラインプライバシー保護法の遵守</h3>
+      <h3 id="children">児童によるサイト利用について</h3>
 
-      <p>当サイト・製品・サービスは13歳以上の人を対象としています。サーバーが米国にあり、あなたが13歳未満の場合、COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a> - 児童オンラインプライバシー保護法) により当サイトを使用できません。</p>
+      <p>サーバーがEUまたはEEA圏内にある場合: 当サイト・製品・サービスは16歳以上の人を対象としています。あなたが16歳未満の場合、GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a> - EU一般データ保護規則) により当サイトを使用できません。</p>
+
+      <p>サーバーが米国にある場合: 当サイト・製品・サービスは13歳以上の人を対象としています。あなたが13歳未満の場合、COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a> - 児童オンラインプライバシー保護法) により当サイトを使用できません。</p>
+
+      <p>サーバーが別の管轄区域にある場合、法的要件は異なることがあります。</p>
 
       <hr class="spacer" />
 
@@ -777,6 +781,7 @@ ja:
   themes:
     contrast: ハイコントラスト
     default: Mastodon
+    mastodon-light: Mastodon (ライト)
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -803,7 +808,7 @@ ja:
       title: アーカイブの取り出し
     welcome:
       edit_profile_action: プロフィールを設定
-      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを非公開にすることができます。
+      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを承認制にすることができます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
       final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #introductions ハッシュタグを使うといいかもしれません。'

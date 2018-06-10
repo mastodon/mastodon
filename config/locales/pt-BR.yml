@@ -40,7 +40,7 @@ pt-BR:
     following: Seguindo
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
-    network_hidden: Essa informação não está disponível
+    network_hidden: Esta informação não está disponível
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
@@ -81,7 +81,7 @@ pt-BR:
       domain: Domínio
       edit: Editar
       email: E-mail
-      email_status: Estado del correo electrónico
+      email_status: Estado do e-mail
       enable: Ativar
       enabled: Ativado
       feed_url: URL do feed
@@ -121,9 +121,9 @@ pt-BR:
       redownload: Atualizar avatar
       remove_avatar: Remover avatar
       resend_confirmation:
-        already_confirmed: Este usuario ya está confirmado
-        send: Reenviar el correo electrónico de confirmación
-        success: "¡Correo electrónico de confirmación enviado con éxito!"
+        already_confirmed: Este usuário já está confirmado
+        send: Re-enviar o e-mail de confirmação
+        success: E-mail de confirmação enviado com sucesso!
       reset: Anular
       reset_password: Modificar senha
       resubscribe: Reinscrever-se
@@ -283,7 +283,7 @@ pt-BR:
         create_and_resolve: Resolver com nota
         create_and_unresolve: Reabrir com nota
         delete: Excluir
-        placeholder: Descreva que ações foram tomadas, ou quaisquer atualizações sobre esta denúncia…
+        placeholder: Descreva que ações foram tomadas, ou quaisquer outras atualizações relacionadas…
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       report_contents: Conteúdos
@@ -312,7 +312,7 @@ pt-BR:
         username: Contate usuário
       hero:
         desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
-        title: Imagem do herói
+        title: Imagem de capa
       peers_api_enabled:
         desc_html: Nomes de domínio que essa instância encontrou no fediverso
         title: Publicar lista de instâncias descobertas
@@ -424,7 +424,7 @@ pt-BR:
     following: 'Sucesso! Você agora está seguindo:'
     post_follow:
       close: Ou você pode simplesmente fechar esta janela.
-      return: Retornar ao perfil do usuário
+      return: Exibir o perfil do usuário
       web: Voltar para a página inicial
     title: Seguir %{acct}
   datetime:
@@ -466,7 +466,7 @@ pt-BR:
       date: Data
       download: Baixe o seu arquivo
       hint_html: Você pode pedir um arquivo dos seus <strong>toots e mídia enviada</strong>. Os dados exportados estarão no formato ActivityPub, que podem ser lidos por qualquer software compatível. Você pode pedir um arquivo a cada 7 dias.
-      in_progress: Preparando seu arquivo...
+      in_progress: Preparando o seu arquivo...
       request: Solicitar o seu arquivo
       size: Tamanho
     blocks: Você bloqueou
@@ -550,7 +550,7 @@ pt-BR:
       subject:
         one: "Uma nova notificação desde o seu último acesso \U0001F418"
         other: "%{count} novas notificações desde o seu último acesso \U0001F418"
-      title: Enquanto você estava ausente…
+      title: Enquanto você estava ausente...
     favourite:
       body: 'Sua postagem foi favoritada por %{name}:'
       subject: "%{name} favoritou a sua postagem"
@@ -603,6 +603,7 @@ pt-BR:
   remote_unfollow:
     error: Erro
     title: Título
+    unfollowed: Deixou de seguir
   sessions:
     activity: Última atividade
     browser: Navegador
@@ -668,7 +669,7 @@ pt-BR:
       video:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
-    boosted_from_html: Compartilhada à partir de %{acct_link}
+    boosted_from_html: Compartilhada de %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
     disallowed_hashtags:
       one: 'continha a hashtag não permitida: %{tags}'
@@ -701,7 +702,7 @@ pt-BR:
 
       <ul>
         <li><em>Informação básica de conta</em>: Se você se registrar nesse servidor, podemos pedir que você utilize um nome de usuário, um e-mail e uma senha. Você também pode adicionar informações extras como um nome de exibição e biografia; enviar uma imagem de perfil e imagem de cabeçalho. O nome de usuário, nome de exibição, biografia, imagem de perfil e imagem de cabeçalho são sempre listadas publicamente.</li>
-        <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.<li>
+        <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.</li>
         <li><em>Mensagens diretas e posts somente para seguidores</em>: Todos os posts são armazenados e processados no servidor. Posts somente para seguidores são entregues aos seus seguidores e usuários que são mencionados neles; mensagens diretas são entregues somente aos usuários mencionados nelas. Em alguns casos isso significa que as mensagens são entregues para servidores diferentes e cópias são armazenadas nesses servidores. Nós fazemos esforços substanciais para limitar o acesso dessas mensagens somente para as pessoas autorizadas, mas outros servidores podem não fazer o mesmo. É importante portanto revisar os servidores à qual seus seguidores pertencem. Você pode usar uma opção para aprovar ou rejeitar novos seguidores manualmente nas configurações. <em>Por favor tenha em mente que os operadores do servidor e de qualquer servidores do destinatário podem ver tais mensagens</em>, e que os destinatários podem fazer capturas de tela, copiar ou de outra maneira compartilhar as mensagens. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
         <li><em>IPs e outros metadados</em>: Quando você faz se autentica, nos guardamos o endereço de IP que você usou ao se autenticar e o nome do seu navegador da internet. Todas as sessões autenticadas são disponíveis para serem analisadas e revogadas nas configurações. O último endereço de IP usado é guardado por até 12 meses. Nós também podemos reter históricos do servidor que incluem o endereço de IP de todas as requisições ao nosso servidor.</li>
       </ul>
@@ -759,9 +760,13 @@ pt-BR:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Conformidade com a COPPA (Children's Online Privacy Protection Act)</h3>
+      <h3 id="children">Uso desse site por crianças</h3>
 
-      <p>Nosso site, produto e serviços são direcionados à pessoas que tem ao menos 13 anos de idade. Se esse servidor está hospedado nos EUA e você tem menos de 13 anos, de acordo com os requerimentos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não use este site.</p>
+      <p>Se este servidor está na UE ou no EEE: Nosso site, produto e serviços são direcionados à pessoas que tem ao menos 16 anos de idade. Se você tem menos de 16 anos, de acordo com os requisitos da RGPD (<a href="https://pt.wikipedia.org/wiki/Regulamento_Geral_sobre_a_Prote%C3%A7%C3%A3o_de_Dados">Regulamento Geral sobre a Proteção de Dados</a>) não use este site.</p>
+
+      <p>Se este servidor está hospedado nos EUA: Nosso site, produto e serviços são direcionados à pessoas que tem ao menos 13 anos de idade. Se você tem menos de 13 anos, de acordo com os requerimentos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não use este site</p>
+
+      <p>Os requisitos da lei podem ser diferentes se esse servidor estiver em outra jurisdição</p>
 
       <hr class="spacer" />
 
@@ -776,6 +781,7 @@ pt-BR:
   themes:
     contrast: Alto contraste
     default: Mastodon
+    mastodon-light: Mastodon (claro)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -799,7 +805,7 @@ pt-BR:
     backup_ready:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
-      title: Arquivo "pra viagem"
+      title: Baixar arquivo
     welcome:
       edit_profile_action: Configurar perfil
       edit_profile_step: Você pode customizar o seu perfil enviando um avatar, uma imagem de topo, mudando seu nome de exibição, dentre outros. Se você gostaria de aprovar novos seguidores antes que eles possam seguir você, você pode trancar a sua conta.
@@ -822,5 +828,5 @@ pt-BR:
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
-    seamless_external_login: Você está logado usando um serviço externo, então configurações de e-mail e password não estão disponíveis.
+    seamless_external_login: Você está logado usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Acesso como:'
