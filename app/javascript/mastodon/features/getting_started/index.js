@@ -79,7 +79,6 @@ export default class GettingStarted extends ImmutablePureComponent {
 
     const navItems = [];
     let i = 1;
-    let height = 0;
 
     if (multiColumn) {
       navItems.push(
@@ -88,8 +87,6 @@ export default class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key={i++} icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
         <ColumnSubheading key={i++} text={intl.formatMessage(messages.personal)} />
       );
-
-      height += 34*2 + 48*2;
     }
 
     navItems.push(
@@ -98,11 +95,8 @@ export default class GettingStarted extends ImmutablePureComponent {
       <ColumnLink key={i++} icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
     );
 
-    height += 48*3;
-
     if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key={i++} icon='users' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
-      height += 48;
     }
 
     if (!multiColumn) {
@@ -112,7 +106,6 @@ export default class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key={i++} icon='lock' text={intl.formatMessage(messages.security)} href='/auth/edit' />
       );
 
-      height += 34 + 48*2;
     }
 
     return (
@@ -126,7 +119,7 @@ export default class GettingStarted extends ImmutablePureComponent {
           </h1>
         </div>}
 
-        <div className='getting-started__wrapper' style={{ height }}>
+        <div className='getting-started__wrapper'>
           {!multiColumn && <NavigationBar account={myAccount} />}
           {navItems}
         </div>
