@@ -26,25 +26,38 @@
 }
 
 .compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button {
-  color: $ui-base-color;
+  color: lighten($white, 7%);
 
   &:active,
   &:focus,
   &:hover {
-    color: darken($ui-base-color, 7%);
+    color: $white;
   }
 }
 
 .compose-form .compose-form__modifiers .compose-form__upload-description input {
-  color: $ui-base-color;
+  color: lighten($white, 7%);
 
   &::placeholder {
-    color: $ui-base-color;
+    color: lighten($white, 7%);
   }
 }
 
 .compose-form .compose-form__buttons-wrapper {
   background: darken($ui-base-color, 6%);
+}
+
+.emoji-mart-bar {
+  border-color: lighten($ui-base-color, 8%);
+
+  &:first-child {
+    background: $ui-base-color;
+  }
+}
+
+.emoji-mart-search input {
+  background: rgba($ui-base-color, 0.3);
+  border-color: $ui-base-color;
 }
 
 .focusable:focus {
@@ -74,6 +87,17 @@
   }
 }
 
+// Change the background colors of media and video spoiler
+
+.media-spoiler,
+.video-player__spoiler {
+  background: $ui-base-color;
+}
+
+.account-gallery__item a {
+  background-color: $ui-base-color;
+}
+
 // Change the colors used in the dropdown menu
 .dropdown-menu {
   background: $ui-base-color;
@@ -100,7 +124,7 @@
 .dropdown-menu__item {
   a {
     background: $ui-base-color;
-    color: $ui-secondary-color;
+    color: $darker-text-color;
   }
 }
 
@@ -189,17 +213,18 @@
 // Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
   background: $account-background-color;
-
-  a {
-    &.active {
-      color: $ui-primary-color;
-    }
-  }
+  border-bottom-color: lighten($ui-base-color, 8%);
 }
 
 .activity-stream {
   .entry {
     background: $account-background-color;
+
+    .detailed-status.light,
+    .more.light,
+    .status.light {
+      border-bottom-color: lighten($ui-base-color, 8%);
+    }
   }
 
   .status.light {
@@ -219,7 +244,7 @@
   .account-grid-card {
     .controls {
       .icon-button {
-        color: $ui-secondary-color;
+        color: $darker-text-color;
       }
     }
 
@@ -230,7 +255,7 @@
     }
 
     .username {
-      color: $ui-secondary-color;
+      color: $darker-text-color;
     }
 
     .account__header__content {

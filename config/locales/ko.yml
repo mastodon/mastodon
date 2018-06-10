@@ -40,6 +40,7 @@ ko:
     following: 팔로잉
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
+    network_hidden: 이 정보는 사용할 수 없습니다
     nothing_here: 아무 것도 없습니다!
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
@@ -284,7 +285,7 @@ ko:
         create_and_resolve: 기록을 작성하고 해결됨으로 표시
         create_and_unresolve: 기록 작성과 함께 미해결로 표시
         delete: 삭제
-        placeholder: 이 리포트에 대한 조치, 다른 업데이트 사항에 대해 설명합니다…
+        placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
       reopen: 리포트 다시 열기
       report: '신고 #%{id}'
       report_contents: 내용
@@ -425,7 +426,7 @@ ko:
     following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
     post_follow:
       close: 혹은, 당신은 이 윈도우를 닫을 수 있습니다.
-      return: 유저 프로필로 돌아가기
+      return: 유저 프로필 보기
       web: 웹으로 가기
     title: "%{acct} 를 팔로우"
   datetime:
@@ -551,7 +552,7 @@ ko:
       subject:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
-      title: 당신이 없는 동안에…
+      title: 당신이 없는 동안에...
     favourite:
       body: "%{name} 님이 내 툿을 즐겨찾기에 등록했습니다:"
       subject: "%{name} 님이 내 툿을 즐겨찾기에 등록했습니다"
@@ -670,6 +671,7 @@ ko:
       video:
         one: "%{count} 영상"
         other: "%{count} 영상"
+    boosted_from_html: "%{acct_link} 님이 부스트"
     content_warning: '열람 주의: %{warning}'
     disallowed_hashtags:
       one: '허용 되지 않은 해시태그를 포함하고 있습니다: %{tags}'
