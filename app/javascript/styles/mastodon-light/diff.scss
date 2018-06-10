@@ -87,6 +87,17 @@
   }
 }
 
+// Change the background colors of media and video spoiler
+
+.media-spoiler,
+.video-player__spoiler {
+  background: $ui-base-color;
+}
+
+.account-gallery__item a {
+  background-color: $ui-base-color;
+}
+
 // Change the colors used in the dropdown menu
 .dropdown-menu {
   background: $ui-base-color;
