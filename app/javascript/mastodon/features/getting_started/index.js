@@ -124,8 +124,6 @@ export default class GettingStarted extends ImmutablePureComponent {
           {navItems}
         </div>
 
-        {!multiColumn && <div className='flex-spacer' />}
-
         <div className='getting-started getting-started__footer'>
           <ul>
             {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
