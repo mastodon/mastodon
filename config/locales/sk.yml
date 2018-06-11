@@ -10,7 +10,7 @@ sk:
     contact_missing: Nezadané
     contact_unavailable: Neuvedené
     description_headline: Čo je %{domain}?
-    domain_count_after: ďalším inštanciám
+    domain_count_after: ďalším instanciám
     domain_count_before: Pripojený k
     extended_description_html: |
       <h3>Pravidlá</h3>
@@ -40,15 +40,17 @@ sk:
     following: Sleduje
     media: Médiá
     moved_html: "%{name} účet bol presunutý na %{new_profile_link}:"
+    network_hidden: Táto informácia nieje k dispozícii
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
-    posts: Tooty
-    posts_with_replies: Toot príspevky s odpoveďami
+    posts: Príspevky
+    posts_with_replies: Príspevky s odpoveďami
     remote_follow: Sleduj vzdialeného
     reserved_username: Prihlasovacie meno je rezervované
     roles:
       admin: Administrátor
+      bot: Automat
       moderator: Moderátor
     unfollow: Prestať sledovať
   admin:
@@ -213,7 +215,7 @@ sk:
         create: Blokovať doménu
         hint: Blokovanie domény stále dovolí vytvárať nové účty v databáze, ale tieto budú automaticky moderované.
         severity:
-          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky účtu neviditeľné pre všetkých ktorý nenásledujú daný účet. <strong>Suspendácia</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
+          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky daného účtu neviditeľné pre všetkých ktorí nenásledujú tento účet. <strong>Suspendácia</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
           noop: Nič
           silence: Stíšiť
           suspend: Suspendovať
@@ -282,7 +284,7 @@ sk:
         create_and_resolve: Vyrieš s poznámkou
         create_and_unresolve: Otvor znovu, s poznámkou
         delete: Vymaž
-        placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné aktualizácie k tomuto nahláseniu…
+        placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné súvisiace aktualizácie…
       reopen: Znovu otvor report
       report: Nahlásiť
       report_contents: Obsah
@@ -396,8 +398,8 @@ sk:
     change_password: Heslo
     confirm_email: Potvrdiť email
     delete_account: Vymazať účet
-    delete_account_html: Pokiaľ si želáte vymazať svoj účet, môžete tak <a href="%{path}"> 1 urobiť tu</a> 2. Budete požiadaný/á o potvrdenie tohto kroku.
-    didnt_get_confirmation: Neobdŕžali ste kroky pre potvrdenie?
+    delete_account_html: Pokiaľ chceš vymazať svoj účet, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
+    didnt_get_confirmation: Neobdŕžal/a si kroky pre potvrdenie?
     forgot_password: Zabudli ste heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítajte si nový.
     login: Prihlás sa
@@ -423,7 +425,7 @@ sk:
     following: 'Podarilo sa! Teraz už následujete užívateľa:'
     post_follow:
       close: Alebo môžete iba zatvoriť toto okno.
-      return: Vrátiť sa na užívateľov profil
+      return: Ukáž užívateľov profil
       web: Ísť na web
     title: Následovať %{acct}
   datetime:
@@ -482,7 +484,7 @@ sk:
       few: Počas utišovania sledovateľov z %{count} domén...
       one: Počas utišovania sledovateľov z jednej domény...
       other: Počas utišovania sledovateľov z %{count} domén...
-    true_privacy_html: Prosím majte na vedomí, <strong> 1 že ozajstné súkromie sa dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong> 2.
+    true_privacy_html: Prosím ber na vedomie, <strong> že ozajstné súkromie sa dá dosiahnúť iba za pomoci end-to-end enkrypcie</strong>.
     unlocked_warning_html: Hocikto ťa môže následovať aby mohol/a ihneď vidieť tvoje súkromné príspevky. %{lock_link} aby si mohla skontrolovať a odmietať sledovateľov.
     unlocked_warning_title: Tvoj účet nieje zamknutý
   generic:
@@ -653,7 +655,11 @@ sk:
         few: "%{count} videá"
         one: "%{count} video"
         other: "%{count} videí"
+    boosted_from_html: Povýšené od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
+    disallowed_hashtags:
+      one: 'obsahuje nepovolený haštag: %{tags}'
+      other: 'obsahuje nepovolené haštagy: %{tags}'
     open_in_web: Otvor v okne prehliadača
     over_character_limit: limit počtu %{max} znakov bol presiahnutý
     pin_errors:
@@ -679,6 +685,7 @@ sk:
   themes:
     contrast: Vysoký kontrast
     default: Mastodon
+    mastodon-light: Mastodon (svetlý)
   time:
     formats:
       default: "%b %d, %R, %H:%M"
@@ -695,11 +702,12 @@ sk:
     manual_instructions: 'Pokiaľ nemôžeš oskenovať daný QR kód, a potrebuješ ho zadať ručne, tu je tajomstvo v textovom formáte:'
     recovery_codes: Zálohuj kódy pre obnovu
     recovery_codes_regenerated: Zálohové kódy boli úspešne zvova vygenerované
-    setup: Nastavenie
-    wrong_code: Zadaný kód bol neplatný. Je serverový čas a čas na zariadení správny?
+    recovery_instructions_html: Keď hocikedy stratíš prístup k svojmu telefónu, môžeš použiť jeden z prístupových kódov nižšie pre obnovenie prístupu k svojmu účtu. <strong>Skladuj tieto prístupové kódy na bezpečnom mieste</strong>. Napríklad ich môžeš vytlačiť a uložiť ich spolu s inými dôležitými dokumentami.
+    setup: Nastav
+    wrong_code: Zadaný kód bol neplatný! Je serverový čas a čas na zariadení správny?
   user_mailer:
     backup_ready:
-      explanation: Vyžiadal/a si si úplnú zálohu tvojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
+      explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
       subject: Tvoj archív je pripravený na stiahnutie
       title: Odber archívu
     welcome:

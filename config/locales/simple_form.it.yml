@@ -4,8 +4,8 @@ it:
     hints:
       defaults:
         avatar: PNG, GIF o JPG. Al massimo 2MB. Verranno scalate a 400x400px
-        bot: Avverte che l'account non rappresenta una persona
-        digest: Inviata solo dopo un lungo periodo di intattività e solo se hai ricevuto qualsiasi messaggio personale in tua assenza
+        bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
+        digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
         display_name:
           one: <span class="name-counter">1</span> carattere rimanente
           other: <span class="name-counter">%{count}</span> caratteri rimanenti
@@ -15,14 +15,15 @@ it:
         note:
           one: <span class="note-counter">1</span> carattere rimanente
           other: <span class="note-counter">%{count}</span> caratteri rimanenti
-        setting_noindex: Coinvolge il tuo profilo pubblico e le pagine di stato
-        setting_theme: Coinvolge il modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
+        setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
+        setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
+        setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
       imports:
-        data: File CSV esportato da un altra istanza di Mastodon
+        data: File CSV esportato da un'altra istanza di Mastodon
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
       user:
-        filtered_languages: Le lingue selezionate verranno filtrate dalla timeline pubblica per te
+        filtered_languages: Le lingue selezionate verranno filtrate dalla tua timeline pubblica
     labels:
       account:
         fields:
@@ -38,7 +39,7 @@ it:
         display_name: Nome visualizzato
         email: Indirizzo email
         expires_in: Scade dopo
-        fields: Metadata profilo
+        fields: Metadati del profilo
         filtered_languages: Lingue filtrate
         header: Header
         locale: Lingua
@@ -50,10 +51,11 @@ it:
         password: Password
         setting_auto_play_gif: Play automatico GIF animate
         setting_boost_modal: Mostra dialogo di conferma prima del boost
-        setting_default_privacy: Privacy post
+        setting_default_privacy: Privacy dei post
         setting_default_sensitive: Segna sempre i media come sensibili
         setting_delete_modal: Mostra dialogo di conferma prima di eliminare un toot
         setting_display_sensitive_media: Mostra sempre i media segnati come sensibili
+        setting_hide_network: Nascondi la tua rete
         setting_noindex: Non indicizzare dai motori di ricerca
         setting_reduce_motion: Riduci movimento nelle animazioni
         setting_system_font_ui: Usa il carattere di default del sistema

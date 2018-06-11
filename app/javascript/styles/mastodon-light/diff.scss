@@ -1,0 +1,265 @@
+// Notes!
+// Sass color functions, "darken" and "lighten" are automatically replaced.
+
+// Change the colors of button texts
+.button {
+  color: $white;
+
+  &.button-alternative-2 {
+    color: $white;
+  }
+}
+
+// Change default background colors of columns
+.column {
+  > .scrollable {
+    background: $white;
+  }
+}
+
+.drawer__inner {
+  background: $ui-base-color;
+}
+
+.drawer__inner__mastodon {
+  background: $ui-base-color url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($white)}"/></svg>') no-repeat bottom / 100% auto;
+}
+
+.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button {
+  color: lighten($white, 7%);
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: $white;
+  }
+}
+
+.compose-form .compose-form__modifiers .compose-form__upload-description input {
+  color: lighten($white, 7%);
+
+  &::placeholder {
+    color: lighten($white, 7%);
+  }
+}
+
+.compose-form .compose-form__buttons-wrapper {
+  background: darken($ui-base-color, 6%);
+}
+
+.emoji-mart-bar {
+  border-color: lighten($ui-base-color, 8%);
+
+  &:first-child {
+    background: $ui-base-color;
+  }
+}
+
+.emoji-mart-search input {
+  background: rgba($ui-base-color, 0.3);
+  border-color: $ui-base-color;
+}
+
+.focusable:focus {
+  background: $ui-base-color;
+}
+
+.status.status-direct {
+  background: lighten($ui-base-color, 4%);
+}
+
+.focusable:focus .status.status-direct {
+  background: lighten($ui-base-color, 8%);
+}
+
+.detailed-status,
+.detailed-status__action-bar {
+  background: darken($ui-base-color, 6%);
+}
+
+// Change the background color of status__content__spoiler-link
+.reply-indicator__content .status__content__spoiler-link,
+.status__content .status__content__spoiler-link {
+  background: $ui-base-lighter-color;
+
+  &:hover {
+    background: lighten($ui-base-lighter-color, 6%);
+  }
+}
+
+// Change the background colors of media and video spoiler
+
+.media-spoiler,
+.video-player__spoiler {
+  background: $ui-base-color;
+}
+
+.account-gallery__item a {
+  background-color: $ui-base-color;
+}
+
+// Change the colors used in the dropdown menu
+.dropdown-menu {
+  background: $ui-base-color;
+}
+
+.dropdown-menu__arrow {
+  &.left {
+    border-left-color: $ui-base-color;
+  }
+
+  &.top {
+    border-top-color: $ui-base-color;
+  }
+
+  &.bottom {
+    border-bottom-color: $ui-base-color;
+  }
+
+  &.right {
+    border-right-color: $ui-base-color;
+  }
+}
+
+.dropdown-menu__item {
+  a {
+    background: $ui-base-color;
+    color: $darker-text-color;
+  }
+}
+
+// Change the text colors on inverted background
+.privacy-dropdown__option.active .privacy-dropdown__option__content,
+.privacy-dropdown__option.active .privacy-dropdown__option__content strong,
+.privacy-dropdown__option:hover .privacy-dropdown__option__content,
+.privacy-dropdown__option:hover .privacy-dropdown__option__content strong,
+.dropdown-menu__item a:active,
+.dropdown-menu__item a:focus,
+.dropdown-menu__item a:hover,
+.actions-modal ul li:not(:empty) a.active,
+.actions-modal ul li:not(:empty) a.active button,
+.actions-modal ul li:not(:empty) a:active,
+.actions-modal ul li:not(:empty) a:active button,
+.actions-modal ul li:not(:empty) a:focus,
+.actions-modal ul li:not(:empty) a:focus button,
+.actions-modal ul li:not(:empty) a:hover,
+.actions-modal ul li:not(:empty) a:hover button,
+.admin-wrapper .sidebar ul ul a.selected,
+.simple_form .block-button,
+.simple_form .button,
+.simple_form button {
+  color: $white;
+}
+
+// Change the background colors of modals
+.actions-modal,
+.boost-modal,
+.confirmation-modal,
+.mute-modal,
+.report-modal,
+.embed-modal,
+.error-modal,
+.onboarding-modal {
+  background: $ui-base-color;
+}
+
+.boost-modal__action-bar,
+.confirmation-modal__action-bar,
+.mute-modal__action-bar,
+.onboarding-modal__paginator,
+.error-modal__footer {
+  background: darken($ui-base-color, 6%);
+
+  .onboarding-modal__nav,
+  .error-modal__nav {
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($ui-base-color, 12%);
+    }
+  }
+}
+
+.display-case__case {
+  background: $white;
+}
+
+.embed-modal .embed-modal__container .embed-modal__html {
+  background: $white;
+
+  &:focus {
+    background: darken($ui-base-color, 6%);
+  }
+}
+
+.react-toggle-track {
+  background: $ui-secondary-color;
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background: darken($ui-secondary-color, 10%);
+}
+
+.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background: lighten($ui-highlight-color, 10%);
+}
+
+// Change the default color used for the text in an empty column or on the error column
+.empty-column-indicator,
+.error-column {
+  color: $primary-text-color;
+}
+
+// Change the default colors used on some parts of the profile pages
+.activity-stream-tabs {
+  background: $account-background-color;
+  border-bottom-color: lighten($ui-base-color, 8%);
+}
+
+.activity-stream {
+  .entry {
+    background: $account-background-color;
+
+    .detailed-status.light,
+    .more.light,
+    .status.light {
+      border-bottom-color: lighten($ui-base-color, 8%);
+    }
+  }
+
+  .status.light {
+    .status__content {
+      color: $primary-text-color;
+    }
+
+    .display-name {
+      strong {
+        color: $primary-text-color;
+      }
+    }
+  }
+}
+
+.accounts-grid {
+  .account-grid-card {
+    .controls {
+      .icon-button {
+        color: $darker-text-color;
+      }
+    }
+
+    .name {
+      a {
+        color: $primary-text-color;
+      }
+    }
+
+    .username {
+      color: $darker-text-color;
+    }
+
+    .account__header__content {
+      color: $primary-text-color;
+    }
+  }
+}

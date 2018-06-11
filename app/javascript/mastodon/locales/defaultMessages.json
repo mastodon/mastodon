@@ -121,6 +121,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{count} {rawCount, plural, one {person} other {people}} talking",
+        "id": "trends.count_by_accounts"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/hashtag.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Load more",
         "id": "status.load_more"
       }
@@ -209,6 +218,10 @@
       {
         "defaultMessage": "Delete",
         "id": "status.delete"
+      },
+      {
+        "defaultMessage": "Delete & re-draft",
+        "id": "status.redraft"
       },
       {
         "defaultMessage": "Direct message @{name}",
@@ -369,6 +382,14 @@
         "id": "confirmations.delete.message"
       },
       {
+        "defaultMessage": "Delete & redraft",
+        "id": "confirmations.redraft.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.",
+        "id": "confirmations.redraft.message"
+      },
+      {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
       },
@@ -428,7 +449,7 @@
         "id": "confirmations.block.message"
       },
       {
-        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.",
         "id": "confirmations.domain_block.message"
       }
     ],
@@ -501,6 +522,38 @@
         "id": "account.show_reblogs"
       },
       {
+        "defaultMessage": "Pinned toots",
+        "id": "navigation_bar.pins"
+      },
+      {
+        "defaultMessage": "Preferences",
+        "id": "navigation_bar.preferences"
+      },
+      {
+        "defaultMessage": "Follow requests",
+        "id": "navigation_bar.follow_requests"
+      },
+      {
+        "defaultMessage": "Favourites",
+        "id": "navigation_bar.favourites"
+      },
+      {
+        "defaultMessage": "Lists",
+        "id": "navigation_bar.lists"
+      },
+      {
+        "defaultMessage": "Blocked users",
+        "id": "navigation_bar.blocks"
+      },
+      {
+        "defaultMessage": "Hidden domains",
+        "id": "navigation_bar.domain_blocks"
+      },
+      {
+        "defaultMessage": "Muted users",
+        "id": "navigation_bar.mutes"
+      },
+      {
         "defaultMessage": "Information below may reflect the user's profile incompletely.",
         "id": "account.disclaimer_full"
       },
@@ -540,6 +593,10 @@
       {
         "defaultMessage": "Unblock @{name}",
         "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Edit profile",
+        "id": "account.edit_profile"
       },
       {
         "defaultMessage": "Follows you",
@@ -593,16 +650,21 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Local timeline",
-        "id": "column.community"
-      },
-      {
         "defaultMessage": "Toots",
         "id": "timeline.posts"
       },
       {
         "defaultMessage": "Media",
         "id": "timeline.media"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/community_timeline/components/section_headline.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Local timeline",
+        "id": "column.community"
       },
       {
         "defaultMessage": "The local timeline is empty. Write something publicly to get the ball rolling!",
@@ -985,10 +1047,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Getting started",
-        "id": "getting_started.heading"
-      },
-      {
         "defaultMessage": "Home",
         "id": "tabs_bar.home"
       },
@@ -999,10 +1057,6 @@
       {
         "defaultMessage": "Federated timeline",
         "id": "navigation_bar.public_timeline"
-      },
-      {
-        "defaultMessage": "Navigation",
-        "id": "column_subheading.navigation"
       },
       {
         "defaultMessage": "Settings",
@@ -1025,10 +1079,6 @@
         "id": "navigation_bar.follow_requests"
       },
       {
-        "defaultMessage": "Logout",
-        "id": "navigation_bar.logout"
-      },
-      {
         "defaultMessage": "Favourites",
         "id": "navigation_bar.favourites"
       },
@@ -1045,10 +1095,6 @@
         "id": "navigation_bar.mutes"
       },
       {
-        "defaultMessage": "Extended information",
-        "id": "navigation_bar.info"
-      },
-      {
         "defaultMessage": "Pinned toots",
         "id": "navigation_bar.pins"
       },
@@ -1057,20 +1103,40 @@
         "id": "navigation_bar.lists"
       },
       {
-        "defaultMessage": "Keyboard shortcuts",
+        "defaultMessage": "Discover",
+        "id": "navigation_bar.discover"
+      },
+      {
+        "defaultMessage": "Personal",
+        "id": "navigation_bar.personal"
+      },
+      {
+        "defaultMessage": "Security",
+        "id": "navigation_bar.security"
+      },
+      {
+        "defaultMessage": "Getting started",
+        "id": "getting_started.heading"
+      },
+      {
+        "defaultMessage": "Hotkeys",
         "id": "navigation_bar.keyboard_shortcuts"
       },
       {
-        "defaultMessage": "FAQ",
-        "id": "getting_started.faq"
+        "defaultMessage": "About this instance",
+        "id": "navigation_bar.info"
       },
       {
-        "defaultMessage": "User Guide",
-        "id": "getting_started.userguide"
+        "defaultMessage": "Terms of service",
+        "id": "getting_started.terms"
       },
       {
-        "defaultMessage": "Apps",
-        "id": "getting_started.appsshort"
+        "defaultMessage": "Documentation",
+        "id": "getting_started.documentation"
+      },
+      {
+        "defaultMessage": "Logout",
+        "id": "navigation_bar.logout"
       },
       {
         "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}.",
@@ -1402,14 +1468,6 @@
         "id": "column.public"
       },
       {
-        "defaultMessage": "Toots",
-        "id": "timeline.posts"
-      },
-      {
-        "defaultMessage": "Media",
-        "id": "timeline.media"
-      },
-      {
         "defaultMessage": "There is nothing here! Write something publicly, or manually follow users from other instances to fill it up",
         "id": "empty_column.public"
       }
@@ -1439,6 +1497,10 @@
       {
         "defaultMessage": "Delete",
         "id": "status.delete"
+      },
+      {
+        "defaultMessage": "Delete & re-draft",
+        "id": "status.redraft"
       },
       {
         "defaultMessage": "Direct message @{name}",
@@ -1520,6 +1582,14 @@
       {
         "defaultMessage": "Are you sure you want to delete this status?",
         "id": "confirmations.delete.message"
+      },
+      {
+        "defaultMessage": "Delete & redraft",
+        "id": "confirmations.redraft.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.",
+        "id": "confirmations.redraft.message"
       },
       {
         "defaultMessage": "Block",

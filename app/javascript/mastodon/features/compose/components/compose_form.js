@@ -7,7 +7,6 @@ import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
-import Collapsable from '../../../components/collapsable';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
@@ -40,6 +39,7 @@ export default class ComposeForm extends ImmutablePureComponent {
     privacy: PropTypes.string,
     spoiler_text: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
+    caretPosition: PropTypes.number,
     preselectDate: PropTypes.instanceOf(Date),
     is_submitting: PropTypes.bool,
     is_uploading: PropTypes.bool,
@@ -96,7 +96,6 @@ export default class ComposeForm extends ImmutablePureComponent {
   }
 
   onSuggestionSelected = (tokenStart, token, value) => {
-    this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
   }
 
@@ -116,9 +115,9 @@ export default class ComposeForm extends ImmutablePureComponent {
       if (this.props.preselectDate !== prevProps.preselectDate) {
         selectionEnd   = this.props.text.length;
         selectionStart = this.props.text.search(/\s/) + 1;
-      } else if (typeof this._restoreCaret === 'number') {
-        selectionStart = this._restoreCaret;
-        selectionEnd   = this._restoreCaret;
+      } else if (typeof this.props.caretPosition === 'number') {
+        selectionStart = this.props.caretPosition;
+        selectionEnd   = this.props.caretPosition;
       } else {
         selectionEnd   = this.props.text.length;
         selectionStart = selectionEnd;
@@ -129,19 +128,29 @@ export default class ComposeForm extends ImmutablePureComponent {
     } else if(prevProps.is_submitting && !this.props.is_submitting) {
       this.autosuggestTextarea.textarea.focus();
     }
+
+    if (this.props.spoiler !== prevProps.spoiler) {
+      if (this.props.spoiler) {
+        this.spoilerText.focus();
+      } else {
+        this.autosuggestTextarea.textarea.focus();
+      }
+    }
   }
 
   setAutosuggestTextarea = (c) => {
     this.autosuggestTextarea = c;
   }
 
+  setSpoilerText = (c) => {
+    this.spoilerText = c;
+  }
+
   handleEmojiPick = (data) => {
     const { text }     = this.props;
     const position     = this.autosuggestTextarea.textarea.selectionStart;
-    const emojiChar    = data.native;
     const needsSpace   = data.custom && position > 0 && !allowedAroundShortCode.includes(text[position - 1]);
 
-    this._restoreCaret = position + emojiChar.length + 1 + (needsSpace ? 1 : 0);
     this.props.onPickEmoji(position, data, needsSpace);
   }
 
@@ -162,16 +171,14 @@ export default class ComposeForm extends ImmutablePureComponent {
       <div className='compose-form'>
         <WarningContainer />
 
-        <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
-          <div className='spoiler-input'>
-            <label>
-              <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
-              <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' />
-            </label>
-          </div>
-        </Collapsable>
-
         <ReplyIndicatorContainer />
+
+        <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`}>
+          <label>
+            <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' ref={this.setSpoilerText} />
+          </label>
+        </div>
 
         <div className='compose-form__autosuggest-wrapper'>
           <AutosuggestTextarea

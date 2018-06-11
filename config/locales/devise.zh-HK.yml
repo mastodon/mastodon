@@ -2,15 +2,15 @@
 zh-HK:
   devise:
     confirmations:
-      confirmed: 你的電郵地址確認成功
+      confirmed: 你的電郵地址成功確認。
       send_instructions: 你將會在幾分鐘內收到確認指示電郵，上面有確認你電郵地址的指示。
       send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將會在幾分鐘內收到電郵，確認你電郵地址的指示。
     failure:
       already_authenticated: 你之前已經登入了。
-      inactive: 你的用戶並未啟用。
+      inactive: 您的帳號尚未啟用。
       invalid: 不正確的 %{authentication_keys} 或密碼。
-      last_attempt: 若你再一次嘗試失敗，我們將鎖定你的用戶，以察安全。
-      locked: 你的用戶已被鎖定
+      last_attempt: 若你再一次嘗試失敗，我們將鎖定你的帳號，以策安全。
+      locked: 你的帳號已被鎖定。
       not_found_in_database: 不正確的 %{authentication_keys} 或密碼。
       timeout: 你的登入階段已經過期，請重新登入以繼續使用。
       unauthenticated: 你必須先登入或登記，以繼續使用。
