@@ -317,10 +317,24 @@ body {
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border-radius: $foresdon-primary-border-radius;
 }
-.getting-started__wrapper {
+
+.getting-started__wrapper,
+.getting-started,
+.flex-spacer {
   margin-bottom: $foresdon-default-margin-bottom;
   background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
   border-radius: $foresdon-primary-border-radius;
+}
+.community-timeline__section-headline,
+.public-timeline__section-headline,
+.account__section-headline {
+  margin: 0 3px 3px 0;
+  background: rgba($foresdon-ui-base-color, $foresdon-ui-primary-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & a::after {
+      opacity: 0.5;
+  }
 }
 
 .column-subheading {
