@@ -7,6 +7,8 @@ import {
   COMPOSE_QUOTE,
   COMPOSE_QUOTE_CANCEL,
   COMPOSE_DIRECT,
+  COMPOSE_QUOTE,
+  COMPOSE_QUOTE_CANCEL,
   COMPOSE_MENTION,
   COMPOSE_SUBMIT_REQUEST,
   COMPOSE_SUBMIT_SUCCESS,
@@ -189,6 +191,17 @@ const expandMentions = status => {
   return fragment.innerHTML;
 };
 
+const rejectQuoteAltText = html => {
+  const fragment = domParser.parseFromString(html, 'text/html').documentElement;
+
+  const quote_inline = fragment.querySelector(`span.quote-inline`);
+  if (quote_inline) {
+    quote_inline.remove();
+  }
+
+  return fragment.innerHTML;
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
@@ -346,8 +359,10 @@ export default function compose(state = initialState, action) {
       }));
   case REDRAFT:
     return state.withMutations(map => {
-      map.set('text', unescapeHTML(expandMentions(action.status)));
+      map.set('text', unescapeHTML(rejectQuoteAltText(expandMentions(action.status))));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
+      map.set('quote_from', action.status.getIn(['quote', 'id']));
+      map.set('quote_from_url', action.status.getIn(['quote', 'url']));
       map.set('privacy', action.status.get('visibility'));
       map.set('media_attachments', action.status.get('media_attachments'));
       map.set('focusDate', new Date());
