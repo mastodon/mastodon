@@ -29,8 +29,6 @@ export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
 export const STATUS_REVEAL = 'STATUS_REVEAL';
 export const STATUS_HIDE   = 'STATUS_HIDE';
 
-export const QUOTE_REVEAL = 'QUOTE_REVEAL';
-export const QUOTE_HIDE   = 'QUOTE_HIDE';
 export const REDRAFT = 'REDRAFT';
 
 export const QUOTE_REVEAL = 'QUOTE_REVEAL';
