@@ -50,7 +50,12 @@
         position: absolute;
         top: 5px;
         left: 5px;
-     }
+
+        & > div {
+          width: 18px;
+          height: 18px;
+        }
+      }
     }
 
     @media screen and (max-width: 740px) {
@@ -93,6 +98,11 @@
           position: absolute;
           top: 5px;
           left: 5px;
+
+          & > div {
+            width: 18px;
+            height: 18px;
+          }
         }
       }
     }

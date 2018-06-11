@@ -1,5 +1,5 @@
 .status.light.quote-status{ dataurl:  TagManager.instance.url_for(status) }
-  .status__header
+  = link_to TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
     .status__avatar
       %div
         = image_tag status.account.avatar(:original), width: 18, height: 18, alt: '', class: 'u-photo'

@@ -33,6 +33,9 @@ export const QUOTE_REVEAL = 'QUOTE_REVEAL';
 export const QUOTE_HIDE   = 'QUOTE_HIDE';
 export const REDRAFT = 'REDRAFT';
 
+export const QUOTE_REVEAL = 'QUOTE_REVEAL';
+export const QUOTE_HIDE   = 'QUOTE_HIDE';
+
 export function fetchStatusRequest(id, skipLoading) {
   return {
     type: STATUS_FETCH_REQUEST,

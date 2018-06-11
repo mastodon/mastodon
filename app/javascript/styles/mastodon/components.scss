@@ -753,7 +753,12 @@
     position: absolute;
     top: 5px;
     left: 5px;
-    cursor: default;
+    cursor: pointer;
+
+    & > div {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   .display-name__account {
