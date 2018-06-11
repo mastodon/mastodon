@@ -215,7 +215,7 @@ sk:
         create: Blokovať doménu
         hint: Blokovanie domény stále dovolí vytvárať nové účty v databáze, ale tieto budú automaticky moderované.
         severity:
-          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky účtu neviditeľné pre všetkých ktorý nenásledujú daný účet. <strong>Suspendácia</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
+          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky daného účtu neviditeľné pre všetkých ktorí nenásledujú tento účet. <strong>Suspendácia</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
           noop: Nič
           silence: Stíšiť
           suspend: Suspendovať
@@ -655,7 +655,11 @@ sk:
         few: "%{count} videá"
         one: "%{count} video"
         other: "%{count} videí"
+    boosted_from_html: Povýšené od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
+    disallowed_hashtags:
+      one: 'obsahuje nepovolený haštag: %{tags}'
+      other: 'obsahuje nepovolené haštagy: %{tags}'
     open_in_web: Otvor v okne prehliadača
     over_character_limit: limit počtu %{max} znakov bol presiahnutý
     pin_errors:
