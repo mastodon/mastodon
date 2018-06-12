@@ -2,9 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
-import { Link } from 'react-router-dom';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { me } from '../../../initial_state';
+import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
@@ -27,10 +25,9 @@ export default class ActionBar extends React.PureComponent {
   };
 
   render () {
-    const { account, intl } = this.props;
+    const { intl } = this.props;
 
     let menu = [];
-    let extraInfo = '';
 
     menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
     menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });

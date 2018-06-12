@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ActionBar from './action_bar';
 import Avatar from '../../../components/avatar';
-import IconButton from '../../../components/icon_button';
 import Permalink from '../../../components/permalink';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
