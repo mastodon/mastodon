@@ -67,7 +67,7 @@ class Glitch::KeywordMute < ApplicationRecord
 
     def matches?(str, required_scope)
       ((required_scope & scope) == required_scope) && \
-        str =~ (whole_word ? boundary_regex_for_keyword : /#{keyword}/i)
+        str =~ (whole_word ? boundary_regex_for_keyword : /#{Regexp.escape(keyword)}/i)
     end
   end
 

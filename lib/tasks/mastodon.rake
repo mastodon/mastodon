@@ -561,7 +561,7 @@ namespace :mastodon do
 
     desc 'Generates home timelines for users who logged in in the past two weeks'
     task build: :environment do
-      User.active.select(:account_id).find_in_batches do |users|
+      User.active.select(:id, :account_id).find_in_batches do |users|
         RegenerationWorker.push_bulk(users.map(&:account_id))
       end
     end

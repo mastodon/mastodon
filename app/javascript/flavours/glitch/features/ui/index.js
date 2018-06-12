@@ -99,10 +99,6 @@ const keyMap = {
 @withRouter
 export default class UI extends React.Component {
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
@@ -113,6 +109,7 @@ export default class UI extends React.Component {
     isComposing: PropTypes.bool,
     hasComposingText: PropTypes.bool,
     location: PropTypes.object,
+    router: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
   };
@@ -200,7 +197,7 @@ export default class UI extends React.Component {
 
   handleServiceWorkerPostMessage = ({ data }) => {
     if (data.type === 'navigate') {
-      this.context.router.history.push(data.path);
+      this.props.router.history.push(data.path);
     } else {
       console.warn('Unknown message type:', data.type);
     }
@@ -305,10 +302,11 @@ export default class UI extends React.Component {
   }
 
   handleHotkeyBack = () => {
-    if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
-    } else {
+    // if history is exhausted, or we would leave mastodon, just go to root.
+    if (window.history.state) {
       this.context.router.history.goBack();
+    } else {
+      this.context.router.history.push('/');
     }
   }
 
@@ -318,54 +316,54 @@ export default class UI extends React.Component {
 
   handleHotkeyToggleHelp = () => {
     if (this.props.location.pathname === '/keyboard-shortcuts') {
-      this.context.router.history.goBack();
+      this.props.router.history.goBack();
     } else {
-      this.context.router.history.push('/keyboard-shortcuts');
+      this.props.router.history.push('/keyboard-shortcuts');
     }
   }
 
   handleHotkeyGoToHome = () => {
-    this.context.router.history.push('/timelines/home');
+    this.props.router.history.push('/timelines/home');
   }
 
   handleHotkeyGoToNotifications = () => {
-    this.context.router.history.push('/notifications');
+    this.props.router.history.push('/notifications');
   }
 
   handleHotkeyGoToLocal = () => {
-    this.context.router.history.push('/timelines/public/local');
+    this.props.router.history.push('/timelines/public/local');
   }
 
   handleHotkeyGoToFederated = () => {
-    this.context.router.history.push('/timelines/public');
+    this.props.router.history.push('/timelines/public');
   }
 
   handleHotkeyGoToDirect = () => {
-    this.context.router.history.push('/timelines/direct');
+    this.props.router.history.push('/timelines/direct');
   }
 
   handleHotkeyGoToStart = () => {
-    this.context.router.history.push('/getting-started');
+    this.props.router.history.push('/getting-started');
   }
 
   handleHotkeyGoToFavourites = () => {
-    this.context.router.history.push('/favourites');
+    this.props.router.history.push('/favourites');
   }
 
   handleHotkeyGoToPinned = () => {
-    this.context.router.history.push('/pinned');
+    this.props.router.history.push('/pinned');
   }
 
   handleHotkeyGoToProfile = () => {
-    this.context.router.history.push(`/accounts/${me}`);
+    this.props.router.history.push(`/accounts/${me}`);
   }
 
   handleHotkeyGoToBlocked = () => {
-    this.context.router.history.push('/blocks');
+    this.props.router.history.push('/blocks');
   }
 
   handleHotkeyGoToMuted = () => {
-    this.context.router.history.push('/mutes');
+    this.props.router.history.push('/mutes');
   }
 
   render () {
