@@ -90,7 +90,7 @@ RSpec.describe Glitch::KeywordMute, type: :model do
       it 'escapes metacharacters in non-whole-word keywords' do
         Glitch::KeywordMute.create!(account: alice, keyword: '(-', whole_word: false)
 
-        expect(matcher.matches?('bad (-)')).to be_truthy
+        expect(matcher.matches?('bad (-)', Unscoped)).to be_truthy
       end
 
       it 'uses case-folding rules appropriate for more than just English' do
