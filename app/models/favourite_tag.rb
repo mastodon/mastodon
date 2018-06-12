@@ -2,9 +2,9 @@
 #
 # Table name: favourite_tags
 #
-#  id         :integer          not null, primary key
-#  account_id :integer          not null
-#  tag_id     :integer          not null
+#  id         :bigint(8)        not null, primary key
+#  account_id :bigint(8)        not null
+#  tag_id     :bigint(8)        not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  visibility :integer          default("public"), not null

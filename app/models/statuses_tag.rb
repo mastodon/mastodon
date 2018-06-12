@@ -3,8 +3,8 @@
 #
 # Table name: statuses_tags
 #
-#  status_id :integer          not null
-#  tag_id    :integer          not null
+#  status_id :bigint(8)        not null
+#  tag_id    :bigint(8)        not null
 #
 
 class StatusesTag < ApplicationRecord

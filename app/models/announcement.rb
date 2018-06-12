@@ -3,7 +3,7 @@
 #
 # Table name: announcements
 #
-#  id         :integer          not null, primary key
+#  id         :bigint(8)        not null, primary key
 #  body       :string           default(""), not null
 #  order      :integer          default(0), not null
 #  created_at :datetime         not null
