@@ -711,3 +711,83 @@ el:
       weibo: Weibo
     current_session: Τρέχουσα σύνδεση
     description: '%{browser} σε %{platform}'
+    explanation: Αυτοί είναι οι φυλλομετρητές (browsers) που είναι συνδεδεμένοι στον
+      λογαριασμό σου στο Mastodon αυτή τη στιγμή.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: άγνωστη πλατφόρμα
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Ανακάλεσε
+    revoke_success: Η σύνδεση ανακλήθηκε επιτυχώς
+    title: Σύνδεση
+  settings:
+    authorized_apps: Εγκεκριμένες εφαρμογές
+    back: Πίσω στο Mastodon
+    delete: Διαγραφή λογαριασμού
+    development: Ανάπτυξη
+    edit_profile: Επεξεργασία προφίλ
+    export: Εξαγωγή δεδομένων
+    followers: Εγκεκριμένοι ακόλουθοι
+    import: Εισαγωγή
+    migrate: Μετακόμιση λογαριασμού
+    notifications: Ειδοποιήσεις
+    preferences: Προτιμήσεις
+    settings: Ρυθμίσεις
+    two_factor_authentication: Πιστοποίηση 2 παραγόντων (2FA)
+    your_apps: Οι εφαρμογές σου
+  statuses:
+    attached:
+      description: 'Συνημμένα: %{attached}'
+      image:
+        one: '%{count} εικόνα'
+        other: '%{count} εικόνες'
+      video:
+        one: '%{count} βίντεο'
+        other: '%{count} βίντεο'
+    boosted_from_html: Προωθήθηκε από %{acct_link}
+    content_warning: 'Προειδοποίηση περιεχομένου: %{warning}'
+    disallowed_hashtags:
+      one: 'περιέχει μη επιτρεπτή ταμπέλα: %{tags}'
+      other: 'περιέχει μη επιτρεπτές ταμπέλες: %{tags}'
+    open_in_web: Δες στο διαδίκτυο
+    over_character_limit: υπέρβαση μέγιστου ορίου %{max} χαρακτήρων
+    pin_errors:
+      limit: Έχεις ήδη καρφιτσώσει το μέγιστο αριθμό επιτρεπτών τουτ
+      ownership: Δεν μπορείς να καρφιτσώσεις μη δικό σου τουτ
+      private: Τα μη δημόσια τουτ δεν καρφιτσώνονται
+      reblog: Οι προωθήσεις δεν καρφιτσώνονται
+    show_more: Περισσότερα
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Μόνο ακόλουθοι
+      private_long: Εμφάνιση μόνο σε ακόλουθους
+      public: Δημόσιο
+      public_long: Βλέπει οποιοσδήποτε
+      unlisted: Ακαταχώριστο
+      unlisted_long: Βλέπει οποιοσδήποτε, αλλά δεν καταχωρείται στις δημόσιες ροές
+  stream_entries:
+    click_to_show: Κλικ για εμφάνιση
+    pinned: Καρφιτσωμένο τουτ
+    reblogged: προωθημένο
+    sensitive_content: Ευαίσθητο περιεχόμενο
+  themes:
+    contrast: Υψηλή αντίθεση
+    default: Mastodon
+    mastodon-light: Mastodon (ανοιχτόχρωμο)
+  time:
+    formats:
+      default: '%b %d, %Y, %H:%M'
+  two_factor_authentication:
+    code_hint: Βάλε τον κωδικό που δημιούργησε η εφαρμογή πιστοποίησής σου για επιβεβαίωση
+    disable: Απενεργοποίησε
+    enable: Ενεργοποίησε
