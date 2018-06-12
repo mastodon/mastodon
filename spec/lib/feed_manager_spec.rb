@@ -187,6 +187,14 @@ RSpec.describe FeedManager do
 
         expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
       end
+
+      it 'returns false if the status is muted by a keyword mute that does not apply to mentions' do
+        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take', apply_to_mentions: false)
+        status = Fabricate(:status, spoiler_text: 'This is a hot take', account: bob)
+        status.mentions.create!(account_id: alice.id)
+
+        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be false
+      end
     end
 
     context 'for mentions feed' do
