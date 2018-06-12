@@ -47,6 +47,19 @@
   background: darken($ui-base-color, 6%);
 }
 
+.emoji-mart-bar {
+  border-color: lighten($ui-base-color, 8%);
+
+  &:first-child {
+    background: $ui-base-color;
+  }
+}
+
+.emoji-mart-search input {
+  background: rgba($ui-base-color, 0.3);
+  border-color: $ui-base-color;
+}
+
 .focusable:focus {
   background: $ui-base-color;
 }
@@ -72,6 +85,17 @@
   &:hover {
     background: lighten($ui-base-lighter-color, 6%);
   }
+}
+
+// Change the background colors of media and video spoiler
+
+.media-spoiler,
+.video-player__spoiler {
+  background: $ui-base-color;
+}
+
+.account-gallery__item a {
+  background-color: $ui-base-color;
 }
 
 // Change the colors used in the dropdown menu
