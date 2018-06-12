@@ -37,9 +37,10 @@ it:
   accounts:
     follow: Segui
     followers: Seguaci
-    following: Seguiti
+    following: Segui
     media: Media
     moved_html: "%{name} è stato spostato su %{new_profile_link}:"
+    network_hidden: Questa informazione non e' disponibile
     nothing_here: Qui non c'è nulla!
     people_followed_by: Persone seguite da %{name}
     people_who_follow: Persone che seguono %{name}
@@ -50,7 +51,7 @@ it:
     roles:
       admin: Amministratore
       bot: Bot
-      moderator: Mod
+      moderator: Moderatore
     unfollow: Non seguire più
   admin:
     account_moderation_notes:
@@ -86,7 +87,7 @@ it:
       feed_url: URL Feed
       followers: Follower
       followers_url: URL follower
-      follows: Follows
+      follows: Segue
       inbox_url: URL inbox
       ip: IP
       location:
@@ -116,6 +117,7 @@ it:
       promote: Promuovi
       protocol: Protocollo
       public: Pubblico
+      push_subscription_expires: Sottoscrizione PuSH scaduta
       redownload: Aggiorna avatar
       remove_avatar: Rimuovi avatar
       resend_confirmation:
@@ -129,11 +131,14 @@ it:
       roles:
         admin: Amministratore
         moderator: Moderatore
-        staff: Staff
+        staff: Personale
         user: Utente
+      salmon_url: URL Salmone
       search: Cerca
+      shared_inbox_url: URL Inbox Condiviso
       show:
         created_reports: Rapporti creati da questo account
+        report: segnala
         targeted_reports: Rapporti che riguardano questo account
       silence: Silenzia
       statuses: Stati
@@ -338,7 +343,7 @@ it:
     created: Applicazione creata con successo
     destroyed: Applicazione eliminata con successo
     invalid_url: L'URL fornito non è valido
-    regenerate_token: Rigenera token di accesso
+    regenerate_token: Rigenera il token di accesso
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
   auth:
@@ -350,7 +355,7 @@ it:
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
     login: Entra
-    logout: Logout
+    logout: Sloggati
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or: o
@@ -451,7 +456,7 @@ it:
     max_uses:
       other: "%{count} utilizzi"
     max_uses_prompt: Nessun limite
-    prompt: Genera dei link e forniscili ad altri per concedere l'accesso a questa istanza
+    prompt: Genera e condividi dei link ad altri per garantire l'accesso a questa istanza
     table:
       expires_at: Scade
       uses: Utilizzi
@@ -609,7 +614,7 @@ it:
     recovery_codes_regenerated: I codici di recupero sono stati rigenerati
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     setup: Configura
-    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del telefono siano corretti.
+    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del dispotivo siano corretti.
   user_mailer:
     backup_ready:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!

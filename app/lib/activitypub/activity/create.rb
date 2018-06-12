@@ -78,9 +78,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['name'].blank?
 
     hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
-    hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
+    hashtag = Tag.where(name: hashtag).first_or_create(name: hashtag)
+
+    return if status.tags.include?(hashtag)
 
     status.tags << hashtag
+    TrendingTags.record_use!(hashtag, status.account, status.created_at) if status.public_visibility?
   rescue ActiveRecord::RecordInvalid
     nil
   end
