@@ -1510,9 +1510,21 @@ a.account__display-name {
     text-decoration: none;
   }
 
-  .icon-button {
-    pointer-events: none;
-    opacity: 0;
+  .navigation-bar__actions {
+    position: relative;
+
+    .icon-button.close {
+      position: absolute;
+      pointer-events: none;
+      transform: scale(0.0, 1.0) translate(-100%, 0);
+      opacity: 0;
+    }
+
+    .compose__action-bar .icon-button {
+      pointer-events: auto;
+      transform: scale(1.0, 1.0) translate(0, 0);
+      opacity: 1;
+    }
   }
 }
 
@@ -4932,9 +4944,18 @@ noscript {
       transition: margin-top $duration $delay;
     }
 
-    & > .icon-button {
-      will-change: opacity;
-      transition: opacity $duration $delay;
+    .navigation-bar__actions {
+      & > .icon-button.close {
+        will-change: opacity transform;
+        transition: opacity $duration * 0.5 $delay,
+                    transform $duration $delay;
+      }
+
+      & > .compose__action-bar .icon-button {
+        will-change: opacity transform;
+        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
+                    transform $duration $delay;
+      }
     }
   }
 
@@ -4961,9 +4982,18 @@ noscript {
         margin-top: -50px;
       }
 
-      .icon-button {
-        pointer-events: auto;
-        opacity: 1;
+      .navigation-bar__actions {
+        .icon-button.close {
+          pointer-events: auto;
+          opacity: 1;
+          transform: scale(1.0, 1.0) translate(0, 0);
+        }
+
+        .compose__action-bar .icon-button {
+          pointer-events: none;
+          opacity: 0;
+          transform: scale(0.0, 1.0) translate(100%, 0);
+        }
       }
     }
   }
