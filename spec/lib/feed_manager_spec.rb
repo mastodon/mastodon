@@ -175,7 +175,7 @@ RSpec.describe FeedManager do
       it 'returns true for a status with a tag that matches a muted keyword' do
         Fabricate('Glitch::KeywordMute', account: alice, keyword: 'jorts')
         status = Fabricate(:status, account: bob)
-	status.tags << Fabricate(:tag, name: 'jorts')
+        status.tags << Fabricate(:tag, name: 'jorts')
 
         expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
       end
@@ -183,9 +183,17 @@ RSpec.describe FeedManager do
       it 'returns true for a status with a tag that matches an octothorpe-prefixed muted keyword' do
         Fabricate('Glitch::KeywordMute', account: alice, keyword: '#jorts')
         status = Fabricate(:status, account: bob)
-	status.tags << Fabricate(:tag, name: 'jorts')
+        status.tags << Fabricate(:tag, name: 'jorts')
 
         expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+      end
+
+      it 'returns false if the status is muted by a keyword mute that does not apply to mentions' do
+        Fabricate('Glitch::KeywordMute', account: alice, keyword: 'take', apply_to_mentions: false)
+        status = Fabricate(:status, spoiler_text: 'This is a hot take', account: bob)
+        status.mentions.create!(account_id: alice.id)
+
+        expect(FeedManager.instance.filter?(:home, status, alice.id)).to be false
       end
     end
 
@@ -221,6 +229,13 @@ RSpec.describe FeedManager do
         status = Fabricate(:status, text: 'This is a hot take', account: alice)
         bob.follow!(alice)
         expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be true
+      end
+
+      it 'returns false for a mention that contains a word muted by a keyword that does not apply to mentions' do
+        Fabricate('Glitch::KeywordMute', account: bob, keyword: 'take', apply_to_mentions: false)
+        status = Fabricate(:status, text: 'This is a hot take', account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be false
       end
     end
   end

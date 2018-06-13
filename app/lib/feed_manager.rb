@@ -153,7 +153,7 @@ class FeedManager
   def filter_from_home?(status, receiver_id)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
-    return true if keyword_filter?(status, receiver_id)
+    return true  if keyword_filter_from_home?(status, receiver_id)
 
     check_for_mutes = [status.account_id]
     check_for_mutes.concat(status.mentions.pluck(:account_id))
@@ -182,8 +182,24 @@ class FeedManager
     false
   end
 
-  def keyword_filter?(status, receiver_id)
-    Glitch::KeywordMuteHelper.new(receiver_id).matches?(status)
+  def keyword_filter_from_home?(status, receiver_id)
+    # If this status mentions the receiver, use the mentions scope: it's
+    # possible that the status will show up in the receiver's mentions, which
+    # means it ought to show up in the home feed as well.
+    #
+    # If it doesn't mention the receiver but is still headed for the home feed,
+    # use the home feed scope.
+    scope = if status.mentions.pluck(:account_id).include?(receiver_id)
+              Glitch::KeywordMute::Scopes::Mentions
+            else
+              Glitch::KeywordMute::Scopes::HomeFeed
+            end
+
+    return true if keyword_filter?(status, receiver_id, scope)
+  end
+
+  def keyword_filter?(status, receiver_id, scope)
+    Glitch::KeywordMuteHelper.new(receiver_id).matches?(status, scope)
   end
 
   def filter_from_mentions?(status, receiver_id)
@@ -197,7 +213,7 @@ class FeedManager
 
     should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions)                                                         # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
     should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
-    should_filter ||= keyword_filter?(status, receiver_id)                                                                               # or if the mention contains a muted keyword
+    should_filter ||= keyword_filter?(status, receiver_id, Glitch::KeywordMute::Scopes::Mentions)                                        # or if the mention contains a muted keyword
 
     should_filter
   end

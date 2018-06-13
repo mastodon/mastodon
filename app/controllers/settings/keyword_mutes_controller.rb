@@ -52,7 +52,7 @@ class Settings::KeywordMutesController < Settings::BaseController
   end
 
   def keyword_mute_params
-    params.require(:keyword_mute).permit(:keyword, :whole_word)
+    params.require(:keyword_mute).permit(:keyword, :whole_word, :apply_to_mentions)
   end
 
   def paginated_keyword_mutes_for_account
