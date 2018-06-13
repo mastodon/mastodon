@@ -1511,10 +1511,10 @@ a.account__display-name {
   }
 
   .navigation-bar__actions {
-    position:relative;
+    position: relative;
 
     .icon-button.close {
-      position:absolute;
+      position: absolute;
       pointer-events: none;
       transform: scale(0.0, 1.0) translate(-100%, 0);
       opacity: 0;
@@ -4947,13 +4947,13 @@ noscript {
     .navigation-bar__actions {
       & > .icon-button.close {
         will-change: opacity transform;
-        transition: opacity $duration*0.5 $delay,
+        transition: opacity $duration * 0.5 $delay,
                     transform $duration $delay;
       }
 
       & > .compose__action-bar .icon-button {
         will-change: opacity transform;
-        transition: opacity $duration*0.5 $delay+$duration*0.5,
+        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
                     transform $duration $delay;
       }
     }
