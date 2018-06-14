@@ -97,7 +97,6 @@ const changeColumnParams = (state, uuid, path, value) => {
   const columns = state.get('columns');
   const index   = columns.findIndex(item => item.get('uuid') === uuid);
 
-  console.log(path, value);
   const newColumns = columns.update(index, column => column.updateIn(['params', ...path], () => value));
 
   return state

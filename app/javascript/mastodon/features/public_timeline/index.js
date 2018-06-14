@@ -6,7 +6,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { expandPublicTimeline } from '../../actions/timelines';
-import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectPublicStream } from '../../actions/streaming';
 
@@ -93,8 +93,8 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   handleSettingChanged = (key, checked) => {
-    const { columnId, dispatch } = this.props;
-    if (!columnId && key[0] == 'other' && key[1] == 'onlyMedia') {
+    const { columnId } = this.props;
+    if (!columnId && key[0] === 'other' && key[1] === 'onlyMedia') {
       this.context.router.history.replace(`/timelines/public${checked ? '/media' : ''}`);
     }
   }
