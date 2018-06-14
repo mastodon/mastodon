@@ -8,7 +8,6 @@ import ColumnHeader from '../../components/column_header';
 import { expandPublicTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import SectionHeadline from '../community_timeline/components/section_headline';
 import { connectPublicStream } from '../../actions/streaming';
 
 const messages = defineMessages({
@@ -93,38 +92,16 @@ export default class PublicTimeline extends React.PureComponent {
     dispatch(expandPublicTimeline({ maxId, onlyMedia }));
   }
 
-  handleHeadlineLinkClick = e => {
-    const { columnId, dispatch } = this.props;
-    const onlyMedia = /\/media$/.test(e.currentTarget.href);
-
-    dispatch(changeColumnParams(columnId, ["other", "onlyMedia"], onlyMedia));
-  }
-
   handleSettingChanged = (key, checked) => {
     const { columnId, dispatch } = this.props;
-    const pinned = !!columnId;
-    if (key[0] == 'other' && key[1] == 'onlyMedia') {
-      const onlyMedia = checked;
-      if (pinned) {
-      } else {
-        this.context.router.history.replace(`/timelines/public${onlyMedia ? '/media' : ''}`);
-      }
+    if (!columnId && key[0] == 'other' && key[1] == 'onlyMedia') {
+      this.context.router.history.replace(`/timelines/public${checked ? '/media' : ''}`);
     }
   }
 
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
-
-    const headline = (
-      <SectionHeadline
-        timelineId='public'
-        to='/timelines/public'
-        pinned={pinned}
-        onlyMedia={onlyMedia}
-        onClick={this.handleHeadlineLinkClick}
-      />
-    );
 
     return (
       <Column ref={this.setRef}>
@@ -138,12 +115,10 @@ export default class PublicTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer onChange={this.handleSettingChanged} columnId={columnId} />
+          <ColumnSettingsContainer onChange={this.handleSettingChanged} settingKey={columnId} />
         </ColumnHeader>
 
         <StatusListContainer
-          prepend={headline}
-          alwaysPrepend
           timelineId={`public${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
