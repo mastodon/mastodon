@@ -115,7 +115,7 @@ export default class PublicTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer onChange={this.handleSettingChanged} settingKey={columnId} />
+          <ColumnSettingsContainer onChange={this.handleSettingChanged} columnId={columnId} />
         </ColumnHeader>
 
         <StatusListContainer
