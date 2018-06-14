@@ -1,17 +1,29 @@
 import { connect } from 'react-redux';
 import ColumnSettings from '../../community_timeline/components/column_settings';
 import { changeSetting } from '../../../actions/settings';
+import { changeColumnParams } from '../../../actions/columns';
 
-const mapStateToProps = state => ({
-  settings: state.getIn(['settings', 'public']),
-});
+const mapStateToProps = (state, ownProps) => {
+  const uuid = ownProps["columnId"];
+  const columns = state.getIn(['settings', 'columns']);
+  const index = columns.findIndex(c => c.get('uuid') == uuid);
 
-const mapDispatchToProps = dispatch => ({
+  return {
+    settings: (uuid && index >= 0) ? columns.get(index).get('params') : state.getIn(['settings', 'public']),
+  }
+};
 
-  onChange (key, checked) {
-    dispatch(changeSetting(['public', ...key], checked));
-  },
-
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onChange (key, checked) {
+      if (ownProps.columnId) {
+        dispatch(changeColumnParams(ownProps.columnId, key, checked));
+      } else {
+        dispatch(changeSetting(['public', ...key], checked));
+      }
+      ownProps.onChange(key, checked);
+    },
+  };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ColumnSettings);

@@ -23,6 +23,10 @@ const mapStateToProps = (state, { onlyMedia }) => ({
 @injectIntl
 export default class CommunityTimeline extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static defaultProps = {
     onlyMedia: false,
   };
@@ -94,6 +98,19 @@ export default class CommunityTimeline extends React.PureComponent {
     const onlyMedia = /\/media$/.test(e.currentTarget.href);
 
     dispatch(changeColumnParams(columnId, ["other", "onlyMedia"], onlyMedia));
+    dispatch(changeColumnParams(columnId, ['other', 'onlyMedia'], onlyMedia));
+  }
+
+  handleSettingChanged = (key, checked) => {
+    const { columnId, dispatch } = this.props;
+    const pinned = !!columnId;
+    if (key[0] == 'other' && key[1] == 'onlyMedia') {
+      const onlyMedia = checked;
+      if (pinned) {
+      } else {
+        this.context.router.history.replace(`/timelines/public/local${onlyMedia ? '/media' : ''}`);
+      }
+    }
   }
 
   render () {
@@ -122,7 +139,7 @@ export default class CommunityTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <ColumnSettingsContainer />
+          <ColumnSettingsContainer onChange={this.handleSettingChanged} columnId={columnId} />
         </ColumnHeader>
 
         <StatusListContainer
