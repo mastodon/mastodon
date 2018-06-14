@@ -93,7 +93,7 @@ export default class CommunityTimeline extends React.PureComponent {
     const { columnId, dispatch } = this.props;
     const onlyMedia = /\/media$/.test(e.currentTarget.href);
 
-    dispatch(changeColumnParams(columnId, { other: { onlyMedia } }));
+    dispatch(changeColumnParams(columnId, ["other", "onlyMedia"], onlyMedia));
   }
 
   render () {
