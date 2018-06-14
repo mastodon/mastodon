@@ -24,6 +24,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       ownProps.onChange(key, checked);
     },
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ColumnSettings);
