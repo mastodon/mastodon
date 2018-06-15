@@ -54,9 +54,13 @@ function addCustomToPool(custom, pool) {
   index = {};
 }
 
-function search(value, { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}) {
-  if (customEmojisList !== custom)
-    addCustomToPool(custom, originalPool);
+function search(value, { emojisToShowFilter, maxResults, include, exclude, custom } = {}) {
+  if (custom !== undefined) {
+    if (customEmojisList !== custom)
+      addCustomToPool(custom, originalPool);
+  } else {
+    custom = [];
+  }
 
   maxResults = maxResults || 75;
   include = include || [];
