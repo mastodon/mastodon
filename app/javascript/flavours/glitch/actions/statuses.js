@@ -23,6 +23,8 @@ export const STATUS_UNMUTE_REQUEST = 'STATUS_UNMUTE_REQUEST';
 export const STATUS_UNMUTE_SUCCESS = 'STATUS_UNMUTE_SUCCESS';
 export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
 
+export const REDRAFT = 'REDRAFT';
+
 export function fetchStatusRequest(id, skipLoading) {
   return {
     type: STATUS_FETCH_REQUEST,
@@ -70,13 +72,26 @@ export function fetchStatusFail(id, error, skipLoading) {
   };
 };
 
-export function deleteStatus(id) {
+export function redraft(status) {
+  return {
+    type: REDRAFT,
+    status,
+  };
+};
+
+export function deleteStatus(id, withRedraft = false) {
   return (dispatch, getState) => {
+    const status = getState().getIn(['statuses', id]);
+
     dispatch(deleteStatusRequest(id));
 
     api(getState).delete(`/api/v1/statuses/${id}`).then(() => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
+
+      if (withRedraft) {
+        dispatch(redraft(status));
+      }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
     });

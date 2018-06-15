@@ -8,6 +8,7 @@ import { me } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
+  redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
@@ -72,6 +73,10 @@ export default class ActionBar extends React.PureComponent {
     this.props.onDelete(this.props.status);
   }
 
+  handleRedraftClick = () => {
+    this.props.onDelete(this.props.status, true);
+  }
+
   handleDirectClick = () => {
     this.props.onDirect(this.props.status.get('account'), this.context.router.history);
   }
@@ -133,6 +138,7 @@ export default class ActionBar extends React.PureComponent {
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
+      menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
       menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
