@@ -523,9 +523,7 @@ oc:
       less_than_x_minutes: '%{count} min'
       less_than_x_seconds: Ara meteis
       over_x_years: '%{count} ans'
-      x_days:
-        one: Fa un jorn
-        other: Fa %{count} jorns
+      x_days: '%{count} jorns'
       x_minutes: '%{count} min'
       x_months: '%{count} meses'
       x_seconds: '%{count}s'
@@ -629,6 +627,7 @@ oc:
       expires_at: Expirats
       uses: Usatges
     title: Convidar de mond
+    invited_by: 'Vos a convidat :'
   landing_strip_html: <strong>%{name}</strong> utiliza %{link_to_root_path}. Podètz
     lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasque sul fediverse.
   landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos
