@@ -3,8 +3,8 @@ import ColumnSettings from '../../community_timeline/components/column_settings'
 import { changeSetting } from '../../../actions/settings';
 import { changeColumnParams } from '../../../actions/columns';
 
-const mapStateToProps = (state, ownProps) => {
-  const uuid = ownProps.columnId;
+const mapStateToProps = (state, { columnId }) => {
+  const uuid = columnId;
   const columns = state.getIn(['settings', 'columns']);
   const index = columns.findIndex(c => c.get('uuid') === uuid);
 
@@ -13,15 +13,14 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch, { columnId }) => {
   return {
     onChange (key, checked) {
-      if (ownProps.columnId) {
-        dispatch(changeColumnParams(ownProps.columnId, key, checked));
+      if (columnId) {
+        dispatch(changeColumnParams(columnId, key, checked));
       } else {
         dispatch(changeSetting(['public', ...key], checked));
       }
-      ownProps.onChange(key, checked);
     },
   };
 };
