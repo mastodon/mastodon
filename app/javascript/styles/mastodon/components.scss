@@ -1494,6 +1494,7 @@ a.account__display-name {
 .navigation-bar {
   padding: 10px;
   display: flex;
+  align-items: center;
   flex-shrink: 0;
   cursor: default;
   color: $darker-text-color;
@@ -1531,6 +1532,8 @@ a.account__display-name {
 .navigation-bar__profile {
   flex: 1 1 auto;
   margin-left: 8px;
+  line-height: 20px;
+  margin-top: -1px;
   overflow: hidden;
 }
 
