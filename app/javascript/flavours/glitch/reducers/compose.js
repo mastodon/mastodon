@@ -37,6 +37,7 @@ import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrde
 import uuid from 'flavours/glitch/util/uuid';
 import { me } from 'flavours/glitch/util/initial_state';
 import { overwrite } from 'flavours/glitch/util/js_helpers';
+import { unescapeHTML } from 'flavours/glitch/util/html';
 
 const totalElefriends = 3;
 
@@ -229,14 +230,14 @@ const hydrate = (state, hydratedState) => {
 
 const domParser = new DOMParser();
 
-const htmlToText = status => {
+const expandMentions = status => {
   const fragment = domParser.parseFromString(status.get('content'), 'text/html').documentElement;
 
   status.get('mentions').forEach(mention => {
     fragment.querySelector(`a[href="${mention.get('url')}"]`).textContent = `@${mention.get('acct')}`;
   });
 
-  return fragment.textContent;
+  return fragment.innerHTML;
 };
 
 export default function compose(state = initialState, action) {
@@ -381,7 +382,7 @@ export default function compose(state = initialState, action) {
     return state.mergeIn(['doodle'], action.options);
   case REDRAFT:
     return state.withMutations(map => {
-      map.set('text', htmlToText(action.status));
+      map.set('text', unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
       map.set('media_attachments', action.status.get('media_attachments'));
