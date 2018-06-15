@@ -1,4 +1,5 @@
 .account-card
+  .account-card__header{ style: "background-image: url(#{account.header.url(:original)})" }
   .detailed-status__display-name
     %div
       = image_tag account.avatar.url(:original), alt: '', width: 48, height: 48, class: 'avatar'
@@ -9,5 +10,14 @@
         %strong.emojify= display_name(account, custom_emojify: true)
         %span @#{account.acct}
 
-  - if account.note?
-    .account__header__content.emojify= Formatter.instance.simplified_format(account)
+    .counter
+      %span.counter-number= number_to_human account.statuses_count, strip_insignificant_zeros: true
+      %span.counter-label= t('accounts.posts')
+
+    .counter
+      %span.counter-number= number_to_human account.following_count, strip_insignificant_zeros: true
+      %span.counter-label= t('accounts.following')
+
+    .counter
+      %span.counter-number= number_to_human account.followers_count, strip_insignificant_zeros: true
+      %span.counter-label= t('accounts.followers')
