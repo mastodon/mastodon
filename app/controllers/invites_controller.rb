@@ -11,7 +11,7 @@ class InvitesController < ApplicationController
     authorize :invite, :create?
 
     @invites = invites
-    @invite  = Invite.new(expires_in: 1.day.to_i)
+    @invite  = Invite.new
   end
 
   def create
@@ -42,6 +42,6 @@ class InvitesController < ApplicationController
   end
 
   def resource_params
-    params.require(:invite).permit(:max_uses, :expires_in)
+    params.require(:invite).permit(:max_uses, :expires_in, :autofollow)
   end
 end

@@ -3,6 +3,7 @@
 class Auth::RegistrationsController < Devise::RegistrationsController
   layout :determine_layout
 
+  before_action :set_invite, only: [:new, :create]
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
@@ -51,7 +52,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def allowed_registrations?
-    Setting.open_registrations || (invite_code.present? && Invite.find_by(code: invite_code)&.valid_for_use?)
+    Setting.open_registrations || @invite&.valid_for_use?
   end
 
   def invite_code
@@ -66,6 +67,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
+  end
+
+  def set_invite
+    @invite = invite_code.present? ? Invite.find_by(code: invite_code) : nil
   end
 
   def determine_layout
