@@ -1,11 +1,11 @@
----
 nl:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 400x400px
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
-        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
+        digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen
+          wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
         display_name:
           one: <span class="name-counter">1</span> teken over
           other: <span class="name-counter">%{count}</span> tekens over
@@ -15,15 +15,21 @@ nl:
         note:
           one: <span class="note-counter">1</span> teken over
           other: <span class="note-counter">%{count}</span> tekens over
-        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
+        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel
+          getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
-        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
+        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk
+          apparaat waarmee je inlogt).
+        autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen
+          jou automatisch
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       sessions:
-        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes.
+        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik
+          een van jouw herstelcodes.
       user:
-        filtered_languages: Geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd
+        filtered_languages: Geselecteerde talen worden uit de lokale en globale tijdlijn
+          verwijderd
     labels:
       account:
         fields:
@@ -65,6 +71,7 @@ nl:
         type: Importtype
         username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
+        autofollow: Uitnodigen om jouw account te volgen
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -78,6 +85,6 @@ nl:
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
     'no': Nee
     required:
-      mark: "*"
+      mark: '*'
       text: vereist
     'yes': Ja
