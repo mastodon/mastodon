@@ -93,11 +93,11 @@ const moveColumn = (state, uuid, direction) => {
     .set('saved', false);
 };
 
-const changeColumnParams = (state, uuid, params) => {
+const changeColumnParams = (state, uuid, path, value) => {
   const columns = state.get('columns');
   const index   = columns.findIndex(item => item.get('uuid') === uuid);
 
-  const newColumns = columns.update(index, column => column.update('params', () => fromJS(params)));
+  const newColumns = columns.update(index, column => column.updateIn(['params', ...path], () => value));
 
   return state
     .set('columns', newColumns)
@@ -127,7 +127,7 @@ export default function settings(state = initialState, action) {
   case COLUMN_MOVE:
     return moveColumn(state, action.uuid, action.direction);
   case COLUMN_PARAMS_CHANGE:
-    return changeColumnParams(state, action.uuid, action.params);
+    return changeColumnParams(state, action.uuid, action.path, action.value);
   case EMOJI_USE:
     return updateFrequentEmojis(state, action.emoji);
   case SETTING_SAVE:
