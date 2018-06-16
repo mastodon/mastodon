@@ -1211,6 +1211,10 @@ a .account__avatar {
   flex: 0 1 calc(50% - 140px);
   padding: 10px;
 
+  .icon-button {
+    vertical-align: middle;
+  }
+
   .dropdown--active {
     .dropdown__content.dropdown__right {
       left: 6px;
@@ -1230,13 +1234,14 @@ a .account__avatar {
   display: flex;
   flex: 1 1 auto;
   line-height: 18px;
+  text-align: center;
 }
 
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
   flex: 0 1 80px;
-  border-left: 1px solid lighten($ui-base-color, 8%);
+  border-right: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 5px;
 
   & > span {
