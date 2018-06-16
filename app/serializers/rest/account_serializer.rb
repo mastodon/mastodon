@@ -51,9 +51,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   def noindex
     user = object.user
     if user
-      user.settings["noindex"]
-    else
-      nil
+      user.settings['noindex']
     end
   end
 
